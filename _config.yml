@@ -1,0 +1,10 @@
+# basic options
+title: Title
+author: Ming En
+email: KOHM0025@e.ntu.edu.sg
+description: user guide for Calorie Tracker
+github_username: MingEn82
+
+# Build settings
+markdown: kramdown
+theme: minima
