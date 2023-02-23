@@ -1,8 +1,8 @@
-package seedu.duke;
+package seedu.apollo;
 
 import java.util.Scanner;
 
-public class Duke {
+public class Apollo {
     /**
      * Main entry-point for the java.duke.Duke application.
      */

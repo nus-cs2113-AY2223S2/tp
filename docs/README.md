@@ -1,4 +1,4 @@
-# Duke
+# Apollo
 
 {Give product intro here}
 
