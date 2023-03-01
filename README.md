@@ -26,7 +26,7 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
    ```
    Type some word and press enter to let the execution proceed to the end.
 
-## Build automation using Gradle
+## Build automation using Gradle.
 
 * This project uses Gradle for build automation and dependency management. It includes a basic build script as well (i.e. the `build.gradle` file).
 * If you are new to Gradle, refer to the [Gradle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/gradle.html).
