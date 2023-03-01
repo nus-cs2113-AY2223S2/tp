@@ -15,3 +15,18 @@ bin/
 
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
+
+### Hugo ###
+# Generated files by hugo
+/docs/public/
+/docs/resources/_gen/
+/docs/assets/jsconfig.json
+docs/hugo_stats.json
+
+# Executable may be added to repository
+/docs/hugo.exe
+/docs/hugo.darwin
+/docs/hugo.linux
+
+# Temporary lock file while building
+/docs/.hugo_build.lock
