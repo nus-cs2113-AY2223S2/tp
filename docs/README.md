@@ -1,4 +1,4 @@
-# Duke
+# Fitness Duke
 
 {Give product intro here}
 
