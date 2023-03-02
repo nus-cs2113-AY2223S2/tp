@@ -1,4 +1,4 @@
-# John Doe - Project Portfolio Page
+# EthanYidong - Project Portfolio Page
 
 ## Overview
 
