@@ -6,6 +6,4 @@ Display |       Name       |              Github Profile              | Portfoli
 ![](https://via.placeholder.com/100.png?text=photo) | Eng Chen Xi, Aviel | [Github](https://github.com/avielcx) | [Portfolio](docs/team/avielcx.md)
 ![](https://i.redd.it/lgjx3zalumy71.png) | Pang Yan Ming | [Github](https://github.com/Rayleigh47/) | [Portfolio](team/yanming.md)
 ![](https://via.placeholder.com/100.png?text=Photo) |   John Roe    |      [Github](https://github.com/)       | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) |    Don Roe    |      [Github](https://github.com/)       | [Portfolio](docs/team/johndoe.md)
-
->>>>>>> 497a202d89b5fe42203ae56cae5e5a88a6d279b9
+![](https://i.kym-cdn.com/photos/images/original/001/889/810/5c7) | Hung Hin Wang Clement | [Github](https://github.com/hyperbola-bear) | [Portfolio](https://i.redd.it/oemztncmsib61.png)
