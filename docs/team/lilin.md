@@ -1,4 +1,4 @@
-# John Doe - Project Portfolio Page
+# Li Lin - Project Portfolio Page
 
 ## Overview
 
