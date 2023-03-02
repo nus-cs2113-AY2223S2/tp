@@ -1,0 +1,1 @@
+I don't have any remarkable achievements ... I think I'm just a normal student. I'm not good at programming, but I'm willing to learn.
