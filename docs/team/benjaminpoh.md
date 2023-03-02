@@ -1,4 +1,4 @@
-# John Doe - Project Portfolio Page
+# Benjamin Poh - Project Portfolio Page
 
 ## Overview
 
