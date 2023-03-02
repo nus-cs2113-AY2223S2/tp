@@ -8,3 +8,4 @@ Display |       Name       |              Github Profile              | Portfoli
 ![](https://via.placeholder.com/100.png?text=Photo) |   John Roe    |      [Github](https://github.com/)       | [Portfolio](docs/team/johndoe.md)
 ![](https://via.placeholder.com/100.png?text=Photo) |    Don Roe    |      [Github](https://github.com/)       | [Portfolio](docs/team/johndoe.md)
 
+>>>>>>> 497a202d89b5fe42203ae56cae5e5a88a6d279b9
