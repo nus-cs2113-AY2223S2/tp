@@ -7,5 +7,5 @@ Display | Name | Github Profile | Portfolio
 ![](image.png) | Leo Zheng Rui, Darren | [Github](https://github.com/dsicol) | [Portfolio](https://github.com/dsicol)
 ![](https://via.placeholder.com/100.png?text=Photo) | Leonardo Ong Dingchao | [Github](https://github.com/Chick3nBoy) | [Portfolio](docs/team/leonardoOng.md)
 ![](https://via.placeholder.com/100.png?text=Photo) | Tan Tze Loong | [Github](https://github.com/TzeLoong) | [Portfolio](docs/team/TzeLoong.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Don Roe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
+
 
