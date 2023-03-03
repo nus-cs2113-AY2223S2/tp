@@ -1,6 +1,6 @@
 # Duke
 
-{Give product intro here}
+{Give product intro here}.
 
 Useful links:
 * [User Guide](UserGuide.md)
