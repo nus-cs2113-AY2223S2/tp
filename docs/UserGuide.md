@@ -2,7 +2,7 @@
 
 ## Introduction
 
-{Give a product intro}
+Fitness Duke is a CLI Based workout organizer/tracker.
 
 ## Quick Start
 
