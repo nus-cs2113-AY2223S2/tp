@@ -3,9 +3,9 @@ package seedu.duke;
 import java.util.ArrayList;
 
 public class Category {
-    private String name;
-
     ArrayList<Event> events = new ArrayList<>();
+
+    private String name;
 
     /**
      * A constructor with name.
