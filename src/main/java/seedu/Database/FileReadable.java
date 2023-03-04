@@ -1,5 +1,7 @@
 package seedu.Database;
 
+import java.io.IOException;
+
 public interface FileReadable {
-    public void read();
+    public void load() throws IOException;
 }
