@@ -10,6 +10,6 @@ import seedu.duke.parser.CommandArguments;
  */
 public class ByeCommandFactory extends ExecutableCommandFactory {
     public ByeCommand buildCommand(DukeSession dukeSession, CommandArguments arguments) {
-        return new ByeCommand(dukeSession.getControlFlow());
+        return new ByeCommand();
     }
 }

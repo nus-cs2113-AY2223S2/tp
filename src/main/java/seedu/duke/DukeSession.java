@@ -60,7 +60,7 @@ public class DukeSession {
             }
 
             ExecutableCommand cmd = commandFactory.buildCommand(this, new CommandArguments(tokens));
-            cmd.execute();
+            cmd.execute(this);
         }
     }
 }

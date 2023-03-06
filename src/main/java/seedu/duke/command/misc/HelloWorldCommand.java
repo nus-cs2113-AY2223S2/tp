@@ -1,5 +1,6 @@
 package seedu.duke.command.misc;
 
+import seedu.duke.DukeSession;
 import seedu.duke.command.ExecutableCommand;
 
 /**
@@ -12,11 +13,11 @@ public class HelloWorldCommand extends ExecutableCommand {
         this.name = name;
     }
 
-    public void execute() {
+    public void execute(DukeSession dukeSession) {
         if (this.name == null) {
-            System.out.println("Hello, world!");
+            dukeSession.getUi().printMessage("Hello, world!");
             return;
         }
-        System.out.println(String.format("Hello, %s!", this.name));
+        dukeSession.getUi().printMessage(String.format("Hello, %s!", this.name));
     }
 }
