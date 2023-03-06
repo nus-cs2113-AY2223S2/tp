@@ -1,5 +1,7 @@
 package seedu.dukeofbooks.data.person;
 
+import java.util.Objects;
+
 public class Person {
     private PersonName name;
     private Phone phone;

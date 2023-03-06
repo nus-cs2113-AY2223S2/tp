@@ -1,3 +1,6 @@
+package seedu.dukeofbooks.common;
+import seedu.dukeofbooks.data.exception.IllegalValueException;
+
 public class Name {
 
     public static final String MESSAGE_NAME_CONSTRAINTS = "Names should be spaces or alphabetic characters";

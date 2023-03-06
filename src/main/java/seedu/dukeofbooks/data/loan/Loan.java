@@ -1,14 +1,18 @@
 package seedu.dukeofbooks.data.loan;
 import java.time.LocalDateTime;
 
+import seedu.dukeofbooks.data.book.Isbn;
+import seedu.dukeofbooks.data.person.Person;
+import seedu.dukeofbooks.data.exception.IllegalDateException;
+
 public class Loan {
+    public String LOAN_DATE_IS_AFTER_LOAN_START="Error: loan date after loan start date";
     private Person borrower;
     private Isbn isbn;
     private LocalDateTime loanStart;
     private LocalDateTime loanEnd;
     private boolean isReturned;
 
-    public String LOAN_DATE_IS_AFTER_LOAN_START="Error: loan date after loan start date";
 
     public Person getBorrower() {
         return borrower;
@@ -25,8 +29,8 @@ public class Loan {
     public LocalDateTime getLoanEnd() {
         return loanEnd;
     }
-    public void setLoanEnd(LocalDateTime loanEnd) {
-        if (loanEnd.compareto(loanStart)<0) {
+    public void setLoanEnd(LocalDateTime loanEnd) throws IllegalDateException {
+        if (loanEnd.compareTo(loanStart)<0) {
             // Impossible to return before start date
             // Throw exception
             throw new IllegalDateException(LOAN_DATE_IS_AFTER_LOAN_START);

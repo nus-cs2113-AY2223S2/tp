@@ -1,10 +1,10 @@
 package seedu.dukeofbooks.data.exception;
 
-public class IllegalDateException extends DukeOfBooksException  {
+public class DukeOfBooksException extends Exception  {
     /**
      * @param message should contain relevant information on the failed constraint(s)
      */
-    public IllegalDateException(String message) {
+    public DukeOfBooksException(String message) {
         super(message);
     }
 }
