@@ -2,6 +2,7 @@ package seedu.duke.command.factory;
 
 import seedu.duke.DukeSession;
 import seedu.duke.command.ExecutableCommand;
+import seedu.duke.parser.CommandArguments;
 import seedu.duke.parser.CommandTokens;
 import seedu.duke.router.Routable;
 
@@ -13,5 +14,5 @@ public abstract class ExecutableCommandFactory implements Routable {
         return this;
     }
 
-    public abstract ExecutableCommand buildCommand(DukeSession dukeSession);
+    public abstract ExecutableCommand buildCommand(DukeSession dukeSession, CommandArguments arguments);
 }
