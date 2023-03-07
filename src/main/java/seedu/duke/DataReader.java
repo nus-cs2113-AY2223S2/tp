@@ -36,13 +36,11 @@ public class DataReader {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-                int moduleMCs = 0;
-                try {
-                    moduleMCs = Integer.parseInt(row[3]);
-                } catch (NumberFormatException e) {
+                if (row[3] == "N/A") {
+                    row[3] = "0";
                 }
-                Module module = new Module(Integer.parseInt(row[0]), row[1], row[2], moduleMCs,
-                        row[4], row[5], Integer.parseInt(row[6]));
+                Module module = new Module(Integer.parseInt(row[0]), row[1], row[2],
+                        Integer.parseInt(row[3]), row[4], row[5], Integer.parseInt(row[6]));
                 modules.add(module);
             }
         } catch (IOException e) {
