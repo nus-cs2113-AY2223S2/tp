@@ -38,5 +38,4 @@ public class Meal {
             this.totalCalories += food.getCalories();
         }
     }
-
 }
