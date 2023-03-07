@@ -4,17 +4,20 @@ public class User {
     private String name;
     private float weight;
     private float height;
+    private int age;
 
     public User() {
         this.name = "";
         this.weight = 0;
-        this.weight = 0;
+        this.height = 0;
+        this.age = 0;
     }
 
-    public User(String name, float weight, float height) {
+    public User(String name, float weight, float height, int age) {
         this.name = name;
         this.weight = weight;
         this.height = height;
+        this.age = age;
     }
 
     public String getName() {
@@ -41,6 +44,19 @@ public class User {
         this.height = height;
     }
 
+    public int getAge() {
+        return this.age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public double getCaloricNeeds (float weight, float height) {
+        double calories = (88.4 + (13.4 * weight)) + (4.8 * height) - (5.68 * age);
+        //assuming it's a dude
+        return calories;
+    }
     public String[] toWriteFormat() {
         String weight = Float.toString(this.weight);
         String height = Float.toString(this.height);
