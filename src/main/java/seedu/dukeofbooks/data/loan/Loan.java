@@ -14,7 +14,6 @@ public class Loan implements IVerifiable {
     private LocalDateTime loanEnd;
     private boolean isReturned;
 
-
     public Person getBorrower() {
         return borrower;
     }
@@ -49,5 +48,31 @@ public class Loan implements IVerifiable {
     }
     public void setReturned(boolean isReturned) {
         this.isReturned = isReturned;
+    }
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } 
+        else {
+            return other instanceof Loan && this.hasSameData((Loan) other);
+        }
+    }
+    private boolean hasSameData(Loan other) {
+        boolean sameBorrower = other.getBorrower() == borrower;
+        boolean sameIsbn = other.getISBN().equals(isbn);
+        boolean sameStart = other.getLoanStart().equals(loanStart);
+        boolean sameEnd = other.getLoanEnd().equals(loanEnd);
+        boolean sameReturn = other.isReturned() == isReturned;
+        return sameBorrower && sameIsbn && sameStart && sameEnd && sameReturn;
+    }
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+    @Override
+    public String toString() {
+        return String.format("Loan\nBorrower: %s, ISBN: %s, Start date: %s, End date: %s",
+                borrower,isbn,loanStart,loanEnd);
     }
 }

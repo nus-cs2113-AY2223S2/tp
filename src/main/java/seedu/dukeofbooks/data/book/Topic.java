@@ -10,9 +10,12 @@ public class Topic implements IVerifiable {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Topic // instanceof handles nulls
-                && this.hasSameData((Topic) other));
+        if (other == this) {
+            return true;
+        } 
+        else {
+            return other instanceof Topic && this.hasSameData((Topic) other);
+        }
     }
 
     public boolean equals(String otherTopic) {

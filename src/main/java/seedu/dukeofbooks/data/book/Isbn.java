@@ -2,7 +2,7 @@ package seedu.dukeofbooks.data.book;
 
 import seedu.dukeofbooks.common.IVerifiable;
 
-public class Isbn implements IVerifiable{
+public class Isbn implements IVerifiable {
     private String isbn;
     public Isbn(String isbn) {
         setISBN(isbn);;
@@ -10,9 +10,12 @@ public class Isbn implements IVerifiable{
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Isbn // instanceof handles nulls
-                && this.hasSameData((Isbn) other));
+        if (other == this) {
+            return true;
+        } 
+        else {
+            return other instanceof Isbn && this.hasSameData((Isbn) other);
+        }
     }
 
     private boolean hasSameData(Isbn other) {
