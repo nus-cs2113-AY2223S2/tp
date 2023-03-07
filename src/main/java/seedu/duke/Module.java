@@ -19,4 +19,14 @@ public class Module {
         this.nusModuleName = nusModuleName;
         this.nusModuleMCs = nusModuleMCs;
     }
+
+    @Override
+    public String toString() {
+        return univId + "," + moduleCode + "," + moduleName + "," + moduleMCs + "," + nusModuleCode
+                + "," + nusModuleName + "," + nusModuleMCs;
+    }
+
+    public int getUnivId() {
+        return univId;
+    }
 }

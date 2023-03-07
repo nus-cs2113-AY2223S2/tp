@@ -10,4 +10,9 @@ public class University {
         this.univName = univName;
         this.univAbbName = univAbbName;
     }
+
+    @Override
+    public String toString() {
+        return univId + "," + univName + "," + univAbbName;
+    }
 }
