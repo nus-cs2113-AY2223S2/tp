@@ -8,6 +8,10 @@ public class DukeOfBooks {
         start();
     }
     private static void start() {
+        // Get some command
+
+        // Execute some command
+
         return;
     }
 }

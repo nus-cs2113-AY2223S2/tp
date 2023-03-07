@@ -17,6 +17,9 @@ public class Isbn implements IVerifiable {
             return other instanceof Isbn && this.hasSameData((Isbn) other);
         }
     }
+    public boolean equals(String other) {
+        return other.equals(isbn);
+    }
 
     private boolean hasSameData(Isbn other) {
         return isbn == other.getISBN();

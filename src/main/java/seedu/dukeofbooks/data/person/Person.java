@@ -2,7 +2,10 @@ package seedu.dukeofbooks.data.person;
 
 import java.util.Objects;
 
+import seedu.dukeofbooks.data.exception.IllegalValueException;
+
 public class Person {
+    public static final int DEFAULT_PHONE_NUMBER = 10000000;
     private PersonName name;
     private Phone phone;
 
@@ -12,6 +15,10 @@ public class Person {
     public Person(PersonName name, Phone phone) {
         this.name = name;
         this.phone = phone;
+    }
+    public Person(String name) throws IllegalValueException {
+        this.name = new PersonName(name);
+        this.phone = new Phone(DEFAULT_PHONE_NUMBER);
     }
 
     /**

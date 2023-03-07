@@ -41,13 +41,19 @@ public class Inventory {
      * @param book
      * @throws IllegalValueException
      */
-    public void removeBook(Book book) throws IllegalValueException {
+    public Book removeBook(String isbn) throws IllegalValueException {
         // Check if book in inventory
-        if (inventoryListing.get(book) == null) {
-            // Create book and exit
+        Optional<Book> target = inventoryListing.entrySet()
+                                                .stream()
+                                                .filter(e -> e.getKey().getIsbn().equals(isbn))
+                                                .map(Map.Entry::getKey)
+                                                .findFirst();
+        if (!target.isPresent()) {
             throw new IllegalValueException(INVALID_BOOK_REMOVAL);
         }
-        decrementBookEntry(book);
+
+        decrementBookEntry(target.get());
+        return target.get();
     }
 
     /**
@@ -56,13 +62,20 @@ public class Inventory {
      * @param book
      * @throws IllegalValueException
      */
-    public void purgeBook(Book book) throws IllegalValueException {
+    public Book purgeBook(String isbn) throws IllegalValueException {
         // Check if book in inventory
-        if (inventoryListing.get(book) == null) {
-            // Create book and exit
+        // Check if book in inventory
+        Optional<Book> target = inventoryListing.entrySet()
+                                                .stream()
+                                                .filter(e -> e.getKey().getIsbn().equals(isbn))
+                                                .map(Map.Entry::getKey)
+                                                .findFirst();
+        if (!target.isPresent()) {
             throw new IllegalValueException(INVALID_BOOK_REMOVAL);
         }
-        inventoryListing.remove(book);
+        
+        inventoryListing.remove(target.get());
+        return target.get();
     }
 
     private void createBookEntry(Book book) {
