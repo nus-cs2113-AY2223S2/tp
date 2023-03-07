@@ -1,12 +1,13 @@
 package seedu.dukeofbooks.data.loan;
 import java.time.LocalDateTime;
 
+import seedu.dukeofbooks.common.IVerifiable;
 import seedu.dukeofbooks.data.book.Isbn;
 import seedu.dukeofbooks.data.person.Person;
 import seedu.dukeofbooks.data.exception.IllegalDateException;
 
-public class Loan {
-    public String LOAN_DATE_IS_AFTER_LOAN_START="Error: loan date after loan start date";
+public class Loan implements IVerifiable {
+    public static final String LOAN_DATE_IS_AFTER_LOAN_START="Error: loan date after loan start date";
     private Person borrower;
     private Isbn isbn;
     private LocalDateTime loanStart;
@@ -16,6 +17,12 @@ public class Loan {
 
     public Person getBorrower() {
         return borrower;
+    }
+    public Isbn getISBN() {
+        return isbn;
+    }
+    public void setISBN(Isbn newISBN) {
+        isbn = newISBN;
     }
     public void setBorrower(Person borrower) {
         this.borrower = borrower;

@@ -2,7 +2,7 @@ package seedu.dukeofbooks.data.person;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 
 public class Phone {
-    public final String INVALID_PHONE_NUMBER = "The phone number supplied is not valid in Singapore";
+    public static final String INVALID_PHONE_NUMBER = "The phone number supplied is not valid in Singapore";
     private int number;
 
     public Phone(int number) throws IllegalValueException {
