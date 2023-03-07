@@ -44,7 +44,8 @@ public class Storage {
             dataToTextFile[0] = dukeTasks.toString();
 
             // save task details split by regex ", "
-            writeToFile += dataToTextFile[0] + SAVEFILESEPARATOR + dataToTextFile[1] + SAVEFILESEPARATOR + dataToTextFile[2] + System.lineSeparator();
+            writeToFile += dataToTextFile[0] + SAVEFILESEPARATOR + dataToTextFile[1] + 
+                    SAVEFILESEPARATOR + dataToTextFile[2] + System.lineSeparator();
         }
 
         // write task list to text file
