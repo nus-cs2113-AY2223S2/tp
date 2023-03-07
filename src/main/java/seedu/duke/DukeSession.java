@@ -4,6 +4,7 @@ import seedu.duke.command.ExecutableCommand;
 import seedu.duke.command.factory.ExecutableCommandFactory;
 import seedu.duke.command.factory.misc.ByeCommandFactory;
 import seedu.duke.command.factory.misc.HelloWorldCommandFactory;
+import seedu.duke.parser.CommandArguments;
 import seedu.duke.parser.CommandTokens;
 import seedu.duke.router.CommandRouterNode;
 import seedu.duke.ui.DukeUI;
@@ -50,16 +51,16 @@ public class DukeSession {
         this.ui.printIntroduction();
         while (this.controlFlow.shouldRun()) {
             String nextCommand = ui.getNextCommandString();
-
-            ExecutableCommandFactory commandFactory = this.COMMAND_TREE.resolve(new CommandTokens(nextCommand));
+            CommandTokens tokens = new CommandTokens(nextCommand);
+            ExecutableCommandFactory commandFactory = this.COMMAND_TREE.resolve(tokens);
 
             if (commandFactory == null) {
                 System.out.println("Not a command!");
                 continue;
             }
 
-            ExecutableCommand cmd = commandFactory.buildCommand(this);
-            cmd.execute();
+            ExecutableCommand cmd = commandFactory.buildCommand(this, new CommandArguments(tokens));
+            cmd.execute(this);
         }
     }
 }

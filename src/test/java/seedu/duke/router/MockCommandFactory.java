@@ -3,6 +3,7 @@ package seedu.duke.router;
 import seedu.duke.DukeSession;
 import seedu.duke.command.ExecutableCommand;
 import seedu.duke.command.factory.ExecutableCommandFactory;
+import seedu.duke.parser.CommandArguments;
 
 class MockCommandFactory extends ExecutableCommandFactory {
     private String expectedRoute;
@@ -11,7 +12,7 @@ class MockCommandFactory extends ExecutableCommandFactory {
         this.expectedRoute = expectedRoute;
     }
 
-    public ExecutableCommand buildCommand(DukeSession dukeSession) {
+    public ExecutableCommand buildCommand(DukeSession dukeSession, CommandArguments args) {
         throw new UnsupportedOperationException("MockCommandFactory is for testing routing only!");
     }
 
