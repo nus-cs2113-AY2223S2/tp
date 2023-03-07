@@ -6,6 +6,9 @@ public class User {
     private float height;
 
     public User() {
+        this.name = "";
+        this.weight = 0;
+        this.weight = 0;
     }
 
     public User(String name, float weight, float height) {
