@@ -1,8 +1,8 @@
-package seedu.duke;
+package seedu.MyLedger;
 
 import java.util.Scanner;
 
-public class Duke {
+public class MyLedger {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
