@@ -3,9 +3,9 @@ import java.time.LocalDate;
 
 public class Transform {
     // This class is used to transform the user input to a format that the computer can understand
+    public static final String SLASH = "/";
     private LocalDate time;
     private double amount;
-    static final String SLASH = "/";
 
     public LocalDate getTime() {
         return this.time;
