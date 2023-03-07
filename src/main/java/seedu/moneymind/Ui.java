@@ -4,13 +4,7 @@ import java.util.Scanner;
 
 public class Ui {
     private static final String LINE = "____________________________________________________________\n";
-    private static final String LOGO =
-        "███╗░░░███╗░█████╗░███╗░░██╗███████╗██╗░░░██╗███╗░░░███╗██╗███╗░░██╗██████╗░\n" +
-        "████╗░████║██╔══██╗████╗░██║██╔════╝╚██╗░██╔╝████╗░████║██║████╗░██║██╔══██╗\n" +
-        "██╔████╔██║██║░░██║██╔██╗██║█████╗░░░╚████╔╝░██╔████╔██║██║██╔██╗██║██║░░██║\n" +
-        "██║╚██╔╝██║██║░░██║██║╚████║██╔══╝░░░░╚██╔╝░░██║╚██╔╝██║██║██║╚████║██║░░██║\n" +
-        "██║░╚═╝░██║╚█████╔╝██║░╚███║███████╗░░░██║░░░██║░╚═╝░██║██║██║░╚███║██████╔╝\n" +
-        "╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚══╝╚══════╝░░░╚═╝░░░╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝╚═════╝░\n";
+    private static final String LOGO = "[LOGO_PLACEHOLDER]\n";
     private static final String GREETING = "Hello from\n" + LOGO + "How may I help you?";
     private static final String NAME_REQUEST = "What is your name?";
     private static final String GOODBYE = "Bye. Hope to see you again soon!";
