@@ -29,6 +29,7 @@ public class Duke {
         switch (parser.extractCommandKeyword(input)) {
         case "delete":
             expenseList.deleteExpense(input);
+            break;
         default:
         }
     }

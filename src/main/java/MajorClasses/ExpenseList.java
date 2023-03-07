@@ -1,7 +1,5 @@
 package MajorClasses;
 
-import MajorClasses.Expense;
-
 import java.util.ArrayList;
 
 public class ExpenseList {
