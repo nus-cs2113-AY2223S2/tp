@@ -1,5 +1,7 @@
 ---
 title: About Us
+weight: 3
+bookFlatSection: true
 ---
 
 # About Us
