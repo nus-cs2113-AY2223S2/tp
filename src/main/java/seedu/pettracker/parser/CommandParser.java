@@ -1,6 +1,12 @@
 package seedu.pettracker.parser;
 
-import seedu.pettracker.commands.*;
+import seedu.pettracker.commands.AddPetCommand;
+import seedu.pettracker.commands.AddStatCommand;
+import seedu.pettracker.commands.Command;
+import seedu.pettracker.commands.ExitCommand;
+import seedu.pettracker.commands.ListPetCommand;
+import seedu.pettracker.commands.RemovePetCommand;
+import seedu.pettracker.commands.RemoveStatCommand;
 import seedu.pettracker.exceptions.UnknownKeywordException;
 
 public class CommandParser {
