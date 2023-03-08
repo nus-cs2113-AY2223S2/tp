@@ -38,8 +38,11 @@ public class Ui {
     public void printWelcomeMessage() {
         showLine();
         System.out.println("Hello from\n" +
-                "▄▀█ █▀█ █▀█ █░░ █░░ █▀█\n" +
-                "█▀█ █▀▀ █▄█ █▄▄ █▄▄ █▄█\n" +
+                " ____    ____    _____  __      __       _____\n" +
+                "|  _  | |  _ \\  | ___ | | |     | |     | ___ |\n" +
+                "| |_| | | |_| | | | | | | |     | |     | | | |\n" +
+                "| | | | |  __/  | |_| | | |___  | |___  | |_| |\n" +
+                "|_| |_| |_|     \\_____/ |_____| |_____| \\_____/\n" +
                 "Enter \"help\" to see a list of commands.");
         showLine();
     }
