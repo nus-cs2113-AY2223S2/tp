@@ -8,23 +8,32 @@ public class TrigoGraph {
     }
 
     public void splitAmplitude(){
-        Double amplitude;
-        String [] amplitudeAndEqn = trigoEqn.split("\\*",2);
-        amplitude = Double.parseDouble(amplitudeAndEqn[0]);
-        System.out.println("This is the amplitude: "+amplitude);
-        splitTrigoAndVerticalShift(amplitudeAndEqn[1]);
+        try {
+            Double amplitude;
+            String[] amplitudeAndEqn = trigoEqn.split("\\*", 2);
+            amplitude = Double.parseDouble(amplitudeAndEqn[0]);
+            System.out.println("This is the amplitude: " + amplitude);
+            splitTrigoAndVerticalShift(amplitudeAndEqn[1]);
+        }catch (NumberFormatException e){
+            System.out.println("Please enter the format as required: ");
+        }
     }
 
     public void splitTrigoAndVerticalShift(String trigoAndVerticalShift){
-        String [] TrigoAndVerticalShift = trigoAndVerticalShift.split("\\)",2);
-        if(TrigoAndVerticalShift[1].trim().contains("+")){
-            String positiveVShift = TrigoAndVerticalShift[1].substring(2); //+ 5
-            System.out.println("This is the vertical shift: "+positiveVShift);
-        }else{
-            System.out.println("This is the vertical shift: "+TrigoAndVerticalShift[1]);
+        try {
+            String[] TrigoAndVerticalShift = trigoAndVerticalShift.split("\\)", 2);
+            if (TrigoAndVerticalShift[1].trim().contains("+")) {
+                double positiveVShift = Double.parseDouble(TrigoAndVerticalShift[1].substring(1)); //+5
+                System.out.println("This is the vertical shift: " + positiveVShift);
+            } else {
+                double negativeShift = Double.parseDouble(TrigoAndVerticalShift[1]);
+                System.out.println("This is the vertical shift: " + negativeShift);
 
+            }
+            splitTrigoIntoPhasors(TrigoAndVerticalShift[0]);
+        }catch(NumberFormatException e){
+            System.out.println("Please enter the format as required: ");
         }
-        splitTrigoIntoPhasors(TrigoAndVerticalShift[0]);
     }
 
     public void splitTrigoIntoPhasors(String trigo){
