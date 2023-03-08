@@ -14,6 +14,13 @@ public class rainyDay {
         System.out.println("Hello " + in.nextLine());
     }
 
+    public static String addFinancialStatement(String description, String flowDirection, int value,
+                                             ArrayList<FinancialStatement> financialReport) {
+        financialReport.add(new FinancialStatement(description, flowDirection, value));
+        String addStatement = "Done, added: " + flowDirection + " of " + description + ", $" + value;
+        return addStatement;
+    }
+
     public static String deleteFinancialStatement(int index, ArrayList<FinancialStatement> financialReport) {
         String deleteStatement = "Done, deleted \"" + financialReport.get(index).getDescription()
                 + "\" from the financial report";
