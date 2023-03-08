@@ -32,14 +32,14 @@ public class UserInterface {
 
         public void printGreeting() {
             printLine();
-            System.out.println(INKA_ART);
+            System.out.println(StringArt.INKA.art);
             System.out.println("Welcome to Inka ! Say no more to failing exams as Inka will be your lord and saviour!");
             printLine();
         }
 
         public void printBye() {
             printLine();
-            System.out.println(BYE_ART);
+            System.out.println(StringArt.BYE.art);
             System.out.println("\n Bye! All the best for your exams man!!!");
             printLine();
         }
