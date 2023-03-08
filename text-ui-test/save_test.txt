@@ -1,4 +1,0 @@
-T | X | read book
-D |   | return book /by June 6th
-D |   | join sports club by tomorrow
-E | X | project meeting Aug 6th /from 2pm /to 4pm

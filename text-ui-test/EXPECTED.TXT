@@ -1,7 +1,5 @@
 ____________________________________________________________
-There is an error in save.txt at line 3
-Task 3 has been excluded. You can edit the save file at:
-save.txt
+Save file not found, initialising empty list...
 ____________________________________________________________
 ____________________________________________________________
 Hello from
@@ -30,10 +28,7 @@ ____________________________________________________________
  eg. "2023-10-30T23:59" represents Oct 20 2023, 11:59PM
 ____________________________________________________________
 ____________________________________________________________
-Here are the tasks in your list:
-1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][X] project meeting Aug 6th (from: 2pm to: 4pm)
+There are no tasks in your list!
 ____________________________________________________________
 ____________________________________________________________
 Oops! The description of a task cannot be empty.
@@ -64,18 +59,15 @@ Got it. I've added this event:
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
-1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][X] project meeting Aug 6th (from: 2pm to: 4pm)
-4.[T][ ] eat lunch
-5.[D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
-6.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
+1.[T][ ] eat lunch
+2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
+3.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
-Please enter [idx] in the form of an integer from 1 to 6
+Please enter [idx] in the form of an integer from 1 to 3
 ____________________________________________________________
 ____________________________________________________________
-Please enter [idx] in the form of an integer from 1 to 6
+Please enter [idx] in the form of an integer from 1 to 3
 ____________________________________________________________
 ____________________________________________________________
 Nice!, I've marked this task as done:
@@ -83,44 +75,41 @@ Nice!, I've marked this task as done:
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
-1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][X] project meeting Aug 6th (from: 2pm to: 4pm)
-4.[T][ ] eat lunch
-5.[D][X] submit tutorial (by: Mar 03 2023, 11:59PM)
-6.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
+1.[T][ ] eat lunch
+2.[D][X] submit tutorial (by: Mar 03 2023, 11:59PM)
+3.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
   [D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
 ____________________________________________________________
 ____________________________________________________________
+Got it. I've added this todo:
+  [T][ ] sleep
+____________________________________________________________
+____________________________________________________________
 Here are the tasks in your list:
-1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][X] project meeting Aug 6th (from: 2pm to: 4pm)
-4.[T][ ] eat lunch
-5.[D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
-6.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
+1.[T][ ] eat lunch
+2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
+3.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
+4.[T][ ] sleep
 ____________________________________________________________
 ____________________________________________________________
-Please enter [idx] in the form of an integer from 1 to 6
+Please enter [idx] in the form of an integer from 1 to 4
 ____________________________________________________________
 ____________________________________________________________
-Please enter [idx] in the form of an integer from 1 to 6
+Please enter [idx] in the form of an integer from 1 to 4
 ____________________________________________________________
 ____________________________________________________________
 Noted, I've removed this task:
-  [T][ ] eat lunch
-Now you have 5 tasks in the list
+  [T][ ] sleep
+Now you have 3 tasks in the list
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
-1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][X] project meeting Aug 6th (from: 2pm to: 4pm)
-4.[D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
-5.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
+1.[T][ ] eat lunch
+2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
+3.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 Oops, the start date for your event occurs after the end date!
@@ -137,8 +126,8 @@ There are no matching tasks!
 ____________________________________________________________
 ____________________________________________________________
 Here are the matching tasks in your list:
-1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
+1.[T][ ] eat lunch
+2.[E][ ] holiday (from: Feb 25 2023, 12:00AM to: Mar 04 2023, 11:59PM)
 ____________________________________________________________
 ____________________________________________________________
 Please enter date in the format of yyyy-MM-dd.

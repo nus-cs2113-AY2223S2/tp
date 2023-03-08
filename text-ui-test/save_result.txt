@@ -1,6 +1,0 @@
-T | X | read book
-D |   | return book /by June 6th
-E | X | project meeting Aug 6th /from 2pm /to 4pm
-D |   | submit tutorial /by 2023-03-03T23:59:00
-E |   | lecture /from 2023-05-03T09:00:00 /to 11:00AM
-E |   | holiday /from 2023-02-25T00:00:00 /to 2023-03-04T23:59:00
