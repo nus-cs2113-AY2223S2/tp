@@ -6,6 +6,7 @@ import parser.Parser;
 import java.util.Scanner;
 
 public class Duke {
+
     public static Parser parser = new Parser();
 
     public static ExpenseList expenseList = new ExpenseList();
@@ -33,6 +34,7 @@ public class Duke {
                 expenseList.listExpense();
                 break;
             default:
+
         }
     }
 }
