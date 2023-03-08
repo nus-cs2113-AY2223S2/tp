@@ -10,6 +10,7 @@ public class Duke {
     public static Parser parser = new Parser();
 
     public static ExpenseList expenseList = new ExpenseList();
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -26,9 +27,11 @@ public class Duke {
         System.out.println("Hello " + in.nextLine());
 
         String input = in.nextLine();
-        switch (parser.extractCommandKeyword(input)) {
+        while(!input.equals("exit")) {
+            switch (parser.extractCommandKeyword(input)) {
             case "add":
                 expenseList.addExpense(input);
+                break;
             case "delete":
                 expenseList.deleteExpense(input);
                 break;
@@ -37,7 +40,10 @@ public class Duke {
                 ExpenseList.listExpense();
                 break;
             default:
-
+                System.out.println("Unknown command.");
+                break;
+            }
+            input = in.nextLine();
         }
     }
 }
