@@ -40,9 +40,8 @@ public class Main {
     public void runCommandTillExit() {
         boolean isExit = false;
         Scanner in = new Scanner(System.in);
-        while (!isExit) {
+        while (!isExit && in.hasNextLine()) {
             String commandString = in.nextLine();
-            //String commandString = ui.getUserInput();
             Command c = commandParser.parseCommand(commandString);
             c.execute(ui);
             isExit = c.isExit();
