@@ -4,7 +4,7 @@ import seedu.dukeofbooks.data.person.Person;
 
 import java.util.ArrayList;
 
-public class BookHistory {
+public class BorrowHistory {
 
     /**
      * Prints previously borrowed books
