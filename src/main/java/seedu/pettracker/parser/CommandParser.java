@@ -1,34 +1,77 @@
 package seedu.pettracker.parser;
 
-import seedu.pettracker.commands.Command;
-import seedu.pettracker.commands.ExitCommand;
+import seedu.pettracker.commands.*;
+import seedu.pettracker.exceptions.UnknownKeywordException;
 
 public class CommandParser {
-
+    private final String KEYWORD_EXIT = "exit";
+    private final String KEYWORD_ADD_PET = "add-pet";
+    private final String KEYWORD_REMOVE_PET = "remove-pet";
+    private final String KEYWORD_LIST_PET = "list";
+    private final String KEYWORD_ADD_STAT = "add-stat";
+    private final String KEYWORD_REMOVE_STAT = "remove-stat";
 
     public Command parseCommand(String commandString) {
-        Command command = getCommand(commandString);
-        return command;
+        try {
+            Command command = newCommand(commandString);
+            return command;
+        } catch (UnknownKeywordException e) {
+            System.out.println("Unknown Keyword");
+            return null;
+        }
     }
 
     /**
-     * Extracts out the command from the initial string that the user typed in
+     * Separates the command keyword from the rest of the string
+     *
+     * @param commandString User input string
+     * @return Command keyword
+     */
+    private static String parseKeyword(String commandString) {
+        return commandString.split(" ", 2)[0];
+    }
+
+    /**
+     * Separates the arguments from the rest of the string
+     *
+     * @param commandString User input string
+     * @return Arguments
+     */
+    private static String parseArgs(String commandString) {
+        return commandString.split(" ", 2)[1];
+    }
+
+    /**
+     * Creates a new command object from the user input string
      *
      * @param commandString Initial String that the user typed in
-     * @return command to be executed
+     * @return new Command object
      */
-    public Command getCommand(String commandString) {
+    public Command newCommand(String commandString) throws UnknownKeywordException {
         Command command;
         //only 1 command as of now
-        switch (commandString) {
-        case "exit":
+        switch (parseKeyword(commandString)) {
+        case KEYWORD_EXIT:
             command = new ExitCommand();
             break;
+        case KEYWORD_ADD_PET:
+            command = new AddPetCommand(parseArgs(commandString));
+            break;
+        case KEYWORD_REMOVE_PET:
+            command = new RemovePetCommand(parseArgs(commandString));
+            break;
+        case KEYWORD_LIST_PET:
+            command = new ListPetCommand();
+            break;
+        case KEYWORD_ADD_STAT:
+            command = new AddStatCommand(parseArgs(commandString));
+            break;
+        case KEYWORD_REMOVE_STAT:
+            command = new RemoveStatCommand(parseArgs(commandString));
+            break;
         default:
-            System.out.println("Unknown Command");
-            command = new ExitCommand();
+            throw new UnknownKeywordException();
         }
-
         return command;
     }
 }

@@ -33,7 +33,6 @@ public class Main {
         System.exit(0);
     }
 
-
     /**
      * Executes commands until isExit is changed to true
      */
@@ -46,12 +45,9 @@ public class Main {
             command.execute(ui);
             isExit = command.isExit();
         }
-
     }
 
     public static void main(String[] args) {
         new Main().run();
     }
-
-
 }
