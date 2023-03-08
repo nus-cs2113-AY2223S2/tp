@@ -1,22 +1,68 @@
 package seedu.apollo;
 
-import java.util.Scanner;
+import seedu.apollo.command.Command;
+import seedu.apollo.task.TaskList;
 
+import java.io.IOException;
+import java.rmi.UnexpectedException;
+
+/**
+ * Main class for running Apollo.
+ */
 public class Apollo {
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
-    public static void main(String[] args)
-    {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+    public static final String FILE_PATH = "save.txt";
+    private static Storage storage;
+    private static TaskList tasks;
+    private static Ui ui;
+
+    /**
+     * Initialises Ui, Storage, and TaskList.
+     *
+     * @param filePath Location of the local save file.
+     */
+    public Apollo(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load(ui));
+            storage.update(tasks);
+            ui.printWelcomeMessage();
+        } catch (IOException e) {
+            ui.printErrorForIO();
+        }
     }
+
+    /**
+     * Reads, executes, and prints outputs of user commands continually.
+     * Stops after ExitCommand is called.
+     *
+     * @throws UnexpectedException If command cannot be executed for an unexpected reason.
+     */
+    public void run() throws UnexpectedException {
+        boolean isExit = false;
+        while (!isExit) {
+            String fullCommand = ui.readCommand();
+            ui.showLine();
+            Command c = Parser.getCommand(fullCommand, ui, tasks.getSize());
+            if (c != null) {
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit;
+            }
+            ui.showLine();
+        }
+    }
+
+    /**
+     * Initialises and runs Apollo.
+     */
+    public static void main(String[] args) {
+        try {
+            new Apollo(FILE_PATH).run();
+        } catch (UnexpectedException exception) {
+            ui.printUnexpectedException(exception);
+        }
+        System.exit(0);
+    }
+
 }
