@@ -18,7 +18,7 @@ class AddCommandTest {
     }
 
     @Test
-    public void ItemIsNotInList() {
+    public void itemIsNotInList() {
         DukeSession dukeSession = new DukeSession();
         Ingredient ingredient = new Ingredient("orange", 2);
         DukeSession.Ingredients.add(ingredient);
