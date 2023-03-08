@@ -1,13 +1,12 @@
-package bagPacker.listFunctionTest;
-
-import org.junit.jupiter.api.Test;
+package bagpacker;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Test;
 /**
- * ItemTest to test methods in Item Class
+ * BagPackerTest class test BagPacker methods
  */
-public class ItemTest {
+class BagPackerTest {
     @Test
     public void sampleTest() {
         assertTrue(true);

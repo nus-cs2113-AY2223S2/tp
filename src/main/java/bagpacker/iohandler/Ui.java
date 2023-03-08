@@ -1,14 +1,8 @@
-package bagPacker.ioHandler;
+package bagpacker.iohandler;
 /**
  * Ui class contains methods to print messages to user interface on Command Line Interface
  */
 public class Ui {
-    public static void printErrorLine() {
-        System.out.println("/////////////////////////////////////////////////////////////");
-    }
-    public static void printLine() {
-        System.out.println("____________________________________________________________");
-    }
     public static String logo = " ____              _____           _\n"
             + "|  _ \\            |  __ \\         | | \n"
             + "| |_) | __ _  __ _| |__) |_ _  ___| | _____ _ __\n"
@@ -17,6 +11,12 @@ public class Ui {
             + "|____/ \\__,_|\\__, |_|   \\__,_|\\___|_|\\_\\___|_|\n"
             + "              __/ | \n"
             + "             |___/\n";
+    public static void printErrorLine() {
+        System.out.println("/////////////////////////////////////////////////////////////");
+    }
+    public static void printLine() {
+        System.out.println("____________________________________________________________");
+    }
     /**
      * Prints initialising Message
      */
@@ -38,12 +38,12 @@ public class Ui {
     /**
      * Prints Error Message with the type of error and a helping message
      *
-     * @param ErrorType the type of error (e.g. invalid integer input)
+     * @param errorType the type of error (e.g. invalid integer input)
      * @param helpMessage a message to help the user (e.g. try to input a whole number digit)
      */
-    public static void errorMessage(String ErrorType, String helpMessage) {
+    public static void errorMessage(String errorType, String helpMessage) {
         printErrorLine();
-        System.out.print("Error " + ErrorType);
+        System.out.print("Error " + errorType);
         System.out.println(":\n" + helpMessage);
         printErrorLine();
     }

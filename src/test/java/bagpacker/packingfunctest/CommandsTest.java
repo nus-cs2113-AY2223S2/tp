@@ -1,13 +1,13 @@
-package bagPacker.ioHandlerTest;
+package bagpacker.packingfunctest;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * StorageTest class test Storage methods
+ * CommandsTest to test methods in Commands class
  */
-public class StorageTest {
+public class CommandsTest {
     @Test
     public void sampleTest() {
         assertTrue(true);

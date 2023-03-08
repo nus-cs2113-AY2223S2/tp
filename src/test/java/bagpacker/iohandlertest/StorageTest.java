@@ -1,12 +1,13 @@
-package bagPacker;
+package bagpacker.iohandlertest;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
 /**
- * BagPackerTest class test BagPacker methods
+ * StorageTest class test Storage methods
  */
-class BagPackerTest {
+public class StorageTest {
     @Test
     public void sampleTest() {
         assertTrue(true);

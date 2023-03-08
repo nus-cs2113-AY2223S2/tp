@@ -1,6 +1,6 @@
-package bagPacker.ioHandler;
+package bagpacker.iohandler;
 
-import bagPacker.exception.emptyInputException;
+import bagpacker.exception.EmptyInputException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -15,7 +15,7 @@ public class Parser {
         Parser.fullInput = fullInput;
     }
     /**
-     * Returns the user input as in ArrayList<String> format
+     * Returns the user input as in array list format
      */
     public static ArrayList<String> getInputStringArray() {
         return inputStringArray;
@@ -34,7 +34,7 @@ public class Parser {
         while(inputLine.isEmpty()){
             try {
                 inputLine = readLine();
-            } catch (emptyInputException e) {
+            } catch (EmptyInputException e) {
                 Ui.errorMessage("Empty input received", "try to input a command, to view all commands input 'help'");
             }
         }
@@ -43,12 +43,12 @@ public class Parser {
         setInputStringArray(new ArrayList<>(Arrays.asList(inputStringList)));
     }
 
-    private static String readLine() throws emptyInputException {
+    private static String readLine() throws EmptyInputException {
         String inputLine;
         Scanner in = new Scanner(System.in);
         inputLine = in.nextLine().trim();
         if(inputLine.isEmpty()){
-            throw new emptyInputException();
+            throw new EmptyInputException();
         }
         return inputLine;
     }

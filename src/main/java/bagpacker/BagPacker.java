@@ -1,7 +1,7 @@
-package bagPacker;
+package bagpacker;
 
-import bagPacker.ioHandler.Ui;
-import bagPacker.ioHandler.Parser;
+import bagpacker.iohandler.Ui;
+import bagpacker.iohandler.Parser;
 
 public class BagPacker {
     /**
@@ -41,7 +41,8 @@ public class BagPacker {
                 Ui.helpMessage();
                 break;
             default:
-                Ui.errorMessage("'" + Parser.getCommand() + "' is an invalid User Command", "input 'help' to receive all valid commands");
+                Ui.errorMessage("'" + Parser.getCommand() + "' is an invalid User Command",
+                        "input 'help' to receive all valid commands");
                 break;
             }
             Parser.receiveInput();
