@@ -25,24 +25,21 @@ public class Transform {
         String description = input.substring(slashPosition);
 
         switch (indication) {
-        case "t":
-            int year = Integer.parseInt(description.substring(4));
-            int month = Integer.parseInt(description.substring(2, 4));
-            int day = Integer.parseInt(description.substring(0, 2));
-            return (T) LocalDate.of(year, month, day);
+            case "t":
+                int year = Integer.parseInt(description.substring(4));
+                int month = Integer.parseInt(description.substring(2, 4));
+                int day = Integer.parseInt(description.substring(0, 2));
+                return (T) LocalDate.of(year, month, day);
 
-        case "amt":
-            Double amountValue = Double.parseDouble(description);
-            return (T) amountValue;
+            case "amt":
+                Double amountValue = Double.parseDouble(description);
+                return (T) amountValue;
 
-        case "cur":
-            return (T) Currency.checkCurrency(description);
+            case "cur":
+                return (T) Currency.checkCurrency(description);
 
-        default:
-            return (T) description;
+            default:
+                return (T) description;
         }
     }
-
-
-
 }

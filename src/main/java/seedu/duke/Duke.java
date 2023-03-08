@@ -27,10 +27,14 @@ public class Duke {
 
         String input = in.nextLine();
         switch (parser.extractCommandKeyword(input)) {
-        case "delete":
-            expenseList.deleteExpense(input);
-            break;
-        default:
+            case "delete":
+                expenseList.deleteExpense(input);
+                break;
+            case "list":
+                expenseList.listExpense();
+                break;
+            default:
+
         }
     }
 }
