@@ -57,8 +57,10 @@ public class Expenses {
             Expense expenseBeingEdited = expenseList.get(expenseIndex);
             switch (type) {
             case "cost": expenseBeingEdited.editCost(newEntry);
-            System.out.println("Successfully edited expense.");
+                         break;
+            default: System.out.println("Invalid type parameter!");
             }
+            System.out.println("Successfully edited expense.");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
             System.out.println("Invalid index! Please try again.\n");
         }
@@ -78,8 +80,10 @@ public class Expenses {
             case "info": expenseBeingEdited.editInfo(newEntry);
                          break;
             case "time": expenseBeingEdited.editTime(newEntry);
-            System.out.println("Successfully edited expense.");
+                         break;
+            default: System.out.println("Invalid type parameter!");
             }
+            System.out.println("Successfully edited expense.");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
             System.out.println("Invalid index! Please try again.\n");
         }
