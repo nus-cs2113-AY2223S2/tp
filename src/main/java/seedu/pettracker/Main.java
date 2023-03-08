@@ -14,10 +14,6 @@ public class Main {
     private Ui ui;
     private CommandParser commandParser;
 
-    public static void main(String[] args) {
-        new Main().run();
-    }
-
     /**
      * Creates the Main class by initializing the other classes
      */
@@ -30,7 +26,7 @@ public class Main {
      * Runs the program by showing a welcome message
      * and proceed to run commands until Exit command is received
      */
-    private void run() {
+    public void run() {
         ui.showWelcomeMessage();
         runCommandTillExit();
         ui.showEndingMessage();
@@ -41,7 +37,7 @@ public class Main {
     /**
      * Executes commands until isExit is changed to true
      */
-    private void runCommandTillExit() {
+    public void runCommandTillExit() {
         boolean isExit = false;
         while (!isExit) {
             Command command;
@@ -51,6 +47,10 @@ public class Main {
             isExit = command.isExit();
         }
 
+    }
+
+    public static void main(String[] args) {
+        new Main().run();
     }
 
 
