@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.badMaths;
 
 public class TrigoGraph {
     private String trigoEqn;
