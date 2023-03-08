@@ -1,5 +1,3 @@
-package Expense;
-
 import java.util.Comparator;
 
 public class ExpenseCostComparator implements Comparator<Expense> {

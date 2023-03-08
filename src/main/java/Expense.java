@@ -1,5 +1,3 @@
-package Expense;
-
 public class Expense {
     private double cost;
     private String info;
