@@ -3,8 +3,9 @@ package seedu.pettracker.commands;
 import seedu.pettracker.ui.Ui;
 
 public class ExitCommand extends Command {
-    //@@author shawntangy-reused
-    //Reused from https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/commands/ExitCommand.java
+    // @@author shawntangy-reused
+    // Reused from
+    // https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/commands/ExitCommand.java
     // with minor modifications
 
     /**
@@ -12,7 +13,7 @@ public class ExitCommand extends Command {
      */
     public static final String EXIT_COMMAND = "exit";
 
-    public static final String command = EXIT_COMMAND;
+    public static final String COMMAND = EXIT_COMMAND;
 
     public ExitCommand() {
     }
