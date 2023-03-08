@@ -53,8 +53,7 @@ public class Loan implements IVerifiable {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        } 
-        else {
+        } else {
             return other instanceof Loan && this.hasSameData((Loan) other);
         }
     }
