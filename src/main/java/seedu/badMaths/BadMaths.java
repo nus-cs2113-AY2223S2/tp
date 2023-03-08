@@ -5,19 +5,22 @@ import java.util.Scanner;
 public class BadMaths {
 
     public static void main(String[] args) {
+
         System.out.println("Input math question please.");
 
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
-        Parser parser = new Parser(userInput);
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            String userInput = scanner.nextLine();
+            Parser parser = new Parser(userInput);
 
-        String function = parser.getFunction();
-        String command = parser.getCommand();
+            String command = parser.getCommand();
+            String toDo = parser.getToDo();
 
-
-        if (function.equals("bye")) {
-            System.out.println("see you again");
-            System.exit(1);
+            Command inputCommand = new Command(command, toDo);
+            inputCommand.executeCommand();
+            if (userInput.equals("Bye")) {
+                break;
+            }
         }
     }
 }
