@@ -17,15 +17,19 @@ public class Parser {
         this.userInput = userInput;
     }
 
-    public int findDotIndex (String userInput) {
-        return userInput.indexOf(".");
-    }
-
     public String getFunction() {
-        return userInput.substring(0,findDotIndex(userInput));
+        if (userInput.contains(".")) {
+            return userInput.substring(0, userInput.indexOf("."));
+        } else {
+            return userInput;
+        }
     }
 
     public String getCommand() {
-        return userInput.substring(findDotIndex(userInput) + 2);
+        if (userInput.contains(".")) {
+            return userInput.substring(userInput.indexOf(".") + 2);
+        } else {
+            return "no command";
+        }
     }
 }

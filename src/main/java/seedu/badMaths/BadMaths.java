@@ -11,5 +11,8 @@ public class BadMaths {
         String userInput = scanner.nextLine();
         Parser parser = new Parser(userInput);
 
+        String function = parser.getFunction();
+        String command = parser.getCommand();
+
     }
 }
