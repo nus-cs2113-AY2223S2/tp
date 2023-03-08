@@ -1,6 +1,7 @@
 package MajorClasses;
 
 import data.CommandRes;
+import parser.Parser;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,15 @@ public class ExpenseList {
 
     public CommandRes listExpense() {
         return new CommandRes(MESSAGE_DIVIDER_LIST, ExpenseList.expenseList, ExpenseList.getAllMessage());
+    }
+
+    public void addExpense (String userInput) {
+        Parser parser = new Parser();
+        double expenseAmount = Double.parseDouble(parser.extractCommandParameters("amt/", userInput));
+        String expenseTime = parser.extractCommandParameters("t/", userInput);
+        String description = parser.extractCommandParameters("cat/", userInput);
+        Expense expense = new Expense(expenseAmount, expenseTime, description);
+        expenseList.add(expense);
     }
 }
 
