@@ -10,9 +10,9 @@ public abstract class Command {
     public abstract void execute();
 
     /**
-     * Returns whether a command should terminate the program.
+     * Returns whether a command, by default, should terminate the program.
      *
-     * @return True for the exit command, false otherwise.
+     * @return <code>False</code>, since most commands should not terminate the program.
      */
     public boolean isExit() {
         return false;
