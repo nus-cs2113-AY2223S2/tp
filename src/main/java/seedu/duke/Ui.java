@@ -6,19 +6,15 @@ public class Ui {
     public Ui() {
     }
 
-    public final static String LongLine = "_".repeat(40);
-
     public static void printWelcomeMessage() {
         System.out.println("Hello, I am Duke and I will help you remember the tasks you need to do!");
         System.out.println("For now, you can do the following:");
-        System.out.println(LongLine);
         System.out.println("Add a task using: add <description>");
         System.out.println("List all tasks using: list");
         System.out.println("Mark a task as done using: mark <index>");
         System.out.println("Mark a task as undone using: unmark <index>");
         System.out.println("Delete a task using: delete <index>");
         System.out.println("Exit the program using: bye");
-        System.out.println(LongLine);
     }
 
     public static void printAddTaskNotification(String description) {
