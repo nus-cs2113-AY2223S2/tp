@@ -1,7 +1,6 @@
 package MajorClasses;
 
 
-import data.CommandRes;
 import parser.Parser;
 
 import java.util.ArrayList;
@@ -17,12 +16,12 @@ public class ExpenseList {
     }
 
     public void deleteExpense (String userInput) {
-        int expenseIndex = Integer.parseInt(userInput);
+        int expenseIndex = Parser.extractIndex(userInput);
         expenseList.remove(expenseIndex-1); // change to 0-based indexing
     }
     
     //for list
-    public String getAllMessage() {
+    public static String getAllMessage() {
         int count = expenseList.size();
         return "\t" + "Now you have " + count + " " + printExpensesOrExpense(count) + " in the list.";
     }
@@ -34,7 +33,7 @@ public class ExpenseList {
 
     public static void listExpense() {
         showToUser(MESSAGE_DIVIDER_LIST);
-        for (int i = 0; i < ExpenseList.expenseList.size(); i++) {
+        for (int i = 0; i < expenseList.size(); i++) {
             System.out.print((i + 1) + ".");
             expenseList.get(i).printTask();
         }
@@ -44,13 +43,12 @@ public class ExpenseList {
 
     private static void showToUser(String... message) {
         for (String i : message) System.out.println(i);
-
+    }
 
     public void addExpense (String userInput) {
-        Parser parser = new Parser();
-        double expenseAmount = Double.parseDouble(parser.extractCommandParameters("amt/", userInput));
-        String expenseTime = parser.extractCommandParameters("t/", userInput);
-        String description = parser.extractCommandParameters("cat/", userInput);
+        double expenseAmount = Double.parseDouble(Parser.extractCommandParameters("amt/", userInput));
+        String expenseTime = Parser.extractCommandParameters("t/", userInput);
+        String description = Parser.extractCommandParameters("cat/", userInput);
         Expense expense = new Expense(expenseAmount, expenseTime, description);
         expenseList.add(expense);
     }

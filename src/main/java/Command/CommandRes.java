@@ -14,6 +14,7 @@ public class CommandRes {
     public CommandRes(String strTop) {
         this.messageTop = strTop;
     }
+
     public CommandRes(String strTop, ArrayList expense, String strBottom) {
         this.messageTop = strTop;
         this.messageBottom = strBottom;
