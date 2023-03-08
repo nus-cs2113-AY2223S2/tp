@@ -20,7 +20,8 @@ public class Duke {
             performUserRequest(parsedCommand, in, tasks);
         }
     }
-    private static void performUserRequest(String[] parsedCommand, Scanner in, ArrayList<Task> tasks) throws NumberFormatException {
+    private static void performUserRequest(String[] parsedCommand, Scanner in, ArrayList<Task> tasks)
+        throws NumberFormatException {
         switch (parsedCommand[0]) {
         case "add":
             if (!parsedCommand[2].isEmpty()) {
@@ -43,7 +44,8 @@ public class Duke {
             break;
         case "editdeadline":
             tasks.get(Integer.parseInt(parsedCommand[1]) - 1).editDeadline(parsedCommand[2]);
-            ui.printEditDeadlineNotification(tasks.get(Integer.parseInt(parsedCommand[1]) - 1).getDescription(), parsedCommand[2]);
+            ui.printEditDeadlineNotification(tasks.get(Integer.parseInt(parsedCommand[1]) - 1).getDescription(),
+                parsedCommand[2]);
             break;
         case "bye":
             in.close();
