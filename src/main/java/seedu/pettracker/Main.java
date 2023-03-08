@@ -12,8 +12,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    private Ui ui;
-    private CommandParser commandParser;
+    private final Ui ui;
+    private final CommandParser commandParser;
 
     /**
      * Creates the Main class by initializing the other classes
@@ -39,14 +39,13 @@ public class Main {
      */
     public void runCommandTillExit() {
         boolean isExit = false;
+        Scanner in = new Scanner(System.in);
         while (!isExit) {
-            Scanner in = new Scanner(System.in);
             String commandString = in.nextLine();
-            Command command;
             //String commandString = ui.getUserInput();
-            command = commandParser.parseCommand(commandString);
-            command.execute(ui);
-            isExit = command.isExit();
+            Command c = commandParser.parseCommand(commandString);
+            c.execute(ui);
+            isExit = c.isExit();
         }
     }
 
