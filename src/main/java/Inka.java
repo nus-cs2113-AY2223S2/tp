@@ -1,4 +1,4 @@
-import utils.UserInterface.UserInterface;
+import utils.userinterface.UserInterface;
 
 public class Inka {
     private final UserInterface ui;
