@@ -15,7 +15,7 @@ public class DataReader {
         this.universities = new ArrayList<>();
         this.modules = new ArrayList<>();
         readUnivData();
-        readModData();
+        readModData(MODULES_FILE_PATH, modules);
     }
 
     private void readUnivData() {
@@ -31,12 +31,12 @@ public class DataReader {
         }
     }
 
-    private void readModData() {
-        try (BufferedReader br = new BufferedReader(new FileReader(MODULES_FILE_PATH))) {
+    public static void readModData(String modulesFilePath, ArrayList<Module> modules) {
+        try (BufferedReader br = new BufferedReader(new FileReader(modulesFilePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-                if (row[3] == "N/A") {
+                if (row[3].equals("N/A")) {
                     row[3] = "0";
                 }
                 Module module = new Module(Integer.parseInt(row[0]), row[1], row[2],
