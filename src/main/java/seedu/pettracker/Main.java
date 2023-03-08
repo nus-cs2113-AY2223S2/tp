@@ -31,7 +31,7 @@ public class Main {
         ui.showWelcomeMessage();
         runCommandTillExit();
         ui.showEndingMessage();
-        //System.exit(0);
+        System.exit(0);
     }
 
     /**
