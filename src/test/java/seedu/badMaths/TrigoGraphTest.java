@@ -2,7 +2,8 @@ package seedu.badMaths;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TrigoGraphTest {
 
@@ -14,7 +15,7 @@ class TrigoGraphTest {
         assertEquals(2,amplitudeAndEqn.length);
     }
     @Test
-    void splitAmplitude_NoAmplitude_expectException() {
+    void splitAmplitude_noAmplitude_expectException() {
         String equation = "sin(2*pi*x+1)+3";
         String separator = "\\*";
         String[] amplitudeAndEqn = equation.split("\\*", 2);
