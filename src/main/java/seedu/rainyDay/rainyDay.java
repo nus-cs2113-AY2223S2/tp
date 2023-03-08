@@ -13,6 +13,14 @@ public class rainyDay {
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
     }
+
+    public static String deleteFinancialStatement(int index, ArrayList<FinancialStatement> financialReport) {
+        String deleteStatement = "Done, deleted \"" + financialReport.get(index).getDescription()
+                + "\" from the financial report";
+        financialReport.remove(index);
+        return deleteStatement;
+    }
+
     public static String generateReport(ArrayList<FinancialStatement> financialReport) {
         if (financialReport.size() == 0) {
             return "Your financial report is empty";
