@@ -3,7 +3,6 @@ package seedu.duke;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
-import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StorageTest {
@@ -23,7 +22,7 @@ public class StorageTest {
 
     @Test
     @Order(2)
-    public void initialiseStorage_NoModuleSaved_success() {
+    public void initialiseStorage_noModuleSaved_success() {
         Storage storage = new Storage();
         assertEquals(storage.modules.size(), 0);
     }
