@@ -1,6 +1,7 @@
 package seedu.dukeofbooks.data.book;
 
 import seedu.dukeofbooks.common.IVerifiable;
+import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.person.Person;
 
 public class Book extends BorrowableItem implements IVerifiable {
@@ -16,6 +17,13 @@ public class Book extends BorrowableItem implements IVerifiable {
         this.topic = topic;
         this.author = author;
         isBorrowed = false;
+    }
+
+    public Book(String isbn, String title, String topic, String author) throws IllegalValueException {
+        setIsbn(new Isbn(isbn));
+        setTitle(new Title(title));
+        setTopic(new Topic(topic));
+        setAuthor(new Person(author));
     }
 
     public Isbn getIsbn() {
