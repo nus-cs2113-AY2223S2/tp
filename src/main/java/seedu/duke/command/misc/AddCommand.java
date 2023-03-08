@@ -19,14 +19,14 @@ public class AddCommand extends ExecutableCommand {
         this.flag = flag;
     }
 
-    private static void AddToExistingIngredients(DukeSession dukeSession, int quantity, int index) {
+    private static void addToExistingIngredients(DukeSession dukeSession, int quantity, int index) {
         int newQuantity = DukeSession.Ingredients.get(index).getQuantity() + quantity;
         DukeSession.Ingredients.get(index).setQuantity(newQuantity);
         dukeSession.getUi().printMessage("Here is the new quantity of the ingredient:");
         dukeSession.getUi().printMessage(String.valueOf(DukeSession.Ingredients.get(index)));
     }
 
-    private static void AddNewIngredient(DukeSession dukeSession, int quantity, String name) {
+    private static void addNewIngredient(DukeSession dukeSession, int quantity, String name) {
         Ingredient ingredient = new Ingredient(name, quantity);
         DukeSession.Ingredients.add(ingredient);
         dukeSession.getUi().printMessage("the following ingredient has been added");
@@ -54,9 +54,9 @@ public class AddCommand extends ExecutableCommand {
                 throw new DukeException("OOPS, name cannot be blank");
             }
             if (isInList(name)) {
-                AddToExistingIngredients(dukeSession, quantity, indexOfExistingIngredient);
+                addToExistingIngredients(dukeSession, quantity, indexOfExistingIngredient);
             } else {
-                AddNewIngredient(dukeSession, quantity, name);
+                addNewIngredient(dukeSession, quantity, name);
             }
         } catch (Exception e) {
             dukeSession.getUi().printMessage(String.valueOf(e));

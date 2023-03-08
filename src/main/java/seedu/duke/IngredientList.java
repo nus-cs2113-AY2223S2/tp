@@ -22,5 +22,4 @@ public class IngredientList {
     public int size() {
         return Ingredients.size();
     }
-
 }

@@ -21,10 +21,10 @@ public class DukeSession {
                     )
                     .route("bye", new ByeCommandFactory())
                     .route("add", new AddCommandFactory());
-    public static IngredientList Ingredients;
-
     private final DukeUI ui;
     private final DukeControlFlow controlFlow;
+
+    public static IngredientList Ingredients;
 
 
     public DukeSession() {
