@@ -21,7 +21,7 @@ public class ExpenseList {
     
     //for list
     public static String getAllMessage() {
-        int count = ExpenseList.expenseList.size();
+        int count = expenseList.size();
         return "\t" + "Now you have " + count + " " + printExpensesOrExpense(count) + " in the list.";
     }
 
@@ -30,7 +30,7 @@ public class ExpenseList {
     }
 
     public CommandRes listExpense() {
-        return new CommandRes(MESSAGE_DIVIDER_LIST, ExpenseList.expenseList, ExpenseList.getAllMessage());
+        return new CommandRes(MESSAGE_DIVIDER_LIST, expenseList, ExpenseList.getAllMessage());
     }
 
     public void addExpense (String userInput) {
