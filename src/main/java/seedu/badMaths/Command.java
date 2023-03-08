@@ -12,27 +12,27 @@ public class Command {
 
     protected String command;
     protected String toDo;
-    protected boolean isRunning = true;
 
     public Command(String command, String toDo) {
         this.command = command;
         this.toDo = toDo;
     }
 
+    public String getCommand() {
+        return command;
+    }
+
     public void executeCommand() {
-        while (isRunning) {
-            switch (command) {
-            case "Bye":
-                System.out.println("Goodbye!");
-                isRunning = false;
-                break;
-            case "Graph":
-                TrigoGraph trigoGraph = new TrigoGraph(command);
-                trigoGraph.startGraphAnalysis();
-                break;
-            default:
-                break;
-            }
+        switch (command) {
+        case "Bye":
+            System.out.println("Goodbye!");
+            break;
+        case "Graph":
+            TrigoGraph trigoGraph = new TrigoGraph(toDo);
+            trigoGraph.startGraphAnalysis();
+            break;
+        default:
+            break;
         }
     }
 }
