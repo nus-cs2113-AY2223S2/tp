@@ -37,7 +37,7 @@ public class AddCommand extends Command {
      */
     public AddCommand(String type, String param) throws InvalidDeadline, InvalidEvent {
         this.type = type;
-        switch(type){
+        switch (type){
         case COMMAND_TODO_WORD:
             this.desc = param;
             break;

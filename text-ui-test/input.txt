@@ -8,12 +8,13 @@ deadline submit tutorial /by 2023-03-03T23:59
 event
 event lecture /from 2023-05-03T09:00
 event lecture /from 2023-05-03T09:00 /to 11:00AM
+todo sleep
 list
 mark eat lunch
 mark 8
-mark 5
+mark 2
 list
-unmark 5
+unmark 2
 list
 delete eat lunch
 delete 0
@@ -23,7 +24,7 @@ event holiday /from 2023-03-04T00:00 /to 2023-02-25T23:59
 event holiday /from 2023-02-25T00:00 /to 2023-03-04T23:59
 find
 find cat
-find book
+find h
 date
 date 2025-01-01
 date 2023-03-03
