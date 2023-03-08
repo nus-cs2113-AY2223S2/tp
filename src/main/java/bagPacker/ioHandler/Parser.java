@@ -29,19 +29,18 @@ public class Parser {
     public static String getFullInput() {
         return fullInput;
     }
-    public static ArrayList<String> receiveInput() {
+    public static void receiveInput() {
         String inputLine = "";
         while(inputLine.isEmpty()){
             try {
                 inputLine = readLine();
             } catch (emptyInputException e) {
-                Ui.errorMessage("Empty input received", "try to input a command, to view all commands input \'help\'");
+                Ui.errorMessage("Empty input received", "try to input a command, to view all commands input 'help'");
             }
         }
         setFullInput(inputLine);
         String[] inputStringList = inputLine.split(" ");
-        setInputStringArray(new ArrayList<String>(Arrays.asList(inputStringList)));
-        return getInputStringArray();
+        setInputStringArray(new ArrayList<>(Arrays.asList(inputStringList)));
     }
 
     private static String readLine() throws emptyInputException {

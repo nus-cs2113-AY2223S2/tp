@@ -54,11 +54,11 @@ public class Ui {
     public static void helpMessage() {
         printLine();
         System.out.println("All Commands:");
-        System.out.println("1. \'add n/ITEM\'");
-        System.out.println("2. \'remove n/ITEM_INDEX\'");
-        System.out.println("2. \'list\'");
-        System.out.println("3. \'pack n/ITEM_INDEX\' ");
-        System.out.println("4. \'unpack n/ITEM_INDEX\'");
+        System.out.println("1. 'add n/ITEM'");
+        System.out.println("2. 'remove n/ITEM_INDEX'");
+        System.out.println("2. 'list'");
+        System.out.println("3. 'pack n/ITEM_INDEX' ");
+        System.out.println("4. 'unpack n/ITEM_INDEX'");
         printLine();
     }
 }
