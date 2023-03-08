@@ -15,6 +15,8 @@ public class Parser {
             // Fallthrough
         case "unmark":
             // Fallthrough
+        case "delete":
+            //Fallthrough
         case "add":
             providedInformation = userInput.split(" ", 2)[1];
             break;
