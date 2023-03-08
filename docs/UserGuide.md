@@ -6,28 +6,20 @@ Fitness Duke is a CLI Based workout organizer/tracker.
 
 ## Quick Start
 
-{Give steps to get started quickly}
+1. Ensure you have Java 11 or later installed in your PC.
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+2. Download the latest version of fitnessduke.jar from our GitHub releases page [here] (https://github.com/AY2223S2-CS2113-W13-2/tp/releases).
+
+3. Move the downloaded file to the folder where you want to run fitnessduke.
+
+4. Open a command terminal in the folder where you put duke.jar in
+
+5. Use the java -jar fitnessduke.jar command to run the appplication
 
 ## Features 
 
 {Give detailed description of each feature}
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
-
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
 ## FAQ
 
@@ -39,4 +31,3 @@ Example of usage:
 
 {Give a 'cheat sheet' of commands here}
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`

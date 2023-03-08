@@ -10,8 +10,8 @@ public class CommandHandler {
         Command command = null;
         switch(userCommands[0]){
 
-        case "generate":
-            command = new GenerateRandomCommand(userCommands[1]);
+        case "quick":
+            command = new QuickStartCommand(userCommands[1]);
             break;
         case "bye":
         case "exit":
