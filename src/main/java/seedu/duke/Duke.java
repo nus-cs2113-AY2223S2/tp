@@ -27,6 +27,8 @@ public class Duke {
 
         String input = in.nextLine();
         switch (parser.extractCommandKeyword(input)) {
+            case "add":
+                expenseList.addExpense(input);
             case "delete":
                 expenseList.deleteExpense(input);
                 break;

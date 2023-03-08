@@ -2,14 +2,14 @@ package MajorClasses;
 
 public class Expense {
     protected double expenseAmount;
-    protected Time expenseTime;
+    protected String expenseTime;
     protected String description;
 
     public Expense() {
         this.expenseAmount = 0;
     }
 
-    public Expense(int expenseAmount, Time expenseTime, String description) {
+    public Expense(double expenseAmount, String expenseTime, String description) {
         this.expenseAmount = expenseAmount;
         this.expenseTime = expenseTime;
         this.description = description;
@@ -20,7 +20,7 @@ public class Expense {
         return expenseAmount;
     }
 
-    public Time getExpenseTime() {
+    public String getExpenseTime() {
         return expenseTime;
     }
 
@@ -33,7 +33,7 @@ public class Expense {
         this.expenseAmount = expenseAmount;
     }
 
-    public void setExpenseTime(Time expenseTime) {
+    public void setExpenseTime(String expenseTime) {
         this.expenseTime = expenseTime;
     }
 
