@@ -4,6 +4,7 @@ import seedu.duke.command.ExecutableCommand;
 import seedu.duke.command.factory.ExecutableCommandFactory;
 import seedu.duke.command.factory.misc.ByeCommandFactory;
 import seedu.duke.command.factory.misc.HelloWorldCommandFactory;
+import seedu.duke.command.factory.misc.AddCommandFactory;
 import seedu.duke.parser.CommandArguments;
 import seedu.duke.parser.CommandTokens;
 import seedu.duke.router.CommandRouterNode;
@@ -18,14 +19,19 @@ public class DukeSession {
                     .route("hello", new CommandRouterNode()
                             .route("world", new HelloWorldCommandFactory())
                     )
-                    .route("bye", new ByeCommandFactory());
+                    .route("bye", new ByeCommandFactory())
+                    .route("add", new AddCommandFactory());
+    public static IngredientList Ingredients;
 
     private final DukeUI ui;
     private final DukeControlFlow controlFlow;
 
+
     public DukeSession() {
         this.ui = new DukeUI(new Scanner(System.in));
         this.controlFlow = new DukeControlFlow();
+        Ingredients = new IngredientList();
+        this.Ingredients = Ingredients;
     }
 
     /**
@@ -47,7 +53,7 @@ public class DukeSession {
     /**
      * Runs the read, evaluate, print loop for Duke.
      */
-    public void runDuke() {
+    public void runDuke() throws DukeException {
         this.ui.printIntroduction();
         while (this.controlFlow.shouldRun()) {
             String nextCommand = ui.getNextCommandString();
