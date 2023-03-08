@@ -13,14 +13,17 @@ public class ExpenseList {
         return expenseList;
     }
 
+    public void addExpense(String userInput) {
+
+    }
     public void deleteExpense (String userInput) {
         int expenseIndex = Integer.parseInt(userInput);
         expenseList.remove(expenseIndex-1); // change to 0-based indexing
     }
     
     //for list
-    public static String getAllMessage() {
-        int count = ExpenseList.expenseList.size();
+    public String getAllMessage() {
+        int count = getExpenseList().size();
         return "\t" + "Now you have " + count + " " + printExpensesOrExpense(count) + " in the list.";
     }
 
@@ -29,7 +32,7 @@ public class ExpenseList {
     }
 
     public CommandRes listExpense() {
-        return new CommandRes(MESSAGE_DIVIDER_LIST, ExpenseList.expenseList, ExpenseList.getAllMessage());
+        return new CommandRes(MESSAGE_DIVIDER_LIST, expenseList, getAllMessage());
     }
 }
 
