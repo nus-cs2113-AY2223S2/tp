@@ -6,7 +6,7 @@ public class Ui {
     public Ui() {
     }
 
-    public static final String LongLine = "_".repeat(40);
+    public final static String LongLine = "_".repeat(40);
 
     public static void printWelcomeMessage() {
         System.out.println("Hello, I am Duke and I will help you remember the tasks you need to do!");
