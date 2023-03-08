@@ -1,21 +1,25 @@
 package seedu.duke;
 
-import java.util.Scanner;
+
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+    private Storage storage;
+    private Ui ui;
+    private Parser parser;
+    public Duke(String filePath) {
+        ui = new Ui();
+        parser = new Parser();
+        storage = new Storage(filePath);
+    }
+    public void run(){
+        while(true) {
+            parser.parse();
+        }
+    }
+    public static void main(String[] args){
+        new Duke("data/saved.txt").run();
     }
 }
