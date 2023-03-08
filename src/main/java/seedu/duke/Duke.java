@@ -21,7 +21,7 @@ public class Duke {
         }
     }
     private static void performUserRequest(String[] parsedCommand, Scanner in, ArrayList<Task> tasks)
-        throws NumberFormatException {
+            throws NumberFormatException {
         switch (parsedCommand[0]) {
         case "add":
             if (!parsedCommand[2].isEmpty()) {
