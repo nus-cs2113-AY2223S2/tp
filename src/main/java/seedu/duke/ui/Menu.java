@@ -1,7 +1,7 @@
+//@@author Jeraldchen
+
 package seedu.duke.ui;
 
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
