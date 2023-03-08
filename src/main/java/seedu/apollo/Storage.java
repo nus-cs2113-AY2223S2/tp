@@ -21,6 +21,9 @@ import java.util.Scanner;
  * Storage class that initialises the task list and updates the save file.
  */
 public class Storage {
+    // Location of save file
+    protected static String filePath;
+
     /*
     Each task is saved as a line in the save file in this format:
         [type] | [status] | [description]
@@ -39,9 +42,6 @@ public class Storage {
     private static final char TXT_TODO_WORD = 'T';
     private static final char TXT_DEADLINE_WORD = 'D';
     private static final char TXT_EVENT_WORD = 'E';
-
-    // Location of save file
-    protected static String filePath;
 
     /**
      * Initialise Storage class, set filePath.
@@ -79,6 +79,8 @@ public class Storage {
                 String to = tempEvent.getTo(Task.storePattern);
                 overwrite.write("E | " + stat + " | " + desc + " /from " + from + " /to " + to + "\n");
                 break;
+            default:
+                throw new IOException();
             }
         }
         overwrite.close();

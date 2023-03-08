@@ -34,10 +34,11 @@ public class AddCommand extends Command {
      * @param param Description of task given by user (including date(s) for Deadline, Event).
      * @throws InvalidDeadline If the Deadline being added has the wrong format.
      * @throws InvalidEvent If the Event being added has the wrong format.
+     * @throws UnexpectedException If the command word cannot be understood.
      */
-    public AddCommand(String type, String param) throws InvalidDeadline, InvalidEvent {
+    public AddCommand(String type, String param) throws InvalidDeadline, InvalidEvent, UnexpectedException {
         this.type = type;
-        switch (type){
+        switch (type) {
         case COMMAND_TODO_WORD:
             this.desc = param;
             break;
@@ -51,6 +52,9 @@ public class AddCommand extends Command {
             this.desc = paramAndFromTo[0];
             this.from = paramAndFromTo[1];
             this.to = paramAndFromTo[2];
+            break;
+        default:
+            throw new UnexpectedException("Adding Task");
         }
     }
 

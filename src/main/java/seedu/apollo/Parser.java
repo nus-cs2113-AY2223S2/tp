@@ -15,6 +15,7 @@ import seedu.apollo.exception.InvalidDateTime;
 import seedu.apollo.exception.InvalidDeadline;
 import seedu.apollo.exception.InvalidEvent;
 
+import java.rmi.UnexpectedException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -43,8 +44,9 @@ public class Parser {
      * @param ui Prints out error messages if command cannot be parsed.
      * @param size Number of tasks saved in TaskList.
      * @return Corresponding Command class to user input.
+     * @throws UnexpectedException If an unexpected error occurs.
      */
-    public static Command getCommand(String userCommand, Ui ui, int size) {
+    public static Command getCommand(String userCommand, Ui ui, int size) throws UnexpectedException {
         final String[] split = userCommand.trim().split("\\s+", 2);
         try {
             return parseCommand(split, size);
@@ -79,10 +81,11 @@ public class Parser {
      * @throws InvalidDeadline If the input format for adding a deadline is wrong.
      * @throws InvalidEvent If the input format for adding an event is wrong.
      * @throws IllegalCommandException If an unknown command is input by the user.
+     * @throws UnexpectedException If some unexpected error occurs.
      */
     private static Command parseCommand(String[] split, int size)
             throws InvalidDateTime, EmptyKeywordException, EmptyTaskDescException, InvalidDeadline, InvalidEvent,
-            IllegalCommandException, NumberFormatException {
+            IllegalCommandException, NumberFormatException, UnexpectedException {
         String command = split[0];
         switch (command) {
         case COMMAND_EXIT_WORD:

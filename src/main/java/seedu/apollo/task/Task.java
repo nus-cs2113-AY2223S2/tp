@@ -9,12 +9,12 @@ import java.time.format.DateTimeFormatter;
  */
 public abstract class Task {
 
+    // Formatters used to parse and print date and time
+    public static DateTimeFormatter storePattern = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+    protected static DateTimeFormatter printPattern = DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mma");
+
     protected String description;
     protected boolean isDone;
-
-    // Formatters used to parse and print date and time
-    protected static DateTimeFormatter printPattern = DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mma");
-    public static DateTimeFormatter storePattern = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     /**
      * Initialises the Task with its description sets its status as not done.
