@@ -14,5 +14,8 @@ public class BadMaths {
         String function = parser.getFunction();
         String command = parser.getCommand();
 
+        if (function.equals("bye")) {
+            System.out.println("see you again");
+        }
     }
 }
