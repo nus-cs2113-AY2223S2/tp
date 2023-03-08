@@ -1,10 +1,15 @@
 package seedu.dukeofbooks.data.person;
 
+import seedu.dukeofbooks.data.book.Book;
+
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Person {
     private PersonName name;
     private Phone phone;
+
+    private ArrayList<Book> borrowedBooks = new ArrayList<>();
 
     /**
      * Assumption: Every field must be present and not null.
@@ -27,6 +32,10 @@ public class Person {
 
     public Phone getPhone() {
         return phone;
+    }
+
+    public ArrayList<Book> getBorrowHistory() {
+        return borrowedBooks;
     }
 
     /**
