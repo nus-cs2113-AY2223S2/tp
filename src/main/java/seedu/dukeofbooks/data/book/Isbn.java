@@ -12,8 +12,7 @@ public class Isbn implements IVerifiable {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        } 
-        else {
+        } else {
             return other instanceof Isbn && this.hasSameData((Isbn) other);
         }
     }

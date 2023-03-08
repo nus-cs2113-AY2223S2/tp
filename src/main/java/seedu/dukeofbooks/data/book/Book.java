@@ -3,17 +3,19 @@ package seedu.dukeofbooks.data.book;
 import seedu.dukeofbooks.common.IVerifiable;
 import seedu.dukeofbooks.data.person.Person;
 
-public class Book implements IVerifiable {
+public class Book extends BorrowableItem implements IVerifiable {
     private Isbn isbn;
     private Title title;
     private Topic topic;
     private Person author;
 
     public Book(Isbn isbn, Title title, Topic topic, Person author) {
+        super();
         this.isbn = isbn;
         this.title = title;
         this.topic = topic;
         this.author = author;
+        isBorrowed = false;
     }
 
     public Isbn getIsbn() {
@@ -52,8 +54,7 @@ public class Book implements IVerifiable {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        } 
-        else {
+        } else {
             return other instanceof Book && this.hasSameData((Book) other);
         }
     }
@@ -62,8 +63,8 @@ public class Book implements IVerifiable {
         boolean sameAuthor = author.equals(book.getAuthor());
         boolean sameTitle = title.equals(book.getTitle());
         boolean sameTopic = topic.equals(book.getTopic());
-        boolean sameisbn = isbn.equals(book.getIsbn());
-        return sameAuthor && sameTitle && sameTopic && sameisbn;
+        boolean sameIsbn = isbn.equals(book.getIsbn());
+        return sameAuthor && sameTitle && sameTopic && sameIsbn;
     }
 
     @Override

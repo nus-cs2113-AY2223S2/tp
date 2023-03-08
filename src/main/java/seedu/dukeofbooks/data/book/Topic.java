@@ -12,8 +12,7 @@ public class Topic implements IVerifiable {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        } 
-        else {
+        } else {
             return other instanceof Topic && this.hasSameData((Topic) other);
         }
     }
