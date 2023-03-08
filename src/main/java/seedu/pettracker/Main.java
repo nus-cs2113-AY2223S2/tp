@@ -3,6 +3,7 @@ package seedu.pettracker;
 import seedu.pettracker.commands.Command;
 import seedu.pettracker.parser.CommandParser;
 import seedu.pettracker.ui.Ui;
+import java.util.Scanner;
 
 /**
  * Entry point for the Pet Tracker Application
@@ -11,8 +12,8 @@ import seedu.pettracker.ui.Ui;
 
 public class Main {
 
-    private Ui ui;
-    private CommandParser commandParser;
+    private final Ui ui;
+    private final CommandParser commandParser;
 
     /**
      * Creates the Main class by initializing the other classes
@@ -38,12 +39,12 @@ public class Main {
      */
     public void runCommandTillExit() {
         boolean isExit = false;
-        while (!isExit) {
-            Command command;
-            String commandString = ui.getUserInput();
-            command = commandParser.parseCommand(commandString);
-            command.execute(ui);
-            isExit = command.isExit();
+        Scanner in = new Scanner(System.in);
+        while (!isExit && in.hasNextLine()) {
+            String commandString = in.nextLine();
+            Command c = commandParser.parseCommand(commandString);
+            c.execute(ui);
+            isExit = c.isExit();
         }
     }
 
