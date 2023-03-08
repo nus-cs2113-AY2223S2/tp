@@ -40,5 +40,10 @@ public class Expense {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void printTask() {
+        System.out.println(this.expenseAmount + " ");
+        System.out.println(this.expenseTime + " " + this.description);
+    }
 }
 

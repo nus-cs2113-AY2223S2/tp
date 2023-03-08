@@ -33,7 +33,8 @@ public class Duke {
                 expenseList.deleteExpense(input);
                 break;
             case "list":
-                expenseList.listExpense();
+                System.out.println("Here are the tasks in your list:\n");
+                ExpenseList.listExpense();
                 break;
             default:
 

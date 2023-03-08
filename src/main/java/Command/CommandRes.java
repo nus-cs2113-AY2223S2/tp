@@ -1,6 +1,7 @@
-package data;
+package Command;
 
 import MajorClasses.Expense;
+import data.MessageList;
 
 import java.util.ArrayList;
 import java.util.stream.IntStream;
