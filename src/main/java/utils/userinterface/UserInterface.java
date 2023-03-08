@@ -1,4 +1,6 @@
-package utils;
+package utils.UserInterface;
+
+import utils.enums.StringArt;
 
 import java.util.Scanner;
 
