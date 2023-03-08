@@ -8,19 +8,17 @@ import static data.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class ExpenseList {
     public ArrayList<Expense> expenseList = new ArrayList<>();
-    
+
     public ArrayList<Expense> getExpenseList() {
         return expenseList;
     }
 
-    public void addExpense(String userInput) {
 
-    }
-    public void deleteExpense (String userInput) {
+    public void deleteExpense(String userInput) {
         int expenseIndex = Integer.parseInt(userInput);
-        expenseList.remove(expenseIndex-1); // change to 0-based indexing
+        expenseList.remove(expenseIndex - 1); // change to 0-based indexing
     }
-    
+
     //for list
     public String getAllMessage() {
         int count = getExpenseList().size();
