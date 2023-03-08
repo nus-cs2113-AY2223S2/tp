@@ -11,6 +11,9 @@ public class CommandParser {
     final String KEYWORD_ADD_STAT = "add-stat";
     final String KEYWORD_REMOVE_STAT = "remove-stat";
 
+    public CommandParser() {
+    }
+
     public Command parseCommand(String commandString) {
         try {
             return newCommand(commandString);
