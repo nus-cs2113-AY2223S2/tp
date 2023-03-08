@@ -13,11 +13,11 @@ public class Parser {
 
     protected String userInput;
 
-    public Parser (String userInput) {
+    public Parser(String userInput) {
         this.userInput = userInput;
     }
 
-    public String getFunction() {
+    public String getCommand() {
         if (userInput.contains(".")) {
             return userInput.substring(0, userInput.indexOf("."));
         } else {
@@ -26,10 +26,11 @@ public class Parser {
     }
 
     public String getToDo() {
-        if (userInput.contains(".")) {
+        if (!userInput.equals("bye")) {
             return userInput.substring(userInput.indexOf(".") + 2);
         } else {
-            return "empty";
+            return "nothing to do";
         }
+
     }
 }

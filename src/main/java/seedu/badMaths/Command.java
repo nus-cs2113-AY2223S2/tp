@@ -2,33 +2,38 @@
  * Takes in function and command
  * Identifies the function called and executes the appropriate function class
  *
- * @param function
  * @param command
+ * @param toDo
  */
 
 package seedu.badMaths;
 
 public class Command {
 
-    protected String function;
     protected String command;
+    protected String toDo;
 
-    public Command(String function, String command) {
-        this.function = function;
+    public Command(String command, String toDo) {
         this.command = command;
+        this.toDo = toDo;
     }
 
+    protected boolean isRunning = true;
+
     public void executeCommand() {
-        switch (function) {
-        case "bye":
-            System.out.println("Goodbye!");
-            break;
-        case "Graph":
-            TrigoGraph trigoGraph = new TrigoGraph(command);
-            trigoGraph.splitAmplitude();
-            break;
-        default:
-            break;
+        while (isRunning) {
+            switch (command) {
+            case "Bye":
+                System.out.println("Goodbye!");
+                isRunning = false;
+                break;
+            case "Graph":
+                TrigoGraph trigoGraph = new TrigoGraph(command);
+                trigoGraph.startGraphAnalysis();
+                break;
+            default:
+                break;
+            }
         }
     }
 }

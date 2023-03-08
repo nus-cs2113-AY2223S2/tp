@@ -11,10 +11,10 @@ public class BadMaths {
         String userInput = scanner.nextLine();
         Parser parser = new Parser(userInput);
 
-        String function = parser.getFunction();
+        String command = parser.getCommand();
         String toDo = parser.getToDo();
 
-        Command command = new Command(function, toDo);
-        command.executeCommand();
+        Command inputCommands = new Command(command, toDo);
+        inputCommands.executeCommand();
     }
 }
