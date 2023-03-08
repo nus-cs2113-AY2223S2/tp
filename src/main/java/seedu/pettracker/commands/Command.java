@@ -3,12 +3,24 @@ package seedu.pettracker.commands;
 import seedu.pettracker.ui.Ui;
 
 public abstract class Command {
-    private static String command;
 
     /**
      * Executes the given command
      * @param ui Ui to do printing if required
      */
     public abstract void execute(Ui ui);
+
+    /**
+     * Parses the arguments of the command
+     *
+     * @param commandArgs String containing the arguments of the command
+     * @return String array containing the arguments of the command
+     */
+    public abstract String[] parseArgs(String commandArgs);
+
+    /**
+     * Sets isExit to be true to exit the program
+     * @return isExit boolean value for program to exit
+     */
     public abstract boolean isExit();
 }

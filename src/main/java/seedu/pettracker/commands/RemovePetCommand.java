@@ -2,22 +2,26 @@ package seedu.pettracker.commands;
 
 import seedu.pettracker.ui.Ui;
 
-public class ExitCommand extends Command {
-    // @@author shawntangy-reused
-    // Reused from
-    // https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/commands/ExitCommand.java
-    // with minor modifications
-
-    public ExitCommand() {
+public class RemovePetCommand extends Command{
+    protected String petName;
+    public RemovePetCommand(String commandArgs) {
+        super();
+        this.petName = parseArgs(commandArgs)[0];
     }
 
+    //TODO: Implement this method
+
     /**
-     * @param ui Ui class to do prints
+     * Executes the given command
+     *
+     * @param ui Ui to do printing if required
      */
     @Override
     public void execute(Ui ui) {
-        ui.exitCommandMessage();
+        //petList.removePet(petName);
     }
+
+    //TODO: Implement this method
 
     /**
      * Parses the arguments of the command
@@ -32,10 +36,10 @@ public class ExitCommand extends Command {
 
     /**
      * Sets isExit to be true to exit the program
-     *
      * @return isExit boolean value for program to exit
      */
+    @Override
     public boolean isExit() {
-        return true;
+        return false;
     }
 }
