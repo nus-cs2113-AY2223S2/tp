@@ -1,13 +1,12 @@
 package MajorClasses;
 
-import data.CommandRes;
-
 import java.util.ArrayList;
 
+import static data.MessageList.MESSAGE_DIVIDER;
 import static data.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class ExpenseList {
-    public ArrayList<Expense> expenseList = new ArrayList<>();
+    public static ArrayList<Expense> expenseList = new ArrayList<>();
     
     public ArrayList<Expense> getExpenseList() {
         return expenseList;
@@ -28,8 +27,20 @@ public class ExpenseList {
         return ((count == 1) ? "expense" : "expenses");
     }
 
-    public CommandRes listExpense() {
-        return new CommandRes(MESSAGE_DIVIDER_LIST, ExpenseList.expenseList, ExpenseList.getAllMessage());
+    public static void listExpense() {
+        showToUser(MESSAGE_DIVIDER_LIST);
+        for (int i = 0; i < ExpenseList.expenseList.size(); i++) {
+            System.out.print((i + 1) + ".");
+            expenseList.get(i).printTask();
+        }
+        System.out.println("\n" + getAllMessage());
+        showToUser(MESSAGE_DIVIDER);
     }
+
+    private static void showToUser(String... message) {
+        for (String i : message) System.out.println(i);
+    }
+
+
 }
 
