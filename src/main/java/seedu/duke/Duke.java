@@ -29,6 +29,9 @@ public class Duke {
             case "delete":
                 expenseList.deleteExpense(input);
                 break;
+            case "list":
+                expenseList.listExpense();
+                break;
             default:
         }
     }
