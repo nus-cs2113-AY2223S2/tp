@@ -13,6 +13,8 @@ import seedu.duke.ui.DukeUI;
 import java.util.Scanner;
 
 public class DukeSession {
+
+    public static IngredientList Ingredients;
     private static final CommandRouterNode COMMAND_TREE =
             new CommandRouterNode()
 
@@ -23,8 +25,6 @@ public class DukeSession {
                     .route("add", new AddCommandFactory());
     private final DukeUI ui;
     private final DukeControlFlow controlFlow;
-
-    public static IngredientList Ingredients;
 
 
     public DukeSession() {
