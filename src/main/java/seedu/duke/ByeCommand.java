@@ -1,5 +1,8 @@
 package seedu.duke;
 
+/**
+ * Represents the command to exit the program.
+ */
 public class ByeCommand {
 
     private static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
