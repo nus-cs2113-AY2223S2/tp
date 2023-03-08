@@ -6,9 +6,8 @@ public abstract class Command {
     private static String command;
 
     /**
-     * Executes the command and returns the output based on the command given
-     *
-     * @return Result of the command
+     * Executes the given command
+     * @param ui Ui to do printing if required
      */
     public abstract void execute(Ui ui);
     public abstract boolean isExit();

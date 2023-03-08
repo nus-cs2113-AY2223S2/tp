@@ -10,11 +10,15 @@ public class Ui {
         System.out.println("Example Ending Message");
     }
 
+    /**
+     * Message that prints when the exit command is executed
+     */
     public void exitCommandMessage() {
         System.out.println("Exit Command Received");
     }
 
     public String getUserInput() {
+        //sample hard coded input to simulate the exit command
         return "exit";
     }
 

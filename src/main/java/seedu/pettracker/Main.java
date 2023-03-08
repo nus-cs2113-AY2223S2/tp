@@ -26,6 +26,10 @@ public class Main {
         commandParser = new CommandParser();
     }
 
+    /**
+     * Runs the program by showing a welcome message
+     * and proceed to run commands until Exit command is received
+     */
     private void run() {
         ui.showWelcomeMessage();
         runCommandTillExit();
@@ -33,9 +37,13 @@ public class Main {
         System.exit(0);
     }
 
+
+    /**
+     * Executes commands until isExit is changed to true
+     */
     private void runCommandTillExit() {
         boolean isExit = false;
-        while(!isExit){
+        while (!isExit) {
             Command command;
             String commandString = ui.getUserInput();
             command = commandParser.parseCommand(commandString);

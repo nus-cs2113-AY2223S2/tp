@@ -10,17 +10,26 @@ public class ExitCommand extends Command {
     /**
      * Terminates the program.
      */
+    public static final String EXIT_COMMAND = "exit";
 
-    public static final String command = "exit";
+    public static final String command = EXIT_COMMAND;
 
     public ExitCommand() {
     }
+
+    /**
+     * @param ui Ui class to do prints
+     */
     @Override
     public void execute(Ui ui) {
         ui.exitCommandMessage();
     }
 
-    public  boolean isExit() {
+    /**
+     * Sets isExit to be true to exit the program
+     * @return isExit boolean value for program to exit
+     */
+    public boolean isExit() {
         return true;
     }
 
