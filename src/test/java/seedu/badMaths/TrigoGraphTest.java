@@ -34,8 +34,8 @@ class TrigoGraphTest {
     }
     @Test
     void splitTrigoIntoPhasors_startEndPosPhase_expectPhase() {
-        String trigo = "sin(2*pi*x+1)";
-        int startPosOfPhase = trigo.indexOf("(")+1;
+        String trigo = "sin(2*pi*x+1";
+        int startPosOfPhase = trigo.indexOf("(") + 1;
         int endPosOfPhase = trigo.length();
         String phase = trigo.substring(startPosOfPhase,endPosOfPhase);
         assertEquals("2*pi*x+1", phase);
