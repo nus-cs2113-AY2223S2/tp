@@ -22,7 +22,6 @@ class TrigoGraphTest {
         assertThrows(NumberFormatException.class,()->Double.parseDouble(amplitudeAndEqn[0]));
 
     }
-
     @Test
     void splitTrigoAndVerticalShift_doubleDigitsVShift_expectSameOutput() {
         String equation_Pos = "sin(2*pi*x+1)+36";
@@ -32,5 +31,28 @@ class TrigoGraphTest {
             answer = Double.parseDouble(TrigoAndVerticalShift[1].substring(1).trim());
         }
         assertEquals(36,answer);
+    }
+    @Test
+    void splitTrigoIntoPhasors_startEndPosPhase_expectPhase() {
+        String trigo = "sin(2*pi*x+1)";
+        int startPosOfPhase = trigo.indexOf("(")+1;
+        int endPosOfPhase = trigo.length();
+        String phase = trigo.substring(startPosOfPhase,endPosOfPhase);
+        assertEquals("2*pi*x+1", phase);
+    }
+    @Test
+    void splitPhasorsIntoFreq_phasors_expectFreqAndShift() {
+        String phasors = "2*pi*x+1";
+        String [] freqAndShift = phasors.split("\\+",2);
+        String freqWithX = freqAndShift[0];
+        String [] freqComponents = freqWithX.split("\\*",3);
+        Double freq;
+        if(phasors.contains("pi")){
+            freq = Double.parseDouble(freqComponents[0])/2;
+        }else{
+            freq = Double.parseDouble(freqComponents[0])/(2*Math.PI);
+        }
+        assertEquals(1.0, freq);
+        assertEquals("1", freqAndShift[1]);
     }
 }

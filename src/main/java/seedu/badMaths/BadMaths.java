@@ -12,12 +12,9 @@ public class BadMaths {
         Parser parser = new Parser(userInput);
 
         String function = parser.getFunction();
-        String command = parser.getCommand();
+        String toDo = parser.getToDo();
 
-
-        if (function.equals("bye")) {
-            System.out.println("see you again");
-            System.exit(1);
-        }
+        Command command = new Command(function, toDo);
+        command.executeCommand();
     }
 }
