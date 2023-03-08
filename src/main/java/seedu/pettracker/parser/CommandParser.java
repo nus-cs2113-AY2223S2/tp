@@ -4,17 +4,16 @@ import seedu.pettracker.commands.*;
 import seedu.pettracker.exceptions.UnknownKeywordException;
 
 public class CommandParser {
-    private final String KEYWORD_EXIT = "exit";
-    private final String KEYWORD_ADD_PET = "add-pet";
-    private final String KEYWORD_REMOVE_PET = "remove-pet";
-    private final String KEYWORD_LIST_PET = "list";
-    private final String KEYWORD_ADD_STAT = "add-stat";
-    private final String KEYWORD_REMOVE_STAT = "remove-stat";
+    final String KEYWORD_EXIT = "exit";
+    final String KEYWORD_ADD_PET = "add-pet";
+    final String KEYWORD_REMOVE_PET = "remove-pet";
+    final String KEYWORD_LIST_PET = "list";
+    final String KEYWORD_ADD_STAT = "add-stat";
+    final String KEYWORD_REMOVE_STAT = "remove-stat";
 
     public Command parseCommand(String commandString) {
         try {
-            Command command = newCommand(commandString);
-            return command;
+            return newCommand(commandString);
         } catch (UnknownKeywordException e) {
             System.out.println("Unknown Keyword");
             return null;
