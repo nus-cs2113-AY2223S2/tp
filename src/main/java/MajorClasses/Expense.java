@@ -20,7 +20,7 @@ public class Expense {
         return expenseAmount;
     }
 
-    public Time getExpenseTime() {
+    public String getExpenseTime() {
         return expenseTime;
     }
 
@@ -33,7 +33,7 @@ public class Expense {
         this.expenseAmount = expenseAmount;
     }
 
-    public void setExpenseTime(Time expenseTime) {
+    public void setExpenseTime(String expenseTime) {
         this.expenseTime = expenseTime;
     }
 
