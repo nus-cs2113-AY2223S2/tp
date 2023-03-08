@@ -2,7 +2,6 @@ package seedu.duke;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.lang.String;
 
 public class Duke {
     private static Ui ui;
