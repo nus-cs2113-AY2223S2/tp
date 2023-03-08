@@ -1,27 +1,36 @@
 package seedu.dukeofbooks.data.loan;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import seedu.dukeofbooks.common.IVerifiable;
-import seedu.dukeofbooks.data.book.Isbn;
+import seedu.dukeofbooks.data.book.BorrowableItem;
 import seedu.dukeofbooks.data.person.Person;
 import seedu.dukeofbooks.data.exception.IllegalDateException;
 
 public class Loan implements IVerifiable {
-    public static final String LOAN_DATE_IS_AFTER_LOAN_START="Error: loan date after loan start date";
+    public static final String LOAN_DATE_IS_AFTER_LOAN_START =
+            "Error: loan date after loan start date";
+    private BorrowableItem item;
     private Person borrower;
-    private Isbn isbn;
     private LocalDateTime loanStart;
     private LocalDateTime loanEnd;
     private boolean isReturned;
 
+    public Loan(BorrowableItem toBorrow, Person borrower,
+                LocalDateTime loanStart, LocalDateTime loanEnd) {
+        this.item = toBorrow;
+        this.borrower = borrower;
+        this.loanStart = loanStart;
+        this.loanEnd = loanEnd;
+    }
     public Person getBorrower() {
         return borrower;
     }
-    public Isbn getISBN() {
-        return isbn;
+    public BorrowableItem getBorrowedItem() {
+        return item;
     }
-    public void setISBN(Isbn newISBN) {
-        isbn = newISBN;
+    public void setBorrowedItem (BorrowableItem newItem) {
+        item = newItem;
     }
     public void setBorrower(Person borrower) {
         this.borrower = borrower;
@@ -36,7 +45,7 @@ public class Loan implements IVerifiable {
         return loanEnd;
     }
     public void setLoanEnd(LocalDateTime loanEnd) throws IllegalDateException {
-        if (loanEnd.compareTo(loanStart)<0) {
+        if (loanEnd.isBefore(loanStart)) {
             // Impossible to return before start date
             // Throw exception
             throw new IllegalDateException(LOAN_DATE_IS_AFTER_LOAN_START);
@@ -49,6 +58,7 @@ public class Loan implements IVerifiable {
     public void setReturned(boolean isReturned) {
         this.isReturned = isReturned;
     }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -57,21 +67,24 @@ public class Loan implements IVerifiable {
             return other instanceof Loan && this.hasSameData((Loan) other);
         }
     }
+
     private boolean hasSameData(Loan other) {
-        boolean sameBorrower = other.getBorrower() == borrower;
-        boolean sameIsbn = other.getISBN().equals(isbn);
+        boolean sameBorrower = other.getBorrower().equals(borrower);
+        boolean sameItem = other.getBorrowedItem().equals(item);
         boolean sameStart = other.getLoanStart().equals(loanStart);
         boolean sameEnd = other.getLoanEnd().equals(loanEnd);
         boolean sameReturn = other.isReturned() == isReturned;
-        return sameBorrower && sameIsbn && sameStart && sameEnd && sameReturn;
+        return sameBorrower && sameItem && sameStart && sameEnd && sameReturn;
     }
+
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(item, borrower, loanStart, loanEnd);
     }
+
     @Override
     public String toString() {
-        return String.format("Loan\nBorrower: %s, ISBN: %s, Start date: %s, End date: %s",
-                borrower,isbn,loanStart,loanEnd);
+        return String.format("Loan\nBorrower: %s, Item: %s, Start date: %s, End date: %s",
+                borrower, item.toString(),loanStart,loanEnd);
     }
 }

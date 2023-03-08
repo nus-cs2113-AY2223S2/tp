@@ -10,10 +10,12 @@ public class Book extends BorrowableItem implements IVerifiable {
     private Person author;
 
     public Book(Isbn isbn, Title title, Topic topic, Person author) {
+        super();
         this.isbn = isbn;
         this.title = title;
         this.topic = topic;
         this.author = author;
+        isBorrowed = false;
     }
 
     public Isbn getIsbn() {
