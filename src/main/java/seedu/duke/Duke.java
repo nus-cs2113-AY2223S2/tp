@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -48,9 +49,9 @@ public class Duke {
                 parsedCommand[2]);
             break;
         case "bye":
+            isInUse = false;
             in.close();
             ui.printGoodbyeMessage();
-            isInUse = false;
             break;
         case "param error":
             ui.printParametersError();
