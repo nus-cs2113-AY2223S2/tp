@@ -11,6 +11,6 @@ public class InvalidCommand extends Command {
      * Displays a generic error message.
      */
     public void execute(TaskList taskList, Ui ui) {
-        ui.printCommandErrorMessage();
+        ui.printErrorMessage();
     }
 }

@@ -1,7 +1,5 @@
 package seedu.duke.task;
 
-import java.util.StringJoiner;
-
 public class Task {
     private String description;
     private boolean isDone;
@@ -26,14 +24,4 @@ public class Task {
     public String toString() {
         return "[" + (isDone ? "X" : " ") + "] " + description;
     }
-
-    public String toSaveString() {
-        StringJoiner saveString = new StringJoiner(Storage.DELIMITER);
-        String[] taskParameters = {isDone ? "1" : "0", description};
-        for (String string : taskParameters) {
-            saveString.add(string);
-        }
-        return saveString.toString();
-    }
 }
-
