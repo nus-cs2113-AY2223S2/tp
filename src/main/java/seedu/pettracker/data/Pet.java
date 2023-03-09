@@ -49,6 +49,6 @@ public class Pet {
      */
     @Override
     public String toString() {
-        return getPetName() + "\nType: " +  getPetType() + "\nAge: " + getAge() + "\nWeight: " + getWeight();
+        return getPetName() + "\nType: " + getPetType() + "\nAge: " + getAge() + "\nWeight: " + getWeight();
     }
 }
