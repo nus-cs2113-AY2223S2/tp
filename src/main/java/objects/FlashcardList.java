@@ -12,7 +12,7 @@ public class FlashcardList {
     }
 
     public void addNewFlashcard(String questionText, String answerText) {
-        Flashcard newFlashcard = new Flashcard(questionText,answerText);
+        Flashcard newFlashcard = new Flashcard(questionText, answerText);
         flashcards.add(newFlashcard);
     }
 }
