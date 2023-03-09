@@ -1,5 +1,5 @@
 
-package objects.flashcard;
+package com.clanki.objects.flashcard;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;

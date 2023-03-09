@@ -1,6 +1,6 @@
-package objects;
+package com.clanki.objects;
 
-import objects.flashcard.Flashcard;
+import com.clanki.objects.flashcard.Flashcard;
 
 import java.util.ArrayList;
 

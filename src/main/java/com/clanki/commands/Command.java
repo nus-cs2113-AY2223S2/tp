@@ -1,8 +1,8 @@
 
-package commands;
+package com.clanki.commands;
 
-import objects.FlashcardList;
-import ui.Ui;
+import com.clanki.objects.FlashcardList;
+import com.clanki.ui.Ui;
 
 /**
  * Represents a command that is instructed for the program to conduct. A Command

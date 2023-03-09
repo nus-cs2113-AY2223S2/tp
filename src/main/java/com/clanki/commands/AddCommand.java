@@ -1,7 +1,7 @@
-package commands;
+package com.clanki.commands;
 
-import objects.FlashcardList;
-import ui.Ui;
+import com.clanki.objects.FlashcardList;
+import com.clanki.ui.Ui;
 
 /**
  * A type of command that will instruct to add a new element into the ArrayList

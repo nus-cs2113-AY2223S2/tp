@@ -1,4 +1,4 @@
-package ui;
+package com.clanki.ui;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -41,5 +41,4 @@ public class Ui {
     public void printInvalidInput() {
         System.out.println("The input is in an incorrect format.");
     }
-
 }
