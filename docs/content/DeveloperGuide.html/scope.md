@@ -3,7 +3,6 @@ title: Product scope
 weight: 2
 ---
 
-# Product scope
 ## Target user profile
 
 {Describe the target user profile}
