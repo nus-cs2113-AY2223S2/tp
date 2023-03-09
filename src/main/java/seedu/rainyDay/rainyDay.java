@@ -127,11 +127,7 @@ public class rainyDay {
             readData.close();
 
             return statements;
-        } catch (IOException e) {
-            System.out.println("No valid save file detected. Starting with empty financial data.");
-            ArrayList<FinancialStatement> statements = new ArrayList<>();
-            return statements;
-        } catch(ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             System.out.println("No valid save file detected. Starting with empty financial data.");
             ArrayList<FinancialStatement> statements = new ArrayList<>();
             return statements;
