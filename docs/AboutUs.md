@@ -1,5 +1,4 @@
 # About us
-
 Display |       Name       | Github Profile | Portfolio 
 --------|:----------------:|:--------------:|:---------:
 ![](https://via.placeholder.com/100.png?text=Photo) |  Leong Yat Pang  | [Github](https://github.com/YatPang) | [Portfolio](docs/team/leongyatpang.md)
