@@ -19,4 +19,8 @@ public class Recipe {
     public HashMap<String, Integer> getIngredients() {
         return ingredients;
     }
+
+    public int getNumOfIngredients() {
+        return ingredients.size();
+    }
 }
