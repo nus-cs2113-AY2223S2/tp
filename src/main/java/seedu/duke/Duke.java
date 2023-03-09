@@ -41,10 +41,10 @@ public class Duke {
         }
     }
     
-    public static void runCommand(String line, ExpenseList expenseList) {
+    private static void runCommand(String line) {
         String command = line;
         try {
-            Parser.parseCommand(command, expenseList);
+            Parser.parseCommand(command);
         } catch (Exception e) {
             System.out.println("Command not recognized");
         }

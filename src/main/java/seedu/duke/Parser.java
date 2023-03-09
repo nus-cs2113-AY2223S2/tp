@@ -1,19 +1,18 @@
 package seedu.duke;
 import seedu.duke.data.expense.Expense;
 import seedu.duke.data.expense.ExpenseList;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Parser {
-    public static void parseCommand(String line, ExpenseList expenseList) {
+    public static void parseCommand(String line) {
         List<String> lineParts = splitLine(line);
         String command = lineParts.get(0);
         List<String> arguments = lineParts.subList(1, lineParts.size());
         switch(command) {
         case "add expense":
-            addExpenses(arguments, expenseList);
+            addExpenses(arguments);
             break;
         case "list":
             ExpenseList.printExpenseList();
@@ -29,7 +28,7 @@ public class Parser {
         return lineParts;
     }
     
-    private static void addExpenses(List<String> arguments, ExpenseList expenseList) {
+    private static void addExpenses(List<String> arguments) {
         try {
             String expenseDescription = arguments.get(0).substring(2).trim();
             String expenseDate = arguments.get(1).substring(2).trim();

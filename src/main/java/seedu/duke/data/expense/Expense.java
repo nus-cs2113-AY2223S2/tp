@@ -1,9 +1,9 @@
 package seedu.duke.data.expense;
 
 public class Expense {
-    private String description;
-    private String date; // to change to timestamp in the future
-    private float value;
+    protected String description;
+    protected String date; // to change to timestamp in the future
+    protected float value;
     
     public Expense(String description, String date, float value) {
         this.description = description;
