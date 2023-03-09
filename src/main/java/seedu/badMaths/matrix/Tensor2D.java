@@ -13,6 +13,14 @@ public class Tensor2D extends Tensor {
         return shape;
     }
 
+    public int row(){
+        return shape.getRow();
+    }
+
+    public int column(){
+        return shape.getColumn();
+    }
+
     public int[][] tensor(){
         return this.tensor;
     }

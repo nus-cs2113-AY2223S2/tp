@@ -30,8 +30,8 @@ public class Calculate {
         int[][] output = new int[t1Shape.row][t1Shape.column];
 
         for(int i=0; i<t1Shape.row; i++){
-            for(int j=0; j<t2Shape.column; j++){
-                output[i][j] = t1.get(i, j) * t2.get(j, j);
+            for(int j=0; j<t1Shape.column; j++){
+                output[i][j] = t1.get(i, j) * t2.get(i, j);
             }
         }
 
@@ -46,8 +46,8 @@ public class Calculate {
         int[][] output = new int[t1Shape.row][t1Shape.column];
 
         for(int i=0; i<t1Shape.row; i++){
-            for(int j=0; j<t2Shape.column; j++){
-                output[i][j] = t1.get(i, j) + t2.get(j, j);
+            for(int j=0; j<t1Shape.column; j++){
+                output[i][j] = t1.get(i, j) + t2.get(i, j);
             }
         }
 
