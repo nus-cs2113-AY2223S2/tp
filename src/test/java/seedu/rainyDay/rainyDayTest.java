@@ -85,6 +85,12 @@ class rainyDayTest {
         assertThrows(IOException.class, ()->loadFromFile(emptyFilePath));
     }
 
-  
+    @Test
+    void loadFromFile_invalidFileType_ClassNotFoundExceptionThrown()  {
+        String invalidTypeFilePath = "test files/thisFileTypeIsInvalid.txt";
+        assertThrows(IOException.class, ()->loadFromFile(invalidTypeFilePath));
+    }
+
+
 
 }
