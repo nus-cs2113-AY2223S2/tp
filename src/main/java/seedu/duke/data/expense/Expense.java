@@ -23,4 +23,7 @@ public class Expense {
 		return value;
 	}
 	
+	public String toString() {
+		return "Expense - " + getDescription() + " - Date - " + getDate() + " - value: - " + getValue() ;
+	}
 }
