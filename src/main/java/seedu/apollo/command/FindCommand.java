@@ -2,7 +2,6 @@ package seedu.apollo.command;
 
 import seedu.apollo.Storage;
 import seedu.apollo.Ui;
-import seedu.apollo.task.Task;
 import seedu.apollo.task.TaskList;
 
 /**
@@ -28,13 +27,7 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        TaskList foundTasks = new TaskList();
-        for (Task task : tasks) {
-            if (task.getDescription().contains(keyword)) {
-                foundTasks.add(task);
-            }
-        }
-        ui.printFoundList(foundTasks);
+        ui.printFoundList(tasks.findTasks(keyword));
     }
 
 }

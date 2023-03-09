@@ -3,7 +3,6 @@ package seedu.apollo.command;
 import seedu.apollo.Ui;
 import seedu.apollo.exception.InvalidDateTime;
 import seedu.apollo.Storage;
-import seedu.apollo.task.Task;
 import seedu.apollo.task.TaskList;
 
 import java.time.LocalDate;
@@ -38,13 +37,7 @@ public class DateCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        TaskList tasksOnDate = new TaskList();
-        for (Task task : tasks) {
-            if (task.isOnDate(date)) {
-                tasksOnDate.add(task);
-            }
-        }
-        ui.printDateList(tasksOnDate, date);
+        ui.printDateList(tasks.getTasksOnDate(date), date);
     }
 
 }
