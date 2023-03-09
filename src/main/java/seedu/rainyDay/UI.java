@@ -1,7 +1,5 @@
 package seedu.rainyDay;
 
-import java.util.Scanner;
-
 public class UI {
 
     private static String username;
