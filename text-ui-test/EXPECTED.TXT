@@ -5,5 +5,7 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-What is your name?
-Hello James Gosling
+What can I do for you today?
+____________________________________________________________
+
+Bye!
