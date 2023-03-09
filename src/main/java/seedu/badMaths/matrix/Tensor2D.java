@@ -19,6 +19,10 @@ public class Tensor2D extends Tensor {
         return this.tensor;
     }
 
+    public int get(int row, int column){
+        return tensor[row][column];
+    }
+
     public Tensor2D t(){
         int row = shape.row;
         int column = shape.column;
