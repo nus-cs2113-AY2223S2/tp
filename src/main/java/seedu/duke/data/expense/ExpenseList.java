@@ -1,6 +1,7 @@
 package seedu.duke.data.expense;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExpenseList {
     private ArrayList<Expense> expenseList;
@@ -23,6 +24,10 @@ public class ExpenseList {
     public void addExpense(Expense expense) {
         expenseList.add(expense);
         expenseCount++;
+    }
+    
+    public void addExpense(List<String> args) {
+    
     }
     
     public void printExpenseList() {

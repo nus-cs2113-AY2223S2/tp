@@ -1,5 +1,10 @@
 package seedu.duke;
 
+import seedu.duke.data.expense.ExpenseList;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -10,8 +15,9 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
+        ExpenseList expenseList = new ExpenseList();
         greet();
-        runCommandLoopUntilExitCommand();
+        runCommandLoopUntilExitCommand(expenseList);
         exit();
     }
     
@@ -26,24 +32,39 @@ public class Duke {
         System.out.println(DIVIDER);
     }
     
-    private static void runCommandLoopUntilExitCommand() {
+    private static void runCommandLoopUntilExitCommand(ExpenseList expenseList) {
         Scanner in = new Scanner(System.in);
         String line = in.nextLine();
         
         // continuously reads input from command line until command 'bye' is inputted
         while (!line.equalsIgnoreCase("bye")) {
             System.out.println(DIVIDER);
-            runCommand(line);
+            runCommand(line, expenseList);
             System.out.println(DIVIDER);
             line = in.nextLine();
         }
     }
     
-    private static void runCommand(String line) {
-        //
+    public static void runCommand(String line, ExpenseList expenseList) {
+        List<String> lineParts = splitLine(line);
+        String command = lineParts.get(0);
+        List<String> arguments = lineParts.subList(1, lineParts.size());
+        
+        switch (command) {
+        default:
+            System.out.println("Command not found");
+            break;
+        }
+    }
+    
+    public static ArrayList<String> splitLine(String line) {
+        ArrayList<String> lineParts = new ArrayList<String>();
+        lineParts.addAll(Arrays.asList(line.split(" /")));
+        return lineParts;
     }
     
     private static void exit() {
         System.out.println("Bye!");
     }
+    
 }
