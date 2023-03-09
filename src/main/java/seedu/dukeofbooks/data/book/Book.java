@@ -15,7 +15,6 @@ public class Book extends BorrowableItem implements IVerifiable {
         this.title = title;
         this.topic = topic;
         this.author = author;
-        isBorrowed = false;
     }
 
     public Isbn getIsbn() {

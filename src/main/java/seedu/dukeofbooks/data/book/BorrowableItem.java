@@ -14,12 +14,13 @@ public abstract class BorrowableItem {
         return isBorrowed;
     }
 
+    public void borrowItem() {
+        assert !isBorrowed;
+        isBorrowed = true;
+    }
 
-    public void returnBook() throws DuplicateActionException {
-        if (!isBorrowed) {
-            throw new DuplicateActionException(
-                    "Cannot borrow a not borrowed book");
-        }
+    public void returnItem() {
+        assert isBorrowed;
         isBorrowed = false;
     }
 
