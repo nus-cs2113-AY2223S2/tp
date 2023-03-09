@@ -1,8 +1,11 @@
 package seedu.duke;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ExitTest {
@@ -16,7 +19,7 @@ class ExitTest {
     }
 
     @Test
-    void ExitUnderTest_bye_expectBye() {
+    void Exit_bye_expectBye() {
         System.out.println("Bye!");
 
         assertEquals("Bye!", outputStreamCaptor.toString().trim());
