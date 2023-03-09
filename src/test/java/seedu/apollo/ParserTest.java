@@ -33,4 +33,32 @@ class ParserTest {
 
     }
 
+    @Test
+    void parseDeadline_normalDeadline_expectDescriptionAndBy() throws InvalidDeadline {
+        String param = "test /by tomorrow";
+        String[] descriptionAndBy = Parser.parseDeadline(param);
+        assertEquals("test", descriptionAndBy[0]);
+        assertEquals("tomorrow", descriptionAndBy[1]);
+    }
+    @Test
+    void parseDeadline_noBy_expectException() {
+        String param = "test";
+        assertThrows(InvalidDeadline.class,
+                () -> Parser.parseDeadline(param));
+    }
+
+    @Test
+    void parseDeadline_emptyBy_expectException() {
+        String param = "test /by ";
+        assertThrows(InvalidDeadline.class,
+                () -> Parser.parseDeadline(param));
+    }
+
+    @Test
+    void parseDeadline_noDescription_expectException() {
+        String param = "  /by tomorrow";
+        assertThrows(InvalidDeadline.class,
+                () -> Parser.parseDeadline(param));
+    }
+
 }
