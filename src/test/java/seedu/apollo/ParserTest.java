@@ -10,8 +10,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 
 class ParserTest {
@@ -67,6 +68,16 @@ class ParserTest {
                 () -> Parser.parseDeadline(param));
     }
 
+    @Test
+    void getCommand_invalidCommand_expectNull( ) throws UnexpectedException {
+        Ui ui = new Ui();
+        int size = 1;
+        String userCommand = "draw";
+        Command newCommand = Parser.getCommand(userCommand,ui,size);
+        assertNull(newCommand);
+
+    }
+    
     @Test
     void parseEvent_normalEvent_expectDescriptionAndFromAndTo() throws InvalidEvent {
         String param = "test /from today /to tomorrow";
