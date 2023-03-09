@@ -1,63 +1,26 @@
 package seedu.duke;
 
-import java.util.NoSuchElementException;
+import seedu.duke.command.Command;
+import seedu.duke.command.CommandParser;
+import seedu.duke.task.TaskList;
+
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Duke {
     private static Ui ui;
-    private static Parser parser;
     private static boolean isInUse = true;
 
     public static void main(String[] args) {
         ui = new Ui();
-        parser = new Parser();
+        //parser = new Parser();
         ui.printWelcomeMessage();
         Scanner in = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<Task>();
+        TaskList taskList = new TaskList();
         while (isInUse) {
             String userInput = in.nextLine();
-            String[] parsedCommand = parser.parseCommand(userInput);
-            performUserRequest(parsedCommand, in, tasks);
-        }
-    }
-    private static void performUserRequest(String[] parsedCommand, Scanner in, ArrayList<Task> tasks)
-            throws NumberFormatException {
-        switch (parsedCommand[0]) {
-        case "add":
-            if (!parsedCommand[2].isEmpty()) {
-                tasks.add(new Task(parsedCommand[1], parsedCommand[2]));
-                ui.printAddTaskNotification(parsedCommand[1], parsedCommand[2]);
-                break;
-            } else {
-                break;
-            }
-        case "mark":
-            tasks.get(Integer.parseInt(parsedCommand[1]) - 1).setDone(true);
-            ui.printMarkTaskNotification(tasks.get(Integer.parseInt(parsedCommand[1]) - 1).getDescription());
-            break;
-        case "unmark":
-            tasks.get(Integer.parseInt(parsedCommand[1]) - 1).setDone(false);
-            ui.printUnmarkTaskNotification(tasks.get(Integer.parseInt(parsedCommand[1]) - 1).getDescription());
-            break;
-        case "list":
-            ui.listTasks(tasks);
-            break;
-        case "editdeadline":
-            tasks.get(Integer.parseInt(parsedCommand[1]) - 1).editDeadline(parsedCommand[2]);
-            ui.printEditDeadlineNotification(tasks.get(Integer.parseInt(parsedCommand[1]) - 1).getDescription(),
-                parsedCommand[2]);
-            break;
-        case "bye":
-            isInUse = false;
-            in.close();
-            ui.printGoodbyeMessage();
-            break;
-        case "param error":
-            ui.printParametersError();
-            break;
-        default:
-            ui.printErrorMessage();
+            Command parsedCommand = CommandParser.parseCommand(userInput);
+            parsedCommand.execute(taskList, ui);
+            isInUse = !parsedCommand.isExit();
         }
     }
 }

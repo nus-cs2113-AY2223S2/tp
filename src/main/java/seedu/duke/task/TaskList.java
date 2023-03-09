@@ -7,7 +7,11 @@ import java.util.StringJoiner;
  * A list of Task objects representing the current list of tasks.
  */
 public class TaskList {
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private ArrayList<Task> tasks;
+
+    public TaskList(){
+        tasks = new ArrayList<>();
+    }
 
     /**
      * Returns the number of tasks in this task list.
@@ -64,6 +68,18 @@ public class TaskList {
         String taskString = tasks.get(index).toString();
         tasks.remove(index);
         return taskString;
+    }
+
+    /**
+     * Replace deadline of task at the given index of the task list.
+     *
+     * @param index The index of the task whose deadline should be changed.
+     *              Must be between 1 and the size of the task list.
+     * @return String representation of the task whose deadline was changed.
+     */
+    public String editDeadline(int index, String deadline) {
+        tasks.get(index).editDeadline(deadline);
+        return tasks.get(index).toString();
     }
 
     /**

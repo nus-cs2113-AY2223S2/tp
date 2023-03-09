@@ -29,6 +29,6 @@ public class Task {
     }
 
     public String toString() {
-        return "[" + (isDone ? "X" : " ") + "] " + description + "due by: " + deadline;
+        return "[" + (isDone ? "X" : " ") + "] " + description + " due by: " + deadline;
     }
 }
