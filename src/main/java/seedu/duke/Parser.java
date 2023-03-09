@@ -75,30 +75,29 @@ public class Parser {
     }
 
     private void executeDeleteCommand() {
-        Pattern pattern = Pattern.compile("c/(.+) e/(.+)?");
-        try {
-            Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
-            if (matcher.find()) {
-                String categoryName = matcher.group(1);
-                String eventName = matcher.group(2);
-
-                System.out.println(CATEGORY_ADDED_MESSAGE + categoryName);
-                System.out.println(EVENT_ADDED_MESSAGE + eventName);
-                if (eventName == null) {
-                    new DeleteCommand(categoryName);
-                } else {
+        if (separatedKeywordAndDescription[1].startsWith("c/")) {
+            try {
+                String afterCategorySpecifier = separatedKeywordAndDescription[1].substring(2);
+                Pattern pattern = Pattern.compile("(.+) e/(.+)");
+                Matcher matcher = pattern.matcher(afterCategorySpecifier);
+                if (matcher.find()) {
+                    String categoryName = matcher.group(1);
+                    String eventName = matcher.group(2);
                     new DeleteCommand(categoryName, eventName);
+                } else {
+                    System.out.println(afterCategorySpecifier);
+                    new DeleteCommand(afterCategorySpecifier);
                 }
-            } else {
+            } catch (IndexOutOfBoundsException e) {
                 System.out.println(DELETE_FORMAT);
                 System.out.println(REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
+            } catch (Exception e) {
+                System.out.println(SUBTLE_BUG_MESSAGE);
             }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(EMPTY_DELETION);
-        } catch (Exception e) {
-            System.out.println(SUBTLE_BUG_MESSAGE);
+        } else {
+            System.out.println(DELETE_FORMAT);
+            System.out.println(REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
         }
-
     }
 
     // execute event command
