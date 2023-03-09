@@ -1,20 +1,23 @@
 package MajorClasses;
 
+import java.util.ConcurrentModificationException;
+
 public class Expense {
     protected double expenseAmount;
     protected String expenseTime;
     protected String description;
+    protected Currency currencyType;
 
     public Expense() {
         this.expenseAmount = 0;
     }
 
-    public Expense(double expenseAmount, String expenseTime, String description) {
+    public Expense(double expenseAmount, String expenseTime, String description, Currency currencyType) {
         this.expenseAmount = expenseAmount;
         this.expenseTime = expenseTime;
         this.description = description;
+        this.currencyType = currencyType;
     }
-
 
     public double getExpenseAmount() {
         return expenseAmount;
@@ -42,7 +45,7 @@ public class Expense {
     }
 
     public void printTask() {
-        System.out.println(this.expenseAmount + " ");
+        System.out.println(this.currencyType.toString() + this.expenseAmount + " ");
         System.out.println(this.expenseTime + " " + this.description);
     }
 }

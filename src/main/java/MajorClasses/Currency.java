@@ -6,7 +6,10 @@ public enum Currency {
     // Currently, we have USD;
     USD, SGD;
     public static Currency checkCurrency(String currency) {
-        if (currency == "USD") {
+        if(currency == null) {
+            return SGD;
+        }
+        if (currency.equals("USD")) {
             return USD;
         }
         else {
