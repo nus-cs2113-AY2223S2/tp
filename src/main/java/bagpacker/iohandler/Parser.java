@@ -14,6 +14,7 @@ public class Parser {
     public static void setFullInput(String fullInput) {
         Parser.fullInput = fullInput;
     }
+
     /**
      * Returns the user input as in array list format
      */

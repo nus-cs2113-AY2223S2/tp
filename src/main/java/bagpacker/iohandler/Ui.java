@@ -61,4 +61,16 @@ public class Ui {
         System.out.println("4. 'unpack n/ITEM_INDEX'");
         printLine();
     }
+
+    /**
+     * Prints messages(s) to the user
+     * @param message
+     */
+    public static void printToUser(String... message) {
+        printLine();
+        for (String m : message) {
+            System.out.println(m);
+        }
+        printLine();
+    }
 }
