@@ -38,7 +38,7 @@ public class rainyDay {
             String amount = data[1];
             addFinancialStatement(description, flowDirection, Integer.parseInt(amount));
         } else if (action.equalsIgnoreCase("delete")) {
-            String[] tokens = userInput.split("\\s+");
+            String[] tokens= userInput.split("\\s+");
             int index = Integer.parseInt(tokens[1]);
             deleteFinancialStatement(index);
         } else if (action.equalsIgnoreCase("view")) {
