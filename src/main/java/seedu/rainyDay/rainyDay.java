@@ -2,16 +2,18 @@ package seedu.rainyDay;
 
 import seedu.rainyDay.data.FinancialStatement;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class rainyDay {
 
-    public static ArrayList<FinancialStatement> financialReport = new ArrayList<>();
     public static String filePath = "rainyDay.txt";
+    public static ArrayList<FinancialStatement> financialReport = loadFromFile(filePath);
 
     public static void main(String[] args) {
 
@@ -117,6 +119,22 @@ public class rainyDay {
             writeStream.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<FinancialStatement> loadFromFile(String filePath) {
+        try {
+            FileInputStream readData = new FileInputStream(filePath);
+            ObjectInputStream readStream = new ObjectInputStream(readData);
+            ArrayList<FinancialStatement> statements = (ArrayList<FinancialStatement>) readStream.readObject();
+            readStream.close();
+            readData.close();
+
+            return statements;
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("No valid save file detected. Starting with empty financial data.");
+            ArrayList<FinancialStatement> statements = new ArrayList<>();
+            return statements;
         }
     }
 }
