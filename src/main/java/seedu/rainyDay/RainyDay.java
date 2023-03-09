@@ -1,5 +1,6 @@
 package seedu.rainyDay;
 
+import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 
 import java.io.FileInputStream;
@@ -10,17 +11,18 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class rainyDay {
+public class RainyDay {
 
     public static String filePath = "rainyDay.txt";
-    public static ArrayList<FinancialStatement> financialReport;
+
+    public static FinancialReport financialReport = new FinancialReport(new ArrayList<>());
+
 
     public static void main(String[] args) {
         try {
-            financialReport = loadFromFile(filePath);
+            financialReport = new FinancialReport(loadFromFile(filePath));
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("No valid save file detected. Starting with empty financial data.");
-            financialReport = new ArrayList<>();
         }
         Scanner input = new Scanner(System.in);
         UI.printLogo();
@@ -33,7 +35,6 @@ public class rainyDay {
                 isExit = true;
             }
             parseUserInput(userInput);
-
         }
 
         UI.sayFarewellToUser();
@@ -63,8 +64,8 @@ public class rainyDay {
     }
 
     public static String addFinancialStatement(String description, String flowDirection, int value) {
-        financialReport.add(new FinancialStatement(description, flowDirection, value));
-        String direction = financialReport.get(financialReport.size() - 1).getFlowDirection();
+        financialReport.addStatement(new FinancialStatement(description, flowDirection, value));
+        String direction = financialReport.getStatementDirection(financialReport.getStatementCount() - 1);
         String addStatement = "Done, added: " + direction + " for " + description + ", $" + value;
         writeToFile(financialReport, filePath);
         return addStatement;
@@ -72,29 +73,29 @@ public class rainyDay {
 
     public static String deleteFinancialStatement(int index) {
         index -= 1;
-        String deleteStatement = "Done, deleted \"" + financialReport.get(index).getDescription()
+        String deleteStatement = "Done, deleted \"" + financialReport.getStatementDescription(index)
                 + "\" from the financial report";
-        financialReport.remove(index);
+        financialReport.deleteStatement(index);
         writeToFile(financialReport, filePath);
         return deleteStatement;
     }
 
-    public static String generateReport(ArrayList<FinancialStatement> financialReport) {
-        if (financialReport.size() == 0) {
+    public static String generateReport(FinancialReport financialReport) {
+        if (financialReport.getStatementCount() == 0) {
             return "Your financial report is empty";
         }
         int totalInflow = 0;
         int totalOutflow = 0;
         String financialStatements = "";
-        for (int i = 0; i < financialReport.size(); i += 1) {
-            if (financialReport.get(i).getFlowDirection().equals("in")) {
-                totalInflow += financialReport.get(i).getValue();
+        for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
+            if (financialReport.getStatementDirection(i).equals("in")) {
+                totalInflow += financialReport.getStatementValue(i);
             } else {
-                totalOutflow += financialReport.get(i).getValue();
+                totalOutflow += financialReport.getStatementValue(i);
             }
             int index = i + 1;
             String financialStatement = String.join("", String.valueOf(index), ". ",
-                    financialReport.get(i).getFullStatement(), System.lineSeparator());
+                    financialReport.getFullStatement(i), System.lineSeparator());
             financialStatements = String.join("", financialStatements, financialStatement);
         }
         String inflowInformation = "Inflow: $" + totalInflow;
@@ -103,6 +104,10 @@ public class rainyDay {
         String report = String.join(System.lineSeparator(), financialStatements, inflowInformation, outflowInformation,
                 remainingValueInformation);
         return report;
+    }
+
+    public static void clearFinancialReport() {
+        financialReport.clearReport();
     }
 
     public static void displayHelp() {
@@ -114,12 +119,17 @@ public class rainyDay {
         System.out.println("Please refer to the help table!");
     }
 
-    public static void writeToFile(ArrayList<FinancialStatement> statements, String filePath) {
+    public static void writeToFile(FinancialReport statements, String filePath) {
         try {
             FileOutputStream writeData = new FileOutputStream(filePath);
             ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
 
-            writeStream.writeObject(statements);
+            ArrayList<FinancialStatement> storeStatements = new ArrayList<>();
+            for (int i = 0; i < statements.getStatementCount(); i += 1) {
+                storeStatements.add(statements.getFinancialStatement(i));
+            }
+
+            writeStream.writeObject(storeStatements);
             writeStream.flush();
             writeStream.close();
         } catch (IOException e) {
@@ -127,7 +137,8 @@ public class rainyDay {
         }
     }
 
-    public static ArrayList<FinancialStatement> loadFromFile(String filePath) throws IOException, ClassNotFoundException {
+    public static ArrayList<FinancialStatement> loadFromFile(String filePath)
+            throws IOException, ClassNotFoundException {
         FileInputStream readData = new FileInputStream(filePath);
         ObjectInputStream readStream = new ObjectInputStream(readData);
         ArrayList<FinancialStatement> statements = (ArrayList<FinancialStatement>) readStream.readObject();
