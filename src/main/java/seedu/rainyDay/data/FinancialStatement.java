@@ -1,6 +1,8 @@
 package seedu.rainyDay.data;
 
-public class FinancialStatement {
+import java.io.Serializable;
+
+public class FinancialStatement implements Serializable {
     private static final String INFLOW_WORD = "in";
     private static final String OUTFLOW_WORD = "out";
     private static final String INFLOW_SYMBOL = "+";

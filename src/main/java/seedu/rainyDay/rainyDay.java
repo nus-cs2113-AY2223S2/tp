@@ -2,12 +2,17 @@ package seedu.rainyDay;
 
 import seedu.rainyDay.data.FinancialStatement;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class rainyDay {
 
     public static ArrayList<FinancialStatement> financialReport = new ArrayList<>();
+    public static String filePath = "rainyDay.txt";
+
     public static void main(String[] args) {
         System.out.println("Hello from rainyDay\n");
 
@@ -16,7 +21,6 @@ public class rainyDay {
         while(!isExit) {
             String userInput = input.nextLine().trim();
             if(userInput.equalsIgnoreCase("exit")) {
-                System.out.println("l8r bij");
                 isExit = true;
             }
             parseUserInput(userInput);
@@ -50,6 +54,7 @@ public class rainyDay {
         financialReport.add(new FinancialStatement(description, flowDirection, value));
         String direction = financialReport.get(financialReport.size() - 1).getFlowDirection();
         String addStatement = "Done, added: " + direction + " for " + description + ", $" + value;
+        writeToFile(financialReport, filePath);
         return addStatement;
     }
 
@@ -58,6 +63,7 @@ public class rainyDay {
         String deleteStatement = "Done, deleted \"" + financialReport.get(index).getDescription()
                 + "\" from the financial report";
         financialReport.remove(index);
+        writeToFile(financialReport, filePath);
         return deleteStatement;
     }
 
@@ -94,5 +100,18 @@ public class rainyDay {
     public static void unrecognisedInput() {
         System.out.println("sorry! I do not understand your input!");
         System.out.println("Please refer to the help table!");
+    }
+
+    public static void writeToFile(ArrayList<FinancialStatement> statements, String filePath) {
+        try {
+            FileOutputStream writeData = new FileOutputStream(filePath);
+            ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
+
+            writeStream.writeObject(statements);
+            writeStream.flush();
+            writeStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
