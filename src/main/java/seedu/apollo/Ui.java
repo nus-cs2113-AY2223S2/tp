@@ -1,6 +1,7 @@
 package seedu.apollo;
 
 import seedu.apollo.task.Task;
+import seedu.apollo.module.Module;
 
 import java.rmi.UnexpectedException;
 import java.time.LocalDate;
@@ -82,6 +83,17 @@ public class Ui {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < allTasks.size(); i++) {
             System.out.println(i + 1 + "." + allTasks.get(i));
+        }
+    }
+
+    public void printModuleList(ArrayList<Module> allModules) {
+        if (allModules.size() == 0) {
+            System.out.println("There are no modules in your module list!");
+            return;
+        }
+        System.out.println("These are the modules you are taking this semester:");
+        for (int i = 0; i < allModules.size(); i++) {
+            System.out.println(i+1 + "." + allModules.get(i).toString());
         }
     }
 
