@@ -20,8 +20,15 @@ public class Meal360 {
 
     public static void receiveInput(String input) {
         ui.printMessage(input);
+        String[] command = input.trim().split(" ");
         if (input.equalsIgnoreCase("bye")) {
             canExit = true;
+        // delete a recipe in list
+        } else if (command[0].equals("delete")) {
+            Recipe deletedRecipe = parser.parseDeleteRecipe(command, recipeList);
+            ui.printMessage("Noted. I've removed this recipe:");
+            ui.printMessage(deletedRecipe.toString());
+            ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
         }
     }
 

@@ -12,8 +12,10 @@ public class RecipeList extends ArrayList<Recipe> {
 
     }
 
-    public void deleteRecipe(String name) {
-
+    public Recipe deleteRecipe(int recipeNum) {
+        Recipe recipeToDelete = super.get(recipeNum);
+        super.remove(recipeToDelete);
+        return recipeToDelete;
     }
 
     public void listRecipes() {
