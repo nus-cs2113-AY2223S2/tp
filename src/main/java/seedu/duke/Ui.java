@@ -1,12 +1,12 @@
 package seedu.duke;
 
+import seedu.duke.task.Task;
+import seedu.duke.task.TaskList;
+
 import java.util.ArrayList;
 
 public class Ui {
-    public Ui() {
-    }
-
-    public static void printWelcomeMessage() {
+    public void printWelcomeMessage() {
         System.out.println("Hello, I am Duke and I will help you remember the tasks you need to do!");
         System.out.println("For now, you can do the following:");
         System.out.println("Add a task using: add <description>");
@@ -17,22 +17,22 @@ public class Ui {
         System.out.println("Exit the program using: bye");
     }
 
-    public static void printAddTaskNotification(String description) {
+    public void printAddTaskNotification(String description) {
         System.out.println("Got it, I have added the following task:");
         System.out.println(description);
     }
 
-    public static void printMarkTaskNotification(String description) {
+    public void printMarkTaskNotification(String description) {
         System.out.println("Got it, I have marked the following task as done:");
         System.out.println(description);
     }
 
-    public static void printUnmarkTaskNotification(String description) {
+    public void printUnmarkTaskNotification(String description) {
         System.out.println("Got it, I have marked the following task as undone:");
         System.out.println(description);
     }
 
-    public static void printDeleteTaskNotification(int index, String description, boolean isDone) {
+    public void printDeleteTaskNotification(int index, String description, boolean isDone) {
         System.out.println("Noted. I've removed this task:");
         System.out.print(index + ". " + "description: " + description + ", ");
         System.out.print("status: ");
@@ -43,7 +43,7 @@ public class Ui {
         }
     }
 
-    public static void listTasks(ArrayList<Task> tasks) {
+    public void listTasks(ArrayList<Task> tasks) {
         if (tasks.size() == 0) {
             printEmptyList();
         } else {
@@ -60,15 +60,19 @@ public class Ui {
         }
     }
 
-    public static void printGoodbyeMessage() {
+    public void listTasks(TaskList taskList) {
+        System.out.println(taskList.toString());
+    }
+
+    public void printGoodbyeMessage() {
         System.out.print("See you again, bye!");
     }
 
-    public static void printErrorMessage() {
+    public void printErrorMessage() {
         System.out.println("Error encountered! Please type in a valid command!");
     }
 
-    public static void printEmptyList(){
+    public void printEmptyList(){
         System.out.println("There are no tasks in the list.");
     }
 }

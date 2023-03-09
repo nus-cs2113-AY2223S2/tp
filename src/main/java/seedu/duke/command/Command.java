@@ -1,5 +1,8 @@
 package seedu.duke.command;
 
+import seedu.duke.Ui;
+import seedu.duke.task.TaskList;
+
 /**
  * Parent class for Command objects.
  */
@@ -7,7 +10,7 @@ public abstract class Command {
     /**
      * Executes the command.
      */
-    public abstract void execute();
+    public abstract void execute(TaskList taskList, Ui ui);
 
     /**
      * Returns whether a command, by default, should terminate the program.
