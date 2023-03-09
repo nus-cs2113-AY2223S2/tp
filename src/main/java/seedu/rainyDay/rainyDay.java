@@ -1,6 +1,7 @@
 package seedu.rainyDay;
 
 import seedu.rainyDay.data.FinancialStatement;
+import seedu.rainyDay.data.FlowDirection;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,7 +18,8 @@ public class rainyDay {
     public static String addFinancialStatement(String description, String flowDirection, int value,
                                              ArrayList<FinancialStatement> financialReport) {
         financialReport.add(new FinancialStatement(description, flowDirection, value));
-        String addStatement = "Done, added: " + flowDirection + " of " + description + ", $" + value;
+        String direction = financialReport.get(financialReport.size() - 1).getFlowDirection();
+        String addStatement = "Done, added: " + direction + " for " + description + ", $" + value;
         return addStatement;
     }
 
