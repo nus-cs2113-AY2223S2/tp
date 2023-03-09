@@ -1,3 +1,5 @@
+package seedu.BrokeMan.expense;
+
 public class Expense {
     private double cost;
     private String info;

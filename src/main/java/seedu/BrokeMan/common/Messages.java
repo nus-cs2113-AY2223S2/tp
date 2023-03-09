@@ -19,4 +19,8 @@ public class Messages {
             "|  \"`-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-'./o--000'\"`-0-0-'\"`-0-0-'\"`-0-0-'";
 
     public static final String MESSAGE_WELCOME = "Welcome to BrokeMan! \n|  Your personal budget manager to prevent you to become broke like me...";
+    public static final String MESSAGE_INVALID_ADD_EXPENSE_COMMAND = "Invalid add expense command format";
+    public static final String MESSAGE_INVALID_EDIT_EXPENSE_COMMAND = "Invalid edit expense command format";
+    public static final String MESSAGE_COST_NOT_DOUBLE = "Cost is not a double";
+    public static final String MESSAGE_INDEX_NOT_INTEGER = "Index is not an integer";
 }

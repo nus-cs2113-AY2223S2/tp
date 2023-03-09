@@ -1,3 +1,5 @@
+package seedu.BrokeMan.expense;
+
 import java.util.Comparator;
 
 public class ExpenseCostComparator implements Comparator<Expense> {

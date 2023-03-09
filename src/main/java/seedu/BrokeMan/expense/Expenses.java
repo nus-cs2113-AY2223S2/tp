@@ -1,27 +1,29 @@
+package seedu.BrokeMan.expense;
+
 import java.util.LinkedList;
 
 public class Expenses {
-    private final LinkedList<Expense> expenseList;
+    private static final LinkedList<Expense> expenseList = new LinkedList<>();
 
 
-    public Expenses() {
-        this.expenseList = new LinkedList<Expense>();
-    }
+//    public Expenses() {
+//        this.expenseList = new LinkedList<Expense>();
+//    }
 
     /**
      * Adds new expense to the list
      *
      * @param newExpense new expense to be added
      */
-    public void addExpense(Expense newExpense) {
+    public static void addExpense(Expense newExpense) {
         expenseList.add(newExpense);
     }
 
     /**
      * lists out expenses in the list
      */
-    public void listExpense() {
-        this.sortExpenses();
+    public static void listExpense() {
+        sortExpenses();
         System.out.println("Here are the expenses you have made\n");
         int counter = 1;
         for (Expense expenseLog : expenseList) {
@@ -36,7 +38,7 @@ public class Expenses {
      *
      * @param expenseIndex Index of the expense in the list
      */
-    public void deleteExpense(int expenseIndex) {
+    public static void deleteExpense(int expenseIndex) {
         try {
             expenseList.remove(expenseIndex);
             System.out.println("Successfully deleted expense.");
@@ -52,13 +54,15 @@ public class Expenses {
      * @param expenseIndex index of the expense in the list
      * @param newEntry new entry that will replace current entry
      */
-    public void editExpense(String type, int expenseIndex, double newEntry) {
+    public static void editExpenseCost(String type, int expenseIndex, double newEntry) {
         try {
-            Expense expenseBeingEdited = expenseList.get(expenseIndex);
+            Expense expenseBeingEdited = expenseList.get(expenseIndex - 1);
             switch (type) {
-            case "cost": expenseBeingEdited.editCost(newEntry);
-                         break;
-            default: System.out.println("Invalid type parameter!");
+            case "cost":
+                expenseBeingEdited.editCost(newEntry);
+                break;
+            default:
+                System.out.println("Invalid type parameter!");
             }
             System.out.println("Successfully edited expense.");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
@@ -73,15 +77,18 @@ public class Expenses {
      * @param expenseIndex index of the expense in the list
      * @param newEntry new entry that will replace current entry
      */
-    public void editExpense(String type, int expenseIndex, String newEntry) {
+    public static void editExpense(String type, int expenseIndex, String newEntry) {
         try {
-            Expense expenseBeingEdited = expenseList.get(expenseIndex);
+            Expense expenseBeingEdited = expenseList.get(expenseIndex - 1);
             switch (type) {
-            case "info": expenseBeingEdited.editInfo(newEntry);
-                         break;
-            case "time": expenseBeingEdited.editTime(newEntry);
-                         break;
-            default: System.out.println("Invalid type parameter!");
+            case "info":
+                expenseBeingEdited.editInfo(newEntry);
+                break;
+            case "time":
+                expenseBeingEdited.editTime(newEntry);
+                break;
+            default:
+                System.out.println("Invalid type parameter!");
             }
             System.out.println("Successfully edited expense.");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
@@ -92,7 +99,7 @@ public class Expenses {
     /**
      * Sorts expenses using Expense comparator
      */
-    public void sortExpenses() {
-        this.expenseList.sort(new ExpenseCostComparator());
+    public static void sortExpenses() {
+        expenseList.sort(new ExpenseCostComparator());
     }
 }
