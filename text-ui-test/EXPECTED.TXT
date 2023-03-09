@@ -1,9 +1,9 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
-What is your name?
-Hello James Gosling
+Hello, I am Duke and I will help you remember the tasks you need to do!
+For now, you can do the following:
+Add a task using: add <description> -d <deadline>
+List all tasks using: list
+Mark a task as done using: mark <index>
+Mark a task as undone using: unmark <index>
+Edit a task deadline using: editdeadline <index> -d <deadline>
+Exit the program using: bye
+See you again, bye!
