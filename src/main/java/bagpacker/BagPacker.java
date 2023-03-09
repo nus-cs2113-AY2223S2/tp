@@ -1,9 +1,12 @@
 package bagpacker;
 
+import bagpacker.iohandler.Storage;
 import bagpacker.iohandler.Ui;
 import bagpacker.iohandler.Parser;
+import bagpacker.packingfunc.PackingList;
 
 public class BagPacker {
+    private static PackingList packingList;
     /**
      * Main entry-point for the java.BagPacker application.
      */
@@ -47,5 +50,8 @@ public class BagPacker {
             }
             Parser.receiveInput();
         }
+
+        Storage.save(packingList);
+        Ui.goodbyeMessage();
     }
 }
