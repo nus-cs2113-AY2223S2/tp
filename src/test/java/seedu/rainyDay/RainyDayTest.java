@@ -44,7 +44,7 @@ class RainyDayTest {
 
     @Test
     public void generateReport() {
-        ArrayList<FinancialStatement> statements = new ArrayList<FinancialStatement>();
+        ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport financialReport = new FinancialReport(statements);
         String actualReport = RainyDay.generateReport(financialReport);
         String expectedReport = "Your financial report is empty";
@@ -60,9 +60,9 @@ class RainyDayTest {
         assertEquals(expectedReport, actualReport);
     }
 
-    void writeToFileTest_fileExists() {
+    public void writeToFileTest_fileExists() {
 
-        ArrayList<FinancialStatement> statements = new ArrayList<FinancialStatement>();
+        ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport financialReport = new FinancialReport(statements);
         String filePath = "rainyDay.txt";
         RainyDay.writeToFile(financialReport, filePath);
@@ -70,7 +70,7 @@ class RainyDayTest {
     }
 
     @Test
-    void writeToFileTest_contentMatch() throws IOException, ClassNotFoundException {
+    public void writeToFileTest_contentMatch() throws IOException, ClassNotFoundException {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport financialReport = new FinancialReport(statements);
         String filePath = "rainyDay.txt";
@@ -88,13 +88,13 @@ class RainyDayTest {
     }
 
     @Test
-    void loadFromFileEmptyFile_IOExceptionThrown() {
+    public void loadFromFile_emptyFile_IOExceptionThrown() {
         String emptyFilePath = "thisFileDoesNotExist.txt";
         assertThrows(IOException.class, () -> loadFromFile(emptyFilePath));
     }
 
     @Test
-    void loadFromFileInvalidFileType_ClassNotFoundExceptionThrown() {
+    public void loadFromFile_InvalidFileType_ClassNotFoundExceptionThrown() {
         String invalidTypeFilePath = "test files/thisFileTypeIsInvalid.txt";
         assertThrows(IOException.class, () -> loadFromFile(invalidTypeFilePath));
     }
