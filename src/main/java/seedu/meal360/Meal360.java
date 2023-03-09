@@ -6,16 +6,42 @@ public class Meal360 {
     /**
      * Main entry-point for the java.duke.Meal360 application.
      */
+
+    private static Boolean canExit = false;
+    private static final Ui ui = new Ui();
+    private static final Parser parser = new Parser();
+    private static final Database database = new Database();
+    private static final RecipeList recipeList = new RecipeList();
+
+    public static void startApp() {
+        ui.printWelcomeMessage();
+        Scanner userInput = new Scanner(System.in);
+        ui.printMessage("Hello " + userInput.nextLine());
+    }
+
+    public static void receiveInput(String input) {
+        ui.printMessage(input);
+        if (input.equalsIgnoreCase("bye")) {
+            canExit = true;
+            return;
+        }
+    }
+
+    public static void exitApp() {
+        ui.printGoodbyeMessage();
+    }
+
     public static void main(String[] args) {
-        String logo =   " __  __          _ ____  __  __\n" +
-                        "|  \\/  |___ __ _| |__ / / / /  \\\n" +
-                        "| |\\/| / -_) _` | ||_ \\/ _ \\ () |\n" +
-                        "|_|  |_\\___\\__,_|_|___/\\___/\\__/\n";
+        startApp();
 
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+        String line;
+        Scanner userInput = new Scanner(System.in);
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+        do {
+            line = userInput.nextLine();
+            receiveInput(line);
+        } while (!canExit);
+
+        exitApp();
     }
 }
