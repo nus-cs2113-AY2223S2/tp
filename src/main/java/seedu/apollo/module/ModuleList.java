@@ -37,4 +37,29 @@ public class ModuleList {
     public int getModuleListSize() {
         return allModules.size();
     }
+
+    /**
+     * Finds the module in the ModuleList which matches the keyword
+     * @param keyword The name of the module to be found
+     * @return module in the ModuleList which matches the keyword
+     */
+    public Module findModule(String keyword) {
+
+        for(int i=0;i<allModules.size();i++){
+            Module toFind = allModules.get(i);
+            if(toFind.equals(keyword)){
+                return toFind;
+
+            }
+        }
+
+        return null;
+    }
+    /**
+     * Removes the module in the ModuleList
+     * @param module The module to be deleted
+     */
+    public void deleteModule(Module module){
+        allModules.remove(module);
+    }
 }

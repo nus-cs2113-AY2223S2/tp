@@ -102,6 +102,23 @@ public class Ui {
             System.out.println(i+1 + "." + allModules.get(i).toString());
         }
     }
+    /**
+     * For {@code delmod} command.
+     * Prints warning to ask if user is sure that whether they want to delete that module from their moduleList
+     */
+    public void printModuleDeleteWarningMessage() {
+        System.out.println("Are you sure you want to remove this module from your Module list? (Y/N)");
+
+    }
+    /**
+     * For {@code delmod} command.
+     * Prints message for successful deletion of Task.
+     * @param name The name of the module which was deleted
+     */
+    public void printModuleDeleteMessage(String name) {
+        System.out.println("Got it, removed " + name + " from your Module list.");
+
+    }
 
     /**
      * For {@code todo}, {@code deadline}, and {@code event} commands.
