@@ -14,8 +14,25 @@ public class Parser {
         return new Recipe("test", null);
     }
 
-    public String parseDeleteRecipe(String[] input) {
-        return "test";
+    public Recipe parseDeleteRecipe(String[] input, RecipeList recipeList) {
+        // user inputted recipe name
+        if (input[1].contains("r/")) {
+            // skip over /r in recipe name
+            String recipeName = input[1].substring(2);
+            int recipeIndex = 1;
+            for (Recipe recipe : recipeList) {
+                // find index of recipe we want to delete
+                if (recipe.getName().equals(recipeName)) {
+                    break;
+                }
+                recipeIndex++;
+            }
+            return recipeList.deleteRecipe(recipeIndex);
+        // user inputted index of recipe in list
+        } else {
+            int recipeIndex = Integer.parseInt(input[1]);
+            return recipeList.deleteRecipe(recipeIndex);
+        }
     }
 
     public String parsePrepareRecipe(String[] input) {
