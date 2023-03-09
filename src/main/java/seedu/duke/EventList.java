@@ -1,16 +1,15 @@
 package seedu.duke;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class EventList {
+    private static final String DTINIT = "2000/01/01 01:01";
+    private static DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+    
     protected ArrayList<Event> taskList;
     protected int listSize;
-    private static DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-
-    private static String DTINIT = "2000/01/01 01:01";
     
     public EventList() {
         this.taskList = new ArrayList<Event>();

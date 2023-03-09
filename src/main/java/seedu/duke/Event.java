@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 public class Event {
+    private static SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+    
     private String description;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
@@ -11,12 +13,10 @@ public class Event {
     private boolean hasStartTime;
     private boolean hasEndTime;
 
-    static SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-
-    public Event(String eventDescription, LocalDateTime start, LocalDateTime End, boolean hasSt, boolean hasEd) {
+    public Event(String eventDescription, LocalDateTime start, LocalDateTime end, boolean hasSt, boolean hasEd) {
         this.description = eventDescription;
         this.startTime = start;
-        this.endTime = End;
+        this.endTime = end;
         this.hasEndInfo = true;
         this.hasStartTime = hasSt;
         this.hasEndTime = hasEd;
@@ -40,6 +40,18 @@ public class Event {
         } else {
             return dateTimeFormatter.format(startTime);
         }
+    }
+
+    public boolean hasEndTime() {
+        return hasEndTime;
+    }
+
+    public boolean hasStartTime() {
+        return hasStartTime;
+    }
+
+    public boolean hasEndInfo() {
+        return hasEndInfo;  
     }
 
     public String toString() {
