@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -30,7 +31,7 @@ class UITest {
     @Test
     void checkGreetingPrinted() {
         setUpStreams();
-        String greeting = "Welcome pekopekopeko\r\n";
+        String greeting = "Welcome pekopekopeko" + System.lineSeparator();
         UI.greetUser("pekopekopeko");
         assertEquals(greeting, outContent.toString());
         restoreStreams();
