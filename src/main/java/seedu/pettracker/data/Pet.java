@@ -41,6 +41,12 @@ public class Pet {
         this.weight = weight;
     }
 
+    /**
+     * List out a custom formatted string of Pet containing the pet name and details
+     * when using the list pet command.
+     *
+     * @return Pet name and details in a custom formatted string.
+     */
     @Override
     public String toString() {
         return getPetName() + "\nType: " +  getPetType() + "\nAge: " + getAge() + "\nWeight: " + getWeight();
