@@ -1,4 +1,4 @@
-package seedu.duke.task;
+package seedu.duck.task;
 
 public class Deadline extends Task {
     private String by;

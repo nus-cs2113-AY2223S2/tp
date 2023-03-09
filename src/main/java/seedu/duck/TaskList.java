@@ -1,12 +1,12 @@
-package seedu.duke;
+package seedu.duck;
 
-import duke.exception.IllegalDeadlineException;
-import duke.exception.IllegalEventException;
-import duke.exception.IllegalTodoException;
-import seedu.duke.task.Deadline;
-import seedu.duke.task.Event;
-import seedu.duke.task.Task;
-import seedu.duke.task.Todo;
+import seedu.duck.exception.IllegalDeadlineException;
+import seedu.duck.exception.IllegalEventException;
+import seedu.duck.exception.IllegalTodoException;
+import seedu.duck.task.Deadline;
+import seedu.duck.task.Event;
+import seedu.duck.task.Task;
+import seedu.duck.task.Todo;
 
 import java.util.ArrayList;
 

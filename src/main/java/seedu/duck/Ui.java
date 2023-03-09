@@ -1,6 +1,6 @@
-package seedu.duke;
+package seedu.duck;
 
-import seedu.duke.task.Task;
+import seedu.duck.task.Task;
 
 import java.util.ArrayList;
 
@@ -132,7 +132,7 @@ public class Ui {
     /** Prints the startup message, includes instructions on available commands */
     static void greetingMessage() {
         borderLine();
-        System.out.println("\t Hello! I'm Vivy.");
+        System.out.println("\t Hello! I'm Duck.");
         System.out.println("\t Here are some commands you can give me:");
         System.out.println("\t - list: I'll list out all the tasks you have recorded.");
         System.out.println("\t - mark <task_number>: I'll mark that task as done.");

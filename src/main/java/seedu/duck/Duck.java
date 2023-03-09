@@ -1,13 +1,13 @@
-package seedu.duke;
+package seedu.duck;
 
-import seedu.duke.task.Task;
+import seedu.duck.task.Task;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duck {
 
-    /** Runs the Duke bot */
+    /** Runs the Duck bot */
     private static void runDuck() {
         Ui.greetingMessage();
 

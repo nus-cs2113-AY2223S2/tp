@@ -1,9 +1,9 @@
-package seedu.duke;
+package seedu.duck;
 
-import seedu.duke.task.Deadline;
-import seedu.duke.task.Event;
-import seedu.duke.task.Task;
-import seedu.duke.task.Todo;
+import seedu.duck.task.Deadline;
+import seedu.duck.task.Event;
+import seedu.duck.task.Task;
+import seedu.duck.task.Todo;
 
 import java.io.File;
 import java.io.FileWriter;

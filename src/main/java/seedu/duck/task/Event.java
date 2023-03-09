@@ -1,4 +1,4 @@
-package seedu.duke.task;
+package seedu.duck.task;
 
 public class Event extends Task {
     private String start; // Start date/time
