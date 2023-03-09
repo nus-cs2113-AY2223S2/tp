@@ -1,5 +1,4 @@
-package objects.flashcard;
-
+package com.clanki.objects.flashcard;
 
 public class Flashcard {
     private String questionText;

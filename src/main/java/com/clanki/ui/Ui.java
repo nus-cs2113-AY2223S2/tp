@@ -1,4 +1,4 @@
-package ui;
+package com.clanki.ui;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -23,9 +23,10 @@ public class Ui {
     }
 
     /**
-     * Prompts for the command and reads the text entered by the user.
-     * Ignores empty, pure whitespace, and comment lines.
-     * Echos the command back to the user.
+     * Prompts for the command and reads the text entered by the user. Ignores
+     * empty, pure whitespace, and comment lines. Echos the command back to the
+     * user.
+     * 
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
@@ -33,13 +34,11 @@ public class Ui {
     }
 
     public void printSuccessfulAddMessage(String questionText, String answerText) {
-        System.out.println("A new card is now added:" + System.lineSeparator() +
-                "Question: " + questionText + System.lineSeparator() +
-                "Answer: " + answerText);
+        System.out.println("A new card is now added:" + System.lineSeparator() + "Question: "
+                + questionText + System.lineSeparator() + "Answer: " + answerText);
     }
 
     public void printInvalidInput() {
         System.out.println("The input is in an incorrect format.");
     }
-
 }

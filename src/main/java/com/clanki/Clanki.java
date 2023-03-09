@@ -1,14 +1,16 @@
-import commands.Command;
-import objects.FlashcardList;
-import parser.Parser;
-import ui.Ui;
+package com.clanki;
 
-public class Main {
+import com.clanki.commands.Command;
+import com.clanki.objects.FlashcardList;
+import com.clanki.parser.Parser;
+import com.clanki.ui.Ui;
+
+public class Clanki {
     private Ui ui;
     private FlashcardList flashcardList;
     private Parser parser;
 
-    public Main() {
+    public Clanki() {
         this.ui = new Ui();
         this.flashcardList = new FlashcardList();
         this.parser = new Parser();
@@ -19,7 +21,8 @@ public class Main {
         Command command = parser.parseCommand(inputText);
         command.execute(flashcardList, ui);
     }
-    public static void main() {
-        new Main().run();
+
+    public static void main(String[] args) {
+        new Clanki().run();
     }
 }

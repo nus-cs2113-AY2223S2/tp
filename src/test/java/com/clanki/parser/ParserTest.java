@@ -1,16 +1,15 @@
 
-package parser;
+package com.clanki.parser;
 
-import commands.AddCommand;
-import commands.Command;
-import objects.exceptions.EmptyFlashcardAnswerException;
-import objects.exceptions.EmptyFlashcardQuestionException;
-import objects.exceptions.InvalidAddFlashcardInputException;
+import com.clanki.commands.AddCommand;
+import com.clanki.commands.Command;
+import com.clanki.objects.exceptions.EmptyFlashcardAnswerException;
+import com.clanki.objects.exceptions.EmptyFlashcardQuestionException;
+import com.clanki.objects.exceptions.InvalidAddFlashcardInputException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 
 class ParserTest {
     @Test
