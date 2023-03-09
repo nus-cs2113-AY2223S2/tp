@@ -34,11 +34,19 @@ public class Event {
         return description;
     }
 
+    private String getOutputFormat(LocalDateTime timeInfo, boolean hasTimeDetail) {
+        if(!hasTimeDetail) {
+            String timeInString = dateTimeFormatter.format(timeInfo).split(" ")[0];
+            return timeInString;
+        }
+        return dateTimeFormatter.format(timeInfo);
+    }
+
     public String getTime() {
-        if (hasEndTime) {
-            return dateTimeFormatter.format(startTime) + "to" + dateTimeFormatter.format(endTime);
+        if (hasEndInfo) {
+            return getOutputFormat(startTime, hasStartTime) + "to" + getOutputFormat(endTime, hasEndTime);
         } else {
-            return dateTimeFormatter.format(startTime);
+            return getOutputFormat(startTime, hasStartTime);
         }
     }
 
