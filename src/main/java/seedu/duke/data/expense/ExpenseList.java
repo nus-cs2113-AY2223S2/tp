@@ -1,11 +1,10 @@
 package seedu.duke.data.expense;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ExpenseList {
-    private ArrayList<Expense> expenseList;
-    private int expenseCount;
+    private static ArrayList<Expense> expenseList;
+    private static int expenseCount;
     
     
     public ExpenseList() {
@@ -21,16 +20,12 @@ public class ExpenseList {
         return expenseCount;
     }
     
-    public void addExpense(Expense expense) {
+    public static void addExpense(Expense expense) {
         expenseList.add(expense);
         expenseCount++;
     }
     
-    public void addExpense(List<String> args) {
-    
-    }
-    
-    public void printExpenseList() {
+    public static void printExpenseList() {
         for (int i = 1; i <= expenseCount; i++) {
             Expense expense = expenseList.get(i - 1);
             System.out.println(i + ". " + expense.toString());

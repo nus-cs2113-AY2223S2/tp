@@ -1,10 +1,6 @@
 package seedu.duke;
 
 import seedu.duke.data.expense.ExpenseList;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -46,21 +42,12 @@ public class Duke {
     }
     
     public static void runCommand(String line, ExpenseList expenseList) {
-        List<String> lineParts = splitLine(line);
-        String command = lineParts.get(0);
-        List<String> arguments = lineParts.subList(1, lineParts.size());
-        
-        switch (command) {
-        default:
-            System.out.println("Command not found");
-            break;
+        String command = line;
+        try {
+            Parser.parseCommand(command, expenseList);
+        } catch (Exception e) {
+            System.out.println("Command not recognized");
         }
-    }
-    
-    public static ArrayList<String> splitLine(String line) {
-        ArrayList<String> lineParts = new ArrayList<String>();
-        lineParts.addAll(Arrays.asList(line.split(" /")));
-        return lineParts;
     }
     
     private static void exit() {
