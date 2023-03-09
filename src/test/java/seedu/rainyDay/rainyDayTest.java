@@ -1,6 +1,8 @@
 package seedu.rainyDay;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.rainyDay.rainyDay.loadFromFile;
 
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
@@ -69,7 +71,7 @@ class rainyDayTest {
 
     @Test
     void writeToFileTest_contentMatch() throws IOException, ClassNotFoundException {
-        ArrayList<FinancialStatement> statements = new ArrayList<FinancialStatement>();
+        ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport financialReport = new FinancialReport(statements);
         String filePath = "rainyDay.txt";
         financialReport.addStatement(new FinancialStatement("noodles", "in", 5));
@@ -78,9 +80,23 @@ class rainyDayTest {
         FileInputStream readData = new FileInputStream(filePath);
         ObjectInputStream readStream = new ObjectInputStream(readData);
         @SuppressWarnings("unchecked")
-        FinancialReport data = (FinancialReport) readStream.readObject();
+        ArrayList<FinancialStatement> data = (ArrayList<FinancialStatement>) readStream.readObject();
+        FinancialReport financialReportData = new FinancialReport(data);
         readStream.close();
 
-        assertEquals(rainyDay.generateReport(financialReport), rainyDay.generateReport(data));
+        assertEquals(rainyDay.generateReport(financialReport), rainyDay.generateReport(financialReportData));
     }
+
+    @Test
+    void loadFromFile_emptyFile_IOExceptionThrown() {
+        String emptyFilePath = "thisFileDoesNotExist.txt";
+        assertThrows(IOException.class, ()->loadFromFile(emptyFilePath));
+    }
+
+    @Test
+    void loadFromFile_invalidFileType_ClassNotFoundExceptionThrown()  {
+        String invalidTypeFilePath = "test files/thisFileTypeIsInvalid.txt";
+        assertThrows(IOException.class, ()->loadFromFile(invalidTypeFilePath));
+    }
+
 }

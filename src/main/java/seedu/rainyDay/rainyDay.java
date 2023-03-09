@@ -15,18 +15,23 @@ public class rainyDay {
 
     public static String filePath = "rainyDay.txt";
 
-    public static FinancialReport financialReport = new FinancialReport(loadFromFile(filePath));
+    public static FinancialReport financialReport = new FinancialReport(new ArrayList<>());
+
 
     public static void main(String[] args) {
-
+        try {
+            financialReport = new FinancialReport(loadFromFile(filePath));
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("No valid save file detected. Starting with empty financial data.");
+        }
         Scanner input = new Scanner(System.in);
         UI.printLogo();
         UI.greetUser(input.nextLine());
 
         boolean isExit = false;
-        while(!isExit) {
+        while (!isExit) {
             String userInput = input.nextLine().trim();
-            if(userInput.equalsIgnoreCase("exit")) {
+            if (userInput.equalsIgnoreCase("exit")) {
                 isExit = true;
             }
             parseUserInput(userInput);
@@ -39,14 +44,14 @@ public class rainyDay {
         String action = userInput.split("\\s+")[0];
         if (action.equalsIgnoreCase("add")) {
             String[] tokens = userInput.split("-", 2);
-            String[] inputs = tokens[1].split("\\s+",2);
+            String[] inputs = tokens[1].split("\\s+", 2);
             String flowDirection = inputs[0];
             String[] data = inputs[1].split("\\$");
             String description = data[0].trim();
             String amount = data[1];
             addFinancialStatement(description, flowDirection, Integer.parseInt(amount));
         } else if (action.equalsIgnoreCase("delete")) {
-            String[] tokens= userInput.split("\\s+");
+            String[] tokens = userInput.split("\\s+");
             int index = Integer.parseInt(tokens[1]);
             deleteFinancialStatement(index);
         } else if (action.equalsIgnoreCase("view")) {
@@ -121,7 +126,7 @@ public class rainyDay {
 
             ArrayList<FinancialStatement> storeStatements = new ArrayList<>();
             for (int i = 0; i < statements.getStatementCount(); i += 1) {
-                storeStatements.add(financialReport.getFinancialStatement(i));
+                storeStatements.add(statements.getFinancialStatement(i));
             }
 
             writeStream.writeObject(storeStatements);
@@ -132,19 +137,15 @@ public class rainyDay {
         }
     }
 
-    public static ArrayList<FinancialStatement> loadFromFile(String filePath) {
-        try {
-            FileInputStream readData = new FileInputStream(filePath);
-            ObjectInputStream readStream = new ObjectInputStream(readData);
-            ArrayList<FinancialStatement> statements = (ArrayList<FinancialStatement>) readStream.readObject();
-            readStream.close();
-            readData.close();
+    public static ArrayList<FinancialStatement> loadFromFile(String filePath) throws IOException, ClassNotFoundException {
+        FileInputStream readData = new FileInputStream(filePath);
+        ObjectInputStream readStream = new ObjectInputStream(readData);
+        ArrayList<FinancialStatement> statements = (ArrayList<FinancialStatement>) readStream.readObject();
+        readStream.close();
+        readData.close();
 
-            return statements;
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("No valid save file detected. Starting with empty financial data.");
-            ArrayList<FinancialStatement> statements = new ArrayList<>();
-            return statements;
-        }
+        return statements;
     }
+
+
 }
