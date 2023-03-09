@@ -42,7 +42,20 @@ public class EventList {
     private LocalDateTime changeToDate(String date) {
         return LocalDateTime.parse(date + " 00:00", dfWithTime);
     }
-
+    /**
+     * For two addEvent funcs below:
+     * if user doesn't input endDay(which means there is also no endTime), 
+     * you can just call .addEvent(description, startTime, startDay)
+     * 
+     * I also make the specific time(hh:mm) optional, so if user doesn't input the specfic time,
+     * you can just pass an empty String to that param and it will handle the rest things
+     * e.g. addEvent(descrption, "", startDay, "", endDay)
+     *      addEvent(descrption, "", startDay, endTime, endDay)
+     *      addEvent(descrption, "", startDay)
+     * so only startDay is strictly required.
+     * 
+     * and the same for reviseTimeInfo()
+     */
     public void addEvent(String description, String startTime, String startDay, String endTime,
             String endDay) {
 
@@ -85,6 +98,7 @@ public class EventList {
         taskList.add(newEvent);
         listSize++;
     }
+    //tobedone reviseTimeInfo()
 
     public ArrayList<Event> getFullList() {
         return this.taskList;
