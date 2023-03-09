@@ -2,9 +2,8 @@
 title: Developer Guide
 weight: 2
 bookFlatSection: true
+disableReadmoreNav: true
 ---
-
-# Developer Guide
 
 ## Acknowledgements
 

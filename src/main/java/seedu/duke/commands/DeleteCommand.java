@@ -1,6 +1,6 @@
 package seedu.duke.commands;
 
-import seedu.duke.entrylog.EntryLog;
+// import seedu.duke.entrylog.EntryLog;
 
 /**
  * Represents the delete feature in PocketPal. Users may specify
