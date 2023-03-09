@@ -2,14 +2,15 @@ package seedu.apollo;
 
 import org.junit.jupiter.api.Test;
 import seedu.apollo.command.Command;
-import seedu.apollo.exception.EmptyKeywordException;
 import seedu.apollo.exception.InvalidDeadline;
 
 import java.rmi.UnexpectedException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 class ParserTest {
