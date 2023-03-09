@@ -32,9 +32,7 @@ public class Ui {
 
     public void printMessage(String message) {
         String outputMessage = formatMessage(message);
-        printSeparator();
         System.out.println(outputMessage);
-        printSeparator();
     }
 
     public void printRecipe(Recipe recipe) {
