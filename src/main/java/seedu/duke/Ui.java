@@ -17,51 +17,33 @@ public class Ui {
         System.out.println("Exit the program using: bye");
     }
 
-    public void printAddTaskNotification(String description) {
+    public void printAddTaskNotification(Task task) {
         System.out.println("Got it, I have added the following task:");
-        System.out.println(description);
+        System.out.println(task.toString());
     }
 
-    public void printMarkTaskNotification(String description) {
+    public void printMarkTaskNotification(Task task) {
         System.out.println("Got it, I have marked the following task as done:");
-        System.out.println(description);
+        System.out.println(task.toString());
     }
 
-    public void printUnmarkTaskNotification(String description) {
+    public void printUnmarkTaskNotification(Task task) {
         System.out.println("Got it, I have marked the following task as undone:");
-        System.out.println(description);
+        System.out.println(task.toString());
     }
 
-    public void printDeleteTaskNotification(int index, String description, boolean isDone) {
+    public void printDeleteTaskNotification(TaskList taskList, int index) {
         System.out.println("Noted. I've removed this task:");
-        System.out.print(index + ". " + "description: " + description + ", ");
-        System.out.print("status: ");
-        if (isDone) {
-            System.out.println("done");
-        } else {
-            System.out.println("undone");
-        }
-    }
-
-    public void listTasks(ArrayList<Task> tasks) {
-        if (tasks.size() == 0) {
-            printEmptyList();
-        } else {
-            for (int i = 0; i < tasks.size(); i++) {
-                System.out.print(i + 1 + ". ");
-                System.out.print("description: " + tasks.get(i).getDescription() + ", ");
-                System.out.print("status: ");
-                if (tasks.get(i).getIsDone()) {
-                    System.out.println("done");
-                } else {
-                    System.out.println("undone");
-                }
-            }
-        }
+        Task task = taskList.getTask(index);
+        System.out.println(task.toString());
     }
 
     public void listTasks(TaskList taskList) {
-        System.out.println(taskList.toString());
+        if (taskList.size() == 0) {
+            printEmptyList();
+        } else {
+            System.out.println(taskList.toString());
+        }
     }
 
     public void printGoodbyeMessage() {
