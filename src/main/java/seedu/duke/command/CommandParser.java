@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.Task;
+import seedu.duke.task.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
