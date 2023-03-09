@@ -30,16 +30,20 @@ public class RainyDay {
 
         boolean isExit = false;
         while (!isExit) {
-            String userInput = input.nextLine().trim();
-            if (userInput.equalsIgnoreCase("exit")) {
-                isExit = true;
+            try {
+                String userInput = input.nextLine().trim();
+                if (userInput.equalsIgnoreCase("exit")) {
+                    isExit = true;
+                }
+                parseUserInput(userInput);
+            } catch (Exception e) {
+                System.out.println("Wrong input format! Please refer to help for correct user input!");
             }
-            parseUserInput(userInput);
         }
         UI.sayFarewellToUser();
     }
 
-    public static void parseUserInput(String userInput) {
+    public static void parseUserInput(String userInput) throws Exception {
         String action = userInput.split("\\s+")[0];
         if (action.equalsIgnoreCase("add")) {
             String[] tokens = userInput.split("-", 2);
