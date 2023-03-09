@@ -137,7 +137,8 @@ public class rainyDay {
         }
     }
 
-    public static ArrayList<FinancialStatement> loadFromFile(String filePath) throws IOException, ClassNotFoundException {
+    public static ArrayList<FinancialStatement> loadFromFile(String filePath)
+            throws IOException, ClassNotFoundException {
         FileInputStream readData = new FileInputStream(filePath);
         ObjectInputStream readStream = new ObjectInputStream(readData);
         ArrayList<FinancialStatement> statements = (ArrayList<FinancialStatement>) readStream.readObject();
