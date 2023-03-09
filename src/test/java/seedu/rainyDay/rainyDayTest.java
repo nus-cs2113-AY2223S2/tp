@@ -22,7 +22,7 @@ class rainyDayTest {
 
     @Test
     public void verifyDeleteStatement() {
-        String actualAddStatement = addFinancialStatement("Ipad", "out", 120);
+        addFinancialStatement("Ipad", "out", 120);
         String actualDeleteStatement = deleteFinancialStatement(1);
         String expectedDeleteStatement = "Done, deleted \"Ipad\" from the financial report";
         assertEquals(expectedDeleteStatement, actualDeleteStatement);
