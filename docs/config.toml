@@ -1,6 +1,7 @@
 languageCode = 'en-sg'
 title = 'PocketPal'
 theme = 'ace-documentation'
+disablePathToLower = true
 
 [[menu.shortcuts]]
 name = "Home"
