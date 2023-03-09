@@ -43,7 +43,7 @@ public class rainyDay {
             int index = Integer.parseInt(tokens[1]);
             deleteFinancialStatement(index);
         } else if (action.equalsIgnoreCase("view")) {
-            generateReport();
+            generateReport(financialReport);
         } else if (action.equalsIgnoreCase("help")) {
             displayHelp();
         } else {
@@ -68,7 +68,7 @@ public class rainyDay {
         return deleteStatement;
     }
 
-    public static String generateReport() {
+    public static String generateReport(ArrayList<FinancialStatement> financialReport) {
         if (financialReport.size() == 0) {
             return "Your financial report is empty";
         }
