@@ -9,7 +9,7 @@ class FlashcardTest {
     @Test
     public void constructNewFlashcard_correctlyFormattedInputs_success() {
         Flashcard testCard = new Flashcard("QUESTION", "ANSWER");
-        assertEquals("QUESTION", testCard.getQuestionText());
-        assertEquals("ANSWER", testCard.getAnswerText());
+        assertEquals("QUESTION", testCard.getQuestion());
+        assertEquals("ANSWER", testCard.getAnswer());
     }
 }
