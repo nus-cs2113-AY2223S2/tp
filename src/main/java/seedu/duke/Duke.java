@@ -17,6 +17,6 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
-        System.out.println("testing account 1" + in.nextLine());
+        System.out.println("testing account 2" + in.nextLine());
     }
 }
