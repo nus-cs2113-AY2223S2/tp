@@ -49,16 +49,16 @@ public class ModifyCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws UnexpectedException {
         switch(command) {
         case COMMAND_MARK_WORD:
-            tasks.markStatus(idx, true);
-            ui.printMarkDone(tasks.allTasks.get(idx));
+            tasks.get(idx).setDone(true);
+            ui.printMarkDone(tasks.get(idx));
             break;
         case COMMAND_UNMARK_WORD:
-            tasks.markStatus(idx, false);
-            ui.printMarkNotDone(tasks.allTasks.get(idx));
+            tasks.get(idx).setDone(false);
+            ui.printMarkNotDone(tasks.get(idx));
             break;
         case COMMAND_DELETE_WORD:
-            ui.printDeleted(tasks.allTasks.get(idx), tasks.getSize());
-            tasks.deleteTask(idx);
+            ui.printDeleted(tasks.get(idx), tasks.size());
+            tasks.remove(idx);
             break;
         default:
             throw new UnexpectedException("Modifying Task");

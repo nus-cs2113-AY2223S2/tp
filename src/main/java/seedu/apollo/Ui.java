@@ -2,6 +2,7 @@ package seedu.apollo;
 
 import seedu.apollo.task.Task;
 import seedu.apollo.module.Module;
+import seedu.apollo.task.TaskList;
 
 import java.rmi.UnexpectedException;
 import java.time.LocalDate;
@@ -71,11 +72,11 @@ public class Ui {
 
     /**
      * For {@code list} command.
-     * Prints all Tasks within the ArrayList given.
+     * Prints all Tasks within the TaskList given.
      *
-     * @param allTasks ArrayList of Tasks.
+     * @param allTasks TaskList of Tasks.
      */
-    public void printList(ArrayList<Task> allTasks) {
+    public void printList(TaskList allTasks) {
         if (allTasks.size() == 0) {
             System.out.println("There are no tasks in your list!");
             return;
@@ -151,11 +152,11 @@ public class Ui {
 
     /**
      * For {@code find} command.
-     * Prints all Tasks within the ArrayList given, all containing a certain keyword.
+     * Prints all Tasks within the TaskList given, all containing a certain keyword.
      *
-     * @param foundTasks ArrayList of Tasks containing a keyword.
+     * @param foundTasks TaskList of Tasks containing a keyword.
      */
-    public void printFoundList(ArrayList<Task> foundTasks) {
+    public void printFoundList(TaskList foundTasks) {
         if (foundTasks.size() == 0) {
             System.out.println("There are no matching tasks!");
             return;
@@ -168,12 +169,12 @@ public class Ui {
 
     /**
      * For {@code date} command.
-     * Prints all Tasks within the ArrayList given, all happening on a certain date.
+     * Prints all Tasks within the TaskList given, all happening on a certain date.
      *
-     * @param happeningTasks ArrayList of Tasks happening on a date.
+     * @param happeningTasks TaskList of Tasks happening on a date.
      * @param date Date that was used to shortlist the tasks.
      */
-    public void printDateList(ArrayList<Task> happeningTasks, LocalDate date) {
+    public void printDateList(TaskList happeningTasks, LocalDate date) {
         String dateString = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
         if (happeningTasks.size() == 0) {
             System.out.println("There are no tasks on " + dateString + "!");

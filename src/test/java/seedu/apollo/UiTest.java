@@ -13,7 +13,7 @@ class UiTest {
     void printList_normalInput_noExceptionThrown() throws IOException {
         Storage storage = new Storage("test.txt");
         Ui ui = new Ui();
-        TaskList tasks = new TaskList(storage.load(ui));
-        assertDoesNotThrow(() -> ui.printList(tasks.getAllTasks()));
+        TaskList tasks = storage.load(ui);
+        assertDoesNotThrow(() -> ui.printList(tasks));
     }
 }

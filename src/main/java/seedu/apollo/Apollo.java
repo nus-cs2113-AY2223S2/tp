@@ -25,7 +25,7 @@ public class Apollo {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            tasks = new TaskList(storage.load(ui));
+            tasks = storage.load(ui);
             storage.update(tasks);
             ui.printWelcomeMessage();
         } catch (IOException e) {
@@ -44,7 +44,7 @@ public class Apollo {
         while (!isExit) {
             String fullCommand = ui.readCommand();
             ui.showLine();
-            Command c = Parser.getCommand(fullCommand, ui, tasks.getSize());
+            Command c = Parser.getCommand(fullCommand, ui, tasks.size());
             if (c != null) {
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit;

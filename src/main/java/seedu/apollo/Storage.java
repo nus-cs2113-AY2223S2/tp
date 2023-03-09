@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -60,7 +59,7 @@ public class Storage {
      */
     public void update(TaskList tasks) throws IOException {
         FileWriter overwrite = new FileWriter(filePath);
-        for (Task task : tasks.allTasks) {
+        for (Task task : tasks) {
             String desc = task.getDescription();
             String type = task.getType();
             String stat = task.getStatus();
@@ -87,46 +86,46 @@ public class Storage {
     }
 
     /**
-     * Loads data from the save file into a new ArrayList of Tasks.
-     * If save file is not found, creates a new save file and returns an empty ArrayList.
+     * Loads data from the save file into a new TaskList of Tasks.
+     * If save file is not found, creates a new save file and returns an empty TaskList.
      *
      * @param ui Prints out error messages to user.
-     * @return ArrayList of Tasks (containing data from save file / empty).
+     * @return TaskList of Tasks (containing data from save file / empty).
      * @throws IOException If save file is not found, and a new one cannot be created.
      */
-    public ArrayList<Task> load(Ui ui) throws IOException {
-        ArrayList<Task> newAllTasks = new ArrayList<>();
+    public TaskList load(Ui ui) throws IOException {
+        TaskList newTaskList = new TaskList();
         File save = new File(filePath);
         try {
-            newAllTasks = readFileContents(save, ui);
-            return newAllTasks;
+            newTaskList = readFileContents(save, ui);
+            return newTaskList;
         } catch (FileNotFoundException e) {
             ui.printErrorFileNotFound();
             save.createNewFile();
-            return newAllTasks;
+            return newTaskList;
         }
     }
 
     /**
-     * Reads all lines in the save file, initialises them as an ArrayList of Tasks.
+     * Reads all lines in the save file, initialises them as an TaskList of Tasks.
      *
      * @param save Save file.
-     * @return ArrayList of initialised Tasks based on uncorrupted data in save file.
+     * @return TaskList of initialised Tasks based on uncorrupted data in save file.
      * @throws FileNotFoundException If the save file cannot be found at filePath.
      */
-    private static ArrayList<Task> readFileContents(File save, Ui ui) throws FileNotFoundException {
+    private static TaskList readFileContents(File save, Ui ui) throws FileNotFoundException {
         Scanner s = new Scanner(save);
-        ArrayList<Task> newArrayList = new ArrayList<>();
+        TaskList newTaskList = new TaskList();
         int counter = 0;
         while (s.hasNext()) {
             try {
-                newArrayList.add(newTask(s.nextLine()));
+                newTaskList.add(newTask(s.nextLine()));
                 counter++;
             } catch (InvalidSaveFile e) {
                 ui.printInvalidSaveFile(counter, filePath);
             }
         }
-        return newArrayList;
+        return newTaskList;
     }
 
     /**

@@ -3,10 +3,13 @@ package seedu.apollo.command;
 import seedu.apollo.Parser;
 import seedu.apollo.Storage;
 import seedu.apollo.exception.DateOrderException;
+import seedu.apollo.task.Deadline;
+import seedu.apollo.task.Event;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.Ui;
 import seedu.apollo.exception.InvalidDeadline;
 import seedu.apollo.exception.InvalidEvent;
+import seedu.apollo.task.ToDo;
 
 import java.io.IOException;
 import java.rmi.UnexpectedException;
@@ -70,14 +73,14 @@ public class AddCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws UnexpectedException {
         switch(type) {
         case COMMAND_TODO_WORD:
-            tasks.addToDo(desc);
+            tasks.add(new ToDo(desc));
             break;
         case COMMAND_DEADLINE_WORD:
-            tasks.addDeadline(desc, by);
+            tasks.add(new Deadline(desc, by));
             break;
         case COMMAND_EVENT_WORD:
             try {
-                tasks.addEvent(desc, from, to);
+                tasks.add(new Event(desc, from, to));
             } catch (DateOrderException e) {
                 ui.printDateOrderException();
                 return;
@@ -86,7 +89,7 @@ public class AddCommand extends Command {
         default:
             throw new UnexpectedException("Adding Task");
         }
-        ui.printAddMessage(tasks.allTasks.get(tasks.getSize() - 1));
+        ui.printAddMessage(tasks.get(tasks.size() - 1));
         try {
             storage.update(tasks);
         } catch (IOException e) {
