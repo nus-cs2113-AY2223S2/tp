@@ -69,10 +69,10 @@ public abstract class Storage {
     private static Task convertStringToTask(String taskString) throws ConversionErrorException {
         String[] splitTasks = taskString.split(DELIMITER);
         Task task;
-        if (isInvalidSaveString(splitTasks, 2)) {
+        if (isInvalidSaveString(splitTasks, 3)) {
             throw new ConversionErrorException();
         }
-        task = new Task(splitTasks[1]);
+        task = new Task(splitTasks[1], splitTasks[2]);
         task.setDone(splitTasks[0].equals("1"));
         return task;
     }

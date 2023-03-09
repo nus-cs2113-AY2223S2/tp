@@ -20,6 +20,9 @@ public class Duke {
             Command parsedCommand = CommandParser.parseCommand(userInput);
             parsedCommand.execute(taskList, ui);
             Storage.saveData("./data.txt", taskList, ui);
+            if (parsedCommand.isExit()) {
+                in.close();
+            }
             isInUse = !parsedCommand.isExit();
         }
     }

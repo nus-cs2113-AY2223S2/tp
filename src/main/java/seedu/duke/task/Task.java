@@ -6,10 +6,11 @@ import java.util.StringJoiner;
 
 public class Task {
     private String description;
+    private String deadline;
     private boolean isDone;
-
-    public Task(String description) {
+    public Task(String description, String deadline) {
         this.description = description;
+        this.deadline = deadline;
         this.isDone = false;
     }
 
@@ -17,20 +18,26 @@ public class Task {
         return this.description;
     }
 
+    public String getDeadline() {
+        return this.deadline;
+    }
+
     public boolean getIsDone() {
         return this.isDone;
     }
-
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
+    public void editDeadline (String deadline) {
+        this.deadline = deadline;
+    }
 
     public String toString() {
-        return "[" + (isDone ? "X" : " ") + "] " + description;
+        return "[" + (isDone ? "X" : " ") + "] " + description + " due by: " + deadline;
     }
     public String toSaveString() {
         StringJoiner saveString = new StringJoiner(Storage.DELIMITER);
-        String[] taskParameters = {isDone ? "1" : "0", description};
+        String[] taskParameters = {isDone ? "1" : "0", description, deadline};
         for (String string : taskParameters) {
             saveString.add(string);
         }
