@@ -33,7 +33,6 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
         String splitBy = ",";
         String name;
         float weight, height;
-        int age;
         try {
             // parsing a CSV file into BufferedReader class constructor
             BufferedReader br = new BufferedReader(new FileReader(filePath));
@@ -41,8 +40,7 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
             name = userLine[0];
             weight = Float.parseFloat(userLine[1]);
             height = Float.parseFloat(userLine[2]);
-            age = Integer.parseInt(userLine[3]);
-            user = new User(name, weight, height, age);
+            user = new User(name, weight, height);
             br.close();
         } catch (FileNotFoundException e) {
             File newFile = new File(filePath);
@@ -51,10 +49,9 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
         }
     }
 
-    public void updateUser(String name, float weight, float height, int age) {
+    public void updateUser(String name, float weight, float height) {
         user.setName(name);
         user.setWeight(weight);
         user.setHeight(height);
-        user.setAge(age);
     }
 }
