@@ -19,7 +19,6 @@ public class Meal360 {
     }
 
     public static void receiveInput(String input) {
-        ui.printMessage(input);
         String[] command = input.trim().split(" ");
         if (input.equalsIgnoreCase("bye")) {
             canExit = true;
