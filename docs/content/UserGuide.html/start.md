@@ -3,11 +3,7 @@ title: Quick Start
 weight: 1
 ---
 
-# Introduction
-
 {Give a product intro}
-
-# Quick Start
 
 {Give steps to get started quickly}
 

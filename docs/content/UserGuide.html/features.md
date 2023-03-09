@@ -3,8 +3,6 @@ title: Features
 weight: 2
 ---
 
-# Features 
-
 {Give detailed description of each feature}
 
 ## Adding a todo: `todo`
