@@ -24,6 +24,6 @@ public class Expense {
 	}
 	
 	public String toString() {
-		return "Expense - " + getDescription() + " - Date - " + getDate() + " - value: - " + getValue() ;
+		return "Expense - " + getDescription() + " - Date - " + getDate() + " - value: - " + getValue();
 	}
 }

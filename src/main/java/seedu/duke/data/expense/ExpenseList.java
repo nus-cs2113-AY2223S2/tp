@@ -6,6 +6,7 @@ public class ExpenseList {
 	private ArrayList<Expense> expenseList;
 	private int expenseCount;
 	
+	
 	public ExpenseList() {
 		expenseList = new ArrayList<Expense>();
 		expenseCount = 0;
