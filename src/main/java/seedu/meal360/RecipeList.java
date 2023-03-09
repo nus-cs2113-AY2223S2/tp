@@ -27,7 +27,7 @@ public class RecipeList extends ArrayList<Recipe> {
             for (Recipe recipe : this) {
                 order = order + 1;
                 ui.printMessage(order + ". " + recipe.getName() + "   ("
-                        + recipe.getNumOfIngredients() + " ingredients");
+                        + recipe.getNumOfIngredients() + " ingredients)");
             }
         } else {
             ui.printMessage("There is nothing in the list. Please add a recipe.");
