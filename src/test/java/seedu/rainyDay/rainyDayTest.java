@@ -1,9 +1,12 @@
 package seedu.rainyDay;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.rainyDay.rainyDay.addFinancialStatement;
 import static seedu.rainyDay.rainyDay.generateReport;
 import static seedu.rainyDay.rainyDay.deleteFinancialStatement;
+import static seedu.rainyDay.rainyDay.loadFromFile;
+import static seedu.rainyDay.rainyDay.writeToFile;
 
 import seedu.rainyDay.data.FinancialStatement;
 import org.junit.jupiter.api.Assertions;
@@ -75,4 +78,19 @@ class rainyDayTest {
 
         assertEquals(generateReport(financialReport), generateReport(data));
     }
+
+    @Test
+    void loadFromFile_emptyFile_IOExceptionThrown() {
+        String emptyFilePath = "thisFileDoesNotExist.txt";
+        assertThrows(IOException.class, ()->loadFromFile(emptyFilePath));
+    }
+
+    @Test
+    void loadFromFile_invalidFileType_ClassNotFoundExceptionThrown()  {
+        String invalidTypeFilePath = "test files/thisFileTypeIsInvalid.txt";
+        assertThrows(IOException.class, ()->loadFromFile(invalidTypeFilePath));
+    }
+
+
+
 }
