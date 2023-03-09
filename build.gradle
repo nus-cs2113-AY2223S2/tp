@@ -30,7 +30,7 @@ test {
 }
 
 application {
-    mainClass = "seedu.rainyDay.rainyDay"
+    mainClass = "seedu.rainyDay.RainyDay"
 }
 
 shadowJar {
