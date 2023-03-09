@@ -1,5 +1,4 @@
 package seedu.duke;
-import seedu.duke.Parser;
 import java.util.Scanner;
 
 public class Duke {

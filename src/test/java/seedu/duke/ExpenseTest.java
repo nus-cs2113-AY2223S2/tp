@@ -12,3 +12,4 @@ public class ExpenseTest {
         assertEquals("public transport", exp.getDescription());
     }
 }
+
