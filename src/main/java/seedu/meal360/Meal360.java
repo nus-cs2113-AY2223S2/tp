@@ -3,6 +3,7 @@ package seedu.meal360;
 import java.util.Scanner;
 
 public class Meal360 {
+
     /**
      * Main entry-point for the java.duke.Meal360 application.
      */
@@ -15,15 +16,12 @@ public class Meal360 {
 
     public static void startApp() {
         ui.printWelcomeMessage();
-        Scanner userInput = new Scanner(System.in);
-        ui.printMessage("Hello " + userInput.nextLine());
     }
 
     public static void receiveInput(String input) {
         ui.printMessage(input);
         if (input.equalsIgnoreCase("bye")) {
             canExit = true;
-            return;
         }
     }
 
