@@ -1,5 +1,6 @@
 package seedu.meal360;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Meal360 {
@@ -16,13 +17,24 @@ public class Meal360 {
 
     public static void startApp() {
         ui.printWelcomeMessage();
+        // Dummy recipe for testing purposes
+        HashMap<String, Integer> testIngredients = new HashMap<>();
+        testIngredients.put("test ingredient", 100);
+        Recipe testR = new Recipe("test recipe name", testIngredients);
+        recipeList.addRecipe(testR);
+
     }
 
     public static void receiveInput(String input) {
         ui.printMessage(input);
+        String[] command = input.trim().split(" ");
         if (input.equalsIgnoreCase("bye")) {
             canExit = true;
+        } else if (command[0].equals("view")) {
+            Recipe recipe = parser.parseViewRecipe(command, recipeList);
+            ui.printRecipe(recipe);
         }
+
     }
 
     public static void exitApp() {
