@@ -38,6 +38,13 @@ public class Ui {
     }
 
     public void printRecipe(Recipe recipe) {
-        printMessage(recipe.getName());
+        printSeparator();
+        System.out.println(formatMessage("Name of recipe: " + recipe.getName()));
+        for (String ingredient : recipe.getIngredients().keySet()) {
+            String outputMessage = String.format("%s(%d)", ingredient,
+                    recipe.getIngredients().get(ingredient));
+            System.out.println(formatMessage(outputMessage));
+        }
+        printSeparator();
     }
 }
