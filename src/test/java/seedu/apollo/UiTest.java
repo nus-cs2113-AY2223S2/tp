@@ -5,7 +5,7 @@ import seedu.apollo.task.TaskList;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class UiTest {
 
