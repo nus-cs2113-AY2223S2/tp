@@ -16,7 +16,7 @@ public class Parser {
 
     public Recipe parseDeleteRecipe(String[] input, RecipeList recipeList) {
         // user inputted recipe name
-        if (input[1].contains("/r")) {
+        if (input[1].contains("r/")) {
             // skip over /r in recipe name
             String recipeName = input[1].substring(2);
             int recipeIndex = 1;

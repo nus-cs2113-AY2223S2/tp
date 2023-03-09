@@ -13,6 +13,7 @@ class Meal360Test {
         assertTrue(true);
     }
 
+    @Test
     public void testViewRecipe() {
         RecipeList recipes = new RecipeList();
         HashMap<String, Integer> testIngredients = new HashMap<>();
