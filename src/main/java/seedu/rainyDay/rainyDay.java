@@ -1,7 +1,6 @@
 package seedu.rainyDay;
 
 import seedu.rainyDay.data.FinancialStatement;
-import seedu.rainyDay.data.FlowDirection;
 
 import java.util.ArrayList;
 import java.util.Scanner;
