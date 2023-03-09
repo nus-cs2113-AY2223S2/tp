@@ -14,9 +14,11 @@ public class rainyDay {
     public static String filePath = "rainyDay.txt";
 
     public static void main(String[] args) {
-        System.out.println("Hello from rainyDay\n");
 
         Scanner input = new Scanner(System.in);
+        UI.printLogo();
+        UI.greetUser(input.nextLine());
+
         boolean isExit = false;
         while(!isExit) {
             String userInput = input.nextLine().trim();
@@ -26,6 +28,8 @@ public class rainyDay {
             parseUserInput(userInput);
 
         }
+
+        UI.sayFarewellToUser();
     }
 
     public static void parseUserInput(String userInput) {
