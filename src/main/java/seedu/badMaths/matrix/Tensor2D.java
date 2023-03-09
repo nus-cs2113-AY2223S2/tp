@@ -1,7 +1,5 @@
 package seedu.badMaths.matrix;
 
-import java.util.ArrayList;
-
 public class Tensor2D extends Tensor {
     protected int[][] tensor;
     Shape shape;

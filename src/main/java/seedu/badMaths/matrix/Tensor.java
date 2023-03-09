@@ -1,5 +1,4 @@
 package seedu.badMaths.matrix;
-import java.util.ArrayList;
 
 public abstract class Tensor {
     public abstract Shape shape();
