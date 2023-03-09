@@ -5,9 +5,9 @@ import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
 public class MarkTaskCommand extends Command{
+    public static final String KEYWORD = "mark";
     private int index;
     private boolean isDone;
-    public static final String KEYWORD = "mark";
 
     public MarkTaskCommand(String[] command){
         index = Integer.parseInt(command[1]) - 1;

@@ -5,8 +5,8 @@ import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
 public class AddTaskCommand extends Command{
-    private String description;
     public static final String KEYWORD = "add";
+    private String description;
 
     public AddTaskCommand(String[] command){
         description = command[1];
