@@ -19,7 +19,7 @@ class ExitTest {
     }
 
     @Test
-    void Exit_bye_expectBye() {
+    void exit_bye_expectBye() {
         System.out.println("Bye!");
 
         assertEquals("Bye!", outputStreamCaptor.toString().trim());
