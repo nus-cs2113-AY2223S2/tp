@@ -16,7 +16,7 @@ public class AddCommand extends Commands {
     }
 
     @Override
-    public void execute(PackingList packingList) {
+    public void execute(PackingList packingList, Ui ui) {
         this.packingList = packingList;
         packingList.addItem(item);
         Ui.printToUser(String.format(MSG_SUCCESS_ADD, item));

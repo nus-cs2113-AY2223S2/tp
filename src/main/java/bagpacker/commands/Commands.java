@@ -20,13 +20,6 @@ public abstract class Commands {
 
     protected Commands() {
     }
-
-    /**
-     * Executes the command.
-     */
-    public void execute(Item item, Ui ui) {
-    };
-
     public void setTargetIndex(int targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -42,6 +35,9 @@ public abstract class Commands {
     protected Item getTargetItem() throws IndexOutOfBoundsException {
         return packingList.get(getTargetIndex() - 1);
     }
-
-    public abstract void execute(PackingList packingList);
+    /**
+     * Executes the command.
+     */
+    public void execute(PackingList packingList, Ui ui) {
+    };
 }
