@@ -5,7 +5,6 @@ import seedu.badMaths.matrix.Calculate;
 import seedu.badMaths.matrix.Tensor2D;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class CalculateTest {
     int[][] arr = new int[][]{
