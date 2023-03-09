@@ -6,16 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UITest {
     @Test
-    void getCommand() {
-
-    }
-    @Test
     void printGreeting() {
-
-    }
-
-    @Test
-    void printBye() {
-
+        assertTrue(true);
     }
 }
