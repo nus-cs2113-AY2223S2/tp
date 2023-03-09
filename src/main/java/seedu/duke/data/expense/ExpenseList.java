@@ -3,12 +3,12 @@ package seedu.duke.data.expense;
 import java.util.ArrayList;
 
 public class ExpenseList {
-    private ArrayList<Expense> expenseList;
-    private int expenseCount;
-    
-    
+    private static ArrayList<Expense> expenseList = new ArrayList<>();
+    private static int expenseCount = 0;
+
+
     public ExpenseList() {
-        expenseList = new ArrayList<Expense>();
+        expenseList = new ArrayList<>();
         expenseCount = 0;
     }
     
@@ -20,12 +20,12 @@ public class ExpenseList {
         return expenseCount;
     }
     
-    public void addExpense(Expense expense) {
+    public static void addExpense(Expense expense) {
         expenseList.add(expense);
         expenseCount++;
     }
     
-    public void printExpenseList() {
+    public static void printExpenseList() {
         for (int i = 1; i <= expenseCount; i++) {
             Expense expense = expenseList.get(i - 1);
             System.out.println(i + ". " + expense.toString());

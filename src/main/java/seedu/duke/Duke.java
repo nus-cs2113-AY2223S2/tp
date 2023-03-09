@@ -1,5 +1,4 @@
 package seedu.duke;
-
 import java.util.Scanner;
 
 public class Duke {
@@ -40,7 +39,13 @@ public class Duke {
     }
     
     private static void runCommand(String line) {
-        //
+        String command = line;
+        try {
+            Parser.parseCommand(command);
+        } catch (Exception e) {
+            System.out.println("Command not recognized");
+        }
+
     }
     
     private static void exit() {
