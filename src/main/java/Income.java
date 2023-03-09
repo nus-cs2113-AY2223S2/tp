@@ -1,5 +1,3 @@
-package seedu.duke;
-
 public class Income {
     private double amount;
     private String info;
@@ -26,6 +24,7 @@ public class Income {
     public void editInfo(String newInfo) {
         this.info = newInfo;
     }
+
 
     public double getIncome() {
         return this.amount;
