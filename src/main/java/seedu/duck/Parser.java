@@ -23,7 +23,8 @@ public class Parser {
             valueToConvert = Integer.parseInt(word);
             return true;
         } catch (NumberFormatException e) {
-            System.out.println("Incorrect input, please enter an integer.");
+            // Empty catch block, since the only purpose is to return false
+            // if try block fails.
         }
         return false;
     }
