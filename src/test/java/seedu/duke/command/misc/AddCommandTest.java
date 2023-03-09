@@ -10,19 +10,11 @@ import static seedu.duke.command.misc.AddCommand.isInList;
 
 class AddCommandTest {
     @Test
-    public void itemIsInList() {
+    public void itemIsInListAndItemNotInList() {
         DukeSession dukeSession = new DukeSession();
         Ingredient ingredient = new Ingredient("apple", 2);
         DukeSession.Ingredients.add(ingredient);
         assertTrue(isInList("apple"));
+        assertFalse(isInList("orange"));
     }
-
-    @Test
-    public void itemIsNotInList() {
-        DukeSession dukeSession = new DukeSession();
-        Ingredient ingredient = new Ingredient("orange", 2);
-        DukeSession.Ingredients.add(ingredient);
-        assertFalse(isInList("apple"));
-    }
-
 }
