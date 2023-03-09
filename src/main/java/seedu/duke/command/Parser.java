@@ -18,27 +18,27 @@ public class Parser {
         String providedDeadline = "";
         try {
             switch (userCommand) {
-                case "list":
-                    // Fallthrough
-                case "bye":
-                    break;
-                case "mark":
-                    // Fallthrough
-                case "unmark":
-                    providedDescription = userInput.split(" ", 2)[1];
-                    break;
-                case "add":
-                    String tempInfo = userInput.split(" ", 2)[1];
-                    providedDescription = tempInfo.split(" /by ")[0];
-                    providedDeadline = formatDateTime(tempInfo.split(" /by ")[1]);
-                    break;
-                case "editdeadline":
-                    providedDescription = userInput.split(" ", 3)[1];
-                    providedDeadline = formatDateTime(userInput.split(" ", 3)[2]);
-                    break;
-                default:
-                    userCommand = "unknown command";
-                    break;
+            case "list":
+                // Fallthrough
+            case "bye":
+                break;
+            case "mark":
+                // Fallthrough
+            case "unmark":
+                providedDescription = userInput.split(" ", 2)[1];
+                break;
+            case "add":
+                String tempInfo = userInput.split(" ", 2)[1];
+                providedDescription = tempInfo.split(" /by ")[0];
+                providedDeadline = formatDateTime(tempInfo.split(" /by ")[1]);
+                break;
+            case "editdeadline":
+                providedDescription = userInput.split(" ", 3)[1];
+                providedDeadline = formatDateTime(userInput.split(" ", 3)[2]);
+                break;
+            default:
+                userCommand = "unknown command";
+                break;
             }
         } catch (IndexOutOfBoundsException e) {
             userCommand = "param error";
