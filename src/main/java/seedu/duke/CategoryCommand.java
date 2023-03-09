@@ -3,8 +3,9 @@ package seedu.duke;
 import java.util.HashMap;
 
 public class CategoryCommand {
-    private String name;
     public static HashMap<String, Integer> categoryMap = new HashMap<String, Integer>();
+    private String name;
+
     public CategoryCommand(String name) {
         this.name = name;
         addCategory();

@@ -16,14 +16,18 @@ public class Parser {
     public static final String DELETE_REGEX = "c/(.+) e/(.+)?";
     public static final String CATEGORY_ADDED_MESSAGE = "Category name: ";
     public static final String EVENT_ADDED_MESSAGE = "Event name: ";
-    public static final String DELETE_FORMAT = "Please following the correct format: delete c/<category name> e/<event name>";
-    public static final String REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY = "Remember do not leave any things inside the brackets empty!";
+    public static final String DELETE_FORMAT = "Please following the correct format: " +
+            "delete c/<category name> e/<event name>";
+    public static final String REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY = "Remember do not leave any things " +
+            "inside the brackets empty!";
     public static final String EMPTY_DELETION = "☹ OOPS!!! The description of a delete cannot be empty.";
     public static final String SUBTLE_BUG_MESSAGE = "☹ OOPS!!! Something went wrong, please report to the developer.";
     public static final String EVENT_REGEX = "(.+) b/(\\d+) e/(\\d+)?";
-    public static final String EVENT_FORMAT = "Please following the correct format: event <event name> b/<budget> e/<expense>";
+    public static final String EVENT_FORMAT = "Please following the correct format: " +
+            "event <event name> b/<budget> e/<expense>";
     public static final String EVENT_EMPTY = "☹ OOPS!!! The description of an event cannot be empty.";
-    public static final String REMINDING_MESSAGE_ABOUT_GIVING_BUDGET_A_NUMBER = "☹ OOPS!!! The budget and expense must be a number.";
+    public static final String REMINDING_MESSAGE_ABOUT_GIVING_BUDGET_A_NUMBER =
+            "☹ OOPS!!! The budget and expense must be a number.";
     public static final String CATEGORY_EMPTY = "☹ OOPS!!! The description of a category cannot be empty.";
     private String[] separatedKeywordAndDescription;
     private String keyword;
@@ -100,7 +104,6 @@ public class Parser {
         }
     }
 
-    // execute event command
     private void executeEventCommand() {
         Pattern pattern = Pattern.compile(EVENT_REGEX);
         try {
@@ -123,7 +126,6 @@ public class Parser {
         }
     }
 
-    // execute category command
     private void executeCategoryCommand() {
         try {
             new CategoryCommand(separatedKeywordAndDescription[1]);
