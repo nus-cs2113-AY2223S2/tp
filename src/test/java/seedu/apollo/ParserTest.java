@@ -2,6 +2,7 @@ package seedu.apollo;
 
 import org.junit.jupiter.api.Test;
 import seedu.apollo.exception.InvalidDeadline;
+import seedu.apollo.exception.InvalidEvent;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -41,6 +42,7 @@ class ParserTest {
         assertEquals("test", descriptionAndBy[0]);
         assertEquals("tomorrow", descriptionAndBy[1]);
     }
+
     @Test
     void parseDeadline_noBy_expectException() {
         String param = "test";
@@ -62,4 +64,63 @@ class ParserTest {
                 () -> Parser.parseDeadline(param));
     }
 
+    @Test
+    void parseEvent_normalEvent_expectDescriptionAndFromAndTo() throws InvalidEvent {
+        String param = "test /from today /to tomorrow";
+        String[] descriptionAndFromAndTo = Parser.parseEvent(param);
+        assertEquals("test", descriptionAndFromAndTo[0]);
+        assertEquals("today", descriptionAndFromAndTo[1]);
+        assertEquals("tomorrow", descriptionAndFromAndTo[2]);
+    }
+
+    @Test
+    void parseEvent_noDescription_expectException() {
+        String param = "  /from today /to tomorrow";
+        assertThrows(InvalidEvent.class,
+                () -> Parser.parseEvent(param));
+    }
+
+    @Test
+    void parseEvent_emptyFrom_expectException() {
+        String param = "test /from /to tomorrow";
+        assertThrows(InvalidEvent.class,
+                () -> Parser.parseEvent(param));
+
+    }
+
+    @Test
+    void parseEvent_emptyTo_expectException() {
+        String param = "test /from today /to ";
+        assertThrows(InvalidEvent.class,
+                () -> Parser.parseEvent(param));
+    }
+
+    @Test
+    void parseEvent_emptyFromAndTo_expectException() {
+        String param = "test /from /to";
+        assertThrows(InvalidEvent.class,
+                () -> Parser.parseEvent(param));
+    }
+
+    @Test
+    void parseEvent_noFromAndTo_expectException() {
+        String param = "test";
+        assertThrows(InvalidEvent.class,
+                () -> Parser.parseEvent(param));
+    }
+
+    @Test
+    void parseEvent_noFrom_expectException() {
+        String param = "test /to tomorrow";
+        assertThrows(InvalidEvent.class,
+                () -> Parser.parseEvent(param));
+    }
+
+    @Test
+    void parseEvent_noBy_expectException() {
+        String param = "test /from today";
+        assertThrows(InvalidEvent.class,
+                () -> Parser.parseEvent(param));
+    }
+    
 }
