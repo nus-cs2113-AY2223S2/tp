@@ -27,6 +27,7 @@ public class rainyDay {
 
         }
     }
+
     public static void parseUserInput(String userInput) {
         String action = userInput.split("\\s+")[0];
         if(action.equalsIgnoreCase("add")) {

@@ -3,10 +3,11 @@ package seedu.rainyDay;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.rainyDay.rainyDay.addFinancialStatement;
 import static seedu.rainyDay.rainyDay.generateReport;
+import static seedu.rainyDay.rainyDay.deleteFinancialStatement;
 
+import seedu.rainyDay.data.FinancialStatement;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import seedu.rainyDay.data.FinancialStatement;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,10 +23,17 @@ class rainyDayTest {
 
     @Test
     public void verifyAddStatement() {
-        ArrayList<FinancialStatement> financialReport = new ArrayList<FinancialStatement>();
         String actualAddStatement = addFinancialStatement("Ipad", "out", 120);
         String expectedAddStatement = "Done, added: out for Ipad, $120";
         assertEquals(expectedAddStatement, actualAddStatement);
+    }
+
+    @Test
+    public void verifyDeleteStatement() {
+        addFinancialStatement("Ipad", "out", 120);
+        String actualDeleteStatement = deleteFinancialStatement(1);
+        String expectedDeleteStatement = "Done, deleted \"Ipad\" from the financial report";
+        assertEquals(expectedDeleteStatement, actualDeleteStatement);
     }
 
     @Test
