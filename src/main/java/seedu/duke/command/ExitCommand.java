@@ -7,7 +7,7 @@ import seedu.duke.task.TaskList;
  * Command for terminating the program.
  */
 public class ExitCommand extends Command {
-    public static final String KEYWORD = "exit";
+    public static final String KEYWORD = "bye";
 
     /**
      * Displays the program's shutdown message.

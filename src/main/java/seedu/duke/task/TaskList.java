@@ -7,7 +7,11 @@ import java.util.StringJoiner;
  * A list of Task objects representing the current list of tasks.
  */
 public class TaskList {
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private ArrayList<Task> tasks;
+
+    public TaskList(){
+        tasks = new ArrayList<>();
+    }
 
     /**
      * Returns the number of tasks in this task list.

@@ -50,12 +50,19 @@ public class CommandParser {
      * @param input The unparsed command string.
      * @return A command that can be executed by calling the run() method.
      */
-    public Command parseCommand(String input) {
+    public static Command parseCommand(String input) {
         String[] splitInput = input.trim().replaceAll("\\s+", " ").split(" ");
-
         switch (splitInput[0]) {
+        case AddTaskCommand.KEYWORD:
+            return new AddTaskCommand(splitInput);
         case ListTasksCommand.KEYWORD:
             return new ListTasksCommand();
+        case MarkTaskCommand.KEYWORD:
+            return new MarkTaskCommand(splitInput);
+        case UnmarkTaskCommand.KEYWORD:
+            return new UnmarkTaskCommand(splitInput);
+        case DeleteCommand.KEYWORD:
+            return new DeleteCommand(splitInput);
         case ExitCommand.KEYWORD:
             return new ExitCommand();
         default:
