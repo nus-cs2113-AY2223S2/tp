@@ -40,4 +40,9 @@ public class Pet {
     public void setWeight(String weight) {
         this.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return getPetName() + "\nType: " +  getPetType() + "\nAge: " + getAge() + "\nWeight: " + getWeight();
+    }
 }
