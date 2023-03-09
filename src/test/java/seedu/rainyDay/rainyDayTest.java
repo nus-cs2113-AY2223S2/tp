@@ -18,7 +18,7 @@ class rainyDayTest {
     @Test
     public void verifyAddStatement() {
         ArrayList<FinancialStatement> financialReport = new ArrayList<FinancialStatement>();
-        String actualAddStatement = addFinancialStatement("Ipad", "out", 120, financialReport);
+        String actualAddStatement = addFinancialStatement("Ipad", "out", 120);
         String expectedAddStatement = "Done, added: out for Ipad, $120";
         assertEquals(expectedAddStatement, actualAddStatement);
     }
