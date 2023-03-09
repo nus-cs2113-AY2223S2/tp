@@ -1,10 +1,10 @@
 package seedu.pettracker.data;
 
 public class Pet {
-    protected String petName;
-    protected String petType;
-    protected String age;
-    protected String weight;
+    private String petName;
+    private String petType;
+    private String age;
+    private String weight;
 
     public Pet(String petName) {
         this.petName = petName;
