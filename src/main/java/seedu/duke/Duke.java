@@ -12,14 +12,14 @@ public class Duke {
 
     public static void main(String[] args) {
         ui = new Ui();
-        //parser = new Parser();
         ui.printWelcomeMessage();
         Scanner in = new Scanner(System.in);
-        TaskList taskList = new TaskList();
+        TaskList taskList = Storage.loadData("./data.txt", ui);
         while (isInUse) {
             String userInput = in.nextLine();
             Command parsedCommand = CommandParser.parseCommand(userInput);
             parsedCommand.execute(taskList, ui);
+            Storage.saveData("./data.txt", taskList, ui);
             isInUse = !parsedCommand.isExit();
         }
     }
