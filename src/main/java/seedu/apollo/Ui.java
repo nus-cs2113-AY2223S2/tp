@@ -86,6 +86,12 @@ public class Ui {
         }
     }
 
+    /**
+     * For {@code list} command.
+     * Prints all Modules within the ArrayList given
+     *
+     * @param allModules ArrayList of Modules
+     */
     public void printModuleList(ArrayList<Module> allModules) {
         if (allModules.size() == 0) {
             System.out.println("There are no modules in your module list!");
