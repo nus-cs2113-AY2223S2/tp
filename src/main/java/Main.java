@@ -19,6 +19,7 @@ public class Main {
         Command command = parser.parseCommand(inputText);
         command.execute(flashcardList, ui);
     }
+
     public static void main() {
         new Main().run();
     }

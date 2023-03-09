@@ -1,6 +1,5 @@
 package objects.flashcard;
 
-
 public class Flashcard {
     private String questionText;
     private String answerText;

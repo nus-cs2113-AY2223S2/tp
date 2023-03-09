@@ -10,6 +10,7 @@ import objects.exceptions.InvalidAddFlashcardInputException;
 public class Parser {
     public static final String QUESTION_START_INDICATOR = "/q";
     public static final String ANSWER_START_INDICATOR = "/a";
+
     public Command parseCommand(String userInput) {
         String commandPhrase = userInput.split(" ")[0];
         switch (commandPhrase) {
@@ -17,7 +18,8 @@ public class Parser {
             try {
                 return reformatAddCommandInput(userInput);
             } catch (InvalidAddFlashcardInputException e) {
-                System.out.println("The input is in an incorrect format, please follow the format in user guide");
+                System.out.println(
+                        "The input is in an incorrect format, please follow the format in user guide");
             } catch (EmptyFlashcardQuestionException e) {
                 System.out.println("The question of this card is empty, please enter one.");
             } catch (EmptyFlashcardAnswerException e) {
@@ -31,14 +33,18 @@ public class Parser {
     }
 
     /**
-     * Constructs an AddCommand from the input of the user, if the input is of an incorrect
-     * format, a respective exception will be thrown.
+     * Constructs an AddCommand from the input of the user, if the input is of an
+     * incorrect format, a respective exception will be thrown.
      *
      * @param userInput The input collected by Ui from the user.
-     * @return An AddCommand with the question and answer text extracted from user input.
-     * @throws InvalidAddFlashcardInputException If the start indicators cannot be found.
-     * @throws EmptyFlashcardQuestionException If the string is empty after QUESTION_START_INDICATOR.
-     * @throws EmptyFlashcardAnswerException If the string is empty after ANSWER_START_INDICATOR.
+     * @return An AddCommand with the question and answer text extracted from user
+     *         input.
+     * @throws InvalidAddFlashcardInputException If the start indicators cannot be
+     *                                           found.
+     * @throws EmptyFlashcardQuestionException   If the string is empty after
+     *                                           QUESTION_START_INDICATOR.
+     * @throws EmptyFlashcardAnswerException     If the string is empty after
+     *                                           ANSWER_START_INDICATOR.
      */
     public AddCommand reformatAddCommandInput(String userInput)
             throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException,
@@ -48,16 +54,18 @@ public class Parser {
         if (positionOfStartOfAnswer == -1 || positionOfStartOfQuestion == -1) {
             throw new InvalidAddFlashcardInputException();
         }
-        String questionText = userInput.substring(positionOfStartOfQuestion +
-                QUESTION_START_INDICATOR.length(), positionOfStartOfAnswer).trim();
-        String answerText = userInput.substring(positionOfStartOfAnswer +
-                ANSWER_START_INDICATOR.length()).trim();
+        String questionText = userInput
+                .substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length(),
+                        positionOfStartOfAnswer)
+                .trim();
+        String answerText = userInput
+                .substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length()).trim();
         if (questionText.isEmpty()) {
             throw new EmptyFlashcardQuestionException();
         }
         if (answerText.isEmpty()) {
             throw new EmptyFlashcardAnswerException();
         }
-        return new AddCommand(questionText,answerText);
+        return new AddCommand(questionText, answerText);
     }
 }

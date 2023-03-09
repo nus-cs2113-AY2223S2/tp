@@ -1,4 +1,4 @@
 package objects.exceptions;
 
-public class InvalidAddFlashcardInputException extends Exception{
+public class InvalidAddFlashcardInputException extends Exception {
 }
