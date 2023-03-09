@@ -36,7 +36,6 @@ public class RainyDay {
             }
             parseUserInput(userInput);
         }
-
         UI.sayFarewellToUser();
     }
 
