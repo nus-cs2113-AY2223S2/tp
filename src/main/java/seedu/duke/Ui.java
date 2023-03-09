@@ -3,8 +3,6 @@ package seedu.duke;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
-import java.util.ArrayList;
-
 public class Ui {
     public void printWelcomeMessage() {
         System.out.println("Hello, I am Duke and I will help you remember the tasks you need to do!");
