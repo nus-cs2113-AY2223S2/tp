@@ -1,9 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.StringJoiner;

@@ -1,10 +1,7 @@
 package seedu.duke.command;
 
-import seedu.duke.task.Task;
 import seedu.duke.Ui;
 import seedu.duke.task.TaskList;
-
-import java.util.ArrayList;
 
 /**
  * Command for displaying the current task list.
