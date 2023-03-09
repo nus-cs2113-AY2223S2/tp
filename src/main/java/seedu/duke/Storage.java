@@ -12,7 +12,7 @@ public class Storage {
      * Divider used to separate details of a task saved in file
      */
     private static final String SAVEFILESEPARATOR = ", ";
-    private static String filePath = "DukeTaskList.txt";
+    private static String filePath = "EventList.txt";
     private static File textFile;
     private static Scanner textFileScanner;
 
@@ -20,6 +20,9 @@ public class Storage {
         loadFromFile();
     }
 
+    /**
+     * Sets up the file to be read
+     */
     private static void setupFile() {
         textFile = new File(filePath);
 
