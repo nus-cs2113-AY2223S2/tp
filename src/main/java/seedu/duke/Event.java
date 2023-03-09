@@ -1,16 +1,15 @@
 package seedu.duke;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class Event extends Task {
+public class Event {
     private String description;
     private Date startTime;
     private Date endTime;
     private boolean hasEndTime;
 
-    static SimpleDateFormat dateTimeFormatter = DateTimeFormatter.ofPattern("MMM/dd/yyyy HH:mm");
+    static SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("MMM/dd/yyyy HH:mm");
 
     public Event(String eventDescription, Date start, Date End) {
         this.description = eventDescription;
