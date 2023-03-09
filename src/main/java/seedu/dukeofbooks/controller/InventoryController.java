@@ -1,13 +1,12 @@
 package seedu.dukeofbooks.controller;
 
+import seedu.dukeofbooks.common.Messages;
 import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.exception.IllegalOperationException;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.inventory.Inventory;
 
 public class InventoryController implements IController {
-    public static final String DATA_NOT_SET = "Data for controller is not set";
-    public static final String DATA_NOT_VALID = "Data passed is not valid";
     public static final String INVALID_BOOK_DATA = "Book values passed is not valid";
     private Inventory inventory;
 
@@ -18,7 +17,7 @@ public class InventoryController implements IController {
     @Override
     public <T> void setData(T dataPoint) throws IllegalOperationException {
         if (!(dataPoint instanceof Inventory)) {
-            throw new IllegalOperationException(DATA_NOT_VALID);
+            throw new IllegalOperationException(Messages.DATA_NOT_VALID);
         }
         inventory = (Inventory) dataPoint;
     }
@@ -53,10 +52,10 @@ public class InventoryController implements IController {
             throw new IllegalOperationException(e.getMessage());
         }
     }
-
+    @Override
     public boolean checkDataExists() throws IllegalOperationException {
         if (inventory == null) {
-            throw new IllegalOperationException(DATA_NOT_SET);
+            throw new IllegalOperationException(Messages.DATA_NOT_SET);
         }
         return true;
     }
