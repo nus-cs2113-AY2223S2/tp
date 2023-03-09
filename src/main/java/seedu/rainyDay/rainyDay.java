@@ -21,7 +21,6 @@ public class rainyDay {
         while(!isExit) {
             String userInput = input.nextLine().trim();
             if(userInput.equalsIgnoreCase("exit")) {
-                System.out.println("l8r bij");
                 isExit = true;
             }
             parseUserInput(userInput);

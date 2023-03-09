@@ -1,4 +1,4 @@
 Hello from rainyDay
 
-What is your name?
-Hello James Gosling
+sorry! I do not understand your input!
+Please refer to the help table!
