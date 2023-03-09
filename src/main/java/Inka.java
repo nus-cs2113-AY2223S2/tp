@@ -12,10 +12,10 @@ public class Inka {
     public void run() {
         ui.printGreeting();
 
-    //fill in the method here
-    //while(parser.getIsExecuting()) {
-    //  String fullCommand = ui.getCommand();
-    //}
+        //fill in the method here
+        //while(parser.getIsExecuting()) {
+        //  String fullCommand = ui.getCommand();
+        //}
 
         ui.printBye();
     }
