@@ -1,5 +1,6 @@
 package com.clanki.objects;
 
+import java.lang.Math;
 import java.time.LocalDate;
 
 public class Flashcard {
@@ -16,6 +17,14 @@ public class Flashcard {
         this.currentPeriodInDays = 0;
     }
 
+    public Flashcard(String questionText, String answerText, LocalDate dueDate,
+            int currentPeriodInDays) {
+        this.questionText = questionText;
+        this.answerText = answerText;
+        this.dueDate = dueDate;
+        this.currentPeriodInDays = currentPeriodInDays;
+    }
+
     public String getQuestion() {
         return questionText;
     }
@@ -30,6 +39,14 @@ public class Flashcard {
 
     public void setAnswer(String answerText) {
         this.answerText = answerText;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public int getCurrentPeriodInDays() {
+        return currentPeriodInDays;
     }
 
     public boolean isDueToday() {
@@ -54,7 +71,8 @@ public class Flashcard {
         if (this.currentPeriodInDays == 0) {
             this.currentPeriodInDays = 1;
         } else {
-            this.currentPeriodInDays *= SPACED_REPETITION_FACTOR;
+            double newPeriod = this.currentPeriodInDays * SPACED_REPETITION_FACTOR;
+            this.currentPeriodInDays = (int) Math.ceil(newPeriod);
         }
         this.dueDate = this.dueDate.plusDays(this.currentPeriodInDays);
     }
