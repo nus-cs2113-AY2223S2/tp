@@ -7,7 +7,7 @@ public class Ui {
     public Ui() {
     }
 
-    public static void printWelcomeMessage() {
+    public void printWelcomeMessage() {
         System.out.println("Hello, I am Duke and I will help you remember the tasks you need to do!");
         System.out.println("For now, you can do the following:");
         System.out.println("Add a task using: add <description> -d <deadline>");
@@ -50,7 +50,7 @@ public class Ui {
             printEmptyList();
         } else {
             System.out.println("Here are the tasks in your list:");
-            System.out.println(taskList.toString());
+            System.out.println(taskList);
         }
     }
 
