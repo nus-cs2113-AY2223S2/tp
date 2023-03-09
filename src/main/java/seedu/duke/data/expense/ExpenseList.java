@@ -3,9 +3,9 @@ package seedu.duke.data.expense;
 import java.util.ArrayList;
 
 public class ExpenseList {
+
     private static ArrayList<Expense> expenseList = new ArrayList<>();
     private static int expenseCount = 0;
-
 
     public ExpenseList() {
         expenseList = new ArrayList<>();

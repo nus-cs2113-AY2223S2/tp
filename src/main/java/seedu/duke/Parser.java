@@ -1,13 +1,18 @@
 package seedu.duke;
 import seedu.duke.data.expense.Expense;
 import seedu.duke.data.expense.ExpenseList;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Parser {
     public static void parseCommand(String line) {
-        String[] input = line.split(" ", 2);
-        switch(input[0].trim()) {
-        case "expense":
-            addExpenses(input[1]);
+        List<String> lineParts = splitLine(line);
+        String command = lineParts.get(0);
+        List<String> arguments = lineParts.subList(1, lineParts.size());
+        switch(command) {
+        case "add expense":
+            addExpenses(arguments);
             break;
         case "list":
             ExpenseList.printExpenseList();
@@ -16,11 +21,18 @@ public class Parser {
             System.out.println("Command not recognized");
         }
     }
-    private static void addExpenses(String input) {
+    
+    public static ArrayList<String> splitLine(String line) {
+        ArrayList<String> lineParts = new ArrayList<String>();
+        lineParts.addAll(Arrays.asList(line.split(" /")));
+        return lineParts;
+    }
+    
+    private static void addExpenses(List<String> arguments) {
         try {
-            String expenseDescription = input.substring(input.indexOf("/de") + 3, input.indexOf("/da")).trim();
-            String expenseDate = input.substring(input.indexOf("/da") + 3, input.indexOf("/va")).trim();
-            float expenseValue = Float.parseFloat(input.substring(input.indexOf("/va") + 3).trim());
+            String expenseDescription = arguments.get(0).substring(2).trim();
+            String expenseDate = arguments.get(1).substring(2).trim();
+            float expenseValue = Float.parseFloat(arguments.get(2).substring(1).trim());
             Expense exp = new Expense(expenseDescription, expenseDate, expenseValue);
             ExpenseList.addExpense(exp);
             System.out.println("Expense added");
@@ -29,4 +41,3 @@ public class Parser {
         }
     }
 }
-

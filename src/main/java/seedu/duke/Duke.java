@@ -1,4 +1,6 @@
 package seedu.duke;
+
+import seedu.duke.data.expense.ExpenseList;
 import java.util.Scanner;
 
 public class Duke {
@@ -9,8 +11,9 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
+        ExpenseList expenseList = new ExpenseList();
         greet();
-        runCommandLoopUntilExitCommand();
+        runCommandLoopUntilExitCommand(expenseList);
         exit();
     }
     
@@ -25,7 +28,7 @@ public class Duke {
         System.out.println(DIVIDER);
     }
     
-    private static void runCommandLoopUntilExitCommand() {
+    private static void runCommandLoopUntilExitCommand(ExpenseList expenseList) {
         Scanner in = new Scanner(System.in);
         String line = in.nextLine();
         
@@ -45,10 +48,10 @@ public class Duke {
         } catch (Exception e) {
             System.out.println("Command not recognized");
         }
-
     }
     
     private static void exit() {
         System.out.println("Bye!");
     }
+    
 }
