@@ -5,17 +5,8 @@ public class Item {
     private String upc;
     private String name;
     private Double price;
-    private Integer quantity;
     private String category;
     private ArrayList<String> tags = new ArrayList<>();
-
-    Item(String name, String upc, String qty, String price) {
-        this.name = name;
-        this.upc = upc;
-        this.price = Double.parseDouble(price);
-        this.quantity = Integer.parseInt(qty);
-    }
-
     public String getUpc() {
         return upc;
     }

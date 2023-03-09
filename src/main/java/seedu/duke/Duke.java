@@ -16,7 +16,7 @@ public class Duke {
     }
     public void run(){
         while(true) {
-            parser.mainParser();
+            parser.parse();
         }
     }
     public static void main(String[] args){
