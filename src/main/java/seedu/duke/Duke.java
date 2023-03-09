@@ -20,6 +20,9 @@ public class Duke {
             String userInput = in.nextLine();
             Command parsedCommand = CommandParser.parseCommand(userInput);
             parsedCommand.execute(taskList, ui);
+            if (parsedCommand.isExit()) {
+                in.close();
+            }
             isInUse = !parsedCommand.isExit();
         }
     }

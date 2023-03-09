@@ -4,16 +4,21 @@ import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
 public class Ui {
-    public void printWelcomeMessage() {
+    public Ui() {
+    }
+
+    public static void printWelcomeMessage() {
         System.out.println("Hello, I am Duke and I will help you remember the tasks you need to do!");
         System.out.println("For now, you can do the following:");
-        System.out.println("Add a task using: add <description>");
+        System.out.println("Add a task using: add <description> -d <deadline>");
         System.out.println("List all tasks using: list");
         System.out.println("Mark a task as done using: mark <index>");
         System.out.println("Mark a task as undone using: unmark <index>");
-        System.out.println("Delete a task using: delete <index>");
+        System.out.println("Edit a task deadline using: editdeadline <index> -d <deadline>");
         System.out.println("Exit the program using: bye");
     }
+
+
 
     public void printAddTaskNotification(Task task) {
         System.out.println("Got it, I have added the following task:");
@@ -30,6 +35,10 @@ public class Ui {
         System.out.println(task.toString());
     }
 
+    public static void printEditDeadlineNotification(String taskItem) {
+        System.out.println("Okay, I have edited the deadline for the following task:");
+        System.out.println(taskItem);
+    }
     public void printDeleteTaskNotification(TaskList taskList, int index) {
         System.out.println("Noted. I've removed this task:");
         Task task = taskList.getTask(index);
@@ -48,8 +57,16 @@ public class Ui {
         System.out.print("See you again, bye!");
     }
 
-    public void printErrorMessage() {
+    public static void printErrorMessage() {
         System.out.println("Error encountered! Please type in a valid command!");
+    }
+
+    public static void printDateTimeError() {
+        System.out.println("The date provided must be of the following format: dd-MM-yyyy HH:MM.");
+    }
+
+    public static void printParametersError() {
+        System.out.println("You did not provide the correct parameters for this function.");
     }
 
     public void printEmptyList(){
