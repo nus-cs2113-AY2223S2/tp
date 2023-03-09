@@ -22,4 +22,6 @@ class rainyDayTest {
         String expectedAddStatement = "Done, added: out for Ipad, $120";
         assertEquals(expectedAddStatement, actualAddStatement);
     }
+
+
 }
