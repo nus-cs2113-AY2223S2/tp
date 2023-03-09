@@ -1,6 +1,5 @@
 package com.clanki.objects;
 
-import java.lang.Math;
 import java.time.LocalDate;
 
 public class Flashcard {
