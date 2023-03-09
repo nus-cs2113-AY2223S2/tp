@@ -12,7 +12,7 @@ public class Storage {
      * Divider used to separate details of a task saved in file
      */
     private static final String SAVEFILESEPARATOR = ", ";
-    private static String filePath = "DukeTaskList.txt";
+    private static String filePath = "EventList.txt";
     private static File textFile;
     private static Scanner textFileScanner;
 
@@ -20,6 +20,9 @@ public class Storage {
         loadFromFile();
     }
 
+    /**
+     * Sets up the file to be read
+     */
     private static void setupFile() {
         textFile = new File(filePath);
 
@@ -29,22 +32,22 @@ public class Storage {
             System.out.println("I cannot seem to access the saved tasks. Did you perhaps lock it away?");
         }
     }
-    
+
     /**
      * Saves an ArrayList of tasks to DukeTaskList.txt file
-     * 
+     *
      * @param list ArrayList of tasks
      */
     public static void saveToFile(ArrayList<Event> list) {
         String writeToFile = "";
-        
+
         for (Event dukeTasks : list) {
             // extracting details from task object
             String[] dataToTextFile= {"", "", ""};
             dataToTextFile[0] = dukeTasks.toString();
 
             // save task details split by regex ", "
-            writeToFile += dataToTextFile[0] + SAVEFILESEPARATOR + dataToTextFile[1] + 
+            writeToFile += dataToTextFile[0] + SAVEFILESEPARATOR + dataToTextFile[1] +
                     SAVEFILESEPARATOR + dataToTextFile[2] + System.lineSeparator();
         }
 
@@ -61,7 +64,7 @@ public class Storage {
 
     /**
      * Returns an ArrayList of tasks from DukeTaskList.txt file
-     * 
+     *
      * @return ArrayList of tasks
      */
     public static ArrayList<Event> loadFromFile() {
@@ -71,17 +74,17 @@ public class Storage {
         while (textFileScanner.hasNext()) {
             String[] loadTaskInfo = new String[3];
             loadTaskInfo = textFileScanner.nextLine().split(SAVEFILESEPARATOR, 3);
-            
+
             // create tasks individually
             switch (loadTaskInfo[0]) {
-            case "T":
-                break;
-        
-            case "D":
-                break;
-        
-            default:
-                break;
+                case "T":
+                    break;
+
+                case "D":
+                    break;
+
+                default:
+                    break;
             }
         }
 
