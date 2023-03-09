@@ -21,7 +21,6 @@ public class DukeUI {
     public void printDukeLogo() { System.out.println(DUKE_LOGO);}
     public void printGreeting(){
         printDukeLogo();
-        printLine();
     }
     public void printLine(){
         System.out.println(LINE);

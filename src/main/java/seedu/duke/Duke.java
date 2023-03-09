@@ -6,14 +6,12 @@ public class Duke {
     private DukeUI ui;
     public Duke() {
         this.ui = new DukeUI();
-        ui.printGreeting();
+
     }
     public void run() {
-        boolean isExit = false;
-        while(!isExit) {
-            //todo: add command
-            isExit = true;
-        }
+        ui.printGreeting();
+        System.out.println("What is your name?");
+        System.out.println("Hello " + ui.readCommand());
     }
     public static void main(String[] args) {
         new Duke().run();
