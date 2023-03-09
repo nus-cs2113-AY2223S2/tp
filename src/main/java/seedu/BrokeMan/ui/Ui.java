@@ -18,14 +18,6 @@ public class Ui {
     private static final String LINE_DIVIDER = "-----------------------------------------------------------------------";
     private static final String LINE_PREFIX = "|  ";
 
-//    public Ui() {
-//        this(System.in, System.out);
-//    }
-//
-//    public Ui(InputStream in, PrintStream out) {
-//        this.in = new Scanner(in);
-//        this.out = out;
-//    }
 
     /**
      * Gets user command from the terminal
