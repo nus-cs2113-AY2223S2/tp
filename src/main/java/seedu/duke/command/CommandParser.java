@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.task.Task;
+import seedu.duke.task.TaskList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,12 +54,12 @@ public class CommandParser {
      * @param input The unparsed command string.
      * @return A command that can be executed by calling the run() method.
      */
-    public static Command parseCommand(String input, ArrayList<Task> tasks) {
+    public Command parseCommand(String input) {
         String[] splitInput = input.trim().replaceAll("\\s+", " ").split(" ");
 
         switch (splitInput[0]) {
         case ListTasksCommand.KEYWORD:
-            return new ListTasksCommand(tasks);
+            return new ListTasksCommand();
         case ExitCommand.KEYWORD:
             return new ExitCommand();
         default:

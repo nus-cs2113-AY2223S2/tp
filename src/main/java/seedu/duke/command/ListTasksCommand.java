@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.task.Task;
 import seedu.duke.Ui;
+import seedu.duke.task.TaskList;
 
 import java.util.ArrayList;
 
@@ -10,21 +11,11 @@ import java.util.ArrayList;
  */
 public class ListTasksCommand extends Command {
     public static final String KEYWORD = "list";
-    private final ArrayList<Task> tasks;
-
-    /**
-     * Constructs a command that will display the current task list.
-     *
-     * @param tasks The current task list.
-     */
-    public ListTasksCommand(ArrayList<Task> tasks) {
-        this.tasks = tasks;
-    }
 
     /**
      * Displays the current task list.
      */
-    public void execute() {
-        Ui.listTasks(tasks);
+    public void execute(TaskList taskList, Ui ui) {
+        ui.listTasks(taskList);
     }
 }

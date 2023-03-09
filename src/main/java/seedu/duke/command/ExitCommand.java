@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.Ui;
+import seedu.duke.task.TaskList;
 
 /**
  * Command for terminating the program.
@@ -11,8 +12,8 @@ public class ExitCommand extends Command {
     /**
      * Displays the program's shutdown message.
      */
-    public void execute() {
-        Ui.printGoodbyeMessage();
+    public void execute(TaskList taskList, Ui ui) {
+        ui.printGoodbyeMessage();
     }
 
     /**
