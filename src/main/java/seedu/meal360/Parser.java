@@ -39,8 +39,8 @@ public class Parser {
         return "test";
     }
 
-    public void parseListRecipe(String[] input) {
-        // list recipe
+    public void parseListRecipe(RecipeList recipeList) {
+        recipeList.listRecipes();
     }
 
     public Recipe parseViewRecipe(String[] command, RecipeList recipes) {

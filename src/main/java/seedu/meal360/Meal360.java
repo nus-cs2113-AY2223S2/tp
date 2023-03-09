@@ -26,7 +26,6 @@ public class Meal360 {
     }
 
     public static void receiveInput(String input) {
-        ui.printMessage(input);
         String[] command = input.trim().split(" ");
         if (input.equalsIgnoreCase("bye")) {
             canExit = true;
@@ -39,8 +38,9 @@ public class Meal360 {
         } else if (command[0].equals("view")) {
             Recipe recipe = parser.parseViewRecipe(command, recipeList);
             ui.printRecipe(recipe);
+        } else if (command[0].equals("list")) {
+            parser.parseListRecipe(recipeList);
         }
-
     }
 
     public static void exitApp() {

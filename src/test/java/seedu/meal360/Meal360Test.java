@@ -31,21 +31,18 @@ class Meal360Test {
 
     @Test
     public void testDeleteRecipe() {
-        RecipeList recipeList = new RecipeList();
-        // add new recipe to list
-        HashMap<String, Integer> ingredients = new HashMap<>();
-        Recipe newRecipe = new Recipe("", ingredients);
-        recipeList.addRecipe(newRecipe);
-        try {
-            int oldRecipeListSize = recipeList.size();
-            // delete recipe
-            recipeList.deleteRecipe(recipeList.indexOf(newRecipe));
-            int newRecipeListSize = recipeList.size();
-            // check if recipe list size is 1 less than before
-            assertEquals(oldRecipeListSize - 1, newRecipeListSize);
-            fail(); // the test should not reach this line
-        } catch (Exception e) {
-            assertEquals("Recipe was not deleted", e.getMessage());
-        }
+        RecipeList recipes = new RecipeList();
+        HashMap<String, Integer> testIngredients = new HashMap<>();
+        testIngredients.put("test ingredient", 100);
+        // create a fake recipe
+        Recipe testR = new Recipe("test recipe name", testIngredients);
+        recipes.addRecipe(testR);
+
+        int oldRecipeListSize = recipes.size();
+        // delete recipe
+        recipes.deleteRecipe(recipes.indexOf(testR));
+        int newRecipeListSize = recipes.size();
+        // check if recipe list size is 1 less than before
+        assertTrue((oldRecipeListSize - 1) == newRecipeListSize);
     }
 }
