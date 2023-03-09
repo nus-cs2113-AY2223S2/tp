@@ -6,10 +6,16 @@ public class Inventory {
     private static ArrayList<Item> items = new ArrayList<>();
     private static HashSet<String> upcCodes = new HashSet<>();
     //todo: trie and HashMap<String,ArrayList<int>> for searching
-    private static void addItem(Item item){
-        items.add(item);
+    public static void addItem(Item item){
+        if (upcCodes.contains(item.getUpc())) {
+            Ui.printDuplicateAdd();
+        } else {
+            upcCodes.add(item.getUpc());
+            items.add(item);
+            Ui.printSuccessAdd();
+        }
     }
-    private static void removeItemAtIndex(int index){
+    public static void removeItemAtIndex(int index){
         items.remove(index);
     }
 
