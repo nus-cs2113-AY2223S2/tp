@@ -1,4 +1,4 @@
-package card;
+package model.card;
 
 //to be made into an abstract class containing a few types of Cards later, for now just a single Card will do
 public class Card {
