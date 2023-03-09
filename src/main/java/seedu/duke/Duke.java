@@ -1,21 +1,59 @@
 package seedu.duke;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.text.DateFormat;
+import seedu.Workout.Workout;
 
 public class Duke {
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+    private ArrayList<Workout> workouts;
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+    public Duke() {
+        this.workouts = new ArrayList<Workout>();
+    }
+
+    public void run() {
+        Scanner scanner = new Scanner(System.in);
+        String command;
+        do {
+            System.out.print("Enter a command: ");
+            command = scanner.nextLine();
+
+            if (command.startsWith("delete ")) {
+                String dateString = command.substring(7);
+                try {
+                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    Date date = dateFormat.parse(dateString);
+
+                    // Search for the workout with the matching date and remove it
+                    Workout workoutToDelete = null;
+                    for (Workout workout : this.workouts) {
+                        if (workout.getDate().equals(date)) {
+                            workoutToDelete = workout;
+                            break;
+                        }
+                    }
+                    if (workoutToDelete != null) {
+                        this.workouts.remove(workoutToDelete);
+                        System.out.println("Workout deleted successfully.");
+                    } else {
+                        System.out.println("No workout found with the specified date.");
+                    }
+
+                } catch (ParseException e) {
+                    System.out.println("Invalid date format. Please enter the date in the format dd/mm/yyyy.");
+                }
+            }
+
+        } while (!command.equals("bye"));
+        scanner.close();
+    }
+
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        duke.run();
     }
 }
