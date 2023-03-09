@@ -1,10 +1,9 @@
 package seedu.duck.task;
 
 public class Task {
+    private static int taskCount = 0;
     private String description;
     private boolean isDone;
-    private static int taskCount = 0;
-
 
     public Task(String description) {
         this.description = description;

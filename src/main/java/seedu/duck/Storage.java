@@ -18,7 +18,8 @@ public class Storage {
     static final String SAVEPATH = "data/savedata.txt";
     static final String SAVEFOLDER = "data";
 
-    /** Load tasks from save data into the list
+    /**
+     * Load tasks from save data into the list
      *
      * @param line The line of input from the save file
      * @param tasks The array list of tasks
