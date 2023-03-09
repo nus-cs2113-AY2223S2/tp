@@ -3,9 +3,10 @@ package com.clanki.parser;
 
 import com.clanki.commands.AddCommand;
 import com.clanki.commands.Command;
-import com.clanki.objects.exceptions.EmptyFlashcardAnswerException;
-import com.clanki.objects.exceptions.EmptyFlashcardQuestionException;
-import com.clanki.objects.exceptions.InvalidAddFlashcardInputException;
+import com.clanki.exceptions.EmptyFlashcardAnswerException;
+import com.clanki.exceptions.EmptyFlashcardQuestionException;
+import com.clanki.exceptions.InvalidAddFlashcardInputException;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
