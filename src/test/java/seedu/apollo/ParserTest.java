@@ -1,13 +1,15 @@
 package seedu.apollo;
 
 import org.junit.jupiter.api.Test;
+import seedu.apollo.command.Command;
+import seedu.apollo.exception.EmptyKeywordException;
 import seedu.apollo.exception.InvalidDeadline;
 
+import java.rmi.UnexpectedException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class ParserTest {
@@ -60,6 +62,15 @@ class ParserTest {
         String param = "  /by tomorrow";
         assertThrows(InvalidDeadline.class,
                 () -> Parser.parseDeadline(param));
+    }
+
+    @Test
+    void getCommand_noKeywordFind_expectNull() throws UnexpectedException {
+        String userCommand = "find";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size);
+        assertNull(newCommand);
     }
 
 }
