@@ -8,14 +8,15 @@ import java.util.Scanner;
 public class rainyDay {
 
     public static ArrayList<FinancialStatement> financialReport = new ArrayList<>();
+
     public static void main(String[] args) {
         System.out.println("Hello from rainyDay\n");
 
         Scanner input = new Scanner(System.in);
         boolean isExit = false;
-        while(!isExit) {
+        while (!isExit) {
             String userInput = input.nextLine().trim();
-            if(userInput.equalsIgnoreCase("exit")) {
+            if (userInput.equalsIgnoreCase("exit")) {
                 System.out.println("l8r bij");
                 isExit = true;
             }
@@ -23,11 +24,12 @@ public class rainyDay {
 
         }
     }
+
     public static void parseUserInput(String userInput) {
         String action = userInput.split("\\s+")[0];
-        if(action.equalsIgnoreCase("add")) {
+        if (action.equalsIgnoreCase("add")) {
             String tokens[] = userInput.split("-", 2);
-            String inputs[] = tokens[1].split("\\s+",2);
+            String inputs[] = tokens[1].split("\\s+", 2);
             String flowDirection = inputs[0];
             String data[] = inputs[1].split("\\$");
             String description = data[0].trim();
