@@ -23,7 +23,6 @@ public class Duke {
         Storage.setFilePath(filePath);
         try {
             Storage.createSavedFile();
-//            recipes = Storage.readFileContents();
         } catch (Exception e) {
             Ui.showLoadingErrorMessage(e);
         } finally {
@@ -46,7 +45,6 @@ public class Duke {
                 Ui.showLine();
                 Command c = Parser.parseCommands(fullCommand);
                 c.execute(recipes);
-//                Storage.saveToFile(recipes);
                 isExit = c.isExit();
             } catch (Exception e) {
                 Ui.showDudeMainError(e);
