@@ -86,9 +86,9 @@ public class rainyDay {
                     financialReport.get(i).getFullStatement(), System.lineSeparator());
             financialStatements = String.join("", financialStatements, financialStatement);
         }
-        String inflowInformation = "Inflow: " + totalInflow;
-        String outflowInformation = "Outflow: " + totalOutflow;
-        String remainingValueInformation = "Remaining value: " + (totalInflow - totalOutflow);
+        String inflowInformation = "Inflow: $" + totalInflow;
+        String outflowInformation = "Outflow: $" + totalOutflow;
+        String remainingValueInformation = "Remaining value: $" + (totalInflow - totalOutflow);
         String report = String.join(System.lineSeparator(), financialStatements, inflowInformation, outflowInformation,
                 remainingValueInformation);
         return report;

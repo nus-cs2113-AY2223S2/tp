@@ -37,6 +37,22 @@ class rainyDayTest {
     }
 
     @Test
+    public void verifyReport() {
+        ArrayList<FinancialStatement> financialReport = new ArrayList<>();
+        String actualReport = generateReport(financialReport);
+        String expectedReport = "Your financial report is empty";
+        assertEquals(expectedReport, actualReport);
+
+        financialReport.add(new FinancialStatement("Ipad", "out", 120));
+        financialReport.add(new FinancialStatement("pork", "out", 5));
+        financialReport.add(new FinancialStatement("angpao", "in", 3000));
+        actualReport = generateReport(financialReport);
+        expectedReport = String.join(System.lineSeparator(), "1. Ipad -$120 (out)", "2. pork -$5 (out)",
+                "3. angpao +$3000 (in)" + System.lineSeparator(), "Inflow: $3000", "Outflow: $125",
+                "Remaining value: $2875");
+        assertEquals(expectedReport, actualReport);
+    }
+
     void writeToFileTest_fileExists() {
         ArrayList<FinancialStatement> financialReport = new ArrayList<>();
         String filePath = "rainyDay.txt";
