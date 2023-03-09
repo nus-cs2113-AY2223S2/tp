@@ -94,4 +94,12 @@ public class TaskList {
         }
         return taskListString.toString();
     }
+
+    public String toSaveString() {
+        StringJoiner taskListString = new StringJoiner(System.lineSeparator());
+        for (int i = 0; i < size(); i++) {
+            taskListString.add(getTask(i).toSaveString());
+        }
+        return taskListString.toString();
+    }
 }

@@ -1,5 +1,9 @@
 package seedu.duke.task;
 
+import seedu.duke.Storage;
+
+import java.util.StringJoiner;
+
 public class Task {
     private String description;
     private String deadline;
@@ -30,5 +34,13 @@ public class Task {
 
     public String toString() {
         return "[" + (isDone ? "X" : " ") + "] " + description + " due by: " + deadline;
+    }
+    public String toSaveString() {
+        StringJoiner saveString = new StringJoiner(Storage.DELIMITER);
+        String[] taskParameters = {isDone ? "1" : "0", description, deadline};
+        for (String string : taskParameters) {
+            saveString.add(string);
+        }
+        return saveString.toString();
     }
 }

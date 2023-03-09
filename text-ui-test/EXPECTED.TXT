@@ -6,4 +6,6 @@ Mark a task as done using: mark <index>
 Mark a task as undone using: unmark <index>
 Edit a task deadline using: editdeadline <index> -d <deadline>
 Exit the program using: bye
+
+No valid save file was found. Creating a new list for you to use.
 See you again, bye!

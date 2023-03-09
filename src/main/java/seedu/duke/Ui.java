@@ -7,7 +7,7 @@ public class Ui {
     public Ui() {
     }
 
-    public static void printWelcomeMessage() {
+    public void printWelcomeMessage() {
         System.out.println("Hello, I am Duke and I will help you remember the tasks you need to do!");
         System.out.println("For now, you can do the following:");
         System.out.println("Add a task using: add <description> -d <deadline>");
@@ -16,8 +16,8 @@ public class Ui {
         System.out.println("Mark a task as undone using: unmark <index>");
         System.out.println("Edit a task deadline using: editdeadline <index> -d <deadline>");
         System.out.println("Exit the program using: bye");
+        System.out.println();
     }
-
 
 
     public void printAddTaskNotification(Task task) {
@@ -49,7 +49,8 @@ public class Ui {
         if (taskList.size() == 0) {
             printEmptyList();
         } else {
-            System.out.println(taskList.toString());
+            System.out.println("Here are the tasks in your list:");
+            System.out.println(taskList);
         }
     }
 
@@ -71,5 +72,16 @@ public class Ui {
 
     public void printEmptyList(){
         System.out.println("There are no tasks in the list.");
+    }
+    public void printSavingErrorMessage() {
+        System.out.println("Error encountered while saving!");
+    }
+
+    public void printFileNotFoundMessage() {
+        System.out.println("No valid save file was found. Creating a new list for you to use.");
+    }
+
+    public void printLoadingErrorMessage() {
+        System.out.println("Error encountered while loading your saved file! Creating a new list for you to use.");
     }
 }
