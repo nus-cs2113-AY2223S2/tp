@@ -26,6 +26,11 @@ public class Parser {
         recipeList.listRecipes();
     }
 
+    public Recipe parseViewRecipe(String[] command, RecipeList recipes) {
+        int recipeIndex = Integer.parseInt(command[1]) - 1;
+        return recipes.get(recipeIndex);
+    }
+
     public RecipeList parseLoadDatabase(String input) {
         return new RecipeList();
     }
