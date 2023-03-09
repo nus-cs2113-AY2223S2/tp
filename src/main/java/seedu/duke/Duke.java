@@ -35,7 +35,7 @@ public class Duke {
         // continuously reads input from command line until command 'bye' is inputted
         while (!line.equalsIgnoreCase("bye")) {
             System.out.println(DIVIDER);
-            runCommand(line, expenseList);
+            runCommand(line);
             System.out.println(DIVIDER);
             line = in.nextLine();
         }
