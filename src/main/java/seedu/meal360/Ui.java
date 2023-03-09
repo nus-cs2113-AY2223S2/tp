@@ -1,6 +1,7 @@
 package seedu.meal360;
 
 public class Ui {
+
     private static final int BOXWIDTH = 100;
     private static final String SEPARATORCHAR = "-";
 

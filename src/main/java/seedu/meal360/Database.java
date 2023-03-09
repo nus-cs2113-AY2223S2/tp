@@ -1,6 +1,7 @@
 package seedu.meal360;
 
 public class Database {
+
     public void createDatabase() {
         // create database
     }

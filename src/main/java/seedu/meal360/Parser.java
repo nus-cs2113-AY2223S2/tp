@@ -1,6 +1,7 @@
 package seedu.meal360;
 
 public class Parser {
+
     public String[] parseCommand(String command) {
         return command.split(" ");
     }
