@@ -1,10 +1,8 @@
 package seedu.rainyDay;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.rainyDay.rainyDay.addFinancialStatement;
-import static seedu.rainyDay.rainyDay.generateReport;
-import static seedu.rainyDay.rainyDay.deleteFinancialStatement;
 
+import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,37 +14,44 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 class rainyDayTest {
-    @Test
-    public void sampleTest() {
-        Assertions.assertTrue(true);
-    }
 
     @Test
-    public void verifyAddStatement() {
-        String actualAddStatement = addFinancialStatement("Ipad", "out", 120);
+    public void addFinancialStatement() {
+        String actualAddStatement = rainyDay.addFinancialStatement("Ipad", "out", 120);
         String expectedAddStatement = "Done, added: out for Ipad, $120";
+        assertEquals(expectedAddStatement, actualAddStatement);
+
+        actualAddStatement = rainyDay.addFinancialStatement("angpao", "in", 3000);
+        expectedAddStatement = "Done, added: in for angpao, $3000";
         assertEquals(expectedAddStatement, actualAddStatement);
     }
 
     @Test
-    public void verifyDeleteStatement() {
-        addFinancialStatement("Ipad", "out", 120);
-        String actualDeleteStatement = deleteFinancialStatement(1);
+    public void deleteFinancialStatement() {
+        rainyDay.clearFinancialReport();
+        rainyDay.addFinancialStatement("Ipad", "out", 120);
+        rainyDay.addFinancialStatement("angpao", "in", 3000);
+        String actualDeleteStatement = rainyDay.deleteFinancialStatement(1);
         String expectedDeleteStatement = "Done, deleted \"Ipad\" from the financial report";
+        assertEquals(expectedDeleteStatement, actualDeleteStatement);
+
+        actualDeleteStatement = rainyDay.deleteFinancialStatement(1);
+        expectedDeleteStatement = "Done, deleted \"angpao\" from the financial report";
         assertEquals(expectedDeleteStatement, actualDeleteStatement);
     }
 
     @Test
-    public void verifyReport() {
-        ArrayList<FinancialStatement> financialReport = new ArrayList<>();
-        String actualReport = generateReport(financialReport);
+    public void generateReport() {
+        ArrayList<FinancialStatement> statements = new ArrayList<FinancialStatement>();
+        FinancialReport financialReport = new FinancialReport(statements);
+        String actualReport = rainyDay.generateReport(financialReport);
         String expectedReport = "Your financial report is empty";
         assertEquals(expectedReport, actualReport);
 
-        financialReport.add(new FinancialStatement("Ipad", "out", 120));
-        financialReport.add(new FinancialStatement("pork", "out", 5));
-        financialReport.add(new FinancialStatement("angpao", "in", 3000));
-        actualReport = generateReport(financialReport);
+        financialReport.addStatement(new FinancialStatement("Ipad", "out", 120));
+        financialReport.addStatement(new FinancialStatement("pork", "out", 5));
+        financialReport.addStatement(new FinancialStatement("angpao", "in", 3000));
+        actualReport = rainyDay.generateReport(financialReport);
         expectedReport = String.join(System.lineSeparator(), "1. Ipad -$120 (out)", "2. pork -$5 (out)",
                 "3. angpao +$3000 (in)" + System.lineSeparator(), "Inflow: $3000", "Outflow: $125",
                 "Remaining value: $2875");
@@ -54,7 +59,9 @@ class rainyDayTest {
     }
 
     void writeToFileTest_fileExists() {
-        ArrayList<FinancialStatement> financialReport = new ArrayList<>();
+
+        ArrayList<FinancialStatement> statements = new ArrayList<FinancialStatement>();
+        FinancialReport financialReport = new FinancialReport(statements);
         String filePath = "rainyDay.txt";
         rainyDay.writeToFile(financialReport, filePath);
         Assertions.assertTrue(new File(filePath).exists());
@@ -62,17 +69,18 @@ class rainyDayTest {
 
     @Test
     void writeToFileTest_contentMatch() throws IOException, ClassNotFoundException {
-        ArrayList<FinancialStatement> financialReport = new ArrayList<>();
+        ArrayList<FinancialStatement> statements = new ArrayList<FinancialStatement>();
+        FinancialReport financialReport = new FinancialReport(statements);
         String filePath = "rainyDay.txt";
-        financialReport.add(new FinancialStatement("noodles", "in", 5));
+        financialReport.addStatement(new FinancialStatement("noodles", "in", 5));
         rainyDay.writeToFile(financialReport, filePath);
 
         FileInputStream readData = new FileInputStream(filePath);
         ObjectInputStream readStream = new ObjectInputStream(readData);
         @SuppressWarnings("unchecked")
-        ArrayList<FinancialStatement> data = (ArrayList<FinancialStatement>) readStream.readObject();
+        FinancialReport data = (FinancialReport) readStream.readObject();
         readStream.close();
 
-        assertEquals(generateReport(financialReport), generateReport(data));
+        assertEquals(rainyDay.generateReport(financialReport), rainyDay.generateReport(data));
     }
 }

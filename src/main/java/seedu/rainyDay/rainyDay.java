@@ -101,6 +101,10 @@ public class rainyDay {
         return report;
     }
 
+    public static void clearFinancialReport() {
+        financialReport.clearReport();
+    }
+
     public static void displayHelp() {
         //thanks bao mi hua benjamin
     }
