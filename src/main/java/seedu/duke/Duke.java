@@ -6,7 +6,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.text.DateFormat;
-import seedu.Workout.Workout;
+import seedu.workout.Workout;
 
 public class Duke {
     private ArrayList<Workout> workouts;
@@ -25,7 +25,7 @@ public class Duke {
             if (command.startsWith("delete ")) {
                 String dateString = command.substring(7);
                 try {
-                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
                     Date date = dateFormat.parse(dateString);
 
                     // Search for the workout with the matching date and remove it
@@ -44,7 +44,7 @@ public class Duke {
                     }
 
                 } catch (ParseException e) {
-                    System.out.println("Invalid date format. Please enter the date in the format dd/mm/yyyy.");
+                    System.out.println("Invalid date format. Please enter the date in the format dd/mm/yy.");
                 }
             }
 
