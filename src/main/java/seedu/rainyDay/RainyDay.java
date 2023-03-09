@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class rainyDay {
+public class RainyDay {
 
     public static String filePath = "rainyDay.txt";
 
