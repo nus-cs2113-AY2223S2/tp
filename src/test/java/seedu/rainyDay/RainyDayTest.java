@@ -88,13 +88,13 @@ class RainyDayTest {
     }
 
     @Test
-    public void loadFromFile_emptyFile_IOExceptionThrown() {
+    public void loadFromFile_emptyFile_iOExceptionThrown() {
         String emptyFilePath = "thisFileDoesNotExist.txt";
         assertThrows(IOException.class, () -> loadFromFile(emptyFilePath));
     }
 
     @Test
-    public void loadFromFile_InvalidFileType_ClassNotFoundExceptionThrown() {
+    public void loadFromFile_invalidFileType_classNotFoundExceptionThrown() {
         String invalidTypeFilePath = "test files/thisFileTypeIsInvalid.txt";
         assertThrows(IOException.class, () -> loadFromFile(invalidTypeFilePath));
     }
