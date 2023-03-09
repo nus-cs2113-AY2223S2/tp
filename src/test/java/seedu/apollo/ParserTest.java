@@ -66,7 +66,7 @@ class ParserTest {
     }
 
     @Test
-    void command_invalidCommand_expectNull( ) throws UnexpectedException {
+    void getCommand_invalidCommand_expectNull( ) throws UnexpectedException {
         Ui ui = new Ui();
         int size = 1;
         String userCommand = "draw";
