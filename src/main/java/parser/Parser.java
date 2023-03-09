@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class Parser {
 
-    private static final String WHITESPACE = " ";
+    public static final String WHITESPACE = " ";
     private static final int EXTRACT_INDEX_LENGTH = 2;
 
+    protected ParserAdd parserAdd = new ParserAdd();
     public static String extractCommandKeyword (String userInput) {
         String[] input = userInput.split(WHITESPACE);
         return input[0].toLowerCase();
@@ -28,5 +29,7 @@ public class Parser {
         }
         return results.get(results.size()-1);
     }
-
+    public String[] extractAddParameters(String userInput) {
+        return parserAdd.parseInput(userInput);
+    }
 }
