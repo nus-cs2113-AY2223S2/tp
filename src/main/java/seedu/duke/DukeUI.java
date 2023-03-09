@@ -18,7 +18,9 @@ public class DukeUI {
     public String readCommand() {
         return in.nextLine();
     }
-    public void printDukeLogo() { System.out.println(DUKE_LOGO);}
+    public void printDukeLogo() {
+        System.out.println(DUKE_LOGO);
+    }
     public void printGreeting(){
         printDukeLogo();
     }
