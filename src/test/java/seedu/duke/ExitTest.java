@@ -25,9 +25,4 @@ class ExitTest {
         assertEquals("Bye!", outputStreamCaptor.toString().trim());
 
     }
-
-    @BeforeEach
-    public void tearDown() {
-        System.setOut(standardOut);
-    }
 }
