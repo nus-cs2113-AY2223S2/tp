@@ -53,7 +53,7 @@ public class DukeSession {
     /**
      * Runs the read, evaluate, print loop for Duke.
      */
-    public void runDuke() throws DukeException {
+    public void runDuke()  {
         this.ui.printIntroduction();
         while (this.controlFlow.shouldRun()) {
             String nextCommand = ui.getNextCommandString();
