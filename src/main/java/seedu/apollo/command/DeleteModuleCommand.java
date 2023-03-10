@@ -19,7 +19,7 @@ public class DeleteModuleCommand extends Command{
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList){
         try {
-            moduleList.deleteModule(moduleList.findModule(moduleCode));
+            moduleList.remove(moduleList.findModule(moduleCode));
             //update storage later
             ui.printModuleDeleteMessage(moduleCode);
         } catch (ModuleNotFoundException e) {

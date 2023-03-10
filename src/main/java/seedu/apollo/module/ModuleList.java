@@ -25,22 +25,4 @@ public class ModuleList extends ArrayList<Module> {
         throw new ModuleNotFoundException();
     }
 
-    /**
-     * Removes the module in the ModuleList.
-     *
-     * @param module The module to be deleted.
-     */
-    public void deleteModule(Module module) {
-        this.remove(module);
-    }
-
-    /**
-     * Adds the module to the ModuleList.
-     *
-     * @param module The module to be added.
-     */
-    public void addModule(Module module) {
-        this.add(module);
-    }
-
 }
