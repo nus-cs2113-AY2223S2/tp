@@ -3,6 +3,9 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 public class TrieNode {
+    private HashMap<Character, TrieNode> children;
+    private String content;
+    private boolean isWord;
     public TrieNode(){
         children = new HashMap<>();
         isWord=false;
@@ -49,7 +52,5 @@ public class TrieNode {
         return children.get(key);
     }
 
-    private HashMap<Character, TrieNode> children;
-    private String content;
-    private boolean isWord;
+
 }
