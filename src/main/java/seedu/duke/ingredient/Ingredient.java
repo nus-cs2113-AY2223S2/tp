@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.ingredient;
 
 public class Ingredient {
     protected String name;
