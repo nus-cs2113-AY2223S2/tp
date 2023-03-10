@@ -6,8 +6,11 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import seedu.duke.Event;
 import seedu.duke.EventList;
-//import com.google.gson.TypeAdapterFactory;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
@@ -66,5 +69,4 @@ public class Storage {
         }
         return savedList;
     }
-
 }

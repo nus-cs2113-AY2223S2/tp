@@ -75,7 +75,4 @@ class StorageTest {
         assert(a.equals(b));
         saveFile.delete();
     }
-
-
-
 }
