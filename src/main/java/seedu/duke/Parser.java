@@ -70,22 +70,17 @@ public class Parser {
                 parseFilterPrice(commands);
                 break;
             case "f/category":
-                if(commands.length<2){
-                    throw new MissingParametersException();
-                }
-                parseFilterCategory(commands);
-                break;
             case "f/tag":
                 if(commands.length<2){
                     throw new MissingParametersException();
                 }
-                parseFilterTags(commands);
+                parseFilterCategoryOrTag(commands, commands[0]);
                 break;
             default:
                 throw new MissingParametersException();
             }
         }catch(MissingParametersException e){
-            e.missingAddItemParameters();
+            e.missingSearchItemParameters();
         }
     }
     public void parseFilterPrice(String commands[]){
@@ -107,11 +102,18 @@ public class Parser {
             Ui.printDoubleNeeded();
         }
     }
-    public void parseFilterCategory(String commands[]){
-
-    }
-    public void parseFilterTags(String commands[]){
-
+    public void parseFilterCategoryOrTag(String commands[], String mode){
+        String keyword = "";
+        for(int i=1;i<commands.length;i++){
+            keyword+=commands[i];
+            keyword+=' ';
+        }
+        keyword.trim();
+        if(mode.equals("f/category")){
+            Inventory.filterCategory(keyword);
+        }else{
+            Inventory.filterTags(keyword);
+        }
     }
     public void parseSearchUPC(String rawInput){
         try {
@@ -123,7 +125,7 @@ public class Parser {
             }
             Inventory.searchUPC(rawInput);
         }catch(MissingParametersException e){
-            e.missingAddItemParameters();
+            e.missingSearchItemParameters();
         }catch(SearchFilterErrorException se){
             Ui.printInvalidEditCommand();
         }
@@ -135,7 +137,7 @@ public class Parser {
             }
             Inventory.search(rawInput);
         }catch(MissingParametersException e){
-            e.missingAddItemParameters();
+            e.missingSearchItemParameters();
         }
     }
     public void parseAdd(String rawInput) {

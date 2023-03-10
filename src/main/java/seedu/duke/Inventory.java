@@ -11,6 +11,37 @@ public class Inventory {
     private static HashMap<String,Item> upcCodes = new HashMap<>();
     private static Trie trie = new Trie();
     private static HashMap<String,ArrayList<Item>> itemNameHash = new HashMap<>();
+    public static void filterCategory(String category){
+        ArrayList<Item> filteredItems = new ArrayList<>();
+        for(Item item: items){
+            if(item.getCategory().equals(category)){
+                filteredItems.add(item);
+            }
+        }
+        if(filteredItems.isEmpty()){
+            Ui.printEmptySearch();
+            return;
+        }
+        Ui.printSearchItems(filteredItems);
+    }
+    public static void filterTags(String tag){
+        ArrayList<Item> filteredItems = new ArrayList<>();
+        for(Item item: items){
+            if(item.getTags().isEmpty()){
+                continue;
+            }
+            for(String itemTag:item.getTags()){
+                if(itemTag.equals(tag)){
+                    filteredItems.add(item);
+                }
+            }
+        }
+        if(filteredItems.isEmpty()){
+            Ui.printEmptySearch();
+            return;
+        }
+        Ui.printSearchItems(filteredItems);
+    }
     public static void filterPrice(double price, String mode){
         ArrayList<Item> filteredItems = new ArrayList<>();
         for(Item item: items){

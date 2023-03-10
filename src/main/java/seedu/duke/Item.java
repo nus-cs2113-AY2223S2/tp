@@ -9,6 +9,16 @@ public class Item {
     private String category;
     private ArrayList<String> tags = new ArrayList<>();
 
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
+    }
+
+
+
     Item(String name, String upc, String qty, String price) {
         this.name = name;
         this.upc = upc;
