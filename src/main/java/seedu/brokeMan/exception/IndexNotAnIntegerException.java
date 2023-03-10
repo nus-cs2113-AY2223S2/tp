@@ -1,6 +1,6 @@
-package seedu.BrokeMan.exception;
+package seedu.brokeMan.exception;
 
-import static seedu.BrokeMan.common.Messages.MESSAGE_INDEX_NOT_INTEGER;
+import static seedu.brokeMan.common.Messages.MESSAGE_INDEX_NOT_INTEGER;
 
 public class IndexNotAnIntegerException extends BrokeManException {
     public String getMessage() {

@@ -1,4 +1,4 @@
-package seedu.BrokeMan.expense;
+package seedu.brokeMan.expense;
 
 import java.util.Comparator;
 

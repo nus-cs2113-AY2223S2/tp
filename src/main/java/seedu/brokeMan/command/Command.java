@@ -1,4 +1,4 @@
-package seedu.BrokeMan.command;
+package seedu.brokeMan.command;
 
 public abstract class Command {
     // protected MoneyList moneyList;

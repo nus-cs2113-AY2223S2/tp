@@ -1,9 +1,9 @@
-package seedu.BrokeMan;
+package seedu.brokeMan;
 
-import seedu.BrokeMan.command.Command;
-import seedu.BrokeMan.command.ExitCommand;
-import seedu.BrokeMan.parser.Parser;
-import seedu.BrokeMan.ui.Ui;
+import seedu.brokeMan.command.Command;
+import seedu.brokeMan.command.ExitCommand;
+import seedu.brokeMan.parser.Parser;
+import seedu.brokeMan.ui.Ui;
 
 public class BrokeMan {
 

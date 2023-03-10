@@ -1,4 +1,4 @@
-package seedu.BrokeMan.common;
+package seedu.brokeMan.common;
 
 public class Messages {
 
@@ -18,7 +18,7 @@ public class Messages {
             "|  _|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"| {======|_|\"\"\"\"\"|_| \"\"\"\"|_|\"\"\"\"\"|\n" +
             "|  \"`-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-'./o--000'\"`-0-0-'\"`-0-0-'\"`-0-0-'";
 
-    public static final String MESSAGE_WELCOME = "Welcome to BrokeMan! \n +" +
+    public static final String MESSAGE_WELCOME = "Welcome to BrokeMan!\n" +
             "|  Your personal budget manager to prevent you to become broke like me...";
     public static final String MESSAGE_INVALID_ADD_EXPENSE_COMMAND = "Invalid add expense command format";
     public static final String MESSAGE_INVALID_EDIT_EXPENSE_COMMAND = "Invalid edit expense command format";

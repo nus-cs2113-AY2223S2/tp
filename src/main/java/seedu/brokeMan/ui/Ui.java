@@ -1,11 +1,11 @@
-package seedu.BrokeMan.ui;
+package seedu.brokeMan.ui;
 
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import static seedu.BrokeMan.common.Messages.MESSAGE_GOODBYE;
-import static seedu.BrokeMan.common.Messages.MESSAGE_LOGO;
-import static seedu.BrokeMan.common.Messages.MESSAGE_WELCOME;
+import static seedu.brokeMan.common.Messages.MESSAGE_GOODBYE;
+import static seedu.brokeMan.common.Messages.MESSAGE_LOGO;
+import static seedu.brokeMan.common.Messages.MESSAGE_WELCOME;
 
 /*
 Some parts of the code are copied and adapted from TextUI.java of addressbook-level2
@@ -27,7 +27,7 @@ public class Ui {
     public static String getUserCommand() {
         showToUser("");
         out.print(LINE_PREFIX + "Enter command: ");
-        return in.nextLine();
+        return in.nextLine().trim();
     }
 
     public static void showWelcomeMessages() {
@@ -42,14 +42,22 @@ public class Ui {
 
     public static void showToUserWithLineBreak(String... messages) {
         for (String message : messages) {
-            out.println(LINE_PREFIX + message);
+            if (message.equals("")) {
+                out.println(LINE_PREFIX.trim() + message);
+            } else {
+                out.println(LINE_PREFIX + message);
+            }
         }
         out.println(LINE_PREFIX + LINE_DIVIDER);
     }
 
     public static void showToUser(String... messages) {
         for (String message : messages) {
-            out.println(LINE_PREFIX + message);
+            if (message.equals("")) {
+                out.println(LINE_PREFIX.trim() + message);
+            } else {
+                out.println(LINE_PREFIX + message);
+            }
         }
     }
 }

@@ -1,18 +1,18 @@
-package seedu.BrokeMan.parser;
+package seedu.brokeMan.parser;
 
-import seedu.BrokeMan.command.AddExpenseCommand;
-import seedu.BrokeMan.command.Command;
-import seedu.BrokeMan.command.DeleteExpenseCommand;
-import seedu.BrokeMan.command.EditExpenseCommand;
-import seedu.BrokeMan.command.ExitCommand;
-import seedu.BrokeMan.command.InvalidCommand;
-import seedu.BrokeMan.command.ListExpenseCommand;
-import seedu.BrokeMan.exception.CostIsNotADoubleException;
-import seedu.BrokeMan.exception.IndexNotAnIntegerException;
+import seedu.brokeMan.command.AddExpenseCommand;
+import seedu.brokeMan.command.Command;
+import seedu.brokeMan.command.DeleteExpenseCommand;
+import seedu.brokeMan.command.EditExpenseCommand;
+import seedu.brokeMan.command.ExitCommand;
+import seedu.brokeMan.command.InvalidCommand;
+import seedu.brokeMan.command.ListExpenseCommand;
+import seedu.brokeMan.exception.CostIsNotADoubleException;
+import seedu.brokeMan.exception.IndexNotAnIntegerException;
 
-import static seedu.BrokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
-import static seedu.BrokeMan.common.Messages.MESSAGE_INVALID_ADD_EXPENSE_COMMAND;
-import static seedu.BrokeMan.common.Messages.MESSAGE_INVALID_EDIT_EXPENSE_COMMAND;
+import static seedu.brokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_ADD_EXPENSE_COMMAND;
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_EXPENSE_COMMAND;
 
 
 /*
@@ -26,7 +26,7 @@ public class Parser {
         if (!userFullInput.contains(" ")) {
             userFullInput = userFullInput.concat(" dummy");
         }
-        String[] userSplitInputs = userFullInput.trim().split(" ", 2);
+        String[] userSplitInputs = userFullInput.split(" ", 2);
         String userCommand = userSplitInputs[0];
         String description = userSplitInputs[1];
 

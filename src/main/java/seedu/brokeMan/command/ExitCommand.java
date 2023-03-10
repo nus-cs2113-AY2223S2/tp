@@ -1,6 +1,6 @@
-package seedu.BrokeMan.command;
+package seedu.brokeMan.command;
 
-import seedu.BrokeMan.ui.Ui;
+import seedu.brokeMan.ui.Ui;
 
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "exit";

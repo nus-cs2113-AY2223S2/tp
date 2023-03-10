@@ -1,4 +1,4 @@
-package seedu.BrokeMan;
+package seedu.brokeMan;
 
 import org.junit.jupiter.api.Test;
 

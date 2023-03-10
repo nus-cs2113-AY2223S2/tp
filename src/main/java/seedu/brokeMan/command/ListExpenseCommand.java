@@ -1,6 +1,6 @@
-package seedu.BrokeMan.command;
+package seedu.brokeMan.command;
 
-import seedu.BrokeMan.expense.Expenses;
+import seedu.brokeMan.expense.Expenses;
 
 public class ListExpenseCommand extends Command {
     public static final String COMMAND_WORD = "listExpense";

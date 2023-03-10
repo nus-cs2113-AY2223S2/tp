@@ -1,6 +1,6 @@
-package seedu.BrokeMan.expense;
+package seedu.brokeMan.expense;
 
-import seedu.BrokeMan.ui.Ui;
+import seedu.brokeMan.ui.Ui;
 
 import java.util.LinkedList;
 

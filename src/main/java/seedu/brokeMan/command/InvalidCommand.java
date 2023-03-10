@@ -1,6 +1,6 @@
-package seedu.BrokeMan.command;
+package seedu.brokeMan.command;
 
-import seedu.BrokeMan.ui.Ui;
+import seedu.brokeMan.ui.Ui;
 
 public class InvalidCommand extends Command {
     private String invalidMessage;
