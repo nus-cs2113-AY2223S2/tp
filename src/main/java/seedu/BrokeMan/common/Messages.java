@@ -23,4 +23,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_EDIT_EXPENSE_COMMAND = "Invalid edit expense command format";
     public static final String MESSAGE_COST_NOT_DOUBLE = "Cost is not a double";
     public static final String MESSAGE_INDEX_NOT_INTEGER = "Index is not an integer";
+    public static final String MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION = "Index is not specified";
 }

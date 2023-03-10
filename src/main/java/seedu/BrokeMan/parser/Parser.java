@@ -2,6 +2,7 @@ package seedu.BrokeMan.parser;
 
 import seedu.BrokeMan.command.AddExpenseCommand;
 import seedu.BrokeMan.command.Command;
+import seedu.BrokeMan.command.DeleteExpenseCommand;
 import seedu.BrokeMan.command.EditExpenseCommand;
 import seedu.BrokeMan.command.ExitCommand;
 import seedu.BrokeMan.command.InvalidCommand;
@@ -10,8 +11,7 @@ import seedu.BrokeMan.command.SortExpenseCommand;
 import seedu.BrokeMan.exception.CostIsNotADoubleException;
 import seedu.BrokeMan.exception.IndexNotAnIntegerException;
 
-import static seedu.BrokeMan.common.Messages.MESSAGE_INVALID_ADD_EXPENSE_COMMAND;
-import static seedu.BrokeMan.common.Messages.MESSAGE_INVALID_EDIT_EXPENSE_COMMAND;
+import static seedu.BrokeMan.common.Messages.*;
 
 public class Parser {
 
@@ -32,6 +32,8 @@ public class Parser {
             return prepareSortExpenseCommand();
         case EditExpenseCommand.COMMAND_WORD:
             return prepareEditExpenseCommand(description);
+        case DeleteExpenseCommand.COMMAND_WORD:
+            return prepareDeleteExpenseCommand(description);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 //        case HelpCommand.COMMAND_WORD:
@@ -40,6 +42,22 @@ public class Parser {
         default:
             return new InvalidCommand("Invalid command word entered");
         }
+    }
+
+    private static Command prepareDeleteExpenseCommand(String description) {
+        int index;
+        try {
+            if (description.equals("dummy")) {
+                return new InvalidCommand(MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION);
+            }
+
+            index = Integer.parseInt(description);
+        } catch (NumberFormatException nfe) {
+            String errorMessage = new IndexNotAnIntegerException().getMessage();
+            return new InvalidCommand(errorMessage);
+        }
+
+        return new DeleteExpenseCommand(index);
     }
 
     private static Command prepareAddExpenseCommand(String description) {

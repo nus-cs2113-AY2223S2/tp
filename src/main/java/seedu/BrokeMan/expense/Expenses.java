@@ -46,7 +46,7 @@ public class Expenses {
      */
     public static void deleteExpense(int expenseIndex) {
         try {
-            expenseList.remove(expenseIndex);
+            expenseList.remove(expenseIndex - 1);
 //            System.out.println("Successfully deleted expense.");
             Ui.showToUserWithLineBreak("Successfully deleted expense.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
