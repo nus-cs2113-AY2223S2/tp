@@ -28,7 +28,7 @@ public class Parser {
         return lineParts;
     }
     
-    private static void addExpenses(List<String> arguments) {
+    public static void addExpenses(List<String> arguments) {
         try {
             String expenseDescription = arguments.get(0).substring(2).trim();
             String expenseDate = arguments.get(1).substring(2).trim();

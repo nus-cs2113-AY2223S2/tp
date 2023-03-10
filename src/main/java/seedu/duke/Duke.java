@@ -39,6 +39,7 @@ public class Duke {
             System.out.println(DIVIDER);
             line = in.nextLine();
         }
+        in.close();
     }
     
     private static void runCommand(String line) {
