@@ -18,9 +18,10 @@ public class Ui {
             "add n/[name] upc/[UPC] qty/[quantity] p/[price]";
     public static final String DUPLICATE_ADD = "Duplicate item found! Please add another item with a different UPC";
     public static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
-    public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following format: " +
-            "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
-    public static final String ITEM_NOT_FOUND = "Edit failed! Reason: Item not found in database. Please add item first!";
+    public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
+            "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
+    public static final String ITEM_NOT_FOUND = "Edit failed! Reason: Item not found in database. Please add item " +
+            "first!";
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
     public Ui() {
         greetUser();
@@ -93,7 +94,7 @@ public class Ui {
         System.out.println(ANSI_BLUE + SUCCESS_EDIT + ANSI_RESET + "\n");
         System.out.println(ANSI_RED + "Before Update: " + ANSI_RESET);
         System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
-                "Quantity Available: " + oldItem.getQuantity() +  "\n" + "Item Price: " + oldItem.getPrice() + ANSI_RESET);
+                "Quantity Available: " + oldItem.getQuantity() +  "\n" + "Item Price: " + oldItem.getPrice());
         System.out.println("\n" + ANSI_GREEN + "After Update: " + ANSI_RESET);
         System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
                 "Quantity Available: " + updatedItem.getQuantity() +  "\n" + "Item Price: " + updatedItem.getPrice());
