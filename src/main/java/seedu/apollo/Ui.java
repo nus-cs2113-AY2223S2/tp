@@ -104,6 +104,16 @@ public class Ui {
     }
 
     /**
+     * For {@code delmod} command.
+     * Prints message for successful deletion of Module.
+     * @param moduleCode The code of the module which was deleted
+     */
+    public void printModuleDeleteMessage(String moduleCode) {
+        System.out.println("Got it, removed " + moduleCode + " from your Module list.");
+
+    }
+
+    /**
      * For {@code todo}, {@code deadline}, and {@code event} commands.
      * Prints out message for successful adding of Task.
      *
