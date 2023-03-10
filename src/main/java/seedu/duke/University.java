@@ -11,6 +11,18 @@ public class University {
         this.univAbbName = univAbbName;
     }
 
+    public int getUnivId() {
+        return this.univId;
+    }
+
+    public String getUnivName() {
+        return this.univName;
+    }
+
+    public String getUnivAbbName() {
+        return this.univAbbName;
+    }
+
     @Override
     public String toString() {
         return univId + "," + univName + "," + univAbbName;
