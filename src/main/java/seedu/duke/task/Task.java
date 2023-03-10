@@ -6,10 +6,6 @@ import java.util.Comparator;
 import java.util.StringJoiner;
 
 public class Task {
-    private String description;
-    private String deadline;
-    private boolean isDone;
-
     /**
      * Compares the task1 deadline and task2 deadline. Used for sorting the ArrayList tasks by deadline.
      */
@@ -19,6 +15,10 @@ public class Task {
             return task1.deadline.compareTo(task2.deadline);
         }
     };
+
+    private String description;
+    private String deadline;
+    private boolean isDone;
 
     public Task(String description, String deadline) {
         this.description = description;
