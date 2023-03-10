@@ -31,6 +31,7 @@ public class Command {
             TrigoGraph trigoGraph = new TrigoGraph(toDo);
             trigoGraph.startGraphAnalysis();
             break;
+
         default:
             break;
         }
