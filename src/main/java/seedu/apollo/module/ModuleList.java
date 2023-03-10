@@ -48,7 +48,7 @@ public class ModuleList {
      */
     public Module findModule(String moduleCode) throws ModuleNotFoundException {
         for (Module module : allModules) {
-            if(module.getCode().equals(moduleCode)) {
+            if(module.getCode().toLowerCase().equals(moduleCode)) {
                 return module;
             }
         }
