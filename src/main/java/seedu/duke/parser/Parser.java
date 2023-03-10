@@ -9,6 +9,10 @@ import seedu.duke.exceptions.MissingArgumentsException;
 
 public class Parser {
 
+    public static final String MESSAGE_INVALID_ID = "Please enter a valid numerical index!";
+    public static final String MESSAGE_EMPTY_INPUT = "Use /help for a list of supported commands!";
+    public static final String MESSAGE_INVALID_ARGUMENTS = "Please enter the required argument(s)!";
+    public static final String MESSAGE_MISSING_ARGS_EDIT = "Please specify at least 1 detail you would like to edit!";
     private static final String COMMAND_ADD = "/add";
     private static final String COMMAND_VIEW = "/view";
     private static final String COMMAND_EDIT = "/edit";
@@ -16,9 +20,7 @@ public class Parser {
     private static final String COMMAND_HELP = "/help";
     private static final String COMMAND_BYE = "/bye";
     private static final String MESSAGE_INVALID_COMMAND = "Please enter a valid command!";
-    private static final String MESSAGE_INVALID_ID = "Please enter a valid numerical index!";
-    private static final String MESSAGE_INVALID_ARGUMENTS = "Please enter the valid argument(s)!";
-    private static final String MESSAGE_MISSING_ARGUMENTS = "Please enter the required argument(s)!";
+  
 
     /**
      * @param userInput The entire string of user input.
@@ -30,6 +32,9 @@ public class Parser {
      */
     public static void parseUserInput(String userInput)
             throws InvalidCommandException, InvalidArgumentsException, MissingArgumentsException {
+        if (userInput.isEmpty()) {
+            throw new MissingArgumentsException(MESSAGE_EMPTY_INPUT);
+        }
         String[] userInputArray = userInput.trim().split(" ", 2);
         String command = userInputArray[0].toLowerCase();
         String arguments = userInput.replaceFirst(command, "").trim();
@@ -76,7 +81,7 @@ public class Parser {
     private static void parseDeleteCommand(String arguments)
             throws InvalidArgumentsException, MissingArgumentsException {
         if (arguments.isEmpty()) {
-            throw new MissingArgumentsException(MESSAGE_MISSING_ARGUMENTS);
+            throw new MissingArgumentsException(MESSAGE_INVALID_ID);
         }
         String[] argumentsArray = arguments.split(" ", 2);
         String expenseId = argumentsArray[0];
@@ -91,15 +96,15 @@ public class Parser {
 
     private static void parseAddCommand(String arguments) throws MissingArgumentsException {
         if (arguments.isEmpty()) {
-            throw new MissingArgumentsException(MESSAGE_MISSING_ARGUMENTS);
+            throw new MissingArgumentsException(MESSAGE_INVALID_ARGUMENTS);
         }
         String[] argumentsArray = parseAddArguments(arguments);
         String description = argumentsArray[0];
         String category = argumentsArray[1];
         String price = argumentsArray[2];
-        // System.out.println(description);
-        // System.out.println(category);
-        // System.out.println(price);
+        if (description.isEmpty() || category.isEmpty() || price.isEmpty()) {
+            throw new MissingArgumentsException(MESSAGE_INVALID_ARGUMENTS);
+        }
         // do something with arguments
 
     }
@@ -112,7 +117,7 @@ public class Parser {
      */
     private static void parseEditCommand(String arguments) throws MissingArgumentsException, InvalidArgumentsException {
         if (arguments.isEmpty()) {
-            throw new MissingArgumentsException(MESSAGE_MISSING_ARGUMENTS);
+            throw new MissingArgumentsException(MESSAGE_INVALID_ARGUMENTS);
         }
         String[] argumentsArray = parseEditArguments(arguments);
         String expenseId = argumentsArray[0];
@@ -120,7 +125,10 @@ public class Parser {
         String category = argumentsArray[2];
         String price = argumentsArray[3];
         if (expenseId.isEmpty()) {
-            throw new MissingArgumentsException(MESSAGE_MISSING_ARGUMENTS);
+            throw new MissingArgumentsException(MESSAGE_INVALID_ID);
+        }
+        if (description.isEmpty() && category.isEmpty() && price.isEmpty()) {
+            throw new MissingArgumentsException(MESSAGE_MISSING_ARGS_EDIT);
         }
         try {
             int expenseIdInt = Integer.parseInt(argumentsArray[0]);
