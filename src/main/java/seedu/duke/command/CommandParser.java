@@ -1,5 +1,7 @@
 package seedu.duke.command;
 
+import seedu.duke.task.TaskList;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -62,7 +64,7 @@ public class CommandParser {
      * @param input The unparsed command string.
      * @return A command that can be executed by calling the run() method.
      */
-    public static Command parseCommand(String input) {
+    public static Command parseCommand(String input, TaskList taskList) {
         String[] splitInput = input.trim().replaceAll("\\s+", " ").split(" ");
         switch (splitInput[0]) {
         case AddTaskCommand.KEYWORD:
@@ -76,7 +78,7 @@ public class CommandParser {
         case EditDeadlineCommand.KEYWORD:
             return checkValidityEdit(splitInput);
         case DeleteCommand.KEYWORD:
-            return new DeleteCommand(splitInput);
+            return new DeleteCommand(splitInput,taskList);
         case ExitCommand.KEYWORD:
             return new ExitCommand();
         default:

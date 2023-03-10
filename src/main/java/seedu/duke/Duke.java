@@ -28,7 +28,7 @@ public class Duke {
         }
         while (isInUse) {
             String userInput = in.nextLine();
-            Command parsedCommand = CommandParser.parseCommand(userInput);
+            Command parsedCommand = CommandParser.parseCommand(userInput, taskList);
             parsedCommand.execute(taskList, ui);
             try {
                 Storage.saveData("./data.txt", taskList, ui);
