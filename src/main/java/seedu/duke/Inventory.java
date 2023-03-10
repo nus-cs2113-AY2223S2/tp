@@ -3,20 +3,29 @@ package seedu.duke;
 import seedu.duke.exceptions.EditErrorException;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 
 public class Inventory {
     private static ArrayList<Item> items = new ArrayList<>();
-    private static HashSet<String> upcCodes = new HashSet<>();
+    private static HashMap<String,Item> upcCodes = new HashMap<>();
+    private static Trie trie = new Trie();
+    private static HashMap<String,ArrayList<Item>> itemNameHash = new HashMap<>();
 
-    //todo: trie and HashMap<String,ArrayList<int>> for searching
     public static void addItem(Item item) {
-        if (upcCodes.contains(item.getUpc())) {
+        if (upcCodes.containsKey(item.getUpc())) {
             Ui.printDuplicateAdd();
         } else {
-            upcCodes.add(item.getUpc());
+            upcCodes.put(item.getUpc(),item);
             items.add(item);
             Ui.printSuccessAdd();
+            ArrayList<Item> oldItems = new ArrayList<>();
+            String itemName = item.getName().toLowerCase();
+            if(itemNameHash.containsKey(oldItems)){
+                oldItems=itemNameHash.get(itemName);
+                itemNameHash.remove(itemName);
+            }
+            oldItems.add(item);
+            itemNameHash.put(itemName,oldItems);
         }
     }
 
@@ -33,6 +42,19 @@ public class Inventory {
             for (int data = 1; data < editInfo.length; data += 1) {
                 updateItemInfo(updatedItem, editInfo[data]);
             }
+            String oldItemName = oldItem.getName();
+            String newItemName = updatedItem.getName();
+            if(oldItemName!=newItemName&&itemNameHash.get(oldItemName).size()==1){
+                itemNameHash.remove(oldItemName);
+            }else{
+                ArrayList<Item> oldItems = itemNameHash.get(oldItemName);
+                oldItems.remove(oldItemName);
+                oldItems.add(updatedItem);
+                itemNameHash.remove(oldItemName);
+                itemNameHash.put(newItemName,oldItems);
+            }
+            upcCodes.remove(oldItem.getUpc());
+            upcCodes.put(updatedItem.getUpc(),updatedItem);
             Ui.printEditDetails(oldItem, updatedItem);
         } catch (EditErrorException eee) {
             Ui.printItemNotFound();
@@ -72,18 +94,12 @@ public class Inventory {
      */
     public static Item retrieveItemFromArrayList(String[] editInfo) throws EditErrorException {
         String upcCode = editInfo[0].replaceFirst("upc/", "");
-        Item selectedItem = null;
-        for (Item currentItem : items) {
-            if ((currentItem.getUpc()).equals(upcCode)) {
-                selectedItem = currentItem;
-            }
-        }
-        if (selectedItem == null) {
+        if (!upcCodes.containsKey(upcCode)) {
             throw new EditErrorException();
         }
+        Item selectedItem = upcCodes.get(upcCode);
         return selectedItem;
     }
-
     /**
      * Temporary List Method created by Kai Wen for Edit Function Testing.
      */
@@ -99,6 +115,16 @@ public class Inventory {
     }
 
     public static void removeItemAtIndex(int index) {
+        String itemName = items.get(index).getName().toLowerCase();
+        upcCodes.remove(items.get(index).getUpc());
+        if(itemNameHash.get(itemName).size()==1){
+            itemNameHash.remove(itemName);
+        }else{
+            ArrayList<Item> oldItems = itemNameHash.get(itemName);
+            oldItems.remove(itemName);
+            itemNameHash.remove(itemName);
+            itemNameHash.put(itemName,oldItems);
+        }
         items.remove(index);
     }
 
