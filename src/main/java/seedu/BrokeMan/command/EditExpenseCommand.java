@@ -10,7 +10,6 @@ public class EditExpenseCommand extends Command {
     private String newEntry;
 
     private boolean isEditCost = false;
-//    private final Expense newExpense;
 
     public EditExpenseCommand(int index, String type, String newEntry) {
         this.index = index;

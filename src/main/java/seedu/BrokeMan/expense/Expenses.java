@@ -8,10 +8,6 @@ public class Expenses {
     private static final LinkedList<Expense> expenseList = new LinkedList<>();
 
 
-//    public Expenses() {
-//        this.expenseList = new LinkedList<Expense>();
-//    }
-
     /**
      * Adds new expense to the list
      *
@@ -27,12 +23,10 @@ public class Expenses {
      */
     public static void listExpense() {
         sortExpenses();
-//        System.out.println("Here are the expenses you have made\n");
         Ui.showToUser("Here are the expenses you have made.");
         int counter = 1;
         for (Expense expenseLog : expenseList) {
             String message = String.format("%d. %s", counter, expenseLog.toString());
-//            System.out.println(message + '\n');
             Ui.showToUser(message);
             counter++;
         }
@@ -47,10 +41,8 @@ public class Expenses {
     public static void deleteExpense(int expenseIndex) {
         try {
             expenseList.remove(expenseIndex - 1);
-//            System.out.println("Successfully deleted expense.");
             Ui.showToUserWithLineBreak("Successfully deleted expense.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
-//            System.out.println("Invalid index! Please try again.\n");
             Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
         }
     }
@@ -68,13 +60,10 @@ public class Expenses {
             if (type.equals("cost")) {
                 expenseBeingEdited.editCost(newEntry);
             } else {
-                //                System.out.println("Invalid type parameter!");
                 Ui.showToUserWithLineBreak("Invalid type Parameter!", "");
             }
-//            System.out.println("Successfully edited expense.");
             Ui.showToUserWithLineBreak("Successfully edited expense.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
-//            System.out.println("Invalid index! Please try again.\n");
             Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
         }
     }
@@ -97,13 +86,10 @@ public class Expenses {
                 expenseBeingEdited.editTime(newEntry);
                 break;
             default:
-//                System.out.println("Invalid type parameter!");
                 Ui.showToUserWithLineBreak("Invalid type parameter!", "");
             }
-//            System.out.println("Successfully edited expense.");
             Ui.showToUserWithLineBreak("Successfully edited expense.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
-//            System.out.println("Invalid index! Please try again.\n");
             Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
         }
     }
@@ -111,8 +97,7 @@ public class Expenses {
     /**
      * Sorts expenses using Expense comparator
      */
-    public static void sortExpenses() {
+    private static void sortExpenses() {
         expenseList.sort(new ExpenseCostComparator());
-//        Ui.showToUser("You have successfully sorted your expense list");
     }
 }

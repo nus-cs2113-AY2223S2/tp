@@ -7,12 +7,19 @@ import seedu.BrokeMan.command.EditExpenseCommand;
 import seedu.BrokeMan.command.ExitCommand;
 import seedu.BrokeMan.command.InvalidCommand;
 import seedu.BrokeMan.command.ListExpenseCommand;
-import seedu.BrokeMan.command.SortExpenseCommand;
 import seedu.BrokeMan.exception.CostIsNotADoubleException;
 import seedu.BrokeMan.exception.IndexNotAnIntegerException;
 
-import static seedu.BrokeMan.common.Messages.*;
+import static seedu.BrokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
+import static seedu.BrokeMan.common.Messages.MESSAGE_INVALID_ADD_EXPENSE_COMMAND;
+import static seedu.BrokeMan.common.Messages.MESSAGE_INVALID_EDIT_EXPENSE_COMMAND;
 
+
+/*
+Some parts of the code are copied and adapted from TextUI.java of addressbook-level2
+with the link to the original code at:
+https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/parser/Parser.java
+ */
 public class Parser {
 
     public static Command parseCommand(String userFullInput) {
@@ -28,17 +35,12 @@ public class Parser {
             return prepareAddExpenseCommand(description);
         case ListExpenseCommand.COMMAND_WORD:
             return prepareListExpenseCommand();
-        case SortExpenseCommand.COMMAND_WORD:
-            return prepareSortExpenseCommand();
         case EditExpenseCommand.COMMAND_WORD:
             return prepareEditExpenseCommand(description);
         case DeleteExpenseCommand.COMMAND_WORD:
             return prepareDeleteExpenseCommand(description);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
-//        case HelpCommand.COMMAND_WORD:
-//        default:
-//            return new HelpCommand();
         default:
             return new InvalidCommand("Invalid command word entered");
         }
@@ -89,10 +91,6 @@ public class Parser {
 
     private static Command prepareListExpenseCommand() {
         return new ListExpenseCommand();
-    }
-
-    private static Command prepareSortExpenseCommand() {
-        return new SortExpenseCommand();
     }
 
     private static Command prepareEditExpenseCommand(String description) {

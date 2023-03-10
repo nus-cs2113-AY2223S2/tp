@@ -3,7 +3,9 @@ package seedu.BrokeMan.ui;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import static seedu.BrokeMan.common.Messages.*;
+import static seedu.BrokeMan.common.Messages.MESSAGE_GOODBYE;
+import static seedu.BrokeMan.common.Messages.MESSAGE_LOGO;
+import static seedu.BrokeMan.common.Messages.MESSAGE_WELCOME;
 
 /*
 Some parts of the code are copied and adapted from TextUI.java of addressbook-level2
@@ -14,8 +16,8 @@ public class Ui {
 //    private static final Scanner in = new Scanner(System.in);
     private static Scanner in = new Scanner(System.in);
     private static PrintStream out = System.out;
-//    private static final String LINE_DIVIDER = "________________________________________________________________________";
-    private static final String LINE_DIVIDER = "-----------------------------------------------------------------------";
+    private static final String LINE_DIVIDER =
+            "-----------------------------------------------------------------------";
     private static final String LINE_PREFIX = "|  ";
 
 
@@ -51,12 +53,4 @@ public class Ui {
             out.println(LINE_PREFIX + message);
         }
     }
-
-//    public static void showMessageToUser(String... messages) {
-////        showResultToUser(messages);
-//        for (String message : messages) {
-//            out.println(LINE_PREFIX + message);
-//        }
-//        showToUser(LINE_DIVIDER);
-//    }
 }

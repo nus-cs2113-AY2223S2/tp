@@ -1,6 +1,6 @@
 package seedu.BrokeMan.command;
 
 public abstract class Command {
-//    protected MoneyList moneyList;
+    // protected MoneyList moneyList;
     public abstract void execute();
 }
