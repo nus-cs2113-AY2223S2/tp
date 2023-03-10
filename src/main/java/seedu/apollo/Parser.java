@@ -102,7 +102,8 @@ public class Parser {
         String command = split[0];
         switch (command) {
         case COMMAND_DELETE_MODULE_WORD:
-            return new DeleteModuleCommand();
+            String moduleCode = split[1];
+            return new DeleteModuleCommand(moduleCode);
         case COMMAND_LIST_MODULE_WORD:
             return new ListModuleCommand();
         case COMMAND_EXIT_WORD:

@@ -12,6 +12,9 @@ import seedu.apollo.task.TaskList;
 public class DeleteModuleCommand extends Command{
 
     protected String moduleCode;
+    public DeleteModuleCommand(String moduleCode){
+        this.moduleCode = moduleCode;
+    }
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage,ModuleList moduleList){
