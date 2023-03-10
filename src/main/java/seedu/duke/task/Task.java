@@ -1,9 +1,25 @@
 package seedu.duke.task;
 
+import seedu.duke.Storage;
+
+import java.util.Comparator;
+import java.util.StringJoiner;
+
 public class Task {
+    /**
+     * Compares the task1 deadline and task2 deadline. Used for sorting the ArrayList tasks by deadline.
+     */
+    public static Comparator<Task> TaskDeadlineComparator = new Comparator<Task>() {
+        @Override
+        public int compare(Task task1, Task task2) {
+            return task1.deadline.compareTo(task2.deadline);
+        }
+    };
+
     private String description;
     private String deadline;
     private boolean isDone;
+
     public Task(String description, String deadline) {
         this.description = description;
         this.deadline = deadline;
@@ -31,4 +47,13 @@ public class Task {
     public String toString() {
         return "[" + (isDone ? "X" : " ") + "] " + description + " due by: " + deadline;
     }
+    public String toSaveString() {
+        StringJoiner saveString = new StringJoiner(Storage.DELIMITER);
+        String[] taskParameters = {isDone ? "1" : "0", description, deadline};
+        for (String string : taskParameters) {
+            saveString.add(string);
+        }
+        return saveString.toString();
+    }
+
 }
