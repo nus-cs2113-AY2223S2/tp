@@ -17,7 +17,7 @@ public class CommandTest {
     Event harryPotter = new Event("Harry Potter", 70, 50);
     Event lordOfTheRings = new Event("Lord of the Rings", 90, 20);
 
-    {
+    private void setup() {
         food.addEvent(salad);
         food.addEvent(pizza);
         book.addEvent(harryPotter);
@@ -30,6 +30,7 @@ public class CommandTest {
 
     @Test
     void addCategory_oneCategory_expectThreeCategoryInCategoryList() {
+        setup();
         String input = "category travel";
         executeInput(input);
         assertTrue(CategoryList.categories.size() == 3);
@@ -39,6 +40,7 @@ public class CommandTest {
 
     @Test
     void addEvent_oneFoodEvent_expectThreeEventsInFoodCategory() {
+        setup();
         String input = "event banana b/20 e/10";
         String categoryIndex = "1\n"; // replace with the correct input string
         InputStream in = new ByteArrayInputStream(categoryIndex.getBytes());
@@ -52,6 +54,7 @@ public class CommandTest {
 
     @Test
     void deleteWholeCategory_oneCategory_expectOneCategoryInList() {
+        setup();
         String input = "delete c/food";
         executeInput(input);
         assertTrue(CategoryList.categories.size() == 1);
@@ -61,6 +64,7 @@ public class CommandTest {
 
     @Test
     void deleteEvent_oneBookEvent_expectOneEventInBookCategory() {
+        setup();
         String input = "delete c/book e/Harry Potter";
         executeInput(input);
         assertTrue(book.events.size() == 1);
@@ -70,6 +74,7 @@ public class CommandTest {
 
     @Test
     void viewAll_expectEverythingToBePrintedOut() {
+        setup();
         String input = "view";
         Parser parser = new Parser();
         // Get help from chatGPT for the next 2 lines
@@ -78,18 +83,19 @@ public class CommandTest {
         parser.splitKeywordAndDescription(input);
         parser.executeUserInput();
         String actual = outputStream.toString();
-        String expected = "1.food\r\n"
-                + "salad [budget]100 [expense]50\r\n"
-                + "pizza [budget]200 [expense]100\r\n"
-                + "2.book\r\n"
-                + "Harry Potter [budget]70 [expense]50\r\n"
-                + "Lord of the Rings [budget]90 [expense]20\r\n";
+        String expected = "1.food\n"
+                + "salad [budget]100 [expense]50\n"
+                + "pizza [budget]200 [expense]100\n"
+                + "2.book\n"
+                + "Harry Potter [budget]70 [expense]50\n"
+                + "Lord of the Rings [budget]90 [expense]20\n";
         assertEquals(expected, actual);
         clear();
     }
 
     @Test
     void viewCategory_expectCategoryToBePrintedOut() {
+        setup();
         String input = "view food";
         Parser parser = new Parser();
         // Get help from chatGPT for the next 2 lines
@@ -98,8 +104,8 @@ public class CommandTest {
         parser.splitKeywordAndDescription(input);
         parser.executeUserInput();
         String actual = outputStream.toString();
-        String expected = "1. salad [budget]100 [expense]50\r\n"
-                + "2. pizza [budget]200 [expense]100\r\n";
+        String expected = "1. salad [budget]100 [expense]50\n"
+                + "2. pizza [budget]200 [expense]100\n";
         assertEquals(expected, actual);
         clear();
     }
