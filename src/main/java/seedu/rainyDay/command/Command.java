@@ -14,7 +14,7 @@ public class Command {
 
     public static final String COMMAND_HELP = "help";
 
-    public static final String COMMAND_EXIT = "exit";
+    public static final String COMMAND_EXIT = "bye";
 
     public static String addFinancialStatement(String description, String flowDirection, int value) {
         RainyDay.financialReport.addStatement(new FinancialStatement(description, flowDirection, value));
