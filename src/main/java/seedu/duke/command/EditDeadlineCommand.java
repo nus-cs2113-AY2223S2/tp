@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.Ui;
 import seedu.duke.task.TaskList;
 
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,19 +15,25 @@ public class EditDeadlineCommand extends Command  {
     public static String deadline;
 
 
-    public EditDeadlineCommand(String[] splitInput) {
-
+    public EditDeadlineCommand(String[] splitInput) throws NumberFormatException, DateTimeParseException {
         HashMap<String, String> args = CommandParser.getArguments(splitInput, FLAGS);
         index = Integer.parseInt(args.get(KEYWORD)) - 1;
         deadline = CommandParser.formatDateTime(args.get("-d"));
     }
     @Override
     public void execute(TaskList taskList, Ui ui) {
-        if (deadline.isEmpty()) {
+        /*if (deadline.isEmpty()) {
             ui.printDateTimeError();
-        } else {
+        }
+        else if (index == -1) {
+            ui.printIndexError();
+        }
+        else { */
+        try {
             String taskItem = taskList.editDeadline(index, deadline);
             ui.printEditDeadlineNotification(taskItem);
+        } catch (IndexOutOfBoundsException e) {
+            ui.printIndexError();
         }
 
     }

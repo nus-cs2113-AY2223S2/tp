@@ -66,7 +66,9 @@ public class Ui {
     public static void printDateTimeError() {
         System.out.println("The date provided must be of the following format: dd-MM-yyyy HH:MM.");
     }
-
+    public static void printIndexError() {
+        System.out.println("You provided an invalid index.");
+    }
     public static void printParametersError() {
         System.out.println("You did not provide the correct parameters for this function.");
     }
