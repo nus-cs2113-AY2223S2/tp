@@ -19,7 +19,7 @@ public class GenerateRandomCommand extends Command {
         }
 
     }
-    
+
     // Check if 2nd part of input is a positive integer
     public static boolean isNumeric(String input) {
         if (input == null) {

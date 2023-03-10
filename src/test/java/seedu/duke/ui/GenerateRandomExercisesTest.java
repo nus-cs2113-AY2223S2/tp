@@ -2,14 +2,9 @@ package seedu.duke.ui;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.commands.GenerateRandomCommand;
-import seedu.duke.exceptions.ErrorMessages;
-import seedu.duke.exercisegenerator.GenerateExercise;
-import seedu.duke.exersisedata.ExerciseData;
 
-import java.util.ArrayList;
-import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 
 public class GenerateRandomExercisesTest {
     /**
