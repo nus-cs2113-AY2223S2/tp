@@ -33,6 +33,6 @@ public class Duke {
 //                Symptom.THROAT_IRRITATION)))) {
 //            System.out.println(illnessMatch.getIllness().getIllnessName());
 //            System.out.println(illnessMatch.getSimilarityPercentage());
-        }
+//        }
     }
 }
