@@ -40,13 +40,13 @@ public class ModuleList {
 
     /**
      * Finds the module in the ModuleList which matches the module name
-     * @param keyword The name of the module to be found
+     * @param moduleName The name of the module to be found
      * @return module in the ModuleList which matches the module name 
      */
-    public Module findModule(String keyword) {
+    public Module findModule(String moduleName) {
 
     for (Module module : allModules) {
-        if (module.getModuleCode.equals(keyword)) {
+        if (module.getModuleCode.equals(moduleName)) {
         return module;
         }
     }
