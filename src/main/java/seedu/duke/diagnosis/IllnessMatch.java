@@ -2,6 +2,7 @@ package seedu.duke.diagnosis;
 
 import seedu.duke.diagnosis.illnesses.Illness;
 
+//@@author Brennanzuz
 public class IllnessMatch {
     private final Illness illness;
     private final double similarityPercentage;
