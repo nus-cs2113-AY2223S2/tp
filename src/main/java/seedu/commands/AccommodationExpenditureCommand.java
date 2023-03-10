@@ -18,9 +18,12 @@ public class AccommodationExpenditureCommand {
     }
 
     public CommandResult execute(ExpenditureList expenditures) {
-        AccommodationExpenditure accommodationExpenditure = new AccommodationExpenditure(accommodationExpenditureDescription,
-                accommodationExpenditureValue, accommodationExpenditureDate);
+        AccommodationExpenditure accommodationExpenditure = new AccommodationExpenditure(
+                accommodationExpenditureDescription,
+                accommodationExpenditureValue,
+                accommodationExpenditureDate);
         expenditures.addExpenditure(accommodationExpenditure);
-        return new CommandResult(String.format("Added %s expenditure %s", COMMAND_WORD, accommodationExpenditure.toString()));
+        return new CommandResult(String.format("Added %s expenditure %s",
+                COMMAND_WORD, accommodationExpenditure.toString()));
     }
 }

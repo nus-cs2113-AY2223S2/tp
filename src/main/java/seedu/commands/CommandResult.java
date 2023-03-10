@@ -1,7 +1,7 @@
 package seedu.commands;
 
 public class CommandResult {
-    private final String COMMAND_RESULT;
+    private final String commandResult;
 
     /**
      * Constructor.
@@ -9,10 +9,10 @@ public class CommandResult {
      * @param commandResult result of command executed
      */
     public CommandResult(String commandResult) {
-        COMMAND_RESULT = commandResult;
+        this.commandResult = commandResult;
     }
 
     public String getCommandResult() {
-        return COMMAND_RESULT;
+        return commandResult;
     }
 }

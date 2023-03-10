@@ -17,9 +17,12 @@ public class AcademicExpenditureCommand extends Command {
     }
 
     public CommandResult execute(ExpenditureList expenditures) {
-        AcademicExpenditure academicExpenditure = new AcademicExpenditure(academicExpenditureDescription,
-                academicExpenditureValue, academicExpenditureDate);
+        AcademicExpenditure academicExpenditure = new AcademicExpenditure(
+                academicExpenditureDescription,
+                academicExpenditureValue,
+                academicExpenditureDate);
         expenditures.addExpenditure(academicExpenditure);
-        return new CommandResult(String.format("Added %s expenditure %s", COMMAND_WORD, academicExpenditure.toString()));
+        return new CommandResult(String.format("Added %s expenditure %s",
+                COMMAND_WORD, academicExpenditure.toString()));
     }
 }

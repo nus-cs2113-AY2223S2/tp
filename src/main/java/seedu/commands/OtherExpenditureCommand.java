@@ -1,6 +1,5 @@
 package seedu.commands;
 
-import seedu.expenditure.AcademicExpenditure;
 import seedu.expenditure.ExpenditureList;
 import seedu.expenditure.OtherExpenditure;
 

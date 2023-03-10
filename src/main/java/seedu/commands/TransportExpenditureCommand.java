@@ -18,9 +18,12 @@ public class TransportExpenditureCommand {
     }
 
     public CommandResult execute(ExpenditureList expenditures) {
-        TransportExpenditure transportExpenditure = new TransportExpenditure(transportExpenditureDescription,
-                transportExpenditureValue, transportExpenditureDate);
+        TransportExpenditure transportExpenditure = new TransportExpenditure(
+                transportExpenditureDescription,
+                transportExpenditureValue,
+                transportExpenditureDate);
         expenditures.addExpenditure(transportExpenditure);
-        return new CommandResult(String.format("Added %s expenditure %s", COMMAND_WORD, transportExpenditure.toString()));
+        return new CommandResult(String.format("Added %s expenditure %s",
+                COMMAND_WORD, transportExpenditure.toString()));
     }
 }

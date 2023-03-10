@@ -18,9 +18,12 @@ public class FoodExpenditureCommand {
     }
 
     public CommandResult execute(ExpenditureList expenditures) {
-        FoodExpenditure foodExpenditure = new FoodExpenditure(foodExpenditureDescription,
-                foodExpenditureValue, foodExpenditureDate);
+        FoodExpenditure foodExpenditure = new FoodExpenditure(
+                foodExpenditureDescription,
+                foodExpenditureValue,
+                foodExpenditureDate);
         expenditures.addExpenditure(foodExpenditure);
-        return new CommandResult(String.format("Added %s expenditure %s", COMMAND_WORD, foodExpenditure.toString()));
+        return new CommandResult(String.format("Added %s expenditure %s",
+                COMMAND_WORD, foodExpenditure.toString()));
     }
 }
