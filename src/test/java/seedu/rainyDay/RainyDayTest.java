@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.rainyDay.RainyDay.loadFromFile;
 
-import seedu.rainyDay.command.command;
+import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 import org.junit.jupiter.api.Assertions;
@@ -47,8 +47,8 @@ class RainyDayTest {
     @Test
     public void parseDeleteCommand() {
         RainyDay.clearFinancialReport();
-        command.addFinancialStatement("Ipad", "out", 120);
-        command.addFinancialStatement("angpao", "in", 3000);
+        Command.addFinancialStatement("Ipad", "out", 120);
+        Command.addFinancialStatement("angpao", "in", 3000);
         ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport testReport = new FinancialReport(statements);
         testReport.addStatement(new FinancialStatement("Ipad", "out", 120));
@@ -84,7 +84,7 @@ class RainyDayTest {
         FinancialReport financialReportData = new FinancialReport(data);
         readStream.close();
 
-        assertEquals(command.generateReport(financialReport), command.generateReport(financialReportData));
+        assertEquals(Command.generateReport(financialReport), Command.generateReport(financialReportData));
     }
 
     @Test
