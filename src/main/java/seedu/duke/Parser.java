@@ -84,7 +84,7 @@ public class Parser {
         }
     }
 
-    /**Temporary List Method created by Kai Wen for Edit Function Testing.*/
+    /** Temporary List Method created by Kai Wen for Edit Function Testing.*/
     public void parseList() {
         Inventory.listAll();
     }

@@ -1,6 +1,9 @@
 package seedu.duke;
 
-import static seedu.duke.ColorCode.*;
+import static seedu.duke.ColorCode.ANSI_RESET;
+import static seedu.duke.ColorCode.ANSI_GREEN;
+import static seedu.duke.ColorCode.ANSI_BLUE;
+import static seedu.duke.ColorCode.ANSI_RED;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
