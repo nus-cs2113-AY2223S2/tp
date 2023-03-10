@@ -9,7 +9,7 @@ public class Storage {
 
     private static final String SAVED_MODULES_FILE_PATH = "./data/saved_modules.txt";
     private ArrayList<Module> modules;
-    
+
     public Storage() {
         this.modules = new ArrayList<>();
         try {
