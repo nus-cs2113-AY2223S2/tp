@@ -37,7 +37,7 @@ class DeleteCommandTest {
         } catch (NullPointerException e) {
             return;
         }
-        String error = String.format("A delete command was successfully constructed with invalid input: %s",
+        String error = String.format("A delete command was successfully constructed with invalid input: %s ",
                 testString[1]);
         fail(error);
     }
@@ -51,7 +51,7 @@ class DeleteCommandTest {
         } catch (IndexOutOfBoundsException e) {
             return;
         }
-        String error = String.format("A delete command was successfully constructed with invalid input: %s",
+        String error = String.format("A delete command was successfully constructed with invalid input: %s ",
                 testString[1]);
         fail(error);
     }
