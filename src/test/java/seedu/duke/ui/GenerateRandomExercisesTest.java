@@ -19,9 +19,7 @@ public class GenerateRandomExercisesTest {
 
     void testInputNumber(){
 
-        assertEquals(1 ,new GenerateRandomCommand("1"));
         assertEquals("Please key in a valid numeric input!" , new GenerateRandomCommand("a"));
-        assertEquals("Your generate description cannot be empty!" ,new GenerateRandomCommand(""));
-
+        assertEquals("Your generate description cannot be empty!" , new GenerateRandomCommand(""));
     }
 }

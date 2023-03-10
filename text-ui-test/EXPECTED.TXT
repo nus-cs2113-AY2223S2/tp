@@ -1,9 +1,14 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Please key in a valid numeric input!
+Type /help to find out the possible commands Duke can read in!
+Your generate description cannot be empty!
+Type /help to find out the possible commands Duke can read in!
+*-----------------------------------------------------------------*
+    ____             __
+   / __ )__  _____  / /
+  / __  / / / / _ \/ /
+ / /_/ / /_/ /  __/_/
+/_____/\__, /\___(_)
+      /____/
+Hope to see you again!
 
-type: generate x (where x is a positive integer)
-Good Bye!
+*-----------------------------------------------------------------*
