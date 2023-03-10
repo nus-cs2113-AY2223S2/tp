@@ -323,7 +323,24 @@ public class Ui {
                 "\nExiting Apollo...");
     }
 
+    /**
+     * Prints error message if the user tries to add a module which does not exist.
+     */
     public void printInvalidModule() {
         System.out.println("This module does not exist!");
+    }
+
+    /**
+     * Prints error message if the user does not specify the module to add.
+     */
+    public void printEmptyAddMod() {
+        System.out.println("Please specify a module to add!");
+    }
+
+    /**
+     * Prints error message if the user does not specify the module to delete.
+     */
+    public void printEmptyDelMod() {
+        System.out.println("Please specify a module to delete!");
     }
 }
