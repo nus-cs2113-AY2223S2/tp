@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.moneymind;
 
 /**
  * ViewCommand class to view the categories and events.

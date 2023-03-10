@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.moneymind;
 
 /**
  * Represents the command to delete an event or a category.

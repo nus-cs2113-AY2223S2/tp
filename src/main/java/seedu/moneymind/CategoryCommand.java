@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.moneymind;
 
 import java.util.HashMap;
 

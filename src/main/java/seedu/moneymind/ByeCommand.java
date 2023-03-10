@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.moneymind;
 
 /**
  * Represents the command to exit the program.

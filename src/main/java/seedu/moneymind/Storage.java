@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.moneymind;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -42,7 +42,7 @@ public class Storage {
             System.out.println("I cannot seem to access the saved tasks. Did you perhaps lock it away?");
         }
     }
-    
+
     /**
      * Saves an ArrayList of Events to EventList.txt file
      * 
@@ -57,7 +57,7 @@ public class Storage {
             dataToTextFile[0] = dukeTasks.toString();
 
             // save task details split by regex ", "
-            writeToFile += dataToTextFile[0] + SAVEFILESEPARATOR + dataToTextFile[1] + 
+            writeToFile += dataToTextFile[0] + SAVEFILESEPARATOR + dataToTextFile[1] +
                     SAVEFILESEPARATOR + dataToTextFile[2] + System.lineSeparator();
         }
 
@@ -84,7 +84,7 @@ public class Storage {
             // TODO: Loading of objects from file
             String[] loadTaskInfo = new String[3];
             loadTaskInfo = textFileScanner.nextLine().split(SAVEFILESEPARATOR, 3);
-            
+
             // create tasks individually
             switch (loadTaskInfo[0]) {
             case "CATEGORY":
