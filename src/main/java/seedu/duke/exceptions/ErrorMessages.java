@@ -6,11 +6,9 @@ public class ErrorMessages {
      */
     public static void emptyDescriptionErrorMessage(){
         System.out.println("Your generate description cannot be empty!");
-        System.out.println("Type /help to find out the possible commands Duke can read in!");
     }
-    public static void invalidTaskErrorMessage(){
+    public static void invalidInputMessage(){
         System.out.println("Please key in a valid numeric input!");
-        System.out.println("Type /help to find out the possible commands Duke can read in!");
     }
 
     public static void unknownCommandMessage(){

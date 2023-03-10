@@ -1,7 +1,14 @@
-Please key in a valid numeric input!
-Type /help to find out the possible commands Duke can read in!
-Your generate description cannot be empty!
-Type /help to find out the possible commands Duke can read in!
+*-----------------------------------------------------------------*
+Hello! Welcome to
+        _______ __                          ____        __
+       / ____(_) /_____  ___  __________   / __ \__  __/ /_____
+      / /_  / / __/ __ \/ _ \/ ___/ ___/  / / / / / / / //_/ _ \
+     / __/ / / /_/ / / /  __(__  |__  )  / /_/ / /_/ / ,< /  __/
+    /_/   /_/\__/_/ /_/\___/____/____/  /_____/\__,_/_/|_|\___/
+
+
+What type of exercise you like to do today?
+*-----------------------------------------------------------------*
 *-----------------------------------------------------------------*
     ____             __
    / __ )__  _____  / /
