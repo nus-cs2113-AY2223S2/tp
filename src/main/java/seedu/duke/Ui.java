@@ -50,6 +50,7 @@ public class Ui {
             printEmptyList();
         } else {
             System.out.println("Here are the tasks in your list:");
+            taskList.sortTaskList();
             System.out.println(taskList);
         }
     }

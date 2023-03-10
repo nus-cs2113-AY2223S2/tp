@@ -1,6 +1,7 @@
 package seedu.duke.task;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.StringJoiner;
 
 /**
@@ -101,5 +102,12 @@ public class TaskList {
             taskListString.add(getTask(i).toSaveString());
         }
         return taskListString.toString();
+    }
+
+    /**
+     * Sorts the ArrayList tasks, by the corresponding Task deadlines
+     */
+    public void sortTaskList() {
+        tasks.sort(Task.TaskDeadlineComparator);
     }
 }
