@@ -3,8 +3,6 @@ package seedu.apollo.module;
 import org.junit.jupiter.api.Test;
 import seedu.apollo.exception.ModuleNotFoundException;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ModuleListTest {
