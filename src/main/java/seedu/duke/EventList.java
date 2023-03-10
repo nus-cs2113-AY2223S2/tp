@@ -60,7 +60,7 @@ public class EventList {
             String endDay) {
 
         boolean hasStTime = true;
-        boolean hasEdTime = false;
+        boolean hasEdTime = true;
         LocalDateTime combinedStartTime = LocalDateTime.parse(DTINIT, dfWithTime);
         LocalDateTime combinedEndTime = LocalDateTime.parse(DTINIT, dfWithTime);
 
