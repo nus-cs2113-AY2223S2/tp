@@ -9,13 +9,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class StorageTest {
 
     private static final String fileLocation = System.getProperty("user.dir") + "/save.json";
     File saveFile = new File(fileLocation);
-    private static final Storage storage = new Storage();
+    private final Storage storage = new Storage();
     @Test
     @Order(1)
     public void emptyLoad(){ //check that it can load when there isn't an instance of save.json in the path.
@@ -46,13 +45,13 @@ class StorageTest {
         original.addEvent("testing2","03:24", "2023/04/01",
                 "08:50", "2023/03/23");
         storage.saveToFile(original);
-        EventList testList_check = new EventList();
-        testList_check.addEvent("testing", "10:00", "2023/03/20",
+        EventList testListCheck = new EventList();
+        testListCheck.addEvent("testing", "10:00", "2023/03/20",
                 "10:00", "2023/03/21");
-        testList_check.addEvent("testing2","03:24", "2023/04/01",
+        testListCheck.addEvent("testing2","03:24", "2023/04/01",
                 "08:50", "2023/03/23");
         EventList testList = new EventList(storage.loadEvents());
-        String a = testList_check.getFullList().toString();
+        String a = testListCheck.getFullList().toString();
         String b = testList.getFullList().toString();
         assert(a.equals(b));
         saveFile.delete();
