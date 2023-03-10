@@ -24,8 +24,10 @@ class RainyDayTest {
             ArrayList<FinancialStatement> statements = new ArrayList<>();
             FinancialReport testReport = new FinancialReport(statements);
             testReport.addStatement(new FinancialStatement("noodles", "in", 5));
+            RainyDay.clearFinancialReport();
             RainyDay.parseUserInput("add -in noodles $5");
-            assertEquals(RainyDay.financialReport.getFullStatement(0), testReport.getFullStatement(0));
+            assertEquals(RainyDay.financialReport.getFullStatement(0),
+                    testReport.getFullStatement(0));
         } catch (Exception e) {
             System.out.println("Wrong input format! Please refer to help for correct user input!");
         }
@@ -37,8 +39,10 @@ class RainyDayTest {
             ArrayList<FinancialStatement> statements = new ArrayList<>();
             FinancialReport testReport = new FinancialReport(statements);
             testReport.addStatement(new FinancialStatement("noodles", "out", 5));
+            RainyDay.clearFinancialReport();
             RainyDay.parseUserInput("add -out noodles $5");
-            assertEquals(RainyDay.financialReport.getFullStatement(0), testReport.getFullStatement(0));
+            assertEquals(RainyDay.financialReport.getFullStatement(0),
+                    testReport.getFullStatement(0));
         } catch (Exception e) {
             System.out.println("Wrong input format! Please refer to help for correct user input!");
         }
@@ -54,7 +58,8 @@ class RainyDayTest {
         testReport.addStatement(new FinancialStatement("Ipad", "out", 120));
         try {
             RainyDay.parseUserInput("delete 2");
-            assertEquals(RainyDay.financialReport.getFullStatement(0), testReport.getFullStatement(0));
+            assertEquals(RainyDay.financialReport.getFullStatement(0),
+                    testReport.getFullStatement(0));
         } catch (Exception e) {
             System.out.println("Wrong input format! Please refer to help for correct user input!");
         }
