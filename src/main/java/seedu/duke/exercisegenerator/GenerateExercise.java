@@ -5,9 +5,10 @@ import seedu.duke.exersisedata.ExerciseData;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GenerateExercise {
+import seedu.duke.Utility.DifficultyLevel;
 
-    private ArrayList<ExerciseData> exerciseData = new ArrayList<>();
+public class GenerateExercise {
+    public ArrayList<ExerciseData> exerciseData = new ArrayList<>();
 
     public GenerateExercise() {
         ParseData parseData = new ParseData();
@@ -22,6 +23,21 @@ public class GenerateExercise {
             randomExerciseList.add(randomExercise);
         }
         return randomExerciseList;
+    }
 
+    public ArrayList<ExerciseData> generateSpecificDifficultySet(int count, String difficultyLevel) {
+        ArrayList<ExerciseData> specificDifficultyExerciseList = new ArrayList<>();
+        Random random = new Random();
+        for (int i = 0; i < count; i++) {
+            while (true) {
+                ExerciseData randomExercise = exerciseData.get(random.nextInt(exerciseData.size()));
+                if (randomExercise.getLevel().equals(difficultyLevel)) {
+                    specificDifficultyExerciseList.add(randomExercise);
+                    break;
+                }
+            }
+
+        }
+        return specificDifficultyExerciseList;
     }
 }

@@ -14,6 +14,8 @@ public class Greet {
         //System.out.println("What is your name?");
         //Scanner in = new Scanner(System.in);
         //System.out.println("Hello " + in.nextLine());
-        System.out.println("type: generate x (where x is a positive integer)");
+        System.out.println("Commands: ");
+        System.out.println("Generate a number of random exercises: generate x (where x is a positive integer)");
+        System.out.println("Generate a number of exercise with specific difficulty: generate difficulty easy/medium/hard x (where x is a positive integer)");
     }
 }
