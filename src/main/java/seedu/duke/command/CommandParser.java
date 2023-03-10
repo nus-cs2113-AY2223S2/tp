@@ -49,15 +49,11 @@ public class CommandParser {
 
     // Adapted from Clement559 iP
     public static String formatDateTime(String date) throws DateTimeParseException {
-        try {
-            DateTimeFormatter dateTimeFormatterInput = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
-            DateTimeFormatter dateTimeFormatterOutput = DateTimeFormatter.ofPattern("LLL dd uuuu HH:mm");
-            LocalDateTime dateTime = LocalDateTime.parse(date, dateTimeFormatterInput);
-            String formattedDateTime = dateTime.format(dateTimeFormatterOutput);
-            return formattedDateTime;
-        } catch (DateTimeParseException e) {
-            return "";
-        }
+        DateTimeFormatter dateTimeFormatterInput = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
+        DateTimeFormatter dateTimeFormatterOutput = DateTimeFormatter.ofPattern("LLL dd uuuu HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(date, dateTimeFormatterInput);
+        String formattedDateTime = dateTime.format(dateTimeFormatterOutput);
+        return formattedDateTime;
     }
 
     /**
@@ -70,7 +66,7 @@ public class CommandParser {
         String[] splitInput = input.trim().replaceAll("\\s+", " ").split(" ");
         switch (splitInput[0]) {
         case AddTaskCommand.KEYWORD:
-            return new AddTaskCommand(splitInput);
+            return checkValidityAdd(splitInput);
         case ListTasksCommand.KEYWORD:
             return new ListTasksCommand();
         case MarkTaskCommand.KEYWORD:
@@ -78,12 +74,27 @@ public class CommandParser {
         case UnmarkTaskCommand.KEYWORD:
             return new UnmarkTaskCommand(splitInput);
         case EditDeadlineCommand.KEYWORD:
-            return new EditDeadlineCommand(splitInput);
+            return checkValidityEdit(splitInput);
         case DeleteCommand.KEYWORD:
             return new DeleteCommand(splitInput);
         case ExitCommand.KEYWORD:
             return new ExitCommand();
         default:
+            return new InvalidCommand();
+        }
+    }
+
+    public static Command checkValidityAdd (String[] splitInput) {
+        try {
+            return new AddTaskCommand(splitInput);
+        } catch (NullPointerException | DateTimeParseException e) {
+            return new InvalidCommand();
+        }
+    }
+    public static Command checkValidityEdit (String[] splitInput) {
+        try {
+            return new EditDeadlineCommand(splitInput);
+        } catch (DateTimeParseException | NumberFormatException e) {
             return new InvalidCommand();
         }
     }

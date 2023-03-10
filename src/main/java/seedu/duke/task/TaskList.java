@@ -102,4 +102,11 @@ public class TaskList {
         }
         return taskListString.toString();
     }
+
+    /**
+     * Sorts the ArrayList tasks, by the corresponding Task deadlines
+     */
+    public void sortTaskList() {
+        tasks.sort(Task.TaskDeadlineComparator);
+    }
 }

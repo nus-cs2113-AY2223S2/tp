@@ -54,6 +54,7 @@ public class Ui {
             printEmptyList();
         } else {
             System.out.println("Here are the tasks in your list:");
+            taskList.sortTaskList();
             System.out.println(taskList);
         }
     }
@@ -71,7 +72,10 @@ public class Ui {
         System.out.println("The date provided must be of the following format: dd-MM-yyyy HH:MM.");
     }
 
-    public void printParametersError() {
+    public static void printIndexError() {
+        System.out.println("You provided an invalid index.");
+    }
+    public static void printParametersError() {
         System.out.println("You did not provide the correct parameters for this function.");
     }
     public void printSavingErrorMessage() {
