@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.trie;
 import java.util.HashMap;
 import java.util.ArrayList;
 

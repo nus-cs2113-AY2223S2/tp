@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.trie;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Queue;
@@ -16,6 +16,17 @@ public class Trie {
             currentNode = currentNode.getChild(character);
         }
         currentNode.setWord(true);
+    }
+    public void remove(String word){
+        word = word.toLowerCase().trim();
+        TrieNode currentNode = root;
+        for(char character: word.toCharArray()){
+            if(!currentNode.doesChildExist(character)){
+                return;
+            }
+            currentNode = currentNode.getChild(character);
+        }
+        currentNode.setWord(false);
     }
 
     public boolean find(String word){
