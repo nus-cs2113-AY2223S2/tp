@@ -52,7 +52,8 @@ public class Parser {
      * @return Corresponding Command class to user input.
      * @throws UnexpectedException If an unexpected error occurs.
      */
-    public static Command getCommand(String userCommand, Ui ui, int size, ArrayList<Module> moduleData) throws UnexpectedException {
+    public static Command getCommand(String userCommand, Ui ui, int size, ArrayList<Module> moduleData)
+            throws UnexpectedException {
         final String[] split = userCommand.trim().split("\\s+", 2);
         try {
             return parseCommand(split, size, moduleData);

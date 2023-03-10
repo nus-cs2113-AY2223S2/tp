@@ -11,7 +11,6 @@ import seedu.apollo.exception.InvalidEvent;
 
 import java.io.IOException;
 import java.rmi.UnexpectedException;
-import java.util.ArrayList;
 
 import static seedu.apollo.Parser.COMMAND_DEADLINE_WORD;
 import static seedu.apollo.Parser.COMMAND_EVENT_WORD;
