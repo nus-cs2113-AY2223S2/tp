@@ -4,11 +4,14 @@ import seedu.duke.diagnosis.illnesses.Illness;
 import seedu.duke.diagnosis.symptoms.Symptom;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //@@author Brennanzuz
 public class AttentionDeficitHyperactivityDisorder extends Illness {
-    public static String illnessName;
-    public static int severityLevel;
-    public static boolean isChronic;
-    public static ArrayList<Symptom> symptoms;
+    public AttentionDeficitHyperactivityDisorder() {
+        super("Attention Deficit Hyperactivity Disorder (ADHD)", 1, true, new ArrayList<>(
+                List.of(Symptom.HISTORY_OF_ADHD
+                ))
+        );
+    }
 }

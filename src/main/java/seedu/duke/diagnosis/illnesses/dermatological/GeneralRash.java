@@ -4,11 +4,15 @@ import seedu.duke.diagnosis.illnesses.Illness;
 import seedu.duke.diagnosis.symptoms.Symptom;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //@@author Brennanzuz
 public class GeneralRash extends Illness {
-    public static String illnessName;
-    public static int severityLevel;
-    public static boolean isChronic;
-    public static ArrayList<Symptom> symptoms;
+    public GeneralRash() {
+        super("Rashes", 1, false, new ArrayList<>(
+                List.of(Symptom.ITCHY_SKIN,
+                        Symptom.RED_SKIN
+                ))
+        );
+    }
 }

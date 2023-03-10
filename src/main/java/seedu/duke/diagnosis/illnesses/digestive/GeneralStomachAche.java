@@ -4,11 +4,14 @@ import seedu.duke.diagnosis.illnesses.Illness;
 import seedu.duke.diagnosis.symptoms.Symptom;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //@@author Brennanzuz
 public class GeneralStomachAche extends Illness {
-    public static String illnessName;
-    public static int severityLevel;
-    public static boolean isChronic;
-    public static ArrayList<Symptom> symptoms;
+    public GeneralStomachAche() {
+        super("Stomach Ache", 1, false, new ArrayList<>(
+                List.of(Symptom.STOMACH_ACHE
+                ))
+        );
+    }
 }

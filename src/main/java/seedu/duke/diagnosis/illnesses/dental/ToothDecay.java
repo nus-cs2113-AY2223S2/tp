@@ -4,11 +4,15 @@ import seedu.duke.diagnosis.illnesses.Illness;
 import seedu.duke.diagnosis.symptoms.Symptom;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //@@author Brennanzuz
 public class ToothDecay extends Illness {
-    public static String illnessName;
-    public static int severityLevel;
-    public static boolean isChronic;
-    public static ArrayList<Symptom> symptoms;
+    public ToothDecay() {
+        super("Tooth Decay", 2, true, new ArrayList<>(
+                List.of(Symptom.BLACK_TEETH,
+                        Symptom.TOOTH_ACHE
+                ))
+        );
+    }
 }

@@ -4,11 +4,17 @@ import seedu.duke.diagnosis.illnesses.Illness;
 import seedu.duke.diagnosis.symptoms.Symptom;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //@@author Brennanzuz
 public class SuperficialWound extends Illness {
-    public static String illnessName;
-    public static int severityLevel;
-    public static boolean isChronic;
-    public static ArrayList<Symptom> symptoms;
+
+    public SuperficialWound() {
+        super("Superficial Wound", 1, false, new ArrayList<>(
+                List.of(Symptom.WOUND_OR_CUT,
+                        Symptom.BLEEDING,
+                        Symptom.PUSS
+                ))
+        );
+    }
 }

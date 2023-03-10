@@ -29,6 +29,8 @@ public enum Symptom {
     NAUSEA,
     VOMITING,
     BLOODIED_STOOLS,
+    WEIGHT_LOSS,
+    FREQUENT_URINATION,
     SLOW_REGENERATION,
     FEVER,
     SUSCEPTIBILITY_TO_ILLNESS,
@@ -57,5 +59,6 @@ public enum Symptom {
     SLEEPLESSNESS,
     ITCHY_EYE,
     RED_EYES,
+    LOSS_OF_TASTE_OR_SMELL,
     SNEEZING
 }
