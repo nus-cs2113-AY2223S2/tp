@@ -13,8 +13,7 @@ import java.io.PrintStream;
 public class ParserTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    
-    
+
     @Test
     public void splitLine_testScenario_expectedBehaviour() {
         List<String> expectedOutput = new ArrayList<String>();
