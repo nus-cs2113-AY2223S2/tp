@@ -13,8 +13,8 @@ public class FoodStorage extends Storage implements FileReadable {
 
     @Override
     public void read() {
-        String line = "";
-        String splitBy = ",";
+        String line = "", splitBy = ",";
+        String 
         try {
             // parsing a CSV file into BufferedReader class constructor
             BufferedReader br = new BufferedReader(new FileReader(filePath));
