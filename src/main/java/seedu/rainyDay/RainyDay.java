@@ -1,5 +1,6 @@
 package seedu.rainyDay;
 
+import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 
@@ -17,7 +18,6 @@ public class RainyDay {
 
     public static FinancialReport financialReport = new FinancialReport(new ArrayList<>());
 
-
     public static void main(String[] args) {
         try {
             financialReport = new FinancialReport(loadFromFile(filePath));
@@ -30,79 +30,40 @@ public class RainyDay {
 
         boolean isExit = false;
         while (!isExit) {
-            String userInput = input.nextLine().trim();
-            if (userInput.equalsIgnoreCase("exit")) {
-                isExit = true;
+            try {
+                String userInput = input.nextLine().trim();
+                if (userInput.equalsIgnoreCase(Command.COMMAND_EXIT)) {
+                    isExit = true;
+                }
+                parseUserInput(userInput);
+            } catch (Exception e) {
+                System.out.println("Wrong input format! Please refer to help for correct user input!");
             }
-            parseUserInput(userInput);
         }
         UI.sayFarewellToUser();
     }
 
-    public static void parseUserInput(String userInput) {
+    public static void parseUserInput(String userInput) throws Exception {
         String action = userInput.split("\\s+")[0];
-        if (action.equalsIgnoreCase("add")) {
+        if (action.equalsIgnoreCase(Command.COMMAND_ADD)) {
             String[] tokens = userInput.split("-", 2);
             String[] inputs = tokens[1].split("\\s+", 2);
             String flowDirection = inputs[0];
             String[] data = inputs[1].split("\\$");
             String description = data[0].trim();
             String amount = data[1];
-            addFinancialStatement(description, flowDirection, Integer.parseInt(amount));
-        } else if (action.equalsIgnoreCase("delete")) {
+            Command.addFinancialStatement(description, flowDirection, Integer.parseInt(amount));
+        } else if (action.equalsIgnoreCase(Command.COMMAND_DELETE)) {
             String[] tokens = userInput.split("\\s+");
             int index = Integer.parseInt(tokens[1]);
-            deleteFinancialStatement(index);
-        } else if (action.equalsIgnoreCase("view")) {
-            generateReport(financialReport);
-        } else if (action.equalsIgnoreCase("help")) {
+            Command.deleteFinancialStatement(index);
+        } else if (action.equalsIgnoreCase(Command.COMMAND_VIEW)) {
+            Command.generateReport(financialReport);
+        } else if (action.equalsIgnoreCase(Command.COMMAND_HELP)) {
             displayHelp();
         } else {
             unrecognisedInput();
         }
-    }
-
-    public static String addFinancialStatement(String description, String flowDirection, int value) {
-        financialReport.addStatement(new FinancialStatement(description, flowDirection, value));
-        String direction = financialReport.getStatementDirection(financialReport.getStatementCount() - 1);
-        String addStatement = "Done, added: " + direction + " for " + description + ", $" + value;
-        writeToFile(financialReport, filePath);
-        return addStatement;
-    }
-
-    public static String deleteFinancialStatement(int index) {
-        index -= 1;
-        String deleteStatement = "Done, deleted \"" + financialReport.getStatementDescription(index)
-                + "\" from the financial report";
-        financialReport.deleteStatement(index);
-        writeToFile(financialReport, filePath);
-        return deleteStatement;
-    }
-
-    public static String generateReport(FinancialReport financialReport) {
-        if (financialReport.getStatementCount() == 0) {
-            return "Your financial report is empty";
-        }
-        int totalInflow = 0;
-        int totalOutflow = 0;
-        String financialStatements = "";
-        for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
-            if (financialReport.getStatementDirection(i).equals("in")) {
-                totalInflow += financialReport.getStatementValue(i);
-            } else {
-                totalOutflow += financialReport.getStatementValue(i);
-            }
-            int index = i + 1;
-            String financialStatement = String.join("", String.valueOf(index), ". ",
-                    financialReport.getFullStatement(i), System.lineSeparator());
-            financialStatements = String.join("", financialStatements, financialStatement);
-        }
-        String inflowInformation = "Inflow: $" + totalInflow;
-        String outflowInformation = "Outflow: $" + totalOutflow;
-        String remainingValueInformation = "Remaining value: $" + (totalInflow - totalOutflow);
-        String report = String.join(System.lineSeparator(), financialStatements, inflowInformation, outflowInformation,
-                remainingValueInformation);
-        return report;
     }
 
     public static void clearFinancialReport() {
