@@ -1,15 +1,15 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
+import seedu.duke.task.TaskList;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
 class DeleteCommandTest {
     private static TaskList testList = new TaskList();
     private final String KEYWORD = "delete";
-    private final String sampleTask[] = {"add", "something", "-d", "06-04-2000", "23:59"};
+    private final String[] sampleTask = {"add", "something", "-d", "06-04-2000", "23:59"};
     private Ui ui = new Ui();
 
     @Test
@@ -20,7 +20,7 @@ class DeleteCommandTest {
     }
 
     @Test
-    public void deleteTask_InvalidIndex () {
+    public void deleteTask_invalidIndex () {
         final String[] invalidIndex = {"1000", "-1"};
         for (String index : invalidIndex) {
             String[] testString = {KEYWORD, index};
