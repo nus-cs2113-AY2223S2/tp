@@ -4,11 +4,15 @@ import seedu.duke.diagnosis.illnesses.Illness;
 import seedu.duke.diagnosis.symptoms.Symptom;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //@@author Brennanzuz
 public class Arthritis extends Illness {
-    public static String illnessName;
-    public static int severityLevel;
-    public static boolean isChronic;
-    public static ArrayList<Symptom> symptoms;
+    public Arthritis() {
+        super("General Arthritis", 1, true, new ArrayList<>(
+                List.of(Symptom.JOINT_PAIN,
+                        Symptom.SWOLLEN_JOINTS
+                ))
+        );
+    }
 }

@@ -4,11 +4,19 @@ import seedu.duke.diagnosis.illnesses.Illness;
 import seedu.duke.diagnosis.symptoms.Symptom;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //@@author Brennanzuz
 public class Diabetes extends Illness {
-    public static String illnessName;
-    public static int severityLevel;
-    public static boolean isChronic;
-    public static ArrayList<Symptom> symptoms;
+    public Diabetes() {
+        super("Diabetes", 3, true, new ArrayList<>(
+                List.of(Symptom.THIRST,
+                        Symptom.FATIGUE,
+                        Symptom.SLOW_REGENERATION,
+                        Symptom.BLURRED_VISION,
+                        Symptom.FREQUENT_URINATION,
+                        Symptom.WEIGHT_LOSS
+                ))
+        );
+    }
 }

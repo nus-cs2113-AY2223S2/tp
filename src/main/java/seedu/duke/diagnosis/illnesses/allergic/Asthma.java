@@ -8,8 +8,12 @@ import java.util.List;
 
 //@@author Brennanzuz
 public class Asthma extends Illness {
-    public static String illnessName;
-    public static int severityLevel;
-    public static boolean isChronic;
-    public static ArrayList<Symptom> symptoms;
+    public Asthma() {
+        super("Asthma", 3, false, new ArrayList<>(
+                List.of(Symptom.HYPERVENTILATION,
+                        Symptom.HISTORY_OF_ASTHMA,
+                        Symptom.DIFFICULTY_BREATHING
+                        ))
+        );
+    }
 }

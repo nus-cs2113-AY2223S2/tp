@@ -8,8 +8,10 @@ import java.util.List;
 
 //@@author Brennanzuz
 public class GeneralAllergicReaction extends Illness {
-    public static String illnessName;
-    public static int severityLevel;
-    public static boolean isChronic;
-    public static ArrayList<Symptom> symptoms;
+    public GeneralAllergicReaction() {
+        super("General Allergic Reaction", 3, false, new ArrayList<>(
+                List.of(Symptom.HISTORY_OF_ALLERGIES
+                ))
+        );
+    }
 }
