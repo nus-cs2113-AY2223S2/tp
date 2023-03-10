@@ -1,11 +1,33 @@
 package seedu.meal360;
 
+import java.util.HashMap;
+import java.util.Scanner;
+
+
 public class Parser {
 
     public String[] parseCommand(String command) {
         return command.split(" ");
     }
 
+    public Recipe parseAddRecipe(String[] input, RecipeList recipeList) {
+        String recipeName = input[1].substring(2);
+        System.out.println("Please Enter The Ingredients & Quantity: ");
+        HashMap<String, Integer> ingredients = new HashMap<>();
+        Scanner userInput = new Scanner(System.in);
+        while (true) {
+            String line = userInput.nextLine();
+            if (line.equals("done")) {
+                break;
+            }
+            String[] command = line.trim().split(" ");
+            ingredients.put(command[0], Integer.parseInt(command[1]));
+        }
+        Recipe newRecipe = new Recipe(recipeName, ingredients);
+        recipeList.addRecipe(newRecipe);
+        recipeList.add(newRecipe);
+        return newRecipe;
+    }
     public Recipe parseAddRecipe(String[] input) {
         return new Recipe("test", null);
     }

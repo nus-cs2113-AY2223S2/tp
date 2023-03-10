@@ -40,6 +40,10 @@ public class Meal360 {
             ui.printRecipe(recipe);
         } else if (command[0].equals("list")) {
             parser.parseListRecipe(recipeList);
+        } else if (command[0].equals("add")){
+            Recipe newRecipe = parser.parseAddRecipe(command, recipeList);
+            ui.printMessage("I've added this new recipe:" + newRecipe.getName());
+            ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
         }
     }
 
@@ -49,7 +53,6 @@ public class Meal360 {
 
     public static void main(String[] args) {
         startApp();
-
         String line;
         Scanner userInput = new Scanner(System.in);
 
