@@ -13,9 +13,8 @@ with the link to the original code at:
 https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/ui/TextUi.java
  */
 public class Ui {
-//    private static final Scanner in = new Scanner(System.in);
-    private static Scanner in = new Scanner(System.in);
-    private static PrintStream out = System.out;
+    private static final Scanner in = new Scanner(System.in);
+    private static final PrintStream out = System.out;
     private static final String LINE_DIVIDER =
             "-----------------------------------------------------------------------";
     private static final String LINE_PREFIX = "|  ";
