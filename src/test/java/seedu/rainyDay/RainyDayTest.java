@@ -3,8 +3,8 @@ package seedu.rainyDay;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.rainyDay.RainyDay.loadFromFile;
-import static seedu.rainyDay.RainyDay.parseUserInput;
 
+import seedu.rainyDay.command.command;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 import org.junit.jupiter.api.Assertions;
@@ -47,8 +47,8 @@ class RainyDayTest {
     @Test
     public void parseDeleteCommand() {
         RainyDay.clearFinancialReport();
-        RainyDay.addFinancialStatement("Ipad", "out", 120);
-        RainyDay.addFinancialStatement("angpao", "in", 3000);
+        command.addFinancialStatement("Ipad", "out", 120);
+        command.addFinancialStatement("angpao", "in", 3000);
         ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport testReport = new FinancialReport(statements);
         testReport.addStatement(new FinancialStatement("Ipad", "out", 120));
@@ -58,49 +58,6 @@ class RainyDayTest {
         } catch (Exception e) {
             System.out.println("Wrong input format! Please refer to help for correct user input!");
         }
-    }
-
-    @Test
-    public void addFinancialStatement() {
-        String actualAddStatement = RainyDay.addFinancialStatement("Ipad", "out", 120);
-        String expectedAddStatement = "Done, added: out for Ipad, $120";
-        assertEquals(expectedAddStatement, actualAddStatement);
-
-        actualAddStatement = RainyDay.addFinancialStatement("angpao", "in", 3000);
-        expectedAddStatement = "Done, added: in for angpao, $3000";
-        assertEquals(expectedAddStatement, actualAddStatement);
-    }
-
-    @Test
-    public void deleteFinancialStatement() {
-        RainyDay.clearFinancialReport();
-        RainyDay.addFinancialStatement("Ipad", "out", 120);
-        RainyDay.addFinancialStatement("angpao", "in", 3000);
-        String actualDeleteStatement = RainyDay.deleteFinancialStatement(1);
-        String expectedDeleteStatement = "Done, deleted \"Ipad\" from the financial report";
-        assertEquals(expectedDeleteStatement, actualDeleteStatement);
-
-        actualDeleteStatement = RainyDay.deleteFinancialStatement(1);
-        expectedDeleteStatement = "Done, deleted \"angpao\" from the financial report";
-        assertEquals(expectedDeleteStatement, actualDeleteStatement);
-    }
-
-    @Test
-    public void generateReport() {
-        ArrayList<FinancialStatement> statements = new ArrayList<>();
-        FinancialReport financialReport = new FinancialReport(statements);
-        String actualReport = RainyDay.generateReport(financialReport);
-        String expectedReport = "Your financial report is empty";
-        assertEquals(expectedReport, actualReport);
-
-        financialReport.addStatement(new FinancialStatement("Ipad", "out", 120));
-        financialReport.addStatement(new FinancialStatement("pork", "out", 5));
-        financialReport.addStatement(new FinancialStatement("angpao", "in", 3000));
-        actualReport = RainyDay.generateReport(financialReport);
-        expectedReport = String.join(System.lineSeparator(), "1. Ipad -$120 (out)", "2. pork -$5 (out)",
-                "3. angpao +$3000 (in)" + System.lineSeparator(), "Inflow: $3000", "Outflow: $125",
-                "Remaining value: $2875");
-        assertEquals(expectedReport, actualReport);
     }
 
     public void writeToFileTest_fileExists() {
@@ -127,7 +84,7 @@ class RainyDayTest {
         FinancialReport financialReportData = new FinancialReport(data);
         readStream.close();
 
-        assertEquals(RainyDay.generateReport(financialReport), RainyDay.generateReport(financialReportData));
+        assertEquals(command.generateReport(financialReport), command.generateReport(financialReportData));
     }
 
     @Test

@@ -1,5 +1,6 @@
 package seedu.rainyDay;
 
+import seedu.rainyDay.command.command;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 
@@ -52,61 +53,18 @@ public class RainyDay {
             String[] data = inputs[1].split("\\$");
             String description = data[0].trim();
             String amount = data[1];
-            addFinancialStatement(description, flowDirection, Integer.parseInt(amount));
+            command.addFinancialStatement(description, flowDirection, Integer.parseInt(amount));
         } else if (action.equalsIgnoreCase("delete")) {
             String[] tokens = userInput.split("\\s+");
             int index = Integer.parseInt(tokens[1]);
-            deleteFinancialStatement(index);
+            command.deleteFinancialStatement(index);
         } else if (action.equalsIgnoreCase("view")) {
-            generateReport(financialReport);
+            command.generateReport(financialReport);
         } else if (action.equalsIgnoreCase("help")) {
             displayHelp();
         } else {
             unrecognisedInput();
         }
-    }
-
-    public static String addFinancialStatement(String description, String flowDirection, int value) {
-        financialReport.addStatement(new FinancialStatement(description, flowDirection, value));
-        String direction = financialReport.getStatementDirection(financialReport.getStatementCount() - 1);
-        String addStatement = "Done, added: " + direction + " for " + description + ", $" + value;
-        writeToFile(financialReport, filePath);
-        return addStatement;
-    }
-
-    public static String deleteFinancialStatement(int index) {
-        index -= 1;
-        String deleteStatement = "Done, deleted \"" + financialReport.getStatementDescription(index)
-                + "\" from the financial report";
-        financialReport.deleteStatement(index);
-        writeToFile(financialReport, filePath);
-        return deleteStatement;
-    }
-
-    public static String generateReport(FinancialReport financialReport) {
-        if (financialReport.getStatementCount() == 0) {
-            return "Your financial report is empty";
-        }
-        int totalInflow = 0;
-        int totalOutflow = 0;
-        String financialStatements = "";
-        for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
-            if (financialReport.getStatementDirection(i).equals("in")) {
-                totalInflow += financialReport.getStatementValue(i);
-            } else {
-                totalOutflow += financialReport.getStatementValue(i);
-            }
-            int index = i + 1;
-            String financialStatement = String.join("", String.valueOf(index), ". ",
-                    financialReport.getFullStatement(i), System.lineSeparator());
-            financialStatements = String.join("", financialStatements, financialStatement);
-        }
-        String inflowInformation = "Inflow: $" + totalInflow;
-        String outflowInformation = "Outflow: $" + totalOutflow;
-        String remainingValueInformation = "Remaining value: $" + (totalInflow - totalOutflow);
-        String report = String.join(System.lineSeparator(), financialStatements, inflowInformation, outflowInformation,
-                remainingValueInformation);
-        return report;
     }
 
     public static void clearFinancialReport() {
