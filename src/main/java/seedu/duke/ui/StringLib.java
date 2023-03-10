@@ -2,23 +2,23 @@ package seedu.duke.ui;
 
 public interface StringLib {
     String LOGO = "_____         _         _____  __  ___  ___                _         _______ "
-            + "________  ____  \n"
-            + "|_   _|       | |       |  _  |/ _| |  \\/  |               ( )       / /_   _|  _  |  \\/  \\ \\ \n"
+            + "________  ____\n"
+            + "|_   _|       | |       |  _  |/ _| |  \\/  |               ( )       / /_   _|  _  |  \\/  \\ \\\n"
             + "  | | __ _ ___| |_ ___  | | | | |_  | .  . | ___  _ __ ___ |/ ___   | |  | | | | | | .  . || |\n"
             + "  | |/ _` / __| __/ _ \\ | | | |  _| | |\\/| |/ _ \\| '_ ` _ \\  / __|  | |  | | | | | | |\\/| || |\n"
             + "  | | (_| \\__ \\ ||  __/ \\ \\_/ / |   | |  | | (_) | | | | | | \\__ \\  | |  | | \\ \\_/ / |  | || |\n"
             + "  \\_/\\__,_|___/\\__\\___|  \\___/|_|   \\_|  |_/\\___/|_| |_| |_| |___/  | |  \\_/  \\___/\\_|  |_/| |"
             + "\n"
-            + "                                                                     \\_\\                  /_/ \n";
-    String WELCOME_MESSAGE = "\nHELLLOO there! I am \n "
+            + "                                                                     \\_\\                  /_/\n";
+    String WELCOME_MESSAGE = "\nHELLLOO there! I am\n "
             + LOGO + '\n'
-            + "Your personal recipes assistant! \n"
-            + "What can I do for you today? \n \n"
+            + "Your personal recipes assistant!\n"
+            + "What can I do for you today?\n\n"
             + "You can start by adding recipes to a recipe list that I can generate,"
-            + " simply follow the format below: \n \n"
+            + " simply follow the format below:\n\n"
             + "Add recipe : \"add n/<insert recipe name> i/<insert ingredients with \", \" separation> "
             + "t/<insert cuisine>\"\n\n"
-            + "If you wish to view the full list of commands, simply type \"help\"! \n";
+            + "If you wish to view the full list of commands, simply type \"help\"!\n";
     String HELP = "\nHelp is here! You may find the list of commands below useful. \n \n \n"
             + "COMMANDS LIST: \n \n \n"
             + "## List ## \n"
