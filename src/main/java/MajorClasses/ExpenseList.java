@@ -2,6 +2,7 @@ package MajorClasses;
 
 
 import parser.Parser;
+import parser.ParserAdd;
 
 import java.util.ArrayList;
 
@@ -42,14 +43,17 @@ public class ExpenseList {
     }
 
     private static void showToUser(String... message) {
-        for (String i : message) System.out.println(i);
+        for (String i : message) {
+            System.out.println(i);
+        }
     }
 
     public void addExpense (String userInput) {
-        double expenseAmount = Double.parseDouble(Parser.extractCommandParameters("amt/", userInput));
-        String expenseTime = Parser.extractCommandParameters("t/", userInput);
-        String description = Parser.extractCommandParameters("cat/", userInput);
-        Expense expense = new Expense(expenseAmount, expenseTime, description);
+        //Parses the user input and returns each individual parameter in parsedInput
+        String[] parsedInput = ParserAdd.parseInput(userInput);
+        Expense expense = new Expense(Double.parseDouble(parsedInput[ParserAdd.AMOUNT_INDEX]),
+                parsedInput[ParserAdd.TIME_INDEX], parsedInput[ParserAdd.CATEGORY_INDEX],
+                Currency.checkCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]));
         expenseList.add(expense);
     }
 
