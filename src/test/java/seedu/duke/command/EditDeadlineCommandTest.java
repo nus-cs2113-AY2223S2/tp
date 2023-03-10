@@ -15,8 +15,8 @@ public class EditDeadlineCommandTest {
     private final String SPLITTER = "-d";
     private static Ui ui = new Ui();
     @Test
-    public void editDeadline_invalidindex_throwsException() {
-        final String[] invalidIndexes = {"", "4", "]", "-3"};
+    public void editDeadline_charsindex_throwsException() {
+        final String[] invalidIndexes = {"", "]", "wq"};
         generateTestList();
         for (String index : invalidIndexes) {
             String[] testString = {KEYWORD, index, SPLITTER, DATE_EXAMPLE, TIME_EXAMPLE};

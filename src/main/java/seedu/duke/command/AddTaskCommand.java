@@ -22,20 +22,22 @@ public class AddTaskCommand extends Command{
         HashMap<String, String> args = CommandParser.getArguments(splitInput, FLAGS);
         description = args.get(KEYWORD);
         deadline = CommandParser.formatDateTime(args.get("-d"));
+        if (description.isEmpty() || deadline.isEmpty()) {
+            throw new NullPointerException();
+        }
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui){
-        if (description.isEmpty()) {
+        /*if (description.isEmpty()) {
             ui.printParametersError();
         }
         else if (deadline.isEmpty()) {
             ui.printDateTimeError();
         }
-        else {
-            Task task = new Task(description, deadline);
-            taskList.addTask(task);
-            ui.printAddTaskNotification(task);
-        }
+        else { */
+        Task task = new Task(description, deadline);
+        taskList.addTask(task);
+        ui.printAddTaskNotification(task);
     }
 }
