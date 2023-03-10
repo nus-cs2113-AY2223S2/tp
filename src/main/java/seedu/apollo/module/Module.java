@@ -8,6 +8,7 @@ public class Module {
     private static String moduleCode;
     private static String moduleName;
 
+
     /**
      * Initialises the Module with its corresponding code and name.
      *
