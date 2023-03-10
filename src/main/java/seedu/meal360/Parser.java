@@ -27,6 +27,8 @@ public class Parser {
         recipeList.addRecipe(newRecipe);
         recipeList.add(newRecipe);
         return newRecipe;
+    public Recipe parseAddRecipe(String[] input) {
+        return new Recipe("test", null);
     }
 
     public Recipe parseEditRecipe(String[] input) {
