@@ -1,14 +1,15 @@
 package seedu.apollo.module;
 
+import seedu.apollo.exception.ModuleNotFoundException;
+
 import java.util.ArrayList;
 
 /**
  * ModuleList class that contains the module list.
  */
 public class ModuleList {
-    /**
-     * Module list containing all Modules.
-     */
+
+    // Module list containing all Modules.
     public ArrayList<Module> allModules;
 
     /**
@@ -39,28 +40,37 @@ public class ModuleList {
     }
 
     /**
-     * Finds the module in the ModuleList which matches the module name
-     * @param moduleCode The code of the module to be found
-     * @return module in the ModuleList which matches the module name 
+     * Finds the module in the ModuleList which matches the module name.
+     *
+     * @param moduleCode The code of the module to be found.
+     * @return module in the ModuleList which matches the module name.
+     * @throws ModuleNotFoundException If the moduleCode is not found in allModules.
      */
-    public Module findModule(String moduleCode) {
-
+    public Module findModule(String moduleCode) throws ModuleNotFoundException {
         for (Module module : allModules) {
             if(module.getCode().equals(moduleCode)) {
                 return module;
             }
         }
-        return null;
+        throw new ModuleNotFoundException();
     }
+
     /**
-     * Removes the module in the ModuleList
-     * @param module The module to be deleted
+     * Removes the module in the ModuleList.
+     *
+     * @param module The module to be deleted.
      */
     public void deleteModule(Module module) {
         allModules.remove(module);
     }
 
+    /**
+     * Adds the module to the ModuleList.
+     *
+     * @param module The module to be added.
+     */
     public void addModule(Module module) {
         this.allModules.add(module);
     }
+
 }

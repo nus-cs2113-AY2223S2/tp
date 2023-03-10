@@ -115,6 +115,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads data from the data file into a new ArrayList of Modules.
+     *
+     * @return ArrayList of Modules (containing data from save file / empty).
+     * @throws FileNotFoundException If save file is not found.
+     */
     public ArrayList<Module> loadModuleList() throws FileNotFoundException {
         Type moduleDataType = new TypeToken<ArrayList<Module>>(){}.getType();
         Gson gson = new Gson();

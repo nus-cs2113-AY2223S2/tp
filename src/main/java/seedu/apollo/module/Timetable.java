@@ -7,6 +7,7 @@ public class Timetable {
     private String startTime;
     private String endTime;
 
+
     public String getClassnumber() {
         return classnumber;
     }

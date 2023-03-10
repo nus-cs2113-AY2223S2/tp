@@ -13,6 +13,13 @@ public class AddModuleCommand extends Command {
 
     private Module module;
 
+    /**
+     * Constructor for AddModuleCommand.
+     *
+     * @param moduleCode The module code of the module to be added.
+     * @param allModules The list of all modules.
+     * @throws InvalidModule If the module code is invalid.
+     */
     public AddModuleCommand(String moduleCode, ArrayList<Module> allModules) throws InvalidModule {
         for (Module moduleData : allModules) {
             if (moduleData.getCode().toLowerCase().equals(moduleCode.toLowerCase())) {
