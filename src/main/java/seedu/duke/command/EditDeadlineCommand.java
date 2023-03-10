@@ -16,9 +16,9 @@ public class EditDeadlineCommand extends Command  {
 
 
     public EditDeadlineCommand(String[] splitInput) throws NumberFormatException, DateTimeParseException {
-            HashMap<String, String> args = CommandParser.getArguments(splitInput, FLAGS);
-            index = Integer.parseInt(args.get(KEYWORD)) - 1;
-            deadline = CommandParser.formatDateTime(args.get("-d"));
+        HashMap<String, String> args = CommandParser.getArguments(splitInput, FLAGS);
+        index = Integer.parseInt(args.get(KEYWORD)) - 1;
+        deadline = CommandParser.formatDateTime(args.get("-d"));
     }
     @Override
     public void execute(TaskList taskList, Ui ui) {
