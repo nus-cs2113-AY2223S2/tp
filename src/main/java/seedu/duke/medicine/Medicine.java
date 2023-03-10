@@ -1,26 +1,25 @@
 package seedu.duke.medicine;
-import java.util.Dictionary;
-import java.util.Hashtable;
-
+/**
+ * @author tanyizhe
+ */
 public class Medicine {
     private String name;
-    private Dictionary<String, String> medicineDosages = new Hashtable<>();
-    private String form;
-    private int price;
-    public Medicine(String name) {
+    private String dosage;
+    public Medicine(String name, String dosage) {
         this.name = name;
-        initialiseMedicineDosages();
+        this.dosage = dosage;
     }
-    public void initialiseMedicineDosages() {
-        medicineDosages.put("Paracetamol", "2 pills 2 times a day");
-    }
+
+    /**
+     * Accesses dosage of medication
+     * @return dosage of medication
+     */
     public String getDosage() {
-        return medicineDosages.get(name);
+        return dosage;
     }
     @Override
     public String toString() {
         return name;
     }
-
 
 }
