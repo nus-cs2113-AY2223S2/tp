@@ -8,6 +8,7 @@ import seedu.apollo.exception.InvalidDeadline;
 import seedu.apollo.exception.InvalidEvent;
 import seedu.apollo.exception.InvalidSaveFile;
 import seedu.apollo.module.Module;
+import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.Deadline;
 import seedu.apollo.task.Event;
 import seedu.apollo.task.Task;
@@ -111,11 +112,11 @@ public class Storage {
      * @return ArrayList of Modules (containing data from save file / empty).
      * @throws FileNotFoundException If save file is not found.
      */
-    public ArrayList<Module> loadModuleList() throws FileNotFoundException {
-        Type moduleDataType = new TypeToken<ArrayList<Module>>(){}.getType();
+    public ModuleList loadModuleList() throws FileNotFoundException {
+        Type moduleDataType = new TypeToken<ModuleList>(){}.getType();
         Gson gson = new Gson();
         JsonReader reader = new JsonReader(new FileReader(DATAFILEPATH));
-        ArrayList<Module> moduleDataList = gson.fromJson(reader, moduleDataType);
+        ModuleList moduleDataList = gson.fromJson(reader, moduleDataType);
         System.out.println("Module Data loaded from " + DATAFILEPATH);
         return moduleDataList;
     }

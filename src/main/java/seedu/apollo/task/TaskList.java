@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * TaskList is an ArrayList of Tasks.
+ * TaskList class is a modified ArrayList of Tasks.
  */
 public class TaskList extends ArrayList<Task> {
 

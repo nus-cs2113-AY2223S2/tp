@@ -1,13 +1,11 @@
 package seedu.apollo;
 
 import seedu.apollo.command.Command;
-import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 
 import java.io.IOException;
 import java.rmi.UnexpectedException;
-import java.util.ArrayList;
 
 /**
  * Main class for running Apollo.
@@ -21,8 +19,7 @@ public class Apollo {
     private static ModuleList moduleList;
     private static Ui ui;
 
-    private static ArrayList<Module> moduleData = new ArrayList<>();
-    private static ArrayList<Module> modules = new ArrayList<>();
+    private static ModuleList moduleData = new ModuleList();
 
     /**
      * Initialises Ui, Storage, and TaskList.
@@ -36,7 +33,7 @@ public class Apollo {
             taskList = storage.loadTaskList(ui);
             storage.update(taskList);
             moduleData = storage.loadModuleList();
-            moduleList = new ModuleList(modules);
+            moduleList = new ModuleList();
             ui.printWelcomeMessage();
         } catch (IOException e) {
             ui.printErrorForIO();
