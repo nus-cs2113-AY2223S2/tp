@@ -8,17 +8,17 @@ import seedu.duke.ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StorageTest {
     private static final String TEST_DATA_FOLDER = "./src/test/data"; // this is also a directory
     private static final String ACTUAL_SAVE_FILE = "./src/test/data/actualSaveFile.txt";
     private static final String EXPECTED_SAVE_FILE = "./src/test/data/expectedSaveFile.txt";
     private static final String VALID_DATA_FILE = "./src/test/data/validData.txt";
-    private static final String INVALID_DATA_FILE = "./src/test/data/invalidData.txt";;
+    private static final String INVALID_DATA_FILE = "./src/test/data/invalidData.txt";
     private static final String NON_EXISTENT_FILE = "./src/test/data/doesNotExist.txt";
     private static final String NEW_SAVE_FILE_FOR_COMPARISON = "./src/test/data/newSaveFileAfterLoading.txt";
 
@@ -110,5 +110,4 @@ class StorageTest {
             fail(); // should not reach this line
         }
     }
-
 }
