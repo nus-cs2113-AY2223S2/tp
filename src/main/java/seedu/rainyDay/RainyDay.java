@@ -18,7 +18,6 @@ public class RainyDay {
 
     public static FinancialReport financialReport = new FinancialReport(new ArrayList<>());
 
-
     public static void main(String[] args) {
         try {
             financialReport = new FinancialReport(loadFromFile(filePath));

@@ -18,7 +18,8 @@ public class Command {
 
     public static String addFinancialStatement(String description, String flowDirection, int value) {
         RainyDay.financialReport.addStatement(new FinancialStatement(description, flowDirection, value));
-        String direction = RainyDay.financialReport.getStatementDirection(RainyDay.financialReport.getStatementCount() - 1);
+        int statementCount = RainyDay.financialReport.getStatementCount();
+        String direction = RainyDay.financialReport.getStatementDirection(statementCount - 1);
         String addStatement = "Done, added: " + direction + " for " + description + ", $" + value;
         RainyDay.writeToFile(RainyDay.financialReport, RainyDay.filePath);
         return addStatement;
