@@ -39,9 +39,9 @@ public class ModuleList {
     }
 
     /**
-     * Finds the module in the ModuleList which matches the keyword
+     * Finds the module in the ModuleList which matches the module name
      * @param keyword The name of the module to be found
-     * @return module in the ModuleList which matches the keyword
+     * @return module in the ModuleList which matches the module name 
      */
     public Module findModule(String keyword) {
 
