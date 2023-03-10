@@ -24,7 +24,7 @@ public class BadMaths {
             String command = parser.getCommand();
             String toDo = parser.getToDo();
             // System.out.println(command); (store)
-           // System.out.println(toDo); (index)
+            // System.out.println(toDo); (index)
             // e.g. store. index
             if (command.equals("store")) {
                 listNotes.add(toDo);
