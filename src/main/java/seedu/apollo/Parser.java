@@ -1,15 +1,6 @@
 package seedu.apollo;
 
-import seedu.apollo.command.AddCommand;
-import seedu.apollo.command.AddModuleCommand;
-import seedu.apollo.command.Command;
-import seedu.apollo.command.DateCommand;
-import seedu.apollo.command.ExitCommand;
-import seedu.apollo.command.FindCommand;
-import seedu.apollo.command.HelpCommand;
-import seedu.apollo.command.ListCommand;
-import seedu.apollo.command.ListModuleCommand;
-import seedu.apollo.command.ModifyCommand;
+import seedu.apollo.command.*;
 import seedu.apollo.exception.EmptyKeywordException;
 import seedu.apollo.exception.EmptyTaskDescException;
 import seedu.apollo.exception.IllegalCommandException;
@@ -44,6 +35,7 @@ public class Parser {
 
     public static final String COMMAND_ADD_MODULE_WORD = "addmod";
     public static final String COMMAND_LIST_MODULE_WORD = "listmod";
+    public static final String COMMAND_DELETE_MODULE_WORD = "delmod";
 
     /**
      * Returns the corresponding Command to the user input.
@@ -99,6 +91,8 @@ public class Parser {
             IllegalCommandException, NumberFormatException, UnexpectedException, InvalidModule {
         String command = split[0];
         switch (command) {
+        case COMMAND_DELETE_MODULE_WORD:
+            return new DeleteModuleCommand();
         case COMMAND_LIST_MODULE_WORD:
             return new ListModuleCommand();
         case COMMAND_EXIT_WORD:
