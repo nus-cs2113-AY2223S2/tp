@@ -1,9 +1,12 @@
 package seedu.apollo;
 
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import seedu.apollo.exception.DateOrderException;
 import seedu.apollo.exception.InvalidDeadline;
 import seedu.apollo.exception.InvalidEvent;
 import seedu.apollo.exception.InvalidSaveFile;
+import seedu.apollo.module.Module;
 import seedu.apollo.task.Deadline;
 import seedu.apollo.task.Event;
 import seedu.apollo.task.Task;
@@ -12,6 +15,7 @@ import seedu.apollo.task.ToDo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +27,8 @@ import java.util.Scanner;
 public class Storage {
     // Location of save file
     protected static String filePath;
+
+    private static final String DATAFILEPATH = "./data/data.json";
 
     /*
     Each task is saved as a line in the save file in this format:
@@ -105,6 +111,13 @@ public class Storage {
             save.createNewFile();
             return newAllTasks;
         }
+    }
+
+    public void loadModuleList(ArrayList<Module> moduleDataList) throws FileNotFoundException {
+        Gson gson = new Gson();
+        JsonReader reader = new JsonReader(new FileReader(DATAFILEPATH));
+        moduleDataList = gson.fromJson(reader, ArrayList.class);
+        System.out.println("Module Data loaded from " + DATAFILEPATH);
     }
 
     /**
