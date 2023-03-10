@@ -1,5 +1,11 @@
 package seedu.duke;
 
+import seedu.duke.diagnosis.Diagnosis;
+import seedu.duke.diagnosis.IllnessMatch;
+import seedu.duke.diagnosis.symptoms.Symptom;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -17,5 +23,16 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
+
+        //For testing of Diagnosis
+//        for (IllnessMatch illnessMatch : Diagnosis.getPossibleIllnesses(new ArrayList<Symptom>(List.of(Symptom.BLOCKED_NOSE,
+//                Symptom.RUNNY_NOSE,
+//                Symptom.SNEEZING,
+//                Symptom.CHILLS,
+//                Symptom.FATIGUE,
+//                Symptom.THROAT_IRRITATION)))) {
+//            System.out.println(illnessMatch.getIllness().getIllnessName());
+//            System.out.println(illnessMatch.getSimilarityPercentage());
+        }
     }
 }
