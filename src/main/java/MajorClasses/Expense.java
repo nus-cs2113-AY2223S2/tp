@@ -1,6 +1,5 @@
 package MajorClasses;
 
-import java.util.ConcurrentModificationException;
 
 public class Expense {
     protected double expenseAmount;

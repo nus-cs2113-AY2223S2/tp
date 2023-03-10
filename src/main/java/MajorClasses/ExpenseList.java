@@ -43,7 +43,9 @@ public class ExpenseList {
     }
 
     private static void showToUser(String... message) {
-        for (String i : message) System.out.println(i);
+        for (String i : message) {
+            System.out.println(i);
+        }
     }
 
     public void addExpense (String userInput) {
