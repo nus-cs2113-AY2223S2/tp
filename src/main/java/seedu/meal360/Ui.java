@@ -12,7 +12,10 @@ public class Ui {
 
     public void printWelcomeMessage() {
         printSeparator();
-        String logo = " __  __          _ ____  __  __\n" + "|  \\/  |___ __ _| |__ / / / /  \\\n" + "| |\\/| / -_) _` | ||_ \\/ _ \\ () |\n" + "|_|  |_\\___\\__,_|_|___/\\___/\\__/\n";
+        String logo = " __  __          _ ____  __  __\n" +
+                "|  \\/  |___ __ _| |__ / / / /  \\\n" +
+                "| |\\/| / -_) _` | ||_ \\/ _ \\ () |\n" +
+                "|_|  |_\\___\\__,_|_|___/\\___/\\__/\n";
 
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
