@@ -30,7 +30,7 @@ public class Storage {
     // Location of save file
     protected static String filePath;
 
-    private static final String DATAFILEPATH = "./data/data.json";
+    private static final String DATAFILEPATH = "data/data.json";
 
     /*
     Each task is saved as a line in the save file in this format:
