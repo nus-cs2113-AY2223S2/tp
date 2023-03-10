@@ -8,9 +8,6 @@ import seedu.duke.EventList;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class StorageTest {
 
     private static final String fileLocation = System.getProperty("user.dir") + "/save.json";
