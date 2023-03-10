@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.EditErrorException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class EditTest {
 
