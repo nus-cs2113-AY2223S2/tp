@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class EditDeadlineCommandTest {
     private static TaskList testList = new TaskList();
-    private final static String DATE_EXAMPLE = "06-04-2000";
-    private final static String TIME_EXAMPLE = "23:59";
+    private final String DATE_EXAMPLE = "06-04-2000";
+    private final String TIME_EXAMPLE = "23:59";
     private final String KEYWORD = "editdeadline";
     private final String SPLITTER = "-d";
-    private static Ui ui = new Ui();
+    private Ui ui = new Ui();
     @Test
     public void editDeadline_charsindex_throwsException() {
         final String[] invalidIndexes = {"", "]", "wq"};
