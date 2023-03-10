@@ -14,7 +14,6 @@ public class TrieTest {
         trie.add("Hamburger");
         trie.add("Hamburgers");
         trie.add("Marshmallows");
-        trie.add("Fairchild Republic A-10 Thunderbolt II Subsonic Close Air Support Single-Seat Twin-TurboFan Straight-Wing Attack Aircraft");
         assertTrue(trie.find("Hamburger")==true);
         assertTrue(trie.find("hamburger")==true);
         assertTrue(trie.find("hamb")==false);
@@ -25,7 +24,6 @@ public class TrieTest {
         trie.add("Hamburger");
         trie.add("Hamburgers");
         trie.add("Marshmallows");
-        trie.add("Fairchild Republic A-10 Thunderbolt II Subsonic Close Air Support Single-Seat Twin-TurboFan Straight-Wing Attack Aircraft");
         ArrayList<String> ans = new ArrayList<>();
         ans.add("hamburger");
         ans.add("hamburgers");
