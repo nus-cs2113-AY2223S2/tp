@@ -1,16 +1,25 @@
-package seedu.Expenditure;
+package seedu.expenditure;
 
 import java.time.LocalDate;
 
 public abstract class Expenditure {
+    private String description;
     private double value;
     private LocalDate date;
 
-    public Expenditure(double value, LocalDate date) {
+    public Expenditure(String description, double value, LocalDate date) {
+        setDescription(description);
         setValue(value);
         setDate(date);
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
     public void setValue(double value) {
         this.value = value;
     }
@@ -27,6 +36,8 @@ public abstract class Expenditure {
         return date;
     }
 
-    public abstract String toString();
+    public String toString() {
+        return String.format("Date: %s || Value: %s || Description: %s", getDate(), getValue(), getDescription());
+    }
 
 }

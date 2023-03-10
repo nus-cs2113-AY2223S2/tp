@@ -1,12 +1,12 @@
-package seedu.Expenditure;
+package seedu.expenditure;
 
 import java.time.LocalDate;
 
 public class TuitionExpenditure extends Expenditure {
     boolean isPaid;
 
-    public TuitionExpenditure(double value, LocalDate date) {
-        super(value, date);
+    public TuitionExpenditure(String description, double value, LocalDate date) {
+        super(description, value, date);
         isPaid = false;
     }
 
@@ -20,7 +20,7 @@ public class TuitionExpenditure extends Expenditure {
 
     @Override
     public String toString() {
-        return getPaidIcon() + getDate() + getValue();
+        return String.format("[Tuition] || %s || %s", getPaidIcon(), super.toString());
     }
 
 }

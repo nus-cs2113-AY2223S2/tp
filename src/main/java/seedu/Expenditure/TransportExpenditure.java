@@ -1,13 +1,13 @@
-package seedu.Expenditure;
+package seedu.expenditure;
 
 import java.time.LocalDate;
 
 public class TransportExpenditure extends Expenditure {
-    public TransportExpenditure(double value, LocalDate date) {
-        super(value, date);
+    public TransportExpenditure(String description, double value, LocalDate date) {
+        super(description, value, date);
     }
 
     public String toString() {
-        return getDate() + Double.toString(getValue());
+        return String.format("[Transport] || %s", super.toString());
     }
 }

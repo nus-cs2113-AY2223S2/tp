@@ -1,15 +1,14 @@
-package seedu.Expenditure;
+package seedu.expenditure;
 
 import java.time.LocalDate;
 
 public class FoodExpenditure extends Expenditure {
-
-    public FoodExpenditure(double value, LocalDate date) {
-        super(value, date);
+    public FoodExpenditure(String description, double value, LocalDate date) {
+        super(description, value, date);
     }
 
     @Override
     public String toString() {
-        return getDate() + Double.toString(getValue());
+        return String.format("[Food] || %s", super.toString());
     }
 }
