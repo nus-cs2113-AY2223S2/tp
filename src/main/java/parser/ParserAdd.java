@@ -1,7 +1,5 @@
 package parser;
 
-import javax.lang.model.type.NullType;
-
 public class ParserAdd {
 
     public static final int AMOUNT_INDEX = 0;
