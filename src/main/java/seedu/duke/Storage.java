@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class Storage {
 
-    private ArrayList<Module> modules;
     private static final String SAVED_MODULES_FILE_PATH = "./data/saved_modules.txt";
-
+    private ArrayList<Module> modules;
+    
     public Storage() {
         this.modules = new ArrayList<>();
         try {
