@@ -83,12 +83,12 @@ public class CommandTest {
         parser.splitKeywordAndDescription(input);
         parser.executeUserInput();
         String actual = outputStream.toString();
-        String expected = "1.food\n"
-                + "salad [budget]100 [expense]50\n"
-                + "pizza [budget]200 [expense]100\n"
-                + "2.book\n"
-                + "Harry Potter [budget]70 [expense]50\n"
-                + "Lord of the Rings [budget]90 [expense]20\n";
+        String expected = "1.food" + System.lineSeparator()
+                + "salad [budget]100 [expense]50" + System.lineSeparator()
+                + "pizza [budget]200 [expense]100" + System.lineSeparator()
+                + "2.book" + System.lineSeparator()
+                + "Harry Potter [budget]70 [expense]50" + System.lineSeparator()
+                + "Lord of the Rings [budget]90 [expense]20" + System.lineSeparator();
         assertEquals(expected, actual);
         clear();
     }
@@ -104,8 +104,8 @@ public class CommandTest {
         parser.splitKeywordAndDescription(input);
         parser.executeUserInput();
         String actual = outputStream.toString();
-        String expected = "1. salad [budget]100 [expense]50\n"
-                + "2. pizza [budget]200 [expense]100\n";
+        String expected = "1. salad [budget]100 [expense]50" + System.lineSeparator()
+                + "2. pizza [budget]200 [expense]100" + System.lineSeparator();
         assertEquals(expected, actual);
         clear();
     }
