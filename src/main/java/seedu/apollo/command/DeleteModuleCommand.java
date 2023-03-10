@@ -4,16 +4,17 @@ import seedu.apollo.module.ModuleList;
 import seedu.apollo.Ui;
 /**
      * For {@code delmod} command.
-     * Delete Module Command class that finds the module and removes it from the ModuleList 
+     * Delete Module Command class that finds the module using moduleCode and removes it from the ModuleList
      */
 public class DeleteModuleCommand extends Command{
 
-    protected String keyword;
-    
+    protected String moduleCode;
+
+
     public void execute(ModuleList modules, Ui ui, Storage storage){
-        modules.deleteModule(modules.findModule(keyword));
+        modules.deleteModule(modules.findModule(moduleCode));
         //update storage later
-        ui.printModuleDeleteMessage(keyword);
+        ui.printModuleDeleteMessage(moduleCode);
     }
 
 }
