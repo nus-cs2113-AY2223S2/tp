@@ -25,6 +25,7 @@ public class ParserTest {
         assertEquals(expectedOutput, new Parser().splitLine("add expense /de breakfast /da 01/02/23 /v 3.50"));
     }
 
+
     @BeforeEach
     public void setUp() {
         System.setOut(new PrintStream(outputStreamCaptor));
