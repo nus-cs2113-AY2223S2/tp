@@ -12,8 +12,10 @@ public class Ui {
 
     public void printWelcomeMessage() {
         printSeparator();
-        String logo = " __  __          _ ____  __  __\n" + "|  \\/  |___ __ _| |__ / / / /  \\\n"
-                + "| |\\/| / -_) _` | ||_ \\/ _ \\ () |\n" + "|_|  |_\\___\\__,_|_|___/\\___/\\__/\n";
+        String logo = " __  __          _ ____  __  __\n" +
+                "|  \\/  |___ __ _| |__ / / / /  \\\n" +
+                "| |\\/| / -_) _` | ||_ \\/ _ \\ () |\n" +
+                "|_|  |_\\___\\__,_|_|___/\\___/\\__/\n";
 
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
@@ -39,8 +41,7 @@ public class Ui {
         printSeparator();
         System.out.println(formatMessage("Name of recipe: " + recipe.getName()));
         for (String ingredient : recipe.getIngredients().keySet()) {
-            String outputMessage = String.format("%s(%d)", ingredient,
-                    recipe.getIngredients().get(ingredient));
+            String outputMessage = String.format("%s(%d)", ingredient, recipe.getIngredients().get(ingredient));
             System.out.println(formatMessage(outputMessage));
         }
         printSeparator();

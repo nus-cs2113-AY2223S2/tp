@@ -4,8 +4,9 @@ import java.util.HashMap;
 
 public class Recipe {
 
+    // changed ingredients to public to edit via editRecipe
+    public HashMap<String, Integer> ingredients;
     private String name;
-    private HashMap<String, Integer> ingredients;
 
     public Recipe(String name, HashMap<String, Integer> ingredients) {
         this.name = name;
