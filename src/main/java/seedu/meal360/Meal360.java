@@ -29,7 +29,7 @@ public class Meal360 {
         String[] command = input.trim().split(" ");
         if (input.equalsIgnoreCase("bye")) {
             canExit = true;
-        // delete a recipe in list
+            // delete a recipe in list
         } else if (command[0].equals("delete")) {
             Recipe deletedRecipe = parser.parseDeleteRecipe(command, recipeList);
             ui.printMessage("Noted. I've removed this recipe:");
@@ -40,10 +40,14 @@ public class Meal360 {
             ui.printRecipe(recipe);
         } else if (command[0].equals("list")) {
             parser.parseListRecipe(recipeList);
-        } else if (command[0].equals("add")){
+        } else if (command[0].equals("add")) {
             Recipe newRecipe = parser.parseAddRecipe(command, recipeList);
             ui.printMessage("I've added this new recipe:" + newRecipe.getName());
             ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
+        } else if (command[0].equals("edit")) {
+            Recipe newrecipe = parser.parseEditRecipe(command, recipeList);
+            // ui print message
+            ui.printMessage("I've edited this recipe:" + newrecipe.getName());
         }
     }
 
