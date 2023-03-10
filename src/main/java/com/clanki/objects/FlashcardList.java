@@ -1,7 +1,5 @@
 package com.clanki.objects;
 
-import com.clanki.objects.flashcard.Flashcard;
-
 import java.util.ArrayList;
 
 public class FlashcardList {

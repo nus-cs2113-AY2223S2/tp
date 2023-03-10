@@ -1,4 +1,4 @@
-package com.clanki.objects.exceptions;
+package com.clanki.exceptions;
 
 public class EmptyFlashcardQuestionException extends Exception {
 }
