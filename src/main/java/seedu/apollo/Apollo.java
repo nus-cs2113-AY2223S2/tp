@@ -1,13 +1,11 @@
 package seedu.apollo;
 
 import seedu.apollo.command.Command;
-import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 
 import java.io.IOException;
 import java.rmi.UnexpectedException;
-import java.util.ArrayList;
 
 /**
  * Main class for running Apollo.
@@ -16,13 +14,12 @@ public class Apollo {
 
     public static final String FILE_PATH = "save.txt";
     private static Storage storage;
-    private static TaskList tasks;
+    private static TaskList taskList;
 
     private static ModuleList moduleList;
     private static Ui ui;
 
-    private static ArrayList<Module> moduleData = new ArrayList<Module>();
-    private static ArrayList<Module> modules = new ArrayList<Module>();
+    private static ModuleList moduleData = new ModuleList();
 
     /**
      * Initialises Ui, Storage, and TaskList.
@@ -33,10 +30,10 @@ public class Apollo {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            tasks = new TaskList(storage.load(ui));
-            moduleList = new ModuleList(modules);
-            storage.update(tasks);
+            taskList = storage.loadTaskList(ui);
+            storage.update(taskList);
             moduleData = storage.loadModuleList();
+            moduleList = new ModuleList();
             ui.printWelcomeMessage();
         } catch (IOException e) {
             ui.printErrorForIO();
@@ -54,9 +51,9 @@ public class Apollo {
         while (!isExit) {
             String fullCommand = ui.readCommand();
             ui.showLine();
-            Command c = Parser.getCommand(fullCommand, ui, tasks.getSize(), moduleData);
+            Command c = Parser.getCommand(fullCommand, ui, taskList.size(), moduleData);
             if (c != null) {
-                c.execute(tasks, ui, storage, moduleList);
+                c.execute(taskList, ui, storage, moduleList);
                 isExit = c.isExit;
             }
             ui.showLine();

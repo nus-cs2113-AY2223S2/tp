@@ -7,7 +7,7 @@ import seedu.apollo.exception.DateOrderException;
 import seedu.apollo.exception.InvalidDeadline;
 import seedu.apollo.exception.InvalidEvent;
 import seedu.apollo.exception.InvalidSaveFile;
-import seedu.apollo.module.Module;
+import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.Deadline;
 import seedu.apollo.task.Event;
 import seedu.apollo.task.Task;
@@ -20,7 +20,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -29,18 +28,7 @@ import java.util.Scanner;
 public class Storage {
     // Location of save file
     protected static String filePath;
-
     private static final String DATAFILEPATH = "data/data.json";
-
-    /*
-    Each task is saved as a line in the save file in this format:
-        [type] | [status] | [description]
-    Followed by:
-        /by [date]                  for Deadlines or
-        /from [date] /to [date]     for Events
-
-    eg. E | X | holiday /from 2023-02-25T00:00:00 /to 2023-03-04T23:59:00
-    */
 
     // ints indicating position of terms in each line of the save file
     private static final int TYPE_POS = 0;
@@ -63,12 +51,12 @@ public class Storage {
     /**
      * Overwrites the existing save file based on the current TaskList.
      *
-     * @param tasks Contains all stored tasks.
+     * @param taskList Contains all stored tasks.
      * @throws IOException If something goes wrong during the overwriting process.
      */
-    public void update(TaskList tasks) throws IOException {
+    public void update(TaskList taskList) throws IOException {
         FileWriter overwrite = new FileWriter(filePath);
-        for (Task task : tasks.allTasks) {
+        for (Task task : taskList) {
             String desc = task.getDescription();
             String type = task.getType();
             String stat = task.getStatus();
@@ -95,37 +83,38 @@ public class Storage {
     }
 
     /**
-     * Loads data from the save file into a new ArrayList of Tasks.
-     * If save file is not found, creates a new save file and returns an empty ArrayList.
+     * Loads data from the save file into a new TaskList of Tasks.
+     * If save file is not found, creates a new save file and returns an empty TaskList.
      *
      * @param ui Prints out error messages to user.
-     * @return ArrayList of Tasks (containing data from save file / empty).
+     * @return TaskList of Tasks (containing data from save file / empty).
      * @throws IOException If save file is not found, and a new one cannot be created.
      */
-    public ArrayList<Task> load(Ui ui) throws IOException {
-        ArrayList<Task> newAllTasks = new ArrayList<>();
+    public TaskList loadTaskList(Ui ui) throws IOException {
+        TaskList newTaskList = new TaskList();
         File save = new File(filePath);
         try {
-            newAllTasks = readFileContents(save, ui);
-            return newAllTasks;
+            newTaskList = readFileContents(save, ui);
+            return newTaskList;
         } catch (FileNotFoundException e) {
             ui.printErrorFileNotFound();
             save.createNewFile();
-            return newAllTasks;
+            return newTaskList;
         }
     }
 
     /**
+     * Reads all lines in the save file, initialises them as an TaskList of Tasks.
      * Loads data from the data file into a new ArrayList of Modules.
      *
      * @return ArrayList of Modules (containing data from save file / empty).
      * @throws FileNotFoundException If save file is not found.
      */
-    public ArrayList<Module> loadModuleList() throws FileNotFoundException {
-        Type moduleDataType = new TypeToken<ArrayList<Module>>(){}.getType();
+    public ModuleList loadModuleList() throws FileNotFoundException {
+        Type moduleDataType = new TypeToken<ModuleList>(){}.getType();
         Gson gson = new Gson();
         JsonReader reader = new JsonReader(new FileReader(DATAFILEPATH));
-        ArrayList<Module> moduleDataList = gson.fromJson(reader, moduleDataType);
+        ModuleList moduleDataList = gson.fromJson(reader, moduleDataType);
         System.out.println("Module Data loaded from " + DATAFILEPATH);
         return moduleDataList;
     }
@@ -134,22 +123,22 @@ public class Storage {
      * Reads all lines in the save file, initialises them as an ArrayList of Tasks.
      *
      * @param save Save file.
-     * @return ArrayList of initialised Tasks based on uncorrupted data in save file.
+     * @return TaskList of initialised Tasks based on uncorrupted data in save file.
      * @throws FileNotFoundException If the save file cannot be found at filePath.
      */
-    private static ArrayList<Task> readFileContents(File save, Ui ui) throws FileNotFoundException {
+    private static TaskList readFileContents(File save, Ui ui) throws FileNotFoundException {
         Scanner s = new Scanner(save);
-        ArrayList<Task> newArrayList = new ArrayList<>();
+        TaskList newTaskList = new TaskList();
         int counter = 0;
         while (s.hasNext()) {
             try {
-                newArrayList.add(newTask(s.nextLine()));
+                newTaskList.add(newTask(s.nextLine()));
                 counter++;
             } catch (InvalidSaveFile e) {
                 ui.printInvalidSaveFile(counter, filePath);
             }
         }
-        return newArrayList;
+        return newTaskList;
     }
 
     /**

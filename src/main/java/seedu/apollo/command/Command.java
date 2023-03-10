@@ -17,12 +17,12 @@ public abstract class Command {
     /**
      * Executes the command.
      *
-     * @param tasks TaskList containing all currently saved tasks.
+     * @param taskList TaskList containing all currently saved tasks.
      * @param ui Prints output messages to user.
      * @param storage Updates the local save file if the TaskList is modified.
      * @throws UnexpectedException If something unexpected occurs.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
     }
 
     void setExit() {

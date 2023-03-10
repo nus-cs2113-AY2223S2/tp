@@ -17,7 +17,7 @@ public class ExitCommand extends Command {
      * @param ui Prints exit message to user.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage, ModuleList moduleList) {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
         ui.printExitMessage();
         this.setExit();
     }

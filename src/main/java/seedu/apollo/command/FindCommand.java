@@ -23,12 +23,12 @@ public class FindCommand extends Command {
     /**
      * Shortlists and prints Tasks from the TaskList that contain the given keyword.
      *
-     * @param tasks The existing TaskList.
+     * @param taskList The existing TaskList.
      * @param ui Prints shortlisted Tasks to user.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage, ModuleList moduleList) {
-        ui.printFoundList(tasks.findTasks(keyword));
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
+        ui.printFoundList(taskList.findTasks(keyword));
     }
 
 }
