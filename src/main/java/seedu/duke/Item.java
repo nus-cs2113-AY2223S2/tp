@@ -47,4 +47,11 @@ public class Item {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    /**Retrieves the quantity of the item.*/
+    public Integer getQuantity() { return quantity; }
+
+    /**Updates the quantity of the item.*/
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
+
 }
