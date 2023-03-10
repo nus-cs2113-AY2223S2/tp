@@ -38,6 +38,28 @@ public class ModuleList {
         return allModules.size();
     }
 
+    /**
+     * Finds the module in the ModuleList which matches the module name
+     * @param moduleCode The code of the module to be found
+     * @return module in the ModuleList which matches the module name 
+     */
+    public Module findModule(String moduleCode) {
+
+        for (Module module : allModules) {
+            if(module.getCode().equals(moduleCode)) {
+                return module;
+            }
+        }
+        return null;
+    }
+    /**
+     * Removes the module in the ModuleList
+     * @param module The module to be deleted
+     */
+    public void deleteModule(Module module) {
+        allModules.remove(module);
+    }
+
     public void addModule(Module module) {
         this.allModules.add(module);
     }

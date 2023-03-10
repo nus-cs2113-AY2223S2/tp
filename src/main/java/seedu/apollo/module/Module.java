@@ -11,6 +11,7 @@ public class Module {
 
     private Timetable timetable;
 
+
     /**
      * Initialises the Module with its corresponding code and name.
      *
