@@ -7,11 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public class ParserTest {
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    
+    
     @Test
     public void splitLine_testScenario_expectedBehaviour() {
         List<String> expectedOutput = new ArrayList<String>();
@@ -23,8 +26,6 @@ public class ParserTest {
         assertEquals(expectedOutput, new Parser().splitLine("add expense /de breakfast /da 01/02/23 /v 3.50"));
     }
 
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @BeforeEach
     public void setUp() {
