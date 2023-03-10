@@ -1,3 +1,5 @@
 A new card is now added:
 Question: hello
 Answer: world
+The input is in an incorrect format.
+Bye. Don't forget to come back later to study!
