@@ -12,9 +12,7 @@ public class GenerateRandomCommand extends Command {
     public GenerateRandomCommand(String userInput){
         if(isNumeric(userInput) && Integer.parseInt(userInput) > 0 ){
             this.count = Integer.parseInt(userInput);
-        }
-
-        else{
+        } else{
             ErrorMessages.invalidTaskErrorMessage();
         }
 

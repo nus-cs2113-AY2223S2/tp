@@ -18,8 +18,7 @@ public class CommandHandler {
             if (userCommands.length == 1){
                 ErrorMessages.emptyDescriptionErrorMessage();
                 break;
-            }
-            else {
+            } else {
                 command = new GenerateRandomCommand(userCommands[1]);
                 command.executeCommand(ui, exerciseGenerator);
             }

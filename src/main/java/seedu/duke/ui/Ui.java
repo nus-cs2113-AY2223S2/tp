@@ -17,9 +17,9 @@ public class Ui {
         Bye.bye();
     }
 
-    public void generateRandomExercises() {RandomExercises.generateNumber();}
+    public void generateRandomExercises() { RandomExercises.generateNumber();}
 
-    public void showHelpList() {Help.helpList();}
+    public void showHelpList() { Help.helpList();}
 
     //public void customisedExercises(){;}
 
