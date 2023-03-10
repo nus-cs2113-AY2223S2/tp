@@ -1,0 +1,68 @@
+package seedu.duke;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+
+public class Event {
+    private static SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+    
+    private String description;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private boolean hasEndInfo;
+    private boolean hasStartTime;
+    private boolean hasEndTime;
+
+    public Event(String eventDescription, LocalDateTime start, LocalDateTime end, boolean hasSt, boolean hasEd) {
+        this.description = eventDescription;
+        this.startTime = start;
+        this.endTime = end;
+        this.hasEndInfo = true;
+        this.hasStartTime = hasSt;
+        this.hasEndTime = hasEd;
+    }
+
+    public Event(String eventDescription, LocalDateTime start, boolean hasSt) {
+        this.description = eventDescription;
+        this.startTime = start;
+        this.hasEndTime = false;
+        this.hasStartTime = hasSt;
+        this.hasEndTime = false;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    private String getOutputFormat(LocalDateTime timeInfo, boolean hasTimeDetail) {
+        if(!hasTimeDetail) {
+            String timeInString = dateTimeFormatter.format(timeInfo).split(" ")[0];
+            return timeInString;
+        }
+        return dateTimeFormatter.format(timeInfo);
+    }
+
+    public String getTime() {
+        if (hasEndInfo) {
+            return getOutputFormat(startTime, hasStartTime) + "to" + getOutputFormat(endTime, hasEndTime);
+        } else {
+            return getOutputFormat(startTime, hasStartTime);
+        }
+    }
+
+    public boolean hasEndTime() {
+        return hasEndTime;
+    }
+
+    public boolean hasStartTime() {
+        return hasStartTime;
+    }
+
+    public boolean hasEndInfo() {
+        return hasEndInfo;  
+    }
+
+    public String toString() {
+        return "[E]" + getDescription() + " (" + getTime() + ")";
+    }
+}
