@@ -2,7 +2,10 @@ package seedu.duke;
 
 import seedu.duke.command.ExecutableCommand;
 import seedu.duke.command.factory.ExecutableCommandFactory;
-import seedu.duke.command.factory.misc.*;
+import seedu.duke.command.factory.misc.AddCommandFactory;
+import seedu.duke.command.factory.misc.ByeCommandFactory;
+import seedu.duke.command.factory.misc.HelloWorldCommandFactory;
+import seedu.duke.command.factory.misc.RecipePossibleCommandFactory;
 import seedu.duke.ingredient.IngredientList;
 import seedu.duke.parser.CommandArguments;
 import seedu.duke.parser.CommandTokens;
@@ -14,10 +17,10 @@ import java.util.Scanner;
 
 public class DukeSession {
 
-    public static IngredientList ingredients;
     private final RecipeList recipes;
     private final DukeUI ui;
     private final DukeControlFlow controlFlow;
+    public static IngredientList ingredients;
     private static final CommandRouterNode COMMAND_TREE =
             new CommandRouterNode()
 

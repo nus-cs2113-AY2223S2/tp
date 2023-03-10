@@ -1,6 +1,6 @@
 package seedu.duke.command.misc;
 
-import seedu.duke.*;
+import seedu.duke.DukeSession;
 import seedu.duke.command.ExecutableCommand;
 import seedu.duke.ingredient.Ingredient;
 import seedu.duke.ingredient.IngredientList;
