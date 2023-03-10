@@ -11,7 +11,7 @@ class ModuleListTest {
 
     @Test
     void findModule_invalidModuleCode_expectException() {
-        ModuleList allModules = new ModuleList(new ArrayList<Module>());
+        ModuleList allModules = new ModuleList(new ArrayList<>());
         String invalidModuleCode = "cs2113";
         assertThrows(ModuleNotFoundException.class, () -> allModules.findModule(invalidModuleCode));
     }
