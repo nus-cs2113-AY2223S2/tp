@@ -17,9 +17,6 @@ import java.util.Scanner;
 
 public class DukeSession {
 
-    private final RecipeList recipes;
-    private final DukeUI ui;
-    private final DukeControlFlow controlFlow;
     public static IngredientList ingredients;
     private static final CommandRouterNode COMMAND_TREE =
             new CommandRouterNode()
@@ -31,6 +28,10 @@ public class DukeSession {
                     .route("add", new AddCommandFactory())
                     .route("recipe", new CommandRouterNode()
                             .route("possible", new RecipePossibleCommandFactory()));
+    private final RecipeList recipes;
+    private final DukeUI ui;
+    private final DukeControlFlow controlFlow;
+
 
 
 
@@ -43,6 +44,7 @@ public class DukeSession {
 
     /**
      * Returns the <code>DukeUI</code> for the current session.
+     *
      * @return Handle to control UI.
      */
     public DukeUI getUi() {
@@ -51,6 +53,7 @@ public class DukeSession {
 
     /**
      * Returns the <code>DukeControlFlow</code> for the current session.
+     *
      * @return Handle to set the control flow.
      */
     public DukeControlFlow getControlFlow() {
@@ -59,6 +62,7 @@ public class DukeSession {
 
     /**
      * Returns the <code>IngredientList</code> for the current session.
+     *
      * @return Handle to access the Ingredient List.
      */
     public IngredientList getIngredients() {
@@ -67,6 +71,7 @@ public class DukeSession {
 
     /**
      * Returns the <code>RecipeList</code> for the current session.
+     *
      * @return Handle to access the Recipe List.
      */
     public RecipeList getRecipes() {
@@ -76,7 +81,7 @@ public class DukeSession {
     /**
      * Runs the read, evaluate, print loop for Duke.
      */
-    public void runDuke()  {
+    public void runDuke() {
         this.ui.printIntroduction();
         while (this.controlFlow.shouldRun()) {
             String nextCommand = ui.getNextCommandString();
