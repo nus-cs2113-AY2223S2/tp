@@ -10,13 +10,17 @@ public class EventList {
     
     protected ArrayList<Event> taskList;
     protected int listSize;
-    
+
+    public ArrayList<Event> fullList() {
+        return this.taskList;
+    }
+
     public EventList() {
         this.taskList = new ArrayList<Event>();
         this.listSize = 0;
     }
 
-    public EventList(ArrayList<Event> events) {
+        public EventList(ArrayList<Event> events) {
         this.taskList = events;
         this.listSize = events.size();
     }
@@ -83,7 +87,7 @@ public class EventList {
         listSize++;
     }
 
-    public void addEvent(String description, String startTime, String startDay) {
+    public void addEvent(String description, String startTime, String startDay, String endTime) {
         boolean hasStTime = true;
         LocalDateTime combinedStartTime = LocalDateTime.parse(DTINIT, dfWithTime);
 
