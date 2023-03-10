@@ -1,5 +1,5 @@
 package seedu.duke.ui;
-import seedu.duke.exceptions.ErrorMessages;
+
 
 public class Greet {
     private static final String MARGIN = "*-----------------------------------------------------------------*";
@@ -16,7 +16,8 @@ public class Greet {
         System.out.println("Hello! Welcome to\n" + LOGO);
         System.out.println("\n");
         System.out.println("What type of exercise you like to do today?");
-        //System.out.println("Enter 'random' to let Duke choose a list of random exercises for you, or 'customised' to choose your preferred exercises.");
+        //System.out.println("Enter 'random' to let Duke choose a list of random exercises for you,
+        // or 'customised' to choose your preferred exercises.");
         System.out.println(MARGIN);
     }
 

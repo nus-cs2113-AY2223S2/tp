@@ -25,7 +25,7 @@ public class CommandHandler {
             }
             break;
 
-        case "random" :
+        case "random":
             ui.generateRandomExercises();
             break;
 

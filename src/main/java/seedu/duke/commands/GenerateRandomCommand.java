@@ -9,6 +9,17 @@ import java.util.ArrayList;
 public class GenerateRandomCommand extends Command {
     private int count;
 
+    public GenerateRandomCommand(String userInput){
+        if(isNumeric(userInput) && Integer.parseInt(userInput) > 0 ){
+            this.count = Integer.parseInt(userInput);
+        }
+
+        else{
+            ErrorMessages.invalidTaskErrorMessage();
+        }
+
+    }
+    
     // Check if 2nd part of input is a positive integer
     public static boolean isNumeric(String input) {
         if (input == null) {
@@ -22,18 +33,7 @@ public class GenerateRandomCommand extends Command {
         return true;
     }
 
-    public GenerateRandomCommand(String userInput){
-        if(isNumeric(userInput) && Integer.parseInt(userInput) > 0 ){
-            this.count = Integer.parseInt(userInput);
-        }
 
-        else{
-            ErrorMessages.invalidTaskErrorMessage();
-        }
-
-
-
-    }
     public void executeCommand(Ui ui, GenerateExercise exerciseGenerator){
         ArrayList<ExerciseData> exercises = exerciseGenerator.generateRandomSet(count);
         ui.printExerciseFromList(exercises);
