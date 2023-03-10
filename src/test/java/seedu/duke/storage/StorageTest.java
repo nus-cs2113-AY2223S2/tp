@@ -8,8 +8,6 @@ import seedu.duke.EventList;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-
-
 class StorageTest {
 
     private static final String fileLocation = System.getProperty("user.dir") + "/save.json";
