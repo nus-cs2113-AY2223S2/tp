@@ -24,18 +24,26 @@ public class Ui {
      * @return command entered by the user
      */
     public static String getUserCommand() {
-        out.println(LINE_PREFIX + "Enter command: ");
+        showToUser("");
+        out.print(LINE_PREFIX + "Enter command: ");
         return in.nextLine();
     }
 
     public static void showWelcomeMessages() {
-        showToUser(LINE_DIVIDER, LINE_DIVIDER, "", MESSAGE_LOGO,
+        showToUserWithLineBreak(LINE_DIVIDER, LINE_DIVIDER, "", MESSAGE_LOGO,
                 MESSAGE_WELCOME, "", LINE_DIVIDER);
     }
 
     public static void showGoodByeMessages() {
-        showToUser("", MESSAGE_GOODBYE, "",
-                LINE_DIVIDER, LINE_DIVIDER);
+        showToUserWithLineBreak(LINE_DIVIDER, "", MESSAGE_GOODBYE,
+                "", LINE_DIVIDER);
+    }
+
+    public static void showToUserWithLineBreak(String... messages) {
+        for (String message : messages) {
+            out.println(LINE_PREFIX + message);
+        }
+        out.println(LINE_PREFIX + LINE_DIVIDER);
     }
 
     public static void showToUser(String... messages) {
@@ -43,4 +51,12 @@ public class Ui {
             out.println(LINE_PREFIX + message);
         }
     }
+
+//    public static void showMessageToUser(String... messages) {
+////        showResultToUser(messages);
+//        for (String message : messages) {
+//            out.println(LINE_PREFIX + message);
+//        }
+//        showToUser(LINE_DIVIDER);
+//    }
 }

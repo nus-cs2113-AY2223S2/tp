@@ -32,8 +32,4 @@ public class EditExpenseCommand extends Command {
             Expenses.editExpense(type, index, newEntry);
         }
     }
-
-//    private boolean isLetters() {
-//        return newEntry.matches("[a-zA-Z]+");
-//    }
 }

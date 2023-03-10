@@ -1,5 +1,7 @@
 package seedu.BrokeMan.command;
 
+import seedu.BrokeMan.ui.Ui;
+
 public class InvalidCommand extends Command {
     private String invalidMessage;
 
@@ -8,6 +10,6 @@ public class InvalidCommand extends Command {
     }
 
     public void execute() {
-        System.out.println(invalidMessage);
+        Ui.showToUserWithLineBreak(invalidMessage, "");
     }
 }

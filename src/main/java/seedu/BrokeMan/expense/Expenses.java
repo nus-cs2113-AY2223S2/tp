@@ -1,5 +1,7 @@
 package seedu.BrokeMan.expense;
 
+import seedu.BrokeMan.ui.Ui;
+
 import java.util.LinkedList;
 
 public class Expenses {
@@ -17,6 +19,7 @@ public class Expenses {
      */
     public static void addExpense(Expense newExpense) {
         expenseList.add(newExpense);
+        Ui.showToUserWithLineBreak("You have successfully added [" + newExpense + "]", "");
     }
 
     /**
@@ -24,13 +27,16 @@ public class Expenses {
      */
     public static void listExpense() {
         sortExpenses();
-        System.out.println("Here are the expenses you have made\n");
+//        System.out.println("Here are the expenses you have made\n");
+        Ui.showToUser("Here are the expenses you have made.");
         int counter = 1;
         for (Expense expenseLog : expenseList) {
-            String message = String.format("%s. %s", Integer.toString(counter), expenseLog.toString());
-            System.out.println(message + '\n');
+            String message = String.format("%d. %s", counter, expenseLog.toString());
+//            System.out.println(message + '\n');
+            Ui.showToUser(message);
             counter++;
         }
+        Ui.showToUserWithLineBreak("");
     }
 
     /**
@@ -41,9 +47,11 @@ public class Expenses {
     public static void deleteExpense(int expenseIndex) {
         try {
             expenseList.remove(expenseIndex);
-            System.out.println("Successfully deleted expense.");
+//            System.out.println("Successfully deleted expense.");
+            Ui.showToUserWithLineBreak("Successfully deleted expense.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
-            System.out.println("Invalid index! Please try again.\n");
+//            System.out.println("Invalid index! Please try again.\n");
+            Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
         }
     }
 
@@ -57,16 +65,17 @@ public class Expenses {
     public static void editExpenseCost(String type, int expenseIndex, double newEntry) {
         try {
             Expense expenseBeingEdited = expenseList.get(expenseIndex - 1);
-            switch (type) {
-            case "cost":
+            if (type.equals("cost")) {
                 expenseBeingEdited.editCost(newEntry);
-                break;
-            default:
-                System.out.println("Invalid type parameter!");
+            } else {
+                //                System.out.println("Invalid type parameter!");
+                Ui.showToUserWithLineBreak("Invalid type Parameter!", "");
             }
-            System.out.println("Successfully edited expense.");
+//            System.out.println("Successfully edited expense.");
+            Ui.showToUserWithLineBreak("Successfully edited expense.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
-            System.out.println("Invalid index! Please try again.\n");
+//            System.out.println("Invalid index! Please try again.\n");
+            Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
         }
     }
 
@@ -88,11 +97,14 @@ public class Expenses {
                 expenseBeingEdited.editTime(newEntry);
                 break;
             default:
-                System.out.println("Invalid type parameter!");
+//                System.out.println("Invalid type parameter!");
+                Ui.showToUserWithLineBreak("Invalid type parameter!", "");
             }
-            System.out.println("Successfully edited expense.");
+//            System.out.println("Successfully edited expense.");
+            Ui.showToUserWithLineBreak("Successfully edited expense.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
-            System.out.println("Invalid index! Please try again.\n");
+//            System.out.println("Invalid index! Please try again.\n");
+            Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
         }
     }
 
@@ -101,5 +113,6 @@ public class Expenses {
      */
     public static void sortExpenses() {
         expenseList.sort(new ExpenseCostComparator());
+//        Ui.showToUser("You have successfully sorted your expense list");
     }
 }

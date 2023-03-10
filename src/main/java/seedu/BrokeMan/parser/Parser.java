@@ -14,55 +14,6 @@ import static seedu.BrokeMan.common.Messages.MESSAGE_INVALID_ADD_EXPENSE_COMMAND
 import static seedu.BrokeMan.common.Messages.MESSAGE_INVALID_EDIT_EXPENSE_COMMAND;
 
 public class Parser {
-//    public static ArrayList<String> parseCommand(String fullUserInput) {
-////        String[] userSplitInput = fullUserInput.trim().split(" ");
-////        String type = userSplitInput[0].toLowerCase();
-//        String type = fullUserInput.trim().split(" ")[0];
-//        type = type.toLowerCase();
-////        String userCommand = userSplitInput[1].toLowerCase();
-////        String[] arguments = Arrays.copyOfRange(userSplitInput, 2, userSplitInput.length);
-//
-//        switch (type) {
-//        case "expense":
-//            return prepareExpense(fullUserInput);
-//        case "income":
-//            return prepareIncome(fullUserInput);
-//        case "Budget":
-//            return prepareBudget(fullUserInput);
-//        case "Target":
-//            return prepareTarget(fullUserInput);
-//        default:
-//            return new HelpCommand();
-//        }
-//    }
-//
-//    private static ArrayList<String> prepareExpense(String fullUserInput) {
-//        String[] userSplitInput = fullUserInput.trim().split(" ");
-//        String command = null;
-//        try {
-//            command = userSplitInput[1];
-//        } catch (ArrayIndexOutOfBoundsException e) {
-//            Ui.showToUser("Please enter a valid command");
-//        }
-//
-//        ArrayList<String> output = null;
-//        switch (command) {
-//        case "add":
-//            String expense = fullUserInput.substring(2, fullUserInput.length());
-////            String[] out = new String[1];
-////            out[0] = expense;
-////            return out;
-//            output.add(expense);
-//            return output;
-//        case "list":
-//            output.add("");
-//            return output;
-//        case "Edit":
-//            String editInformation = fullUserInput.substring(2)
-//            String[] splitEditInformation = editInformation.split(" ");
-//
-//        }
-//    }
 
     public static Command parseCommand(String userFullInput) {
         if (!userFullInput.contains(" ")) {
@@ -102,6 +53,8 @@ public class Parser {
         String[] splitDescriptions = description.split("/ ");
         double amount;
 
+        // handle error for the input "addExpense a/ d/ t/ time"
+        // similarly for prepareEditExpenseCommand
         try {
             int length = splitDescriptions[1].length();
             amount = Double.parseDouble(splitDescriptions[1].substring(0, length - 2));
