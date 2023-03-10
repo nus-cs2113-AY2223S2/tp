@@ -106,11 +106,22 @@ public class Ui {
     /**
      * For {@code delmod} command.
      * Prints message for successful deletion of Module.
-     * @param moduleCode The code of the module which was deleted
+     *
+     * @param moduleCode The code of the module which was deleted.
      */
     public void printModuleDeleteMessage(String moduleCode) {
         System.out.println("Got it, removed " + moduleCode + " from your Module list.");
 
+    }
+
+    /**
+     * For {@code delmod} command.
+     * Prints message if Module cannot be found for unsuccessful deletion of Module.
+     *
+     * @param moduleCode The code of the module which was not found.
+     */
+    public void printUnsuccessfulModuleDelete(String moduleCode) {
+        System.out.println("Sorry, the module " + moduleCode + " does not exist in your Module list!");
     }
 
     /**
