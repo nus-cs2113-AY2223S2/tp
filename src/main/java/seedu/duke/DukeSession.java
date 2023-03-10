@@ -2,11 +2,11 @@ package seedu.duke;
 
 import seedu.duke.command.ExecutableCommand;
 import seedu.duke.command.factory.ExecutableCommandFactory;
-import seedu.duke.command.factory.misc.ByeCommandFactory;
-import seedu.duke.command.factory.misc.HelloWorldCommandFactory;
-import seedu.duke.command.factory.misc.AddCommandFactory;
+import seedu.duke.command.factory.misc.*;
+import seedu.duke.ingredient.IngredientList;
 import seedu.duke.parser.CommandArguments;
 import seedu.duke.parser.CommandTokens;
+import seedu.duke.recipe.RecipeList;
 import seedu.duke.router.CommandRouterNode;
 import seedu.duke.ui.DukeUI;
 
@@ -14,7 +14,10 @@ import java.util.Scanner;
 
 public class DukeSession {
 
-    public static IngredientList Ingredients;
+    public static IngredientList ingredients;
+    private final RecipeList recipes;
+    private final DukeUI ui;
+    private final DukeControlFlow controlFlow;
     private static final CommandRouterNode COMMAND_TREE =
             new CommandRouterNode()
 
@@ -22,16 +25,17 @@ public class DukeSession {
                             .route("world", new HelloWorldCommandFactory())
                     )
                     .route("bye", new ByeCommandFactory())
-                    .route("add", new AddCommandFactory());
-    private final DukeUI ui;
-    private final DukeControlFlow controlFlow;
+                    .route("add", new AddCommandFactory())
+                    .route("recipe", new CommandRouterNode()
+                            .route("possible", new RecipePossibleCommandFactory()));
+
 
 
     public DukeSession() {
         this.ui = new DukeUI(new Scanner(System.in));
         this.controlFlow = new DukeControlFlow();
-        Ingredients = new IngredientList();
-        this.Ingredients = Ingredients;
+        this.ingredients = new IngredientList();
+        this.recipes = new RecipeList();
     }
 
     /**
@@ -48,6 +52,22 @@ public class DukeSession {
      */
     public DukeControlFlow getControlFlow() {
         return controlFlow;
+    }
+
+    /**
+     * Returns the <code>IngredientList</code> for the current session.
+     * @return Handle to access the Ingredient List.
+     */
+    public IngredientList getIngredients() {
+        return ingredients;
+    }
+
+    /**
+     * Returns the <code>RecipeList</code> for the current session.
+     * @return Handle to access the Recipe List.
+     */
+    public RecipeList getRecipes() {
+        return recipes;
     }
 
     /**
