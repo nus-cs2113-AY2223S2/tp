@@ -1,1 +1,9 @@
-James Gosling
+addExpense a/ 4.00 d/ lunch t/ 12pm
+addExpense a/ 6.00 d/ dinner t/ 6pm
+listExpense
+editExpense i/ 1 t/ cost n/ 7
+editExpense i/ 1 t/ info n/ breakfast
+editExpense i/ 2 t/ time n/ 11am
+deleteExpense 1
+listExpense
+exit
