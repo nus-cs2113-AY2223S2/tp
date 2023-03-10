@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.exceptions.MissingParametersException;
 
 import java.util.ArrayList;
@@ -34,6 +35,12 @@ public class Parser {
         case "add":
             parseAdd(commandInfo);
             break;
+        case "edit":
+            parseEdit(commandInfo);
+            break;
+        case "list":
+            parseList();
+            break;
         default:
             Ui.printUnknownCommand();
             break;
@@ -57,5 +64,28 @@ public class Parser {
         } catch (MissingParametersException e) {
             e.missingAddItemParameters();
         }
+    }
+
+    /**
+     * Handles the "edit" command by making sure that formatting is correct, before passing the user inputs
+     * to another function to handle the edits needed to be made.
+     *
+     * @param editingInstructions The string containing the user input.
+     */
+    public void parseEdit(String editingInstructions) {
+        String[] editInfo = editingInstructions.split(" ");
+        try {
+            if (!editInfo[0].contains("upc/") || editInfo.length == 1) {
+                throw new EditErrorException();
+            }
+            Inventory.editItem(editInfo);
+        } catch (EditErrorException eee) {
+            Ui.printInvalidEditCommand();
+        }
+    }
+
+    /**Temporary List Method created by Kai Wen for Edit Function Testing.*/
+    public void parseList() {
+        Inventory.listAll();
     }
 }
