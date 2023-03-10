@@ -1,8 +1,10 @@
 package seedu.duke.commands;
 
+import seedu.duke.constants.EntryConstants;
 import seedu.duke.entries.Category;
 import seedu.duke.entries.Entry;
 import seedu.duke.entrylog.EntryLog;
+import seedu.duke.exceptions.InvalidCategoryException;
 
 /**
  * Represents the add feature in PocketPal. Users may provide a description
@@ -10,16 +12,7 @@ import seedu.duke.entrylog.EntryLog;
  * e.g., <code>/add lunch -p 15 -c food</code>
  */
 public class AddCommand extends Command {
-    private static final String CATEGORY_CLOTHING = "clothing";
-    private static final String CATEGORY_ENTERTAINMENT = "entertainment";
-    private static final String CATEGORY_FOOD = "food";
-    private static final String CATEGORY_INCOME = "income";
-    private static final String CATEGORY_MEDICAL = "medical";
-    private static final String CATEGORY_OTHERS = "others";
-    private static final String CATEGORY_PERSONAL = "personal";
-    private static final String CATEGORY_TRANSPORTATION = "transportation";
-    private static final String CATEGORY_UTILITIES = "utilities";
-
+    private static final String MESSAGE_INVALID_CATEGORY = "Please specify a valid category!";
     private Entry entryObj;
 
     /**
@@ -29,46 +22,46 @@ public class AddCommand extends Command {
      * @param category    Category which entry belongs to
      * @param amount      Price of entry
      */
-    public AddCommand(String description, String category, double amount) {
+    public AddCommand(String description, String category, double amount) throws InvalidCategoryException {
         switch(category){
-        case CATEGORY_CLOTHING:
+        case EntryConstants.CLOTHING:
             this.entryObj = new Entry(description, amount, Category.CLOTHING);
             break;
 
-        case CATEGORY_ENTERTAINMENT:
+        case EntryConstants.ENTERTAINMENT:
             this.entryObj = new Entry(description, amount, Category.ENTERTAINMENT);
             break;
 
-        case CATEGORY_FOOD:
+        case EntryConstants.FOOD:
             this.entryObj = new Entry(description, amount, Category.FOOD);
             break;
 
-        case CATEGORY_INCOME:
+        case EntryConstants.INCOME:
             this.entryObj = new Entry(description, amount, Category.INCOME);
             break;
 
-        case CATEGORY_MEDICAL:
+        case EntryConstants.MEDICAL:
             this.entryObj = new Entry(description, amount, Category.MEDICAL);
             break;
 
-        case CATEGORY_OTHERS:
+        case EntryConstants.OTHERS:
             this.entryObj = new Entry(description, amount, Category.OTHERS);
             break;
 
-        case CATEGORY_PERSONAL:
+        case EntryConstants.PERSONAL:
             this.entryObj = new Entry(description, amount, Category.PERSONAL);
             break;
 
-        case CATEGORY_TRANSPORTATION:
+        case EntryConstants.TRANSPORTATION:
             this.entryObj = new Entry(description, amount, Category.TRANSPORTATION);
             break;
 
-        case CATEGORY_UTILITIES:
+        case EntryConstants.UTILITIES:
             this.entryObj = new Entry(description, amount, Category.UTILITIES);
             break;
 
         default:
-            return;
+            throw new InvalidCategoryException(MESSAGE_INVALID_CATEGORY);
         }
     }
 

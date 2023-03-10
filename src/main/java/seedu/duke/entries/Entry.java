@@ -41,6 +41,8 @@ public class Entry {
             return EntryConstants.UTILITIES;
         case TRANSPORTATION:
             return EntryConstants.TRANSPORTATION;
+        case INCOME:
+            return EntryConstants.INCOME;
         default:
             throw new IllegalArgumentException();
         }
