@@ -1,9 +1,13 @@
 package seedu.apollo;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import seedu.apollo.exception.DateOrderException;
 import seedu.apollo.exception.InvalidDeadline;
 import seedu.apollo.exception.InvalidEvent;
 import seedu.apollo.exception.InvalidSaveFile;
+import seedu.apollo.module.Module;
 import seedu.apollo.task.Deadline;
 import seedu.apollo.task.Event;
 import seedu.apollo.task.Task;
@@ -12,8 +16,11 @@ import seedu.apollo.task.ToDo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -22,16 +29,7 @@ import java.util.Scanner;
 public class Storage {
     // Location of save file
     protected static String filePath;
-
-    /*
-    Each task is saved as a line in the save file in this format:
-        [type] | [status] | [description]
-    Followed by:
-        /by [date]                  for Deadlines or
-        /from [date] /to [date]     for Events
-
-    eg. E | X | holiday /from 2023-02-25T00:00:00 /to 2023-03-04T23:59:00
-    */
+    private static final String DATAFILEPATH = "data/data.json";
 
     // ints indicating position of terms in each line of the save file
     private static final int TYPE_POS = 0;
@@ -54,12 +52,12 @@ public class Storage {
     /**
      * Overwrites the existing save file based on the current TaskList.
      *
-     * @param tasks Contains all stored tasks.
+     * @param taskList Contains all stored tasks.
      * @throws IOException If something goes wrong during the overwriting process.
      */
-    public void update(TaskList tasks) throws IOException {
+    public void update(TaskList taskList) throws IOException {
         FileWriter overwrite = new FileWriter(filePath);
-        for (Task task : tasks) {
+        for (Task task : taskList) {
             String desc = task.getDescription();
             String type = task.getType();
             String stat = task.getStatus();
@@ -93,7 +91,7 @@ public class Storage {
      * @return TaskList of Tasks (containing data from save file / empty).
      * @throws IOException If save file is not found, and a new one cannot be created.
      */
-    public TaskList load(Ui ui) throws IOException {
+    public TaskList loadTaskList(Ui ui) throws IOException {
         TaskList newTaskList = new TaskList();
         File save = new File(filePath);
         try {
@@ -108,6 +106,22 @@ public class Storage {
 
     /**
      * Reads all lines in the save file, initialises them as an TaskList of Tasks.
+     * Loads data from the data file into a new ArrayList of Modules.
+     *
+     * @return ArrayList of Modules (containing data from save file / empty).
+     * @throws FileNotFoundException If save file is not found.
+     */
+    public ArrayList<Module> loadModuleList() throws FileNotFoundException {
+        Type moduleDataType = new TypeToken<ArrayList<Module>>(){}.getType();
+        Gson gson = new Gson();
+        JsonReader reader = new JsonReader(new FileReader(DATAFILEPATH));
+        ArrayList<Module> moduleDataList = gson.fromJson(reader, moduleDataType);
+        System.out.println("Module Data loaded from " + DATAFILEPATH);
+        return moduleDataList;
+    }
+
+    /**
+     * Reads all lines in the save file, initialises them as an ArrayList of Tasks.
      *
      * @param save Save file.
      * @return TaskList of initialised Tasks based on uncorrupted data in save file.

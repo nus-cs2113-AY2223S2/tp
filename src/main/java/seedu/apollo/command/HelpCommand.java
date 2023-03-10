@@ -1,6 +1,7 @@
 package seedu.apollo.command;
 
 import seedu.apollo.Storage;
+import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.Ui;
 
@@ -15,7 +16,7 @@ public class HelpCommand extends Command {
      * @param ui Prints list of Commands to user.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
         ui.printHelpMessage();
     }
 

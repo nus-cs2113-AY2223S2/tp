@@ -5,6 +5,7 @@ import seedu.apollo.Storage;
 import seedu.apollo.exception.DateOrderException;
 import seedu.apollo.task.Deadline;
 import seedu.apollo.task.Event;
+import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.Ui;
 import seedu.apollo.exception.InvalidDeadline;
@@ -19,7 +20,7 @@ import static seedu.apollo.Parser.COMMAND_EVENT_WORD;
 import static seedu.apollo.Parser.COMMAND_TODO_WORD;
 
 /**
- * Add Command class that adds a Task to the existing TaskList tasks.
+ * Add Command class that adds a Task to the existing TaskList.
  * Handles {@code todo}, {@code deadline}, and {@code event} commands.
  */
 public class AddCommand extends Command {
@@ -62,25 +63,25 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Executes the adding of a Task to the TaskList tasks based on data in the class.
+     * Executes the adding of a Task to the TaskList based on data in the class.
      *
-     * @param tasks The TaskList to be added to.
+     * @param taskList The TaskList to be added to.
      * @param ui Prints success or error message to user.
      * @param storage Gets updated after the Task has been added.
      * @throws UnexpectedException If the command stored is not recognised.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws UnexpectedException {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
         switch(type) {
         case COMMAND_TODO_WORD:
-            tasks.add(new ToDo(desc));
+            taskList.add(new ToDo(desc));
             break;
         case COMMAND_DEADLINE_WORD:
-            tasks.add(new Deadline(desc, by));
+            taskList.add(new Deadline(desc, by));
             break;
         case COMMAND_EVENT_WORD:
             try {
-                tasks.add(new Event(desc, from, to));
+                taskList.add(new Event(desc, from, to));
             } catch (DateOrderException e) {
                 ui.printDateOrderException();
                 return;
@@ -89,9 +90,9 @@ public class AddCommand extends Command {
         default:
             throw new UnexpectedException("Adding Task");
         }
-        ui.printAddMessage(tasks.get(tasks.size() - 1));
+        ui.printAddMessage(taskList.get(taskList.size() - 1));
         try {
-            storage.update(tasks);
+            storage.update(taskList);
         } catch (IOException e) {
             ui.printErrorForIO();
         }

@@ -48,7 +48,7 @@ public class ModuleList {
      */
     public Module findModule(String moduleCode) throws ModuleNotFoundException {
         for (Module module : allModules) {
-            if(Module.getModuleCode().equals(moduleCode)) {
+            if(module.getCode().toLowerCase().equals(moduleCode)) {
                 return module;
             }
         }
@@ -60,8 +60,17 @@ public class ModuleList {
      *
      * @param module The module to be deleted.
      */
-    public void deleteModule(Module module){
+    public void deleteModule(Module module) {
         allModules.remove(module);
+    }
+
+    /**
+     * Adds the module to the ModuleList.
+     *
+     * @param module The module to be added.
+     */
+    public void addModule(Module module) {
+        this.allModules.add(module);
     }
 
 }

@@ -1,10 +1,13 @@
 package seedu.apollo;
 
 import seedu.apollo.command.Command;
+import seedu.apollo.module.Module;
+import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 
 import java.io.IOException;
 import java.rmi.UnexpectedException;
+import java.util.ArrayList;
 
 /**
  * Main class for running Apollo.
@@ -13,8 +16,13 @@ public class Apollo {
 
     public static final String FILE_PATH = "save.txt";
     private static Storage storage;
-    private static TaskList tasks;
+    private static TaskList taskList;
+
+    private static ModuleList moduleList;
     private static Ui ui;
+
+    private static ArrayList<Module> moduleData = new ArrayList<>();
+    private static ArrayList<Module> modules = new ArrayList<>();
 
     /**
      * Initialises Ui, Storage, and TaskList.
@@ -25,8 +33,10 @@ public class Apollo {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            tasks = storage.load(ui);
-            storage.update(tasks);
+            taskList = storage.loadTaskList(ui);
+            storage.update(taskList);
+            moduleData = storage.loadModuleList();
+            moduleList = new ModuleList(modules);
             ui.printWelcomeMessage();
         } catch (IOException e) {
             ui.printErrorForIO();
@@ -39,14 +49,14 @@ public class Apollo {
      *
      * @throws UnexpectedException If command cannot be executed for an unexpected reason.
      */
-    public void run() throws UnexpectedException {
+    public void run() throws IOException {
         boolean isExit = false;
         while (!isExit) {
             String fullCommand = ui.readCommand();
             ui.showLine();
-            Command c = Parser.getCommand(fullCommand, ui, tasks.size());
+            Command c = Parser.getCommand(fullCommand, ui, taskList.size(), moduleData);
             if (c != null) {
-                c.execute(tasks, ui, storage);
+                c.execute(taskList, ui, storage, moduleList);
                 isExit = c.isExit;
             }
             ui.showLine();
@@ -61,6 +71,8 @@ public class Apollo {
             new Apollo(FILE_PATH).run();
         } catch (UnexpectedException exception) {
             ui.printUnexpectedException(exception);
+        } catch (IOException e) {
+            ui.printErrorForIO();
         }
         System.exit(0);
     }

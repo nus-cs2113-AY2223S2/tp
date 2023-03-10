@@ -1,6 +1,7 @@
 package seedu.apollo.command;
 
 import seedu.apollo.Storage;
+import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.Ui;
 
@@ -16,7 +17,7 @@ public class ExitCommand extends Command {
      * @param ui Prints exit message to user.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
         ui.printExitMessage();
         this.setExit();
     }
