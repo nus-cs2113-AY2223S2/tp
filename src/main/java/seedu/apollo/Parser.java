@@ -11,7 +11,15 @@ import seedu.apollo.command.HelpCommand;
 import seedu.apollo.command.ListCommand;
 import seedu.apollo.command.ListModuleCommand;
 import seedu.apollo.command.ModifyCommand;
-import seedu.apollo.exception.*;
+import seedu.apollo.exception.EmptyAddModException;
+import seedu.apollo.exception.EmptyDelModException;
+import seedu.apollo.exception.EmptyKeywordException;
+import seedu.apollo.exception.EmptyTaskDescException;
+import seedu.apollo.exception.IllegalCommandException;
+import seedu.apollo.exception.InvalidDateTime;
+import seedu.apollo.exception.InvalidDeadline;
+import seedu.apollo.exception.InvalidEvent;
+import seedu.apollo.exception.InvalidModule;
 import seedu.apollo.module.Module;
 
 import java.rmi.UnexpectedException;
@@ -96,7 +104,8 @@ public class Parser {
      */
     private static Command parseCommand(String[] split, int size, ArrayList<Module> moduleData)
             throws InvalidDateTime, EmptyKeywordException, EmptyTaskDescException, InvalidDeadline, InvalidEvent,
-            IllegalCommandException, NumberFormatException, UnexpectedException, InvalidModule, EmptyAddModException, EmptyDelModException {
+            IllegalCommandException, NumberFormatException, UnexpectedException, InvalidModule,
+            EmptyAddModException, EmptyDelModException {
         String command = split[0];
         switch (command) {
 
