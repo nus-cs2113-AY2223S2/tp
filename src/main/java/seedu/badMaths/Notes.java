@@ -23,7 +23,7 @@ public class Notes {
                 System.out.println((i + 1) + ". " + notesItem);
             }
             break;
+        default:
         }
-
     }
 }
