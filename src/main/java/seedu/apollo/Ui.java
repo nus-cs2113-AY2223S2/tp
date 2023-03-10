@@ -135,6 +135,11 @@ public class Ui {
                 "  " + newTask);
     }
 
+    public void printAddModuleMessage(Module newModule) {
+        System.out.println("Got it. I've added this module:\n" +
+                "  " + newModule);
+    }
+
     /**
      * For {@code mark} command.
      * Prints out message for successful marking of Task as done.
@@ -316,5 +321,9 @@ public class Ui {
     public void printUnexpectedException(UnexpectedException exception) {
         System.out.println("Oh no... Something went wrong while doing the following:  " + exception.getMessage() +
                 "\nExiting Apollo...");
+    }
+
+    public void printInvalidModule() {
+        System.out.println("This module does not exist!");
     }
 }

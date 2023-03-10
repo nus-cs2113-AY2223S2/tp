@@ -1,6 +1,7 @@
 package seedu.apollo.command;
 
 import seedu.apollo.Storage;
+import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.Ui;
 
@@ -46,7 +47,7 @@ public class ModifyCommand extends Command {
      * @throws UnexpectedException If the command stored is not recognised.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws UnexpectedException {
+    public void execute(TaskList tasks, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
         switch(command) {
         case COMMAND_MARK_WORD:
             tasks.markStatus(idx, true);

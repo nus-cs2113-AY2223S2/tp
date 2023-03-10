@@ -1,6 +1,7 @@
 package seedu.apollo;
 
 import seedu.apollo.command.AddCommand;
+import seedu.apollo.command.AddModuleCommand;
 import seedu.apollo.command.Command;
 import seedu.apollo.command.DateCommand;
 import seedu.apollo.command.ExitCommand;
@@ -14,10 +15,13 @@ import seedu.apollo.exception.IllegalCommandException;
 import seedu.apollo.exception.InvalidDateTime;
 import seedu.apollo.exception.InvalidDeadline;
 import seedu.apollo.exception.InvalidEvent;
+import seedu.apollo.exception.InvalidModule;
+import seedu.apollo.module.Module;
 
 import java.rmi.UnexpectedException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * Parser class that makes sense of user commands or text.
@@ -37,6 +41,8 @@ public class Parser {
     public static final String COMMAND_DEADLINE_WORD = "deadline";
     public static final String COMMAND_EVENT_WORD = "event";
 
+    public static final String COMMAND_ADD_MODULE_WORD = "addmod";
+
     /**
      * Returns the corresponding Command to the user input.
      *
@@ -46,10 +52,11 @@ public class Parser {
      * @return Corresponding Command class to user input.
      * @throws UnexpectedException If an unexpected error occurs.
      */
-    public static Command getCommand(String userCommand, Ui ui, int size) throws UnexpectedException {
+    public static Command getCommand(String userCommand, Ui ui, int size, ArrayList<Module> moduleData)
+            throws UnexpectedException {
         final String[] split = userCommand.trim().split("\\s+", 2);
         try {
-            return parseCommand(split, size);
+            return parseCommand(split, size, moduleData);
         } catch (IllegalCommandException e) {
             ui.printInvalidCommand();
         } catch (EmptyTaskDescException e) {
@@ -64,6 +71,8 @@ public class Parser {
             ui.printInvalidEvent();
         } catch (InvalidDateTime e) {
             ui.printInvalidDateTime();
+        } catch (InvalidModule e) {
+            ui.printInvalidModule();
         }
         return null;
     }
@@ -83,9 +92,9 @@ public class Parser {
      * @throws IllegalCommandException If an unknown command is input by the user.
      * @throws UnexpectedException If some unexpected error occurs.
      */
-    private static Command parseCommand(String[] split, int size)
+    private static Command parseCommand(String[] split, int size, ArrayList<Module> moduleData)
             throws InvalidDateTime, EmptyKeywordException, EmptyTaskDescException, InvalidDeadline, InvalidEvent,
-            IllegalCommandException, NumberFormatException, UnexpectedException {
+            IllegalCommandException, NumberFormatException, UnexpectedException, InvalidModule {
         String command = split[0];
         switch (command) {
         case COMMAND_EXIT_WORD:
@@ -118,6 +127,11 @@ public class Parser {
                 throw new EmptyTaskDescException();
             }
             return new AddCommand(command, split[1]);
+        case COMMAND_ADD_MODULE_WORD:
+            if (isEmptyParam(split)) {
+                throw new EmptyTaskDescException();
+            }
+            return new AddModuleCommand(split[1], moduleData);
         default:
             throw new IllegalCommandException();
         }

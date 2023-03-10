@@ -1,9 +1,13 @@
 package seedu.apollo;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import seedu.apollo.exception.DateOrderException;
 import seedu.apollo.exception.InvalidDeadline;
 import seedu.apollo.exception.InvalidEvent;
 import seedu.apollo.exception.InvalidSaveFile;
+import seedu.apollo.module.Module;
 import seedu.apollo.task.Deadline;
 import seedu.apollo.task.Event;
 import seedu.apollo.task.Task;
@@ -12,8 +16,10 @@ import seedu.apollo.task.ToDo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,6 +29,8 @@ import java.util.Scanner;
 public class Storage {
     // Location of save file
     protected static String filePath;
+
+    private static final String DATAFILEPATH = "data/data.json";
 
     /*
     Each task is saved as a line in the save file in this format:
@@ -105,6 +113,21 @@ public class Storage {
             save.createNewFile();
             return newAllTasks;
         }
+    }
+
+    /**
+     * Loads data from the data file into a new ArrayList of Modules.
+     *
+     * @return ArrayList of Modules (containing data from save file / empty).
+     * @throws FileNotFoundException If save file is not found.
+     */
+    public ArrayList<Module> loadModuleList() throws FileNotFoundException {
+        Type moduleDataType = new TypeToken<ArrayList<Module>>(){}.getType();
+        Gson gson = new Gson();
+        JsonReader reader = new JsonReader(new FileReader(DATAFILEPATH));
+        ArrayList<Module> moduleDataList = gson.fromJson(reader, moduleDataType);
+        System.out.println("Module Data loaded from " + DATAFILEPATH);
+        return moduleDataList;
     }
 
     /**
