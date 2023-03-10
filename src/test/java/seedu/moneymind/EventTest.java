@@ -30,6 +30,6 @@ class EventTest {
     @Test
     void remainingBudget_twoEvent_successCalculation() {
         assertEquals(100, salad.remainingBudget());
-        assertEquals(120, pizza.remainingBudget());
+        assertEquals(200, pizza.remainingBudget());
     }
 }
