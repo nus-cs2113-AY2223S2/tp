@@ -1,6 +1,7 @@
 package seedu.apollo.command;
 
 import seedu.apollo.Storage;
+import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.Ui;
 
@@ -21,7 +22,7 @@ public abstract class Command {
      * @param storage Updates the local save file if the TaskList is modified.
      * @throws UnexpectedException If something unexpected occurs.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws UnexpectedException {
+    public void execute(TaskList tasks, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
     }
 
     void setExit() {

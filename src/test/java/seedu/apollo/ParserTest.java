@@ -73,7 +73,7 @@ class ParserTest {
         Ui ui = new Ui();
         int size = 1;
         String userCommand = "draw";
-        Command newCommand = Parser.getCommand(userCommand,ui,size);
+        Command newCommand = Parser.getCommand(userCommand,ui,size, null);
         assertNull(newCommand);
 
     }
@@ -142,7 +142,7 @@ class ParserTest {
         String userCommand = "find";
         Ui ui = new Ui();
         int size = 1;
-        Command newCommand = Parser.getCommand(userCommand, ui, size);
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertNull(newCommand);
     }
 

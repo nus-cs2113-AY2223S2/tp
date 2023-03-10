@@ -1,22 +1,25 @@
 package seedu.apollo.module;
 
+
 /**
  * Class representing a Module.
  * Contains the Module's code and name.
  */
 public class Module {
-    private static String moduleCode;
-    private static String moduleName;
+    private String code;
+    private String title;
+
+    private Timetable timetable;
 
     /**
      * Initialises the Module with its corresponding code and name.
      *
-     * @param moduleCode    The code of the module e.g. CS2113
-     * @param moduleName    The name of the module e.g. Software Engineering and Object-Oriented Programming
+     * @param moduleCode The code of the module e.g. CS2113
+     * @param moduleName The name of the module e.g. Software Engineering and Object-Oriented Programming
      */
     public Module(String moduleCode, String moduleName) {
-        this.moduleCode = moduleCode;
-        this.moduleName = moduleName;
+        this.code = moduleCode;
+        this.title = moduleName;
     }
 
 
@@ -25,8 +28,8 @@ public class Module {
      *
      * @return String of the module code
      */
-    public static String getModuleCode() {
-        return moduleCode;
+    public String getCode() {
+        return code;
     }
 
     /**
@@ -34,8 +37,17 @@ public class Module {
      *
      * @return String of the module name
      */
-    public static String getModuleName() {
-        return moduleName;
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * Retrieves a ArrayList with the module's timetable information.
+     *
+     * @return ArrayList of the module timetable information.
+     */
+    public Timetable getModuleTimetable() {
+        return timetable;
     }
 
     /**
@@ -43,6 +55,6 @@ public class Module {
      */
     @Override
     public String toString() {
-        return moduleCode + ": " + moduleName;
+        return code + ": " + title;
     }
 }

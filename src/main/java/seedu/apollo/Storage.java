@@ -1,6 +1,7 @@
 package seedu.apollo;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import seedu.apollo.exception.DateOrderException;
 import seedu.apollo.exception.InvalidDeadline;
@@ -18,6 +19,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -113,11 +115,13 @@ public class Storage {
         }
     }
 
-    public void loadModuleList(ArrayList<Module> moduleDataList) throws FileNotFoundException {
+    public ArrayList<Module> loadModuleList() throws FileNotFoundException {
+        Type moduleDataType = new TypeToken<ArrayList<Module>>(){}.getType();
         Gson gson = new Gson();
         JsonReader reader = new JsonReader(new FileReader(DATAFILEPATH));
-        moduleDataList = gson.fromJson(reader, ArrayList.class);
+        ArrayList<Module> moduleDataList = gson.fromJson(reader, moduleDataType);
         System.out.println("Module Data loaded from " + DATAFILEPATH);
+        return moduleDataList;
     }
 
     /**

@@ -37,4 +37,8 @@ public class ModuleList {
     public int getModuleListSize() {
         return allModules.size();
     }
+
+    public void addModule(Module module) {
+        this.allModules.add(module);
+    }
 }

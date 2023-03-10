@@ -3,6 +3,7 @@ package seedu.apollo.command;
 import seedu.apollo.Parser;
 import seedu.apollo.Storage;
 import seedu.apollo.exception.DateOrderException;
+import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.Ui;
 import seedu.apollo.exception.InvalidDeadline;
@@ -10,6 +11,7 @@ import seedu.apollo.exception.InvalidEvent;
 
 import java.io.IOException;
 import java.rmi.UnexpectedException;
+import java.util.ArrayList;
 
 import static seedu.apollo.Parser.COMMAND_DEADLINE_WORD;
 import static seedu.apollo.Parser.COMMAND_EVENT_WORD;
@@ -67,7 +69,7 @@ public class AddCommand extends Command {
      * @throws UnexpectedException If the command stored is not recognised.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws UnexpectedException {
+    public void execute(TaskList tasks, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
         switch(type) {
         case COMMAND_TODO_WORD:
             tasks.addToDo(desc);
