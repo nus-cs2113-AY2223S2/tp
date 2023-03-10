@@ -15,4 +15,16 @@ public class University {
     public String toString() {
         return univId + "," + univName + "," + univAbbName;
     }
+
+    public int getUnivId() {
+        return univId;
+    }
+
+    public String getUnivAbbName() {
+        return univAbbName;
+    }
+
+    public String getUnivName() {
+        return univName;
+    }
 }

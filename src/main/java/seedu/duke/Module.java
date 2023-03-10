@@ -29,4 +29,8 @@ public class Module {
     public int getUnivId() {
         return univId;
     }
+
+    public String getModuleCode() {
+        return moduleCode;
+    }
 }

@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DataReader {
-    private final String MODULES_FILE_PATH = "./data/modules.csv";
-    private final String UNIVERSITIES_FILE_PATH = "./data/universities.csv";
+    private static final String MODULES_FILE_PATH = "./data/modules.csv";
+    private static final String UNIVERSITIES_FILE_PATH = "./data/universities.csv";
     private ArrayList<University> universities;
     private ArrayList<Module> modules;
 
