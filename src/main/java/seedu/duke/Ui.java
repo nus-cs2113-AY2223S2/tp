@@ -4,15 +4,16 @@ import static seedu.duke.ColorCode.ANSI_RESET;
 import static seedu.duke.ColorCode.ANSI_GREEN;
 import static seedu.duke.ColorCode.ANSI_BLUE;
 import static seedu.duke.ColorCode.ANSI_RED;
+import java.util.ArrayList;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
     public static final String LOGO =
             "    /|    //| |     // | |     //   ) )  //   / / //   ) )\n"
-                    + "   //|   // | |    //__| |    //        //   / / ((        \n"
-                    + "  // |  //  | |   / ___  |   //  ____  //   / /    \\\\\\\\      \n"
-                    + " //  | //   | |  //    | |  //    / / //   / /       ) )   \n"
-                    + "//   |//    | | //     | | ((____/ / ((___/ / ((___ / /    ";
+                    + "   //|   // | |    //__| |    //        //   / / ((\n"
+                    + "  // |  //  | |   / ___  |   //  ____  //   / /    \\\\\\\\\n"
+                    + " //  | //   | |  //    | |  //    / / //   / /       ) )\n"
+                    + "//   |//    | | //     | | ((____/ / ((___/ / ((___ / /";
     public static final String GREET_MESSAGE = "Welcome to MagusStock. How may I assist you today?";
     public static final String EXIT_MESSAGE = "Hope you had an enjoyable experience. See you next time!";
     public static final String UNKNOWN_COMMAND = "I don't understand that command, please refer to the user guide " +
@@ -26,10 +27,40 @@ public class Ui {
     public static final String ITEM_NOT_FOUND = "Edit failed! Reason: Item not found in database. Please add item " +
             "first!";
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
+    public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
+    public static final String MISSING_PRICE = "Please enter a number for the price!";
+
     public Ui() {
         greetUser();
     }
-
+    public static void printDoubleNeeded(){
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + MISSING_PRICE + ANSI_RESET);
+        System.out.println(LINE);
+    }
+    public static void printEmptySearch(){
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + NO_SEARCH_RESULTS + ANSI_RESET);
+        System.out.println(LINE);
+    }
+    public static void printSearchUPCItem(Item item){
+        System.out.println(Ui.LINE);
+        System.out.println(ANSI_GREEN + "Here is your item: ");
+        System.out.println(item.toString() + ANSI_RESET);
+        System.out.println(Ui.LINE);
+    }
+    public static void printSearchItems(ArrayList<Item> items){
+        System.out.println(Ui.LINE);
+        int counter = 0;
+        for(Item item:items) {
+            System.out.println(Ui.LINE);
+            counter++;
+            System.out.println(ANSI_GREEN + "Item Number: " + counter);
+            System.out.println(item.toString() + ANSI_RESET);
+            System.out.println(Ui.LINE);
+        }
+        System.out.println(Ui.LINE);
+    }
     public static void printExitMessage() {
         System.out.println(LINE);
         System.out.println(EXIT_MESSAGE);

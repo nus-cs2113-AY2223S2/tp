@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.exceptions.MissingParametersException;
+import seedu.duke.exceptions.SearchFilterErrorException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -41,19 +42,111 @@ public class Parser {
         case "list":
             parseList();
             break;
+        case "search":
+            parseSearch(commandInfo);
+            break;
+        case "searchupc":
+            parseSearchUPC(commandInfo);
+            break;
+        case "filter":
+            parseFilter(commandInfo);
+            break;
         default:
             Ui.printUnknownCommand();
             break;
         }
     }
-
+    public void parseFilter(String rawInput){
+        try{
+            if(rawInput == null){
+                throw new MissingParametersException();
+            }
+            String commands[] = rawInput.split(" ");
+            switch(commands[0]){
+            case "f/price":
+                if(commands.length!=3){
+                    throw new MissingParametersException();
+                }
+                parseFilterPrice(commands);
+                break;
+            case "f/category":
+            case "f/tag":
+                if(commands.length<2){
+                    throw new MissingParametersException();
+                }
+                parseFilterCategoryOrTag(commands, commands[0]);
+                break;
+            default:
+                throw new MissingParametersException();
+            }
+        }catch(MissingParametersException e){
+            e.missingSearchItemParameters();
+        }
+    }
+    public void parseFilterPrice(String commands[]){
+        try{
+            double price = Double.parseDouble(commands[2]);
+            switch(commands[1]){
+            case "p/lt":
+            case "p/gt":
+            case "p/let":
+            case "p/get":
+                Inventory.filterPrice(price, commands[1]);
+                break;
+            default:
+                throw new SearchFilterErrorException();
+            }
+        }catch(SearchFilterErrorException e){
+            e.missingPriceComparator();
+        }catch(NumberFormatException numberFormatException){
+            Ui.printDoubleNeeded();
+        }
+    }
+    public void parseFilterCategoryOrTag(String commands[], String mode){
+        String keyword = "";
+        for(int i=1;i<commands.length;i++){
+            keyword+=commands[i];
+            keyword+=' ';
+        }
+        keyword.trim();
+        if(mode.equals("f/category")){
+            Inventory.filterCategory(keyword);
+        }else{
+            Inventory.filterTags(keyword);
+        }
+    }
+    public void parseSearchUPC(String rawInput){
+        try {
+            if(rawInput == null){
+                throw new MissingParametersException();
+            }
+            if(rawInput.split(" ").length>1){
+                throw new SearchFilterErrorException();
+            }
+            Inventory.searchUPC(rawInput);
+        }catch(MissingParametersException e){
+            e.missingSearchItemParameters();
+        }catch(SearchFilterErrorException se){
+            Ui.printInvalidEditCommand();
+        }
+    }
+    public void parseSearch(String rawInput){
+        try {
+            if (rawInput == null) {
+                throw new MissingParametersException();
+            }
+            Inventory.search(rawInput);
+        }catch(MissingParametersException e){
+            e.missingSearchItemParameters();
+        }
+    }
     public void parseAdd(String rawInput) {
         try {
             if (rawInput == null) {
                 throw new MissingParametersException();
             }
             Pattern pattern = Pattern.compile(ADD_REGEX);
-            Matcher matcher = pattern.matcher(commandInfo);
+            Matcher matcher = pattern.matcher(rawInput);
             if (matcher.matches()) {
                 Item newItem = new Item(matcher.group(NAME_INDEX), matcher.group(UPC_INDEX), matcher.group(QTY_INDEX),
                         matcher.group(PRICE_INDEX));

@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.exceptions.EditErrorException;
+import seedu.duke.trie.Trie;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +11,69 @@ public class Inventory {
     private static HashMap<String,Item> upcCodes = new HashMap<>();
     private static Trie trie = new Trie();
     private static HashMap<String,ArrayList<Item>> itemNameHash = new HashMap<>();
+    public static void filterCategory(String category){
+        ArrayList<Item> filteredItems = new ArrayList<>();
+        for(Item item: items){
+            if(item.getCategory().equals(category)){
+                filteredItems.add(item);
+            }
+        }
+        if(filteredItems.isEmpty()){
+            Ui.printEmptySearch();
+            return;
+        }
+        Ui.printSearchItems(filteredItems);
+    }
+    public static void filterTags(String tag){
+        ArrayList<Item> filteredItems = new ArrayList<>();
+        for(Item item: items){
+            if(item.getTags().isEmpty()){
+                continue;
+            }
+            for(String itemTag:item.getTags()){
+                if(itemTag.equals(tag)){
+                    filteredItems.add(item);
+                }
+            }
+        }
+        if(filteredItems.isEmpty()){
+            Ui.printEmptySearch();
+            return;
+        }
+        Ui.printSearchItems(filteredItems);
+    }
+    public static void filterPrice(double price, String mode){
+        ArrayList<Item> filteredItems = new ArrayList<>();
+        for(Item item: items){
+            switch(mode){
+            case "p/lt":
+                if(item.getPrice()<price){
+                    filteredItems.add(item);
+                }
+                break;
+            case "p/gt":
+                if(item.getPrice()>price){
+                    filteredItems.add(item);
+                }
+                break;
+            case "p/let":
+                if(item.getPrice()<=price){
+                    filteredItems.add(item);
+                }
+                break;
+            case "p/get":
+                if(item.getPrice()>=price){
+                    filteredItems.add(item);
+                }
+                break;
+            }
+        }
+        if(filteredItems.isEmpty()){
+            Ui.printEmptySearch();
+            return;
+        }
+        Ui.printSearchItems(filteredItems);
+    }
 
     public static void addItem(Item item) {
         if (upcCodes.containsKey(item.getUpc())) {
@@ -18,17 +82,40 @@ public class Inventory {
             upcCodes.put(item.getUpc(),item);
             items.add(item);
             Ui.printSuccessAdd();
-            ArrayList<Item> oldItems = new ArrayList<>();
             String itemName = item.getName().toLowerCase();
-            if(itemNameHash.containsKey(oldItems)){
-                oldItems=itemNameHash.get(itemName);
-                itemNameHash.remove(itemName);
+            if(itemNameHash.containsKey(itemName)){
+                itemNameHash.get(itemName).add(item);
+            }else{
+                itemNameHash.put(itemName, new ArrayList<>());
+                itemNameHash.get(itemName).add(item);
             }
-            oldItems.add(item);
-            itemNameHash.put(itemName,oldItems);
+            trie.add(itemName);
         }
     }
+    public static void searchUPC(String upc){
+        if(!upcCodes.containsKey(upc)){
+            Ui.printEmptySearch();
+            return;
+        }
+        Ui.printSearchUPCItem(upcCodes.get(upc));
+    }
+    public static void search(String keyword){
+        ArrayList<String> resultNames = trie.prefixFind(keyword);
 
+        if(resultNames.size()==0){
+            Ui.printEmptySearch();
+            return;
+        }
+        System.out.println(Ui.LINE);
+        ArrayList<Item> resultItems = new ArrayList<>();
+        for(String name: resultNames){
+            for(Item item: itemNameHash.get(name)){
+                resultItems.add(item);
+            }
+        }
+        Ui.printSearchItems(items);
+        System.out.println(Ui.LINE);
+    }
     /**
      * Searches for the item in the ArrayList and changes the item attributes according to the wishes of the user.
      *
@@ -42,17 +129,22 @@ public class Inventory {
             for (int data = 1; data < editInfo.length; data += 1) {
                 updateItemInfo(updatedItem, editInfo[data]);
             }
-            String oldItemName = oldItem.getName();
-            String newItemName = updatedItem.getName();
+            String oldItemName = oldItem.getName().toLowerCase();
+            String newItemName = updatedItem.getName().toLowerCase();
             if(oldItemName!=newItemName&&itemNameHash.get(oldItemName).size()==1){
                 itemNameHash.remove(oldItemName);
+                trie.remove(oldItemName);
+                ArrayList<Item> newItemArrayList = new ArrayList<>();
+                newItemArrayList.add(updatedItem);
+                itemNameHash.put(newItemName,newItemArrayList);
             }else{
-                ArrayList<Item> oldItems = itemNameHash.get(oldItemName);
-                oldItems.remove(oldItemName);
-                oldItems.add(updatedItem);
-                itemNameHash.remove(oldItemName);
-                itemNameHash.put(newItemName,oldItems);
+                itemNameHash.get(oldItemName).remove(oldItem);
+                if(!itemNameHash.containsKey(newItemName)){
+                    itemNameHash.put(newItemName,new ArrayList<Item>());
+                }
+                itemNameHash.get(newItemName).add(updatedItem);
             }
+            trie.add(newItemName);
             upcCodes.remove(oldItem.getUpc());
             upcCodes.put(updatedItem.getUpc(),updatedItem);
             Ui.printEditDetails(oldItem, updatedItem);
@@ -120,10 +212,7 @@ public class Inventory {
         if(itemNameHash.get(itemName).size()==1){
             itemNameHash.remove(itemName);
         }else{
-            ArrayList<Item> oldItems = itemNameHash.get(itemName);
-            oldItems.remove(itemName);
-            itemNameHash.remove(itemName);
-            itemNameHash.put(itemName,oldItems);
+            itemNameHash.get(itemName).remove(items.get(index));
         }
         items.remove(index);
     }
