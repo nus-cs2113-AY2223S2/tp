@@ -15,9 +15,9 @@ public class Parser {
         System.out.println("Please Enter The Ingredients & Quantity: ");
         HashMap<String, Integer> ingredients = new HashMap<>();
         Scanner userInput = new Scanner(System.in);
-        while(true){
+        while (true) {
             String line = userInput.nextLine();
-            if(line.equals("done")){
+            if (line.equals("done")) {
                 break;
             }
             String[] command = line.trim().split(" ");
@@ -27,6 +27,7 @@ public class Parser {
         recipeList.addRecipe(newRecipe);
         recipeList.add(newRecipe);
         return newRecipe;
+    }
     public Recipe parseAddRecipe(String[] input) {
         return new Recipe("test", null);
     }
