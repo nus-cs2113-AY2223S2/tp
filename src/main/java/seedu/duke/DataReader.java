@@ -36,7 +36,7 @@ public class DataReader {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-                if (row[3].equals("N/A")) {
+                if (row[    3].equals("N/A")) {
                     row[3] = "0";
                 }
                 Module module = new Module(Integer.parseInt(row[0]), row[1], row[2],
