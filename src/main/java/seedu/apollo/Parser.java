@@ -1,14 +1,6 @@
 package seedu.apollo;
 
-import seedu.apollo.command.AddCommand;
-import seedu.apollo.command.AddModuleCommand;
-import seedu.apollo.command.Command;
-import seedu.apollo.command.DateCommand;
-import seedu.apollo.command.ExitCommand;
-import seedu.apollo.command.FindCommand;
-import seedu.apollo.command.HelpCommand;
-import seedu.apollo.command.ListCommand;
-import seedu.apollo.command.ModifyCommand;
+import seedu.apollo.command.*;
 import seedu.apollo.exception.EmptyKeywordException;
 import seedu.apollo.exception.EmptyTaskDescException;
 import seedu.apollo.exception.IllegalCommandException;
@@ -42,13 +34,14 @@ public class Parser {
     public static final String COMMAND_EVENT_WORD = "event";
 
     public static final String COMMAND_ADD_MODULE_WORD = "addmod";
+    public static final String COMMAND_LIST_MODULE_WORD = "listmod";
 
     /**
      * Returns the corresponding Command to the user input.
      *
      * @param userCommand Command line input from user.
-     * @param ui Prints out error messages if command cannot be parsed.
-     * @param size Number of tasks saved in TaskList.
+     * @param ui          Prints out error messages if command cannot be parsed.
+     * @param size        Number of tasks saved in TaskList.
      * @return Corresponding Command class to user input.
      * @throws UnexpectedException If an unexpected error occurs.
      */
@@ -81,22 +74,24 @@ public class Parser {
      * Adds data from user input into the corresponding Command class that is returned.
      *
      * @param split Parsed user input split into command and parameter.
-     * @param size Number of tasks saved in TaskList.
+     * @param size  Number of tasks saved in TaskList.
      * @return Command class with data from user input.
-     * @throws InvalidDateTime If the input format for a date and time is wrong.
-     * @throws EmptyKeywordException If keyword is left empty (for Find command).
-     * @throws NumberFormatException If the index is left empty (for Mark, Delete commands).
-     * @throws EmptyTaskDescException If task description is left empty (for Add command).
-     * @throws InvalidDeadline If the input format for adding a deadline is wrong.
-     * @throws InvalidEvent If the input format for adding an event is wrong.
+     * @throws InvalidDateTime         If the input format for a date and time is wrong.
+     * @throws EmptyKeywordException   If keyword is left empty (for Find command).
+     * @throws NumberFormatException   If the index is left empty (for Mark, Delete commands).
+     * @throws EmptyTaskDescException  If task description is left empty (for Add command).
+     * @throws InvalidDeadline         If the input format for adding a deadline is wrong.
+     * @throws InvalidEvent            If the input format for adding an event is wrong.
      * @throws IllegalCommandException If an unknown command is input by the user.
-     * @throws UnexpectedException If some unexpected error occurs.
+     * @throws UnexpectedException     If some unexpected error occurs.
      */
     private static Command parseCommand(String[] split, int size, ArrayList<Module> moduleData)
             throws InvalidDateTime, EmptyKeywordException, EmptyTaskDescException, InvalidDeadline, InvalidEvent,
             IllegalCommandException, NumberFormatException, UnexpectedException, InvalidModule {
         String command = split[0];
         switch (command) {
+        case COMMAND_LIST_MODULE_WORD:
+            return new ListModuleCommand();
         case COMMAND_EXIT_WORD:
             return new ExitCommand();
         case COMMAND_HELP_WORD:
@@ -150,9 +145,9 @@ public class Parser {
     /**
      * Parses LocalDateTime into a String according to the given pattern.
      *
-     * @param date Date and time with LocalDateTime data type.
+     * @param date       Date and time with LocalDateTime data type.
      * @param dateString Date and time with String data type.
-     * @param pattern Desired pattern to format String.
+     * @param pattern    Desired pattern to format String.
      * @return Parsed date and time in a String.
      */
     public static String parseDateTime(LocalDateTime date, String dateString, DateTimeFormatter pattern) {
