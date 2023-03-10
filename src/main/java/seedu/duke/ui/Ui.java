@@ -6,11 +6,35 @@ import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.RecipeListEmptyError;
 import seedu.duke.recipe.Recipe;
 
+import static seedu.duke.ui.StringLib.CREATING_NEW_FILE_AND_DIRECTORY;
+import static seedu.duke.ui.StringLib.DUDE_MAIN_ERROR;
+import static seedu.duke.ui.StringLib.EMPTY_LIST_MESSAGE;
+import static seedu.duke.ui.StringLib.EXIT_MESSAGE;
+import static seedu.duke.ui.StringLib.FILE_IO_ERROR;
+import static seedu.duke.ui.StringLib.FILE_LOADING_DEFAULT_ERROR;
+import static seedu.duke.ui.StringLib.FILE_NOT_FOUND_ERROR;
+import static seedu.duke.ui.StringLib.FILE_PARSE_READING_ERROR;
+import static seedu.duke.ui.StringLib.FIND_LIST_MESSAGE;
+import static seedu.duke.ui.StringLib.HELP;
+import static seedu.duke.ui.StringLib.LINE;
+import static seedu.duke.ui.StringLib.MISSING_DESCRIPTION_ERROR;
+import static seedu.duke.ui.StringLib.MISSING_INPUTS_ERROR;
+import static seedu.duke.ui.StringLib.NO_MATCHING_FIND_RESULTS_MESSAGE;
+import static seedu.duke.ui.StringLib.PARSING_STRING_ERROR;
+import static seedu.duke.ui.StringLib.PREFIX_EMPTY_LIMIT_LIST_ERROR;
+import static seedu.duke.ui.StringLib.RECIPE_ADDING_DEFAULT_ERROR;
+import static seedu.duke.ui.StringLib.RECIPE_DELETING_DEFAULT_ERROR;
+import static seedu.duke.ui.StringLib.RECIPE_FINDING_DEFAULT_ERROR;
+import static seedu.duke.ui.StringLib.SUFFIX_EMPTY_LIMIT_LIST_ERROR;
+import static seedu.duke.ui.StringLib.UNRECOGNIZABLE_COMMAND_ERROR;
+import static seedu.duke.ui.StringLib.UNRECOGNIZABLE_ERROR;
+import static seedu.duke.ui.StringLib.WELCOME_MESSAGE;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import static seedu.duke.ui.StringLib.*;
+
 
 public class Ui {
 
@@ -76,6 +100,10 @@ public class Ui {
     public static void showUnrecognizableErrorMessage() {
         System.out.println(UNRECOGNIZABLE_ERROR);
     }
+    public static void showUnrecognizableCommandErrorMessage() {
+        System.out.println(UNRECOGNIZABLE_COMMAND_ERROR);
+    }
+
     public static void showLoadingErrorMessage(Exception e) {
         if (e instanceof FileNotFoundException) {
             System.out.println(FILE_NOT_FOUND_ERROR + e + CREATING_NEW_FILE_AND_DIRECTORY);
@@ -97,7 +125,8 @@ public class Ui {
     public static void showDeletingTaskErrorMessage(Exception e, CommandType type) {
         if (e instanceof IncompleteInputException) {
             System.out.println(MISSING_DESCRIPTION_ERROR + e);
-        } else if (e instanceof IndexOutOfBoundsException || e instanceof NullPointerException || e instanceof RecipeListEmptyError) {
+        } else if (e instanceof IndexOutOfBoundsException || e instanceof NullPointerException ||
+                   e instanceof RecipeListEmptyError) {
             System.out.println(PREFIX_EMPTY_LIMIT_LIST_ERROR + type + SUFFIX_EMPTY_LIMIT_LIST_ERROR);
         } else {
             System.out.println(RECIPE_DELETING_DEFAULT_ERROR + e);

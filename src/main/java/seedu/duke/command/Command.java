@@ -78,7 +78,8 @@ public class Command {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
                 recipeListIndex = Integer.parseInt(fullDescription);
-                Ui.showRecipeDeleted(recipeList.getRecipeFromList(recipeListIndex), recipeList.getCurrRecipeNumber() - 1);
+                Recipe recipeToBeDeleted = recipeList.getRecipeFromList(recipeListIndex);
+                Ui.showRecipeDeleted(recipeToBeDeleted, recipeList.getCurrRecipeNumber() - 1);
                 recipeList.removeRecipe(recipeListIndex);
             } catch (Exception e) {
                 Ui.showDeletingTaskErrorMessage(e, type);
@@ -110,6 +111,8 @@ public class Command {
         case UNKNOWN:
             Ui.showUnrecognizableErrorMessage();
             break;
+        default:
+            Ui.showUnrecognizableCommandErrorMessage();
         }
     }
 }

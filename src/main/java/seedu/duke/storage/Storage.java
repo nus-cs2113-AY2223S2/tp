@@ -10,11 +10,11 @@ import java.io.File;
 public class Storage {
 
     private static final String SEPARATOR = " I:I ";
-    public static final String DIRECTORY_CREATED = "\nDirectory for file saving created.";
-    public static final String DIRECTORY_EXISTS = "\nDirectory for file saving already exists.";
-    public static final String FILE_CREATED = "Save file created.";
-    public static final String FILE_EXISTS = "Save file already exists.";
-    public static final String FILE_PARSING_ERROR = "The task does not meet the parsing requirements for unpacking.";
+    private static final String DIRECTORY_CREATED = "\nDirectory for file saving created.";
+    private static final String DIRECTORY_EXISTS = "\nDirectory for file saving already exists.";
+    private static final String FILE_CREATED = "Save file created.";
+    private static final String FILE_EXISTS = "Save file already exists.";
+    private static final String FILE_PARSING_ERROR = "The task does not meet the parsing requirements for unpacking.";
     private static String filePath;
 
     /**

@@ -10,10 +10,11 @@ import java.util.ArrayList;
 
 public class Parser {
 
-    public static final String RECIPE_MISSING_NAME_INGREDIENTS_TAG = "Recipe is missing the \"NAME\" or \"INGREDIENTS\" or \"TAG\"!\n";
-    public static final String RECIPE_MISSING_NAME = "Recipe is missing \"NAME\"!\n";
-    public static final String RECIPE_MISSING_INGREDIENTS = "Recipe is missing \"INGREDIENTS\"!\n";
-    public static final String RECIPE_MISSING_TAG = "Recipe is missing \"TAG\"!\n";
+    private static final String RECIPE_MISSING_NAME_INGREDIENTS_TAG = "Recipe is missing the \"NAME\" "
+            + "or \"INGREDIENTS\" or \"TAG\"!\n";
+    private static final String RECIPE_MISSING_NAME = "Recipe is missing \"NAME\"!\n";
+    private static final String RECIPE_MISSING_INGREDIENTS = "Recipe is missing \"INGREDIENTS\"!\n";
+    private static final String RECIPE_MISSING_TAG = "Recipe is missing \"TAG\"!\n";
 
 
     /**
@@ -100,4 +101,5 @@ public class Parser {
         }
         return new IngredientList(parsed);
     }
+
 }
