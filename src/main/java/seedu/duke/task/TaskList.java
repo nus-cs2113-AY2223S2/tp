@@ -71,6 +71,18 @@ public class TaskList {
     }
 
     /**
+     * Replace deadline of task at the given index of the task list.
+     *
+     * @param index The index of the task whose deadline should be changed.
+     *              Must be between 1 and the size of the task list.
+     * @return String representation of the task whose deadline was changed.
+     */
+    public String editDeadline(int index, String deadline) {
+        tasks.get(index).editDeadline(deadline);
+        return tasks.get(index).toString();
+    }
+
+    /**
      * Converts the task list into its string representation.
      *
      * @return String representation of the task list.
@@ -81,5 +93,20 @@ public class TaskList {
             taskListString.add((i + 1) + "." + getTask(i).toString());
         }
         return taskListString.toString();
+    }
+
+    public String toSaveString() {
+        StringJoiner taskListString = new StringJoiner(System.lineSeparator());
+        for (int i = 0; i < size(); i++) {
+            taskListString.add(getTask(i).toSaveString());
+        }
+        return taskListString.toString();
+    }
+
+    /**
+     * Sorts the ArrayList tasks, by the corresponding Task deadlines
+     */
+    public void sortTaskList() {
+        tasks.sort(Task.TaskDeadlineComparator);
     }
 }

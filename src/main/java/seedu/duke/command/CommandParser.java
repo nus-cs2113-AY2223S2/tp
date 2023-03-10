@@ -1,5 +1,8 @@
 package seedu.duke.command;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.StringJoiner;
@@ -20,15 +23,15 @@ public class CommandParser {
         StringJoiner currentArgument = new StringJoiner(" ");
         String currentFlag = splitInput[0];
 
-        for (String word : splitInput) {
+        for (int i = 1; i < splitInput.length; i++) {
             // Append to current argument if current word is not a new flag.
-            if (!flags.contains(word)) {
-                currentArgument.add(word);
+            if (!flags.contains(splitInput[i])) {
+                currentArgument.add(splitInput[i]);
                 continue;
             }
 
             // Repeating flags are not allowed.
-            if (arguments.containsKey(word) || currentFlag.equals(word)) {
+            if (arguments.containsKey(splitInput[i]) || currentFlag.equals(splitInput[i])) {
                 // Unimplemented exception, break as placeholder
                 break;
             }
@@ -36,12 +39,21 @@ public class CommandParser {
             // Add current flag-argument combo to argument list if current word is a new flag.
             arguments.put(currentFlag, currentArgument.toString());
             currentArgument = new StringJoiner(" ");
-            currentFlag = word;
+            currentFlag = splitInput[i];
         }
         // Add last flag-argument combo to argument list.
         arguments.put(currentFlag, currentArgument.toString());
 
         return arguments;
+    }
+
+    // Adapted from Clement559 iP
+    public static String formatDateTime(String date) throws DateTimeParseException {
+        DateTimeFormatter dateTimeFormatterInput = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
+        DateTimeFormatter dateTimeFormatterOutput = DateTimeFormatter.ofPattern("LLL dd uuuu HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(date, dateTimeFormatterInput);
+        String formattedDateTime = dateTime.format(dateTimeFormatterOutput);
+        return formattedDateTime;
     }
 
     /**
@@ -54,18 +66,35 @@ public class CommandParser {
         String[] splitInput = input.trim().replaceAll("\\s+", " ").split(" ");
         switch (splitInput[0]) {
         case AddTaskCommand.KEYWORD:
-            return new AddTaskCommand(splitInput);
+            return checkValidityAdd(splitInput);
         case ListTasksCommand.KEYWORD:
             return new ListTasksCommand();
         case MarkTaskCommand.KEYWORD:
             return new MarkTaskCommand(splitInput);
         case UnmarkTaskCommand.KEYWORD:
             return new UnmarkTaskCommand(splitInput);
+        case EditDeadlineCommand.KEYWORD:
+            return checkValidityEdit(splitInput);
         case DeleteCommand.KEYWORD:
             return new DeleteCommand(splitInput);
         case ExitCommand.KEYWORD:
             return new ExitCommand();
         default:
+            return new InvalidCommand();
+        }
+    }
+
+    public static Command checkValidityAdd (String[] splitInput) {
+        try {
+            return new AddTaskCommand(splitInput);
+        } catch (NullPointerException | DateTimeParseException e) {
+            return new InvalidCommand();
+        }
+    }
+    public static Command checkValidityEdit (String[] splitInput) {
+        try {
+            return new EditDeadlineCommand(splitInput);
+        } catch (DateTimeParseException | NumberFormatException e) {
             return new InvalidCommand();
         }
     }
