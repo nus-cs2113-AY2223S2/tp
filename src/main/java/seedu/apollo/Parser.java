@@ -1,6 +1,16 @@
 package seedu.apollo;
 
-import seedu.apollo.command.*;
+import seedu.apollo.command.AddCommand;
+import seedu.apollo.command.AddModuleCommand;
+import seedu.apollo.command.Command;
+import seedu.apollo.command.DateCommand;
+import seedu.apollo.command.DeleteModuleCommand;
+import seedu.apollo.command.ExitCommand;
+import seedu.apollo.command.FindCommand;
+import seedu.apollo.command.HelpCommand;
+import seedu.apollo.command.ListCommand;
+import seedu.apollo.command.ListModuleCommand;
+import seedu.apollo.command.ModifyCommand;
 import seedu.apollo.exception.EmptyKeywordException;
 import seedu.apollo.exception.EmptyTaskDescException;
 import seedu.apollo.exception.IllegalCommandException;
