@@ -17,4 +17,20 @@ public class Illness {
         this.isChronic = isChronic;
         this.symptoms = symptoms;
     }
+
+    public String getIllnessName() {
+        return illnessName;
+    }
+
+    public int getSeverityLevel() {
+        return severityLevel;
+    }
+
+    public boolean isChronic() {
+        return isChronic;
+    }
+
+    public ArrayList<Symptom> getSymptoms() {
+        return symptoms;
+    }
 }

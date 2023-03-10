@@ -10,7 +10,7 @@ import java.util.List;
 public class Conjunctivitis extends Illness {
     public Conjunctivitis() {
         super("Conjunctivitis", 2, false, new ArrayList<>(
-                List.of(Symptom.ITCHY_SKIN,
+                List.of(Symptom.ITCHY_EYE,
                         Symptom.RED_EYES
                 ))
         );
