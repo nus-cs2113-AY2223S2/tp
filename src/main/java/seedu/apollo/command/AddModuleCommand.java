@@ -22,7 +22,7 @@ public class AddModuleCommand extends Command {
      */
     public AddModuleCommand(String moduleCode, ArrayList<Module> allModules) throws InvalidModule {
         for (Module moduleData : allModules) {
-            if (moduleData.getCode().toLowerCase().equals(moduleCode.toLowerCase())) {
+            if (moduleData.getCode().equalsIgnoreCase(moduleCode)) {
                 this.module = moduleData;
                 return;
             }

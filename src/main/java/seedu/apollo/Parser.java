@@ -11,6 +11,8 @@ import seedu.apollo.command.HelpCommand;
 import seedu.apollo.command.ListCommand;
 import seedu.apollo.command.ListModuleCommand;
 import seedu.apollo.command.ModifyCommand;
+import seedu.apollo.exception.EmptyAddModException;
+import seedu.apollo.exception.EmptyDelModException;
 import seedu.apollo.exception.EmptyKeywordException;
 import seedu.apollo.exception.EmptyTaskDescException;
 import seedu.apollo.exception.IllegalCommandException;
@@ -67,6 +69,10 @@ public class Parser {
             ui.printEmptyDescription();
         } catch (EmptyKeywordException e) {
             ui.printEmptyKeyword();
+        } catch (EmptyAddModException e) {
+            ui.printEmptyAddMod();
+        } catch (EmptyDelModException e) {
+            ui.printEmptyDelMod();
         } catch (NumberFormatException e) {
             ui.printErrorForIdx(size);
         } catch (InvalidDeadline e) {
@@ -98,12 +104,11 @@ public class Parser {
      */
     private static Command parseCommand(String[] split, int size, ArrayList<Module> moduleData)
             throws InvalidDateTime, EmptyKeywordException, EmptyTaskDescException, InvalidDeadline, InvalidEvent,
-            IllegalCommandException, NumberFormatException, UnexpectedException, InvalidModule {
+            IllegalCommandException, NumberFormatException, UnexpectedException, InvalidModule,
+            EmptyAddModException, EmptyDelModException {
         String command = split[0];
         switch (command) {
-        case COMMAND_DELETE_MODULE_WORD:
-            String moduleCode = split[1];
-            return new DeleteModuleCommand(moduleCode);
+
         case COMMAND_LIST_MODULE_WORD:
             return new ListModuleCommand();
         case COMMAND_EXIT_WORD:
@@ -138,9 +143,16 @@ public class Parser {
             return new AddCommand(command, split[1]);
         case COMMAND_ADD_MODULE_WORD:
             if (isEmptyParam(split)) {
-                throw new EmptyTaskDescException();
+                throw new EmptyAddModException();
             }
             return new AddModuleCommand(split[1], moduleData);
+
+        case COMMAND_DELETE_MODULE_WORD:
+            if (isEmptyParam(split)) {
+                throw new EmptyDelModException();
+            }
+            String moduleCode = split[1];
+            return new DeleteModuleCommand(moduleCode);
         default:
             throw new IllegalCommandException();
         }
