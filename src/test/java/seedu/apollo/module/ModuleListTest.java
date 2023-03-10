@@ -5,7 +5,7 @@ import seedu.apollo.exception.ModuleNotFoundException;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ModuleListTest {
 
@@ -15,4 +15,5 @@ class ModuleListTest {
         String invalidModuleCode = "cs2113";
         assertThrows(ModuleNotFoundException.class, () -> allModules.findModule(invalidModuleCode));
     }
+    
 }
