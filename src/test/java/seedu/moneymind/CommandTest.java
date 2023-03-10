@@ -5,7 +5,9 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CommandTest {
     Category food = new Category("food");
@@ -111,7 +113,8 @@ public class CommandTest {
         parser.executeUserInput();
     }
 
-    /** Clears all static variables
+    /**
+     * Clears all static variables
      */
     private static void clear() {
         CategoryList.categories.clear();
