@@ -1,10 +1,15 @@
 package seedu.duke;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 public class ParserTest {
     @Test
@@ -17,4 +22,26 @@ public class ParserTest {
         
         assertEquals(expectedOutput, new Parser().splitLine("add expense /de breakfast /da 01/02/23 /v 3.50"));
     }
+
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
+    @BeforeEach
+    public void setUp() {
+        System.setOut(new PrintStream(outputStreamCaptor));
+    }
+
+    @Test
+    public void parseCommand_badInput_exceptionThrown() throws Exception{
+        String badInput = "add expenses /de breakfast /da 01/02/23 /v 3.50";
+        new Parser().parseCommand(badInput);
+        assertEquals("Command not recognized", outputStreamCaptor.toString().trim());
+
+    }
+
+    @AfterEach
+    public void tearDown() {
+        System.setOut(standardOut);
+    }
+
 }
