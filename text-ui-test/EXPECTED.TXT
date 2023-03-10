@@ -21,7 +21,15 @@ Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
 3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
-4.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+4.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+5.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+6.[T][ ] sleep
+7.[E][X] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+8.[T][ ] eat lunch
+9.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+10.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+11.[T][ ] sleep
+12.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
 ____________________________________________________________
 ____________________________________________________________
 Oops! The description of a task cannot be empty.
@@ -55,16 +63,25 @@ Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
 3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
-4.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
-5.[T][ ] eat lunch
-6.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
-7.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+4.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+5.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+6.[T][ ] sleep
+7.[E][X] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+8.[T][ ] eat lunch
+9.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+10.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+11.[T][ ] sleep
+12.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+13.[T][ ] eat lunch
+14.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+15.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
-Please enter [idx] in the form of an integer from 1 to 7
+Please enter [idx] in the form of an integer from 1 to 15
 ____________________________________________________________
 ____________________________________________________________
-Please enter [idx] in the form of an integer from 1 to 7
+Nice!, I've marked this task as done:
+  [T][X] eat lunch
 ____________________________________________________________
 ____________________________________________________________
 Nice!, I've marked this task as done:
@@ -75,10 +92,18 @@ Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][X] submit tutorial (by: Mar 03 2023, 11:59pm)
 3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
-4.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
-5.[T][ ] eat lunch
-6.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
-7.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+4.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+5.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+6.[T][ ] sleep
+7.[E][X] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+8.[T][X] eat lunch
+9.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+10.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+11.[T][ ] sleep
+12.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+13.[T][ ] eat lunch
+14.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+15.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
@@ -93,32 +118,48 @@ Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
 3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
-4.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
-5.[T][ ] eat lunch
-6.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
-7.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
-8.[T][ ] sleep
+4.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+5.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+6.[T][ ] sleep
+7.[E][X] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+8.[T][X] eat lunch
+9.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+10.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+11.[T][ ] sleep
+12.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+13.[T][ ] eat lunch
+14.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+15.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+16.[T][ ] sleep
 ____________________________________________________________
 ____________________________________________________________
-Please enter [idx] in the form of an integer from 1 to 8
+Please enter [idx] in the form of an integer from 1 to 16
 ____________________________________________________________
 ____________________________________________________________
-Please enter [idx] in the form of an integer from 1 to 8
+Please enter [idx] in the form of an integer from 1 to 16
 ____________________________________________________________
 ____________________________________________________________
 Noted, I've removed this task:
-  [E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
-Now you have 7 tasks in the list
+  [D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+Now you have 15 tasks in the list
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
 3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
-4.[T][ ] eat lunch
-5.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
-6.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
-7.[T][ ] sleep
+4.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+5.[T][ ] sleep
+6.[E][X] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+7.[T][X] eat lunch
+8.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+9.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+10.[T][ ] sleep
+11.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+12.[T][ ] eat lunch
+13.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+14.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+15.[T][ ] sleep
 ____________________________________________________________
 ____________________________________________________________
 Oops, the start date for your event occurs after the end date!
@@ -136,8 +177,11 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the matching tasks in your list:
 1.[T][ ] eat lunch
-2.[T][ ] eat lunch
-3.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+2.[E][X] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+3.[T][X] eat lunch
+4.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+5.[T][ ] eat lunch
+6.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
 ____________________________________________________________
 ____________________________________________________________
 Please enter date in the format of yyyy-MM-dd.
@@ -148,8 +192,11 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks happening on Mar 03 2023:
 1.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
-2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
-3.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+2.[E][X] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+3.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+4.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+5.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+6.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(
