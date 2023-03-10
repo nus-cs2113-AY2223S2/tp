@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import static seedu.duke.ColorCode.*;
+import java.util.ArrayList;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
@@ -18,6 +19,13 @@ public class Ui {
             "add n/[name] upc/[UPC] qty/[quantity] p/[price]";
     public static final String DUPLICATE_ADD = "Duplicate item found! Please add another item with a different UPC";
     public static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
+
+    private static final String TABLE_CORNER = "+";
+    private static final String TABLE_ROW = "-";
+    private static final String TABLE_LEFT = "| ";
+    private static final String TABLE_RIGHT = " |";
+    private static final String TABLE_MIDDLE = "|";
+
     public Ui() {
         greetUser();
     }
@@ -53,9 +61,34 @@ public class Ui {
         System.out.println(LINE);
     }
 
-    public static void printSuccessAdd(){
+    public static void printSuccessAdd() {
         System.out.println(LINE);
         System.out.println(ANSI_GREEN + SUCCESS_ADD + ANSI_RESET);
         System.out.println(LINE);
     }
+
+
+
+    public static void printHeadings(int[] columnWidths) {
+        String[] headings = {"Name", "UPC", "Quantity", "Price"};
+        for (int i = 0; i < headings.length; i += 1) {
+            String heading = headings[i];
+            int width = columnWidths[i];
+            System.out.printf("| %-" + width + "s ", heading);
+        }
+        System.out.println(TABLE_MIDDLE);
+    }
+
+    public static void printTableSeparator(int[] columnWidths) {
+        for (int i = 0; i < columnWidths.length; i += 1) {
+            System.out.print(TABLE_CORNER);
+            for (int j = 0; j < columnWidths[i] + 2; j++) {
+                System.out.print(TABLE_ROW);
+            }
+        }
+
+        System.out.println(TABLE_CORNER);
+
+    }
 }
+

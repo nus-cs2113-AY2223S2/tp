@@ -34,6 +34,9 @@ public class Parser {
         case "add":
             parseAdd(commandInfo);
             break;
+        case "list":
+            //Ui.printTable();
+            break;
         default:
             Ui.printUnknownCommand();
             break;
@@ -51,6 +54,7 @@ public class Parser {
                 Item newItem = new Item(matcher.group(NAME_INDEX), matcher.group(UPC_INDEX), matcher.group(QTY_INDEX),
                         matcher.group(PRICE_INDEX));
                 Inventory.addItem(newItem);
+                Inventory.printTable();
             } else {
                 Ui.printInvalidAddCommand();
             }
