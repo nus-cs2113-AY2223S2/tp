@@ -45,14 +45,11 @@ public class ModuleList {
      */
     public Module findModule(String keyword) {
 
-        for(int i=0;i<allModules.size();i++){
-            Module toFind = allModules.get(i);
-            if(toFind.equals(keyword)){
-                return toFind;
-
-            }
+    for (Module module : allModules) {
+        if (module.getModuleCode.equals(keyword)) {
+        return module;
         }
-
+    }
         return null;
     }
     /**
