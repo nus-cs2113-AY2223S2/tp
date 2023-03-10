@@ -37,7 +37,7 @@ Please enter deadline as "deadline [task] /by [date]".
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this deadline:
-  [D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+  [D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
 ____________________________________________________________
 ____________________________________________________________
 Oops! The description of a task cannot be empty.
@@ -47,13 +47,13 @@ Please enter event as "event [task] /from [date] /to [date]".
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this event:
-  [E][ ] lecture (from: May 03 2023, 09:00am to: 11:00am)
+  [E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
-3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00am)
+3.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 Please enter [idx] in the form of an integer from 1 to 3
@@ -63,17 +63,17 @@ Please enter [idx] in the form of an integer from 1 to 3
 ____________________________________________________________
 ____________________________________________________________
 Nice!, I've marked this task as done:
-  [D][X] submit tutorial (by: Mar 03 2023, 11:59pm)
+  [D][X] submit tutorial (by: Mar 03 2023, 11:59AM)
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] eat lunch
-2.[D][X] submit tutorial (by: Mar 03 2023, 11:59pm)
-3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00am)
+2.[D][X] submit tutorial (by: Mar 03 2023, 11:59AM)
+3.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
-  [D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
+  [D][ ] submit tutorial (by: Mar 03 2023, 11:59AM)
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this todo:
@@ -82,8 +82,8 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] eat lunch
-2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
-3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00am)
+2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
+3.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
 4.[T][ ] sleep
 ____________________________________________________________
 ____________________________________________________________
@@ -100,15 +100,15 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] eat lunch
-2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
-3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00am)
+2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
+3.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 Oops, the start date for your event occurs after the end date!
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this event:
-  [E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+  [E][ ] holiday (from: Feb 25 2023, 12:00AM to: Mar 04 2023, 11:59PM)
 ____________________________________________________________
 ____________________________________________________________
 Please specify a keyword to do the search with!
@@ -119,7 +119,7 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the matching tasks in your list:
 1.[T][ ] eat lunch
-2.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+2.[E][ ] holiday (from: Feb 25 2023, 12:00AM to: Mar 04 2023, 11:59PM)
 ____________________________________________________________
 ____________________________________________________________
 Please enter date in the format of yyyy-MM-dd.
@@ -129,8 +129,8 @@ There are no tasks on Jan 01 2025!
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks happening on Mar 03 2023:
-1.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
-2.[E][ ] holiday (from: Feb 25 2023, 12:00am to: Mar 04 2023, 11:59pm)
+1.[D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
+2.[E][ ] holiday (from: Feb 25 2023, 12:00AM to: Mar 04 2023, 11:59PM)
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(
