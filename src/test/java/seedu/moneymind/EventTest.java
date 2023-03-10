@@ -1,9 +1,8 @@
 package seedu.moneymind;
 
 import org.junit.jupiter.api.Test;
-import seedu.moneymind.Event;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EventTest {
     Event salad = new Event("salad", 100);
