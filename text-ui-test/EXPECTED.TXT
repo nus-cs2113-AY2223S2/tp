@@ -47,13 +47,13 @@ Please enter event as "event [task] /from [date] /to [date]".
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this event:
-  [E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+  [E][ ] lecture (from: May 03 2023, 09:00am to: 11:00am)
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
-3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00am)
 ____________________________________________________________
 ____________________________________________________________
 Please enter [idx] in the form of an integer from 1 to 3
@@ -69,7 +69,7 @@ ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][X] submit tutorial (by: Mar 03 2023, 11:59pm)
-3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00am)
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
@@ -83,7 +83,7 @@ ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
-3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00am)
 4.[T][ ] sleep
 ____________________________________________________________
 ____________________________________________________________
@@ -101,7 +101,7 @@ ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59pm)
-3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00AM)
+3.[E][ ] lecture (from: May 03 2023, 09:00am to: 11:00am)
 ____________________________________________________________
 ____________________________________________________________
 Oops, the start date for your event occurs after the end date!
