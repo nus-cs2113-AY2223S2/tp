@@ -66,6 +66,8 @@ public class Inventory {
                     filteredItems.add(item);
                 }
                 break;
+            default:
+                break;
             }
         }
         if(filteredItems.isEmpty()){

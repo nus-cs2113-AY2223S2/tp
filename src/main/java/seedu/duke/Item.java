@@ -8,6 +8,12 @@ public class Item {
     private Integer quantity;
     private String category;
     private ArrayList<String> tags = new ArrayList<>();
+    public Item(String name, String upc, String qty, String price) {
+        this.name = name;
+        this.upc = upc;
+        this.price = Double.parseDouble(price);
+        this.quantity = Integer.parseInt(qty);
+    }
 
     public ArrayList<String> getTags() {
         return tags;
@@ -17,14 +23,6 @@ public class Item {
         this.tags = tags;
     }
 
-
-
-    Item(String name, String upc, String qty, String price) {
-        this.name = name;
-        this.upc = upc;
-        this.price = Double.parseDouble(price);
-        this.quantity = Integer.parseInt(qty);
-    }
 
     public String getUpc() {
         return upc;

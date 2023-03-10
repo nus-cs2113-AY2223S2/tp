@@ -61,7 +61,7 @@ public class Parser {
             if(rawInput == null){
                 throw new MissingParametersException();
             }
-            String commands[] = rawInput.split(" ");
+            String[] commands = rawInput.split(" ");
             switch(commands[0]){
             case "f/price":
                 if(commands.length!=3){
@@ -83,7 +83,7 @@ public class Parser {
             e.missingSearchItemParameters();
         }
     }
-    public void parseFilterPrice(String commands[]){
+    public void parseFilterPrice(String[] commands){
         try{
             double price = Double.parseDouble(commands[2]);
             switch(commands[1]){
@@ -102,7 +102,7 @@ public class Parser {
             Ui.printDoubleNeeded();
         }
     }
-    public void parseFilterCategoryOrTag(String commands[], String mode){
+    public void parseFilterCategoryOrTag(String[] commands, String mode){
         String keyword = "";
         for(int i=1;i<commands.length;i++){
             keyword+=commands[i];
