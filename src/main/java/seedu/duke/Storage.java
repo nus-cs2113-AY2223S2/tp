@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class Storage {
 
-    public ArrayList<Module> modules;
-    private final String SAVED_MODULES_FILE_PATH = "./data/saved_modules.txt";
+    private ArrayList<Module> modules;
+    private static final String SAVED_MODULES_FILE_PATH = "./data/saved_modules.txt";
 
     public Storage() {
         this.modules = new ArrayList<>();
@@ -41,6 +41,31 @@ public class Storage {
         FileWriter fw = new FileWriter(SAVED_MODULES_FILE_PATH, true);
         fw.write(writeTaskPreparation(saveModuleString));
         fw.close();
+    }
+
+    /**
+     * Adds and overwrites ArrayList of user's saved modules list in database.
+     *
+     * @param modules ArrayList of modules to be written into database.
+     * @throws IOException If input/output operations fail or are interrupted.
+     */
+    public static void writeListToFile(ArrayList<Module> modules) throws IOException {
+        FileWriter fw = new FileWriter(SAVED_MODULES_FILE_PATH);
+        String stringToAdd = "";
+        for (Module module : modules) {
+            stringToAdd += writeTaskPreparation(module.toString());
+        }
+        fw.write(stringToAdd);
+        fw.close();
+    }
+
+    /**
+     * Returns list of modules in ArrayList type.
+     *
+     * @return ArrayList of modules.
+     */
+    public ArrayList<Module> getModule() {
+        return modules;
     }
 
     private static String writeTaskPreparation(String saveString) {
