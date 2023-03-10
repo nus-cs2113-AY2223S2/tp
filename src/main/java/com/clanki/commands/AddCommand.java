@@ -17,14 +17,8 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public String toString() {
-        return "Question to add: " + questionText + " Answer: " + answerText;
-    }
-
-    @Override
     public void execute(FlashcardList flashcardList, Ui display) {
         flashcardList.addNewFlashcard(questionText, answerText);
         display.printSuccessfulAddMessage(questionText, answerText);
     }
-
 }

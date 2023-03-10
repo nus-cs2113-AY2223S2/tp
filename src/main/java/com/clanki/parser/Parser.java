@@ -1,6 +1,7 @@
 package com.clanki.parser;
 
 import com.clanki.commands.AddCommand;
+import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
 import com.clanki.commands.UnknownCommand;
 import com.clanki.exceptions.EmptyFlashcardAnswerException;
@@ -26,6 +27,8 @@ public class Parser {
                 System.out.println("The answer for this flashcard is empty, please enter one.");
             }
             break;
+        case "bye":
+            return new ByeCommand();
         default:
             return new UnknownCommand();
         }
