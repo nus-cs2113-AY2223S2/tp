@@ -39,25 +39,26 @@ public class Meal {
         }
     }
 
-    public String toWriteFormat(String delimiter) {
-        String output = date + ",";
+    public String[] toWriteFormat(String delimiter) {
+        String[] output = new String[2];
+        output[0] = date;
         String[] foodArray = new String[foods.size()];
         for (int i = 0; i < foods.size(); i++)
         {
-            foodArray[i] = String.valueOf(foods[i].getID());
+            foodArray[i] = String.valueOf(foods.get(i).getId());
         }
-        output += String.join(delimiter, foodArray) + "\n";
+        output[1] = String.join(delimiter, foodArray);
         return output;
     }
 
     @Override
     public String toString() {
-        output = "Meal was consumed on " + date + "\n";
+        String output = "Meal was consumed on " + date + "\n";
         output += "Total Calories are: " + this.getTotalCalories() + "\n";
-        output += "Here are the foods you ate:"
+        output += "Here are the foods you ate:";
         for (int i = 0; i < foods.size(); i++)
         {
-            output += "\t" + i + ") " + foods[i].toString() + "\n";
+            output += "\t" + i + ") " + foods.get(i).toString() + "\n";
         }
         return output;
     }

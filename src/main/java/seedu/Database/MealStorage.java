@@ -2,10 +2,12 @@ package seedu.Database;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import seedu.Entities.Meal;
 import seedu.Entities.Food;
+import com.opencsv.CSVWriter;
 
 public class MealStorage extends Storage implements FileReadable, FileWritable {
     private ArrayList<Meal> meals;
@@ -17,11 +19,20 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         super(filePath);
         this.foodStorage = foodStorage;
         meals = new ArrayList<Meal>();
+        try {
+            this.load();
+        } catch (IOException e) {
+            System.out.println("Error loading Meal Storage");
+        }
     }
 
     @Override
     public void write() throws IOException {
-        CSVWriter writer = new CSVWriter(new FileWriter(filePath));
+        CSVWriter writer = new CSVWriter(new FileWriter(filePath),
+                CSVWriter.DEFAULT_SEPARATOR,
+                CSVWriter.NO_QUOTE_CHARACTER,
+                CSVWriter.DEFAULT_ESCAPE_CHARACTER,
+                CSVWriter.RFC4180_LINE_END);
         String[] header = { "Date", "Foods" };
         writer.writeNext(header);
         for (Meal meal : meals)
@@ -31,29 +42,31 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         writer.close();
     }
 
-
     @Override
     public void load() throws IOException {
         String line = "";
         String[] mealLine;
         String date;
         String[] foodIndexes;
-        ArrayList<Food> allFoods = foodStorage.getFoods();
         ArrayList<Food> foods;
 
         BufferedReader br = new BufferedReader(new FileReader(filePath));
-        while ((line = br.readLine()) != null)
-        {
+
+        // Skip Line 1 (header)
+        br.readLine();
+
+        while ((line = br.readLine()) != null) {
             mealLine = line.split(csvDelimiter);
             date = mealLine[0];
             foodIndexes = mealLine[1].split(foodsDelimiter);
             foods = new ArrayList<Food>();
-            for (String foodIndex : foodIndexes)
-            {
-                foods.add(allFoods.get(Integer.parseInt(foodIndex)))
+            for (String foodIndex : foodIndexes) {
+                foods.add(foodStorage.getFoodById(Integer.parseInt(foodIndex)));
             }
             meals.add(new Meal(foods, date));
         }
+
+        br.close();
     }
 
     public void saveMeal(Meal meal) {

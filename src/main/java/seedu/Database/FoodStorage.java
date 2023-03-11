@@ -18,6 +18,11 @@ public class FoodStorage extends Storage implements FileReadable {
     public FoodStorage(String filePath) {
         super(filePath);
         foods = new ArrayList<Food>();
+        try {
+            this.load();
+        } catch (IOException e) {
+            System.out.println("Error loading Food Storage");
+        }
     }
 
     @Override
@@ -30,6 +35,10 @@ public class FoodStorage extends Storage implements FileReadable {
         Food food;
         // parsing a CSV file into BufferedReader class constructor
         BufferedReader br = new BufferedReader(new FileReader(filePath));
+
+        // Skip Line 1 (header)
+        br.readLine();
+
         while ((line = br.readLine()) != null)
         {
             foodLine = line.split(csvDelimiter); // use comma as separator
@@ -58,5 +67,10 @@ public class FoodStorage extends Storage implements FileReadable {
 
     public ArrayList<Food> getFoods() {
         return this.foods;
+    }
+
+    public Food getFoodById(int id)
+    {
+        return this.foods.get(id-1);
     }
 }
