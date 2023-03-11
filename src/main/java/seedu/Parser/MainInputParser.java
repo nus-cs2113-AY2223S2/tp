@@ -4,7 +4,7 @@ import seedu.Expenditure.ExpenditureList;
 import seedu.commands.*;
 
 public class MainInputParser {
-    public static Command parseInputs(String line, ExpenditureList expenditures) {
+    public static Command parseInputs(String line) {
         String [] splitValues = line.split(" ", 2);
         String command = splitValues[0];
 

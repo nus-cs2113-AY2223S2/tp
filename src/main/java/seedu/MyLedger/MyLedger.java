@@ -24,7 +24,7 @@ public class MyLedger {
         }
     }
 
-    public static void runMyLedger(File txtFile) {
+    public static void runMyLedger() {
         start();
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -33,8 +33,6 @@ public class MyLedger {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
-        //Scanner in = new Scanner(System.in);
-        //System.out.println("Hello " + in.nextLine());
         readUserInputs();
     }
 
@@ -48,7 +46,7 @@ public class MyLedger {
 
     public static boolean hasProcessedAllInputs(String line, ExpenditureList expenditures) {
         // Parses the input
-        Command finalCommand = MainInputParser.parseInputs(line,expenditures);
+        Command finalCommand = MainInputParser.parseInputs(line);
         CommandResult result = finalCommand.execute(expenditures);
         String textOutput = result.getCommandResult();
         System.out.println(textOutput);

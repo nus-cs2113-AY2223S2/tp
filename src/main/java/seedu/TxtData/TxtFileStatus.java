@@ -44,7 +44,7 @@ public class TxtFileStatus {
 
         if (txtFile.exists()) {
             // Runs the program
-            MyLedger.runMyLedger(txtFile);
+            MyLedger.runMyLedger();
         }
     }
 }
