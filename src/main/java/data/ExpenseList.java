@@ -8,6 +8,8 @@ import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class ExpenseList {
+
+    Parser parser = new Parser();
     public static ArrayList<Expense> expenseList = new ArrayList<>();
 
     public ArrayList<Expense> getExpenseList() {
@@ -15,7 +17,7 @@ public class ExpenseList {
     }
 
     public void deleteExpense(String userInput) {
-        int expenseIndex = Parser.extractIndex(userInput);
+        int expenseIndex = parser.extractIndex(userInput);
         expenseList.remove(expenseIndex - 1); // change to 0-based indexing
     }
 
