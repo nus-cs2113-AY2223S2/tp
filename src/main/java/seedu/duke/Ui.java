@@ -18,6 +18,17 @@ public class Ui {
         showLine();
     }
 
+    public void showExitMessage() {
+        showLine();
+        System.out.println("Bye!");
+        showLine();
+        exitProgram();
+    }
+
+    public void exitProgram() {
+        System.exit(0);
+    }
+
     private static void showHelpText() {
         System.out.println("Here are the functions of the application!");
         System.out.println("To add a company, type:");
