@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.duke.constants.MessageConstants;
 import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.MissingArgumentsException;
@@ -16,7 +17,7 @@ public class ParserTest {
             Parser.parseUserInput("");
         });
 
-        String expectedMessage = Parser.MESSAGE_EMPTY_INPUT;
+        String expectedMessage = MessageConstants.MESSAGE_EMPTY_INPUT;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -26,7 +27,7 @@ public class ParserTest {
         Exception exception = assertThrows(InvalidCommandException.class, () -> {
             Parser.parseUserInput("/invalid");
         });
-        String expectedMessage = Parser.MESSAGE_INVALID_COMMAND;
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_COMMAND;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -36,7 +37,7 @@ public class ParserTest {
         Exception exception = assertThrows(MissingArgumentsException.class, () -> {
             Parser.parseUserInput("/add");
         });
-        String expectedMessage = Parser.MESSAGE_MISSING_ARGS_ADD;
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_ARGS_ADD;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -88,7 +89,7 @@ public class ParserTest {
         Exception exception = assertThrows(MissingArgumentsException.class, () -> {
             Parser.parseUserInput("/delete");
         });
-        String expectedMessage = Parser.MESSAGE_INVALID_ID;
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_ID;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -98,7 +99,7 @@ public class ParserTest {
         Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
             Parser.parseUserInput("/delete abc");
         });
-        String expectedMessage = Parser.MESSAGE_INVALID_ID;
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_ID;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -114,7 +115,7 @@ public class ParserTest {
         Exception exception = assertThrows(MissingArgumentsException.class, () -> {
             Parser.parseUserInput("/add");
         });
-        String expectedMessage = Parser.MESSAGE_MISSING_ARGS_ADD;
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_ARGS_ADD;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
