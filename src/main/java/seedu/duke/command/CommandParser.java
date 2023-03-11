@@ -93,6 +93,7 @@ public class CommandParser {
             return new InvalidCommand();
         }
     }
+
     public static Command checkValidityEdit (String[] splitInput) {
         try {
             return new EditDeadlineCommand(splitInput);

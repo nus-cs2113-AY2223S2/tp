@@ -26,6 +26,7 @@ public class Duke {
             ui.printLoadingErrorMessage();
             taskList = new TaskList();
         }
+
         while (isInUse) {
             String userInput = in.nextLine();
             Command parsedCommand = CommandParser.parseCommand(userInput, taskList);

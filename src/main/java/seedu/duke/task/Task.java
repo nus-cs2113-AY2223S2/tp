@@ -37,9 +37,11 @@ public class Task {
     public boolean getIsDone() {
         return this.isDone;
     }
+
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
+
     public void editDeadline (String deadline) {
         this.deadline = deadline;
     }
@@ -47,6 +49,7 @@ public class Task {
     public String toString() {
         return "[" + (isDone ? "X" : " ") + "] " + description + " due by: " + deadline;
     }
+
     public String toSaveString() {
         StringJoiner saveString = new StringJoiner(Storage.DELIMITER);
         String[] taskParameters = {isDone ? "1" : "0", description, deadline};
@@ -55,5 +58,4 @@ public class Task {
         }
         return saveString.toString();
     }
-
 }
