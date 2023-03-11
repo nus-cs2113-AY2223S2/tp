@@ -2,6 +2,7 @@ package data;
 
 
 import parser.Parser;
+
 import java.util.ArrayList;
 
 import static common.MessageList.MESSAGE_DIVIDER;
@@ -9,13 +10,15 @@ import static common.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class ExpenseList {
     public static ArrayList<Expense> expenseList = new ArrayList<>();
+    protected Parser parser = new Parser();
+
 
     public ArrayList<Expense> getExpenseList() {
         return expenseList;
     }
 
     public void deleteExpense(String userInput) {
-        int expenseIndex = Parser.extractIndex(userInput);
+        int expenseIndex = parser.extractIndex(userInput);
         expenseList.remove(expenseIndex - 1); // change to 0-based indexing
     }
 
