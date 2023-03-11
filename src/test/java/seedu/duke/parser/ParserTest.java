@@ -32,91 +32,95 @@ public class ParserTest {
 
     @Test
     public void parseUserInput_missingArguments_exceptionThrown() {
-        assertThrows(MissingArgumentsException.class, () -> {Parser.parseUserInput("/add");});
-    }
-
-    @Test
-    public void parseUserInput_invalidArguments_exceptionThrown() {
-        assertThrows(InvalidArgumentsException.class, () -> Parser.parseUserInput("/add desc cat"));
+        Exception exception = assertThrows(MissingArgumentsException.class, () -> {
+            Parser.parseUserInput("/add");
+        });
+        String expectedMessage = Parser.MESSAGE_MISSING_ARGS_ADD;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
     }
 
     @Test
     public void parseUserInput_validAddCommand_parsedSuccessfully()
             throws InvalidArgumentsException, InvalidCommandException, MissingArgumentsException {
-        Parser.parseUserInput("/add buy coffee -c food -p 3.50");
+        Parser.parseUserInput("/add coffee -c food -p 3.50");
     }
 
     @Test
-    public void testParseUserInput_validViewCommand_parsedSuccessfully()
+    public void parseUserInput_validViewCommand_parsedSuccessfully()
             throws InvalidArgumentsException, InvalidCommandException, MissingArgumentsException {
         Parser.parseUserInput("/view");
     }
 
     @Test
-    public void testParseUserInput_validEditCommand_parsedSuccessfully()
+    public void parseUserInput_validEditCommand_parsedSuccessfully()
             throws InvalidArgumentsException, InvalidCommandException, MissingArgumentsException {
-        Parser.parseUserInput("/edit 1 desc new description");
+        Parser.parseUserInput("/edit 1 -d new description");
     }
 
     @Test
-    public void testParseUserInput_validDeleteCommand_parsedSuccessfully()
+    public void parseUserInput_validDeleteCommand_parsedSuccessfully()
             throws InvalidArgumentsException, InvalidCommandException, MissingArgumentsException {
         Parser.parseUserInput("/delete 1");
     }
 
     @Test
-    public void testParseUserInput_validHelpCommand_parsedSuccessfully()
+    public void parseUserInput_validHelpCommand_parsedSuccessfully()
             throws InvalidArgumentsException, InvalidCommandException, MissingArgumentsException {
         Parser.parseUserInput("/help");
     }
 
     @Test
-    public void testParseUserInput_validByeCommand_parsedSuccessfully()
+    public void parseUserInput_validByeCommand_parsedSuccessfully()
             throws InvalidArgumentsException, InvalidCommandException, MissingArgumentsException {
         Parser.parseUserInput("/bye");
     }
 
     @Test
-    public void testParseUserInput_whitespaceTrimmed()
+    public void parseUserInput_whitespaceTrimmed()
             throws InvalidArgumentsException, InvalidCommandException, MissingArgumentsException {
         Parser.parseUserInput("   /view   ");
     }
 
     @Test
-    public void testParseDeleteCommand_missingArguments_exceptionThrown() {
-        assertThrows(MissingArgumentsException.class, () -> Parser.parseUserInput("/delete"));
+    public void parseDeleteCommand_missingArguments_exceptionThrown() {
+        Exception exception = assertThrows(MissingArgumentsException.class, () -> {
+            Parser.parseUserInput("/delete");
+        });
+        String expectedMessage = Parser.MESSAGE_INVALID_ID;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
     }
 
     @Test
-    public void testParseDeleteCommand_invalidArguments_exceptionThrown() {
-        assertThrows(InvalidArgumentsException.class, () -> Parser.parseUserInput("/delete abc"));
+    public void parseDeleteCommand_invalidArguments_exceptionThrown() {
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            Parser.parseUserInput("/delete abc");
+        });
+        String expectedMessage = Parser.MESSAGE_INVALID_ID;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
     }
 
     @Test
-    public void testParseDeleteCommand_validArguments_parsedSuccessfully()
+    public void parseDeleteCommand_validArguments_parsedSuccessfully()
             throws InvalidArgumentsException, MissingArgumentsException, InvalidCommandException {
         Parser.parseUserInput("/delete 1");
     }
 
     @Test
-    public void testParseAddCommand_missingArguments_exceptionThrown() {
-        assertThrows(MissingArgumentsException.class, () -> Parser.parseUserInput("/add"));
+    public void parseAddCommand_missingArguments_exceptionThrown() {
+        Exception exception = assertThrows(MissingArgumentsException.class, () -> {
+            Parser.parseUserInput("/add");
+        });
+        String expectedMessage = Parser.MESSAGE_MISSING_ARGS_ADD;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
     }
 
     @Test
-    public void testParseAddCommand_invalidArguments_exceptionThrown() {
-        assertThrows(InvalidArgumentsException.class, () -> Parser.parseUserInput("/add desc cat"));
-    }
-
-    @Test
-    public void testParseAddCommand_validArguments_parsedSuccessfully()
-            throws InvalidArgumentsException, MissingArgumentsException, InvalidCommandException {
-        Parser.parseUserInput("/add buy coffee food 3.50");
-    }
-
-    @Test
-    public void testParseViewCommand_validArguments_parsedSuccessfully()
+    public void parseViewCommand_validArguments_parsedSuccessfully()
             throws InvalidArgumentsException, InvalidCommandException, MissingArgumentsException {
-        // Parser.parse
+        Parser.parseUserInput("/view 10");
     }
 }

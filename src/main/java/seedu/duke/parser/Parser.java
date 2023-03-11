@@ -36,7 +36,7 @@ public class Parser {
     public static void parseUserInput(String userInput)
             throws InvalidCommandException, InvalidArgumentsException, MissingArgumentsException {
         logger.entering(Parser.class.getName(), "parseUserInput()");
-        userInput.trim();
+        userInput = userInput.trim();
         if (userInput.isEmpty()) {
             logger.log(Level.SEVERE, "User entered an empty string",
                     new MissingArgumentsException(MESSAGE_EMPTY_INPUT));
@@ -69,7 +69,7 @@ public class Parser {
                 break;
             default:
                 logger.log(Level.SEVERE, "User command is invalid",
-                        new InvalidArgumentsException(MESSAGE_INVALID_COMMAND));
+                        new InvalidCommandException(MESSAGE_INVALID_COMMAND));
                 throw new InvalidCommandException(MESSAGE_INVALID_COMMAND);
         }
         logger.exiting(Parser.class.getName(), "parseUserInput()");
@@ -109,7 +109,7 @@ public class Parser {
         try {
             int expenseIdInt = Integer.parseInt(expenseId);
             assert expenseId.matches("\\d+") : "Expense ID must be an integer";
-            logger.info("Removing specified expense from list");
+            logger.log(Level.INFO, "Removing specified expense id {0} from list", expenseId);
             // do something with taskId
         } catch (NumberFormatException e) {
             logger.log(Level.SEVERE, "Index of the expense specified is not an integer");
@@ -163,6 +163,10 @@ public class Parser {
         String description = argumentsArray[1];
         String category = argumentsArray[2];
         String price = argumentsArray[3];
+        logger.info("User input expense ID: " + expenseId);
+        logger.info("User input description: " + description);
+        logger.info("User input category: " + category);
+        logger.info("User input price: " + price);
         if (expenseId.isEmpty()) {
             logger.severe("Missing expense ID: " + MESSAGE_INVALID_ID);
             throw new MissingArgumentsException(MESSAGE_INVALID_ID);
