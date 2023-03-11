@@ -29,6 +29,7 @@ public class Expense {
     public String getDescription() {
         return description;
     }
+    public Currency getCurrencyType() { return currencyType; }
 
     // The setter method will be used if the User want to change some information in their previous expense
     public void setExpenseAmount(double expenseAmount) {
