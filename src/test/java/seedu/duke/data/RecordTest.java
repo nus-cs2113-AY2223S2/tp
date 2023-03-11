@@ -1,9 +1,8 @@
 package seedu.duke.data;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.data.Record;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class RecordTest {
 
     @Test

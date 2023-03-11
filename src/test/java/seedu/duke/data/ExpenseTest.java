@@ -1,7 +1,6 @@
 package seedu.duke.data;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.data.Expense;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExpenseTest {
