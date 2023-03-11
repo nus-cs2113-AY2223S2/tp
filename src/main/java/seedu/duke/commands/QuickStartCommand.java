@@ -6,10 +6,10 @@ import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 
-public class GenerateRandomCommand extends Command {
+public class QuickStartCommand extends Command {
     private final int count;
 
-    public GenerateRandomCommand(String userInput){
+    public QuickStartCommand(String userInput){
         this.count = Integer.parseInt(userInput);
     }
     public void executeCommand(Ui ui, GenerateExercise exerciseGenerator){
