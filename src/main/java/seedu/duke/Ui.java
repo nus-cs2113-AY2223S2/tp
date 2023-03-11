@@ -5,7 +5,7 @@ import static seedu.duke.ColorCode.ANSI_GREEN;
 import static seedu.duke.ColorCode.ANSI_BLUE;
 import static seedu.duke.ColorCode.ANSI_RED;
 import java.util.ArrayList;
-import java.lang.StringBuilder;
+
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
@@ -32,20 +32,7 @@ public class Ui {
     public static final int UPC_COL_WIDTH = 12;
     public static final int QTY_COL_WIDTH = 8;
 
-    private static final String NAME_HEADING = "Name";
-    private static final String UPC_HEADING = "UPC";
-    private static final String QTY_HEADING = "Quantity";
-
-    private static final String PRICE_HEADING = "Price";
-
     public static final int PRICE_COL_WIDTH = 5;
-
-    private static final String TABLE_CORNER = "+";
-    private static final String TABLE_ROW = "-";
-    private static final String TABLE_LEFT = "| ";
-    private static final String TABLE_RIGHT = " |";
-    private static final String TABLE_MIDDLE = " | ";
-
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
             "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
     public static final String ITEM_NOT_FOUND = "Edit failed! Reason: Item not found in database. Please add item " +
@@ -53,6 +40,17 @@ public class Ui {
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
     public static final String MISSING_PRICE = "Please enter a number for the price!";
+
+    private static final String NAME_HEADING = "Name";
+    private static final String UPC_HEADING = "UPC";
+    private static final String QTY_HEADING = "Quantity";
+    private static final String PRICE_HEADING = "Price";
+
+    private static final String TABLE_CORNER = "+";
+    private static final String TABLE_ROW = "-";
+    private static final String TABLE_LEFT = "| ";
+    private static final String TABLE_RIGHT = " |";
+    private static final String TABLE_MIDDLE = " | ";
 
 
     public Ui() {
@@ -135,12 +133,14 @@ public class Ui {
         System.out.println(LINE);
     }
 
-    public static void printTable(ArrayList<Item> items) {
+    public static String printTable(ArrayList<Item> items) {
         int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH};
 
-        printTableSeparator(columnWidths);
-        printHeadings(columnWidths);
-        printTableSeparator(columnWidths);
+        StringBuilder table = new StringBuilder();
+
+        table.append(printTableSeparator(columnWidths));
+        table.append(printHeadings(columnWidths));
+        table.append(printTableSeparator(columnWidths));
 
         for (Item item : items) {
             String name = item.getName();
@@ -149,65 +149,90 @@ public class Ui {
             String price = Double.toString(item.getPrice());
 
             int maxColHeight = findMaxColHeight(name, upc, qty, price, columnWidths);
-            printRow(name, upc, qty, price, maxColHeight, columnWidths);
+            table.append(printRow(name, upc, qty, price, maxColHeight, columnWidths));
         }
 
-        System.out.println(LINE);
+        table.append(LINE);
+        table.append(System.lineSeparator());
+
+        return table.toString();
     }
 
-    private static void printHeadings(int[] columnWidths) {
+    private static String printHeadings(int[] columnWidths) {
         String[] headings = {NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
+        StringBuilder allHeadings = new StringBuilder();
+
         for (int i = 0; i < headings.length; i += 1) {
             String heading = headings[i];
             int width = columnWidths[i];
-            System.out.printf(TABLE_LEFT + "%-" + width + "s ", heading);
+            String formattedHeading = String.format(TABLE_LEFT + "%-" + width + "s ", heading);
+            allHeadings.append(formattedHeading);
         }
-        System.out.println(TABLE_LEFT);
+
+        allHeadings.append(TABLE_LEFT);
+        allHeadings.append(System.lineSeparator());
+
+        return allHeadings.toString();
     }
 
-    private static void printTableSeparator(int[] columnWidths) {
+    private static String printTableSeparator(int[] columnWidths) {
+        StringBuilder tableSeparator = new StringBuilder();
+
         for (int columnWidth : columnWidths) {
-            System.out.print(TABLE_CORNER);
+            tableSeparator.append(TABLE_CORNER);
+
             for (int j = 0; j < columnWidth + 2; j++) {
-                System.out.print(TABLE_ROW);
+                tableSeparator.append(TABLE_ROW);
             }
         }
 
-        System.out.println(TABLE_CORNER);
+        tableSeparator.append(TABLE_CORNER);
+        tableSeparator.append(System.lineSeparator());
+        return tableSeparator.toString();
     }
 
-    private static void printRow(String name, String upc, String qty, String price,
+    private static String printRow(String name, String upc, String qty, String price,
                                 int maxRowHeight, int[] columnWidths) {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
         String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
         String[] qtyLines = wrapText(qty, QTY_COL_WIDTH);
         String[] priceLines = wrapText(price, PRICE_COL_WIDTH);
 
+        StringBuilder row = new StringBuilder();
+
         for (int i = 0; i < maxRowHeight; i += 1) {
 
-            System.out.print(TABLE_LEFT);
-            printAttribute(nameLines, NAME_COL_WIDTH, i);
-            System.out.print(TABLE_MIDDLE);
-            printAttribute(upcLines, UPC_COL_WIDTH, i);
-            System.out.print(TABLE_MIDDLE);
-            printAttribute(qtyLines, QTY_COL_WIDTH, i);
-            System.out.print(TABLE_MIDDLE);
-            printAttribute(priceLines, PRICE_COL_WIDTH, i);
-            System.out.println(TABLE_RIGHT);
+            row.append(TABLE_LEFT);
+            row.append(printAttribute(nameLines, NAME_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(upcLines, UPC_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(qtyLines, QTY_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(priceLines, PRICE_COL_WIDTH, i));
+            row.append(TABLE_RIGHT);
+            row.append(System.lineSeparator());
 
             if (i == maxRowHeight - 1) {
-                printTableSeparator(columnWidths);
+                row.append(printTableSeparator(columnWidths));
             }
         }
+
+        return row.toString();
     }
 
-    private static void printAttribute(String[] attributeLines, int columnWidth, int rowNumber) {
+    private static String printAttribute(String[] attributeLines, int columnWidth, int rowNumber) {
+        StringBuilder attribute = new StringBuilder();
+
         if (rowNumber < attributeLines.length) {
-            String paddedString = String.format("%1$-" + columnWidth + "s", attributeLines[rowNumber]);
-            System.out.print(paddedString);
+            String paddedAttribute = String.format("%1$-" + columnWidth + "s", attributeLines[rowNumber]);
+            attribute.append(paddedAttribute);
         } else {
-            System.out.print(" ".repeat(columnWidth));
+            String paddedSpace = new String(new char[columnWidth]).replace('\0', ' ');
+            attribute.append(paddedSpace);
         }
+
+        return attribute.toString();
 
     }
 

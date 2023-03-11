@@ -225,7 +225,8 @@ public class Inventory {
     public static void listItems() {
         if (!items.isEmpty()) {
             Ui.printSuccessList();
-            Ui.printTable(items);
+            String table = Ui.printTable(items);
+            System.out.println(table);
         } else {
             Ui.printInvalidList();
         }
