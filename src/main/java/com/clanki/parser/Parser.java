@@ -12,7 +12,7 @@ public class Parser {
     public static final String QUESTION_START_INDICATOR = "/q";
     public static final String ANSWER_START_INDICATOR = "/a";
 
-    public Command parseCommand(String userInput) {
+    public static Command parseCommand(String userInput) {
         String commandPhrase = userInput.split(" ")[0];
         switch (commandPhrase) {
         case "add":
@@ -49,7 +49,7 @@ public class Parser {
      * @throws EmptyFlashcardAnswerException     If the string is empty after
      *                                           ANSWER_START_INDICATOR.
      */
-    public AddCommand reformatAddCommandInput(String userInput)
+    public static AddCommand reformatAddCommandInput(String userInput)
             throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException,
             EmptyFlashcardAnswerException {
         int positionOfStartOfQuestion = userInput.indexOf(QUESTION_START_INDICATOR);
@@ -68,7 +68,8 @@ public class Parser {
                     .substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length()).trim();
         } else {
             questionText = userInput
-                    .substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length()).trim();
+                    .substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length())
+                    .trim();
             answerText = userInput
                     .substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length(),
                             positionOfStartOfQuestion)

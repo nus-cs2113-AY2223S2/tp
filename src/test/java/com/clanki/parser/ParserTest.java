@@ -18,51 +18,45 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ParserTest {
     @Test
     public void parseAddCommand_correctlyFormattedInput_successful() {
-        Parser parser = new Parser();
-        Command parsedCommand = parser.parseCommand("add /q Question /a Answer");
+        Command parsedCommand = Parser.parseCommand("add /q Question /a Answer");
         Command expectedCommand = new AddCommand("Question", "Answer");
         assertEquals(expectedCommand.toString(), parsedCommand.toString());
     }
 
     @Test
     public void parseAddCommand_answerBeforeQuestion_successful() {
-        Parser parser = new Parser();
-        Command parsedCommand = parser.parseCommand("add /a Answer /q Question");
+        Command parsedCommand = Parser.parseCommand("add /a Answer /q Question");
         Command expectedCommand = new AddCommand("Question", "Answer");
         assertEquals(expectedCommand.toString(), parsedCommand.toString());
     }
 
     @Test
     public void parserAddCommand_incorrectFormattedInput_invalidInputException() {
-        Parser parser = new Parser();
         assertThrows(InvalidAddFlashcardInputException.class,
-                () -> parser.reformatAddCommandInput("add Question /a Answer"));
+                () -> Parser.reformatAddCommandInput("add Question /a Answer"));
         assertThrows(InvalidAddFlashcardInputException.class,
-                () -> parser.reformatAddCommandInput("add /q Question /w Answer"));
+                () -> Parser.reformatAddCommandInput("add /q Question /w Answer"));
     }
 
     @Test
     public void parserAddCommand_partOfInputMissing_emptyInputPartException() {
-        Parser parser = new Parser();
         assertThrows(EmptyFlashcardAnswerException.class,
-                () -> parser.reformatAddCommandInput("add /q Question /a "));
+                () -> Parser.reformatAddCommandInput("add /q Question /a "));
         assertThrows(EmptyFlashcardQuestionException.class,
-                () -> parser.reformatAddCommandInput("add /q  /a Answer"));
+                () -> Parser.reformatAddCommandInput("add /q  /a Answer"));
     }
 
     @Test
     public void parserByeCommand_byeCommand_successful() {
-        Parser parser = new Parser();
-        Command parsedCommand = parser.parseCommand("bye");
+        Command parsedCommand = Parser.parseCommand("bye");
         assertTrue(parsedCommand instanceof ByeCommand);
-        parsedCommand = parser.parseCommand("bye whatever");
+        parsedCommand = Parser.parseCommand("bye whatever");
         assertTrue(parsedCommand instanceof ByeCommand);
     }
 
     @Test
     public void parserUnknownCommand_unknownCommand_successful() {
-        Parser parser = new Parser();
-        Command parsedCommand = parser.parseCommand("unknown");
+        Command parsedCommand = Parser.parseCommand("unknown");
         assertTrue(parsedCommand instanceof UnknownCommand);
     }
 }
