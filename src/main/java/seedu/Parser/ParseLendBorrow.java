@@ -17,27 +17,20 @@ public class ParseLendBorrow {
         try {
             int space = line.indexOf(" ");
             String details = line.substring(space);
-            System.out.println("Details = " + details);
 
             int posSSlash = details.indexOf('/');
             String allDetails = details.substring(posSSlash+1);
-            System.out.println("All Details = " + allDetails);
             int posASlash = allDetails.indexOf('/');
             description = allDetails.substring(0, posASlash-2);
-            System.out.println("Description = " + description);
             String moreDetails = allDetails.substring(posASlash+1);
-            System.out.println("moredetails = " + moreDetails);
 
             int posNSlash = moreDetails.indexOf('/');
             String amountString = moreDetails.substring(0, posNSlash-2);
             amount = Double.parseDouble(amountString);
-            System.out.println("amount = " + amount);
             String borrowLendDetails = moreDetails.substring(posNSlash+1);
-            System.out.println("borrowlenddetails = "+ borrowLendDetails);
 
             int posDSlash = borrowLendDetails.indexOf('/');
             name = borrowLendDetails.substring(0, posDSlash-2);
-            System.out.println("name = " + name);
             String dates = borrowLendDetails.substring(posDSlash+1);
 
             int posBSlash = dates.indexOf('/');
@@ -45,8 +38,6 @@ public class ParseLendBorrow {
             String deadlineString = dates.substring(posBSlash+1);
             lentDate = ParseDate.parseDate(lentDateString);
             deadline = ParseDate.parseDate(deadlineString);
-            System.out.println("lentdate = "+ lentDate);
-            System.out.println("deadline = "+ deadline);
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             return new InvalidCommand("Invalid");
         }
