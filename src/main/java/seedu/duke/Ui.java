@@ -228,7 +228,7 @@ public class Ui {
             String paddedAttribute = String.format("%1$-" + columnWidth + "s", attributeLines[rowNumber]);
             attribute.append(paddedAttribute);
         } else {
-            String paddedSpace = " ".repeat(columnWidth);
+            String paddedSpace = new String(new char[columnWidth]).replace('\0', ' ');
             attribute.append(paddedSpace);
         }
 
