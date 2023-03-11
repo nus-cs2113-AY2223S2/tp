@@ -52,6 +52,7 @@ public class GenerateFilterCommand extends Command {
                 try {
                     numberOfExercisesToGenerate = Integer.parseInt(userCommands[i]);
                 } catch(NumberFormatException e) {
+                    System.out.println("enter a valid number of exercises!");
                 }
             }
         }
