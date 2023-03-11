@@ -29,6 +29,7 @@ public class MainInputParser {
             return ParseAdd.addItem(line, command);
         case LendExpenditureCommand.COMMAND_WORD:
         case BorrowExpenditureCommand.COMMAND_WORD:
+            return ParseLendBorrow.lendBorrowItem(line, command);
         default:
             // Commands that are not listed above
             return new InvalidCommand("Invalid");
