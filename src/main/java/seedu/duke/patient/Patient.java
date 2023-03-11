@@ -4,7 +4,7 @@ package seedu.duke.patient;
 import java.util.ArrayList;
 
 public class Patient {
-    protected static ArrayList<String> patientDiagnosisHistory;
+    public static ArrayList<String> patientDiagnosisHistory;
     protected String name;
     protected String password;
 
