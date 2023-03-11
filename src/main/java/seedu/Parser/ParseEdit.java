@@ -8,17 +8,23 @@ public class ParseEdit {
     public static Command editItem(String line) {
         // Format: edit, index, d/date, a/amount, s/description
         int space = line.indexOf(" ");
-        String details = line.substring(space);
+        String allDetails[] = SplitCommand.splitCommand(space, line);
+        String details = allDetails[1];
+
         int posDSlash = details.indexOf('/');
-        String indexVal = details.substring(1, posDSlash-2);
-        String editDetails = details.substring(posDSlash+1);
+        String furtherDetails[] = SplitCommand.splitCommand(posDSlash, details);
+        String indexVal = furtherDetails[0];
+        String editDetails = furtherDetails[1];
 
         int posASlash = editDetails.indexOf('/');
-        String dateVal = editDetails.substring(0, posASlash-2);
-        String editPriceAndDescription = editDetails.substring(posASlash+1);
+        String dateAmountDescription[] = SplitCommand.splitCommand(posASlash,editDetails);
+        String dateVal = dateAmountDescription[0];
+        String editPriceAndDescription = dateAmountDescription[1];
+
         int posSSlash = editPriceAndDescription.indexOf('/');
-        String amountVal = editPriceAndDescription.substring(0, posSSlash-2);
-        String descriptionVal = editPriceAndDescription.substring(posSSlash+1);
+        String amountDescription[] = SplitCommand.splitCommand(posSSlash,editPriceAndDescription);
+        String amountVal = amountDescription[0];
+        String descriptionVal = dateAmountDescription[1];
 
         try {
             int indexIntVal = Integer.parseInt(indexVal);

@@ -19,23 +19,29 @@ public class ParseLendBorrow {
             String details = line.substring(space);
 
             int posSSlash = details.indexOf('/');
-            String allDetails = details.substring(posSSlash+1);
+            String allDetailsList[] = SplitCommand.splitCommand(posSSlash, details);
+            String allDetails = allDetailsList[1];
+
             int posASlash = allDetails.indexOf('/');
-            description = allDetails.substring(0, posASlash-2);
-            String moreDetails = allDetails.substring(posASlash+1);
+            String moreDetailsList[] = SplitCommand.splitCommand(posASlash, allDetails);
+            description = moreDetailsList[0];
+            String moreDetails = moreDetailsList[1];
 
             int posNSlash = moreDetails.indexOf('/');
-            String amountString = moreDetails.substring(0, posNSlash-2);
+            String amountStringList[] = SplitCommand.splitCommand(posNSlash, moreDetails);
+            String amountString = amountStringList[0];
             amount = Double.parseDouble(amountString);
-            String borrowLendDetails = moreDetails.substring(posNSlash+1);
+            String borrowLendDetails = amountStringList[1];
 
             int posDSlash = borrowLendDetails.indexOf('/');
-            name = borrowLendDetails.substring(0, posDSlash-2);
-            String dates = borrowLendDetails.substring(posDSlash+1);
+            String nameList[] = SplitCommand.splitCommand(posDSlash, borrowLendDetails);
+            name = nameList[0];
+            String dates = nameList[1];
 
             int posBSlash = dates.indexOf('/');
-            String lentDateString = dates.substring(0, posBSlash-2);
-            String deadlineString = dates.substring(posBSlash+1);
+            String datesList[] = SplitCommand.splitCommand(posBSlash,dates);
+            String lentDateString = datesList[0];
+            String deadlineString = datesList[1];
             lentDate = ParseDate.parseDate(lentDateString);
             deadline = ParseDate.parseDate(deadlineString);
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
