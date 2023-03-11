@@ -3,7 +3,7 @@ package seedu.duke.command.misc;
 import seedu.duke.DukeException;
 import seedu.duke.DukeSession;
 import seedu.duke.command.ExecutableCommand;
-import seedu.duke.Ingredient;
+import seedu.duke.ingredient.Ingredient;
 
 /**
  * Represents the "add" command.
@@ -20,22 +20,22 @@ public class AddCommand extends ExecutableCommand {
     }
 
     private static void addToExistingIngredients(DukeSession dukeSession, int quantity, int index) {
-        int newQuantity = DukeSession.Ingredients.get(index).getQuantity() + quantity;
-        DukeSession.Ingredients.get(index).setQuantity(newQuantity);
+        int newQuantity = DukeSession.ingredients.get(index).getQuantity() + quantity;
+        DukeSession.ingredients.get(index).setQuantity(newQuantity);
         dukeSession.getUi().printMessage("Here is the new quantity of the ingredient:");
-        dukeSession.getUi().printMessage(String.valueOf(DukeSession.Ingredients.get(index)));
+        dukeSession.getUi().printMessage(String.valueOf(DukeSession.ingredients.get(index)));
     }
 
     private static void addNewIngredient(DukeSession dukeSession, int quantity, String name) {
         Ingredient ingredient = new Ingredient(name, quantity);
-        DukeSession.Ingredients.add(ingredient);
+        DukeSession.ingredients.add(ingredient);
         dukeSession.getUi().printMessage("the following ingredient has been added");
         dukeSession.getUi().printMessage(String.valueOf(ingredient));
     }
 
     public static boolean isInList(String name) {
-        for (int i = 0; i < DukeSession.Ingredients.size(); i += 1) {
-            if (DukeSession.Ingredients.get(i).getName().equals(name)) {
+        for (int i = 0; i < DukeSession.ingredients.size(); i += 1) {
+            if (DukeSession.ingredients.get(i).getName().equals(name)) {
                 indexOfExistingIngredient = i;
                 return true;
             }
