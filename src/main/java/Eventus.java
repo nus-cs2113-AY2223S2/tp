@@ -1,9 +1,11 @@
-import java.util.Scanner;
+import seedu.duke.Ui;
 
 public class Eventus {
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-
+        Ui ui = new Ui();
+        ui.showWelcome();
+        ui.showExitMessage();
+        ui.exitProgram();
     }
 }
