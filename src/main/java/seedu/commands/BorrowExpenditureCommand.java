@@ -5,7 +5,7 @@ import seedu.Expenditure.ExpenditureList;
 
 import java.time.LocalDate;
 
-public class BorrowExpenditureCommand {
+public class BorrowExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "borrow";
     private final String borrowExpenditureDescription;
     private final String borrowExpenditureName;
