@@ -20,6 +20,7 @@ public class Ui {
             "add n/[name] upc/[UPC] qty/[quantity] p/[price]";
     public static final String DUPLICATE_ADD = "Duplicate item found! Please add another item with a different UPC";
     public static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
+    public static final String SUCCESS_LIST = "Here are the items in your inventory:";
 
     public static final int NAME_COL_WIDTH = 15;
     public static final int UPC_COL_WIDTH = 12;
@@ -74,20 +75,42 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public static void printSuccessList() {
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + SUCCESS_LIST + ANSI_RESET);
+    }
 
+    public static void printTable(ArrayList<Item> items) {
+        int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH};
 
-    public static void printHeadings(int[] columnWidths) {
+        printTableSeparator(columnWidths);
+        printHeadings(columnWidths);
+        printTableSeparator(columnWidths);
+
+        for (Item item : items) {
+            String name = item.getName();
+            String upc = item.getUpc();
+            String qty = Integer.toString(item.getQuantity());
+            String price = Double.toString(item.getPrice());
+
+            int maxColHeight = findMaxColHeight(name, upc, qty, price, columnWidths);
+            printRow(name, upc, qty, price, maxColHeight, columnWidths);
+        }
+    }
+
+    private static void printHeadings(int[] columnWidths) {
         String[] headings = {"Name", "UPC", "Quantity", "Price"};
         for (int i = 0; i < headings.length; i += 1) {
             String heading = headings[i];
             int width = columnWidths[i];
-            System.out.printf("| %-" + width + "s ", heading);
+            //System.out.printf("| %-" + width + "s ", heading);
+            System.out.printf(TABLE_LEFT + "%-" + width + "s ", heading);
         }
-        //System.out.println(TABLE_MIDDLE);
+
         System.out.println(TABLE_LEFT);
     }
 
-    public static void printTableSeparator(int[] columnWidths) {
+    private static void printTableSeparator(int[] columnWidths) {
         for (int i = 0; i < columnWidths.length; i += 1) {
             System.out.print(TABLE_CORNER);
             for (int j = 0; j < columnWidths[i] + 2; j++) {
@@ -99,7 +122,7 @@ public class Ui {
 
     }
 
-    public static void printRow(String name, String upc, String qty, String price,
+    private static void printRow(String name, String upc, String qty, String price,
                                 int maxRowHeight, int[] columnWidths) {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
         String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
@@ -119,7 +142,7 @@ public class Ui {
             System.out.println(TABLE_RIGHT);
 
             if (i == maxRowHeight - 1) {
-                Ui.printTableSeparator(columnWidths);
+                printTableSeparator(columnWidths);
             }
         }
     }
@@ -163,7 +186,7 @@ public class Ui {
         return lines.toArray(new String[0]);
     }
 
-    public static int findMaxColHeight(String name, String upc, String qty, String price, int[] columnWidths) {
+    private static int findMaxColHeight(String name, String upc, String qty, String price, int[] columnWidths) {
 
         int nameLength = name.length();
         int upcLength = upc.length();
@@ -183,7 +206,6 @@ public class Ui {
                 max = colHeight;
             }
         }
-
         return max;
     }
 
