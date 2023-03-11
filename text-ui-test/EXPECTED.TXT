@@ -5,4 +5,7 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Commands: 
+Generate a number of random exercises: generate x (where x is a positive integer)
+Generate a exercises with specific difficulty: generate difficulty easy/medium/hard x 
 Good Bye!
