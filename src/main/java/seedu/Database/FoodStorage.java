@@ -12,38 +12,52 @@ import seedu.Entities.Ingredient;
 import seedu.Entities.Side;
 
 public class FoodStorage extends Storage implements FileReadable {
+    private static final String csvDelimiter = ",";
     private ArrayList<Food> foods;
 
     public FoodStorage(String filePath) {
         super(filePath);
         foods = new ArrayList<Food>();
+        try {
+            this.load();
+        } catch (IOException e) {
+            System.out.println("Error loading Food Storage");
+        }
     }
 
     @Override
     public void load() throws IOException {
-        String line = "", splitBy = ",";
-        String foodType, name, store;
+        String line = "";
+        String[] foodLine;
+        String foodType;
+        String name;
+        String store;
+        int id;
         int storeNumber;
         float calories;
         Food food;
         // parsing a CSV file into BufferedReader class constructor
         BufferedReader br = new BufferedReader(new FileReader(filePath));
-        while ((line = br.readLine()) != null) // returns a Boolean value
-        {
-            String[] foodLine = line.split(splitBy); // use comma as separator
-            foodType = foodLine[0];
-            name = foodLine[1];
-            store = foodLine[2];
-            storeNumber = Integer.parseInt(foodLine[3]);
-            calories = Float.parseFloat(foodLine[4]);
+
+        // Skip Line 1 (header)
+        br.readLine();
+
+        while ((line = br.readLine()) != null) {
+            foodLine = line.split(csvDelimiter); // use comma as separator
+            id = Integer.parseInt(foodLine[0]);
+            foodType = foodLine[1];
+            name = foodLine[2];
+            store = foodLine[3];
+            storeNumber = Integer.parseInt(foodLine[4]);
+            calories = Float.parseFloat(foodLine[5]);
             food = null;
             
             if (foodType.equals(FoodTypes.DISH.toString())) {
-                food = new Dish(name, store, storeNumber, calories);
+                food = new Dish(id, name, store, storeNumber, calories);
             } else if (foodType.equals(FoodTypes.SIDE.toString())) {
-                food = new Side(name, store, storeNumber, calories);
+                food = new Side(id, name, store, storeNumber, calories);
             } else if (foodType.equals(FoodTypes.INGREDIENT.toString())) {
-                food = new Ingredient(name, store, storeNumber, calories);
+                food = new Ingredient(id, name, store, storeNumber, calories);
             }
 
             if (food != null) {
@@ -55,5 +69,10 @@ public class FoodStorage extends Storage implements FileReadable {
 
     public ArrayList<Food> getFoods() {
         return this.foods;
+    }
+
+    public Food getFoodById(int id)
+    {
+        return this.foods.get(id-1);
     }
 }
