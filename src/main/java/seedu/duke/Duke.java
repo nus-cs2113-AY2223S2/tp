@@ -1,4 +1,4 @@
-package seedu.sniff;
+package seedu.duke;
 
 import exception.SniffException;
 import functionalities.Command;
@@ -6,11 +6,11 @@ import functionalities.Ui;
 import functionalities.Parser;
 import functionalities.SniffTasks;
 
-public class Sniff {
+public class Duke {
     private static SniffTasks tasks;
     private static Ui UI;
 
-    public Sniff() {
+    public Duke() {
         UI = new Ui();
         tasks = new SniffTasks();
         //Implement Storage later
@@ -38,7 +38,7 @@ public class Sniff {
      * Main entry-point for the java.sniff.Sniff application.
      */
     public static void main(String[] args) {
-        new Sniff().run();
+        new Duke().run();
     }
 
 }
