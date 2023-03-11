@@ -3,6 +3,7 @@ package com.clanki.parser;
 import com.clanki.commands.AddCommand;
 import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
+import com.clanki.commands.DeleteCommand;
 import com.clanki.commands.UnknownCommand;
 import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
@@ -27,6 +28,9 @@ public class Parser {
                 System.out.println("The answer for this flashcard is empty, please enter one.");
             }
             break;
+        case "del":
+            int index = Integer.parseInt(userInput.split(" ")[1]);
+            return new DeleteCommand(index);
         case "bye":
             return new ByeCommand();
         default:
