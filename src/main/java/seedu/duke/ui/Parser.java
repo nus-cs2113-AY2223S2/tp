@@ -1,9 +1,9 @@
 //@@author Jeraldchen
 package seedu.duke.ui;
 
-import seedu.duke.save.Storage;
+// import seedu.duke.save.Storage;
 
-import static seedu.duke.ui.Information.patientsList;
+// import static seedu.duke.ui.Information.patientsList;
 
 public class Parser {
 
