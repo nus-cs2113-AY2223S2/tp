@@ -12,7 +12,6 @@ class CategoryListTest {
     public void setup() {
         CategoryList.addCategory("food");
         CategoryList.addCategory("book");
-
     }
 
     /**
@@ -24,5 +23,10 @@ class CategoryListTest {
         setup();
         CategoryList.addCategory("test");    //to ensure that the list is not empty
         assertEquals(CategoryList.categories.get(0), CategoryList.getCategory(0));
+        clear();
+    }
+
+    void clear() {
+        CategoryList.categories.clear();
     }
 }
