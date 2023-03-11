@@ -1,7 +1,9 @@
 package seedu.duke.entrylog;
 
+import seedu.duke.constants.MessageConstants;
 import seedu.duke.entries.Category;
 import seedu.duke.entries.Entry;
+import seedu.duke.exceptions.InvalidArgumentsException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +22,28 @@ public class EntryLog {
         this.entries = entries;
     }
 
+    /**
+     * Add an entry to the log.
+     *
+     * @param entry Entry to be added
+     */
     public void add(Entry entry) {
+        assert entry != null;
         entries.add(entry);
     }
 
-    public void delete(int entryId) {
-        entries.remove(entryId);
+    /**
+     * Delete an entry from the log. Should only be called in the main log.
+     *
+     * @param entryId Id corresponding to the index (0-based)
+     * @throws InvalidArgumentsException If an invalid index is passed
+     */
+    public void delete(int entryId) throws InvalidArgumentsException {
+        try {
+            entries.remove(entryId);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+        }
     }
 
     /**

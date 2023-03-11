@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.entrylog.EntryLog;
+import seedu.duke.exceptions.InvalidArgumentsException;
 
 /**
  * Represents the delete feature in PocketPal. Users may specify
@@ -21,7 +22,7 @@ public class DeleteCommand extends Command{
      * @param entries List of entries to delete from
      */
     @Override
-    public void execute(EntryLog entries) {
+    public void execute(EntryLog entries) throws InvalidArgumentsException {
         entries.delete(entryId);
     }
 }
