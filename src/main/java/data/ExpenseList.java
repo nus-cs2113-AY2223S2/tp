@@ -9,7 +9,7 @@ import static common.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class ExpenseList {
 
-    Parser parser = new Parser();
+    protected Parser parser = new Parser();
     public static ArrayList<Expense> expenseList = new ArrayList<>();
 
     public ArrayList<Expense> getExpenseList() {
