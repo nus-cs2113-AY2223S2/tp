@@ -9,7 +9,7 @@ class Option {
     public Option(String optionString) {
         String[] parts = optionString.split(BODY_SEPARATOR, 2);
         name = parts[0];
-        value = parts[1];
+        value = parts.length > 1 ? parts[1] : null;
     }
 
     public String getName() {
@@ -65,6 +65,17 @@ public class ParsedInput {
         return body;
     }
 
+    /**
+     * Returns the value of the option with the given name.
+     * 
+     * Example: "command blah blah /opt1 hello /opt2 world blah bleh" then
+     * getOptionByName("opt2") returns "world blah bleh" and getOptionByName("foo")
+     * returns null.
+     * 
+     * @param name The name of the option.
+     * @return The (trimmed) value of the option, or null if the option does not
+     *         exist. Be careful that the option can be an empty string.
+     */
     public String getOptionByName(String name) {
         for (Option option : options) {
             if (option.getName().equals(name)) {

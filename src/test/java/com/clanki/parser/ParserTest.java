@@ -33,17 +33,17 @@ class ParserTest {
     @Test
     public void parserAddCommand_incorrectFormattedInput_invalidInputException() {
         assertThrows(InvalidAddFlashcardInputException.class,
-                () -> Parser.reformatAddCommandInput("add Question /a Answer"));
+                () -> Parser.parseCommandStrict("add Question /a Answer"));
         assertThrows(InvalidAddFlashcardInputException.class,
-                () -> Parser.reformatAddCommandInput("add /q Question /w Answer"));
+                () -> Parser.parseCommandStrict("add /q Question /w Answer"));
     }
 
     @Test
     public void parserAddCommand_partOfInputMissing_emptyInputPartException() {
         assertThrows(EmptyFlashcardAnswerException.class,
-                () -> Parser.reformatAddCommandInput("add /q Question /a "));
+                () -> Parser.parseCommandStrict("add /q Question /a "));
         assertThrows(EmptyFlashcardQuestionException.class,
-                () -> Parser.reformatAddCommandInput("add /q  /a Answer"));
+                () -> Parser.parseCommandStrict("add /q  /a Answer"));
     }
 
     @Test
