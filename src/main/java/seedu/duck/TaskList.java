@@ -1,13 +1,14 @@
 package seedu.duck;
 
-import seedu.duck.exception.IllegalDeadlineException;
-import seedu.duck.exception.IllegalEventException;
-import seedu.duck.exception.IllegalTodoException;
+import seedu.duck.exception.*;
 import seedu.duck.task.Deadline;
 import seedu.duck.task.Event;
 import seedu.duck.task.Task;
 import seedu.duck.task.Todo;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -21,15 +22,27 @@ public class TaskList {
                 addDeadline(line, tasks);
             } catch (IllegalDeadlineException e) {
                 Ui.deadlineErrorMessage();
+            } catch (expiredDateException e) {
+                Ui.expiredErrorMessage();
+            } catch (DateTimeException e) {
+                System.out.println("Please check the inputted format human!\n" +
+                        "There are only 24 hours in a day in Duck World, and 12 months a year...\n");
+                System.out.println("\t Please try again!");
             }
         } else if (line.contains("/from") || line.contains("/to")) {
             // Adding an Event
             try {
                 addEvent(line, tasks);
-            } catch (IllegalEventException e) {
+            } catch (IllegalEventException | IndexOutOfBoundsException e) {
                 Ui.eventErrorMessage();
-            } catch (IndexOutOfBoundsException e) {
-                Ui.eventErrorMessage();
+            } catch (expiredDateException e) {
+                Ui.expiredErrorMessage();
+            } catch (startAfterEndException e) {
+                Ui.startAfterEndErrorMessage();
+            } catch (DateTimeException e) {
+                System.out.println("Please check the inputted format human!\n" +
+                        "There are only 24 hours in a day in Duck World, and 12 months a year...\n");
+                System.out.println("\t Please try again!");
             }
         } else {
             // Adding a _Todo_
@@ -63,14 +76,22 @@ public class TaskList {
      * @param line The line of input from the user
      * @param tasks The array list of tasks
      */
-    static void addEvent(String line, ArrayList<Task> tasks) throws IllegalEventException {
+    static void addEvent(String line, ArrayList<Task> tasks) throws IllegalEventException, startAfterEndException,
+            expiredDateException {
         String description = line.substring(0, line.indexOf("/from")).trim();
-        String start = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
-        String end = line.substring(line.indexOf("/to") + 3).trim();
-        if (description.isBlank() || start.isBlank() || end.isBlank()) {
+        String startString = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
+        String endString = line.substring(line.indexOf("/to") + 3).trim();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        LocalDateTime start = LocalDateTime.parse(startString, dateFormat);
+        LocalDateTime end = LocalDateTime.parse(endString, dateFormat);
+        if (start.isAfter(end)) {
+            throw new startAfterEndException();
+        } else if (start.isBefore(LocalDateTime.now()) || end.isBefore(LocalDateTime.now())) {
+            throw new expiredDateException();
+        } else if (description.isBlank() || startString.isBlank() || endString.isBlank()) {
             throw new IllegalEventException();
         } else {
-            Event currEvent = new Event(description, start, end);
+            Event currEvent = new Event(description, startString, endString);
             tasks.add(currEvent);
             Ui.addedTaskMessage(currEvent);
         }
@@ -82,14 +103,18 @@ public class TaskList {
      * @param line The line of input from the user
      * @param tasks The array list of tasks
      */
-    static void addDeadline(String line, ArrayList<Task> tasks) throws IllegalDeadlineException {
+    static void addDeadline(String line, ArrayList<Task> tasks) throws IllegalDeadlineException, expiredDateException {
         String description = line.substring(0, line.indexOf("/by")).trim();
-        String deadline = line.substring(line.indexOf("/by") + 3).trim();
+        String deadlineString = line.substring(line.indexOf("/by") + 3).trim();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        LocalDateTime deadline = LocalDateTime.parse(deadlineString, dateFormat);
         //System.out.println(description.isBlank());
-        if (description.isBlank() || deadline.isBlank()) {
+        if (description.isBlank() || deadlineString.isBlank()) {
             throw new IllegalDeadlineException();
+        } else if (deadline.isBefore(LocalDateTime.now())) {
+            throw new expiredDateException();
         } else {
-            Deadline currDeadline = new Deadline(description, deadline);
+            Deadline currDeadline = new Deadline(description, deadlineString);
             tasks.add(currDeadline);
             Ui.addedTaskMessage(currDeadline);
         }
