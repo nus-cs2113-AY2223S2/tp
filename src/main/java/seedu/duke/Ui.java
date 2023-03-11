@@ -5,8 +5,7 @@ import static seedu.duke.ColorCode.ANSI_GREEN;
 import static seedu.duke.ColorCode.ANSI_BLUE;
 import static seedu.duke.ColorCode.ANSI_RED;
 import java.util.ArrayList;
-import java.lang.String;
-import java.lang.StringBuilder;
+
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
@@ -33,20 +32,7 @@ public class Ui {
     public static final int UPC_COL_WIDTH = 12;
     public static final int QTY_COL_WIDTH = 8;
 
-    private static final String NAME_HEADING = "Name";
-    private static final String UPC_HEADING = "UPC";
-    private static final String QTY_HEADING = "Quantity";
-
-    private static final String PRICE_HEADING = "Price";
-
     public static final int PRICE_COL_WIDTH = 5;
-
-    private static final String TABLE_CORNER = "+";
-    private static final String TABLE_ROW = "-";
-    private static final String TABLE_LEFT = "| ";
-    private static final String TABLE_RIGHT = " |";
-    private static final String TABLE_MIDDLE = " | ";
-
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
             "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
     public static final String ITEM_NOT_FOUND = "Edit failed! Reason: Item not found in database. Please add item " +
@@ -54,6 +40,17 @@ public class Ui {
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
     public static final String MISSING_PRICE = "Please enter a number for the price!";
+
+    private static final String NAME_HEADING = "Name";
+    private static final String UPC_HEADING = "UPC";
+    private static final String QTY_HEADING = "Quantity";
+    private static final String PRICE_HEADING = "Price";
+
+    private static final String TABLE_CORNER = "+";
+    private static final String TABLE_ROW = "-";
+    private static final String TABLE_LEFT = "| ";
+    private static final String TABLE_RIGHT = " |";
+    private static final String TABLE_MIDDLE = " | ";
 
 
     public Ui() {
