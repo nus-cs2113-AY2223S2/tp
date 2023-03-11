@@ -51,17 +51,17 @@ public class Expense {
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
-        if (obj == null)
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
-        if (obj == this)
+        }
+        if (obj == this) {
             return true;
+        }
         return Objects.equals(this.getDescription(), ((Expense) obj).getDescription())
                 && this.getExpenseAmount() == ((Expense) obj).getExpenseAmount()
                 && Objects.equals(this.getExpenseTime(), ((Expense) obj).getExpenseTime());
     }
-
 
 
 }
