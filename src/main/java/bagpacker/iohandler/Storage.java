@@ -14,8 +14,9 @@ import java.util.Scanner;
  * Storage class contains methods to save and retrieve saved packing list in txt file
  */
 public class Storage {
-    private static final String FILE_PATH = "packList.txt";
 
+    public static ArrayList<Item> packingList = new ArrayList<>();
+    private static final String FILE_PATH = "packingList.txt";
     public static void load() throws FileNotFoundException {
         Scanner reader = new Scanner(new File(FILE_PATH));
         String line;
