@@ -152,9 +152,6 @@ public class Ui {
             table.append(printRow(name, upc, qty, price, maxColHeight, columnWidths));
         }
 
-        table.append(LINE);
-        table.append(System.lineSeparator());
-
         return table.toString();
     }
 
@@ -169,7 +166,7 @@ public class Ui {
             allHeadings.append(formattedHeading);
         }
 
-        allHeadings.append(TABLE_LEFT);
+        allHeadings.append(TABLE_LEFT.replaceAll(" ", ""));
         allHeadings.append(System.lineSeparator());
 
         return allHeadings.toString();

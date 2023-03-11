@@ -227,6 +227,7 @@ public class Inventory {
             Ui.printSuccessList();
             String table = Ui.printTable(items);
             System.out.println(table);
+            System.out.println(Ui.LINE);
         } else {
             Ui.printInvalidList();
         }
