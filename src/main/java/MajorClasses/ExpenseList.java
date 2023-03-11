@@ -56,6 +56,6 @@ public class ExpenseList {
                 Currency.checkCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]));
         expenseList.add(expense);
     }
-    
+
 }
 
