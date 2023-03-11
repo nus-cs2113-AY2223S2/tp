@@ -65,7 +65,7 @@ public class ModifyCommand extends Command {
             throw new UnexpectedException("Modifying Task");
         }
         try {
-            storage.update(taskList);
+            storage.updateTask(taskList);
         } catch (IOException e) {
             ui.printErrorForIO();
         }

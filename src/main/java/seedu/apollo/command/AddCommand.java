@@ -92,7 +92,7 @@ public class AddCommand extends Command {
         }
         ui.printAddMessage(taskList.get(taskList.size() - 1));
         try {
-            storage.update(taskList);
+            storage.updateTask(taskList);
         } catch (IOException e) {
             ui.printErrorForIO();
         }
