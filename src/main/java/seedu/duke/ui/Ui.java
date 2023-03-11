@@ -4,9 +4,6 @@ import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
 public class Ui {
-    public Ui() {
-    }
-
     public void printWelcomeMessage() {
         System.out.println("Hello, I am Duke and I will help you remember the tasks you need to do!");
         System.out.println("For now, you can do the following:");
@@ -63,7 +60,6 @@ public class Ui {
         System.out.println("There are no tasks in the list.");
     }
 
-
     public void printErrorMessage() {
         System.out.println("Error encountered! Please type in a valid command!");
     }
@@ -75,9 +71,11 @@ public class Ui {
     public static void printIndexError() {
         System.out.println("You provided an invalid index.");
     }
+
     public static void printParametersError() {
         System.out.println("You did not provide the correct parameters for this function.");
     }
+
     public void printSavingErrorMessage() {
         System.out.println("Error encountered while saving!");
     }

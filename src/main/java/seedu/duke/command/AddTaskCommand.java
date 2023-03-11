@@ -25,13 +25,6 @@ public class AddTaskCommand extends Command{
 
     @Override
     public void execute(TaskList taskList, Ui ui){
-        /*if (description.isEmpty()) {
-            ui.printParametersError();
-        }
-        else if (deadline.isEmpty()) {
-            ui.printDateTimeError();
-        }
-        else { */
         Task task = new Task(description, deadline);
         taskList.addTask(task);
         ui.printAddTaskNotification(task);
