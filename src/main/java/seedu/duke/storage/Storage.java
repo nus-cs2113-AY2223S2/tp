@@ -116,7 +116,7 @@ public class Storage {
      * instances.
      *
      * @return An Entry[] List that represents all the entries that have been
-     * read from the stored text file
+     *     read from the stored text file
      * @throws IOException If an error occurs in the reading from the file
      */
     public List<Entry> readFromDatabase() throws IOException, InvalidReadFileException {
@@ -141,26 +141,26 @@ public class Storage {
      * into a stored text file.
      *
      * @param entries An Entry[] List that is to be serialized and written into
-     * the stored text file
+     *     the stored text file
      * @throws IOException If an error occurs in the writing to the file
      */
     public void writeToDatabase(List<Entry> entries) throws IOException {
-            makeFileIfNotExists();
-            FileWriter csvWriter = new FileWriter(this.filePath);
-            for (Entry entry : entries) {
-                String csvRow = "";
-                csvRow += writeEntryLine(entry);
-                csvWriter.append(csvRow);
-            }
-            csvWriter.flush();
-            csvWriter.close();
+        makeFileIfNotExists();
+        FileWriter csvWriter = new FileWriter(this.filePath);
+        for (Entry entry : entries) {
+            String csvRow = "";
+            csvRow += writeEntryLine(entry);
+            csvWriter.append(csvRow);
+        }
+        csvWriter.flush();
+        csvWriter.close();
     }
 
     /**
      * Resets the stored text file by deleting it and recreating it again.
      *
      * @throws IOException If an error occurs in the deletion or creation of the
-     * file
+     *     file
      */
     public void reset() throws IOException {
         File toBeDeleted = new File(this.filePath);
