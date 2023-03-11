@@ -32,7 +32,8 @@ public class FoodStorage extends Storage implements FileReadable {
         String foodType;
         String name;
         String store;
-        int id, storeNumber;
+        int id;
+        int storeNumber;
         float calories;
         Food food;
         // parsing a CSV file into BufferedReader class constructor
