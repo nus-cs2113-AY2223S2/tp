@@ -1,4 +1,4 @@
-package MajorClasses;
+package common;
 
 import command.CommandAdd;
 import data.Currency;
