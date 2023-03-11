@@ -1,26 +1,24 @@
-package MajorClasses;
+package data;
 
 
 import parser.Parser;
-import parser.ParserAdd;
-
 import java.util.ArrayList;
 
-import static data.MessageList.MESSAGE_DIVIDER;
-import static data.MessageList.MESSAGE_DIVIDER_LIST;
+import static common.MessageList.MESSAGE_DIVIDER;
+import static common.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class ExpenseList {
     public static ArrayList<Expense> expenseList = new ArrayList<>();
-    
+
     public ArrayList<Expense> getExpenseList() {
         return expenseList;
     }
 
-    public void deleteExpense (String userInput) {
+    public void deleteExpense(String userInput) {
         int expenseIndex = Parser.extractIndex(userInput);
-        expenseList.remove(expenseIndex-1); // change to 0-based indexing
+        expenseList.remove(expenseIndex - 1); // change to 0-based indexing
     }
-    
+
     //for list
     public static String getAllMessage() {
         int count = expenseList.size();
@@ -48,14 +46,6 @@ public class ExpenseList {
         }
     }
 
-    public void addExpense (String userInput) {
-        //Parses the user input and returns each individual parameter in parsedInput
-        String[] parsedInput = ParserAdd.parseInput(userInput);
-        Expense expense = new Expense(Double.parseDouble(parsedInput[ParserAdd.AMOUNT_INDEX]),
-                parsedInput[ParserAdd.TIME_INDEX], parsedInput[ParserAdd.CATEGORY_INDEX],
-                Currency.checkCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]));
-        expenseList.add(expense);
-    }
 
 }
 

@@ -1,20 +1,24 @@
 package seedu.duke;
 
-import MajorClasses.ExpenseList;
+import command.CommandAdd;
+import data.ExpenseList;
 import parser.Parser;
 
 import java.util.Scanner;
 
 public class Duke {
 
-    public static Parser parser = new Parser();
-
-    public static ExpenseList expenseList = new ExpenseList();
+    protected Parser parser;
+    protected ExpenseList expenseList;
 
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Initialize Duke and instantiate parser and expenseList objects.
      */
-    public static void main(String[] args) {
+    public Duke(){
+        parser = new Parser();
+        expenseList = new ExpenseList();
+    }
+    public void run(){
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -25,12 +29,11 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
-
         String input = in.nextLine();
         while(!input.equals("exit")) {
             switch (parser.extractCommandKeyword(input)) {
             case "add":
-                expenseList.addExpense(input);
+                new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input)).run();
                 break;
             case "delete":
                 expenseList.deleteExpense(input);
@@ -45,5 +48,11 @@ public class Duke {
             }
             input = in.nextLine();
         }
+    }
+    /**
+     * Main entry-point for the java.duke.Duke application.
+     */
+    public static void main(String[] args) {
+        new Duke().run();
     }
 }

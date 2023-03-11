@@ -1,7 +1,7 @@
-package Command;
+package command;
 
-import MajorClasses.Expense;
-import data.MessageList;
+import data.Expense;
+import common.MessageList;
 
 import java.util.ArrayList;
 import java.util.stream.IntStream;
