@@ -26,7 +26,7 @@ public class Duke {
                 + "| |_| | |    | |_| | |_| |   <  __/\n"
                 + "|____/|_|    |____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        Storage.readFile();
+        Storage.loadData();
         Menu.showMenu();
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
