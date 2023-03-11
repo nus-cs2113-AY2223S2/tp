@@ -108,6 +108,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Updates the moduleData file stored on the hard disk.
+     *
+     * @param modules Contains all stored modules.
+     * @throws IOException If save file is not found.
+     */
     public void updateModule(ModuleList modules) throws IOException {
         FileWriter overwrite = new FileWriter(moduleDataFilePath);
         for (Module module: modules) {
