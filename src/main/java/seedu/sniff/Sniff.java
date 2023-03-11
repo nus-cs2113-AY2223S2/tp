@@ -1,7 +1,10 @@
 package seedu.sniff;
 
 import exception.SniffException;
-import functionalities.*;
+import functionalities.Command;
+import functionalities.Ui;
+import functionalities.Parser;
+import functionalities.SniffTasks;
 
 public class Sniff {
     private static SniffTasks tasks;
