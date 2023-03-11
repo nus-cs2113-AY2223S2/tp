@@ -6,6 +6,7 @@ import static seedu.duke.ColorCode.ANSI_BLUE;
 import static seedu.duke.ColorCode.ANSI_RED;
 import java.util.ArrayList;
 
+
 public class Ui {
     public static final String LINE = "____________________________________________________________";
     public static final String LOGO =
@@ -22,6 +23,16 @@ public class Ui {
             "add n/[name] upc/[UPC] qty/[quantity] p/[price]";
     public static final String DUPLICATE_ADD = "Duplicate item found! Please add another item with a different UPC";
     public static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
+
+    public static final String SUCCESS_LIST = "Here are the items in your inventory:";
+
+    public static final String INVALID_LIST = "There are no items in your inventory.";
+
+    public static final int NAME_COL_WIDTH = 15;
+    public static final int UPC_COL_WIDTH = 12;
+    public static final int QTY_COL_WIDTH = 8;
+
+    public static final int PRICE_COL_WIDTH = 5;
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
             "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
     public static final String ITEM_NOT_FOUND = "Edit failed! Reason: Item not found in database. Please add item " +
@@ -29,6 +40,18 @@ public class Ui {
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
     public static final String MISSING_PRICE = "Please enter a number for the price!";
+
+    private static final String NAME_HEADING = "Name";
+    private static final String UPC_HEADING = "UPC";
+    private static final String QTY_HEADING = "Quantity";
+    private static final String PRICE_HEADING = "Price";
+
+    private static final String TABLE_CORNER = "+";
+    private static final String TABLE_ROW = "-";
+    private static final String TABLE_LEFT = "| ";
+    private static final String TABLE_RIGHT = " |";
+    private static final String TABLE_MIDDLE = " | ";
+
 
     public Ui() {
         greetUser();
@@ -92,10 +115,174 @@ public class Ui {
         System.out.println(LINE);
     }
 
-    public static void printSuccessAdd(){
+    public static void printSuccessAdd() {
         System.out.println(LINE);
         System.out.println(ANSI_GREEN + SUCCESS_ADD + ANSI_RESET);
         System.out.println(LINE);
+    }
+
+
+    public static void printSuccessList() {
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + SUCCESS_LIST + ANSI_RESET);
+    }
+
+    public static void printInvalidList() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_LIST + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static String printTable(ArrayList<Item> items) {
+        int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH};
+
+        StringBuilder table = new StringBuilder();
+
+        table.append(printTableSeparator(columnWidths));
+        table.append(printHeadings(columnWidths));
+        table.append(printTableSeparator(columnWidths));
+
+        for (Item item : items) {
+            String name = item.getName();
+            String upc = item.getUpc();
+            String qty = Integer.toString(item.getQuantity());
+            String price = Double.toString(item.getPrice());
+
+            int maxColHeight = findMaxColHeight(name, upc, qty, price, columnWidths);
+            table.append(printRow(name, upc, qty, price, maxColHeight, columnWidths));
+        }
+
+        return table.toString();
+    }
+
+    private static String printHeadings(int[] columnWidths) {
+        String[] headings = {NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
+        StringBuilder allHeadings = new StringBuilder();
+
+        for (int i = 0; i < headings.length; i += 1) {
+            String heading = headings[i];
+            int width = columnWidths[i];
+            String formattedHeading = String.format(TABLE_LEFT + "%-" + width + "s ", heading);
+            allHeadings.append(formattedHeading);
+        }
+
+        allHeadings.append(TABLE_LEFT.replaceAll(" ", ""));
+        allHeadings.append(System.lineSeparator());
+
+        return allHeadings.toString();
+    }
+
+    private static String printTableSeparator(int[] columnWidths) {
+        StringBuilder tableSeparator = new StringBuilder();
+
+        for (int columnWidth : columnWidths) {
+            tableSeparator.append(TABLE_CORNER);
+
+            for (int j = 0; j < columnWidth + 2; j++) {
+                tableSeparator.append(TABLE_ROW);
+            }
+        }
+
+        tableSeparator.append(TABLE_CORNER);
+        tableSeparator.append(System.lineSeparator());
+        return tableSeparator.toString();
+    }
+
+    private static String printRow(String name, String upc, String qty, String price,
+                                int maxRowHeight, int[] columnWidths) {
+        String[] nameLines = wrapText(name, NAME_COL_WIDTH);
+        String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
+        String[] qtyLines = wrapText(qty, QTY_COL_WIDTH);
+        String[] priceLines = wrapText(price, PRICE_COL_WIDTH);
+
+        StringBuilder row = new StringBuilder();
+
+        for (int i = 0; i < maxRowHeight; i += 1) {
+
+            row.append(TABLE_LEFT);
+            row.append(printAttribute(nameLines, NAME_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(upcLines, UPC_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(qtyLines, QTY_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(priceLines, PRICE_COL_WIDTH, i));
+            row.append(TABLE_RIGHT);
+            row.append(System.lineSeparator());
+
+            if (i == maxRowHeight - 1) {
+                row.append(printTableSeparator(columnWidths));
+            }
+        }
+
+        return row.toString();
+    }
+
+    private static String printAttribute(String[] attributeLines, int columnWidth, int rowNumber) {
+        StringBuilder attribute = new StringBuilder();
+
+        if (rowNumber < attributeLines.length) {
+            String paddedAttribute = String.format("%1$-" + columnWidth + "s", attributeLines[rowNumber]);
+            attribute.append(paddedAttribute);
+        } else {
+            String paddedSpace = new String(new char[columnWidth]).replace('\0', ' ');
+            attribute.append(paddedSpace);
+        }
+
+        return attribute.toString();
+
+    }
+
+    /*Method below adapted from https://stackoverflow.com/questions/4055430/java-
+  code-for-wrapping-text-lines-to-a-max-line-width*/
+    private static String[] wrapText(String input, int width) {
+        String[] words = input.split(" ");
+        ArrayList<String> lines = new ArrayList<>();
+
+        StringBuilder line = new StringBuilder();
+
+        for (String word : words) {
+            if (line.length() + word.length() + 1 <= width) {
+                line.append(word).append(" ");
+            }
+
+            if (word.length() > width) {
+                int start = 0;
+                while (start < word.length()) {
+                    int end = Math.min(start + width, word.length());
+                    lines.add(word.substring(start, end));
+                    start = end;
+                }
+            } else {
+                lines.add(line.toString());
+                line = new StringBuilder(word + " ");
+            }
+        }
+
+        return lines.toArray(new String[0]);
+    }
+
+    private static int findMaxColHeight(String name, String upc, String qty, String price, int[] columnWidths) {
+
+        int nameLength = name.length();
+        int upcLength = upc.length();
+        int qtyLength = qty.length();
+        int priceLength = price.length();
+
+        int[] attributeWidths = {nameLength, upcLength, qtyLength, priceLength};
+        int max = 1;
+
+        for (int i = 0; i < attributeWidths.length; i += 1) {
+            int colHeight = attributeWidths[i] / columnWidths[i];
+
+            if (attributeWidths[i] % columnWidths[i] != 0) {
+                colHeight += 1;
+            }
+            if (colHeight > max) {
+                max = colHeight;
+            }
+        }
+        return max;
     }
 
     /**
@@ -134,4 +321,6 @@ public class Ui {
                 "Quantity Available: " + updatedItem.getQuantity() +  "\n" + "Item Price: " + updatedItem.getPrice());
         System.out.println(LINE);
     }
+
 }
+
