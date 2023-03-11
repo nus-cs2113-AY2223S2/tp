@@ -159,6 +159,11 @@ public class Parser {
         }
     }
 
+    public void parseList() {
+        Inventory.listItems();
+       }
+
+
     /**
      * Handles the "edit" command by making sure that formatting is correct, before passing the user inputs
      * to another function to handle the edits needed to be made.
@@ -178,7 +183,7 @@ public class Parser {
     }
 
     /** Temporary List Method created by Kai Wen for Edit Function Testing.*/
-    public void parseList() {
+    /*public void parseList() {
         Inventory.listAll();
-    }
+    } */
 }

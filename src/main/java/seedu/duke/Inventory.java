@@ -6,6 +6,9 @@ import seedu.duke.trie.Trie;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+
+
 public class Inventory {
     private static ArrayList<Item> items = new ArrayList<>();
     private static HashMap<String,Item> upcCodes = new HashMap<>();
@@ -219,4 +222,12 @@ public class Inventory {
         items.remove(index);
     }
 
+    public static void listItems() {
+        if (!items.isEmpty()) {
+            Ui.printSuccessList();
+            Ui.printTable(items);
+        } else {
+            Ui.printInvalidList();
+        }
+    }
 }
