@@ -11,8 +11,8 @@ import com.opencsv.CSVWriter;
 import seedu.Entities.User;
 
 public class UserStorage extends Storage implements FileReadable, FileWritable {
-    private User user;
     private static final String csvDelimiter = ",";
+    private User user;
 
     public UserStorage(String filePath) {
         super(filePath);
@@ -39,7 +39,8 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
     @Override
     public void load() throws IOException {
         String name;
-        float weight, height;
+        float weight;
+        float height;
         try {
             // parsing a CSV file into BufferedReader class constructor
             BufferedReader br = new BufferedReader(new FileReader(filePath));

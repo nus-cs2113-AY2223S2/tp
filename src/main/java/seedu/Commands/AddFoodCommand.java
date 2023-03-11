@@ -15,7 +15,8 @@ public class AddFoodCommand extends Command{
         //this.newFood =
     }
     @Override
-    public void execute(UI ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage) throws LifeTrackerException {
+    public void execute(UI ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage) 
+            throws LifeTrackerException {
 
     }
 }

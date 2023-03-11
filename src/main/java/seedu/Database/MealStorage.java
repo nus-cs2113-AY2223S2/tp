@@ -10,10 +10,10 @@ import seedu.Entities.Food;
 import com.opencsv.CSVWriter;
 
 public class MealStorage extends Storage implements FileReadable, FileWritable {
-    private ArrayList<Meal> meals;
-    private FoodStorage foodStorage;
     private static final String csvDelimiter = ",";
     private static final String foodsDelimiter = "-";
+    private ArrayList<Meal> meals;
+    private FoodStorage foodStorage;
 
     public MealStorage(String filePath, FoodStorage foodStorage) {
         super(filePath);
