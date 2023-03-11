@@ -10,20 +10,31 @@ public class Parser {
     }
 
     public Recipe parseAddRecipe(String[] input, RecipeList recipeList) {
-        String recipeName = input[1].substring(2);
-        System.out.println("Please Enter The Ingredients & Quantity: ");
+
+        StringBuilder recipeName = new StringBuilder(input[2]);
+        for(int i = 3; i < input.length; i++){
+            assert false;
+            recipeName.append(" ").append(input[i]);
+        }
         HashMap<String, Integer> ingredients = new HashMap<>();
         Scanner userInput = new Scanner(System.in);
+        System.out.println("Please Enter The Ingredients & Quantity: ");
         while (true) {
             String line = userInput.nextLine();
             if (line.equals("done")) {
                 break;
+            } else {
+                String[] command = line.trim().split(" ");
+                StringBuilder iName = new StringBuilder(command[0]);
+                for(int i=1; i < command.length-1; i++){
+                    assert false;
+                    iName.append(" ").append(command[i]);
+                }
+                ingredients.put(iName.toString(), Integer.parseInt(command[command.length-1]));
             }
-            String[] command = line.trim().split(" ");
-            ingredients.put(command[0], Integer.parseInt(command[1]));
         }
-        userInput.close();
-        Recipe newRecipe = new Recipe(recipeName, ingredients);
+        assert false;
+        Recipe newRecipe = new Recipe(recipeName.toString(), ingredients);
         recipeList.addRecipe(newRecipe);
         return newRecipe;
     }
@@ -35,6 +46,8 @@ public class Parser {
     public Recipe parseEditRecipe(String[] input, RecipeList recipeList) {
         String recipeName = input[1].substring(2);
         Recipe recipeToEdit;
+        HashMap<String, Integer> ingredients = new HashMap<>();
+        Scanner userInput = new Scanner(System.in);
         if (recipeList.findByName(recipeName) == null) {
             // ui recipe not found
             return null;
@@ -42,8 +55,6 @@ public class Parser {
             recipeToEdit = recipeList.findByName(recipeName);
         }
         System.out.println("Please Enter New Ingredients & Quantity: ");
-        HashMap<String, Integer> ingredients = new HashMap<>();
-        Scanner userInput = new Scanner(System.in);
         while (true) {
             String line = userInput.nextLine();
             if (line.equals("done")) {
@@ -52,7 +63,6 @@ public class Parser {
             String[] command = line.trim().split(" ");
             ingredients.put(command[0], Integer.parseInt(command[1]));
         }
-        userInput.close();
         recipeList.editRecipe(recipeToEdit, ingredients);
         return recipeToEdit;
     }
