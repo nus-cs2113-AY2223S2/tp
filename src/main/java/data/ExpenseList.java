@@ -2,15 +2,16 @@ package data;
 
 
 import parser.Parser;
+
 import java.util.ArrayList;
 
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class ExpenseList {
-
-    protected Parser parser = new Parser();
     public static ArrayList<Expense> expenseList = new ArrayList<>();
+    protected Parser parser = new Parser();
+
 
     public ArrayList<Expense> getExpenseList() {
         return expenseList;
