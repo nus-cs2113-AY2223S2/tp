@@ -1,6 +1,6 @@
 package seedu.commands;
 
-import seedu.expenditure.ExpenditureList;
+import seedu.Expenditure.ExpenditureList;
 
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "exit";
