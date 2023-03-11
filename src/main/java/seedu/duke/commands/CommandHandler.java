@@ -1,31 +1,45 @@
 package seedu.duke.commands;
 
+import seedu.duke.errors.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
 
 public class CommandHandler {
 
-    public void handleUserCommands(String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator){
+    private static boolean errorExists = false;
+
+    public void handleUserCommands(String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator) {
         String[] userCommands = rawUserCommands.split(" ");
         Command command = null;
-        switch(userCommands[0]){
-
-        case "quick":
-            command = new QuickStartCommand(userCommands[1]);
-            break;
-        case "generate":
-            command = new GenerateFilterCommand(userCommands);
-            break;
-            
-        case "bye": 
-        case "exit":
-            ui.byeUser();
-            System.exit(0);
-            break;
-        default:
-            System.out.println("Unknown Command");
-            break;
+        errorExists = false;
+        try {
+            switch (userCommands[0]) {
+            case "quick":
+                if (userCommands.length == 2) {
+                    command = new QuickStartCommand(userCommands[1]);
+                    break;
+                } else {
+                    throw new DukeError("You did not type in the correct format for generating a quick command");
+                }
+            case "generate":
+                command = new GenerateFilterCommand(userCommands);
+                break;
+            case "bye":
+            case "exit":
+                ui.byeUser();
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Unknown Command");
+                errorExists = true;
+                break;
+            }
+        } catch (DukeError e) {
+            System.out.println(e.getMessage());
+            errorExists = true;
         }
-        command.executeCommand(ui,exerciseGenerator);
+        if (!errorExists) {
+            command.executeCommand(ui, exerciseGenerator);
+        }
     }
 }
