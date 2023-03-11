@@ -1,6 +1,6 @@
-package seedu.myledger;
+package seedu.MyLedger;
 
-import seedu.expenditure.ExpenditureList;
+import seedu.Expenditure.ExpenditureList;
 import java.util.Scanner;
 
 public class MyLedger {
@@ -25,5 +25,6 @@ public class MyLedger {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
+        in.close();
     }
 }

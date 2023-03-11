@@ -1,7 +1,7 @@
 package seedu.commands;
 
-import seedu.expenditure.BorrowExpenditure;
-import seedu.expenditure.ExpenditureList;
+import seedu.Expenditure.BorrowExpenditure;
+import seedu.Expenditure.ExpenditureList;
 
 import java.time.LocalDate;
 
@@ -14,7 +14,7 @@ public class BorrowExpenditureCommand {
     private final LocalDate borrowDeadline;
 
     public BorrowExpenditureCommand(String description, String borrowerName, double value, LocalDate date,
-                                    LocalDate borrowDeadline) {
+            LocalDate borrowDeadline) {
         this.borrowExpenditureDescription = description;
         this.borrowExpenditureName = borrowerName;
         this.borrowExpenditureValue = value;

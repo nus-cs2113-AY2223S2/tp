@@ -1,4 +1,4 @@
-package seedu.expenditure;
+package seedu.Expenditure;
 
 import java.util.ArrayList;
 
@@ -27,6 +27,5 @@ public class ExpenditureList {
         }
         return stringOfExpenditures.toString().stripTrailing();
     }
-
 
 }
