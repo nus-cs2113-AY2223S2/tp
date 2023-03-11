@@ -1,46 +1,45 @@
 package seedu.duke.commands;
 
-import seedu.duke.exceptions.ErrorMessages;
+import seedu.duke.errors.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
 
 public class CommandHandler {
 
+    private static boolean errorExists = false;
+
     public void handleUserCommands(String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator) {
         String[] userCommands = rawUserCommands.split(" ");
         Command command = null;
-        switch(userCommands[0]){
-        case "/help":
-            ui.showHelpList();
-            break;
-
-        case "generate":
-            if (userCommands.length == 1){
-                ErrorMessages.emptyDescriptionErrorMessage();
+        errorExists = false;
+        try {
+            switch (userCommands[0]) {
+            case "quick":
+                if (userCommands.length == 2) {
+                    command = new QuickStartCommand(userCommands[1]);
+                    break;
+                } else {
+                    throw new DukeError("You did not type in the correct format for generating a quick command");
+                }
+            case "generate":
+                command = new GenerateFilterCommand(userCommands);
                 break;
-            } else {
-                command = new GenerateRandomCommand(userCommands[1]);
-                command.executeCommand(ui, exerciseGenerator);
+            case "bye":
+            case "exit":
+                ui.byeUser();
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Unknown Command");
+                errorExists = true;
+                break;
             }
-            break;
-
-        case "random":
-            ui.generateRandomExercises();
-            break;
-
-        //case "customised" :
-
-        case "bye":
-        case "exit":
-            ui.byeUser();
-            System.exit(0);
-            break;
-
-        default:
-            ErrorMessages.unknownCommandMessage();
-            ErrorMessages.helpCommandMessage();
-            break;
+        } catch (DukeError e) {
+            System.out.println(e.getMessage());
+            errorExists = true;
         }
-
+        if (!errorExists) {
+            command.executeCommand(ui, exerciseGenerator);
+        }
     }
 }

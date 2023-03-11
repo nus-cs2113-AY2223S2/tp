@@ -1,24 +1,23 @@
 package seedu.duke.ui;
 
-
 public class Greet {
-    private static final String MARGIN = "*-----------------------------------------------------------------*";
-    private static final String LOGO = "        _______ __                          ____        __      \n" +
-            "       / ____(_) /_____  ___  __________   / __ \\__  __/ /_____ \n" +
-            "      / /_  / / __/ __ \\/ _ \\/ ___/ ___/  / / / / / / / //_/ _ \\\n" +
-            "     / __/ / / /_/ / / /  __(__  |__  )  / /_/ / /_/ / ,< /  __/\n" +
-            "    /_/   /_/\\__/_/ /_/\\___/____/____/  /_____/\\__,_/_/|_|\\___/ ";
 
+    private static final String LOGO = " ____        _        \n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
 
+    public static void greet() {
+        System.out.println("Hello from\n" + LOGO);
+        System.out.println("Commands: ");
+        System.out.println("Get a quick exercise: quick x (where x is a positive integer)");
+        System.out.println("Generate a specific list of exercises: generate PARAM1 PARAM2 ... x ");
+        System.out.println("PARAM stands for a specific requirement you want your exercise to have");
+        System.out.println("Parameters available for Generate:");
+        System.out.println("gym (filters for exercises that need gym equipment)");
+        System.out.println("static (filters for static exercises)");
+        System.out.println("easy/medium/hard (filters for exercises with a specific diffculty)");
 
-    public static void greet(){
-        System.out.println(MARGIN);
-        System.out.println("Hello! Welcome to\n" + LOGO);
-        System.out.println("\n");
-        System.out.println("What type of exercise you like to do today?");
-        //System.out.println("Enter 'random' to let Duke choose a list of random exercises for you,
-        // or 'customised' to choose your preferred exercises.");
-        System.out.println(MARGIN);
     }
-
 }
