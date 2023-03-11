@@ -17,14 +17,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParserTest {
     @Test
-    public void parseAddCommand_correctlyFormattedInput_successful() {
+    public void parserAddCommand_correctlyFormattedInput_successful() {
         Command parsedCommand = Parser.parseCommand("add /q Question /a Answer");
         Command expectedCommand = new AddCommand("Question", "Answer");
         assertEquals(expectedCommand.toString(), parsedCommand.toString());
     }
 
     @Test
-    public void parseAddCommand_answerBeforeQuestion_successful() {
+    public void parserAddCommand_answerBeforeQuestion_successful() {
         Command parsedCommand = Parser.parseCommand("add /a Answer /q Question");
         Command expectedCommand = new AddCommand("Question", "Answer");
         assertEquals(expectedCommand.toString(), parsedCommand.toString());
