@@ -55,8 +55,6 @@ public class GenerateExercise {
         return randomExerciseList;
     }
 
-    }
-
     public ArrayList<ExerciseData> generateSpecificDifficultySet(String difficultyLevel, int count) {
         ArrayList<ExerciseData> specificDifficultyExerciseList = new ArrayList<>();
         Random random = new Random();
@@ -70,6 +68,7 @@ public class GenerateExercise {
             }
         }
         return specificDifficultyExerciseList;
+    }
 
     public ArrayList<ExerciseData> generateSetAll() {
         ArrayList<ExerciseData> allExerciseList = exerciseData;
