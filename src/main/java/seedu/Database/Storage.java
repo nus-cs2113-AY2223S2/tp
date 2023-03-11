@@ -5,10 +5,7 @@ public abstract class Storage {
 
     public Storage(String filePath) {
         this.filePath = filePath;
-        this.load();
     }
-
-    public abstract void load(); 
 
     public String getFilePath() {
         return this.filePath;
