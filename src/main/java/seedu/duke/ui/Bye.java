@@ -7,12 +7,10 @@ public class Bye {
             " / /_/ / /_/ /  __/_/  \n" +
             "/_____/\\__, /\\___(_)   \n" +
             "      /____/    ";
-    private static final String MARGIN = "*-----------------------------------------------------------------*";
 
     public static void bye(){
-        System.out.println(MARGIN);
-        System.out.println(EXIT_LOGO );
+        System.out.println(EXIT_LOGO);
+        System.out.println("Thanks for using Fitness Duke!\n");
         System.out.println("Hope to see you again!\n");
-        System.out.println(MARGIN);
     }
 }

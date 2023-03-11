@@ -1,7 +1,6 @@
 package seedu.duke;
 
 import seedu.duke.commands.CommandHandler;
-import seedu.duke.exceptions.NonNumericalInputException;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
 
@@ -18,7 +17,7 @@ public class Duke {
     }
 
     @SuppressWarnings("InfiniteLoopStatement")
-    public void run() throws NonNumericalInputException {
+    public void run(){
         CommandHandler commandHandler = new CommandHandler();
         Scanner in = new Scanner(System.in);
         ui.greetUser();
@@ -27,7 +26,7 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) throws NonNumericalInputException {
+    public static void main(String[] args) {
         new Duke().run();
     }
 }
