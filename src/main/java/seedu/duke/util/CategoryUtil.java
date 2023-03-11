@@ -24,7 +24,7 @@ public class CategoryUtil {
         case EntryConstants.TRANSPORTATION:
             return Category.TRANSPORTATION;
         default:
-            return Category.OTHERS;
+            throw new IllegalArgumentException();
         }
     }
 
