@@ -5,7 +5,7 @@ import seedu.Expenditure.ExpenditureList;
 public class InvalidCommand extends Command{
     // Edit file accordingly
     public final String commandError;
-    
+
     public InvalidCommand(String commandError) {
         this.commandError = commandError;
     }
