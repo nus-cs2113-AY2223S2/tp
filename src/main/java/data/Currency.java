@@ -1,4 +1,4 @@
-package MajorClasses;
+package data;
 
 public enum Currency {
     // This class initialized the currencies in the Account;

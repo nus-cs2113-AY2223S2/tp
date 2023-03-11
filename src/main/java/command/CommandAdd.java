@@ -1,13 +1,13 @@
-package Command;
+package command;
 
-import MajorClasses.Currency;
-import MajorClasses.Expense;
-import MajorClasses.ExpenseList;
+import data.Currency;
+import data.Expense;
+import data.ExpenseList;
 import parser.ParserAdd;
 
 import java.util.ArrayList;
 
-import static data.MessageList.MESSAGE_DIVIDER_LIST;
+import static common.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class CommandAdd extends Command {
     public static final String COMMAND_NAME = "add";

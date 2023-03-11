@@ -1,11 +1,11 @@
-package Command;
+package command;
 
-import MajorClasses.Expense;
-import MajorClasses.ExpenseList;
+import data.Expense;
+import data.ExpenseList;
 
 import java.util.ArrayList;
 
-import static data.MessageList.MESSAGE_DIVIDER_LIST;
+import static common.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class CommandList extends Command {
     public static final String COMMAND_NAME = "list";

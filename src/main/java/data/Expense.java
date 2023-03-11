@@ -1,4 +1,4 @@
-package MajorClasses;
+package data;
 
 
 import java.util.Objects;

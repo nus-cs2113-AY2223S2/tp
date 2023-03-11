@@ -1,7 +1,7 @@
 package seedu.duke;
 
-import Command.CommandAdd;
-import MajorClasses.ExpenseList;
+import command.CommandAdd;
+import data.ExpenseList;
 import parser.Parser;
 
 import java.util.Scanner;

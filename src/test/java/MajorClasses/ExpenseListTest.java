@@ -1,6 +1,9 @@
 package MajorClasses;
 
-import Command.CommandAdd;
+import command.CommandAdd;
+import data.Currency;
+import data.Expense;
+import data.ExpenseList;
 import org.junit.jupiter.api.Test;
 import parser.Parser;
 
