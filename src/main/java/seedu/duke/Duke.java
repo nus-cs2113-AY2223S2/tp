@@ -1,21 +1,44 @@
 package seedu.duke;
 
-import java.util.Scanner;
+import exception.SniffException;
+import functionalities.Command;
+import functionalities.Ui;
+import functionalities.Parser;
+import functionalities.SniffTasks;
 
 public class Duke {
+    private static SniffTasks tasks;
+    private static Ui UI;
+
+    public Duke() {
+        UI = new Ui();
+        tasks = new SniffTasks();
+        //Implement Storage later
+    }
+
+    public void run() {
+        UI.showWelcomeMessage();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = UI.readUserCommand();
+                UI.showLine();
+                Command c = Parser.parse(fullCommand);
+                c.executeSniffCommands(tasks, UI);
+                isExit = c.isExit();
+            } catch (SniffException e) {
+                UI.showErrorMessage();
+            } finally {
+                UI.showLine();
+            }
+        }
+    }
+
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the java.sniff.Sniff application.
      */
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+        new Duke().run();
     }
+
 }
