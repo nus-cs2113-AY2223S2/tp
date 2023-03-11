@@ -1,11 +1,11 @@
-package MajorClasses;
+package data;
 
 
 import parser.Parser;
 import java.util.ArrayList;
 
-import static data.MessageList.MESSAGE_DIVIDER;
-import static data.MessageList.MESSAGE_DIVIDER_LIST;
+import static common.MessageList.MESSAGE_DIVIDER;
+import static common.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class ExpenseList {
     public static ArrayList<Expense> expenseList = new ArrayList<>();

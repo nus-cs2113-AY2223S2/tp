@@ -1,4 +1,4 @@
-package data;
+package common;
 
 public class MessageList {
     public static final String MESSAGE_DIVIDER =
