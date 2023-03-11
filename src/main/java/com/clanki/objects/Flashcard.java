@@ -3,7 +3,7 @@ package com.clanki.objects;
 import java.time.LocalDate;
 
 public class Flashcard {
-    private final double SPACED_REPETITION_FACTOR = 1.5;
+    private static final double SPACED_REPETITION_FACTOR = 1.5;
     private String questionText;
     private String answerText;
     private LocalDate dueDate;
