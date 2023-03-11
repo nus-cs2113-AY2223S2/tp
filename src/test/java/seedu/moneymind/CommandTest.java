@@ -126,5 +126,4 @@ public class CommandTest {
         CategoryList.categories.clear();
         CategoryCommand.categoryMap.clear();
     }
-
 }
