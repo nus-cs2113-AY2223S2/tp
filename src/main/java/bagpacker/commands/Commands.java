@@ -1,6 +1,5 @@
 package bagpacker.commands;
 
-import bagpacker.iohandler.Ui;
 import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
 
@@ -21,15 +20,10 @@ public abstract class Commands {
     protected Commands() {
     }
 
-    /**
-     * Executes the command.
-     */
-    public void execute(Item item, Ui ui) {
-    };
-
     public void setTargetIndex(int targetIndex) {
         this.targetIndex = targetIndex;
     }
+
     public int getTargetIndex() {
         return targetIndex;
     }
@@ -43,5 +37,10 @@ public abstract class Commands {
         return packingList.get(getTargetIndex() - 1);
     }
 
-    public abstract void execute(PackingList packingList);
+
+    /**
+     * Executes the command.
+     */
+    public void execute (PackingList packingList) {
+    }
 }

@@ -50,8 +50,6 @@ public class BagPacker {
             }
             Parser.receiveInput();
         }
-
-        Storage.save(packingList);
-        Ui.goodbyeMessage();
+        Storage.save();
     }
 }
