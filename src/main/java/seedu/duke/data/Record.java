@@ -1,4 +1,4 @@
-package seedu.duke.data.expense;
+package seedu.duke.data;
 
 public class Record {
     protected String category;
@@ -8,7 +8,7 @@ public class Record {
 
     /**
      * Generic constructor for Record class.
-     * @param category string of record category, i.e. expense or income
+     * @param category string of record category, accepts "income" or "expense"
      * @param description string of record description
      * @param date string of record date
      * @param value float of record amount

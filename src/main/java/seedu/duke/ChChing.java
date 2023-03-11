@@ -1,9 +1,9 @@
 package seedu.duke;
 
-import seedu.duke.data.expense.ExpenseList;
+import seedu.duke.data.ExpenseList;
 import java.util.Scanner;
 
-public class Duke {
+public class ChChing {
     
     public static final String DIVIDER = "____________________________________________________________\n";
     
