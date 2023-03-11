@@ -14,9 +14,9 @@ import java.util.Scanner;
  * Storage class contains methods to save and retrieve saved packing list in txt file
  */
 public class Storage {
-    private static String FILE_PATH = null;
-    public static ArrayList<Item> packingList = new ArrayList<>();
-    public static ArrayList<Item> load() throws FileNotFoundException {
+    private static final String FILE_PATH = "packList.txt";
+
+    public static void load() throws FileNotFoundException {
         Scanner reader = new Scanner(new File(FILE_PATH));
         String line;
         while (reader.hasNext()) {
@@ -24,21 +24,21 @@ public class Storage {
             boolean isPacked = line.charAt(1) == 'X';
             String itemDesc = line.substring(4);
             Item item = new Item(itemDesc, isPacked);
-            packingList.add(item);
+            PackingList.getItemList().add(item);
         }
-        return packingList;
     }
 
-    public static void save(PackingList packingList) {
+    public static void save() {
         try {
-            writeToFile(packingList);
+            writeToFile();
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
     }
 
-    public static void writeToFile(PackingList packingList) throws IOException {
+    public static void writeToFile() throws IOException {
         FileWriter fw = new FileWriter(FILE_PATH);
+        ArrayList<Item> packingList = PackingList.getItemList();
         for (int i = 0; i < packingList.size(); i++) {
             fw.write(packingList.get(i).toString() + "\n");
         }
