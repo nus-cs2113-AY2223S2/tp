@@ -57,12 +57,24 @@ public class Parser {
         if (positionOfStartOfAnswer == -1 || positionOfStartOfQuestion == -1) {
             throw new InvalidAddFlashcardInputException();
         }
-        String questionText = userInput
-                .substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length(),
-                        positionOfStartOfAnswer)
-                .trim();
-        String answerText = userInput
-                .substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length()).trim();
+        String questionText = "";
+        String answerText = "";
+        if (positionOfStartOfAnswer > positionOfStartOfQuestion) {
+            questionText = userInput
+                    .substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length(),
+                            positionOfStartOfAnswer)
+                    .trim();
+            answerText = userInput
+                    .substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length()).trim();
+        } else {
+            questionText = userInput
+                    .substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length()).trim();
+            answerText = userInput
+                    .substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length(),
+                            positionOfStartOfQuestion)
+                    .trim();
+        }
+
         if (questionText.isEmpty()) {
             throw new EmptyFlashcardQuestionException();
         }

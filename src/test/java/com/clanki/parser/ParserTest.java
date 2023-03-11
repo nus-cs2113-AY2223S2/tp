@@ -25,6 +25,14 @@ class ParserTest {
     }
 
     @Test
+    public void parseAddCommand_answerBeforeQuestion_successful() {
+        Parser parser = new Parser();
+        Command parsedCommand = parser.parseCommand("add /a Answer /q Question");
+        Command expectedCommand = new AddCommand("Question", "Answer");
+        assertEquals(expectedCommand.toString(), parsedCommand.toString());
+    }
+
+    @Test
     public void parserAddCommand_incorrectFormattedInput_invalidInputException() {
         Parser parser = new Parser();
         assertThrows(InvalidAddFlashcardInputException.class,
