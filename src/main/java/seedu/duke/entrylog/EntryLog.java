@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class EntryLog {
-    private List<Entry> entries;
+    private final List<Entry> entries;
 
     public EntryLog() {
         this.entries = new ArrayList<>();
@@ -29,49 +29,30 @@ public class EntryLog {
     }
 
     /**
-     * Filter entries by category
+     * Filter entries by category.
+     * Can be chained with other filter* methods to filter multiple entries.
      *
      * @param category Category to be filtered
-     * @return List of entries matching category
+     * @return EntryLog containing entries matching category
      */
-    public List<Entry> filterCategory(Category category) {
-        return filterCategory(category, entries);
-    }
-
-    /**
-     * Filter entries by category
-     *
-     * @param category Category to be filtered
-     * @param entries  List of entries to match
-     * @return List of entries matching category
-     */
-    public static List<Entry> filterCategory(Category category, List<Entry> entries) {
-        return entries
+    public EntryLog filterCategory(Category category) {
+        List<Entry> filteredEntries = entries
                 .stream()
                 .filter((entry -> entry.getCategory() == category))
                 .collect(Collectors.toList());
+        return new EntryLog(filteredEntries);
     }
 
     /**
      * Filter entries by description or category of entries. Regular expressions are supported.
+     * Can be chained with other filter* methods to filter multiple entries.
      *
      * @param query Regex to be filtered (case-insensitive)
-     * @return List of entries matching query
+     * @return EntryLog containing entries matching query
      */
-    public List<Entry> filterByQuery(String query) {
-        return filterByQuery(query, entries);
-    }
-
-    /**
-     * Filter entries by description or category of entries. Regular expressions are supported.
-     *
-     * @param query   Regex to be filtered (case-insensitive)
-     * @param entries List of entries to match
-     * @return List of entries matching query
-     */
-    public static List<Entry> filterByQuery(String query, List<Entry> entries) {
+    public EntryLog filterByQuery(String query) {
         Pattern pattern = Pattern.compile(query, Pattern.CASE_INSENSITIVE);
-        return entries
+        List<Entry> filteredEntries = entries
                 .stream()
                 .filter(entry -> {
                     Matcher descriptionMatcher = pattern.matcher(entry.getDescription());
@@ -80,29 +61,19 @@ public class EntryLog {
                     return isMatch;
                 })
                 .collect(Collectors.toList());
+        return new EntryLog(filteredEntries);
     }
 
     /**
      * Filter items by amount.
+     * Can be chained with other filter* methods to filter multiple entries.
      *
      * @param minAmount Minimum amount of entry
      * @param maxAmount Maximum amount of entry
-     * @return List of entries within range of given amount
+     * @return EntryLog containing entries within range of given amount
      */
-    public List<Entry> filterAmount(double minAmount, double maxAmount) {
-        return filterAmount(minAmount, maxAmount, entries);
-    }
-
-    /**
-     * Filter items by price.
-     *
-     * @param minAmount Minimum amount of entry
-     * @param maxAmount Maximum amount of entry
-     * @param entries   List of entries to match
-     * @return List of entries within range of given amount
-     */
-    public static List<Entry> filterAmount(double minAmount, double maxAmount, List<Entry> entries) {
-        return entries
+    public EntryLog filterAmount(double minAmount, double maxAmount) {
+        List<Entry> filteredEntries = entries
                 .stream()
                 .filter((entry -> {
                     boolean isBelowMin = Double.compare(entry.getAmount(), minAmount) < 0;
@@ -111,6 +82,7 @@ public class EntryLog {
                     return isWithinRange;
                 }))
                 .collect(Collectors.toList());
+        return new EntryLog(filteredEntries);
     }
 
     public int getSize() {
