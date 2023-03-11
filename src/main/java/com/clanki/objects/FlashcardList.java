@@ -13,4 +13,8 @@ public class FlashcardList {
         Flashcard newFlashcard = new Flashcard(questionText, answerText);
         flashcards.add(newFlashcard);
     }
+
+    public void deleteFlashcard(int index) {
+        flashcards.remove(index);
+    }
 }
