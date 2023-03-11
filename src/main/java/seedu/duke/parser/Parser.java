@@ -49,28 +49,28 @@ public class Parser {
         logger.log(Level.INFO, "User input command: " + command);
         logger.log(Level.INFO, "User input arguments: " + arguments);
         switch (command) {
-            case COMMAND_ADD:
-                parseAddCommand(arguments);
-                break;
-            case COMMAND_VIEW:
-                parseViewCommand(arguments);
-                break;
-            case COMMAND_EDIT:
-                parseEditCommand(arguments);
-                break;
-            case COMMAND_DELETE:
-                parseDeleteCommand(arguments);
-                break;
-            case COMMAND_HELP:
-                parseHelpCommand();
-                break;
-            case COMMAND_BYE:
-                parseByeCommand();
-                break;
-            default:
-                logger.log(Level.SEVERE, "User command is invalid",
-                        new InvalidCommandException(MESSAGE_INVALID_COMMAND));
-                throw new InvalidCommandException(MESSAGE_INVALID_COMMAND);
+        case COMMAND_ADD:
+            parseAddCommand(arguments);
+            break;
+        case COMMAND_VIEW:
+            parseViewCommand(arguments);
+            break;
+        case COMMAND_EDIT:
+            parseEditCommand(arguments);
+            break;
+        case COMMAND_DELETE:
+            parseDeleteCommand(arguments);
+            break;
+        case COMMAND_HELP:
+            parseHelpCommand();
+            break;
+        case COMMAND_BYE:
+            parseByeCommand();
+            break;
+        default:
+            logger.log(Level.SEVERE, "User command is invalid",
+                    new InvalidCommandException(MESSAGE_INVALID_COMMAND));
+            throw new InvalidCommandException(MESSAGE_INVALID_COMMAND);
         }
         logger.exiting(Parser.class.getName(), "parseUserInput()");
     }
