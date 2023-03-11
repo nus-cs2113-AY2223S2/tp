@@ -13,7 +13,11 @@ public class CommandHandler {
         case "quick":
             command = new QuickStartCommand(userCommands[1]);
             break;
-        case "bye":
+        case "generate":
+            command = new GenerateFilterCommand(userCommands);
+            break;
+            
+        case "bye": 
         case "exit":
             ui.byeUser();
             System.exit(0);
