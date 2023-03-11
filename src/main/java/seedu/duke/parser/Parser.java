@@ -14,14 +14,15 @@ public class Parser {
     public static final String MESSAGE_INVALID_ID = "Please enter a valid numerical index!";
     public static final String MESSAGE_EMPTY_INPUT = "Use /help for a list of supported commands!";
     public static final String MESSAGE_INVALID_ARGUMENTS = "Please enter the required argument(s)!";
+    public static final String MESSAGE_MISSING_ARGS_ADD = "Please specify the description, category and price of the expense!";
     public static final String MESSAGE_MISSING_ARGS_EDIT = "Please specify at least 1 detail you would like to edit!";
+    public static final String MESSAGE_INVALID_COMMAND = "Please enter a valid command!";
     private static final String COMMAND_ADD = "/add";
     private static final String COMMAND_VIEW = "/view";
     private static final String COMMAND_EDIT = "/edit";
     private static final String COMMAND_DELETE = "/delete";
     private static final String COMMAND_HELP = "/help";
     private static final String COMMAND_BYE = "/bye";
-    private static final String MESSAGE_INVALID_COMMAND = "Please enter a valid command!";
     private static Logger logger = Logger.getLogger(Parser.class.getName());
 
     /**
@@ -37,7 +38,8 @@ public class Parser {
         logger.entering(Parser.class.getName(), "parseUserInput()");
         userInput.trim();
         if (userInput.isEmpty()) {
-            logger.log(Level.SEVERE, "User entered an empty string", new MissingArgumentsException(MESSAGE_EMPTY_INPUT));
+            logger.log(Level.SEVERE, "User entered an empty string",
+                    new MissingArgumentsException(MESSAGE_EMPTY_INPUT));
             throw new MissingArgumentsException(MESSAGE_EMPTY_INPUT);
         }
         String[] userInputArray = userInput.split(" ", 2);
@@ -47,27 +49,28 @@ public class Parser {
         logger.log(Level.INFO, "User input command: " + command);
         logger.log(Level.INFO, "User input arguments: " + arguments);
         switch (command) {
-        case COMMAND_ADD:
-            parseAddCommand(arguments);
-            break;
-        case COMMAND_VIEW:
-            parseViewCommand(arguments);
-            break;
-        case COMMAND_EDIT:
-            parseEditCommand(arguments);
-            break;
-        case COMMAND_DELETE:
-            parseDeleteCommand(arguments);
-            break;
-        case COMMAND_HELP:
-            parseHelpCommand();
-            break;
-        case COMMAND_BYE:
-            parseByeCommand();
-            break;
-        default:
-            logger.log(Level.SEVERE, "User command is invalid", new InvalidArgumentsException(MESSAGE_INVALID_COMMAND));
-            throw new InvalidCommandException(MESSAGE_INVALID_COMMAND);
+            case COMMAND_ADD:
+                parseAddCommand(arguments);
+                break;
+            case COMMAND_VIEW:
+                parseViewCommand(arguments);
+                break;
+            case COMMAND_EDIT:
+                parseEditCommand(arguments);
+                break;
+            case COMMAND_DELETE:
+                parseDeleteCommand(arguments);
+                break;
+            case COMMAND_HELP:
+                parseHelpCommand();
+                break;
+            case COMMAND_BYE:
+                parseByeCommand();
+                break;
+            default:
+                logger.log(Level.SEVERE, "User command is invalid",
+                        new InvalidArgumentsException(MESSAGE_INVALID_COMMAND));
+                throw new InvalidCommandException(MESSAGE_INVALID_COMMAND);
         }
         logger.exiting(Parser.class.getName(), "parseUserInput()");
     }
@@ -75,7 +78,6 @@ public class Parser {
     private static void parseByeCommand() {
         // Print bye message
         logger.entering(Parser.class.getName(), "parseByeCommand()");
-        // Print bye message
         logger.info("Program exiting.");
         logger.exiting(Parser.class.getName(), "parseByeCommand()");
     }
@@ -83,7 +85,6 @@ public class Parser {
     private static void parseHelpCommand() {
         // Print help message
         logger.entering(Parser.class.getName(), "parseHelpCommand()");
-        // Print help message
         logger.info("Displaying help message.");
         logger.exiting(Parser.class.getName(), "parseHelpCommand()");
     }
@@ -96,7 +97,7 @@ public class Parser {
      */
     private static void parseDeleteCommand(String arguments)
             throws InvalidArgumentsException, MissingArgumentsException {
-        logger.entering(Parser.class.getName(),"parseDeleteCommand()");
+        logger.entering(Parser.class.getName(), "parseDeleteCommand()");
         logger.info("Parsing delete command with arguments: " + arguments);
         if (arguments.isEmpty()) {
             logger.log(Level.SEVERE, "Index of the expense not specified");
@@ -114,14 +115,19 @@ public class Parser {
             logger.log(Level.SEVERE, "Index of the expense specified is not an integer");
             throw new InvalidArgumentsException(MESSAGE_INVALID_ID);
         }
-        logger.exiting(Parser.class.getName(),"parseDeleteCommand(arguments)");
+        logger.exiting(Parser.class.getName(), "parseDeleteCommand(arguments)");
     }
 
+    /**
+     * @param arguments User arguments entered after the command.
+     * @throws MissingArgumentsException If user did not specify description,
+     *                                   category and price.
+     */
     private static void parseAddCommand(String arguments) throws MissingArgumentsException {
         logger.entering(Parser.class.getName(), "parseAddCommand()");
         logger.info("Parsing add command with arguments: " + arguments);
         if (arguments.isEmpty()) {
-            throw new MissingArgumentsException(MESSAGE_INVALID_ARGUMENTS);
+            throw new MissingArgumentsException(MESSAGE_MISSING_ARGS_ADD);
         }
         String[] argumentsArray = parseAddArguments(arguments);
         assert argumentsArray.length == 3 : "User input must contain description, category, and price";
@@ -132,7 +138,8 @@ public class Parser {
         logger.info("User input category: " + category);
         logger.info("User input price: " + price);
         if (description.isEmpty() || category.isEmpty() || price.isEmpty()) {
-            throw new MissingArgumentsException(MESSAGE_INVALID_ARGUMENTS);
+            logger.severe("Missing description/category/price: " + MESSAGE_MISSING_ARGS_ADD);
+            throw new MissingArgumentsException(MESSAGE_MISSING_ARGS_ADD);
         }
         // do something with arguments
         logger.exiting(Parser.class.getName(), "parseAddCommand()");
@@ -146,9 +153,10 @@ public class Parser {
      */
     private static void parseEditCommand(String arguments) throws MissingArgumentsException, InvalidArgumentsException {
         logger.entering(Parser.class.getName(), "parseEditCommand()");
-        logger.info("Parsing edit command with arguments: " + arguments);
+        logger.info("Parsing arguments for edit command: " + arguments);
         if (arguments.isEmpty()) {
-            throw new MissingArgumentsException(MESSAGE_INVALID_ARGUMENTS);
+            logger.severe("Missing arguments for edit command: " + MESSAGE_MISSING_ARGS_EDIT);
+            throw new MissingArgumentsException(MESSAGE_MISSING_ARGS_EDIT);
         }
         String[] argumentsArray = parseEditArguments(arguments);
         String expenseId = argumentsArray[0];
@@ -157,8 +165,7 @@ public class Parser {
         String price = argumentsArray[3];
         if (expenseId.isEmpty()) {
             logger.severe("Missing expense ID: " + MESSAGE_INVALID_ID);
-            throw 
-            new MissingArgumentsException(MESSAGE_INVALID_ID);
+            throw new MissingArgumentsException(MESSAGE_INVALID_ID);
         }
 
         try {
@@ -176,6 +183,11 @@ public class Parser {
 
     }
 
+    /**
+     * @param arguments User arguments entered after the command.
+     * @throws InvalidArgumentsException If user specified a non-integer for expense
+     *                                   ID.
+     */
     private static void parseViewCommand(String arguments) throws InvalidArgumentsException {
         logger.entering(Parser.class.getName(), "parseViewCommand()");
         logger.info("Parsing view command with arguments: " + arguments);
@@ -201,7 +213,7 @@ public class Parser {
      * Returns a string array of length 3, containing the description, category and
      * price respectively.
      * 
-     * @param arguments User arguments entered after the command.
+     * @param arguments User arguments entered after the add command.
      * @return String[] Array containing description, category and price
      *         respectively.
      */
@@ -234,9 +246,14 @@ public class Parser {
         argumentsArray[1] = category;
         argumentsArray[2] = price;
         logger.exiting(Parser.class.getName(), "parseAddArguments()");
-        return argumentsArray;   
+        return argumentsArray;
     }
 
+    /**
+     * @param arguments User arguments entered after the edit command
+     * @return String[] Array containing expense ID, description, category and price
+     *         respectively.
+     */
     private static String[] parseEditArguments(String arguments) {
         logger.entering(Parser.class.getName(), "parseEditArguments()");
         String expenseId = "";
