@@ -1,7 +1,6 @@
 package bagpacker.packingfunc;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * PackingList class contains methods to manipulate the users packing list
