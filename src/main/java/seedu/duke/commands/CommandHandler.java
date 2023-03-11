@@ -14,34 +14,25 @@ public class CommandHandler {
         errorExists = false;
         try {
             switch (userCommands[0]) {
-                case "quick":
-                    System.out.println("I have reached here");
-                    if (userCommands.length == 2) {
-                        System.out.println("I have also reached here");
-                        command = new QuickStartCommand(userCommands[1]);
-                        break;
-                    } else {
-                        throw new DukeError("You did not type in the correct format for generating a command");
-                    }
-                case "generate":
-                    if (userCommands.length == 4) {
-                        if (userCommands[1].equals("difficulty")) {
-                            command = new GenerateSpecificDifficultyCommand(userCommands[2], userCommands[3]);
-                        } else {
-                            throw new DukeError("You did not type in the correct format for generating a command");
-                        }
-                    } else {
-                        throw new DukeError("You did not type in the correct format for generating a command");
-                    }
+            case "quick":
+                if (userCommands.length == 2) {
+                    command = new QuickStartCommand(userCommands[1]);
                     break;
-                case "bye":
-                case "exit":
-                    ui.byeUser();
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Unknown Command");
-                    break;
+                } else {
+                    throw new DukeError("You did not type in the correct format for generating a quick command");
+                }
+            case "generate":
+                command = new GenerateFilterCommand(userCommands);
+                break;
+            case "bye":
+            case "exit":
+                ui.byeUser();
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Unknown Command");
+                errorExists = true;
+                break;
             }
         } catch (DukeError e) {
             System.out.println(e.getMessage());

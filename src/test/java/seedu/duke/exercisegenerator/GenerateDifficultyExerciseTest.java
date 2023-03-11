@@ -1,74 +1,85 @@
 package seedu.duke.exercisegenerator;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.commands.GenerateSpecificDifficultyCommand;
 import seedu.duke.errors.DukeError;
 import seedu.duke.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class GenerateDifficultyExerciseTest {
+
     @Test
-    void testDifficultyExerciseLength() {
+    void testBeginnerDifficultyLevel() {
+        ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
-        ArrayList<ExerciseData> currentTestList = generateExercise.generateSpecificDifficultySet("beginner", 4);
 
-        assertEquals(4, currentTestList.size());
-        assertEquals(4, generateExercise.generateSpecificDifficultySet("intermediate", 4).size());
-        assertEquals(4, generateExercise.generateSpecificDifficultySet("expert", 4).size());
+        exerciseData = generateExercise.generateSetAll();
+        try{
+            exerciseData = generateExercise.generateFilteredDifficultySetFrom(exerciseData, "easy");
+        } catch (DukeError e){
+            System.out.println(e.getMessage());
+        }
 
-
-
+        for (int i = 0; i < exerciseData.size(); i++){
+            assertEquals(exerciseData.get(i).getLevel(), "beginner");
+        }
     }
 
     @Test
-    void testCorrectDifficultyLevel() {
+    void testIntermediateDifficultyLevel() {
+        ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
-        //beginner tests
-        ArrayList<ExerciseData> currentTestList;
-        currentTestList = generateExercise.generateSpecificDifficultySet("beginner", 5);
-        for (int i = 0; i < currentTestList.size(); i++) {
-            assertEquals(currentTestList.get(i).getLevel(), "beginner");
+
+        exerciseData = generateExercise.generateSetAll();
+        try{
+            exerciseData = generateExercise.generateFilteredDifficultySetFrom(exerciseData, "medium");
+        } catch (DukeError e){
+            System.out.println(e.getMessage());
         }
 
-        //intermediate
-        currentTestList = generateExercise.generateSpecificDifficultySet("intermediate", 5);
-        for (int i = 0; i < currentTestList.size(); i++) {
-            assertEquals(currentTestList.get(i).getLevel(), "intermediate");
-        }
-
-        //expert tests
-        currentTestList = generateExercise.generateSpecificDifficultySet("expert", 5);
-        for (int i = 0; i < currentTestList.size(); i++) {
-            assertEquals(currentTestList.get(i).getLevel(), "expert");
+        for (int i = 0; i < exerciseData.size(); i++){
+            assertEquals(exerciseData.get(i).getLevel(), "intermediate");
         }
     }
 
-    /**
-     * Checks whether the correct errors are caught
-     * Errors include:
-     * 1) Incorrect difficulty name
-     * 2) Passing a string that is supposed to be an integer
-     */
     @Test
-    void testIncorrectInputExceptionHandling() {
-        //error check if incorrect input
-        Exception exception = assertThrows(DukeError.class, () -> {
-            new GenerateSpecificDifficultyCommand("beginner", "5");
-        });
-        String expectedMessage = "You did not put in the correct format for generating a specific difficulty list";
-        String actualMessage = exception.getMessage();
-        assertTrue(expectedMessage.equals(actualMessage));
+    void testExpertDifficultyLevel() {
+        ArrayList<ExerciseData> exerciseData;
+        GenerateExercise generateExercise = new GenerateExercise();
 
-        exception = assertThrows(DukeError.class, () -> {
-            new GenerateSpecificDifficultyCommand("easy", "blabla");
-        });
-        expectedMessage = "You did not input a number as the number of exercises to generate";
-        actualMessage = exception.getMessage();
-        assertTrue(expectedMessage.equals(actualMessage));
+        exerciseData = generateExercise.generateSetAll();
+        try{
+            exerciseData = generateExercise.generateFilteredDifficultySetFrom(exerciseData, "hard");
+        } catch (DukeError e){
+            System.out.println(e.getMessage());
+        }
+
+        for (int i = 0; i < exerciseData.size(); i++){
+            assertEquals(exerciseData.get(i).getLevel(), "expert");
+        }
     }
+
+    @Test
+    void testMixture() {
+        ArrayList<ExerciseData> exerciseData;
+        GenerateExercise generateExercise = new GenerateExercise();
+
+        exerciseData = generateExercise.generateSetAll();
+        try{
+            exerciseData = generateExercise.generateFilteredDifficultySetFrom(exerciseData, "medium");
+            exerciseData = generateExercise.generateFilteredBodySetFrom(exerciseData);
+        } catch (DukeError e){
+            System.out.println(e.getMessage());
+        }
+
+        for (int i = 0; i < exerciseData.size(); i++){
+            assertEquals(exerciseData.get(i).getLevel(), "intermediate");
+            assertNotEquals(exerciseData.get(i).getEquipment(), null);
+            assertEquals(exerciseData.get(i).getEquipment(), "body only");
+        }
+    }
+
 }
