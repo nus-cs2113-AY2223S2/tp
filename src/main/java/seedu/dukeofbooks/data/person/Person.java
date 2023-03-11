@@ -45,6 +45,10 @@ public class Person {
         return borrowedItems;
     }
 
+    public void addLoan(Loan loan) {
+        borrowedItems.add(loan);
+    }
+
     public void printPreviousLoans() {
         BorrowHistory.CheckHistory(this);
     }
