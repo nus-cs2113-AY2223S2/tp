@@ -75,7 +75,9 @@ public class UpdateUserCommand extends Command {
             }
             System.out.println("Invalid weight format!");
         }
-        return Float.parseFloat(weightString);
+        float weight = Float.parseFloat(weightString);
+        assert weight >= 0: "Invalid height";
+        return weight;
     }
 
     public float updateHeight(UI ui) {
@@ -88,6 +90,8 @@ public class UpdateUserCommand extends Command {
             }
             System.out.println("Invalid height format!");
         }
-        return Float.parseFloat(heightString);
+        float height = Float.parseFloat(heightString);
+        assert height >= 0: "Invalid height";
+        return height;
     }
 }
