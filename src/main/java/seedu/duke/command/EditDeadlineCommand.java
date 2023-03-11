@@ -14,12 +14,12 @@ public class EditDeadlineCommand extends Command  {
     public static int index;
     public static String deadline;
 
-
     public EditDeadlineCommand(String[] splitInput) throws NumberFormatException, DateTimeParseException {
         HashMap<String, String> args = CommandParser.getArguments(splitInput, FLAGS);
         index = Integer.parseInt(args.get(KEYWORD)) - 1;
         deadline = CommandParser.formatDateTime(args.get("-d"));
     }
+
     @Override
     public void execute(TaskList taskList, Ui ui) {
         /*if (deadline.isEmpty()) {
@@ -35,6 +35,5 @@ public class EditDeadlineCommand extends Command  {
         } catch (IndexOutOfBoundsException e) {
             ui.printIndexError();
         }
-
     }
 }

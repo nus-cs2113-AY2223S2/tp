@@ -14,31 +14,28 @@ public class Duke {
 
     public static void main(String[] args) {
         Ui ui = new Ui();
-        TaskList taskList;
-        ui.printWelcomeMessage();
-        Scanner in = new Scanner(System.in);
+        TaskList taskList = new TaskList();
         try {
             taskList = Storage.loadData("./data.txt", ui);
         } catch (FileNotFoundException e) {
             ui.printFileNotFoundMessage();
-            taskList = new TaskList();
         } catch (ConversionErrorException e) {
             ui.printLoadingErrorMessage();
-            taskList = new TaskList();
         }
-        while (isInUse) {
-            String userInput = in.nextLine();
-            Command parsedCommand = CommandParser.parseCommand(userInput, taskList);
-            parsedCommand.execute(taskList, ui);
-            try {
-                Storage.saveData("./data.txt", taskList, ui);
-            } catch (IOException e) {
-                ui.printSavingErrorMessage();
+
+        ui.printWelcomeMessage();
+        try (Scanner in = new Scanner(System.in)) {
+            while (isInUse) {
+                String userInput = in.nextLine();
+                Command parsedCommand = CommandParser.parseCommand(userInput, taskList);
+                parsedCommand.execute(taskList, ui);
+                try {
+                    Storage.saveData("./data.txt", taskList, ui);
+                } catch (IOException e) {
+                    ui.printSavingErrorMessage();
+                }
+                isInUse = !parsedCommand.isExit();
             }
-            if (parsedCommand.isExit()) {
-                in.close();
-            }
-            isInUse = !parsedCommand.isExit();
         }
     }
 }
