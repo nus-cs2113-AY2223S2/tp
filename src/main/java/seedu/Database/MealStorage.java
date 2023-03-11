@@ -75,7 +75,7 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
             this.write();
             System.out.println("Meal was successfully added!");
         } catch (IOException e) {
-            System.out.println("Error saving meal to storage!");
+            System.out.println(" meal to storage!");
         }
     }
 }

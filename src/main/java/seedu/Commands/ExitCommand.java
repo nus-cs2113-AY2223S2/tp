@@ -18,7 +18,7 @@ public class ExitCommand extends Command{
             mealStorage.write();
             userStorage.write();
         } catch (IOException e) {
-            throw new LifeTrackerException("Error saving databases!");
+            // throw new LifeTrackerException("Error saving databases!");
         }
     }
 }
