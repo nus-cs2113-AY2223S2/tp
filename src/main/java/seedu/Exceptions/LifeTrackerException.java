@@ -1,7 +1,7 @@
 package seedu.Exceptions;
 
-public abstract class LifeTrackerException extends Exception{
-    public LifeTrackerException(String errorMessage){
+public class LifeTrackerException extends Exception {
+    public LifeTrackerException(String errorMessage) {
         super(errorMessage);
     }
 }
