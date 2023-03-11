@@ -1,11 +1,19 @@
-package seedu.duke;
+package seedu.myledger;
 
+import seedu.expenditure.ExpenditureList;
 import java.util.Scanner;
 
-public class Duke {
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
+public class MyLedger {
+    private ExpenditureList expenditures;
+
+    private void start() {
+        expenditures = new ExpenditureList();
+    }
+
+    private void run() {
+
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
