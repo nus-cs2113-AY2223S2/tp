@@ -1,6 +1,7 @@
 package seedu.apollo.command;
 import seedu.apollo.Storage;
 import seedu.apollo.exception.ModuleNotFoundException;
+import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.Ui;
 import seedu.apollo.task.TaskList;
@@ -19,7 +20,11 @@ public class DeleteModuleCommand extends Command{
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList){
         try {
-            moduleList.remove(moduleList.findModule(moduleCode));
+            Module toDelete = moduleList.findModule(moduleCode);
+            if (toDelete == null) {
+                throw new ModuleNotFoundException();
+            }
+            moduleList.remove(toDelete);
             //update storage later
             ui.printModuleDeleteMessage(moduleCode);
         } catch (ModuleNotFoundException e) {

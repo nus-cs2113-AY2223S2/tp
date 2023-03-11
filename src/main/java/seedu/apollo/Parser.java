@@ -20,12 +20,11 @@ import seedu.apollo.exception.InvalidDateTime;
 import seedu.apollo.exception.InvalidDeadline;
 import seedu.apollo.exception.InvalidEvent;
 import seedu.apollo.exception.InvalidModule;
-import seedu.apollo.module.Module;
+import seedu.apollo.module.ModuleList;
 
 import java.rmi.UnexpectedException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 /**
  * Parser class that makes sense of user commands or text.
@@ -58,7 +57,7 @@ public class Parser {
      * @return Corresponding Command class to user input.
      * @throws UnexpectedException If an unexpected error occurs.
      */
-    public static Command getCommand(String userCommand, Ui ui, int size, ArrayList<Module> moduleData)
+    public static Command getCommand(String userCommand, Ui ui, int size, ModuleList moduleData)
             throws UnexpectedException {
         final String[] split = userCommand.trim().split("\\s+", 2);
         try {
@@ -102,7 +101,7 @@ public class Parser {
      * @throws IllegalCommandException If an unknown command is input by the user.
      * @throws UnexpectedException     If some unexpected error occurs.
      */
-    private static Command parseCommand(String[] split, int size, ArrayList<Module> moduleData)
+    private static Command parseCommand(String[] split, int size, ModuleList moduleData)
             throws InvalidDateTime, EmptyKeywordException, EmptyTaskDescException, InvalidDeadline, InvalidEvent,
             IllegalCommandException, NumberFormatException, UnexpectedException, InvalidModule,
             EmptyAddModException, EmptyDelModException {
@@ -111,22 +110,28 @@ public class Parser {
 
         case COMMAND_LIST_MODULE_WORD:
             return new ListModuleCommand();
+
         case COMMAND_EXIT_WORD:
             return new ExitCommand();
+
         case COMMAND_HELP_WORD:
             return new HelpCommand();
+
         case COMMAND_LIST_WORD:
             return new ListCommand();
+
         case COMMAND_DATE_WORD:
             if (isEmptyParam(split)) {
                 throw new InvalidDateTime();
             }
             return new DateCommand(split[1]);
+
         case COMMAND_FIND_WORD:
             if (isEmptyParam(split)) {
                 throw new EmptyKeywordException();
             }
             return new FindCommand(split[1]);
+
         case COMMAND_MARK_WORD:
         case COMMAND_UNMARK_WORD:
         case COMMAND_DELETE_WORD:
@@ -134,6 +139,7 @@ public class Parser {
                 throw new NumberFormatException();
             }
             return new ModifyCommand(command, split[1], size);
+
         case COMMAND_TODO_WORD:
         case COMMAND_DEADLINE_WORD:
         case COMMAND_EVENT_WORD:
@@ -141,6 +147,7 @@ public class Parser {
                 throw new EmptyTaskDescException();
             }
             return new AddCommand(command, split[1]);
+
         case COMMAND_ADD_MODULE_WORD:
             if (isEmptyParam(split)) {
                 throw new EmptyAddModException();

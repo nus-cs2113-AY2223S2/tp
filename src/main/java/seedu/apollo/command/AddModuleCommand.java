@@ -7,7 +7,6 @@ import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 
-import java.util.ArrayList;
 
 public class AddModuleCommand extends Command {
 
@@ -20,15 +19,13 @@ public class AddModuleCommand extends Command {
      * @param allModules The list of all modules.
      * @throws InvalidModule If the module code is invalid.
      */
-    public AddModuleCommand(String moduleCode, ArrayList<Module> allModules) throws InvalidModule {
-        for (Module moduleData : allModules) {
-            if (moduleData.getCode().equalsIgnoreCase(moduleCode)) {
-                this.module = moduleData;
-                return;
-            }
+    public AddModuleCommand(String moduleCode, ModuleList allModules) throws InvalidModule {
+        Module toAdd = allModules.findModule(moduleCode);
+        if (toAdd == null){
+            throw new InvalidModule();
         }
 
-        throw new InvalidModule();
+        module = toAdd;
     }
 
     @Override
