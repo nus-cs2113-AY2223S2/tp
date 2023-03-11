@@ -1,6 +1,15 @@
 package seedu.Parser;
 
-import seedu.commands.*;
+import seedu.commands.Command;
+import seedu.commands.AcademicExpenditureCommand;
+import seedu.commands.AccommodationExpenditureCommand;
+import seedu.commands.EntertainmentExpenditureCommand;
+import seedu.commands.FoodExpenditureCommand;
+import seedu.commands.OtherExpenditureCommand;
+import seedu.commands.TransportExpenditureCommand;
+import seedu.commands.TuitionExpenditureCommand;
+import seedu.commands.InvalidCommand;
+
 
 import java.time.LocalDate;
 
@@ -14,19 +23,19 @@ public class ParseAdd {
 
         try {
             int posDSlash = line.indexOf('/');
-            String editDetailsList[] = SplitCommand.splitCommand(posDSlash, line);
+            String[] editDetailsList = SplitCommand.splitCommand(posDSlash, line);
             String editDetails = editDetailsList[1];
             System.out.println(editDetails);
 
             int posASlash = editDetails.indexOf('/');
-            String dateList[] = SplitCommand.splitCommand(posASlash, editDetails);
+            String[] dateList = SplitCommand.splitCommand(posASlash, editDetails);
             String dateVal = dateList[0];
             String editPriceAndDescription = dateList[1];
             System.out.println(dateVal);
             System.out.println(editPriceAndDescription);
 
             int posSSlash = editPriceAndDescription.indexOf('/');
-            String amountDescriptionList[] = SplitCommand.splitCommand(posSSlash, editPriceAndDescription);
+            String[] amountDescriptionList = SplitCommand.splitCommand(posSSlash, editPriceAndDescription);
             String amountVal = amountDescriptionList[0];
             descriptionVal = amountDescriptionList[1];
             amount = Double.parseDouble(amountVal);

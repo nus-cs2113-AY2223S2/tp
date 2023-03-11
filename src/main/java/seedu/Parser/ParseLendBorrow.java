@@ -1,6 +1,9 @@
 package seedu.Parser;
 
-import seedu.commands.*;
+import seedu.commands.Command;
+import seedu.commands.InvalidCommand;
+import seedu.commands.LendExpenditureCommand;
+import seedu.commands.BorrowExpenditureCommand;
 
 import java.time.LocalDate;
 
@@ -19,27 +22,27 @@ public class ParseLendBorrow {
             String details = line.substring(space);
 
             int posSSlash = details.indexOf('/');
-            String allDetailsList[] = SplitCommand.splitCommand(posSSlash, details);
+            String[] allDetailsList = SplitCommand.splitCommand(posSSlash, details);
             String allDetails = allDetailsList[1];
 
             int posASlash = allDetails.indexOf('/');
-            String moreDetailsList[] = SplitCommand.splitCommand(posASlash, allDetails);
+            String[] moreDetailsList = SplitCommand.splitCommand(posASlash, allDetails);
             description = moreDetailsList[0];
             String moreDetails = moreDetailsList[1];
 
             int posNSlash = moreDetails.indexOf('/');
-            String amountStringList[] = SplitCommand.splitCommand(posNSlash, moreDetails);
+            String[] amountStringList = SplitCommand.splitCommand(posNSlash, moreDetails);
             String amountString = amountStringList[0];
             amount = Double.parseDouble(amountString);
             String borrowLendDetails = amountStringList[1];
 
             int posDSlash = borrowLendDetails.indexOf('/');
-            String nameList[] = SplitCommand.splitCommand(posDSlash, borrowLendDetails);
+            String[] nameList = SplitCommand.splitCommand(posDSlash, borrowLendDetails);
             name = nameList[0];
             String dates = nameList[1];
 
             int posBSlash = dates.indexOf('/');
-            String datesList[] = SplitCommand.splitCommand(posBSlash,dates);
+            String[] datesList = SplitCommand.splitCommand(posBSlash,dates);
             String lentDateString = datesList[0];
             String deadlineString = datesList[1];
             lentDate = ParseDate.parseDate(lentDateString);
