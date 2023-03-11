@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class Ui {
     private final Scanner in;
-    private final PrintStream out;
+    // private final PrintStream out;
 
     public Ui() {
         this(System.in, System.out);
@@ -19,7 +19,7 @@ public class Ui {
 
     public Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
-        this.out = out;
+        // this.out = out;
     }
 
     /**
@@ -34,8 +34,13 @@ public class Ui {
     }
 
     public void printSuccessfulAddMessage(String questionText, String answerText) {
-        System.out.println("A new card is now added:" + System.lineSeparator() + "Question: "
-                + questionText + System.lineSeparator() + "Answer: " + answerText);
+        System.out.println("A new card is now added:");
+        System.out.println("Question: " + questionText);
+        System.out.println("Answer: " + answerText);
+    }
+
+    public void printByeMessage() {
+        System.out.println("Bye. Don't forget to come back later to study!");
     }
 
     public void printInvalidInput() {

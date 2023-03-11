@@ -16,6 +16,9 @@ public class AddCommand extends Command {
         this.answerText = answerText;
     }
 
+    /**
+     * For testing purposes only.
+     */
     @Override
     public String toString() {
         return "Question to add: " + questionText + " Answer: " + answerText;
@@ -26,5 +29,4 @@ public class AddCommand extends Command {
         flashcardList.addNewFlashcard(questionText, answerText);
         display.printSuccessfulAddMessage(questionText, answerText);
     }
-
 }

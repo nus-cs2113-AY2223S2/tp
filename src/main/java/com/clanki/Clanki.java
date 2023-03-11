@@ -1,5 +1,6 @@
 package com.clanki;
 
+import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
 import com.clanki.objects.FlashcardList;
 import com.clanki.parser.Parser;
@@ -17,9 +18,15 @@ public class Clanki {
     }
 
     public void run() {
-        String inputText = ui.getUserCommand();
-        Command command = parser.parseCommand(inputText);
-        command.execute(flashcardList, ui);
+        while (true) {
+            String inputText = ui.getUserCommand();
+            Command command = parser.parseCommand(inputText);
+            command.execute(flashcardList, ui);
+
+            if (command instanceof ByeCommand) {
+                return;
+            }
+        }
     }
 
     public static void main(String[] args) {
