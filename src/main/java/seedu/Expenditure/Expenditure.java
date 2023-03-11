@@ -1,4 +1,4 @@
-package seedu.Expenditure;
+package seedu.expenditure;
 
 import java.time.LocalDate;
 
@@ -20,7 +20,6 @@ public abstract class Expenditure {
     public void setDescription(String description) {
         this.description = description;
     }
-
     public void setValue(double value) {
         this.value = value;
     }

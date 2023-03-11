@@ -1,4 +1,4 @@
-package seedu.Expenditure;
+package seedu.expenditure;
 
 import java.time.LocalDate;
 
@@ -7,7 +7,7 @@ public class LendExpenditure extends Expenditure {
     private String lenderName;
 
     public LendExpenditure(String description, String lenderName, double lendValue, LocalDate date,
-            LocalDate deadline) {
+                             LocalDate deadline) {
         super(description, lendValue, date);
         setLenderName(lenderName);
         setDeadline(deadline);
