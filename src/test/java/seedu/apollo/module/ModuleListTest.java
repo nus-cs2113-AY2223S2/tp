@@ -1,17 +1,17 @@
 package seedu.apollo.module;
 
 import org.junit.jupiter.api.Test;
-import seedu.apollo.exception.ModuleNotFoundException;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class ModuleListTest {
 
     @Test
-    void findModule_invalidModuleCode_expectException() {
+    void findModule_invalidModuleCode_expectNull() {
         ModuleList allModules = new ModuleList();
         String invalidModuleCode = "cs2113";
-        assertThrows(ModuleNotFoundException.class, () -> allModules.findModule(invalidModuleCode));
+        assertEquals(null, allModules.findModule(invalidModuleCode));
     }
     
 }
