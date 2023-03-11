@@ -2,7 +2,7 @@
 
 package seedu.duke.ui;
 
-import java.util.HashMap;
+// import java.util.HashMap;
 import java.util.Scanner;
 import seedu.duke.save.Storage;
 import seedu.duke.patient.Patient;

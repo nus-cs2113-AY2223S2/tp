@@ -44,14 +44,13 @@ import seedu.duke.diagnosis.symptoms.Symptom;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toCollection;
 
 //@@author Brennanzuz
 public class Diagnosis {
-    private final static double POSSIBILITY_THRESHOLD = 0.5;
-    private final static ArrayList<Illness> allIllnesses = new ArrayList<>(
+    private static final double POSSIBILITY_THRESHOLD = 0.5;
+    private static final ArrayList<Illness> ALL_ILLNESSES = new ArrayList<>(
             List.of(
                     new Asthma(),
                     new GeneralAllergicReaction(),
@@ -98,7 +97,8 @@ public class Diagnosis {
             )
     );
 
-    private static ArrayList<Symptom> getMatchingSymptoms(ArrayList<Symptom> patientSymptoms, ArrayList<Symptom> illnessSymptoms) {
+    private static ArrayList<Symptom> getMatchingSymptoms(ArrayList<Symptom> patientSymptoms,
+                                                          ArrayList<Symptom> illnessSymptoms) {
         return illnessSymptoms.stream()
                 .filter(patientSymptoms::contains)
                 .collect(toCollection(ArrayList::new));
@@ -106,7 +106,7 @@ public class Diagnosis {
 
     public static ArrayList<IllnessMatch> getPossibleIllnesses(ArrayList<Symptom> patientSymptoms) {
         ArrayList<IllnessMatch> possibleIllnesses = new ArrayList<>();
-        for (Illness illness : allIllnesses) {
+        for (Illness illness : ALL_ILLNESSES) {
             possibleIllnesses.add(new IllnessMatch(illness, (double)getMatchingSymptoms(patientSymptoms,
                     illness.getSymptoms()).size()/illness.getSymptoms().size()));
         }
