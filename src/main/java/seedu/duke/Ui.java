@@ -135,12 +135,14 @@ public class Ui {
         System.out.println(LINE);
     }
 
-    public static void printTable(ArrayList<Item> items) {
+    public static String printTable(ArrayList<Item> items) {
         int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH};
 
-        printTableSeparator(columnWidths);
-        printHeadings(columnWidths);
-        printTableSeparator(columnWidths);
+        StringBuilder table = new StringBuilder();
+
+        table.append(printTableSeparator(columnWidths));
+        table.append(printHeadings(columnWidths));
+        table.append(printTableSeparator(columnWidths));
 
         for (Item item : items) {
             String name = item.getName();
@@ -149,43 +151,77 @@ public class Ui {
             String price = Double.toString(item.getPrice());
 
             int maxColHeight = findMaxColHeight(name, upc, qty, price, columnWidths);
-            printRow(name, upc, qty, price, maxColHeight, columnWidths);
+            table.append(printRow(name, upc, qty, price, maxColHeight, columnWidths));
         }
 
-        System.out.println(LINE);
+        //System.out.println(LINE);
+        table.append(LINE);
+        table.append(System.lineSeparator());
+
+        return table.toString();
     }
 
-    private static void printHeadings(int[] columnWidths) {
+    private static String printHeadings(int[] columnWidths) {
         String[] headings = {NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
+        StringBuilder allHeadings = new StringBuilder();
+
         for (int i = 0; i < headings.length; i += 1) {
             String heading = headings[i];
             int width = columnWidths[i];
-            System.out.printf(TABLE_LEFT + "%-" + width + "s ", heading);
+            //System.out.printf(TABLE_LEFT + "%-" + width + "s ", heading);
+            String formattedHeading = String.format(TABLE_LEFT + "%-" + width + "s ", heading);
+           // allHeadings = allHeadings.append(formattedHeading);
+            allHeadings.append(formattedHeading);
         }
-        System.out.println(TABLE_LEFT);
+        //System.out.println(TABLE_LEFT);
+        allHeadings.append(TABLE_LEFT);
+        allHeadings.append(System.lineSeparator());
+
+        return allHeadings.toString();
     }
 
-    private static void printTableSeparator(int[] columnWidths) {
+    private static String printTableSeparator(int[] columnWidths) {
+        StringBuilder tableSeparator = new StringBuilder();
+
         for (int columnWidth : columnWidths) {
-            System.out.print(TABLE_CORNER);
+            //System.out.print(TABLE_CORNER);
+            tableSeparator.append(TABLE_CORNER);
+
             for (int j = 0; j < columnWidth + 2; j++) {
-                System.out.print(TABLE_ROW);
+                tableSeparator.append(TABLE_ROW);
             }
         }
 
-        System.out.println(TABLE_CORNER);
+        //System.out.println(TABLE_CORNER);
+        tableSeparator.append(TABLE_CORNER);
+        tableSeparator.append(System.lineSeparator());
+        return tableSeparator.toString();
     }
 
-    private static void printRow(String name, String upc, String qty, String price,
+    private static String printRow(String name, String upc, String qty, String price,
                                 int maxRowHeight, int[] columnWidths) {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
         String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
         String[] qtyLines = wrapText(qty, QTY_COL_WIDTH);
         String[] priceLines = wrapText(price, PRICE_COL_WIDTH);
 
+        StringBuilder row = new StringBuilder();
+
         for (int i = 0; i < maxRowHeight; i += 1) {
 
-            System.out.print(TABLE_LEFT);
+            row.append(TABLE_LEFT);
+            row.append(printAttribute(nameLines, NAME_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(upcLines, UPC_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(qtyLines, QTY_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(priceLines, PRICE_COL_WIDTH, i));
+            row.append(TABLE_RIGHT);
+            row.append(System.lineSeparator());
+
+
+        /*    System.out.print(TABLE_LEFT);
             printAttribute(nameLines, NAME_COL_WIDTH, i);
             System.out.print(TABLE_MIDDLE);
             printAttribute(upcLines, UPC_COL_WIDTH, i);
@@ -193,21 +229,29 @@ public class Ui {
             printAttribute(qtyLines, QTY_COL_WIDTH, i);
             System.out.print(TABLE_MIDDLE);
             printAttribute(priceLines, PRICE_COL_WIDTH, i);
-            System.out.println(TABLE_RIGHT);
+            System.out.println(TABLE_RIGHT);*/
 
             if (i == maxRowHeight - 1) {
-                printTableSeparator(columnWidths);
+                row.append(printTableSeparator(columnWidths));
             }
         }
+
+        return row.toString();
     }
 
-    private static void printAttribute(String[] attributeLines, int columnWidth, int rowNumber) {
+    private static String printAttribute(String[] attributeLines, int columnWidth, int rowNumber) {
+        StringBuilder attribute = new StringBuilder();
+
         if (rowNumber < attributeLines.length) {
-            String paddedString = String.format("%1$-" + columnWidth + "s", attributeLines[rowNumber]);
-            System.out.print(paddedString);
+            String paddedAttribute = String.format("%1$-" + columnWidth + "s", attributeLines[rowNumber]);
+            //System.out.print(paddedString);
+            attribute.append(paddedAttribute);
         } else {
-            System.out.print(" ".repeat(columnWidth));
+            String paddedSpace = " ".repeat(columnWidth);
+            attribute.append(paddedSpace);
         }
+
+        return attribute.toString();
 
     }
 
