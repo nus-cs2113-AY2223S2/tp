@@ -10,12 +10,6 @@ public class Inventory {
     private static HashSet<String> upcCodes = new HashSet<>();
     //todo: trie and HashMap<String,ArrayList<int>> for searching
 
-
-
-
-
-
-
     public static void addItem(Item item){
         if (upcCodes.contains(item.getUpc())) {
             Ui.printDuplicateAdd();
@@ -30,7 +24,11 @@ public class Inventory {
     }
 
     public static void listItems() {
-        Ui.printSuccessList();
-        Ui.printTable(items);
+        if (!items.isEmpty()) {
+            Ui.printSuccessList();
+            Ui.printTable(items);
+        } else {
+            Ui.printInvalidList();
+        }
     }
 }

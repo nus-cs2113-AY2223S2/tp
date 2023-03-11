@@ -22,9 +22,17 @@ public class Ui {
     public static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
     public static final String SUCCESS_LIST = "Here are the items in your inventory:";
 
+    public static final String INVALID_LIST = "There are no items in your inventory.";
+
     public static final int NAME_COL_WIDTH = 15;
     public static final int UPC_COL_WIDTH = 12;
     public static final int QTY_COL_WIDTH = 8;
+
+    private static final String NAME_HEADING = "Name";
+    private static final String UPC_HEADING = "UPC";
+    private static final String QTY_HEADING = "Quantity";
+
+    private static final String PRICE_HEADING = "Price";
 
     public static final int PRICE_COL_WIDTH = 5;
 
@@ -80,6 +88,12 @@ public class Ui {
         System.out.println(ANSI_GREEN + SUCCESS_LIST + ANSI_RESET);
     }
 
+    public static void printInvalidList() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_LIST + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
     public static void printTable(ArrayList<Item> items) {
         int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH};
 
@@ -96,30 +110,29 @@ public class Ui {
             int maxColHeight = findMaxColHeight(name, upc, qty, price, columnWidths);
             printRow(name, upc, qty, price, maxColHeight, columnWidths);
         }
+
+        System.out.println(LINE);
     }
 
     private static void printHeadings(int[] columnWidths) {
-        String[] headings = {"Name", "UPC", "Quantity", "Price"};
+        String[] headings = {NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
         for (int i = 0; i < headings.length; i += 1) {
             String heading = headings[i];
             int width = columnWidths[i];
-            //System.out.printf("| %-" + width + "s ", heading);
             System.out.printf(TABLE_LEFT + "%-" + width + "s ", heading);
         }
-
         System.out.println(TABLE_LEFT);
     }
 
     private static void printTableSeparator(int[] columnWidths) {
-        for (int i = 0; i < columnWidths.length; i += 1) {
+        for (int columnWidth : columnWidths) {
             System.out.print(TABLE_CORNER);
-            for (int j = 0; j < columnWidths[i] + 2; j++) {
+            for (int j = 0; j < columnWidth + 2; j++) {
                 System.out.print(TABLE_ROW);
             }
         }
 
         System.out.println(TABLE_CORNER);
-
     }
 
     private static void printRow(String name, String upc, String qty, String price,
@@ -161,7 +174,7 @@ public class Ui {
   code-for-wrapping-text-lines-to-a-max-line-width*/
     private static String[] wrapText(String input, int width) {
         String[] words = input.split(" ");
-        ArrayList<String> lines = new ArrayList<String>();
+        ArrayList<String> lines = new ArrayList<>();
 
         StringBuilder line = new StringBuilder();
 
@@ -182,7 +195,7 @@ public class Ui {
                 line = new StringBuilder(word + " ");
             }
         }
-        // lines.add(line.toString()); do not remove
+
         return lines.toArray(new String[0]);
     }
 
