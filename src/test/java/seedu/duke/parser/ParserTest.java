@@ -1,11 +1,10 @@
 package seedu.duke.parser;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.duke.exceptions.MissingArgumentsException;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTest {
     @Test
@@ -16,6 +15,6 @@ public class ParserTest {
 
         String expectedMessage = Parser.MESSAGE_EMPTY_INPUT;
         String actualMessage = exception.getMessage();
-        assertTrue(actualMessage.equals(expectedMessage));
+        assertEquals(expectedMessage, actualMessage);
     }
 }

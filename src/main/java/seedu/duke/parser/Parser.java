@@ -1,5 +1,10 @@
 package seedu.duke.parser;
 
+import java.io.IOException;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,7 +25,7 @@ public class Parser {
     private static final String COMMAND_HELP = "/help";
     private static final String COMMAND_BYE = "/bye";
     private static final String MESSAGE_INVALID_COMMAND = "Please enter a valid command!";
-  
+    private static Logger logger = Logger.getLogger(Parser.class.getName());
 
     /**
      * @param userInput The entire string of user input.
@@ -32,12 +37,16 @@ public class Parser {
      */
     public static void parseUserInput(String userInput)
             throws InvalidCommandException, InvalidArgumentsException, MissingArgumentsException {
+        logger.entering(Parser.class.getName(), "parseUserInput()");
+        assert !userInput.isEmpty() : "User input is an empty string";
         if (userInput.isEmpty()) {
+            logger.log(Level.SEVERE, "User entered an empty string", new MissingArgumentsException(MESSAGE_EMPTY_INPUT));
             throw new MissingArgumentsException(MESSAGE_EMPTY_INPUT);
         }
         String[] userInputArray = userInput.trim().split(" ", 2);
         String command = userInputArray[0].toLowerCase();
         String arguments = userInput.replaceFirst(command, "").trim();
+        logger.info("Parsing user command");
         switch (command) {
         case COMMAND_ADD:
             parseAddCommand(arguments);
@@ -58,8 +67,10 @@ public class Parser {
             parseByeCommand();
             break;
         default:
+            logger.log(Level.SEVERE, "User command is invalid", new InvalidArgumentsException(MESSAGE_INVALID_COMMAND));
             throw new InvalidCommandException(MESSAGE_INVALID_COMMAND);
         }
+        logger.exiting(Parser.class.getName(), "parseUserInput()");
     }
 
     private static void parseByeCommand() {
@@ -80,7 +91,10 @@ public class Parser {
      */
     private static void parseDeleteCommand(String arguments)
             throws InvalidArgumentsException, MissingArgumentsException {
+        logger.entering(Parser.class.getName(),"parseDeleteCommand()");
+        assert !arguments.isEmpty() : "Arguments for delete command not specified";
         if (arguments.isEmpty()) {
+            logger.log(Level.SEVERE, "Index of the expense not specified");
             throw new MissingArgumentsException(MESSAGE_INVALID_ID);
         }
         String[] argumentsArray = arguments.split(" ", 2);
@@ -89,9 +103,10 @@ public class Parser {
             int expenseIdInt = Integer.parseInt(expenseId);
             // do something with taskId
         } catch (NumberFormatException e) {
+            logger.log(Level.SEVERE, "Index of the expense specified is not an integer");
             throw new InvalidArgumentsException(MESSAGE_INVALID_ID);
         }
-
+        logger.exiting(Parser.class.getName(),"parseDeleteCommand(arguments)");
     }
 
     private static void parseAddCommand(String arguments) throws MissingArgumentsException {
