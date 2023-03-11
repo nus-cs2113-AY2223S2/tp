@@ -12,9 +12,8 @@ public class DeleteCommand extends Command{
             throw new NullPointerException();
         }
         index = Integer.parseInt(command[1]) - 1;
-        if (index + 1  < 1 || index + 1 > taskList.size()){
+        if (index < 0 || index >= taskList.size()){
             throw new IndexOutOfBoundsException();
-
         }
     }
 

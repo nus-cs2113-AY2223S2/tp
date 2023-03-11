@@ -78,7 +78,7 @@ public class CommandParser {
         case EditDeadlineCommand.KEYWORD:
             return checkValidityEdit(splitInput);
         case DeleteCommand.KEYWORD:
-            return new DeleteCommand(splitInput,taskList);
+            return new DeleteCommand(splitInput, taskList);
         case ExitCommand.KEYWORD:
             return new ExitCommand();
         default:
