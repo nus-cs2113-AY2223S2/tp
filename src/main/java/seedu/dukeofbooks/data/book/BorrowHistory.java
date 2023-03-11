@@ -10,8 +10,8 @@ public class BorrowHistory {
     /**
      * Prints previously borrowed books
      */
-    public void CheckHistory(Person person) {
-        ArrayList<Loan> previousLoans = person.getBorrowHistory();
+    public static void CheckHistory(Person person) {
+        ArrayList<Loan> previousLoans = person.getBorrowedItems();
 
         if(previousLoans.size()==0) {
             System.out.println("You have not borrowed any book yet!");

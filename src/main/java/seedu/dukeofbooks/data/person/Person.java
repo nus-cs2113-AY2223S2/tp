@@ -1,5 +1,6 @@
 package seedu.dukeofbooks.data.person;
 
+import seedu.dukeofbooks.data.book.BorrowHistory;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.loan.Loan;
 
@@ -11,7 +12,7 @@ public class Person {
     private PersonName name;
     private Phone phone;
 
-    private ArrayList<Loan> borrowedBooks = new ArrayList<>();
+    private ArrayList<Loan> borrowedItems = new ArrayList<>();
 
     /**
      * Assumption: Every field must be present and not null.
@@ -40,9 +41,14 @@ public class Person {
         return phone;
     }
 
-    public ArrayList<Loan> getBorrowHistory() {
-        return borrowedBooks;
+    public ArrayList<Loan> getBorrowedItems() {
+        return borrowedItems;
     }
+
+    public void printPreviousLoans() {
+        BorrowHistory.CheckHistory(this);
+    }
+
 
     /**
      * Returns true if both persons have the same identity fields (name and
