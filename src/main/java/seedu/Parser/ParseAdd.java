@@ -13,19 +13,26 @@ public class ParseAdd {
         String descriptionVal;
 
         try {
-            int space = line.indexOf(" ");
-            String details = line.substring(space);
-            int posDSlash = details.indexOf('/');
-            String editDetails = details.substring(posDSlash+1);
+            int posDSlash = line.indexOf('/');
+            String editDetailsList[] = SplitCommand.splitCommand(posDSlash, line);
+            String editDetails = editDetailsList[1];
+            System.out.println(editDetails);
+
             int posASlash = editDetails.indexOf('/');
-            String dateVal = editDetails.substring(0, posASlash-2);
-            String editPriceAndDescription = editDetails.substring(posASlash+1);
+            String dateList[] = SplitCommand.splitCommand(posASlash, editDetails);
+            String dateVal = dateList[0];
+            String editPriceAndDescription = dateList[1];
+            System.out.println(dateVal);
+            System.out.println(editPriceAndDescription);
 
             int posSSlash = editPriceAndDescription.indexOf('/');
-            String amountVal = editPriceAndDescription.substring(0, posSSlash-2);
-            descriptionVal = editPriceAndDescription.substring(posSSlash+1);
+            String amountDescriptionList[] = SplitCommand.splitCommand(posSSlash, editPriceAndDescription);
+            String amountVal = amountDescriptionList[0];
+            descriptionVal = amountDescriptionList[1];
             amount = Double.parseDouble(amountVal);
             date = ParseDate.parseDate(dateVal);
+            System.out.println(amountVal);
+            System.out.println(descriptionVal);
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             return new InvalidCommand("Invalid");
         }
