@@ -5,13 +5,13 @@ import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
 
 public class CommandHandler {
-
-    public void handleUserCommands(String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator){
+    private static boolean errorExists = false;
+    public void handleUserCommands(String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator) {
         String[] userCommands = rawUserCommands.split(" ");
         Command command = null;
+        errorExists = false;
         try {
             switch (userCommands[0]) {
-
             case "generate":
                 if (userCommands.length == 2) {
                     command = new GenerateRandomCommand(userCommands[1]);
@@ -19,10 +19,10 @@ public class CommandHandler {
                     if (userCommands[1].equals("difficulty")) {
                         command = new GenerateSpecificDifficultyCommand(userCommands[2], userCommands[3]);
                     } else {
-                        System.out.println("You did not type in the correct format for generating a command");
+                        throw new DukeError("You did not type in the correct format for generating a command");
                     }
                 } else {
-                    System.out.println("You did not type in the correct format for generating a command");
+                    throw new DukeError("You did not type in the correct format for generating a command");
                 }
                 break;
             case "bye":
@@ -34,10 +34,12 @@ public class CommandHandler {
                 System.out.println("Unknown Command");
                 break;
             }
-        }
-        catch(DukeError e){
+        } catch (DukeError e) {
             System.out.println(e.getMessage());
+            errorExists = true;
         }
-        command.executeCommand(ui,exerciseGenerator);
+        if (!errorExists){
+            command.executeCommand(ui, exerciseGenerator);
+        }
     }
 }
