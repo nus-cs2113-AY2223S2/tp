@@ -23,7 +23,7 @@ public class AddModuleCommand extends Command {
      */
     public AddModuleCommand(String moduleCode, ModuleList allModules) throws InvalidModule {
         Module toAdd = allModules.findModule(moduleCode);
-        if (toAdd == null){
+        if (toAdd == null) {
             throw new InvalidModule();
         }
 
@@ -35,6 +35,7 @@ public class AddModuleCommand extends Command {
         try {
             if (module != null) {
                 moduleList.add(module);
+                moduleList.sortModules();
                 ui.printAddModuleMessage(module);
             }
             storage.updateModule(moduleList);
