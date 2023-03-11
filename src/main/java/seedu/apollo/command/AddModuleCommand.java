@@ -7,6 +7,8 @@ import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 
+import java.io.IOException;
+
 
 public class AddModuleCommand extends Command {
 
@@ -30,10 +32,14 @@ public class AddModuleCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
-        if (module != null) {
-            moduleList.add(module);
-            ui.printAddModuleMessage(module);
+        try {
+            if (module != null) {
+                moduleList.add(module);
+                ui.printAddModuleMessage(module);
+            }
+            storage.updateModule(moduleList);
+        } catch (IOException e) {
+            ui.printErrorForIO();
         }
     }
-
 }

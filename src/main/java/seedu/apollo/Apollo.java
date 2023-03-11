@@ -13,6 +13,10 @@ import java.rmi.UnexpectedException;
 public class Apollo {
 
     public static final String FILE_PATH = "save.txt";
+
+    private static final String MODULE_DATAFILEPATH = "moduleData.txt";
+
+    private static final String DATA_FILEPATH = "data/data.json";
     private static Storage storage;
     private static TaskList taskList;
 
@@ -26,14 +30,14 @@ public class Apollo {
      *
      * @param filePath Location of the local save file.
      */
-    public Apollo(String filePath) {
+    public Apollo(String filePath, String moduleDataFilePath, String dataFilePath) {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(filePath, moduleDataFilePath, dataFilePath);
         try {
             taskList = storage.loadTaskList(ui);
-            storage.update(taskList);
-            moduleData = storage.loadModuleList();
-            moduleList = new ModuleList();
+            storage.updateTask(taskList);
+            moduleData = storage.loadModuleData();
+            moduleList = storage.loadModuleList(ui, moduleData);
             ui.printWelcomeMessage();
         } catch (IOException e) {
             ui.printErrorForIO();
@@ -65,7 +69,7 @@ public class Apollo {
      */
     public static void main(String[] args) {
         try {
-            new Apollo(FILE_PATH).run();
+            new Apollo(FILE_PATH, MODULE_DATAFILEPATH, DATA_FILEPATH).run();
         } catch (UnexpectedException exception) {
             ui.printUnexpectedException(exception);
         } catch (IOException e) {

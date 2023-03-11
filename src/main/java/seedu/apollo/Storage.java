@@ -7,6 +7,7 @@ import seedu.apollo.exception.DateOrderException;
 import seedu.apollo.exception.InvalidDeadline;
 import seedu.apollo.exception.InvalidEvent;
 import seedu.apollo.exception.InvalidSaveFile;
+import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.Deadline;
 import seedu.apollo.task.Event;
@@ -28,7 +29,10 @@ import java.util.Scanner;
 public class Storage {
     // Location of save file
     protected static String filePath;
-    private static final String DATAFILEPATH = "data/data.json";
+
+    protected static String moduleDataFilePath;
+
+    protected static String dataFilePath;
 
     // ints indicating position of terms in each line of the save file
     private static final int TYPE_POS = 0;
@@ -44,8 +48,10 @@ public class Storage {
      *
      * @param filePath Location of the local save file.
      */
-    public Storage(String filePath) {
+    public Storage(String filePath, String moduleDataFilePath, String dataFilePath) {
         Storage.filePath = filePath;
+        Storage.moduleDataFilePath = moduleDataFilePath;
+        Storage.dataFilePath = dataFilePath;
     }
 
     /**
@@ -54,7 +60,7 @@ public class Storage {
      * @param taskList Contains all stored tasks.
      * @throws IOException If something goes wrong during the overwriting process.
      */
-    public void update(TaskList taskList) throws IOException {
+    public void updateTask(TaskList taskList) throws IOException {
         FileWriter overwrite = new FileWriter(filePath);
         for (Task task : taskList) {
             String desc = task.getDescription();
@@ -97,9 +103,38 @@ public class Storage {
             newTaskList = readFileContents(save, ui);
             return newTaskList;
         } catch (FileNotFoundException e) {
-            ui.printErrorFileNotFound();
             save.createNewFile();
             return newTaskList;
+        }
+    }
+
+    public void updateModule(ModuleList modules) throws IOException {
+        FileWriter overwrite = new FileWriter(moduleDataFilePath);
+        for (Module module: modules) {
+            String code = module.getCode();
+            overwrite.write(code + "\n");
+        }
+        overwrite.close();
+    }
+
+    /**
+     * Reads all lines in the moduleData file, initialises them as an ModuleList of Modules.
+     *
+     * @param ui Prints out error messages to user.
+     * @param allModules Contains all stored modules.
+     * @return ModuleList of Tasks (containing data from save file / empty).
+     * @throws IOException If save file is not found.
+     */
+    public ModuleList loadModuleList(Ui ui, ModuleList allModules) throws IOException {
+        ModuleList newModuleList = new ModuleList();
+        File save = new File(moduleDataFilePath);
+        try {
+            newModuleList = readModuleFileContents(save, ui, allModules);
+            return newModuleList;
+        } catch (FileNotFoundException e) {
+            ui.printErrorFileNotFound();
+            save.createNewFile();
+            return newModuleList;
         }
     }
 
@@ -110,12 +145,12 @@ public class Storage {
      * @return ArrayList of Modules (containing data from save file / empty).
      * @throws FileNotFoundException If save file is not found.
      */
-    public ModuleList loadModuleList() throws FileNotFoundException {
+    public ModuleList loadModuleData() throws FileNotFoundException {
         Type moduleDataType = new TypeToken<ModuleList>(){}.getType();
         Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader(DATAFILEPATH));
+        JsonReader reader = new JsonReader(new FileReader(dataFilePath));
         ModuleList moduleDataList = gson.fromJson(reader, moduleDataType);
-        System.out.println("Module Data loaded from " + DATAFILEPATH);
+        System.out.println("Module Data loaded from " + dataFilePath);
         return moduleDataList;
     }
 
@@ -139,6 +174,26 @@ public class Storage {
             }
         }
         return newTaskList;
+    }
+
+    private static ModuleList readModuleFileContents(File save, Ui ui, ModuleList allModules)
+            throws FileNotFoundException {
+        Scanner s = new Scanner(save);
+        ModuleList newModuleList = new ModuleList();
+        int counter = 0;
+        while (s.hasNext()) {
+            try {
+                Module newModule = allModules.findModule(s.nextLine());
+                if (newModule == null) {
+                    throw new InvalidSaveFile();
+                }
+                newModuleList.add(newModule);
+                counter++;
+            } catch (InvalidSaveFile e) {
+                ui.printInvalidSaveFile(counter, filePath);
+            }
+        }
+        return newModuleList;
     }
 
     /**
