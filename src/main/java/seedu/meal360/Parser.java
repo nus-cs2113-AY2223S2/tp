@@ -25,7 +25,6 @@ public class Parser {
         userInput.close();
         Recipe newRecipe = new Recipe(recipeName, ingredients);
         recipeList.addRecipe(newRecipe);
-        recipeList.add(newRecipe);
         return newRecipe;
     }
 
