@@ -27,6 +27,7 @@ public class Ui {
     public static final String SUCCESS_LIST = "Here are the items in your inventory:";
 
     public static final String INVALID_LIST = "There are no items in your inventory.";
+    public static final String CONFIRM_MESSAGE = "Are you sure you want this item to be permanently deleted? (Y/N)";
 
     public static final int NAME_COL_WIDTH = 15;
     public static final int UPC_COL_WIDTH = 12;
@@ -51,7 +52,9 @@ public class Ui {
     private static final String TABLE_LEFT = "| ";
     private static final String TABLE_RIGHT = " |";
     private static final String TABLE_MIDDLE = " | ";
-
+    private static final String NOT_REMOVING = "Ok...You changed your mind really quickly.";
+    private static final String INVALID_REPLY = "Invalid response, only yes (Y) or no (N) answer is allowed. " +
+            "Please try again :(";
 
     public Ui() {
         greetUser();
@@ -322,5 +325,22 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public static void printInvalidRemove() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_REPLY + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printNotRemoving() {
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + NOT_REMOVING + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printConfirmMessage() {
+        System.out.println(LINE);
+        System.out.println(ANSI_BLUE + CONFIRM_MESSAGE + ANSI_RESET);
+        System.out.println(LINE);
+    }
 }
 

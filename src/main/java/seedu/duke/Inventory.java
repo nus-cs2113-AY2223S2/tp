@@ -5,8 +5,7 @@ import seedu.duke.trie.Trie;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-
+import java.util.Scanner;
 
 
 public class Inventory {
@@ -231,5 +230,36 @@ public class Inventory {
         } else {
             Ui.printInvalidList();
         }
+    }
+
+    /**
+     * Removes item from the array list of items and hashmap of upc
+     * using item's unique upc.
+     * @param upc UPC of item to be removed from the list.
+     * @return index of item in the arraylist for testing; otherwise -1.
+     */
+    public static int removeByUpc(String upc) {
+        String upcCode = upc.replaceFirst("upc/", "");
+        searchUPC(upcCode);
+        Ui.printConfirmMessage();
+        Scanner s = new Scanner(System.in);
+        String confirmation = s.nextLine();
+        switch(confirmation) {
+        case "Y":
+            Item itemToRemove = upcCodes.get(upcCode);
+            int i = items.indexOf(itemToRemove);
+            upcCodes.remove(upcCode);
+            items.remove(i);
+            listItems();
+            return i;
+        case "N" :
+            Ui.printNotRemoving();
+            break;
+        default:
+            Ui.printInvalidRemove();
+            break;
+        }
+        s.close();
+        return -1;
     }
 }

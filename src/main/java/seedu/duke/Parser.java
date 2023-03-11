@@ -51,6 +51,9 @@ public class Parser {
         case "filter":
             parseFilter(commandInfo);
             break;
+        case "remove":
+            parseRemove(commandInfo);
+            break;
         default:
             Ui.printUnknownCommand();
             break;
@@ -186,4 +189,41 @@ public class Parser {
     /*public void parseList() {
         Inventory.listAll();
     } */
+
+    public void parseRemove(String rawInput) {
+        //if n/name or upc/UPC delete item from the list completely
+        // f/item or f/category or f/price or f/tag or index in list to delete
+        try {
+            if (rawInput == null) {
+                throw new MissingParametersException();
+            }
+            String[] commands = rawInput.split(" ");
+            switch(commands[0]) { // check for f/ commands
+            case "f/item" : //delete using upc (since unique)
+                if (!commands[1].startsWith("upc/") || commands.length == 1) {
+                    throw new MissingParametersException();
+                }
+                Inventory.removeByUpc(commands[1]); // "upc/...."
+                break;
+//            case "f/price":
+//                if(commands.length!=3){
+//                    throw new MissingParametersException();
+//                }
+//                parseFilterPrice(commands);
+//                break;
+//
+//            case "f/category":
+//            case "f/tag":
+//                if(commands.length<2){
+//                    throw new MissingParametersException();
+//                }
+//                parseFilterCategoryOrTag(commands, commands[0]);
+//                break;
+            default:
+                throw new MissingParametersException();
+            }
+        } catch (MissingParametersException e) {
+            System.out.println("exception");
+        }
+    }
 }
