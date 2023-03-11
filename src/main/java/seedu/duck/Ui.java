@@ -90,6 +90,26 @@ public class Ui {
         borderLine();
     }
 
+    static void help() {
+        borderLine();
+        System.out.println("\t （`･v･´ ）: Here are the commands you can give me:");
+        System.out.println("\t - list: I'll list out all the tasks you have recorded.");
+        System.out.println("\t - mark <task_number>: I'll mark that task as done.");
+        System.out.println("\t - unmark <task_number>: I'll mark that task as undone.");
+        System.out.println("\t - delete <task_number>: I'll delete that task from your list.");
+        System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
+        System.out.println("\t - bye: I will shut down my program.");
+        System.out.println("\t Here are the following ways to input tasks:");
+        System.out.println("\t Deadlines: <description> /by <yyyy-MM-dd HHmm>");
+        System.out.println("\t            (eg. Eat bread /by 2023-03-15 2015)");
+        System.out.println("\t Events: <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>");
+        System.out.println("\t            (eg. Meeting /from 2023-03-15 2015 /to 2023-03-15 2215)");
+        System.out.println("\t Todo: <description>");
+        System.out.println("\t            (eg. Water the plants) \n");
+        System.out.println("\t （`･v･´ ）: How else may I assist you today, human?");
+        borderLine();
+    }
+
     static void addedTaskMessage(Task currentTask) {
         borderLine();
         System.out.println("\t Alright, I have added this task: \n\t\t" + currentTask);
@@ -117,6 +137,22 @@ public class Ui {
         borderLine();
     }
 
+    static void expiredErrorMessage() {
+        borderLine();
+        System.out.println("\t Quack! I know humans wish to undo their past mistakes, " +
+                "but the start date has already passed!");
+        System.out.println("\t Please try again!");
+        borderLine();
+    }
+
+    static void startAfterEndErrorMessage() {
+        borderLine();
+        System.out.println("\t Quack! Somehow this human has time travelled, " +
+                "and the start date seems to be after the end date! ");
+        System.out.println("\t Please try again!");
+        borderLine();
+    }
+
     static void eventErrorMessage() {
         borderLine();
         System.out.println("\t Error. Please enter a valid description, start time and end time");
@@ -132,23 +168,12 @@ public class Ui {
     /** Prints the startup message, includes instructions on available commands */
     static void greetingMessage() {
         borderLine();
-        System.out.println("\t Hello! I'm Duck.");
-        System.out.println("\t Here are some commands you can give me:");
-        System.out.println("\t - list: I'll list out all the tasks you have recorded.");
-        System.out.println("\t - mark <task_number>: I'll mark that task as done.");
-        System.out.println("\t - unmark <task_number>: I'll mark that task as undone.");
-        System.out.println("\t - delete <task_number>: I'll delete that task from your list.");
-        System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
-        System.out.println("\t - bye: I will shut down my program.");
-        System.out.println("\t - Anything else will be recorded as a task. \n");
-        System.out.println("\t Format for tasks:");
-        System.out.println("\t   Deadlines: <description> /by <deadline>");
-        System.out.println("\t              (eg. Eat bread /by Thursday)");
-        System.out.println("\t      Events: <description> /from <start date/time> /to <end date/time>");
-        System.out.println("\t              (eg. Meeting /from March 3 8pm /to 9pm)");
-        System.out.println("\t        Todo: <description>");
-        System.out.println("\t              (eg. Water the plants) \n");
-        System.out.println("\t What can I do for you?");
+        System.out.println("\t （`･v･´ ）: Nice to meet you human. As you can see,  I'm a Duck.");
+        System.out.println("\t （´˘v˘´ ）: As a Duck, I can only understand simple commands. " +
+                "Human speech is so confusing!");
+        System.out.println("\t （´˘v˘´ ）: That being said, I am a smart Duck. " +
+                "If you wish to know what I understand, just enter 'help'.");
+        System.out.println("\t （`･v･´ ）: How may I assist you today, human?");
         borderLine();
     }
 
