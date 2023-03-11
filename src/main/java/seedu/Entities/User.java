@@ -1,5 +1,4 @@
 package seedu.Entities;
-
 public class User {
     private String name;
     private float weight;
@@ -8,7 +7,7 @@ public class User {
     public User() {
         this.name = "";
         this.weight = 0;
-        this.weight = 0;
+        this.height = 0;
     }
 
     public User(String name, float weight, float height) {
@@ -39,6 +38,12 @@ public class User {
 
     public void setHeight(float height) {
         this.height = height;
+    }
+
+    public double getCaloricNeeds (float weight, float height) {
+        double caloricNeeds = (88.4 + (13.4 * weight)) + (4.8 * height) - (5.68 * 23);
+        //assuming it's a dude
+        return caloricNeeds;
     }
 
     public String[] toWriteFormat() {
