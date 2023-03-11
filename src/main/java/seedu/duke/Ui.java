@@ -5,6 +5,7 @@ import static seedu.duke.ColorCode.ANSI_GREEN;
 import static seedu.duke.ColorCode.ANSI_BLUE;
 import static seedu.duke.ColorCode.ANSI_RED;
 import java.util.ArrayList;
+import java.lang.String;
 import java.lang.StringBuilder;
 
 public class Ui {
@@ -154,7 +155,6 @@ public class Ui {
             table.append(printRow(name, upc, qty, price, maxColHeight, columnWidths));
         }
 
-        //System.out.println(LINE);
         table.append(LINE);
         table.append(System.lineSeparator());
 
@@ -168,12 +168,10 @@ public class Ui {
         for (int i = 0; i < headings.length; i += 1) {
             String heading = headings[i];
             int width = columnWidths[i];
-            //System.out.printf(TABLE_LEFT + "%-" + width + "s ", heading);
             String formattedHeading = String.format(TABLE_LEFT + "%-" + width + "s ", heading);
-           // allHeadings = allHeadings.append(formattedHeading);
             allHeadings.append(formattedHeading);
         }
-        //System.out.println(TABLE_LEFT);
+
         allHeadings.append(TABLE_LEFT);
         allHeadings.append(System.lineSeparator());
 
@@ -184,7 +182,6 @@ public class Ui {
         StringBuilder tableSeparator = new StringBuilder();
 
         for (int columnWidth : columnWidths) {
-            //System.out.print(TABLE_CORNER);
             tableSeparator.append(TABLE_CORNER);
 
             for (int j = 0; j < columnWidth + 2; j++) {
@@ -192,7 +189,6 @@ public class Ui {
             }
         }
 
-        //System.out.println(TABLE_CORNER);
         tableSeparator.append(TABLE_CORNER);
         tableSeparator.append(System.lineSeparator());
         return tableSeparator.toString();
@@ -220,17 +216,6 @@ public class Ui {
             row.append(TABLE_RIGHT);
             row.append(System.lineSeparator());
 
-
-        /*    System.out.print(TABLE_LEFT);
-            printAttribute(nameLines, NAME_COL_WIDTH, i);
-            System.out.print(TABLE_MIDDLE);
-            printAttribute(upcLines, UPC_COL_WIDTH, i);
-            System.out.print(TABLE_MIDDLE);
-            printAttribute(qtyLines, QTY_COL_WIDTH, i);
-            System.out.print(TABLE_MIDDLE);
-            printAttribute(priceLines, PRICE_COL_WIDTH, i);
-            System.out.println(TABLE_RIGHT);*/
-
             if (i == maxRowHeight - 1) {
                 row.append(printTableSeparator(columnWidths));
             }
@@ -244,7 +229,6 @@ public class Ui {
 
         if (rowNumber < attributeLines.length) {
             String paddedAttribute = String.format("%1$-" + columnWidth + "s", attributeLines[rowNumber]);
-            //System.out.print(paddedString);
             attribute.append(paddedAttribute);
         } else {
             String paddedSpace = " ".repeat(columnWidth);
