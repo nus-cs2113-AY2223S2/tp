@@ -39,14 +39,16 @@ public class Parser {
         }
         int puModulesIndex = 0;
         for (Module module : puModules) {
+            puModulesIndex++;
             String moduleCode = module.getModuleCode();
             String moduleName = module.getModuleName();
             int moduleMCs = module.getModuleMCs();
             String nusModuleCode = module.getNusModuleCode();
             String nusModuleName = module.getNusModuleName();
             int nusModuleMCs = module.getNusModuleMCs();
-            System.out.print(puModulesIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]"  );
-            System.out.print(" map to ----> ");
+            System.out.print(puModulesIndex + ". ");
+            System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+            System.out.print("   maps to ----> ");
             System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
         }
     }
@@ -73,8 +75,9 @@ public class Parser {
             String nusModuleCode = module.getNusModuleCode();
             String nusModuleName = module.getNusModuleName();
             int nusModuleMCs = module.getNusModuleMCs();
-            System.out.print(listIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
-            System.out.print(" map to ----> ");
+            System.out.print(listIndex + ".");
+            System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+            System.out.print("   map to ----> ");
             System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
         }
         System.out.println(LINE);
