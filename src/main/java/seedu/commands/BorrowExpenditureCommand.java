@@ -1,7 +1,7 @@
 package seedu.commands;
 
-import seedu.expenditure.BorrowExpenditure;
-import seedu.expenditure.ExpenditureList;
+import seedu.Expenditure.BorrowExpenditure;
+import seedu.Expenditure.ExpenditureList;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package seedu.expenditure;
+package seedu.Expenditure;
 
 import java.util.ArrayList;
 

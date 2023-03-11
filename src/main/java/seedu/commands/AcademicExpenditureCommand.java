@@ -1,7 +1,7 @@
 package seedu.commands;
 
-import seedu.expenditure.AcademicExpenditure;
-import seedu.expenditure.ExpenditureList;
+import seedu.Expenditure.AcademicExpenditure;
+import seedu.Expenditure.ExpenditureList;
 import java.time.LocalDate;
 
 public class AcademicExpenditureCommand extends Command {

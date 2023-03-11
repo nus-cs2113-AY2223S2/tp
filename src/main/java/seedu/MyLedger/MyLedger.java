@@ -1,7 +1,7 @@
 package seedu.myledger;
 
 import seedu.TxtData.TxtFileStatus;
-import seedu.expenditure.ExpenditureList;
+import seedu.Expenditure.ExpenditureList;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -18,7 +18,6 @@ public class MyLedger {
     }
 
     public static void main(String[] args) {
-
         try {
             TxtFileStatus.fileAvailability();
         } catch (FileNotFoundException e) {
