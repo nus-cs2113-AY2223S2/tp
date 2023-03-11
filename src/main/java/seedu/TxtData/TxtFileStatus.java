@@ -1,6 +1,6 @@
 package seedu.TxtData;
 
-import seedu.myledger.MyLedger;
+import seedu.MyLedger.MyLedger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,7 +23,7 @@ public class TxtFileStatus {
         try {
             Files.createFile(filePath);
         } catch(IOException e) {
-            System.out.println("File already exists!");
+            System.out.println("Existing File Found!");
         }
         return filePath;
     }
@@ -44,7 +44,7 @@ public class TxtFileStatus {
 
         if (txtFile.exists()) {
             // Runs the program
-            MyLedger.runMyLedger();
+            MyLedger.runMyLedger(txtFile);
         }
     }
 }
