@@ -1,5 +1,7 @@
 package utils.parser;
 
+import utils.userinterface.UserInterface;
+
 public class Parser {
     private boolean isExecuting;
 
@@ -11,5 +13,19 @@ public class Parser {
         return isExecuting;
     }
 
-    //add all parser methods here
+    public void parseCommand() {
+        UserInterface ui = new UserInterface();
+        String command = ui.getCommand();
+        if (command.startsWith("card")) {
+
+        }
+    }
+
+    public void parseCard(String line) {
+
+    }
+
+
 }
+
+
