@@ -21,12 +21,15 @@ public class CardList {
         this.cards.remove(id);
     }
 
-    public void edit(int id, Card card) {
-        delete(id);
-        this.cards.add(id, card);
+    public boolean isEmpty() {
+        return cards.isEmpty();
     }
 
-    public void list() {
-        UserInterface.printList(this.cards);
+    public int size() {
+        return this.cards.size();
+    }
+
+    public Card get(int id) {
+        return this.cards.get(id);
     }
 }
