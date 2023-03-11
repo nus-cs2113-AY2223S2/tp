@@ -1,4 +1,4 @@
-package seedu.duke.data.expense;
+package seedu.duke.data;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

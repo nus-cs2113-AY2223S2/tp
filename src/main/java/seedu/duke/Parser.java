@@ -1,6 +1,6 @@
 package seedu.duke;
-import seedu.duke.data.expense.Expense;
-import seedu.duke.data.expense.ExpenseList;
+import seedu.duke.data.Expense;
+import seedu.duke.data.ExpenseList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
