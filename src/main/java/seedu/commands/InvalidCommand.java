@@ -4,9 +4,11 @@ import seedu.Expenditure.ExpenditureList;
 
 public class InvalidCommand extends Command{
     // Edit file accordingly
-    public static final String COMMAND_WORD = "delete";
+    public final String commandError;
 
-    public InvalidCommand() {}
+    public InvalidCommand(String commandError) {
+        this.commandError = commandError;
+    }
 
     @Override
     public CommandResult execute(ExpenditureList expenditures) {

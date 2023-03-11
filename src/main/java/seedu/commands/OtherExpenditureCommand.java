@@ -5,7 +5,7 @@ import seedu.Expenditure.OtherExpenditure;
 
 import java.time.LocalDate;
 
-public class OtherExpenditureCommand {
+public class OtherExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "other";
     private final String otherExpenditureDescription;
     private final double otherExpenditureValue;

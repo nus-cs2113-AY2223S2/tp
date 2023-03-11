@@ -5,7 +5,7 @@ import seedu.Expenditure.FoodExpenditure;
 
 import java.time.LocalDate;
 
-public class FoodExpenditureCommand {
+public class FoodExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "food";
     private final String foodExpenditureDescription;
     private final double foodExpenditureValue;

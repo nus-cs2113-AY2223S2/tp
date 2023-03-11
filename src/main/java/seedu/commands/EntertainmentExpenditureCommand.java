@@ -5,7 +5,7 @@ import seedu.Expenditure.ExpenditureList;
 
 import java.time.LocalDate;
 
-public class EntertainmentExpenditureCommand {
+public class EntertainmentExpenditureCommand extends Command{
     public static final String COMMAND_WORD = "entertainment";
     private final String entertainmentExpenditureDescription;
     private final double entertainmentExpenditureValue;

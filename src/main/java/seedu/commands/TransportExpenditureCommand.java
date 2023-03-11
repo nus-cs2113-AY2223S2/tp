@@ -5,7 +5,7 @@ import seedu.Expenditure.ExpenditureList;
 
 import java.time.LocalDate;
 
-public class TransportExpenditureCommand {
+public class TransportExpenditureCommand extends Command{
     public static final String COMMAND_WORD = "transport";
     private final String transportExpenditureDescription;
     private final double transportExpenditureValue;

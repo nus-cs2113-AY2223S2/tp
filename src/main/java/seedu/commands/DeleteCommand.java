@@ -5,8 +5,11 @@ import seedu.Expenditure.ExpenditureList;
 public class DeleteCommand extends Command{
     // Edit file accordingly
     public static final String COMMAND_WORD = "delete";
+    public final int index;
 
-    public DeleteCommand() {}
+    public DeleteCommand(int index) {
+        this.index = index;
+    }
 
     @Override
     public CommandResult execute(ExpenditureList expenditures) {
