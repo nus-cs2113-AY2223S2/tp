@@ -17,10 +17,12 @@ import seedu.duke.exceptions.InvalidReadFileException;
 
 public class Storage {
 
-    private String filePath = StorageConstants.RELATIVE_FILE_NAME;
-    private String delimiter = StorageConstants.DELIMITER;
+    private String filePath;
+    private String delimiter;
 
     public Storage(){
+        this.filePath = StorageConstants.RELATIVE_FILE_NAME;
+        this.delimiter = StorageConstants.DELIMITER;
     }
 
     /**
@@ -30,6 +32,7 @@ public class Storage {
      */
     public Storage(String filePath){
         this.filePath = filePath;
+        this.delimiter = StorageConstants.DELIMITER;
     }
 
     /**
