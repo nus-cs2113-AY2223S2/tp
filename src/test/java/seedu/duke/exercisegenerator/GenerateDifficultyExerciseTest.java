@@ -1,15 +1,13 @@
 package seedu.duke.exercisegenerator;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.commands.CommandHandler;
 import seedu.duke.commands.GenerateSpecificDifficultyCommand;
 import seedu.duke.errors.DukeError;
 import seedu.duke.exersisedata.ExerciseData;
-import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GenerateDifficultyExerciseTest {
     @Test
