@@ -1,13 +1,9 @@
 package seedu.myledger;
 
+import seedu.TxtData.TxtFileStatus;
 import seedu.expenditure.ExpenditureList;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class MyLedger {
@@ -24,7 +20,7 @@ public class MyLedger {
     public static void main(String[] args) {
 
         try {
-            fileAvailability();
+            TxtFileStatus.fileAvailability();
         } catch (FileNotFoundException e) {
             System.out.println("File does not exist.");
         }
@@ -40,44 +36,6 @@ public class MyLedger {
         System.out.println("What is your name?");
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
-    }
-
-    public static void fileAvailability() throws FileNotFoundException {
-        File txtFile = createFile();
-
-        if (txtFile.exists()) {
-            // Runs the program
-            runMyLedger();
-        }
-    }
-
-    public static File createFile() {
-        Path path = Paths.get(System.getProperty("user.home"), "my_ledger_data");
-        checkIfFolderExists(path);
-        Path textFilePath = checkIfFileExists();
-        File textFile = textFilePath.toFile();
-        return textFile;
-    }
-
-    public static Path checkIfFileExists() {
-        Path filePath = Paths.get(System.getProperty("user.home"), "my_ledger_data", "my_ledger_inputs.txt");
-        try {
-            Files.createFile(filePath);
-        } catch(IOException e) {
-            System.out.println("File already exists!");
-        }
-        return filePath;
-    }
-
-    public static void checkIfFolderExists(Path path) {
-        boolean directoryExists = Files.exists(path);
-        if (!directoryExists) {
-            try {
-                Files.createDirectory(path);
-            } catch (IOException e) {
-                System.out.println("Folder cannot be created!");
-            }
-        }
     }
 
 }
