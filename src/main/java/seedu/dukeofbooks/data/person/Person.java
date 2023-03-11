@@ -1,18 +1,17 @@
 package seedu.dukeofbooks.data.person;
 
-import seedu.dukeofbooks.data.book.Book;
+import seedu.dukeofbooks.data.exception.IllegalValueException;
+import seedu.dukeofbooks.data.loan.Loan;
 
 import java.util.ArrayList;
 import java.util.Objects;
-
-import seedu.dukeofbooks.data.exception.IllegalValueException;
 
 public class Person {
     public static final int DEFAULT_PHONE_NUMBER = 10000000;
     private PersonName name;
     private Phone phone;
 
-    private ArrayList<Book> borrowedBooks = new ArrayList<>();
+    private ArrayList<Loan> borrowedBooks = new ArrayList<>();
 
     /**
      * Assumption: Every field must be present and not null.
@@ -41,7 +40,7 @@ public class Person {
         return phone;
     }
 
-    public ArrayList<Book> getBorrowHistory() {
+    public ArrayList<Loan> getBorrowHistory() {
         return borrowedBooks;
     }
 
