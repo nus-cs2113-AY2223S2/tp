@@ -5,17 +5,26 @@ import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
 
 public class CommandHandler {
+
     private static boolean errorExists = false;
+
     public void handleUserCommands(String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator) {
         String[] userCommands = rawUserCommands.split(" ");
         Command command = null;
         errorExists = false;
         try {
             switch (userCommands[0]) {
-            case "generate":
+            case "quick":
+                System.out.println("I have reached here");
                 if (userCommands.length == 2) {
-                    command = new GenerateRandomCommand(userCommands[1]);
-                } else if (userCommands.length == 4) {
+                    System.out.println("I have also reached here");
+                    command = new QuickStartCommand(userCommands[1]);
+                    break;
+                } else {
+                    throw new DukeError("You did not type in the correct format for generating a command");
+                }
+            case "generate":
+                if (userCommands.length == 4) {
                     if (userCommands[1].equals("difficulty")) {
                         command = new GenerateSpecificDifficultyCommand(userCommands[2], userCommands[3]);
                     } else {
@@ -38,7 +47,7 @@ public class CommandHandler {
             System.out.println(e.getMessage());
             errorExists = true;
         }
-        if (!errorExists){
+        if (!errorExists) {
             command.executeCommand(ui, exerciseGenerator);
         }
     }
