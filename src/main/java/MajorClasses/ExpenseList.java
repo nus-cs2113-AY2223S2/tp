@@ -56,18 +56,6 @@ public class ExpenseList {
                 Currency.checkCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]));
         expenseList.add(expense);
     }
-
-//    @Override
-//    public boolean equals(Object obj)
-//    {
-//        if (obj == null)
-//            return false;
-//        if (obj == this)
-//            return true;
-//        return this.getExpenseList() == ((ExpenseList) obj). getExpenseList();
-//    }
-
-
-
+    
 }
 
