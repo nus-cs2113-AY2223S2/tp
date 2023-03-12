@@ -146,4 +146,85 @@ class ParserTest {
         assertNull(newCommand);
     }
 
+    @Test
+    void getCommand_noModuleAdded_expectNull() throws UnexpectedException {
+        String userCommand = "addmod";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_noModuleDeleted_expectNull() throws UnexpectedException {
+        String userCommand = "delmod";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_noMarkIndex_expectNull() throws UnexpectedException {
+        String userCommand = "mark";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_noUnmarkIndex_expectNull() throws UnexpectedException {
+        String userCommand = "unmark";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_nonIntegerMarkIndex_expectException() throws UnexpectedException {
+        String userCommand = "mark a";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+    @Test
+    void getCommand_nonIntegerUnmarkIndex_expectException() throws UnexpectedException {
+        String userCommand = "unmark a";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_noTodoDescription_expectNull() throws UnexpectedException {
+        String userCommand = "todo";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_noEventDescription_expectNull() throws UnexpectedException {
+        String userCommand = "event";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_noDeadlineDescription_expectNull() throws UnexpectedException {
+        String userCommand = "deadline";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+
 }

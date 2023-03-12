@@ -16,4 +16,29 @@ class UiTest {
         TaskList taskList = storage.loadTaskList(ui);
         assertDoesNotThrow(() -> ui.printList(taskList));
     }
+
+    @Test
+    void printList_emptyInput_noExceptionThrown() throws IOException {
+        Storage storage = new Storage("test.txt");
+        Ui ui = new Ui();
+        TaskList taskList = new TaskList();
+        assertDoesNotThrow(() -> ui.printList(taskList));
+    }
+
+    @Test
+    void printFoundList_normalInput_noExceptionThrown() throws IOException {
+        Storage storage = new Storage("test.txt");
+        Ui ui = new Ui();
+        TaskList taskList = storage.loadTaskList(ui);
+        assertDoesNotThrow(() -> ui.printFoundList(taskList));
+    }
+
+    @Test
+    void printFoundList_emptyInput_noExceptionThrown() throws IOException {
+        Storage storage = new Storage("test.txt");
+        Ui ui = new Ui();
+        TaskList taskList = new TaskList();
+        assertDoesNotThrow(() -> ui.printFoundList(taskList));
+    }
+
 }
