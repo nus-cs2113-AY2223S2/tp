@@ -43,9 +43,7 @@ public class Ui {
     public void showAllRecords(RecordList records) {
         System.out.println("    Here are the records in your list:");
 
-        for (int i = 0; i < records.getRecordCount(); i++) {
-            System.out.println("    " + (i+1) + ". "  + records.get(i));
-        }
+        records.printRecordList();
     }
 
     public void showBalance() {
