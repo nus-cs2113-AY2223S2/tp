@@ -26,6 +26,7 @@ public class Ui {
         printSeparator();
         System.out.println("Hello " + userName + "!" + " Welcome to Meal360, your ultimate Recipe Manager!");
         printSeparator();
+        takeName.close();
     }
 
     public void printGoodbyeMessage() {
