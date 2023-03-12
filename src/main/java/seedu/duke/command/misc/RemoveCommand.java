@@ -11,12 +11,12 @@ import seedu.duke.command.ExecutableCommand;
 public class RemoveCommand extends ExecutableCommand {
 
     private static int indexOfExistingIngredient;
-    String arguments;
-    String flag;
+    String name;
+    String amount;
 
     public RemoveCommand(String arguments, String flag) {
-        this.arguments = arguments;
-        this.flag = flag;
+        this.name = arguments;
+        this.amount = flag;
     }
 
     public static int findIndex(String name) {
@@ -56,8 +56,7 @@ public class RemoveCommand extends ExecutableCommand {
 
     public void execute(DukeSession dukeSession) {
         try {
-            int quantity = Integer.parseInt(flag);
-            String name = arguments;
+            int quantity = Integer.parseInt(amount);
             indexOfExistingIngredient = findIndex(name);
             validateInput(quantity, name);
             removeIngredient(dukeSession, quantity, name);
