@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.Exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
 
@@ -8,6 +9,6 @@ import seedu.duke.ui.Ui;
  */
 public abstract class Command {
 
-    public abstract void executeCommand(Ui ui, GenerateExercise exerciseGenerator);
+    public abstract void executeCommand(Ui ui, GenerateExercise exerciseGenerator) throws DukeError;
 
 }

@@ -1,7 +1,8 @@
 
 package seedu.duke.commands;
 
-import seedu.duke.errors.DukeError;
+import seedu.duke.Exceptions.DukeError;
+import seedu.duke.Exceptions.FilterTooManyError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.ui.Ui;
@@ -19,69 +20,48 @@ public class GenerateFilterCommand extends Command {
     private static final String CORE = "core";
     private static final String LEGS = "legs";
 
-    private final int count;
+    private final int filterArguments;
     private final String[] userCommands;
+    private final int numberOfExercisesToGenerate;
 
-    public GenerateFilterCommand(String[] userCommands) {
-        this.count = userCommands.length;
+    public GenerateFilterCommand(String[] userCommands) throws DukeError {
+        this.filterArguments = userCommands.length - 1;
         this.userCommands = userCommands;
+        String userGenerateCount = userCommands[userCommands.length-1];
+        try{
+            this.numberOfExercisesToGenerate = Integer.parseInt(userGenerateCount);
+        } catch (NumberFormatException error){
+            throw new DukeError("Invalid input! Please enter the number of exercises you want!");
+        }
     }
 
-    public void executeCommand(Ui ui, GenerateExercise exerciseGenerator) {
+    public void executeCommand(Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         ArrayList<ExerciseData> exercises = exerciseGenerator.generateSetAll();
-        int numberOfExercisesToGenerate = 0;
-        try {
-            for (int i = 1; i < count; i++) {
-                switch (userCommands[i]) {
-                case GYM:
-                    exercises = exerciseGenerator.generateFilteredGymSetFrom(exercises);
-                    break;
-                case STATIC:
-                    exercises = exerciseGenerator.generateFilteredBodySetFrom(exercises);
-                    break;
-                case EASY:
-                case MEDIUM:
-                case HARD:
-                    exercises = exerciseGenerator.generateFilteredDifficultySetFrom(exercises, userCommands[i]);
-                    break;
-                case UPPER:
-                case CORE:
-                case LEGS:
-                    exercises = exerciseGenerator.generateFilteredWorkoutTypeFrom(exercises, userCommands[i]);
-                    break;
-                // add more filters here!
-                /*
-                 * case "arms":
-                 * exercises = filterByArms(exercises);
-                 * break;
-                 * case "legs":
-                 * exercises = filterByLegs(exercises);
-                 * break;
-                 * case "core":
-                 * exercises = filterByCore(exercises);
-                 * break;
-                 * case "easy":
-                 * exercises = filterByEasy(exercises);
-                 * break;
-                 * case "medium":
-                 * exercises = filterByMedium(exercises);
-                 * break;
-                 * case "hard":
-                 * exercises = filterByHard(exercises);
-                 * break;
-                 */
-                default:
-                    try {
-                        numberOfExercisesToGenerate = Integer.parseInt(userCommands[i]);
-                    } catch (NumberFormatException e) {
-                        throw new DukeError("enter a valid number of exercises!");
-                    }
-                }
+        for (int i = 1; i < filterArguments; i++) {
+            switch (userCommands[i]) {
+            case GYM:
+                exercises = exerciseGenerator.generateFilteredGymSetFrom(exercises);
+                break;
+            case STATIC:
+                exercises = exerciseGenerator.generateFilteredBodySetFrom(exercises);
+                break;
+            case EASY:
+            case MEDIUM:
+            case HARD:
+                exercises = exerciseGenerator.generateFilteredDifficultySetFrom(exercises, userCommands[i]);
+                break;
+            case UPPER:
+            case CORE:
+            case LEGS:
+                exercises = exerciseGenerator.generateFilteredWorkoutTypeFrom(exercises, userCommands[i]);
+                break;
+            default:
+                throw new DukeError("Unknown filter input!");
             }
-        } catch (DukeError e) {
-            System.out.println(e.getMessage());
         }
-
+        if(numberOfExercisesToGenerate > exercises.size()){
+            throw new FilterTooManyError();
+        }
         exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
         ui.printExerciseFromList(exercises);
     }
