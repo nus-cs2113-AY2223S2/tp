@@ -9,7 +9,7 @@ public class Parser {
         if (task.equalsIgnoreCase("add")) {
             //parseAddCommand();
         } else if (task.toLowerCase().startsWith("remove")) {
-            //parseRemoveCommand();
+            parseRemoveCommand(task);
         } else if (task.toLowerCase().startsWith("list")) {
             parseListCommand();
         } else if (task.toLowerCase().startsWith("view")) {
@@ -23,11 +23,17 @@ public class Parser {
     }
     private static void parseByeCommand() {
         String userCommand = "bye";
-        command = new Command(userCommand);
+        command = new Command(userCommand, 0);
     }
 
     private static void parseListCommand() {
         String userCommand = "list";
-        command = new Command(userCommand);
+        command = new Command(userCommand, 0);
+    }
+
+    private static void parseRemoveCommand(String task) {
+        String userCommand = "remove";
+        int apptNum = Integer.parseInt(task.split(" ", 2)[1]);
+        command = new Command(userCommand, apptNum);
     }
 }
