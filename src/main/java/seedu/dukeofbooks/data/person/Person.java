@@ -50,7 +50,7 @@ public class Person {
     }
 
     public void printPreviousLoans() {
-        BorrowHistory.CheckHistory(this);
+        BorrowHistory.checkHistory(this);
     }
 
 

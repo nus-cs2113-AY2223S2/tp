@@ -20,14 +20,14 @@ class BorrowHistoryTest {
     Loan loan;
 
     @Test
-    public void create_Borrower_success() throws IllegalValueException {
+    public void createBorrowerSuccess() throws IllegalValueException {
         PersonName borrowerName = new PersonName("Borrower");
         Phone borrowerPhone = new Phone(12345678);
         borrower = new Person(borrowerName, borrowerPhone);
     }
 
     @Test
-    public void create_BorrowableItem_success() throws IllegalValueException {
+    public void createBorrowableItemSuccess() throws IllegalValueException {
         // Create Book in this test
         Isbn isbn = new Isbn("testIsbn");
         Title title = new Title("testTitle");
@@ -39,7 +39,7 @@ class BorrowHistoryTest {
     }
 
     @Test
-    public void create_Loan_success() {
+    public void createLoanSuccess() {
         loan = new Loan(book, borrower, LocalDateTime.now(), LocalDateTime.now().plusHours(1));
     }
 
@@ -52,5 +52,4 @@ class BorrowHistoryTest {
     void checkHistory() {
 
     }
-
 }

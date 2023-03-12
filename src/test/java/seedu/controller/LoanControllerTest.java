@@ -14,9 +14,16 @@ import seedu.dukeofbooks.data.person.Phone;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoanControllerTest {
+    private static final LoanRecords loanRecords = new LoanRecords();
+    private static final LoanController loanController =
+            new LoanController(loanRecords);
+
     private static Person createPerson(String name) {
         try {
             PersonName personName = new PersonName(name);
@@ -38,9 +45,6 @@ public class LoanControllerTest {
             return null;
         }
     }
-    private static final LoanRecords loanRecords = new LoanRecords();
-    private static final LoanController loanController =
-            new LoanController(loanRecords);
 
     @Test
     public void testBorrowBook() {
