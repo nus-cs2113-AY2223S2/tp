@@ -1,7 +1,4 @@
 package seedu.meal360;
-
-import java.util.Scanner;
-
 public class Ui {
 
     private static final int BOXWIDTH = 100;
