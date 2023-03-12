@@ -12,6 +12,7 @@ public class Command {
 
     protected String command;
     protected String toDo;
+    private Notes notes = new Notes(toDo);
 
     public Command(String command, String toDo) {
         this.command = command;
@@ -30,8 +31,6 @@ public class Command {
         this.toDo = toDo;
     }
 
-    private Notes notes = new Notes(toDo);
-
     public void executeCommand() {
         switch (command) {
         case "Bye":
@@ -43,6 +42,8 @@ public class Command {
             break;
         case "Notes":
             notes.setToDo(toDo);
+            notes.handleCache(command);
+            break;
         case "List":
             notes.handleCache(command);
             break;
