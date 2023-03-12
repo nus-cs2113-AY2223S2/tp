@@ -1,17 +1,18 @@
 package seedu.duke.save;
 
-import java.util.ArrayList;
+import seedu.duke.patient.Patient;
+import seedu.duke.ui.Information;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
-import java.io.FileWriter;
-import seedu.duke.patient.Patient;
-import seedu.duke.ui.Information;
 
 /**
  * @author Thunderdragon221
@@ -86,7 +87,7 @@ public class Storage {
             }
 
             int numberOfEntries = Integer.parseInt(scanner.nextLine());
-            ArrayList<String> diagnosisHistory = new ArrayList<String>();
+            ArrayList<String> diagnosisHistory = new ArrayList<>();
 
             for (int i = 0; i < numberOfEntries; i++) {
                 String diagnosis = scanner.nextLine();
@@ -118,8 +119,7 @@ public class Storage {
                 writer.write(password + "\n");
                 writer.write(name + "\n");
                 writer.write(numberOfDiagnoses + "\n");
-                for (int i = 0; i < numberOfDiagnoses; i++) {
-                    String diagnosis = diagnosisHistory.get(i);
+                for (String diagnosis : diagnosisHistory) {
                     writer.write(diagnosis + "\n");
                 }
             }

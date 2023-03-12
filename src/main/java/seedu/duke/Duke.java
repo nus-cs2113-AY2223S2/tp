@@ -8,15 +8,17 @@ import seedu.duke.diagnosis.symptoms.Symptom;
 import java.util.ArrayList;
 import java.util.List;
  */
-import java.util.Scanner;
 
+import seedu.duke.save.Storage;
 import seedu.duke.ui.Menu;
 import seedu.duke.ui.Parser;
-import seedu.duke.save.Storage;
+
+import java.util.Scanner;
 
 public class Duke {
 
-    private static String password = ""; // Stores user's password
+    public static String password = ""; // Stores user's password
+    public static String name = ""; //Stores user name
 
     /**
      * @author Jeraldchen
@@ -73,5 +75,13 @@ public class Duke {
      */
     public static String getPassword() {
         return password;
+    }
+
+    /*
+     * @author Geeeetyx
+     *
+     */
+    public static String getName() {
+        return name;
     }
 }
