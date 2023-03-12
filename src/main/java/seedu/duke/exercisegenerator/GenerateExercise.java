@@ -87,7 +87,8 @@ public class GenerateExercise {
     }
 
     //lipkuang - Added new filter for workout type.
-    public ArrayList<ExerciseData> generateFilteredWorkoutTypeFrom(ArrayList<ExerciseData> exerciseList, String workoutType) throws DukeError {
+    public ArrayList<ExerciseData> generateFilteredWorkoutTypeFrom(ArrayList<ExerciseData> exerciseList,
+                                                                   String workoutType) throws DukeError {
         String exerciseDataWorkoutType;
         String getWorkoutType;
         String getWorkoutTypeFinal;
