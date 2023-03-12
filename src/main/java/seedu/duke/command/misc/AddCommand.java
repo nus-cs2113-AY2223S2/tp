@@ -10,13 +10,13 @@ import seedu.duke.ingredient.Ingredient;
  */
 public class AddCommand extends ExecutableCommand {
 
-    public static int indexOfExistingIngredient;
-    String arguments;
-    String flag;
+    private static int indexOfExistingIngredient;
+    String name;
+    String amount;
 
     public AddCommand(String arguments, String flag) {
-        this.arguments = arguments;
-        this.flag = flag;
+        this.name = arguments;
+        this.amount = flag;
     }
 
     private static void addToExistingIngredients(DukeSession dukeSession, int quantity, int index) {
@@ -33,30 +33,29 @@ public class AddCommand extends ExecutableCommand {
         dukeSession.getUi().printMessage(String.valueOf(ingredient));
     }
 
-    public static boolean isInList(String name) {
+    public static int findIndex(String name) {
         for (int i = 0; i < DukeSession.ingredients.size(); i += 1) {
             if (DukeSession.ingredients.get(i).getName().equals(name)) {
-                indexOfExistingIngredient = i;
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 
     public void execute(DukeSession dukeSession) {
         try {
-            int quantity = Integer.parseInt(flag);
-            String name = arguments;
+            int quantity = Integer.parseInt(amount);
             if (quantity <= 0) {
                 throw new DukeException("OOPS, quantity must be greater than 0");
             }
             if (name.isBlank()) {
                 throw new DukeException("OOPS, name cannot be blank");
             }
-            if (isInList(name)) {
-                addToExistingIngredients(dukeSession, quantity, indexOfExistingIngredient);
-            } else {
+            indexOfExistingIngredient = findIndex(name);
+            if (indexOfExistingIngredient == -1) {
                 addNewIngredient(dukeSession, quantity, name);
+            } else {
+                addToExistingIngredients(dukeSession, quantity, indexOfExistingIngredient);
             }
         } catch (Exception e) {
             dukeSession.getUi().printMessage(String.valueOf(e));

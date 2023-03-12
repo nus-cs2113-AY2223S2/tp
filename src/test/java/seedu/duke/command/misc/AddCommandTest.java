@@ -7,7 +7,7 @@ import seedu.duke.ingredient.Ingredient;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.duke.command.misc.AddCommand.isInList;
+import static seedu.duke.command.misc.AddCommand.findIndex;
 
 class AddCommandTest {
     @Test
@@ -15,8 +15,8 @@ class AddCommandTest {
         DukeSession dukeSession = new DukeSession();
         Ingredient ingredient = new Ingredient("apple", 2);
         dukeSession.ingredients.add(ingredient);
-        assertTrue(isInList("apple"));
-        assertFalse(isInList("orange"));
+        assertEquals(0,findIndex("apple"));
+        assertEquals(-1, findIndex("orange"));
     }
 
     @Test
