@@ -23,7 +23,7 @@ public class CommandRes {
      * @param strBottom The last result we need to show.
      *
      */
-    public CommandRes(String strTop, ArrayList expense, String strBottom) {
+    public CommandRes(String strTop, ArrayList<Expense> expense, String strBottom) {
         this.messageTop = strTop;
         this.messageBottom = strBottom;
         this.expense = expense;
