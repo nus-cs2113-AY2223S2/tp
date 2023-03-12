@@ -42,8 +42,8 @@ public abstract class Record {
 
     public String toString() {
         return "Category - " + getCategory() +
-                "| Description - " + getDescription() +
-                "| Date - " + getDate() +
-                "| Value - " + getValue();
+                " | Description - " + getDescription() +
+                " | Date - " + getDate() +
+                " | Value - " + getValue();
     }
 }
