@@ -12,5 +12,10 @@ public class Venue {
         this.venueLocation = venueLocation;
         this.venueCapacity = venueCapacity;
     }
+
+    @Override
+    public String toString() {
+        return venueName + " " + venueLocation + " " + venueCapacity;
+    }
 }
 
