@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class RecordList {
 
-    private int balance;
     protected static ArrayList<Record> recordList = new ArrayList<>();
     protected static int recordCount = 0;
+    private int balance;
+    
 
     public RecordList() {
         recordList = new ArrayList<>();

@@ -58,10 +58,10 @@ public class ParserTest {
     }
 
     @Test
-    public void parseCommand_badInput_exceptionThrown() throws Exception{
+    public void parseCommand_badInput_exceptionThrown(){
         String badInput = "add expenses /de breakfast /da 01/02/23 /v 3.50";
         new Parser().parseCommand(badInput);
-        assertEquals("Command not recognized", outputStreamCaptor.toString().trim());
+        assertEquals("Command not recognized, please enter a valid command!", outputStreamCaptor.toString().trim());
 
     }
 
