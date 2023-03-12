@@ -5,6 +5,7 @@ package seedu.dukeofbooks;
  */
 public class DukeOfBooks {
     public static void main(String[] args) {
+        System.out.println("Hello, world!");
         start();
     }
     private static void start() {
