@@ -43,15 +43,16 @@ class ExpenseListTest {
 
     @Test
     public void listExpense_successful() {
-        // We use OutputStream to check whether the system out is align with expectation.
-        // Note that we should use \r\n to create new line
+        // To standardize all the line separator to \n just for doing test
+
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         String expected = "Sorry, there are no expenses tracked currently.\r\n"
-                + MESSAGE_DIVIDER;
+                + MESSAGE_DIVIDER + "\r\n";
         System.setOut(new PrintStream(outContent));
         boolean checkNotEmpty = new CommandList(expenseList.getExpenseList()).run();
+        String actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
         assertFalse(checkNotEmpty);
-        assertEquals(expected, outContent.toString().trim());
+        assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
 
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/2.5 " +
                 "t/02/02/2012 cur/USD cat/food")).run();
@@ -68,8 +69,7 @@ class ExpenseListTest {
         System.setOut(new PrintStream(outContent));
         checkNotEmpty = new CommandList(expenseList.getExpenseList()).run();
 
-        // To standardize all the line separator to \n just for doing test
-        String actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
+        actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
         assertTrue(checkNotEmpty);
         assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
 
