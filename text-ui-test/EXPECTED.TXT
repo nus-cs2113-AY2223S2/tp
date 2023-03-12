@@ -1,5 +1,13 @@
 A new card is now added:
-Question: hello
-Answer: world
+Question: q1
+Answer: a1
+Let's see the next flashcard!
+Question for the current flashcard is:
+q1
+Are you ready to view the answer?
+a1
+Have you got this correct?
+Great, you got it right!
+Congrats! You have reviewed all the flashcards due today!
 The input is in an incorrect format.
 Bye. Don't forget to come back later to study!

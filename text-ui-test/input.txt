@@ -1,3 +1,6 @@
-add /q hello /a world
+add /q q1 /a a1
+review
+a
+y
 foo 1
 bye
