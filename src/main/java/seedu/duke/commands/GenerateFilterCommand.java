@@ -10,9 +10,14 @@ import java.util.ArrayList;
 
 public class GenerateFilterCommand extends Command {
 
+    private static final String GYM = "gym";
+    private static final String STATIC = "static";
     private static final String EASY = "easy";
     private static final String MEDIUM = "medium";
     private static final String HARD = "hard";
+    private static final String UPPER = "upper";
+    private static final String CORE = "core";
+    private static final String LEGS = "legs";
 
     private final int count;
     private final String[] userCommands;
@@ -28,16 +33,21 @@ public class GenerateFilterCommand extends Command {
         try {
             for (int i = 1; i < count; i++) {
                 switch (userCommands[i]) {
-                case "gym":
+                case GYM:
                     exercises = exerciseGenerator.generateFilteredGymSetFrom(exercises);
                     break;
-                case "static":
+                case STATIC:
                     exercises = exerciseGenerator.generateFilteredBodySetFrom(exercises);
                     break;
                 case EASY:
                 case MEDIUM:
                 case HARD:
                     exercises = exerciseGenerator.generateFilteredDifficultySetFrom(exercises, userCommands[i]);
+                    break;
+                case UPPER:
+                case CORE:
+                case LEGS:
+                    exercises = exerciseGenerator.generateFilteredWorkoutTypeFrom(exercises, userCommands[i]);
                     break;
                 // add more filters here!
                 /*

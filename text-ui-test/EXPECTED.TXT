@@ -13,6 +13,7 @@ The following parameters are available for Generate command:
 gym (filters for exercises that need gym equipment)
 static (filters for static exercises)
 easy/medium/hard (filters for exercises with a specific difficulty)
+upper/core/legs (filters for exercises with a specific workout type)
     ____             __
    / __ )__  _____  / /
   / __  / / / / _ \/ / 
