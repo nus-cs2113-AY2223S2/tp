@@ -32,14 +32,16 @@ class ExpenseListTest {
     @Test
     public void addExpense_successful() {
         testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
-                "food", Currency.SGD));new CommandAdd(expenseList.getExpenseList(),
+                "food", Currency.SGD));
+        new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food")).run();
         assertEquals(testExpenseList.get(0), expenseList.getExpenseList().get(0));
 
         testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
-                "food", Currency.SGD));new CommandAdd(expenseList.getExpenseList(),
+                "food", Currency.SGD));
+        new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " +
-                "t/02-02-2012 cur/USD cat/food")).run();
+                        "t/02-02-2012 cur/USD cat/food")).run();
         assertNotEquals(testExpenseList.get(1), expenseList.getExpenseList().get(1));
 
         testExpenseList.clear();
@@ -85,7 +87,8 @@ class ExpenseListTest {
     @Test
     public void deleteExpense_successful() {
         testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
-                "food", Currency.SGD));new CommandAdd(expenseList.getExpenseList(),
+                "food", Currency.SGD));
+        new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food")).run();
         testExpenseList.remove(0);
         expenseList.deleteExpense("delete 1");
