@@ -2,7 +2,7 @@ package seedu.duke.data;
 
 import java.util.ArrayList;
 
-public abstract class RecordList {
+public class RecordList {
 
     private int balance;
     protected ArrayList<Record> recordList = new ArrayList<>();
