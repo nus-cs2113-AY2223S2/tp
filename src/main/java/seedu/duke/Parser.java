@@ -1,5 +1,9 @@
 package seedu.duke;
-import seedu.duke.data.*;
+import seedu.duke.data.Expense;
+import seedu.duke.data.ExpenseList;
+import seedu.duke.data.Income;
+import seedu.duke.data.IncomeList;
+import seedu.duke.data.RecordList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
