@@ -1,4 +1,3 @@
-//@@author Jeraldchen
 package seedu.duke.ui;
 
 // import seedu.duke.save.Storage;
@@ -14,8 +13,9 @@ import java.util.ArrayList;
 public class Parser {
 
     /**
-     * Parses the user input for the main menu.
-     * @param choice
+     * @author Jeraldchen
+     *     Parses the user input for the main menu.
+     *     @param choice
      */
     public static void parseWelcome (String choice) {
         switch(choice) {
@@ -34,7 +34,12 @@ public class Parser {
         }
     }
 
-    //@@author Thunderdragon221
+    /**
+     * @author Thunderdragon221
+     *     Parses the user input for the account menu.
+     *
+     *     @param choice
+     */
     public static void parseAccountCommand (String choice) {
         switch(choice) {
         case "1":

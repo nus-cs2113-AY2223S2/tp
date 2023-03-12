@@ -1,5 +1,3 @@
-//@@author Thunderdragon221
-
 package seedu.duke.save;
 
 import java.util.ArrayList;
@@ -15,6 +13,10 @@ import java.io.FileWriter;
 import seedu.duke.patient.Patient;
 import seedu.duke.ui.Information;
 
+/**
+ * @author Thunderdragon221
+ *     This class reads and writes information to and from the patient-data file.
+ */
 public class Storage {
 
     /** Specifies the directory path to be created */

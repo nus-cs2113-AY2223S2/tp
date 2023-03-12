@@ -1,10 +1,13 @@
-//@@author Jeraldchen
 package seedu.duke.ui;
 
 import seedu.duke.patient.Patient;
 
 import java.util.HashMap;
 
+/**
+ * @author Jeraldchen
+ *     This class stores information on all patients registered by DoctorDuke.
+ */
 public class Information {
     public static HashMap<String, Patient> patientsList = new HashMap<>();
 
