@@ -12,23 +12,23 @@ public class Parser {
     public Command parseCommand(String userInput) {
         String commandPhrase = userInput.split(" ")[0];
         switch (commandPhrase) {
-            case "add":
-                try {
-                    return reformatAddCommandInput(userInput);
-                } catch (InvalidAddFlashcardInputException e) {
-                    System.out.println("The input is in an incorrect format, please follow the format in user guide");
-                } catch (EmptyFlashcardQuestionException e) {
-                    System.out.println("The question of this card is empty, please enter one.");
-                } catch (EmptyFlashcardAnswerException e) {
-                    System.out.println("The answer for this flashcard is empty, please enter one.");
-                }
-                break;
-            case "review":
-                return new ReviewCommand();
-            case "bye":
-                return new ByeCommand();
-            default:
-                return new UnknownCommand();
+        case "add":
+            try {
+                return reformatAddCommandInput(userInput);
+            } catch (InvalidAddFlashcardInputException e) {
+                System.out.println("The input is in an incorrect format, please follow the format in user guide");
+            } catch (EmptyFlashcardQuestionException e) {
+                System.out.println("The question of this card is empty, please enter one.");
+            } catch (EmptyFlashcardAnswerException e) {
+                System.out.println("The answer for this flashcard is empty, please enter one.");
+            }
+            break;
+        case "review":
+            return new ReviewCommand();
+        case "bye":
+            return new ByeCommand();
+        default:
+            return new UnknownCommand();
         }
         return new UnknownCommand();
     }
@@ -47,7 +47,8 @@ public class Parser {
      * @throws EmptyFlashcardAnswerException     If the string is empty after
      *                                           ANSWER_START_INDICATOR.
      */
-    public AddCommand reformatAddCommandInput(String userInput) throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException, EmptyFlashcardAnswerException {
+    public AddCommand reformatAddCommandInput(String userInput)
+            throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException, EmptyFlashcardAnswerException {
         int positionOfStartOfQuestion = userInput.indexOf(QUESTION_START_INDICATOR);
         int positionOfStartOfAnswer = userInput.indexOf(ANSWER_START_INDICATOR);
         if (positionOfStartOfAnswer == -1 || positionOfStartOfQuestion == -1) {
@@ -56,11 +57,15 @@ public class Parser {
         String questionText = "";
         String answerText = "";
         if (positionOfStartOfAnswer > positionOfStartOfQuestion) {
-            questionText = userInput.substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length(), positionOfStartOfAnswer).trim();
+            questionText = userInput
+                    .substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length(), positionOfStartOfAnswer)
+                    .trim();
             answerText = userInput.substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length()).trim();
         } else {
             questionText = userInput.substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length()).trim();
-            answerText = userInput.substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length(), positionOfStartOfQuestion).trim();
+            answerText = userInput
+                    .substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length(), positionOfStartOfQuestion)
+                    .trim();
         }
 
         if (questionText.isEmpty()) {
