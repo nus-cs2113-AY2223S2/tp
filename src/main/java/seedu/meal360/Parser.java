@@ -13,7 +13,6 @@ public class Parser {
 
         StringBuilder recipeName = new StringBuilder(input[2]);
         for(int i = 3; i < input.length; i++){
-            assert false;
             recipeName.append(" ").append(input[i]);
         }
         HashMap<String, Integer> ingredients = new HashMap<>();
@@ -27,13 +26,11 @@ public class Parser {
                 String[] command = line.trim().split(" ");
                 StringBuilder iName = new StringBuilder(command[0]);
                 for(int i=1; i < command.length-1; i++){
-                    assert false;
                     iName.append(" ").append(command[i]);
                 }
                 ingredients.put(iName.toString(), Integer.parseInt(command[command.length-1]));
             }
         }
-        assert false;
         Recipe newRecipe = new Recipe(recipeName.toString(), ingredients);
         recipeList.addRecipe(newRecipe);
         return newRecipe;
