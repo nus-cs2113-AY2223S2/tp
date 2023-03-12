@@ -19,6 +19,19 @@ public enum Currency {
         }
     }
 
+    /**
+     * Given the type of currency, return a string of it.
+     */
+    public static String returnCurrency(Currency currency) {
+        if (currency.equals(SGD)) {
+            return "SGD";
+        } else if (currency.equals(USD)) {
+            return "USD";
+        } else {
+            return "SGD"; // By default
+        }
+    }
+
     public static double getExchangeRate(Currency from, Currency to) {
         // Could return the currency exchange rate for other methods' usage
         return 1;
