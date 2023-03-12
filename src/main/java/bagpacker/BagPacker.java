@@ -1,12 +1,9 @@
 package bagpacker;
 
-import bagpacker.commands.Command;
 import bagpacker.iohandler.Storage;
 import bagpacker.iohandler.Ui;
 import bagpacker.iohandler.Parser;
 import bagpacker.packingfunc.PackingList;
-
-import java.util.ArrayList;
 
 public class BagPacker {
     private static PackingList packingList;

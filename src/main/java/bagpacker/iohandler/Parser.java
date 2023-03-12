@@ -8,8 +8,6 @@ import bagpacker.exception.EmptyInputException;
 import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
