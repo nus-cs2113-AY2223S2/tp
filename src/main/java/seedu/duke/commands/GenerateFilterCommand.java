@@ -64,12 +64,7 @@ public class GenerateFilterCommand extends Command {
         if(numberOfExercisesToGenerate > exercises.size()){
             throw new FilterTooManyError();
         }
-        ArrayList<CompletedWorkout>completedList = new ArrayList<>();
         exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
-        for (var i:exercises){
-            completedList.add(new CompletedWorkout(i));
-        }
-        WriteUserData.writeToJson(completedList);
         ui.printExerciseFromList(exercises);
     }
 }
