@@ -13,10 +13,29 @@ public class Ui {
     }
 
     /**
+     * Obtains user input and interprets
+     * what needs to be performed by
+     * certain keywords.
+     */
+    public static void getUserCommand(EventList eventList) {
+
+        Scanner in = new Scanner(System.in);
+
+        String cmd;
+        cmd = in.nextLine();
+
+        while (!(cmd.equals("bye"))) {
+            Parser.parseCommand(cmd, eventList);
+            cmd = in.nextLine();
+        }
+
+    }
+
+    /**
      * Prints a welcome message for
      * users when application is launched
      */
-    public static void printWelcome() {
+    public static void showWelcome() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
