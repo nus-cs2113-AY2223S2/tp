@@ -80,9 +80,9 @@ public class Menu {
             System.out.println("Login successful!");
             System.out.println("Welcome " + name + "!");
         } else {
-        /*
-          * @author JeraldChen
-         */
+            /*
+             * @author JeraldChen
+             */
             System.out.println("Login failed! Please register first or key in the correct information.");
         }
     }
@@ -96,10 +96,11 @@ public class Menu {
         System.exit(0);
     }
 
-    /**
-     * @author Thunderdragon221
-     * Shows the account menu.
-     */
+    /*
+    * @author Thunderdragon221
+    *
+    * Shows the account menu.
+    */
     public static void showAccountMenu() {
         System.out.println("What would you like to do? Please enter the number:");
         System.out.println("1. Report symptoms");
@@ -136,10 +137,9 @@ public class Menu {
 
     /**
      * Checks if symptom is valid, and adds it to the list of symptoms.
-     *
+     * @author tanyizhe
      * @param scanner  takes in user input
      * @param symptoms list of symptoms
-     * @author tanyizhe
      */
     private static void addSymptomToSymptomList(Scanner scanner, ArrayList<Symptom> symptoms) {
         Symptom symptomToBeAdded;

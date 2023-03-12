@@ -15,11 +15,11 @@ import static seedu.duke.ui.Information.patientsList;
 
 public class Parser {
 
-    /**
-     * @param choice
-     * @author Jeraldchen
-     * Parses the user input for the main menu.
-     */
+    /*
+    * @author Jeraldchen
+    * @param choice
+    * Parses the user input for the main menu.
+    */
     public static void parseWelcome(String choice) {
         switch (choice) {
         case "1":
@@ -37,11 +37,11 @@ public class Parser {
         }
     }
 
-    /**
-     * @param choice Users choice of input
-     * @author Thunderdragon221
-     * Parses the user input for the account menu.
-     */
+    /*
+    * @author Thunderdragon221
+    * @param choice Users choice of input
+    * Parses the user input for the account menu.
+    */
     public static void parseAccountCommand(String choice) {
         switch (choice) {
         case "1":
@@ -61,12 +61,12 @@ public class Parser {
             }
             saveData();
 
-        /*
-         * @author Thunderdragon221
-         *     Parses the user input for the account menu.
-         *
-         *     @param choice
-         */
+            /*
+             * @author Thunderdragon221
+             *     Parses the user input for the account menu.
+             *
+             *     @param choice
+             */
             break;
         case "2":
             Information.printDiagnosisHistory(Duke.getPassword());
