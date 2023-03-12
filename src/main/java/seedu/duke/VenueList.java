@@ -9,6 +9,7 @@ public class VenueList {
     public VenueList(ArrayList<Venue> venueList) {
         this.venueList = venueList;
     }
+    
     public static void print() throws EmptyListException {
         if (venueList.isEmpty()) {
             throw new EmptyListException();

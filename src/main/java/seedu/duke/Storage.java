@@ -21,6 +21,7 @@ public class Storage {
         }
         return venueList;
     }
+
     public static void load() throws FileNotFoundException {
         File file = new File(filePath); // create a File for the given file path
         Scanner s = new Scanner(file); // create a Scanner using the File as the source
@@ -34,6 +35,7 @@ public class Storage {
             venueList.add(v);
         }
     }
+
     public static void checkFileAccess() throws IOException {
         File dir = new File(dirPath);
         if (!dir.exists()) {
