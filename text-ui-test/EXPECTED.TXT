@@ -10,7 +10,4 @@ How may I help you?
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 > ________________________________________________
-Please enter a valid command!
-________________________________________________
-Enter a command or /help to see the list of commands available.
-> 
+error
