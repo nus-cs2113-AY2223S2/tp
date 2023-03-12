@@ -1,20 +1,14 @@
 package seedu.TxtData;
 
 import seedu.Expenditure.AcademicExpenditure;
-import seedu.Expenditure.TuitionExpenditure;
 import seedu.Expenditure.Expenditure;
 import seedu.Expenditure.FoodExpenditure;
-import seedu.Expenditure.TransportExpenditure;
-import seedu.MyLedger.MyLedger;
 import seedu.Expenditure.ExpenditureList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -99,7 +93,8 @@ public class TxtFileStatus {
                 break;
             case "Tu":
                 break;
-
+            default:
+                break;
             }
         }
     }
