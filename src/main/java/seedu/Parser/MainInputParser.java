@@ -1,5 +1,7 @@
 package seedu.Parser;
 
+import seedu.Expenditure.ExpenditureList;
+import seedu.TxtData.TxtFileStatus;
 import seedu.commands.Command;
 import seedu.commands.EditCommand;
 import seedu.commands.HelpCommand;
@@ -24,6 +26,7 @@ public class MainInputParser {
 
         switch (command) {
         case ExitCommand.COMMAND_WORD:
+            ExpenditureList.saveList();
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
@@ -43,6 +46,7 @@ public class MainInputParser {
             return ParseAdd.addItem(line, command);
         case LendExpenditureCommand.COMMAND_WORD:
         case BorrowExpenditureCommand.COMMAND_WORD:
+            ExpenditureList.saveList();
             return ParseLendBorrow.lendBorrowItem(line, command);
         default:
             // Commands that are not listed above

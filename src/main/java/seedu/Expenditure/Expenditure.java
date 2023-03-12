@@ -39,5 +39,23 @@ public abstract class Expenditure {
     public String toString() {
         return String.format("Date: %s || Value: %s || Description: %s", getDate(), getValue(), getDescription());
     }
+    /**
+     * @return String representing the type of expenditure
+     */
+    public String getExpenditureType() {
+        return "E";
+    }
 
+    /**
+     * Outputs a formatted String containing information of the task saved in a text file.
+     * Overridden for expenditure types with extra descriptions
+     * @return String containing information of the expenditure.
+     */
+    //override not done for special expenditures
+    public String saveInfo() {
+        return getExpenditureType() +
+                "d/" + description +
+                "v/" + value +
+                "t/" + date + "\n";
+    }
 }

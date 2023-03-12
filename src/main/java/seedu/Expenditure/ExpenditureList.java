@@ -1,9 +1,13 @@
 package seedu.Expenditure;
 
+import seedu.TxtData.TxtFileStatus;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ExpenditureList {
-    ArrayList<Expenditure> expenditures;
+    private static ArrayList<Expenditure> expenditures;
 
     public ExpenditureList() {
         expenditures = new ArrayList<>();
@@ -27,6 +31,18 @@ public class ExpenditureList {
         }
         return stringOfExpenditures.toString().stripTrailing();
     }
+
+    public static void saveList() {
+        try {
+            TxtFileStatus.saveExpenditureList(expenditures);
+        } catch (IOException e) {
+            System.out.println("Error saving file");
+        }
+    }
+
+    /**
+     * During start up, initializes expenditureList using save file data.
+     */
 
 
 }

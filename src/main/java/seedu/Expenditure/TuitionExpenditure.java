@@ -23,4 +23,7 @@ public class TuitionExpenditure extends Expenditure {
         return String.format("[Tuition] || %s || %s", getPaidIcon(), super.toString());
     }
 
+    public String getExpenditureType() {
+        return "Tu";
+    }
 }

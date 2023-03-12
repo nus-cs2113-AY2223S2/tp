@@ -22,4 +22,9 @@ public class AccommodationExpenditure extends Expenditure {
     public String toString() {
         return String.format("[Accommodation] || %s || %s", getStatusIcon(), super.toString());
     }
+
+    @Override
+    public String getExpenditureType() {
+        return "Accom";
+    }
 }

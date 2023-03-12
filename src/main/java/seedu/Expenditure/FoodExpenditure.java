@@ -11,4 +11,9 @@ public class FoodExpenditure extends Expenditure {
     public String toString() {
         return String.format("[Food] || %s", super.toString());
     }
+
+    @Override
+    public String getExpenditureType() {
+        return "F";
+    }
 }

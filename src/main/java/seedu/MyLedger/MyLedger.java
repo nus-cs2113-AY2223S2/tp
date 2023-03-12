@@ -18,7 +18,8 @@ public class MyLedger {
 
     public static void main(String[] args) {
         try {
-            TxtFileStatus.fileAvailability();
+            TxtFileStatus.checkFile();
+            MyLedger.runMyLedger();
         } catch (FileNotFoundException e) {
             System.out.println("File does not exist.");
         }
@@ -33,6 +34,7 @@ public class MyLedger {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
+        initializeList();
         readUserInputs();
     }
 
@@ -49,7 +51,17 @@ public class MyLedger {
         Command finalCommand = MainInputParser.parseInputs(line);
         CommandResult result = finalCommand.execute(expenditures);
         String textOutput = result.getCommandResult();
+        ExpenditureList.saveList();
         System.out.println(textOutput);
         return finalCommand.isExit();
     }
+
+    public static void initializeList() {
+        try {
+            TxtFileStatus.initializeExpenditureList(expenditures);
+        } catch (FileNotFoundException e){
+            System.out.println("Error finding save file during initialization");
+        }
+    }
+
 }
