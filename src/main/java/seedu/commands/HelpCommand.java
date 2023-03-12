@@ -12,7 +12,8 @@ public class HelpCommand extends Command {
     @Override
     public CommandResult execute(ExpenditureList expenditures) {
         return new CommandResult(
-                "Here are the list of commands and their respective functions. Please take note of the FORMAT that is stated below\n"
+                "Here are the list of commands and their respective functions. "
+                        + "Please take note of the FORMAT that is stated below\n"
                         +
                         "1. add: Add an expenditure to the record\n" +
                         "Format: add d/DATE a/AMOUNT c/CATEGORY\n" +
