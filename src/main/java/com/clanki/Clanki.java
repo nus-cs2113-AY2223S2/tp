@@ -10,9 +10,9 @@ import com.clanki.ui.Ui;
 import java.util.ArrayList;
 
 public class Clanki {
-    private Ui ui;
-    private FlashcardList flashcardList;
-    private Parser parser;
+    private final Ui ui;
+    private final FlashcardList flashcardList;
+    private final Parser parser;
     private ArrayList<Flashcard> flashcardsForToday;
     private int currentFlashcardIndex;
 
@@ -20,6 +20,10 @@ public class Clanki {
         this.ui = new Ui();
         this.flashcardList = new FlashcardList();
         this.parser = new Parser();
+    }
+
+    public static void main(String[] args) {
+        new Clanki().run();
     }
 
     public void run() {
@@ -32,9 +36,5 @@ public class Clanki {
                 return;
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new Clanki().run();
     }
 }
