@@ -7,9 +7,7 @@ import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,16 +30,11 @@ public class StorageTest {
         FinancialReport financialReport = new FinancialReport(statements);
         String filePath = "rainyDay.txt";
         financialReport.addStatement(new FinancialStatement("noodles", "in", 5));
+
         Storage.writeToFile(financialReport, filePath);
+        FinancialReport financialReportLoaded = new FinancialReport(Storage.loadFromFile(filePath));
 
-        FileInputStream readData = new FileInputStream(filePath);
-        ObjectInputStream readStream = new ObjectInputStream(readData);
-        @SuppressWarnings("unchecked")
-        ArrayList<FinancialStatement> data = (ArrayList<FinancialStatement>) readStream.readObject();
-        FinancialReport financialReportData = new FinancialReport(data);
-        readStream.close();
-
-        assertEquals(Command.generateReport(financialReport), Command.generateReport(financialReportData));
+        assertEquals(Command.generateReport(financialReport), Command.generateReport(financialReportLoaded));
     }
 
     @Test
