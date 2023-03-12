@@ -1,6 +1,7 @@
 package common;
 
 import command.CommandAdd;
+import command.CommandList;
 import data.Currency;
 import data.Expense;
 import data.ExpenseList;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 class ExpenseListTest {
@@ -33,7 +36,8 @@ class ExpenseListTest {
 
     @Test
     public void listExpense_successful() {
-
+        boolean checkNotEmpty = new CommandList(expenseList.getExpenseList()).run();
+        assertFalse(checkNotEmpty);
     }
 
     @Test
