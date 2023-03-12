@@ -1,6 +1,6 @@
 package seedu.duke.data;
 
-public class Record {
+public abstract class Record {
     protected String category;
     protected String description;
     protected String date;
@@ -13,6 +13,9 @@ public class Record {
      * @param date string of record date
      * @param value float of record amount
      */
+    public Record(){
+
+    }
     public Record(String category, String description, String date, float value) {
         this.category = category;
         this.description = description;
