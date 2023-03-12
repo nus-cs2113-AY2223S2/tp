@@ -14,14 +14,13 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CommandTest {
+    ArrayList<FinancialStatement> statements = new ArrayList<>();
+    FinancialReport financialReport = new FinancialReport(statements);
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
-
-    ArrayList<FinancialStatement> statements = new ArrayList<>();
-    FinancialReport financialReport = new FinancialReport(statements);
 
     @Before
     public void setUpStreams() {
