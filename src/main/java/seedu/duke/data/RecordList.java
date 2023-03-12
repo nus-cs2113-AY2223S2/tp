@@ -2,7 +2,7 @@ package seedu.duke.data;
 
 import java.util.ArrayList;
 
-public class RecordList {
+public abstract class RecordList {
 
     protected static ArrayList<Record> recordList = new ArrayList<>();
     protected static int recordCount = 0;
@@ -14,7 +14,7 @@ public class RecordList {
         recordCount = 0;
     }
 
-    public ArrayList<Record> getRecordList() {
+    public static ArrayList<Record> getRecordList() {
         return recordList;
     }
 
