@@ -2,8 +2,6 @@ package seedu.rainyDay;
 
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
-import seedu.rainyDay.data.FinancialStatement;
-
 
 import java.io.IOException;
 
