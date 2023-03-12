@@ -22,10 +22,10 @@ public class Parser {
         case "add expense":
             addExpenses(argumentsByField);
             break;
-        case "list incomes":
+        case "list income":
             IncomeList.printIncomeList();
             break;
-        case "list expenses":
+        case "list expense":
             ExpenseList.printExpenseList();
             break;
         case "list":
@@ -71,7 +71,7 @@ public class Parser {
             float expenseValue = Float.parseFloat(argumentsByField.get("v"));
             
             Expense exp = new Expense(expenseCategory, expenseDescription, expenseDate, expenseValue);
-            ExpenseList.addRecord(exp);
+            ExpenseList.addExpense(exp);
             RecordList.addRecord(exp);
             System.out.println("Expense added");
         } catch (Exception e) {
@@ -87,7 +87,7 @@ public class Parser {
             float incomeValue = Float.parseFloat(argumentsByField.get("v"));
 
             Income inc = new Income(incomeCategory, incomeDescription, incomeDate, incomeValue);
-            IncomeList.addRecord(inc);
+            IncomeList.addIncome(inc);
             RecordList.addRecord(inc);
             System.out.println("Income added");
         } catch (Exception e) {
