@@ -5,7 +5,6 @@ package seedu.duke.ui;
 // import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import seedu.duke.diagnosis.symptoms.Symptom;
 import seedu.duke.save.Storage;
 import seedu.duke.patient.Patient;
