@@ -2,23 +2,26 @@ package seedu.duke.ui;
 
 // import seedu.duke.save.Storage;
 
-// import static seedu.duke.ui.Information.patientsList;
-
 import seedu.duke.Duke;
+import seedu.duke.diagnosis.IllnessMatch;
 import seedu.duke.diagnosis.symptoms.Symptom;
 import seedu.duke.medicine.MedicineManager;
-// import seedu.duke.ui.Information;
+
 import java.util.ArrayList;
+
+import static seedu.duke.Duke.password;
+import static seedu.duke.save.Storage.saveData;
+import static seedu.duke.ui.Information.patientsList;
 
 public class Parser {
 
     /**
+     * @param choice
      * @author Jeraldchen
-     *     Parses the user input for the main menu.
-     *     @param choice
+     * Parses the user input for the main menu.
      */
-    public static void parseWelcome (String choice) {
-        switch(choice) {
+    public static void parseWelcome(String choice) {
+        switch (choice) {
         case "1":
             Menu.register();
             break;
@@ -35,18 +38,35 @@ public class Parser {
     }
 
     /**
+     * @param choice Users choice of input
      * @author Thunderdragon221
-     *     Parses the user input for the account menu.
-     *
-     *     @param choice
+     * Parses the user input for the account menu.
      */
-    public static void parseAccountCommand (String choice) {
-        switch(choice) {
+    public static void parseAccountCommand(String choice) {
+        switch (choice) {
         case "1":
             ArrayList<Symptom> symptoms = Menu.getUserSymptoms();
             Menu.displayPossibleIllness(symptoms);
             MedicineManager medicineManager = new MedicineManager();
-            medicineManager.analyseIllness(symptoms);
+
+            /*
+             * @author Geeeetyx
+             * Update patient records with new diagnoses. (Medicine not included yet)
+             * Saves to file when updated.
+             */
+            ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
+
+            for (IllnessMatch illnessMatch : possibleIllnesses) {
+				patientsList.get(password).updatePatientDiagnosisHistory(illnessMatch.getIllness().getIllnessName());
+            }
+            saveData();
+
+        /*
+         * @author Thunderdragon221
+         *     Parses the user input for the account menu.
+         *
+         *     @param choice
+         */
             break;
         case "2":
             Information.printDiagnosisHistory(Duke.getPassword());

@@ -6,7 +6,7 @@ package seedu.duke.patient;
 import java.util.ArrayList;
 
 public class Patient {
-    public static ArrayList<String> patientDiagnosisHistory;
+    public static ArrayList<String> patientDiagnosisHistory = new ArrayList<>();
     protected String name;
     protected String password;
 
@@ -38,6 +38,10 @@ public class Patient {
 
     public ArrayList<String> getPatientDiagnosisHistory() {
         return patientDiagnosisHistory;
+    }
+
+    public void updatePatientDiagnosisHistory(String diagnosis) {
+        patientDiagnosisHistory.add(diagnosis);
     }
 }
 
