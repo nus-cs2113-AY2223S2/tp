@@ -1,5 +1,7 @@
 package functionalities;
 
+import exception.SniffException;
+
 import java.util.ArrayList;
 
 public class SniffTasks {
@@ -10,7 +12,12 @@ public class SniffTasks {
     public void addAppointment() {
     }
 
-    public void removeAppointment() {
+    public void removeAppointment(int apptNum) throws SniffException {
+        try {
+            appointments.remove(apptNum);
+        } catch (IndexOutOfBoundsException e) {
+            throw new SniffException(" The remove command description is invalid!");
+        }
     }
 
     public Appointment getAppointment(int apptNum) {
