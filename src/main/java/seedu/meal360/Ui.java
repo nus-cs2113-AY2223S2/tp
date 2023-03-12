@@ -13,7 +13,7 @@ public class Ui {
     }
 
     public void printWelcomeMessage() {
-        Scanner takeName = new Scanner(System.in);
+        //Scanner takeName = new Scanner(System.in);
         printSeparator();
         String logo = " __  __          _ ____  __  __\n" +
                 "|  \\/  |___ __ _| |__ / / / /  \\\n" +
@@ -22,11 +22,11 @@ public class Ui {
 
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
-        String userName = takeName.nextLine();
+        //String userName = takeName.nextLine();
         printSeparator();
-        System.out.println("Hello " + userName + "!" + " Welcome to Meal360, your ultimate Recipe Manager!");
-        printSeparator();
-        takeName.close();
+        ///System.out.println("Hello " + userName + "!" + " Welcome to Meal360, your ultimate Recipe Manager!");
+        //printSeparator();
+        //takeName.close();
     }
 
     public void printGoodbyeMessage() {
