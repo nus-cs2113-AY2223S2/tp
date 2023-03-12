@@ -1,8 +1,13 @@
 package seedu.dukeofbooks.data.loan;
 import seedu.dukeofbooks.data.person.Person;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
 import seedu.dukeofbooks.data.book.BorrowableItem;
 
-import java.util.*;
 
 public class LoanRecords {
     private final List<Loan> internalList;
@@ -73,10 +78,6 @@ public class LoanRecords {
         return internalList.add(toAdd);
     }
 
-    public boolean remove(Loan toRemove) {
-        return internalList.remove(toRemove);
-    }
-
     public void clear() {
         internalList.clear();
     }
@@ -87,8 +88,10 @@ public class LoanRecords {
         }
         return internalList.get(index);
     }
-
-
+    
+    public boolean remove(Loan toRemove) {
+        return internalList.remove(toRemove);
+    }
 
     public Loan remove(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= internalList.size()) {
