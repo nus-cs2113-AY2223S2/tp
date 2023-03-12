@@ -28,4 +28,9 @@ public class Information {
         }
     }
 
+    public static void resetDiagnosisHistory(String password) {
+        Patient patient = patientsList.get(password);
+        patient.getPatientDiagnosisHistory().clear();
+    }
+
 }

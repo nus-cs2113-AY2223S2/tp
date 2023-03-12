@@ -105,7 +105,8 @@ public class Menu {
         System.out.println("What would you like to do? Please enter the number:");
         System.out.println("1. Report symptoms");
         System.out.println("2. View diagnosis history");
-        System.out.println("3. Exit");
+        System.out.println("3. Reset diagnosis history");
+        System.out.println("4. Exit");
     }
 
     /**
@@ -259,4 +260,5 @@ public class Menu {
                     + illnessMatch.getSimilarityPercentage() * 100 + "%");
         }
     }
+
 }
