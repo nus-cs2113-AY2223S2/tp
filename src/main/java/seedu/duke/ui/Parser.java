@@ -57,7 +57,7 @@ public class Parser {
             ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
 
             for (IllnessMatch illnessMatch : possibleIllnesses) {
-				patientsList.get(password).updatePatientDiagnosisHistory(illnessMatch.getIllness().getIllnessName());
+                patientsList.get(password).updatePatientDiagnosisHistory(illnessMatch.getIllness().getIllnessName());
             }
             saveData();
 
