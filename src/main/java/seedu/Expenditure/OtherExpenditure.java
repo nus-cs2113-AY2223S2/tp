@@ -11,4 +11,9 @@ public class OtherExpenditure extends Expenditure {
     public String toString() {
         return String.format("[Other] || %s", super.toString());
     }
+
+    @Override
+    public String getExpenditureType() {
+        return "O";
+    }
 }
