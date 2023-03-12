@@ -11,10 +11,16 @@ public class GenerateExercise {
     private static final String EASY = "easy";
     private static final String MEDIUM = "medium";
     private static final String HARD = "hard";
+    private static final String UPPER = "upper";
+    private static final String UPPER_BODY = "upper body";
+    private static final String CORE = "core";
+    private static final String LEGS = "legs";
 
     private static final String BEGINNER = "beginner";
     private static final String INTERMEDIATE = "intermediate";
     private static final String EXPERT = "expert";
+    private static final String OPEN_BRACE = "[";
+    private static final String CLOSE_BRACE = "]";
     public ArrayList<ExerciseData> exerciseData;
 
     public GenerateExercise() {
@@ -42,6 +48,7 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
+    //Cleon's gym set - filter by body and gym
     public ArrayList<ExerciseData> generateFilteredGymSetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
         for (int i = 0; i < exerciseList.size(); i++) {
@@ -64,6 +71,7 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
+    //Dylan's set - filter by difficulty
     public ArrayList<ExerciseData> generateFilteredDifficultySetFrom(ArrayList<ExerciseData> exerciseList,
             String difficulty) throws DukeError {
         String exerciseDataDifficultyLevel;
@@ -72,6 +80,28 @@ public class GenerateExercise {
         for (int i = 0; i < exerciseList.size(); i++) {
             ExerciseData exercise = exerciseList.get(i);
             if (exercise.getLevel().equals(exerciseDataDifficultyLevel)) {
+                filteredExerciseList.add(exercise);
+            }
+        }
+        return filteredExerciseList;
+    }
+
+    //lipkuang - Added new filter for workout type.
+    public ArrayList<ExerciseData> generateFilteredWorkoutTypeFrom(ArrayList<ExerciseData> exerciseList, String workoutType) throws DukeError {
+        String exerciseDataWorkoutType;
+        String getWorkoutType;
+        String getWorkoutTypeFinal;
+        exerciseDataWorkoutType = parseWorkoutType(workoutType);
+        ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
+        for (int i = 0; i < exerciseList.size(); i++) {
+            ExerciseData exercise = exerciseList.get(i);
+            //toString still includes opening and closing brackets
+            getWorkoutType = exercise.getWorkoutType().toString();
+            int start = getWorkoutType.indexOf(OPEN_BRACE);
+            int end = getWorkoutType.indexOf(CLOSE_BRACE);
+            //remove the open and close brackets.
+            getWorkoutTypeFinal = getWorkoutType.substring(start+1,end);
+            if (getWorkoutTypeFinal.equals(exerciseDataWorkoutType)) {
                 filteredExerciseList.add(exercise);
             }
         }
@@ -109,5 +139,15 @@ public class GenerateExercise {
             throw new DukeError("Incorrect difficulty level input");
         }
     }
-
+    private static String parseWorkoutType (String workoutType) throws DukeError{
+        if (workoutType.equals(UPPER)) {
+            return UPPER_BODY;
+        } else if (workoutType.equals(CORE)) {
+            return CORE;
+        } else if (workoutType.equals(LEGS)){
+            return LEGS;
+        } else {
+            throw new DukeError("Incorrect workout type input");
+        }
+    }
 }
