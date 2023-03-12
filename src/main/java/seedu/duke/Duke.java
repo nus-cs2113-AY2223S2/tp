@@ -30,6 +30,6 @@ public class Duke {
                 ui.printLine();
             }
             // TODO: condition to be replaced when exit command is implemented
-        } while (true);
+        } while (in.hasNextLine());
     }
 }
