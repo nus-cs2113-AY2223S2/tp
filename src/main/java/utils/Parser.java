@@ -2,6 +2,7 @@ package utils;
 
 import commands.Command;
 import commands.ExitCommand;
+import commands.HelpCommand;
 import commands.IncorrectCommand;
 
 public class Parser {
@@ -15,6 +16,8 @@ public class Parser {
         //https://github.com/nus-cs2113-AY2223S2/personbook/blob/main/src/main/java/seedu/personbook/parser/Parser.java
         //Reused the switch skeleton
         switch (commandWord) {
+        case HelpCommand.COMMAND_WORD:
+            return prepareHelpCommand();
         case ExitCommand.COMMAND_WORD:
             return prepareExitCommand();
         default:
@@ -24,6 +27,9 @@ public class Parser {
     }
 
 
+    private Command prepareHelpCommand() {
+        return new HelpCommand();
+    }
     private Command prepareExitCommand() {
         return new ExitCommand();
     }
