@@ -13,6 +13,9 @@ public class GenerateFilterCommand extends Command {
     private static final String EASY = "easy";
     private static final String MEDIUM = "medium";
     private static final String HARD = "hard";
+    private static final String GYM = "gym";
+    private static final String STATIC = "static";
+
 
     private final int count;
     private final String[] userCommands;
@@ -28,10 +31,10 @@ public class GenerateFilterCommand extends Command {
         try {
             for (int i = 1; i < count; i++) {
                 switch (userCommands[i]) {
-                case "gym":
+                case GYM:
                     exercises = exerciseGenerator.generateFilteredGymSetFrom(exercises);
                     break;
-                case "static":
+                case STATIC:
                     exercises = exerciseGenerator.generateFilteredBodySetFrom(exercises);
                     break;
                 case EASY:
@@ -50,21 +53,12 @@ public class GenerateFilterCommand extends Command {
                  * case "core":
                  * exercises = filterByCore(exercises);
                  * break;
-                 * case "easy":
-                 * exercises = filterByEasy(exercises);
-                 * break;
-                 * case "medium":
-                 * exercises = filterByMedium(exercises);
-                 * break;
-                 * case "hard":
-                 * exercises = filterByHard(exercises);
-                 * break;
                  */
                 default:
                     try {
                         numberOfExercisesToGenerate = Integer.parseInt(userCommands[i]);
                     } catch (NumberFormatException e) {
-                        throw new DukeError("enter a valid number of exercises!");
+                        throw new DukeError("enter a valid filter! type [filters] to see what filters exist!");
                     }
                 }
             }

@@ -64,6 +64,7 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
+
     public ArrayList<ExerciseData> generateFilteredDifficultySetFrom(ArrayList<ExerciseData> exerciseList,
             String difficulty) throws DukeError {
         String exerciseDataDifficultyLevel;
