@@ -19,6 +19,7 @@ public class EntryLog {
     }
 
     public EntryLog(List<Entry> entries) {
+        assert entries != null : "List cannot be null when instantiating EntryLog";
         this.entries = entries;
     }
 
@@ -28,7 +29,7 @@ public class EntryLog {
      * @param entry Entry to be added
      */
     public void add(Entry entry) {
-        assert entry != null;
+        assert entry != null : "Entry cannot be null when adding to EntryLog";
         entries.add(entry);
     }
 
@@ -54,6 +55,7 @@ public class EntryLog {
      * @return EntryLog containing entries matching category
      */
     public EntryLog filterCategory(Category category) {
+        assert category != null;
         List<Entry> filteredEntries = entries
                 .stream()
                 .filter((entry -> entry.getCategory() == category))
@@ -69,6 +71,10 @@ public class EntryLog {
      * @return EntryLog containing entries matching query
      */
     public EntryLog filterByQuery(String query) {
+        assert query != null;
+        if (query.isEmpty()) {
+            return this;
+        }
         Pattern pattern = Pattern.compile(query, Pattern.CASE_INSENSITIVE);
         List<Entry> filteredEntries = entries
                 .stream()
