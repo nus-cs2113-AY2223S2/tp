@@ -1,4 +1,6 @@
-//@@author Geeeetyx
+/**
+ * @author Geeeetyx
+ */
 package seedu.duke.patient;
 
 import java.util.ArrayList;
