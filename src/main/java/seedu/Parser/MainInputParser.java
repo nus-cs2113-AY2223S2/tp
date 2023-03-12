@@ -1,7 +1,6 @@
 package seedu.Parser;
 
 import seedu.Expenditure.ExpenditureList;
-import seedu.TxtData.TxtFileStatus;
 import seedu.commands.Command;
 import seedu.commands.EditCommand;
 import seedu.commands.HelpCommand;
