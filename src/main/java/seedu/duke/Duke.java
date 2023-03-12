@@ -15,6 +15,9 @@ import seedu.duke.ui.Parser;
 import seedu.duke.save.Storage;
 
 public class Duke {
+
+    private static String password = ""; // Stores user's password
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -27,10 +30,17 @@ public class Duke {
                 + "|____/|_|    |____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         Storage.loadData();
-        Menu.showMenu();
+        while (password.equals("")) {
+            Menu.showWelcomeMenu();
+            Scanner in = new Scanner(System.in);
+            String input = in.nextLine();
+            Parser.parseWelcome(input);
+        }
+        //@@author Thunderdragon221
+        Menu.showAccountMenu();
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
-        Parser.parseWelcome(input);
+        Parser.parseAccountCommand(input);
 
         /*
         For testing of Diagnosis
@@ -44,5 +54,25 @@ public class Duke {
             System.out.println(test.getSimilarityPercentage());
         }
          */
+    }
+
+    //@@author Thunderdragon221
+
+    /**
+     * Sets the password.
+     *
+     * @param userPassword password to be set.
+     */
+    public static void setPassword(String userPassword) {
+        password = userPassword;
+    }
+
+    /**
+     * Returns the password.
+     *
+     * @return password.
+     */
+    public static String getPassword() {
+        return password;
     }
 }
