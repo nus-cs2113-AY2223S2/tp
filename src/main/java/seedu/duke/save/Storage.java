@@ -1,20 +1,23 @@
-//@@author Thunderdragon221
-
 package seedu.duke.save;
 
-import java.util.ArrayList;
+import seedu.duke.patient.Patient;
+import seedu.duke.ui.Information;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Map;
-import java.util.HashMap;
 import java.util.Scanner;
-import java.io.FileWriter;
-import seedu.duke.patient.Patient;
 
+/**
+ * @author Thunderdragon221
+ *     This class reads and writes information to and from the patient-data file.
+ */
 public class Storage {
 
     /** Specifies the directory path to be created */
@@ -24,16 +27,14 @@ public class Storage {
     static final String FILE_PATH = "./data/patient-data.txt";
 
     /**
-     * Loads each patient's data into a hashmap of patients by reading from the patient-data file.
-     *
-     * @return a Hashmap of patients' passwords mapped to their data.
+     * Loads each patient's data into a hashmap of patients in the Information class
+     * by reading from the patient-data file.
      */
-    public static HashMap<String, Patient> loadData() {
-        HashMap<String, Patient> patientsList = new HashMap<String, Patient>();
+    public static void loadData() {
         try {
             createDirectory();
             createFile();
-            patientsList = readFile();
+            readFile();
         } catch (FileNotFoundException e) {
             System.out.println("ERROR: File not found.");
         } catch (CorruptedDataException e) {
@@ -41,8 +42,6 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("ERROR: Failed to create files for storage");
         }
-
-        return patientsList;
     }
 
     /**
@@ -67,18 +66,14 @@ public class Storage {
 
     /**
      * Reads from the patient-data file and converts the data back into the patient data
-     * before creating a Hashmap that maps each patient's password to their data.
+     * before storing all read data into Information.patientsList.
      *
-     * @return a Hashmap of patients' passwords mapped to their data.
      * @throws FileNotFoundException if data file does not exist.
      * @throws CorruptedDataException if data file is corrupted.
      */
-    public static HashMap<String, Patient> readFile() throws FileNotFoundException,
-            CorruptedDataException {
+    public static void readFile() throws FileNotFoundException, CorruptedDataException {
         File file = new File(FILE_PATH);
         Scanner scanner = new Scanner(file);
-
-        HashMap<String, Patient> patientsList = new HashMap<String, Patient>();
 
         while (scanner.hasNextLine()) {
             String password = scanner.nextLine();
@@ -92,7 +87,7 @@ public class Storage {
             }
 
             int numberOfEntries = Integer.parseInt(scanner.nextLine());
-            ArrayList<String> diagnosisHistory = new ArrayList<String>();
+            ArrayList<String> diagnosisHistory = new ArrayList<>();
 
             for (int i = 0; i < numberOfEntries; i++) {
                 String diagnosis = scanner.nextLine();
@@ -103,21 +98,18 @@ public class Storage {
             }
 
             Patient patient = new Patient(name, password, diagnosisHistory);
-            patientsList.put(password, patient);
+            Information.storePatientInfo(password, patient);
         }
         scanner.close();
-        return patientsList;
     }
 
     /**
      * Writes to the patient-data file to save all patients' data DoctorDuke currently has.
-     *
-     * @param patientsList Hashmap of patients' passwords mapped to their data.
      */
-    public static void saveData(HashMap<String, Patient> patientsList) {
+    public static void saveData() {
         try {
             FileWriter writer = new FileWriter(FILE_PATH);
-            for (Map.Entry<String, Patient> entry : patientsList.entrySet()) {
+            for (Map.Entry<String, Patient> entry : Information.patientsList.entrySet()) {
                 Patient patient = entry.getValue();
                 String name = patient.getName();
                 String password = patient.getPassword();
@@ -127,8 +119,7 @@ public class Storage {
                 writer.write(password + "\n");
                 writer.write(name + "\n");
                 writer.write(numberOfDiagnoses + "\n");
-                for (int i = 0; i < numberOfDiagnoses; i++) {
-                    String diagnosis = diagnosisHistory.get(i);
+                for (String diagnosis : diagnosisHistory) {
                     writer.write(diagnosis + "\n");
                 }
             }
