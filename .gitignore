@@ -3,6 +3,15 @@
 /out/
 /*.iml
 
+#Visual Studio Code
+.vscode/
+.vscode/*
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.vscode/*.code-snippets
+
 # Gradle build files
 /.gradle/
 /build/
