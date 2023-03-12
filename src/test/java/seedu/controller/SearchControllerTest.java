@@ -2,6 +2,7 @@ package seedu.controller;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,8 +11,11 @@ import seedu.dukeofbooks.controller.SearchController;
 import seedu.dukeofbooks.data.exception.IllegalOperationException;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.inventory.Inventory;
+import seedu.dukeofbooks.data.book.Book;
 
 public class SearchControllerTest {
+    public static final String TITLE_TO_SEARCH = "The only book";
+    public static final String TOPIC_TO_SEARCH = "python";
     public Inventory inventory = new Inventory();
     public SearchController searchController = new SearchController();
     public InventoryController inventoryController = new InventoryController();
@@ -24,12 +28,14 @@ public class SearchControllerTest {
 
     public void searchBookByTitle_validBook_getBook() throws IllegalOperationException, IllegalValueException {
         searchController.setData(inventory);
-        searchController.searchBookByTitle("The only book");
+        Book target = searchController.searchBookByTitle(TITLE_TO_SEARCH);
+        assertEquals(TITLE_TO_SEARCH, target.getTitle().toString());
     }
 
     public void searchBookByTopic_validBook_getBook() throws IllegalOperationException, IllegalValueException {
         searchController.setData(inventory);
-        searchController.searchBookByTopic("python");
+        Book target = searchController.searchBookByTopic(TOPIC_TO_SEARCH);
+        assertEquals(TOPIC_TO_SEARCH, target.getTopic().toString());
     }
 
     @Test
