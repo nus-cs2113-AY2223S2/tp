@@ -36,12 +36,13 @@ public class RemoveCommand extends ExecutableCommand {
         if (name.isBlank()) {
             throw new DukeException("OOPS, name cannot be blank");
         }
-        if  (!isInList(name)) {
+        if (!isInList(name)) {
             throw new DukeException("OOPS, ingredient is not in fridge");
         }
     }
 
-    private static void removeIngredient(DukeSession dukeSession, int quantity, int fridgeQuantity, String name) throws DukeException {
+    private static void removeIngredient(DukeSession dukeSession, int quantity, int fridgeQuantity, String name)
+            throws DukeException {
         if (quantity > fridgeQuantity) {
             throw new DukeException("OOPS, quantity to remove is more than quantity in the fridge");
         } else if (quantity == fridgeQuantity) {
