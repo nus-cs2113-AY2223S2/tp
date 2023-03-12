@@ -6,6 +6,7 @@ package seedu.duke.ui;
 // import static seedu.duke.ui.Information.patientsList;
 
 import seedu.duke.Duke;
+import seedu.duke.diagnosis.symptoms.Symptom;
 // import seedu.duke.ui.Information;
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class Parser {
     public static void parseAccountCommand (String choice) {
         switch(choice) {
         case "1":
-            ArrayList<String> symptoms = Menu.getUserSymptoms();
+            ArrayList<Symptom> symptoms = Menu.getUserSymptoms();
             // to add link to medicine class from arraylist of symptoms
             break;
         case "2":
