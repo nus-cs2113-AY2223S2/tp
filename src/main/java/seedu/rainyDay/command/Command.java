@@ -1,6 +1,7 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.RainyDay;
+import seedu.rainyDay.Storage;
 import seedu.rainyDay.UI;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
@@ -24,14 +25,14 @@ public class Command {
         //String direction = RainyDay.financialReport.getStatementDirection(statementCount - 1);
         //what was this above 2 lines for?
         UI.printAddedFinancialStatement(currentFinancialStatement);
-        RainyDay.writeToFile(RainyDay.financialReport, RainyDay.filePath);
+        Storage.writeToFile(RainyDay.financialReport, RainyDay.filePath);
     }
 
     public static void deleteFinancialStatement(int index) {
         index -= 1;
         UI.printDeletedFinancialStatement(RainyDay.financialReport.getStatementDescription(index));
         RainyDay.financialReport.deleteStatement(index);
-        RainyDay.writeToFile(RainyDay.financialReport, RainyDay.filePath);
+        Storage.writeToFile(RainyDay.financialReport, RainyDay.filePath);
     }
 
     public static String generateReport(FinancialReport financialReport) {
