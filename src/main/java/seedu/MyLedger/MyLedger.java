@@ -5,6 +5,7 @@ import seedu.TxtData.TxtFileStatus;
 import seedu.Expenditure.ExpenditureList;
 import seedu.commands.Command;
 import seedu.commands.CommandResult;
+import seedu.ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -27,23 +28,17 @@ public class MyLedger {
 
     public static void runMyLedger() {
         start();
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-        initializeList();
+        Ui.greetUser();
         readUserInputs();
     }
 
     public static void readUserInputs() {
         Scanner in = new Scanner(System.in);
         String line = in.nextLine();
-        while(!hasProcessedAllInputs(line, expenditures)) {
+        while (!hasProcessedAllInputs(line, expenditures)) {
             line = in.nextLine();
         }
+        in.close();
     }
 
     public static boolean hasProcessedAllInputs(String line, ExpenditureList expenditures) {
