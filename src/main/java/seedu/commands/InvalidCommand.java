@@ -2,7 +2,7 @@ package seedu.commands;
 
 import seedu.Expenditure.ExpenditureList;
 
-public class InvalidCommand extends Command{
+public class InvalidCommand extends Command {
     // Edit file accordingly
     public final String commandError;
 
@@ -12,6 +12,6 @@ public class InvalidCommand extends Command{
 
     @Override
     public CommandResult execute(ExpenditureList expenditures) {
-        return new CommandResult("Invalid Command! Please refer to help for acceptable commands.");
+        return new CommandResult(commandError);
     }
 }
