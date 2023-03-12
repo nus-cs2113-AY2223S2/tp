@@ -1,77 +1,87 @@
 package seedu.duke.entrylog;
 
+import seedu.duke.constants.MessageConstants;
 import seedu.duke.entries.Category;
 import seedu.duke.entries.Entry;
+import seedu.duke.exceptions.InvalidArgumentsException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class EntryLog {
-    private List<Entry> entries;
+    private static final Logger logger = Logger.getLogger(EntryLog.class.getName());
+    private final List<Entry> entries;
 
     public EntryLog() {
         this.entries = new ArrayList<>();
     }
 
     public EntryLog(List<Entry> entries) {
+        assert entries != null : "List cannot be null when instantiating EntryLog";
         this.entries = entries;
     }
 
+    /**
+     * Add an entry to the log.
+     *
+     * @param entry Entry to be added
+     */
     public void add(Entry entry) {
+        assert entry != null : "Entry cannot be null when adding to EntryLog";
         entries.add(entry);
     }
 
-    public void delete(int entryId) {
-        entries.remove(entryId);
+    /**
+     * Delete an entry from the log. Should only be called in the main log.
+     *
+     * @param entryId Id corresponding to the index (0-based)
+     * @throws InvalidArgumentsException If an invalid index is passed
+     */
+    public void delete(int entryId) throws InvalidArgumentsException {
+        try {
+            entries.remove(entryId);
+        } catch (IndexOutOfBoundsException e) {
+            logger.log(Level.WARNING, "Attempted to delete an invalid entry index: " + entryId, e);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+        }
     }
 
     /**
-     * Filter entries by category
+     * Filter entries by category.
+     * Can be chained with other filter* methods to filter multiple entries.
      *
      * @param category Category to be filtered
-     * @return List of entries matching category
+     * @return EntryLog containing entries matching category
      */
-    public List<Entry> filterCategory(Category category) {
-        return filterCategory(category, entries);
-    }
-
-    /**
-     * Filter entries by category
-     *
-     * @param category Category to be filtered
-     * @param entries  List of entries to match
-     * @return List of entries matching category
-     */
-    public static List<Entry> filterCategory(Category category, List<Entry> entries) {
-        return entries
+    public EntryLog filterCategory(Category category) {
+        assert category != null;
+        List<Entry> filteredEntries = entries
                 .stream()
                 .filter((entry -> entry.getCategory() == category))
                 .collect(Collectors.toList());
+        return new EntryLog(filteredEntries);
     }
 
     /**
      * Filter entries by description or category of entries. Regular expressions are supported.
+     * Can be chained with other filter* methods to filter multiple entries.
      *
      * @param query Regex to be filtered (case-insensitive)
-     * @return List of entries matching query
+     * @return EntryLog containing entries matching query
      */
-    public List<Entry> filterByQuery(String query) {
-        return filterByQuery(query, entries);
-    }
-
-    /**
-     * Filter entries by description or category of entries. Regular expressions are supported.
-     *
-     * @param query   Regex to be filtered (case-insensitive)
-     * @param entries List of entries to match
-     * @return List of entries matching query
-     */
-    public static List<Entry> filterByQuery(String query, List<Entry> entries) {
+    public EntryLog filterByQuery(String query) {
+        assert query != null;
+        if (query.isEmpty()) {
+            logger.info("User entered empty query");
+            return this;
+        }
         Pattern pattern = Pattern.compile(query, Pattern.CASE_INSENSITIVE);
-        return entries
+        List<Entry> filteredEntries = entries
                 .stream()
                 .filter(entry -> {
                     Matcher descriptionMatcher = pattern.matcher(entry.getDescription());
@@ -80,29 +90,19 @@ public class EntryLog {
                     return isMatch;
                 })
                 .collect(Collectors.toList());
+        return new EntryLog(filteredEntries);
     }
 
     /**
      * Filter items by amount.
+     * Can be chained with other filter* methods to filter multiple entries.
      *
      * @param minAmount Minimum amount of entry
      * @param maxAmount Maximum amount of entry
-     * @return List of entries within range of given amount
+     * @return EntryLog containing entries within range of given amount
      */
-    public List<Entry> filterAmount(double minAmount, double maxAmount) {
-        return filterAmount(minAmount, maxAmount, entries);
-    }
-
-    /**
-     * Filter items by price.
-     *
-     * @param minAmount Minimum amount of entry
-     * @param maxAmount Maximum amount of entry
-     * @param entries   List of entries to match
-     * @return List of entries within range of given amount
-     */
-    public static List<Entry> filterAmount(double minAmount, double maxAmount, List<Entry> entries) {
-        return entries
+    public EntryLog filterAmount(double minAmount, double maxAmount) {
+        List<Entry> filteredEntries = entries
                 .stream()
                 .filter((entry -> {
                     boolean isBelowMin = Double.compare(entry.getAmount(), minAmount) < 0;
@@ -111,6 +111,22 @@ public class EntryLog {
                     return isWithinRange;
                 }))
                 .collect(Collectors.toList());
+        return new EntryLog(filteredEntries);
+    }
+
+    /**
+     * Access an entry in the log using its id.
+     *
+     * @param entryId Id corresponding to the index (0-based)
+     * @throws InvalidArgumentsException If an invalid index is passed
+     */
+    public Entry getEntry(int entryId) throws InvalidArgumentsException {
+        try {
+            return entries.get(entryId);
+        } catch (IndexOutOfBoundsException e) {
+            logger.log(Level.WARNING, "Attempted to access an invalid entry index: " + entryId, e);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+        }
     }
 
     public int getSize() {
