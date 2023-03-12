@@ -44,7 +44,7 @@ public class Parser {
      *
      * @param userInput The input collected by Ui from the user.
      * @return An AddCommand with the question and answer text extracted from user
-     * input.
+     *     input.
      * @throws InvalidAddFlashcardInputException If the start indicators cannot be
      *                                           found.
      * @throws EmptyFlashcardQuestionException   If the string is empty after
