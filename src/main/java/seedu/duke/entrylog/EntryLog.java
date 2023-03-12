@@ -7,11 +7,14 @@ import seedu.duke.exceptions.InvalidArgumentsException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class EntryLog {
+    private static final Logger logger = Logger.getLogger(EntryLog.class.getName());
     private final List<Entry> entries;
 
     public EntryLog() {
@@ -43,6 +46,7 @@ public class EntryLog {
         try {
             entries.remove(entryId);
         } catch (IndexOutOfBoundsException e) {
+            logger.log(Level.WARNING, "Attempted to delete an invalid entry index: " + entryId, e);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
     }
@@ -73,6 +77,7 @@ public class EntryLog {
     public EntryLog filterByQuery(String query) {
         assert query != null;
         if (query.isEmpty()) {
+            logger.info("User entered empty query");
             return this;
         }
         Pattern pattern = Pattern.compile(query, Pattern.CASE_INSENSITIVE);
@@ -119,6 +124,7 @@ public class EntryLog {
         try {
             return entries.get(entryId);
         } catch (IndexOutOfBoundsException e) {
+            logger.log(Level.WARNING, "Attempted to access an invalid entry index: " + entryId, e);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
     }
