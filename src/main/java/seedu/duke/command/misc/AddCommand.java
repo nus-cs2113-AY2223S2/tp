@@ -24,6 +24,7 @@ public class AddCommand extends ExecutableCommand {
         DukeSession.ingredients.get(index).setQuantity(newQuantity);
         dukeSession.getUi().printMessage("Here is the new quantity of the ingredient:");
         dukeSession.getUi().printMessage(String.valueOf(DukeSession.ingredients.get(index)));
+        dukeSession.getIngredientStorage().writeIngredientsToFile(DukeSession.ingredients);
     }
 
     private static void addNewIngredient(DukeSession dukeSession, int quantity, String name) {
@@ -31,6 +32,7 @@ public class AddCommand extends ExecutableCommand {
         DukeSession.ingredients.add(ingredient);
         dukeSession.getUi().printMessage("the following ingredient has been added");
         dukeSession.getUi().printMessage(String.valueOf(ingredient));
+        dukeSession.getIngredientStorage().writeIngredientToFile(ingredient);
     }
 
     public static boolean isInList(String name) {
