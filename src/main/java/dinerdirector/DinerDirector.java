@@ -2,12 +2,15 @@ package dinerdirector;
 
 import commands.Command;
 import common.Messages;
+import manager.Meeting;
 import ui.TextUi;
 import utils.Parser;
 
 public class DinerDirector {
+    private static final int MAX_NUM_MEETINGS=100;
     private TextUi ui;
-
+    public static Meeting[] meetings=new Meeting[MAX_NUM_MEETINGS];
+    public static int indexOfMeetings=0;
     //Solution below adopted from:
     //https://github.com/nus-cs2113-AY2223S2/personbook/blob/main/src/main/java/seedu/personbook/Main.java
     //Implemented the main, run, start method in the similar way.

@@ -3,7 +3,7 @@ package utils;
 import commands.Command;
 import commands.ExitCommand;
 import commands.IncorrectCommand;
-
+import commands.meeting.*;
 public class Parser {
 
     public Command parseCommand(String userInput) {
@@ -17,6 +17,12 @@ public class Parser {
         switch (commandWord) {
         case ExitCommand.COMMAND_WORD:
             return prepareExitCommand();
+        case AddMeetingCommand.COMMAND_WORD:
+            return new AddMeetingCommand(userInputSplit[2],userInputSplit[1]);
+        case DeleteMeetingCommand.COMMAND_WORD:
+            return new DeleteMeetingCommand(userInputSplit[1]);
+        case ViewMeetingCommand.COMMAND_WORD:
+            return new ViewMeetingCommand();
         default:
             return new IncorrectCommand();
         }
