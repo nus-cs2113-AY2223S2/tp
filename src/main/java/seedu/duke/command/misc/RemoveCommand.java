@@ -10,7 +10,7 @@ import seedu.duke.command.ExecutableCommand;
 
 public class RemoveCommand extends ExecutableCommand {
 
-    public static int indexOfExistingIngredient;
+    private static int indexOfExistingIngredient;
     String arguments;
     String flag;
 
@@ -19,39 +19,38 @@ public class RemoveCommand extends ExecutableCommand {
         this.flag = flag;
     }
 
-    public static boolean isInList(String name) {
+    public static int findIndex(String name) {
         for (int i = 0; i < DukeSession.ingredients.size(); i += 1) {
             if (DukeSession.ingredients.get(i).getName().equals(name)) {
-                indexOfExistingIngredient = i;
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 
-    private static void inputValidation(int quantity, String name) throws DukeException {
+    private static void validateInput(int quantity, String name) throws DukeException {
         if (quantity <= 0) {
             throw new DukeException("OOPS, quantity must be greater than 0");
         }
         if (name.isBlank()) {
             throw new DukeException("OOPS, name cannot be blank");
         }
-        if (!isInList(name)) {
+        if (indexOfExistingIngredient == -1) {
             throw new DukeException("OOPS, ingredient is not in fridge");
+        }
+        if (quantity > DukeSession.ingredients.get(indexOfExistingIngredient).getQuantity()) {
+            throw new DukeException("OOPS, quantity to remove is more than quantity in the fridge");
         }
     }
 
-    private static void removeIngredient(DukeSession dukeSession, int quantity, int fridgeQuantity, String name)
-            throws DukeException {
-        if (quantity > fridgeQuantity) {
-            throw new DukeException("OOPS, quantity to remove is more than quantity in the fridge");
-        } else if (quantity == fridgeQuantity) {
+    private static void removeIngredient(DukeSession dukeSession, int quantity, String name) {
+        int fridgeQuantity = DukeSession.ingredients.get(indexOfExistingIngredient).getQuantity();
+        int newQuantity = fridgeQuantity - quantity;
+        DukeSession.ingredients.get(indexOfExistingIngredient).setQuantity(newQuantity);
+        dukeSession.getUi().printMessage(String.format("Success! new quantity of %s is %d", name, newQuantity));
+        if (newQuantity == 0) {
             DukeSession.ingredients.remove(indexOfExistingIngredient);
             dukeSession.getUi().printMessage(String.format("All %s has been removed", name));
-        } else {
-            int newQuantity = fridgeQuantity - quantity;
-            DukeSession.ingredients.get(indexOfExistingIngredient).setQuantity(newQuantity);
-            dukeSession.getUi().printMessage(String.format("Success! new quantity of %s is %d", name, newQuantity));
         }
     }
 
@@ -59,9 +58,9 @@ public class RemoveCommand extends ExecutableCommand {
         try {
             int quantity = Integer.parseInt(flag);
             String name = arguments;
-            inputValidation(quantity, name);
-            int fridgeQuantity = DukeSession.ingredients.get(indexOfExistingIngredient).getQuantity();
-            removeIngredient(dukeSession, quantity, fridgeQuantity, name);
+            indexOfExistingIngredient = findIndex(name);
+            validateInput(quantity, name);
+            removeIngredient(dukeSession, quantity, name);
         } catch (Exception e) {
             dukeSession.getUi().printMessage(String.valueOf(e));
         }
