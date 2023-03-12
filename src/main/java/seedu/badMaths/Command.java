@@ -31,9 +31,6 @@ public class Command {
             TrigoGraph trigoGraph = new TrigoGraph(toDo);
             trigoGraph.startGraphAnalysis();
             break;
-        case "Help":
-            HelpManual.readHelpManual();
-            break;
         default:
             break;
         }
