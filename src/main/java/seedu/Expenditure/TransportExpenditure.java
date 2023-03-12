@@ -10,4 +10,9 @@ public class TransportExpenditure extends Expenditure {
     public String toString() {
         return String.format("[Transport] || %s", super.toString());
     }
+
+    @Override
+    public String getExpenditureType() {
+        return "Tr";
+    }
 }

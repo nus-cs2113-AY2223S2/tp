@@ -11,4 +11,9 @@ public class EntertainmentExpenditure extends Expenditure {
     public String toString() {
         return String.format("[Entertainment] || %s", super.toString());
     }
+
+    @Override
+    public String getExpenditureType() {
+        return "En";
+    }
 }

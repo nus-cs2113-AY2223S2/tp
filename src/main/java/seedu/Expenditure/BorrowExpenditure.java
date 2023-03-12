@@ -33,4 +33,9 @@ public class BorrowExpenditure extends Expenditure {
     public String toString() {
         return String.format("[Borrow] || %s || %s || %s", getBorrowerName(), super.toString(), getDeadline());
     }
+
+    @Override
+    public String getExpenditureType() {
+        return "B";
+    }
 }
