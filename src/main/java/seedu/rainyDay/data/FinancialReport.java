@@ -23,7 +23,7 @@ public class FinancialReport implements Serializable {
     }
 
     public String getFullStatement(int statementNumber) {
-        return financialReport.get(statementNumber).getFullStatement();
+        return financialReport.get(statementNumber).getStatementForList();
     }
 
     public String getStatementDirection(int statementNumber) {
@@ -49,4 +49,6 @@ public class FinancialReport implements Serializable {
     public FinancialStatement getFinancialStatement(int statementNumber) {
         return financialReport.get(statementNumber);
     }
+
+
 }

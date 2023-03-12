@@ -72,6 +72,7 @@ public class RainyDay {
 
     public static void displayHelp() {
         //thanks bao mi hua benjamin
+        System.out.println("Have you tried reading the UG?");
     }
 
     public static void unrecognisedInput() {
