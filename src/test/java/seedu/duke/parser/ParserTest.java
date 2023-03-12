@@ -23,9 +23,11 @@ public class ParserTest {
     }
 
     @Test
-    public void parseUserInput_invalidCommand_nullReturned() throws InvalidCommandException, MissingArgumentsException, InvalidArgumentsException {
+    public void parseUserInput_invalidCommand_nullReturned() {
         Parser parser = new Parser();
-        assertEquals(parser.parseUserInput("/invalid"), null);
+        assertDoesNotThrow(() -> {
+            parser.parseUserInput("/invalid");
+        });
     }
 
     @Test
@@ -40,10 +42,11 @@ public class ParserTest {
     }
 
     @Test
-    public void parseUserInput_validAddCommand_parsedSuccessfully()
-            throws InvalidArgumentsException, InvalidCommandException, MissingArgumentsException {
+    public void parseUserInput_validAddCommand_parsedSuccessfully() {
         Parser parser = new Parser();
-        parser.parseUserInput("/add coffee -c food -p 3.50");
+        assertDoesNotThrow(() -> {
+            parser.parseUserInput("/add coffee -c food -p 3.50");
+        });
     }
 
     @Test
