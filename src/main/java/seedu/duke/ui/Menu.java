@@ -73,10 +73,9 @@ public class Menu {
         System.exit(0);
     }
 
-    //@@author Thunderdragon221
-
     /**
-     * Shows the account menu.
+     * @author Thunderdragon221
+     *     Shows the account menu.
      */
     public static void showAccountMenu() {
         System.out.println("What would you like to do? Please enter the number:");
@@ -85,6 +84,11 @@ public class Menu {
         System.out.println("3. Exit");
     }
 
+    /**
+     * Reads in a list of symptoms the user experiences.
+     *
+     * @return ArrayList of symptoms the user experiences.
+     */
     public static ArrayList<Symptom> getUserSymptoms() {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Symptom> symptoms = new ArrayList<>();

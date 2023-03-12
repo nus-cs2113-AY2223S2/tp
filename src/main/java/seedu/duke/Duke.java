@@ -19,7 +19,8 @@ public class Duke {
     private static String password = ""; // Stores user's password
 
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * @author Jeraldchen
+     *     Main entry-point for the java.duke.Duke application.
      */
     //@@author Jeraldchen
     public static void main(String[] args) {
@@ -36,7 +37,6 @@ public class Duke {
             String input = in.nextLine();
             Parser.parseWelcome(input);
         }
-        //@@author Thunderdragon221
         Menu.showAccountMenu();
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
@@ -56,12 +56,11 @@ public class Duke {
          */
     }
 
-    //@@author Thunderdragon221
-
     /**
-     * Sets the password.
+     * @author Thunderdragon221
+     *     Sets the password.
      *
-     * @param userPassword password to be set.
+     *     @param userPassword password to be set.
      */
     public static void setPassword(String userPassword) {
         password = userPassword;
