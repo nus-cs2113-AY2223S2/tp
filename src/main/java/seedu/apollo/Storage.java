@@ -2,7 +2,6 @@ package seedu.apollo;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
 import seedu.apollo.exception.DateOrderException;
 import seedu.apollo.exception.InvalidDeadline;
 import seedu.apollo.exception.InvalidEvent;
@@ -17,9 +16,10 @@ import seedu.apollo.task.ToDo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.Scanner;
 
@@ -31,8 +31,6 @@ public class Storage {
     protected static String filePath;
 
     protected static String moduleDataFilePath;
-
-    protected static String dataFilePath;
 
     // ints indicating position of terms in each line of the save file
     private static final int TYPE_POS = 0;
@@ -48,10 +46,9 @@ public class Storage {
      *
      * @param filePath Location of the local save file.
      */
-    public Storage(String filePath, String moduleDataFilePath, String dataFilePath) {
+    public Storage(String filePath, String moduleDataFilePath) {
         Storage.filePath = filePath;
         Storage.moduleDataFilePath = moduleDataFilePath;
-        Storage.dataFilePath = dataFilePath;
     }
 
     /**
@@ -152,12 +149,19 @@ public class Storage {
      * @throws FileNotFoundException If save file is not found.
      */
     public ModuleList loadModuleData() throws FileNotFoundException {
-        Type moduleDataType = new TypeToken<ModuleList>(){}.getType();
-        Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader(dataFilePath));
-        ModuleList moduleDataList = gson.fromJson(reader, moduleDataType);
-        System.out.println("Module Data loaded from " + dataFilePath);
-        return moduleDataList;
+
+        try{
+            ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+            Reader reader = new InputStreamReader(classloader.getResourceAsStream("data.json"));
+            Type moduleDataType = new TypeToken<ModuleList>(){}.getType();
+            Gson gson = new Gson();
+            ModuleList moduleDataList = gson.fromJson(reader, moduleDataType);
+            System.out.println("Module Data loaded");
+            return moduleDataList;
+        } catch (NullPointerException e) {
+            throw new FileNotFoundException();
+        }
+
     }
 
     /**

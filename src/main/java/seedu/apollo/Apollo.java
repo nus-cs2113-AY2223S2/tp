@@ -14,9 +14,8 @@ public class Apollo {
 
     public static final String FILE_PATH = "save.txt";
 
-    private static final String MODULE_DATAFILEPATH = "moduleData.txt";
+    private static final String MODULE_DATA_FILEPATH = "moduleData.txt";
 
-    private static final String DATA_FILEPATH = "data/data.json";
     private static Storage storage;
     private static TaskList taskList;
 
@@ -30,9 +29,9 @@ public class Apollo {
      *
      * @param filePath Location of the local save file.
      */
-    public Apollo(String filePath, String moduleDataFilePath, String dataFilePath) {
+    public Apollo(String filePath, String moduleDataFilePath) {
         ui = new Ui();
-        storage = new Storage(filePath, moduleDataFilePath, dataFilePath);
+        storage = new Storage(filePath, moduleDataFilePath);
         try {
             taskList = storage.loadTaskList(ui);
             storage.updateTask(taskList);
@@ -69,7 +68,7 @@ public class Apollo {
      */
     public static void main(String[] args) {
         try {
-            new Apollo(FILE_PATH, MODULE_DATAFILEPATH, DATA_FILEPATH).run();
+            new Apollo(FILE_PATH, MODULE_DATA_FILEPATH).run();
         } catch (UnexpectedException exception) {
             ui.printUnexpectedException(exception);
         } catch (IOException e) {
