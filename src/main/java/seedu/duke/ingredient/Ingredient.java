@@ -2,9 +2,9 @@ package seedu.duke.ingredient;
 
 public class Ingredient {
     protected String name;
-    protected int quantity;
+    protected double quantity;
 
-    public Ingredient(String name, int quantity) {
+    public Ingredient(String name, double quantity) {
         this.name = name;
         this.quantity = quantity;
     }
@@ -17,11 +17,11 @@ public class Ingredient {
         return name;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 }

@@ -28,7 +28,7 @@ public class RemoveCommand extends ExecutableCommand {
         return -1;
     }
 
-    private static void validateInput(int quantity, String name) throws DukeException {
+    private static void validateInput(Double quantity, String name) throws DukeException {
         if (quantity <= 0) {
             throw new DukeException("OOPS, quantity must be greater than 0");
         }
@@ -43,11 +43,11 @@ public class RemoveCommand extends ExecutableCommand {
         }
     }
 
-    private static void removeIngredient(DukeSession dukeSession, int quantity, String name) {
-        int fridgeQuantity = DukeSession.ingredients.get(indexOfExistingIngredient).getQuantity();
-        int newQuantity = fridgeQuantity - quantity;
+    private static void removeIngredient(DukeSession dukeSession, Double quantity, String name) {
+        double fridgeQuantity = DukeSession.ingredients.get(indexOfExistingIngredient).getQuantity();
+        double newQuantity = fridgeQuantity - quantity;
         DukeSession.ingredients.get(indexOfExistingIngredient).setQuantity(newQuantity);
-        dukeSession.getUi().printMessage(String.format("Success! new quantity of %s is %d", name, newQuantity));
+        dukeSession.getUi().printMessage(String.format("Success! new quantity of %s is %f", name, newQuantity));
         if (newQuantity == 0) {
             DukeSession.ingredients.remove(indexOfExistingIngredient);
             dukeSession.getUi().printMessage(String.format("All %s has been removed", name));
@@ -56,7 +56,7 @@ public class RemoveCommand extends ExecutableCommand {
 
     public void execute(DukeSession dukeSession) {
         try {
-            int quantity = Integer.parseInt(amount);
+            Double quantity = Double.parseDouble(amount);
             indexOfExistingIngredient = findIndex(name);
             validateInput(quantity, name);
             removeIngredient(dukeSession, quantity, name);

@@ -11,7 +11,7 @@ public class RecipePossibleCommand extends ExecutableCommand {
 
     public boolean hasEnoughIngredient(Ingredient recipeIngredient, IngredientList fridgeIngredients) {
         String recipeIngredientName = recipeIngredient.getName();
-        int recipeIngredientQty = recipeIngredient.getQuantity();
+        double recipeIngredientQty = recipeIngredient.getQuantity();
         for (Ingredient fridgeIngredient : fridgeIngredients.getIngredients()) {
             if (fridgeIngredient.getName().equals(recipeIngredientName) &&
                     fridgeIngredient.getQuantity() >= recipeIngredientQty) {
