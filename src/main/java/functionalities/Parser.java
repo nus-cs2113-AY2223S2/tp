@@ -1,6 +1,8 @@
 package functionalities;
 import exception.SniffException;
 
+import java.awt.font.NumericShaper;
+
 public class Parser {
     protected static Command command;
 
@@ -31,9 +33,15 @@ public class Parser {
         command = new Command(userCommand, 0);
     }
 
-    private static void parseRemoveCommand(String task) {
-        String userCommand = "remove";
-        int apptNum = Integer.parseInt(task.split(" ", 2)[1]);
-        command = new Command(userCommand, apptNum);
+    private static void parseRemoveCommand(String task) throws SniffException {
+        try {
+            String userCommand = "remove";
+            int apptNum = Integer.parseInt(task.split(" ", 2)[1]);
+            command = new Command(userCommand, apptNum);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new SniffException("Remove command description cannot be empty!");
+        } catch (NumberFormatException e) {
+            throw new SniffException("Remove command description must be a number!");
+        }
     }
 }
