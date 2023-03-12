@@ -1,5 +1,7 @@
 package seedu.meal360;
 
+import java.util.Scanner;
+
 public class Ui {
 
     private static final int BOXWIDTH = 100;
@@ -11,7 +13,6 @@ public class Ui {
     }
 
     public void printWelcomeMessage() {
-        //Scanner takeName = new Scanner(System.in);
         printSeparator();
         String logo = " __  __          _ ____  __  __\n" +
                 "|  \\/  |___ __ _| |__ / / / /  \\\n" +
@@ -19,11 +20,12 @@ public class Ui {
                 "|_|  |_\\___\\__,_|_|___/\\___/\\__/\n";
 
         System.out.println("Hello from\n" + logo);
+        String userName;
+        Scanner takeName = new Scanner(System.in);
         System.out.println("What is your name?");
-        //String userName = takeName.nextLine();
+        userName = takeName.nextLine();
+        System.out.println("Hello " + userName + "!" + " Welcome to Meal360, your ultimate Recipe Manager!");
         printSeparator();
-        //System.out.println("Hello " + userName + "!" + " Welcome to Meal360, your ultimate Recipe Manager!");
-        //printSeparator();
     }
 
     public void printGoodbyeMessage() {

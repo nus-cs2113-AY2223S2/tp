@@ -7,6 +7,7 @@ Hello from
 
 What is your name?
 ----------------------------------------------------------------------------------------------------
+Hello James! Welcome to Meal360, your ultimate Recipe Manager!
 ----------------------------------------------------------------------------------------------------
 | These are the recipes you have (1 recipes) :                                                     |
 | 1. test recipe name   (1 ingredients)                                                            |
