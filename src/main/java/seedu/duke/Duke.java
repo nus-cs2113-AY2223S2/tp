@@ -2,8 +2,7 @@ package seedu.duke;
 
 import java.util.Scanner;
 
-import seedu.duke.constants.UIConstants;
-// import seedu.duke.entries.Entry;
+import seedu.duke.commands.Command;
 import seedu.duke.entrylog.EntryLog;
 import seedu.duke.parser.Parser;
 import seedu.duke.ui.UI;
@@ -22,12 +21,12 @@ public class Duke {
             String userInput = in.nextLine();
             ui.printLine();
             try {
-                Parser.parseUserInput(userInput);
+                Command command = new Parser().parseUserInput(userInput);
+                command.execute(entrylog);
             } catch (Exception e) {
-                ui.print(e.getMessage() + UIConstants.NEWLINE);
-                ui.printLine();
+                ui.print("error");
             }
             // TODO: condition to be replaced when exit command is implemented
-        } while (true);
+        } while (in.hasNextLine());
     }
 }
