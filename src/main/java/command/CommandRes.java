@@ -15,12 +15,25 @@ public class CommandRes {
         this.messageTop = strTop;
     }
 
+    /**
+     * Instantiates and references the expense list for the entry to be shown as the result.
+     *
+     * @param strTop The first result we need to show.
+     * @param expense The expense list.
+     * @param strBottom The last result we need to show.
+     *
+     */
     public CommandRes(String strTop, ArrayList expense, String strBottom) {
         this.messageTop = strTop;
         this.messageBottom = strBottom;
         this.expense = expense;
     }
 
+
+    /**
+     * Print the result for the user.
+     *
+     */
     public String[] printTask() {
         if (expense == null) {
             return new String[]{};
