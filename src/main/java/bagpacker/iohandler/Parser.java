@@ -1,6 +1,7 @@
 package bagpacker.iohandler;
 
 import bagpacker.commands.AddCommand;
+import bagpacker.commands.DeleteCommand;
 import bagpacker.exception.EmptyInputException;
 import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
@@ -81,12 +82,30 @@ public class Parser {
      */
 
     public static void addItem(String itemDescrip, PackingList packingList) {
+
+        // Todo try, catch exception handling
         // Create item object
         Item item = new Item(itemDescrip,false);
 
         AddCommand addCommand = new AddCommand(item);
 
         addCommand.execute(packingList);
+
+    }
+
+    /**
+     * Calls the DeleteCommand.execute() method to add an item to the packing list
+     */
+
+    public static void removeItem(String itemDescrip, PackingList packingList) {
+
+        for (int i = 0; i < packingList.size(); i++) {
+            if (packingList.get(i).getItemName().equalsIgnoreCase(itemDescrip)) {
+                DeleteCommand deleteCommand = new DeleteCommand(packingList.get(i));
+                deleteCommand.execute(packingList);
+            }
+
+        }
 
     }
 

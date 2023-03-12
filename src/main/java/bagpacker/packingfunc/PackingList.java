@@ -26,8 +26,23 @@ public class PackingList {
         itemList.add(toAdd);
     }
 
+    /**
+     * Removes a task from the list.
+     */
+    public void deleteItem(Item toDelete) {
+        itemList.remove(toDelete);
+    }
+
     public static Item get(int targetIndex) {
         return itemList.get(targetIndex);
     }
+
+    /**
+     * Returns size of packing list
+     */
+    public int size(){
+        return itemList.size();
+    }
+
 
 }
