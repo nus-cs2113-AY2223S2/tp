@@ -1,1 +1,3 @@
-James Gosling
+add /q hello /a world
+foo 1
+bye
