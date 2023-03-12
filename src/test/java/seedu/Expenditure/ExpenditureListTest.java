@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 public class ExpenditureListTest {
     private ExpenditureList testExpenditures = new ExpenditureList();
+
     @BeforeEach
     public void setUp() {
         AcademicExpenditure testAcademicExpenditure = new AcademicExpenditure("Laptop",
