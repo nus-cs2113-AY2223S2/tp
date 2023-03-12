@@ -11,9 +11,9 @@ public class RemoveCommandTest {
         DukeSession dukeSession = new DukeSession();
         Ingredient ingredient = new Ingredient("apple", 2);
         dukeSession.ingredients.add(ingredient);
-        assertEquals(DukeSession.ingredients.size(), 1);
+        assertEquals(1, DukeSession.ingredients.size());
         new RemoveCommand("apple", "2").execute(dukeSession);
-        assertEquals(DukeSession.ingredients.size(), 0);
+        assertEquals(0, DukeSession.ingredients.size());
     }
 
     @Test
@@ -21,10 +21,10 @@ public class RemoveCommandTest {
         DukeSession dukeSession = new DukeSession();
         Ingredient ingredient = new Ingredient("apple", 9);
         dukeSession.ingredients.add(ingredient);
-        assertEquals(dukeSession.ingredients.get(0).getQuantity(), 9);
+        assertEquals(9, dukeSession.ingredients.get(0).getQuantity());
         new RemoveCommand("apple", "2").execute(dukeSession);
-        assertEquals(dukeSession.ingredients.get(0).getQuantity(), 7);
+        assertEquals(7, dukeSession.ingredients.get(0).getQuantity());
         new RemoveCommand("apple", "4").execute(dukeSession);
-        assertEquals(dukeSession.ingredients.get(0).getQuantity(), 3);
+        assertEquals(3, dukeSession.ingredients.get(0).getQuantity());
     }
 }
