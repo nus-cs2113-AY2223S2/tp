@@ -1,13 +1,11 @@
 package seedu.meal360;
 
-import com.sun.security.jgss.GSSUtil;
-
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Parser {
 
-    public static final Ui ui = new Ui();
+    private static final Ui ui = new Ui();
 
     public String[] parseCommand(String command) {
         return command.split(" ");
