@@ -3,7 +3,9 @@ package utils;
 import commands.Command;
 import commands.ExitCommand;
 import commands.IncorrectCommand;
-import commands.meeting.*;
+import commands.meeting.AddMeetingCommand;
+import commands.meeting.DeleteMeetingCommand;
+import commands.meeting.ViewMeetingCommand;
 public class Parser {
 
     public Command parseCommand(String userInput) {

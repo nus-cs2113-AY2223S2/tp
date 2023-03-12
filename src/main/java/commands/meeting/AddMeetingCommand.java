@@ -6,7 +6,6 @@ import dinerdirector.DinerDirector;
 import manager.Meeting;
 import ui.TextUi;
 
-import java.lang.reflect.Member;
 
 public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD="add_meeting";
