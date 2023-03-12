@@ -1,6 +1,5 @@
 package data;
 
-import data.Currency;
 import java.util.Objects;
 
 public class Expense {
