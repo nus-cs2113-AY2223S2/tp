@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ExpenseList extends RecordList{
 
-    ExpenseList(){
+    public ExpenseList() {
         recordList = new ArrayList<>();
         recordCount = 0;
     }

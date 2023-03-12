@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,13 +19,31 @@ public class ParserTest {
     public void splitLine_testScenario_expectedBehaviour() {
         List<String> expectedOutput = new ArrayList<String>();
         expectedOutput.add("add expense");
+        expectedOutput.add("ca meal");
         expectedOutput.add("de breakfast");
         expectedOutput.add("da 01/02/23");
         expectedOutput.add("v 3.50");
         
         assertEquals(expectedOutput, new Parser().splitLine("add expense /de breakfast /da 01/02/23 /v 3.50"));
     }
-
+    
+    @Test
+    public void sortArguments_testScenario_expectedBehaviour() {
+        List<String> input = new ArrayList<String>();
+        input.add("add expense");
+        input.add("ca meal");
+        input.add("de breakfast");
+        input.add("da 01/02/23");
+        input.add("v 3.50");
+        
+        HashMap<String, String> expectedOutput = new HashMap<String, String>();
+        expectedOutput.put("ca", "meal");
+        expectedOutput.put("de", "breakfast");
+        expectedOutput.put("da", "01/02/23");
+        expectedOutput.put("v", "3.50");
+        
+        assertEquals(expectedOutput, new Parser().sortArguments(input));
+    }
 
     @BeforeEach
     public void setUp() {
