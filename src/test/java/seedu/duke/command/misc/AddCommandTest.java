@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.DukeSession;
 import seedu.duke.ingredient.Ingredient;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.duke.command.misc.AddCommand.findIndex;
 
