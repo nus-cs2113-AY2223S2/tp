@@ -40,6 +40,13 @@ public class PackingList {
         toPack.setPacked(true);
     }
 
+    /**
+     * Marks an item as unpacked in the list.
+     */
+    public void unpackItem(Item toPack) {
+        toPack.setPacked(false);
+    }
+
     public static Item get(int targetIndex) {
         return itemList.get(targetIndex);
     }

@@ -3,6 +3,7 @@ package bagpacker.iohandler;
 import bagpacker.commands.AddCommand;
 import bagpacker.commands.DeleteCommand;
 import bagpacker.commands.PackCommand;
+import bagpacker.commands.UnpackCommand;
 import bagpacker.exception.EmptyInputException;
 import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
@@ -111,7 +112,7 @@ public class Parser {
     }
 
     /**
-     * Calls the PackCommand.execute() method to mark an item as packed to the packing list
+     * Calls the PackCommand.execute() method to mark an item as packed in the packing list
      */
 
     public static void packItem(String itemDescrip, PackingList packingList) {
@@ -120,6 +121,22 @@ public class Parser {
             if (packingList.get(i).getItemName().equalsIgnoreCase(itemDescrip)) {
                 PackCommand packCommand = new PackCommand(packingList.get(i));
                 packCommand.execute(packingList);
+            }
+
+        }
+
+    }
+
+    /**
+     * Calls the UnpackCommand.execute() method to mark an item as unpacked in the packing list
+     */
+
+    public static void unpackItem(String itemDescrip, PackingList packingList) {
+
+        for (int i = 0; i < packingList.size(); i++) {
+            if (packingList.get(i).getItemName().equalsIgnoreCase(itemDescrip)) {
+                UnpackCommand unpackCommand = new UnpackCommand(packingList.get(i));
+                unpackCommand.execute(packingList);
             }
 
         }

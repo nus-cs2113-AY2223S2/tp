@@ -7,7 +7,7 @@ import bagpacker.packingfunc.PackingList;
 public class PackCommand extends Command {
 
     public static final String MSG_SUCCESS_PACK = "Item packed: %s";
-    public static final String MSG_USAGE_PACK = "pack : Marks an item to as packed in the packing list.\n" +
+    public static final String MSG_USAGE_PACK = "pack : Marks an item as packed in the packing list.\n" +
             "Example: pack toothbrush";
 
     private final Item item;
