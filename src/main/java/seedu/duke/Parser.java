@@ -1,5 +1,4 @@
 package seedu.duke;
-import seedu.duke.Ui;
 import seedu.duke.data.Expense;
 import seedu.duke.data.ExpenseList;
 import seedu.duke.data.Income;
