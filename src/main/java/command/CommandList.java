@@ -4,12 +4,12 @@ import data.Expense;
 import data.ExpenseList;
 
 import java.util.ArrayList;
+import static common.MessageList.MESSAGE_DIVIDER;
 
 import static common.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class CommandList extends Command {
     public static final String COMMAND_NAME = "list";
-    public static final String SYNTAX = "Here's your task in the list: ";
     protected ArrayList<Expense> expenseList;
 
     /**
@@ -26,6 +26,14 @@ public class CommandList extends Command {
         if (expenseList.size() == 0) {
             System.out.println("Sorry, there are no expenses tracked currently.");
             return false;
+        } else {
+            System.out.println(MESSAGE_DIVIDER_LIST);
+            for (int i = 0; i < expenseList.size(); i++) {
+                System.out.print((i + 1) + ".");
+                expenseList.get(i).toString();
+            }
+            System.out.println("\n" + ExpenseList.getAllMessage());
+            System.out.println(MESSAGE_DIVIDER);
         }
 
         return true;

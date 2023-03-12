@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import command.CommandAdd;
+import command.CommandList;
 import data.ExpenseList;
 import parser.Parser;
 
@@ -40,7 +41,7 @@ public class Duke {
                 break;
             case "list":
                 System.out.println("Here are the tasks in your list:\n");
-                ExpenseList.listExpense();
+                new CommandList(expenseList.getExpenseList());
                 break;
             default:
                 System.out.println("Unknown command.");

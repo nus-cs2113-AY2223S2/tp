@@ -5,9 +5,6 @@ import parser.Parser;
 
 import java.util.ArrayList;
 
-import static common.MessageList.MESSAGE_DIVIDER;
-import static common.MessageList.MESSAGE_DIVIDER_LIST;
-
 public class ExpenseList {
     public static ArrayList<Expense> expenseList = new ArrayList<>();
     protected Parser parser = new Parser();
@@ -30,17 +27,6 @@ public class ExpenseList {
 
     private static String printExpensesOrExpense(int count) {
         return ((count == 1) ? "expense" : "expenses");
-    }
-
-
-    public static void listExpense() {
-        showToUser(MESSAGE_DIVIDER_LIST);
-        for (int i = 0; i < expenseList.size(); i++) {
-            System.out.print((i + 1) + ".");
-            expenseList.get(i).printTask();
-        }
-        System.out.println("\n" + getAllMessage());
-        showToUser(MESSAGE_DIVIDER);
     }
 
     private static void showToUser(String... message) {
