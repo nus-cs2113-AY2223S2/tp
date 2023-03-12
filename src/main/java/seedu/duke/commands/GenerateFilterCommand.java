@@ -1,8 +1,8 @@
 
 package seedu.duke.commands;
 
-import seedu.duke.Exception.DukeError;
-import seedu.duke.Exception.FilterTooManyError;
+import seedu.duke.Exceptions.DukeError;
+import seedu.duke.Exceptions.FilterTooManyError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.ui.Ui;
