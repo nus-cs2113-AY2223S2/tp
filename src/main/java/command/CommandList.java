@@ -25,14 +25,16 @@ public class CommandList extends Command {
     public boolean run() {
         if (expenseList.size() == 0) {
             System.out.println("Sorry, there are no expenses tracked currently.");
+            System.out.println(MESSAGE_DIVIDER);
             return false;
         } else {
+            System.out.println("Here are the tasks in your list:\n");
             System.out.println(MESSAGE_DIVIDER_LIST);
             for (int i = 0; i < expenseList.size(); i++) {
                 System.out.print((i + 1) + ".");
-                expenseList.get(i).toString();
+                System.out.println(expenseList.get(i).toString());
             }
-            System.out.println("\n" + ExpenseList.getAllMessage());
+            System.out.println(ExpenseList.getAllMessage());
             System.out.println(MESSAGE_DIVIDER);
         }
 

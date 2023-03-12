@@ -40,8 +40,7 @@ public class Duke {
                 expenseList.deleteExpense(input);
                 break;
             case "list":
-                System.out.println("Here are the tasks in your list:\n");
-                new CommandList(expenseList.getExpenseList());
+                new CommandList(expenseList.getExpenseList()).run();
                 break;
             default:
                 System.out.println("Unknown command.");

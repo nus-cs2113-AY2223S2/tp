@@ -22,7 +22,8 @@ public class ExpenseList {
     //for list
     public static String getAllMessage() {
         int count = expenseList.size();
-        return "\t" + "Now you have " + count + " " + printExpensesOrExpense(count) + " in the list.";
+        // Align the output statement position with the start instead of using tab to indent
+        return "Now you have " + count + " " + printExpensesOrExpense(count) + " in the list.";
     }
 
     private static String printExpensesOrExpense(int count) {
@@ -35,6 +36,10 @@ public class ExpenseList {
         }
     }
 
+    // In order to clear the list for test
+    public static void clear() {
+        expenseList.clear();
+    }
 
 }
 
