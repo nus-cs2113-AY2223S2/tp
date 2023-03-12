@@ -26,6 +26,31 @@ class Meal360Test {
         assertTrue(recipe.getName().equals("test recipe name"));
         assertTrue(recipe.getIngredients().get("test ingredient") == 100);
 
+        // Testing exceptions
+        try {
+            parser.parseViewRecipe(new String[]{"view"}, recipes);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            assertTrue(true);
+        }
+
+        try {
+            parser.parseViewRecipe(new String[]{"view", "a"}, recipes);
+        } catch (NumberFormatException e) {
+            assertTrue(true);
+        }
+
+        try {
+            parser.parseViewRecipe(new String[]{"view", "2"}, recipes);
+        } catch (IndexOutOfBoundsException e) {
+            assertTrue(true);
+        }
+
+        try {
+            parser.parseViewRecipe(new String[]{"view", "0"}, recipes);
+        } catch (IndexOutOfBoundsException e) {
+            assertTrue(true);
+        }
+
     }
 
     @Test

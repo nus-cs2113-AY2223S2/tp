@@ -16,15 +16,13 @@ public class Ui {
                 "|  \\/  |___ __ _| |__ / / / /  \\\n" +
                 "| |\\/| / -_) _` | ||_ \\/ _ \\ () |\n" +
                 "|_|  |_\\___\\__,_|_|___/\\___/\\__/\n";
-
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+        System.out.println("Welcome to Meal360, your ultimate Recipe Manager!\n" + logo);
         printSeparator();
     }
 
     public void printGoodbyeMessage() {
         printSeparator();
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(formatMessage("Bye. Hope to see you again soon!"));
         printSeparator();
     }
 
@@ -38,12 +36,10 @@ public class Ui {
     }
 
     public void printRecipe(Recipe recipe) {
-        printSeparator();
         System.out.println(formatMessage("Name of recipe: " + recipe.getName()));
         for (String ingredient : recipe.getIngredients().keySet()) {
             String outputMessage = String.format("%s(%d)", ingredient, recipe.getIngredients().get(ingredient));
             System.out.println(formatMessage(outputMessage));
         }
-        printSeparator();
     }
 }

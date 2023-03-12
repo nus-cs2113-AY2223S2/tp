@@ -36,10 +36,6 @@ public class Parser {
         return newRecipe;
     }
 
-    public Recipe parseAddRecipe(String[] input) {
-        return new Recipe("test", null);
-    }
-
     public Recipe parseEditRecipe(String[] input, RecipeList recipeList) {
         String recipeName = input[1].substring(2);
         Recipe recipeToEdit;
@@ -94,6 +90,7 @@ public class Parser {
     }
 
     public Recipe parseViewRecipe(String[] command, RecipeList recipes) {
+        assert command[0].equals("view");
         int recipeIndex = Integer.parseInt(command[1]) - 1;
         return recipes.get(recipeIndex);
     }

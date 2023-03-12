@@ -22,7 +22,6 @@ public class Meal360 {
         testIngredients.put("test ingredient", 100);
         Recipe testR = new Recipe("test recipe name", testIngredients);
         recipeList.addRecipe(testR);
-
     }
 
     public static void receiveInput(String input) {
@@ -36,18 +35,44 @@ public class Meal360 {
             ui.printMessage(deletedRecipe.toString());
             ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
         } else if (command[0].equals("view")) {
-            Recipe recipe = parser.parseViewRecipe(command, recipeList);
-            ui.printRecipe(recipe);
+            ui.printSeparator();
+            try {
+                Recipe recipe = parser.parseViewRecipe(command, recipeList);
+                ui.printRecipe(recipe);
+            } catch (NumberFormatException e) {
+                String errorMessage = String.format(
+                        "Please enter a valid recipe number. You entered %s, " + "which is not a number.",
+                        command[1]);
+                ui.printMessage(errorMessage);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                String errorMessage = String.format(
+                        "Please enter a valid recipe number. You did not enter a recipe number.");
+                ui.printMessage(errorMessage);
+            } catch (IndexOutOfBoundsException e) {
+                String errorMessage = String.format(
+                        "Please enter a valid recipe number. You entered %s, " + "which is out of bounds.",
+                        command[1]);
+                ui.printMessage(errorMessage);
+            }
+            ui.printSeparator();
         } else if (command[0].equals("list")) {
             parser.parseListRecipe(recipeList);
         } else if (command[0].equals("add")) {
+            ui.printSeparator();
             Recipe newRecipe = parser.parseAddRecipe(command, recipeList);
             ui.printMessage("I've added this new recipe:" + newRecipe.getName());
             ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
+            ui.printSeparator();
         } else if (command[0].equals("edit")) {
-            Recipe newrecipe = parser.parseEditRecipe(command, recipeList);
+            ui.printSeparator();
+            Recipe newRecipe = parser.parseEditRecipe(command, recipeList);
             // ui print message
-            ui.printMessage("I've edited this recipe:" + newrecipe.getName());
+            ui.printMessage("I've edited this recipe:" + newRecipe.getName());
+            ui.printSeparator();
+        } else {
+            ui.printSeparator();
+            ui.printMessage("I'm sorry, but I don't know what that means :-(");
+            ui.printSeparator();
         }
     }
 
