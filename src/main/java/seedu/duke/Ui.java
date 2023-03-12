@@ -52,7 +52,7 @@ public class Ui {
     }
 
 
-    public void showHelp() {
+    public static void showHelp() {
         System.out.println("    ADD RECORDS:");
         System.out.println("    add expense /c <category> /de <description> /da <date> /v <value>");
         System.out.println("    add income");
