@@ -10,5 +10,4 @@ How may I help you?
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 > ________________________________________________
-Cannot invoke "seedu.duke.commands.Command.execute(seedu.duke.entrylog.EntryLog)" because "command" is null
-________________________________________________
+error

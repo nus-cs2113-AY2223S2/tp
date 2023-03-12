@@ -26,8 +26,7 @@ public class Duke {
                 Command command = new Parser().parseUserInput(userInput);
                 command.execute(entrylog);
             } catch (Exception e) {
-                ui.print(e.getMessage() + UIConstants.NEWLINE);
-                ui.printLine();
+                ui.print("error");
             }
             // TODO: condition to be replaced when exit command is implemented
         } while (in.hasNextLine());
