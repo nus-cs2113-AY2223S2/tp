@@ -1,6 +1,6 @@
 package seedu.apollo.task;
 
-import seedu.apollo.Parser;
+import seedu.apollo.ui.Parser;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

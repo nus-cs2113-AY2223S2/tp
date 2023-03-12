@@ -1,4 +1,4 @@
-package seedu.apollo;
+package seedu.apollo.ui;
 
 import seedu.apollo.task.Task;
 import seedu.apollo.module.Module;

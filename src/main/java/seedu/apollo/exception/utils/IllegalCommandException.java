@@ -1,4 +1,4 @@
-package seedu.apollo.exception;
+package seedu.apollo.exception.utils;
 
 /**
  * Exception class for when command is not understood by Apollo.

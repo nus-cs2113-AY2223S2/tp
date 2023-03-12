@@ -1,9 +1,10 @@
-package seedu.apollo.command;
+package seedu.apollo.command.utils;
 
-import seedu.apollo.Storage;
+import seedu.apollo.storage.Storage;
+import seedu.apollo.command.Command;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
-import seedu.apollo.Ui;
+import seedu.apollo.ui.Ui;
 
 /**
  * Help Command class that shows user a list of all available Commands.

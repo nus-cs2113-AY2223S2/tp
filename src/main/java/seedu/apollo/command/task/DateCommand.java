@@ -1,8 +1,9 @@
-package seedu.apollo.command;
+package seedu.apollo.command.task;
 
-import seedu.apollo.Ui;
-import seedu.apollo.exception.InvalidDateTime;
-import seedu.apollo.Storage;
+import seedu.apollo.ui.Ui;
+import seedu.apollo.command.Command;
+import seedu.apollo.exception.task.InvalidDateTime;
+import seedu.apollo.storage.Storage;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 

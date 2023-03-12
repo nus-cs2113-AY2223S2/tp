@@ -1,7 +1,9 @@
 package seedu.apollo;
 
 import org.junit.jupiter.api.Test;
+import seedu.apollo.storage.Storage;
 import seedu.apollo.task.TaskList;
+import seedu.apollo.ui.Ui;
 
 import java.io.IOException;
 

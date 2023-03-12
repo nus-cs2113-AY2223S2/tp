@@ -1,8 +1,9 @@
-package seedu.apollo.command;
+package seedu.apollo.command.module;
 
-import seedu.apollo.Storage;
-import seedu.apollo.Ui;
-import seedu.apollo.exception.InvalidModule;
+import seedu.apollo.storage.Storage;
+import seedu.apollo.ui.Ui;
+import seedu.apollo.command.Command;
+import seedu.apollo.exception.module.InvalidModule;
 import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;

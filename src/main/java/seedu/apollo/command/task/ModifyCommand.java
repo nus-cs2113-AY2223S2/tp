@@ -1,16 +1,17 @@
-package seedu.apollo.command;
+package seedu.apollo.command.task;
 
-import seedu.apollo.Storage;
+import seedu.apollo.storage.Storage;
+import seedu.apollo.command.Command;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
-import seedu.apollo.Ui;
+import seedu.apollo.ui.Ui;
 
 import java.io.IOException;
 import java.rmi.UnexpectedException;
 
-import static seedu.apollo.Parser.COMMAND_DELETE_WORD;
-import static seedu.apollo.Parser.COMMAND_MARK_WORD;
-import static seedu.apollo.Parser.COMMAND_UNMARK_WORD;
+import static seedu.apollo.ui.Parser.COMMAND_DELETE_WORD;
+import static seedu.apollo.ui.Parser.COMMAND_MARK_WORD;
+import static seedu.apollo.ui.Parser.COMMAND_UNMARK_WORD;
 
 /**
  * Mark and Delete Command class that modifies an existing Task from the TaskList.

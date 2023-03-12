@@ -1,23 +1,24 @@
-package seedu.apollo.command;
+package seedu.apollo.command.task;
 
-import seedu.apollo.Parser;
-import seedu.apollo.Storage;
-import seedu.apollo.exception.DateOrderException;
+import seedu.apollo.ui.Parser;
+import seedu.apollo.storage.Storage;
+import seedu.apollo.command.Command;
+import seedu.apollo.exception.task.DateOrderException;
 import seedu.apollo.task.Deadline;
 import seedu.apollo.task.Event;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
-import seedu.apollo.Ui;
-import seedu.apollo.exception.InvalidDeadline;
-import seedu.apollo.exception.InvalidEvent;
+import seedu.apollo.ui.Ui;
+import seedu.apollo.exception.task.InvalidDeadline;
+import seedu.apollo.exception.task.InvalidEvent;
 import seedu.apollo.task.ToDo;
 
 import java.io.IOException;
 import java.rmi.UnexpectedException;
 
-import static seedu.apollo.Parser.COMMAND_DEADLINE_WORD;
-import static seedu.apollo.Parser.COMMAND_EVENT_WORD;
-import static seedu.apollo.Parser.COMMAND_TODO_WORD;
+import static seedu.apollo.ui.Parser.COMMAND_DEADLINE_WORD;
+import static seedu.apollo.ui.Parser.COMMAND_EVENT_WORD;
+import static seedu.apollo.ui.Parser.COMMAND_TODO_WORD;
 
 /**
  * Add Command class that adds a Task to the existing TaskList.

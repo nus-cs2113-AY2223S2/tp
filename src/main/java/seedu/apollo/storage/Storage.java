@@ -1,11 +1,13 @@
-package seedu.apollo;
+package seedu.apollo.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import seedu.apollo.exception.DateOrderException;
-import seedu.apollo.exception.InvalidDeadline;
-import seedu.apollo.exception.InvalidEvent;
-import seedu.apollo.exception.InvalidSaveFile;
+import seedu.apollo.ui.Parser;
+import seedu.apollo.ui.Ui;
+import seedu.apollo.exception.task.DateOrderException;
+import seedu.apollo.exception.task.InvalidDeadline;
+import seedu.apollo.exception.task.InvalidEvent;
+import seedu.apollo.exception.utils.InvalidSaveFile;
 import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.Deadline;

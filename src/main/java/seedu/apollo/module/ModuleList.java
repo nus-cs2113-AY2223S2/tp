@@ -1,6 +1,6 @@
 package seedu.apollo.module;
 
-import seedu.apollo.exception.ModuleNotFoundException;
+import seedu.apollo.exception.module.ModuleNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
