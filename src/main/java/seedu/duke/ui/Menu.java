@@ -5,6 +5,7 @@ package seedu.duke.ui;
 // import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Scanner;
+import seedu.duke.diagnosis.symptoms.Symptom;
 import seedu.duke.save.Storage;
 import seedu.duke.patient.Patient;
 
@@ -81,27 +82,140 @@ public class Menu {
         System.out.println("3. Exit");
     }
 
-    public static ArrayList<String> getUserSymptoms() {
-        ArrayList<String> symptoms = new ArrayList<>();
-        System.out.println("Here is the list of possible symptoms:");
-        // to add command to display all possible symptoms
-        System.out.println("Please enter a symptom.");
+    public static ArrayList<Symptom> getUserSymptoms() {
         Scanner scanner = new Scanner(System.in);
-        String symptom = scanner.nextLine();
-        // to add code to process symptom user keyed in
+        ArrayList<Symptom> symptoms = new ArrayList<>();
+        displaySymptomList();
+        addSymptomToSymptomList(scanner, symptoms);
         while (true) {
             System.out.println("Do you have any other symptoms? [Y/N]");
             String decision = scanner.nextLine();
             if (decision.equals("Y") || decision.equals("y")) {
-                System.out.println("Please enter a symptom.");
-                symptom = scanner.nextLine();
-                // to add code to process symptom user keyed in
+                displaySymptomList();
+                addSymptomToSymptomList(scanner, symptoms);
             } else if (decision.equals("N") || decision.equals("n")) {
+                System.out.println("Your entered symptoms are: ");
+                System.out.println(symptoms);
                 break;
             } else {
                 System.out.println("Invalid command! Please indicate Y/N.");
             }
         }
         return symptoms;
+    }
+
+    /**
+     * Checks if symptom is valid, and adds it to the list of symptoms.
+     * @author tanyizhe
+     * @param scanner takes in user input
+     * @param symptoms list of symptoms
+     */
+    private static void addSymptomToSymptomList(Scanner scanner, ArrayList<Symptom> symptoms) {
+        Symptom symptomToBeAdded;
+        String symptomChoice;
+        symptomChoice = scanner.nextLine();
+        symptomToBeAdded = parseSymptomInput(symptoms, scanner, symptomChoice);
+        if (symptomToBeAdded != null) {
+            symptoms.add(symptomToBeAdded);
+        }
+    }
+
+    /**
+     * Parses user's input to a Symptom enumerator.
+     * @param symptoms an ArrayList of symptoms.
+     * @param scanner Scans user's input.
+     * @param symptomChoice A string that the user has typed in based on the displayed menu of symptoms.
+     */
+    private static Symptom parseSymptomInput(ArrayList<Symptom> symptoms, Scanner scanner, String symptomChoice) {
+        switch (symptomChoice) {
+        case "a":
+        case "A":
+            if (!symptoms.contains(Symptom.FEVER)) {
+                return Symptom.FEVER;
+            } else {
+                System.out.println("You have already entered this symptom!");
+                return null;
+            }
+        case "b":
+        case "B":
+            if (!symptoms.contains(Symptom.DRY_COUGH)) {
+                return Symptom.DRY_COUGH;
+            } else {
+                System.out.println("You have already entered this symptom!");
+                return null;
+            }
+        case "c":
+        case "C":
+            if (!symptoms.contains(Symptom.COUGH_WITH_PHLEGM)) {
+                return Symptom.COUGH_WITH_PHLEGM;
+            } else {
+                System.out.println("You have already entered this symptom!");
+                return null;
+            }
+        case "d":
+        case "D":
+            if (!symptoms.contains(Symptom.RUNNY_NOSE)) {
+                return Symptom.RUNNY_NOSE;
+            } else {
+                System.out.println("You have already entered this symptom!");
+                return null;
+            }
+        case "e":
+        case "E":
+            if (!symptoms.contains(Symptom.HEAD_ACHE)) {
+                return Symptom.HEAD_ACHE;
+            } else {
+                System.out.println("You have already entered this symptom!");
+                return null;
+            }
+        case "f":
+        case "F":
+            if (!symptoms.contains(Symptom.CHILLS)) {
+                return Symptom.CHILLS;
+            } else {
+                System.out.println("You have already entered this symptom!");
+                return null;
+            }
+        case "g":
+        case "G":
+            if (!symptoms.contains(Symptom.FATIGUE)) {
+                return Symptom.FATIGUE;
+            } else {
+                System.out.println("You have already entered this symptom!");
+                return null;
+            }
+        default:
+            System.out.println("Invalid input!");
+            return null;
+        }
+
+    }
+
+    /**
+     * Displays a list of symptoms for users to pick out their symptoms from.
+     */
+    private static void displaySymptomList() {
+        /*
+        change to use this method instead of hardcoding when
+        we have better sorting (alphabetical order on enums)
+        can display symptoms and (is it possible to .toString enums?)
+        have more relevant symptoms (e.g. for ADHD you don't go to clinic)
+
+        int count = 1;
+        System.out.println("Please enter a symptom.");
+        for (Symptom symptom : Symptom.values()) {
+            System.out.println(count + ". ");
+            System.out.println(symptom);
+        }
+         */
+        System.out.println("Here is the list of possible symptoms:");
+        System.out.println("a. Fever");
+        System.out.println("b. Dry Cough");
+        System.out.println("c. Cough with phlegm");
+        System.out.println("d. Runny nose");
+        System.out.println("e. Headache");
+        System.out.println("f. Chills");
+        System.out.println("g. Fatigue");
+        System.out.println("\nPlease enter a symptom.");
     }
 }
