@@ -7,6 +7,7 @@ package seedu.duke.ui;
 
 import seedu.duke.Duke;
 import seedu.duke.diagnosis.symptoms.Symptom;
+import seedu.duke.medicine.MedicineManager;
 // import seedu.duke.ui.Information;
 import java.util.ArrayList;
 
@@ -38,7 +39,9 @@ public class Parser {
         switch(choice) {
         case "1":
             ArrayList<Symptom> symptoms = Menu.getUserSymptoms();
-            // to add link to medicine class from arraylist of symptoms
+            Menu.displayPossibleIllness(symptoms);
+            MedicineManager medicineManager = new MedicineManager();
+            medicineManager.analyseIllness(symptoms);
             break;
         case "2":
             Information.printDiagnosisHistory(Duke.getPassword());

@@ -1,5 +1,9 @@
 package seedu.duke.medicine;
 
+import seedu.duke.diagnosis.Diagnosis;
+import seedu.duke.diagnosis.IllnessMatch;
+import seedu.duke.diagnosis.symptoms.Symptom;
+
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.ArrayList;
@@ -33,34 +37,53 @@ public class MedicineManager {
                 .collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Medicine> migraineMedications = Stream.of(IBUPROFEN, ASPIRIN)
                 .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Medicine> feverMedications = Stream.of(PARACETAMOL)
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Medicine> headacheMedications = Stream.of(PARACETAMOL)
+                .collect(Collectors.toCollection(ArrayList::new));
         medicationDict.put("Covid-19", covidMedications);
-        medicationDict.put("Common Cold", commonColdMedications);
+        medicationDict.put("General Cold", commonColdMedications);
         medicationDict.put("Migraine", migraineMedications);
+        medicationDict.put("Fever", feverMedications);
+        medicationDict.put("Headache", headacheMedications);
     }
     /**
      * This Method initialises the dictionary of Medications and their dosages.
      * The keys are the names of Medications and the values is a string that describes dosage.
      */
-    public void initialiseMedicineDosages() {
+    public void initialiseMedicineDosages () {
         medicineDosages.put(PARACETAMOL.toString(), PARACETAMOL.getDosage());
         medicineDosages.put(ROBITUSSIN.toString(), ROBITUSSIN.getDosage());
         medicineDosages.put(LOZENGE.toString(), LOZENGE.getDosage());
         medicineDosages.put(ASPIRIN.toString(), ASPIRIN.getDosage());
         medicineDosages.put(IBUPROFEN.toString(), IBUPROFEN.getDosage());
-        System.out.println(medicineDosages.get("Aspirin"));
+    }
+
+    /**
+     * Analyses possible illnesses and outputs relevant medication and their dosages.
+     */
+    public void analyseIllness (ArrayList<Symptom> symptoms) {
+        ArrayList<IllnessMatch> possibleIllnesses = Diagnosis.getPossibleIllnesses(symptoms);
+        for (IllnessMatch illnessMatch : possibleIllnesses) {
+            System.out.println("Medication for: " + illnessMatch.getIllness().getIllnessName());
+            ArrayList<Medicine> relevantMedications = getRelevantMedication(illnessMatch.getIllness().getIllnessName());
+            for (Medicine medicine : relevantMedications) {
+                System.out.println("    " + medicine.toString() + " / Dosage: " + medicine.getDosage());
+            }
+        }
     }
     /**
      * Prescribes appropriate medications to patients.
      * @param illness Name of illness diagnosed by Dr. Duke.
-     * @return an ArrayList of prescribed medications.
+     * @return ArrayList of prescribed medications.
      */
-    public ArrayList<Medicine> getPrescribedMedication (String illness) {
+    public ArrayList<Medicine> getRelevantMedication (String illness) {
         return medicationDict.get(illness);
     }
     /**
      * Gets dosage for medicine.
      * @param name name of medication
-     * @return dosage of specified medication
+     * @return String specifying dosage of specified medication
      */
     public String getMedicineDosages (String name) {
         return medicineDosages.get(name);

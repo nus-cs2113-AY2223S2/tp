@@ -5,6 +5,9 @@ package seedu.duke.ui;
 // import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import seedu.duke.diagnosis.Diagnosis;
+import seedu.duke.diagnosis.IllnessMatch;
 import seedu.duke.diagnosis.symptoms.Symptom;
 import seedu.duke.save.Storage;
 import seedu.duke.patient.Patient;
@@ -217,5 +220,13 @@ public class Menu {
         System.out.println("f. Chills");
         System.out.println("g. Fatigue");
         System.out.println("\nPlease enter a symptom.");
+    }
+    public static void displayPossibleIllness (ArrayList<Symptom> symptoms) {
+        ArrayList<IllnessMatch> possibleIllnesses =  Diagnosis.getPossibleIllnesses(symptoms);
+        System.out.println("You may have: ");
+        for (IllnessMatch illnessMatch : possibleIllnesses) {
+            System.out.println(illnessMatch.getIllness().getIllnessName() + " "
+                        + illnessMatch.getSimilarityPercentage() * 100 + "%");
+        }
     }
 }
