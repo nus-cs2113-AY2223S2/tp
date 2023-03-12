@@ -18,6 +18,6 @@ public class Greet {
         System.out.println("gym (filters for exercises that need gym equipment)");
         System.out.println("static (filters for static exercises)");
         System.out.println("easy/medium/hard (filters for exercises with a specific difficulty)");
-
+        System.out.println("upper/core/legs (filters for exercises with a specific workout type)");
     }
 }
