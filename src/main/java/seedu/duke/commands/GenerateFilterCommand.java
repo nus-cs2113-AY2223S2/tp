@@ -5,8 +5,6 @@ import seedu.duke.exceptions.DukeError;
 import seedu.duke.exceptions.FilterTooManyError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
-import seedu.duke.userdata.CompletedWorkout;
-import seedu.duke.storage.WriteUserData;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
