@@ -1,4 +1,5 @@
 package seedu.duke;
+import seedu.duke.Ui;
 import seedu.duke.data.Expense;
 import seedu.duke.data.ExpenseList;
 import seedu.duke.data.Income;
@@ -33,8 +34,19 @@ public class Parser {
             ExpenseList.printExpenseList();
             break;
         case "list":
+            System.out.println("Income:");
             IncomeList.printIncomeList();
+            System.out.println("Expenses:");
             ExpenseList.printExpenseList();
+            break;
+        case "edit income":
+            editIncomes(argumentsByField);
+            break;
+        case "edit expense":
+            editExpenses(argumentsByField);
+            break;
+        case "help":
+            Ui.showHelp();
             break;
         default:
             System.out.println("Command not recognized, please enter a valid command!");
@@ -96,6 +108,57 @@ public class Parser {
             System.out.println("Income added");
         } catch (Exception e) {
             System.out.println("Trouble adding income");
+        }
+    }
+
+    public static void editExpenses(HashMap<String, String> argumentsByField) {
+        try {
+            int index = Integer.parseInt(argumentsByField.get("i"));
+            String updateCategory = null;
+            String updateDescription = null;
+            String updateDate = null;
+            float updateValue = 0;
+            if(argumentsByField.containsKey("c")) {
+                updateCategory = argumentsByField.get("c");
+            }
+            if(argumentsByField.containsKey("de")) {
+                updateDescription = argumentsByField.get("de");
+            }
+            if(argumentsByField.containsKey("da")) {
+                updateDate = argumentsByField.get("da");
+            }
+            if(argumentsByField.containsKey("v")) {
+                updateValue = Float.parseFloat(argumentsByField.get("v"));
+            }
+            ExpenseList.editExpense(index, updateCategory, updateDescription, updateDate, updateValue);
+            System.out.println("Expense modified");
+        } catch (Exception e) {
+            System.out.println("Trouble editing expense");
+        }
+    }
+    public static void editIncomes(HashMap<String, String> argumentsByField) {
+        try {
+            int index = Integer.parseInt(argumentsByField.get("i"));
+            String updateCategory = null;
+            String updateDescription = null;
+            String updateDate = null;
+            float updateValue = 0;
+            if(argumentsByField.containsKey("c")) {
+                updateCategory = argumentsByField.get("c");
+            }
+            if(argumentsByField.containsKey("de")) {
+                updateDescription = argumentsByField.get("de");
+            }
+            if(argumentsByField.containsKey("da")) {
+                updateDate = argumentsByField.get("da");
+            }
+            if(argumentsByField.containsKey("v")) {
+                updateValue = Float.parseFloat(argumentsByField.get("v"));
+            }
+            IncomeList.editIncome(index, updateCategory, updateDescription, updateDate, updateValue);
+            System.out.println("Income modified");
+        } catch (Exception e) {
+            System.out.println("Trouble editing income");
         }
     }
 }
