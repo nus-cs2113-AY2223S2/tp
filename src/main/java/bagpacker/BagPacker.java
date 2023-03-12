@@ -44,6 +44,8 @@ public class BagPacker {
                 break;
             case "pack":
                 //Add pack function
+                itemDescrip = Parser.getItemDescrip();
+                Parser.packItem(itemDescrip, packingList);
                 break;
             case "unpack":
                 //Add unpack function

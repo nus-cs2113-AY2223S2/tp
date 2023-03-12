@@ -20,17 +20,24 @@ public class PackingList {
         return itemList;
     }
     /**
-     * Adds a task to the list.
+     * Adds an item to the list.
      */
     public void addItem(Item toAdd) {
         itemList.add(toAdd);
     }
 
     /**
-     * Removes a task from the list.
+     * Removes an item from the list.
      */
     public void deleteItem(Item toDelete) {
         itemList.remove(toDelete);
+    }
+
+    /**
+     * Marks an item as packed in the list.
+     */
+    public void packItem(Item toPack) {
+        toPack.setPacked(true);
     }
 
     public static Item get(int targetIndex) {
