@@ -1,9 +1,13 @@
 package seedu.meal360;
 
+import com.sun.security.jgss.GSSUtil;
+
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Parser {
+
+    public static final Ui ui = new Ui();
 
     public String[] parseCommand(String command) {
         return command.split(" ");
@@ -83,6 +87,20 @@ public class Parser {
             int recipeIndex = Integer.parseInt(input[1]);
             return recipeList.deleteRecipe(recipeIndex);
         }
+    }
+
+    public void parseHelpUser(){
+        ui.printSeparator();
+        System.out.println("These are the operations you can do. Please follow the proper input" +
+                            " formats while typing.");
+        ui.printSeparator();
+        System.out.println("1. Add Recipe: add /r {recipe name}");
+        System.out.println("2. View Recipe: view {index number} or view /r {recipe name}");
+        System.out.println("3. Edit Recipe: edit {index number} or view /r {recipe name}");
+        System.out.println("4. Delete Recipe: delete {index number} or view /r {recipe name}");
+        System.out.println("5. List All Recipes: list");
+        System.out.println("6. Exit: bye");
+        ui.printSeparator();
     }
 
     public String parsePrepareRecipe(String[] input) {
