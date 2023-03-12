@@ -5,5 +5,12 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-type: generate x (where x is a positive integer)
+Commands: 
+Get a quick exercise: quick x (where x is a positive integer)
+Generate a specific list of exercises: generate PARAM1 PARAM2 ... x 
+PARAM stands for a specific requirement you want your exercise to have
+Parameters available for Generate:
+gym (filters for exercises that need gym equipment)
+static (filters for static exercises)
+easy/medium/hard (filters for exercises with a specific diffculty)
 Good Bye!
