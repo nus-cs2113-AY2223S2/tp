@@ -64,7 +64,8 @@ public class Expense {
         }
         return Objects.equals(this.getDescription(), ((Expense) obj).getDescription())
                 && this.getExpenseAmount() == ((Expense) obj).getExpenseAmount()
-                && Objects.equals(this.getExpenseTime(), ((Expense) obj).getExpenseTime());
+                && Objects.equals(this.getExpenseTime(), ((Expense) obj).getExpenseTime())
+                && Objects.equals(this.getCurrencyType(), ((Expense) obj).getCurrencyType());
     }
 
 

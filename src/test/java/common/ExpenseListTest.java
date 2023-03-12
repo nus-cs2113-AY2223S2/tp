@@ -10,6 +10,7 @@ import parser.Parser;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 class ExpenseListTest {
@@ -23,6 +24,11 @@ class ExpenseListTest {
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/2.5 " +
                 "t/02/02/2012 cat/food")).run();
         assertEquals(testExpenseList.get(0), expenseList.getExpenseList().get(0));
+
+        testExpenseList.add(new Expense(2.5, "02/02/2012", "food", Currency.SGD));
+        new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/2.5 " +
+                "t/02/02/2012 cur/USD cat/food")).run();
+        assertNotEquals(testExpenseList.get(1), expenseList.getExpenseList().get(1));
     }
 
     @Test

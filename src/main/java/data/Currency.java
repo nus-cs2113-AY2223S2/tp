@@ -7,6 +7,7 @@ public enum Currency {
     USD, SGD;
 
     public static Currency checkCurrency(String currency) {
+        // Default currency is SGD
         if (currency == null) {
             return SGD;
         }
