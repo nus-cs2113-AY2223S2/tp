@@ -9,6 +9,10 @@ public class InstructionList {
         instructions = new ArrayList<>();
     }
 
+    public void add(Instruction instruction) {
+        instructions.add(instruction);
+    }
+
     public ArrayList<Instruction> getInstructions() {
         return instructions;
     }

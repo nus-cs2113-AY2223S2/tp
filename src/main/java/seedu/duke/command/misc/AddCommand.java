@@ -20,7 +20,7 @@ public class AddCommand extends ExecutableCommand {
     }
 
     private static void addToExistingIngredients(DukeSession dukeSession, int quantity, int index) {
-        int newQuantity = DukeSession.ingredients.get(index).getQuantity() + quantity;
+        double newQuantity = DukeSession.ingredients.get(index).getQuantity() + quantity;
         DukeSession.ingredients.get(index).setQuantity(newQuantity);
         dukeSession.getUi().printMessage("Here is the new quantity of the ingredient:");
         dukeSession.getUi().printMessage(String.valueOf(DukeSession.ingredients.get(index)));
