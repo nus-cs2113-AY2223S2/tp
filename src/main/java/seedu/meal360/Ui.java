@@ -1,4 +1,5 @@
 package seedu.meal360;
+
 public class Ui {
 
     private static final int BOXWIDTH = 100;
@@ -21,9 +22,8 @@ public class Ui {
         System.out.println("What is your name?");
         //String userName = takeName.nextLine();
         printSeparator();
-        ///System.out.println("Hello " + userName + "!" + " Welcome to Meal360, your ultimate Recipe Manager!");
+        //System.out.println("Hello " + userName + "!" + " Welcome to Meal360, your ultimate Recipe Manager!");
         //printSeparator();
-        //takeName.close();
     }
 
     public void printGoodbyeMessage() {
