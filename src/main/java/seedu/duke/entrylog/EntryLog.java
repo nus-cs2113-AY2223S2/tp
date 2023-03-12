@@ -103,6 +103,20 @@ public class EntryLog {
         return new EntryLog(filteredEntries);
     }
 
+    /**
+     * Access an entry in the log using its id.
+     *
+     * @param entryId Id corresponding to the index (0-based)
+     * @throws InvalidArgumentsException If an invalid index is passed
+     */
+    public Entry getEntry(int entryId) throws InvalidArgumentsException {
+        try {
+            return entries.get(entryId);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+        }
+    }
+
     public int getSize() {
         return entries.size();
     }
