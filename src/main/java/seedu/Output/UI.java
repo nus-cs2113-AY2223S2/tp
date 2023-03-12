@@ -1,5 +1,8 @@
 package seedu.Output;
 
+import seedu.Database.FoodStorage;
+import seedu.Entities.Food;
+
 import java.util.Scanner;
 
 public class UI {
@@ -7,6 +10,7 @@ public class UI {
 
     /**
      * Reads user input
+     *
      * @return user input
      */
     public String readLine() {
@@ -54,13 +58,34 @@ public class UI {
     }
 
     private void printLogo() {
-        System.out.println( 
+        System.out.println(
                 " _      _  __  _______             _              \n"
-                + "| |    (_)/ _||__   __|           | |            \n"
-                + "| |     _| |_ ___| |_ __ __ _  ___| | _____ _ __ \n"
-                + "| |    | |  _/ _ \\ | '__/ _` |/ __| |/ / _ \\ '__|\n"
-                + "| |____| | ||  __/ | | | (_| | (__|   <  __/ |   \n"
-                + "|______|_|_| \\___|_|_|  \\__,_|\\___|_|\\_\\___|_|   \n"
+                        + "| |    (_)/ _||__   __|           | |            \n"
+                        + "| |     _| |_ ___| |_ __ __ _  ___| | _____ _ __ \n"
+                        + "| |    | |  _/ _ \\ | '__/ _` |/ __| |/ / _ \\ '__|\n"
+                        + "| |____| | ||  __/ | | | (_| | (__|   <  __/ |   \n"
+                        + "|______|_|_| \\___|_|_|  \\__,_|\\___|_|\\_\\___|_|   \n"
         );
+    }
+
+    public void printNewFoodAdded(FoodStorage foodStorage, int food) {
+        Food newFood = foodStorage.getFoodById(food);
+        String foodDescription = newFood.toString();
+        System.out.println("You just added this food\n" + foodDescription);
+    }
+
+    public void printAllFoods(FoodStorage foodStorage) {
+        if (foodStorage.getFoodsCount() == 0) {
+            System.out.println("There are no foods in your food list!");
+        } else {
+            System.out.println("Here are the foods in your food list:");
+            for (int i = 0; i < foodStorage.getFoodsCount(); i++) {
+                String taskDescription = foodStorage.getFoodById(i).toString();
+                System.out.println((i + 1) + ". " + taskDescription);
+            }
+        }
+    }
+
+    public void printDeletedFood(Food newFood) {
     }
 }
