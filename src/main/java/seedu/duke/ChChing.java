@@ -47,7 +47,7 @@ public class ChChing {
         try {
             Parser.parseCommand(command);
         } catch (Exception e) {
-            System.out.println("Command not recognized");
+            System.out.println("Error: Command not recognized");
         }
     }
     

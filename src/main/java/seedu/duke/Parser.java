@@ -23,7 +23,7 @@ public class Parser {
             ExpenseList.printRecordList();
             break;
         default:
-            System.out.println("Command not recognized");
+            System.out.println("Command not recognized, please enter a valid command!");
         }
     }
     
