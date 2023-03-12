@@ -31,9 +31,9 @@ class UITest {
     @Test
     void checkGreetingPrinted() {
         setUpStreams();
-        String greeting = "Welcome pekopekopeko" + System.lineSeparator();
+        String expectedGreeting = "Welcome pekopekopeko" + System.lineSeparator();
         UI.greetUser("pekopekopeko");
-        assertEquals(greeting, outContent.toString());
+        assertEquals(expectedGreeting, outContent.toString());
         restoreStreams();
     }
 }
