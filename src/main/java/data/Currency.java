@@ -7,6 +7,7 @@ public enum Currency {
     USD, SGD;
 
     public static Currency checkCurrency(String currency) {
+        // Default currency is SGD
         if (currency == null) {
             return SGD;
         }
@@ -15,6 +16,19 @@ public enum Currency {
         } else {
             // Will change to other currency later on, currently just assume SGD
             return SGD;
+        }
+    }
+
+    /**
+     * Given the type of currency, return a string of it.
+     */
+    public static String returnCurrency(Currency currency) {
+        if (currency.equals(SGD)) {
+            return "SGD";
+        } else if (currency.equals(USD)) {
+            return "USD";
+        } else {
+            return "SGD"; // By default
         }
     }
 
