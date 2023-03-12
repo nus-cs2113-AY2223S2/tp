@@ -1,9 +1,10 @@
-package seedu.apollo.command;
+package seedu.apollo.command.task;
 
-import seedu.apollo.Storage;
+import seedu.apollo.storage.Storage;
+import seedu.apollo.command.Command;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
-import seedu.apollo.Ui;
+import seedu.apollo.ui.Ui;
 
 /**
  * List Command class that shows user a list of all the Tasks they have input.

@@ -2,7 +2,10 @@ package seedu.apollo;
 
 import seedu.apollo.command.Command;
 import seedu.apollo.module.ModuleList;
+import seedu.apollo.storage.Storage;
 import seedu.apollo.task.TaskList;
+import seedu.apollo.ui.Parser;
+import seedu.apollo.ui.Ui;
 
 import java.io.IOException;
 import java.rmi.UnexpectedException;

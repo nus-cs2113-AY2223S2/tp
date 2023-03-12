@@ -2,8 +2,10 @@ package seedu.apollo;
 
 import org.junit.jupiter.api.Test;
 import seedu.apollo.command.Command;
-import seedu.apollo.exception.InvalidDeadline;
-import seedu.apollo.exception.InvalidEvent;
+import seedu.apollo.exception.task.InvalidDeadline;
+import seedu.apollo.exception.task.InvalidEvent;
+import seedu.apollo.ui.Parser;
+import seedu.apollo.ui.Ui;
 
 import java.rmi.UnexpectedException;
 import java.time.LocalDateTime;

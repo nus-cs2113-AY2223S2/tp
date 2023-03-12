@@ -1,9 +1,10 @@
-package seedu.apollo.command;
-import seedu.apollo.Storage;
-import seedu.apollo.exception.ModuleNotFoundException;
+package seedu.apollo.command.module;
+import seedu.apollo.storage.Storage;
+import seedu.apollo.command.Command;
+import seedu.apollo.exception.module.ModuleNotFoundException;
 import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
-import seedu.apollo.Ui;
+import seedu.apollo.ui.Ui;
 import seedu.apollo.task.TaskList;
 
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.io.IOException;
      * For {@code delmod} command.
      * Delete Module Command class that finds the module using moduleCode and removes it from the ModuleList
      */
-public class DeleteModuleCommand extends Command{
+public class DeleteModuleCommand extends Command {
 
     protected String moduleCode;
     public DeleteModuleCommand(String moduleCode){

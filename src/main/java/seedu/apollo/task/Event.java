@@ -1,7 +1,7 @@
 package seedu.apollo.task;
 
-import seedu.apollo.Parser;
-import seedu.apollo.exception.DateOrderException;
+import seedu.apollo.ui.Parser;
+import seedu.apollo.exception.task.DateOrderException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
