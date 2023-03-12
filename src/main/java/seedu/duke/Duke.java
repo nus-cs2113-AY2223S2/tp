@@ -28,7 +28,7 @@ public class Duke {
                 + "| | | |/ _ \\ | | | | | | | |/ / _ \\\n"
                 + "| |_| | |    | |_| | |_| |   <  __/\n"
                 + "|____/|_|    |____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello I am\n" + logo);
         Storage.loadData();
         while (password.equals("")) {
             Menu.showWelcomeMenu();
