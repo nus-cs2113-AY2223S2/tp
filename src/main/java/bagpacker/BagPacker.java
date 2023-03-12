@@ -1,9 +1,12 @@
 package bagpacker;
 
+import bagpacker.commands.Command;
 import bagpacker.iohandler.Storage;
 import bagpacker.iohandler.Ui;
 import bagpacker.iohandler.Parser;
 import bagpacker.packingfunc.PackingList;
+
+import java.util.ArrayList;
 
 public class BagPacker {
     private static PackingList packingList;
@@ -11,6 +14,9 @@ public class BagPacker {
      * Main entry-point for the java.BagPacker application.
      */
     public static void main(String[] args) {
+        // intialise variables
+        PackingList packingList = new PackingList();
+        BagPacker.packingList = packingList;
         //initialise BagPacker program
         Ui.initialMessage();
 
@@ -26,7 +32,8 @@ public class BagPacker {
         while (!Parser.getCommand().equals("bye")) {
             switch (Parser.getCommand()) {
             case "add":
-                //Add add function
+                String itemDescrip = Parser.getItemDescrip();
+                Parser.addItem(itemDescrip, packingList);
                 break;
             case "remove":
                 //Add remove function

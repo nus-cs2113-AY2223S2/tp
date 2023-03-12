@@ -6,18 +6,18 @@ import bagpacker.packingfunc.PackingList;
 /**
  * Commands class used to execute given commands from user
  */
-public abstract class Commands {
+public abstract class Command {
     protected PackingList packingList;
     private int targetIndex = -1;
 
     /**
      * @param targetIndex listing index of the target item
      */
-    public Commands(int targetIndex) {
+    public Command(int targetIndex) {
         this.setTargetIndex(targetIndex);
     }
 
-    protected Commands() {
+    protected Command() {
     }
 
     public void setTargetIndex(int targetIndex) {

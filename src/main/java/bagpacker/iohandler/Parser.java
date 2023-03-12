@@ -1,6 +1,11 @@
 package bagpacker.iohandler;
 
+import bagpacker.commands.AddCommand;
 import bagpacker.exception.EmptyInputException;
+import bagpacker.packingfunc.Item;
+import bagpacker.packingfunc.PackingList;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -9,19 +14,19 @@ import java.util.Scanner;
  * Parser class contains methods to manipulate user input
  */
 public class Parser {
-    private static ArrayList<String> inputStringArray;
+    private static String[] inputStringArray;
     private static String fullInput;
     public static void setFullInput(String fullInput) {
         Parser.fullInput = fullInput;
     }
 
     /**
-     * Returns the user input as in array list format
+     * Returns the user input as in array format
      */
-    public static ArrayList<String> getInputStringArray() {
+    public static String[] getInputStringArray() {
         return inputStringArray;
     }
-    public static void setInputStringArray(ArrayList<String> inputStringArray) {
+    public static void setInputStringArray(String[] inputStringArray) {
         Parser.inputStringArray = inputStringArray;
     }
     /**
@@ -41,7 +46,8 @@ public class Parser {
         }
         setFullInput(inputLine);
         String[] inputStringList = inputLine.split(" ");
-        setInputStringArray(new ArrayList<>(Arrays.asList(inputStringList)));
+        setInputStringArray(inputStringList);
+
     }
 
     private static String readLine() throws EmptyInputException {
@@ -58,8 +64,32 @@ public class Parser {
      * Returns the user command in lower case
      */
     public static String getCommand() {
-        return getInputStringArray().get(0).toLowerCase();
+        return getInputStringArray()[0].toLowerCase();
     }
+
+    /**
+     * Returns the user item description
+     */
+    public static String getItemDescrip() {
+        String[] itemArray = Arrays.copyOfRange(getInputStringArray(),1,getInputStringArray().length);
+
+        return String.join(" ", itemArray);
+    }
+
+    /**
+     * Calls the AddCommand.execute() method to add an item to the packing list
+     */
+
+    public static void addItem(String itemDescrip, PackingList packingList) {
+        // Create item object
+        Item item = new Item(itemDescrip,false);
+
+        AddCommand addCommand = new AddCommand(item);
+
+        addCommand.execute(packingList);
+
+    }
+
 
 
 }
