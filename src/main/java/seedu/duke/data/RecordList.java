@@ -14,7 +14,7 @@ public class RecordList {
         recordCount = 0;
     }
 
-    public ArrayList<Record> getRecordList() {
+    public static ArrayList<Record> getRecordList() {
         return recordList;
     }
 
