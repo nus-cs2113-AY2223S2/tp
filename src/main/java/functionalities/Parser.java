@@ -11,7 +11,7 @@ public class Parser {
         } else if (task.toLowerCase().startsWith("remove")) {
             //parseRemoveCommand();
         } else if (task.toLowerCase().startsWith("list")) {
-            //parseListCommand();
+            parseListCommand();
         } else if (task.toLowerCase().startsWith("view")) {
             //parseViewCommand();
         } else if (task.equalsIgnoreCase("bye")) {
@@ -23,6 +23,11 @@ public class Parser {
     }
     private static void parseByeCommand() {
         String userCommand = "bye";
+        command = new Command(userCommand);
+    }
+
+    private static void parseListCommand() {
+        String userCommand = "list";
         command = new Command(userCommand);
     }
 }
