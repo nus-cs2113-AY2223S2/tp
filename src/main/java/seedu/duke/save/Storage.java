@@ -10,7 +10,6 @@ import java.nio.file.Paths;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Map;
-import java.util.HashMap;
 import java.util.Scanner;
 import java.io.FileWriter;
 import seedu.duke.patient.Patient;
@@ -103,13 +102,11 @@ public class Storage {
 
     /**
      * Writes to the patient-data file to save all patients' data DoctorDuke currently has.
-     *
-     * @param patientsList Hashmap of patients' passwords mapped to their data.
      */
-    public static void saveData(HashMap<String, Patient> patientsList) {
+    public static void saveData() {
         try {
             FileWriter writer = new FileWriter(FILE_PATH);
-            for (Map.Entry<String, Patient> entry : patientsList.entrySet()) {
+            for (Map.Entry<String, Patient> entry : Information.patientsList.entrySet()) {
                 Patient patient = entry.getValue();
                 String name = patient.getName();
                 String password = patient.getPassword();
