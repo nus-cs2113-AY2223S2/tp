@@ -7,9 +7,9 @@ import java.util.HashMap;
 
 public class Information {
     public static HashMap<String, Patient> patientsList = new HashMap<>();
-    public static void storePatientInfo(String password, Patient patient) { //storePatientInfo(personalInfo(name), patient)
-        patientsList.put(password, patient);
-    }
+
+    //storePatientInfo(personalInfo(name), patient)
+    public static void storePatientInfo(String password, Patient patient) { patientsList.put(password, patient); }
     public static Patient getPatientInfo(String password) {
         return patientsList.get(password);
     }
