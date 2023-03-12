@@ -55,12 +55,15 @@ public class Ui {
      */
     public void printHelpMessage() {
         System.out.println(" Enter \"list\" to see all tasks\n" +
+                "Enter \"listmod\" to see your module list\n"+
                 " Enter \"todo [task]\" to add a task\n" +
                 " Enter \"deadline [task] /by [date]\" to add a deadline\n" +
                 " Enter \"event [task] /from [date] /to [date]\" to add an event\n" +
+                "Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n"+
                 " Enter \"mark [idx]\" to mark task as done\n" +
                 " Enter \"unmark [idx]\" to mark task as not done\n" +
                 " Enter \"delete [idx]\" to remove task from list\n" +
+                "Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added"+
                 " Enter \"find [keyword]\" to see all tasks containing [keyword]\n" +
                 " Enter \"date [yyyy-MM-dd]\" to see all tasks occurring on that date\n" +
                 " Enter \"bye\" to exit the program\n\n" +
