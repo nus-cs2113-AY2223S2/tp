@@ -39,7 +39,11 @@ public class CommandHandler {
             errorExists = true;
         }
         if (!errorExists) {
-            command.executeCommand(ui, exerciseGenerator);
+            try {
+                command.executeCommand(ui, exerciseGenerator);
+            } catch (DukeError e){
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
