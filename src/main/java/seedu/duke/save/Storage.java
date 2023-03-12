@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.io.FileWriter;
 import seedu.duke.patient.Patient;
+import seedu.duke.ui.Information;
 
 public class Storage {
 
@@ -24,16 +25,14 @@ public class Storage {
     static final String FILE_PATH = "./data/patient-data.txt";
 
     /**
-     * Loads each patient's data into a hashmap of patients by reading from the patient-data file.
-     *
-     * @return a Hashmap of patients' passwords mapped to their data.
+     * Loads each patient's data into a hashmap of patients in the Information class
+     * by reading from the patient-data file.
      */
-    public static HashMap<String, Patient> loadData() {
-        HashMap<String, Patient> patientsList = new HashMap<String, Patient>();
+    public static void loadData() {
         try {
             createDirectory();
             createFile();
-            patientsList = readFile();
+            readFile();
         } catch (FileNotFoundException e) {
             System.out.println("ERROR: File not found.");
         } catch (CorruptedDataException e) {
@@ -41,8 +40,6 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("ERROR: Failed to create files for storage");
         }
-
-        return patientsList;
     }
 
     /**
@@ -67,18 +64,14 @@ public class Storage {
 
     /**
      * Reads from the patient-data file and converts the data back into the patient data
-     * before creating a Hashmap that maps each patient's password to their data.
+     * before storing all read data into Information.patientsList.
      *
-     * @return a Hashmap of patients' passwords mapped to their data.
      * @throws FileNotFoundException if data file does not exist.
      * @throws CorruptedDataException if data file is corrupted.
      */
-    public static HashMap<String, Patient> readFile() throws FileNotFoundException,
-            CorruptedDataException {
+    public static void readFile() throws FileNotFoundException, CorruptedDataException {
         File file = new File(FILE_PATH);
         Scanner scanner = new Scanner(file);
-
-        HashMap<String, Patient> patientsList = new HashMap<String, Patient>();
 
         while (scanner.hasNextLine()) {
             String password = scanner.nextLine();
@@ -103,10 +96,9 @@ public class Storage {
             }
 
             Patient patient = new Patient(name, password, diagnosisHistory);
-            patientsList.put(password, patient);
+            Information.storePatientInfo(password, patient);
         }
         scanner.close();
-        return patientsList;
     }
 
     /**

@@ -32,7 +32,6 @@ public class Duke {
         String input = in.nextLine();
         Parser.parseWelcome(input);
 
-
         /*
         For testing of Diagnosis
         for (IllnessMatch test : Diagnosis.getPossibleIllnesses(new ArrayList<Symptom>(List.of(Symptom.BLOCKED_NOSE,
