@@ -1,10 +1,12 @@
 
 package seedu.duke.commands;
 
-import seedu.duke.Exceptions.DukeError;
-import seedu.duke.Exceptions.FilterTooManyError;
+import seedu.duke.exceptions.DukeError;
+import seedu.duke.exceptions.FilterTooManyError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
+import seedu.duke.userdata.CompletedWorkout;
+import seedu.duke.storage.WriteUserData;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -62,7 +64,12 @@ public class GenerateFilterCommand extends Command {
         if(numberOfExercisesToGenerate > exercises.size()){
             throw new FilterTooManyError();
         }
+        ArrayList<CompletedWorkout>completedList = new ArrayList<>();
         exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
+        for (var i:exercises){
+            completedList.add(new CompletedWorkout(i));
+        }
+        WriteUserData.writeToJson(completedList);
         ui.printExerciseFromList(exercises);
     }
 }

@@ -1,6 +1,6 @@
 package seedu.duke.exercisegenerator;
 
-import seedu.duke.Exceptions.DukeError;
+import seedu.duke.exceptions.DukeError;
 import seedu.duke.exersisedata.ExerciseData;
 
 import java.util.ArrayList;

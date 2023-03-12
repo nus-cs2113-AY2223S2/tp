@@ -1,7 +1,9 @@
 package seedu.duke;
 
+
 import seedu.duke.commands.CommandHandler;
 import seedu.duke.exercisegenerator.GenerateExercise;
+import seedu.duke.storage.LoadUserData;
 import seedu.duke.ui.Ui;
 
 import java.util.Scanner;
