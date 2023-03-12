@@ -1,6 +1,11 @@
 package com.clanki.parser;
 
-import com.clanki.commands.*;
+
+import com.clanki.commands.ByeCommand;
+import com.clanki.commands.Command;
+import com.clanki.commands.ReviewCommand;
+import com.clanki.commands.UnknownCommand;
+import com.clanki.commands.AddCommand;
 import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
@@ -47,7 +52,7 @@ public class Parser {
      * @throws EmptyFlashcardAnswerException     If the string is empty after
      *                                           ANSWER_START_INDICATOR.
      */
-    public AddCommand reformatAddCommandInput(String userInput)
+    public Command reformatAddCommandInput(String userInput)
             throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException, EmptyFlashcardAnswerException {
         int positionOfStartOfQuestion = userInput.indexOf(QUESTION_START_INDICATOR);
         int positionOfStartOfAnswer = userInput.indexOf(ANSWER_START_INDICATOR);
