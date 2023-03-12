@@ -39,9 +39,9 @@ public class Parser {
             int apptNum = Integer.parseInt(task.split(" ", 2)[1]);
             command = new Command(userCommand, apptNum);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new SniffException("Remove command description cannot be empty!");
+            throw new SniffException(" The remove command description cannot be empty!");
         } catch (NumberFormatException e) {
-            throw new SniffException("Remove command description must be a number!");
+            throw new SniffException(" The remove command description must be a number!");
         }
     }
 }
