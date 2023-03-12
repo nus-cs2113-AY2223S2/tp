@@ -1,8 +1,11 @@
 
 package com.clanki.commands;
 
+import com.clanki.objects.Flashcard;
 import com.clanki.objects.FlashcardList;
 import com.clanki.ui.Ui;
+
+import java.util.ArrayList;
 
 /**
  * Represents a command that is instructed for the program to conduct. A Command

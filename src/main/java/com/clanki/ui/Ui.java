@@ -46,4 +46,15 @@ public class Ui {
     public void printInvalidInput() {
         System.out.println("The input is in an incorrect format.");
     }
+
+    /**
+     * reused from Kong Dehao ip
+     * for general printing to console
+     * @param message multiple strings to be shown to user
+     */
+    public void print(String... message) {
+        for (String m : message) {
+            System.out.println(m);
+        }
+    }
 }

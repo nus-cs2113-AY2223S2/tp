@@ -1,7 +1,10 @@
 package com.clanki.commands;
 
+import com.clanki.objects.Flashcard;
 import com.clanki.objects.FlashcardList;
 import com.clanki.ui.Ui;
+
+import java.util.ArrayList;
 
 /**
  * A type of command that will instruct to add a new element into the ArrayList

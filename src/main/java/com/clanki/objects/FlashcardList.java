@@ -13,4 +13,7 @@ public class FlashcardList {
         Flashcard newFlashcard = new Flashcard(questionText, answerText);
         flashcards.add(newFlashcard);
     }
+    public ArrayList<Flashcard> getFlashCards(){
+        return flashcards;
+    }
 }

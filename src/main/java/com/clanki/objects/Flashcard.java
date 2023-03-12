@@ -53,6 +53,15 @@ public class Flashcard {
     }
 
     /**
+     * this function checks if the flashcard is due or overdue
+     * Sometimes the user may not clear all flashcards on time, so we may have cards overdue
+     * @return true if the card is due or overdue
+     */
+    public boolean isDueBeforeToday(){
+        return !LocalDate.now().isBefore(this.getDueDate());
+    }
+
+    /**
      * Reset <code>dueDate</code> and <code>currentPeriodInDays</code> as if the
      * card was just created.
      */
