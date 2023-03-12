@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Expense {
     protected double expenseAmount;
-    protected String expenseTime;
+    protected Time expenseTime;
     protected String description;
     protected Currency currencyType;
 
@@ -12,7 +12,7 @@ public class Expense {
         this.expenseAmount = 0;
     }
 
-    public Expense(double expenseAmount, String expenseTime, String description, Currency currencyType) {
+    public Expense(double expenseAmount, Time expenseTime, String description, Currency currencyType) {
         this.expenseAmount = expenseAmount;
         this.expenseTime = expenseTime;
         this.description = description;
@@ -24,7 +24,7 @@ public class Expense {
     }
 
     public String getExpenseTime() {
-        return expenseTime;
+        return expenseTime.toString();
     }
 
     public String getDescription() {
@@ -40,7 +40,7 @@ public class Expense {
         this.expenseAmount = expenseAmount;
     }
 
-    public void setExpenseTime(String expenseTime) {
+    public void setExpenseTime(Time expenseTime) {
         this.expenseTime = expenseTime;
     }
 
@@ -70,7 +70,7 @@ public class Expense {
         String currencyString = Currency.returnCurrency(this.currencyType);
         String amountString = Double.toString(this.expenseAmount);
         String descriptionString = this.description;
-        String timeString = this.expenseTime;
+        String timeString = this.expenseTime.toString();
         return (currencyString + amountString + " cat:" + descriptionString + " date:" + timeString);
     }
 
