@@ -5,6 +5,7 @@ import commands.deadlinecommand.AddDeadlineCommand;
 import commands.deadlinecommand.ViewDeadlineCommand;
 import commands.deadlinecommand.DeleteDeadlineCommand;
 import commands.ExitCommand;
+import commands.HelpCommand;
 import commands.IncorrectCommand;
 import common.Messages;
 import entity.Deadline;
@@ -23,6 +24,8 @@ public class Parser {
         String commandWord = userInputSplit[0];
 
         switch (commandWord) {
+        case HelpCommand.COMMAND_WORD:
+            return prepareHelpCommand();
         case ExitCommand.COMMAND_WORD:
             return prepareExitCommand();
         case AddDeadlineCommand.COMMAND_WORD:
@@ -102,7 +105,13 @@ public class Parser {
         }
         return new DeleteDeadlineCommand(index);
     }
+    
+    private Command prepareHelpCommand() {
+        return new HelpCommand();
+    }
+    
     private Command prepareExitCommand() {
         return new ExitCommand();
     }
+
 }
