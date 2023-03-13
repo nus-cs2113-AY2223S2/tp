@@ -20,7 +20,7 @@ import seedu.commands.InvalidCommand;
 
 public class MainInputParser {
     public static Command parseInputs(String line) {
-        String [] splitValues = line.split(" ", 2);
+        String[] splitValues = line.split(" ", 2);
         String command = splitValues[0];
 
         switch (command) {
@@ -49,7 +49,7 @@ public class MainInputParser {
             return ParseLendBorrow.lendBorrowItem(line, command);
         default:
             // Commands that are not listed above
-            return new InvalidCommand("Invalid");
+            return new InvalidCommand("Command not recognised. Please try again");
         }
     }
 }
