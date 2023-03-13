@@ -33,17 +33,19 @@ Example of usage:
 ### Listing recipes: `list`
 List all recipes or filtered list recipes by the name or ingredients.
 
-Format: `list [NAME/INGREDIENTS]`
+Format: `list [KEYWORD & KEYWORD & ...]`
 
-* The `NAME/INGREDIENTS` is optional.
-* To list all recipes, do not add `NAME/INGREDIENTS`.
+* The `KEYWORD` is optional. It can be a name of recipe or ingredients.
+* To list all recipes, do not add `KEYWORD`.
+* Use `&` to list all the recipe that contain all specified keywords.
 
 
 Example of usage:
 
 `list`
-
 `list pizza`
+`list milk & egg`
+
 
 ## FAQ
 
