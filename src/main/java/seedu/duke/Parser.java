@@ -2,6 +2,8 @@ package seedu.duke;
 
 public class Parser {
 
+    private final static int OFFSET = 1;
+
     public static void parseCommand(String userInput, EventList eventList) {
         userInput = userInput.trim();
         String command = userInput.substring(0, userInput.indexOf(" "));
@@ -29,7 +31,7 @@ public class Parser {
     }
 
     private static void parseDeleteCommand(String remainder, EventList eventList) {
-        eventList.deleteThisTask(Integer.parseInt(remainder));
+        eventList.deleteThisTask(Integer.parseInt(remainder) - OFFSET);
 
         //TODO: Show successful add on UI. (For all cases)
         Ui.deleteSuccessMsg();
@@ -44,7 +46,7 @@ public class Parser {
         String endTime = details[4].substring(2).trim();
 
         if (details.length == 6) {
-            String endDate = details[5].substring(2);
+            String endDate = details[5].substring(2).trim();
             eventList.addEvent(eventName, startTime, startDate, endTime, endDate);
         } else {
             eventList.addEvent(eventName, startTime, startDate, endTime);
