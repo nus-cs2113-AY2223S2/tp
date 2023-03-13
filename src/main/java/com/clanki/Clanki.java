@@ -7,14 +7,18 @@ import com.clanki.parser.Parser;
 import com.clanki.ui.Ui;
 
 public class Clanki {
-    private Ui ui;
-    private FlashcardList flashcardList;
-    private Parser parser;
+    private final Ui ui;
+    private final FlashcardList flashcardList;
+    private final Parser parser;
 
     public Clanki() {
         this.ui = new Ui();
         this.flashcardList = new FlashcardList();
         this.parser = new Parser();
+    }
+
+    public static void main(String[] args) {
+        new Clanki().run();
     }
 
     public void run() {
@@ -27,9 +31,5 @@ public class Clanki {
                 return;
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new Clanki().run();
     }
 }
