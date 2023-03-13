@@ -14,6 +14,7 @@ public class Storage {
 
     /**
      * Build constructor for the Storage class.
+     *
      * @param filepath the filepath of the storage.
      */
     Storage(String filepath) {
@@ -23,9 +24,10 @@ public class Storage {
         this.file = new File(filepath);
     }
 
-    public ArrayList<Record> load(){
+    public ArrayList<Record> load() {
     }
 
     public void save(RecordList records) {
     }
+}
 
