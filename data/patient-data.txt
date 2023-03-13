@@ -1,7 +1,9 @@
 1
 Jerald
-1
-Fever
+3
+General Flu
+Headache
+Headache
 12
 Bob
 0
