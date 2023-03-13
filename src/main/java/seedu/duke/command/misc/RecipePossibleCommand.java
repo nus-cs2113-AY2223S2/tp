@@ -11,7 +11,6 @@ import seedu.duke.recipe.RecipeList;
  * Represents the "/recipe possible" command.
  */
 public class RecipePossibleCommand extends ExecutableCommand {
-
     /**
      * Check if an ingredientList has a sufficient amount of an ingredient.
      *
@@ -19,7 +18,7 @@ public class RecipePossibleCommand extends ExecutableCommand {
      * @param ingredientList the list of ingredients to check in
      * @return true if the list of ingredients have sufficient quantity of that ingredient, false otherwise
      */
-    public boolean hasEnoughIngredient(Ingredient ingredient, IngredientList ingredientList) {
+    private boolean hasEnoughIngredient(Ingredient ingredient, IngredientList ingredientList) {
         String recipeIngredientName = ingredient.getName();
         double recipeIngredientQty = ingredient.getQuantity();
         for (Ingredient fridgeIngredient : ingredientList.getIngredients()) {
