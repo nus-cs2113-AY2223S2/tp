@@ -9,7 +9,7 @@ public class Task {
     /**
      * Compares the task1 deadline and task2 deadline. Used for sorting the ArrayList tasks by deadline.
      */
-    public static Comparator<Task> TaskDeadlineComparator = new Comparator<Task>() {
+    public static Comparator<Task> taskDeadlineComparator = new Comparator<Task>() {
         @Override
         public int compare(Task task1, Task task2) {
             return task1.deadline.compareTo(task2.deadline);
@@ -34,7 +34,7 @@ public class Task {
         return this.deadline;
     }
 
-    public boolean getIsDone() {
+    public boolean isDone() {
         return this.isDone;
     }
 

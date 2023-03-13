@@ -5,7 +5,7 @@ Add a task using: add <description> -d <deadline>
 List all tasks using: list
 Mark a task as done using: mark <index>
 Mark a task as undone using: unmark <index>
-Edit a task deadline using: editdeadline <index> -d <deadline>
-Exit the program using: bye
+Edit a task deadline using: edit <index> -d <deadline>
+Exit the program using: exit
 
 See you again, bye!
