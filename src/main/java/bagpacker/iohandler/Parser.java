@@ -74,7 +74,7 @@ public class Parser {
      */
     public static String getItemDescrip() {
         //String[] itemArray = Arrays.copyOfRange(getInputStringArray(),1,getInputStringArray().length);
-        int indexItemName = getFullInput().indexOf("/n") + 2;
+        int indexItemName = getFullInput().indexOf("/i") + 2;
         String itemName = getFullInput().substring(indexItemName, getFullInput().length()).trim();
         return itemName;
     }
