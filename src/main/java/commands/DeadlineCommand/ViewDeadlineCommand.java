@@ -1,6 +1,6 @@
-package commands.DeadlineCommand;
+package commands.deadlinecommand;
 
-import dinerDeadline.DeadlineList;
+import manager.DeadlineManager;
 import ui.TextUi;
 
 public class ViewDeadlineCommand extends commands.Command {
@@ -8,12 +8,11 @@ public class ViewDeadlineCommand extends commands.Command {
 
     /**
      * Executes the view deadline command.
-     * @param deadlineList managed the list of deadlines.
      * @param ui manages user input.
      */
     @Override
-    public void execute(DeadlineList deadlineList, TextUi ui) {
-        deadlineList.printDeadlines(ui);
+    public void execute(TextUi ui) {
+        DeadlineManager.printDeadlines(ui);
     }
 
     @Override

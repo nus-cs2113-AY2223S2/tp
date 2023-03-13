@@ -1,13 +1,13 @@
 package utils;
 
 import commands.Command;
-import commands.DeadlineCommand.AddDeadlineCommand;
-import commands.DeadlineCommand.ViewDeadlineCommand;
-import commands.DeadlineCommand.DeleteDeadlineCommand;
+import commands.deadlinecommand.AddDeadlineCommand;
+import commands.deadlinecommand.ViewDeadlineCommand;
+import commands.deadlinecommand.DeleteDeadlineCommand;
 import commands.ExitCommand;
 import commands.IncorrectCommand;
 import common.Messages;
-import dinerDeadline.Deadline;
+import entity.Deadline;
 import exceptions.DinerDirectorException;
 
 public class Parser {
@@ -50,8 +50,7 @@ public class Parser {
         try {
             if (((description.trim()).isEmpty()) || (!description.contains("n/")) || (words.length < 2)) {
                 throw new DinerDirectorException(Messages.MESSAGE_MISSING_PARAM);
-            }
-            else if ((testName.length > 2) || (words.length > 2)) {
+            } else if ((testName.length > 2) || (words.length > 2)) {
                 throw new DinerDirectorException(Messages.MESSAGE_EXCESS_PARAM);
             }
         } catch (DinerDirectorException e) {

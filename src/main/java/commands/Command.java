@@ -1,6 +1,5 @@
 package commands;
 
-import dinerDeadline.DeadlineList;
 import ui.TextUi;
 
 /**
@@ -11,7 +10,7 @@ public abstract class Command {
     /**
      * Executes the command the user provided.
      */
-    public abstract void execute(DeadlineList deadlineList, TextUi ui);
+    public abstract void execute(TextUi ui);
 
     public abstract boolean isExit();
 

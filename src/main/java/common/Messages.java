@@ -12,7 +12,8 @@ public class Messages {
     public static final String MESSAGE_DEADLINE_REMOVED = "Noted. I've removed this task:\n";
     public static final String MESSAGE_NUMBER_OF_DEADLINES = "\nNow you have %d tasks in the list.";
 
-    public static final String MESSAGE_INVALID_INDEX = "Invalid task index number!\nEnter \"view_deadline\" to check the index.";
+    public static final String MESSAGE_INVALID_INDEX = "Invalid task index number!\n" +
+            "Enter \"view_deadline\" to check the index.";
     public static final String MESSAGE_MISSING_INDEX = "Delete command must be followed by the index number!" +
             "Enter \"view_deadline\" to check the index.";
     public static final String MESSAGE_MISSING_PARAM = "Missing deadline parameter!";

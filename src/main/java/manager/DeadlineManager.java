@@ -1,5 +1,6 @@
-package dinerDeadline;
+package manager;
 
+import entity.Deadline;
 import exceptions.DinerDirectorException;
 import ui.TextUi;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 
 import common.Messages;
 
-public class DeadlineList {
+public class DeadlineManager {
     //Solution below adapted from https://github.com/Stella1585/ip/blob/master/src/main/java/duke/TaskList.java
     public static ArrayList<Deadline> deadlines = new ArrayList<>();
 
@@ -15,8 +16,8 @@ public class DeadlineList {
      * Creates DeadlineList with input list.
      * @param deadlines list of deadlines.
      */
-    public DeadlineList(ArrayList<Deadline> deadlines) {
-        DeadlineList.deadlines = deadlines;
+    public DeadlineManager(ArrayList<Deadline> deadlines) {
+        DeadlineManager.deadlines = deadlines;
     }
 
     /**
@@ -24,19 +25,20 @@ public class DeadlineList {
      * @param deadline the deadline item to be added.
      * @param ui manages user output.
      */
-    public void addDeadline(Deadline deadline, TextUi ui) {
+    public static void addDeadline(Deadline deadline, TextUi ui) {
         deadlines.add(deadline);
-        //Solution below adapted from https://github.com/darrenangwx/ip/blob/6d3f1bc5f1a281f9459a67650b043705d3096a8f/src/main/java/task/TaskParser.java
+        //Solution below adapted from https://github.com/darrenangwx/ip/blob/6d3f1bc5f1
+        // a281f9459a67650b043705d3096a8f/src/main/java/task/TaskParser.java
         ui.printMessage(Messages.MESSAGE_DEADLINE_ADDED +
                 deadlines.get(deadlines.size()-1).toString() +
-                        String.format(Messages.MESSAGE_NUMBER_OF_DEADLINES, deadlines.size()));
+                String.format(Messages.MESSAGE_NUMBER_OF_DEADLINES, deadlines.size()));
     }
 
     /**
      * Print the task list.
      * @param ui manages user output.
      */
-    public void printDeadlines(TextUi ui) {
+    public static void printDeadlines(TextUi ui) {
         try {
             if (deadlines.isEmpty()) {
                 throw new DinerDirectorException(Messages.MESSAGE_EMPTY_LIST);
@@ -55,9 +57,9 @@ public class DeadlineList {
      * @param index index of deadline to be deleted.
      * @param ui manages user output.
      */
-    public void deleteDeadline(int index, TextUi ui) {
+    public static void deleteDeadline(int index, TextUi ui) {
         try {
-            ui.printMessage(Messages.MESSAGE_DEADLINE_REMOVED + deadlines.get(index).toString());
+            System.out.print(Messages.MESSAGE_DEADLINE_REMOVED + deadlines.get(index).toString());
             deadlines.remove(index);
             ui.printMessage(String.format(Messages.MESSAGE_NUMBER_OF_DEADLINES, deadlines.size()));
         } catch (IndexOutOfBoundsException e) {

@@ -1,7 +1,7 @@
-package commands.DeadlineCommand;
+package commands.deadlinecommand;
 
-import dinerDeadline.Deadline;
-import dinerDeadline.DeadlineList;
+import entity.Deadline;
+import manager.DeadlineManager;
 import ui.TextUi;
 
 public class AddDeadlineCommand extends commands.Command {
@@ -18,12 +18,11 @@ public class AddDeadlineCommand extends commands.Command {
 
     /**
      * Executes the add deadline command.
-     * @param deadlineList managed the list of deadlines.
      * @param ui manages user input.
      */
     @Override
-    public void execute(DeadlineList deadlineList, TextUi ui) {
-        deadlineList.addDeadline(this.deadline, ui);
+    public void execute(TextUi ui) {
+        DeadlineManager.addDeadline(this.deadline, ui);
     }
 
     @Override

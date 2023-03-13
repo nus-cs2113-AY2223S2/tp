@@ -1,9 +1,8 @@
-package dinerDeadline;
+package entity;
 
 public class Deadline {
     public String description;
     protected String dueDate;
-  //  protected boolean isDone;
 
     /**
      * Creates a deadline item with the deadline description and deadline timing passed through.
@@ -13,19 +12,13 @@ public class Deadline {
     public Deadline(String description, String dueDate) {
         this.description = description;
         this.dueDate = dueDate;
-      //  this.isDone = false;
     }
-
-//    public String getStatusIcon() {
-//        return (isDone ? "X" : " ");
-//    }
 
     /**
      * Returns a String of the deadline and due date for the deadline item in a special format.
      * @return the string
      */
     public String toString() {
-        //String status = getStatusIcon();
         return this.description + " by: " + this.dueDate;
     }
 }
