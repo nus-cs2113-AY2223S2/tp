@@ -29,7 +29,7 @@ class RecipePossibleCommandTest {
     }
 
     @Test
-    public void RecipePossibleAndRecipeNotPossible() {
+    public void recipePossibleAndRecipeNotPossible() {
         DukeSession dukeSession = new DukeSession();
         // Add ingredients to dukeSession's ingredients
         dukeSession.getIngredients().add(new Ingredient("bread", 2));
