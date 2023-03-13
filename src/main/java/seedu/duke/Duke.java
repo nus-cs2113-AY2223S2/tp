@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
@@ -19,6 +20,8 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     private static final Logger logger = Logger.getLogger(Duke.class.getName());
+    private static FileHandler fileHandler;
+
     public static void main(String[] args) {
         setupLogging();
         logger.info("Application started.");
@@ -40,12 +43,12 @@ public class Duke {
             // TODO: condition to be replaced when exit command is implemented
         } while (in.hasNextLine());
         logger.info("Exiting application");
+        exitLogging();
     }
 
     private static void setupLogging() {
         Logger globalLogger = Logger.getLogger("");
         Handler[] handlers = globalLogger.getHandlers();
-        FileHandler fileHandler;
         SimpleFormatter formatter = new SimpleFormatter();
         try {
             // set log output to file
@@ -53,13 +56,17 @@ public class Duke {
             globalLogger.addHandler(fileHandler);
             fileHandler.setFormatter(formatter);
             // disable console logging
-            for (Handler handler : handlers) {
-                globalLogger.removeHandler(handler);
-            }
+            Arrays.stream(handlers)
+                  .forEach((globalLogger::removeHandler));
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Encountered exception during logging setup.", e);
             throw new RuntimeException(e);
         }
         logger.info("Logging setup complete.");
+    }
+
+    private static void exitLogging() {
+        logger.info("Saving logs.");
+        fileHandler.close();
     }
 }
