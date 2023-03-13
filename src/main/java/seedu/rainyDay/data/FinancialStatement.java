@@ -29,9 +29,8 @@ public class FinancialStatement implements Serializable {
     public String getFlowDirection() {
         if (flowDirection == FlowDirection.INFLOW) {
             return INFLOW_WORD;
-        } else {
-            return OUTFLOW_WORD;
         }
+        return OUTFLOW_WORD;
     }
 
     public int getValue() {
@@ -46,9 +45,10 @@ public class FinancialStatement implements Serializable {
     }
 
     public String getFullStatement() {
-        String symbolValue = String.join("", this.getFlowSymbol(), "$", String.valueOf(this.value));
-        String flowInformation = String.join("", "(", this.getFlowDirection(), ")");
-        String statement = String.join(" ", this.description, symbolValue, flowInformation);
-        return statement;
+        return String.format("%s for %s, %s$%d",getFlowDirection(), getDescription(), getFlowSymbol(), getValue());
+    }
+
+    public String getStatementForList() {
+        return String.format("%s %s$%d (%s)",getDescription(), getFlowSymbol(), getValue(),getFlowDirection());
     }
 }
