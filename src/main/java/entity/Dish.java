@@ -1,16 +1,16 @@
-package commands.menu;
+package entity;
 
 import java.util.ArrayList;
 
 public class Dish {
-    String dishName;
-    Integer dishPrice;
-    ArrayList<String> ingredientsList;
+    private String dishName;
+    private Integer dishPrice;
+    private ArrayList<String> ingredientsList;
 
     public Dish(String dishName, int dishPrice, ArrayList<String> ingredientsList) {
-        this.dishName = dishName;
-        this.dishPrice = dishPrice;
-        this.ingredientsList = ingredientsList;
+        setDishName(dishName);
+        setDishPrice(dishPrice);
+        setIngredientsList(ingredientsList);
     }
 
     public String getDishName() {

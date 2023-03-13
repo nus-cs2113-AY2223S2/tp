@@ -1,12 +1,9 @@
 package dinerdirector;
 
 import commands.Command;
-import commands.menu.StoreDish;
 import common.Messages;
 import ui.TextUi;
 import utils.Parser;
-
-import java.util.ArrayList;
 
 public class DinerDirector {
     private TextUi ui;
@@ -30,7 +27,6 @@ public class DinerDirector {
      */
     private void start() {
         this.ui = new TextUi();
-        StoreDish.dishes = new ArrayList<>();
         ui.printBanner();
     }
 

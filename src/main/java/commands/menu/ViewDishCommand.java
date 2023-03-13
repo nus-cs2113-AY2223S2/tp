@@ -1,33 +1,19 @@
 package commands.menu;
 
 import commands.Command;
+import manager.DishManager;
 import ui.TextUi;
 
-import java.util.ArrayList;
-
 public class ViewDishCommand extends Command {
-    public ViewDishCommand(ArrayList<Dish> dishes) {
-        int index = 1;
-        for (Dish dish : dishes) {
-            printDishWithIndex(index, dish);
-            index++;
-        }
-    }
 
-    private void printDishWithIndex(int index, Dish dish) {
-        System.out.print(index + ". ");
-        printDish(dish);
-    }
+    public static final String VIEW_DISH_COMMAND = "view_dish";
 
-    private void printDish(Dish dish) {
-        System.out.println(dish.getDishName() + "; $"
-                + dish.getPriceOfDishInDollars() + "; "
-                + dish.ingredientsList);
+    public ViewDishCommand() {
     }
 
     @Override
     public void execute(TextUi ui) {
-
+        ui.printMessage(DishManager.ViewDishCommand());
     }
 
     @Override
