@@ -61,8 +61,11 @@ public class ModifyCommand extends Command {
             ui.printMarkNotDone(taskList.get(idx));
             break;
         case COMMAND_DELETE_WORD:
+            int initialCount = taskList.size();
             ui.printDeleted(taskList.get(idx), taskList.size());
             taskList.remove(idx);
+            int finalCount = taskList.size();
+            assert (finalCount == initialCount - 1) : "ModifyCommand : Unsuccessful deletion";
             break;
         default:
             throw new UnexpectedException("Modifying Task");

@@ -49,6 +49,7 @@ public class Storage {
      * @param filePath Location of the local save file.
      */
     public Storage(String filePath, String moduleDataFilePath) {
+        assert (filePath != null & moduleDataFilePath != null) : "Storage : File path must be defined";
         Storage.filePath = filePath;
         Storage.moduleDataFilePath = moduleDataFilePath;
     }
@@ -60,6 +61,7 @@ public class Storage {
      * @throws IOException If something goes wrong during the overwriting process.
      */
     public void updateTask(TaskList taskList) throws IOException {
+        assert (Task.storePattern != null) : "Storage: Pattern for storing tasks not defined";
         FileWriter overwrite = new FileWriter(filePath);
         for (Task task : taskList) {
             String desc = task.getDescription();
