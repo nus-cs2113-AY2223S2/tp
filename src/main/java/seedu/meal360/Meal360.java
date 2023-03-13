@@ -92,7 +92,6 @@ public class Meal360 {
             ui.printSeparator();
         } else if (command[0].equals("weeklyplan")) {
             ui.printSeparator();
-            ui.printMessage("Here is your weekly plan:");
             ui.printWeeklyPlan(weeklyPlan);
             ui.printSeparator();
         } else {

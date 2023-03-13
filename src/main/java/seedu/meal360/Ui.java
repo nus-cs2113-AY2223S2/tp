@@ -45,10 +45,16 @@ public class Ui {
         }
     }
 
-    public void printWeeklyPlan(HashMap<String, Integer> weeklyPlan) {
-        weeklyPlan.forEach((recipe, count) -> {
-            String outputMessage = String.format("%s: %d times", recipe, count);
-            printMessage(outputMessage);
-        });
+    public void printWeeklyPlan(WeeklyPlan weeklyPlan) {
+        if (weeklyPlan.isEmpty()) {
+            printMessage("Your weekly plan is empty!");
+        } else {
+            printMessage("Here is your weekly plan:");
+            weeklyPlan.forEach((recipe, count) -> {
+                String outputMessage = String.format("%s: %d times", recipe, count);
+                printMessage(outputMessage);
+            });
+        }
+
     }
 }
