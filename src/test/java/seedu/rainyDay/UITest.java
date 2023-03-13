@@ -1,6 +1,6 @@
 package seedu.rainyDay;
 
-import modules.UI;
+import seedu.rainyDay.modules.UI;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;

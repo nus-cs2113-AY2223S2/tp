@@ -1,8 +1,12 @@
-package modules;
+package seedu.rainyDay.modules;
 
 import seedu.rainyDay.data.FinancialStatement;
+import java.util.Scanner;
 
 public class UI {
+
+    public static final String WRONG_INPUT_FORMAT = "Wrong input format! Please refer to help for correct user input!";
+    public static final String DISPLAY_HELP = "Have you tried reading the UG?";
 
     private static String username;
 
@@ -20,6 +24,12 @@ public class UI {
         System.out.println("Welcome " + username);
     }
 
+    public static String getUserInput() {
+        Scanner input = new Scanner(System.in);
+        String userInput = input.nextLine().trim();
+        return userInput;
+    }
+
     public static void printAddedFinancialStatement(FinancialStatement currentStatement) {
         String fullStatement = currentStatement.getFullStatement();
         System.out.printf("Done! Added: %s%s", fullStatement, System.lineSeparator());
@@ -28,6 +38,20 @@ public class UI {
     public static void printDeletedFinancialStatement(String deletedStatementDescription) {
         System.out.printf("Done, deleted \"%s\" from the financial report%s",
                 deletedStatementDescription, System.lineSeparator());
+    }
+
+    public static void wrongInputFormat() {
+        System.out.println(WRONG_INPUT_FORMAT);
+    }
+
+    public static void displayHelp() {
+        //thanks bao mi hua benjamin
+        System.out.println(DISPLAY_HELP);
+    }
+
+    public static void unrecognisedInput() {
+        System.out.println("sorry! I do not understand your input!");
+        System.out.println("Please refer to the help table!");
     }
 
     public static void sayFarewellToUser() {

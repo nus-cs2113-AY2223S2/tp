@@ -78,7 +78,7 @@ public class CommandTest {
     @Test
     public void generateEmptyReport() {
         setUpStreams();
-        RainyDay.clearFinancialReport();
+        //RainyDay.clearFinancialReport();
         Command.generateReport(financialReport);
         String expectedReport = "Your financial report is empty" + System.lineSeparator();
         assertEquals(expectedReport, outContent.toString());
@@ -88,7 +88,7 @@ public class CommandTest {
     @Test
     public void generateNonEmptyReport() {
         setUpStreams();
-        RainyDay.clearFinancialReport();
+        //RainyDay.clearFinancialReport();
         financialReport.addStatement(new FinancialStatement("Ipad", "out", 120));
         financialReport.addStatement(new FinancialStatement("pork", "out", 5));
         financialReport.addStatement(new FinancialStatement("angpao", "in", 3000));
