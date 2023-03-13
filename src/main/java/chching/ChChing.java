@@ -1,61 +1,47 @@
 package chching;
 
+import chching.command.Command;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
 
-import java.util.Scanner;
-
 public class ChChing {
+    private Storage storage;
+    private IncomeList incomes;
+    private ExpenseList expenses;
+    private Ui ui;
 
-    public static final String DIVIDER = "____________________________________________________________\n";
-
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
-    public static void main(String[] args) {
-        ExpenseList expenseList = new ExpenseList();
-        IncomeList incomeList = new IncomeList();
-        greet();
-        runCommandLoopUntilExitCommand(expenseList);
-        exit();
-    }
-
-    private static void greet() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What can I do for you today?");
-        System.out.println(DIVIDER);
-    }
-
-    private static void runCommandLoopUntilExitCommand(ExpenseList expenseList) {
-        Scanner in = new Scanner(System.in);
-        String line = in.nextLine();
-
-        // continuously reads input from command line until command 'bye' is inputted
-        while (!line.equalsIgnoreCase("bye")) {
-            System.out.println(DIVIDER);
-            runCommand(line);
-            System.out.println(DIVIDER);
-            line = in.nextLine();
-        }
-        in.close();
-    }
-
-    private static void runCommand(String line) {
-        String command = line;
+    public ChChing(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
         try {
-            Parser.parseCommand(command);
-        } catch (Exception e) {
-            System.out.println("Error: Command not recognized");
+            this.incomes = new IncomeList(storage.load());
+            this.expenses = new ExpenseList(storage.load());
+        } catch (ChChingException e) {
+            ui.showError(e.getMessage());
+            this.incomes = new IncomeList();
+            this.expenses = new ExpenseList();
         }
     }
 
-    private static void exit() {
-        System.out.println("Bye!");
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine(); // show the divider line ("_______")
+                Command c = Parser.parse(fullCommand);
+                c.execute(incomes, expenses, ui, storage);
+                isExit = c.isExit();
+            } catch(ChChingException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
+            }
+        }
     }
-    
+
+    public static void main(String[] args) {
+        new ChChing("data/chching.txt").run();
+    }
 }
