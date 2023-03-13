@@ -12,7 +12,7 @@ public class ReviewCommand extends Command {
         boolean isCurrentCardPassed = false;
         display.print("Let's see the next flashcard!");
         while (!isCurrentCardPassed) {
-            display.print("Question for the current flashcard is: ", flashcard.getQuestion());
+            display.print("Question for the current flashcard is:", flashcard.getQuestion());
             display.print("Are you ready to view the answer?");
             String viewAnswerCommand = display.getUserCommand();
             if (Objects.equals(viewAnswerCommand, "answer") || Objects.equals(viewAnswerCommand, "a")) {
