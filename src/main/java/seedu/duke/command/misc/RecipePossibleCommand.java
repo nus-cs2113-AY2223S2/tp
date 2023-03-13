@@ -13,19 +13,17 @@ import seedu.duke.recipe.RecipeList;
 public class RecipePossibleCommand extends ExecutableCommand {
 
     /**
-     * Check if an ingredientList has a sufficient amount of a ingredient.
+     * Check if an ingredientList has a sufficient amount of an ingredient.
      *
-     * @param ingredient the ingredient to look for
+     * @param ingredient     the ingredient to look for
      * @param ingredientList the list of ingredients to check in
-     * @return true if the list of ingredients contains the ingredient with quantity equals to or more than
-     * the required quantity, false otherwise
+     * @return true if the list of ingredients have sufficient quantity of that ingredient, false otherwise
      */
     public boolean hasEnoughIngredient(Ingredient ingredient, IngredientList ingredientList) {
         String recipeIngredientName = ingredient.getName();
         double recipeIngredientQty = ingredient.getQuantity();
         for (Ingredient fridgeIngredient : ingredientList.getIngredients()) {
-            if (fridgeIngredient.getName().equals(recipeIngredientName) &&
-                    fridgeIngredient.getQuantity() >= recipeIngredientQty) {
+            if (fridgeIngredient.getName().equals(recipeIngredientName) && fridgeIngredient.getQuantity() >= recipeIngredientQty) {
                 return true;
             }
         }
@@ -35,7 +33,7 @@ public class RecipePossibleCommand extends ExecutableCommand {
     /**
      * Check if a recipe can be made using a list of ingredients given.
      *
-     * @param recipe the recipe to be made
+     * @param recipe            the recipe to be made
      * @param fridgeIngredients the list of ingredients used to make the recipe
      * @return true if the recipe can be made using the list of ingredients, false otherwise
      */
