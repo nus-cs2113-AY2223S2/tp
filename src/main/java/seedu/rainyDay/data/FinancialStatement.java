@@ -45,10 +45,10 @@ public class FinancialStatement implements Serializable {
     }
 
     public String getFullStatement() {
-        return String.format("%s for %s, %s$%d",getFlowDirection(), getDescription(), getFlowSymbol(), getValue());
+        return String.format("%s for %s, %s$%d", getFlowDirection(), getDescription(), getFlowSymbol(), getValue());
     }
 
     public String getStatementForList() {
-        return String.format("%s %s$%d (%s)",getDescription(), getFlowSymbol(), getValue(),getFlowDirection());
+        return String.format("%s %s$%d (%s)", getDescription(), getFlowSymbol(), getValue(), getFlowDirection());
     }
 }

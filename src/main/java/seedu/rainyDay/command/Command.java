@@ -34,7 +34,7 @@ public class Command {
 
     public static void generateReport(FinancialReport financialReport) {
         if (financialReport.getStatementCount() == 0) {
-            System.out.println("Your financial report is empty");
+            UI.emptyFinancialReport();
             return;
         }
         UI.acknowledgeViewCommand();
@@ -49,9 +49,8 @@ public class Command {
             int index = i + 1;
             String financialStatement = String.format("%d. %s", index,
                     financialReport.getFullStatement(i));
-            System.out.println(financialStatement);
+            UI.printFinancialStatement(financialStatement);
         }
-        System.out.print(System.lineSeparator());
         UI.printSummary(totalInflow, totalOutflow);
     }
 }
