@@ -1,6 +1,8 @@
 package seedu.duke;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
@@ -51,8 +53,13 @@ public class Duke {
         Handler[] handlers = globalLogger.getHandlers();
         SimpleFormatter formatter = new SimpleFormatter();
         try {
+            final Path logPath = StorageConstants.PATH_LOG_OUTPUT;
+            // create directory if required
+            if (!Files.exists(logPath.getParent())) {
+                Files.createDirectory(logPath.getParent());
+            }
             // set log output to file
-            fileHandler = new FileHandler(StorageConstants.PATH_LOG_OUTPUT);
+            fileHandler = new FileHandler(logPath.toString());
             globalLogger.addHandler(fileHandler);
             fileHandler.setFormatter(formatter);
             // disable console logging
