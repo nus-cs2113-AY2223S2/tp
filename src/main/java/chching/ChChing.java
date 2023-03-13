@@ -33,7 +33,7 @@ public class ChChing {
                 Parser.parseCommand(fullCommand);
                 //Command c = Parser.parse(fullCommand);
                 //c.execute(incomes, expenses, ui, storage);
-                isExit = c.isExit();
+                //isExit = c.isExit();
             } catch(ChChingException e) {
                 ui.showError(e.getMessage());
             } finally {
