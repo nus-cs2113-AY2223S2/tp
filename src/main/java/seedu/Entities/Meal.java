@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Meal {
     private ArrayList<Food> foods;
     private String date;
-    private float totalCalories;
+    private double totalCalories;
 
     public Meal(ArrayList<Food> foods, String date) {
         this.foods = foods;
@@ -29,7 +29,7 @@ public class Meal {
         this.date = date;
     }
 
-    public float getTotalCalories() {
+    public double getTotalCalories() {
         return this.totalCalories;
     }
 

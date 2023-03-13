@@ -67,4 +67,6 @@ public class GeneralUi {
         this.printLine();
         System.out.println(welcomeMessage);
     }
+    public void requestWeight(){}
+    public void showLatestWeight(int weight){}
 }
