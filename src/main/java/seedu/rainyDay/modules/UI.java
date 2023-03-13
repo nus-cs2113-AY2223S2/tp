@@ -1,12 +1,18 @@
 package seedu.rainyDay.modules;
 
 import seedu.rainyDay.data.FinancialStatement;
+
 import java.util.Scanner;
 
 public class UI {
 
-    public static final String WRONG_INPUT_FORMAT = "Wrong input format! Please refer to help for correct user input!";
+    public static final String WRONG_INPUT_FORMAT = "Wrong input format! Please refer to 'help' for correct user input!";
+    public static final String WRONG_ADD_FORMAT = "add input not correct! Please refer to 'help' for correct user inputs for 'add' commands";
+    public static final String WRONG_DELETE_INDEX = "Please ensure delete index is a number!";
+    public static final String NO_DELETE_INDEX = "Please include a delete index!";
     public static final String DISPLAY_HELP = "Have you tried reading the UG?";
+    public static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
+    public static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
 
     private static String username;
 
@@ -17,11 +23,23 @@ public class UI {
 
     public static void greetUser(String name) {
         username = name;
-        if(name.trim().isEmpty()) {
+        if (name.trim().isEmpty()) {
             System.out.println("Very funny");
             System.exit(0);
         }
         System.out.println("Welcome " + username);
+    }
+
+    public static void noFileExist() {
+        System.out.println(NO_FILE_DETECTED);
+    }
+
+    public static void emptyFinancialReport() {
+        System.out.println(FINANCIAL_REPORT_EMPTY);
+    }
+
+    public static void printFinancialStatement(String financialStatement) {
+        System.out.println(financialStatement);
     }
 
     public static String getUserInput(Scanner input) {
@@ -44,6 +62,7 @@ public class UI {
     }
 
     public static void printSummary(int inflow, int outflow) {
+        System.out.print(System.lineSeparator());
         String inflowInformation = "Inflow: $" + inflow;
         String outflowInformation = "Outflow: $" + outflow;
         String remainingValueInformation = "Remaining value: $" + (inflow - outflow);

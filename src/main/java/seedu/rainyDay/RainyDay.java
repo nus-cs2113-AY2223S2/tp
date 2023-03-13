@@ -18,7 +18,7 @@ public class RainyDay {
         try {
             financialReport = new FinancialReport(Storage.loadFromFile(filePath));
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("No valid save file detected. Starting with empty financial data.");
+            UI.noFileExist();
         }
     }
 
@@ -36,8 +36,6 @@ public class RainyDay {
                 Parser.parseUserInput(userInput);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                UI.wrongInputFormat();
-                break;
             }
         }
         UI.sayFarewellToUser();
