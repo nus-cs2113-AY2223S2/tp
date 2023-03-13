@@ -22,7 +22,7 @@ public class InformationTest {
         HashMap<String, String> personalInfo = new HashMap<>();
         String password = "iloveCS2113";
         String name = "Akshay";
-        personalInfo.put(name, password);
+        personalInfo.put(password, name);
         assertEquals(personalInfo.containsKey(password), true);
 
     }
