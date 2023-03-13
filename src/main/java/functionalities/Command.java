@@ -4,10 +4,10 @@ import exception.SniffException;
 public class Command {
     private final String command;
     private final int apptNum;
-    private final String uId;
+    private final int uId;
 
 
-    public Command(String userCommand, int apptNum, String userId) {
+    public Command(String userCommand, int apptNum, int userId) {
         this.command = userCommand;
         this.apptNum = apptNum;
         this.uId = userId;
