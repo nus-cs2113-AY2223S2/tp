@@ -6,6 +6,7 @@ public class BadMaths {
     public static void main(String[] args) {
 
         System.out.println("Input math question please.");
+        System.out.println("You can type 'Help' to learn what I can do for you :)");
         Command inputCommand = null;
 
         while (true) {
