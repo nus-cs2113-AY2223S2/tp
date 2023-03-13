@@ -10,28 +10,21 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    //private final TaskList tasks;
-    //private final Ui ui;
-    //private final Parser parser;
+    private final EventList eventTracker;
+    private final Ui ui;
+    private final Parser parser;
     public Duke (){
-        //ui = new Ui();
-        //tasks = new TaskList();
-        //parser = new Parser();
+        ui = new Ui();
+        eventTracker = new EventList();
+        parser = new Parser();
     }
     public void run(){
-        //ui.showWelcome();
-        //boolean isExit = false;
-        //while(!isExit){
-        //String fullCommand = ui.getUserCommand();
-        //parser.parseInput(fullCommand, tasks);
-        //if (fullCommand.equalsIgnoreCase("bye")){
-        //isExit = true;
-        //}
-        //}
+        ui.showWelcome();
+        ui.getUserCommand(eventTracker);
     }
 
     public static void main(String[] args) {
-        Ui.showWelcome();
-        // Ui.printExit();
+        Duke nusPlanner = new Duke();
+        nusPlanner.run();
     }
 }

@@ -38,13 +38,13 @@ public class Parser {
     private static void parseAddCommand(String remainder, EventList eventList) {
         // Note no "-" anywhere else.
         String[] details = remainder.split("-");
-        String eventName = details[0];
-        String startTime = details[1];
-        String startDate = details[2];
-        String endTime = details[3];
+        String eventName = details[1].substring(2).trim();
+        String startTime = details[2].substring(3).trim();
+        String startDate = details[3].substring(3).trim();
+        String endTime = details[4].substring(2).trim();
 
-        if (details.length == 5) {
-            String endDate = details[4];
+        if (details.length == 6) {
+            String endDate = details[5].substring(2);
             eventList.addEvent(eventName, startTime, startDate, endTime, endDate);
         } else {
             eventList.addEvent(eventName, startTime, startDate, endTime);

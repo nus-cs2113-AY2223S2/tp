@@ -44,8 +44,8 @@ public class Ui {
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
         printDash();
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+//        Scanner in = new Scanner(System.in);
+//        System.out.println("Hello " + in.nextLine());
     }
 
     /**
