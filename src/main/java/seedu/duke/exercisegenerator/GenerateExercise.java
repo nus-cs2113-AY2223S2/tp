@@ -48,7 +48,7 @@ public class GenerateExercise {
     public ArrayList<ExerciseData> generateFilteredGymSetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
-            if (exercise.getEquipment() != null && !exercise.getEquipment().equals("body only")) {
+            if (exercise.getEquipment() != "null" && !exercise.getEquipment().equals("body only")) {
                 filteredExerciseList.add(exercise);
             }
         }
@@ -58,7 +58,7 @@ public class GenerateExercise {
     public ArrayList<ExerciseData> generateFilteredBodySetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
-            if (exercise.getEquipment() != null && exercise.getEquipment().equals("body only")) {
+            if (exercise.getEquipment() != "null" && exercise.getEquipment().equals("body only")) {
                 filteredExerciseList.add(exercise);
             }
         }
