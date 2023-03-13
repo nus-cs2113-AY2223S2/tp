@@ -1,6 +1,12 @@
 package utils;
 
-import commands.*;
+
+import commands.AddStaffCommand;
+import commands.ViewStaffCommand;
+import commands.DeleteStaffCommand;
+import commands.ExitCommand;
+import commands.IncorrectCommand;
+import commands.Command;
 import common.Messages;
 import exceptions.DinerDirectorException;
 
@@ -15,16 +21,16 @@ public class Parser {
         //https://github.com/nus-cs2113-AY2223S2/personbook/blob/main/src/main/java/seedu/personbook/parser/Parser.java
         //Reused the switch skeleton
         switch (commandWord) {
-            case ExitCommand.COMMAND_WORD:
-                return prepareExitCommand();
-            case "add_staff":
-                return prepareAddStaffCommand(userInputSplit);
-            case "view_staff":
-                return prepareViewStaffCommand();
-            case "delete_staff":
-                return prepareDeleteStaffCommand(userInputSplit);
-            default:
-                return new IncorrectCommand();
+        case ExitCommand.COMMAND_WORD:
+            return prepareExitCommand();
+        case "add_staff":
+            return prepareAddStaffCommand(userInputSplit);
+        case "view_staff":
+            return prepareViewStaffCommand();
+        case "delete_staff":
+            return prepareDeleteStaffCommand(userInputSplit);
+        default:
+            return new IncorrectCommand();
         }
         //@@damithc
     }

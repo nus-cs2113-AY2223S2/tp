@@ -6,16 +6,18 @@ public class Staff {
     private String phoneNumber;
     private String workingDay;
 
-    public Staff(String name, String workingDay, String phoneNumber, String dateOfBirth){
+    public Staff(String name, String workingDay, String phoneNumber, String dateOfBirth) {
         setName(name);
         setDateOfBirth(dateOfBirth);
         setWorkingDay(workingDay);
         setPhoneNumber(phoneNumber);
     }
 
-    public String toString(){
-        return name + "," + "working in " + workingDay + ". Phone number: " + phoneNumber + ", Date of birth: " + dateOfBirth;
+    public String toString() {
+        return name + "," + "working in " + workingDay +
+                ". Phone number: " + phoneNumber + ", Date of birth: " + dateOfBirth;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -32,19 +34,19 @@ public class Staff {
         this.workingDay = workingDay;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public String getDateOfBirth(){
+    public String getDateOfBirth() {
         return this.dateOfBirth;
     }
 
-    public String getWorkingDay(){
+    public String getWorkingDay() {
         return this.workingDay;
     }
 
-    public String getPhoneNumber(){
+    public String getPhoneNumber() {
         return this.name;
     }
 }
