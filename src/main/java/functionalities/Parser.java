@@ -13,7 +13,7 @@ public class Parser {
         } else if (task.toLowerCase().startsWith("list")) {
             parseListCommand();
         } else if (task.toLowerCase().startsWith("view")) {
-            //parseViewCommand();
+            parseViewCommand(task);
         } else if (task.equalsIgnoreCase("bye")) {
             parseByeCommand();
         } else {
@@ -21,21 +21,28 @@ public class Parser {
         }
         return command;
     }
+
+    private static void parseViewCommand(String task) {
+        String userCommand = "view";
+        String uId = task.split(" ", 2)[1];
+        command = new Command(userCommand, 0, uId);
+    }
+
     private static void parseByeCommand() {
         String userCommand = "bye";
-        command = new Command(userCommand, 0);
+        command = new Command(userCommand, 0, null);
     }
 
     private static void parseListCommand() {
         String userCommand = "list";
-        command = new Command(userCommand, 0);
+        command = new Command(userCommand, 0, null);
     }
 
     private static void parseRemoveCommand(String task) throws SniffException {
         try {
             String userCommand = "remove";
             int apptNum = Integer.parseInt(task.split(" ", 2)[1]);
-            command = new Command(userCommand, apptNum);
+            command = new Command(userCommand, apptNum, null);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new SniffException(" The remove command description cannot be empty!");
         } catch (NumberFormatException e) {
