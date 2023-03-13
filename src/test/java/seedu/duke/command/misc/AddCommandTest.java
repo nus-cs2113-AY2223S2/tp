@@ -13,8 +13,11 @@ class AddCommandTest {
         DukeSession dukeSession = new DukeSession();
         Ingredient ingredient = new Ingredient("apple", 2);
         dukeSession.getIngredients().add(ingredient);
-        assertEquals(0,findIndex("apple"));
-        assertEquals(-1, findIndex("orange"));
+
+        AddCommand command = new AddCommand("apple", "2");
+
+        assertEquals(0,command.findIndex(dukeSession, "apple"));
+        assertEquals(-1,command.findIndex(dukeSession, "orange"));
     }
 
     @Test

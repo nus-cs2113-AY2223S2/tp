@@ -11,9 +11,9 @@ public class RemoveCommandTest {
         DukeSession dukeSession = new DukeSession();
         Ingredient ingredient = new Ingredient("apple", 2);
         dukeSession.getIngredients().add(ingredient);
-        assertEquals(1, DukeSession.getIngredients().size());
+        assertEquals(1, dukeSession.getIngredients().size());
         new RemoveCommand("apple", "2").execute(dukeSession);
-        assertEquals(0, DukeSession.getIngredients().size());
+        assertEquals(0, dukeSession.getIngredients().size());
     }
 
     @Test

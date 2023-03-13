@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class DukeSession {
 
-    private static IngredientList ingredients;
+
     private static final CommandRouterNode COMMAND_TREE =
             new CommandRouterNode()
 
@@ -31,6 +31,7 @@ public class DukeSession {
                     .route("remove", new RemoveCommandFactory())
                     .route("recipe", new CommandRouterNode()
                             .route("possible", new RecipePossibleCommandFactory()));
+    private final IngredientList ingredients;
     private final RecipeList recipes;
     private final DukeUI ui;
     private final DukeControlFlow controlFlow;
@@ -71,7 +72,7 @@ public class DukeSession {
      *
      * @return Handle to access the Ingredient List.
      */
-    public static IngredientList getIngredients() {
+    public IngredientList getIngredients() {
         return ingredients;
     }
 
