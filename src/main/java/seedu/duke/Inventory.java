@@ -7,65 +7,66 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-
-
 public class Inventory {
     private static ArrayList<Item> items = new ArrayList<>();
-    private static HashMap<String,Item> upcCodes = new HashMap<>();
+    private static HashMap<String, Item> upcCodes = new HashMap<>();
     private static Trie trie = new Trie();
-    private static HashMap<String,ArrayList<Item>> itemNameHash = new HashMap<>();
-    public static void filterCategory(String category){
+    private static HashMap<String, ArrayList<Item>> itemNameHash = new HashMap<>();
+
+    public static void filterCategory(String category) {
         ArrayList<Item> filteredItems = new ArrayList<>();
-        for(Item item: items){
-            if(item.getCategory().equals(category)){
+        for (Item item : items) {
+            if (item.getCategory().equals(category)) {
                 filteredItems.add(item);
             }
         }
-        if(filteredItems.isEmpty()){
+        if (filteredItems.isEmpty()) {
             Ui.printEmptySearch();
             return;
         }
         Ui.printSearchItems(filteredItems);
     }
-    public static void filterTags(String tag){
+
+    public static void filterTags(String tag) {
         ArrayList<Item> filteredItems = new ArrayList<>();
-        for(Item item: items){
-            if(item.getTags().isEmpty()){
+        for (Item item : items) {
+            if (item.getTags().isEmpty()) {
                 continue;
             }
-            for(String itemTag:item.getTags()){
-                if(itemTag.equals(tag)){
+            for (String itemTag : item.getTags()) {
+                if (itemTag.equals(tag)) {
                     filteredItems.add(item);
                 }
             }
         }
-        if(filteredItems.isEmpty()){
+        if (filteredItems.isEmpty()) {
             Ui.printEmptySearch();
             return;
         }
         Ui.printSearchItems(filteredItems);
     }
-    public static void filterPrice(double price, String mode){
+
+    public static void filterPrice(double price, String mode) {
         ArrayList<Item> filteredItems = new ArrayList<>();
-        for(Item item: items){
-            switch(mode){
+        for (Item item : items) {
+            switch (mode) {
             case "p/lt":
-                if(item.getPrice()<price){
+                if (item.getPrice() < price) {
                     filteredItems.add(item);
                 }
                 break;
             case "p/gt":
-                if(item.getPrice()>price){
+                if (item.getPrice() > price) {
                     filteredItems.add(item);
                 }
                 break;
             case "p/let":
-                if(item.getPrice()<=price){
+                if (item.getPrice() <= price) {
                     filteredItems.add(item);
                 }
                 break;
             case "p/get":
-                if(item.getPrice()>=price){
+                if (item.getPrice() >= price) {
                     filteredItems.add(item);
                 }
                 break;
@@ -73,54 +74,71 @@ public class Inventory {
                 break;
             }
         }
-        if(filteredItems.isEmpty()){
+        if (filteredItems.isEmpty()) {
             Ui.printEmptySearch();
             return;
         }
         Ui.printSearchItems(filteredItems);
     }
 
+    /**
+     * Add an item object into the inventory
+     *
+     * @param item The target item which the user wants to add to the inventory.
+     */
     public static void addItem(Item item) {
         if (upcCodes.containsKey(item.getUpc())) {
             Ui.printDuplicateAdd();
         } else {
-            upcCodes.put(item.getUpc(),item);
+            upcCodes.put(item.getUpc(), item);
             items.add(item);
             Ui.printSuccessAdd();
             String itemName = item.getName().toLowerCase();
-            if(itemNameHash.containsKey(itemName)){
+            if (itemNameHash.containsKey(itemName)) {
                 itemNameHash.get(itemName).add(item);
-            }else{
+            } else {
                 itemNameHash.put(itemName, new ArrayList<>());
                 itemNameHash.get(itemName).add(item);
             }
             trie.add(itemName);
         }
     }
-    public static void searchUPC(String upc){
-        if(!upcCodes.containsKey(upc)){
+
+    /**
+     * Search for an item in the inventory by its unique UPC number and returns search query
+     *
+     * @param upc numeric UPC number which user provides for querying
+     */
+    public static void searchUPC(String upc) {
+        if (!upcCodes.containsKey(upc)) {
             Ui.printEmptySearch();
             return;
         }
         Ui.printSearchUPCItem(upcCodes.get(upc));
     }
-    public static void search(String keyword){
+    /**
+     * Search for an item in the inventory by keyword and returns search query
+     *
+     * @param keyword alphanumeric keyword which user provides for querying
+     */
+    public static void search(String keyword) {
         ArrayList<String> resultNames = trie.prefixFind(keyword);
 
-        if(resultNames.size()==0){
+        if (resultNames.size() == 0) {
             Ui.printEmptySearch();
             return;
         }
         System.out.println(Ui.LINE);
         ArrayList<Item> resultItems = new ArrayList<>();
-        for(String name: resultNames){
-            for(Item item: itemNameHash.get(name)){
+        for (String name : resultNames) {
+            for (Item item : itemNameHash.get(name)) {
                 resultItems.add(item);
             }
         }
         Ui.printSearchItems(items);
         System.out.println(Ui.LINE);
     }
+
     /**
      * Searches for the item in the ArrayList and changes the item attributes according to the wishes of the user.
      *
@@ -136,22 +154,22 @@ public class Inventory {
             }
             String oldItemName = oldItem.getName().toLowerCase();
             String newItemName = updatedItem.getName().toLowerCase();
-            if(oldItemName!=newItemName&&itemNameHash.get(oldItemName).size()==1){
+            if (oldItemName != newItemName && itemNameHash.get(oldItemName).size() == 1) {
                 itemNameHash.remove(oldItemName);
                 trie.remove(oldItemName);
                 ArrayList<Item> newItemArrayList = new ArrayList<>();
                 newItemArrayList.add(updatedItem);
-                itemNameHash.put(newItemName,newItemArrayList);
-            }else{
+                itemNameHash.put(newItemName, newItemArrayList);
+            } else {
                 itemNameHash.get(oldItemName).remove(oldItem);
-                if(!itemNameHash.containsKey(newItemName)){
-                    itemNameHash.put(newItemName,new ArrayList<Item>());
+                if (!itemNameHash.containsKey(newItemName)) {
+                    itemNameHash.put(newItemName, new ArrayList<Item>());
                 }
                 itemNameHash.get(newItemName).add(updatedItem);
             }
             trie.add(newItemName);
             upcCodes.remove(oldItem.getUpc());
-            upcCodes.put(updatedItem.getUpc(),updatedItem);
+            upcCodes.put(updatedItem.getUpc(), updatedItem);
             Ui.printEditDetails(oldItem, updatedItem);
         } catch (EditErrorException eee) {
             Ui.printItemNotFound();
@@ -197,6 +215,7 @@ public class Inventory {
         Item selectedItem = upcCodes.get(upcCode);
         return selectedItem;
     }
+
     /**
      * Temporary List Method created by Kai Wen for Edit Function Testing.
      */
@@ -214,9 +233,9 @@ public class Inventory {
     public static void removeItemAtIndex(int index) {
         String itemName = items.get(index).getName().toLowerCase();
         upcCodes.remove(items.get(index).getUpc());
-        if(itemNameHash.get(itemName).size()==1){
+        if (itemNameHash.get(itemName).size() == 1) {
             itemNameHash.remove(itemName);
-        }else{
+        } else {
             itemNameHash.get(itemName).remove(items.get(index));
         }
         items.remove(index);

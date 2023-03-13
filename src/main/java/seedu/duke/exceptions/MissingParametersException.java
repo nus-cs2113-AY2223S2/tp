@@ -8,6 +8,7 @@ public class MissingParametersException extends Exception {
         System.out.println(ANSI_RED + "Add parameters incomplete! Please follow the format provided in the user " +
                 "guide!" + ANSI_RESET);
     }
+
     public void missingSearchItemParameters() {
         System.out.println(ANSI_RED + "Search parameters incomplete! Please follow the format provided in the user " +
                 "guide!" + ANSI_RESET);
