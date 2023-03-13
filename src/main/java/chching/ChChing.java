@@ -14,14 +14,14 @@ public class ChChing {
     public ChChing(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
-//        try {
-//            this.incomes = new IncomeList(storage.load());
-//            this.expenses = new ExpenseList(storage.load());
-//        } catch (ChChingException e) {
-//            ui.showError(e.getMessage());
-        this.incomes = new IncomeList();
-        this.expenses = new ExpenseList();
-//        }
+        try {
+            this.incomes = new IncomeList(storage.load());
+            this.expenses = new ExpenseList(storage.load());
+        } catch (ChChingException e) {
+            ui.showError(e.getMessage());
+            this.incomes = new IncomeList();
+            this.expenses = new ExpenseList();
+        }
     }
 
     public void run() {
@@ -34,7 +34,7 @@ public class ChChing {
                 Command c = Parser.parse(fullCommand, incomes, expenses);
                 c.execute(incomes, expenses, ui, storage);
                 isExit = c.isExit();
-            } catch(ChChingException e) {
+            } catch (ChChingException e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.showLine();

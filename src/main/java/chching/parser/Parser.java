@@ -1,9 +1,18 @@
 package chching.parser;
+import chching.command.Command;
+import chching.command.AddExpenseCommand;
+import chching.command.AddIncomeCommand;
+import chching.command.BalanceCommand;
+import chching.command.ExitCommand;
+import chching.command.HelpCommand;
+import chching.command.ListCommand;
+import chching.command.ListExpenseCommand;
+import chching.command.ListIncomeCommand;
 import chching.record.ExpenseList;
 import chching.record.Expense;
 import chching.record.Income;
 import chching.record.IncomeList;
-import chching.command.*;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,8 +52,9 @@ public class Parser {
             break;
         case "edit expense":
             Expense updatedExpense = Expenses.parseUpdateExpense(argumentsByField, expenseList);
-            command = new EditExpenseCommand(updatedExpense);
-
+            break;
+        case "balance":
+            command = new BalanceCommand();
             break;
         case "exit":
             command = new ExitCommand();

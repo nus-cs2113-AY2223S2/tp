@@ -5,15 +5,18 @@ import java.util.ArrayList;
 public class ExpenseList extends RecordList{
 
     protected ArrayList<Record> expenseList;
-    protected int expenseCount;
-
-    public ExpenseList() {
+    public ExpenseList(ArrayList<Record> expenseList){
+        this.expenseList = expenseList;
+    }
+    public ExpenseList(){
         expenseList = new ArrayList<>();
-        expenseCount = 0;
+
+    }
+    public int size() {
+        return expenseList.size();
     }
     public void addExpense(Expense expense) {
         expenseList.add(expense);
-        expenseCount++;
     }
     public void editExpense(int i, String category, String description, String date, float value) {
         Expense exp = (Expense) expenseList.get(i - 1);
@@ -31,7 +34,7 @@ public class ExpenseList extends RecordList{
         }
     }
     public void printExpenseList() {
-        for (int i = 1; i <= expenseCount; i++) {
+        for (int i = 1; i <= expenseList.size(); i++) {
             Record record = expenseList.get(i - 1);
             System.out.println(i + ". " + record.toString());
         }

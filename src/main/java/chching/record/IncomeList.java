@@ -4,14 +4,19 @@ import java.util.ArrayList;
 
 public class IncomeList extends RecordList{
     protected ArrayList<Record> incomeList;
-    protected int incomeCount;
+    public IncomeList(ArrayList<Record> incomeList){
+        this.incomeList = incomeList;
+    }
     public IncomeList(){
         incomeList = new ArrayList<>();
-        incomeCount = 0;
+
+    }
+    public int size() {
+        return incomeList.size();
     }
     public void addIncome(Income income) {
         incomeList.add(income);
-        incomeCount++;
+
     }
     public void editIncome(int i, String category, String description, String date, float value) {
         Income inc = (Income) incomeList.get(i - 1);
@@ -29,7 +34,7 @@ public class IncomeList extends RecordList{
         }
     }
     public void printIncomeList() {
-        for (int i = 1; i <= incomeCount; i++) {
+        for (int i = 1; i <= incomeList.size(); i++) {
             Record record = incomeList.get(i - 1);
             System.out.println(i + ". " + record.toString());
         }
