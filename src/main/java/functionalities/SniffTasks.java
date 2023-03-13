@@ -9,6 +9,7 @@ public class SniffTasks {
     private static final ArrayList<Appointment> appointments = new ArrayList<Appointment>();
 
     private static int apptCount = 0;
+
     public void addAppointment() {
     }
 
@@ -38,6 +39,15 @@ public class SniffTasks {
         }
     }
 
-    public void viewAppointment() {
+    public void viewAppointment(String uId) {
+        for (Appointment appointment : appointments) {
+            if (uId == appointment.uid) {
+                String type = appointment.getType();
+                String animal = appointment.getAnimal();
+                String name = appointment.getName();
+                String date = appointment.getDate();
+                Ui.formatPrintList(Integer.toString(1), type, animal, name, date);
+            }
+        }
     }
 }
