@@ -32,6 +32,6 @@ public class Duke {
 
     public static void main(String[] args) {
         Ui.showWelcome();
-        Ui.printExit();
+        // Ui.printExit();
     }
 }
