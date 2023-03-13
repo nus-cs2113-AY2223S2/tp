@@ -1,43 +1,163 @@
 package seedu.duke;
 import seedu.duke.data.Expense;
 import seedu.duke.data.ExpenseList;
+import seedu.duke.data.Income;
+import seedu.duke.data.IncomeList;
+import seedu.duke.data.RecordList;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class Parser {
+    
+    public static final String FIELD_DEMARCATION = " /";
+
     public static void parseCommand(String line) {
         List<String> lineParts = splitLine(line);
         String command = lineParts.get(0);
         List<String> arguments = lineParts.subList(1, lineParts.size());
+        HashMap<String, String> argumentsByField = sortArguments(arguments);
         switch(command) {
-        case "add expense":
-            addExpenses(arguments);
+        case "add income":
+            addIncomes(argumentsByField);
             break;
-        case "list":
+        case "add expense":
+            addExpenses(argumentsByField);
+            break;
+        case "list income":
+            IncomeList.printIncomeList();
+            break;
+        case "list expense":
             ExpenseList.printExpenseList();
             break;
+        case "list":
+            System.out.println("Income:");
+            IncomeList.printIncomeList();
+            System.out.println("Expenses:");
+            ExpenseList.printExpenseList();
+            break;
+        case "edit income":
+            editIncomes(argumentsByField);
+            break;
+        case "edit expense":
+            editExpenses(argumentsByField);
+            break;
+        case "help":
+            Ui.showHelp();
+            break;
         default:
-            System.out.println("Command not recognized");
+            System.out.println("Command not recognized, please enter a valid command!");
         }
     }
     
     public static ArrayList<String> splitLine(String line) {
         ArrayList<String> lineParts = new ArrayList<String>();
-        lineParts.addAll(Arrays.asList(line.split(" /")));
+        lineParts.addAll(Arrays.asList(line.split(FIELD_DEMARCATION)));
         return lineParts;
     }
     
-    public static void addExpenses(List<String> arguments) {
+    public static HashMap<String, String> sortArguments(List<String> arguments) {
+        HashMap<String, String> argumentsByField = new HashMap<String, String>();
+        int argumentsCount = arguments.size();
+        
+        // split each argument according to their field and their value, and add into hashmap accordingly
+        // Hashmap's key is its field, value is the value of the field
+        for (int i = 0; i < argumentsCount; i++) {
+            String argument = arguments.get(i);
+            String[] fieldAndValue = argument.split(" ", 2);
+            try {
+                String field = fieldAndValue[0].trim();
+                String value = fieldAndValue[1].trim();
+                argumentsByField.put(field, value);
+            } catch (NullPointerException e) {
+                System.out.println("Error: arguments not inputted correctly/missing a value");
+            }
+        }
+        return argumentsByField;
+    }
+    
+    public static void addExpenses(HashMap<String, String> argumentsByField) {
         try {
-            String expenseDescription = arguments.get(0).substring(2).trim();
-            String expenseDate = arguments.get(1).substring(2).trim();
-            float expenseValue = Float.parseFloat(arguments.get(2).substring(1).trim());
-            Expense exp = new Expense(expenseDescription, expenseDate, expenseValue);
+            String expenseCategory = argumentsByField.get("c");
+            String expenseDescription = argumentsByField.get("de");
+            String expenseDate = argumentsByField.get("da");
+            float expenseValue = Float.parseFloat(argumentsByField.get("v"));
+            
+            Expense exp = new Expense(expenseCategory, expenseDescription, expenseDate, expenseValue);
             ExpenseList.addExpense(exp);
+            RecordList.addRecord(exp);
             System.out.println("Expense added");
         } catch (Exception e) {
             System.out.println("Trouble adding expenses");
+        }
+    }
+
+    public static void addIncomes(HashMap<String, String> argumentsByField) {
+        try {
+            String incomeCategory = argumentsByField.get("c");
+            String incomeDescription = argumentsByField.get("de");
+            String incomeDate = argumentsByField.get("da");
+            float incomeValue = Float.parseFloat(argumentsByField.get("v"));
+
+            Income inc = new Income(incomeCategory, incomeDescription, incomeDate, incomeValue);
+            IncomeList.addIncome(inc);
+            RecordList.addRecord(inc);
+            System.out.println("Income added");
+        } catch (Exception e) {
+            System.out.println("Trouble adding income");
+        }
+    }
+
+    public static void editExpenses(HashMap<String, String> argumentsByField) {
+        try {
+            int index = Integer.parseInt(argumentsByField.get("i"));
+            String updateCategory = null;
+            String updateDescription = null;
+            String updateDate = null;
+            float updateValue = 0;
+            if(argumentsByField.containsKey("c")) {
+                updateCategory = argumentsByField.get("c");
+            }
+            if(argumentsByField.containsKey("de")) {
+                updateDescription = argumentsByField.get("de");
+            }
+            if(argumentsByField.containsKey("da")) {
+                updateDate = argumentsByField.get("da");
+            }
+            if(argumentsByField.containsKey("v")) {
+                updateValue = Float.parseFloat(argumentsByField.get("v"));
+            }
+            ExpenseList.editExpense(index, updateCategory, updateDescription, updateDate, updateValue);
+            System.out.println("Expense modified");
+        } catch (Exception e) {
+            System.out.println("Trouble editing expense");
+        }
+    }
+    public static void editIncomes(HashMap<String, String> argumentsByField) {
+        try {
+            int index = Integer.parseInt(argumentsByField.get("i"));
+            String updateCategory = null;
+            String updateDescription = null;
+            String updateDate = null;
+            float updateValue = 0;
+            if(argumentsByField.containsKey("c")) {
+                updateCategory = argumentsByField.get("c");
+            }
+            if(argumentsByField.containsKey("de")) {
+                updateDescription = argumentsByField.get("de");
+            }
+            if(argumentsByField.containsKey("da")) {
+                updateDate = argumentsByField.get("da");
+            }
+            if(argumentsByField.containsKey("v")) {
+                updateValue = Float.parseFloat(argumentsByField.get("v"));
+            }
+            IncomeList.editIncome(index, updateCategory, updateDescription, updateDate, updateValue);
+            System.out.println("Income modified");
+        } catch (Exception e) {
+            System.out.println("Trouble editing income");
         }
     }
 }

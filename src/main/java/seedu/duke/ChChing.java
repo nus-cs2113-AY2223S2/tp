@@ -1,6 +1,8 @@
 package seedu.duke;
 
 import seedu.duke.data.ExpenseList;
+import seedu.duke.data.IncomeList;
+
 import java.util.Scanner;
 
 public class ChChing {
@@ -12,6 +14,7 @@ public class ChChing {
      */
     public static void main(String[] args) {
         ExpenseList expenseList = new ExpenseList();
+        IncomeList incomeList = new IncomeList();
         greet();
         runCommandLoopUntilExitCommand(expenseList);
         exit();
@@ -47,7 +50,7 @@ public class ChChing {
         try {
             Parser.parseCommand(command);
         } catch (Exception e) {
-            System.out.println("Command not recognized");
+            System.out.println("Error: Command not recognized");
         }
     }
     

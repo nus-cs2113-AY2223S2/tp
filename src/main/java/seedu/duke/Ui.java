@@ -43,9 +43,7 @@ public class Ui {
     public void showAllRecords(RecordList records) {
         System.out.println("    Here are the records in your list:");
 
-        for (int i = 0; i < records.getRecordCount(); i++) {
-            System.out.println("    " + (i+1) + ". "  + records.get(i));
-        }
+        records.printRecordList();
     }
 
     public void showBalance() {
@@ -54,7 +52,7 @@ public class Ui {
     }
 
 
-    public void showHelp() {
+    public static void showHelp() {
         System.out.println("    ADD RECORDS:");
         System.out.println("    add expense /c <category> /de <description> /da <date> /v <value>");
         System.out.println("    add income");

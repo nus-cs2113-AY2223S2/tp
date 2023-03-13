@@ -2,18 +2,19 @@ package seedu.duke.data;
 
 import java.util.ArrayList;
 
-public class RecordList {
+public abstract class RecordList {
 
+    protected static ArrayList<Record> recordList = new ArrayList<>();
+    protected static int recordCount = 0;
     private int balance;
-    protected ArrayList<Record> recordList = new ArrayList<>();
-    protected int recordCount = 0;
+    
 
     public RecordList() {
         recordList = new ArrayList<>();
         recordCount = 0;
     }
 
-    public ArrayList<Record> getRecordList() {
+    public static ArrayList<Record> getRecordList() {
         return recordList;
     }
 
@@ -28,12 +29,12 @@ public class RecordList {
         return balance;
     }
 
-    public void addRecord(Record record) {
+    public static void addRecord(Record record) {
         recordList.add(record);
         recordCount++;
     }
 
-    public void printRecordList() {
+    public static void printRecordList() {
         for (int i = 1; i <= recordCount; i++) {
             Record record = recordList.get(i - 1);
             System.out.println(i + ". " + record.toString());
