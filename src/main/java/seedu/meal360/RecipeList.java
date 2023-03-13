@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RecipeList extends ArrayList<Recipe> {
-    private static final Ui ui = new Ui();
 
     public Recipe findByName(String name) {
         for (Recipe recipe : this) {
@@ -29,23 +28,20 @@ public class RecipeList extends ArrayList<Recipe> {
         return recipeToDelete;
     }
 
-    // list recipe's name and ingredients
-    public void listRecipes() {
-        ui.printSeparator();
-        int numberOfRecipes = this.size();
-        int order = 0;
-        if (numberOfRecipes > 0) {
-            ui.printMessage("These are the recipes you have (" + numberOfRecipes + " recipes) :");
-            for (Recipe recipe : this) {
-                order = order + 1;
-                ui.printMessage(order + ". "
-                        + recipe.getName()
-                        + "   (" + recipe.getNumOfIngredients()
-                        + " ingredients)");
-            }
-        } else {
-            ui.printMessage("There is nothing in the list. Please add a recipe.");
+    public RecipeList listRecipes(String[] filters) {
+        RecipeList filteredRecipeList = new RecipeList();
+        if (filters == null) {
+            return this;
         }
-        ui.printSeparator();
+        for (Recipe recipe: this) {
+            filteredRecipeList.add(recipe);
+            for (String filter : filters) {
+                filter = filter.trim();
+                if (!recipe.getName().contains(filter) && !recipe.getIngredients().containsKey(filter)) {
+                    filteredRecipeList.remove(recipe);
+                }
+            }
+        }
+        return filteredRecipeList;
     }
 }

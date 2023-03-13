@@ -54,4 +54,33 @@ public class Ui {
         }
 
     }
+
+    public void listRecipe(RecipeList recipeListToPrint) {
+        printSeparator();
+        int numberOfRecipes = recipeListToPrint.size();
+        int order = 0;
+        if (numberOfRecipes == 0) {
+            printMessage("There is nothing to list.");
+            printSeparator();
+            return;
+        }
+        printMessage("These are the recipes you have (" + numberOfRecipes + " recipes):");
+        for (Recipe recipe : recipeListToPrint) {
+            order = order + 1;
+            printMessage(order + ". " + recipe.getName() + "   (" + recipe.getNumOfIngredients()
+                    + " ingredients)");
+        }
+        printSeparator();
+    }
+
+    public void printHelp() {
+        printMessage("These are the operations you can do. Please follow the proper input"
+                + " formats while typing.");
+        printMessage("1. Add Recipe: add /r {recipe name}");
+        printMessage("2. View Recipe: view {index number} or view /r {recipe name}");
+        printMessage("3. Edit Recipe: edit {index number} or view /r {recipe name}");
+        printMessage("4. Delete Recipe: delete {index number} or view /r {recipe name}");
+        printMessage("5. List All Recipes: list");
+        printMessage("6. Exit: bye");
+    }
 }

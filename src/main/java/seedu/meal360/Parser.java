@@ -5,10 +5,6 @@ import java.util.Scanner;
 
 public class Parser {
 
-    public String[] parseCommand(String command) {
-        return command.split(" ");
-    }
-
     public Recipe parseAddRecipe(String[] input, RecipeList recipeList) {
         StringBuilder recipeName = new StringBuilder(input[2]);
         for (int i = 3; i < input.length; i++) {
@@ -80,12 +76,14 @@ public class Parser {
         }
     }
 
-    public String parsePrepareRecipe(String[] input) {
-        return "test";
-    }
-
-    public void parseListRecipe(RecipeList recipeList) {
-        recipeList.listRecipes();
+    public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList) {
+        String[] filters;
+        if (inputs.length == 1) {
+            filters = null;
+        } else {
+            filters = inputs[1].split("&");
+        }
+        return recipeList.listRecipes(filters);
     }
 
     public Recipe parseViewRecipe(String[] command, RecipeList recipes) {
@@ -109,13 +107,14 @@ public class Parser {
             }
         }
 
+        int nameLastIndex = (command[1].equals("/add")) ? command.length - 1 : command.length;
         WeeklyPlan addToPlan = new WeeklyPlan();
         StringBuilder recipeName = new StringBuilder(command[2]);
-        for (int i = 3; i < command.length - 1; i++) {
+        for (int i = 3; i < nameLastIndex; i++) {
             recipeName.append(" ").append(command[i]);
         }
 
-        if (recipes.findByName(recipeName.toString()) != null) {
+        if (recipes.findByName(recipeName.toString().trim()) != null) {
             addToPlan.put(recipeName.toString(), numDays);
             return addToPlan;
         } else {

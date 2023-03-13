@@ -57,7 +57,8 @@ public class Meal360 {
             }
             ui.printSeparator();
         } else if (command[0].equals("list")) {
-            parser.parseListRecipe(recipeList);
+            RecipeList recipeListToPrint = parser.parseListRecipe(command, recipeList);
+            ui.listRecipe(recipeListToPrint);
         } else if (command[0].equals("add")) {
             ui.printSeparator();
             Recipe newRecipe = parser.parseAddRecipe(command, recipeList);
@@ -67,7 +68,6 @@ public class Meal360 {
         } else if (command[0].equals("edit")) {
             ui.printSeparator();
             Recipe newRecipe = parser.parseEditRecipe(command, recipeList);
-            // ui print message
             ui.printMessage("I've edited this recipe:" + newRecipe.getName());
             ui.printSeparator();
         } else if (command[0].equals("weekly")) {
@@ -83,16 +83,22 @@ public class Meal360 {
                     weeklyPlan.deletePlan(recipeMap);
                 }
             } catch (NumberFormatException e) {
-                String errorMessage = String.format(
-                        "Please enter a valid number as the last argument.");
+                String errorMessage = String.format("Please enter a valid number as the last argument.");
                 ui.printMessage(errorMessage);
             } catch (IllegalArgumentException e) {
                 ui.printMessage(e.getMessage());
+            } catch (ArrayIndexOutOfBoundsException e) {
+                String errorMessage = String.format("Insufficient number of arguments provided.");
+                ui.printMessage(errorMessage);
             }
             ui.printSeparator();
         } else if (command[0].equals("weeklyplan")) {
             ui.printSeparator();
             ui.printWeeklyPlan(weeklyPlan);
+            ui.printSeparator();
+        } else if (command[0].equals("help")) {
+            ui.printSeparator();
+            ui.printHelp();
             ui.printSeparator();
         } else {
             ui.printSeparator();
