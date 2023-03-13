@@ -20,16 +20,20 @@ public interface Parser {
                 ListVenueCommand venueCommand = new ListVenueCommand(command);
                 return venueCommand;
             }
+            break;
         case "add":
             System.out.println(input.replaceFirst(command, "").trim());
+            break;
         case "delete":
             int taskNum = Integer.parseInt(inputWords[1]) - 1;
             DeleteCommand deleteCommand = new DeleteCommand(command, taskNum);
             return deleteCommand;
         case "help":
             ui.showGuide();
+            break;
         case "exit":
             ui.showExitMessage();
+            break;
         default:
             System.out.println("Unknown input!");
         }
