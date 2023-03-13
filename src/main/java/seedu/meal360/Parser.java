@@ -105,8 +105,14 @@ public class Parser {
         return "test";
     }
 
-    public RecipeList parseListRecipe(RecipeList recipeList) {
-        return recipeList;
+    public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList) {
+        String[] filters;
+        if (inputs.length == 1) {
+            filters = null;
+        } else {
+            filters = inputs[1].split("&");
+        }
+        return recipeList.listRecipes(filters);
     }
 
     public Recipe parseViewRecipe(String[] command, RecipeList recipes) {

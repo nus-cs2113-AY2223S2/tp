@@ -39,7 +39,7 @@ public class Meal360 {
             Recipe recipe = parser.parseViewRecipe(command, recipeList);
             ui.printRecipe(recipe);
         } else if (command[0].equals("list")) {
-            RecipeList recipeListToPrint = parser.parseListRecipe(recipeList);
+            RecipeList recipeListToPrint = parser.parseListRecipe(command, recipeList);
             ui.listRecipe(recipeListToPrint);
         } else if (command[0].equals("add")) {
             Recipe newRecipe = parser.parseAddRecipe(command, recipeList);
