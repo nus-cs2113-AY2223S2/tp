@@ -1,6 +1,9 @@
 package seedu.duke;
 
-import seedu.duke.Command.*;
+import seedu.duke.Command.Command;
+import seedu.duke.Command.DeleteCommand;
+import seedu.duke.Command.ListCompanyCommand;
+import seedu.duke.Command.ListVenueCommand;
 
 public interface Parser {
     static Command parse(String input) throws WrongFormatException{

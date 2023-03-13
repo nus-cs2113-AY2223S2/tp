@@ -1,9 +1,5 @@
 package seedu.duke;
 
-import seedu.duke.Command.Command;
-
-import java.util.Scanner;
-
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.

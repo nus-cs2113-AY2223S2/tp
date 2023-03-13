@@ -1,7 +1,5 @@
 package seedu.duke.Command;
 
-
-import eventus.company.Company;
 import seedu.duke.venue.VenueList;
 
 public class Command {
