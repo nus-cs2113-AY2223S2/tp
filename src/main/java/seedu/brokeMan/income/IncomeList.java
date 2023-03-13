@@ -1,3 +1,5 @@
+package seedu.brokeMan.income;
+
 import java.util.LinkedList;
 
 public class IncomeList {

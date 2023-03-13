@@ -1,3 +1,5 @@
+package seedu.brokeMan.income;
+
 public class Income {
     private double amount;
     private String info;
