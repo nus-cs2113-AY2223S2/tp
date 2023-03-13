@@ -7,10 +7,10 @@ import java.time.format.DateTimeFormatter;
 public class EventList {
     private static final String DTINIT = "2000/01/01 01:01";
     private static DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-    
+
     protected ArrayList<Event> taskList;
     protected int listSize;
-    
+
     public EventList() {
         this.taskList = new ArrayList<Event>();
         this.listSize = 0;
@@ -34,6 +34,10 @@ public class EventList {
         listSize--;
     }
 
+    public ArrayList<Event> fullList() {
+        return this.taskList;
+    }
+
     private LocalDateTime changeToDate(String time, String date) {
         String combination = date + " " + time;
         return LocalDateTime.parse(combination, dfWithTime);
@@ -44,20 +48,20 @@ public class EventList {
     }
     /**
      * For two addEvent funcs below:
-     * if user doesn't input endDay(which means there is also no endTime), 
+     * if user doesn't input endDay(which means there is also no endTime),
      * you can just call .addEvent(description, startTime, startDay)
-     * 
+     *
      * I also make the specific time(hh:mm) optional, so if user doesn't input the specfic time,
      * you can just pass an empty String to that param and it will handle the rest things
      * e.g. addEvent(descrption, "", startDay, "", endDay)
      *      addEvent(descrption, "", startDay, endTime, endDay)
      *      addEvent(descrption, "", startDay)
      * so only startDay is strictly required.
-     * 
+     *
      * and the same for reviseTimeInfo()
      */
     public void addEvent(String description, String startTime, String startDay, String endTime,
-            String endDay) {
+                         String endDay) {
 
         boolean hasStTime = true;
         boolean hasEdTime = true;
@@ -83,7 +87,7 @@ public class EventList {
         listSize++;
     }
 
-    public void addEvent(String description, String startTime, String startDay) {
+    public void addEvent(String description, String startTime, String startDay, String endTime) {
         boolean hasStTime = true;
         LocalDateTime combinedStartTime = LocalDateTime.parse(DTINIT, dfWithTime);
 
@@ -104,3 +108,4 @@ public class EventList {
         return this.taskList;
     }
 }
+
