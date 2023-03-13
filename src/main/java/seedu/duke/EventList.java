@@ -108,12 +108,14 @@ public class EventList {
         taskList.get(index).changeTimeInfo(startInfo.time, startInfo.hasInfo);
     }
 
+    //need handle exceptions when index = -1
     public void reviseTimeInfo(String description, String startTime, String startDay, String endTime,
                          String endDay) {
         int index = searchTaskIndex(description);
         reviseTimeInfo(index, description, startTime, startDay, endTime);
     }
 
+    //need handle exceptions when index = -1
     public void reviseTimeInfo(String description, String startTime, String startDay) {
         int index = searchTaskIndex(description);
         reviseTimeInfo(index, startTime, startDay);
