@@ -77,7 +77,7 @@ class ParserTest {
     @Test
     public void parserUpdateCommand_updateCommand_successful() {
         Parser parser = new Parser();
-        Command parsedCommand = parser.parseCommand("update");
+        Command parsedCommand = parser.parseCommand("update Question");
         assertTrue(parsedCommand instanceof UpdateCommand);
     }
 }
