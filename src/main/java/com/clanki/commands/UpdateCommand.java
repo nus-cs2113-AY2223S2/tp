@@ -13,7 +13,7 @@ public class UpdateCommand extends Command {
 
     public UpdateCommand(String userInput) {
         super();
-        this.query = userInput.split(" ", 2)[1];
+        this.query = userInput.split(" ")[1];
     }
 
     public void printFlashCard(Flashcard flashcard) {
@@ -38,8 +38,7 @@ public class UpdateCommand extends Command {
 
     public static String getInput() {
         Scanner input = new Scanner(System.in);
-        String userText = input.nextLine();
-        return userText;
+        return input.nextLine();
     }
 
     public int implementUpdate(ArrayList<Flashcard> flashcards, String userText) {
