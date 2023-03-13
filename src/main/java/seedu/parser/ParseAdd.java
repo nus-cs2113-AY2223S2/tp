@@ -1,4 +1,4 @@
-package seedu.Parser;
+package seedu.parser;
 
 import seedu.commands.Command;
 import seedu.commands.AcademicExpenditureCommand;
@@ -17,7 +17,7 @@ import java.time.format.DateTimeParseException;
 
 public class ParseAdd {
     private final String userInput;
-    private final int OFFSET_DELIMITER = 2;
+    private final int offsetDelimiter = 2;
 
     public ParseAdd(String userInput) {
         this.userInput = userInput;
@@ -61,7 +61,7 @@ public class ParseAdd {
         try {
             int positionOfDSlash = userInput.indexOf("d/");
             int positionOfASlash = userInput.indexOf("a/");
-            String date = userInput.substring(positionOfDSlash + OFFSET_DELIMITER, positionOfASlash).trim();
+            String date = userInput.substring(positionOfDSlash + offsetDelimiter, positionOfASlash).trim();
             ExceptionChecker.checkEmptyString(date);
             return date;
         } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
@@ -73,7 +73,7 @@ public class ParseAdd {
         try {
             int positionOfASlash = userInput.indexOf("a/");
             int positionOfSSlash = userInput.indexOf("s/");
-            String amount = userInput.substring(positionOfASlash + OFFSET_DELIMITER, positionOfSSlash).trim();
+            String amount = userInput.substring(positionOfASlash + offsetDelimiter, positionOfSSlash).trim();
             ExceptionChecker.checkEmptyString(amount);
             return amount;
         } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
@@ -84,7 +84,7 @@ public class ParseAdd {
     public String fetchDescriptionInput() {
         try {
             int positionOfSSlash = userInput.indexOf("s/");
-            String description = userInput.substring(positionOfSSlash + OFFSET_DELIMITER).trim();
+            String description = userInput.substring(positionOfSSlash + offsetDelimiter).trim();
             ExceptionChecker.checkEmptyString(description);
             return description;
         } catch (StringIndexOutOfBoundsException | EmptyStringException e) {

@@ -1,4 +1,4 @@
-package seedu.TxtData;
+package seedu.txtdata;
 
 import seedu.expenditure.Expenditure;
 import seedu.expenditure.AcademicExpenditure;

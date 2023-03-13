@@ -1,5 +1,5 @@
 package seedu.expenditure;
-import seedu.TxtData.TxtFileStatus;
+import seedu.txtdata.TxtFileStatus;
 
 import java.io.IOException;
 import java.util.ArrayList;

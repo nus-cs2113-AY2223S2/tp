@@ -1,7 +1,7 @@
 package seedu.myledger;
 
-import seedu.Parser.MainInputParser;
-import seedu.TxtData.TxtFileStatus;
+import seedu.parser.MainInputParser;
+import seedu.txtdata.TxtFileStatus;
 import seedu.expenditure.ExpenditureList;
 import seedu.commands.Command;
 import seedu.commands.CommandResult;

@@ -1,4 +1,4 @@
-package seedu.Parser;
+package seedu.parser;
 
 import seedu.commands.Command;
 import seedu.commands.LendExpenditureCommand;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class ParseLendBorrow {
-    private final int OFFSET_DELIMITER = 2;
+    private final int offsetDelimiter = 2;
     private final String userInput;
 
     public ParseLendBorrow(String userInput) {
@@ -46,7 +46,7 @@ public class ParseLendBorrow {
         try {
             int positionOfDSlash = userInput.indexOf("d/");
             int positionOfNSlash = userInput.indexOf("n/");
-            String date = userInput.substring(positionOfDSlash + OFFSET_DELIMITER, positionOfNSlash).trim();
+            String date = userInput.substring(positionOfDSlash + offsetDelimiter, positionOfNSlash).trim();
             ExceptionChecker.checkEmptyString(date);
             return date;
         } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
@@ -58,7 +58,7 @@ public class ParseLendBorrow {
         try {
             int positionOfNSlash = userInput.indexOf("n/");
             int positionOfASlash = userInput.indexOf("a/");
-            String name = userInput.substring(positionOfNSlash + OFFSET_DELIMITER, positionOfASlash).trim();
+            String name = userInput.substring(positionOfNSlash + offsetDelimiter, positionOfASlash).trim();
             ExceptionChecker.checkEmptyString(name);
             return name;
         } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
@@ -70,7 +70,7 @@ public class ParseLendBorrow {
         try {
             int positionOfASlash = userInput.indexOf("a/");
             int positionOfBSlash = userInput.indexOf("b/");
-            String amount = userInput.substring(positionOfASlash + OFFSET_DELIMITER, positionOfBSlash).trim();
+            String amount = userInput.substring(positionOfASlash + offsetDelimiter, positionOfBSlash).trim();
             ExceptionChecker.checkEmptyString(amount);
             return amount;
         } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
@@ -82,7 +82,7 @@ public class ParseLendBorrow {
         try {
             int positionOfBSlash = userInput.indexOf("b/");
             int positionOfSSlash = userInput.indexOf("s/");
-            String amount = userInput.substring(positionOfBSlash + OFFSET_DELIMITER, positionOfSSlash).trim();
+            String amount = userInput.substring(positionOfBSlash + offsetDelimiter, positionOfSSlash).trim();
             ExceptionChecker.checkEmptyString(amount);
             return amount;
         } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
@@ -93,7 +93,7 @@ public class ParseLendBorrow {
     public String fetchLendBorrowDescriptionInput() {
         try {
             int positionOfSSlash = userInput.indexOf("s/");
-            String description = userInput.substring(positionOfSSlash + OFFSET_DELIMITER).trim();
+            String description = userInput.substring(positionOfSSlash + offsetDelimiter).trim();
             ExceptionChecker.checkEmptyString(description);
             return description;
         } catch (StringIndexOutOfBoundsException | EmptyStringException e) {

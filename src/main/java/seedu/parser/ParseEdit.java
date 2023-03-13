@@ -1,4 +1,4 @@
-package seedu.Parser;
+package seedu.parser;
 
 import seedu.commands.Command;
 import seedu.commands.EditCommand;

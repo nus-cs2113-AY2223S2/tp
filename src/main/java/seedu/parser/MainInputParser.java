@@ -1,4 +1,4 @@
-package seedu.Parser;
+package seedu.parser;
 
 import seedu.expenditure.ExpenditureList;
 import seedu.commands.Command;
