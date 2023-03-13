@@ -47,7 +47,7 @@ public class Parser {
             String endDate = details[4];
             eventList.addEvent(eventName, startTime, startDate, endTime, endDate);
         } else {
-            eventList.addEvent(eventName, startTime, startDate, endTime);
+            eventList.addEvent(eventName, startTime, startDate);
         }
 
         //TODO: Show successful add on UI. (For all cases)
