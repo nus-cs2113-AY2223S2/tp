@@ -36,7 +36,7 @@ public class Parser {
 
     public static void deleteStatement(String userInput) throws IllegalArgumentException {
         String[] tokens = userInput.split("\\s+");
-        if(tokens.length < 2) {
+        if (tokens.length < 2) {
             throw new IllegalArgumentException(UI.NO_DELETE_INDEX);
         }
         try {
