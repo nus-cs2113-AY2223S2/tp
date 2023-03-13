@@ -31,7 +31,6 @@ public class ChChing {
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                System.out.println("nyampe sini cu");
                 ui.showLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand, incomes, expenses);
                 c.execute(incomes, expenses, ui, storage);
