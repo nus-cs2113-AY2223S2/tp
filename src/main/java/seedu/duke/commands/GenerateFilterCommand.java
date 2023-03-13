@@ -27,16 +27,18 @@ public class GenerateFilterCommand extends Command {
     public GenerateFilterCommand(String[] userCommands) throws DukeError {
         this.filterArguments = userCommands.length - 1;
         this.userCommands = userCommands;
-        String userGenerateCount = userCommands[userCommands.length-1];
-        try{
+        String userGenerateCount = userCommands[userCommands.length - 1];
+        try {
             this.numberOfExercisesToGenerate = Integer.parseInt(userGenerateCount);
-        } catch (NumberFormatException error){
+        } catch (NumberFormatException error) {
             throw new DukeError("Invalid input! Please enter the number of exercises you want!");
         }
     }
 
     public void executeCommand(Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
-        ArrayList<ExerciseData> exercises = exerciseGenerator.generateSetAll();
+        ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
+        assert System.identityHashCode(exercises) != System.identityHashCode(exerciseGenerator.generateSetAll())
+                : "Do not modify the ArrayList of GenerateExercise";
         for (int i = 1; i < filterArguments; i++) {
             switch (userCommands[i]) {
             case GYM:
@@ -59,10 +61,11 @@ public class GenerateFilterCommand extends Command {
                 throw new DukeError("Unknown filter input!");
             }
         }
-        if(numberOfExercisesToGenerate > exercises.size()){
+        if (numberOfExercisesToGenerate > exercises.size()) {
             throw new FilterTooManyError();
         }
         exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
         ui.printExerciseFromList(exercises);
     }
+
 }

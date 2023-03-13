@@ -6,21 +6,12 @@ import seedu.duke.ui.Ui;
 
 public class CommandHandler {
 
-    private static boolean errorExists = false;
-
     public void handleUserCommands(String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator) {
         String[] userCommands = rawUserCommands.split(" ");
         Command command = null;
-        errorExists = false;
+        boolean errorExists = false;
         try {
             switch (userCommands[0]) {
-            case "quick":
-                if (userCommands.length == 2) {
-                    command = new QuickStartCommand(userCommands[1]);
-                    break;
-                } else {
-                    throw new DukeError("You did not type in the correct format for generating a quick command");
-                }
             case "generate":
                 command = new GenerateFilterCommand(userCommands);
                 break;
@@ -41,9 +32,11 @@ public class CommandHandler {
         if (!errorExists) {
             try {
                 command.executeCommand(ui, exerciseGenerator);
-            } catch (DukeError e){
+            } catch (DukeError e) {
                 System.out.println(e.getMessage());
             }
         }
+        ui.splitLine();
     }
+
 }

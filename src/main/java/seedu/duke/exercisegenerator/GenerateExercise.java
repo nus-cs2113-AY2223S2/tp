@@ -21,28 +21,24 @@ public class GenerateExercise {
     private static final String EXPERT = "expert";
     private static final String OPEN_BRACE = "[";
     private static final String CLOSE_BRACE = "]";
-    public ArrayList<ExerciseData> exerciseData;
+    private final ArrayList<ExerciseData> exerciseDataList;
+
+    private ArrayList<ExerciseData> filteredExerciseList;
 
     public GenerateExercise() {
         ParseData parseData = new ParseData();
-        exerciseData = parseData.getExercises();
-    }
-
-    public ArrayList<ExerciseData> generateRandomSet(int count) {
+        exerciseDataList = parseData.getExercises();
         Random random = new Random();
-        ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            ExerciseData randomExercise = exerciseData.get(random.nextInt(exerciseData.size()));
-            filteredExerciseList.add(randomExercise);
-        }
-        return filteredExerciseList;
     }
 
     public ArrayList<ExerciseData> generateRandomSetFrom(ArrayList<ExerciseData> exerciseList, int count) {
         Random random = new Random();
-        ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
+        System.out.println(System.identityHashCode(exerciseList));
+        filteredExerciseList = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            ExerciseData randomExercise = exerciseList.get(random.nextInt(exerciseList.size()));
+            int indexToRemove = random.nextInt(exerciseList.size());
+            ExerciseData randomExercise = exerciseList.get(indexToRemove);
+            exerciseList.remove(indexToRemove);
             filteredExerciseList.add(randomExercise);
         }
         return filteredExerciseList;
@@ -51,8 +47,7 @@ public class GenerateExercise {
     //Cleon's gym set - filter by body and gym
     public ArrayList<ExerciseData> generateFilteredGymSetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
-        for (int i = 0; i < exerciseList.size(); i++) {
-            ExerciseData exercise = exerciseList.get(i);
+        for (ExerciseData exercise : exerciseList) {
             if (exercise.getEquipment() != null && !exercise.getEquipment().equals("body only")) {
                 filteredExerciseList.add(exercise);
             }
@@ -62,8 +57,7 @@ public class GenerateExercise {
 
     public ArrayList<ExerciseData> generateFilteredBodySetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
-        for (int i = 0; i < exerciseList.size(); i++) {
-            ExerciseData exercise = exerciseList.get(i);
+        for (ExerciseData exercise : exerciseList) {
             if (exercise.getEquipment() != null && exercise.getEquipment().equals("body only")) {
                 filteredExerciseList.add(exercise);
             }
@@ -73,12 +67,11 @@ public class GenerateExercise {
 
     //Dylan's set - filter by difficulty
     public ArrayList<ExerciseData> generateFilteredDifficultySetFrom(ArrayList<ExerciseData> exerciseList,
-            String difficulty) throws DukeError {
+                                                                     String difficulty) throws DukeError {
         String exerciseDataDifficultyLevel;
         exerciseDataDifficultyLevel = parseDifficultyLevel(difficulty);
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
-        for (int i = 0; i < exerciseList.size(); i++) {
-            ExerciseData exercise = exerciseList.get(i);
+        for (ExerciseData exercise : exerciseList) {
             if (exercise.getLevel().equals(exerciseDataDifficultyLevel)) {
                 filteredExerciseList.add(exercise);
             }
@@ -94,14 +87,13 @@ public class GenerateExercise {
         String getWorkoutTypeFinal;
         exerciseDataWorkoutType = parseWorkoutType(workoutType);
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
-        for (int i = 0; i < exerciseList.size(); i++) {
-            ExerciseData exercise = exerciseList.get(i);
+        for (ExerciseData exercise : exerciseList) {
             //toString still includes opening and closing brackets
             getWorkoutType = exercise.getWorkoutType().toString();
             int start = getWorkoutType.indexOf(OPEN_BRACE);
             int end = getWorkoutType.indexOf(CLOSE_BRACE);
             //remove the open and close brackets.
-            getWorkoutTypeFinal = getWorkoutType.substring(start+1,end);
+            getWorkoutTypeFinal = getWorkoutType.substring(start + 1, end);
             if (getWorkoutTypeFinal.equals(exerciseDataWorkoutType)) {
                 filteredExerciseList.add(exercise);
             }
@@ -114,7 +106,7 @@ public class GenerateExercise {
         Random random = new Random();
         for (int i = 0; i < count; i++) {
             while (true) {
-                ExerciseData randomExercise = exerciseData.get(random.nextInt(exerciseData.size()));
+                ExerciseData randomExercise = exerciseDataList.get(random.nextInt(exerciseDataList.size()));
                 if (randomExercise.getLevel().equals(difficultyLevel)) {
                     specificDifficultyExerciseList.add(randomExercise);
                     break;
@@ -125,30 +117,33 @@ public class GenerateExercise {
     }
 
     public ArrayList<ExerciseData> generateSetAll() {
-        ArrayList<ExerciseData> allExerciseList = exerciseData;
-        return allExerciseList;
+        return this.exerciseDataList;
     }
 
     private static String parseDifficultyLevel(String difficulty) throws DukeError {
-        if (difficulty.equals(EASY)) {
+        switch (difficulty) {
+        case EASY:
             return BEGINNER;
-        } else if (difficulty.equals(MEDIUM)) {
+        case MEDIUM:
             return INTERMEDIATE;
-        } else if (difficulty.equals(HARD)) {
+        case HARD:
             return EXPERT;
-        } else {
+        default:
             throw new DukeError("Incorrect difficulty level input");
         }
     }
-    private static String parseWorkoutType (String workoutType) throws DukeError{
-        if (workoutType.equals(UPPER)) {
+
+    private static String parseWorkoutType(String workoutType) throws DukeError {
+        switch (workoutType) {
+        case UPPER:
             return UPPER_BODY;
-        } else if (workoutType.equals(CORE)) {
+        case CORE:
             return CORE;
-        } else if (workoutType.equals(LEGS)){
+        case LEGS:
             return LEGS;
-        } else {
+        default:
             throw new DukeError("Incorrect workout type input");
         }
     }
+
 }
