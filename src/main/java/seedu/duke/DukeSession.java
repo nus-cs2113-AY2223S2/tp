@@ -6,11 +6,13 @@ import seedu.duke.command.factory.misc.AddCommandFactory;
 import seedu.duke.command.factory.misc.ByeCommandFactory;
 import seedu.duke.command.factory.misc.HelloWorldCommandFactory;
 import seedu.duke.command.factory.misc.RecipePossibleCommandFactory;
+import seedu.duke.command.factory.misc.RemoveCommandFactory;
 import seedu.duke.ingredient.IngredientList;
 import seedu.duke.parser.CommandArguments;
 import seedu.duke.parser.CommandTokens;
 import seedu.duke.recipe.RecipeList;
 import seedu.duke.router.CommandRouterNode;
+import seedu.duke.storage.IngredientStorage;
 import seedu.duke.ui.DukeUI;
 
 import java.util.Scanner;
@@ -26,11 +28,14 @@ public class DukeSession {
                     )
                     .route("bye", new ByeCommandFactory())
                     .route("add", new AddCommandFactory())
+                    .route("remove", new RemoveCommandFactory())
                     .route("recipe", new CommandRouterNode()
                             .route("possible", new RecipePossibleCommandFactory()));
     private final RecipeList recipes;
     private final DukeUI ui;
     private final DukeControlFlow controlFlow;
+
+    private final IngredientStorage ingredientStorage;
 
 
 
@@ -40,6 +45,7 @@ public class DukeSession {
         this.controlFlow = new DukeControlFlow();
         this.ingredients = new IngredientList();
         this.recipes = new RecipeList();
+        this.ingredientStorage = new IngredientStorage();
     }
 
     /**
@@ -78,10 +84,15 @@ public class DukeSession {
         return recipes;
     }
 
+    public IngredientStorage getIngredientStorage() {
+        return ingredientStorage;
+    }
+
     /**
      * Runs the read, evaluate, print loop for Duke.
      */
     public void runDuke() {
+        ingredientStorage.getFile(this.ingredients);
         this.ui.printIntroduction();
         while (this.controlFlow.shouldRun()) {
             String nextCommand = ui.getNextCommandString();
