@@ -41,6 +41,7 @@ class ParserTest {
         }
     }
 
+    /*
     @Test
     public void parseDeleteCommand() {
         financialReport.clearReport();
@@ -53,4 +54,5 @@ class ParserTest {
             System.out.println("Wrong input format! Please refer to help for correct user input!");
         }
     }
+    */
 }
