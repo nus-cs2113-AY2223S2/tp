@@ -81,6 +81,11 @@ public class Inventory {
         Ui.printSearchItems(filteredItems);
     }
 
+    /**
+     * Add an item object into the inventory
+     *
+     * @param item The target item which the user wants to add to the inventory.
+     */
     public static void addItem(Item item) {
         if (upcCodes.containsKey(item.getUpc())) {
             Ui.printDuplicateAdd();
@@ -99,6 +104,11 @@ public class Inventory {
         }
     }
 
+    /**
+     * Search for an item in the inventory by its unique UPC number and returns search query
+     *
+     * @param upc numeric UPC number which user provides for querying
+     */
     public static void searchUPC(String upc) {
         if (!upcCodes.containsKey(upc)) {
             Ui.printEmptySearch();
@@ -106,7 +116,11 @@ public class Inventory {
         }
         Ui.printSearchUPCItem(upcCodes.get(upc));
     }
-
+    /**
+     * Search for an item in the inventory by keyword and returns search query
+     *
+     * @param keyword alphanumeric keyword which user provides for querying
+     */
     public static void search(String keyword) {
         ArrayList<String> resultNames = trie.prefixFind(keyword);
 
