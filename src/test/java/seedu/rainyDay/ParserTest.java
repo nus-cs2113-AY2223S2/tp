@@ -7,11 +7,12 @@ import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 
 import org.junit.jupiter.api.Test;
+import seedu.rainyDay.data.Parser;
 
 
 import java.util.ArrayList;
 
-class RainyDayTest {
+class ParserTest {
 
     @Test
     public void parseAddInCommand() {
@@ -19,8 +20,7 @@ class RainyDayTest {
             ArrayList<FinancialStatement> statements = new ArrayList<>();
             FinancialReport testReport = new FinancialReport(statements);
             testReport.addStatement(new FinancialStatement("noodles", "in", 5));
-            RainyDay.clearFinancialReport();
-            RainyDay.parseUserInput("add -in noodles $5");
+            Parser.parseUserInput("add -in noodles $5");
             assertEquals(RainyDay.financialReport.getFullStatement(0),
                     testReport.getFullStatement(0));
         } catch (Exception e) {
@@ -34,8 +34,7 @@ class RainyDayTest {
             ArrayList<FinancialStatement> statements = new ArrayList<>();
             FinancialReport testReport = new FinancialReport(statements);
             testReport.addStatement(new FinancialStatement("noodles", "out", 5));
-            RainyDay.clearFinancialReport();
-            RainyDay.parseUserInput("add -out noodles $5");
+            Parser.parseUserInput("add -out noodles $5");
             assertEquals(RainyDay.financialReport.getFullStatement(0),
                     testReport.getFullStatement(0));
         } catch (Exception e) {
@@ -45,14 +44,13 @@ class RainyDayTest {
 
     @Test
     public void parseDeleteCommand() {
-        RainyDay.clearFinancialReport();
         Command.addFinancialStatement("Ipad", "out", 120);
         Command.addFinancialStatement("angpao", "in", 3000);
         ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport testReport = new FinancialReport(statements);
         testReport.addStatement(new FinancialStatement("Ipad", "out", 120));
         try {
-            RainyDay.parseUserInput("delete 2");
+            Parser.parseUserInput("delete 2");
             assertEquals(RainyDay.financialReport.getFullStatement(0),
                     testReport.getFullStatement(0));
         } catch (Exception e) {
