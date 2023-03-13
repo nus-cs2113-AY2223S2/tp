@@ -15,8 +15,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
+ * This class reads and writes information to and from the patient-data file.
  * @author Thunderdragon221
- *     This class reads and writes information to and from the patient-data file.
  */
 public class Storage {
 
@@ -109,7 +109,7 @@ public class Storage {
     public static void saveData() {
         try {
             FileWriter writer = new FileWriter(FILE_PATH);
-            for (Map.Entry<String, Patient> entry : Information.patientsList.entrySet()) {
+            for (Map.Entry<String, Patient> entry : Information.getAllPatientData().entrySet()) {
                 Patient patient = entry.getValue();
                 String name = patient.getName();
                 String password = patient.getPassword();

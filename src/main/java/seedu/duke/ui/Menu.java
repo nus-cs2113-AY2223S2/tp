@@ -16,9 +16,6 @@ import seedu.duke.save.Storage;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.patient.Patient.patientDiagnosisHistory;
-import static seedu.duke.ui.Information.patientsList;
-
 public class Menu {
 
     /**
@@ -31,58 +28,44 @@ public class Menu {
         System.out.println("3. Exit");
     }
 
-    /*
+    /**
      * Registers a new user.
+     * @author Geeeetyx, JeraldChen
      */
     public static void register() {
         System.out.println("Please enter your name: ");
         String name = new Scanner(System.in).nextLine();
         System.out.println("Please enter your password: ");
         String password = new Scanner(System.in).nextLine();
-
-        /*
-          @author Geeeetyx
-         * Perform check to ensure password and/or name is not empty
-         */
         if (password.equals("") || name.equals("")) {
             System.out.println("Registration failed! Name and/or Password cannot be empty.");
         } else {
-            /*
-              @author JeraldChen
-             */
             System.out.println("Please re-enter your password: ");
             String password2 = new Scanner(System.in).nextLine();
             if (password.equals(password2)) {
                 System.out.println("Registration successful!");
-                //new Patient(name, password, patientDiagnosisHistory);
-                patientsList.put(password, new Patient(name, password, patientDiagnosisHistory));
+                ArrayList<String> diagnosisHistory = new ArrayList<>();
+                Information.storePatientInfo(password, new Patient(name, password, diagnosisHistory));
             } else {
                 System.out.println("Registration failed!");
             }
         }
     }
 
-    /*
+    /**
      * Logs in a user.
+     * @author Geeeetyx, JeraldChen
      */
     public static void login() {
         System.out.println("Please enter your name: ");
         String name = new Scanner(System.in).nextLine();
         System.out.println("Please enter your password: ");
         String password = new Scanner(System.in).nextLine();
-
-        /*
-         * @author Geeeetyx
-         * Check that user password matches username during login.
-         */
-        if (patientsList.containsKey(password) && patientsList.get(password).getName().equals(name)) {
+        if (Information.checkPassword(password) && Information.getPatientInfo(password).getName().equals(name)) {
             Duke.setPassword(password);
             System.out.println("Login successful!");
             System.out.println("Welcome " + name + "!");
         } else {
-            /*
-             * @author JeraldChen
-             */
             System.out.println("Login failed! Please register first or key in the correct information.");
         }
     }
@@ -96,11 +79,10 @@ public class Menu {
         System.exit(0);
     }
 
-    /*
-    * @author Thunderdragon221
-    *
-    * Shows the account menu.
-    */
+    /**
+     * Shows the account menu
+     * @author Thunderdragon221
+     */
     public static void showAccountMenu() {
         System.out.println("What would you like to do? Please enter the number:");
         System.out.println("1. Report symptoms");
@@ -146,7 +128,7 @@ public class Menu {
         Symptom symptomToBeAdded;
         String symptomChoice;
         symptomChoice = scanner.nextLine();
-        symptomToBeAdded = parseSymptomInput(symptoms, scanner, symptomChoice);
+        symptomToBeAdded = parseSymptomInput(symptoms, symptomChoice);
         if (symptomToBeAdded != null) {
             symptoms.add(symptomToBeAdded);
         }
@@ -156,10 +138,9 @@ public class Menu {
      * Parses user's input to a Symptom enumerator.
      *
      * @param symptoms      an ArrayList of symptoms.
-     * @param scanner       Scans user's input.
      * @param symptomChoice A string that the user has typed in based on the displayed menu of symptoms.
      */
-    private static Symptom parseSymptomInput(ArrayList<Symptom> symptoms, Scanner scanner, String symptomChoice) {
+    private static Symptom parseSymptomInput(ArrayList<Symptom> symptoms, String symptomChoice) {
         switch (symptomChoice) {
         case "a":
         case "A":
@@ -254,7 +235,7 @@ public class Menu {
 
     /**
      * Displays the possible illnesses that the user may have based on the symptoms he/she has entered.
-     * @@author tanyizhe and Jeraldchen
+     * @author tanyizhe and Jeraldchen
      * @param symptoms ArrayList of symptoms the user has entered.
      */
     public static void displayPossibleIllness(ArrayList<Symptom> symptoms) {
