@@ -1,8 +1,6 @@
 package utils;
 
-import commands.Command;
-import commands.ExitCommand;
-import commands.IncorrectCommand;
+import commands.*;
 
 public class Parser {
 
@@ -17,12 +15,17 @@ public class Parser {
         switch (commandWord) {
         case ExitCommand.COMMAND_WORD:
             return prepareExitCommand();
+            case "add_staff":
+                return new AddStaffCommand(userInputSplit);
+            case "view_staff":
+                return new ViewStaffCommand();
+            case "delete_staff":
+                return new DeleteStaffCommand(userInputSplit);
         default:
             return new IncorrectCommand();
         }
         //@@damithc
     }
-
 
     private Command prepareExitCommand() {
         return new ExitCommand();
