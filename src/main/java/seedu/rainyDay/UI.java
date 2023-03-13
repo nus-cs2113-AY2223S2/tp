@@ -30,6 +30,28 @@ public class UI {
                 deletedStatementDescription, System.lineSeparator());
     }
 
+    public static void acknowledgeViewCommand() {
+        System.out.println("Here is your full financial report!");
+    }
+
+    public static void printSummary(int inflow, int outflow) {
+        String inflowInformation = "Inflow: $" + inflow;
+        String outflowInformation = "Outflow: $" + outflow;
+        String remainingValueInformation = "Remaining value: $" + (inflow - outflow);
+        String summary = String.join(System.lineSeparator(), inflowInformation, outflowInformation,
+                remainingValueInformation);
+        System.out.println(summary);
+    }
+
+    public static void displayHelp() {
+        System.out.println("Have you tried reading the UG?");
+    }
+
+    public static void unrecognisedInput() {
+        System.out.println("sorry! I do not understand your input!");
+        System.out.println("Please refer to the help table!");
+    }
+
     public static void sayFarewellToUser() {
         System.out.println("Bye " + username);
     }

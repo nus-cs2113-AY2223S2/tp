@@ -25,12 +25,11 @@ public class RainyDay {
         UI.printLogo();
         UI.greetUser(input.nextLine());
 
-        boolean isExit = false;
-        while (!isExit) {
+        while (true) {
             try {
                 String userInput = input.nextLine().trim();
                 if (userInput.equalsIgnoreCase(Command.COMMAND_EXIT)) {
-                    isExit = true;
+                    break;
                 }
                 parseUserInput(userInput);
             } catch (Exception e) {
@@ -57,27 +56,13 @@ public class RainyDay {
         } else if (action.equalsIgnoreCase(Command.COMMAND_VIEW)) {
             Command.generateReport(financialReport);
         } else if (action.equalsIgnoreCase(Command.COMMAND_HELP)) {
-            displayHelp();
+            UI.displayHelp();
         } else {
-            unrecognisedInput();
+            UI.unrecognisedInput();
         }
     }
 
     public static void clearFinancialReport() {
         financialReport.clearReport();
     }
-
-    public static void displayHelp() {
-        //thanks bao mi hua benjamin
-        System.out.println("Have you tried reading the UG?");
-    }
-
-    public static void unrecognisedInput() {
-        System.out.println("sorry! I do not understand your input!");
-        System.out.println("Please refer to the help table!");
-    }
-
-
-
-
 }
