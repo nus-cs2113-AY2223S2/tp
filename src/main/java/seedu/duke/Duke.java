@@ -19,12 +19,13 @@ public class Duke {
         EntryLog entrylog = new EntryLog();
         Scanner in = new Scanner(System.in);
         Command command = new Command();
+        Parser parser = new Parser();
         do {
             ui.printAwaitUserInput();
             String userInput = in.nextLine();
             ui.printLine();
             try {
-                command = Parser.parseUserInput(userInput);
+                command = parser.parseUserInput(userInput);
                 command.execute(entrylog);
             } catch (Exception e) {
                 ui.print(e.getMessage() + UIConstants.NEWLINE);
