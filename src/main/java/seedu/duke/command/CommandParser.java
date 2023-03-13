@@ -85,6 +85,8 @@ public class CommandParser {
             return new UnmarkTaskCommand(getArguments(splitInput, UnmarkTaskCommand.FLAGS));
         case EditDeadlineCommand.KEYWORD:
             return new EditDeadlineCommand(getArguments(splitInput, EditDeadlineCommand.FLAGS));
+        case DeleteTaskCommand.KEYWORD:
+            return new DeleteTaskCommand(getArguments(splitInput, DeleteTaskCommand.FLAGS));
         case ExitCommand.KEYWORD:
             return new ExitCommand();
         default:
