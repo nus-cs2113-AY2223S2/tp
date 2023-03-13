@@ -1,4 +1,4 @@
-package seedu.duke.data;
+package chching.record;
 
 import java.util.ArrayList;
 

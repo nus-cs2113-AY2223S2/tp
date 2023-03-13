@@ -1,14 +1,14 @@
-package seedu.duke;
+package chching;
 
-import seedu.duke.data.ExpenseList;
-import seedu.duke.data.IncomeList;
+import chching.record.ExpenseList;
+import chching.record.IncomeList;
 
 import java.util.Scanner;
 
 public class ChChing {
-    
+
     public static final String DIVIDER = "____________________________________________________________\n";
-    
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -19,7 +19,7 @@ public class ChChing {
         runCommandLoopUntilExitCommand(expenseList);
         exit();
     }
-    
+
     private static void greet() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -30,11 +30,11 @@ public class ChChing {
         System.out.println("What can I do for you today?");
         System.out.println(DIVIDER);
     }
-    
+
     private static void runCommandLoopUntilExitCommand(ExpenseList expenseList) {
         Scanner in = new Scanner(System.in);
         String line = in.nextLine();
-        
+
         // continuously reads input from command line until command 'bye' is inputted
         while (!line.equalsIgnoreCase("bye")) {
             System.out.println(DIVIDER);
@@ -44,7 +44,7 @@ public class ChChing {
         }
         in.close();
     }
-    
+
     private static void runCommand(String line) {
         String command = line;
         try {
@@ -53,7 +53,7 @@ public class ChChing {
             System.out.println("Error: Command not recognized");
         }
     }
-    
+
     private static void exit() {
         System.out.println("Bye!");
     }

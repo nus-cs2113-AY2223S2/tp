@@ -1,4 +1,4 @@
-package seedu.duke.data;
+package chching.record;
 
 public abstract class Record {
     protected String category;

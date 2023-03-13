@@ -1,7 +1,7 @@
-package seedu.duke;
+package chching;
 
-import seedu.duke.data.Record;
-import seedu.duke.data.RecordList;
+import chching.record.Record;
+import chching.record.RecordList;
 
 import java.io.File;
 import java.util.ArrayList;

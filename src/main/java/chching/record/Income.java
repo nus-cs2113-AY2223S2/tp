@@ -1,4 +1,4 @@
-package seedu.duke.data;
+package chching.record;
 
 public class Income extends Record{
     public Income(String category, String description, String date, float value) {

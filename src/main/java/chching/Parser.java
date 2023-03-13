@@ -1,9 +1,9 @@
-package seedu.duke;
-import seedu.duke.data.Expense;
-import seedu.duke.data.ExpenseList;
-import seedu.duke.data.Income;
-import seedu.duke.data.IncomeList;
-import seedu.duke.data.RecordList;
+package chching;
+import chching.record.ExpenseList;
+import chching.record.Expense;
+import chching.record.Income;
+import chching.record.IncomeList;
+import chching.record.RecordList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
