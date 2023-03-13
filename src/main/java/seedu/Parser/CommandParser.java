@@ -1,9 +1,6 @@
 package seedu.Parser;
 
-import seedu.Commands.AddFoodCommand;
-import seedu.Commands.Command;
-import seedu.Commands.ExitCommand;
-import seedu.Commands.UpdateUserCommand;
+import seedu.Commands.*;
 import seedu.Exceptions.InvalidCommandException;
 import seedu.Exceptions.LifeTrackerException;
 
@@ -18,11 +15,17 @@ public class CommandParser {
         case "add":
             command = new AddFoodCommand(commandDescriptor);
             break;
+        case "delete":
+            command = new DeleteFoodCommand(commandDescriptor);
+            break;
         case "bye":
             command = new ExitCommand();
             break;
         case "update":
             command = new UpdateUserCommand();
+            break;
+        case "list":
+            command = new DisplayFoodCommand();
             break;
         default:
             throw new InvalidCommandException();
