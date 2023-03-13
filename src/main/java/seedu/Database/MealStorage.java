@@ -78,4 +78,6 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
             System.out.println(" meal to storage!");
         }
     }
+
+    public ArrayList<Meal> getMeal(){return this.meals;}
 }
