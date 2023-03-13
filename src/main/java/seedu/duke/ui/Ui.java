@@ -8,6 +8,7 @@ public class Ui {
         System.out.println("For now, you can do the following:");
         System.out.println("Add a task using: add <description> -d <deadline>");
         System.out.println("List all tasks using: list");
+        System.out.println("Delete a task using: delete <index>");
         System.out.println("Mark a task as done using: mark <index>");
         System.out.println("Mark a task as undone using: unmark <index>");
         System.out.println("Edit a task deadline using: edit <index> -d <deadline>");
