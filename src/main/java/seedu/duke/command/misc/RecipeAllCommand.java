@@ -5,7 +5,15 @@ import seedu.duke.command.ExecutableCommand;
 import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 
+/**
+ * Represents the "/recipe all" command.
+ */
 public class RecipeAllCommand extends ExecutableCommand {
+    /**
+     * List all recipes.
+     *
+     * @param dukeSession the DukeSession containing the list of recipes
+     */
     @Override
     public void execute(DukeSession dukeSession) {
         RecipeList recipes = dukeSession.getRecipes();

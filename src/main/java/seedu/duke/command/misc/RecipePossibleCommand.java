@@ -7,12 +7,23 @@ import seedu.duke.ingredient.IngredientList;
 import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 
+/**
+ * Represents the "/recipe possible" command.
+ */
 public class RecipePossibleCommand extends ExecutableCommand {
 
-    public boolean hasEnoughIngredient(Ingredient recipeIngredient, IngredientList fridgeIngredients) {
-        String recipeIngredientName = recipeIngredient.getName();
-        double recipeIngredientQty = recipeIngredient.getQuantity();
-        for (Ingredient fridgeIngredient : fridgeIngredients.getIngredients()) {
+    /**
+     * Check if an ingredientList has a sufficient amount of a ingredient.
+     *
+     * @param ingredient the ingredient to look for
+     * @param ingredientList the list of ingredients to check in
+     * @return true if the list of ingredients contains the ingredient with quantity equals to or more than
+     * the required quantity, false otherwise
+     */
+    public boolean hasEnoughIngredient(Ingredient ingredient, IngredientList ingredientList) {
+        String recipeIngredientName = ingredient.getName();
+        double recipeIngredientQty = ingredient.getQuantity();
+        for (Ingredient fridgeIngredient : ingredientList.getIngredients()) {
             if (fridgeIngredient.getName().equals(recipeIngredientName) &&
                     fridgeIngredient.getQuantity() >= recipeIngredientQty) {
                 return true;
@@ -20,6 +31,14 @@ public class RecipePossibleCommand extends ExecutableCommand {
         }
         return false;
     }
+
+    /**
+     * Check if a recipe can be made using a list of ingredients given.
+     *
+     * @param recipe the recipe to be made
+     * @param fridgeIngredients the list of ingredients used to make the recipe
+     * @return true if the recipe can be made using the list of ingredients, false otherwise
+     */
     private boolean canMakeRecipe(Recipe recipe, IngredientList fridgeIngredients) {
         IngredientList recipeIngredients = recipe.getIngredients();
         for (Ingredient recipeIngredient : recipeIngredients.getIngredients()) {
@@ -29,6 +48,12 @@ public class RecipePossibleCommand extends ExecutableCommand {
         }
         return true;
     }
+
+    /**
+     * List all recipes that can be made using ingredients that are available.
+     *
+     * @param dukeSession the DukeSession containing the list of recipes and ingredients
+     */
     @Override
     public void execute(DukeSession dukeSession) {
         IngredientList fridgeIngredients = dukeSession.getIngredients();
