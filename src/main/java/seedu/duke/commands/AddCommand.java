@@ -26,7 +26,7 @@ public class AddCommand extends Command {
      * @param category    Category which entry belongs to
      * @param amount      Price of entry
      */
-    public AddCommand(String description, String category, double amount) throws InvalidCategoryException {
+    public AddCommand(String description, double amount, String category) throws InvalidCategoryException {
         switch(category){
         case EntryConstants.CLOTHING:
             this.entryObj = new Entry(description, amount, Category.CLOTHING);
@@ -68,6 +68,10 @@ public class AddCommand extends Command {
             logger.log(Level.WARNING, "Input category is invalid");
             throw new InvalidCategoryException(MessageConstants.MESSAGE_INVALID_CATEGORY);
         }
+    }
+
+    public Entry getEntryObj(){
+        return this.entryObj;
     }
 
     /**

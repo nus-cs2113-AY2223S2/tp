@@ -154,7 +154,7 @@ public class Parser {
         }
         logger.exiting(Parser.class.getName(), "parseAddCommand()");
         try {
-            return new AddCommand(description, category, priceDouble);
+            return new AddCommand(description, priceDouble, category);
         } catch (InvalidCategoryException e) {
             return null;
         }
