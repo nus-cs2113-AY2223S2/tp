@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Parser {
 
-    private final static int OFFSET = 1;
+    private static final int OFFSET = 1;
     private final Ui ui;
 
     public Parser(){
@@ -109,7 +109,8 @@ public class Parser {
         }
         else {
             //TODO: link to taskList edit event
-            System.out.println(details[1].substring(2) + "," + information[0] + "," + information[1] + "," + information[2] + "," + information[3]);
+            System.out.println(details[1].substring(2) + "," + information[0] + "," + information[1] + "," 
+                    + information[2] + "," + information[3]);
         }
     }
 }
