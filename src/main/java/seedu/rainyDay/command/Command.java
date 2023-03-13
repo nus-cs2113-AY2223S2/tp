@@ -1,8 +1,8 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.Storage;
-import seedu.rainyDay.UI;
+import seedu.rainyDay.modules.Storage;
+import seedu.rainyDay.modules.UI;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 

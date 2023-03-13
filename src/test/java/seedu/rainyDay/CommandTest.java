@@ -1,9 +1,9 @@
-package seedu.rainyDay.command;
+package seedu.rainyDay;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import seedu.rainyDay.RainyDay;
+import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 

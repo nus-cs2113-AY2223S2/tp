@@ -1,5 +1,6 @@
 package seedu.rainyDay;
 
+import seedu.rainyDay.modules.Storage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.rainyDay.command.Command;
