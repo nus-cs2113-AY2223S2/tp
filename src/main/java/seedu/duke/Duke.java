@@ -6,6 +6,8 @@ package seedu.duke;
 //import seedu.duke.parser.Parser;
 
 
+import seedu.duke.storage.Storage;
+
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -13,14 +15,18 @@ public class Duke {
     private final EventList eventTracker;
     private final Ui ui;
     private final Parser parser;
+    private final Storage storage;
+
     public Duke (){
         ui = new Ui();
-        eventTracker = new EventList();
+        storage = new Storage();
+        eventTracker = new EventList(storage.loadEvents());
         parser = new Parser();
     }
     public void run(){
         ui.showWelcome();
         ui.getUserCommand(eventTracker);
+        storage.saveToFile(eventTracker); //Will only save to file on exit
     }
 
     public static void main(String[] args) {

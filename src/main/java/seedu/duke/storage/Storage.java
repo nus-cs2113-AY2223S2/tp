@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.FileInputStream;
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
@@ -24,11 +25,12 @@ import java.util.ArrayList;
  */
 
 
+
 public class Storage {
     //private final Ui ui = new Ui();
     private static final String fileLocation = System.getProperty("user.dir") + "/save.json";
-    final TypeToken<ArrayList<Event>> eventToken = new TypeToken<ArrayList<Event>>(){};
-    GsonBuilder builder = new GsonBuilder().setDateFormat("YYYY/MM/DD HH:mm:ss").setPrettyPrinting();
+    //final TypeToken<ArrayList<Event>> eventToken = new TypeToken<ArrayList<Event>>(){};
+    GsonBuilder builder = new GsonBuilder().registerTypeAdapter(ArrayList.class, new EventListAdapter()).setPrettyPrinting();
     Gson gson = builder.create();
 
     public void saveToFile(EventList eventList) {
@@ -63,7 +65,7 @@ public class Storage {
         try {
             fileReader = new InputStreamReader(new FileInputStream(saveFile), StandardCharsets.UTF_8);
             JsonReader gsonInterpreter = new JsonReader(fileReader);
-            savedList = gson.fromJson(fileReader, eventToken); //Placeholder.
+            savedList = gson.fromJson(fileReader, ArrayList.class); //Placeholder.
         } catch (Exception e) {
             System.out.println(e);
         }

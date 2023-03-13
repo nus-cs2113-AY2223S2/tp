@@ -80,4 +80,12 @@ public class Event {
         this.hasStartTime = hasSt;
         this.hasEndTime = false;
     }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
 }
