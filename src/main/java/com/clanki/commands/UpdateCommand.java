@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UpdateCommand extends Command {
-
     String query;
     ArrayList<Flashcard> matchingFlashcards = new ArrayList<>();
 
