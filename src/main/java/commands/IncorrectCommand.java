@@ -1,6 +1,7 @@
 package commands;
 
 import common.Messages;
+import dinerDeadline.DeadlineList;
 import ui.TextUi;
 
 public class IncorrectCommand extends Command {
@@ -9,7 +10,7 @@ public class IncorrectCommand extends Command {
      * Since it is not a valid command, an error message is printed instead.
      */
     @Override
-    public void execute(TextUi ui) {
+    public void execute(DeadlineList deadlineList, TextUi ui) {
         ui.printMessage(Messages.MESSAGE_VALID_COMMAND_LIST);
     }
 

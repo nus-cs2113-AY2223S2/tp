@@ -1,5 +1,6 @@
 package commands;
 
+import dinerDeadline.DeadlineList;
 import ui.TextUi;
 
 public class ExitCommand extends Command {
@@ -36,7 +37,7 @@ public class ExitCommand extends Command {
      * Executes the command the user provided.
      */
     @Override
-    public void execute(TextUi ui) {
+    public void execute(DeadlineList deadlineList, TextUi ui) {
         setExit(true);
     }
 }

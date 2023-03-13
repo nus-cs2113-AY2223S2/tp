@@ -8,7 +8,7 @@ import java.util.Scanner;
  * A Class to handle user related interactions. e.g.printMessage,printBanner,getUserInput
  */
 public class TextUi {
-    private final Scanner in;
+    public final Scanner in;
     private final PrintStream out;
 
     //@@damithc darrenangwx-reused
