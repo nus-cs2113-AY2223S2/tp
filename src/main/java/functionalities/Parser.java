@@ -13,7 +13,7 @@ public class Parser {
         } else if (task.toLowerCase().startsWith("list")) {
             parseListCommand();
         } else if (task.toLowerCase().startsWith("view")) {
-            //parseViewCommand();
+            parseViewCommand(task);
         } else if (task.equalsIgnoreCase("bye")) {
             parseByeCommand();
         } else {
@@ -21,21 +21,34 @@ public class Parser {
         }
         return command;
     }
+
+    private static void parseViewCommand(String task) throws SniffException {
+        try {
+            String userCommand = "view";
+            int uId = Integer.parseInt(task.split(" ", 2)[1]);
+            command = new Command(userCommand, 0, uId);
+        } catch (ArrayIndexOutOfBoundsException emptyView) {
+            throw new SniffException(" The view command description cannot be empty!");
+        }  catch (NumberFormatException e) {
+            throw new SniffException(" The user Id to view appointment details must be a number!");
+        }
+    }
+
     private static void parseByeCommand() {
         String userCommand = "bye";
-        command = new Command(userCommand, 0);
+        command = new Command(userCommand, 0, 0);
     }
 
     private static void parseListCommand() {
         String userCommand = "list";
-        command = new Command(userCommand, 0);
+        command = new Command(userCommand, 0, 0);
     }
 
     private static void parseRemoveCommand(String task) throws SniffException {
         try {
             String userCommand = "remove";
             int apptNum = Integer.parseInt(task.split(" ", 2)[1]);
-            command = new Command(userCommand, apptNum);
+            command = new Command(userCommand, apptNum, 0);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new SniffException(" The remove command description cannot be empty!");
         } catch (NumberFormatException e) {

@@ -4,9 +4,13 @@ import exception.SniffException;
 public class Command {
     private final String command;
     private final int apptNum;
-    public Command(String userCommand, int apptNum) {
+    private final int uId;
+
+
+    public Command(String userCommand, int apptNum, int userId) {
         this.command = userCommand;
         this.apptNum = apptNum;
+        this.uId = userId;
         //add variables that are read from parser class and used for adding, removing, and viewing appointments.
     }
 
@@ -19,7 +23,7 @@ public class Command {
         } else if (command.equalsIgnoreCase("list")) {
             tasks.listAppointments();
         } else if (command.equalsIgnoreCase("view")) {
-            tasks.viewAppointment();
+            tasks.viewAppointment(uId);
         } else if (command.equalsIgnoreCase("bye")) {
             ui.showUserMessage(" Bye. Hope to see you again soon!");
         } else {
