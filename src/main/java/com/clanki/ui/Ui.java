@@ -53,7 +53,7 @@ public class Ui {
      *
      * @param message multiple strings to be shown to user
      */
-    public void print(String... message) {
+    public void printlnSeveralStrings(String... message) {
         for (String m : message) {
             System.out.println(m);
         }

@@ -13,8 +13,6 @@ public class Clanki {
     private final Ui ui;
     private final FlashcardList flashcardList;
     private final Parser parser;
-    private ArrayList<Flashcard> flashcardsForToday;
-    private int currentFlashcardIndex;
 
     public Clanki() {
         this.ui = new Ui();
