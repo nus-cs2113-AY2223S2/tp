@@ -63,12 +63,40 @@ public class UserInterface {
     }
 
     public void printWrongCommand() {
-        System.out.println("Unresolvable command");
+        System.out.println("PLease re-enter a valid command!");
     }
 
     public void printCard(CardList cardlist, int id) {
         System.out.println(cardlist.get(id));
     }
+
+    public void printDeleteDateFormatError() {
+        System.out.println("Please ensure that your date is a number and not a string!");
+    }
+
+    public void printDeleteDateRangeError() {
+        System.out.println("Please ensure that the index you wish to delete exists!");
+    }
+
+    public void printDeleteError() {
+        System.out.println("Whoops, ensure that your delete command is valid!");
+    }
+
+    public void addError() {
+        System.out.println("Please ensure use '-' to separate the question and answer to the add command!");
+    }
+
+    public void addMissingQuestionPrompt() {
+        System.out.println("Please ensure that you supply a valid question to Inka!");
+    }
+
+    public void addMissingAnswerPrompt() {
+        System.out.println("Please ensure that you supply a valid answer to Inka!");
+    }
+    public void addMissingQuestionAndAnswerPrompt() {
+        System.out.println("Please ensure that you supply a valid question and answer to Inka!");
+    }
+
 
     public void printList(CardList cardList) {
         if (cardList.isEmpty()) {
