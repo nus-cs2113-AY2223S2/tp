@@ -29,4 +29,28 @@ public class Module {
     public int getUnivId() {
         return univId;
     }
+
+    public int getModuleMCs() {
+        return moduleMCs;
+    }
+
+    public int getNusModuleMCs() {
+        return nusModuleMCs;
+    }
+
+    public String getModuleCode() {
+        return moduleCode;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
+    public String getNusModuleCode() {
+        return nusModuleCode;
+    }
+
+    public String getNusModuleName() {
+        return nusModuleName;
+    }
 }
