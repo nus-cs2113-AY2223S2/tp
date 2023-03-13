@@ -1,4 +1,4 @@
-package seedu.duke.data;
+package chching.record;
 
 public class Expense extends Record {
 

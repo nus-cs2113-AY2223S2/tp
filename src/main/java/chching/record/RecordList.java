@@ -1,4 +1,4 @@
-package seedu.duke.data;
+package chching.record;
 
 import java.util.ArrayList;
 
@@ -39,5 +39,9 @@ public abstract class RecordList {
             Record record = recordList.get(i - 1);
             System.out.println(i + ". " + record.toString());
         }
+    }
+
+    public static Record get(int index) {
+        return recordList.get(index);
     }
 }
