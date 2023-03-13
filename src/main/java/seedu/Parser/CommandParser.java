@@ -15,6 +15,9 @@ public class CommandParser {
         case "add":
             command = new AddFoodCommand(commandDescriptor);
             break;
+        case "delete":
+            command = new DeleteFoodCommand(commandDescriptor);
+            break;
         case "bye":
             command = new ExitCommand();
             break;
@@ -23,6 +26,9 @@ public class CommandParser {
             break;
         case "view":
             command = new ViewUserCommand();
+            break;
+        case "list":
+            command = new DisplayFoodCommand();
             break;
         default:
             throw new InvalidCommandException();
