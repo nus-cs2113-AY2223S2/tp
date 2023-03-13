@@ -2,7 +2,6 @@ package seedu.rainyDay;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 
