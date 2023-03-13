@@ -1,9 +1,23 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
-What is your name?
-Hello James Gosling
+A new card is now added:
+Question: q1
+Answer: a1
+A new card is now added:
+Question: q1
+Answer: a1
+Let's see the next flashcard!
+Question for the current flashcard is:
+q1
+Are you ready to view the answer?
+a1
+Have you got this correct?
+Great, you got it right!
+Let's see the next flashcard!
+Question for the current flashcard is:
+q1
+Are you ready to view the answer?
+a1
+Have you got this correct?
+No worries, we will try it next time.
+Congrats! You have reviewed all the flashcards due today!
+The input is in an incorrect format.
+Bye. Don't forget to come back later to study!

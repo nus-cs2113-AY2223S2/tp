@@ -1,1 +1,9 @@
-James Gosling
+add /q q1 /a a1
+add /q q1 /a a1
+review
+a
+y
+a
+n
+foo 1
+bye
