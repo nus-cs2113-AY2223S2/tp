@@ -54,4 +54,9 @@ public class Messages {
     public static final String ERROR_DEADLINE_EXCESS_LIST_PARAM =
             "Excess input detected! Please only type \"view_deadlineS\".";
 
+    public static final String MESSAGE_INVALID_INDEX_FOR_DISH_COMMAND = "Your index does not contain a valid dish!";
+    public static final String MESSAGE_NOT_A_VALID_INTEGER_COMMAND = "Your index has to be an integer!";
+    public static final String MESSAGE_BLANK_DISH_NAME_COMMAND = "Name of dish cannot be empty!";
+    public static final String MESSAGE_NEGATIVE_PRICE_COMMAND = "Price of dish cannot be negative!";
+
 }
