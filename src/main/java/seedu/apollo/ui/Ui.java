@@ -320,10 +320,20 @@ public class Ui {
     /**
      * Prints error message if an unexpected error occurs.
      *
-     * @param exception Contains detail message saying where error occurred.
+     * @param unexpectedException Contains detail message saying where unexpected exception occurred.
      */
-    public void printUnexpectedException(UnexpectedException exception) {
-        System.out.println("Oh no... Something went wrong while doing the following:  " + exception.getMessage() +
+    public void printUnexpectedException(UnexpectedException unexpectedException) {
+        System.out.println("Oh no... Something went wrong while doing the following: " +
+                unexpectedException.getMessage() + "\nExiting Apollo...");
+    }
+
+    /**
+     * Prints error message if an assertion error occurs.
+     *
+     * @param assertionError Contains detail message saying where assertion error occurred.
+     */
+    public void printErrorForAssertion(AssertionError assertionError) {
+        System.out.println("Oh no... Something went wrong in " + assertionError.getMessage() +
                 "\nExiting Apollo...");
     }
 
@@ -347,4 +357,5 @@ public class Ui {
     public void printEmptyDelMod() {
         System.out.println("Please specify a module to delete!");
     }
+
 }

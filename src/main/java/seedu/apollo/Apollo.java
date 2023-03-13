@@ -16,16 +16,14 @@ import java.rmi.UnexpectedException;
 public class Apollo {
 
     public static final String FILE_PATH = "save.txt";
-
     private static final String MODULE_DATA_FILEPATH = "moduleData.txt";
 
     private static Storage storage;
     private static TaskList taskList;
-
     private static ModuleList moduleList;
+    private static ModuleList moduleData;
     private static Ui ui;
 
-    private static ModuleList moduleData = new ModuleList();
 
     /**
      * Initialises Ui, Storage, and TaskList.
@@ -50,9 +48,11 @@ public class Apollo {
      * Reads, executes, and prints outputs of user commands continually.
      * Stops after ExitCommand is called.
      *
-     * @throws UnexpectedException If command cannot be executed for an unexpected reason.
+     * @throws IOException If there are issues with saving to the hard disk.
      */
     public void run() throws IOException {
+        assert (ui != null & storage != null & taskList != null & moduleData != null & moduleList != null) :
+                "Initialising Apollo";
         boolean isExit = false;
         while (!isExit) {
             String fullCommand = ui.readCommand();
@@ -72,10 +72,12 @@ public class Apollo {
     public static void main(String[] args) {
         try {
             new Apollo(FILE_PATH, MODULE_DATA_FILEPATH).run();
-        } catch (UnexpectedException exception) {
-            ui.printUnexpectedException(exception);
-        } catch (IOException e) {
+        } catch (UnexpectedException unexpectedException) {
+            ui.printUnexpectedException(unexpectedException);
+        } catch (IOException ioException) {
             ui.printErrorForIO();
+        } catch (AssertionError assertionError) {
+            ui.printErrorForAssertion(assertionError);
         }
         System.exit(0);
     }
