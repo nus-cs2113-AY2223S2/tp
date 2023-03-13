@@ -9,13 +9,13 @@ public class DataReader {
     private static final String MODULES_FILE_PATH = "./data/modules.csv";
     private static final String UNIVERSITIES_FILE_PATH = "./data/universities.csv";
     private ArrayList<University> universities;
-    private ArrayList<Module> modules;
+    private ArrayList<Module> puModules;
 
     public DataReader() {
         this.universities = new ArrayList<>();
-        this.modules = new ArrayList<>();
+        this.puModules = new ArrayList<>();
         readUnivData();
-        readModData(MODULES_FILE_PATH, modules);
+        readModData(MODULES_FILE_PATH, puModules);
     }
 
     private void readUnivData() {
@@ -53,12 +53,12 @@ public class DataReader {
     }
 
     public ArrayList<Module> getModules() {
-        return modules;
+        return puModules;
     }
 
     public ArrayList<Module> getModules(int univId) {
         ArrayList<Module> modules = new ArrayList<>();
-        for (Module module : this.modules) {
+        for (Module module : this.puModules) {
             if (module.getUnivId() == univId) {
                 modules.add(module);
             }

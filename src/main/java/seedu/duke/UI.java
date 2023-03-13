@@ -8,18 +8,18 @@ public class UI {
     // Todo: This will be changed when the parser is added.
     public boolean executeUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
                                       ArrayList<Module> allModules, Storage storage) {
-        String[] userInputWords = userInput.split(" ");
-        String userCommandFirstKeyword = userInputWords[0];
+        ArrayList<String> userInputWords = Parser.parseCommand(userInput);
+        String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
-        if (userInputWords.length > 1) {
-            userCommandSecondKeyword = userInputWords[1];
+        if (userInputWords.size() > 1) {
+            userCommandSecondKeyword = userInputWords.get(1);
         }
         boolean toContinue = true;
         switch (userCommandFirstKeyword) {
         case "list":
-            if (userCommandSecondKeyword.equals("pu")) {
+            if (userCommandSecondKeyword.equalsIgnoreCase("pu")) {
                 executeListAllPuUniversitiesCommand(universities);
-            } else if (userCommandSecondKeyword.equals("current")) {
+            } else if (userCommandSecondKeyword.equalsIgnoreCase("current")) {
                 executeListCurrentModulesCommand(modules);
             } else {  // list PU name case
                 int indexOfFirstSpace = userInput.indexOf(' ');
@@ -34,6 +34,8 @@ public class UI {
         case "add":
             executeAddModuleCommand(storage, userCommandSecondKeyword, allModules);
             break;
+        case "remove":
+            break; // Todo: Add remove function after darren PR
         default:
             System.out.println("Invalid Input");
             break;
@@ -41,9 +43,7 @@ public class UI {
         return toContinue;
     }
     private void executeListCurrentModulesCommand(ArrayList<Module> modules) {
-        for (int i = 0; i < modules.size(); i++) {
-            System.out.println(modules.get(i));
-        }
+        Parser.printCurrentModList();
     }
 
     // Todo: Right now, it uses university Name only but since university object has 3 attributes:
@@ -54,32 +54,22 @@ public class UI {
     private void executeListPuModulesCommand(ArrayList<Module> modules, ArrayList<University> universities,
                                              String universityName) {
         int univId = -1;
-        for(int i = 0;  i < universities.size(); i++) {
+        for (int i = 0; i < universities.size(); i++) {
             University currentUniversity = universities.get(i);
             String currentUniversityName = currentUniversity.getUnivName();
             if (universityName.equals(currentUniversityName)) {
                 univId = currentUniversity.getUnivId();
             }
         }
-        System.out.println("Printing out modules selected for " + universityName);
-        for(int i = 0; i < modules.size(); i++) {
-            if (modules.get(i).getUnivId() == univId) {
-                System.out.println(modules.get(i));
-            }
-        }
+        Parser.printPUModules(univId);
     }
-
+    
     private void executeExitCommand() {
         System.out.println("Exiting program now");
     }
 
     private void executeListAllPuUniversitiesCommand(ArrayList<University> universities) {
-        for (int i = 0; i < universities.size(); i++) {
-            int univId =  universities.get(i).getUnivId();
-            String univName = universities.get(i).getUnivName();
-            String univAbbName = universities.get(i).getUnivAbbName();
-            System.out.println("ID: " + univId + "Name: " + univName + "Abbreviation: " + univAbbName);
-        }
+        Parser.printPUList();
     }
 
     // The add comment currently searches only the module code
