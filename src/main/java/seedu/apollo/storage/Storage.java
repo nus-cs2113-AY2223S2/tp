@@ -62,6 +62,11 @@ public class Storage {
 
     }
 
+    /**
+     * Sets up logger for Storage class.
+     *
+     * @throws IOException If logger file cannot be created.
+     */
     public static void setUpLogger(){
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
