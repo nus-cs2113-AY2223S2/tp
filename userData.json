@@ -1,0 +1,74 @@
+{
+  "History": [
+    {
+      "dateComplete": "2023-03-14T02:09:35.0395662",
+      "completedExercise": {
+        "name": "Standing Hip Circles",
+        "force": "pull",
+        "level": "beginner",
+        "mechanic": "isolation",
+        "equipment": "body only",
+        "workoutType": [
+          "legs"
+        ],
+        "secondaryMuscles": [
+          "legs"
+        ],
+        "instructions": [
+          "Begin standing on one leg, holding to a vertical support.",
+          "Raise the unsupported knee to 90 degrees. This will be your starting position.",
+          "Open the hip as far as possible, attempting to make a big circle with your knee.",
+          "Perform this movement slowly for a number of repetitions, and repeat on the other side."
+        ],
+        "category": "stretching"
+      }
+    },
+    {
+      "dateComplete": "2023-03-14T02:09:35.0415496",
+      "completedExercise": {
+        "name": "Incline Push-Up Close-Grip",
+        "force": "push",
+        "level": "beginner",
+        "mechanic": "compound",
+        "equipment": "body only",
+        "workoutType": [
+          "upper body"
+        ],
+        "secondaryMuscles": [
+          "upper body",
+          "upper body"
+        ],
+        "instructions": [
+          "Stand facing a Smith machine bar or sturdy elevated platform at an appropriate height.",
+          "Place your hands next to one another on the bar.",
+          "Position your feet back from the bar with upper body and body straight. This will be your starting position.",
+          "Keeping your body straight, lower your upper body to the bar by bending the upper body.",
+          "Return to the starting position by extending the elbows, pressing yourself back up."
+        ],
+        "category": "strength"
+      }
+    },
+    {
+      "dateComplete": "2023-03-14T02:09:35.0415496",
+      "completedExercise": {
+        "name": "Elbow Circles",
+        "force": "pull",
+        "level": "beginner",
+        "mechanic": "isolation",
+        "equipment": "null",
+        "workoutType": [
+          "upper body"
+        ],
+        "secondaryMuscles": [
+          "upper body"
+        ],
+        "instructions": [
+          "Sit or stand with your feet slightly apart.",
+          "Place your hands on your upper body with your elbows at shoulder level and pointing out.",
+          "Slowly make a circle with your elbows. Breathe out as you start the circle and breathe in as you complete the circle."
+        ],
+        "category": "stretching"
+      }
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import com.google.gson.JsonParser;
 
 import java.io.FileReader;
 import java.io.Reader;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import seedu.duke.exceptions.DukeError;
@@ -15,13 +16,12 @@ import seedu.duke.exceptions.FileReadError;
 import seedu.duke.userdata.CompletedWorkout;
 
 /**
- * Class to read and parse the json file containing userData into
- * an ArrayList of completed workouts
+ * Class to read and parse the json file containing userData into an ArrayList of completed workouts
  */
 public class LoadUserData {
+
     /**
-     * Reads in the user data json file and parses the data into an
-     * ArrayList of CompletedWorkouts
+     * Reads in the user data json file and parses the data into an ArrayList of CompletedWorkouts
      *
      * @return ArrayList containing all CompletedWorkouts from the json file
      */
@@ -29,7 +29,7 @@ public class LoadUserData {
         ArrayList<CompletedWorkout> completedWorkouts = new ArrayList<>();
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateAdapter())
                 .setPrettyPrinting()
                 .create();
         try {
