@@ -17,14 +17,18 @@ public class RecipeList extends ArrayList<Recipe> {
 
     }
 
-    public RecipeList listRecipes(String filter) {
+    public RecipeList listRecipes(String[] filters) {
         RecipeList filteredRecipeList = new RecipeList();
-        if (filter == null) {
+        if (filters == null) {
             return this;
         }
         for (Recipe recipe: this) {
-            if (recipe.getName().contains(filter) || recipe.getIngredients().containsKey(filter)) {
-                filteredRecipeList.addRecipe(recipe);
+            filteredRecipeList.add(recipe);
+            for (String filter : filters) {
+                filter = filter.trim();
+                if (!recipe.getName().contains(filter) && !recipe.getIngredients().containsKey(filter)) {
+                    filteredRecipeList.remove(recipe);
+                }
             }
         }
         return filteredRecipeList;

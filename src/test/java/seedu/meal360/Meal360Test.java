@@ -1,10 +1,10 @@
 package seedu.meal360;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.HashMap;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Meal360Test {
 
@@ -52,22 +52,19 @@ class Meal360Test {
         command = input.split(" ",2);
         recipeListToPrint = parser.parseListRecipe(command, recipes);
         assertEquals(2, recipeListToPrint.size());
-        int order = 1;
-        for (Recipe recipe : recipes) {
-            switch(order) {
-            case 1: assertEquals(3, recipe.getNumOfIngredients());
-                break;
-            case 2: assertEquals(2, recipe.getNumOfIngredients());
-                break;
-            default: assertTrue(false);
-            }
-            order++;
-        }
+        assertEquals(3, recipeListToPrint.get(0).getNumOfIngredients());
+        assertEquals(2, recipeListToPrint.get(1).getNumOfIngredients());
 
         input = "list test ingredient2-1";
         command = input.split(" ",2);
         recipeListToPrint = parser.parseListRecipe(command, recipes);
         assertEquals(1, recipeListToPrint.size());
         assertEquals(2, recipeListToPrint.get(0).getNumOfIngredients());
+        assertEquals("test recipe2", recipeListToPrint.get(0).getName());
+
+        input = "list test ingredient2-1 & test recipe1";
+        command = input.split(" ",2);
+        recipeListToPrint = parser.parseListRecipe(command, recipes);
+        assertEquals(0, recipeListToPrint.size());
     }
 }

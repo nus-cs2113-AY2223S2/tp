@@ -22,15 +22,14 @@ public class Parser {
         return "test";
     }
 
-    public RecipeList parseListRecipe(String[] input, RecipeList recipeList) {
-        RecipeList recipeListToPrint = new RecipeList();
-        String filter;
-        if (input.length == 1) {
-            filter = null;
+    public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList) {
+        String[] filters;
+        if (inputs.length == 1) {
+            filters = null;
         } else {
-            filter = input[1];
+            filters = inputs[1].split("&");
         }
-        return recipeList.listRecipes(filter);
+        return recipeList.listRecipes(filters);
     }
 
     public Recipe parseViewRecipe(String[] command, RecipeList recipes) {
