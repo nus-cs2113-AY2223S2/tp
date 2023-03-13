@@ -1,8 +1,12 @@
-package seedu.rainyDay;
+package seedu.rainyDay.modules;
 
 import seedu.rainyDay.data.FinancialStatement;
+import java.util.Scanner;
 
 public class UI {
+
+    public static final String WRONG_INPUT_FORMAT = "Wrong input format! Please refer to help for correct user input!";
+    public static final String DISPLAY_HELP = "Have you tried reading the UG?";
 
     private static String username;
 
@@ -18,6 +22,12 @@ public class UI {
             System.exit(0);
         }
         System.out.println("Welcome " + username);
+    }
+
+    public static String getUserInput() {
+        Scanner input = new Scanner(System.in);
+        String userInput = input.nextLine().trim();
+        return userInput;
     }
 
     public static void printAddedFinancialStatement(FinancialStatement currentStatement) {
@@ -43,8 +53,13 @@ public class UI {
         System.out.println(summary);
     }
 
+
+    public static void wrongInputFormat() {
+        System.out.println(WRONG_INPUT_FORMAT);
+    }
+
     public static void displayHelp() {
-        System.out.println("Have you tried reading the UG?");
+        System.out.println(DISPLAY_HELP);
     }
 
     public static void unrecognisedInput() {

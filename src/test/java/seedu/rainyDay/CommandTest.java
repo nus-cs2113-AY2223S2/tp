@@ -3,7 +3,6 @@ package seedu.rainyDay;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
@@ -79,7 +78,7 @@ public class CommandTest {
     @Test
     public void generateEmptyReport() {
         setUpStreams();
-        RainyDay.clearFinancialReport();
+        //RainyDay.clearFinancialReport();
         Command.generateReport(financialReport);
         String expectedReport = "Your financial report is empty" + System.lineSeparator();
         assertEquals(expectedReport, outContent.toString());
@@ -89,7 +88,7 @@ public class CommandTest {
     @Test
     public void generateNonEmptyReport() {
         setUpStreams();
-        RainyDay.clearFinancialReport();
+        //RainyDay.clearFinancialReport();
         financialReport.addStatement(new FinancialStatement("Ipad", "out", 120));
         financialReport.addStatement(new FinancialStatement("pork", "out", 5));
         financialReport.addStatement(new FinancialStatement("angpao", "in", 3000));

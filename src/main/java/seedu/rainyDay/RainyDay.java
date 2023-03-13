@@ -1,68 +1,48 @@
 package seedu.rainyDay;
 
+import seedu.rainyDay.modules.Storage;
+import seedu.rainyDay.modules.UI;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
+import seedu.rainyDay.data.Parser;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RainyDay {
-
     public static String filePath = "rainyDay.txt";
-
     public static FinancialReport financialReport = new FinancialReport(new ArrayList<>());
 
-    public static void main(String[] args) {
-
+    private RainyDay(String filePath) {
         try {
             financialReport = new FinancialReport(Storage.loadFromFile(filePath));
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("No valid save file detected. Starting with empty financial data.");
         }
+    }
+
+    private void run() {
         Scanner input = new Scanner(System.in);
         UI.printLogo();
         UI.greetUser(input.nextLine());
 
         while (true) {
             try {
-                String userInput = input.nextLine().trim();
+                String userInput = UI.getUserInput();
                 if (userInput.equalsIgnoreCase(Command.COMMAND_EXIT)) {
                     break;
                 }
-                parseUserInput(userInput);
+                Parser.parseUserInput(userInput);
             } catch (Exception e) {
-                System.out.println("Wrong input format! Please refer to help for correct user input!");
+                UI.wrongInputFormat();
+                break;
             }
         }
         UI.sayFarewellToUser();
     }
 
-    public static void parseUserInput(String userInput) throws Exception {
-        String action = userInput.split("\\s+")[0];
-        if (action.equalsIgnoreCase(Command.COMMAND_ADD)) {
-            String[] tokens = userInput.split("-", 2);
-            String[] inputs = tokens[1].split("\\s+", 2);
-            String flowDirection = inputs[0];
-            String[] data = inputs[1].split("\\$");
-            String description = data[0].trim();
-            String amount = data[1];
-            Command.addFinancialStatement(description, flowDirection, Integer.parseInt(amount));
-        } else if (action.equalsIgnoreCase(Command.COMMAND_DELETE)) {
-            String[] tokens = userInput.split("\\s+");
-            int index = Integer.parseInt(tokens[1]);
-            Command.deleteFinancialStatement(index);
-        } else if (action.equalsIgnoreCase(Command.COMMAND_VIEW)) {
-            Command.generateReport(financialReport);
-        } else if (action.equalsIgnoreCase(Command.COMMAND_HELP)) {
-            UI.displayHelp();
-        } else {
-            UI.unrecognisedInput();
-        }
-    }
-
-    public static void clearFinancialReport() {
-        financialReport.clearReport();
+    public static void main(String[] args) {
+        new RainyDay(filePath).run();
     }
 }
