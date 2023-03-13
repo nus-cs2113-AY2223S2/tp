@@ -42,10 +42,7 @@ public class Ui {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
         printDash();
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
     }
 
     /**
@@ -82,15 +79,15 @@ public class Ui {
     /**
      * Prints list of events
      */
-    public static void listTask(ArrayList<Event> taskList) {
+    public static void listTask(ArrayList<Event> eventList) {
         printDash();
-        if (taskList.size() == 0) {
+        if (eventList.size() == 0) {
             System.out.println("There are no events!");
             printDash();
             return;
         }
-        for (int i = 0; i < taskList.size(); i++) {
-            System.out.println("   > " + Integer.toString(i + 1) + "." + taskList.get(i).toString());
+        for (int i = 0; i < eventList.size(); i++) {
+            System.out.println("   > " + Integer.toString(i + 1) + "." + eventList.get(i).toString());
         }
         printDash();
     }
