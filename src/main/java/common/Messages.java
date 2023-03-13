@@ -58,4 +58,9 @@ public class Messages {
     public static final String MESSAGE_FILE_LOADED = "Data file already exists. You list will be updated.";
     public static final String MESSAGE_FILE_MISSING = "Data File Missing! Check if you have accidentally deleted it.";
 
+    public static final String MESSAGE_INVALID_INDEX_FOR_DISH_COMMAND = "Your index does not contain a valid dish!";
+    public static final String MESSAGE_NOT_A_VALID_INTEGER_COMMAND = "Your index has to be an integer!";
+    public static final String MESSAGE_BLANK_DISH_NAME_COMMAND = "Name of dish cannot be empty!";
+    public static final String MESSAGE_NEGATIVE_PRICE_COMMAND = "Price of dish cannot be negative!";
+
 }
