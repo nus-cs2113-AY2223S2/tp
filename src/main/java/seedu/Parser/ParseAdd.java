@@ -26,7 +26,7 @@ public class ParseAdd {
     public Command addItem(String command) {
 
         try {
-        // Format: category d/date, a/amount, s/description
+            // Format: category d/date, a/amount, s/description
             String descriptionVal = fetchDescriptionInput();
             double amount = Double.parseDouble(fetchAmountInput());
             LocalDate date = LocalDate.parse(fetchDateInput());
