@@ -48,6 +48,8 @@ public class Meal360 {
             Recipe newrecipe = parser.parseEditRecipe(command, recipeList);
             // ui print message
             ui.printMessage("I've edited this recipe:" + newrecipe.getName());
+        } else if (command[0].equals("help")){
+            parser.parseHelpUser();
         }
     }
 
