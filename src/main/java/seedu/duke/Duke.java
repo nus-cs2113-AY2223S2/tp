@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.CommandParser;
+import seedu.duke.exception.ToDoListException;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
@@ -15,6 +16,7 @@ public class Duke {
     public static void main(String[] args) {
         Ui ui = new Ui();
         TaskList taskList = new TaskList();
+        CommandParser parser = new CommandParser();
         try {
             taskList = Storage.loadData("./data.txt", ui);
         } catch (FileNotFoundException e) {
@@ -26,15 +28,17 @@ public class Duke {
         ui.printWelcomeMessage();
         try (Scanner in = new Scanner(System.in)) {
             while (isInUse) {
-                String userInput = in.nextLine();
-                Command parsedCommand = CommandParser.parseCommand(userInput, taskList);
-                parsedCommand.execute(taskList, ui);
                 try {
+                    String userInput = in.nextLine();
+                    Command parsedCommand = parser.parseCommand(userInput);
+                    parsedCommand.execute(taskList, ui);
                     Storage.saveData("./data.txt", taskList, ui);
+                    isInUse = !parsedCommand.isExit();
                 } catch (IOException e) {
                     ui.printSavingErrorMessage();
+                } catch (ToDoListException e) {
+                    ui.printError(e);
                 }
-                isInUse = !parsedCommand.isExit();
             }
         }
     }
