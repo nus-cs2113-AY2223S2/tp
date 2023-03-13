@@ -2,8 +2,8 @@ package commands.meeting;
 
 import commands.Command;
 import common.Messages;
-import dinerdirector.DinerDirector;
-import manager.Meeting;
+import entity.Meeting;
+import manager.MeetingManager;
 import ui.TextUi;
 
 
@@ -22,8 +22,8 @@ public class AddMeetingCommand extends Command {
     @Override
     public void execute(TextUi ui) {
         ui.printMessage(Messages.MESSAGE_ADD_MEETING);
-        DinerDirector.meetings[DinerDirector.indexOfMeetings]=new Meeting(this.time,this.issue);
-        ui.printMessage(issue+" : "+time);
-        DinerDirector.indexOfMeetings+=1;
+        Meeting m=new Meeting(this.time,this.issue);
+        MeetingManager.addMeeting(m);
+        ui.printMessage(issue+" at "+time);
     }
 }

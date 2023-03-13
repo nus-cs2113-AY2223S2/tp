@@ -1,4 +1,4 @@
-package manager;
+package entity;
 
 public class Meeting {
     private String time;

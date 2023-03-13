@@ -2,14 +2,10 @@ package dinerdirector;
 
 import commands.Command;
 import common.Messages;
-import manager.Meeting;
 import ui.TextUi;
 import utils.Parser;
 
 public class DinerDirector {
-    public static int indexOfMeetings = 0;
-    private static final int MAX_NUM_MEETINGS = 100;
-    public static Meeting[] meetings = new Meeting[MAX_NUM_MEETINGS];
     private TextUi ui;
 
     //Solution below adopted from:
