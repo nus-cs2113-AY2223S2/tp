@@ -8,6 +8,7 @@ import bagpacker.exception.EmptyInputException;
 import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ import java.util.Scanner;
  * Parser class contains methods to manipulate user input
  */
 public class Parser {
-    private static String[] inputStringArray;
+    private static ArrayList<String> inputStringArray;
     private static String fullInput;
     public static void setFullInput(String fullInput) {
         Parser.fullInput = fullInput;
@@ -24,11 +25,11 @@ public class Parser {
     /**
      * Returns the user input as in array format
      */
-    public static String[] getInputStringArray() {
+    public static ArrayList<String> getInputStringArray() {
         return inputStringArray;
     }
     public static void setInputStringArray(String[] inputStringArray) {
-        Parser.inputStringArray = inputStringArray;
+        Parser.inputStringArray = new ArrayList<>(Arrays.asList(inputStringArray));
     }
     /**
      * Returns the user input in String format
@@ -65,16 +66,17 @@ public class Parser {
      * Returns the user command in lower case
      */
     public static String getCommand() {
-        return getInputStringArray()[0].toLowerCase();
+        return getInputStringArray().get(0).toLowerCase();
     }
 
     /**
      * Returns the user item description
      */
     public static String getItemDescrip() {
-        String[] itemArray = Arrays.copyOfRange(getInputStringArray(),1,getInputStringArray().length);
-
-        return String.join(" ", itemArray);
+        //String[] itemArray = Arrays.copyOfRange(getInputStringArray(),1,getInputStringArray().length);
+        int indexItemName = getFullInput().indexOf("/i") + 2;
+        String itemName = getFullInput().substring(indexItemName, getFullInput().length()).trim();
+        return itemName;
     }
 
     /**
