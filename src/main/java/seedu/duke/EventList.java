@@ -79,7 +79,7 @@ public class EventList {
             hasEdTime = false;
             combinedEndTime = changeToDate(endDay);
         } else{
-            combinedEndTime = changeToDate(startTime, startDay);
+            combinedEndTime = changeToDate(endTime, endDay);
         }
 
         Event newEvent = new Event(description, combinedStartTime, combinedEndTime, hasStTime, hasEdTime);
@@ -102,7 +102,45 @@ public class EventList {
         taskList.add(newEvent);
         listSize++;
     }
-    //tobedone reviseTimeInfo()
+
+    public void reviseTimeInfo(int index, String startTime, String startDay, String endTime,
+                         String endDay) {
+
+        boolean hasStTime = true;
+        boolean hasEdTime = true;
+        LocalDateTime combinedStartTime = LocalDateTime.parse(DTINIT, dfWithTime);
+        LocalDateTime combinedEndTime = LocalDateTime.parse(DTINIT, dfWithTime);
+
+        if (startTime.equals("")) {
+            hasStTime = false;
+            combinedStartTime = changeToDate(startDay);
+        } else {
+            combinedStartTime = changeToDate(startTime, startDay);
+        }
+
+        if (endTime.equals("")) {
+            hasEdTime = false;
+            combinedEndTime = changeToDate(endDay);
+        } else{
+            combinedEndTime = changeToDate(endTime, endDay);
+        }
+
+        taskList.get(index).changeTimeInfo(combinedStartTime, combinedEndTime, hasStTime, hasEdTime);
+    }
+
+    public void reviseTimeInfo(int index, String startTime, String startDay, String endTime) {
+        boolean hasStTime = true;
+        LocalDateTime combinedStartTime = LocalDateTime.parse(DTINIT, dfWithTime);
+
+        if (startTime.equals("")) {
+            hasStTime = false;
+            combinedStartTime = changeToDate(startDay);
+        } else {
+            combinedStartTime = changeToDate(startTime, startDay);
+        }
+
+        taskList.get(index).changeTimeInfo(combinedStartTime, hasStTime);
+    }
 
     public ArrayList<Event> getFullList() {
         return this.taskList;
