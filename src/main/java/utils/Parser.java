@@ -1,6 +1,8 @@
 package utils;
 
 import commands.*;
+import common.Messages;
+import exceptions.DinerDirectorException;
 
 public class Parser {
 
@@ -13,18 +15,52 @@ public class Parser {
         //https://github.com/nus-cs2113-AY2223S2/personbook/blob/main/src/main/java/seedu/personbook/parser/Parser.java
         //Reused the switch skeleton
         switch (commandWord) {
-        case ExitCommand.COMMAND_WORD:
-            return prepareExitCommand();
+            case ExitCommand.COMMAND_WORD:
+                return prepareExitCommand();
             case "add_staff":
-                return new AddStaffCommand(userInputSplit);
+                return prepareAddStaffCommand(userInputSplit);
             case "view_staff":
-                return new ViewStaffCommand();
+                return prepareViewStaffCommand();
             case "delete_staff":
-                return new DeleteStaffCommand(userInputSplit);
-        default:
-            return new IncorrectCommand();
+                return prepareDeleteStaffCommand(userInputSplit);
+            default:
+                return new IncorrectCommand();
         }
         //@@damithc
+    }
+
+    private Command prepareAddStaffCommand(String[] userInputSplit) {
+        try {
+            if (userInputSplit.length < 5) {
+                throw new DinerDirectorException(Messages.ERROR_ADD_STAFF_COMMAND);
+            }
+            String staffName = userInputSplit[1];
+            String staffWorkingDay = userInputSplit[2];
+            String staffPhoneNumber = userInputSplit[3];
+            String staffDateOfBirth = userInputSplit[4];
+            return new AddStaffCommand(staffName, staffWorkingDay, staffPhoneNumber, staffDateOfBirth);
+        } catch (DinerDirectorException e) {
+            System.out.println(e.getMessage());
+            return new IncorrectCommand();
+        }
+    }
+
+    private Command prepareViewStaffCommand() {
+        return new ViewStaffCommand();
+    }
+
+    private Command prepareDeleteStaffCommand(String[] userInputSplit) {
+        try {
+            if (userInputSplit.length < 2) {
+                throw new DinerDirectorException(Messages.ERROR_ADD_STAFF_COMMAND);
+            }
+            String staffName = userInputSplit[1];
+
+            return new DeleteStaffCommand(staffName);
+        } catch (DinerDirectorException e) {
+            System.out.println(e.getMessage());
+            return new IncorrectCommand();
+        }
     }
 
     private Command prepareExitCommand() {

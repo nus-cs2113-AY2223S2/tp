@@ -3,24 +3,22 @@ package commands;
 import manager.StaffManager;
 import ui.TextUi;
 
-public class DeleteStaffCommand extends Command{
-    private String[] userInputSplit;
-    public DeleteStaffCommand (String[] userInputString) {
-        this.userInputSplit = userInputSplit;
+public class DeleteStaffCommand extends Command {
+    private String staffName;
+
+    public DeleteStaffCommand(String staffName) {
+        this.staffName = staffName;
     }
 
     @Override
-    public void execute (TextUi ui){
-        String staffName = userInputSplit[1];
-
-        StaffManager.deleteStaffByName(staffName);
-
+    public void execute(TextUi ui) {
+        StaffManager.deleteStaffByName(this.staffName);
         ui.printMessage(staffName + " removed");
 
     }
 
     @Override
-    public boolean isExit (){
+    public boolean isExit() {
         return false;
     }
 

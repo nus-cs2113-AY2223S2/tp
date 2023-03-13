@@ -6,4 +6,6 @@ package common;
 public class Messages {
     public static final String MESSAGE_VALID_COMMAND_LIST = "Give Valid command <placeholder>";
     public static final String MESSAGE_COMMAND_EXIT = "Thank you for using DinerDirector!";
+
+    public static final String ERROR_ADD_STAFF_COMMAND = "Insufficient information when adding a staff";
 }

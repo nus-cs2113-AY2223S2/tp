@@ -5,19 +5,20 @@ import manager.StaffManager;
 import ui.TextUi;
 
 public class AddStaffCommand extends Command{
-    private String[] userInputSplit;
-    public AddStaffCommand(String[] userInputSplit){
-        this.userInputSplit = userInputSplit;
+    private String name;
+    private String workingDay;
+    private String phoneNumber;
+    private String dateOfBirth;
+    public AddStaffCommand(String name, String workingDay, String phoneNumber, String dateOfBirth){
+        this.name = name;
+        this.workingDay = workingDay;
+        this.phoneNumber = phoneNumber;
+        this.dateOfBirth = dateOfBirth;
     }
 
     @Override
     public void execute (TextUi ui){
-        String staffName = userInputSplit[1];
-        String staffworkingDay = userInputSplit[2];
-        String staffPhoneNumber = userInputSplit[3];
-        String staffDateOfBirth = userInputSplit[4];
-
-        Staff staff = new Staff(staffName, staffworkingDay, staffPhoneNumber, staffPhoneNumber);
+        Staff staff = new Staff(this.name, this.workingDay, this.phoneNumber, this.dateOfBirth);
         StaffManager.addStaff(staff);
         ui.printMessage(staff + " added!");
     }
