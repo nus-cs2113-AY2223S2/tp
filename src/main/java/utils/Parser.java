@@ -24,18 +24,19 @@ public class Parser {
         case ExitCommand.COMMAND_WORD:
             return prepareExitCommand();
         case "add_staff":
-            return prepareAddStaffCommand(userInputSplit);
+            return prepareAddStaffCommand(userInput);
         case "view_staff":
             return prepareViewStaffCommand();
         case "delete_staff":
-            return prepareDeleteStaffCommand(userInputSplit);
+            return prepareDeleteStaffCommand(userInput);
         default:
             return new IncorrectCommand();
         }
         //@@damithc
     }
 
-    private Command prepareAddStaffCommand(String[] userInputSplit) {
+    private Command prepareAddStaffCommand(String userInput) {
+        String[] userInputSplit = userInput.split(" ");
         try {
             if (userInputSplit.length < 5) {
                 throw new DinerDirectorException(Messages.ERROR_ADD_STAFF_COMMAND);
@@ -55,7 +56,8 @@ public class Parser {
         return new ViewStaffCommand();
     }
 
-    private Command prepareDeleteStaffCommand(String[] userInputSplit) {
+    private Command prepareDeleteStaffCommand(String userInput) {
+        String[] userInputSplit = userInput.split(" ");
         try {
             if (userInputSplit.length < 2) {
                 throw new DinerDirectorException(Messages.ERROR_ADD_STAFF_COMMAND);
