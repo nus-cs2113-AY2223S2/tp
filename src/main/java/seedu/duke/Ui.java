@@ -4,6 +4,7 @@ import static seedu.duke.ColorCode.ANSI_RESET;
 import static seedu.duke.ColorCode.ANSI_GREEN;
 import static seedu.duke.ColorCode.ANSI_BLUE;
 import static seedu.duke.ColorCode.ANSI_RED;
+
 import java.util.ArrayList;
 
 
@@ -56,26 +57,30 @@ public class Ui {
     public Ui() {
         greetUser();
     }
-    public static void printDoubleNeeded(){
+
+    public static void printDoubleNeeded() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + MISSING_PRICE + ANSI_RESET);
         System.out.println(LINE);
     }
-    public static void printEmptySearch(){
+
+    public static void printEmptySearch() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + NO_SEARCH_RESULTS + ANSI_RESET);
         System.out.println(LINE);
     }
-    public static void printSearchUPCItem(Item item){
+
+    public static void printSearchUPCItem(Item item) {
         System.out.println(Ui.LINE);
         System.out.println(ANSI_GREEN + "Here is your item: ");
         System.out.println(item.toString() + ANSI_RESET);
         System.out.println(Ui.LINE);
     }
-    public static void printSearchItems(ArrayList<Item> items){
+
+    public static void printSearchItems(ArrayList<Item> items) {
         System.out.println(Ui.LINE);
         int counter = 0;
-        for(Item item:items) {
+        for (Item item : items) {
             System.out.println(Ui.LINE);
             counter++;
             System.out.println(ANSI_GREEN + "Item Number: " + counter);
@@ -84,6 +89,7 @@ public class Ui {
         }
         System.out.println(Ui.LINE);
     }
+
     public static void printExitMessage() {
         System.out.println(LINE);
         System.out.println(EXIT_MESSAGE);
@@ -189,7 +195,7 @@ public class Ui {
     }
 
     private static String printRow(String name, String upc, String qty, String price,
-                                int maxRowHeight, int[] columnWidths) {
+                                   int maxRowHeight, int[] columnWidths) {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
         String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
         String[] qtyLines = wrapText(qty, QTY_COL_WIDTH);
@@ -236,7 +242,7 @@ public class Ui {
     /*Method below adapted from https://stackoverflow.com/questions/4055430/java-
   code-for-wrapping-text-lines-to-a-max-line-width*/
     private static String[] wrapText(String input, int width) {
-        String[] words = input.split(" ");
+        String[] words = input.split("\\s+");
         ArrayList<String> lines = new ArrayList<>();
 
         StringBuilder line = new StringBuilder();
@@ -307,7 +313,7 @@ public class Ui {
     /**
      * Prints the updated version of the item in question in order to inform the user of the changes made by him or her.
      *
-     * @param oldItem The item containing the old attributes.
+     * @param oldItem     The item containing the old attributes.
      * @param updatedItem The same item but with new attributes as defined by the user.
      */
     public static void printEditDetails(Item oldItem, Item updatedItem) {
@@ -315,10 +321,10 @@ public class Ui {
         System.out.println(ANSI_BLUE + SUCCESS_EDIT + ANSI_RESET + "\n");
         System.out.println(ANSI_RED + "Before Update: " + ANSI_RESET);
         System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
-                "Quantity Available: " + oldItem.getQuantity() +  "\n" + "Item Price: " + oldItem.getPrice());
+                "Quantity Available: " + oldItem.getQuantity() + "\n" + "Item Price: " + oldItem.getPrice());
         System.out.println("\n" + ANSI_GREEN + "After Update: " + ANSI_RESET);
         System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
-                "Quantity Available: " + updatedItem.getQuantity() +  "\n" + "Item Price: " + updatedItem.getPrice());
+                "Quantity Available: " + updatedItem.getQuantity() + "\n" + "Item Price: " + updatedItem.getPrice());
         System.out.println(LINE);
     }
 
