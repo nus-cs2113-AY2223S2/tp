@@ -12,6 +12,7 @@ import seedu.duke.parser.CommandArguments;
 import seedu.duke.parser.CommandTokens;
 import seedu.duke.recipe.RecipeList;
 import seedu.duke.router.CommandRouterNode;
+import seedu.duke.storage.IngredientStorage;
 import seedu.duke.ui.DukeUI;
 
 import java.util.Scanner;
@@ -34,6 +35,8 @@ public class DukeSession {
     private final DukeUI ui;
     private final DukeControlFlow controlFlow;
 
+    private final IngredientStorage ingredientStorage;
+
 
 
 
@@ -42,6 +45,7 @@ public class DukeSession {
         this.controlFlow = new DukeControlFlow();
         this.ingredients = new IngredientList();
         this.recipes = new RecipeList();
+        this.ingredientStorage = new IngredientStorage();
     }
 
     /**
@@ -80,10 +84,15 @@ public class DukeSession {
         return recipes;
     }
 
+    public IngredientStorage getIngredientStorage() {
+        return ingredientStorage;
+    }
+
     /**
      * Runs the read, evaluate, print loop for Duke.
      */
     public void runDuke() {
+        ingredientStorage.getFile(this.ingredients);
         this.ui.printIntroduction();
         while (this.controlFlow.shouldRun()) {
             String nextCommand = ui.getNextCommandString();
