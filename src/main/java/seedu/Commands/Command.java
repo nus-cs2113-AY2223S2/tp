@@ -21,6 +21,7 @@ public abstract class Command {
         return this.isExit;
     }
 
-    public abstract void execute(GeneralUi ui ,FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
+    public abstract void execute(GeneralUi ui ,FoodStorage foodStorage,
+                                 MealStorage mealStorage, UserStorage userStorage)
             throws LifeTrackerException;
 }
