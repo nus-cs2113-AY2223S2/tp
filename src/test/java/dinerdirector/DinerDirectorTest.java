@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class DinerDirectorTest {
     @Test
-    void runCommandLoopUntilExit_userInput_command() {
+    void runCommandLoopUntilExit_userInput_deadlinCommand() {
         ArrayList<String> listOfCommands = new ArrayList<>();
         listOfCommands.add("add_deadline");
         listOfCommands.add("add_deadline n/add command");
