@@ -9,14 +9,18 @@ public class Notes {
         this.toDo = toDo;
     }
 
+    public void setToDo(String toDo) {
+        this.toDo = toDo;
+    }
+
     public void handleCache(String input){
 
         switch(input) {
-        case "store":
+        case "Notes":
             cache.add(toDo);
-            System.out.println("You have stored " + toDo + " to the list");
+            System.out.println("You have stored: " + toDo);
             break;
-        case "list":
+        case "List":
             System.out.println("Here are the notes that you have stored:");
             for (int i = 0; i < cache.size(); i++) {
                 String notesItem = cache.get(i);
