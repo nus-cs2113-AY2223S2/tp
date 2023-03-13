@@ -15,6 +15,10 @@ public class Clanki {
         this.flashcardList = new FlashcardList();
     }
 
+    public static void main(String[] args) {
+        new Clanki().run();
+    }
+
     public void run() {
         while (true) {
             String inputText = ui.getUserCommand();
@@ -25,9 +29,5 @@ public class Clanki {
                 return;
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new Clanki().run();
     }
 }

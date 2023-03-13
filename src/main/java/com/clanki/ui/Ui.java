@@ -26,7 +26,7 @@ public class Ui {
      * Prompts for the command and reads the text entered by the user. Ignores
      * empty, pure whitespace, and comment lines. Echos the command back to the
      * user.
-     * 
+     *
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
@@ -45,5 +45,17 @@ public class Ui {
 
     public void printInvalidInput() {
         System.out.println("The input is in an incorrect format.");
+    }
+
+    /**
+     * reused from Kong Dehao ip
+     * for general printing to console
+     *
+     * @param message multiple strings to be shown to user
+     */
+    public void printlnSeveralStrings(String... message) {
+        for (String m : message) {
+            System.out.println(m);
+        }
     }
 }

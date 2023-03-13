@@ -1,4 +1,3 @@
-
 package com.clanki.commands;
 
 import com.clanki.objects.FlashcardList;
