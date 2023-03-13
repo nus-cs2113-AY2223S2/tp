@@ -22,7 +22,7 @@ public class AddDishCommand extends Command {
 
     @Override
     public void execute(TextUi ui) {
-        DishManager.AddDishCommand(this.dishName, this.dishPrice, this.ingredientsList);
+        DishManager.addDishCommand(this.dishName, this.dishPrice, this.ingredientsList);
         ui.printMessage("added dish");
     }
 

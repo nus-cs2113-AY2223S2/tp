@@ -11,31 +11,31 @@ public class DishManager {
         return dishes.size();
     }
 
-    public static void AddDishCommand(String name, int price, ArrayList<String> ingredients) {
+    public static void addDishCommand(String name, int price, ArrayList<String> ingredients) {
         Dish dish = new Dish(name, price, ingredients);
         dishes.add(dish);
     }
 
-    public static void DeleteDishCommand(int index) {
+    public static void deleteDishCommand(int index) {
         Dish selectedDish = dishes.get(index);
         dishes.remove(index);
     }
 
-    public static String ViewDishCommand() {
+    public static String viewDishCommand() {
         int index = 1;
         String everyDishInList = "";
         for (Dish dish : dishes) {
-            everyDishInList += StringOfDishWithIndex(index, dish) + System.lineSeparator();
+            everyDishInList += stringOfDishWithIndex(index, dish) + System.lineSeparator();
             index++;
         }
         return everyDishInList;
     }
 
-    private static String StringOfDishWithIndex(int index, Dish dish) {
-        return index + ". " + StringOfDish(dish);
+    private static String stringOfDishWithIndex(int index, Dish dish) {
+        return index + ". " + stringOfDish(dish);
     }
 
-    private static String StringOfDish(Dish dish) {
+    private static String stringOfDish(Dish dish) {
         return dish.getDishName() + "; $"
                 + dish.getPriceOfDishInDollars() + "; "
                 + dish.getIngredientsList();
