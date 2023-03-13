@@ -44,7 +44,7 @@ public class AddCommand extends Command {
     public AddCommand(String command, String param) throws InvalidDeadline, InvalidEvent, UnexpectedException {
         this.command = command;
         assert (command.equals(COMMAND_TODO_WORD) | command.equals(COMMAND_DEADLINE_WORD) |
-                command.equals(COMMAND_EVENT_WORD)) : "Invalid Add Command";
+                command.equals(COMMAND_EVENT_WORD)) : "AddCommand: Invalid Add Command";
         switch (command) {
         case COMMAND_TODO_WORD:
             this.desc = param;

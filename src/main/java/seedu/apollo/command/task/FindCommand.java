@@ -29,6 +29,7 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
+        assert (keyword != null) : "FindCommand: Keyword cannot be empty";
         ui.printFoundList(taskList.findTasks(keyword));
     }
 

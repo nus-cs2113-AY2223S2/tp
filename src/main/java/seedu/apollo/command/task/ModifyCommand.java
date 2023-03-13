@@ -9,11 +9,8 @@ import seedu.apollo.ui.Ui;
 import java.io.IOException;
 import java.rmi.UnexpectedException;
 
-import static seedu.apollo.ui.Parser.COMMAND_DEADLINE_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_DELETE_WORD;
-import static seedu.apollo.ui.Parser.COMMAND_EVENT_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_MARK_WORD;
-import static seedu.apollo.ui.Parser.COMMAND_TODO_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_UNMARK_WORD;
 
 /**
@@ -35,7 +32,7 @@ public class ModifyCommand extends Command {
      */
     public ModifyCommand(String command, String param, int size) throws NumberFormatException {
         assert (command.equals(COMMAND_MARK_WORD) | command.equals(COMMAND_UNMARK_WORD) |
-                command.equals(COMMAND_DELETE_WORD)) : "Invalid Modify Command";
+                command.equals(COMMAND_DELETE_WORD)) : "ModifyCommand: Invalid Modify Command";
         int idx = Integer.parseInt(param) - 1;
         if (idx < 0 || idx >= size) {
             throw new NumberFormatException();
