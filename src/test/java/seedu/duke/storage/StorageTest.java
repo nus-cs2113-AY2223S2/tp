@@ -3,6 +3,7 @@ package seedu.duke.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,8 +19,6 @@ import seedu.duke.entrylog.EntryLog;
 import seedu.duke.exceptions.InvalidReadFileException;
 
 import java.util.List;
-
-import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.File;
 import java.io.FileWriter;
@@ -34,12 +33,12 @@ public class StorageTest {
     @DisplayName("Test create storage without existing file")
     class NoFileTest {
         @Test
-        void testCreateStorage() throws IOException, InvalidReadFileException {
+        void testCreateStorage() {
             File toBeDeleted = new File(PATH_STRING);
             toBeDeleted.delete();
             assertTrue(!Files.exists(Paths.get(PATH_STRING)));
             Storage storage = new Storage(PATH_STRING);
-            storage.readFromDatabase();
+            assertDoesNotThrow(()->storage.readFromDatabase());
             assertTrue(Files.exists(Paths.get(PATH_STRING)));
             toBeDeleted.delete();
         }
@@ -53,17 +52,17 @@ public class StorageTest {
         private final Entry entry2 = new Entry("Apple juice", 3, Category.OTHERS);
         private final Entry entry3 = new Entry("Grape juice", 4, Category.CLOTHING);
         @Test
-        public void testWriteToStorage() throws IOException {
-            storage.reset();
+        public void testWriteToStorage() {
+            assertDoesNotThrow(()->storage.reset());
             EntryLog entrylog = new EntryLog();
             entrylog.add(entry1);
             entrylog.add(entry2);
             entrylog.add(entry3);
-            storage.writeToDatabase(entrylog.getEntries());
+            assertDoesNotThrow(()->storage.writeToDatabase(entrylog.getEntries()));
         }
         @Test
-        public void testReadFromStorage() throws IOException, InvalidReadFileException {
-            List<Entry> entries = storage.readFromDatabase();
+        public void testReadFromStorage() {
+            List<Entry> entries = assertDoesNotThrow(()->storage.readFromDatabase());
             assertEquals(entry1.getCategory(), entries.get(0).getCategory());
             assertEquals(entry1.getDescription(), entries.get(0).getDescription());
             assertEquals(entry1.getAmount(), entries.get(0).getAmount());
@@ -77,9 +76,9 @@ public class StorageTest {
         }
 
         @Test
-        public void testStorageNoOverwrite() throws IOException, InvalidReadFileException {
+        public void testStorageNoOverwrite() {
             Storage newStorage = new Storage(PATH_STRING);
-            List<Entry> entries = newStorage.readFromDatabase();
+            List<Entry> entries = assertDoesNotThrow(()->newStorage.readFromDatabase());
             assertEquals(entry1.getCategory(), entries.get(0).getCategory());
             assertEquals(entry1.getDescription(), entries.get(0).getDescription());
             assertEquals(entry1.getAmount(), entries.get(0).getAmount());
@@ -105,11 +104,12 @@ public class StorageTest {
         private static final String INVALID_AMOUNT_STRING = "ABC123";
         FileWriter writer;
         @BeforeEach
-        void init() throws IOException{
+        void init() {
             File file = new File(PATH_STRING);
             file.getParentFile().mkdirs();
-            file.createNewFile();
-            new FileOutputStream(file, true).close();
+            assertDoesNotThrow(()->file.createNewFile());
+            assertDoesNotThrow(()->new FileOutputStream(file, true).close());
+            
         }
         @AfterEach
         void teardown(){
@@ -118,16 +118,16 @@ public class StorageTest {
         }
 
         @Test
-        public void testInvalidDelimiter() throws IOException, InvalidReadFileException {
-            writer = new FileWriter(PATH_STRING);
+        public void testInvalidDelimiter() {
+            writer = assertDoesNotThrow(()->new FileWriter(PATH_STRING));
             String writeString = String.join(
                 INVALID_DELIMITER, 
                 TEST_DESCRIPTION,
                 TEST_AMOUNT_STRING,
                 TEST_CATEGORY_STRING
             );
-            writer.append(writeString);
-            writer.close();
+            assertDoesNotThrow(()->writer.append(writeString));
+            assertDoesNotThrow(()->writer.close());
 
             Storage storage = new Storage(PATH_STRING);
             Exception exception = assertThrows(InvalidReadFileException.class, ()->{
@@ -140,16 +140,16 @@ public class StorageTest {
         }
 
         @Test
-        public void testInvalidAmount() throws IOException, InvalidReadFileException {
-            writer = new FileWriter(PATH_STRING);
+        public void testInvalidAmount() {
+            writer = assertDoesNotThrow(()->new FileWriter(PATH_STRING));
             String writeString = String.join(
                 TEST_DELIMITER, 
                 TEST_DESCRIPTION,
                 INVALID_AMOUNT_STRING,
                 TEST_CATEGORY_STRING
             );
-            writer.append(writeString);
-            writer.close();
+            assertDoesNotThrow(()->writer.append(writeString));
+            assertDoesNotThrow(()->writer.close());
 
             Storage storage = new Storage(PATH_STRING);
             Exception exception = assertThrows(InvalidReadFileException.class, ()->{
@@ -162,16 +162,16 @@ public class StorageTest {
         }
 
         @Test
-        public void testInvalidCategory() throws IOException, InvalidReadFileException {
-            writer = new FileWriter(PATH_STRING);
+        public void testInvalidCategory() {
+            writer = assertDoesNotThrow(()->new FileWriter(PATH_STRING));
             String writeString = String.join(
                 TEST_DELIMITER, 
                 TEST_DESCRIPTION,
                 TEST_AMOUNT_STRING,
                 INVALID_CATEGORY_STRING
             );
-            writer.append(writeString);
-            writer.close();
+            assertDoesNotThrow(()->writer.append(writeString));
+            assertDoesNotThrow(()->writer.close());
 
             Storage storage = new Storage(PATH_STRING);
             Exception exception = assertThrows(InvalidReadFileException.class, ()->{
@@ -184,15 +184,15 @@ public class StorageTest {
         }
 
         @Test
-        public void testInsufficientColumnsForEntry() throws IOException, InvalidReadFileException {
-            writer = new FileWriter(PATH_STRING);
+        public void testInsufficientColumnsForEntry() {
+            writer = assertDoesNotThrow(()->new FileWriter(PATH_STRING));
             String writeString = String.join(
                 TEST_DELIMITER, 
                 TEST_DESCRIPTION,
                 TEST_AMOUNT_STRING
             );
-            writer.append(writeString);
-            writer.close();
+            assertDoesNotThrow(()->writer.append(writeString));
+            assertDoesNotThrow(()->writer.close());
 
             Storage storage = new Storage(PATH_STRING);
             Exception exception = assertThrows(InvalidReadFileException.class, ()->{
