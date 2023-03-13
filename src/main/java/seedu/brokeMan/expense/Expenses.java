@@ -60,9 +60,10 @@ public class Expenses {
             if (type.equals("cost")) {
                 expenseBeingEdited.editCost(newEntry);
             } else {
+                // throw a custom exception here
                 Ui.showToUserWithLineBreak("Invalid type Parameter!", "");
             }
-            Ui.showToUserWithLineBreak("Successfully edited expense.", "");
+            // Ui.showToUserWithLineBreak("Successfully edited expense.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
             Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
         }

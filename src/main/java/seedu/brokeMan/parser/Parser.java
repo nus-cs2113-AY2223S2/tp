@@ -1,18 +1,20 @@
 package seedu.brokeMan.parser;
 
 import seedu.brokeMan.command.AddExpenseCommand;
+import seedu.brokeMan.command.AddIncomeCommand;
 import seedu.brokeMan.command.Command;
 import seedu.brokeMan.command.DeleteExpenseCommand;
+import seedu.brokeMan.command.DeleteIncomeCommand;
 import seedu.brokeMan.command.EditExpenseCommand;
+import seedu.brokeMan.command.EditIncomeCommand;
 import seedu.brokeMan.command.ExitCommand;
 import seedu.brokeMan.command.InvalidCommand;
 import seedu.brokeMan.command.ListExpenseCommand;
-import seedu.brokeMan.exception.CostIsNotADoubleException;
+import seedu.brokeMan.command.ListIncomeCommand;
+import seedu.brokeMan.exception.AmountIsNotADoubleException;
 import seedu.brokeMan.exception.IndexNotAnIntegerException;
 
-import static seedu.brokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
-import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_ADD_EXPENSE_COMMAND;
-import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_EXPENSE_COMMAND;
+import static seedu.brokeMan.common.Messages.*;
 
 
 /*
@@ -32,13 +34,21 @@ public class Parser {
 
         switch(userCommand) {
         case AddExpenseCommand.COMMAND_WORD:
-            return prepareAddExpenseCommand(description);
+            return prepareAddCommand(description, "expense");
+        case AddIncomeCommand.COMMAND_WORD:
+            return prepareAddCommand(description, "income");
         case ListExpenseCommand.COMMAND_WORD:
-            return prepareListExpenseCommand();
+            return prepareListCommand("expense");
+        case ListIncomeCommand.COMMAND_WORD:
+            return prepareListCommand("income");
         case EditExpenseCommand.COMMAND_WORD:
-            return prepareEditExpenseCommand(description);
+            return prepareEditCommand(description, "expense");
+        case EditIncomeCommand.COMMAND_WORD:
+            return prepareEditCommand(description, "income");
         case DeleteExpenseCommand.COMMAND_WORD:
-            return prepareDeleteExpenseCommand(description);
+            return prepareDeleteCommand(description, "expense");
+        case DeleteIncomeCommand.COMMAND_WORD:
+            return prepareDeleteCommand(description, "income");
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         default:
@@ -46,7 +56,7 @@ public class Parser {
         }
     }
 
-    private static Command prepareDeleteExpenseCommand(String description) {
+    private static Command prepareDeleteCommand(String description, String type) {
         int index;
         try {
             if (description.equals("dummy")) {
@@ -59,15 +69,18 @@ public class Parser {
             return new InvalidCommand(errorMessage);
         }
 
-        return new DeleteExpenseCommand(index);
+        if (type.equals("expense")) {
+            return new DeleteExpenseCommand(index);
+        }
+        return new DeleteIncomeCommand(index);
     }
 
-    private static Command prepareAddExpenseCommand(String description) {
+    private static Command prepareAddCommand(String description, String type) {
         // description in the form of "a/ <amount> d/ <description> t/ time"
 
         if (!description.contains("a/ ") || !description.contains(" d/ ") ||
                 !description.contains(" t/ ")) {
-            return new InvalidCommand(MESSAGE_INVALID_ADD_EXPENSE_COMMAND);
+            return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
         }
 
         String[] splitDescriptions = description.split("/ ");
@@ -79,23 +92,29 @@ public class Parser {
             int length = splitDescriptions[1].length();
             amount = Double.parseDouble(splitDescriptions[1].substring(0, length - 2));
         } catch (NumberFormatException nfe) {
-            String errorMessage = new CostIsNotADoubleException().getMessage();
+            String errorMessage = new AmountIsNotADoubleException().getMessage();
             return new InvalidCommand(errorMessage);
         }
 
-        String expenseDescription = splitDescriptions[2].substring(0, splitDescriptions[2].length() - 2);
+        String newDescription = splitDescriptions[2].substring(0, splitDescriptions[2].length() - 2);
         String time = splitDescriptions[3];
 
-        return new AddExpenseCommand(amount, expenseDescription, time);
+        if (type.equals("expense")) {
+            return new AddExpenseCommand(amount, newDescription, time);
+        }
+        return new AddIncomeCommand(amount, newDescription, time);
     }
 
-    private static Command prepareListExpenseCommand() {
-        return new ListExpenseCommand();
+    private static Command prepareListCommand(String type) {
+        if (type.equals("expense")) {
+            return new ListExpenseCommand();
+        }
+        return new ListIncomeCommand();
     }
 
-    private static Command prepareEditExpenseCommand(String description) {
+    private static Command prepareEditCommand(String description, String moneyType) {
         if (!description.contains("i/ ") || !description.contains(" t/ ") || !description.contains(" n/ ")) {
-            return new InvalidCommand(MESSAGE_INVALID_EDIT_EXPENSE_COMMAND);
+            return new InvalidCommand(MESSAGE_INVALID_EDIT_COMMAND);
         }
 
         String[] splitDescriptions = description.split("/ ");
@@ -110,18 +129,24 @@ public class Parser {
         }
 
         String type = splitDescriptions[2].substring(0, splitDescriptions[2].length() - 2);
-        String newExpense = splitDescriptions[3];
+        String newMoney = splitDescriptions[3];
 
         if (isTypeEqualsCost(type)) {
             // do exception handling...
-            double newCost = Double.parseDouble(newExpense);
-            return new EditExpenseCommand(index, type, newCost);
+            double newAmount = Double.parseDouble(newMoney);
+            if (moneyType.equals("expense")) {
+                return new EditExpenseCommand(index, type, newAmount);
+            }
+            return new EditIncomeCommand(index, type, newAmount);
         }
-        return new EditExpenseCommand(index, type, newExpense);
+        if (moneyType.equals("expense")) {
+            return new EditExpenseCommand(index, type, newMoney);
+        }
+        return new EditIncomeCommand(index, type, newMoney);
     }
 
     private static boolean isTypeEqualsCost(String type) {
-        return type.equals("cost");
+        return type.equals("cost") || type.equals("income");
     }
 }
 

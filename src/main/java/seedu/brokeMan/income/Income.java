@@ -27,12 +27,16 @@ public class Income {
         this.info = newInfo;
     }
 
+    public void editTime(String newTime) {
+        this.time = newTime;
+    }
+
 
     public double getIncome() {
         return this.amount;
     }
 
     public String toString() {
-        return String.format("$%.2f spent on *s - %s", amount, info, time);
+        return String.format("$%.2f of %s - %s", amount, info, time);
     }
 }
