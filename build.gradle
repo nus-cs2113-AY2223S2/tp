@@ -30,7 +30,7 @@ test {
 }
 
 application {
-    mainClass = "java.chching.ChChing"
+    mainClass = "chching.ChChing"
 }
 
 shadowJar {
