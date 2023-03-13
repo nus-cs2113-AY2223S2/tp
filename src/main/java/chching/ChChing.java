@@ -1,5 +1,6 @@
 package chching;
 
+import chching.parser.Parser;
 import chching.command.Command;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
@@ -13,14 +14,14 @@ public class ChChing {
     public ChChing(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
-        try {
-            //this.incomes = new IncomeList(storage.load());
-            //this.expenses = new ExpenseList(storage.load());
-        } catch (ChChingException e) {
-            ui.showError(e.getMessage());
-            this.incomes = new IncomeList();
-            this.expenses = new ExpenseList();
-        }
+//        try {
+//            this.incomes = new IncomeList(storage.load());
+//            this.expenses = new ExpenseList(storage.load());
+//        } catch (ChChingException e) {
+//            ui.showError(e.getMessage());
+        this.incomes = new IncomeList();
+        this.expenses = new ExpenseList();
+//        }
     }
 
     public void run() {
@@ -30,10 +31,9 @@ public class ChChing {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
-                Parser.parseCommand(fullCommand);
-                //Command c = Parser.parse(fullCommand);
-                //c.execute(incomes, expenses, ui, storage);
-                //isExit = c.isExit();
+                Command c = Parser.parse(fullCommand, incomes, expenses);
+                c.execute(incomes, expenses, ui, storage);
+                isExit = c.isExit();
             } catch(ChChingException e) {
                 ui.showError(e.getMessage());
             } finally {
