@@ -1,5 +1,6 @@
 package chching;
 
+import chching.parser.Parser;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -57,13 +58,6 @@ public class ParserTest {
         assertEquals(expectedOutput, new Parser().sortArguments(input));
     }
 
-    @Test
-    public void parseCommand_badInput_exceptionThrown(){
-        String badInput = "add expenses /de breakfast /da 01/02/23 /v 3.50";
-        new Parser().parseCommand(badInput);
-        assertEquals("Command not recognized, please enter a valid command!", outputStreamCaptor.toString().trim());
-
-    }
 
     @AfterEach
     public void tearDown() {

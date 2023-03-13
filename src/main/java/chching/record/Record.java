@@ -40,6 +40,21 @@ public abstract class Record {
         return value;
     }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setValue(float value) {
+        this.value = value;
+    }
     public String toString() {
         return "Category - " + getCategory() +
                 " | Description - " + getDescription() +

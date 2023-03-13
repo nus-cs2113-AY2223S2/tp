@@ -1,5 +1,6 @@
 package chching;
 
+import chching.parser.Parser;
 import chching.command.Command;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
@@ -30,10 +31,10 @@ public class ChChing {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
+                Command c = Parser.parse(fullCommand, incomes, expenses);
                 c.execute(incomes, expenses, ui, storage);
                 isExit = c.isExit();
-            } catch(ChChingException e) {
+            } catch (ChChingException e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.showLine();
