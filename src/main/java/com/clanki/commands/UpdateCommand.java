@@ -36,11 +36,6 @@ public class UpdateCommand extends Command {
         }
     }
 
-    public static String getInput() {
-        Scanner input = new Scanner(System.in);
-        return input.nextLine();
-    }
-
     public int implementUpdate(ArrayList<Flashcard> flashcards, String userText) {
         String[] userTexts = userText.split(" ", 3);
         int indexInMatchList = Integer.parseInt(userTexts[0]) - 1;
@@ -62,7 +57,7 @@ public class UpdateCommand extends Command {
         System.out.println("Found " + matchingFlashcards.size() + " cards with the query \"" + query + "\": ");
         printFlashCards(matchingFlashcards);
         System.out.println("Which flashcard do you want to update?");
-        String userText = getInput();
+        String userText = display.getUserCommand();
         int index = implementUpdate(flashcards, userText);
         System.out.println("Understood. The card has been updated to");
         printFlashCard(flashcards.get(index));
