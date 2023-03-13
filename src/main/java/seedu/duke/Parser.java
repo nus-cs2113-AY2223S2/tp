@@ -53,7 +53,7 @@ public class Parser {
                 throw new MissingParametersException();
             }
             Pattern pattern = Pattern.compile(ADD_REGEX);
-            Matcher matcher = pattern.matcher(commandInfo);
+            Matcher matcher = pattern.matcher(rawInput);
             if (matcher.matches()) {
                 Item newItem = new Item(matcher.group(NAME_INDEX), matcher.group(UPC_INDEX), matcher.group(QTY_INDEX),
                         matcher.group(PRICE_INDEX));
