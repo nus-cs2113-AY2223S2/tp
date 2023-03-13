@@ -1,8 +1,6 @@
 package functionalities;
 import exception.SniffException;
 
-import java.awt.font.NumericShaper;
-
 public class Parser {
     protected static Command command;
 
