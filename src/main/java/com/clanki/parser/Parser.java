@@ -1,11 +1,11 @@
 package com.clanki.parser;
 
 
+import com.clanki.commands.AddCommand;
 import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
 import com.clanki.commands.ReviewCommand;
 import com.clanki.commands.UnknownCommand;
-import com.clanki.commands.AddCommand;
 import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
