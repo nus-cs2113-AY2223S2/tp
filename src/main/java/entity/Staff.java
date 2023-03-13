@@ -6,7 +6,7 @@ public class Staff {
     private String phoneNumber;
     private String workingDay;
 
-    public Staff(String name, String dateOfBirth, String phoneNumber, String workingDay){
+    public Staff(String name, String workingDay, String phoneNumber, String dateOfBirth){
         setName(name);
         setDateOfBirth(dateOfBirth);
         setWorkingDay(workingDay);

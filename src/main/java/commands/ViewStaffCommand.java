@@ -1,5 +1,6 @@
 package commands;
 
+import manager.StaffManager;
 import ui.TextUi;
 
 public class ViewStaffCommand extends Command {
@@ -7,6 +8,7 @@ public class ViewStaffCommand extends Command {
 
     @Override
     public void execute (TextUi ui) {
+        ui.printMessage(StaffManager.getStaffsString());
     }
 
     @Override
