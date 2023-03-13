@@ -2,11 +2,15 @@ package dinerdirector;
 
 import commands.Command;
 import common.Messages;
+import manager.DeadlineManager;
 import ui.TextUi;
 import utils.Parser;
 
+import java.util.ArrayList;
+
 public class DinerDirector {
     private TextUi ui;
+    private DeadlineManager deadlineList;
 
     //Solution below adopted from:
     //https://github.com/nus-cs2113-AY2223S2/personbook/blob/main/src/main/java/seedu/personbook/Main.java
@@ -28,6 +32,7 @@ public class DinerDirector {
     private void start() {
         this.ui = new TextUi();
         ui.printBanner();
+        deadlineList = new DeadlineManager(new ArrayList<>());
     }
 
     private void runCommandLoopUntilExit() {
