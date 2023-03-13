@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class EditTest {
 
-    Parser testParser;
+    Parser testParser = new Parser();
 
     @Test
     public void sampleTest() {
