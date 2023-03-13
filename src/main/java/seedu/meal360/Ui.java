@@ -12,8 +12,10 @@ public class Ui {
 
     public void printWelcomeMessage() {
         printSeparator();
-        String logo = " __  __          _ ____  __  __\n" + "|  \\/  |___ __ _| |__ / / / /  \\\n"
-                + "| |\\/| / -_) _` | ||_ \\/ _ \\ () |\n" + "|_|  |_\\___\\__,_|_|___/\\___/\\__/\n";
+        String logo = " __  __          _ ____  __  __\n" +
+                "|  \\/  |___ __ _| |__ / / / /  \\\n" +
+                "| |\\/| / -_) _` | ||_ \\/ _ \\ () |\n" +
+                "|_|  |_\\___\\__,_|_|___/\\___/\\__/\n";
 
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
@@ -32,12 +34,33 @@ public class Ui {
 
     public void printMessage(String message) {
         String outputMessage = formatMessage(message);
-        printSeparator();
         System.out.println(outputMessage);
-        printSeparator();
     }
 
     public void printRecipe(Recipe recipe) {
-        printMessage(recipe.getName());
+        printSeparator();
+        System.out.println(formatMessage("Name of recipe: " + recipe.getName()));
+        for (String ingredient : recipe.getIngredients().keySet()) {
+            String outputMessage = String.format("%s(%d)", ingredient, recipe.getIngredients().get(ingredient));
+            System.out.println(formatMessage(outputMessage));
+        }
+        printSeparator();
+    }
+
+    public void listRecipe(RecipeList recipeListToPrint) {
+        printSeparator();
+        int numberOfRecipes = recipeListToPrint.size();
+        int order = 0;
+        if (numberOfRecipes == 0) {
+            printMessage("There is nothing to list.");
+            printSeparator();
+            return;
+        }
+        printMessage("These are the recipes you have (" + numberOfRecipes + " recipes):");
+        for (Recipe recipe : recipeListToPrint) {
+            order = order + 1;
+            printMessage(order + ". " + recipe.getName() + "   (" + recipe.getNumOfIngredients() + " ingredients)");
+        }
+        printSeparator();
     }
 }
