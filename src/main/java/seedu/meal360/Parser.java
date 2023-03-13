@@ -104,6 +104,9 @@ public class Parser {
         int numDays = 0;
         if (command[1].equals("/add")) {
             numDays = Integer.parseInt(command[command.length - 1]);
+            if (numDays < 1) {
+                throw new NumberFormatException();
+            }
         }
 
         WeeklyPlan addToPlan = new WeeklyPlan();
