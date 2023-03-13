@@ -1,4 +1,4 @@
-package seedu.rainyDay;
+package modules;
 
 import seedu.rainyDay.data.FinancialStatement;
 

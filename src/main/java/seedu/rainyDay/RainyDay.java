@@ -1,26 +1,27 @@
 package seedu.rainyDay;
 
+import modules.Storage;
+import modules.UI;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RainyDay {
-
     public static String filePath = "rainyDay.txt";
-
     public static FinancialReport financialReport = new FinancialReport(new ArrayList<>());
 
-    public static void main(String[] args) {
-
+    private RainyDay(String filePath) {
         try {
             financialReport = new FinancialReport(Storage.loadFromFile(filePath));
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("No valid save file detected. Starting with empty financial data.");
         }
+    }
+
+    private void run() {
         Scanner input = new Scanner(System.in);
         UI.printLogo();
         UI.greetUser(input.nextLine());
@@ -38,6 +39,10 @@ public class RainyDay {
             }
         }
         UI.sayFarewellToUser();
+    }
+
+    public static void main(String[] args) {
+        new RainyDay(filePath).run();
     }
 
     public static void parseUserInput(String userInput) throws Exception {
@@ -76,8 +81,4 @@ public class RainyDay {
         System.out.println("sorry! I do not understand your input!");
         System.out.println("Please refer to the help table!");
     }
-
-
-
-
 }

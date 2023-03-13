@@ -1,13 +1,12 @@
 package seedu.rainyDay;
 
-import org.junit.After;
-import org.junit.Before;
+import modules.*;
+import org.junit.*;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.io.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UITest {
 
