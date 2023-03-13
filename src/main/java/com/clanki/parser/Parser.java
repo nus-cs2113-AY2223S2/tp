@@ -1,7 +1,6 @@
 package com.clanki.parser;
 
-
-import com.clanki.commands.*;
+import com.clanki.commands.Command;
 import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
