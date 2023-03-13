@@ -32,22 +32,22 @@ class RecipePossibleCommandTest {
     public void recipePossibleAndRecipeNotPossible() {
         DukeSession dukeSession = new DukeSession();
         // Add ingredients to dukeSession's ingredients
-        dukeSession.getIngredients().add(new Ingredient("bread", 2));
-        dukeSession.getIngredients().add(new Ingredient("ham", 1));
+        dukeSession.getIngredients().add(new Ingredient("bread", 2.0));
+        dukeSession.getIngredients().add(new Ingredient("ham", 1.0));
 
         // Add hamSandwich recipe to dukeSession
         // hamSandwich is possible
         IngredientList hamSandwichIngredients = new IngredientList();
-        hamSandwichIngredients.add(new Ingredient("bread", 2));
-        hamSandwichIngredients.add(new Ingredient("ham", 1));
+        hamSandwichIngredients.add(new Ingredient("bread", 2.0));
+        hamSandwichIngredients.add(new Ingredient("ham", 1.0));
         Recipe hamSandwich = new Recipe("ham sandwich", hamSandwichIngredients, new InstructionList());
         dukeSession.getRecipes().add(hamSandwich);
 
         // Add eggSandwich recipe to dukeSession.
         // eggSandwich is not possible.
         IngredientList eggSandwichIngredients = new IngredientList();
-        eggSandwichIngredients.add(new Ingredient("bread", 2));
-        eggSandwichIngredients.add(new Ingredient("egg", 1));
+        eggSandwichIngredients.add(new Ingredient("bread", 2.0));
+        eggSandwichIngredients.add(new Ingredient("egg", 1.0));
         Recipe eggSandwich = new Recipe("egg sandwich", eggSandwichIngredients, new InstructionList());
         dukeSession.getRecipes().add(eggSandwich);
 

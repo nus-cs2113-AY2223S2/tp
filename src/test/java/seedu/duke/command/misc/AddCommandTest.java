@@ -10,10 +10,10 @@ class AddCommandTest {
     @Test
     public void itemIsInListAndItemNotInList() {
         DukeSession dukeSession = new DukeSession();
-        Ingredient ingredient = new Ingredient("apple", 2);
+        Ingredient ingredient = new Ingredient("apple", 2.0);
         dukeSession.getIngredients().add(ingredient);
 
-        AddCommand command = new AddCommand("apple", "2");
+        AddCommand command = new AddCommand("apple", "2.0");
 
         assertEquals(0,command.findIndex(dukeSession, "apple"));
         assertEquals(-1,command.findIndex(dukeSession, "orange"));

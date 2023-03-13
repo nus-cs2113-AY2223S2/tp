@@ -9,7 +9,7 @@ public class RemoveCommandTest {
     @Test
     public void removeSameNumberAsQuantity() {
         DukeSession dukeSession = new DukeSession();
-        Ingredient ingredient = new Ingredient("apple", 2);
+        Ingredient ingredient = new Ingredient("apple", 2.0);
         dukeSession.getIngredients().add(ingredient);
         assertEquals(1, dukeSession.getIngredients().size());
         new RemoveCommand("apple", "2").execute(dukeSession);
@@ -19,7 +19,7 @@ public class RemoveCommandTest {
     @Test
     public void removeLesserThanFridgeQuantity() {
         DukeSession dukeSession = new DukeSession();
-        Ingredient ingredient = new Ingredient("apple", 9);
+        Ingredient ingredient = new Ingredient("apple", 9.0);
         dukeSession.getIngredients().add(ingredient);
         assertEquals(9, dukeSession.getIngredients().get(0).getQuantity());
         new RemoveCommand("apple", "2").execute(dukeSession);
