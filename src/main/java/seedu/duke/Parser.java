@@ -60,18 +60,18 @@ public class Parser {
         String eventName = details[1].substring(2).trim();
         String startTime = details[2].substring(2).trim();
         String startDate = details[3].substring(2).trim();
-        String endTime = details[4].substring(2).trim();
-        boolean isValidFormat = (details[1].substring(0,1).equalsIgnoreCase("e")||
-                details[2].substring(0,2).equalsIgnoreCase("st")||
-                details[3].substring(0,2).equalsIgnoreCase("sd")||
-                details[4].substring(0,2).equalsIgnoreCase("et"));
+
+        boolean isValidFormat = (details[1].substring(0,1).equalsIgnoreCase("e")&&
+                details[2].substring(0,2).equalsIgnoreCase("st")&&
+                details[3].substring(0,2).equalsIgnoreCase("sd"));
         //TODO: refactor isValidFormat into formatChecker method that raises exception.
         if (isValidFormat) {
             if (details.length == 6) {
+                String endTime = details[4].substring(2).trim();
                 String endDate = details[5].substring(2).trim();
                 eventList.addEvent(eventName, startTime, startDate, endTime, endDate);
             } else {
-                eventList.addEvent(eventName, startTime, startDate, endTime);
+                eventList.addEvent(eventName, startTime, startDate);
             }
             Ui.addSuccessMsg();
         } else{
