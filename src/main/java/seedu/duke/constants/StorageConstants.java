@@ -1,7 +1,11 @@
 package seedu.duke.constants;
 
-public class StorageConstants {
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-    public static final String RELATIVE_FILE_NAME = "./data/storage.txt";
+public class StorageConstants {
     public static final String DELIMITER = ",";
+    private static final String PATH_HOME = System.getProperty("user.dir");
+    public static final String RELATIVE_FILE_NAME = Paths.get(PATH_HOME, "data", "storage.txt").toString();
+    public static final Path PATH_LOG_OUTPUT = Paths.get(PATH_HOME, "logs", "pocketpal.txt");
 }
