@@ -9,6 +9,10 @@ import seedu.duke.userdata.CompletedWorkout;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * This class test the reading and writing of userdata to and from the json file that will be stored on the local hard
+ * disk
+ */
 public class UserDataStorageTest {
 
     private final GenerateExercise generateExercise = new GenerateExercise();
