@@ -3,7 +3,6 @@ package chching;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
 import chching.record.Record;
-import chching.record.RecordList;
 
 import java.util.Scanner;
 
