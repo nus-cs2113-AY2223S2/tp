@@ -33,8 +33,11 @@ public class RecipeList {
 
 
     Recipe beefBurger = new Recipe("Beef Burger", getBeefBurgerIngredients(), getBeefBurgerInstructions());
-
-
+    
+    public RecipeList() {
+        recipes = new ArrayList<>();
+        recipes.add(beefBurger);
+    }
 
     public IngredientList getBeefBurgerIngredients() {
         beefBurgerIngredients.add(groundBeef);
@@ -62,10 +65,7 @@ public class RecipeList {
         return recipes;
     }
 
-    public RecipeList() {
-        recipes = new ArrayList<>();
-        recipes.add(beefBurger);
-    }
+
 
 
 }
