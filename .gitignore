@@ -33,6 +33,9 @@ text-ui-test/EXPECTED-UNIX.TXT
 data/*
 test/*
 
+# Application Logging
+/logs
+
 ### Hugo ###
 # Generated files by hugo
 /docs/public/
