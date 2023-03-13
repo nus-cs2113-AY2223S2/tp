@@ -252,12 +252,21 @@ public class Menu {
         System.out.println("\nPlease enter a symptom.");
     }
 
+    /**
+     * Displays the possible illnesses that the user may have based on the symptoms he/she has entered.
+     * @@author tanyizhe and Jeraldchen
+     * @param symptoms ArrayList of symptoms the user has entered.
+     */
     public static void displayPossibleIllness(ArrayList<Symptom> symptoms) {
         ArrayList<IllnessMatch> possibleIllnesses = Diagnosis.getPossibleIllnesses(symptoms);
-        System.out.println("You may have: ");
-        for (IllnessMatch illnessMatch : possibleIllnesses) {
-            System.out.println(illnessMatch.getIllness().getIllnessName() + " "
-                    + illnessMatch.getSimilarityPercentage() * 100 + "%");
+        if (possibleIllnesses.size() != 0) {
+            System.out.println("You may have: ");
+            for (IllnessMatch illnessMatch : possibleIllnesses) {
+                System.out.println(illnessMatch.getIllness().getIllnessName() + " "
+                        + illnessMatch.getSimilarityPercentage() * 100 + "%");
+            }
+        } else { // no illnesses found
+            System.out.println("Unable to diagnose illness. Please consult a Doctor instead.");
         }
     }
 
