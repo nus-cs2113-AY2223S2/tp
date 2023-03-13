@@ -6,7 +6,7 @@ import parser.Parser;
 import java.util.ArrayList;
 
 public class ExpenseList {
-    public static ArrayList<Expense> expenseList = new ArrayList<>();
+    public ArrayList<Expense> expenseList = new ArrayList<>();
     protected Parser parser = new Parser();
 
 
@@ -20,10 +20,14 @@ public class ExpenseList {
     }
 
     //for list
-    public static String getAllMessage() {
+    public static String getAllMessage(ArrayList<Expense> expenseList) {
         int count = expenseList.size();
         // Align the output statement position with the start instead of using tab to indent
         return "Now you have " + count + " " + printExpensesOrExpense(count) + " in the list.";
+    }
+
+    private int getSize() {
+        return expenseList.size();
     }
 
     private static String printExpensesOrExpense(int count) {
@@ -37,7 +41,7 @@ public class ExpenseList {
     }
 
     // In order to clear the list for test
-    public static void clear() {
+    public static void clear(ArrayList<Expense> expenseList) {
         expenseList.clear();
     }
 

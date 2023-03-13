@@ -27,8 +27,9 @@ public class CommandAdd extends Command {
         this.parsedInput = parsedInput;
     }
 
+    @Override
     public CommandRes execute() {
-        return new CommandRes(MESSAGE_DIVIDER_LIST, ExpenseList.expenseList, ExpenseList.getAllMessage());
+        return new CommandRes(MESSAGE_DIVIDER_LIST, expenseList, ExpenseList.getAllMessage(expenseList));
     }
 
     /**

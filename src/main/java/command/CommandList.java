@@ -4,19 +4,15 @@ import data.Expense;
 import data.ExpenseList;
 
 import java.util.ArrayList;
-import static common.MessageList.MESSAGE_DIVIDER;
 
+import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class CommandList extends Command {
     public static final String COMMAND_NAME = "list";
+    public static final String SYNTAX = "Here's your task in the list: ";
     protected ArrayList<Expense> expenseList;
 
-    /**
-     * List all the expenses in the expenseList, else will print No expenses to the user currently.
-     *
-     * @param expenseList The expense list to add the entry to.
-     */
     public CommandList(ArrayList<Expense> expenseList) {
         super(COMMAND_NAME);
         this.expenseList = expenseList;
@@ -34,16 +30,20 @@ public class CommandList extends Command {
                 System.out.print((i + 1) + ".");
                 System.out.println(expenseList.get(i).toString());
             }
-            System.out.println(ExpenseList.getAllMessage());
+            System.out.println(ExpenseList.getAllMessage(expenseList));
             System.out.println(MESSAGE_DIVIDER);
         }
-
         return true;
     }
 
-
+    /**
+     * Execution of the list command
+     *
+     * @return printing the list of command
+     *
+     */
     @Override
     public CommandRes execute() {
-        return new CommandRes(MESSAGE_DIVIDER_LIST, ExpenseList.expenseList, ExpenseList.getAllMessage());
+        return new CommandRes(MESSAGE_DIVIDER_LIST, expenseList, ExpenseList.getAllMessage(expenseList));
     }
 }
