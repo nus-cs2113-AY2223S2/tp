@@ -1,4 +1,4 @@
-package seedu.Expenditure;
+package seedu.expenditure;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDate;
 
 public class ExpenditureListTest {
-    private ExpenditureList testExpenditures = new ExpenditureList();
+    ExpenditureList testExpenditures = new ExpenditureList();
 
     @BeforeEach
     public void setUp() {
@@ -27,7 +27,8 @@ public class ExpenditureListTest {
     public void testExpenditureListToString() {
         assertEquals("1. [Academic] || Date: 2021-10-10 || Value: 1500.0 || Description: Laptop\n" +
                 "2. [Tuition] || [ ] || Date: 2023-01-20 || Value: 8000.5 || Description: NUS Year 2 Semester 2\n" +
-                "3. [Borrow] || BankX || Date: 2021-07-20 || Value: 8100.0 || Description: School Loan || 2025-05-30",
+                "3. [Borrow] || Borrowed from: BankX || Date: 2021-07-20 || Value: 8100.0 " +
+                        "|| Description: School Loan || By: 2025-05-30",
                 testExpenditures.toString());
     }
 

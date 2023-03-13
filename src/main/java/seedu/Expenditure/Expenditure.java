@@ -1,4 +1,4 @@
-package seedu.Expenditure;
+package seedu.expenditure;
 
 import java.time.LocalDate;
 
@@ -42,9 +42,7 @@ public abstract class Expenditure {
     /**
      * @return String representing the type of expenditure
      */
-    public String getExpenditureType() {
-        return "E";
-    }
+    public abstract String getExpenditureType();
 
     /**
      * Outputs a formatted String containing information of the task saved in a text file.
@@ -52,10 +50,5 @@ public abstract class Expenditure {
      * @return String containing information of the expenditure.
      */
     //override not done for special expenditures
-    public String saveInfo() {
-        return getExpenditureType() +
-                "d/" + description +
-                "v/" + value +
-                "t/" + date + "\n";
-    }
+    public abstract String saveInfo();
 }

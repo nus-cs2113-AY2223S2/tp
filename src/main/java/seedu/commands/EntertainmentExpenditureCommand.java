@@ -1,11 +1,11 @@
 package seedu.commands;
 
-import seedu.Expenditure.EntertainmentExpenditure;
-import seedu.Expenditure.ExpenditureList;
+import seedu.expenditure.EntertainmentExpenditure;
+import seedu.expenditure.ExpenditureList;
 
 import java.time.LocalDate;
 
-public class EntertainmentExpenditureCommand extends Command{
+public class EntertainmentExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "entertainment";
     private final String entertainmentExpenditureDescription;
     private final double entertainmentExpenditureValue;

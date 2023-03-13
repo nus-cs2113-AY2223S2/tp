@@ -1,6 +1,6 @@
 package seedu.commands;
 
-import seedu.Expenditure.ExpenditureList;
+import seedu.expenditure.ExpenditureList;
 
 public abstract class Command {
 

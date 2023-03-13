@@ -1,6 +1,6 @@
 package seedu.commands;
 
-import seedu.Expenditure.ExpenditureList;
+import seedu.expenditure.ExpenditureList;
 
 public class ViewExpenditureCommand extends Command{
     // Edit file accordingly
@@ -10,6 +10,7 @@ public class ViewExpenditureCommand extends Command{
 
     @Override
     public CommandResult execute(ExpenditureList expenditures) {
-        return new CommandResult("List shown ...");
+        return new CommandResult("List shown ...\n"
+        + expenditures.toString());
     }
 }
