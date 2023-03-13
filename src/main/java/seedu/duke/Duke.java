@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
@@ -17,8 +18,10 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
+    private static final Logger logger = Logger.getLogger(Duke.class.getName());
     public static void main(String[] args) {
         setupLogging();
+        logger.info("Application started.");
         UI ui = new UI();
         ui.printWelcome();
         EntryLog entrylog = new EntryLog();
@@ -26,6 +29,7 @@ public class Duke {
         do {
             ui.printAwaitUserInput();
             String userInput = in.nextLine();
+            logger.info("> User entered: " + userInput);
             ui.printLine();
             try {
                 Command command = new Parser().parseUserInput(userInput);
@@ -35,6 +39,7 @@ public class Duke {
             }
             // TODO: condition to be replaced when exit command is implemented
         } while (in.hasNextLine());
+        logger.info("Exiting application");
     }
 
     private static void setupLogging() {
@@ -52,7 +57,9 @@ public class Duke {
                 globalLogger.removeHandler(handler);
             }
         } catch (IOException e) {
+            logger.log(Level.SEVERE, "Encountered exception during logging setup.", e);
             throw new RuntimeException(e);
         }
+        logger.info("Logging setup complete.");
     }
 }
