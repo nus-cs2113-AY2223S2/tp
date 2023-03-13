@@ -1,5 +1,7 @@
 package seedu.meal360;
 
+import java.util.HashMap;
+
 public class Ui {
 
     private static final int BOXWIDTH = 100;
@@ -41,5 +43,12 @@ public class Ui {
             String outputMessage = String.format("%s(%d)", ingredient, recipe.getIngredients().get(ingredient));
             System.out.println(formatMessage(outputMessage));
         }
+    }
+
+    public void printWeeklyPlan(HashMap<String, Integer> weeklyPlan) {
+        weeklyPlan.forEach((recipe, count) -> {
+            String outputMessage = String.format("%s: %d times", recipe, count);
+            printMessage(outputMessage);
+        });
     }
 }

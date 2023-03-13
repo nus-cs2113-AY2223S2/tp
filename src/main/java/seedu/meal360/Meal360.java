@@ -14,6 +14,7 @@ public class Meal360 {
     private static final Parser parser = new Parser();
     private static final Database database = new Database();
     private static final RecipeList recipeList = new RecipeList();
+    private static final WeeklyPlan weeklyPlan = new WeeklyPlan();
 
     public static void startApp() {
         ui.printWelcomeMessage();
@@ -68,6 +69,31 @@ public class Meal360 {
             Recipe newRecipe = parser.parseEditRecipe(command, recipeList);
             // ui print message
             ui.printMessage("I've edited this recipe:" + newRecipe.getName());
+            ui.printSeparator();
+        } else if (command[0].equals("weekly")) {
+            try {
+                ui.printSeparator();
+                WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipeList);
+
+                if (command[1].equals("/add")) {
+                    ui.printMessage("I've added the recipe to your weekly plan!");
+                    weeklyPlan.addPlan(recipeMap);
+                } else if (command[1].equals("/delete")) {
+                    ui.printMessage("I've deleted the recipe from your weekly plan!");
+                    weeklyPlan.deletePlan(recipeMap);
+                }
+            } catch (NumberFormatException e) {
+                String errorMessage = String.format(
+                        "Please enter a valid number as the last argument.");
+                ui.printMessage(errorMessage);
+            } catch (IllegalArgumentException e) {
+                ui.printMessage(e.getMessage());
+            }
+            ui.printSeparator();
+        } else if (command[0].equals("weeklyplan")) {
+            ui.printSeparator();
+            ui.printMessage("Here is your weekly plan:");
+            ui.printWeeklyPlan(weeklyPlan);
             ui.printSeparator();
         } else {
             ui.printSeparator();

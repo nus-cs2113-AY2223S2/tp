@@ -10,9 +10,8 @@ public class Parser {
     }
 
     public Recipe parseAddRecipe(String[] input, RecipeList recipeList) {
-
         StringBuilder recipeName = new StringBuilder(input[2]);
-        for(int i = 3; i < input.length; i++){
+        for (int i = 3; i < input.length; i++) {
             recipeName.append(" ").append(input[i]);
         }
         HashMap<String, Integer> ingredients = new HashMap<>();
@@ -25,10 +24,10 @@ public class Parser {
             } else {
                 String[] command = line.trim().split(" ");
                 StringBuilder iName = new StringBuilder(command[0]);
-                for(int i=1; i < command.length-1; i++){
+                for (int i = 1; i < command.length - 1; i++) {
                     iName.append(" ").append(command[i]);
                 }
-                ingredients.put(iName.toString(), Integer.parseInt(command[command.length-1]));
+                ingredients.put(iName.toString(), Integer.parseInt(command[command.length - 1]));
             }
         }
         Recipe newRecipe = new Recipe(recipeName.toString(), ingredients);
@@ -93,6 +92,32 @@ public class Parser {
         assert command[0].equals("view");
         int recipeIndex = Integer.parseInt(command[1]) - 1;
         return recipes.get(recipeIndex);
+    }
+
+    public WeeklyPlan parseWeeklyPlan(String[] command, RecipeList recipes) {
+        if (!command[1].equals("/add") && !command[1].equals("/delete")) {
+            throw new IllegalArgumentException(
+                    "Please indicate if you would want to add or delete the recipe from your weekly "
+                            + "plan.");
+        }
+
+        int numDays = 0;
+        if (command[1].equals("/add")) {
+            numDays = Integer.parseInt(command[command.length - 1]);
+        }
+
+        WeeklyPlan addToPlan = new WeeklyPlan();
+        StringBuilder recipeName = new StringBuilder(command[2]);
+        for (int i = 3; i < command.length - 1; i++) {
+            recipeName.append(" ").append(command[i]);
+        }
+
+        if (recipes.findByName(recipeName.toString()) != null) {
+            addToPlan.put(recipeName.toString(), numDays);
+            return addToPlan;
+        } else {
+            throw new IllegalArgumentException("Please indicate a valid recipe name.");
+        }
     }
 
     public RecipeList parseLoadDatabase(String input) {
