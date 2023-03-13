@@ -3,7 +3,7 @@ package com.clanki.objects;
 import java.util.ArrayList;
 
 public class FlashcardList {
-    private ArrayList<Flashcard> flashcards;
+    private final ArrayList<Flashcard> flashcards;
 
     public FlashcardList() {
         this.flashcards = new ArrayList<>();
@@ -16,5 +16,9 @@ public class FlashcardList {
 
     public void deleteFlashcard(int index) {
         flashcards.remove(index);
+    }
+
+    public ArrayList<Flashcard> getFlashCards() {
+        return flashcards;
     }
 }

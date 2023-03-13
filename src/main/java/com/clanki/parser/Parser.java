@@ -1,9 +1,11 @@
 package com.clanki.parser;
 
+
 import com.clanki.commands.AddCommand;
 import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
 import com.clanki.commands.DeleteCommand;
+import com.clanki.commands.ReviewCommand;
 import com.clanki.commands.UnknownCommand;
 import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
@@ -20,8 +22,7 @@ public class Parser {
             try {
                 return reformatAddCommandInput(userInput);
             } catch (InvalidAddFlashcardInputException e) {
-                System.out.println(
-                        "The input is in an incorrect format, please follow the format in user guide");
+                System.out.println("The input is in an incorrect format, please follow the format in user guide");
             } catch (EmptyFlashcardQuestionException e) {
                 System.out.println("The question of this card is empty, please enter one.");
             } catch (EmptyFlashcardAnswerException e) {
@@ -31,6 +32,8 @@ public class Parser {
         case "del":
             int index = Integer.parseInt(userInput.split(" ")[1]);
             return new DeleteCommand(index);
+        case "review":
+            return new ReviewCommand();
         case "bye":
             return new ByeCommand();
         default:
@@ -45,7 +48,7 @@ public class Parser {
      *
      * @param userInput The input collected by Ui from the user.
      * @return An AddCommand with the question and answer text extracted from user
-     *         input.
+     * input.
      * @throws InvalidAddFlashcardInputException If the start indicators cannot be
      *                                           found.
      * @throws EmptyFlashcardQuestionException   If the string is empty after
@@ -53,9 +56,8 @@ public class Parser {
      * @throws EmptyFlashcardAnswerException     If the string is empty after
      *                                           ANSWER_START_INDICATOR.
      */
-    public AddCommand reformatAddCommandInput(String userInput)
-            throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException,
-            EmptyFlashcardAnswerException {
+    public Command reformatAddCommandInput(String userInput)
+            throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException, EmptyFlashcardAnswerException {
         int positionOfStartOfQuestion = userInput.indexOf(QUESTION_START_INDICATOR);
         int positionOfStartOfAnswer = userInput.indexOf(ANSWER_START_INDICATOR);
         if (positionOfStartOfAnswer == -1 || positionOfStartOfQuestion == -1) {
@@ -65,17 +67,13 @@ public class Parser {
         String answerText = "";
         if (positionOfStartOfAnswer > positionOfStartOfQuestion) {
             questionText = userInput
-                    .substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length(),
-                            positionOfStartOfAnswer)
+                    .substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length(), positionOfStartOfAnswer)
                     .trim();
-            answerText = userInput
-                    .substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length()).trim();
+            answerText = userInput.substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length()).trim();
         } else {
-            questionText = userInput
-                    .substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length()).trim();
+            questionText = userInput.substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length()).trim();
             answerText = userInput
-                    .substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length(),
-                            positionOfStartOfQuestion)
+                    .substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length(), positionOfStartOfQuestion)
                     .trim();
         }
 

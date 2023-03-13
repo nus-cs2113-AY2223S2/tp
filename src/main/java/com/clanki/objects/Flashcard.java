@@ -16,8 +16,7 @@ public class Flashcard {
         this.currentPeriodInDays = 0;
     }
 
-    public Flashcard(String questionText, String answerText, LocalDate dueDate,
-            int currentPeriodInDays) {
+    public Flashcard(String questionText, String answerText, LocalDate dueDate, int currentPeriodInDays) {
         this.questionText = questionText;
         this.answerText = answerText;
         this.dueDate = dueDate;
@@ -50,6 +49,16 @@ public class Flashcard {
 
     public boolean isDueToday() {
         return this.dueDate.isEqual(LocalDate.now());
+    }
+
+    /**
+     * this function checks if the flashcard is due or overdue
+     * Sometimes the user may not clear all flashcards on time, so we may have cards overdue
+     *
+     * @return true if the card is due or overdue
+     */
+    public boolean isDueBeforeToday() {
+        return !LocalDate.now().isBefore(this.getDueDate());
     }
 
     /**
