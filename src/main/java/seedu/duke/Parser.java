@@ -118,7 +118,12 @@ public class Parser {
             Inventory.filterTags(keyword);
         }
     }
-
+    /**
+     * Handles the "searchUPC" command by checking the validity of search term provided before passing to
+     * the searchUPC function
+     *
+     * @param rawInput The user input string to be validated.
+     */
     public void parseSearchUPC(String rawInput) {
         try {
             if (rawInput == null) {
@@ -134,7 +139,12 @@ public class Parser {
             Ui.printInvalidEditCommand();
         }
     }
-
+    /**
+     * Handles the "search" command by checking the validity of search term provided before passing to
+     * the search function
+     *
+     * @param rawInput The user input string to be validated.
+     */
     public void parseSearch(String rawInput) {
         try {
             if (rawInput == null) {
@@ -145,7 +155,11 @@ public class Parser {
             e.missingSearchItemParameters();
         }
     }
-
+    /**
+     * Handles the "add" command by parsing the user's input into separate input parameters using regex
+     *
+     * @param rawInput The string to be parsed for adding of new item to the inventory.
+     */
     public void parseAdd(String rawInput) {
         try {
             if (rawInput == null) {
