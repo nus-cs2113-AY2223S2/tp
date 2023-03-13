@@ -16,4 +16,15 @@ public class EntertainmentExpenditure extends Expenditure {
     public String getExpenditureType() {
         return "En";
     }
+
+    @Override
+    public String saveInfo() {
+        return getExpenditureType() +
+                "d/" + getDescription() +
+                "v/" + getValue() +
+                "t/" + getDate() +
+                "p/" + "None" +
+                "n/" + "None" +
+                "o/" + "None" + "\n";
+    }
 }

@@ -16,4 +16,16 @@ public class AcademicExpenditure extends Expenditure {
     public String getExpenditureType() {
         return "Acad";
     }
+
+    @Override
+    public String saveInfo() {
+        return getExpenditureType() +
+                "d/" + getDescription() +
+                "v/" + getValue() +
+                "t/" + getDate() +
+                "p/" + "None" +
+                "n/" + "None" +
+                "o/" + "None" + "\n";
+
+    }
 }

@@ -37,4 +37,15 @@ public class LendExpenditure extends Expenditure {
     public String getExpenditureType() {
         return "L";
     }
+
+    @Override
+    public String saveInfo() {
+        return getExpenditureType() +
+                "d/" + getDescription() +
+                "v/" + getValue() +
+                "t/" + getDate() +
+                "p/" + "None" +
+                "n/" + getLenderName() +
+                "o/" + getDeadline() + "\n";
+    }
 }

@@ -38,4 +38,15 @@ public class BorrowExpenditure extends Expenditure {
     public String getExpenditureType() {
         return "B";
     }
+
+    @Override
+    public String saveInfo() {
+        return getExpenditureType() +
+                "d/" + getDescription() +
+                "v/" + getValue() +
+                "t/" + getDate() +
+                "p/" + "None" +
+                "n/" + getBorrowerName() +
+                "o/" + getDeadline() + "\n";
+    }
 }

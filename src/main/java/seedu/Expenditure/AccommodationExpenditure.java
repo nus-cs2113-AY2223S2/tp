@@ -27,4 +27,15 @@ public class AccommodationExpenditure extends Expenditure {
     public String getExpenditureType() {
         return "Accom";
     }
+
+    @Override
+    public String saveInfo() { // NOT DONE
+        return getExpenditureType() +
+                "d/" + getDescription() +
+                "v/" + getValue() +
+                "t/" + getDate() +
+                "p/" + getStatusIcon() +
+                "n/" + "None" +
+                "o/" + "None" + "\n";
+    }
 }

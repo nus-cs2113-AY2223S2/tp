@@ -26,4 +26,15 @@ public class TuitionExpenditure extends Expenditure {
     public String getExpenditureType() {
         return "Tu";
     }
+
+    @Override
+    public String saveInfo() {
+        return getExpenditureType() +
+                "d/" + getDescription() +
+                "v/" + getValue() +
+                "t/" + getDate() +
+                "p/" + getPaidIcon() +
+                "n/" + "None" +
+                "o/" + "None" + "\n";
+    }
 }

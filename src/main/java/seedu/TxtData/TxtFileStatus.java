@@ -1,12 +1,6 @@
 package seedu.TxtData;
 
-import seedu.expenditure.AcademicExpenditure;
-import seedu.expenditure.FoodExpenditure;
-import seedu.expenditure.ExpenditureList;
-import seedu.expenditure.Expenditure;
-import seedu.expenditure.TransportExpenditure;
-import seedu.expenditure.EntertainmentExpenditure;
-import seedu.expenditure.OtherExpenditure;
+import seedu.expenditure.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -65,7 +59,7 @@ public class TxtFileStatus {
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
         while (s.hasNext()) {
             String saveString = s.nextLine();
-            String[] saveData = saveString.split("d/|v/|t/");
+            String[] saveData = saveString.split("d/|v/|t/|p/|n/|o/");
             switch (saveData[0]) {
             case "Acad":
                 AcademicExpenditure academicExpenditure = new AcademicExpenditure(
@@ -75,8 +69,23 @@ public class TxtFileStatus {
                 expenditures.addExpenditure(academicExpenditure);
                 break;
             case "Accom":
+                AccommodationExpenditure accommodationExpenditure = new AccommodationExpenditure(
+                        saveData[1],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]));
+                if (saveData[4].equals("[X]")) {
+                    accommodationExpenditure.setPaid();
+                }
+                expenditures.addExpenditure(accommodationExpenditure);
                 break;
             case "B":
+                BorrowExpenditure borrowExpenditure = new BorrowExpenditure(
+                        saveData[1],
+                        saveData[5],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]),
+                        LocalDate.parse(saveData[6]));
+                expenditures.addExpenditure(borrowExpenditure);
                 break;
             case "En":
                 EntertainmentExpenditure entertainmentExpenditure = new EntertainmentExpenditure(
@@ -93,6 +102,13 @@ public class TxtFileStatus {
                 expenditures.addExpenditure(foodExpenditure);
                 break;
             case "L":
+                LendExpenditure lendExpenditure = new LendExpenditure(
+                        saveData[1],
+                        saveData[5],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]),
+                        LocalDate.parse(saveData[6]));
+                expenditures.addExpenditure(lendExpenditure);
                 break;
             case "O":
                 OtherExpenditure otherExpenditure = new OtherExpenditure(
@@ -109,6 +125,14 @@ public class TxtFileStatus {
                 expenditures.addExpenditure(transportExpenditure);
                 break;
             case "Tu":
+                TuitionExpenditure tuitionExpenditure = new TuitionExpenditure(
+                        saveData[1],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]));
+                if (saveData[4].equals("[X]")) {
+                    tuitionExpenditure.setPaid();
+                }
+                expenditures.addExpenditure(tuitionExpenditure);
                 break;
             default:
                 break;

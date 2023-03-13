@@ -16,4 +16,15 @@ public class FoodExpenditure extends Expenditure {
     public String getExpenditureType() {
         return "F";
     }
+
+    @Override
+    public String saveInfo() {
+        return getExpenditureType() +
+                "d/" + getDescription() +
+                "v/" + getValue() +
+                "t/" + getDate() +
+                "p/" + "None" +
+                "n/" + "None" +
+                "o/" + "None" + "\n";
+    }
 }
