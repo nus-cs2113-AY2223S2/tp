@@ -24,6 +24,11 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.Scanner;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 /**
  * Storage class that initialises the task list and updates the save file.
@@ -43,6 +48,8 @@ public class Storage {
     private static final char TXT_DEADLINE_WORD = 'D';
     private static final char TXT_EVENT_WORD = 'E';
 
+    private static Logger logger = Logger.getLogger("Storage");
+
     /**
      * Initialise Storage class, set filePath.
      *
@@ -51,6 +58,35 @@ public class Storage {
     public Storage(String filePath, String moduleDataFilePath) {
         Storage.filePath = filePath;
         Storage.moduleDataFilePath = moduleDataFilePath;
+        Storage.setUpLogger();
+
+    }
+
+    /**
+     * Sets up logger for Storage class.
+     *
+     * @throws IOException If logger file cannot be created.
+     */
+    public static void setUpLogger(){
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.ALL);
+        ConsoleHandler logConsole = new ConsoleHandler();
+        logConsole.setLevel(Level.SEVERE);
+        logger.addHandler(logConsole);
+        try {
+
+            if (!new File("apollo.log").exists()) {
+                new File("apollo.log").createNewFile();
+            }
+
+            FileHandler logFile = new FileHandler("apollo.log", true);
+            logFile.setLevel(Level.FINE);
+            logger.addHandler(logFile);
+
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
+
     }
 
     /**
@@ -103,6 +139,7 @@ public class Storage {
             return newTaskList;
         } catch (FileNotFoundException e) {
             save.createNewFile();
+            logger.log(Level.INFO, "File not found, creating new file.");
             return newTaskList;
         }
     }
