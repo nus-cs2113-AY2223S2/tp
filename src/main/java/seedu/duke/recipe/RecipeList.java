@@ -66,6 +66,8 @@ public class RecipeList {
     }
 
 
-
+    public void add(Recipe recipe) {
+        recipes.add(recipe);
+    }
 
 }
