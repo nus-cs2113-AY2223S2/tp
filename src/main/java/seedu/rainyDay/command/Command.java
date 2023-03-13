@@ -1,6 +1,8 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.RainyDay;
+import seedu.rainyDay.Storage;
+import seedu.rainyDay.UI;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 
@@ -16,27 +18,27 @@ public class Command {
 
     public static final String COMMAND_EXIT = "bye";
 
-    public static String addFinancialStatement(String description, String flowDirection, int value) {
-        RainyDay.financialReport.addStatement(new FinancialStatement(description, flowDirection, value));
-        int statementCount = RainyDay.financialReport.getStatementCount();
-        String direction = RainyDay.financialReport.getStatementDirection(statementCount - 1);
-        String addStatement = "Done, added: " + direction + " for " + description + ", $" + value;
-        RainyDay.writeToFile(RainyDay.financialReport, RainyDay.filePath);
-        return addStatement;
+    public static void addFinancialStatement(String description, String flowDirection, int value) {
+        FinancialStatement currentFinancialStatement = new FinancialStatement(description, flowDirection, value);
+        RainyDay.financialReport.addStatement(currentFinancialStatement);
+        //int statementCount = RainyDay.financialReport.getStatementCount();
+        //String direction = RainyDay.financialReport.getStatementDirection(statementCount - 1);
+        //what was this above 2 lines for?
+        UI.printAddedFinancialStatement(currentFinancialStatement);
+        Storage.writeToFile(RainyDay.financialReport, RainyDay.filePath);
     }
 
-    public static String deleteFinancialStatement(int index) {
+    public static void deleteFinancialStatement(int index) {
         index -= 1;
-        String deleteStatement = "Done, deleted \"" + RainyDay.financialReport.getStatementDescription(index)
-                + "\" from the financial report";
+        UI.printDeletedFinancialStatement(RainyDay.financialReport.getStatementDescription(index));
         RainyDay.financialReport.deleteStatement(index);
-        RainyDay.writeToFile(RainyDay.financialReport, RainyDay.filePath);
-        return deleteStatement;
+        Storage.writeToFile(RainyDay.financialReport, RainyDay.filePath);
     }
 
     public static String generateReport(FinancialReport financialReport) {
         if (financialReport.getStatementCount() == 0) {
-            return "Your financial report is empty";
+            System.out.println("Your financial report is empty");
+            return "x";
         }
         int totalInflow = 0;
         int totalOutflow = 0;
@@ -57,6 +59,7 @@ public class Command {
         String remainingValueInformation = "Remaining value: $" + (totalInflow - totalOutflow);
         String report = String.join(System.lineSeparator(), financialStatements, inflowInformation, outflowInformation,
                 remainingValueInformation);
+        System.out.println(report);
         return report;
     }
 }
