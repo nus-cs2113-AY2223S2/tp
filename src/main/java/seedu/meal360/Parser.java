@@ -22,8 +22,15 @@ public class Parser {
         return "test";
     }
 
-    public RecipeList parseListRecipe(RecipeList recipeList) {
-        return recipeList;
+    public RecipeList parseListRecipe(String[] input, RecipeList recipeList) {
+        RecipeList recipeListToPrint = new RecipeList();
+        String filter;
+        if (input.length == 1) {
+            filter = null;
+        } else {
+            filter = input[1];
+        }
+        return recipeList.listRecipes(filter);
     }
 
     public Recipe parseViewRecipe(String[] command, RecipeList recipes) {

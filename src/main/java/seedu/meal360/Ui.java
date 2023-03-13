@@ -50,14 +50,15 @@ public class Ui {
         printSeparator();
         int numberOfRecipes = recipeListToPrint.size();
         int order = 0;
-        if (numberOfRecipes > 0) {
-            printMessage("These are the recipes you have (" + numberOfRecipes + " recipes):");
-            for (Recipe recipe : recipeListToPrint) {
-                order = order + 1;
-                printMessage(order + ". " + recipe.getName() + "   (" + recipe.getNumOfIngredients() + " ingredients)");
-            }
-        } else {
-            printMessage("There is nothing in the list. Please add a recipe.");
+        if (numberOfRecipes == 0) {
+            printMessage("There is nothing to list.");
+            printSeparator();
+            return;
+        }
+        printMessage("These are the recipes you have (" + numberOfRecipes + " recipes):");
+        for (Recipe recipe : recipeListToPrint) {
+            order = order + 1;
+            printMessage(order + ". " + recipe.getName() + "   (" + recipe.getNumOfIngredients() + " ingredients)");
         }
         printSeparator();
     }

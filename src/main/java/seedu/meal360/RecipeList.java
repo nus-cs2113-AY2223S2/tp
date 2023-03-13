@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RecipeList extends ArrayList<Recipe> {
-    private static final Ui ui = new Ui();
 
     public void addRecipe(Recipe recipe) {
         super.add(recipe);
@@ -18,6 +17,16 @@ public class RecipeList extends ArrayList<Recipe> {
 
     }
 
-    public void listRecipes() {
+    public RecipeList listRecipes(String filter) {
+        RecipeList filteredRecipeList = new RecipeList();
+        if (filter == null) {
+            return this;
+        }
+        for (Recipe recipe: this) {
+            if (recipe.getName().contains(filter) || recipe.getIngredients().containsKey(filter)) {
+                filteredRecipeList.addRecipe(recipe);
+            }
+        }
+        return filteredRecipeList;
     }
 }
