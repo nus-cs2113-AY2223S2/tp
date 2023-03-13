@@ -1,5 +1,7 @@
 package chching;
 
+import chching.record.ExpenseList;
+import chching.record.IncomeList;
 import chching.record.Record;
 import chching.record.RecordList;
 
@@ -28,27 +30,35 @@ public class Ui {
         System.out.println("    Bye. Hope to see you again soon!");
     }
 
-    public void showAdded(RecordList records, Record record) {
+    public void showAdded(IncomeList incomes, ExpenseList expenses, Record record) {
         System.out.println("    Got it. I've added this record:");
         System.out.println("    " + record);
-        System.out.println("    Now you have " + records.getRecordCount() + " records in the list.");
+        System.out.println("    Now you have " + incomes.getRecordCount() + " income records,");
+        System.out.println("    and " + expenses.getRecordCount() + " expense records in the list.");
     }
 
-    public void showDelete(RecordList records, Record record) {
+    public void showDelete(IncomeList incomes, ExpenseList expenses, Record record) {
         System.out.println("    Noted. I've removed this record:");
         System.out.println("    " + record);
-        System.out.println("    Now you have " + records.getRecordCount() + " records in the list.");
+        System.out.println("    Now you have " + incomes.getRecordCount() + " income records,");
+        System.out.println("    and " + expenses.getRecordCount() + " expense records in the list.");
     }
 
-    public void showAllRecords(RecordList records) {
-        System.out.println("    Here are the records in your list:");
-
-        records.printRecordList();
+    public void showAllRecords(IncomeList incomes, ExpenseList expenses) {
+        System.out.println("    Here are the incomes in your list:");
+        for (int i = 0; i < incomes.getRecordCount(); i++) {
+            System.out.println("    " + (i+1) + ". "  + incomes.get(i));
+        }
+        System.out.println();
+        System.out.println("    Here are the expense in your list:");
+        for (int i = 0; i < expenses.getRecordCount(); i++) {
+            System.out.println("    " + (i+1) + ". "  + expenses.get(i));
+        }
     }
 
-    public void showBalance() {
+    public void showBalance(double balance) {
         System.out.println("    Current balance:");
-        System.out.println("    SGD 0.00");
+        System.out.println(String.format("    SGD %.2f", balance));
     }
 
 

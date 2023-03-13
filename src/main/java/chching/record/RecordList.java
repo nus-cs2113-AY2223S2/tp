@@ -40,4 +40,8 @@ public abstract class RecordList {
             System.out.println(i + ". " + record.toString());
         }
     }
+
+    public static Record get(int index) {
+        return recordList.get(index);
+    }
 }

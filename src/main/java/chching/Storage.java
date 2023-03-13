@@ -1,5 +1,7 @@
 package chching;
 
+import chching.record.ExpenseList;
+import chching.record.IncomeList;
 import chching.record.Record;
 import chching.record.RecordList;
 
@@ -16,7 +18,6 @@ public class Storage {
 
     /**
      * Build constructor for the Storage class.
-     *
      * @param filepath the filepath of the storage.
      */
     Storage(String filepath) {
@@ -40,7 +41,7 @@ public class Storage {
         return records;
     }
 
-    public void save(RecordList records) {
+    public void save(IncomeList incomes, ExpenseList expenses) {
     }
 }
 
