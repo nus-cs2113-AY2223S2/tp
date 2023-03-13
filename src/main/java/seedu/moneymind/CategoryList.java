@@ -22,6 +22,7 @@ public class CategoryList {
         int count = 0;
         for (int i = 0; i < categories.size(); i++) {
             if (categories.get(i).getName().contains(name)) {
+                assert categories.get(i) != null : "Category should not be null";
                 count++;
                 System.out.println("index " + (i + 1) + ". " + categories.get(i).getName());
             }
@@ -53,6 +54,7 @@ public class CategoryList {
 
     public static void viewCategoryList() {
         for (int i = 0; i < categories.size(); i++) {
+            assert categories.get(i) != null : "Category should not be null";
             System.out.println(i + 1 + ". " + categories.get(i).getName());
         }
     }
