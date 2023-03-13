@@ -47,6 +47,11 @@ public class Ui {
         System.out.println("The input is in an incorrect format.");
     }
 
+
+    public void printSuccessfulDelete() {
+        System.out.print("Got it. Deleted the flashcard at index ");
+    }
+
     /**
      * reused from Kong Dehao ip
      * for general printing to console

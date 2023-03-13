@@ -4,6 +4,7 @@ package com.clanki.parser;
 import com.clanki.commands.AddCommand;
 import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
+import com.clanki.commands.DeleteCommand;
 import com.clanki.commands.ReviewCommand;
 import com.clanki.commands.UnknownCommand;
 import com.clanki.exceptions.EmptyFlashcardAnswerException;
@@ -28,6 +29,9 @@ public class Parser {
                 System.out.println("The answer for this flashcard is empty, please enter one.");
             }
             break;
+        case "del":
+            int index = Integer.parseInt(userInput.split(" ")[1]);
+            return new DeleteCommand(index);
         case "review":
             return new ReviewCommand();
         case "bye":
@@ -43,8 +47,7 @@ public class Parser {
      * incorrect format, a respective exception will be thrown.
      *
      * @param userInput The input collected by Ui from the user.
-     * @return An AddCommand with the question and answer text extracted from user
-     *     input.
+     * @return An AddCommand with the question and answer text extracted from user input.
      * @throws InvalidAddFlashcardInputException If the start indicators cannot be
      *                                           found.
      * @throws EmptyFlashcardQuestionException   If the string is empty after
