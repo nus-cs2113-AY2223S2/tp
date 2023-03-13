@@ -15,17 +15,7 @@ public class RecipeList {
     Ingredient hamburgerBuns = new Ingredient("hamburger buns", 2);
     Ingredient toppings = new Ingredient("toppings (any of your choice", 0);
 
-    public IngredientList getBeefBurgerIngredients() {
-        beefBurgerIngredients.add(groundBeef);
-        beefBurgerIngredients.add(salt);
-        beefBurgerIngredients.add(blackPepper);
-        beefBurgerIngredients.add(worcestershireSauce);
-        beefBurgerIngredients.add(garlicPowder);
-        beefBurgerIngredients.add(hamburgerBuns);
-        beefBurgerIngredients.add(toppings);
 
-        return beefBurgerIngredients;
-    }
     InstructionList beefBurgerInstructions = new InstructionList();
     Instruction firstStep = new Instruction("In a large bowl, mix the ground beef, salt, pepper, Worcestershire" +
             " sauce and garlic powder until just combined");
@@ -38,6 +28,19 @@ public class RecipeList {
             "golden brown");
     Instruction sixthStep = new Instruction("Assemble the burgers with your desired toppings and serve. This recipe" +
             " serves two");
+
+
+    public IngredientList getBeefBurgerIngredients() {
+        beefBurgerIngredients.add(groundBeef);
+        beefBurgerIngredients.add(salt);
+        beefBurgerIngredients.add(blackPepper);
+        beefBurgerIngredients.add(worcestershireSauce);
+        beefBurgerIngredients.add(garlicPowder);
+        beefBurgerIngredients.add(hamburgerBuns);
+        beefBurgerIngredients.add(toppings);
+
+        return beefBurgerIngredients;
+    }
 
     public InstructionList getBeefBurgerInstructions() {
         beefBurgerInstructions.add(firstStep);
@@ -52,7 +55,7 @@ public class RecipeList {
     Recipe beefBurger = new Recipe("Beef Burger", getBeefBurgerIngredients(), getBeefBurgerInstructions());
 
 
-    private ArrayList<Recipe> recipes;
+    public ArrayList<Recipe> recipes;
 
     public RecipeList() {
         recipes = new ArrayList<>();
