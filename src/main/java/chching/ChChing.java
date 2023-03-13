@@ -12,11 +12,12 @@ public class ChChing {
     private Ui ui;
 
     public ChChing(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
+        this.ui = new Ui();
+        this.storage = new Storage(filePath);
+
         try {
-            this.incomes = new IncomeList(storage.load());
-            this.expenses = new ExpenseList(storage.load());
+            this.incomes = new IncomeList(storage.loadIncomes());
+            this.expenses = new ExpenseList(storage.loadExpenses());
         } catch (ChChingException e) {
             ui.showError(e.getMessage());
             this.incomes = new IncomeList();
@@ -30,6 +31,7 @@ public class ChChing {
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
+                System.out.println("nyampe sini cu");
                 ui.showLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand, incomes, expenses);
                 c.execute(incomes, expenses, ui, storage);

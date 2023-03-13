@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public abstract class RecordList {
 
-    protected static ArrayList<Record> recordList = new ArrayList<>();
-    protected static int recordCount = 0;
+    protected ArrayList<Record> recordList = new ArrayList<>();
+    protected int recordCount = 0;
     private int balance;
     
 
@@ -14,7 +14,7 @@ public abstract class RecordList {
         recordCount = 0;
     }
 
-    public static ArrayList<Record> getRecordList() {
+    public ArrayList<Record> getRecordList() {
         return recordList;
     }
 
@@ -29,19 +29,19 @@ public abstract class RecordList {
         return balance;
     }
 
-    public static void addRecord(Record record) {
+    public void addRecord(Record record) {
         recordList.add(record);
         recordCount++;
     }
 
-    public static void printRecordList() {
+    public void printRecordList() {
         for (int i = 1; i <= recordCount; i++) {
             Record record = recordList.get(i - 1);
             System.out.println(i + ". " + record.toString());
         }
     }
 
-    public static Record get(int index) {
+    public Record get(int index) {
         return recordList.get(index);
     }
 }

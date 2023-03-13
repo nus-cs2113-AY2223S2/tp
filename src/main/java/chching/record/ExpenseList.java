@@ -4,14 +4,17 @@ import java.util.ArrayList;
 
 public class ExpenseList extends RecordList{
 
-    protected ArrayList<Record> expenseList;
-    public ExpenseList(ArrayList<Record> expenseList){
+    protected ArrayList<Expense> expenseList;
+
+    public ExpenseList(ArrayList<Expense> expenseList){
         this.expenseList = expenseList;
     }
+
     public ExpenseList(){
         expenseList = new ArrayList<>();
 
     }
+
     public int size() {
         return expenseList.size();
     }
