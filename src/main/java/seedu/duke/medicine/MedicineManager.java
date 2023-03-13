@@ -35,7 +35,7 @@ public class MedicineManager {
     private void initialiseMedications () {
         ArrayList<Medicine> covidMedications = Stream.of(PARACETAMOL, LOZENGE, ROBITUSSIN)
                 .collect(Collectors.toCollection(ArrayList::new));
-        ArrayList<Medicine> commonColdMedications = Stream.of(IBUPROFEN, ASPIRIN, ROBITUSSIN)
+        ArrayList<Medicine> commonFluMedications = Stream.of(IBUPROFEN, ASPIRIN, ROBITUSSIN)
                 .collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Medicine> migraineMedications = Stream.of(IBUPROFEN, ASPIRIN)
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -44,7 +44,7 @@ public class MedicineManager {
         ArrayList<Medicine> headacheMedications = Stream.of(PARACETAMOL)
                 .collect(Collectors.toCollection(ArrayList::new));
         medicationDict.put("Covid-19", covidMedications);
-        medicationDict.put("General Cold", commonColdMedications);
+        medicationDict.put("General Flu", commonFluMedications);
         medicationDict.put("Migraine", migraineMedications);
         medicationDict.put("Fever", feverMedications);
         medicationDict.put("Headache", headacheMedications);
