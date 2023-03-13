@@ -6,6 +6,8 @@ import seedu.duke.ingredient.Ingredient;
 
 public class RecipeList {
 
+    public ArrayList<Recipe> recipes;
+
     IngredientList beefBurgerIngredients = new IngredientList();
     Ingredient groundBeef = new Ingredient("ground beef", 1);
     Ingredient salt = new Ingredient("salt", 1);
@@ -32,7 +34,7 @@ public class RecipeList {
 
     Recipe beefBurger = new Recipe("Beef Burger", getBeefBurgerIngredients(), getBeefBurgerInstructions());
 
-    public ArrayList<Recipe> recipes;
+
 
     public IngredientList getBeefBurgerIngredients() {
         beefBurgerIngredients.add(groundBeef);
@@ -56,12 +58,14 @@ public class RecipeList {
         return beefBurgerInstructions;
     }
 
+    public ArrayList<Recipe> getRecipes() {
+        return recipes;
+    }
+
     public RecipeList() {
         recipes = new ArrayList<>();
         recipes.add(beefBurger);
     }
 
-    public ArrayList<Recipe> getRecipes() {
-        return recipes;
-    }
+
 }
