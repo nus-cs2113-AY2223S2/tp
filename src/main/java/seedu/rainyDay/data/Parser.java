@@ -1,8 +1,8 @@
 package seedu.rainyDay.data;
 
 import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.UI;
 import seedu.rainyDay.command.Command;
+import seedu.rainyDay.modules.UI;
 
 public class Parser {
     public static void parseUserInput(String userInput) throws Exception {
