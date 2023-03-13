@@ -39,7 +39,6 @@ public class DateCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
-        assert (date != null) : "DateCommand: Date cannot be empty";
         ui.printDateList(taskList.getTasksOnDate(date), date);
     }
 

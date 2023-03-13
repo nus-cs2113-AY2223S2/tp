@@ -40,7 +40,6 @@ public class Deadline extends Task {
      * @return Parsed due date.
      */
     public String getBy(DateTimeFormatter pattern) {
-        assert (by != null | byString != null)  : "Deadline must have a due date";
         return Parser.parseDateTime(by, byString, pattern);
     }
 
