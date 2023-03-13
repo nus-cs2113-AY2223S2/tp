@@ -54,7 +54,6 @@ public class Event extends Task {
      * @return Parsed start date.
      */
     public String getFrom(DateTimeFormatter pattern) {
-        assert (from != null | fromString != null)  : "Event must have a start date";
         return Parser.parseDateTime(from, fromString, pattern);
     }
 
@@ -65,7 +64,6 @@ public class Event extends Task {
      * @return Parsed end date.
      */
     public String getTo(DateTimeFormatter pattern) {
-        assert (to != null | toString != null)  : "Event must have an end date";
         return Parser.parseDateTime(to, toString, pattern);
     }
 
