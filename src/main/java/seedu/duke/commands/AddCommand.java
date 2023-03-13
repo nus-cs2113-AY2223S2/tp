@@ -1,10 +1,14 @@
 package seedu.duke.commands;
 
 import seedu.duke.constants.EntryConstants;
+import seedu.duke.constants.MessageConstants;
 import seedu.duke.entries.Category;
 import seedu.duke.entries.Entry;
 import seedu.duke.entrylog.EntryLog;
 import seedu.duke.exceptions.InvalidCategoryException;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Represents the add feature in PocketPal. Users may provide a description
@@ -12,7 +16,7 @@ import seedu.duke.exceptions.InvalidCategoryException;
  * e.g., <code>/add lunch -p 15 -c food</code>
  */
 public class AddCommand extends Command {
-    private static final String MESSAGE_INVALID_CATEGORY = "Please specify a valid category!";
+    private static Logger logger = Logger.getLogger(AddCommand.class.getName());
     private Entry entryObj;
 
     /**
@@ -22,7 +26,7 @@ public class AddCommand extends Command {
      * @param category    Category which entry belongs to
      * @param amount      Price of entry
      */
-    public AddCommand(String description, String category, double amount) throws InvalidCategoryException {
+    public AddCommand(String description, double amount, String category) throws InvalidCategoryException {
         switch(category){
         case EntryConstants.CLOTHING:
             this.entryObj = new Entry(description, amount, Category.CLOTHING);
@@ -61,8 +65,13 @@ public class AddCommand extends Command {
             break;
 
         default:
-            throw new InvalidCategoryException(MESSAGE_INVALID_CATEGORY);
+            logger.log(Level.WARNING, "Input category is invalid");
+            throw new InvalidCategoryException(MessageConstants.MESSAGE_INVALID_CATEGORY);
         }
+    }
+
+    public Entry getEntryObj(){
+        return this.entryObj;
     }
 
     /**
