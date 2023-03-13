@@ -49,8 +49,8 @@ public class ParserAdd {
         return INVALID_INDEX;
     }
 
-    /*
-    Checks the type and returns the substring index where the user input starts.
+    /**
+     * Checks the type and returns the substring index where the user input starts.
      */
     public int substringIndex(int type) {
         if (type == TIME_INDEX) {
