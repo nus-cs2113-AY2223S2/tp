@@ -5,9 +5,12 @@ import command.CommandList;
 import data.Currency;
 import data.Expense;
 import data.ExpenseList;
+import data.Time;
 import org.junit.jupiter.api.Test;
 import parser.Parser;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -24,17 +27,21 @@ class ExpenseListTest {
     public ArrayList<Expense> testExpenseList = new ArrayList<>();
     public ExpenseList expenseList = new ExpenseList();
     public Parser parser = new Parser();
+    public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     @Test
     public void addExpense_successful() {
-        testExpenseList.add(new Expense(2.5, "02/02/2012", "food", Currency.SGD));
-        new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/2.5 " +
-                "t/02/02/2012 cat/food")).run();
+        testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
+                "food", Currency.SGD));
+        new CommandAdd(expenseList.getExpenseList(),
+                parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food")).run();
         assertEquals(testExpenseList.get(0), expenseList.getExpenseList().get(0));
 
-        testExpenseList.add(new Expense(2.5, "02/02/2012", "food", Currency.SGD));
-        new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/2.5 " +
-                "t/02/02/2012 cur/USD cat/food")).run();
+        testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
+                "food", Currency.SGD));
+        new CommandAdd(expenseList.getExpenseList(),
+                parser.extractAddParameters("add amt/2.5 " +
+                        "t/02-02-2012 cur/USD cat/food")).run();
         assertNotEquals(testExpenseList.get(1), expenseList.getExpenseList().get(1));
 
         testExpenseList.clear();
@@ -55,9 +62,9 @@ class ExpenseListTest {
         assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
 
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/2.5 " +
-                "t/02/02/2012 cur/USD cat/food")).run();
+                "t/02-02-2012 cur/USD cat/food")).run();
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/5.5 " +
-                "t/02/02/2014 cur/SGD cat/food")).run();
+                "t/02-02-2014 cur/SGD cat/food")).run();
 
         outContent = new ByteArrayOutputStream();
         expected = "Here are the tasks in your list:\n\n"
@@ -79,9 +86,10 @@ class ExpenseListTest {
 
     @Test
     public void deleteExpense_successful() {
-        testExpenseList.add(new Expense(2.5, "02/02/2012", "food", Currency.SGD));
-        new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/2.5 " +
-                "t/02/02/2012 cat/food")).run();
+        testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
+                "food", Currency.SGD));
+        new CommandAdd(expenseList.getExpenseList(),
+                parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food")).run();
         testExpenseList.remove(0);
         expenseList.deleteExpense("delete 1");
         assertIterableEquals(testExpenseList, expenseList.getExpenseList());
