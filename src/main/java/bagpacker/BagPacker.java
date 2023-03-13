@@ -11,6 +11,9 @@ public class BagPacker {
      * Main entry-point for the java.BagPacker application.
      */
     public static void main(String[] args) {
+        // intialise variables
+        PackingList packingList = new PackingList();
+        BagPacker.packingList = packingList;
         //initialise BagPacker program
         Ui.initialMessage();
 
@@ -26,16 +29,25 @@ public class BagPacker {
         while (!Parser.getCommand().equals("bye")) {
             switch (Parser.getCommand()) {
             case "add":
+                String itemDescrip;
                 //Add add function
+                itemDescrip = Parser.getItemDescrip();
+                Parser.addItem(itemDescrip, packingList);
                 break;
             case "remove":
                 //Add remove function
+                itemDescrip = Parser.getItemDescrip();
+                Parser.removeItem(itemDescrip, packingList);
                 break;
             case "pack":
                 //Add pack function
+                itemDescrip = Parser.getItemDescrip();
+                Parser.packItem(itemDescrip, packingList);
                 break;
             case "unpack":
                 //Add unpack function
+                itemDescrip = Parser.getItemDescrip();
+                Parser.unpackItem(itemDescrip, packingList);
                 break;
             case "list":
                 //Add list function

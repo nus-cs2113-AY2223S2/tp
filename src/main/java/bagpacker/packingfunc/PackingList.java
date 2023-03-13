@@ -20,14 +20,43 @@ public class PackingList {
         return itemList;
     }
     /**
-     * Adds a task to the list.
+     * Adds an item to the list.
      */
     public void addItem(Item toAdd) {
         itemList.add(toAdd);
     }
 
+    /**
+     * Removes an item from the list.
+     */
+    public void deleteItem(Item toDelete) {
+        itemList.remove(toDelete);
+    }
+
+    /**
+     * Marks an item as packed in the list.
+     */
+    public void packItem(Item toPack) {
+        toPack.setPacked(true);
+    }
+
+    /**
+     * Marks an item as unpacked in the list.
+     */
+    public void unpackItem(Item toPack) {
+        toPack.setPacked(false);
+    }
+
     public static Item get(int targetIndex) {
         return itemList.get(targetIndex);
     }
+
+    /**
+     * Returns size of packing list
+     */
+    public int size(){
+        return itemList.size();
+    }
+
 
 }
