@@ -56,18 +56,18 @@ public class User {
 
     public double calculateCaloricNeeds (float weight, float height, int age, String gender) {
         double caloricNeeds;
-        switch(gender.toLowerCase()){
-            case "male":
-                caloricNeeds = 66 + (13.7 * weight) + (5 * height) - (4.7 * age);
-                return caloricNeeds;
-            case "female":
-                caloricNeeds = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
-                return caloricNeeds;
-            default:
-                System.out.println("Gender not provided, cannot calculate caloric needs accurately");
-                return 0;
+    switch(gender.toLowerCase()){
+        case "male":
+            caloricNeeds = 66 + (13.7 * weight) + (5 * height) - (4.7 * age);
+            return caloricNeeds;
+        case "female":
+            caloricNeeds = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
+            return caloricNeeds;
+        default:
+            System.out.println("Gender not provided, cannot calculate caloric needs accurately");
+            return 0;
 
-        }
+    }
     }
 
     public double getCaloricLimit(){return Math.round(this.caloricLimit);}

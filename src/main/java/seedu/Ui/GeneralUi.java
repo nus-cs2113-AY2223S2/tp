@@ -36,9 +36,9 @@ public class GeneralUi {
         System.out.println("------------------------------------------------------------");
     }
 
-    private static String endingMessage = "Bye! Hope to see you again soon!";
+    private String endingMessage = "Bye! Hope to see you again soon!";
 
-    private static String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!";
+    private String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!";
 
     /**
      * Prints Goodbye message when Duke exits
