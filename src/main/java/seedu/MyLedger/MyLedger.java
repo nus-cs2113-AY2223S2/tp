@@ -6,9 +6,7 @@ import seedu.expenditure.ExpenditureList;
 import seedu.commands.Command;
 import seedu.commands.CommandResult;
 import seedu.ui.Ui;
-
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class MyLedger {

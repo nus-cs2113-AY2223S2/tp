@@ -22,7 +22,6 @@ public class AcademicExpenditureCommand extends Command {
                 academicExpenditureValue,
                 academicExpenditureDate);
         expenditures.addExpenditure(academicExpenditure);
-//        ExpenditureList.saveList();
         return new CommandResult(String.format("Added %s expenditure %s",
                 COMMAND_WORD, academicExpenditure.toString()));
     }

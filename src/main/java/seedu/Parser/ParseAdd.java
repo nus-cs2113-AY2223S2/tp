@@ -27,9 +27,9 @@ public class ParseAdd {
 
         try {
         // Format: category d/date, a/amount, s/description
-        String descriptionVal = fetchDescriptionInput();
-        double amount = Double.parseDouble(fetchAmountInput());
-        LocalDate date = LocalDate.parse(fetchDateInput());
+            String descriptionVal = fetchDescriptionInput();
+            double amount = Double.parseDouble(fetchAmountInput());
+            LocalDate date = LocalDate.parse(fetchDateInput());
 
             switch (command) {
             case AcademicExpenditureCommand.COMMAND_WORD:

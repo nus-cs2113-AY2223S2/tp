@@ -1,6 +1,16 @@
 package seedu.TxtData;
 
-import seedu.expenditure.*;
+import seedu.expenditure.Expenditure;
+import seedu.expenditure.AcademicExpenditure;
+import seedu.expenditure.AccommodationExpenditure;
+import seedu.expenditure.BorrowExpenditure;
+import seedu.expenditure.EntertainmentExpenditure;
+import seedu.expenditure.FoodExpenditure;
+import seedu.expenditure.LendExpenditure;
+import seedu.expenditure.OtherExpenditure;
+import seedu.expenditure.TransportExpenditure;
+import seedu.expenditure.TuitionExpenditure;
+import seedu.expenditure.ExpenditureList;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,6 +1,9 @@
 package seedu.Parser;
 
-import seedu.commands.*;
+import seedu.commands.Command;
+import seedu.commands.LendExpenditureCommand;
+import seedu.commands.BorrowExpenditureCommand;
+import seedu.commands.InvalidCommand;
 import seedu.exceptions.EmptyStringException;
 import seedu.exceptions.ExceptionChecker;
 
