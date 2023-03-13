@@ -10,8 +10,7 @@ public class Ui {
 
     public String readCommand() {
         Scanner input = new Scanner((System.in));
-        String fullCommand = input.nextLine();
-        return fullCommand;
+        return input.nextLine();
     }
 
     public void showLine() {
@@ -57,7 +56,7 @@ public class Ui {
 
     public void showBalance(double balance) {
         System.out.println("    Current balance:");
-        System.out.println(String.format("    SGD %.2f", balance));
+        System.out.printf("    SGD %.2f%n", balance);
     }
 
 
