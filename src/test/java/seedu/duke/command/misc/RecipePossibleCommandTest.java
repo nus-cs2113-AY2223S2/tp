@@ -54,7 +54,12 @@ class RecipePossibleCommandTest {
         // Test
         RecipePossibleCommand command = new RecipePossibleCommand();
         command.execute(dukeSession);
-        String predictedOutput = "Here are the recipe(s) that you can make:\r\n1. ham sandwich\r\n";
+        String osName = System.getProperty("os.name");
+        String newline = "\n";
+        if (osName.contains("Windows")) {
+            newline = "\r\n";
+        }
+        String predictedOutput = "Here are the recipe(s) that you can make:" + newline + "1. ham sandwich" + newline;
         assertEquals(predictedOutput, outContent.toString());
     }
 }
