@@ -1,4 +1,4 @@
-import seedu.duke.Command.Command;
+import seedu.duke.command.Command;
 import seedu.duke.Parser;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
