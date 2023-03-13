@@ -9,42 +9,31 @@ import seedu.commands.OtherExpenditureCommand;
 import seedu.commands.TransportExpenditureCommand;
 import seedu.commands.TuitionExpenditureCommand;
 import seedu.commands.InvalidCommand;
-
+import seedu.exceptions.EmptyStringException;
+import seedu.exceptions.ExceptionChecker;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class ParseAdd {
-    public static Command addItem(String line, String command) {
-        // Format: category d/date, a/amount, s/description
+    private final String userInput;
 
+    public ParseAdd(String userInput) {
+        this.userInput = userInput;
+    }
+
+    public Command addItem(String command) {
+
+        try {
+        // Format: category d/date, a/amount, s/description
         double amount;
         LocalDate date;
         String descriptionVal;
 
-        try {
-            int posDSlash = line.indexOf('/');
-            String[] editDetailsList = SplitCommand.splitCommand(posDSlash, line);
-            String editDetails = editDetailsList[1];
-            System.out.println(editDetails);
+        descriptionVal = fetchDescriptionInput();
+        amount = Double.parseDouble(fetchAmountInput());
+        date = LocalDate.parse(fetchDateInput());
 
-            int posASlash = editDetails.indexOf('/');
-            String[] dateList = SplitCommand.splitCommand(posASlash, editDetails);
-            String dateVal = dateList[0];
-            String editPriceAndDescription = dateList[1];
-            System.out.println(dateVal);
-            System.out.println(editPriceAndDescription);
-
-            int posSSlash = editPriceAndDescription.indexOf('/');
-            String[] amountDescriptionList = SplitCommand.splitCommand(posSSlash, editPriceAndDescription);
-            String amountVal = amountDescriptionList[0];
-            descriptionVal = amountDescriptionList[1];
-            amount = Double.parseDouble(amountVal);
-            date = ParseDate.parseDate(dateVal);
-            System.out.println(amountVal);
-            System.out.println(descriptionVal);
-        } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            return new InvalidCommand("Invalid");
-        }
         switch (command) {
         case AcademicExpenditureCommand.COMMAND_WORD:
             return new AcademicExpenditureCommand(descriptionVal, amount, date);
@@ -62,6 +51,46 @@ public class ParseAdd {
             return new TuitionExpenditureCommand(descriptionVal, amount, date);
         default:
             return new InvalidCommand("Invalid");
+        }
+        } catch (NumberFormatException n) {
+            return new InvalidCommand("number format problem");
+        } catch (DateTimeParseException d) {
+            return new InvalidCommand("date time error");
+        }
+    }
+
+    public String fetchDateInput() {
+        try {
+            int positionOfDSlash = userInput.indexOf("d/");
+            int positionOfASlash = userInput.indexOf("a/");
+            String date = userInput.substring(positionOfDSlash + 2, positionOfASlash).trim();
+            ExceptionChecker.checkEmptyString(date);
+            return date;
+        } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
+            return e.getMessage();
+        }
+    }
+
+    public String fetchAmountInput() {
+        try {
+            int positionOfASlash = userInput.indexOf("a/");
+            int positionOfSSlash = userInput.indexOf("s/");
+            String amount = userInput.substring(positionOfASlash + 2, positionOfSSlash).trim();
+            ExceptionChecker.checkEmptyString(amount);
+            return amount;
+        } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
+            return e.getMessage();
+        }
+    }
+
+    public String fetchDescriptionInput() {
+        try {
+            int positionOfSSlash = userInput.indexOf("s/");
+            String description = userInput.substring(positionOfSSlash + 2).trim();
+            ExceptionChecker.checkEmptyString(description);
+            return description;
+        } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
+            return e.getMessage();
         }
     }
 }

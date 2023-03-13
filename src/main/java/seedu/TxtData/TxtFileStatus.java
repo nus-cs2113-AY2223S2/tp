@@ -1,9 +1,12 @@
 package seedu.TxtData;
 
-import seedu.Expenditure.AcademicExpenditure;
-import seedu.Expenditure.Expenditure;
-import seedu.Expenditure.FoodExpenditure;
-import seedu.Expenditure.ExpenditureList;
+import seedu.expenditure.AcademicExpenditure;
+import seedu.expenditure.FoodExpenditure;
+import seedu.expenditure.ExpenditureList;
+import seedu.expenditure.Expenditure;
+import seedu.expenditure.TransportExpenditure;
+import seedu.expenditure.EntertainmentExpenditure;
+import seedu.expenditure.OtherExpenditure;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -51,8 +54,7 @@ public class TxtFileStatus {
 
     public static void saveExpenditureList(ArrayList<Expenditure> expenditures) throws IOException {
         writeToFile(filePath, "");
-        for (int i = 0; i < expenditures.size(); i += 1) {
-            Expenditure expenditure = expenditures.get(i);
+        for (Expenditure expenditure : expenditures) {
             appendToFile(filePath, expenditure.saveInfo());
         }
     }
@@ -77,6 +79,11 @@ public class TxtFileStatus {
             case "B":
                 break;
             case "En":
+                EntertainmentExpenditure entertainmentExpenditure = new EntertainmentExpenditure(
+                        saveData[1],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]));
+                expenditures.addExpenditure(entertainmentExpenditure);
                 break;
             case "F":
                 FoodExpenditure foodExpenditure = new FoodExpenditure(
@@ -88,8 +95,18 @@ public class TxtFileStatus {
             case "L":
                 break;
             case "O":
+                OtherExpenditure otherExpenditure = new OtherExpenditure(
+                        saveData[1],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]));
+                expenditures.addExpenditure(otherExpenditure);
                 break;
             case "Tr":
+                TransportExpenditure transportExpenditure = new TransportExpenditure(
+                        saveData[1],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]));
+                expenditures.addExpenditure(transportExpenditure);
                 break;
             case "Tu":
                 break;

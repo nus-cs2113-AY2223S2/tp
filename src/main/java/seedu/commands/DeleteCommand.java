@@ -1,6 +1,6 @@
 package seedu.commands;
 
-import seedu.Expenditure.ExpenditureList;
+import seedu.expenditure.ExpenditureList;
 
 public class DeleteCommand extends Command{
     // Edit file accordingly

@@ -1,6 +1,6 @@
 package seedu.Parser;
 
-import seedu.Expenditure.ExpenditureList;
+import seedu.expenditure.ExpenditureList;
 import seedu.commands.Command;
 import seedu.commands.EditCommand;
 import seedu.commands.HelpCommand;
@@ -19,9 +19,13 @@ import seedu.commands.BorrowExpenditureCommand;
 import seedu.commands.InvalidCommand;
 
 public class MainInputParser {
-    public static Command parseInputs(String line) {
-        String[] splitValues = line.split(" ", 2);
-        String command = splitValues[0];
+    public static final int LIMIT = 2;
+    public static final int INDEX_COMMAND = 0;
+    public static final int INDEX_USERSTRING = 1;
+
+    public static Command parseInputs(String userInput) {
+        String[] splitValues = userInput.split(" ", LIMIT);
+        String command = splitValues[INDEX_COMMAND];
 
         switch (command) {
         case ExitCommand.COMMAND_WORD:
@@ -30,9 +34,9 @@ public class MainInputParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
         case DeleteCommand.COMMAND_WORD:
-            return ParseDelete.deleteItem(line);
+            return ParseDelete.deleteItem(userInput);
         case EditCommand.COMMAND_WORD:
-            return ParseEdit.editItem(line);
+            return ParseEdit.editItem(userInput);
         case ViewExpenditureCommand.COMMAND_WORD:
             return new ViewExpenditureCommand();
         case AcademicExpenditureCommand.COMMAND_WORD:
@@ -42,11 +46,12 @@ public class MainInputParser {
         case OtherExpenditureCommand.COMMAND_WORD:
         case TransportExpenditureCommand.COMMAND_WORD:
         case TuitionExpenditureCommand.COMMAND_WORD:
-            return ParseAdd.addItem(line, command);
+            ParseAdd prepareAddExpenditure = new ParseAdd(splitValues[INDEX_USERSTRING]);
+            return prepareAddExpenditure.addItem(command);
         case LendExpenditureCommand.COMMAND_WORD:
         case BorrowExpenditureCommand.COMMAND_WORD:
             ExpenditureList.saveList();
-            return ParseLendBorrow.lendBorrowItem(line, command);
+            return ParseLendBorrow.lendBorrowItem(userInput, command);
         default:
             // Commands that are not listed above
             return new InvalidCommand("Command not recognised. Please try again");

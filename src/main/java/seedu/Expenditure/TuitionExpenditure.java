@@ -1,4 +1,4 @@
-package seedu.Expenditure;
+package seedu.expenditure;
 
 import java.time.LocalDate;
 
