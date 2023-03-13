@@ -72,6 +72,9 @@ public class Parser {
             Information.printDiagnosisHistory(Duke.getPassword());
             break;
         case "3":
+            Information.resetDiagnosisHistory(Duke.getPassword());
+            break;
+        case "4":
             Menu.exit();
             break;
         default:

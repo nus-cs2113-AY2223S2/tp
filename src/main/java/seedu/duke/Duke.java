@@ -39,11 +39,12 @@ public class Duke {
             String input = in.nextLine();
             Parser.parseWelcome(input);
         }
-        Menu.showAccountMenu();
-        Scanner in = new Scanner(System.in);
-        String input = in.nextLine();
-        Parser.parseAccountCommand(input);
-
+        while (true) {
+            Menu.showAccountMenu();
+            Scanner in = new Scanner(System.in);
+            String input = in.nextLine();
+            Parser.parseAccountCommand(input);
+        }
         /*
         For testing of Diagnosis
         for (IllnessMatch test : Diagnosis.getPossibleIllnesses(new ArrayList<Symptom>(List.of(Symptom.BLOCKED_NOSE,
