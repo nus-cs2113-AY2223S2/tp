@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.brokeMan.target;
 
 public class Target {
 

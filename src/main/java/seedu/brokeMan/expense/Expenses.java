@@ -60,6 +60,7 @@ public class Expenses {
             if (type.equals("cost")) {
                 expenseBeingEdited.editCost(newEntry);
             } else {
+                // throw a custom exception here
                 Ui.showToUserWithLineBreak("Invalid type Parameter!", "");
             }
             Ui.showToUserWithLineBreak("Successfully edited expense.", "");
