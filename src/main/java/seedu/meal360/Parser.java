@@ -22,8 +22,8 @@ public class Parser {
         return "test";
     }
 
-    public void parseListRecipe(RecipeList recipeList) {
-        recipeList.listRecipes();
+    public RecipeList parseListRecipe(RecipeList recipeList) {
+        return recipeList;
     }
 
     public Recipe parseViewRecipe(String[] command, RecipeList recipes) {
