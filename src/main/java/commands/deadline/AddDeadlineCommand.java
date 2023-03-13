@@ -1,4 +1,4 @@
-package commands.deadlinecommand;
+package commands.deadline;
 
 import entity.Deadline;
 import manager.DeadlineManager;

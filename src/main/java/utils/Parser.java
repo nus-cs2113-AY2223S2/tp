@@ -1,9 +1,9 @@
 package utils;
 
 import commands.Command;
-import commands.deadlinecommand.AddDeadlineCommand;
-import commands.deadlinecommand.ViewDeadlineCommand;
-import commands.deadlinecommand.DeleteDeadlineCommand;
+import commands.deadline.AddDeadlineCommand;
+import commands.deadline.ViewDeadlineCommand;
+import commands.deadline.DeleteDeadlineCommand;
 import commands.ExitCommand;
 import commands.HelpCommand;
 import commands.IncorrectCommand;
@@ -52,9 +52,9 @@ public class Parser {
         String[] testName = (description.trim()).split("n/");
         try {
             if (((description.trim()).isEmpty()) || (!description.contains("n/")) || (words.length < 2)) {
-                throw new DinerDirectorException(Messages.MESSAGE_MISSING_PARAM);
+                throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_PARAM);
             } else if ((testName.length > 2) || (words.length > 2)) {
-                throw new DinerDirectorException(Messages.MESSAGE_EXCESS_PARAM);
+                throw new DinerDirectorException(Messages.ERROR_DEADLINE_EXCESS_PARAM);
             }
         } catch (DinerDirectorException e) {
             System.out.println(e);
@@ -74,7 +74,7 @@ public class Parser {
     private Command prepareViewDeadlineCommand(String userInput){
         try {
             if(!(userInput.trim()).isEmpty()){
-                throw new DinerDirectorException(Messages.MESSAGE_EXCESS_LIST_PARAM);
+                throw new DinerDirectorException(Messages.ERROR_DEADLINE_EXCESS_LIST_PARAM);
             }
         } catch (DinerDirectorException e) {
             System.out.println(e);
@@ -94,10 +94,10 @@ public class Parser {
         try {
             index = Integer.parseInt((description.trim())) - 1;
             if (description.isEmpty()) {
-                throw new DinerDirectorException(Messages.MESSAGE_MISSING_INDEX);
+                throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_INDEX);
             }
         } catch (NumberFormatException e) {
-            System.out.println(Messages.MESSAGE_MISSING_INDEX);
+            System.out.println(Messages.ERROR_DEADLINE_MISSING_INDEX);
             return new IncorrectCommand();
         } catch (DinerDirectorException e) {
             System.out.println(e);

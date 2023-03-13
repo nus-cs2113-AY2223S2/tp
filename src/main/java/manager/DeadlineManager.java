@@ -41,9 +41,9 @@ public class DeadlineManager {
     public static void printDeadlines(TextUi ui) {
         try {
             if (deadlines.isEmpty()) {
-                throw new DinerDirectorException(Messages.MESSAGE_EMPTY_LIST);
+                throw new DinerDirectorException(Messages.MESSAGE_DEADLINE_EMPTY_LIST);
             }
-            System.out.println(Messages.MESSAGE_VIEW_LIST);
+            System.out.println(Messages.MESSAGE_DEADLINE_VIEW_LIST);
             for (int i = 1; i <= deadlines.size(); i++) {
                 ui.printMessage(i + ". " + deadlines.get(i - 1).toString());
             }
@@ -63,7 +63,7 @@ public class DeadlineManager {
             deadlines.remove(index);
             ui.printMessage(String.format(Messages.MESSAGE_NUMBER_OF_DEADLINES, deadlines.size()));
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(Messages.MESSAGE_INVALID_INDEX);
+            System.out.println(Messages.ERROR_DEADLINE_INVALID_INDEX);
         }
     }
 }
