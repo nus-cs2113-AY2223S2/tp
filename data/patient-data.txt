@@ -4,9 +4,9 @@ Jerald
 Fever
 12
 Bob
-1
-Fever
+0
 abcd
 kl
-1
+2
 Fever
+Headache

@@ -18,13 +18,11 @@ import java.util.Scanner;
 public class Duke {
 
     public static String password = ""; // Stores user's password
-    public static String name = ""; //Stores user name
 
     /**
+     * Main entry-point for the java.duke.Duke application.
      * @author Jeraldchen
-     *     Main entry-point for the java.duke.Duke application.
      */
-    //@@author Jeraldchen
     public static void main(String[] args) {
         String logo = " ____         ____        _        \n"
                 + "|  _ \\  ___  |  _ \\ _  _ | | _____ \n"
@@ -60,10 +58,10 @@ public class Duke {
     }
 
     /**
+     * Sets the password.
      * @author Thunderdragon221
-     *     Sets the password.
      *
-     *     @param userPassword password to be set.
+     * @param userPassword password to be set.
      */
     public static void setPassword(String userPassword) {
         password = userPassword;
@@ -76,13 +74,5 @@ public class Duke {
      */
     public static String getPassword() {
         return password;
-    }
-
-    /*
-     * @author Geeeetyx
-     *
-     */
-    public static String getName() {
-        return name;
     }
 }
