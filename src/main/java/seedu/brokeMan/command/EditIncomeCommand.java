@@ -25,10 +25,8 @@ public class EditIncomeCommand extends Command {
 
     public void execute() {
         if (isEditIncome) {
-            System.out.println(type);
             IncomeList.editIncomeDouble(type, index, newIncome);
         } else {
-            System.out.println(type);
             IncomeList.editIncome(type, index, newEntry);
         }
     }

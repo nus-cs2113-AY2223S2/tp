@@ -48,6 +48,39 @@
 |
 |  -----------------------------------------------------------------------
 |
+|  Enter command: |  You have successfully added [$400.00 of salary - 12pm]
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  You have successfully added [$600.00 of stocks - 6pm]
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Here are the incomes you have made
+|  1. $400.00 of salary - 12pm
+|  2. $600.00 of stocks - 6pm
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited income.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited income.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited income.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully deleted income.
+|
+|  Enter command: |  Here are the incomes you have made
+|  1. $700.00 of pay - 12pm
+|
+|  -----------------------------------------------------------------------
+|
 |  Enter command: |  Exiting program...
 |
 |  -----------------------------------------------------------------------
