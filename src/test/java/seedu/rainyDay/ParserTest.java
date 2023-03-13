@@ -1,6 +1,7 @@
 package seedu.rainyDay;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.rainyDay.RainyDay.financialReport;
 
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
@@ -21,8 +22,9 @@ class ParserTest {
             FinancialReport testReport = new FinancialReport(statements);
             testReport.addStatement(new FinancialStatement("noodles", "in", 5));
             Parser.parseUserInput("add -in noodles $5");
-            assertEquals(RainyDay.financialReport.getFullStatement(0),
+            assertEquals(financialReport.getFullStatement(0),
                     testReport.getFullStatement(0));
+            financialReport.clearReport();
         } catch (Exception e) {
             System.out.println("Wrong input format! Please refer to help for correct user input!");
         }
@@ -35,8 +37,9 @@ class ParserTest {
             FinancialReport testReport = new FinancialReport(statements);
             testReport.addStatement(new FinancialStatement("noodles", "out", 5));
             Parser.parseUserInput("add -out noodles $5");
-            assertEquals(RainyDay.financialReport.getFullStatement(0),
+            assertEquals(financialReport.getFullStatement(0),
                     testReport.getFullStatement(0));
+            financialReport.clearReport();
         } catch (Exception e) {
             System.out.println("Wrong input format! Please refer to help for correct user input!");
         }
@@ -56,8 +59,6 @@ class ParserTest {
         } catch (Exception e) {
             System.out.println("Wrong input format! Please refer to help for correct user input!");
         }
+        financialReport.clearReport();
     }
-
-
-
 }
