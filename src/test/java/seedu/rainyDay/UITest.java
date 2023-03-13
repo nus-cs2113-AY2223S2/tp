@@ -1,10 +1,12 @@
 package seedu.rainyDay;
 
-import modules.*;
-import org.junit.*;
+import modules.UI;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
