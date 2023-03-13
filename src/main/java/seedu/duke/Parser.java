@@ -15,7 +15,7 @@ public class Parser {
     private static final Integer UPC_INDEX = 2;
     private static final Integer QTY_INDEX = 3;
     private static final Integer PRICE_INDEX = 4;
-    private static Scanner in = new Scanner(System.in);
+    public static Scanner in = new Scanner(System.in);
     private ArrayList<String> parsedInfo = new ArrayList<>();
     private String commandWord;
     private String commandInfo;
@@ -191,39 +191,33 @@ public class Parser {
     } */
 
     public void parseRemove(String rawInput) {
-        //if n/name or upc/UPC delete item from the list completely
-        // f/item or f/category or f/price or f/tag or index in list to delete
+        // using f/item to remove using upc or f/index to remove using index of item in list
         try {
             if (rawInput == null) {
                 throw new MissingParametersException();
             }
             String[] commands = rawInput.split(" ");
-            switch(commands[0]) { // check for f/ commands
-            case "f/item" : //delete using upc (since unique)
+            switch(commands[0]) {
+            case "f/item":
                 if (!commands[1].startsWith("upc/") || commands.length == 1) {
                     throw new MissingParametersException();
                 }
-                Inventory.removeByUpc(commands[1]); // "upc/...."
+                Inventory.removeByUpc(commands[1]);
                 break;
-//            case "f/price":
-//                if(commands.length!=3){
-//                    throw new MissingParametersException();
-//                }
-//                parseFilterPrice(commands);
-//                break;
-//
-//            case "f/category":
-//            case "f/tag":
-//                if(commands.length<2){
-//                    throw new MissingParametersException();
-//                }
-//                parseFilterCategoryOrTag(commands, commands[0]);
-//                break;
+            case "f/index":
+                try {
+                    int itemIndex = Integer.parseInt(commands[1]);
+                    System.out.println(itemIndex);
+                    Inventory.removeItemAtIndex(itemIndex);
+                } catch (IndexOutOfBoundsException|NumberFormatException e) {
+                    Ui.printInvalidIndex();
+                }
+                break;
             default:
                 throw new MissingParametersException();
             }
         } catch (MissingParametersException e) {
-            System.out.println("exception");
+            Ui.printInvalidRemove();
         }
     }
 }

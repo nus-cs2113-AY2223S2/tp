@@ -27,7 +27,7 @@ public class Ui {
     public static final String SUCCESS_LIST = "Here are the items in your inventory:";
 
     public static final String INVALID_LIST = "There are no items in your inventory.";
-    public static final String CONFIRM_MESSAGE = "Are you sure you want this item to be permanently deleted? (Y/N)";
+    public static final String CONFIRM_MESSAGE = "Are you sure you want this item to be permanently deleted?\n(Y/N)";
 
     public static final int NAME_COL_WIDTH = 15;
     public static final int UPC_COL_WIDTH = 12;
@@ -52,9 +52,14 @@ public class Ui {
     private static final String TABLE_LEFT = "| ";
     private static final String TABLE_RIGHT = " |";
     private static final String TABLE_MIDDLE = " | ";
+    private static final String SUCCESS_REMOVE = "Successfully removed the following item: ";
     private static final String NOT_REMOVING = "Ok...You changed your mind really quickly.";
-    private static final String INVALID_REPLY = "Invalid response, only yes (Y) or no (N) answer is allowed. " +
+    private static final String INVALID_REPLY = "Invalid response, only yes (Y) or no (N) answer is allowed.\n" +
             "Please try again :(";
+    private static final String INVALID_INDEX = "This index is invalid.\nPlease enter a number ";
+    public static final String INVALID_REMOVE_FORMAT = "Wrong/Incomplete Format! Please remove items in the following "
+            + "format(s):\n" + "Remove by UPC: remove f/item upc/[UPC]\n" +
+            "Remove by item index: remove f/index [INDEX]";
 
     public Ui() {
         greetUser();
@@ -325,7 +330,7 @@ public class Ui {
         System.out.println(LINE);
     }
 
-    public static void printInvalidRemove() {
+    public static void printInvalidReply() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + INVALID_REPLY + ANSI_RESET);
         System.out.println(LINE);
@@ -337,10 +342,43 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public static void printSuccessRemove(Item itemToRemove) {
+        System.out.println(LINE);
+        System.out.println(ANSI_BLUE + SUCCESS_REMOVE + ANSI_RESET);
+        System.out.println(itemToRemove.toString());
+        System.out.println(LINE);
+    }
     public static void printConfirmMessage() {
         System.out.println(LINE);
         System.out.println(ANSI_BLUE + CONFIRM_MESSAGE + ANSI_RESET);
         System.out.println(LINE);
     }
+
+    public static void printInvalidIndex() {
+        System.out.println(LINE);
+        int listSize = Inventory.getItemList().size();
+        switch (listSize) {
+        case 0:
+            System.out.println(ANSI_RED + INVALID_LIST + ANSI_RESET);
+            break;
+        case 1:
+            System.out.println(ANSI_RED + INVALID_INDEX + "0 to remove item successfully." + ANSI_RESET);
+            break;
+        default:
+            System.out.println(ANSI_RED + INVALID_INDEX + "between 0 to " + (listSize-1) +
+                    " to remove item successfully." + ANSI_RESET);
+            break;
+        }
+
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidRemove() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_REMOVE_FORMAT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+
 }
 
