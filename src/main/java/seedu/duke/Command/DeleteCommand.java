@@ -1,6 +1,5 @@
 package seedu.duke.Command;
 
-import seedu.duke.VenueList;
 
 public class DeleteCommand extends Command{
     protected int taskNum;
@@ -10,7 +9,7 @@ public class DeleteCommand extends Command{
     }
 
     @Override
-    public void execute(VenueList venueList) {
-
+    public void execute() {
+        System.out.println("delete command");
     }
 }

@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.Command.Command;
+
 import java.util.Scanner;
 
 public class Duke {
@@ -15,9 +17,5 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
-        VenueList venueList = new VenueList(Storage.venueListInit());
-        venueList.print();
     }
 }

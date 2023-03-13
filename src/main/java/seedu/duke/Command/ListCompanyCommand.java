@@ -1,6 +1,5 @@
 package seedu.duke.Command;
 
-import seedu.duke.VenueList;
 
 public class ListCompanyCommand extends Command{
     public ListCompanyCommand(String commandType){
@@ -8,7 +7,7 @@ public class ListCompanyCommand extends Command{
     }
 
     @Override
-    public void execute(VenueList venueList) {
-
+    public void execute() {
+        System.out.println("list company command");
     }
 }

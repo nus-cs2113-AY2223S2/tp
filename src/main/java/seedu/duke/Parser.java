@@ -1,18 +1,18 @@
 package seedu.duke;
 
-import seedu.duke.Command.Command;
-import seedu.duke.Command.DeleteCommand;
-import seedu.duke.Command.ListCompanyCommand;
-import seedu.duke.Command.ListVenueCommand;
+import seedu.duke.Command.*;
 
 public interface Parser {
-    static Command parse(String input){
+    static Command parse(String input) throws WrongFormatException{
 
         Ui ui = new Ui();
         String[] inputWords = input.split(" ");
         String command = inputWords[0];
         switch (command) {
         case "list":
+            if (inputWords.length == 1){
+                throw new WrongFormatException();
+            }
             if (inputWords[1].equals("companies")) {
                 ListCompanyCommand companyCommand = new ListCompanyCommand(command);
                 return companyCommand;
@@ -20,9 +20,10 @@ public interface Parser {
                 ListVenueCommand venueCommand = new ListVenueCommand(command);
                 return venueCommand;
             }
-            break;
+            throw new WrongFormatException();
         case "add":
-            System.out.println(input.replaceFirst(command, "").trim());
+            System.out.println(inputWords[0]);
+            System.out.println(inputWords[1]);
             break;
         case "delete":
             int taskNum = Integer.parseInt(inputWords[1]) - 1;
@@ -35,8 +36,9 @@ public interface Parser {
             ui.showExitMessage();
             break;
         default:
-            System.out.println("Unknown input!");
+            throw new WrongFormatException();
         }
-        return null;
+        Command c = new Command(command);
+        return c;
     }
 }

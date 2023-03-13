@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.venue.Venue;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.File;
