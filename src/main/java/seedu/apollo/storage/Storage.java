@@ -174,7 +174,7 @@ public class Storage {
             newModuleList = readModuleFileContents(save, ui, allModules);
             return newModuleList;
         } catch (FileNotFoundException e) {
-            ui.printErrorFileNotFound();
+            logger.log(Level.INFO, "File for ModuleList not found, creating new file.");
             save.createNewFile();
             return newModuleList;
         }

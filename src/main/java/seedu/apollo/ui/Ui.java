@@ -246,15 +246,6 @@ public class Ui {
     }
 
     /**
-     * Prints error message if the local save file cannot be found at the filepath.
-     */
-    public void printErrorFileNotFound() {
-        showLine();
-        System.out.println("Save file not found, initialising empty list...");
-        showLine();
-    }
-
-    /**
      * Prints error message if the deadline entered does not fit the format.
      */
     public void printInvalidDeadline() {
