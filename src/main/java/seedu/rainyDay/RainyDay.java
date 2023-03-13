@@ -27,15 +27,15 @@ public class RainyDay {
         UI.printLogo();
         UI.greetUser(input.nextLine());
 
-        boolean isExit = false;
-        while (!isExit) {
+        while (true) {
             try {
-                String userInput = UI.getUserInput();
+                String userInput = UI.getUserInput(input);
                 if (userInput.equalsIgnoreCase(Command.COMMAND_EXIT)) {
-                    isExit = true;
+                    break;
                 }
                 Parser.parseUserInput(userInput);
             } catch (Exception e) {
+                System.out.println(e.getMessage());
                 UI.wrongInputFormat();
                 break;
             }

@@ -3,6 +3,4 @@ Hello from rainyDay
 What is your name?
 Welcome John
 Done! Added: in for noodles, +$5
-sorry! I do not understand your input!
-Please refer to the help table!
 Bye John

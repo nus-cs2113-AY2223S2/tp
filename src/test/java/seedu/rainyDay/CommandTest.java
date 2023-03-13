@@ -93,9 +93,9 @@ public class CommandTest {
         financialReport.addStatement(new FinancialStatement("pork", "out", 5));
         financialReport.addStatement(new FinancialStatement("angpao", "in", 3000));
         Command.generateReport(financialReport);
-        String expectedReport = String.join(System.lineSeparator(), "1. Ipad -$120 (out)", "2. pork -$5 (out)",
-                "3. angpao +$3000 (in)" + System.lineSeparator(), "Inflow: $3000", "Outflow: $125",
-                "Remaining value: $2875" + System.lineSeparator());
+        String expectedReport = String.join(System.lineSeparator(), "Here is your full financial report!",
+                "1. Ipad -$120 (out)", "2. pork -$5 (out)", "3. angpao +$3000 (in)" + System.lineSeparator(),
+                "Inflow: $3000", "Outflow: $125", "Remaining value: $2875" + System.lineSeparator());
         assertEquals(expectedReport, outContent.toString());
         restoreStreams();
     }

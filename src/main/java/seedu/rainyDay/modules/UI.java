@@ -24,8 +24,7 @@ public class UI {
         System.out.println("Welcome " + username);
     }
 
-    public static String getUserInput() {
-        Scanner input = new Scanner(System.in);
+    public static String getUserInput(Scanner input) {
         String userInput = input.nextLine().trim();
         return userInput;
     }
@@ -40,12 +39,25 @@ public class UI {
                 deletedStatementDescription, System.lineSeparator());
     }
 
+    public static void acknowledgeViewCommand() {
+        System.out.println("Here is your full financial report!");
+    }
+
+    public static void printSummary(int inflow, int outflow) {
+        String inflowInformation = "Inflow: $" + inflow;
+        String outflowInformation = "Outflow: $" + outflow;
+        String remainingValueInformation = "Remaining value: $" + (inflow - outflow);
+        String summary = String.join(System.lineSeparator(), inflowInformation, outflowInformation,
+                remainingValueInformation);
+        System.out.println(summary);
+    }
+
+
     public static void wrongInputFormat() {
         System.out.println(WRONG_INPUT_FORMAT);
     }
 
     public static void displayHelp() {
-        //thanks bao mi hua benjamin
         System.out.println(DISPLAY_HELP);
     }
 

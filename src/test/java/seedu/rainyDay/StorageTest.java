@@ -15,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StorageTest {
+
     @Test
     public void writeToFileTest_fileExists() {
-
         ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport financialReport = new FinancialReport(statements);
         String filePath = "rainyDay.txt";
@@ -29,13 +29,13 @@ public class StorageTest {
     public void writeToFileTest_contentMatch() throws IOException, ClassNotFoundException {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport financialReport = new FinancialReport(statements);
-        String filePath = "rainyDay.txt";
         financialReport.addStatement(new FinancialStatement("noodles", "in", 5));
-
+        String filePath = "rainyDay.txt";
         Storage.writeToFile(financialReport, filePath);
         FinancialReport financialReportLoaded = new FinancialReport(Storage.loadFromFile(filePath));
-
-        assertEquals(Command.generateReport(financialReport), Command.generateReport(financialReportLoaded));
+        Command.generateReport(financialReportLoaded);
+        assertEquals(financialReport.getFullStatement(0),
+                financialReportLoaded.getFullStatement(0));
     }
 
     @Test
