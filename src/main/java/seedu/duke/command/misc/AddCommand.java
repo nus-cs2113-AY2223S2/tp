@@ -20,24 +20,24 @@ public class AddCommand extends ExecutableCommand {
     }
 
     private static void addToExistingIngredients(DukeSession dukeSession, Double quantity, int index) {
-        double newQuantity = DukeSession.ingredients.get(index).getQuantity() + quantity;
-        DukeSession.ingredients.get(index).setQuantity(newQuantity);
+        double newQuantity = DukeSession.getIngredients().get(index).getQuantity() + quantity;
+        DukeSession.getIngredients().get(index).setQuantity(newQuantity);
         dukeSession.getUi().printMessage("Here is the new quantity of the ingredient:");
-        dukeSession.getUi().printMessage(String.valueOf(DukeSession.ingredients.get(index)));
-        dukeSession.getIngredientStorage().writeIngredientsToFile(DukeSession.ingredients);
+        dukeSession.getUi().printMessage(String.valueOf(DukeSession.getIngredients().get(index)));
+        dukeSession.getIngredientStorage().writeIngredientsToFile(DukeSession.getIngredients());
     }
 
     private static void addNewIngredient(DukeSession dukeSession, Double quantity, String name) {
         Ingredient ingredient = new Ingredient(name, quantity);
-        DukeSession.ingredients.add(ingredient);
+        DukeSession.getIngredients().add(ingredient);
         dukeSession.getUi().printMessage("the following ingredient has been added");
         dukeSession.getUi().printMessage(String.valueOf(ingredient));
         dukeSession.getIngredientStorage().writeIngredientToFile(ingredient);
     }
 
     public static int findIndex(String name) {
-        for (int i = 0; i < DukeSession.ingredients.size(); i += 1) {
-            if (DukeSession.ingredients.get(i).getName().equals(name)) {
+        for (int i = 0; i < DukeSession.getIngredients().size(); i += 1) {
+            if (DukeSession.getIngredients().get(i).getName().equals(name)) {
                 return i;
             }
         }

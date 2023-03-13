@@ -12,7 +12,7 @@ class AddCommandTest {
     public void itemIsInListAndItemNotInList() {
         DukeSession dukeSession = new DukeSession();
         Ingredient ingredient = new Ingredient("apple", 2);
-        dukeSession.ingredients.add(ingredient);
+        dukeSession.getIngredients().add(ingredient);
         assertEquals(0,findIndex("apple"));
         assertEquals(-1, findIndex("orange"));
     }
@@ -21,8 +21,8 @@ class AddCommandTest {
     public void addNewIngredientAndAddToExistingIngredient() {
         DukeSession dukeSession = new DukeSession();
         new AddCommand("apple", "2").execute(dukeSession);
-        assertEquals(2, dukeSession.ingredients.get(0).getQuantity());
+        assertEquals(2, dukeSession.getIngredients().get(0).getQuantity());
         new AddCommand("apple", "3").execute(dukeSession);
-        assertEquals(5, dukeSession.ingredients.get(0).getQuantity());
+        assertEquals(5, dukeSession.getIngredients().get(0).getQuantity());
     }
 }

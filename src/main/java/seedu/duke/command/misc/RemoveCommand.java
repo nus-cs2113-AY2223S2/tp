@@ -20,8 +20,8 @@ public class RemoveCommand extends ExecutableCommand {
     }
 
     public static int findIndex(String name) {
-        for (int i = 0; i < DukeSession.ingredients.size(); i += 1) {
-            if (DukeSession.ingredients.get(i).getName().equals(name)) {
+        for (int i = 0; i < DukeSession.getIngredients().size(); i += 1) {
+            if (DukeSession.getIngredients().get(i).getName().equals(name)) {
                 return i;
             }
         }
@@ -38,18 +38,18 @@ public class RemoveCommand extends ExecutableCommand {
         if (indexOfExistingIngredient == -1) {
             throw new DukeException("OOPS, ingredient is not in fridge");
         }
-        if (quantity > DukeSession.ingredients.get(indexOfExistingIngredient).getQuantity()) {
+        if (quantity > DukeSession.getIngredients().get(indexOfExistingIngredient).getQuantity()) {
             throw new DukeException("OOPS, quantity to remove is more than quantity in the fridge");
         }
     }
 
     private static void removeIngredient(DukeSession dukeSession, Double quantity, String name) {
-        double fridgeQuantity = DukeSession.ingredients.get(indexOfExistingIngredient).getQuantity();
+        double fridgeQuantity = DukeSession.getIngredients().get(indexOfExistingIngredient).getQuantity();
         double newQuantity = fridgeQuantity - quantity;
-        DukeSession.ingredients.get(indexOfExistingIngredient).setQuantity(newQuantity);
+        DukeSession.getIngredients().get(indexOfExistingIngredient).setQuantity(newQuantity);
         dukeSession.getUi().printMessage(String.format("Success! new quantity of %s is %f", name, newQuantity));
         if (newQuantity == 0) {
-            DukeSession.ingredients.remove(indexOfExistingIngredient);
+            DukeSession.getIngredients().remove(indexOfExistingIngredient);
             dukeSession.getUi().printMessage(String.format("All %s has been removed", name));
         }
     }
