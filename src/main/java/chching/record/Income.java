@@ -7,6 +7,4 @@ public class Income extends Record{
         this.date = date;
         this.value = value;
     }
-
-
 }
