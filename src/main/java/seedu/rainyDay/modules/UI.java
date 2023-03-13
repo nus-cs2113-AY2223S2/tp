@@ -6,8 +6,10 @@ import java.util.Scanner;
 
 public class UI {
 
-    public static final String WRONG_INPUT_FORMAT = "Wrong input format! Please refer to 'help' for correct user input!";
-    public static final String WRONG_ADD_FORMAT = "add input not correct! Please refer to 'help' for correct user inputs for 'add' commands";
+    public static final String WRONG_INPUT_FORMAT = "Wrong input format! " +
+            "Please refer to 'help' for correct user input!";
+    public static final String WRONG_ADD_FORMAT = "'add' input not correct! " +
+            "Please refer to 'help' for correct user inputs for 'add' commands";
     public static final String WRONG_DELETE_INDEX = "Please ensure delete index is a number!";
     public static final String NO_DELETE_INDEX = "Please include a delete index!";
     public static final String DISPLAY_HELP = "Have you tried reading the UG?";
