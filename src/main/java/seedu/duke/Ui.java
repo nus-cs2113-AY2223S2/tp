@@ -82,15 +82,15 @@ public class Ui {
     /**
      * Prints list of events
      */
-    public static void listTask(ArrayList<Event> taskList) {
+    public static void listTask(ArrayList<Event> eventList) {
         printDash();
-        if (taskList.size() == 0) {
+        if (eventList.size() == 0) {
             System.out.println("There are no events!");
             printDash();
             return;
         }
-        for (int i = 0; i < taskList.size(); i++) {
-            System.out.println("   > " + Integer.toString(i + 1) + "." + taskList.get(i).toString());
+        for (int i = 0; i < eventList.size(); i++) {
+            System.out.println("   > " + Integer.toString(i + 1) + "." + eventList.get(i).toString());
         }
         printDash();
     }
