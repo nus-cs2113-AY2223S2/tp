@@ -70,16 +70,16 @@ public class Storage {
     public static void setUpLogger(){
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
-        ConsoleHandler ch = new ConsoleHandler();
-        ch.setLevel(Level.SEVERE);
-        logger.addHandler(ch);
+        ConsoleHandler logConsole = new ConsoleHandler();
+        logConsole.setLevel(Level.SEVERE);
+        logger.addHandler(logConsole);
         try {
 
             if (!new File("apollo.log").exists()) {
                 new File("apollo.log").createNewFile();
             }
 
-            FileHandler logFile = new FileHandler("apollo.log");
+            FileHandler logFile = new FileHandler("apollo.log", true);
             logFile.setLevel(Level.FINE);
             logger.addHandler(logFile);
 
