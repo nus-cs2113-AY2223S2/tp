@@ -1,12 +1,12 @@
 package seedu.commands;
 
-import seedu.expenditure.AccommodationExpenditure;
-import seedu.expenditure.ExpenditureList;
+import seedu.Expenditure.AccommodationExpenditure;
+import seedu.Expenditure.ExpenditureList;
 
 import java.time.LocalDate;
 
-public class AccommodationExpenditureCommand {
-    public static final String COMMAND_WORD = "academic";
+public class AccommodationExpenditureCommand extends Command{
+    public static final String COMMAND_WORD = "accommodation";
     private final String accommodationExpenditureDescription;
     private final double accommodationExpenditureValue;
     private final LocalDate accommodationExpenditureDate;

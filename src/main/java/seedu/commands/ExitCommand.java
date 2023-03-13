@@ -1,6 +1,6 @@
 package seedu.commands;
 
-import seedu.expenditure.ExpenditureList;
+import seedu.Expenditure.ExpenditureList;
 
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "exit";
@@ -8,10 +8,12 @@ public class ExitCommand extends Command {
     /**
      * Contructor.
      */
-    public ExitCommand() {}
+    public ExitCommand() {
+    }
 
     @Override
     public CommandResult execute(ExpenditureList expenditures) {
-        return new CommandResult("BYE!");
+        return new CommandResult(
+                "Goodbye. Your progress towards your financial goals is important to us. See you again soon!");
     }
 }

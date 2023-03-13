@@ -1,4 +1,4 @@
-package seedu.expenditure;
+package seedu.Expenditure;
 
 import java.time.LocalDate;
 
@@ -32,5 +32,9 @@ public class LendExpenditure extends Expenditure {
     @Override
     public String toString() {
         return String.format("[Borrow] || %s || %s || %s", getLenderName(), super.toString(), getDeadline());
+    }
+    @Override
+    public String getExpenditureType() {
+        return "L";
     }
 }

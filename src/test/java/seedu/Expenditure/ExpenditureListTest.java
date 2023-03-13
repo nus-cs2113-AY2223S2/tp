@@ -1,4 +1,4 @@
-package seedu.expenditure;
+package seedu.Expenditure;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 public class ExpenditureListTest {
     private ExpenditureList testExpenditures = new ExpenditureList();
+
     @BeforeEach
     public void setUp() {
         AcademicExpenditure testAcademicExpenditure = new AcademicExpenditure("Laptop",

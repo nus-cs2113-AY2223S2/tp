@@ -1,29 +1,62 @@
-package seedu.myledger;
+package seedu.MyLedger;
 
-import seedu.expenditure.ExpenditureList;
+import seedu.Parser.MainInputParser;
+import seedu.TxtData.TxtFileStatus;
+import seedu.Expenditure.ExpenditureList;
+import seedu.commands.Command;
+import seedu.commands.CommandResult;
+import seedu.ui.Ui;
+
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class MyLedger {
-    private ExpenditureList expenditures;
+    private static ExpenditureList expenditures;
 
-    private void start() {
+    private static void start() {
         expenditures = new ExpenditureList();
     }
 
-    private void run() {
-
-    }
-
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+        try {
+            TxtFileStatus.checkFile();
+            MyLedger.runMyLedger();
+        } catch (FileNotFoundException e) {
+            System.out.println("File does not exist.");
+        }
     }
+
+    public static void runMyLedger() {
+        start();
+        Ui.greetUser();
+        readUserInputs();
+    }
+
+    public static void readUserInputs() {
+        Scanner in = new Scanner(System.in);
+        String line = in.nextLine();
+        while (!hasProcessedAllInputs(line, expenditures)) {
+            line = in.nextLine();
+        }
+        in.close();
+    }
+
+    public static boolean hasProcessedAllInputs(String line, ExpenditureList expenditures) {
+        // Parses the input
+        Command finalCommand = MainInputParser.parseInputs(line);
+        CommandResult result = finalCommand.execute(expenditures);
+        String textOutput = result.getCommandResult();
+        ExpenditureList.saveList();
+        System.out.println(textOutput);
+        return finalCommand.isExit();
+    }
+
+    public static void initializeList() {
+        try {
+            TxtFileStatus.initializeExpenditureList(expenditures);
+        } catch (FileNotFoundException e){
+            System.out.println("Error finding save file during initialization");
+        }
+    }
+
 }
