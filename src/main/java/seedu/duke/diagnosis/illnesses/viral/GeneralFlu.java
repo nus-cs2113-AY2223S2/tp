@@ -12,8 +12,7 @@ public class GeneralFlu extends Illness {
         super("General Flu", 2, false, new ArrayList<>(
                 List.of(Symptom.SNEEZING,
                         Symptom.BLOCKED_NOSE,
-                        Symptom.CHILLS,
-                        Symptom.FATIGUE
+                        Symptom.CHILLS
                 ))
         );
     }

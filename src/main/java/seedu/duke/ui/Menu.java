@@ -206,6 +206,24 @@ public class Menu {
                 System.out.println("You have already entered this symptom!");
                 return null;
             }
+        case "h":
+        case "H":
+            if (!symptoms.contains(Symptom.SNEEZING)) {
+                assert Symptom.SNEEZING != null : "Sore throat should not be null";
+                return Symptom.SNEEZING;
+            } else {
+                System.out.println("You have already entered this symptom!");
+                return null;
+            }
+        case "i":
+        case "I":
+            if (!symptoms.contains(Symptom.BLOCKED_NOSE)) {
+                assert Symptom.BLOCKED_NOSE != null : "Sore throat should not be null";
+                return Symptom.BLOCKED_NOSE;
+            } else {
+                System.out.println("You have already entered this symptom!");
+                return null;
+            }
         default:
             System.out.println("Invalid input!");
             return null;
@@ -238,6 +256,8 @@ public class Menu {
         System.out.println("e. Headache");
         System.out.println("f. Chills");
         System.out.println("g. Fatigue");
+        System.out.println("h. Sneezing");
+        System.out.println("i. Blocked Nose");
         System.out.println("\nPlease enter a symptom.");
     }
 
