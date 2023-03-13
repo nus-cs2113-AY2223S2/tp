@@ -12,7 +12,7 @@ public class Messages {
             "GENERIC COMMANDS:\n%s\n"+
             "MEETING COMMANDS:\n%s\n"+
             "DEADLINE COMMANDS:\n%s\n"+
-            "RECIPE COMMANDS:\n%s\n"+
+            "MENU COMMANDS:\n%s\n"+
             "WORKER COMMANDS:\n%s";
     public static final String MESSAGE_GENERIC_COMMANDS =
             "help - View list of commands\n" +
@@ -26,9 +26,9 @@ public class Messages {
             "delete_deadline n/<name>\n" +
             "view_deadlines\n";
     public static final String MESSAGE_RECIPE_COMMANDS =
-            "add_recipe n/<name>\n" +
-            "delete_recipe n/<name>\n" +
-            "view_recipes\n";
+            "add_dish\n" +
+            "delete_dish n/<name>\n" +
+            "view_dish\n";
     public static final String MESSAGE_WORKER_COMMANDS =
             "add_worker n/<name> w/<working day> d/<date of birth> p/<phone>\n" +
             "delete_worker n/<name>\n" +
@@ -54,9 +54,9 @@ public class Messages {
     public static final String ERROR_DEADLINE_EXCESS_LIST_PARAM =
             "Excess input detected! Please only type \"view_deadlineS\".";
 
-    public static final String MESSAGE_INVALID_INDEX_FOR_DISH_COMMAND = "Your index does not contain a valid dish!";
-    public static final String MESSAGE_NOT_A_VALID_INTEGER_COMMAND = "Your index has to be an integer!";
-    public static final String MESSAGE_BLANK_DISH_NAME_COMMAND = "Name of dish cannot be empty!";
-    public static final String MESSAGE_NEGATIVE_PRICE_COMMAND = "Price of dish cannot be negative!";
+    public static final String ERROR_DISH_INVALID_INDEX = "Your index does not contain a valid dish!";
+    public static final String ERROR_DISH_NOT_A_VALID_INTEGER = "Your index has to be an integer!";
+    public static final String ERROR_DISH_BLANK_DISH_NAME_COMMAND = "Name of dish cannot be empty!";
+    public static final String ERROR_DISH_NEGATIVE_PRICE_COMMAND = "Price of dish cannot be negative!";
 
 }

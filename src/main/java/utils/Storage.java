@@ -1,7 +1,7 @@
 package utils;
 
 /**
- * Parser to tokenize the input
+ * Use for storing persistent data
  */
 public class Storage {
 }

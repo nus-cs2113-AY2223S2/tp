@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class AddDishCommand extends Command {
 
-    public static final String ADD_DISH_COMMAND = "add_dish";
+    public static final String COMMAND_WORD = "add_dish";
     private String dishName;
     private Integer dishPrice;
     private ArrayList<String> ingredientsList;

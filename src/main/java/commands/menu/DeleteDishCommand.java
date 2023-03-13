@@ -6,7 +6,7 @@ import ui.TextUi;
 
 public class DeleteDishCommand extends Command {
 
-    public static final String DELETE_DISH_COMMAND = "delete_dish";
+    public static final String COMMAND_WORD = "delete_dish";
     private int index;
 
     public DeleteDishCommand(int index) {

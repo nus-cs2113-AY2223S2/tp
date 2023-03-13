@@ -6,7 +6,7 @@ import ui.TextUi;
 
 public class ViewDishCommand extends Command {
 
-    public static final String VIEW_DISH_COMMAND = "view_dish";
+    public static final String COMMAND_WORD = "view_dish";
 
     public ViewDishCommand() {
     }
