@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import java.util.Arrays;
+
 public class Parser {
 
     private final static int OFFSET = 1;
@@ -32,7 +34,8 @@ public class Parser {
             parseListCommand(eventList);
             break;
         case "edit":
-            // parseEditCommand();
+            parseEditCommand(remainder, eventList);
+            break;
         default:
             Ui.addErrorMsg();
             break;
@@ -75,5 +78,38 @@ public class Parser {
             Ui.addErrorMsg(); //placeholder
         }
         //TODO: Show successful add on UI. (For all cases)
+    }
+    private static void parseEditCommand(String remainder, EventList eventList){
+        String[] details = remainder.split("-");
+        String[] information = new String[4];
+        Arrays.fill(information, "");
+        for (int i = 2; i < details.length; i++){
+            String field = details[i].substring(0,2);
+            String change = details[i].substring(2).trim();
+            switch(field) {
+            case ("st"):
+                information[0] = change;
+                break;
+            case ("sd"):
+                information[1] = change;
+                break;
+            case ("et"):
+                information[2] = change;
+                break;
+            case ("ed"):
+                information[3] = change;
+                break;
+            default:
+                break;
+            }
+        }
+        if (information[1].equals("")){  //Starting date field MUST NOT be empty.
+            //TODO: add exception for empty starting date
+            Ui.addErrorMsg();
+        }
+        else {
+            //TODO: link to taskList edit event
+            System.out.println(details[1].substring(2) + "," + information[0] + "," + information[1] + "," + information[2] + "," + information[3]);
+        }
     }
 }
