@@ -1,14 +1,15 @@
 package seedu.duke;
 import java.util.ArrayList;
+import java.io.IOException;
 
 public class Parser {
     private static ArrayList<University> universities = new DataReader().getUniversities();
-    private static ArrayList<Module> modules = new DataReader().getModules();
+    private static ArrayList<Module> puModules = new DataReader().getModules();
     private static final String LINE = "____________________________________________________________";
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
 
     public static ArrayList<String> parseCommand(String userInput) {
-        String[] input = userInput.split((""), 2);
+        String[] input = userInput.split((" "), 2);
         ArrayList<String> commandWords = new ArrayList<>();
         String commandInput = input[0];
         String commandSpecifics = input[1];
@@ -18,14 +19,14 @@ public class Parser {
     }
 
     public static void printPUModules(int univID) {
-        ArrayList<Module> puModules = new ArrayList<>();
-        for (Module module : modules) {
+        ArrayList<Module> puModulesToPrint = new ArrayList<>();
+        for (Module module : puModules) {
             if (module.getUnivId() == univID) {
-                puModules.add(module);
+                puModulesToPrint.add(module);
             }
         }
         int puModulesIndex = 0;
-        for (Module module : puModules) {
+        for (Module module : puModulesToPrint) {
             puModulesIndex++;
             String moduleCode = module.getModuleCode();
             String moduleName = module.getModuleName();
@@ -51,7 +52,7 @@ public class Parser {
         System.out.println(LINE);
     }
 
-    public static void printCurrentModList() {
+    public static void printCurrentModList(ArrayList<Module> modules) {
         int listIndex = 0;
         System.out.println(LINE);
         for (Module module : modules) {
@@ -69,4 +70,29 @@ public class Parser {
         }
         System.out.println(LINE);
     }
+
+    /**
+     * Deletes the module corresponding to the uni specified by user. Module will the removed from user's
+     * saved list of modules.
+     *
+     * @param indexToDelete  Index of that module that is given in user input.
+     * @param uniModuleList  The corresponding ArrayList of that specified uni.
+     * @param database       Database of the user's saved list of modules.
+     */
+    public static void deleteModule(int indexToDelete, ArrayList<Module> uniModuleList,
+                                    Storage database) {
+        int indexToZeroBased = indexToDelete - 1;
+        try {
+            uniModuleList.remove(indexToZeroBased);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Index out of bounds");
+        }
+
+        try {
+            database.writeListToFile(uniModuleList);
+        } catch (IOException e) {
+            System.out.println("Unable to save to database");
+        }
+    }
 }
+

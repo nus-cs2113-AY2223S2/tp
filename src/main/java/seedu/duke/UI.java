@@ -7,7 +7,7 @@ public class UI {
     // Todo: The userInput now is the whole string, and I am breaking it down into an Array of Strings here
     // Todo: This will be changed when the parser is added.
     public boolean executeUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
-                                      ArrayList<Module> allModules, Storage storage) {
+                                      ArrayList<Module> puModules, Storage storage) {
         ArrayList<String> userInputWords = Parser.parseCommand(userInput);
         String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
@@ -24,7 +24,7 @@ public class UI {
             } else {  // list PU name case
                 int indexOfFirstSpace = userInput.indexOf(' ');
                 String universityName = userInput.substring(indexOfFirstSpace + 1);
-                executeListPuModulesCommand(allModules, universities, universityName);
+                executeListPuModulesCommand(puModules, universities, universityName);
             }
             break;
         case "exit":
@@ -32,7 +32,7 @@ public class UI {
             executeExitCommand();
             break;
         case "add":
-            executeAddModuleCommand(storage, userCommandSecondKeyword, allModules);
+            executeAddModuleCommand(storage, userCommandSecondKeyword, puModules);
             break;
         case "remove":
             break; // Todo: Add remove function after darren PR
@@ -43,7 +43,7 @@ public class UI {
         return toContinue;
     }
     private void executeListCurrentModulesCommand(ArrayList<Module> modules) {
-        Parser.printCurrentModList();
+        Parser.printCurrentModList(modules);
     }
 
     // Todo: Right now, it uses university Name only but since university object has 3 attributes:
@@ -58,7 +58,7 @@ public class UI {
             University currentUniversity = universities.get(i);
             String currentUniversityName = currentUniversity.getUnivName();
             if (universityName.equals(currentUniversityName)) {
-                univId = currentUniversity.getUnivId();
+                univId = currentUniversity.getUnivId() + 1; //Todo: change magic literal
             }
         }
         Parser.printPUModules(univId);
