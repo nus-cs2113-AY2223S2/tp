@@ -29,12 +29,13 @@ public class RainyDay {
 
         while (true) {
             try {
-                String userInput = UI.getUserInput();
+                String userInput = UI.getUserInput(input);
                 if (userInput.equalsIgnoreCase(Command.COMMAND_EXIT)) {
                     break;
                 }
                 Parser.parseUserInput(userInput);
             } catch (Exception e) {
+                System.out.println(e.getMessage());
                 UI.wrongInputFormat();
                 break;
             }

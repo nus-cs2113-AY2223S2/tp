@@ -24,8 +24,7 @@ public class UI {
         System.out.println("Welcome " + username);
     }
 
-    public static String getUserInput() {
-        Scanner input = new Scanner(System.in);
+    public static String getUserInput(Scanner input) {
         String userInput = input.nextLine().trim();
         return userInput;
     }
