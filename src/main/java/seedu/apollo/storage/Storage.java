@@ -67,7 +67,7 @@ public class Storage {
      *
      * @throws IOException If logger file cannot be created.
      */
-    public static void setUpLogger(){
+    public static void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
         ConsoleHandler logConsole = new ConsoleHandler();
@@ -152,7 +152,7 @@ public class Storage {
      */
     public void updateModule(ModuleList modules) throws IOException {
         FileWriter overwrite = new FileWriter(moduleDataFilePath);
-        for (Module module: modules) {
+        for (Module module : modules) {
             String code = module.getCode();
             overwrite.write(code + "\n");
         }
@@ -162,7 +162,7 @@ public class Storage {
     /**
      * Reads all lines in the moduleData file, initialises them as an ModuleList of Modules.
      *
-     * @param ui Prints out error messages to user.
+     * @param ui         Prints out error messages to user.
      * @param allModules Contains all stored modules.
      * @return ModuleList of Tasks (containing data from save file / empty).
      * @throws IOException If save file is not found.
@@ -189,10 +189,11 @@ public class Storage {
      */
     public ModuleList loadModuleData() throws FileNotFoundException {
 
-        try{
+        try {
             ClassLoader classloader = Thread.currentThread().getContextClassLoader();
             Reader reader = new InputStreamReader(classloader.getResourceAsStream("data.json"));
-            Type moduleDataType = new TypeToken<ModuleList>(){}.getType();
+            Type moduleDataType = new TypeToken<ModuleList>() {
+            }.getType();
             Gson gson = new Gson();
             ModuleList moduleDataList = gson.fromJson(reader, moduleDataType);
             System.out.println("Module Data loaded");
@@ -220,8 +221,10 @@ public class Storage {
                 counter++;
             } catch (InvalidSaveFile e) {
                 ui.printInvalidSaveFile(counter, filePath);
+                logger.log(Level.INFO, "Error in reading data from file");
             }
         }
+        logger.log(Level.INFO, "Successfully read " + counter + " tasks from save file.");
         return newTaskList;
     }
 
