@@ -19,6 +19,7 @@ public class Parser {
      * @param choice Users choice of input.
      */
     public static void parseWelcome(String choice) {
+        assert choice != null : "Choice cannot be null";
         switch (choice) {
         case "1":
             Menu.register();
@@ -42,6 +43,7 @@ public class Parser {
      * @param choice Users choice of input.
     */
     public static void parseAccountCommand(String choice) {
+        assert choice != null : "Choice cannot be null";
         switch (choice) {
         case "1":
             ArrayList<Symptom> symptoms = Menu.getUserSymptoms();

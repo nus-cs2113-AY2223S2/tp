@@ -130,6 +130,7 @@ public class Menu {
         symptomChoice = scanner.nextLine();
         symptomToBeAdded = parseSymptomInput(symptoms, symptomChoice);
         if (symptomToBeAdded != null) {
+            assert symptomToBeAdded != null : "symptomToBeAdded should not be null";
             symptoms.add(symptomToBeAdded);
         }
     }
@@ -145,6 +146,7 @@ public class Menu {
         case "a":
         case "A":
             if (!symptoms.contains(Symptom.FEVER)) {
+                assert Symptom.FEVER != null : "Fever should not be null";
                 return Symptom.FEVER;
             } else {
                 System.out.println("You have already entered this symptom!");
@@ -153,6 +155,7 @@ public class Menu {
         case "b":
         case "B":
             if (!symptoms.contains(Symptom.DRY_COUGH)) {
+                assert Symptom.DRY_COUGH != null : "Dry cough should not be null";
                 return Symptom.DRY_COUGH;
             } else {
                 System.out.println("You have already entered this symptom!");
@@ -161,6 +164,7 @@ public class Menu {
         case "c":
         case "C":
             if (!symptoms.contains(Symptom.COUGH_WITH_PHLEGM)) {
+                assert Symptom.COUGH_WITH_PHLEGM != null : "Cough with phlegm should not be null";
                 return Symptom.COUGH_WITH_PHLEGM;
             } else {
                 System.out.println("You have already entered this symptom!");
@@ -169,6 +173,7 @@ public class Menu {
         case "d":
         case "D":
             if (!symptoms.contains(Symptom.RUNNY_NOSE)) {
+                assert Symptom.RUNNY_NOSE != null : "Runny nose should not be null";
                 return Symptom.RUNNY_NOSE;
             } else {
                 System.out.println("You have already entered this symptom!");
@@ -177,6 +182,7 @@ public class Menu {
         case "e":
         case "E":
             if (!symptoms.contains(Symptom.HEAD_ACHE)) {
+                assert Symptom.HEAD_ACHE != null : "Headache should not be null";
                 return Symptom.HEAD_ACHE;
             } else {
                 System.out.println("You have already entered this symptom!");
@@ -185,6 +191,7 @@ public class Menu {
         case "f":
         case "F":
             if (!symptoms.contains(Symptom.CHILLS)) {
+                assert Symptom.CHILLS != null : "Chills should not be null";
                 return Symptom.CHILLS;
             } else {
                 System.out.println("You have already entered this symptom!");
@@ -193,6 +200,7 @@ public class Menu {
         case "g":
         case "G":
             if (!symptoms.contains(Symptom.FATIGUE)) {
+                assert Symptom.FATIGUE != null : "Fatigue should not be null";
                 return Symptom.FATIGUE;
             } else {
                 System.out.println("You have already entered this symptom!");

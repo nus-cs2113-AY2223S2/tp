@@ -38,6 +38,7 @@ public class Information {
     public static void resetDiagnosisHistory(String password) {
         Patient patient = patientsList.get(password);
         patient.getPatientDiagnosisHistory().clear();
+        assert patient.getPatientDiagnosisHistory().size() == 0 : "Diagnosis history should be empty";
         System.out.println("Your diagnosis history has been reset.");
         saveData();
     }
