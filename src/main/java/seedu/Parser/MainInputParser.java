@@ -51,7 +51,8 @@ public class MainInputParser {
         case LendExpenditureCommand.COMMAND_WORD:
         case BorrowExpenditureCommand.COMMAND_WORD:
             ExpenditureList.saveList();
-            return ParseLendBorrow.lendBorrowItem(userInput, command);
+            ParseLendBorrow prepareLendBorrowExpenditure = new ParseLendBorrow(splitValues[INDEX_USERSTRING]);
+            return prepareLendBorrowExpenditure.addItem(command);
         default:
             // Commands that are not listed above
             return new InvalidCommand("Command not recognised. Please try again");

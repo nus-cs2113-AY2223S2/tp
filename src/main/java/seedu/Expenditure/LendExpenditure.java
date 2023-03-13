@@ -31,7 +31,8 @@ public class LendExpenditure extends Expenditure {
 
     @Override
     public String toString() {
-        return String.format("[Borrow] || %s || %s || %s", getLenderName(), super.toString(), getDeadline());
+        return String.format("[Borrow] || Lent to: %s || %s || by: %s",
+                getLenderName(), super.toString(), getDeadline());
     }
     @Override
     public String getExpenditureType() {

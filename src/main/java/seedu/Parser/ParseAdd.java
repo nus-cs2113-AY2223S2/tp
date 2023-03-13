@@ -17,6 +17,7 @@ import java.time.format.DateTimeParseException;
 
 public class ParseAdd {
     private final String userInput;
+    private final int OFFSET_DELIMITER = 2;
 
     public ParseAdd(String userInput) {
         this.userInput = userInput;
@@ -26,32 +27,29 @@ public class ParseAdd {
 
         try {
         // Format: category d/date, a/amount, s/description
-        double amount;
-        LocalDate date;
-        String descriptionVal;
+        String descriptionVal = fetchDescriptionInput();
+        double amount = Double.parseDouble(fetchAmountInput());
+        LocalDate date = LocalDate.parse(fetchDateInput());
 
-        descriptionVal = fetchDescriptionInput();
-        amount = Double.parseDouble(fetchAmountInput());
-        date = LocalDate.parse(fetchDateInput());
+            switch (command) {
+            case AcademicExpenditureCommand.COMMAND_WORD:
+                return new AcademicExpenditureCommand(descriptionVal, amount, date);
+            case AccommodationExpenditureCommand.COMMAND_WORD:
+                return new AccommodationExpenditureCommand(descriptionVal, amount, date);
+            case EntertainmentExpenditureCommand.COMMAND_WORD:
+                return new EntertainmentExpenditureCommand(descriptionVal, amount, date);
+            case FoodExpenditureCommand.COMMAND_WORD:
+                return new FoodExpenditureCommand(descriptionVal, amount, date);
+            case OtherExpenditureCommand.COMMAND_WORD:
+                return new OtherExpenditureCommand(descriptionVal, amount, date);
+            case TransportExpenditureCommand.COMMAND_WORD:
+                return new TransportExpenditureCommand(descriptionVal, amount, date);
+            case TuitionExpenditureCommand.COMMAND_WORD:
+                return new TuitionExpenditureCommand(descriptionVal, amount, date);
+            default:
+                return new InvalidCommand("Invalid");
+            }
 
-        switch (command) {
-        case AcademicExpenditureCommand.COMMAND_WORD:
-            return new AcademicExpenditureCommand(descriptionVal, amount, date);
-        case AccommodationExpenditureCommand.COMMAND_WORD:
-            return new AccommodationExpenditureCommand(descriptionVal, amount, date);
-        case EntertainmentExpenditureCommand.COMMAND_WORD:
-            return new EntertainmentExpenditureCommand(descriptionVal, amount, date);
-        case FoodExpenditureCommand.COMMAND_WORD:
-            return new FoodExpenditureCommand(descriptionVal, amount, date);
-        case OtherExpenditureCommand.COMMAND_WORD:
-            return new OtherExpenditureCommand(descriptionVal, amount, date);
-        case TransportExpenditureCommand.COMMAND_WORD:
-            return new TransportExpenditureCommand(descriptionVal, amount, date);
-        case TuitionExpenditureCommand.COMMAND_WORD:
-            return new TuitionExpenditureCommand(descriptionVal, amount, date);
-        default:
-            return new InvalidCommand("Invalid");
-        }
         } catch (NumberFormatException n) {
             return new InvalidCommand("number format problem");
         } catch (DateTimeParseException d) {
@@ -63,7 +61,7 @@ public class ParseAdd {
         try {
             int positionOfDSlash = userInput.indexOf("d/");
             int positionOfASlash = userInput.indexOf("a/");
-            String date = userInput.substring(positionOfDSlash + 2, positionOfASlash).trim();
+            String date = userInput.substring(positionOfDSlash + OFFSET_DELIMITER, positionOfASlash).trim();
             ExceptionChecker.checkEmptyString(date);
             return date;
         } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
@@ -75,7 +73,7 @@ public class ParseAdd {
         try {
             int positionOfASlash = userInput.indexOf("a/");
             int positionOfSSlash = userInput.indexOf("s/");
-            String amount = userInput.substring(positionOfASlash + 2, positionOfSSlash).trim();
+            String amount = userInput.substring(positionOfASlash + OFFSET_DELIMITER, positionOfSSlash).trim();
             ExceptionChecker.checkEmptyString(amount);
             return amount;
         } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
@@ -86,7 +84,7 @@ public class ParseAdd {
     public String fetchDescriptionInput() {
         try {
             int positionOfSSlash = userInput.indexOf("s/");
-            String description = userInput.substring(positionOfSSlash + 2).trim();
+            String description = userInput.substring(positionOfSSlash + OFFSET_DELIMITER).trim();
             ExceptionChecker.checkEmptyString(description);
             return description;
         } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
