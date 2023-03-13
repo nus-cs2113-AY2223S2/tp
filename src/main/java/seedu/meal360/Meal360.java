@@ -29,12 +29,28 @@ public class Meal360 {
         String[] command = input.trim().split(" ");
         if (input.equalsIgnoreCase("bye")) {
             canExit = true;
+            // delete a recipe in list
+        } else if (command[0].equals("delete")) {
+            Recipe deletedRecipe = parser.parseDeleteRecipe(command, recipeList);
+            ui.printMessage("Noted. I've removed this recipe:");
+            ui.printMessage(deletedRecipe.toString());
+            ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
         } else if (command[0].equals("view")) {
             Recipe recipe = parser.parseViewRecipe(command, recipeList);
             ui.printRecipe(recipe);
         } else if (command[0].equals("list")) {
             RecipeList recipeListToPrint = parser.parseListRecipe(recipeList);
             ui.listRecipe(recipeListToPrint);
+        } else if (command[0].equals("add")) {
+            Recipe newRecipe = parser.parseAddRecipe(command, recipeList);
+            ui.printMessage("I've added this new recipe:" + newRecipe.getName());
+            ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
+        } else if (command[0].equals("edit")) {
+            Recipe newrecipe = parser.parseEditRecipe(command, recipeList);
+            // ui print message
+            ui.printMessage("I've edited this recipe:" + newrecipe.getName());
+        } else if (command[0].equals("help")){
+            parser.parseHelpUser();
         }
     }
 
@@ -44,7 +60,6 @@ public class Meal360 {
 
     public static void main(String[] args) {
         startApp();
-
         String line;
         Scanner userInput = new Scanner(System.in);
 
