@@ -16,9 +16,9 @@ public class GenerateExerciseTest {
     @Test
     void testGeneration() {
         GenerateExercise generateExercise = new GenerateExercise();
-        assertEquals(5, generateExercise.generateRandomSet(5).size());
-        assertEquals(0, generateExercise.generateRandomSet(0).size());
-        assertEquals(0, generateExercise.generateRandomSet(-1).size());
+        assertEquals(5, generateExercise.generateRandomSetFrom(generateExercise.generateSetAll(), 5).size());
+        assertEquals(0, generateExercise.generateRandomSetFrom(generateExercise.generateSetAll(), 0).size());
+        assertEquals(0, generateExercise.generateRandomSetFrom(generateExercise.generateSetAll(), -1).size());
     }
 
     /**
@@ -27,7 +27,9 @@ public class GenerateExerciseTest {
     @Test
     void testData() {
         GenerateExercise generateExercise = new GenerateExercise();
-        ArrayList<ExerciseData> exerciseDatas = generateExercise.generateRandomSet(5);
+        ArrayList<ExerciseData> exerciseDatas = generateExercise.generateRandomSetFrom(
+                generateExercise.generateSetAll(), 5);
         assertNotNull(exerciseDatas.get(0));
     }
+
 }

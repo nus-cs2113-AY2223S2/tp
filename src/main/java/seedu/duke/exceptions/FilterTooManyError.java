@@ -1,4 +1,4 @@
-package seedu.duke.Exceptions;
+package seedu.duke.exceptions;
 
 public class FilterTooManyError extends DukeError {
     public FilterTooManyError(){
