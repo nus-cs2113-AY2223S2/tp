@@ -57,8 +57,8 @@ public class Ui {
     private static final String INVALID_REPLY = "Invalid response, only yes (Y) or no (N) answer is allowed.\n" +
             "Please try again :(";
     private static final String INVALID_INDEX = "This index is invalid.\nPlease enter a number ";
-    public static final String INVALID_REMOVE_FORMAT = "Wrong/Incomplete Format! Please remove items in the following "
-            + "format(s):\n" + "Remove by UPC: remove f/item upc/[UPC]\n" +
+    public static final String INVALID_REMOVE_FORMAT = "Wrong/Incomplete Format! Please remove items in the " +
+            "following format(s):\n" + "Remove by UPC: remove f/item upc/[UPC]\n" +
             "Remove by item index: remove f/index [INDEX]";
 
     public Ui() {
