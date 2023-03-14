@@ -1,6 +1,9 @@
 package seedu.duke.command;
 
+import seedu.duke.CompanyList;
 import seedu.duke.venue.VenueList;
+
+
 
 public class Command {
 
@@ -10,7 +13,11 @@ public class Command {
         this.commandType = commandType;
     }
 
-    public void execute() {}
+    public String getCommandType(){
+        return commandType;
+    }
+
+    public void execute(CompanyList companyList) {}
 
     public void execute(VenueList venueList) {}
 }

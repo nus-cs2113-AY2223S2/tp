@@ -1,6 +1,8 @@
 package seedu.duke.command;
 
 
+import seedu.duke.CompanyList;
+
 public class DeleteCommand extends Command{
     protected int taskNum;
     public DeleteCommand(String commandType, int taskNum){
@@ -9,7 +11,7 @@ public class DeleteCommand extends Command{
     }
 
     @Override
-    public void execute() {
+    public void execute(CompanyList companyList) {
         System.out.println("delete command");
     }
 }

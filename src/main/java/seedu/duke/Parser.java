@@ -1,9 +1,10 @@
 package seedu.duke;
 
+import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
-import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.ListCompanyCommand;
 import seedu.duke.command.ListVenueCommand;
+import seedu.duke.command.DeleteCommand;
 
 public interface Parser {
     static Command parse(String input) throws WrongFormatException{
@@ -17,17 +18,22 @@ public interface Parser {
                 throw new WrongFormatException();
             }
             if (inputWords[1].equals("companies")) {
-                ListCompanyCommand companyCommand = new ListCompanyCommand(command);
+                ListCompanyCommand companyCommand = new ListCompanyCommand(command + " companies");
                 return companyCommand;
             } else if (inputWords[1].equals("venues")) {
-                ListVenueCommand venueCommand = new ListVenueCommand(command);
+                ListVenueCommand venueCommand = new ListVenueCommand(command + " venues");
                 return venueCommand;
             }
             throw new WrongFormatException();
         case "add":
-            System.out.println(inputWords[0]);
-            System.out.println(inputWords[1]);
-            break;
+            input = input.replaceFirst("add n/", "").trim();
+            int indexOfSlash = input.indexOf("/");
+            int lastIndexOfSlash = input.lastIndexOf("/");
+            String companyName = input.substring(0, indexOfSlash - 2);
+            String contactNumber = input.substring(indexOfSlash + 1, lastIndexOfSlash - 2);
+            String contactEmail = input.substring(lastIndexOfSlash + 1);
+            AddCommand addCommand = new AddCommand(command, companyName, contactNumber, contactEmail);
+            return addCommand;
         case "delete":
             int taskNum = Integer.parseInt(inputWords[1]) - 1;
             DeleteCommand deleteCommand = new DeleteCommand(command, taskNum);
