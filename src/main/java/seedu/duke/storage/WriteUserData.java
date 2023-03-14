@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import seedu.duke.userdata.TodoWorkout;
 
 /**
- * Class to write an ArrayList of completedWorkouts into a json file
+ * Class to write an ArrayList of completedWorkouts into a json file.
  */
 public class WriteUserData {
 

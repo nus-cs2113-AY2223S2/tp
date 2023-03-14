@@ -16,16 +16,16 @@ import seedu.duke.exceptions.FileReadError;
 import seedu.duke.userdata.TodoWorkout;
 
 /**
- * Class to read and parse the json file containing userData into an ArrayList of completed workouts
+ * Class to read and parse the json file containing userData into an ArrayList of completed workouts.
  */
 public class LoadUserData {
 
     /**
-     * Reads in the user data json file and parses the data into an ArrayList of TodoWorkouts
+     * Reads in the user data json file and parses the data into an ArrayList of TodoWorkouts.
      *
-     * @return ArrayList containing all CompletedWorkouts from the json file
+     * @return ArrayList containing all CompletedWorkouts from the json file.
      *
-     * @throws DukeError when there is an error in reading data from the json file
+     * @throws DukeError when there is an error in reading data from the json file.
      */
     public static ArrayList<TodoWorkout> loadCompletedWorkouts() throws DukeError {
         ArrayList<TodoWorkout> todoWorkouts = new ArrayList<>();

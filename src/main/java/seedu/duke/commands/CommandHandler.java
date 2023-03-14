@@ -22,7 +22,7 @@ public class CommandHandler {
                 System.exit(0);
                 break;
             case "help":
-                ui.
+                ui.printHelp();
                 break;
             default:
                 System.out.println("Unknown Command");
