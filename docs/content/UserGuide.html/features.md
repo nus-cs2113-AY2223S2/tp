@@ -6,26 +6,26 @@ weight: 2
 The table below provides a summary of all the currently supported features in PocketPal.
 More detailed explanations on the usage of the commands are provided as well.
 
-If you face any problems, do visit the FAQ segment!
+If you face any problems, do visit the [FAQ](../faq) segment!
 
 | Command |                      Function                       |
 | ------- | :-------------------------------------------------: |
-| /add    |                   Adds an expense                   |
-| /delete |                 Deletes an expense                  |
-| /edit   |                  Edits an expense                   |
-| /view   | Displays details of an expense e.g. Price, Category |
-| /help   |               Displays the help menu                |
-| /bye    |               Terminates the program                |
+| [/add](#add)    |                   Adds an expense                   |
+| [/delete](#delete) |                 Deletes an expense                  |
+| [/edit](#edit)   |                  Edits an expense                   |
+| [/view](#view)  | Displays details of an expense e.g. Price, Category |
+| [/help](#help)   |               Displays the help menu                |
+| [/bye](#bye)    |               Terminates the program                |
 
-## Adding an expense: `/add`
+## Adding an expense: `/add` {#add}
 
 Adds an expense to your current expenditure.
 
-Format: `/add DESCRIPTION -c CATEGORY -p PRICE`
+Format: `/add <DESCRIPTION> <-c CATEGORY> <-p PRICE>`
 
 -   The `DESCRIPTION` and `CATEGORY` can be in a natural language format.
--   The `PRICE` must be in numeric or decimal format.
--   The `-c` and `-p` flags can be used in any order.
+-   The `PRICE` can be in numeric or decimal format.
+-   The `-c` and `-p` flags can be used in any order, but they are both **required**.
 
 Here is a [list](#categories) of categories currently supported in PocketPal.
 
@@ -34,3 +34,75 @@ Example of usage:
 `/add Lunch at McDonalds -c Food -19.9`
 
 `/add Apple Macbook Air -p 1300 -c Personal`
+
+## Deleting an expense: `/delete` {#delete}
+
+Deletes a specified expense from your current expenditure. 
+
+The expense ID can be obtained from the [`/view`](#view) command.
+
+Format: `/delete <EXPENSE_ID>`
+
+- The `EXPENSE_ID` must be a whole number.
+
+Example of usage:
+
+`/delete 5`
+
+## Edit an expense: `/edit` {#edit}
+
+Edits a specified expense in your current expenditure.
+
+Format: `/edit <EXPENSE_ID> [FLAG...]`
+
+- `EXPENSE_ID` must be a whole number.
+- Flags can be specified in any order. If none are specified, the expense remains unmodified.
+
+__FLAGS__
+
+- `-d | -description DESCRIPTION`
+    - Replaces the current description of the expense with `DESCRIPTION`
+
+- `-c | -category CATEGORY`
+    - Replaces the current category of the expense with `CATEGORY`
+
+- `-p | -price PRICE`
+    - Replaces the current price of the expense with `PRICE`
+     
+Example of usage:
+
+`/edit 5 -p 10.50`
+
+`/edit 5 -d Grab to school -c Transportation`
+
+## View an expense {#view}
+
+Displays a list of your current expenditure.
+
+Format: `/view [COUNT]`
+
+- `COUNT` must be a whole number. If not specified, all the expenditures will be listed.
+
+Example of usage:
+
+`/view 10`
+
+`/view`
+
+## Show help menu {#help}
+
+Displays the help menu.
+
+Format: `/help`
+
+## Exit Program {#exit}
+
+Terminates PocketPal.
+
+Format: `/bye`
+
+## Supported Categories {#categories}
+
+These are the categories currently supported by PocketPal:
+
+`Clothing, Entertainment, Food, Medical, Personal, Transportation, Utilities, Income, Others`
