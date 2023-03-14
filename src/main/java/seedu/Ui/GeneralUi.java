@@ -105,4 +105,13 @@ public class GeneralUi {
         System.out.println("Successfully deleted this meal:");
         System.out.println(meal);
     }
+
+    public void requestCalorieLimit(){
+    }
+
+    public void showCurrentIntake(){}
+
+    public void showRemainingIntake(){}
+    public void showDailyCaloricLimit(){}
+    public void showWellDoneMessage(){}
 }
