@@ -62,8 +62,6 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
-        assert (ui != null & storage != null & taskList != null & moduleList != null) :
-                "executing ListCommand";
         ui.printList(taskList);
     }
 

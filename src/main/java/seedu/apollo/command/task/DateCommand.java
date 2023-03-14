@@ -76,8 +76,6 @@ public class DateCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
-        assert (ui != null & storage != null & taskList != null & moduleList != null) :
-                "executing DateCommand";
         ui.printDateList(taskList.getTasksOnDate(date), date);
     }
 

@@ -319,16 +319,6 @@ public class Ui {
     }
 
     /**
-     * Prints error message if an assertion error occurs.
-     *
-     * @param assertionError Contains detail message saying where assertion error occurred.
-     */
-    public void printErrorForAssertion(AssertionError assertionError) {
-        System.out.println("Oh no... Something went wrong in " + assertionError.getMessage() +
-                "\nExiting Apollo...");
-    }
-
-    /**
      * Prints error message if the user tries to add a module which does not exist.
      */
     public void printInvalidModule() {
