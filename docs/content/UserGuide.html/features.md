@@ -5,16 +5,23 @@ weight: 2
 
 {Give detailed description of each feature}
 
-## Adding a todo: `todo`
-Adds a new item to the list of todo items.
+## Deleting an expense: `/delete`
+Removes the entry of the specified entry ID (1-based) from the entry log.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+**_Format:_** `/delete ID`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+* The `ID` must be in numeric format.
 
-Example of usage: 
+**_Example of usage:_**
 
-`todo n/Write the rest of the User Guide d/next week`
+`/delete  5`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+
+**_Exceptions:_**
+
+The following message will be displayed if the user does not input a valid entry ID.
+```
+________________________________________________
+Please enter a valid numerical index!
+________________________________________________
+```
