@@ -59,7 +59,7 @@ public class MainInputParser {
 
                 return prepareLendBorrowExpenditure.addItem(command);
             default:
-            // Commands that are not listed above
+                // Commands that are not listed above
                 return new InvalidCommand("Command not recognised. Please try again");
             }
         } catch (IndexOutOfBoundsException e) {
