@@ -9,15 +9,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class ParseLendBorrow {
-    private final String userInput;
-
     public static final String BLANK = "";
     public static final String DSLASH = "d/";
     public static final String ASLASH = "a/";
     public static final String SSLASH = "s/";
     public static final String BSLASH = "b/";
     public static final String NSLASH = "n/";
-
+    private final String userInput;
     public ParseLendBorrow(String userInput) {
         this.userInput = userInput;
     }
