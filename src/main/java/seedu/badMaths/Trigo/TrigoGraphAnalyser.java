@@ -39,7 +39,7 @@ public class TrigoGraphAnalyser {
             splitTrigoIntoPhasors(trigo);
             return CAN_RUN_ANALYSER;
         } catch (NumberFormatException e) {
-            Ui.printInorrectFormatEntered();
+            Ui.printIncorrectFormatEntered();
             return CANNOT_RUN_ANALYSER;
         } catch (IllegalArgumentException e) {
             Ui.printNegativeAmplitudeEntered();

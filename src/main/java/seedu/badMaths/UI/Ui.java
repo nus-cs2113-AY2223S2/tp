@@ -1,7 +1,7 @@
 package seedu.badMaths.UI;
 
 public class Ui {
-    public static void printInorrectFormatEntered(){
+    public static void printIncorrectFormatEntered(){
         System.out.println("Please enter the format as required.");
     }
     public static void printNegativeAmplitudeEntered(){
