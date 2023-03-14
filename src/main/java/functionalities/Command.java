@@ -30,6 +30,7 @@ public class Command {
             ui.showUserMessage("Task added successfully");
         } else if (command.equalsIgnoreCase("remove")) {
             tasks.removeAppointment(appointmentNum);
+            ui.showUserMessage(" Task removed successfully");
         } else if (command.equalsIgnoreCase("list")) {
             tasks.listAppointments();
         } else if (command.equalsIgnoreCase("view")) {
