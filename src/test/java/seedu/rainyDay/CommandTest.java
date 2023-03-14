@@ -39,7 +39,9 @@ public class CommandTest {
     @Test
     public void addFinancialStatement() {
         setUpStreams();
-        new AddCommand("Ipad", "out", 120).execute();
+        AddCommand addCommand = new AddCommand("Ipad", "out", 120);
+        addCommand.setData(financialReport);
+        addCommand.execute();
         String expectedAddStatement = "Done! Added: out for Ipad, -$120" + System.lineSeparator();
         assertEquals(expectedAddStatement, outContent.toString());
         restoreStreams();
@@ -48,7 +50,9 @@ public class CommandTest {
     @Test
     public void addMultipleFinancialStatement() {
         setUpStreams();
-        new AddCommand("angpao", "in", 3000).execute();
+        AddCommand addCommand = new AddCommand("angpao", "in", 3000);
+        addCommand.setData(financialReport);
+        addCommand.execute();
         String expectedAddStatement = "Done! Added: in for angpao, +$3000" + System.lineSeparator();
         assertEquals(expectedAddStatement, outContent.toString());
         restoreStreams();
@@ -59,11 +63,17 @@ public class CommandTest {
     @Test
     public void deleteFinancialStatement() {
         //RainyDay.clearFinancialReport();
-        new AddCommand("Ipad", "out", 120).execute();
-        new AddCommand("angpao", "in", 3000).execute();
+        AddCommand addFirstCommand = new AddCommand("Ipad", "out", 120);
+        addFirstCommand.setData(financialReport);
+        addFirstCommand.execute();
+        AddCommand addSecondCommand = new AddCommand("angpao", "in", 3000);
+        addSecondCommand.setData(financialReport);
+        addSecondCommand.execute();
 
         setUpStreams();
-        new DeleteCommand(1).execute();
+        DeleteCommand deleteCommand = new DeleteCommand(1);
+        deleteCommand.setData(financialReport);
+        deleteCommand.execute();
         String expectedDeleteStatement = "Done, deleted \"Ipad\" from the financial report"
                 + System.lineSeparator();
         assertEquals(expectedDeleteStatement, outContent.toString());

@@ -13,8 +13,8 @@ public class DeleteCommand extends Command {
 
     public void execute() {
         index -= 1;
-        Ui.printDeletedFinancialStatement(RainyDay.financialReport.getStatementDescription(index));
-        RainyDay.financialReport.deleteStatement(index);
-        Storage.writeToFile(RainyDay.financialReport, RainyDay.filePath);
+        Ui.printDeletedFinancialStatement(financialReport.getStatementDescription(index));
+        financialReport.deleteStatement(index);
+        Storage.writeToFile(financialReport, RainyDay.filePath);
     }
 }
