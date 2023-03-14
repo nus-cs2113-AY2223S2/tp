@@ -26,7 +26,20 @@ public final class MessageConstants {
     // TODO: Add commands after constants class is implemented
     public static final String MESSAGE_HELP = "PocketPal is a expense tracking app, "
             + "optimised for use via a Command Line Interface. " + NEWLINE
-            + "Users can take advantage of the input flags for entering entries quickly." + NEWLINE;
+            + "Users can take advantage of the input flags for entering entries quickly." + NEWLINE
+            + "Listed below are the various commands that are available." + NEWLINE;
+    public static final String MESSAGE_ADD_COMMAND = "Add command" + NEWLINE
+            + "/add [expenditure description] -p [amount spent] -c [expenditure category]" + NEWLINE + NEWLINE;
+    public static final String MESSAGE_DELETE_COMMAND = "Delete command" + NEWLINE
+            + "/delete [expense ID number]" + NEWLINE + NEWLINE;
+    public static final String MESSAGE_EDIT_COMMAND = "Edit command" + NEWLINE
+            + "/edit [expense ID number] -p [amount spent] -c [expenditure category]" + NEWLINE + NEWLINE;
+    public static final String MESSAGE_VIEW_COMMAND = "View command" + NEWLINE
+            + "/view" + NEWLINE + NEWLINE;
+    public static final String MESSAGE_HELP_COMMAND = "Help command" + NEWLINE
+            + "/help" + NEWLINE + NEWLINE;
+    public static final String MESSAGE_BYE_COMMAND = "Exit command" + NEWLINE
+            + "/bye" + NEWLINE;
     public static final String MESSAGE_WELCOME = "Welcome to" + NEWLINE
             + LOGO + NEWLINE + NEWLINE
             + "How may I help you?" + NEWLINE;
