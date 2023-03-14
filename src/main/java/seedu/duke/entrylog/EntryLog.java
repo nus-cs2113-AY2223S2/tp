@@ -43,10 +43,12 @@ public class EntryLog {
      * @param entryId Id corresponding to the index (0-based)
      * @throws InvalidArgumentsException If an invalid index is passed
      */
-    public void delete(int entryId) throws InvalidArgumentsException {
+    public Entry delete(int entryId) throws InvalidArgumentsException {
         try {
             logger.info("Deleting entry: " + entryId);
+            Entry target = entries.get(entryId);
             entries.remove(entryId);
+            return target;
         } catch (IndexOutOfBoundsException e) {
             logger.log(Level.WARNING, "Attempted to delete an invalid entry index: " + entryId, e);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);

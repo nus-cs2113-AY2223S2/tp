@@ -102,10 +102,11 @@ public class EntryLogTest {
         }
 
         @Test
-        void deleteEntry_validId_noExceptionThrown() {
+        void deleteEntry_validId_returnsEntry() {
             assertDoesNotThrow(() -> {
-                entryLog.delete(0);
+                Entry deletedEntry = entryLog.delete(0);
                 assertEquals(entryLog.getSize(), 2);
+                assertEquals(deletedEntry, entry1);
             });
         }
 
