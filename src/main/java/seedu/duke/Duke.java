@@ -1,22 +1,41 @@
 package seedu.duke;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.text.DateFormat;
+import seedu.workout.Workout;
+import seedu.duke.command.Parser;
 
+import java.util.ArrayList;
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args)
-    {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+    private void run() {
+        boolean isRunning = true;
+        while (isRunning) {
+            isRunning = Parser.isByeEntered();
+        }
+        Parser.sayBye();
     }
-}
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        duke.run();
+
+
+        public class Duke {
+            private ArrayList<Workout> workouts;
+
+            public Duke() {
+                this.workouts = new ArrayList<Workout>();
+            }
+
+
+            public static void main(String[] args) {
+                Duke duke = new Duke();
+                duke.run();
+
+            }
