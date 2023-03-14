@@ -8,6 +8,8 @@ public class DeleteCommand {
     public static final String EVENT_DELETION_MESSAGE = "Event deleted: ";
     public static final String CATEGORY_DELETION_MESSAGE = "Category deleted: ";
     public static final String NON_EXISTENT_EVENT = "Event does not exist";
+    public static final String NULL_CATEGORY_ASSERTION = "Category name should not be null";
+    public static final String NULL_EVENT_ASSERTION = "Event name should not be null";
     private String categoryName;
     private String eventName;
 
@@ -20,6 +22,8 @@ public class DeleteCommand {
     public DeleteCommand(String categoryName, String eventName) {
         this.categoryName = categoryName;
         this.eventName = eventName;
+        assert categoryName != null : NULL_CATEGORY_ASSERTION;
+        assert eventName != null : NULL_EVENT_ASSERTION;
         deleteEvent();
     }
 
@@ -30,6 +34,7 @@ public class DeleteCommand {
      */
     public DeleteCommand(String categoryName) {
         this.categoryName = categoryName;
+        assert categoryName != null : NULL_CATEGORY_ASSERTION;
         deleteCategory();
     }
 
