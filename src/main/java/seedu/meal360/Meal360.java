@@ -68,6 +68,7 @@ public class Meal360 {
         } else if (command[0].equals("edit")) {
             ui.printSeparator();
             Recipe newRecipe = parser.parseEditRecipe(command, recipeList);
+            ui.printSeparator();
             ui.printMessage("I've edited this recipe:" + newRecipe.getName());
             ui.printSeparator();
         } else if (command[0].equals("weekly")) {
