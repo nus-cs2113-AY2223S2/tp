@@ -24,7 +24,6 @@ public class DataReader {
     private void readUnivData() {
         ClassLoader classLoader = DataReader.class.getClassLoader();
         InputStream input = classLoader.getResourceAsStream(UNIVERSITIES_FILE_PATH);
-        //System.out.println(input);
         try (BufferedReader br = new BufferedReader(new InputStreamReader(input))) {
             String line;
             while ((line = br.readLine()) != null) {
