@@ -2,14 +2,11 @@ package common;
 
 import command.CommandAdd;
 import command.CommandList;
-import data.Currency;
 import data.Expense;
 import data.ExpenseList;
-import data.Time;
 import org.junit.jupiter.api.Test;
 import parser.Parser;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.io.ByteArrayOutputStream;
@@ -18,7 +15,6 @@ import java.io.PrintStream;
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.MESSAGE_DIVIDER_LIST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
