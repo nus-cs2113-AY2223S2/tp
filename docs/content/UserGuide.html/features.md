@@ -8,36 +8,36 @@ More detailed explanations on the usage of the commands are provided as well.
 
 If you face any problems, do visit the [FAQ](../faq) segment!
 
-| Command |                      Function                       |
-| ------- | :-------------------------------------------------: |
-| [/add](#add)    |                   Adds an expense                   |
+| Command            |                      Function                       |
+|--------------------|:---------------------------------------------------:|
+| [/add](#add)       |                   Adds an expense                   |
 | [/delete](#delete) |                 Deletes an expense                  |
-| [/edit](#edit)   |                  Edits an expense                   |
-| [/view](#view)  | Displays details of an expense e.g. Price, Category |
-| [/help](#help)   |               Displays the help menu                |
-| [/bye](#bye)    |               Terminates the program                |
+| [/edit](#edit)     |                  Edits an expense                   |
+| [/view](#view)     | Displays details of an expense e.g. Price, Category |
+| [/help](#help)     |               Displays the help menu                |
+| [/bye](#bye)       |               Terminates the program                |
 
 ## Adding an expense: `/add` {#add}
 
 Adds an expense to your current expenditure.
 
-Format: `/add <DESCRIPTION> <-c CATEGORY> <-p PRICE>`
+Format: `/add <DESCRIPTION> <-c | -category CATEGORY> <-p | -price PRICE>`
 
--   The `DESCRIPTION` and `CATEGORY` can be in a natural language format.
--   The `PRICE` can be in numeric or decimal format.
--   The `-c` and `-p` flags can be used in any order, but they are both **required**.
+- The `DESCRIPTION` and `CATEGORY` can be in a natural language format.
+- The `PRICE` can be in numeric or decimal format.
+- The flags can be used in any order, but they are both **required**.
 
 Here is a [list](#categories) of categories currently supported in PocketPal.
 
 Example of usage:
 
-`/add Lunch at McDonalds -c Food -19.9`
+`/add Lunch at McDonalds -category Food -price 19.9`
 
 `/add Apple Macbook Air -p 1300 -c Personal`
 
 ## Deleting an expense: `/delete` {#delete}
 
-Deletes a specified expense from your current expenditure. 
+Deletes a specified expense from your current expenditure.
 
 The expense ID can be obtained from the [`/view`](#view) command.
 
@@ -68,26 +68,27 @@ __FLAGS__
 
 - `-p | -price PRICE`
     - Replaces the current price of the expense with `PRICE`
-     
+
 Example of usage:
 
 `/edit 5 -p 10.50`
 
-`/edit 5 -d Grab to school -c Transportation`
+`/edit 5 -description Grab to school -c Transportation`
 
 ## View an expense: `/view` {#view}
 
 Displays a list of your current expenditure.
 
-Format: `/view [COUNT]`
+Format: `/view [COUNT] [-c | -category CATEGORY]`
 
 - `COUNT` must be a whole number. If not specified, all the expenditures will be listed.
+- `CATEGORY` must be a supported category. If not specified, expenditures from all categories will be listed.
 
 Example of usage:
 
 `/view 10`
 
-`/view`
+`/view -c food`
 
 ## Show help menu: `/help` {#help}
 
