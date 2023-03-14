@@ -6,11 +6,11 @@ import seedu.Database.FoodStorage;
 import seedu.Database.MealStorage;
 import seedu.Database.UserStorage;
 import seedu.Exceptions.LifeTrackerException;
-import seedu.Output.UI;
+import seedu.Ui.GeneralUi;
 
 public class ExitCommand extends Command{
     @Override
-    public void execute(UI ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage) 
+    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
             throws LifeTrackerException {
         setIsExit(true);
         ui.printGoodbye();

@@ -6,7 +6,8 @@ import seedu.Database.UserStorage;
 import seedu.Entities.Food;
 import seedu.Exceptions.InvalidCommandException;
 import seedu.Exceptions.LifeTrackerException;
-import seedu.Output.UI;
+//import seedu.Output.UI;
+import seedu.Ui.GeneralUi;
 
 public class DeleteFoodCommand extends Command{
     private int index;
@@ -26,7 +27,8 @@ public class DeleteFoodCommand extends Command{
     }
 
     @Override
-    public void execute(UI ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage) throws LifeTrackerException {
+    public void execute(GeneralUi ui, FoodStorage foodStorage,
+                        MealStorage mealStorage, UserStorage userStorage) throws LifeTrackerException {
         Food deletedFood = foodStorage.deleteFood(index);
         ui.printDeletedFood(deletedFood);
     }

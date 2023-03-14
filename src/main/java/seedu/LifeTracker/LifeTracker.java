@@ -5,8 +5,8 @@ import seedu.Database.FoodStorage;
 import seedu.Database.MealStorage;
 import seedu.Database.UserStorage;
 import seedu.Exceptions.LifeTrackerException;
-import seedu.Output.UI;
 import seedu.Parser.CommandParser;
+import seedu.Ui.GeneralUi;
 
 public class LifeTracker {
     private static final String FOOD_FILE_PATH = "data/FoodData.csv";
@@ -15,13 +15,13 @@ public class LifeTracker {
     private FoodStorage foodStorage;
     private MealStorage mealStorage;
     private UserStorage userStorage;
-    private UI ui;
+    private GeneralUi ui;
 
     public LifeTracker(String foodFilePath, String mealFilePath, String userFilePath) {
         foodStorage = new FoodStorage(foodFilePath);
         mealStorage = new MealStorage(mealFilePath, foodStorage);
         userStorage = new UserStorage(userFilePath);
-        ui = new UI();
+        ui = new GeneralUi();
     }
 
     public void run() {
