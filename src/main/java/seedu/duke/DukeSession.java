@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.command.ExecutableCommand;
 import seedu.duke.command.factory.ExecutableCommandFactory;
+import seedu.duke.command.factory.ingredients.IngredientsListCommandFactory;
 import seedu.duke.command.factory.misc.AddCommandFactory;
 import seedu.duke.command.factory.misc.ByeCommandFactory;
 import seedu.duke.command.factory.misc.HelloWorldCommandFactory;
@@ -20,7 +21,7 @@ import java.util.Scanner;
 
 public class DukeSession {
 
-    public static IngredientList ingredients;
+
     private static final CommandRouterNode COMMAND_TREE =
             new CommandRouterNode()
 
@@ -31,8 +32,16 @@ public class DukeSession {
                     .route("add", new AddCommandFactory())
                     .route("remove", new RemoveCommandFactory())
                     .route("recipe", new CommandRouterNode()
+<<<<<<< HEAD
                             .route("possible", new RecipePossibleCommandFactory())
                             .route("all", new RecipeAllCommandFactory()));
+=======
+                            .route("possible", new RecipePossibleCommandFactory()))
+                    .route("ingredients", new CommandRouterNode()
+                            .route("list", new IngredientsListCommandFactory())
+                    );
+    private final IngredientList ingredients;
+>>>>>>> 69196fcb766099f638bdd16c4d1cd2d3c79b9aef
     private final RecipeList recipes;
     private final DukeUI ui;
     private final DukeControlFlow controlFlow;
