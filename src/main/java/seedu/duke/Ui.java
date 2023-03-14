@@ -5,6 +5,7 @@ import static seedu.duke.ColorCode.ANSI_GREEN;
 import static seedu.duke.ColorCode.ANSI_BLUE;
 import static seedu.duke.ColorCode.ANSI_RED;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 
@@ -28,6 +29,7 @@ public class Ui {
     public static final String SUCCESS_LIST = "Here are the items in your inventory:";
 
     public static final String INVALID_LIST = "There are no items in your inventory.";
+    public static final String CONFIRM_MESSAGE = "Are you sure you want this item to be permanently deleted?\n(Y/N)";
 
     public static final int NAME_COL_WIDTH = 15;
     public static final int UPC_COL_WIDTH = 12;
@@ -52,7 +54,14 @@ public class Ui {
     private static final String TABLE_LEFT = "| ";
     private static final String TABLE_RIGHT = " |";
     private static final String TABLE_MIDDLE = " | ";
-
+    private static final String SUCCESS_REMOVE = "Successfully removed the following item: ";
+    private static final String NOT_REMOVING = "Ok...You changed your mind really quickly.";
+    private static final String INVALID_REPLY = "Invalid response, only yes (Y) or no (N) answer is allowed.\n" +
+            "Please try again :(";
+    private static final String INVALID_INDEX = "This index is invalid.\nPlease enter a number ";
+    private static final String INVALID_REMOVE_FORMAT = "Wrong/Incomplete Format! Please remove items in the " +
+            "following format(s):\n" + "Remove by UPC: remove f/item upc/[UPC]\n" +
+            "Remove by item index: remove f/index [INDEX]";
 
     public Ui() {
         greetUser();
@@ -127,7 +136,6 @@ public class Ui {
         System.out.println(LINE);
     }
 
-
     public static void printSuccessList() {
         System.out.println(LINE);
         System.out.println(ANSI_GREEN + SUCCESS_LIST + ANSI_RESET);
@@ -154,10 +162,8 @@ public class Ui {
             String qty = Integer.toString(item.getQuantity());
             String price = Double.toString(item.getPrice());
 
-            int maxColHeight = findMaxColHeight(name, upc, qty, price, columnWidths);
-            table.append(printRow(name, upc, qty, price, maxColHeight, columnWidths));
+            table.append(printRow(name, upc, qty, price, columnWidths));
         }
-
         return table.toString();
     }
 
@@ -195,16 +201,16 @@ public class Ui {
     }
 
     private static String printRow(String name, String upc, String qty, String price,
-                                   int maxRowHeight, int[] columnWidths) {
+                                   int[] columnWidths) {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
         String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
         String[] qtyLines = wrapText(qty, QTY_COL_WIDTH);
         String[] priceLines = wrapText(price, PRICE_COL_WIDTH);
-
         StringBuilder row = new StringBuilder();
 
-        for (int i = 0; i < maxRowHeight; i += 1) {
+        int rowHeight = findRowHeight(nameLines, upcLines, qtyLines, priceLines);
 
+        for (int i = 0; i < rowHeight; i += 1) {
             row.append(TABLE_LEFT);
             row.append(printAttribute(nameLines, NAME_COL_WIDTH, i));
             row.append(TABLE_MIDDLE);
@@ -216,11 +222,10 @@ public class Ui {
             row.append(TABLE_RIGHT);
             row.append(System.lineSeparator());
 
-            if (i == maxRowHeight - 1) {
+            if (i == rowHeight - 1) {
                 row.append(printTableSeparator(columnWidths));
             }
         }
-
         return row.toString();
     }
 
@@ -234,9 +239,7 @@ public class Ui {
             String paddedSpace = new String(new char[columnWidth]).replace('\0', ' ');
             attribute.append(paddedSpace);
         }
-
         return attribute.toString();
-
     }
 
     /*Method below adapted from https://stackoverflow.com/questions/4055430/java-
@@ -244,51 +247,58 @@ public class Ui {
     private static String[] wrapText(String input, int width) {
         String[] words = input.split("\\s+");
         ArrayList<String> lines = new ArrayList<>();
-
         StringBuilder line = new StringBuilder();
 
-        for (String word : words) {
-            if (line.length() + word.length() + 1 <= width) {
-                line.append(word).append(" ");
-            }
-
-            if (word.length() > width) {
-                int start = 0;
-                while (start < word.length()) {
-                    int end = Math.min(start + width, word.length());
-                    lines.add(word.substring(start, end));
-                    start = end;
-                }
+        for (int i = 0; i < words.length; i += 1) {
+            if (line.length() + words[i].length() <= width) {
+                line = addWordWithoutWrap(line, words, lines, i, width);
+            } else if (words[i].length() > width) {
+                addWordWithWrap(words, lines, i, width);
             } else {
                 lines.add(line.toString());
-                line = new StringBuilder(word + " ");
+                line = new StringBuilder(words[i] + " ");
             }
         }
 
+        if (line.length() > 0) {
+            lines.add(line.toString());
+        }
         return lines.toArray(new String[0]);
     }
 
-    private static int findMaxColHeight(String name, String upc, String qty, String price, int[] columnWidths) {
+    private static StringBuilder addWordWithoutWrap(StringBuilder line, String[] words, ArrayList<String> lines,
+                                                    int current, int width) {
+        line.append(words[current]);
 
-        int nameLength = name.length();
-        int upcLength = upc.length();
-        int qtyLength = qty.length();
-        int priceLength = price.length();
+        if (words[current].length() < width) {
+            line.append(" ");
+        }
 
-        int[] attributeWidths = {nameLength, upcLength, qtyLength, priceLength};
-        int max = 1;
+        if (current + 1 != words.length && line.length() + words[current + 1].length() > width) {
+            lines.add(line.toString());
+            line = new StringBuilder();
+        }
+        return line;
+    }
 
-        for (int i = 0; i < attributeWidths.length; i += 1) {
-            int colHeight = attributeWidths[i] / columnWidths[i];
+    private static void addWordWithWrap(String[] words, ArrayList<String> lines, int current, int width) {
+        int start = 0;
+        while (start < words[current].length()) {
+            int end = Math.min(start + width, words[current].length());
+            lines.add(words[current].substring(start, end));
+            start = end;
+        }
+    }
 
-            if (attributeWidths[i] % columnWidths[i] != 0) {
-                colHeight += 1;
-            }
-            if (colHeight > max) {
-                max = colHeight;
+    private static int findRowHeight(String[]... rowHeights) {
+        int maxAttributeHeight = 0;
+
+        for (String[] rowHeight : rowHeights) {
+            if (rowHeight.length > maxAttributeHeight) {
+                maxAttributeHeight = rowHeight.length;
             }
         }
-        return max;
+        return maxAttributeHeight;
     }
 
     /**
@@ -327,6 +337,56 @@ public class Ui {
                 "Quantity Available: " + updatedItem.getQuantity() + "\n" + "Item Price: " + updatedItem.getPrice());
         System.out.println(LINE);
     }
+
+    public static void printInvalidReply() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_REPLY + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printNotRemoving() {
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + NOT_REMOVING + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printSuccessRemove(Item itemToRemove) {
+        System.out.println(LINE);
+        System.out.println(ANSI_BLUE + SUCCESS_REMOVE + ANSI_RESET);
+        System.out.println(itemToRemove.toString());
+        System.out.println(LINE);
+    }
+    public static void printConfirmMessage() {
+        System.out.println(LINE);
+        System.out.println(ANSI_BLUE + CONFIRM_MESSAGE + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidIndex() {
+        System.out.println(LINE);
+        int listSize = Inventory.getItemList().size();
+        switch (listSize) {
+        case 0:
+            System.out.println(ANSI_RED + INVALID_LIST + ANSI_RESET);
+            break;
+        case 1:
+            System.out.println(ANSI_RED + INVALID_INDEX + "0 to remove item successfully." + ANSI_RESET);
+            break;
+        default:
+            System.out.println(ANSI_RED + INVALID_INDEX + "between 0 to " + (listSize-1) +
+                    " to remove item successfully." + ANSI_RESET);
+            break;
+        }
+
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidRemove() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_REMOVE_FORMAT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
 
 }
 
