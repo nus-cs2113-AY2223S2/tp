@@ -42,14 +42,15 @@ public class Parser {
     }
 
     private static void parseListCommand(EventList eventList) {
-        Ui.listTask(eventList.fullList());
+        Ui.listTask(eventList.getFullList());
     }
 
     private static void parseDeleteCommand(String remainder, EventList eventList) {
-        eventList.deleteThisTask(Integer.parseInt(remainder) - OFFSET);
-
+        int index = Integer.parseInt(remainder) - OFFSET;
+        String deletedTask = eventList.getDetails(index);
+        eventList.deleteThisTask(index);
         //TODO: Show successful add on UI. (For all cases)
-        Ui.deleteSuccessMsg();
+        Ui.deleteSuccessMsg(deletedTask);
     }
 
     private static void parseAddCommand(String remainder, EventList eventList) {
@@ -72,7 +73,7 @@ public class Parser {
             } else {
                 eventList.addEvent(eventName, startTime, startDate);
             }
-            Ui.addSuccessMsg();
+            Ui.addSuccessMsg(eventList.getLastTaskDescription());
         } else{
             Ui.addErrorMsg(); //placeholder
         }
@@ -107,9 +108,6 @@ public class Parser {
             Ui.addErrorMsg();
         } else {
             //TODO: link to taskList edit event
-            System.out.println("LOL");
-            System.out.println(details[1].substring(2) + "," + information[0] + "," + information[1] + "," 
-                    + information[2] + "," + information[3]);
 
             if (details[1].substring(0,2).trim().equalsIgnoreCase("i")){
                 int index = Integer.parseInt(details[1].substring(2).trim()) -OFFSET;

@@ -5,20 +5,16 @@ import java.util.Scanner;
 
 public class Ui {
     /**
-     * Prints a line of dashes for
-     * better readability
+     * Prints a line of dashes for better readability
      */
     public static void printDash() {
         System.out.println("____________________________________________________________");
     }
 
     /**
-     * Obtains user input and interprets
-     * what needs to be performed by
-     * certain keywords.
+     * Obtains user input and interprets what needs to be performed by certain keywords.
      */
     public static void getUserCommand(EventList eventList) {
-
         Scanner in = new Scanner(System.in);
 
         String cmd;
@@ -28,37 +24,34 @@ public class Ui {
             Parser.parseCommand(cmd, eventList);
             cmd = in.nextLine();
         }
-
     }
 
     /**
-     * Prints a welcome message for
-     * users when application is launched
+     * Prints a welcome message for users when application is launched
      */
     public static void showWelcome() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = "_______   ____ ___  ___________________.__\n"
+                + " \\      \\ |    |   \\/   _____/\\______   \\  | _____    ____   ____   ___________ \n"
+                + " /   |   \\|    |   /\\_____  \\  |     ___/  | \\__  \\  /    \\ /    \\_/ __ \\_  __\\ \n"
+                + "/    |    \\    |  / /        \\ |    |   |  |__/ __ \\|   |  \\   |  \\  ___/|  | \\/\n"
+                + "\\____|__  /______/ /_______  / |____|   |____(____  /___|  /___|  /\\___  >__|   \n"
+                + "        \\/                 \\/                     \\/     \\/     \\/     \\/       \n";
         System.out.println("Hello from\n" + logo);
         printDash();
     }
 
     /**
-     * Prints success message for
-     * users when event is added
+     * Prints success message for users when event is added
      */
-    public static void addSuccessMsg() {
+    public static void addSuccessMsg(String taskDetail) {
         printDash();
-        System.out.println("Event successfully added!");
+        System.out.println("Event successfully added: "+System.lineSeparator());
+        System.out.println("    > " + taskDetail);
         printDash();
     }
 
     /**
-     * Prints error message for
-     * users when there is unrecognised
-     * command
+     * Prints error message for users when there is unrecognised command
      */
     public static void addErrorMsg() {
         printDash();
@@ -67,12 +60,12 @@ public class Ui {
     }
 
     /**
-     * Prints success message for
-     * users when event is deleted
+     * Prints success message for users when event is deleted
      */
-    public static void deleteSuccessMsg() {
+    public static void deleteSuccessMsg(String taskDetail) {
         printDash();
-        System.out.println("Event successfully deleted!");
+        System.out.println("This event is deleted: "+System.lineSeparator());
+        System.out.println("    > "+taskDetail);
         printDash();
     }
 
@@ -93,8 +86,7 @@ public class Ui {
     }
 
     /**
-     * Prints an exit message when
-     * user intends to exit Duke
+     * Prints an exit message when user intends to exit Duke
      */
     public static void printExit() {
         printDash();
