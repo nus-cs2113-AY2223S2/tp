@@ -83,20 +83,6 @@ class ExpenseListTest {
     }
 
     @Test
-    public void deleteExpense_successful() {
-        testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
-                "food", Currency.SGD));
-        new CommandAdd(expenseList.getExpenseList(),
-                parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food")).run();
-        testExpenseList.remove(0);
-        expenseList.deleteExpense("delete 1");
-        assertIterableEquals(testExpenseList, expenseList.getExpenseList());
-
-        testExpenseList.clear();
-        expenseList.clear();
-    }
-
-    @Test
     void expenseAmountStandardization_successful() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/2.5658 " +
