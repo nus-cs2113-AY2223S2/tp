@@ -40,7 +40,7 @@ public class RainyDay {
                     break;
                 }
                 Command specificCommand = Parser.parseUserInput(userInput);
-                assert specificCommand == null : "Parser returned null";
+                assert specificCommand != null : "Parser returned null";
                 specificCommand.execute();
             } catch (RainyDayException e) {
                 logger.log(Level.INFO, "RainyDayException caught");
