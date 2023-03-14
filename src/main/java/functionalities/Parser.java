@@ -70,8 +70,11 @@ public class Parser {
             int appointmentNum = Integer.parseInt(task.split(" ", 2)[1]);
             command = new Command(userCommand, appointmentNum, NA, na, na, na, na, na);
         } catch (ArrayIndexOutOfBoundsException e) {
+            logger.warning("No appointment ID provided for remove command. Unable to execute view command.");
             throw new SniffException(" The remove command description cannot be empty!");
         } catch (NumberFormatException e) {
+            logger.warning("Invalid appointment ID format provided for remove commmand. " +
+                    "Integer numbers are expected.");
             throw new SniffException(" The remove command description must be a number!");
         }
     }
