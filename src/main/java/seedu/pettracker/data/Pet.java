@@ -13,6 +13,40 @@ public class Pet {
         weight = "";
     }
 
+    public void addStat(String statName, String statValue) {
+
+        switch (statName.toLowerCase()) {
+        case "type":
+            setPetType(statValue);
+            break;
+        case "age":
+            setAge(statValue);
+            break;
+        case "weight":
+            setWeight(statValue);
+            break;
+        default:
+            System.out.println("ERROR: The only valid stats are type, age, or weight.");
+        }
+    
+    }
+
+    public void removeStat(String statName) {
+        switch(statName.toLowerCase()) {
+        case "type":
+            setPetType("");
+            break;
+        case "age":
+            setAge("");
+            break;
+        case "weight":
+            setWeight("");
+            break;
+        default:
+            System.out.println("ERROR: The only valid stats are type, age, or weight.");
+        }
+    }
+
     public String getPetName() {
         return petName;
     }

@@ -1,6 +1,7 @@
 package seedu.pettracker.commands;
 
 import seedu.pettracker.ui.Ui;
+import seedu.pettracker.data.PetList;
 
 public class ListPetCommand extends Command {
     public ListPetCommand() {
@@ -16,7 +17,7 @@ public class ListPetCommand extends Command {
      */
     @Override
     public void execute(Ui ui) {
-        //petList.list();
+        PetList.list();
     }
 
     //TODO: Implement this method

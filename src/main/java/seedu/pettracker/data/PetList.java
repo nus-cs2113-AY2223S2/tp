@@ -1,13 +1,14 @@
 package seedu.pettracker.data;
+
 import java.util.ArrayList;
 
 public class PetList {
     public static final String LINE = "____________________";
-    private ArrayList<Pet> petList;
-    private int numberOfPets;
+    private static ArrayList<Pet> petList = new ArrayList<>();
+    private static int numberOfPets;
 
     public PetList() {
-        this.numberOfPets = 0;
+        numberOfPets = 0;
     }
 
     /**
@@ -15,9 +16,37 @@ public class PetList {
      *
      * @param petName Name of pet to be added
      */
-    public void addPet(String petName) {
-        petList.add(new Pet(petName));
+    public static void addPet(String petName) {
+        Pet newPet = new Pet(petName);
+        petList.add(newPet);
         numberOfPets += 1;
+    }
+
+    public static int find(String petName) {
+        for (int i = 0; i < petList.size(); i++) {
+            if (petList.get(i).getPetName().equals(petName)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static Pet get(int index) {
+        return petList.get(index);
+    }
+
+    public static void addStat(String petName, String statName, String statValue) {
+        int index = PetList.find(petName);
+        if (index == -1) {
+            System.out.println("ERROR: Pet not Found");
+        } else {
+            petList.get(index).addStat(statName, statValue);
+        }
+    }
+
+    public static void removeStat(String petName, String statName) {
+        int index = PetList.find(petName);
+        petList.get(index).removeStat(statName);
     }
 
     /**
@@ -25,19 +54,17 @@ public class PetList {
      *
      * @param petName Name of pet(s) to be removed
      */
-    public void removePet(String petName) {
-        for (Pet pet : petList) {
-            if (pet.getPetName().equals(petName)) {
-                petList.remove(pet);
-                numberOfPets -= 1;
-            }
-        }
+    public static void removePet(String petName) {
+        int index = PetList.find(petName);
+        petList.remove(index);
+        numberOfPets -= 1;
+
     }
 
     /**
      * Lists all pets in the current list, as well as the number of pets
      */
-    public void list() {
+    public static void list() {
         for (Pet pet : petList) {
             System.out.println("Name: " + pet.getPetName());
             System.out.println("Type: " + pet.getPetType());
@@ -48,7 +75,7 @@ public class PetList {
         System.out.println("Number of pets: " + numberOfPets);
     }
 
-    public int getNumberOfPets() {
+    public static int getNumberOfPets() {
         return numberOfPets;
     }
 }
