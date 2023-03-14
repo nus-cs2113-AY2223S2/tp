@@ -11,14 +11,10 @@ import commands.deadlinecommand.AddDeadlineCommand;
 import commands.deadlinecommand.DeleteDeadlineCommand;
 import commands.deadlinecommand.ViewDeadlineCommand;
 
-import commands.menu.AddDishCommand;
-import commands.menu.DeleteDishCommand;
 import commands.menu.ViewDishCommand;
-import common.Messages;
 import org.junit.jupiter.api.Test;
 import utils.Parser;
 
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 public class DinerDirectorTest {
@@ -74,7 +70,7 @@ public class DinerDirectorTest {
 
 
     @Test
-    void runCommandLoopUntilExit_userInput_ViewDishCommand() {
+    void runCommandLoopUntilExit_userInput_viewDishCommand() {
         ArrayList<String> listOfCommands = new ArrayList<>();
         listOfCommands.add("view_dish");
         listOfCommands.add("sadsajdkjasdas");
