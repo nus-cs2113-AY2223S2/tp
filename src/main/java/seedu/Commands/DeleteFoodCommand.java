@@ -6,7 +6,6 @@ import seedu.Database.UserStorage;
 import seedu.Entities.Food;
 import seedu.Exceptions.InvalidCommandException;
 import seedu.Exceptions.LifeTrackerException;
-//import seedu.Output.UI;
 import seedu.Ui.GeneralUi;
 
 public class DeleteFoodCommand extends Command{

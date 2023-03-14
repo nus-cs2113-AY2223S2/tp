@@ -94,4 +94,13 @@ public class GeneralUi {
 
     public void printDeletedFood(Food newFood) {
     }
+
+    public void requestCalorieLimit(){
+    }
+
+    public void showCurrentIntake(){}
+
+    public void showRemainingIntake(){}
+    public void showDailyCaloricLimit(){}
+    public void showWellDoneMessage(){}
 }
