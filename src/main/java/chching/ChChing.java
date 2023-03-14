@@ -18,7 +18,7 @@ public class ChChing {
         try {
             this.incomes = new IncomeList(storage.loadIncomes());
             this.expenses = new ExpenseList(storage.loadExpenses());
-        } catch (ChChingException e) {
+        } catch (Exception e) {
             ui.showError(e.getMessage());
             this.incomes = new IncomeList();
             this.expenses = new ExpenseList();

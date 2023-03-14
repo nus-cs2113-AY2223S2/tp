@@ -1,7 +1,6 @@
 package chching.parser;
 
 import chching.record.Expense;
-import chching.record.ExpenseList;
 
 import java.util.HashMap;
 
@@ -13,6 +12,7 @@ public class Expenses {
             String expenseDescription = argumentsByField.get("de");
             String expenseDate = argumentsByField.get("da");
             float expenseValue = Float.parseFloat(argumentsByField.get("v"));
+            assert expenseValue > 0 : "Expense value should be greater than zero";
             exp = new Expense(expenseCategory, expenseDescription, expenseDate, expenseValue);
         } catch (Exception e) {
             System.out.println("Trouble adding expenses");

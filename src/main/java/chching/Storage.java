@@ -29,7 +29,7 @@ public class Storage {
         this.file = new File(filepath);
     }
 
-    public ArrayList<Income> loadIncomes() throws ChChingException {
+    public ArrayList<Income> loadIncomes() {
         ArrayList<Income> incomes = new ArrayList<>();
 
         try {
@@ -50,13 +50,13 @@ public class Storage {
             reader.close();
 
         } catch (FileNotFoundException e) {
-            throw new ChChingException("Unfortunately, file can't be found. I'll make a new one!");
+            System.out.println("Unfortunately, file can't be found. I'll make a new one!");
         }
 
         return incomes;
     }
 
-    public ArrayList<Expense> loadExpenses() throws ChChingException {
+    public ArrayList<Expense> loadExpenses() {
         ArrayList<Expense> expenses = new ArrayList<>();
 
         try {
@@ -78,7 +78,7 @@ public class Storage {
             reader.close();
 
         } catch (FileNotFoundException e) {
-            throw new ChChingException("Unfortunately, file can't be found. I'll make a new one!");
+            System.out.println("Unfortunately, file can't be found. I'll make a new one!");
         }
 
         return expenses;

@@ -29,7 +29,7 @@ public class ExpenseList extends RecordList{
         } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("There is no expense with this index");
         }
-    }   
+    }
 
     public void printExpenseList() {
         for (int i = 1; i <= expenseList.size(); i++) {

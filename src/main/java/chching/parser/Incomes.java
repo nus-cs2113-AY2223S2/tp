@@ -1,17 +1,19 @@
 package chching.parser;
 
-import chching.record.IncomeList;
+import chching.record.Income;
 
 import java.util.HashMap;
 
 public class Incomes {
-    public static chching.record.Income parseIncome(HashMap<String, String> argumentsByField) {
-        chching.record.Income inc = null;
+    public static Income parseIncome(HashMap<String, String> argumentsByField) {
+        Income inc = null;
         try {
             String incomeDescription = argumentsByField.get("de");
             String incomeDate = argumentsByField.get("da");
             float incomeValue = Float.parseFloat(argumentsByField.get("v"));
-            inc = new chching.record.Income(incomeDescription, incomeDate, incomeValue);
+            inc = new Income(incomeDescription, incomeDate, incomeValue);
+            assert incomeValue > 0 : "incomeValue has to be more than 0";
+            inc = new Income(incomeDescription, incomeDate, incomeValue);
         } catch (Exception e) {
             System.out.println("Trouble adding income");
         }
