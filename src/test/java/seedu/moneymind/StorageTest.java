@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.moneymind.storage.FormatToTxt;
 import seedu.moneymind.storage.Storage;
 
 public class StorageTest {
@@ -31,8 +32,15 @@ public class StorageTest {
     public void saveToFile_descInput_exptOutcome() {
         Storage storage = new Storage();
         ArrayList<Category> list = new ArrayList<>();
-        // TODO: Add a test case for saving a list of events
-        // list.add(new Event("test", 1234, 5678));
+
+        // add test data
+        list.add(new Category("test cat"));
+        list.get(0).addEvent(new Event("test1", 1234, 5678));
+        list.get(0).addEvent(new Event("test2", 9876, 5432));
+        list.add(new Category("test dog"));
+        list.get(1).addEvent(new Event("test3", 1234, 5678));
+        list.get(1).addEvent(new Event("test4", 9876, 5432));
+
         assertDoesNotThrow(() -> {
             storage.saveToFile(list);
         });
@@ -63,12 +71,21 @@ public class StorageTest {
         try {
             Storage storage = new Storage();
             ArrayList<Category> list = new ArrayList<>();
-            // TODO: Add a test case for saving a list of events
-            // list.add(new Event("test", 1234, 5678));
-            // list.add(new Event("test2", 9876, 5432));
+
+            // add test data
+            list.add(new Category("test_cat"));
+            list.get(0).addEvent(new Event("test1", 1234, 5678));
+            list.get(0).addEvent(new Event("test2", 9876, 5432));
+            list.add(new Category("test_dog"));
+            list.get(1).addEvent(new Event("test3", 1122, 3344));
+            list.get(1).addEvent(new Event("test4", 5566, 7788));
+            
             storage.saveToFile(list);
             ArrayList<Category> list2 = storage.loadFromFile();
-            System.out.println(list2);
+
+            
+            // check if data is the same
+            assertTrue(FormatToTxt.formatToTxt(list).equals(FormatToTxt.formatToTxt(list2)));
         } catch (Exception e) {
             assertTrue(false, e.getMessage());
         }

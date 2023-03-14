@@ -1,0 +1,6 @@
+&&new_category&&test cat
+&&next_detail&&test1&&next_detail&&1234&&next_detail&&5678
+&&next_detail&&test2&&next_detail&&9876&&next_detail&&5432
+&&new_category&&test dog
+&&next_detail&&test3&&next_detail&&1234&&next_detail&&5678
+&&next_detail&&test4&&next_detail&&9876&&next_detail&&5432

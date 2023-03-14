@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import seedu.moneymind.Category;
+import seedu.moneymind.CategoryList;
 import seedu.moneymind.StringToCategory;
 
 import java.io.FileWriter;
@@ -79,5 +80,19 @@ public class Storage {
         // convert fileString to ArrayList of Category
         ArrayList<Category> savedList = StringToCategory.stringToCategory(fileString);
         return savedList;
+    }
+
+    /**
+     * Saves the current list of Category to EventList.txt file
+     */
+    public void save() {
+        saveToFile(CategoryList.categories);
+    }
+
+    /**
+     * Loads the list of Category from EventList.txt file
+     */
+    public void load() {
+        CategoryList.categories = loadFromFile();
     }
 }

@@ -8,13 +8,14 @@ public class Moneymind {
 
     public Moneymind() {
         this.ui = new Ui();
-        // this line crashes the app currently, so it is commented out
-        // this.storage = new Storage();
+        // TODO: verify storage is working
+        this.storage = new Storage();
     }
 
     public void run() {
         ui.greet();
         boolean isExit = false;
+        storage.load();
         while (!isExit) {
             try {
                 Command command = ui.processNextCommand();
@@ -28,6 +29,7 @@ public class Moneymind {
                 ui.error(e);
             }
         }
+        storage.save();
     }
 
     public static void main(String[] args) {
