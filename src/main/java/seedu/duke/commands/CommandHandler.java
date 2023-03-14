@@ -3,7 +3,6 @@ package seedu.duke.commands;
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
-import seedu.duke.ui.PrintHelpMessage;
 
 public class CommandHandler {
 

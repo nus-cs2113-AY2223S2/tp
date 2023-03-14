@@ -28,6 +28,14 @@ Example Command: ```help```
 
 Shows a list containing *number* of random workouts that suits the arguments filter
 
+*Possible arguments are*:
+
+*Body Part*: ```upper```, ```core```, ```legs```
+
+*Difficulty*: ```easy```, ```medium```, ```hard```,
+
+*Type*: ```static```, ```gym```
+
 Example Command: ```generate easy 3```, ```generate hard upper 4```
 
 ### Exiting the program: ```bye```,```exit```
