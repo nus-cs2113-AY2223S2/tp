@@ -12,4 +12,8 @@ public class RecipeList {
     public ArrayList<Recipe> getRecipes() {
         return recipes;
     }
+
+    public void add(Recipe recipe) {
+        recipes.add(recipe);
+    }
 }

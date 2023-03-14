@@ -56,10 +56,10 @@ public class DukeUI {
         System.out.println("Command: list");
         System.out.println("Lists out current ingredients and their respective quantities stored in the fridge.");
         System.out.println(DIVIDER);
-        System.out.println("Command: add <ingredient> /qty <new_quantity>");
+        System.out.println("Command: add <ingredient> /qty <quantity>");
         System.out.println("Add an ingredient of specified quantity to your ingredient inventory.");
         System.out.println(DIVIDER);
-        System.out.println("Command: remove <ingredient> /qty <new_quantity>");
+        System.out.println("Command: remove <ingredient> /qty <quantity>");
         System.out.println("Remove an ingredient of specified quantity from your ingredient inventory.");
         System.out.println(DIVIDER);
         System.out.println("Command: recipe possible");
@@ -68,6 +68,9 @@ public class DukeUI {
         System.out.println(DIVIDER);
         System.out.println("Command: recipe all");
         System.out.println("Lists out all the recipes currently stored in the recipe inventory.");
+        System.out.println(DIVIDER);
+        System.out.println("Command: bye");
+        System.out.println("Exits the program");
         System.out.println(DIVIDER);
     }
 }
