@@ -43,7 +43,7 @@ public class Ui {
         System.out.println("                    delete <INDEX>");
         System.out.println(" ");
         System.out.println("To display this guide at any time, type:");
-        System.out.println("                    show guide");
+        System.out.println("                    help");
         System.out.println(" ");
     }
 

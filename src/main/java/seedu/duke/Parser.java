@@ -17,10 +17,10 @@ public interface Parser {
                 throw new WrongFormatException();
             }
             if (inputWords[1].equals("companies")) {
-                ListCompanyCommand companyCommand = new ListCompanyCommand(command);
+                ListCompanyCommand companyCommand = new ListCompanyCommand(command + " companies");
                 return companyCommand;
             } else if (inputWords[1].equals("venues")) {
-                ListVenueCommand venueCommand = new ListVenueCommand(command);
+                ListVenueCommand venueCommand = new ListVenueCommand(command + " venues");
                 return venueCommand;
             }
             throw new WrongFormatException();
