@@ -17,6 +17,7 @@ import seedu.duke.constants.UIConstants;
 import seedu.duke.constants.StorageConstants;
 import seedu.duke.entries.Entry;
 import seedu.duke.entrylog.EntryLog;
+import seedu.duke.exceptions.InvalidCategoryException;
 import seedu.duke.exceptions.InvalidReadFileException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
@@ -45,6 +46,8 @@ public class Duke {
             throw new RuntimeException(e);
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Unable to perform IO operation.");
+            throw new RuntimeException(e);
+        } catch (InvalidCategoryException e) {
             throw new RuntimeException(e);
         }
 
@@ -87,7 +90,7 @@ public class Duke {
             fileHandler.setFormatter(formatter);
             // disable console logging
             Arrays.stream(handlers)
-                  .forEach((globalLogger::removeHandler));
+                    .forEach((globalLogger::removeHandler));
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Encountered exception during logging setup.", e);
             throw e;

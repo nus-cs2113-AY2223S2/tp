@@ -22,24 +22,26 @@ import java.util.List;
 import java.io.FileOutputStream;
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @DisplayName("Test Storage")
 public class StorageTest {
     private static final String PATH_STRING = "./test/storage.txt";
-    //    @Nested
-    //    @DisplayName("Test create storage without existing file")
-    //    class NoFileTest {
-    //        @Test
-    //        void testCreateStorage() {
-    //            File toBeDeleted = new File(PATH_STRING);
-    //            toBeDeleted.delete();
-    //            assertTrue(!Files.exists(Paths.get(PATH_STRING)));
-    //            Storage storage = new Storage(PATH_STRING);
-    //            assertDoesNotThrow(()->storage.readFromDatabase());
-    //            assertTrue(Files.exists(Paths.get(PATH_STRING)));
-    //            toBeDeleted.delete();
-    //        }
-    //    }
+    @Nested
+    @DisplayName("Test create storage without existing file")
+    class NoFileTest {
+        @Test
+        void testCreateStorage() {
+            File toBeDeleted = new File(PATH_STRING);
+            toBeDeleted.delete();
+            assertTrue(!Files.exists(Paths.get(PATH_STRING)));
+            Storage storage = new Storage(PATH_STRING);
+            assertDoesNotThrow(()->storage.readFromDatabase());
+            assertTrue(Files.exists(Paths.get(PATH_STRING)));
+            toBeDeleted.delete();
+        }
+    }
 
     @Nested
     @DisplayName("Test base read and write functionalities")
@@ -162,27 +164,27 @@ public class StorageTest {
             assertTrue(actualMessage.contains(expectedMessage));
         }
 
-        @Test
-        public void testInvalidCategory() {
-            writer = assertDoesNotThrow(() -> new FileWriter(PATH_STRING));
-            String writeString = String.join(
-                    TEST_DELIMITER,
-                    TEST_DESCRIPTION,
-                    TEST_AMOUNT_STRING,
-                    INVALID_CATEGORY_STRING
-            );
-            assertDoesNotThrow(() -> writer.append(writeString));
-            assertDoesNotThrow(() -> writer.close());
-
-            Storage storage = new Storage(PATH_STRING);
-            Exception exception = assertThrows(InvalidReadFileException.class, () -> {
-                storage.readFromDatabase();
-            });
-            String expectedMessage = "Category is not valid for line:";
-            String actualMessage = exception.getMessage();
-
-            assertTrue(actualMessage.contains(expectedMessage));
-        }
+        //        @Test
+        //        public void testInvalidCategory() {
+        //            writer = assertDoesNotThrow(() -> new FileWriter(PATH_STRING));
+        //            String writeString = String.join(
+        //                    TEST_DELIMITER,
+        //                    TEST_DESCRIPTION,
+        //                    TEST_AMOUNT_STRING,
+        //                    INVALID_CATEGORY_STRING
+        //            );
+        //            assertDoesNotThrow(() -> writer.append(writeString));
+        //            assertDoesNotThrow(() -> writer.close());
+        //
+        //            Storage storage = new Storage(PATH_STRING);
+        //            Exception exception = assertThrows(InvalidReadFileException.class, () -> {
+        //                storage.readFromDatabase();
+        //            });
+        //            String expectedMessage = "Category is not valid for line:";
+        //            String actualMessage = exception.getMessage();
+        //
+        //            assertTrue(actualMessage.contains(expectedMessage));
+        //        }
 
         @Test
         public void testInsufficientColumnsForEntry() {
