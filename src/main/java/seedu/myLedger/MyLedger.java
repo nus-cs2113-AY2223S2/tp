@@ -1,4 +1,5 @@
-package seedu.myLedger;
+
+package seedu.MyLedger;
 
 import seedu.parser.MainInputParser;
 import seedu.txtdata.TxtFileStatus;
@@ -54,7 +55,7 @@ public class MyLedger {
     public static void initializeList() {
         try {
             TxtFileStatus.initializeExpenditureList(expenditures);
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("Error finding save file during initialization");
         }
     }
