@@ -32,12 +32,16 @@ public class AddModuleCommand extends Command {
     public AddModuleCommand(String moduleCode, ModuleList allModules) throws InvalidModule {
 
         AddModuleCommand.setUpLogger();
+
+        assert (moduleCode != null) : "AddModuleCommand: Module code should not be null!";
+        assert (allModules != null) : "AddModuleCommand: Module list should not be null!";
         Module toAdd = allModules.findModule(moduleCode);
 
         if (toAdd == null) {
 
             throw new InvalidModule();
         }
+
         module = toAdd;
 
     }
@@ -47,6 +51,7 @@ public class AddModuleCommand extends Command {
         ConsoleHandler logConsole = new ConsoleHandler();
         logConsole.setLevel(Level.SEVERE);
         logger.addHandler(logConsole);
+
         try {
 
             if (!new File("apollo.log").exists()) {
