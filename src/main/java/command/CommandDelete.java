@@ -5,7 +5,7 @@ import data.ExpenseList;
 
 import java.util.ArrayList;
 
-import static common.MessageList.MESSAGE_DIVIDER_LIST;
+import static common.MessageList.*;
 
 public class CommandDelete extends Command {
     public static final String COMMAND_NAME = "delete";
@@ -20,19 +20,22 @@ public class CommandDelete extends Command {
     }
 
     /**
-     * Executes delete command.
+     * Executes delete command and prints out result of execution
      *
      * @return message to notify user that the expense has been deleted
      */
     @Override
     public CommandRes execute() {
         try {
-            expenseList.remove(index - 1); // change to 0-based indexing
-            return new CommandRes(MESSAGE_DIVIDER_LIST, expenseList.get(index - 1).toString(),
+            Expense deletedExpense = expenseList.get(index - OFFSET);
+            // change to 0-based indexing
+            expenseList.remove(index - OFFSET);
+            return new CommandRes(SUCCESSFUL_DELETE, deletedExpense,
                     ExpenseList.getAllMessage(expenseList));
         } catch (IndexOutOfBoundsException e) {
             System.out.println(MESSAGE_INVALID_INDEX_ERROR);
         }
+        assert false;
         return null;
     }
 

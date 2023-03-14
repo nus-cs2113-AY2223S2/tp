@@ -34,7 +34,8 @@ public class CommandAdd extends Command {
 
     @Override
     public CommandRes execute() {
-        return new CommandRes(MESSAGE_DIVIDER_LIST, expenseList, ExpenseList.getAllMessage(expenseList));
+         return null;
+//        return new CommandRes(MESSAGE_DIVIDER_LIST, expenseList, ExpenseList.getAllMessage(expenseList));
     }
 
     /**

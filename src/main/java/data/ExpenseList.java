@@ -36,7 +36,7 @@ public class ExpenseList {
     }
 
     // In order to clear the list for test
-    public static void clear(ArrayList<Expense> expenseList) {
+    public void clear() {
         expenseList.clear();
     }
 
