@@ -3,9 +3,9 @@ import exception.SniffException;
 import java.util.Scanner;
 
 public class Ui {
-    private static final String SPACE = " ";
     private static final String DOT_THEN_SPACE = ". ";
-    public void showUserMessage(String s) {
+
+    public static void showUserMessage(String s) {
         System.out.println(s);
     }
 
@@ -31,11 +31,7 @@ public class Ui {
         System.out.println(dividerLine);
     }
 
-    public static void formatPrintList(String count, String type, String animal, String name, String date) {
-        System.out.println(count + DOT_THEN_SPACE + type + SPACE + animal + SPACE + name + SPACE + date);
-    }
-
-    public static void printEmptyListMessage() {
-        System.out.println("Appointment list is empty.");
+    public static void formatPrintList(int count, String description) {
+        System.out.println(count + DOT_THEN_SPACE + description);
     }
 }
