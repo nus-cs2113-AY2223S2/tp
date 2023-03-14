@@ -25,25 +25,25 @@ public class Pet {
         case "weight":
             setWeight(statValue);
             break;
-        case "default":
+        default:
             System.out.println("ERROR: The only valid stats are type, age, or weight.");
         }
     
     }
 
     public void removeStat(String statName) {
-    switch(statName) {
-    case "type":
-        setPetType("");
-        break;
-    case "age":
-        setAge("");
-        break;
-    case "weight":
-        setWeight("");
-    case "default":
-        System.out.println("ERROR: The only valid stats are type, age, or weight.");
-    }
+        switch(statName) {
+        case "type":
+            setPetType("");
+            break;
+        case "age":
+            setAge("");
+            break;
+        case "weight":
+            setWeight("");
+        case "default":
+            System.out.println("ERROR: The only valid stats are type, age, or weight.");
+        }
     }
 
     public String getPetName() {
