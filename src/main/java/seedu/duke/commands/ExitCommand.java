@@ -8,6 +8,6 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(EntryLog entries) {
+    public void executor(EntryLog entries) {
     }
 }

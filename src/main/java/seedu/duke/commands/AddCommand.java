@@ -82,7 +82,7 @@ public class AddCommand extends Command {
      * @param entries List of entries to add to
      */
     @Override
-    public void execute(EntryLog entries) {
+    public void executor(EntryLog entries) {
         UI ui = new UI();
         entries.add(entryObj);
         ui.printExpenditureAdded(entryObj);

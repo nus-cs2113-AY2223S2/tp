@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.entrylog.EntryLog;
+import seedu.duke.storage.Storage;
 
 public class Command {
     private final boolean isExit;
@@ -13,7 +14,12 @@ public class Command {
         this.isExit = isExit;
     }
 
-    public void execute(EntryLog entries) throws Exception {
+    public void execute(EntryLog entries, Storage storage) throws Exception {
+        executor(entries);
+        storage.writeToDatabase(entries.getEntries());
+    }
+
+    public void executor(EntryLog entries) throws Exception {
     }
 
     public boolean getIsExit() {

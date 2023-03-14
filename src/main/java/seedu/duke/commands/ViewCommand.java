@@ -37,7 +37,7 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public void execute(EntryLog entries) {
+    public void executor(EntryLog entries) {
         EntryLog filteredEntries = entries;
         if (categoryToView != null) {
             filteredEntries = entries.filterCategory(categoryToView);

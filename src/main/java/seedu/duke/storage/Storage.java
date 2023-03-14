@@ -1,13 +1,15 @@
 package seedu.duke.storage;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.FileOutputStream;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import seedu.duke.constants.StorageConstants;
 import seedu.duke.entries.Category;
 import seedu.duke.entries.Entry;
@@ -20,7 +22,7 @@ public class Storage {
     private String filePath;
     private String delimiter;
 
-    public Storage(){
+    public Storage() {
         this.filePath = StorageConstants.RELATIVE_FILE_NAME;
         this.delimiter = StorageConstants.DELIMITER;
     }
@@ -28,9 +30,10 @@ public class Storage {
     /**
      * Alternative constructor for Storage that allows the changing of filePath,
      * used for Testing purposes only
+     *
      * @param filePath Path to file that serialized entries will be stored in
      */
-    public Storage(String filePath){
+    public Storage(String filePath) {
         this.filePath = filePath;
         this.delimiter = StorageConstants.DELIMITER;
     }
@@ -38,15 +41,17 @@ public class Storage {
     /**
      * Alternative constructor for Storage that allows the changing of filePath
      * and delimiter, used for Testing purposes only
-     * @param filePath Path to file that serialized entries will be stored in
+     *
+     * @param filePath  Path to file that serialized entries will be stored in
      * @param delimiter Delimiter used to separate the strings in the file
      */
-    public Storage(String filePath, String delimiter){
+    public Storage(String filePath, String delimiter) {
         this.filePath = filePath;
         this.delimiter = delimiter;
     }
+
     /**
-     * Creates a file and its respective parent directories if the file does 
+     * Creates a file and its respective parent directories if the file does
      * not exist, using a predefined file path.
      *
      * @throws IOException If an error occurs in the creation of the new file
@@ -66,28 +71,28 @@ public class Storage {
      * @return An Entry instance that represents the read line
      */
     private Entry readEntryLine(String line) throws InvalidReadFileException {
-        try{
+        try {
             String[] lineArray = line.split(this.delimiter);
             String description = lineArray[0];
             String amountString = lineArray[1];
             String categoryString = lineArray[2];
             double amount = Double.parseDouble(amountString);
             Category category = CategoryUtil.convertStringToCategory(
-                categoryString
+                    categoryString
             );
             Entry entry = new Entry(description, amount, category);
             return entry;
-        } catch(ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidReadFileException(
-                String.format("Error reading data from line: %s", line)
+                    String.format("Error reading data from line: %s", line)
             );
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new InvalidReadFileException(
-                String.format("Amount is not valid for line: %s", line)
+                    String.format("Amount is not valid for line: %s", line)
             );
-        } catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new InvalidReadFileException(
-                String.format("Category is not valid for line: %s", line)
+                    String.format("Category is not valid for line: %s", line)
             );
         }
     }
@@ -105,10 +110,10 @@ public class Storage {
         String amountString = Double.toString(entry.getAmount());
         String categoryString = entry.getCategoryString();
         String returnString = String.join(
-            this.delimiter,
-            description,
-            amountString,
-            categoryString
+                this.delimiter,
+                description,
+                amountString,
+                categoryString
         );
         returnString += System.lineSeparator();
         return returnString;
@@ -123,20 +128,25 @@ public class Storage {
      * @throws IOException If an error occurs in the reading from the file
      */
     public List<Entry> readFromDatabase() throws IOException, InvalidReadFileException {
-        List<Entry> entries = new ArrayList<Entry>();
+        List<Entry> entries = new ArrayList<>();
         makeFileIfNotExists();
-        BufferedReader csvReader = new BufferedReader(
-            new FileReader(this.filePath)
-        );
-        try{
+
+        try {
+            BufferedReader csvReader = new BufferedReader(
+                    new FileReader(this.filePath)
+            );
+
             String row;
             while ((row = csvReader.readLine()) != null) {
                 entries.add(readEntryLine(row));
             }
-            return entries;
-        } finally {
             csvReader.close();
+        } catch (FileNotFoundException e) {
+            // discard all entries if saved data is not found
+            entries.clear();
         }
+
+        return entries;
     }
 
     /**
@@ -144,7 +154,7 @@ public class Storage {
      * into a stored text file.
      *
      * @param entries An Entry[] List that is to be serialized and written into
-     *     the stored text file
+     *                the stored text file
      * @throws IOException If an error occurs in the writing to the file
      */
     public void writeToDatabase(List<Entry> entries) throws IOException {
@@ -163,12 +173,11 @@ public class Storage {
      * Resets the stored text file by deleting it and recreating it again.
      *
      * @throws IOException If an error occurs in the deletion or creation of the
-     *     file
+     *                     file
      */
     public void reset() throws IOException {
         File toBeDeleted = new File(this.filePath);
         toBeDeleted.delete();
         makeFileIfNotExists();
-        
     }
 }
