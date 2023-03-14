@@ -7,32 +7,26 @@ public class Messages {
     /**
      * Messages for programs to print.
      */
-    public static final String MESSAGE_VALID_COMMAND_LIST =
-            "List of valid commands:\n" +
-                    "GENERIC COMMANDS:\n%s\n" +
-                    "MEETING COMMANDS:\n%s\n" +
-                    "DEADLINE COMMANDS:\n%s\n" +
-                    "MENU COMMANDS:\n%s\n" +
-                    "STAFF COMMANDS:\n%s";
-    public static final String MESSAGE_GENERIC_COMMANDS =
-            "help - View list of commands\n" +
-                    "exit - exits the program\n";
-    public static final String MESSAGE_MEETING_COMMANDS =
-            "add_meeting n/<name> t/<time>\n" +
-                    "delete_meeting n/<meeting>\n" +
-                    "view_meetings\n";
-    public static final String MESSAGE_DEADLINE_COMMANDS =
-            "add_deadline n/<name> t/<time>\n" +
-                    "delete_deadline <integer>\n" +
-                    "view_deadlines\n";
-    public static final String MESSAGE_RECIPE_COMMANDS =
-            "add_dish\n" +
-                    "delete_dish <integer>\n" +
-                    "view_dish\n";
-    public static final String MESSAGE_WORKER_COMMANDS =
-            "add_staff <name> <working day> <date of birth> <phone>\n" +
-                    "delete_staff n/<name>\n" +
-                    "view_staff\n";
+    public static final String MESSAGE_VALID_COMMAND_LIST = "List of valid commands:\n" +
+            "GENERIC COMMANDS:\n%s\n" +
+            "MEETING COMMANDS:\n%s\n" +
+            "DEADLINE COMMANDS:\n%s\n" +
+            "MENU COMMANDS:\n%s\n" +
+            "STAFF COMMANDS:\n%s";
+    public static final String MESSAGE_GENERIC_COMMANDS = "help - View list of commands\n" +
+            "exit - exits the program\n";
+    public static final String MESSAGE_MEETING_COMMANDS = "add_meeting n/<name> t/<time>\n" +
+            "delete_meeting n/<meeting>\n" +
+            "view_meetings\n";
+    public static final String MESSAGE_DEADLINE_COMMANDS = "add_deadline n/<name> t/<time>\n" +
+            "delete_deadline <integer>\n" +
+            "view_deadlines\n";
+    public static final String MESSAGE_RECIPE_COMMANDS = "add_dish\n" +
+            "delete_dish <integer>\n" +
+            "view_dish\n";
+    public static final String MESSAGE_WORKER_COMMANDS = "add_staff <name> <working day> <phone> <date of birth>\n" +
+            "delete_staff n/<name>\n" +
+            "view_staff\n";
     public static final String MESSAGE_COMMAND_EXIT = "Thank you for using DinerDirector!";
     public static final String MESSAGE_DEADLINE_ADDED = "Got it! This deadline has been successfully added.\n";
     public static final String MESSAGE_DEADLINE_EMPTY_LIST = "Your deadline list is empty!";
