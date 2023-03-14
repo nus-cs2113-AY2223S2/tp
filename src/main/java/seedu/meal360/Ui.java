@@ -12,19 +12,15 @@ public class Ui {
 
     public void printWelcomeMessage() {
         printSeparator();
-        String logo = " __  __          _ ____  __  __\n" +
-                "|  \\/  |___ __ _| |__ / / / /  \\\n" +
-                "| |\\/| / -_) _` | ||_ \\/ _ \\ () |\n" +
-                "|_|  |_\\___\\__,_|_|___/\\___/\\__/\n";
-
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+        String logo = " __  __          _ ____  __  __\n" + "|  \\/  |___ __ _| |__ / / / /  \\\n"
+                + "| |\\/| / -_) _` | ||_ \\/ _ \\ () |\n" + "|_|  |_\\___\\__,_|_|___/\\___/\\__/\n";
+        System.out.println("Welcome to Meal360, your ultimate Recipe Manager!\n" + logo);
         printSeparator();
     }
 
     public void printGoodbyeMessage() {
         printSeparator();
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(formatMessage("Bye. Hope to see you again soon!"));
         printSeparator();
     }
 
@@ -38,13 +34,25 @@ public class Ui {
     }
 
     public void printRecipe(Recipe recipe) {
-        printSeparator();
         System.out.println(formatMessage("Name of recipe: " + recipe.getName()));
         for (String ingredient : recipe.getIngredients().keySet()) {
-            String outputMessage = String.format("%s(%d)", ingredient, recipe.getIngredients().get(ingredient));
+            String outputMessage = String.format("%s(%d)", ingredient,
+                    recipe.getIngredients().get(ingredient));
             System.out.println(formatMessage(outputMessage));
         }
-        printSeparator();
+    }
+
+    public void printWeeklyPlan(WeeklyPlan weeklyPlan) {
+        if (weeklyPlan.isEmpty()) {
+            printMessage("Your weekly plan is empty!");
+        } else {
+            printMessage("Here is your weekly plan:");
+            weeklyPlan.forEach((recipe, count) -> {
+                String outputMessage = String.format("%s x%d", recipe, count);
+                printMessage(outputMessage);
+            });
+        }
+
     }
 
     public void listRecipe(RecipeList recipeListToPrint) {
@@ -59,8 +67,20 @@ public class Ui {
         printMessage("These are the recipes you have (" + numberOfRecipes + " recipes):");
         for (Recipe recipe : recipeListToPrint) {
             order = order + 1;
-            printMessage(order + ". " + recipe.getName() + "   (" + recipe.getNumOfIngredients() + " ingredients)");
+            printMessage(order + ". " + recipe.getName() + "   (" + recipe.getNumOfIngredients()
+                    + " ingredients)");
         }
         printSeparator();
+    }
+
+    public void printHelp() {
+        printMessage("These are the operations you can do. Please follow the proper input"
+                + " formats while typing.");
+        printMessage("1. Add Recipe: add /r {recipe name}");
+        printMessage("2. View Recipe: view {index number} or view /r {recipe name}");
+        printMessage("3. Edit Recipe: edit {index number} or view /r {recipe name}");
+        printMessage("4. Delete Recipe: delete {index number} or view /r {recipe name}");
+        printMessage("5. List All Recipes: list");
+        printMessage("6. Exit: bye");
     }
 }
