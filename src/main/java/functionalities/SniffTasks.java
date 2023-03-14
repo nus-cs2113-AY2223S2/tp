@@ -7,12 +7,12 @@ import java.util.ArrayList;
 public class SniffTasks {
 
     private static final ArrayList<Appointment> APPOINTMENTS = new ArrayList<>();
-    private static final int appointmentCount = 0;
+    private static int appointmentCount = 0;
 
     public void addAppointment(String uid, String type, String animal, String name, String date) throws SniffException {
         try {
             APPOINTMENTS.add(new Appointment(uid, type, animal, name, date));
-
+            appointmentCount++;
         }catch (StringIndexOutOfBoundsException e){
             throw new SniffException("Invalid add description !!");
         }
@@ -21,6 +21,7 @@ public class SniffTasks {
     public void removeAppointment(int appointmentNumber) throws SniffException {
         try {
             APPOINTMENTS.remove(appointmentNumber);
+            appointmentCount--;
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The remove command description is invalid!");
         }
