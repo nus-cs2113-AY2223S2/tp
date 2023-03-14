@@ -57,8 +57,6 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
             age = Integer.parseInt(userLine[3]);
             gender = userLine[4];
             user = new User(name, weight, height, age, gender);
-
-            System.out.println("Loaded past user data.");
             br.close();
         } catch (FileNotFoundException e) {
             System.out.println("User File not found. Creating new user file...");

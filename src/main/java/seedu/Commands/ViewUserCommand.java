@@ -88,5 +88,4 @@ public class ViewUserCommand extends Command {
             }
         }
     }
-    
 }

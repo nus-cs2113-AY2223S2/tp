@@ -7,11 +7,13 @@ import seedu.Database.UserStorage;
 import seedu.Exceptions.LifeTrackerException;
 import seedu.Parser.CommandParser;
 import seedu.Ui.GeneralUi;
+import java.nio.file.Paths;
 
 public class LifeTracker {
-    private static final String FOOD_FILE_PATH = "./data/FoodData.csv";
-    private static final String MEAL_FILE_PATH = "./data/MealData.csv";
-    private static final String USER_FILE_PATH = "./data/userData.csv";
+    private static final String PATH_HOME = System.getProperty("user.dir");
+    private static final String FOOD_FILE_PATH = Paths.get(PATH_HOME, "data", "foodData.csv").toString();
+    private static final String MEAL_FILE_PATH = Paths.get(PATH_HOME, "data", "mealData.csv").toString();
+    private static final String USER_FILE_PATH = Paths.get(PATH_HOME, "data", "userData.csv").toString();
     private FoodStorage foodStorage;
     private MealStorage mealStorage;
     private UserStorage userStorage;
@@ -38,7 +40,6 @@ public class LifeTracker {
                 System.out.println(e.getMessage());
             } finally {
                 ui.printLine();
-                System.out.println();
             }
         }
     }
