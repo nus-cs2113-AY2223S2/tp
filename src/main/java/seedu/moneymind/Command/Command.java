@@ -49,4 +49,3 @@ public class Command {
 enum CommandType {
     ECHO, EXIT
 }
-
