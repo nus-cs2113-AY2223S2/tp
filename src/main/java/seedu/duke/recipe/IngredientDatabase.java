@@ -26,6 +26,7 @@ public class IngredientDatabase {
             List<IngredientMetadata> ingredientMetadataList = gson.fromJson(reader, ingredientMetadataListType);
 
             for (IngredientMetadata ingredient : ingredientMetadataList) {
+                assert !knownIngredients.containsKey(ingredient.getName()): "duplicate ingredient";
                 knownIngredients.put(ingredient.getName(), ingredient);
             }
 
