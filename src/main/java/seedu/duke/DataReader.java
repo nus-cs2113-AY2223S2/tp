@@ -34,7 +34,7 @@ public class DataReader {
         }
     }
 
-    public static void readModData(String modulesFilePath, ArrayList<Module> modules) {
+    private void readModData(String modulesFilePath, ArrayList<Module> modules) {
         ClassLoader classLoader = DataReader.class.getClassLoader();
         InputStream input = classLoader.getResourceAsStream(modulesFilePath);
         try (BufferedReader br = new BufferedReader(new InputStreamReader(input))) {
