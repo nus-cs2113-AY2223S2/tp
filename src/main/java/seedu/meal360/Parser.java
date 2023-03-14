@@ -55,25 +55,43 @@ public class Parser {
         return recipeToEdit;
     }
 
-    public Recipe parseDeleteRecipe(String[] input, RecipeList recipeList) {
+    public String parseDeleteRecipe(String[] input, RecipeList recipeList) {
         // user inputted recipe name
         if (input[1].contains("r/")) {
             // skip over /r in recipe name
             String recipeToDelete = input[1].substring(2);
-            int recipeIndex = 0;
-            for (Recipe recipe : recipeList) {
-                // find index of recipe we want to delete
-                if (recipe.getName().equals(recipeToDelete)) {
-                    break;
+            if (recipeToDelete.equals("all")) {
+                String allRecipes = "";
+                for (int i = 0; i < recipeList.size(); i++) {
+                    allRecipes += recipeList.deleteRecipe(i).getName() + " ";
                 }
-                recipeIndex++;
+                return allRecipes;
+            } else {
+                int recipeIndex = 0;
+                for (Recipe recipe : recipeList) {
+                    // find index of recipe we want to delete
+                    if (recipe.getName().equals(recipeToDelete)) {
+                        break;
+                    }
+                    recipeIndex++;
+                }
+                return recipeList.deleteRecipe(recipeIndex).getName();
             }
-            return recipeList.deleteRecipe(recipeIndex);
         // user inputted index of recipe in list
         } else {
-            int recipeIndex = Integer.parseInt(input[1]);
-            // need to subtract 1 since list is 1-based
-            return recipeList.deleteRecipe(recipeIndex - 1);
+            // deleting a range of recipes
+            if (input[1].contains("-")) {
+                int startIndex = Integer.parseInt(input[1].charAt(0) + "");
+                int endIndex = Integer.parseInt(input[1].charAt(2) + "");
+                for (int i = startIndex; i <= endIndex; i++) {
+                    recipeList.deleteRecipe(i);
+                }
+                return input[1];
+            } else {
+                int recipeIndex = Integer.parseInt(input[1]);
+                // need to subtract 1 since list is 1-based
+                return recipeList.deleteRecipe(recipeIndex - 1).getName();
+            }
         }
     }
 

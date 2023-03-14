@@ -32,9 +32,9 @@ public class Meal360 {
         } else if (command[0].equals("delete")) {
             ui.printSeparator();
             try {
-                Recipe deletedRecipe = parser.parseDeleteRecipe(command, recipeList);
+                String deletedRecipe = parser.parseDeleteRecipe(command, recipeList);
                 ui.printMessage("Noted. I've removed this recipe:");
-                ui.printMessage(deletedRecipe.getName());
+                ui.printMessage(deletedRecipe);
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
                 String errorMessage = String.format(
