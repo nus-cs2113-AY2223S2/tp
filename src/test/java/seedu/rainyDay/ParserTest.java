@@ -44,8 +44,8 @@ class ParserTest {
     @Test
     public void parseDeleteCommand() {
         financialReport.clearReport();
-        Command.addFinancialStatement("Ipad", "out", 120);
-        Command.addFinancialStatement("angpao", "in", 3000);
+        new AddFinancialStatement("Ipad", "out", 120).execute();
+        new AddFinancialStatement("angpao", "in", 3000).execute();
         try {
             Parser.parseUserInput("delete 2");
             assertEquals(1, RainyDay.financialReport.getStatementCount());
