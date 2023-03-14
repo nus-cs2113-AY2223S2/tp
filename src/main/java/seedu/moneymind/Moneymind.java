@@ -5,6 +5,7 @@ import java.util.Scanner;
 import seedu.moneymind.command.Command;
 import seedu.moneymind.command.InvalidCommandException;
 import seedu.moneymind.command.Parser;
+import seedu.moneymind.storage.Storage;
 
 public class Moneymind {
     private Parser parser;
@@ -14,8 +15,7 @@ public class Moneymind {
 
     public Moneymind() {
         this.parser = new Parser();
-        // this line crashes the app currently, so it is commented out
-        // this.storage = new Storage();
+        this.storage = new Storage();
         this.ui = new Ui();
         this.in = new Scanner(System.in);
     }
@@ -23,6 +23,7 @@ public class Moneymind {
     public void run() {
         ui.greet();
         boolean isExit = false;
+        storage.load();
         while (!isExit) {
             try {
                 Command command = parser.parseNextCommand(in.nextLine());
@@ -38,6 +39,7 @@ public class Moneymind {
                 ui.error(e);
             }
         }
+        storage.save();
     }
 
     public static void main(String[] args) {
