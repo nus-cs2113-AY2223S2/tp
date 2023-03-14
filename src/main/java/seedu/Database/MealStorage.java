@@ -1,12 +1,12 @@
-package seedu.Database;
+package seedu.database;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import seedu.Entities.Meal;
-import seedu.Entities.Food;
+import seedu.entities.Meal;
+import seedu.entities.Food;
 import com.opencsv.CSVWriter;
 
 public class MealStorage extends Storage implements FileReadable, FileWritable {
@@ -35,8 +35,7 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
                 CSVWriter.RFC4180_LINE_END);
         String[] header = { "Date", "Foods" };
         writer.writeNext(header);
-        for (Meal meal : meals)
-        {
+        for (Meal meal : meals) {
             writer.writeNext(meal.toWriteFormat(foodsDelimiter));
         }
         writer.close();

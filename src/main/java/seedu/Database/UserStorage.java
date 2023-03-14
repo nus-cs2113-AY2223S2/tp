@@ -1,4 +1,4 @@
-package seedu.Database;
+package seedu.database;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com.opencsv.CSVWriter;
-import seedu.Entities.User;
+import seedu.entities.User;
 
 public class UserStorage extends Storage implements FileReadable, FileWritable {
     private static final String csvDelimiter = ",";

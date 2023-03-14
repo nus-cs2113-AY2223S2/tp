@@ -1,4 +1,4 @@
-package seedu.Entities;
+package seedu.entities;
 public class User {
     private String name;
     private float weight;

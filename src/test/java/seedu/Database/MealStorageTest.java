@@ -9,10 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import seedu.Database.FoodStorage;
-import seedu.Database.MealStorage;
-import seedu.Entities.Food;
-import seedu.Entities.Meal;
+import seedu.entities.Food;
+import seedu.entities.Meal;
 
 public class MealStorageTest {
     private static final String FILE_PATH = "./data/mealData.csv";
