@@ -1,6 +1,5 @@
 package seedu.duke.commands;
 
-import seedu.duke.constants.MessageConstants;
 import seedu.duke.entries.Category;
 import seedu.duke.entries.Entry;
 import seedu.duke.entrylog.EntryLog;
