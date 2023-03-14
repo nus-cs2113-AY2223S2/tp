@@ -6,15 +6,19 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.logging.*;
 
 public class HelpManual {
     protected static String filePath = "docs/HelpManual.txt";
+    private static final Logger logger = Logger.getLogger(HelpManual.class.getName());
+
 
     /**
      * This method reads the content from docs/HelpManual.txt file.
      */
     public static void readHelpManual() {
         try {
+            logger.log(Level.INFO, "going to start processing");
             File file = new File(filePath);
             if (file.isFile() && file.exists()) {
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file));
@@ -30,8 +34,11 @@ public class HelpManual {
                 String expectedContent = new String(Files.readAllBytes(Paths.get("docs/HelpManual.txt")));
                 String actualContent = contentBuilder.toString();
                 assert actualContent.equals(expectedContent) : "Contents of file do not match expected contents.";
+                // Log successful read to console and log file
+                logger.log(Level.INFO, "Successfully read Help Manual file.");
             } else {
                 System.out.println("Cannot find Help Manual. Please try again.");
+                logger.log(Level.WARNING, "Cannot find Help Manual.");
             }
         } catch (Exception e) {
             System.out.println("Error while loading files. Please try again.");
