@@ -27,8 +27,7 @@ public class EditCommand extends Command {
      * @throws InvalidArgumentsException If expenseId is invalid
      */
     @Override
-    public void executor(EntryLog entryLog) throws InvalidArgumentsException {
-        UI ui = new UI();
+    public void executor(EntryLog entryLog, UI ui) throws InvalidArgumentsException {
         Entry oldEntry = entryLog.getEntry(this.expenseId);
 
         if (!newPrice.isEmpty()) {
@@ -51,10 +50,10 @@ public class EditCommand extends Command {
      */
     public String[] getAttributes() {
         return new String[]{
-                Integer.toString(this.expenseId),
-                this.newCategory,
-                this.newDescription,
-                this.newPrice
+            Integer.toString(this.expenseId),
+            this.newCategory,
+            this.newDescription,
+            this.newPrice
         };
     }
 }

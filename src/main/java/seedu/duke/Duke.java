@@ -62,7 +62,7 @@ public class Duke {
             try {
                 command = parser.parseUserInput(userInput);
                 logger.info("Executing command: " + command.getClass().getName());
-                command.execute(entrylog, storage);
+                command.execute(entrylog, ui, storage);
             } catch (Exception e) {
                 ui.print(e.getMessage() + UIConstants.NEWLINE);
                 ui.printLine();

@@ -9,7 +9,6 @@ import java.util.List;
 
 
 public class ViewCommand extends Command {
-    UI ui = new UI();
     private final int numberOfEntriesToView;
     private final Category categoryToView;
 
@@ -23,7 +22,7 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public void executor(EntryLog entries) {
+    public void executor(EntryLog entries, UI ui) {
         EntryLog filteredEntries = entries;
         if (categoryToView != null) {
             filteredEntries = entries.filterByCategory(categoryToView);

@@ -6,6 +6,7 @@ import seedu.duke.constants.MessageConstants;
 import seedu.duke.entries.Category;
 import seedu.duke.entries.Entry;
 import seedu.duke.entrylog.EntryLog;
+import seedu.duke.ui.UI;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,6 +17,7 @@ public class EditCommandTest {
     private final EditCommand expectedEditCommand = new EditCommand("1", "Lunch", "Food", "5");
     private final Entry originalEntry = new Entry("Dinner", 7.50, Category.FOOD);
     private final EntryLog originalEntries = new EntryLog();
+    private final UI ui = new UI();
     private final String[] proposedChanges = {"1", "Lunch", "", ""};
 
     @Test
@@ -38,7 +40,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(proposedChanges[0], proposedChanges[1], proposedChanges[2]
                 , proposedChanges[3]);
         originalEntries.addEntry(originalEntry);
-        assertDoesNotThrow(() -> editCommand.executor(originalEntries), MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
+        assertDoesNotThrow(() -> editCommand.executor(originalEntries, ui), MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
         Entry changedEntry = originalEntries.getEntriesList().get(0);
         assertEquals(changedEntry.getDescription(), "Lunch");
         assertEquals(changedEntry.getCategoryString(), "Food");

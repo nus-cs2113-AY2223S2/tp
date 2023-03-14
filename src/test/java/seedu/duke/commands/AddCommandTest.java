@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.entries.Category;
 import seedu.duke.entries.Entry;
 import seedu.duke.entrylog.EntryLog;
+import seedu.duke.ui.UI;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,6 +18,7 @@ public class AddCommandTest {
 
     private final Entry expectedEntry = new Entry("Rice", 8.50, Category.FOOD);
     private final EntryLog testEntries = new EntryLog();
+    private final UI ui = new UI();
 
     @Test
     @DisplayName("Test constructor for AddCommand")
@@ -35,7 +37,7 @@ public class AddCommandTest {
     @DisplayName("Test execute method in AddCommand")
     void testExecute(){
         AddCommand testCommand = assertDoesNotThrow(() -> new AddCommand("Rice", 8.50, "Food"));
-        testCommand.executor(testEntries);
+        testCommand.executor(testEntries, ui);
         assertTrue(testEntries.getEntriesList().contains(testCommand.getEntryObj()));
     }
 
