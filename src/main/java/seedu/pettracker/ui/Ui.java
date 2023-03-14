@@ -3,18 +3,14 @@ package seedu.pettracker.ui;
 public class Ui {
 
     public void showWelcomeMessage() {
-        System.out.println("Example Welcome Message");
-    }
-
-    public void showEndingMessage() {
-        System.out.println("Example Ending Message");
+        System.out.println("Welcome to the Pet Health Tracker!");
     }
 
     /**
      * Message that prints when the exit command is executed
      */
     public void exitCommandMessage() {
-        System.out.println("Exit Command Received");
+        System.out.println("Goodbye! See you soon.");
     }
 
     public String getUserInput() {
