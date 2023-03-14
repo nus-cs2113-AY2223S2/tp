@@ -243,6 +243,7 @@ public class Inventory {
             int i = items.indexOf(itemToRemove);
             upcCodes.remove(upcCode);
             items.remove(i);
+            trie.remove(itemName);
             if (itemNameHash.get(itemName).size() == 1) {
                 itemNameHash.remove(itemName);
             } else {
@@ -292,6 +293,7 @@ public class Inventory {
             int i = items.indexOf(itemToRemove);
             upcCodes.remove(upcCode);
             items.remove(i);
+            trie.remove(itemName);
             if (itemNameHash.get(itemName).size() == 1) {
                 itemNameHash.remove(itemName);
             } else {
