@@ -42,7 +42,7 @@ public class ListTest {
                 "| applesorangesgr | 012345678    | 5000     | 12.0  |" + System.lineSeparator() +
                 "| eenbeansredbean |              |          |       |" + System.lineSeparator() +
                 "| s               |              |          |       |" + System.lineSeparator() +
-                "+-----------------+--------------+----------+-------+" + System.lineSeparator();;
+                "+-----------------+--------------+----------+-------+" + System.lineSeparator();
 
         assertTrue(Ui.printTable(items).equals(expected));
     }

@@ -184,10 +184,7 @@ public class Ui {
 
         for (int columnWidth : columnWidths) {
             tableSeparator.append(TABLE_CORNER);
-
-            for (int j = 0; j < columnWidth + 2; j++) {
-                tableSeparator.append(TABLE_ROW);
-            }
+            tableSeparator.append(TABLE_ROW.repeat(columnWidth + 2));
         }
 
         tableSeparator.append(TABLE_CORNER);
