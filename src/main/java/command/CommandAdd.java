@@ -34,7 +34,7 @@ public class CommandAdd extends Command {
 
     @Override
     public CommandRes execute() {
-         return null;
+        return null;
 //        return new CommandRes(MESSAGE_DIVIDER_LIST, expenseList, ExpenseList.getAllMessage(expenseList));
     }
 
@@ -48,14 +48,13 @@ public class CommandAdd extends Command {
                     date, parsedInput[ParserAdd.CATEGORY_INDEX],
                     Currency.checkCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]));
             expenseList.add(expense);
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Please input a valid amount.");
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             System.out.println("Please input both the amount and date with amt/ and t/ respectively.");
-        }catch (DateTimeException e) {
+        } catch (DateTimeException e) {
             System.out.println("Invalid date. Please input the date in dd-MM-yyyy format.");
         }
-
     }
 
 }
