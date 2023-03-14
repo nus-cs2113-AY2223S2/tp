@@ -76,8 +76,6 @@ public class Apollo {
             ui.printUnexpectedException(unexpectedException);
         } catch (IOException ioException) {
             ui.printErrorForIO();
-        } catch (AssertionError assertionError) {
-            ui.printErrorForAssertion(assertionError);
         }
         System.exit(0);
     }
