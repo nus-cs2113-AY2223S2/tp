@@ -1,12 +1,9 @@
 package seedu.duke;
 
-import static seedu.duke.ColorCode.ANSI_RESET;
-import static seedu.duke.ColorCode.ANSI_GREEN;
-import static seedu.duke.ColorCode.ANSI_BLUE;
-import static seedu.duke.ColorCode.ANSI_RED;
-
 import java.util.ArrayList;
 import java.util.Objects;
+
+import static seedu.duke.ColorCode.*;
 
 
 public class Ui {
@@ -234,8 +231,8 @@ public class Ui {
         return attribute.toString();
     }
 
-    /*Method below adapted from https://stackoverflow.com/questions/4055430/java-
-  code-for-wrapping-text-lines-to-a-max-line-width*/
+    /* Method below adapted from https://stackoverflow.com/questions/4055430/java-
+    code-for-wrapping-text-lines-to-a-max-line-width */
     private static String[] wrapText(String input, int width) {
         String[] words = input.split("\\s+");
         ArrayList<String> lines = new ArrayList<>();
@@ -349,9 +346,10 @@ public class Ui {
         System.out.println(itemToRemove.toString());
         System.out.println(LINE);
     }
-    public static void printConfirmMessage() {
+    public static void printConfirmMessage(Item itemToRemove) {
         System.out.println(LINE);
         System.out.println(ANSI_BLUE + CONFIRM_MESSAGE + ANSI_RESET);
+        System.out.println(itemToRemove.toString());
         System.out.println(LINE);
     }
 

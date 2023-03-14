@@ -5,6 +5,7 @@ import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.SearchFilterErrorException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -213,19 +214,31 @@ public class Parser {
             if (rawInput == null) {
                 throw new MissingParametersException();
             }
+            Item itemToRemove;
+            String confirmation;
             String[] commands = rawInput.split(" ");
             switch(commands[0]) {
             case "f/item":
                 if (!commands[1].startsWith("upc/") || commands.length == 1) {
                     throw new MissingParametersException();
                 }
-                Inventory.removeByUpc(commands[1]);
+                HashMap<String, Item> upcCodes = Inventory.getUpcCodes();
+                String upcCode = commands[1].replaceFirst("upc/", "");
+                if (!upcCodes.containsKey(upcCode)) {
+                    System.out.println("This UPC is not in the list. Try again.");
+                }
+                itemToRemove = upcCodes.get(upcCode);
+                Ui.printConfirmMessage(itemToRemove);
+                confirmation = in.nextLine();
+                Inventory.removeByUpc(itemToRemove, upcCode, confirmation);
                 break;
             case "f/index":
                 try {
                     int itemIndex = Integer.parseInt(commands[1]);
-                    System.out.println(itemIndex);
-                    Inventory.removeItemAtIndex(itemIndex);
+                    itemToRemove = Inventory.getItemList().get(itemIndex);
+                    Ui.printConfirmMessage(itemToRemove);
+                    confirmation = in.nextLine();
+                    Inventory.removeItemAtIndex(itemIndex, confirmation);
                 } catch (IndexOutOfBoundsException|NumberFormatException e) {
                     Ui.printInvalidIndex();
                 }

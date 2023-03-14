@@ -6,8 +6,6 @@ import seedu.duke.trie.Trie;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static seedu.duke.Parser.in;
-
 public class Inventory {
     private static ArrayList<Item> items = new ArrayList<>();
     private static HashMap<String, Item> upcCodes = new HashMap<>();
@@ -215,10 +213,8 @@ public class Inventory {
         return selectedItem;
     }
 
-    public static void removeItemAtIndex(int index) {
+    public static void removeItemAtIndex(int index, String confirmation) {
         Item itemToRemove = items.get(index);
-        Ui.printConfirmMessage();
-        String confirmation = in.nextLine();
         switch (confirmation.toUpperCase()) {
         case "Y":
             String itemName = itemToRemove.getName().toLowerCase();
@@ -255,21 +251,14 @@ public class Inventory {
     }
 
     /**
-     * Removes item from the array list of items and hashmap of upc
+     * Removes item from the array list of items and upc of item from hashmap of upc
      * using item's unique upc.
-     *
-     * @param upc UPC of item to be removed from the list.
-     * @return index of item in the arraylist for testing; otherwise -1.
+     * @param itemToRemove
+     * @param upcCode
+     * @param confirmation
+     * @return
      */
-    public static int removeByUpc(String upc) {
-        String upcCode = upc.replaceFirst("upc/", "");
-        searchUPC(upcCode);
-        if (!upcCodes.containsKey(upcCode)) {
-            return -1;
-        }
-        Item itemToRemove = upcCodes.get(upcCode);
-        Ui.printConfirmMessage();
-        String confirmation = in.nextLine();
+    public static int removeByUpc(Item itemToRemove, String upcCode, String confirmation) {
         switch (confirmation.toUpperCase()) {
         case "Y":
             String itemName = itemToRemove.getName().toLowerCase();
@@ -296,5 +285,8 @@ public class Inventory {
 
     public static ArrayList<Item> getItemList() {
         return items;
+    }
+    public static  HashMap<String, Item> getUpcCodes() {
+        return upcCodes;
     }
 }
