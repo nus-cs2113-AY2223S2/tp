@@ -95,12 +95,10 @@ public class Inventory {
             items.add(item);
             Ui.printSuccessAdd();
             String itemName = item.getName().toLowerCase();
-            if (itemNameHash.containsKey(itemName)) {
-                itemNameHash.get(itemName).add(item);
-            } else {
+            if (!itemNameHash.containsKey(itemName)) {
                 itemNameHash.put(itemName, new ArrayList<>());
-                itemNameHash.get(itemName).add(item);
             }
+            itemNameHash.get(itemName).add(item);
             trie.add(itemName);
         }
     }
@@ -125,7 +123,6 @@ public class Inventory {
      */
     public static void search(String keyword) {
         ArrayList<String> resultNames = trie.prefixFind(keyword);
-
         if (resultNames.size() == 0) {
             Ui.printEmptySearch();
             return;
@@ -137,7 +134,7 @@ public class Inventory {
                 resultItems.add(item);
             }
         }
-        Ui.printSearchItems(items);
+        Ui.printSearchItems(resultItems);
         System.out.println(Ui.LINE);
     }
 

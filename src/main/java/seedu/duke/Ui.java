@@ -5,7 +5,6 @@ import static seedu.duke.ColorCode.ANSI_GREEN;
 import static seedu.duke.ColorCode.ANSI_BLUE;
 import static seedu.duke.ColorCode.ANSI_RED;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
 
@@ -82,20 +81,15 @@ public class Ui {
     public static void printSearchUPCItem(Item item) {
         System.out.println(Ui.LINE);
         System.out.println(ANSI_GREEN + "Here is your item: ");
-        System.out.println(item.toString() + ANSI_RESET);
+        ArrayList<Item> singleItem = new ArrayList<>();
+        singleItem.add(item);
+        System.out.println(printTable(singleItem)+ ANSI_RESET);
         System.out.println(Ui.LINE);
     }
 
     public static void printSearchItems(ArrayList<Item> items) {
         System.out.println(Ui.LINE);
-        int counter = 0;
-        for (Item item : items) {
-            System.out.println(Ui.LINE);
-            counter++;
-            System.out.println(ANSI_GREEN + "Item Number: " + counter);
-            System.out.println(item.toString() + ANSI_RESET);
-            System.out.println(Ui.LINE);
-        }
+        System.out.println(ANSI_GREEN + printTable(items) + ANSI_RESET);
         System.out.println(Ui.LINE);
     }
 
