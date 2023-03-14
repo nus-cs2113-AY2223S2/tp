@@ -15,7 +15,7 @@ public class Parser {
     private static final Integer UPC_INDEX = 2;
     private static final Integer QTY_INDEX = 3;
     private static final Integer PRICE_INDEX = 4;
-    private static Scanner in = new Scanner(System.in);
+    public static Scanner in = new Scanner(System.in);
     private ArrayList<String> parsedInfo = new ArrayList<>();
     private String commandWord;
     private String commandInfo;
@@ -50,6 +50,9 @@ public class Parser {
             break;
         case "filter":
             parseFilter(commandInfo);
+            break;
+        case "remove":
+            parseRemove(commandInfo);
             break;
         default:
             Ui.printUnknownCommand();
@@ -203,4 +206,43 @@ public class Parser {
             Ui.printInvalidEditCommand();
         }
     }
+<<<<<<< HEAD
+=======
+
+    /* Temporary List Method created by Kai Wen for Edit Function Testing.*/
+    /*public void parseList() {
+        Inventory.listAll();
+    } */
+
+    public void parseRemove(String rawInput) {
+        // using f/item to remove using upc or f/index to remove using index of item in list
+        try {
+            if (rawInput == null) {
+                throw new MissingParametersException();
+            }
+            String[] commands = rawInput.split(" ");
+            switch(commands[0]) {
+            case "f/item":
+                if (!commands[1].startsWith("upc/") || commands.length == 1) {
+                    throw new MissingParametersException();
+                }
+                Inventory.removeByUpc(commands[1]);
+                break;
+            case "f/index":
+                try {
+                    int itemIndex = Integer.parseInt(commands[1]);
+                    System.out.println(itemIndex);
+                    Inventory.removeItemAtIndex(itemIndex);
+                } catch (IndexOutOfBoundsException|NumberFormatException e) {
+                    Ui.printInvalidIndex();
+                }
+                break;
+            default:
+                throw new MissingParametersException();
+            }
+        } catch (MissingParametersException e) {
+            Ui.printInvalidRemove();
+        }
+    }
+>>>>>>> c026f3dc3a34d5cefb05c2f3e61870d28e5ac2e8
 }
