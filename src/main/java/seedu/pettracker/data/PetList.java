@@ -36,7 +36,12 @@ public class PetList {
 
     public static void addStat (String petName, String statName, String statValue) {
         int index = PetList.find(petName);
-        petList.get(index).addStat(statName, statValue);
+        if (index == -1) {
+            System.out.println("ERROR: Pet not Found");
+        }
+        else {
+            petList.get(index).addStat(statName, statValue);
+        }
     }
 
     public static void removeStat (String petName, String statName) {
