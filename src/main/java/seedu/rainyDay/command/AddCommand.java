@@ -3,14 +3,18 @@ package seedu.rainyDay.command;
 import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.modules.Storage;
-import seedu.rainyDay.modules.UI;
+import seedu.rainyDay.modules.Ui;
 
-public class AddFinancialStatement extends Command {
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class AddCommand extends Command {
+    private final Logger logger = Logger.getLogger(AddCommand.class.getName());
     private final String description;
     private final String flowDirection;
     private final int value;
 
-    public AddFinancialStatement(String description, String flowDirection, int value) {
+    public AddCommand(String description, String flowDirection, int value) {
         this.description = description;
         this.flowDirection = flowDirection;
         this.value = value;
@@ -18,14 +22,22 @@ public class AddFinancialStatement extends Command {
 
     @Override
     public void execute() {
-        int totalStatementCount = RainyDay.financialReport.getStatementCount();
+        logger.log(Level.INFO, "starting addCommand.execute");
+
+        int totalStatementCount = financialReport.getStatementCount();
 
         FinancialStatement currentFinancialStatement = new FinancialStatement(description, flowDirection, value);
-        RainyDay.financialReport.addStatement(currentFinancialStatement);
+        financialReport.addStatement(currentFinancialStatement);
 
-        assert totalStatementCount + 1 == RainyDay.financialReport.getStatementCount() : "statement count mismatch";
+        assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";
 
-        UI.printAddedFinancialStatement(currentFinancialStatement);
-        Storage.writeToFile(RainyDay.financialReport, RainyDay.filePath);
+        logger.log(Level.INFO, " passed assertion");
+
+        Ui.printAddedFinancialStatement(currentFinancialStatement);
+        logger.log(Level.INFO, " passed Ui");
+        Storage.writeToFile(financialReport, RainyDay.filePath);
+
+        logger.log(Level.INFO, " passed storage");
+        logger.log(Level.INFO, " end of addCommand.execute");
     }
 }
