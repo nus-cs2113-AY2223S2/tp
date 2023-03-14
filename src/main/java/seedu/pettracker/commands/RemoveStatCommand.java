@@ -21,6 +21,7 @@ public class RemoveStatCommand extends Command {
     public void execute(Ui ui) {
         //petIndex = petList.find(petName);
         //petList.get(petIndex).removeStat(statName);
+        ui.removeStatCommandMessage(petName, statName);
     }
 
     //TODO: Implement this method

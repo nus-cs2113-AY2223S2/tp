@@ -19,6 +19,7 @@ public class AddPetCommand extends Command{
     @Override
     public void execute(Ui ui) {
         //petList.addPet(petName);
+        ui.addPetCommandMessage(petName);
     }
 
     //TODO: Implement this method
