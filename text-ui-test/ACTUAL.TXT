@@ -5,7 +5,7 @@ Hello from
  / __/ / / /_/ / / /  __(__  |__  )  / /_/ / /_/ / ,< /  __/
 /_/   /_/\__/_/ /_/\___/____/____/  /_____/\__,_/_/|_|\___/ 
 These are some commands available: 
-Generate a specific list of exercises: generate PARAM1 PARAM2 ... x
+Generate a specific list of exercises: generate PARAM1 PARAM2 ... x 
 PARAM stands for a specific requirement you want to include in your exercise.
 
 The following parameters are available for Generate command:
