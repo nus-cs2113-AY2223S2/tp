@@ -17,6 +17,6 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(CompanyList companyList) {
-        System.out.println("add command");
+        companyList.add(companyName,Integer.parseInt(contactNumber),contactEmail);
     }
 }

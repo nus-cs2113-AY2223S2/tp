@@ -1,7 +1,11 @@
 import eventus.company.Company;
-import seedu.duke.*;
+import seedu.duke.CompanyList;
+import seedu.duke.Parser;
+import seedu.duke.Storage;
+import seedu.duke.Ui;
 import seedu.duke.command.Command;
 import seedu.duke.venue.VenueList;
+import seedu.duke.WrongFormatException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
