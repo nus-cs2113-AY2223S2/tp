@@ -1,5 +1,6 @@
 package chching.record;
 
+// Abstract class that will not be initialized as an object
 public abstract class Record {
     protected String category;
     protected String description;
