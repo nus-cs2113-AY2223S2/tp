@@ -92,7 +92,6 @@ public class CommandParser {
                 break;
             }
         default:
-            System.out.println("parse failure");
             return new InvalidCommand();
         }
         return new InvalidCommand();

@@ -11,7 +11,8 @@ public class UiTest {
 
     @Test
     void testAddStatCommandMessage () {
-        // Code for testing standard output based on: https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
+        // Code for testing standard output based on: 
+        // https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
         final ByteArrayOutputStream OUT_CONTENT = new ByteArrayOutputStream();
         final PrintStream ORIGINAL_OUT = System.out;
 

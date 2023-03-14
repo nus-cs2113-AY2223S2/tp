@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class PetList {
     public static final String LINE = "____________________";
-    private ArrayList<Pet> petList;
-    private int numberOfPets;
+    private static ArrayList<Pet> petList;
+    private static int numberOfPets;
 
     public PetList() {
         this.numberOfPets = 0;
@@ -15,7 +15,7 @@ public class PetList {
      *
      * @param petName Name of pet to be added
      */
-    public void addPet(String petName) {
+    public static void addPet(String petName) {
         petList.add(new Pet(petName));
         numberOfPets += 1;
     }
@@ -25,7 +25,7 @@ public class PetList {
      *
      * @param petName Name of pet(s) to be removed
      */
-    public void removePet(String petName) {
+    public static void removePet(String petName) {
         for (Pet pet : petList) {
             if (pet.getPetName().equals(petName)) {
                 petList.remove(pet);
@@ -37,7 +37,7 @@ public class PetList {
     /**
      * Lists all pets in the current list, as well as the number of pets
      */
-    public void list() {
+    public static void list() {
         for (Pet pet : petList) {
             System.out.println("Name: " + pet.getPetName());
             System.out.println("Type: " + pet.getPetType());
@@ -48,7 +48,7 @@ public class PetList {
         System.out.println("Number of pets: " + numberOfPets);
     }
 
-    public int getNumberOfPets() {
+    public static int getNumberOfPets() {
         return numberOfPets;
     }
 }
