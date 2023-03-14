@@ -11,6 +11,7 @@ public class ExceptionHandler {
     public Command mainExceptionHandler(Parser parser, String userInput, UserInterface userInterface,
             CardList cardList) {
         Command command = new ExceptionCommand();
+
         try {
             command = parser.parseCommand(userInput, cardList);
         } catch (DeleteMissingNumber e) {
@@ -34,6 +35,7 @@ public class ExceptionHandler {
             //print something here
             userInterface.addMissingQuestionAndAnswerPrompt();
         }
+
         return command;
     }
 }

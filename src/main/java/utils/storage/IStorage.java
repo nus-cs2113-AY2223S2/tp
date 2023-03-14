@@ -6,7 +6,7 @@ import utils.exceptions.StorageSaveFailure;
 
 public interface IStorage {
 
-    CardList load(String fileName) throws StorageLoadFailure;
-    void save(String fileName, CardList cardList) throws StorageSaveFailure;
+    CardList load() throws StorageLoadFailure;
+    void save(CardList cardList) throws StorageSaveFailure;
 
 }

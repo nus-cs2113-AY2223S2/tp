@@ -24,7 +24,7 @@ public class Inka {
         exceptionHandler = new ExceptionHandler();
 
         try {
-            cardList = storage.load(filePath);
+            cardList = storage.load();
         } catch (StorageLoadFailure e) {
             ui.printImportBad();
         }
