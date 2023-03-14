@@ -265,7 +265,7 @@ public class Parser {
      *
      * @param arguments User arguments entered after the add command.
      * @return String[] Array containing description, category and price
-     * respectively.
+     *     respectively.
      */
     private static String[] parseAddArguments(String arguments) {
         logger.entering(Parser.class.getName(), "parseAddArguments()");
@@ -302,7 +302,7 @@ public class Parser {
     /**
      * @param arguments User arguments entered after the edit command
      * @return String[] Array containing expense ID, description, category and price
-     * respectively.
+     *     respectively.
      */
     private static String[] parseEditArguments(String arguments) {
         logger.entering(Parser.class.getName(), "parseEditArguments()");
