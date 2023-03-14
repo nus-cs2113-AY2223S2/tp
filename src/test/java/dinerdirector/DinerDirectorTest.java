@@ -10,9 +10,9 @@ import commands.meeting.ViewMeetingCommand;
 
 import commands.ExitCommand;
 import commands.HelpCommand;
-import commands.deadlinecommand.AddDeadlineCommand;
-import commands.deadlinecommand.DeleteDeadlineCommand;
-import commands.deadlinecommand.ViewDeadlineCommand;
+import commands.deadline.AddDeadlineCommand;
+import commands.deadline.DeleteDeadlineCommand;
+import commands.deadline.ViewDeadlineCommand;
 
 import commands.menu.AddDishCommand;
 import commands.menu.ViewDishCommand;
@@ -23,10 +23,6 @@ import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 public class DinerDirectorTest {
-
-
-
-
     @Test
     void runCommandLoopUntilExit_userInput_meetingCommand() {
         ArrayList<String> listOfCommands = new ArrayList<>();
@@ -37,7 +33,7 @@ public class DinerDirectorTest {
 
         for (String listOfCommand : listOfCommands) {
             Command command = new Parser().parseCommand(listOfCommand);
-            if (listOfCommand.equals("view_meeting")){
+            if (listOfCommand.equals("view_meeting")) {
                 assertTrue(command instanceof IncorrectCommand);
             } else if (listOfCommand.equals("view_meetings")) {
                 assertTrue(command instanceof ViewMeetingCommand);
@@ -45,9 +41,11 @@ public class DinerDirectorTest {
                 assertTrue(command instanceof AddMeetingCommand);
             } else if (listOfCommand.equals("delete_meeting n/a")) {
                 assertTrue(command instanceof DeleteMeetingCommand);
-            } 
+            }
         }
     }
+
+    @Test
     void runCommandLoopUntilExit_userInput_command() {
         ArrayList<String> listOfCommands = new ArrayList<>();
         listOfCommands.add("help");
@@ -73,8 +71,8 @@ public class DinerDirectorTest {
         listOfCommands.add("add_deadline n/add command");
         listOfCommands.add("add_deadline t/when to command");
         listOfCommands.add("add_deadline n/add command t/when to command");
-        listOfCommands.add("view_deadline");
-        listOfCommands.add("view_deadline dsjfnskldf");
+        listOfCommands.add("view_deadlines");
+        listOfCommands.add("view_deadlines dsjfnskldf");
         listOfCommands.add("delete_deadline");
         listOfCommands.add("delete_deadline 1");
 
@@ -86,7 +84,7 @@ public class DinerDirectorTest {
                     listOfCommand.equals("view_deadline dsjfnskldf") ||
                     listOfCommand.equals("delete_deadline")) {
                 assertTrue(command instanceof IncorrectCommand);
-            } else if (listOfCommand.equals("view_deadline")) {
+            } else if (listOfCommand.equals("view_deadlines")) {
                 assertTrue(command instanceof ViewDeadlineCommand);
             } else if (listOfCommand.equals("add_deadline n/add command t/when to command")) {
                 assertTrue(command instanceof AddDeadlineCommand);

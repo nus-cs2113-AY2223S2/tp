@@ -14,6 +14,7 @@ public class DeadlineManager {
 
     /**
      * Creates DeadlineList with input list.
+     *
      * @param deadlines list of deadlines.
      */
     public DeadlineManager(ArrayList<Deadline> deadlines) {
@@ -22,40 +23,43 @@ public class DeadlineManager {
 
     /**
      * Adds a deadline item to the deadline list.
+     *
      * @param deadline the deadline item to be added.
-     * @param ui manages user output.
+     * @param ui       manages user output.
      */
     public static void addDeadline(Deadline deadline, TextUi ui) {
         deadlines.add(deadline);
         //Solution below adapted from https://github.com/darrenangwx/ip/blob/6d3f1bc5f1
         // a281f9459a67650b043705d3096a8f/src/main/java/task/TaskParser.java
         ui.printMessage(Messages.MESSAGE_DEADLINE_ADDED +
-                deadlines.get(deadlines.size()-1).toString() +
+                deadlines.get(deadlines.size() - 1).toString() +
                 String.format(Messages.MESSAGE_NUMBER_OF_DEADLINES, deadlines.size()));
     }
 
     /**
      * Print the task list.
+     *
      * @param ui manages user output.
      */
     public static void printDeadlines(TextUi ui) {
         try {
             if (deadlines.isEmpty()) {
-                throw new DinerDirectorException(Messages.MESSAGE_EMPTY_LIST);
+                throw new DinerDirectorException(Messages.MESSAGE_DEADLINE_EMPTY_LIST);
             }
-            System.out.println(Messages.MESSAGE_VIEW_LIST);
+            System.out.println(Messages.MESSAGE_DEADLINE_VIEW_LIST);
             for (int i = 1; i <= deadlines.size(); i++) {
                 ui.printMessage(i + ". " + deadlines.get(i - 1).toString());
             }
-        } catch (DinerDirectorException e){
+        } catch (DinerDirectorException e) {
             System.out.println(e);
         }
     }
 
     /**
      * Deletes a task from the task list.
+     *
      * @param index index of deadline to be deleted.
-     * @param ui manages user output.
+     * @param ui    manages user output.
      */
     public static void deleteDeadline(int index, TextUi ui) {
         try {
@@ -63,7 +67,7 @@ public class DeadlineManager {
             deadlines.remove(index);
             ui.printMessage(String.format(Messages.MESSAGE_NUMBER_OF_DEADLINES, deadlines.size()));
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(Messages.MESSAGE_INVALID_INDEX);
+            System.out.println(Messages.ERROR_DEADLINE_INVALID_INDEX);
         }
     }
 }

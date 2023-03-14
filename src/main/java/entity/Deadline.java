@@ -6,8 +6,9 @@ public class Deadline {
 
     /**
      * Creates a deadline item with the deadline description and deadline timing passed through.
+     *
      * @param description the description of deadline item.
-     * @param dueDate the deadline of the deadline item.
+     * @param dueDate     the deadline of the deadline item.
      */
     public Deadline(String description, String dueDate) {
         this.description = description;
@@ -16,6 +17,7 @@ public class Deadline {
 
     /**
      * Returns a String of the deadline and due date for the deadline item in a special format.
+     *
      * @return the string
      */
     public String toString() {

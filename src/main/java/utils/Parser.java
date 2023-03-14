@@ -1,15 +1,14 @@
 package utils;
 
 
-
-import commands.AddStaffCommand;
-import commands.ViewStaffCommand;
-import commands.DeleteStaffCommand;
+import commands.staff.AddStaffCommand;
+import commands.staff.ViewStaffCommand;
+import commands.staff.DeleteStaffCommand;
 import commands.HelpCommand;
 import commands.ExitCommand;
-import commands.deadlinecommand.AddDeadlineCommand;
-import commands.deadlinecommand.ViewDeadlineCommand;
-import commands.deadlinecommand.DeleteDeadlineCommand;
+import commands.deadline.AddDeadlineCommand;
+import commands.deadline.ViewDeadlineCommand;
+import commands.deadline.DeleteDeadlineCommand;
 import commands.menu.AddDishCommand;
 import commands.menu.DeleteDishCommand;
 import commands.menu.ViewDishCommand;
@@ -22,11 +21,16 @@ import commands.Command;
 import common.Messages;
 import exceptions.DinerDirectorException;
 import entity.Deadline;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
 import static manager.DishManager.getDishesSize;
 
+/**
+ * Parser to tokenize the input
+ */
 public class Parser {
 
     public Command parseCommand(String userInput) {
@@ -37,7 +41,6 @@ public class Parser {
         //Source:
         //https://github.com/nus-cs2113-AY2223S2/personbook/blob/main/src/main/java/seedu/personbook/parser/Parser.java
         //Reused the switch skeleton
-
         switch (commandWord) {
         case HelpCommand.COMMAND_WORD:
             return prepareHelpCommand();
@@ -49,38 +52,39 @@ public class Parser {
             return prepareDeleteMeetingCommand(userInputNoCommand);
         case ViewMeetingCommand.COMMAND_WORD:
             return prepareViewMeetingCommand(commandWord);
-        case "add_staff":
+        case AddStaffCommand.COMMAND_WORD:
             return prepareAddStaffCommand(userInput);
-        case "view_staff":
-            return prepareViewStaffCommand();
-        case "delete_staff":
+        case DeleteStaffCommand.COMMAND_WORD:
             return prepareDeleteStaffCommand(userInput);
+        case ViewStaffCommand.COMMAND_WORD:
+            return prepareViewStaffCommand();
         case AddDeadlineCommand.COMMAND_WORD:
             return prepareAddDeadlineCommand(userInputNoCommand);
-        case ViewDeadlineCommand.COMMAND_WORD:
-            return prepareViewDeadlineCommand(userInputNoCommand);
         case DeleteDeadlineCommand.COMMAND_WORD:
             return prepareDeleteDeadlineCommand(userInputNoCommand);
-        case AddDishCommand.ADD_DISH_COMMAND:
+        case ViewDeadlineCommand.COMMAND_WORD:
+            return prepareViewDeadlineCommand(userInputNoCommand);
+        case AddDishCommand.COMMAND_WORD:
             return prepareAddDishCommand(userInputNoCommand);
-        case ViewDishCommand.VIEW_DISH_COMMAND:
-            return prepareViewDishCommand(userInputNoCommand);
-        case DeleteDishCommand.DELETE_DISH_COMMAND:
+        case DeleteDishCommand.COMMAND_WORD:
             return prepareDeleteDishCommand(userInputSplit);
+        case ViewDishCommand.COMMAND_WORD:
+            return prepareViewDishCommand(userInputNoCommand);
         default:
             return new IncorrectCommand();
         }
         //@@damithc
     }
+
     //Solution below adapted from https://github.com/Stella1585/ip/blob/master/src/main/java/duke/Parser.java
     private Command prepareAddMeetingCommand(String description) {
         String[] words = (description.trim()).split("t/");
         String[] testName = (description.trim()).split("n/");
         try {
             if (((description.trim()).isEmpty()) || (!description.contains("n/")) || (words.length < 2)) {
-                throw new DinerDirectorException(Messages.MESSAGE_MISSING_MEETING_PARAM);
+                throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
             } else if ((testName.length > 2) || (words.length > 2)) {
-                throw new DinerDirectorException(Messages.MESSAGE_EXCESS_MEETING_PARAM);
+                throw new DinerDirectorException(Messages.ERROR_MEETING_EXCESS_ADD_PARAM);
             }
         } catch (DinerDirectorException e) {
             System.out.println(e);
@@ -94,7 +98,7 @@ public class Parser {
     private Command prepareViewMeetingCommand(String userInput) {
         try {
             if (!userInput.trim().equals("view_meetings")) {
-                throw new DinerDirectorException(Messages.MESSAGE_EXCESS_VIEW_PARAM);
+                throw new DinerDirectorException(Messages.ERROR_MEETING_EXCESS_VIEW_PARAM);
             }
         } catch (DinerDirectorException e) {
             System.out.println(e);
@@ -108,7 +112,7 @@ public class Parser {
         try {
             issue = description.trim().substring(2);
             if (((description.trim()).isEmpty()) || (!description.contains("n/")) || (description.length() < 3)) {
-                throw new DinerDirectorException(Messages.MESSAGE_MISSING_MEETING_PARAM);
+                throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
             }
         } catch (DinerDirectorException e) {
             System.out.println(e);
@@ -121,7 +125,7 @@ public class Parser {
         String[] userInputSplit = userInput.split(" ");
         try {
             if (userInputSplit.length < 5) {
-                throw new DinerDirectorException(Messages.ERROR_ADD_STAFF_COMMAND);
+                throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_MISSING_PARAM);
             }
             String staffName = userInputSplit[1];
             String staffWorkingDay = userInputSplit[2];
@@ -142,7 +146,7 @@ public class Parser {
         String[] userInputSplit = userInput.split(" ");
         try {
             if (userInputSplit.length < 2) {
-                throw new DinerDirectorException(Messages.ERROR_ADD_STAFF_COMMAND);
+                throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_MISSING_PARAM);
             }
             String staffName = userInputSplit[1];
 
@@ -156,14 +160,17 @@ public class Parser {
     private Command prepareHelpCommand() {
         return new HelpCommand();
     }
+
     private Command prepareExitCommand() {
         return new ExitCommand();
     }
 
     //Solution below adapted from https://github.com/Stella1585/ip/blob/master/src/main/java/duke/Parser.java
+
     /**
      * Creates a deadline item based on descriptions given by the user, then returns
      * an add deadline command.
+     *
      * @param description contains the deadline description and due date.
      * @return the add deadline command.
      */
@@ -172,9 +179,9 @@ public class Parser {
         String[] testName = (description.trim()).split("n/");
         try {
             if (((description.trim()).isEmpty()) || (!description.contains("n/")) || (words.length < 2)) {
-                throw new DinerDirectorException(Messages.MESSAGE_MISSING_PARAM);
+                throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_PARAM);
             } else if ((testName.length > 2) || (words.length > 2)) {
-                throw new DinerDirectorException(Messages.MESSAGE_EXCESS_PARAM);
+                throw new DinerDirectorException(Messages.ERROR_DEADLINE_EXCESS_PARAM);
             }
         } catch (DinerDirectorException e) {
             System.out.println(e);
@@ -188,13 +195,14 @@ public class Parser {
 
     /**
      * Checks for error in the view deadline command, then returns a view deadline command.
+     *
      * @param userInput view deadline command
      * @return the view deadline command.
      */
-    private Command prepareViewDeadlineCommand(String userInput){
+    private Command prepareViewDeadlineCommand(String userInput) {
         try {
-            if(!(userInput.trim()).isEmpty()){
-                throw new DinerDirectorException(Messages.MESSAGE_EXCESS_LIST_PARAM);
+            if (!(userInput.trim()).isEmpty()) {
+                throw new DinerDirectorException(Messages.ERROR_DEADLINE_EXCESS_LIST_PARAM);
             }
         } catch (DinerDirectorException e) {
             System.out.println(e);
@@ -207,6 +215,7 @@ public class Parser {
     /**
      * Checks for error in the delete deadline command, then returns
      * a delete deadline command.
+     *
      * @param description contains the index number.
      * @return the delete deadline command.
      */
@@ -215,10 +224,10 @@ public class Parser {
         try {
             index = Integer.parseInt((description.trim())) - 1;
             if (description.isEmpty()) {
-                throw new DinerDirectorException(Messages.MESSAGE_MISSING_INDEX);
+                throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_INDEX);
             }
         } catch (NumberFormatException e) {
-            System.out.println(Messages.MESSAGE_MISSING_INDEX);
+            System.out.println(Messages.ERROR_DEADLINE_MISSING_INDEX);
             return new IncorrectCommand();
         } catch (DinerDirectorException e) {
             System.out.println(e);
@@ -226,21 +235,19 @@ public class Parser {
         }
         return new DeleteDeadlineCommand(index);
     }
-    
-
 
     private Command prepareDeleteDishCommand(String[] userInputSplit) {
         int indexToRemove = 0;
         try {
             if (userInputSplit.length <= 1) {
-                throw new DinerDirectorException(Messages.MESSAGE_EMPTY_INDEX_COMMAND);
+                throw new DinerDirectorException(Messages.ERROR_DISH_EMPTY_INDEX);
             }
             indexToRemove = Integer.parseInt(userInputSplit[1]) - 1;
             if (indexToRemove < 0 || indexToRemove >= getDishesSize()) {
-                throw new DinerDirectorException(Messages.MESSAGE_INVALID_INDEX_FOR_DISH_COMMAND);
+                throw new DinerDirectorException(Messages.ERROR_DISH_INVALID_INDEX);
             }
         } catch (NumberFormatException e) {
-            System.out.println(Messages.MESSAGE_NOT_A_VALID_INTEGER_COMMAND);
+            System.out.println(Messages.ERROR_DISH_NOT_A_VALID_INTEGER);
             return new IncorrectCommand();
         } catch (DinerDirectorException e) {
             System.out.println(e.getMessage());
@@ -265,7 +272,6 @@ public class Parser {
         // name of dish?
         // price of dish?
         // list of ingredients, maybe indicate number of ingredients followed by listing them
-
         try {
             if (!userInputNoCommand.isBlank()) {
                 throw new DinerDirectorException(Messages.ERROR_COMMAND_INVALID);
@@ -283,19 +289,19 @@ public class Parser {
             System.out.println("Name of Dish?");
             name = userInput.nextLine();
             if (name.isBlank()) {
-                throw new DinerDirectorException(Messages.MESSAGE_BLANK_DISH_NAME_COMMAND);
+                throw new DinerDirectorException(Messages.ERROR_DISH_BLANK_DISH_NAME_COMMAND);
             }
 
             System.out.println("Price of Dish? (In cents)");
             String priceInString = userInput.nextLine();
             price = Integer.parseInt(priceInString);
             if (price < 0) {
-                throw new DinerDirectorException(Messages.MESSAGE_NEGATIVE_PRICE_COMMAND);
+                throw new DinerDirectorException(Messages.ERROR_DISH_NEGATIVE_PRICE_COMMAND);
             }
 
             System.out.println("List of ingredients? (Separate it by spaces)");
             if (!userInput.hasNext()) {
-                throw new DinerDirectorException(Messages.MESSAGE_INGREDIENT_LIST_CANNOT_BE_EMPTY);
+                throw new DinerDirectorException(Messages.ERROR_DISH_MISSING_INGREDIENT);
             }
             String[] userInputSplit = userInput.nextLine().split(" ");
             ingredients = new ArrayList<>(Arrays.asList(userInputSplit));

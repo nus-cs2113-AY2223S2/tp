@@ -1,9 +1,12 @@
-package commands;
+package commands.staff;
 
+import commands.Command;
 import manager.StaffManager;
 import ui.TextUi;
 
 public class ViewStaffCommand extends Command {
+    public static final String COMMAND_WORD = "view_staff";
+
     public ViewStaffCommand() {
     }
 

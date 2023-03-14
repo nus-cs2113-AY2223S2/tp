@@ -1,9 +1,11 @@
-package commands;
+package commands.staff;
 
+import commands.Command;
 import manager.StaffManager;
 import ui.TextUi;
 
 public class DeleteStaffCommand extends Command {
+    public static final String COMMAND_WORD = "delete_staff";
     private String staffName;
 
     public DeleteStaffCommand(String staffName) {

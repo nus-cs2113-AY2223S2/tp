@@ -14,6 +14,7 @@ public class TextUi {
     //@@damithc darrenangwx-reused
     //Source: https://github.com/nus-cs2113-AY2223S2/personbook/blob/main/src/main/java/seedu/personbook/ui/TextUi.java
     //Reused TextUi, shouldIgnoreEmpty, getUserInput methods with minor modifications.
+
     /**
      * Constructor to call the other constructor.
      */

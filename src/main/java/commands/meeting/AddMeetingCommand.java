@@ -8,22 +8,25 @@ import ui.TextUi;
 
 
 public class AddMeetingCommand extends Command {
-    public static final String COMMAND_WORD="add_meeting";
+    public static final String COMMAND_WORD = "add_meeting";
     public static String time;
     public static String issue;
-    public AddMeetingCommand(String time,String issue){
-        this.time=time;
-        this.issue=issue;
+
+    public AddMeetingCommand(String time, String issue) {
+        this.time = time;
+        this.issue = issue;
     }
+
     @Override
     public boolean isExit() {
         return false;
     }
+
     @Override
     public void execute(TextUi ui) {
-        ui.printMessage(Messages.MESSAGE_ADD_MEETING);
-        Meeting m=new Meeting(this.time,this.issue);
+        ui.printMessage(Messages.MESSAGE_MEETING_ADDED);
+        Meeting m = new Meeting(this.time, this.issue);
         MeetingManager.addMeeting(m);
-        ui.printMessage(issue+" at "+time);
+        ui.printMessage(issue + " at " + time);
     }
 }
