@@ -6,8 +6,14 @@ import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
 
+import java.io.File;
 import java.io.IOException;
 import java.rmi.UnexpectedException;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import static seedu.apollo.ui.Parser.COMMAND_DELETE_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_MARK_WORD;
@@ -18,6 +24,7 @@ import static seedu.apollo.ui.Parser.COMMAND_UNMARK_WORD;
  * Handles {@code mark}, {@code unmark}, and {@code delete} commands.
  */
 public class ModifyCommand extends Command {
+    private static Logger logger = Logger.getLogger("ModifyCommand");
 
     protected String command;
     protected int idx;
@@ -33,12 +40,41 @@ public class ModifyCommand extends Command {
     public ModifyCommand(String command, String param, int size) throws NumberFormatException {
         assert (command.equals(COMMAND_MARK_WORD) | command.equals(COMMAND_UNMARK_WORD) |
                 command.equals(COMMAND_DELETE_WORD)) : "ModifyCommand: Invalid Modify Command";
+        assert param != null : "ModifyCommand: param cannot be null!";
         int idx = Integer.parseInt(param) - 1;
         if (idx < 0 || idx >= size) {
             throw new NumberFormatException();
         }
         this.command = command;
         this.idx = idx;
+        ModifyCommand.setUpLogger();
+    }
+
+    /**
+     * Sets up logger for ModifyCommand class.
+     *
+     * @throws IOException If logger file cannot be created.
+     */
+    public static void setUpLogger() {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.ALL);
+        ConsoleHandler logConsole = new ConsoleHandler();
+        logConsole.setLevel(Level.SEVERE);
+        logger.addHandler(logConsole);
+        try {
+
+            if (!new File("apollo.log").exists()) {
+                new File("apollo.log").createNewFile();
+            }
+
+            FileHandler logFile = new FileHandler("apollo.log", true);
+            logFile.setLevel(Level.FINE);
+            logger.addHandler(logFile);
+
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
+
     }
 
     /**
@@ -51,6 +87,8 @@ public class ModifyCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
+        assert (ui != null & storage != null & taskList != null & moduleList != null) :
+                "executing ModifyCommand";
         switch(command) {
         case COMMAND_MARK_WORD:
             taskList.get(idx).setDone(true);
