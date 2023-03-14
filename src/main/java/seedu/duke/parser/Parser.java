@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import jdk.jshell.execution.Util;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.DeleteCommand;
@@ -18,6 +19,8 @@ import seedu.duke.exceptions.InvalidCategoryException;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.MissingArgumentsException;
 import seedu.duke.constants.MessageConstants;
+import seedu.duke.util.CategoryUtil;
+import seedu.duke.util.StringUtil;
 
 public class Parser {
 
@@ -184,10 +187,10 @@ public class Parser {
         logger.info("User input description: " + description);
         logger.info("User input category: " + category);
         logger.info("User input price: " + price);
-        if (expenseId.isEmpty()) {
-            logger.warning("Missing expense ID: " + MessageConstants.MESSAGE_INVALID_ID);
-            throw new MissingArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
-        }
+//        if (expenseId.isEmpty()) {
+//            logger.warning("Missing expense ID: " + MessageConstants.MESSAGE_INVALID_ID);
+//            throw new MissingArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+//        }
 
         try {
             Integer.parseInt(argumentsArray[0]);
@@ -224,32 +227,46 @@ public class Parser {
      * @throws InvalidArgumentsException If user specified a non-integer for expense
      *                                   ID.
      */
-    private Command parseViewCommand(String arguments) throws InvalidArgumentsException {
+    private Command parseViewCommand(String arguments) throws InvalidArgumentsException, InvalidCategoryException {
         logger.entering(Parser.class.getName(), "parseViewCommand()");
         logger.info("Parsing view command with arguments: " + arguments);
+        Category category = null;
+        String categoryStr = "";
+        String viewCount = "";
+        int viewCountInt = 0;
         if (arguments.isEmpty()) {
             logger.info("No count specified. Listing all expenses");
             // list all commands;
             return new ViewCommand(Integer.MAX_VALUE);
         }
-        String[] argumentsArray = arguments.split(" ", 2);
+        String[] argumentsArray = arguments.split(" ", 3);
         assert argumentsArray.length >= 1 : "User input contains at least 1 argument";
-        String viewCount = argumentsArray[0];
-        int viewCountInt;
+        Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
+        Pattern viewCountPattern = Pattern.compile("\\d+");
+        Matcher matcher = viewCountPattern.matcher(arguments);
+        if (matcher.find()) {
+            viewCount = matcher.group(0);
+        } else { //count not specified
+            viewCount = Integer.toString(Integer.MAX_VALUE);
+        }
+        matcher = categoryPattern.matcher(arguments);
+        if (matcher.find()) {
+            categoryStr = matcher.group(2);
+            category = CategoryUtil.convertStringToCategory(StringUtil.toTitleCase(categoryStr));
+        }
         try {
-            viewCountInt = Integer.parseInt(argumentsArray[0]);
-            // view tasks.
+            viewCountInt = Integer.parseInt(viewCount);
         } catch (NumberFormatException e) {
             logger.warning("Expense ID is not an integer: " + MessageConstants.MESSAGE_INVALID_ID);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
-
         if (viewCountInt < 0) {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
-
+        logger.info("User entered count:" + viewCount);
+        logger.info("User entered category:" + categoryStr);
         logger.exiting(Parser.class.getName(), "parseViewCommand()");
-        return new ViewCommand(viewCountInt);
+        return new ViewCommand(viewCountInt, category);
     }
 
     /**

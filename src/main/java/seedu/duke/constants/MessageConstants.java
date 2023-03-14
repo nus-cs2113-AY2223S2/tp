@@ -21,7 +21,8 @@ public final class MessageConstants {
     public static final String MESSAGE_EMPTY_INPUT = "Use /help for a list of supported commands!";
     public static final String MESSAGE_INVALID_ARGUMENTS = "Please enter the required argument(s)!";
     public static final String MESSAGE_MISSING_ARGS_ADD = "Please specify the description, category and price!";
-    public static final String MESSAGE_MISSING_ARGS_EDIT = "Please specify at least 1 detail you would like to edit!";
+    public static final String MESSAGE_MISSING_ARGS_EDIT = "Please specify the ID of the expense you would like to " +
+            "edit!";
     public static final String MESSAGE_INVALID_COMMAND = "Please enter a valid command!";
     public static final String MESSAGE_INVALID_CATEGORY = "Please specify a valid category!";
     public static final String MESSAGE_HELP = "PocketPal is a expense tracking app, "

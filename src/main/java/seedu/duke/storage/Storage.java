@@ -13,6 +13,7 @@ import java.util.List;
 import seedu.duke.constants.StorageConstants;
 import seedu.duke.entries.Category;
 import seedu.duke.entries.Entry;
+import seedu.duke.exceptions.InvalidCategoryException;
 import seedu.duke.util.CategoryUtil;
 import seedu.duke.exceptions.InvalidReadFileException;
 
@@ -70,7 +71,7 @@ public class Storage {
      * @param line String of text to be converted to an Entry instance
      * @return An Entry instance that represents the read line
      */
-    private Entry readEntryLine(String line) throws InvalidReadFileException {
+    private Entry readEntryLine(String line) throws InvalidReadFileException, InvalidCategoryException {
         try {
             String[] lineArray = line.split(this.delimiter);
             String description = lineArray[0];
@@ -124,10 +125,10 @@ public class Storage {
      * instances.
      *
      * @return An Entry[] List that represents all the entries that have been
-     *     read from the stored text file
+     * read from the stored text file
      * @throws IOException If an error occurs in the reading from the file
      */
-    public List<Entry> readFromDatabase() throws IOException, InvalidReadFileException {
+    public List<Entry> readFromDatabase() throws IOException, InvalidReadFileException, InvalidCategoryException {
         List<Entry> entries = new ArrayList<>();
         makeFileIfNotExists();
 

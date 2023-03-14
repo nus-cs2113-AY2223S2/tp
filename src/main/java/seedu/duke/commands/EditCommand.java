@@ -31,7 +31,7 @@ public class EditCommand extends Command {
         Entry oldEntry = entryLog.getEntry(this.expenseId);
 
         if (!newPrice.isEmpty()) {
-            oldEntry.setAmount(Integer.parseInt(this.newPrice));
+            oldEntry.setAmount(Double.parseDouble(this.newPrice));
         }
         if (!newDescription.isEmpty()) {
             oldEntry.setDescription(this.newDescription);
@@ -50,7 +50,7 @@ public class EditCommand extends Command {
      */
     public String[] getAttributes() {
         String[] attributeList = {Integer.toString(this.expenseId), this.newCategory, this.newDescription,
-            this.newPrice};
+                this.newPrice};
         return attributeList;
     }
 }
