@@ -11,11 +11,13 @@ public class CompanyList {
     public CompanyList(ArrayList<Company> companyList) {
         this.companyList = companyList;
     }
-
+    Ui ui = new Ui();
     public boolean add(String companyName, int contactNumber, String contactEmail){
         try{
             Company newCompany = new Company(companyName, contactNumber, contactEmail);
             companyList.add(newCompany);
+            ui.showSuccessfulAdditionMessage();
+
             return true;
         } catch(seedu.duke.InputMismatchException e){
             return false;
@@ -23,7 +25,6 @@ public class CompanyList {
     }
 
     public void deleteCompanyInformation(int index) {
-        Ui ui = new Ui();
         companyList.remove(index);
         ui.showSuccessfulDeletionMessage();
     }

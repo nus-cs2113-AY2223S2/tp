@@ -51,4 +51,8 @@ public class Ui {
         System.out.println("Company information successfully deleted!");
     }
 
+    public void showSuccessfulAdditionMessage() {
+        System.out.println("Company information added successfully!");
+    }
+
 }
