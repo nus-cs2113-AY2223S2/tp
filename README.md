@@ -1,4 +1,14 @@
-# Duke project template
+# CS2113-W12-4 Team Project tP
+
+To remove everything below:
+
+Please download dataset (as it is a large file) from <a href="https://datasets.imdbws.com/">this link</a>
+
+Look for **title.basics.tsv.gz**. This contains basic data on titles.
+
+Follow up by running (TODO) processData (Which will process the TSV file into something parseable for our usage.)
+
+Store it in "/data/movies.tsv" (so the overall path looks like this: "tP/data/movies.tsv")
 
 This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
 
