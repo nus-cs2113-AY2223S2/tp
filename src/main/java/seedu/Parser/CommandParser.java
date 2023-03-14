@@ -1,6 +1,6 @@
 package seedu.Parser;
 
-import seedu.Commands.AddFoodCommand;
+import seedu.Commands.AddMealCommand;
 import seedu.Commands.UpdateUserCommand;
 import seedu.Commands.ViewUserCommand;
 import seedu.Commands.Command;
@@ -19,7 +19,7 @@ public class CommandParser {
 
         switch(commandWord) {
         case "add":
-            command = new AddFoodCommand(commandDescriptor);
+            command = new AddMealCommand(commandDescriptor);
             break;
         case "delete":
             command = new DeleteFoodCommand(commandDescriptor);
