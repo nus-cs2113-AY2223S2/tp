@@ -42,4 +42,15 @@ public class EditCommand extends Command {
         }
         ui.printExpenditureEdited(oldEntry);
     }
+
+    /**
+     * Used for testing other methods in editCommands Class
+     *
+     * @return String Array of all attributes in editCommand
+     */
+    public String[] getAttributes() {
+        String[] attributeList = {Integer.toString(this.expenseId), this.newCategory, this.newDescription,
+            this.newPrice};
+        return attributeList;
+    }
 }
