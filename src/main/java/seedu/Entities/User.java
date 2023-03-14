@@ -96,7 +96,6 @@ public class User {
         String weight = Float.toString(this.weight);
         String height = Float.toString(this.height);
         String age = Integer.toString(this.age);
-        // Need to change this to update user's age and gender as well
         String[] value = { this.name, weight, height, age, this.gender };
         return value;
     }
