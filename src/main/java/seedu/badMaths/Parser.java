@@ -26,11 +26,11 @@ public class Parser {
     }
 
     public String getToDo() {
-        if (!userInput.equals("bye")) {
+        if (userInput.contains(".")) {
             return userInput.substring(userInput.indexOf(".") + 2);
         } else {
-            return "nothing to do";
+            return "Nothing to do";
         }
-
     }
+
 }
