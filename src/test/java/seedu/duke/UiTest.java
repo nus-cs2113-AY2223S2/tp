@@ -21,9 +21,10 @@ public class UiTest {
     }
 
     @Test
-    public void showWelcome_onStartup_displayWelcomeMessage() {
-        ui.showWelcome();
-        assertEquals("Hello! Welcome to EveNtUS!", outputStreamCaptor.toString());
+    public void showLine_onEachMethod_displayLine() {
+        ui.showLine();
+        assertEquals("____________________________________________________________",
+                    outputStreamCaptor.toString());
     }
 
     @AfterEach
