@@ -5,6 +5,8 @@ import seedu.duke.constants.UIConstants;
 import seedu.duke.entries.Entry;
 import seedu.duke.util.UIUtil;
 
+import java.util.List;
+
 public class UI {
     public void print(String output) {
         System.out.print(output);
@@ -38,6 +40,42 @@ public class UI {
         print(MessageConstants.MESSAGE_EXIT);
         printLine();
     }
+
+
+    /**
+     * Returns a string based on the details of the Entry object and entryID entered.
+     *
+     * @param entry   entry Object to be formatted
+     * @param entryID ID of the entry Object
+     * @return String of details about the entry
+     */
+    private String formatViewEntries(Entry entry, int entryID) {
+        String description = entry.getDescription();
+        double price = entry.getAmount();
+        String category = entry.getCategoryString();
+        return "<" + Integer.toString(entryID) + ">: " + description +
+                " (" + category + ") - $" + UIUtil.formatPrice(price);
+    }
+
+    /**
+     * Combines all individual entry strings into a list of entries and prints the list, along with an acknowledgement
+     * message.
+     *
+     * @param entryList List of entry objects with the user-specified length
+     * @param category String denoting the category requested by the user
+     */
+    public void printEntriesToBeViewed(List<Entry> entryList, String category) {
+        StringBuilder finalString = new StringBuilder();
+        finalString.append("These are the latest " + entryList.size() + " entries from the " + category +
+                " category.\n");
+
+        for(int index = 0; index < entryList.size(); index ++){
+            String formattedEntry = formatViewEntries(entryList.get(index),index+1);
+            finalString.append(formattedEntry + "\n");
+        }
+        System.out.print(finalString.toString());
+    }
+
 
     // TODO: Add expenditure edited
 
