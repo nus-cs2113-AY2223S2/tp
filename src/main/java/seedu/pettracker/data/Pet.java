@@ -32,7 +32,7 @@ public class Pet {
     }
 
     public void removeStat(String statName) {
-        switch(statName) {
+        switch(statName.toLowerCase()) {
         case "type":
             setPetType("");
             break;
