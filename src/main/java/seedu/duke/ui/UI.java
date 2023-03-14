@@ -103,6 +103,17 @@ public class UI {
     }
 
     /**
+     * Print formatted details of expenditure entry edited in the UI.
+     *
+     * @param entry Expenditure to be printed
+     */
+    public void printExpenditureEdited(Entry entry) {
+        print(MessageConstants.MESSAGE_EXPENDITURE_EDITED
+                + UIUtil.formatExpenditure(entry.getDescription(), entry.getAmount(), entry.getCategoryString()));
+        printLine();
+    }
+
+    /**
      * Print formatted details of expenditure entry deleted to the UI.
      *
      * @param description Description of the entry

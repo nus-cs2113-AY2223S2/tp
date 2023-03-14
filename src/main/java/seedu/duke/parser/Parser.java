@@ -5,7 +5,9 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.duke.commands.EditCommand;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.entries.Category;
 import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.exceptions.InvalidCategoryException;
 import seedu.duke.exceptions.InvalidCommandException;
@@ -72,6 +74,7 @@ public class Parser {
             logger.exiting(Parser.class.getName(), "parseUserInput()");
             throw new InvalidCommandException(MessageConstants.MESSAGE_INVALID_COMMAND);
         }
+      
     }
 
     private Command parseByeCommand() {
@@ -194,12 +197,32 @@ public class Parser {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
 
+        if (!price.isEmpty()) {
+            double priceDouble;
+            try {
+                priceDouble = Double.parseDouble(price);
+            } catch (NumberFormatException e) {
+                logger.warning("Price not in numerical format: " + MessageConstants.MESSAGE_INVALID_PRICE);
+                throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
+            }
+        }
+
+        if (!category.isEmpty()) {
+            category = category.toUpperCase();
+            try {
+                Category.valueOf(category);
+            } catch (IllegalArgumentException e) {
+                logger.warning("Category does not exist: " + MessageConstants.MESSAGE_INVALID_CATEGORY);
+                throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_CATEGORY);
+            }
+        }
+
         if (description.isEmpty() && category.isEmpty() && price.isEmpty()) {
             logger.warning("Missing arguments for edit command: " + MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
             throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
         }
         logger.exiting(Parser.class.getName(), "parseEditCommand()");
-        return null;
+        return new EditCommand(expenseId, description, category, price);
 
     }
 
@@ -236,7 +259,7 @@ public class Parser {
      * 
      * @param arguments User arguments entered after the add command.
      * @return String[] Array containing description, category and price
-     *         respectively.
+     *     respectively.
      */
     private static String[] parseAddArguments(String arguments) {
         logger.entering(Parser.class.getName(), "parseAddArguments()");
@@ -273,7 +296,7 @@ public class Parser {
     /**
      * @param arguments User arguments entered after the edit command
      * @return String[] Array containing expense ID, description, category and price
-     *         respectively.
+     *     respectively.
      */
     private static String[] parseEditArguments(String arguments) {
         logger.entering(Parser.class.getName(), "parseEditArguments()");
