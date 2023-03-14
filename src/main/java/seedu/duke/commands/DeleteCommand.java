@@ -16,16 +16,12 @@ import java.util.logging.Logger;
  * e.g., <code>/delete 10</code>
  */
 public class DeleteCommand extends Command {
-    private static Logger logger = Logger.getLogger(DeleteCommand.class.getName());
+    private static final Logger logger = Logger.getLogger(DeleteCommand.class.getName());
 
-    private Integer entryId;
+    private final Integer entryId;
 
     public DeleteCommand(Integer inputId) {
         this.entryId = inputId - 1;
-    }
-
-    public Integer getEntryId() {
-        return this.entryId;
     }
 
     /**
@@ -36,11 +32,15 @@ public class DeleteCommand extends Command {
     @Override
     public void executor(EntryLog entries)
             throws InvalidArgumentsException, InvalidEntryIdException {
-        if(entryId < 0 || entryId >= entries.getSize()){
+        if (entryId < 0 || entryId >= entries.getSize()) {
             logger.log(Level.WARNING, "Input entry ID is invalid");
             throw new InvalidEntryIdException(MessageConstants.MESSAGE_INVALID_ID);
         }
-        Entry deletedEntry = entries.delete(entryId);
+        Entry deletedEntry = entries.deleteEntry(entryId);
         new UI().printExpenditureDeleted(deletedEntry);
+    }
+
+    public Integer getEntryId() {
+        return this.entryId;
     }
 }

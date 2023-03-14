@@ -7,10 +7,10 @@ import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.ui.UI;
 
 public class EditCommand extends Command {
-    private int expenseId;
-    private String newDescription = "";
-    private String newCategory = "";
-    private String newPrice = "";
+    private final int expenseId;
+    private final String newDescription;
+    private final String newPrice;
+    private String newCategory;
 
     public EditCommand(String expenseId, String description, String category, String price) {
         this.expenseId = Integer.parseInt(expenseId) - 1;
@@ -24,7 +24,7 @@ public class EditCommand extends Command {
      * attributes are unchanged
      *
      * @param entryLog Entry Log containing all entries
-     * @throws InvalidArgumentsException
+     * @throws InvalidArgumentsException If expenseId is invalid
      */
     @Override
     public void executor(EntryLog entryLog) throws InvalidArgumentsException {
@@ -50,8 +50,11 @@ public class EditCommand extends Command {
      * @return String Array of all attributes in editCommand
      */
     public String[] getAttributes() {
-        String[] attributeList = { Integer.toString(this.expenseId), this.newCategory, this.newDescription,
-            this.newPrice };
-        return attributeList;
+        return new String[]{
+                Integer.toString(this.expenseId),
+                this.newCategory,
+                this.newDescription,
+                this.newPrice
+        };
     }
 }

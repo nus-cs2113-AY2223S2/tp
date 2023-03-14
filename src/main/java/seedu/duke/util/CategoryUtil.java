@@ -7,7 +7,6 @@ import seedu.duke.exceptions.InvalidCategoryException;
 import static seedu.duke.constants.MessageConstants.MESSAGE_INVALID_CATEGORY;
 
 public class CategoryUtil {
-
     public static Category convertStringToCategory(String categoryString) throws InvalidCategoryException {
         switch (categoryString) {
         case EntryConstants.CLOTHING:
@@ -30,5 +29,4 @@ public class CategoryUtil {
             throw new InvalidCategoryException(MESSAGE_INVALID_CATEGORY);
         }
     }
-
 }

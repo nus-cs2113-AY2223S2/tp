@@ -48,9 +48,9 @@ public class EntryLogTest {
     @BeforeEach
     void init() {
         entryLog = new EntryLog();
-        entryLog.add(entry1);
-        entryLog.add(entry2);
-        entryLog.add(entry3);
+        entryLog.addEntry(entry1);
+        entryLog.addEntry(entry2);
+        entryLog.addEntry(entry3);
     }
 
     @Nested
@@ -62,12 +62,12 @@ public class EntryLogTest {
             expectedList.add(entry1);
             expectedList.add(entry2);
             expectedList.add(entry3);
-            assertEquals(expectedList, entryLog.getEntries());
+            assertEquals(expectedList, entryLog.getEntriesList());
         }
 
         @Test
         void getSize() {
-            assertEquals(entryLog.getSize(), entryLog.getEntries().size());
+            assertEquals(entryLog.getSize(), entryLog.getEntriesList().size());
         }
     }
 
@@ -77,7 +77,7 @@ public class EntryLogTest {
         @Test
         void add_entry_noExceptionThrown() {
             assertDoesNotThrow(() -> {
-                entryLog.add(entry4);
+                entryLog.addEntry(entry4);
                 Entry addedEntry = entryLog.getEntry(entryLog.getSize() - 1);
                 assertEquals(addedEntry, entry4);
             });
@@ -104,7 +104,7 @@ public class EntryLogTest {
         @Test
         void deleteEntry_validId_returnsEntry() {
             assertDoesNotThrow(() -> {
-                Entry deletedEntry = entryLog.delete(0);
+                Entry deletedEntry = entryLog.deleteEntry(0);
                 assertEquals(entryLog.getSize(), 2);
                 assertEquals(deletedEntry, entry1);
             });
@@ -114,7 +114,7 @@ public class EntryLogTest {
         void deleteEntry_negativeId_exceptionThrown() {
             Exception invalidIdException = assertThrows(
                     InvalidArgumentsException.class,
-                    () -> entryLog.delete(-1));
+                    () -> entryLog.deleteEntry(-1));
             String exceptionMessage = invalidIdException.getMessage();
             assertTrue(exceptionMessage.contains(MessageConstants.MESSAGE_INVALID_ID));
         }
@@ -123,7 +123,7 @@ public class EntryLogTest {
         void deleteEntry_idMoreThanSize_exceptionThrown() {
             Exception invalidIdException = assertThrows(
                     InvalidArgumentsException.class,
-                    () -> entryLog.delete(entryLog.getSize() + 10));
+                    () -> entryLog.deleteEntry(entryLog.getSize() + 10));
             String exceptionMessage = invalidIdException.getMessage();
             assertTrue(exceptionMessage.contains(MessageConstants.MESSAGE_INVALID_ID));
         }
@@ -134,9 +134,9 @@ public class EntryLogTest {
     class EntryLogFilterTest {
         @BeforeEach
         void init() {
-            entryLog.add(entry4);
-            entryLog.add(entry5);
-            entryLog.add(entry6);
+            entryLog.addEntry(entry4);
+            entryLog.addEntry(entry5);
+            entryLog.addEntry(entry6);
         }
 
         @Test
@@ -146,8 +146,8 @@ public class EntryLogTest {
             expectedEntries.add(entry2);
             expectedEntries.add(entry4);
             expectedEntries.add(entry5);
-            EntryLog filteredEntries = entryLog.filterAmount(0, 90);
-            assertEquals(filteredEntries.getEntries(), expectedEntries);
+            EntryLog filteredEntries = entryLog.filterByAmount(0, 90);
+            assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
 
         @Test
@@ -155,8 +155,8 @@ public class EntryLogTest {
             List<Entry> expectedEntries = new ArrayList<>();
             expectedEntries.add(entry3);
             expectedEntries.add(entry6);
-            EntryLog filteredEntries = entryLog.filterAmount(90, Double.MAX_VALUE);
-            assertEquals(filteredEntries.getEntries(), expectedEntries);
+            EntryLog filteredEntries = entryLog.filterByAmount(90, Double.MAX_VALUE);
+            assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
 
         @Test
@@ -165,8 +165,8 @@ public class EntryLogTest {
             expectedEntries.add(entry1);
             expectedEntries.add(entry4);
             expectedEntries.add(entry5);
-            EntryLog filteredEntries = entryLog.filterAmount(Double.MIN_VALUE, 10);
-            assertEquals(filteredEntries.getEntries(), expectedEntries);
+            EntryLog filteredEntries = entryLog.filterByAmount(Double.MIN_VALUE, 10);
+            assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
 
         @Test
@@ -176,7 +176,7 @@ public class EntryLogTest {
             expectedEntries.add(entry2);
             expectedEntries.add(entry4);
             EntryLog filteredEntries = entryLog.filterByQuery("MANGO");
-            assertEquals(filteredEntries.getEntries(), expectedEntries);
+            assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
 
         @Test
@@ -186,7 +186,7 @@ public class EntryLogTest {
             expectedEntries.add(entry2);
             expectedEntries.add(entry4);
             EntryLog filteredEntries = entryLog.filterByQuery("mango");
-            assertEquals(filteredEntries.getEntries(), expectedEntries);
+            assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
 
         @Test
@@ -194,7 +194,7 @@ public class EntryLogTest {
             List<Entry> expectedEntries = new ArrayList<>();
             expectedEntries.add(entry2);
             EntryLog filteredEntries = entryLog.filterByQuery("mango farm");
-            assertEquals(filteredEntries.getEntries(), expectedEntries);
+            assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
 
         @Test
@@ -203,7 +203,7 @@ public class EntryLogTest {
             expectedEntries.add(entry1);
             expectedEntries.add(entry2);
             EntryLog filteredEntries = entryLog.filterByQuery("\\d+");
-            assertEquals(filteredEntries.getEntries(), expectedEntries);
+            assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
 
         @Test
@@ -211,8 +211,8 @@ public class EntryLogTest {
             List<Entry> expectedEntries = new ArrayList<>();
             expectedEntries.add(entry1);
             expectedEntries.add(entry4);
-            EntryLog filteredEntries = entryLog.filterCategory(Category.FOOD);
-            assertEquals(filteredEntries.getEntries(), expectedEntries);
+            EntryLog filteredEntries = entryLog.filterByCategory(Category.FOOD);
+            assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
     }
 }

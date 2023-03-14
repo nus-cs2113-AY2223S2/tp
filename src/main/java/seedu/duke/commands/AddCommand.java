@@ -18,8 +18,8 @@ import java.util.logging.Logger;
  * e.g., <code>/add lunch -p 15 -c food</code>
  */
 public class AddCommand extends Command {
-    private static Logger logger = Logger.getLogger(AddCommand.class.getName());
-    private Entry entryObj;
+    private static final Logger logger = Logger.getLogger(AddCommand.class.getName());
+    private final Entry entryObj;
 
     /**
      * AddCommand constructor which initialises entryObj to be added
@@ -72,10 +72,6 @@ public class AddCommand extends Command {
         }
     }
 
-    public Entry getEntryObj() {
-        return this.entryObj;
-    }
-
     /**
      * Adds Entry object to entry log
      *
@@ -84,7 +80,11 @@ public class AddCommand extends Command {
     @Override
     public void executor(EntryLog entries) {
         UI ui = new UI();
-        entries.add(entryObj);
+        entries.addEntry(entryObj);
         ui.printExpenditureAdded(entryObj);
+    }
+
+    public Entry getEntryObj() {
+        return this.entryObj;
     }
 }

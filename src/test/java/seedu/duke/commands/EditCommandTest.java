@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 @DisplayName("Test edit command")
 public class EditCommandTest {
-    private EditCommand expectedEditCommand = new EditCommand("1", "Lunch", "Food", "5");
-    private Entry originalEntry = new Entry("Dinner", 7.50, Category.FOOD);
-    private EntryLog originalEntries = new EntryLog();
-    private String[] proposedChanges = {"1", "Lunch", "", ""};
+    private final EditCommand expectedEditCommand = new EditCommand("1", "Lunch", "Food", "5");
+    private final Entry originalEntry = new Entry("Dinner", 7.50, Category.FOOD);
+    private final EntryLog originalEntries = new EntryLog();
+    private final String[] proposedChanges = {"1", "Lunch", "", ""};
 
     @Test
     @DisplayName("Test constructor for EditCommand")
@@ -37,9 +37,9 @@ public class EditCommandTest {
     void testExecuteMethod() {
         EditCommand editCommand = new EditCommand(proposedChanges[0], proposedChanges[1], proposedChanges[2]
                 , proposedChanges[3]);
-        originalEntries.add(originalEntry);
+        originalEntries.addEntry(originalEntry);
         assertDoesNotThrow(() -> editCommand.executor(originalEntries), MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
-        Entry changedEntry = originalEntries.getEntries().get(0);
+        Entry changedEntry = originalEntries.getEntriesList().get(0);
         assertEquals(changedEntry.getDescription(), "Lunch");
         assertEquals(changedEntry.getCategoryString(), "Food");
         assertEquals(changedEntry.getAmount(), 7.50);

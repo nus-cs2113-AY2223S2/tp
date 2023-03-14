@@ -31,7 +31,7 @@ public class EntryLog {
      *
      * @param entry Entry to be added
      */
-    public void add(Entry entry) {
+    public void addEntry(Entry entry) {
         assert entry != null : "Entry cannot be null when adding to EntryLog";
         logger.info("Adding entry: " + entry.getDescription());
         entries.add(entry);
@@ -43,7 +43,7 @@ public class EntryLog {
      * @param entryId Id corresponding to the index (0-based)
      * @throws InvalidArgumentsException If an invalid index is passed
      */
-    public Entry delete(int entryId) throws InvalidArgumentsException {
+    public Entry deleteEntry(int entryId) throws InvalidArgumentsException {
         try {
             logger.info("Deleting entry: " + entryId);
             Entry target = entries.get(entryId);
@@ -56,17 +56,22 @@ public class EntryLog {
     }
 
     /**
-     * Filter entries by category.
+     * Filter items by amount.
      * Can be chained with other filter* methods to filter multiple entries.
      *
-     * @param category Category to be filtered
-     * @return EntryLog containing entries matching category
+     * @param minAmount Minimum amount of entry
+     * @param maxAmount Maximum amount of entry
+     * @return EntryLog containing entries within range of given amount
      */
-    public EntryLog filterCategory(Category category) {
-        assert category != null;
+    public EntryLog filterByAmount(double minAmount, double maxAmount) {
         List<Entry> filteredEntries = entries
                 .stream()
-                .filter((entry -> entry.getCategory() == category))
+                .filter((entry -> {
+                    boolean isBelowMin = Double.compare(entry.getAmount(), minAmount) < 0;
+                    boolean isAboveMax = Double.compare(entry.getAmount(), maxAmount) > 0;
+                    boolean isWithinRange = !isBelowMin && !isAboveMax;
+                    return isWithinRange;
+                }))
                 .collect(Collectors.toList());
         return new EntryLog(filteredEntries);
     }
@@ -98,22 +103,17 @@ public class EntryLog {
     }
 
     /**
-     * Filter items by amount.
+     * Filter entries by category.
      * Can be chained with other filter* methods to filter multiple entries.
      *
-     * @param minAmount Minimum amount of entry
-     * @param maxAmount Maximum amount of entry
-     * @return EntryLog containing entries within range of given amount
+     * @param category Category to be filtered
+     * @return EntryLog containing entries matching category
      */
-    public EntryLog filterAmount(double minAmount, double maxAmount) {
+    public EntryLog filterByCategory(Category category) {
+        assert category != null;
         List<Entry> filteredEntries = entries
                 .stream()
-                .filter((entry -> {
-                    boolean isBelowMin = Double.compare(entry.getAmount(), minAmount) < 0;
-                    boolean isAboveMax = Double.compare(entry.getAmount(), maxAmount) > 0;
-                    boolean isWithinRange = !isBelowMin && !isAboveMax;
-                    return isWithinRange;
-                }))
+                .filter((entry -> entry.getCategory() == category))
                 .collect(Collectors.toList());
         return new EntryLog(filteredEntries);
     }
@@ -133,11 +133,11 @@ public class EntryLog {
         }
     }
 
-    public int getSize() {
-        return entries.size();
+    public List<Entry> getEntriesList() {
+        return entries;
     }
 
-    public List<Entry> getEntries() {
-        return entries;
+    public int getSize() {
+        return entries.size();
     }
 }

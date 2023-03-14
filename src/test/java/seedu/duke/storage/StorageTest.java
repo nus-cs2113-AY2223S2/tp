@@ -1,10 +1,5 @@
 package seedu.duke.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,6 +20,8 @@ import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @DisplayName("Test Storage")
 public class StorageTest {
     private static final String PATH_STRING = "./test/storage.txt";
@@ -35,9 +32,9 @@ public class StorageTest {
         void testCreateStorage() {
             File toBeDeleted = new File(PATH_STRING);
             toBeDeleted.delete();
-            assertTrue(!Files.exists(Paths.get(PATH_STRING)));
+            assertFalse(Files.exists(Paths.get(PATH_STRING)));
             Storage storage = new Storage(PATH_STRING);
-            assertDoesNotThrow(()->storage.readFromDatabase());
+            assertDoesNotThrow(storage::readFromDatabase);
             assertTrue(Files.exists(Paths.get(PATH_STRING)));
             toBeDeleted.delete();
         }
@@ -53,17 +50,17 @@ public class StorageTest {
 
         @Test
         public void testWriteToStorage() {
-            assertDoesNotThrow(() -> storage.reset());
+            assertDoesNotThrow(storage::reset);
             EntryLog entrylog = new EntryLog();
-            entrylog.add(entry1);
-            entrylog.add(entry2);
-            entrylog.add(entry3);
-            assertDoesNotThrow(() -> storage.writeToDatabase(entrylog.getEntries()));
+            entrylog.addEntry(entry1);
+            entrylog.addEntry(entry2);
+            entrylog.addEntry(entry3);
+            assertDoesNotThrow(() -> storage.writeToDatabase(entrylog.getEntriesList()));
         }
 
         @Test
         public void testReadFromStorage() {
-            List<Entry> entries = assertDoesNotThrow(() -> storage.readFromDatabase());
+            List<Entry> entries = assertDoesNotThrow(storage::readFromDatabase);
             assertEquals(entry1.getCategory(), entries.get(0).getCategory());
             assertEquals(entry1.getDescription(), entries.get(0).getDescription());
             assertEquals(entry1.getAmount(), entries.get(0).getAmount());
@@ -79,7 +76,7 @@ public class StorageTest {
         @Test
         public void testStorageNoOverwrite() {
             Storage newStorage = new Storage(PATH_STRING);
-            List<Entry> entries = assertDoesNotThrow(() -> newStorage.readFromDatabase());
+            List<Entry> entries = assertDoesNotThrow(newStorage::readFromDatabase);
             assertEquals(entry1.getCategory(), entries.get(0).getCategory());
             assertEquals(entry1.getDescription(), entries.get(0).getDescription());
             assertEquals(entry1.getAmount(), entries.get(0).getAmount());
@@ -100,7 +97,6 @@ public class StorageTest {
         private static final String TEST_DESCRIPTION = "Mango Juice";
         private static final String TEST_AMOUNT_STRING = "4";
         private static final String TEST_CATEGORY_STRING = EntryConstants.FOOD;
-        private static final String INVALID_CATEGORY_STRING = "cheese";
         private static final String INVALID_DELIMITER = ";";
         private static final String INVALID_AMOUNT_STRING = "ABC123";
         FileWriter writer;
@@ -109,7 +105,7 @@ public class StorageTest {
         void init() {
             File file = new File(PATH_STRING);
             file.getParentFile().mkdirs();
-            assertDoesNotThrow(() -> file.createNewFile());
+            assertDoesNotThrow(file::createNewFile);
             assertDoesNotThrow(() -> new FileOutputStream(file, true).close());
 
         }
@@ -133,9 +129,7 @@ public class StorageTest {
             assertDoesNotThrow(() -> writer.close());
 
             Storage storage = new Storage(PATH_STRING);
-            Exception exception = assertThrows(InvalidReadFileException.class, () -> {
-                storage.readFromDatabase();
-            });
+            Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
             String expectedMessage = "Error reading data from line:";
             String actualMessage = exception.getMessage();
 
@@ -155,36 +149,12 @@ public class StorageTest {
             assertDoesNotThrow(() -> writer.close());
 
             Storage storage = new Storage(PATH_STRING);
-            Exception exception = assertThrows(InvalidReadFileException.class, () -> {
-                storage.readFromDatabase();
-            });
+            Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
             String expectedMessage = "Amount is not valid for line:";
             String actualMessage = exception.getMessage();
 
             assertTrue(actualMessage.contains(expectedMessage));
         }
-
-        //        @Test
-        //        public void testInvalidCategory() {
-        //            writer = assertDoesNotThrow(() -> new FileWriter(PATH_STRING));
-        //            String writeString = String.join(
-        //                    TEST_DELIMITER,
-        //                    TEST_DESCRIPTION,
-        //                    TEST_AMOUNT_STRING,
-        //                    INVALID_CATEGORY_STRING
-        //            );
-        //            assertDoesNotThrow(() -> writer.append(writeString));
-        //            assertDoesNotThrow(() -> writer.close());
-        //
-        //            Storage storage = new Storage(PATH_STRING);
-        //            Exception exception = assertThrows(InvalidReadFileException.class, () -> {
-        //                storage.readFromDatabase();
-        //            });
-        //            String expectedMessage = "Category is not valid for line:";
-        //            String actualMessage = exception.getMessage();
-        //
-        //            assertTrue(actualMessage.contains(expectedMessage));
-        //        }
 
         @Test
         public void testInsufficientColumnsForEntry() {
@@ -198,9 +168,7 @@ public class StorageTest {
             assertDoesNotThrow(() -> writer.close());
 
             Storage storage = new Storage(PATH_STRING);
-            Exception exception = assertThrows(InvalidReadFileException.class, () -> {
-                storage.readFromDatabase();
-            });
+            Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
             String expectedMessage = "Error reading data from line:";
             String actualMessage = exception.getMessage();
 

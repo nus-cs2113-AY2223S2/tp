@@ -90,7 +90,7 @@ public class Duke {
             fileHandler.setFormatter(formatter);
             // disable console logging
             Arrays.stream(handlers)
-                    .forEach((globalLogger::removeHandler));
+                  .forEach((globalLogger::removeHandler));
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Encountered exception during logging setup.", e);
             throw e;

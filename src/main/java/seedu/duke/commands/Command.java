@@ -16,7 +16,7 @@ public class Command {
 
     public void execute(EntryLog entries, Storage storage) throws Exception {
         executor(entries);
-        storage.writeToDatabase(entries.getEntries());
+        storage.writeToDatabase(entries.getEntriesList());
     }
 
     public void executor(EntryLog entries) throws Exception {

@@ -8,6 +8,21 @@ import seedu.duke.util.UIUtil;
 import java.util.List;
 
 public class UI {
+    /**
+     * Returns a string based on the details of the Entry object and entryID entered.
+     *
+     * @param entry   entry Object to be formatted
+     * @param entryID ID of the entry Object
+     * @return String of details about the entry
+     */
+    private String formatViewEntries(Entry entry, int entryID) {
+        String description = entry.getDescription();
+        double price = entry.getAmount();
+        String category = entry.getCategoryString();
+        return "<" + entryID + ">: " + description +
+                " (" + category + ") - $" + UIUtil.formatPrice(price);
+    }
+
     public void print(String output) {
         System.out.print(output);
     }
@@ -39,21 +54,6 @@ public class UI {
     public void printExit() {
         print(MessageConstants.MESSAGE_EXIT);
         printLine();
-    }
-
-    /**
-     * Returns a string based on the details of the Entry object and entryID entered.
-     *
-     * @param entry   entry Object to be formatted
-     * @param entryID ID of the entry Object
-     * @return String of details about the entry
-     */
-    private String formatViewEntries(Entry entry, int entryID) {
-        String description = entry.getDescription();
-        double price = entry.getAmount();
-        String category = entry.getCategoryString();
-        return "<" + Integer.toString(entryID) + ">: " + description +
-                " (" + category + ") - $" + UIUtil.formatPrice(price);
     }
 
     /**
@@ -91,8 +91,6 @@ public class UI {
     public void printEntriesToBeViewed(List<Entry> entryList) {
         printEntriesToBeViewed(entryList, null);
     }
-
-    // TODO: Add expenditure edited
 
     /**
      * Print formatted details of expenditure entry added to the UI.

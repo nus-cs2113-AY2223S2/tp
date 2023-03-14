@@ -29,7 +29,7 @@ public class Parser {
     private static final String COMMAND_DELETE = "/delete";
     private static final String COMMAND_HELP = "/help";
     private static final String COMMAND_BYE = "/bye";
-    private static Logger logger = Logger.getLogger(Parser.class.getName());
+    private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
     /**
      * @param userInput The entire string of user input.
@@ -81,51 +81,43 @@ public class Parser {
         }
     }
 
-    private Command parseByeCommand() {
-        // Print bye message
-        logger.entering(Parser.class.getName(), "parseByeCommand()");
-        logger.info("Program exiting.");
-        logger.exiting(Parser.class.getName(), "parseByeCommand()");
-        return new ExitCommand();
-    }
-
-    private Command parseHelpCommand() {
-        // Print help message
-        logger.entering(Parser.class.getName(), "parseHelpCommand()");
-        logger.info("Displaying help message.");
-        logger.exiting(Parser.class.getName(), "parseHelpCommand()");
-        return new HelpCommand();
-    }
-
     /**
-     * @param arguments User arguments entered after the command.
-     * @throws InvalidArgumentsException If ID entered is out of range, or not in
-     *                                   integer format.
-     * @throws MissingArgumentsException If required ID is not entered.
+     * Returns a string array of length 3, containing the description, category and
+     * price respectively.
+     *
+     * @param arguments User arguments entered after the add command.
+     * @return String[] Array containing description, category and price respectively.
      */
-    private Command parseDeleteCommand(String arguments)
-            throws InvalidArgumentsException, MissingArgumentsException {
-        logger.entering(Parser.class.getName(), "parseDeleteCommand()");
-        logger.info("Parsing delete command with arguments: " + arguments);
-        if (arguments.isEmpty()) {
-            logger.log(Level.WARNING, "Index of the expense not specified");
-            throw new MissingArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+    private static String[] parseAddArguments(String arguments) {
+        logger.entering(Parser.class.getName(), "parseAddArguments()");
+        String description = "";
+        String category = "";
+        String price = "";
+        String[] argumentsArray = new String[3];
+        Pattern descriptionPattern = Pattern.compile("(\\w+(\\s+\\w+)*)");
+        Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
+        Pattern pricePattern = Pattern.compile("(-p|-price)\\s+(\\S+)");
+
+        Matcher matcher = descriptionPattern.matcher(arguments);
+        if (matcher.find()) {
+            description = matcher.group(0);
         }
-        String[] argumentsArray = arguments.split(" ", 2);
-        assert argumentsArray.length >= 1 : "User input must contain at least one argument";
-        String expenseId = argumentsArray[0];
-        int expenseIdInt;
-        try {
-            expenseIdInt = Integer.parseInt(expenseId);
-            assert expenseId.matches("\\d+") : "Expense ID must be an integer";
-            logger.log(Level.INFO, "Removing specified expense id {0} from list", expenseId);
-            // do something with taskId
-        } catch (NumberFormatException e) {
-            logger.log(Level.WARNING, "Index of the expense specified is not an integer");
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+
+        matcher = categoryPattern.matcher(arguments);
+        if (matcher.find()) {
+            category = matcher.group(2);
         }
-        logger.exiting(Parser.class.getName(), "parseDeleteCommand(arguments)");
-        return new DeleteCommand(expenseIdInt);
+
+        matcher = pricePattern.matcher(arguments);
+        if (matcher.find()) {
+            price = matcher.group(2);
+        }
+
+        argumentsArray[0] = description;
+        argumentsArray[1] = category;
+        argumentsArray[2] = price;
+        logger.exiting(Parser.class.getName(), "parseAddArguments()");
+        return argumentsArray;
     }
 
     /**
@@ -162,6 +154,95 @@ public class Parser {
         }
         logger.exiting(Parser.class.getName(), "parseAddCommand()");
         return new AddCommand(description, priceDouble, category);
+    }
+
+    private Command parseByeCommand() {
+        // Print bye message
+        logger.entering(Parser.class.getName(), "parseByeCommand()");
+        logger.info("Program exiting.");
+        logger.exiting(Parser.class.getName(), "parseByeCommand()");
+        return new ExitCommand();
+    }
+
+    /**
+     * @param arguments User arguments entered after the command.
+     * @throws InvalidArgumentsException If ID entered is out of range, or not in
+     *                                   integer format.
+     * @throws MissingArgumentsException If required ID is not entered.
+     */
+    private Command parseDeleteCommand(String arguments)
+            throws InvalidArgumentsException, MissingArgumentsException {
+        logger.entering(Parser.class.getName(), "parseDeleteCommand()");
+        logger.info("Parsing delete command with arguments: " + arguments);
+        if (arguments.isEmpty()) {
+            logger.log(Level.WARNING, "Index of the expense not specified");
+            throw new MissingArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+        }
+        String[] argumentsArray = arguments.split(" ", 2);
+        assert argumentsArray.length >= 1 : "User input must contain at least one argument";
+        String expenseId = argumentsArray[0];
+        int expenseIdInt;
+        try {
+            expenseIdInt = Integer.parseInt(expenseId);
+            assert expenseId.matches("\\d+") : "Expense ID must be an integer";
+            logger.log(Level.INFO, "Removing specified expense id {0} from list", expenseId);
+            // do something with taskId
+        } catch (NumberFormatException e) {
+            logger.log(Level.WARNING, "Index of the expense specified is not an integer");
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+        }
+        logger.exiting(Parser.class.getName(), "parseDeleteCommand(arguments)");
+        return new DeleteCommand(expenseIdInt);
+    }
+
+    private Command parseHelpCommand() {
+        // Print help message
+        logger.entering(Parser.class.getName(), "parseHelpCommand()");
+        logger.info("Displaying help message.");
+        logger.exiting(Parser.class.getName(), "parseHelpCommand()");
+        return new HelpCommand();
+    }
+
+    /**
+     * @param arguments User arguments entered after the edit command
+     * @return String[] Array containing expense ID, description, category and price respectively.
+     */
+    private static String[] parseEditArguments(String arguments) {
+        logger.entering(Parser.class.getName(), "parseEditArguments()");
+        String expenseId = "";
+        String description = "";
+        String category = "";
+        String price = "";
+        String[] argumentsArray = new String[4];
+        Pattern expenseIdPattern = Pattern.compile("(\\S+)");
+        Pattern descriptionPattern = Pattern.compile("(-d|-description)\\s+(\\w+(\\s+\\w+)*)");
+        Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
+        Pattern pricePattern = Pattern.compile("(-p|-price)\\s+(\\S+)");
+
+        Matcher matcher = expenseIdPattern.matcher(arguments);
+        if (matcher.find()) {
+            expenseId = matcher.group(0);
+        }
+        matcher = descriptionPattern.matcher(arguments);
+        if (matcher.find()) {
+            description = matcher.group(2);
+        }
+        matcher = categoryPattern.matcher(arguments);
+        if (matcher.find()) {
+            category = matcher.group(2);
+        }
+
+        matcher = pricePattern.matcher(arguments);
+        if (matcher.find()) {
+            price = matcher.group(2);
+        }
+        argumentsArray[0] = expenseId;
+        argumentsArray[1] = description;
+        argumentsArray[2] = category;
+        argumentsArray[3] = price;
+
+        logger.exiting(Parser.class.getName(), "parseEditArguments()");
+        return argumentsArray;
     }
 
     /**
@@ -227,8 +308,8 @@ public class Parser {
         logger.info("Parsing view command with arguments: " + arguments);
         Category category = null;
         String categoryStr = "";
-        String viewCount = "";
-        int viewCountInt = 0;
+        String viewCount;
+        int viewCountInt;
         if (arguments.isEmpty()) {
             logger.info("No count specified. Listing all expenses");
             // list all commands;
@@ -262,89 +343,5 @@ public class Parser {
         logger.info("User entered category:" + categoryStr);
         logger.exiting(Parser.class.getName(), "parseViewCommand()");
         return new ViewCommand(viewCountInt, category);
-    }
-
-    /**
-     * Returns a string array of length 3, containing the description, category and
-     * price respectively.
-     *
-     * @param arguments User arguments entered after the add command.
-     * @return String[] Array containing description, category and price respectively.
-     */
-    private static String[] parseAddArguments(String arguments) {
-        logger.entering(Parser.class.getName(), "parseAddArguments()");
-        String description = "";
-        String category = "";
-        String price = "";
-        String[] argumentsArray = new String[3];
-        Pattern descriptionPattern = Pattern.compile("(\\w+(\\s+\\w+)*)");
-        Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
-        Pattern pricePattern = Pattern.compile("(-p|-price)\\s+(\\S+)");
-
-        Matcher matcher = descriptionPattern.matcher(arguments);
-        if (matcher.find()) {
-            description = matcher.group(0);
-        }
-
-        matcher = categoryPattern.matcher(arguments);
-        if (matcher.find()) {
-            category = matcher.group(2);
-        }
-
-        matcher = pricePattern.matcher(arguments);
-        if (matcher.find()) {
-            price = matcher.group(2);
-        }
-
-        argumentsArray[0] = description;
-        argumentsArray[1] = category;
-        argumentsArray[2] = price;
-        logger.exiting(Parser.class.getName(), "parseAddArguments()");
-        return argumentsArray;
-    }
-
-    /**
-     * @param arguments User arguments entered after the edit command
-     * @return String[] Array containing expense ID, description, category and price respectively.
-     */
-    private static String[] parseEditArguments(String arguments) {
-        logger.entering(Parser.class.getName(), "parseEditArguments()");
-        String expenseId = "";
-        String description = "";
-        String category = "";
-        String price = "";
-        String[] argumentsArray = new String[4];
-        Pattern expenseIdPattern = Pattern.compile("(\\S+)");
-        Pattern descriptionPattern = Pattern.compile("(-d|-description)\\s+(\\w+(\\s+\\w+)*)");
-        Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
-        Pattern pricePattern = Pattern.compile("(-p|-price)\\s+(\\S+)");
-
-        Matcher matcher = expenseIdPattern.matcher(arguments);
-        if (matcher.find()) {
-            expenseId = matcher.group(0);
-        }
-        matcher = descriptionPattern.matcher(arguments);
-        if (matcher.find()) {
-            description = matcher.group(2);
-        }
-        matcher = categoryPattern.matcher(arguments);
-        if (matcher.find()) {
-            category = matcher.group(2);
-        }
-
-        matcher = pricePattern.matcher(arguments);
-        if (matcher.find()) {
-            price = matcher.group(2);
-        }
-        argumentsArray[0] = expenseId;
-        argumentsArray[1] = description;
-        argumentsArray[2] = category;
-        argumentsArray[3] = price;
-        // System.out.println(expenseId);
-        // System.out.println(description);
-        // System.out.println(category);
-        // System.out.println(price);
-        logger.exiting(Parser.class.getName(), "parseEditArguments()");
-        return argumentsArray;
     }
 }

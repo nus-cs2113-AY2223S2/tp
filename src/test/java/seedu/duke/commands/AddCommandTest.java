@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 @DisplayName("Test add command")
 public class AddCommandTest {
 
-    private Entry expectedEntry = new Entry("Rice", 8.50, Category.FOOD);
-    private EntryLog testEntries = new EntryLog();
+    private final Entry expectedEntry = new Entry("Rice", 8.50, Category.FOOD);
+    private final EntryLog testEntries = new EntryLog();
 
     @Test
     @DisplayName("Test constructor for AddCommand")
@@ -36,7 +36,7 @@ public class AddCommandTest {
     void testExecute(){
         AddCommand testCommand = assertDoesNotThrow(() -> new AddCommand("Rice", 8.50, "Food"));
         testCommand.executor(testEntries);
-        assertTrue(testEntries.getEntries().contains(testCommand.getEntryObj()));
+        assertTrue(testEntries.getEntriesList().contains(testCommand.getEntryObj()));
     }
 
 }

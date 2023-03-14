@@ -18,7 +18,6 @@ import seedu.duke.exceptions.InvalidReadFileException;
 
 
 public class Storage {
-
     private final String filePath;
     private final String delimiter;
 
@@ -36,18 +35,6 @@ public class Storage {
     public Storage(String filePath) {
         this.filePath = filePath;
         this.delimiter = StorageConstants.DELIMITER;
-    }
-
-    /**
-     * Alternative constructor for Storage that allows the changing of filePath
-     * and delimiter, used for Testing purposes only
-     *
-     * @param filePath  Path to file that serialized entries will be stored in
-     * @param delimiter Delimiter used to separate the strings in the file
-     */
-    public Storage(String filePath, String delimiter) {
-        this.filePath = filePath;
-        this.delimiter = delimiter;
     }
 
     /**
@@ -80,8 +67,7 @@ public class Storage {
             Category category = CategoryUtil.convertStringToCategory(
                     categoryString
             );
-            Entry entry = new Entry(description, amount, category);
-            return entry;
+            return new Entry(description, amount, category);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidReadFileException(
                     String.format("Error reading data from line: %s", line)
@@ -97,27 +83,6 @@ public class Storage {
         }
     }
 
-
-    /**
-     * Serializes an Entry instance into a String that can be stored into
-     * a stored text file.
-     *
-     * @param entry Entry instance to be converted into a String
-     * @return A String that represents the Entry instance
-     */
-    private String writeEntryLine(Entry entry) {
-        String description = entry.getDescription();
-        String amountString = Double.toString(entry.getAmount());
-        String categoryString = entry.getCategoryString();
-        String returnString = String.join(
-                this.delimiter,
-                description,
-                amountString,
-                categoryString
-        );
-        returnString += System.lineSeparator();
-        return returnString;
-    }
 
     /**
      * Deserializes all the entries in a stored text file into a List of Entry
@@ -145,6 +110,39 @@ public class Storage {
     }
 
     /**
+     * Resets the stored text file by deleting it and recreating it again.
+     *
+     * @throws IOException If an error occurs in the deletion or creation of the
+     *                     file
+     */
+    public void reset() throws IOException {
+        File toBeDeleted = new File(this.filePath);
+        toBeDeleted.delete();
+        makeFileIfNotExists();
+    }
+
+    /**
+     * Serializes an Entry instance into a String that can be stored into
+     * a stored text file.
+     *
+     * @param entry Entry instance to be converted into a String
+     * @return A String that represents the Entry instance
+     */
+    private String writeEntryLine(Entry entry) {
+        String description = entry.getDescription();
+        String amountString = Double.toString(entry.getAmount());
+        String categoryString = entry.getCategoryString();
+        String returnString = String.join(
+                this.delimiter,
+                description,
+                amountString,
+                categoryString
+        );
+        returnString += System.lineSeparator();
+        return returnString;
+    }
+
+    /**
      * Serializes all the entries in a Entry[] List and writes the result
      * into a stored text file.
      *
@@ -162,17 +160,5 @@ public class Storage {
         }
         csvWriter.flush();
         csvWriter.close();
-    }
-
-    /**
-     * Resets the stored text file by deleting it and recreating it again.
-     *
-     * @throws IOException If an error occurs in the deletion or creation of the
-     *                     file
-     */
-    public void reset() throws IOException {
-        File toBeDeleted = new File(this.filePath);
-        toBeDeleted.delete();
-        makeFileIfNotExists();
     }
 }

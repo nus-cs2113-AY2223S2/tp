@@ -22,6 +22,25 @@ public class ViewCommand extends Command {
         this.numberOfEntriesToView = numberOfEntriesToView;
     }
 
+    @Override
+    public void executor(EntryLog entries) {
+        EntryLog filteredEntries = entries;
+        if (categoryToView != null) {
+            filteredEntries = entries.filterByCategory(categoryToView);
+        }
+
+        List<Entry> relevantEntries = filteredEntries.getEntriesList();
+        if (relevantEntries.size() > numberOfEntriesToView) {
+            relevantEntries = getLatestEntries(relevantEntries);
+        }
+
+        if (categoryToView != null) {
+            ui.printEntriesToBeViewed(relevantEntries, categoryToView.toString());
+        } else {
+            ui.printEntriesToBeViewed(relevantEntries);
+        }
+    }
+
     /**
      * This method is called in execute method to improve code readability.
      *
@@ -34,24 +53,5 @@ public class ViewCommand extends Command {
                 : originalEntries.size() - numberOfEntriesToView;
         int endIndex = originalEntries.size();
         return originalEntries.subList(startIndex, endIndex);
-    }
-
-    @Override
-    public void executor(EntryLog entries) {
-        EntryLog filteredEntries = entries;
-        if (categoryToView != null) {
-            filteredEntries = entries.filterCategory(categoryToView);
-        }
-
-        List<Entry> relevantEntries = filteredEntries.getEntries();
-        if (relevantEntries.size() > numberOfEntriesToView) {
-            relevantEntries = getLatestEntries(relevantEntries);
-        }
-
-        if (categoryToView != null) {
-            ui.printEntriesToBeViewed(relevantEntries, categoryToView.toString());
-        } else {
-            ui.printEntriesToBeViewed(relevantEntries);
-        }
     }
 }

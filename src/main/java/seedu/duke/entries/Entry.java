@@ -22,6 +22,10 @@ public class Entry {
         this.category = category;
     }
 
+    public double getAmount() {
+        return amount;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -55,8 +59,9 @@ public class Entry {
         return description;
     }
 
-    public double getAmount() {
-        return amount;
+    public void setAmount(double amount) {
+        assert amount >= 0 : "Entry amount must be non-negative!";
+        this.amount = amount;
     }
 
     public void setCategory(Category category) {
@@ -67,10 +72,5 @@ public class Entry {
     public void setDescription(String description) {
         assert !description.isEmpty() : "Entry description cannot be empty";
         this.description = description;
-    }
-
-    public void setAmount(double amount) {
-        assert amount >= 0 : "Entry amount must be non-negative!";
-        this.amount = amount;
     }
 }

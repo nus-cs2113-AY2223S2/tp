@@ -6,7 +6,6 @@ import seedu.duke.constants.UIConstants;
 import java.text.DecimalFormat;
 
 public class UIUtil {
-
     /**
      * Converts double into string, adds decimal places if required.
      *

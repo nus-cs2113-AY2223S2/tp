@@ -16,11 +16,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 @DisplayName("Test delete command")
 public class DeleteCommandTest {
-    private Entry testEntry = new Entry("Rice", 8.50, Category.FOOD);
-    private List<Entry> testEntriesList = new ArrayList<>() {{
+    private final Entry testEntry = new Entry("Rice", 8.50, Category.FOOD);
+    private final List<Entry> testEntriesList = new ArrayList<>() {{
             add(testEntry);
         }};
-    private EntryLog testEntries = new EntryLog(testEntriesList);
+    private final EntryLog testEntries = new EntryLog(testEntriesList);
 
     @Test
     @DisplayName("Test constructor for DeleteCommand")
@@ -39,7 +39,7 @@ public class DeleteCommandTest {
         try {
             DeleteCommand testCommand = assertDoesNotThrow(() -> new DeleteCommand(1));
             testCommand.executor(testEntries);
-            assertFalse(testEntries.getEntries().contains(testEntry));
+            assertFalse(testEntries.getEntriesList().contains(testEntry));
         } catch (Exception e) {
             fail("Unexpected exception");
         }
