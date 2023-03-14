@@ -1,69 +1,19 @@
-Loaded past user data.
+Error loading Food Storage
+Error loading Meal Storage
+User File not found. Creating new user file...
+Error loading User Storage
 ------------------------------------------------------------
 Hello! Welcome to
- _      _  __  _______             _
-| |    (_)/ _||__   __|           | |
-| |     _| |_ ___| |_ __ __ _  ___| | _____ _ __
+ _      _  __  _______             _              
+| |    (_)/ _||__   __|           | |            
+| |     _| |_ ___| |_ __ __ _  ___| | _____ _ __ 
 | |    | |  _/ _ \ | '__/ _` |/ __| |/ / _ \ '__|
-| |____| | ||  __/ | | | (_| | (__|   <  __/ |
-|______|_|_| \___|_|_|  \__,_|\___|_|\_\___|_|
+| |____| | ||  __/ | | | (_| | (__|   <  __/ |   
+|______|_|_| \___|_|_|  \__,_|\___|_|\_\___|_|   
 
 ------------------------------------------------------------
 Hello! I am LifeTracker, a program to aid you in keeping fit!
 
-view
-------------------------------------------------------------
-View user settings
-1. View Name
-2. View Weight
-3. View Height
-4. View Age
-5. View Gender
-6. View Daily Caloric limit
-7. View Calories Left Today
-8. Back
-
-Weight: 78.0 kg
-
-Continue viewing?
-1. Yes
-2. No
-
-View user settings
-1. View Name
-2. View Weight
-3. View Height
-4. View Age
-5. View Gender
-6. View Daily Caloric limit
-7. View Calories Left Today
-8. Back
-
-Daily caloric limit: 1592.0 Kcal
-
-Continue viewing?
-1. Yes
-2. No
-
-View user settings
-1. View Name
-2. View Weight
-3. View Height
-4. View Age
-5. View Gender
-6. View Daily Caloric limit
-7. View Calories Left Today
-8. Back
-
-Calories left today: 620.0 Kcal
-
-Continue viewing?
-1. Yes
-2. No
-
-------------------------------------------------------------
-
-bye
 ------------------------------------------------------------
 
 ------------------------------------------------------------
