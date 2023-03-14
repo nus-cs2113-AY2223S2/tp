@@ -35,7 +35,6 @@ public class RainyDay {
     private void run() {
         ui.printLogo();
         ui.greetUser(financialReport.getReportOwner());
-        ui.printEmptyLine();
 
         while (true) {
             String userInput = ui.readUserCommand();
@@ -47,7 +46,7 @@ public class RainyDay {
                 specificCommand.setData(financialReport);
                 assert specificCommand != null : "Parser returned null";
                 specificCommand.execute();
-                ui.printEmptyLine();
+                //ui.printEmptyLine();
             } catch (RainyDayException e) {
                 logger.log(Level.INFO, "RainyDayException caught");
                 System.out.println(e.getMessage());

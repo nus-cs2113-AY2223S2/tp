@@ -7,7 +7,6 @@ public class FinancialReport implements Serializable {
     private final ArrayList<FinancialStatement> financialReport;
     private String reportOwner = null;
 
-
     public FinancialReport(ArrayList<FinancialStatement> financialReport) {
         this.financialReport = financialReport;
     }

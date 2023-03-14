@@ -34,7 +34,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute () {
         setupLogger();
         logger.log(Level.INFO, "starting addCommand.execute");
 
