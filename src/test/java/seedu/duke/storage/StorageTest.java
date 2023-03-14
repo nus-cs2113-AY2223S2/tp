@@ -22,24 +22,26 @@ import java.util.List;
 import java.io.FileOutputStream;
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @DisplayName("Test Storage")
 public class StorageTest {
     private static final String PATH_STRING = "./test/storage.txt";
-    //    @Nested
-    //    @DisplayName("Test create storage without existing file")
-    //    class NoFileTest {
-    //        @Test
-    //        void testCreateStorage() {
-    //            File toBeDeleted = new File(PATH_STRING);
-    //            toBeDeleted.delete();
-    //            assertTrue(!Files.exists(Paths.get(PATH_STRING)));
-    //            Storage storage = new Storage(PATH_STRING);
-    //            assertDoesNotThrow(()->storage.readFromDatabase());
-    //            assertTrue(Files.exists(Paths.get(PATH_STRING)));
-    //            toBeDeleted.delete();
-    //        }
-    //    }
+    @Nested
+    @DisplayName("Test create storage without existing file")
+    class NoFileTest {
+        @Test
+        void testCreateStorage() {
+            File toBeDeleted = new File(PATH_STRING);
+            toBeDeleted.delete();
+            assertTrue(!Files.exists(Paths.get(PATH_STRING)));
+            Storage storage = new Storage(PATH_STRING);
+            assertDoesNotThrow(()->storage.readFromDatabase());
+            assertTrue(Files.exists(Paths.get(PATH_STRING)));
+            toBeDeleted.delete();
+        }
+    }
 
     @Nested
     @DisplayName("Test base read and write functionalities")
