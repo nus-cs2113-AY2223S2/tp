@@ -1,10 +1,10 @@
 package seedu.duke;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Event {
-    private static SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
     
     private String description;
     private LocalDateTime startTime;
@@ -36,15 +36,15 @@ public class Event {
 
     private String getOutputFormat(LocalDateTime timeInfo, boolean hasTimeDetail) {
         if(!hasTimeDetail) {
-            String timeInString = dateTimeFormatter.format(timeInfo).split(" ")[0];
+            String timeInString = formatter.format(timeInfo).split(" ")[0];
             return timeInString;
         }
-        return dateTimeFormatter.format(timeInfo);
+        return formatter.format(timeInfo);
     }
 
     public String getTime() {
         if (hasEndInfo) {
-            return getOutputFormat(startTime, hasStartTime) + "to" + getOutputFormat(endTime, hasEndTime);
+            return getOutputFormat(startTime, hasStartTime) + " to " + getOutputFormat(endTime, hasEndTime);
         } else {
             return getOutputFormat(startTime, hasStartTime);
         }
@@ -63,6 +63,29 @@ public class Event {
     }
 
     public String toString() {
-        return "[E]" + getDescription() + " (" + getTime() + ")";
+        return "[E] " + getDescription() + " (" + getTime() + ")";
+    }
+
+    public void changeTimeInfo(LocalDateTime start, LocalDateTime end, boolean hasSt, boolean hasEd) {
+        this.startTime = start;
+        this.endTime = end;
+        this.hasEndInfo = true;
+        this.hasStartTime = hasSt;
+        this.hasEndTime = hasEd;
+    }
+
+    public void changeTimeInfo(LocalDateTime start, boolean hasSt) {
+        this.startTime = start;
+        this.hasEndTime = false;
+        this.hasStartTime = hasSt;
+        this.hasEndTime = false;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
 }

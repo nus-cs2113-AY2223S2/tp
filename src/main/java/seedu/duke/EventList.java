@@ -7,10 +7,10 @@ import java.time.format.DateTimeFormatter;
 public class EventList {
     private static final String DTINIT = "2000/01/01 01:01";
     private static DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-    
+
     protected ArrayList<Event> taskList;
     protected int listSize;
-    
+
     public EventList() {
         this.taskList = new ArrayList<Event>();
         this.listSize = 0;
@@ -34,6 +34,10 @@ public class EventList {
         listSize--;
     }
 
+    public ArrayList<Event> fullList() {
+        return this.taskList;
+    }
+
     private LocalDateTime changeToDate(String time, String date) {
         String combination = date + " " + time;
         return LocalDateTime.parse(combination, dfWithTime);
@@ -44,63 +48,101 @@ public class EventList {
     }
     /**
      * For two addEvent funcs below:
-     * if user doesn't input endDay(which means there is also no endTime), 
+     * if user doesn't input endDay(which means there is also no endTime),
      * you can just call .addEvent(description, startTime, startDay)
-     * 
+     *
      * I also make the specific time(hh:mm) optional, so if user doesn't input the specfic time,
      * you can just pass an empty String to that param and it will handle the rest things
      * e.g. addEvent(descrption, "", startDay, "", endDay)
      *      addEvent(descrption, "", startDay, endTime, endDay)
      *      addEvent(descrption, "", startDay)
      * so only startDay is strictly required.
-     * 
+     *
      * and the same for reviseTimeInfo()
      */
-    public void addEvent(String description, String startTime, String startDay, String endTime,
-            String endDay) {
+    public TimeAndFlag convertToTimeInfo(String time, String day) {
+        boolean hasTime = true;
+        LocalDateTime combinedTime = LocalDateTime.parse(DTINIT, dfWithTime);
 
-        boolean hasStTime = true;
-        boolean hasEdTime = false;
-        LocalDateTime combinedStartTime = LocalDateTime.parse(DTINIT, dfWithTime);
-        LocalDateTime combinedEndTime = LocalDateTime.parse(DTINIT, dfWithTime);
-
-        if (startTime.equals("")) {
-            hasStTime = false;
-            combinedStartTime = changeToDate(startDay);
+        if (time.equals("")) {
+            hasTime = false;
+            combinedTime = changeToDate(day);
         } else {
-            combinedStartTime = changeToDate(startTime, startDay);
-        }
+            combinedTime = changeToDate(time, day);
+        }        
 
-        if (endTime.equals("")) {
-            hasEdTime = false;
-            combinedEndTime = changeToDate(endDay);
-        } else{
-            combinedEndTime = changeToDate(startTime, startDay);
-        }
+        TimeAndFlag result = new TimeAndFlag(hasTime, combinedTime);
+        return result;
+    }
+    
+    public void addEvent(String description, String startTime, String startDay, String endTime,
+                         String endDay) {
+        
+        TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
+        TimeAndFlag endInfo = convertToTimeInfo(endTime, endDay);
 
-        Event newEvent = new Event(description, combinedStartTime, combinedEndTime, hasStTime, hasEdTime);
+        Event newEvent = new Event(description, startInfo.time, endInfo.time, startInfo.hasInfo, endInfo.hasInfo);
         taskList.add(newEvent);
         listSize++;
     }
 
     public void addEvent(String description, String startTime, String startDay) {
-        boolean hasStTime = true;
-        LocalDateTime combinedStartTime = LocalDateTime.parse(DTINIT, dfWithTime);
+        TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
 
-        if (startTime.equals("")) {
-            hasStTime = false;
-            combinedStartTime = changeToDate(startDay);
-        } else {
-            combinedStartTime = changeToDate(startTime, startDay);
-        }
-
-        Event newEvent = new Event(description, combinedStartTime, hasStTime);
+        Event newEvent = new Event(description, startInfo.time, startInfo.hasInfo);
         taskList.add(newEvent);
         listSize++;
     }
-    //tobedone reviseTimeInfo()
+
+    public void reviseTimeInfo(int index, String startTime, String startDay, String endTime,
+                         String endDay) {
+        TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
+        TimeAndFlag endInfo = convertToTimeInfo(endTime, endDay);
+
+        taskList.get(index).changeTimeInfo(startInfo.time, endInfo.time, startInfo.hasInfo, endInfo.hasInfo);
+    }
+
+    public void reviseTimeInfo(int index, String startTime, String startDay) {
+        TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
+
+        taskList.get(index).changeTimeInfo(startInfo.time, startInfo.hasInfo);
+    }
+
+    //need handle exceptions when index = -1
+    public void reviseTimeInfo(String description, String startTime, String startDay, String endTime,
+                         String endDay) {
+        int index = searchTaskIndex(description);
+        reviseTimeInfo(index, description, startTime, startDay, endTime);
+    }
+
+    //need handle exceptions when index = -1
+    public void reviseTimeInfo(String description, String startTime, String startDay) {
+        int index = searchTaskIndex(description);
+        reviseTimeInfo(index, startTime, startDay);
+    }
 
     public ArrayList<Event> getFullList() {
         return this.taskList;
+    }
+
+    public int searchTaskIndex(String description) {
+        int index = 0;
+        for(Event cur: taskList) {
+            if(cur.getDescription().equals(description)) {
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
+}
+
+final class TimeAndFlag {
+    public boolean hasInfo;
+    public LocalDateTime time;
+
+    public TimeAndFlag(boolean info, LocalDateTime timeInfo) {
+        this.hasInfo = info;
+        this.time = timeInfo;
     }
 }
