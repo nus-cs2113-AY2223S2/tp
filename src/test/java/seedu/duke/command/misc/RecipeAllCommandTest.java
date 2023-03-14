@@ -3,6 +3,7 @@ package seedu.duke.command.misc;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.duke.DukeException;
 import seedu.duke.DukeSession;
 import seedu.duke.ingredient.Ingredient;
 import seedu.duke.ingredient.IngredientList;
@@ -31,20 +32,23 @@ class RecipeAllCommandTest {
     @Test
     public void testRecipeAll_twoRecipes() {
         DukeSession dukeSession = new DukeSession();
+        try {
+            // Add hamSandwich recipe to dukeSession
+            IngredientList hamSandwichIngredients = new IngredientList();
+            hamSandwichIngredients.add(new Ingredient("bread", 2.0));
+            hamSandwichIngredients.add(new Ingredient("ham", 1.0));
+            Recipe hamSandwich = new Recipe("ham sandwich", hamSandwichIngredients, new InstructionList());
+            dukeSession.getRecipes().add(hamSandwich);
 
-        // Add hamSandwich recipe to dukeSession
-        IngredientList hamSandwichIngredients = new IngredientList();
-        hamSandwichIngredients.add(new Ingredient("bread", 2.0));
-        hamSandwichIngredients.add(new Ingredient("ham", 1.0));
-        Recipe hamSandwich = new Recipe("ham sandwich", hamSandwichIngredients, new InstructionList());
-        dukeSession.getRecipes().add(hamSandwich);
-
-        // Add eggSandwich recipe to dukeSession.
-        IngredientList eggSandwichIngredients = new IngredientList();
-        eggSandwichIngredients.add(new Ingredient("bread", 2.0));
-        eggSandwichIngredients.add(new Ingredient("egg", 1.0));
-        Recipe eggSandwich = new Recipe("egg sandwich", eggSandwichIngredients, new InstructionList());
-        dukeSession.getRecipes().add(eggSandwich);
+            // Add eggSandwich recipe to dukeSession.
+            IngredientList eggSandwichIngredients = new IngredientList();
+            eggSandwichIngredients.add(new Ingredient("bread", 2.0));
+            eggSandwichIngredients.add(new Ingredient("egg", 1.0));
+            Recipe eggSandwich = new Recipe("egg sandwich", eggSandwichIngredients, new InstructionList());
+            dukeSession.getRecipes().add(eggSandwich);
+        } catch (DukeException e) {
+            dukeSession.getUi().printMessage(e.toString());
+        }
 
         // Test
         RecipeAllCommand command = new RecipeAllCommand();
@@ -54,8 +58,11 @@ class RecipeAllCommandTest {
         if (osName.contains("Windows")) {
             newline = "\r\n";
         }
-        String predictedOutput = "Here is the full list of recipe:" + newline + "1. ham sandwich"
-                + newline + "2. egg sandwich" + newline;
+        String predictedOutput = "Here is the full list of recipes:" + newline + "1. Beef Burger"
+                + newline + "2. Cup of Water" + newline + "3. ham sandwich" + newline + "4. egg sandwich" + newline;
         assertEquals(predictedOutput, outContent.toString());
     }
 }
+
+
+
