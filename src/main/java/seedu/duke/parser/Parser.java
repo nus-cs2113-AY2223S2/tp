@@ -7,14 +7,15 @@ import java.util.regex.Pattern;
 
 import seedu.duke.commands.EditCommand;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.AddCommand;
+import seedu.duke.commands.DeleteCommand;
+import seedu.duke.commands.HelpCommand;
 import seedu.duke.entries.Category;
 import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.exceptions.InvalidCategoryException;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.MissingArgumentsException;
-import seedu.duke.commands.AddCommand;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.DeleteCommand;
 import seedu.duke.constants.MessageConstants;
 
 public class Parser {
@@ -90,7 +91,7 @@ public class Parser {
         logger.entering(Parser.class.getName(), "parseHelpCommand()");
         logger.info("Displaying help message.");
         logger.exiting(Parser.class.getName(), "parseHelpCommand()");
-        return null;
+        return new HelpCommand();
     }
 
     /**

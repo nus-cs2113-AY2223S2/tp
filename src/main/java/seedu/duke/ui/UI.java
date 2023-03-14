@@ -34,7 +34,7 @@ public class UI {
     }
 
     /**
-     * Print the exit message to the UI
+     * Print the exit message to the UI.
      */
     public void printExit() {
         print(MessageConstants.MESSAGE_EXIT);
@@ -140,7 +140,10 @@ public class UI {
      * Print the help message to the UI
      */
     public void printHelp() {
-        print(MessageConstants.MESSAGE_HELP);
+        print(MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_ADD_COMMAND
+                + MessageConstants.MESSAGE_DELETE_COMMAND + MessageConstants.MESSAGE_EDIT_COMMAND
+                + MessageConstants.MESSAGE_VIEW_COMMAND + MessageConstants.MESSAGE_HELP_COMMAND
+                + MessageConstants.MESSAGE_BYE_COMMAND);
         printLine();
     }
 
