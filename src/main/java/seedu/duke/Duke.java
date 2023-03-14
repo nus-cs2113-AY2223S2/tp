@@ -1,21 +1,36 @@
 package seedu.duke;
 
-import java.util.Scanner;
+// import java.util.Scanner;
+//import seedu.duke.ui.Ui;
+//import seedu.duke.EventList;
+//import seedu.duke.parser.Parser;
+
+
+import seedu.duke.storage.Storage;
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+    private final EventList eventTracker;
+    private final Ui ui;
+    private final Parser parser;
+    private final Storage storage;
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+    public Duke (){
+        ui = new Ui();
+        storage = new Storage();
+        eventTracker = new EventList(storage.loadEvents());
+        parser = new Parser();
+    }
+    public void run(){
+        ui.showWelcome();
+        ui.getUserCommand(eventTracker);
+        storage.saveToFile(eventTracker); //Will only save to file on exit
+    }
+
+    public static void main(String[] args) {
+        Duke nusPlanner = new Duke();
+        nusPlanner.run();
     }
 }
