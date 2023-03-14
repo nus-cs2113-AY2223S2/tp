@@ -45,6 +45,7 @@ public class AddCommand extends Command {
         this.command = command;
         assert (command.equals(COMMAND_TODO_WORD) | command.equals(COMMAND_DEADLINE_WORD) |
                 command.equals(COMMAND_EVENT_WORD)) : "AddCommand: Invalid Add Command";
+        assert param != null : "AddCommand: param should not be null!";
         switch (command) {
         case COMMAND_TODO_WORD:
             this.desc = param;
@@ -75,6 +76,8 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
+        assert (ui != null & storage != null & taskList != null & moduleList != null) :
+                "executing AddCommand";
         switch(command) {
         case COMMAND_TODO_WORD:
             taskList.add(new ToDo(desc));

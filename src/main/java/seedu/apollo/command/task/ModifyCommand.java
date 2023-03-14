@@ -33,6 +33,7 @@ public class ModifyCommand extends Command {
     public ModifyCommand(String command, String param, int size) throws NumberFormatException {
         assert (command.equals(COMMAND_MARK_WORD) | command.equals(COMMAND_UNMARK_WORD) |
                 command.equals(COMMAND_DELETE_WORD)) : "ModifyCommand: Invalid Modify Command";
+        assert param != null : "ModifyCommand: param cannot be null!";
         int idx = Integer.parseInt(param) - 1;
         if (idx < 0 || idx >= size) {
             throw new NumberFormatException();
@@ -51,6 +52,8 @@ public class ModifyCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
+        assert (ui != null & storage != null & taskList != null & moduleList != null) :
+                "executing ModifyCommand";
         switch(command) {
         case COMMAND_MARK_WORD:
             taskList.get(idx).setDone(true);

@@ -24,6 +24,7 @@ public class DateCommand extends Command {
      * @throws InvalidDateTime If the input date does not fit the above format.
      */
     public DateCommand (String dateString) throws InvalidDateTime {
+        assert dateString != null : "DateCommand: dateString should not be null!";
         try {
             this.date = LocalDate.parse(dateString);
         } catch (DateTimeParseException e) {
@@ -39,6 +40,8 @@ public class DateCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
+        assert (ui != null & storage != null & taskList != null & moduleList != null) :
+                "executing DateCommand";
         ui.printDateList(taskList.getTasksOnDate(date), date);
     }
 
