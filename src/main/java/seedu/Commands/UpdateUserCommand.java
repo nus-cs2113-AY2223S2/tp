@@ -36,15 +36,27 @@ public class UpdateUserCommand extends Command {
                 break;
             case 2:
                 user.setWeight(updateWeight(ui));
+                user.setCaloricLimit(
+                    User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
+                );
                 break;
             case 3:
                 user.setHeight(updateHeight(ui));
+                user.setCaloricLimit(
+                    User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
+                );
                 break;
             case 4:
                 user.setAge(updateAge(ui));
+                user.setCaloricLimit(
+                    User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
+                );
                 break;
             case 5:
                 user.setGender(updateGender(ui));
+                user.setCaloricLimit(
+                    User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
+                );
                 break;
             default:
                 System.out.println("Invalid Choice!");
