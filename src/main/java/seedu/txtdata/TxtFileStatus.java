@@ -88,63 +88,63 @@ public class TxtFileStatus {
                 expenditures.addExpenditure(accommodationExpenditure);
                 break;
             case "B":
-                    BorrowExpenditure borrowExpenditure = new BorrowExpenditure(
-                            saveData[1],
-                            saveData[5],
-                            Double.parseDouble(saveData[2]),
-                            LocalDate.parse(saveData[3]),
-                            LocalDate.parse(saveData[6]));
-                    expenditures.addExpenditure(borrowExpenditure);
-                    break;
-                case "En":
-                    EntertainmentExpenditure entertainmentExpenditure = new EntertainmentExpenditure(
-                            saveData[1],
-                            Double.parseDouble(saveData[2]),
-                            LocalDate.parse(saveData[3]));
-                    expenditures.addExpenditure(entertainmentExpenditure);
-                    break;
-                case "F":
-                    FoodExpenditure foodExpenditure = new FoodExpenditure(
-                            saveData[1],
-                            Double.parseDouble(saveData[2]),
-                            LocalDate.parse(saveData[3]));
-                    expenditures.addExpenditure(foodExpenditure);
-                    break;
-                case "L":
-                    LendExpenditure lendExpenditure = new LendExpenditure(
-                            saveData[1],
-                            saveData[5],
-                            Double.parseDouble(saveData[2]),
-                            LocalDate.parse(saveData[3]),
-                            LocalDate.parse(saveData[6]));
-                    expenditures.addExpenditure(lendExpenditure);
-                    break;
-                case "O":
-                    OtherExpenditure otherExpenditure = new OtherExpenditure(
-                            saveData[1],
-                            Double.parseDouble(saveData[2]),
-                            LocalDate.parse(saveData[3]));
-                    expenditures.addExpenditure(otherExpenditure);
-                    break;
-                case "Tr":
-                    TransportExpenditure transportExpenditure = new TransportExpenditure(
-                            saveData[1],
-                            Double.parseDouble(saveData[2]),
-                            LocalDate.parse(saveData[3]));
-                    expenditures.addExpenditure(transportExpenditure);
-                    break;
-                case "Tu":
-                    TuitionExpenditure tuitionExpenditure = new TuitionExpenditure(
-                            saveData[1],
-                            Double.parseDouble(saveData[2]),
-                            LocalDate.parse(saveData[3]));
-                    if (saveData[4].equals("[X]")) {
-                        tuitionExpenditure.setPaid();
-                    }
-                    expenditures.addExpenditure(tuitionExpenditure);
-                    break;
-                default:
-                    break;
+                BorrowExpenditure borrowExpenditure = new BorrowExpenditure(
+                        saveData[1],
+                        saveData[5],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]),
+                        LocalDate.parse(saveData[6]));
+                expenditures.addExpenditure(borrowExpenditure);
+                break;
+            case "En":
+                EntertainmentExpenditure entertainmentExpenditure = new EntertainmentExpenditure(
+                        saveData[1],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]));
+                expenditures.addExpenditure(entertainmentExpenditure);
+                break;
+            case "F":
+                FoodExpenditure foodExpenditure = new FoodExpenditure(
+                        saveData[1],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]));
+                expenditures.addExpenditure(foodExpenditure);
+                break;
+            case "L":
+                LendExpenditure lendExpenditure = new LendExpenditure(
+                        saveData[1],
+                        saveData[5],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]),
+                        LocalDate.parse(saveData[6]));
+                expenditures.addExpenditure(lendExpenditure);
+                break;
+            case "O":
+                OtherExpenditure otherExpenditure = new OtherExpenditure(
+                        saveData[1],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]));
+                expenditures.addExpenditure(otherExpenditure);
+                break;
+            case "Tr":
+                TransportExpenditure transportExpenditure = new TransportExpenditure(
+                        saveData[1],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]));
+                expenditures.addExpenditure(transportExpenditure);
+                break;
+            case "Tu":
+                TuitionExpenditure tuitionExpenditure = new TuitionExpenditure(
+                        saveData[1],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]));
+                if (saveData[4].equals("[X]")) {
+                    tuitionExpenditure.setPaid();
+                }
+                expenditures.addExpenditure(tuitionExpenditure);
+                break;
+            default:
+                break;
             }
         }
         s.close();
