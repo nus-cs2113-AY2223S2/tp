@@ -1,74 +1,82 @@
 {
   "History": [
     {
-      "dateComplete": "2023-03-14T02:14:09.9825904",
-      "completedExercise": {
-        "name": "Svend Press",
+      "dateAdded": "2023-03-14T13:03:53.9849135",
+      "exerciseData": {
+        "id": "698",
+        "name": "Smith Machine Bench Press",
         "force": "push",
         "level": "beginner",
         "mechanic": "compound",
-        "equipment": "other",
+        "equipment": "machine",
         "workoutType": [
           "upper body"
         ],
         "secondaryMuscles": [
-          "upper body",
           "upper body",
           "upper body"
         ],
         "instructions": [
-          "Begin in a standing position.",
-          "Press two lightweight plates together with your hands. Hold the plates together close to your upper body to create an isometric contraction in your upper body muscles. Your fingers should be pointed forward. This is your starting position.",
-          "Squeeze the plates between your palms and extend your upper body directly out in front of you in a controlled motion.",
-          "Pause at the top of the motion, and then slowly return to the starting position."
+          "Place a flat bench underneath the smith machine. Now place the barbell at a height that you can reach when lying down and your upper body are almost fully extended. Once the weight you need is selected, lie down on the flat bench. Using a pronated grip that is wider than shoulder width, unlock the bar from the rack and hold it straight over you with your upper body locked. This will be your starting position.",
+          "As you breathe in, come down slowly until you feel the bar on your middle upper body.",
+          "After a second pause, bring the bar back to the starting position as you breathe out and push the bar using your upper body muscles. Lock your upper body in the contracted position, hold for a second and then start coming down slowly again. Tip: It should take at least twice as long to go down than to come up.",
+          "Repeat the movement for the prescribed amount of repetitions.",
+          "When you are done, lock the bar back in the rack."
         ],
         "category": "strength"
-      }
+      },
+      "status": "Incomplete"
     },
     {
-      "dateComplete": "2023-03-14T02:14:09.9845906",
-      "completedExercise": {
-        "name": "Mountain Climbers",
-        "force": "pull",
+      "dateAdded": "2023-03-14T13:03:53.9849135",
+      "exerciseData": {
+        "id": "786",
+        "name": "Star Jump",
+        "force": "push",
         "level": "beginner",
         "mechanic": "compound",
-        "equipment": "null",
+        "equipment": "body only",
         "workoutType": [
           "legs"
         ],
         "secondaryMuscles": [
-          "upper body",
+          "legs",
+          "legs",
           "legs",
           "upper body"
         ],
         "instructions": [
-          "Begin in a pushup position, with your weight supported by your hands and toes. Flexing the knee and hip, bring one leg until the knee is approximately under the hip. This will be your starting position.",
-          "Explosively reverse the positions of your legs, extending the bent leg until the leg is straight and supported by the toe, and bringing the other foot up with the hip and knee flexed. Repeat in an alternating fashion for 20-30 seconds."
+          "Begin in a relaxed stance with your feet shoulder width apart and hold your upper body close to the body.",
+          "To initiate the move, squat down halfway and explode back up as high as possible. Fully extend your entire body, spreading your legs and upper body away from the body.",
+          "As you land, bring your limbs back in and absorb your impact through the legs."
         ],
         "category": "plyometrics"
-      }
+      },
+      "status": "Incomplete"
     },
     {
-      "dateComplete": "2023-03-14T02:14:09.9845906",
-      "completedExercise": {
-        "name": "Side Lying Groin Stretch",
-        "force": "static",
+      "dateAdded": "2023-03-14T13:03:53.9849135",
+      "exerciseData": {
+        "id": "657",
+        "name": "Shoulder Press - With Bands",
+        "force": "push",
         "level": "beginner",
-        "mechanic": "isolation",
-        "equipment": "null",
+        "mechanic": "compound",
+        "equipment": "bands",
         "workoutType": [
-          "legs"
+          "upper body"
         ],
         "secondaryMuscles": [
-          "legs"
+          "upper body"
         ],
         "instructions": [
-          "Start off by lying on your right side and bend your right knee in front of you to stabilize the torso.",
-          "Rest your head on your right hand or shoulder. Lift your left leg upward and hold it by the back of the knee (easier) or the foot (harder).",
-          "Pull your left knee in toward your left shoulder and simultaneously press your foot or knee down to the floor. To intensify this stretch, straighten your left leg. Switch sides."
+          "To begin, stand on an exercise band so that tension begins at arm\u0027s length. Grasp the handles and lift them so that the hands are at shoulder height at each side.",
+          "Rotate the wrists so that the palms of your hands are facing forward. Your elbows should be bent, with the upper upper body and upper body in line to the torso. This is your starting position.",
+          "As you exhale, lift the handles up until your upper body are fully extended overhead."
         ],
-        "category": "stretching"
-      }
+        "category": "strength"
+      },
+      "status": "Incomplete"
     }
   ]
 }

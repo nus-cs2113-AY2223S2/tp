@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
-import seedu.duke.userdata.CompletedWorkout;
+import seedu.duke.userdata.TodoWorkout;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,25 +26,24 @@ public class UserDataStorageTest {
      *
      * @throws DukeError Occurs when there is a read or writer error from json file
      */
-
     @Test
     void testSaving() throws DukeError {
         ArrayList<ExerciseData> sessionWorkouts =
                 generateExercise.generateFilteredDifficultySetFrom(generateExercise.generateSetAll(), "easy");
         sessionWorkouts = generateExercise.generateRandomSetFrom(sessionWorkouts, 3);
-        ArrayList<CompletedWorkout> completedSessionWorkouts = new ArrayList<>();
+        ArrayList<TodoWorkout> completedSessionWorkouts = new ArrayList<>();
         for (ExerciseData exercise : sessionWorkouts) {
-            completedSessionWorkouts.add(new CompletedWorkout(exercise));
+            completedSessionWorkouts.add(new TodoWorkout(exercise));
             assertEquals(System.identityHashCode(exercise),
                     System.identityHashCode(completedSessionWorkouts
                             .get(completedSessionWorkouts.size() - 1)
-                            .getCompletedExercise()));
+                            .getExerciseData()));
         }
         assertEquals(3, completedSessionWorkouts.size());
         WriteUserData.writeToJson(completedSessionWorkouts);
-        ArrayList<CompletedWorkout> completedWorkouts;
+        ArrayList<TodoWorkout> completedWorkouts;
         completedWorkouts = LoadUserData.loadCompletedWorkouts();
-        assertEquals(completedWorkouts.get(0).getCompletedExercise().getName(), sessionWorkouts.get(0).getName());
+        assertEquals(completedWorkouts.get(0).getExerciseData().getName(), sessionWorkouts.get(0).getName());
         assertEquals(3, completedWorkouts.size());
     }
 

@@ -40,7 +40,8 @@ class LocalDateAdapter implements JsonSerializer<LocalDateTime>, JsonDeserialize
      * @return The serialized json element from localDateTime.
      */
     @Override
-    public JsonElement serialize(LocalDateTime localDateTime, Type type, JsonSerializationContext jsonSerializationContext) {
+    public JsonElement serialize(LocalDateTime localDateTime, Type type,
+                                 JsonSerializationContext jsonSerializationContext) {
         return new JsonPrimitive(
                 localDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
         );
