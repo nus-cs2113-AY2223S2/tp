@@ -9,7 +9,13 @@ public class SniffTasks {
     private static final ArrayList<Appointment> APPOINTMENTS = new ArrayList<>();
     private static final int appointmentCount = 0;
 
-    public void addAppointment() {
+    public void addAppointment(String uid, String type, String animal, String name, String date) throws SniffException {
+        try {
+            APPOINTMENTS.add(new Appointment(uid, type, animal, name, date));
+
+        }catch (StringIndexOutOfBoundsException e){
+            throw new SniffException("Invalid add description !!");
+        }
     }
 
     public void removeAppointment(int appointmentNumber) throws SniffException {

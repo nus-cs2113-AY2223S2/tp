@@ -32,4 +32,21 @@ public class Appointment {
     public String getDate() {
         return date;
     }
+
+    public void setUid(String uid){
+        this.uid = uid;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    public void setAnimal(String animal) {
+        this.animal = animal;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setDate(String date) {
+        this.date = date;
+    }
 }
