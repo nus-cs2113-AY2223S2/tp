@@ -7,6 +7,7 @@ public class PetList {
     private static int numberOfPets;
 
     public PetList() {
+        petList = new ArrayList<Pet>();
         this.numberOfPets = 0;
     }
 
@@ -16,7 +17,8 @@ public class PetList {
      * @param petName Name of pet to be added
      */
     public static void addPet(String petName) {
-        petList.add(new Pet(petName));
+        Pet newPet = new Pet (petName);
+        petList.add(newPet);
         numberOfPets += 1;
     }
 

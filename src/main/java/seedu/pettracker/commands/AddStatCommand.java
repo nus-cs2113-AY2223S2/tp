@@ -7,6 +7,7 @@ public class AddStatCommand extends Command {
     protected String petName;
     protected String statName;
     protected String statValue;
+
     public AddStatCommand(String commandArgs) {
         super();
         this.petName = parseArgs(commandArgs)[0];
@@ -14,7 +15,7 @@ public class AddStatCommand extends Command {
         this.statValue = parseArgs(commandArgs)[2];
     }
 
-    //TODO: Implement this method
+    // TODO: Implement this method
 
     /**
      * Executes the given command
@@ -23,12 +24,9 @@ public class AddStatCommand extends Command {
      */
     @Override
     public void execute(Ui ui) {
-        int petIndex = PetList.find(petName);
-        PetList.get(petIndex).addStat(statName, statValue);
+        PetList.addStat(petName, statName, statValue);
         ui.addStatCommandMessage(petName, statName, statValue);
     }
-
-    //TODO: Implement this method
 
     /**
      * Parses the arguments of the command
@@ -43,6 +41,7 @@ public class AddStatCommand extends Command {
 
     /**
      * Sets isExit to be true to exit the program
+     * 
      * @return isExit boolean value for program to exit
      */
     @Override
