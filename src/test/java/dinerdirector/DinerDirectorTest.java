@@ -10,7 +10,6 @@ import commands.meeting.ViewMeetingCommand;
 
 import commands.ExitCommand;
 import commands.HelpCommand;
-import commands.IncorrectCommand;
 import commands.deadlinecommand.AddDeadlineCommand;
 import commands.deadlinecommand.DeleteDeadlineCommand;
 import commands.deadlinecommand.ViewDeadlineCommand;
@@ -41,8 +40,8 @@ public class DinerDirectorTest {
             } else if (listOfCommand.equals("delete_meeting n/a")) {
                 assertTrue(command instanceof DeleteMeetingCommand);
             } 
-         }
-     }
+        }
+    }
     void runCommandLoopUntilExit_userInput_command() {
         ArrayList<String> listOfCommands = new ArrayList<>();
         listOfCommands.add("help");
