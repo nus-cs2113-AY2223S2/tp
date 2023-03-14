@@ -1,8 +1,11 @@
 package functionalities;
 import exception.SniffException;
+import java.util.logging.*;
 
 public class Parser {
     protected static Command command;
+
+    static Logger logger = Logger.getLogger("parser");
 
     public static Command parse(String userCommand) throws SniffException {
         String task = userCommand.trim();
@@ -28,8 +31,10 @@ public class Parser {
             int uId = Integer.parseInt(task.split(" ", 2)[1]);
             command = new Command(userCommand, 0, uId);
         } catch (ArrayIndexOutOfBoundsException emptyView) {
+            logger.warning("No appointment ID provided for view command. Unable to execute view command.");
             throw new SniffException(" The view command description cannot be empty!");
         }  catch (NumberFormatException e) {
+            logger.warning("Invalid appointment ID format provided. Integer numbers are expected.");
             throw new SniffException(" The user Id to view appointment details must be a number!");
         }
     }
