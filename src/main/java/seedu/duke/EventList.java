@@ -111,8 +111,13 @@ public class EventList {
     //need handle exceptions when index = -1
     public void reviseTimeInfo(String description, String startTime, String startDay, String endTime,
                          String endDay) {
-        int index = searchTaskIndex(description);
-        reviseTimeInfo(index, description, startTime, startDay, endTime);
+        
+        if(endDay.equals("") && endTime.equals("")) {
+            reviseTimeInfo(description, startTime, startDay);
+        } else {
+            int index = searchTaskIndex(description);
+            reviseTimeInfo(index, description, startTime, startDay, endTime);
+        }
     }
 
     //need handle exceptions when index = -1

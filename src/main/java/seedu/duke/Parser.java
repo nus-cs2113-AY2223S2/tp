@@ -17,8 +17,7 @@ public class Parser {
         String remainder = "";
         if (userInput.toLowerCase().equals("list")) {
             command = "list";
-        }
-        else {
+        } else {
             command = userInput.substring(0, userInput.indexOf(" "));
             remainder = userInput.substring(userInput.indexOf(" ") + 1);
 
@@ -106,11 +105,19 @@ public class Parser {
         if (information[1].equals("")){  //Starting date field MUST NOT be empty.
             //TODO: add exception for empty starting date
             Ui.addErrorMsg();
-        }
-        else {
+        } else {
             //TODO: link to taskList edit event
+            System.out.println("LOL");
             System.out.println(details[1].substring(2) + "," + information[0] + "," + information[1] + "," 
                     + information[2] + "," + information[3]);
+
+            if (details[1].substring(0,2).trim().equalsIgnoreCase("i")){
+                int index = Integer.parseInt(details[1].substring(2).trim()) -OFFSET;
+                eventList.reviseTimeInfo( index, information[0], information[1], information[2], information[3]);
+            } else if (details[1].substring(0,2).trim().equalsIgnoreCase("e")){
+                String description = details[1].substring(2).trim();
+                eventList.reviseTimeInfo(description, information[0], information[1], information [2], information[3]);
+            }
         }
     }
 }

@@ -2,7 +2,6 @@ package seedu.duke.storage;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import seedu.duke.Event;
 import seedu.duke.EventList;
@@ -24,11 +23,13 @@ import java.util.ArrayList;
  */
 
 
+
 public class Storage {
     //private final Ui ui = new Ui();
     private static final String fileLocation = System.getProperty("user.dir") + "/save.json";
-    final TypeToken<ArrayList<Event>> eventToken = new TypeToken<ArrayList<Event>>(){};
-    GsonBuilder builder = new GsonBuilder().setDateFormat("YYYY/MM/DD HH:mm:ss").setPrettyPrinting();
+    //final TypeToken<ArrayList<Event>> eventToken = new TypeToken<ArrayList<Event>>(){};
+    GsonBuilder builder = new GsonBuilder().registerTypeAdapter(ArrayList.class, new EventListAdapter())
+            .setPrettyPrinting();
     Gson gson = builder.create();
 
     public void saveToFile(EventList eventList) {
@@ -63,7 +64,7 @@ public class Storage {
         try {
             fileReader = new InputStreamReader(new FileInputStream(saveFile), StandardCharsets.UTF_8);
             JsonReader gsonInterpreter = new JsonReader(fileReader);
-            savedList = gson.fromJson(fileReader, eventToken); //Placeholder.
+            savedList = gson.fromJson(fileReader, ArrayList.class); //Placeholder.
         } catch (Exception e) {
             System.out.println(e);
         }
