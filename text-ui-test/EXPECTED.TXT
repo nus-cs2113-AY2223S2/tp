@@ -1,6 +1,12 @@
 Hello from
-<insert logo here>
-Welcome to DinerDirector
+  _____  _                 _____  _               _
+ |  __ \(_)               |  __ \(_)             | |
+ | |  | |_ _ __   ___ _ __| |  | |_ _ __ ___  ___| |_ ___  _ __
+ | |  | | | '_ \ / _ \ '__| |  | | | '__/ _ \/ __| __/ _ \| '__|
+ | |__| | | | | |  __/ |  | |__| | | | |  __/ (__| || (_) | |
+ |_____/|_|_| |_|\___|_|  |_____/|_|_|  \___|\___|\__\___/|_|
+
+Welcome to DinerDirector! Please type "help" for a list of valid commands.
 What can I do for you?
->Give Valid command <placeholder>
+>Please give a valid command! Type "help" for list of valid commands
 >Thank you for using DinerDirector!
