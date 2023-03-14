@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class RecordList {
 
     protected ArrayList<Record> recordList = new ArrayList<>();
-    private int balance;
+    private double balance;
     
 
     public RecordList() {

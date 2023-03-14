@@ -22,6 +22,13 @@ public class IncomeList extends RecordList{
         incomeList.add(income);
 
     }
+    public void deleteIncome(int i) throws IndexOutOfBoundsException{
+        try {
+            incomeList.remove(i - 1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("There is no income with this index");
+        }
+    }
 
     public void editIncome(int i, String category, String description, String date, float value) {
         Income inc = (Income) incomeList.get(i - 1);
@@ -44,5 +51,10 @@ public class IncomeList extends RecordList{
             Record record = incomeList.get(i - 1);
             System.out.println(i + ". " + record.toString());
         }
+    }
+
+    @Override
+    public Income get(int i) {
+        return incomeList.get(i);
     }
 }

@@ -18,9 +18,18 @@ public class ExpenseList extends RecordList{
     public int size() {
         return expenseList.size();
     }
+
     public void addExpense(Expense expense) {
         expenseList.add(expense);
     }
+
+    public void deleteExpense(int i) throws IndexOutOfBoundsException{
+        try {
+            expenseList.remove(i - 1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("There is no expense with this index");
+        }
+    }   
     public void editExpense(int i, String category, String description, String date, float value) {
         Expense exp = (Expense) expenseList.get(i - 1);
         if(!(category == null)) {
@@ -41,5 +50,10 @@ public class ExpenseList extends RecordList{
             Record record = expenseList.get(i - 1);
             System.out.println(i + ". " + record.toString());
         }
+    }
+
+    @Override
+    public Expense get(int i) {
+        return expenseList.get(i);
     }
 }
