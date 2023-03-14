@@ -45,7 +45,7 @@ class ExpenseListTest {
         assertNotEquals(testExpenseList.get(1), expenseList.getExpenseList().get(1));
 
         testExpenseList.clear();
-        expenseList.clear(testExpenseList);
+        expenseList.clear();
     }
 
     @Test
@@ -81,7 +81,7 @@ class ExpenseListTest {
         assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
 
         testExpenseList.clear();
-        expenseList.clear(testExpenseList);
+        expenseList.clear();
     }
 
     @Test
@@ -95,6 +95,6 @@ class ExpenseListTest {
         assertIterableEquals(testExpenseList, expenseList.getExpenseList());
 
         testExpenseList.clear();
-        expenseList.clear(testExpenseList);
+        expenseList.clear();
     }
 }
