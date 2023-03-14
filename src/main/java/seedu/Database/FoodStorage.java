@@ -69,7 +69,7 @@ public class FoodStorage extends Storage implements FileReadable {
         br.close();
     }
 
-    public int getFoodsCount(){
+    public int getFoodsCount() {
         return this.foods.size();
     }
 
