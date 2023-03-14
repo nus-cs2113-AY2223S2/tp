@@ -36,8 +36,8 @@ public class Parser {
      *                                   incorrect format.
      * @throws MissingArgumentsException If required arguments are missing.
      */
-    public Command parseUserInput(String userInput)
-            throws InvalidCommandException, InvalidArgumentsException, MissingArgumentsException {
+    public Command parseUserInput(String userInput) throws InvalidCommandException, InvalidArgumentsException,
+            MissingArgumentsException {
         logger.entering(Parser.class.getName(), "parseUserInput()");
         userInput = userInput.trim();
         if (userInput.isEmpty()) {
@@ -75,7 +75,7 @@ public class Parser {
             logger.exiting(Parser.class.getName(), "parseUserInput()");
             throw new InvalidCommandException(MessageConstants.MESSAGE_INVALID_COMMAND);
         }
-      
+
     }
 
     private Command parseByeCommand() {
@@ -100,8 +100,7 @@ public class Parser {
      *                                   integer format.
      * @throws MissingArgumentsException If required ID is not entered.
      */
-    private Command parseDeleteCommand(String arguments)
-            throws InvalidArgumentsException, MissingArgumentsException {
+    private Command parseDeleteCommand(String arguments) throws InvalidArgumentsException, MissingArgumentsException {
         logger.entering(Parser.class.getName(), "parseDeleteCommand()");
         logger.info("Parsing delete command with arguments: " + arguments);
         if (arguments.isEmpty()) {
@@ -192,16 +191,15 @@ public class Parser {
         }
 
         try {
-            int expenseIdInt = Integer.parseInt(argumentsArray[0]);
+            Integer.parseInt(argumentsArray[0]);
         } catch (NumberFormatException e) {
             logger.warning("Expense ID is not an integer: " + MessageConstants.MESSAGE_INVALID_ID);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
 
         if (!price.isEmpty()) {
-            double priceDouble;
             try {
-                priceDouble = Double.parseDouble(price);
+                Double.parseDouble(price);
             } catch (NumberFormatException e) {
                 logger.warning("Price not in numerical format: " + MessageConstants.MESSAGE_INVALID_PRICE);
                 throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
@@ -216,11 +214,6 @@ public class Parser {
                 logger.warning("Category does not exist: " + MessageConstants.MESSAGE_INVALID_CATEGORY);
                 throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_CATEGORY);
             }
-        }
-
-        if (description.isEmpty() && category.isEmpty() && price.isEmpty()) {
-            logger.warning("Missing arguments for edit command: " + MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
-            throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
         }
         logger.exiting(Parser.class.getName(), "parseEditCommand()");
         return new EditCommand(expenseId, description, category, price);
@@ -257,10 +250,9 @@ public class Parser {
     /**
      * Returns a string array of length 3, containing the description, category and
      * price respectively.
-     * 
+     *
      * @param arguments User arguments entered after the add command.
-     * @return String[] Array containing description, category and price
-     *     respectively.
+     * @return String[] Array containing description, category and price respectively.
      */
     private static String[] parseAddArguments(String arguments) {
         logger.entering(Parser.class.getName(), "parseAddArguments()");
@@ -296,8 +288,7 @@ public class Parser {
 
     /**
      * @param arguments User arguments entered after the edit command
-     * @return String[] Array containing expense ID, description, category and price
-     *     respectively.
+     * @return String[] Array containing expense ID, description, category and price respectively.
      */
     private static String[] parseEditArguments(String arguments) {
         logger.entering(Parser.class.getName(), "parseEditArguments()");
