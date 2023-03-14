@@ -75,7 +75,7 @@ Example of usage:
 
 `/edit 5 -d Grab to school -c Transportation`
 
-## View an expense {#view}
+## View an expense: `/view` {#view}
 
 Displays a list of your current expenditure.
 
@@ -89,13 +89,13 @@ Example of usage:
 
 `/view`
 
-## Show help menu {#help}
+## Show help menu: `/help` {#help}
 
 Displays the help menu.
 
 Format: `/help`
 
-## Exit Program {#exit}
+## Exit Program: `/bye` {#exit}
 
 Terminates PocketPal.
 
