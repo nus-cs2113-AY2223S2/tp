@@ -2,9 +2,11 @@ package seedu.duke;
 
 import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.exceptions.MissingParametersException;
+import seedu.duke.exceptions.RemoveErrorException;
 import seedu.duke.exceptions.SearchFilterErrorException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -121,6 +123,7 @@ public class Parser {
             Inventory.filterTags(keyword);
         }
     }
+
     /**
      * Handles the "searchUPC" command by checking the validity of search term provided before passing to
      * the searchUPC function
@@ -142,6 +145,7 @@ public class Parser {
             Ui.printInvalidEditCommand();
         }
     }
+
     /**
      * Handles the "search" command by checking the validity of search term provided before passing to
      * the search function
@@ -158,6 +162,7 @@ public class Parser {
             e.missingSearchItemParameters();
         }
     }
+
     /**
      * Handles the "add" command by parsing the user's input into separate input parameters using regex
      *
@@ -171,7 +176,7 @@ public class Parser {
             Pattern pattern = Pattern.compile(ADD_REGEX);
             Matcher matcher = pattern.matcher(rawInput);
             if (matcher.matches()) {
-                System.out.println(matcher.group(NAME_INDEX));
+                //System.out.println(matcher.group(NAME_INDEX));
                 Item newItem = new Item(matcher.group(NAME_INDEX), matcher.group(UPC_INDEX), matcher.group(QTY_INDEX),
                         matcher.group(PRICE_INDEX));
                 Inventory.addItem(newItem);
@@ -214,27 +219,52 @@ public class Parser {
                 throw new MissingParametersException();
             }
             String[] commands = rawInput.split(" ");
-            switch(commands[0]) {
+            switch (commands[0]) {
             case "f/item":
-                if (!commands[1].startsWith("upc/") || commands.length == 1) {
-                    throw new MissingParametersException();
-                }
-                Inventory.removeByUpc(commands[1]);
+                parseRemoveByUpc(commands);
                 break;
             case "f/index":
-                try {
-                    int itemIndex = Integer.parseInt(commands[1]);
-                    System.out.println(itemIndex);
-                    Inventory.removeItemAtIndex(itemIndex);
-                } catch (IndexOutOfBoundsException|NumberFormatException e) {
-                    Ui.printInvalidIndex();
-                }
+                parseRemoveByIndex(commands);
                 break;
             default:
                 throw new MissingParametersException();
             }
         } catch (MissingParametersException e) {
-            Ui.printInvalidRemove();
+            e.missingRemoveItemParameters();
+        } catch (RemoveErrorException e) {
+            Ui.printInvalidUpc();
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
+            Ui.printInvalidIndex();
         }
+    }
+
+    private static void parseRemoveByIndex(String[] commands) throws MissingParametersException {
+        if (commands.length == 1) {
+            throw new MissingParametersException();
+        }
+        Item itemToRemove;
+        String confirmation;
+        int itemIndex = Integer.parseInt(commands[1]);
+        itemToRemove = Inventory.getItemList().get(itemIndex);
+        Ui.printConfirmMessage(itemToRemove);
+        confirmation = in.nextLine();
+        Inventory.removeItemAtIndex(itemIndex, confirmation);
+    }
+
+    private static void parseRemoveByUpc(String[] commands) throws MissingParametersException, RemoveErrorException {
+        String confirmation;
+        Item itemToRemove;
+        if (commands.length == 1 || !commands[1].startsWith("upc/")) {
+            throw new MissingParametersException();
+        }
+        String upcCode = commands[1].replaceFirst("upc/", "");
+        HashMap<String, Item> upcCodes = Inventory.getUpcCodes();
+        if (!upcCode.matches("(\\d+)") || !upcCodes.containsKey(upcCode)) {
+            throw new RemoveErrorException();
+        }
+        itemToRemove = upcCodes.get(upcCode);
+        Ui.printConfirmMessage(itemToRemove);
+        confirmation = in.nextLine();
+        Inventory.removeByUpc(itemToRemove, upcCode, confirmation);
     }
 }

@@ -6,8 +6,6 @@ import seedu.duke.trie.Trie;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static seedu.duke.Parser.in;
-
 public class Inventory {
     private static ArrayList<Item> items = new ArrayList<>();
     private static HashMap<String, Item> upcCodes = new HashMap<>();
@@ -215,10 +213,8 @@ public class Inventory {
         return selectedItem;
     }
 
-    public static void removeItemAtIndex(int index) {
+    public static void removeItemAtIndex(int index, String confirmation) {
         Item itemToRemove = items.get(index);
-        Ui.printConfirmMessage();
-        String confirmation = in.nextLine();
         switch (confirmation.toUpperCase()) {
         case "Y":
             String itemName = itemToRemove.getName().toLowerCase();
@@ -255,21 +251,13 @@ public class Inventory {
     }
 
     /**
-     * Removes item from the array list of items and hashmap of upc
+     * Removes item from the array list of items and upc of item from hashmap of upc
      * using item's unique upc.
-     *
-     * @param upc UPC of item to be removed from the list.
-     * @return index of item in the arraylist for testing; otherwise -1.
+     * @param itemToRemove The item that user has specified to remove.
+     * @param upcCode The UPC value of the item to be removed.
+     * @param confirmation Confirmation string to be given by user.
      */
-    public static int removeByUpc(String upc) {
-        String upcCode = upc.replaceFirst("upc/", "");
-        searchUPC(upcCode);
-        if (!upcCodes.containsKey(upcCode)) {
-            return -1;
-        }
-        Item itemToRemove = upcCodes.get(upcCode);
-        Ui.printConfirmMessage();
-        String confirmation = in.nextLine();
+    public static void removeByUpc(Item itemToRemove, String upcCode, String confirmation) {
         switch (confirmation.toUpperCase()) {
         case "Y":
             String itemName = itemToRemove.getName().toLowerCase();
@@ -283,7 +271,7 @@ public class Inventory {
                 itemNameHash.get(itemName).remove(itemToRemove);
             }
             Ui.printSuccessRemove(itemToRemove);
-            return i;
+            break;
         case "N":
             Ui.printNotRemoving();
             break;
@@ -291,10 +279,12 @@ public class Inventory {
             Ui.printInvalidReply();
             break;
         }
-        return -1;
     }
 
     public static ArrayList<Item> getItemList() {
         return items;
+    }
+    public static  HashMap<String, Item> getUpcCodes() {
+        return upcCodes;
     }
 }
