@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.entities.User;
-import seedu.database.UserStorage;
 
 public class UserStorageTest {
     private static final String FILE_PATH = "./data/userData.csv";

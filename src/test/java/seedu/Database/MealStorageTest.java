@@ -11,9 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.entities.Food;
 import seedu.entities.Meal;
-import seedu.database.FoodStorage;
-import seedu.database.MealStorage;
-
 
 public class MealStorageTest {
     private static final String FILE_PATH = "./data/mealData.csv";
