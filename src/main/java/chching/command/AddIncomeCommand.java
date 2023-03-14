@@ -1,5 +1,6 @@
 package chching.command;
 
+import chching.ChChingException;
 import chching.Storage;
 import chching.Ui;
 import chching.record.ExpenseList;
@@ -9,7 +10,10 @@ import chching.record.Income;
 public class AddIncomeCommand extends Command {
     private final Income income;
 
-    public AddIncomeCommand(Income income) {
+    public AddIncomeCommand(Income income) throws ChChingException {
+        if(income.getValue() <= 0){
+            throw new ChChingException("Invalid income value");
+        }
         this.income = income;
     }
     @Override

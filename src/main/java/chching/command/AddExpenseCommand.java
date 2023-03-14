@@ -1,5 +1,6 @@
 package chching.command;
 
+import chching.ChChingException;
 import chching.Storage;
 import chching.Ui;
 import chching.record.ExpenseList;
@@ -9,7 +10,11 @@ import chching.record.Expense;
 public class AddExpenseCommand extends Command {
     private final Expense expense;
 
-    public AddExpenseCommand(Expense expense) {
+    public AddExpenseCommand(Expense expense) throws ChChingException {
+        if(expense.getValue() <= 0)
+        {
+            throw new ChChingException("Invalid expense value");
+        }
         this.expense = expense;
     }
     @Override
