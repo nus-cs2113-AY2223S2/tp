@@ -30,7 +30,7 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
                 CSVWriter.NO_QUOTE_CHARACTER,
                 CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                 CSVWriter.RFC4180_LINE_END);
-        String[] header = { "Name", "Weight", "Height" };
+        String[] header = { "Name", "Weight", "Height", "Age", "Gender" };
         writer.writeNext(header);
         writer.writeNext(user.toWriteFormat());
         writer.close();
@@ -41,6 +41,8 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
         String name;
         float weight;
         float height;
+        int age;
+        String gender;
         try {
             // parsing a CSV file into BufferedReader class constructor
             BufferedReader br = new BufferedReader(new FileReader(filePath));
@@ -52,7 +54,9 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
             name = userLine[0];
             weight = Float.parseFloat(userLine[1]);
             height = Float.parseFloat(userLine[2]);
-            user = new User(name, weight, height);
+            age = Integer.parseInt(userLine[3]);
+            gender = userLine[4];
+            user = new User(name, weight, height, age, gender);
 
             System.out.println("Loaded past user data.");
             br.close();

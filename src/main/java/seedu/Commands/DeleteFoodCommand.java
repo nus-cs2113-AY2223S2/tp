@@ -6,12 +6,13 @@ import seedu.Database.UserStorage;
 import seedu.Entities.Food;
 import seedu.Exceptions.InvalidCommandException;
 import seedu.Exceptions.LifeTrackerException;
+//import seedu.Output.UI;
 import seedu.Ui.GeneralUi;
 
-public class AddFoodCommand extends Command{
-    private Food newFood;
+public class DeleteFoodCommand extends Command{
     private int index;
-    public AddFoodCommand (String commandDescriptor) throws LifeTrackerException {
+
+    public DeleteFoodCommand(String commandDescriptor) throws LifeTrackerException {
         parseInput(commandDescriptor);
     }
     private void parseInput(String commandDescriptor) throws LifeTrackerException{
@@ -24,10 +25,11 @@ public class AddFoodCommand extends Command{
             throw new InvalidCommandException();
         }
     }
+
     @Override
-    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
-            throws LifeTrackerException {
-        foodStorage.addFood(index);
-        ui.printNewFoodAdded(foodStorage, index);
+    public void execute(GeneralUi ui, FoodStorage foodStorage,
+                        MealStorage mealStorage, UserStorage userStorage) throws LifeTrackerException {
+        Food deletedFood = foodStorage.deleteFood(index);
+        ui.printDeletedFood(deletedFood);
     }
 }

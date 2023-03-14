@@ -5,16 +5,16 @@ import seedu.Database.MealStorage;
 import seedu.Database.UserStorage;
 import seedu.Entities.User;
 import seedu.Exceptions.LifeTrackerException;
-import seedu.Output.UI;
+import seedu.Ui.GeneralUi;
 
 public class UpdateUserCommand extends Command {
-    public String updateName(UI ui) {
+    public String updateName(GeneralUi ui) {
         System.out.println("Enter new name: ");
         return ui.readLine();
     }
 
     @Override
-    public void execute(UI ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
+    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
             throws LifeTrackerException {
         User user = userStorage.getUser();
         int choice;
@@ -24,6 +24,8 @@ public class UpdateUserCommand extends Command {
             System.out.println("1. Update Name");
             System.out.println("2. Update Weight");
             System.out.println("3. Update Height");
+            System.out.println("4. Update Age");
+            System.out.println("5. Update Gender");
             System.out.println();
 
             choice = ui.readInt();
@@ -37,6 +39,12 @@ public class UpdateUserCommand extends Command {
                 break;
             case 3:
                 user.setHeight(updateHeight(ui));
+                break;
+            case 4:
+                user.setAge(updateAge(ui));
+                break;
+            case 5:
+                user.setGender(updateGender(ui));
                 break;
             default:
                 System.out.println("Invalid Choice!");
@@ -65,10 +73,11 @@ public class UpdateUserCommand extends Command {
         userStorage.updateUser(user);
     }
 
-    public float updateWeight(UI ui) {
+    public float updateWeight(GeneralUi ui) {
         String weightString = "dummy";
         while (true) {
             System.out.println("Enter new weight: ");
+
             weightString = ui.readLine();
             if (weightString.matches("[+-]?([0-9]*[.])?[0-9]+")) {
                 break;
@@ -80,7 +89,7 @@ public class UpdateUserCommand extends Command {
         return weight;
     }
 
-    public float updateHeight(UI ui) {
+    public float updateHeight(GeneralUi ui) {
         String heightString = "dummy";
         while (true) {
             System.out.println("Enter new height: ");
@@ -94,4 +103,36 @@ public class UpdateUserCommand extends Command {
         assert height >= 0: "Invalid height";
         return height;
     }
+
+    // bug in updating age
+    public int updateAge(GeneralUi ui){
+        String ageString = "dummy";
+        while(true){
+            System.out.println("Enter new age: ");
+            ageString = ui.readLine();
+            if(ageString.matches("[+-]?([0-9]*[.])?[0-9]+")){
+                break;
+            }
+            System.out.println("Invalid age format!");
+        }
+        int age = Integer.parseInt(ageString);
+        assert age >= 0: "Invalid Age";
+        return age;
+    }
+
+    public String updateGender(GeneralUi ui) {
+        String genderString = "dummy";
+        while (true) {
+            System.out.println("Enter new gender: ");
+            genderString = ui.readLine();
+            // bug in updating gender
+
+            if (!genderString.equalsIgnoreCase("male") | !genderString.equalsIgnoreCase("female") ) {
+                break;
+            }
+            System.out.println("Invalid gender format!");
+        }
+        return genderString;
+    }
+
 }

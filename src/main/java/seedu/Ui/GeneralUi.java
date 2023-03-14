@@ -1,16 +1,16 @@
-package seedu.Output;
+package seedu.Ui;
 
 import seedu.Database.FoodStorage;
 import seedu.Entities.Food;
 
 import java.util.Scanner;
 
-public class UI {
+public class GeneralUi {
+
     public static Scanner sc = new Scanner(System.in);
 
     /**
      * Reads user input
-     *
      * @return user input
      */
     public String readLine() {
@@ -30,15 +30,15 @@ public class UI {
     }
 
     /**
-     * Prints Welcome message when Duke first starts
+     * Helper function to print divider
      */
-    public void printIntroduction() {
-        this.printLine();
-        System.out.println("Hello! Welcome to");
-        this.printLogo();
-        this.printLine();
-        System.out.println();
+    public void printLine() {
+        System.out.println("------------------------------------------------------------");
     }
+
+    private String endingMessage = "Bye! Hope to see you again soon!";
+
+    private String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!";
 
     /**
      * Prints Goodbye message when Duke exits
@@ -46,15 +46,8 @@ public class UI {
     public void printGoodbye() {
         System.out.println();
         this.printLine();
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(endingMessage);
         this.printLine();
-    }
-
-    /**
-     * Helper function to print divider
-     */
-    public void printLine() {
-        System.out.println("------------------------------------------------------------");
     }
 
     private void printLogo() {
@@ -67,12 +60,18 @@ public class UI {
                         + "|______|_|_| \\___|_|_|  \\__,_|\\___|_|\\_\\___|_|   \n"
         );
     }
-
-    public void printNewFoodAdded(FoodStorage foodStorage, int food) {
-        Food newFood = foodStorage.getFoodById(food);
-        String foodDescription = newFood.toString();
-        System.out.println("You just added this food\n" + foodDescription);
+    /**
+     * Prints Welcome message when Duke first starts
+     */
+    public void printIntroduction() {
+        this.printLine();
+        System.out.println("Hello! Welcome to");
+        this.printLogo();
+        this.printLine();
+        System.out.println(welcomeMessage);
     }
+    public void requestWeight(){}
+    public void showLatestWeight(int weight){}
 
     public void printAllFoods(FoodStorage foodStorage) {
         if (foodStorage.getFoodsCount() == 0) {
@@ -85,6 +84,13 @@ public class UI {
             }
         }
     }
+
+    public void printNewFoodAdded(FoodStorage foodStorage, int food) {
+        Food newFood = foodStorage.getFoodById(food);
+        String foodDescription = newFood.toString();
+        System.out.println("You just added this food\n" + foodDescription);
+    }
+
 
     public void printDeletedFood(Food newFood) {
     }
