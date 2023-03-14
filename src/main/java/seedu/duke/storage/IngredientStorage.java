@@ -99,7 +99,7 @@ public class IngredientStorage {
     public void writeIngredientToFile(Ingredient ingredient) {
         String ingredientString = gson.toJson(ingredient);
         try {
-            this.bufferedWriter.write(ingredientString + "\n");
+            this.bufferedWriter.write(ingredientString + System.lineSeparator());
             this.bufferedWriter.flush();
         } catch (Exception e) {
             System.out.println("Oops, an error occurred while saving file");
