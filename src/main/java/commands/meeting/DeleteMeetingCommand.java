@@ -9,7 +9,7 @@ public class DeleteMeetingCommand extends Command {
     public static String issue;
 
     public DeleteMeetingCommand(String issue) {
-        this.issue = issue.substring(2);
+        this.issue = issue;
     }
 
     @Override

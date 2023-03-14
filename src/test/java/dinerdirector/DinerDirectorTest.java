@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class DinerDirectorTest {
     @Test
-    void runCommandLoopUntilExit_userInput_command() {
+    void runCommandLoopUntilExit_userInput_meetingCommand() {
         ArrayList<String> listOfCommands = new ArrayList<>();
         listOfCommands.add("add_meeting n/a t/3pm");
         listOfCommands.add("view_meetings");

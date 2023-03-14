@@ -12,8 +12,8 @@ public class AddMeetingCommand extends Command {
     public static String time;
     public static String issue;
     public AddMeetingCommand(String time,String issue){
-        this.time=time.substring(2);
-        this.issue=issue.substring(2);
+        this.time=time;
+        this.issue=issue;
     }
     @Override
     public boolean isExit() {
