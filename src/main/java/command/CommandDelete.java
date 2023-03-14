@@ -10,10 +10,11 @@ import static common.MessageList.OFFSET;
 
 public class CommandDelete extends Command {
 
-    protected ArrayList<Expense> expenseList;
-    protected Integer index;
     private static final String MESSAGE_INVALID_INDEX_ERROR = "Invalid expense index. Please try again.";
     private static final String COMMAND_NAME = "delete";
+    protected ArrayList<Expense> expenseList;
+    protected Integer index;
+
 
     public CommandDelete(ArrayList<Expense> expenseList, Integer index) {
         super(COMMAND_NAME);
