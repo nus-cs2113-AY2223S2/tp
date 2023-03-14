@@ -47,12 +47,22 @@ public class MainInputParser {
         case OtherExpenditureCommand.COMMAND_WORD:
         case TransportExpenditureCommand.COMMAND_WORD:
         case TuitionExpenditureCommand.COMMAND_WORD:
-            ParseAdd prepareAddExpenditure = new ParseAdd(splitValues[INDEX_USERSTRING]);
+            ParseAdd prepareAddExpenditure;
+            try {
+                prepareAddExpenditure = new ParseAdd(splitValues[INDEX_USERSTRING]);
+            } catch (IndexOutOfBoundsException e){
+                return new InvalidCommand("Input command does not have required parameters!");
+            }
             return prepareAddExpenditure.addItem(command);
         case LendExpenditureCommand.COMMAND_WORD:
         case BorrowExpenditureCommand.COMMAND_WORD:
             ExpenditureList.saveList();
-            ParseLendBorrow prepareLendBorrowExpenditure = new ParseLendBorrow(splitValues[INDEX_USERSTRING]);
+            ParseLendBorrow prepareLendBorrowExpenditure;
+            try {
+                prepareLendBorrowExpenditure = new ParseLendBorrow(splitValues[INDEX_USERSTRING]);
+            } catch (IndexOutOfBoundsException e){
+                return new InvalidCommand("Input command does not have required parameters!");
+            }
             return prepareLendBorrowExpenditure.addItem(command);
         default:
             // Commands that are not listed above
