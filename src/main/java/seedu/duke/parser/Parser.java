@@ -50,28 +50,28 @@ public class Parser {
         logger.log(Level.INFO, "User input command: " + command);
         logger.log(Level.INFO, "User input arguments: " + arguments);
         switch (command) {
-            case COMMAND_ADD:
-                logger.exiting(Parser.class.getName(), "parseUserInput()");
-                return parseAddCommand(arguments);
-            case COMMAND_VIEW:
-                logger.exiting(Parser.class.getName(), "parseUserInput()");
-                return parseViewCommand(arguments);
-            case COMMAND_EDIT:
-                logger.exiting(Parser.class.getName(), "parseUserInput()");
-                return parseEditCommand(arguments);
-            case COMMAND_DELETE:
-                logger.exiting(Parser.class.getName(), "parseUserInput()");
-                return parseDeleteCommand(arguments);
-            case COMMAND_HELP:
-                logger.exiting(Parser.class.getName(), "parseUserInput()");
-                return parseHelpCommand();
-            case COMMAND_BYE:
-                logger.exiting(Parser.class.getName(), "parseUserInput()");
-                return parseByeCommand();
-            default:
-                logger.log(Level.WARNING, "User command is invalid");
-                logger.exiting(Parser.class.getName(), "parseUserInput()");
-                return null;
+        case COMMAND_ADD:
+            logger.exiting(Parser.class.getName(), "parseUserInput()");
+            return parseAddCommand(arguments);
+        case COMMAND_VIEW:
+            logger.exiting(Parser.class.getName(), "parseUserInput()");
+            return parseViewCommand(arguments);
+        case COMMAND_EDIT:
+            logger.exiting(Parser.class.getName(), "parseUserInput()");
+            return parseEditCommand(arguments);
+        case COMMAND_DELETE:
+            logger.exiting(Parser.class.getName(), "parseUserInput()");
+            return parseDeleteCommand(arguments);
+        case COMMAND_HELP:
+            logger.exiting(Parser.class.getName(), "parseUserInput()");
+            return parseHelpCommand();
+        case COMMAND_BYE:
+            logger.exiting(Parser.class.getName(), "parseUserInput()");
+            return parseByeCommand();
+        default:
+            logger.log(Level.WARNING, "User command is invalid");
+            logger.exiting(Parser.class.getName(), "parseUserInput()");
+            return null;
         }
 
     }
