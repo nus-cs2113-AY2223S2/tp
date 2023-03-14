@@ -5,7 +5,6 @@ import com.clanki.objects.FlashcardList;
 import com.clanki.ui.Ui;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class UpdateCommand extends Command {
     String query;
