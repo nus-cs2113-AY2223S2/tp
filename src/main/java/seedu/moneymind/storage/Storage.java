@@ -1,12 +1,18 @@
-package seedu.moneymind;
+package seedu.moneymind.storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import seedu.moneymind.Category;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Storage class to save and load data from a file
+ */
 public class Storage {
     /**
      * Divider used to separate details of a task saved in file
@@ -48,18 +54,8 @@ public class Storage {
      * 
      * @param list ArrayList of Events
      */
-    public void saveToFile(ArrayList<Event> list) {
-        String writeToFile = "";
-        // TODO: Object to string conversion
-        for (Event dukeTasks : list) {
-            // extracting details from task object
-            String[] dataToTextFile= {"", "", ""};
-            dataToTextFile[0] = dukeTasks.toString();
-
-            // save task details split by regex ", "
-            writeToFile += dataToTextFile[0] + SAVEFILESEPARATOR + dataToTextFile[1] +
-                    SAVEFILESEPARATOR + dataToTextFile[2] + System.lineSeparator();
-        }
+    public void saveToFile(ArrayList<Category> list) {
+        String writeToFile = FormatToTxt.formatToTxt(list);
 
         // write task list to text file
         try {
@@ -76,9 +72,8 @@ public class Storage {
      * 
      * @return ArrayList of Events
      */
-    public ArrayList<Event> loadFromFile() {
-        ArrayList<Event> savedList = new ArrayList<>();
-        //setupFile();
+    public ArrayList<Category> loadFromFile() {
+        ArrayList<Category> savedList = new ArrayList<>();
 
         while (textFileScanner.hasNext()) {
             // TODO: Loading of objects from file

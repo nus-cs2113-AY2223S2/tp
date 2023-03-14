@@ -1,5 +1,7 @@
 package seedu.moneymind;
 
+import seedu.moneymind.storage.Storage;
+
 public class Moneymind {
     private Ui ui;
     private Storage storage;

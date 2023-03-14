@@ -45,6 +45,7 @@ public class EventCommand {
                 break;
             }
         }
+        in.close();
     }
 
     /**

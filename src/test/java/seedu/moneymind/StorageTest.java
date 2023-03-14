@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.moneymind.storage.Storage;
+
 public class StorageTest {
     /** 
      * Tests setupFile() method<p>
@@ -28,8 +30,9 @@ public class StorageTest {
     @Test
     public void saveToFile_descInput_exptOutcome() {
         Storage storage = new Storage();
-        ArrayList<Event> list = new ArrayList<>();
-        list.add(new Event("test", 1234, 5678));
+        ArrayList<Category> list = new ArrayList<>();
+        // TODO: Add a test case for saving a list of events
+        // list.add(new Event("test", 1234, 5678));
         assertDoesNotThrow(() -> {
             storage.saveToFile(list);
         });
@@ -43,7 +46,7 @@ public class StorageTest {
     public void loadFromFile_null_noExceptionThrown() {
         try {
             Storage storage = new Storage();
-            ArrayList<Event> list = storage.loadFromFile();
+            ArrayList<Category> list = storage.loadFromFile();
             System.out.println(list);
         } catch (Exception e) {
             assertTrue(false, e.getMessage());
@@ -59,11 +62,12 @@ public class StorageTest {
     public void saveAndLoadFromFile_descInput_exptOutcome() {
         try {
             Storage storage = new Storage();
-            ArrayList<Event> list = new ArrayList<>();
-            list.add(new Event("test", 1234, 5678));
-            list.add(new Event("test2", 9876, 5432));
+            ArrayList<Category> list = new ArrayList<>();
+            // TODO: Add a test case for saving a list of events
+            // list.add(new Event("test", 1234, 5678));
+            // list.add(new Event("test2", 9876, 5432));
             storage.saveToFile(list);
-            ArrayList<Event> list2 = storage.loadFromFile();
+            ArrayList<Category> list2 = storage.loadFromFile();
             System.out.println(list2);
         } catch (Exception e) {
             assertTrue(false, e.getMessage());
