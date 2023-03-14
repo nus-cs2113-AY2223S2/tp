@@ -1,0 +1,100 @@
+package seedu.pettracker.parser;
+
+import seedu.pettracker.commands.AddPetCommand;
+import seedu.pettracker.commands.AddStatCommand;
+import seedu.pettracker.commands.Command;
+import seedu.pettracker.commands.ExitCommand;
+import seedu.pettracker.commands.InvalidCommand;
+import seedu.pettracker.commands.ListPetCommand;
+import seedu.pettracker.commands.RemovePetCommand;
+import seedu.pettracker.commands.RemoveStatCommand;
+import seedu.pettracker.exceptions.UnknownKeywordException;
+
+public class CommandParser {
+    final String KEYWORD_EXIT = "exit";
+    final String KEYWORD_ADD_PET = "add-pet";
+    final String KEYWORD_REMOVE_PET = "remove-pet";
+    final String KEYWORD_LIST_PET = "list";
+    final String KEYWORD_ADD_STAT = "add-stat";
+    final String KEYWORD_REMOVE_STAT = "remove-stat";
+
+    public CommandParser() {
+    }
+
+    public Command parseCommand(String commandString) {
+        try {
+            return newCommand(commandString);
+        } catch (UnknownKeywordException e) {
+            System.out.println("Unknown Keyword");
+            return null;
+        }
+    }
+
+    /**
+     * Separates the command keyword from the rest of the string
+     *
+     * @param commandString User input string
+     * @return Command keyword
+     */
+    private static String parseKeyword(String commandString) {
+        return commandString.split(" ", 2)[0];
+    }
+
+    /**
+     * Separates the arguments from the rest of the string
+     *
+     * @param commandString User input string
+     * @return Arguments
+     */
+    private static String parseArgs(String commandString) throws ArrayIndexOutOfBoundsException {
+        return commandString.split(" ", 2)[1];
+    }
+
+    /**
+     * Creates a new command object from the user input string
+     *
+     * @param commandString Initial String that the user typed in
+     * @return new Command object
+     */
+    public Command newCommand(String commandString) throws UnknownKeywordException {
+        switch (parseKeyword(commandString)) {
+        case KEYWORD_EXIT:
+            return new ExitCommand();
+        case KEYWORD_ADD_PET:
+            System.out.println("add-pet command");
+            try {
+                return new AddPetCommand(parseArgs(commandString));
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("bounds error");
+                break;
+            }
+        case KEYWORD_REMOVE_PET:
+            try {
+                return new RemovePetCommand(parseArgs(commandString));
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("bounds error");
+                break;
+            }
+        case KEYWORD_LIST_PET:
+            return new ListPetCommand();
+        case KEYWORD_ADD_STAT:
+            try {
+                return new AddStatCommand(parseArgs(commandString));
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("bounds error");
+                break;
+            }
+        case KEYWORD_REMOVE_STAT:
+            try {
+                return new RemoveStatCommand(parseArgs(commandString));
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("bounds error");
+                break;
+            }
+        default:
+            System.out.println("parse failure");
+            return new InvalidCommand();
+        }
+        return new InvalidCommand();
+    }
+}
