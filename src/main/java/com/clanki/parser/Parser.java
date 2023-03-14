@@ -1,12 +1,12 @@
 package com.clanki.parser;
 
-
 import com.clanki.commands.AddCommand;
 import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
 import com.clanki.commands.DeleteCommand;
 import com.clanki.commands.ReviewCommand;
 import com.clanki.commands.UnknownCommand;
+import com.clanki.commands.UpdateCommand;
 import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
@@ -36,6 +36,8 @@ public class Parser {
             return new ReviewCommand();
         case "bye":
             return new ByeCommand();
+        case "update":
+            return new UpdateCommand(userInput);
         default:
             return new UnknownCommand();
         }
