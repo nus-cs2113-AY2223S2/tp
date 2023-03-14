@@ -1,6 +1,5 @@
 package seedu.dukeofbooks.data.book;
 
-
 public abstract class BorrowableItem {
     protected boolean isBorrowed;
 

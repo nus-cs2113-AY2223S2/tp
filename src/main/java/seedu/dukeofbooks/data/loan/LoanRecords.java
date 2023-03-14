@@ -1,5 +1,11 @@
 package seedu.dukeofbooks.data.loan;
 import seedu.dukeofbooks.data.person.Person;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
 import seedu.dukeofbooks.data.book.BorrowableItem;
 
 import java.util.ArrayList;
@@ -75,6 +81,7 @@ public class LoanRecords {
     public boolean add(Loan toAdd) {
         return internalList.add(toAdd);
     }
+
 
     public boolean removeItem(Loan toRemove) {
         return internalList.remove(toRemove);
