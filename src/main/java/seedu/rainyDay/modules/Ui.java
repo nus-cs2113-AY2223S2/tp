@@ -111,4 +111,8 @@ public class Ui {
     public void sayFarewellToUser() {
         System.out.println("Bye " + username);
     }
+
+    public void printEmptyLine() {
+        System.out.println();
+    }
 }
