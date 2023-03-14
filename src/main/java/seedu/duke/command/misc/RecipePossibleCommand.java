@@ -20,10 +20,10 @@ public class RecipePossibleCommand extends ExecutableCommand {
      * @return true if the list of ingredients have sufficient quantity of that ingredient, false otherwise
      */
     private boolean hasEnoughIngredient(Ingredient ingredient, IngredientList ingredientList) {
-        String recipeIngredientName = ingredient.getName();
+        String recipeIngredientName = ingredient.getMetadata().getName();
         double recipeIngredientQty = ingredient.getQuantity();
         for (Ingredient fridgeIngredient : ingredientList.getIngredients()) {
-            if (fridgeIngredient.getName().equals(recipeIngredientName)
+            if (fridgeIngredient.getMetadata().getName().equals(recipeIngredientName)
                     && fridgeIngredient.getQuantity() >= recipeIngredientQty) {
                 return true;
             }
