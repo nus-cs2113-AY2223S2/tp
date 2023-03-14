@@ -49,10 +49,21 @@ public class User {
         this.height = height;
     }
 
-    public int getAge(){return this.age;}
-    public void setAge(int age){this.age = age;}
-    public String getGender(){return this.gender;}
-    public void setGender(String gender){this.gender = gender;}
+    public int getAge() {
+        return this.age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return this.gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public double calculateCaloricNeeds (float weight, float height, int age, String gender) {
         double caloricNeeds;
@@ -70,15 +81,20 @@ public class User {
         }
     }
 
-    public double getCaloricLimit(){return Math.round(this.caloricLimit);}
-    public double getCaloriesLeft(double calorieIntake){return Math.round(caloricLimit - calorieIntake);}
+    public double getCaloricLimit() {
+        return Math.round(this.caloricLimit);
+    }
+
+    public double getCaloriesLeft(double calorieIntake) {
+        return Math.round(caloricLimit - calorieIntake);
+    }
 
     public String[] toWriteFormat() {
         String weight = Float.toString(this.weight);
         String height = Float.toString(this.height);
         String age = Integer.toString(this.age);
         // Need to change this to update user's age and gender as well
-        String[] value = { this.name, weight, height };
+        String[] value = { this.name, weight, height, age, this.gender };
         return value;
     }
 }
