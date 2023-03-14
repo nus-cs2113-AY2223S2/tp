@@ -17,7 +17,7 @@ class EditTest {
         String[] data = {"upc/123"};
         Item updatedItem = null;
         try {
-            updatedItem = Inventory.retrieveItemFromArrayList(data);
+            updatedItem = Inventory.retrieveItemFromHashMap(data);
         } catch (EditErrorException eee) {
             fail();
         }
