@@ -8,6 +8,8 @@
 
 package seedu.badMaths;
 
+import seedu.badMaths.Trigo.TrigoGraph;
+
 public class Command {
 
     protected String command;
