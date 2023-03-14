@@ -2,35 +2,27 @@
 
 ## Introduction
 
-{Give a product intro}
+Meal360 is a desktop app for managing your recipes, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Meal360 can get your recipe management tasks done faster than traditional GUI apps.
+
+___
 
 ## Quick Start
 
-{Give steps to get started quickly}
+1. Ensure that you have Java 11 or above installed. 
+2. Down the latest version of `Duke` from [here](http://link.to/duke).
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+___
 
-## Features 
+## Features
 
-{Give detailed description of each feature}
+* View recipes
 * Listing relevant recipes
-
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
-
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+* Add recipes to weekly plan
+* Remove recipes from weekly plan
+* View weekly plan
 
 ### Listing recipes: `list`
+
 List all recipes or filtered list recipes by the name or ingredients.
 
 Format: `list [KEYWORD & KEYWORD & ...]`
@@ -39,23 +31,78 @@ Format: `list [KEYWORD & KEYWORD & ...]`
 * To list all recipes, do not add `KEYWORD`.
 * Use `&` to list all the recipe that contain all specified keywords.
 
-
 Example of usage:
 
 `list`
 `list pizza`
 `list milk & egg`
 
+### Viewing recipes: `view`
+
+Views the list of ingredients and their quantities for a recipe.
+
+Format: `view INDEX`
+
+* Views the recipe at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1,2,3, ...
+
+Example of usage:
+
+`view 1`
+
+### Adding to this week's plan: `weekly /add`
+
+Adds an existing recipe to this week's plan.
+
+Format: `weekly /add RECIPE NAME QUANTITY`
+
+* Adds the specified `RECIPE NAME` to this week's plan`[QUANTITY]` number of times.
+* The recipe name refers to the name of the recipe shown in the displayed recipe list.
+* The quantity **must be a positive
+  integer** 1,2,3, ...
+
+Example of usage:
+
+* `weekly /add pizza 2` adds pizza to this week's plan twice.
+* `weekly /add burger 1` adds burger to this week's plan once.
+
+### Deleting from this week's plan: `weekly /delete`
+
+Deletes an existing recipe from this week's plan.
+
+Format: `weekly /delete RECIPE NAME`
+
+* Deletes the specified `RECIPE NAME` to this week's plan.
+* The recipe name refers to the name of the recipe shown in the displayed recipe list.
+
+Example of usage:
+
+* `weekly /remove pizza` removes pizza from this week's plan.
+
+### View this week's plan: `weeklyplan`
+
+View this week's plan.
+
+Format: `weeklyplan`
+
+### Exit the program: `bye`
+
+Exits the program.
+
+Format: `bye`
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: How do I transfer my data to another computer?
 
 **A**: {your answer here}
 
 ## Command Summary
-
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
-* List recipe `list [KEYWORD]`
+| Action | Format, Examples                      | 
+|--------|---------------------------------------|
+|List recipe | `list [KEYWORD]`<br/>e.g `list pizza` |
+|View recipe | `view INDEX`<br/>e.g `view 1` |
+|Add to weekly plan | `weekly /add RECIPE NAME QUANTITY`<br/>e.g `weekly /add pizza 2` |
+|Delete from weekly plan | `weekly /delete RECIPE NAME`<br/>e.g `weekly /delete pizza` |
+|View weekly plan | `weeklyplan` |

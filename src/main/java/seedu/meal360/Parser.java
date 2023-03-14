@@ -108,15 +108,15 @@ public class Parser {
         }
 
         int nameLastIndex = (command[1].equals("/add")) ? command.length - 1 : command.length;
-        WeeklyPlan addToPlan = new WeeklyPlan();
+        WeeklyPlan thisWeekPlan = new WeeklyPlan();
         StringBuilder recipeName = new StringBuilder(command[2]);
         for (int i = 3; i < nameLastIndex; i++) {
             recipeName.append(" ").append(command[i]);
         }
 
         if (recipes.findByName(recipeName.toString().trim()) != null) {
-            addToPlan.put(recipeName.toString(), numDays);
-            return addToPlan;
+            thisWeekPlan.put(recipeName.toString(), numDays);
+            return thisWeekPlan;
         } else {
             throw new IllegalArgumentException("Please indicate a valid recipe name.");
         }
