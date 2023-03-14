@@ -1,4 +1,4 @@
-package seedu.moneymind.tempCommand;
+package seedu.moneymind.command;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

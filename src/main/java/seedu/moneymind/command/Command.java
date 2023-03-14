@@ -1,4 +1,4 @@
-package seedu.moneymind.tempCommand;
+package seedu.moneymind.command;
 
 import seedu.moneymind.Ui;
 
