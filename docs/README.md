@@ -1,4 +1,4 @@
-# Duke
+# rainyDay
 
 {Give product intro here}
 

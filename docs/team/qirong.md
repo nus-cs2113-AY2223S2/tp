@@ -1,4 +1,4 @@
-# John Doe - Project Portfolio Page
+# Qi Rong - Project Portfolio Page
 
 ## Overview
 
