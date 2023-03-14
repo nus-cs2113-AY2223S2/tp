@@ -40,6 +40,8 @@ public class Messages {
     public static final String MESSAGE_EXCESS_MEETING_PARAM = "You cannot have multiple name/time for your meeting!";
     public static final String MESSAGE_EXCESS_VIEW_PARAM = "Excess input detected! Please only type \"view_meetings\".";
 
+
+    public static final String ERROR_ADD_STAFF_COMMAND = "Insufficient information when adding a staff";
     /**
      * Errors for programs to print.
      */

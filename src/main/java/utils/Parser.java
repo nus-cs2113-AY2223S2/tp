@@ -1,9 +1,12 @@
 package utils;
 
-import commands.Command;
+
+
+import commands.AddStaffCommand;
+import commands.ViewStaffCommand;
+import commands.DeleteStaffCommand;
 import commands.HelpCommand;
 import commands.ExitCommand;
-
 import commands.deadlinecommand.AddDeadlineCommand;
 import commands.deadlinecommand.ViewDeadlineCommand;
 import commands.deadlinecommand.DeleteDeadlineCommand;
@@ -14,6 +17,8 @@ import commands.IncorrectCommand;
 import commands.meeting.AddMeetingCommand;
 import commands.meeting.DeleteMeetingCommand;
 import commands.meeting.ViewMeetingCommand;
+import commands.Command;
+
 import common.Messages;
 import exceptions.DinerDirectorException;
 import entity.Deadline;
@@ -44,6 +49,12 @@ public class Parser {
             return prepareDeleteMeetingCommand(userInputNoCommand);
         case ViewMeetingCommand.COMMAND_WORD:
             return prepareViewMeetingCommand(commandWord);
+        case "add_staff":
+            return prepareAddStaffCommand(userInput);
+        case "view_staff":
+            return prepareViewStaffCommand();
+        case "delete_staff":
+            return prepareDeleteStaffCommand(userInput);
         case AddDeadlineCommand.COMMAND_WORD:
             return prepareAddDeadlineCommand(userInputNoCommand);
         case ViewDeadlineCommand.COMMAND_WORD:
@@ -61,7 +72,6 @@ public class Parser {
         }
         //@@damithc
     }
-
     //Solution below adapted from https://github.com/Stella1585/ip/blob/master/src/main/java/duke/Parser.java
     private Command prepareAddMeetingCommand(String description) {
         String[] words = (description.trim()).split("t/");
@@ -106,6 +116,43 @@ public class Parser {
         }
         return new DeleteMeetingCommand(issue);
     }
+
+    private Command prepareAddStaffCommand(String userInput) {
+        String[] userInputSplit = userInput.split(" ");
+        try {
+            if (userInputSplit.length < 5) {
+                throw new DinerDirectorException(Messages.ERROR_ADD_STAFF_COMMAND);
+            }
+            String staffName = userInputSplit[1];
+            String staffWorkingDay = userInputSplit[2];
+            String staffPhoneNumber = userInputSplit[3];
+            String staffDateOfBirth = userInputSplit[4];
+            return new AddStaffCommand(staffName, staffWorkingDay, staffPhoneNumber, staffDateOfBirth);
+        } catch (DinerDirectorException e) {
+            System.out.println(e.getMessage());
+            return new IncorrectCommand();
+        }
+    }
+
+    private Command prepareViewStaffCommand() {
+        return new ViewStaffCommand();
+    }
+
+    private Command prepareDeleteStaffCommand(String userInput) {
+        String[] userInputSplit = userInput.split(" ");
+        try {
+            if (userInputSplit.length < 2) {
+                throw new DinerDirectorException(Messages.ERROR_ADD_STAFF_COMMAND);
+            }
+            String staffName = userInputSplit[1];
+
+            return new DeleteStaffCommand(staffName);
+        } catch (DinerDirectorException e) {
+            System.out.println(e.getMessage());
+            return new IncorrectCommand();
+        }
+    }
+
     private Command prepareHelpCommand() {
         return new HelpCommand();
     }
