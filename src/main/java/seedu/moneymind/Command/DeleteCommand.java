@@ -1,4 +1,4 @@
-package seedu.moneymind.Command;
+package seedu.moneymind.command;
 
 import seedu.moneymind.Category;
 import seedu.moneymind.CategoryList;
@@ -11,6 +11,9 @@ public class DeleteCommand implements Command {
     public static final String NO_CATEGORY_MESSAGE = "Category does not exist";
     public static final String EVENT_DELETION_MESSAGE = "Event deleted: ";
     public static final String CATEGORY_DELETION_MESSAGE = "Category deleted: ";
+    public static final String NON_EXISTENT_EVENT = "Event does not exist";
+    public static final String NULL_CATEGORY_ASSERTION = "Category name should not be null";
+    public static final String NULL_EVENT_ASSERTION = "Event name should not be null";
     private String categoryName;
     private String eventName;
     private boolean isEvent;
@@ -24,6 +27,8 @@ public class DeleteCommand implements Command {
     public DeleteCommand(String categoryName, String eventName) {
         this.categoryName = categoryName;
         this.eventName = eventName;
+        assert categoryName != null : NULL_CATEGORY_ASSERTION;
+        assert eventName != null : NULL_EVENT_ASSERTION;
         this.isEvent = true;
     }
 
@@ -34,6 +39,7 @@ public class DeleteCommand implements Command {
      */
     public DeleteCommand(String categoryName) {
         this.categoryName = categoryName;
+        assert categoryName != null : NULL_CATEGORY_ASSERTION;
         this.isEvent = false;
     }
 
@@ -41,6 +47,7 @@ public class DeleteCommand implements Command {
      * Deletes the event.
      */
     private void deleteEvent() {
+        boolean isEventDeleted = false;
         if (CategoryCommand.categoryMap.get(categoryName) == null) {
             System.out.println(NO_CATEGORY_MESSAGE);
             return;
@@ -51,7 +58,11 @@ public class DeleteCommand implements Command {
             if (category.getEvents().get(i).getDescription().equals(eventName)) {
                 category.getEvents().remove(i);
                 System.out.println(EVENT_DELETION_MESSAGE + eventName);
+                isEventDeleted = true;
             }
+        }
+        if (!isEventDeleted) {
+            System.out.println(NON_EXISTENT_EVENT);
         }
     }
 

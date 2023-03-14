@@ -1,10 +1,10 @@
 package seedu.moneymind;
 
-import seedu.moneymind.Command.Command;
-import seedu.moneymind.Command.InvalidCommandException;
-import seedu.moneymind.Command.Parser;
-
 import java.util.Scanner;
+
+import seedu.moneymind.command.Command;
+import seedu.moneymind.command.InvalidCommandException;
+import seedu.moneymind.command.Parser;
 
 public class Moneymind {
     private Parser parser;
