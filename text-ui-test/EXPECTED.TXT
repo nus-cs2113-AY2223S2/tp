@@ -1,3 +1,4 @@
+Welcome to Clanki! Time to start studying!
 A new card is now added:
 Question: q1
 Answer: a1
