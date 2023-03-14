@@ -11,6 +11,7 @@ import commands.deadlinecommand.AddDeadlineCommand;
 import commands.deadlinecommand.DeleteDeadlineCommand;
 import commands.deadlinecommand.ViewDeadlineCommand;
 
+import commands.menu.AddDishCommand;
 import commands.menu.ViewDishCommand;
 import org.junit.jupiter.api.Test;
 import utils.Parser;
@@ -19,6 +20,9 @@ import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 public class DinerDirectorTest {
+
+
+
 
     @Test
     void runCommandLoopUntilExit_userInput_command() {
@@ -69,7 +73,6 @@ public class DinerDirectorTest {
         }
     }
 
-
     @Test
     void runCommandLoopUntilExit_userInput_viewDishCommand() {
         ArrayList<String> listOfCommands = new ArrayList<>();
@@ -91,22 +94,82 @@ public class DinerDirectorTest {
     void runCommandLoopUntilExit_userInput_addDishCommand() {
         ArrayList<String> listOfCommands = new ArrayList<>();
 
-        listOfCommands.add(" ");
-        listOfCommands.add("apple pie 2nd edition" + System.lineSeparator() +
-                "3.93");
-        listOfCommands.add("apple pie 2nd edition" + System.lineSeparator() +
-                "-1");
-        listOfCommands.add("apple pie 2nd edition" + System.lineSeparator() +
+        final String TEST_CASE_BLANK_SPACE = " ";
+        final String TEST_CASE_DECIMAL_NUMBER = "apple pie 2nd edition" + System.lineSeparator() +
+                "3.93";
+        final String TEST_CASE_NEGATIVE_INTEGER = "apple pie 2nd edition" + System.lineSeparator() +
+                "-1";
+        final String TEST_CASE_EMPTY_INGREDIENT_LIST = "apple pie 2nd edition" + System.lineSeparator() +
                 "321" + System.lineSeparator() +
-                "");
-        listOfCommands.add("apple pie 2nd edition" + System.lineSeparator() +
+                "";
+        final String TEST_CASE_CORRECT_INPUT = "apple pie 2nd edition" + System.lineSeparator() +
                 "321" + System.lineSeparator() +
-                "apple flour water butter");
+                "apple flour water butter";
 
-        for (String command : listOfCommands) {
-            ByteArrayInputStream in = new ByteArrayInputStream(command.getBytes());
+
+        listOfCommands.add(TEST_CASE_BLANK_SPACE);
+        listOfCommands.add(TEST_CASE_DECIMAL_NUMBER);
+        listOfCommands.add(TEST_CASE_NEGATIVE_INTEGER);
+        listOfCommands.add(TEST_CASE_EMPTY_INGREDIENT_LIST);
+        listOfCommands.add(TEST_CASE_CORRECT_INPUT);
+
+        for (String listOfCommand : listOfCommands) {
+
+            ByteArrayInputStream in = new ByteArrayInputStream(listOfCommand.getBytes());
             System.setIn(in);
-            new Parser().parseCommand("add_dish");
+            Command addCommand = new Parser().parseCommand("add_dish");
+
+            if (listOfCommand.equals(TEST_CASE_BLANK_SPACE)) {
+                assertTrue(addCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_DECIMAL_NUMBER)) {
+                assertTrue(addCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_NEGATIVE_INTEGER)) {
+                assertTrue(addCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_EMPTY_INGREDIENT_LIST)) {
+                assertTrue(addCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_CORRECT_INPUT)) {
+                assertTrue(addCommand instanceof AddDishCommand);
+            }
+        }
+    }
+
+    @Test
+    void runCommandLoopUntilExit_userInput_deleteDishCommand() {
+        String setup = "apple pie 2nd edition" + System.lineSeparator() +
+                "321" + System.lineSeparator() +
+                "apple flour water butter";
+
+        ByteArrayInputStream setupIn = new ByteArrayInputStream(setup.getBytes());
+        System.setIn(setupIn);
+        new Parser().parseCommand("add_dish");
+
+        ArrayList<String> listOfCommands = new ArrayList<>();
+
+        final String TEST_CASE_NO_INDEX = "";
+        final String TEST_CASE_NEGATIVE_INDEX = "-1";
+        final String TEST_CASE_ZERO_INDEX = "0";
+        final String TEST_CASE_OUT_OF_BOUNDS_INDEX = "2";
+        final String TEST_CASE_VALID_INDEX = "1";
+
+        listOfCommands.add(TEST_CASE_NO_INDEX);
+        listOfCommands.add(TEST_CASE_NEGATIVE_INDEX);
+        listOfCommands.add(TEST_CASE_ZERO_INDEX);
+        listOfCommands.add(TEST_CASE_OUT_OF_BOUNDS_INDEX);
+        listOfCommands.add(TEST_CASE_VALID_INDEX);
+
+        for (String listOfCommand : listOfCommands) {
+            Command deleteCommand = new Parser().parseCommand("delete_dish " + listOfCommand);
+            if (listOfCommand.equals(TEST_CASE_NO_INDEX)) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_NEGATIVE_INDEX)) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_ZERO_INDEX)) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_OUT_OF_BOUNDS_INDEX)) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_VALID_INDEX)) {
+                assertTrue(deleteCommand instanceof AddDishCommand);
+            }
         }
     }
 }
