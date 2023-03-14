@@ -6,7 +6,7 @@ import seedu.Database.UserStorage;
 import seedu.Entities.Food;
 import seedu.Exceptions.InvalidCommandException;
 import seedu.Exceptions.LifeTrackerException;
-import seedu.Output.UI;
+import seedu.Ui.GeneralUi;
 
 public class AddFoodCommand extends Command{
     private Food newFood;
@@ -25,7 +25,7 @@ public class AddFoodCommand extends Command{
         }
     }
     @Override
-    public void execute(UI ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage) 
+    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
             throws LifeTrackerException {
         foodStorage.addFood(index);
         ui.printNewFoodAdded(foodStorage, index);

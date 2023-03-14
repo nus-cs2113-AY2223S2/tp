@@ -11,7 +11,8 @@ public class CalorieUi {
     }
 
     public static void showRemainingIntake() {
-        System.out.println("This is the amount of calories that you can consume before exceeding your limit for today: ");
+        System.out.println("This is the amount of calories that " +
+                "you can consume before exceeding your limit for today: ");
     }
 
     public static void showWellDoneMessage() {
