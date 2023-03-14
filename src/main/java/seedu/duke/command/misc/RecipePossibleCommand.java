@@ -10,10 +10,10 @@ import seedu.duke.recipe.RecipeList;
 public class RecipePossibleCommand extends ExecutableCommand {
 
     private boolean hasEnoughIngredient(Ingredient recipeIngredient, IngredientList fridgeIngredients) {
-        String recipeIngredientName = recipeIngredient.getName();
+        String recipeIngredientName = recipeIngredient.getMetadata().getName();
         double recipeIngredientQty = recipeIngredient.getQuantity();
         for (Ingredient fridgeIngredient : fridgeIngredients.getIngredients()) {
-            if (fridgeIngredient.getName().equals(recipeIngredientName) &&
+            if (fridgeIngredient.getMetadata().getName().equals(recipeIngredientName) &&
                     fridgeIngredient.getQuantity() >= recipeIngredientQty) {
                 return true;
             }

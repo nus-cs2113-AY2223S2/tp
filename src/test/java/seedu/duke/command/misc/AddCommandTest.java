@@ -1,6 +1,7 @@
 package seedu.duke.command.misc;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.DukeException;
 import seedu.duke.DukeSession;
 import seedu.duke.ingredient.Ingredient;
 
@@ -8,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddCommandTest {
     @Test
-    public void itemIsInListAndItemNotInList() {
+    public void itemIsInListAndItemNotInList() throws DukeException {
         DukeSession dukeSession = new DukeSession();
         Ingredient ingredient = new Ingredient("apple", 2.0);
         dukeSession.getIngredients().add(ingredient);
