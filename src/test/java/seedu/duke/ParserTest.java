@@ -11,7 +11,7 @@ class ParserTest {
     void setup(){
         parser = new Parser();
         eventList = new EventList();
-        eventList.addEvent("test", "20:00", "2023/03/14");
+        eventList.addEvent("test0", "20:00", "2023/03/14");
     }
     @Test
     void testParseAddCommand() {
@@ -23,4 +23,9 @@ class ParserTest {
         parser.parseCommand("delete 1", eventList);
         assert(eventList.getSize()==0);
     }
+    // @Test
+    // void testEditCommand(){
+    //     parser.parseCommand("edit -i 0 -st 20:00 -sd 2023/03/14", eventList);
+    //     assert(eventList.getSize()==0);
+    // }
 }
