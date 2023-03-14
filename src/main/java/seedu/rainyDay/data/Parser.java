@@ -18,8 +18,8 @@ public class Parser {
             return deleteStatement(userInput);
         } else if (action.equalsIgnoreCase(Command.COMMAND_VIEW)) {
             return generateReport(RainyDay.financialReport);
-//      } else if (action.equalsIgnoreCase(Command.COMMAND_HELP)) {
-//          UI.displayHelp();
+        //} else if (action.equalsIgnoreCase(Command.COMMAND_HELP)) {
+        //    UI.displayHelp();
         } else {
             throw new RainyDayException(ErrorMessage.UNRECOGNIZED_INPUT.toString());
         }
