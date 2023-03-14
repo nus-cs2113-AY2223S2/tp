@@ -4,34 +4,30 @@ import seedu.commands.Command;
 import seedu.commands.EditCommand;
 import seedu.commands.InvalidCommand;
 
+import java.time.LocalDate;
+
 public class ParseEdit {
-    public static Command editItem(String line) {
+    public static final String BLANK = "";
+    public static final String DSLASH = "d/";
+    public static final String ASLASH = "a/";
+    public static final String SSLASH = "s/";
+    private final String userInput;
+    public ParseEdit(String userInput) {
+        this.userInput = userInput;
+    }
+
+    public Command editItem() {
         // Format: edit, index, d/date, a/amount, s/description
-        int space = line.indexOf(" ");
-        String[] allDetails = SplitCommand.splitCommand(space, line);
-        String details = allDetails[1];
-
-        int posDSlash = details.indexOf('/');
-        String[] furtherDetails = SplitCommand.splitCommand(posDSlash, details);
-        String indexVal = furtherDetails[0];
-        String editDetails = furtherDetails[1];
-
-        int posASlash = editDetails.indexOf('/');
-        String[] dateAmountDescription = SplitCommand.splitCommand(posASlash,editDetails);
-        String dateVal = dateAmountDescription[0];
-        String editPriceAndDescription = dateAmountDescription[1];
-
-        int posSSlash = editPriceAndDescription.indexOf('/');
-        String[] amountDescription = SplitCommand.splitCommand(posSSlash,editPriceAndDescription);
-        String amountVal = amountDescription[0];
-        String descriptionVal = dateAmountDescription[1];
-
+        String indexVal = ParseIndividualValue.parseIndividualValue(userInput, BLANK, DSLASH);
+        String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, ASLASH);
+        String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, SSLASH);
+        String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
         try {
             int indexIntVal = Integer.parseInt(indexVal);
-            System.out.println(indexIntVal);
-            return new EditCommand(indexIntVal, dateVal, amountVal, descriptionVal);
+            LocalDate date = LocalDate.parse(dateVal);
+            return new EditCommand(indexIntVal, date, amountVal, descriptionVal);
         } catch (NumberFormatException numberFormatException) {
-            return new InvalidCommand("Invalid");
+            return new InvalidCommand("Input command in wrong format!");
         }
     }
 }
