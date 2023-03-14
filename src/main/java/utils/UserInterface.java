@@ -46,16 +46,28 @@ public class UserInterface {
         System.out.println("Too easy ha? You won't see that question again!");
     }
 
-    public void printExportSuccess() {
-        System.out.println("Deck exported liao");
-    }
-
     public void printWrongCommand() {
         System.out.println("PLease re-enter a valid command!");
     }
 
-    public void printImportBad() {
+    public void printCreateNewSaveFile() {
         System.out.println("No savedata detected! make new one for uuuuuuuuuuuuuuu");
+    }
+
+    public void printSaveSuccess() {
+        System.out.println("Deck exported liao");
+    }
+
+    public void printLoadSuccess() {
+        System.out.println("Deck loaded");
+    }
+
+    public void printLoadFailure() {
+        System.out.println("Failed to load deck :(");
+    }
+
+    public void printSaveFailure() {
+        System.out.println("Failed to save deck :(");
     }
 
     public void printCard(CardList cardlist, int id) {

@@ -23,10 +23,12 @@ public class Inka {
         cardList = new CardList();
         exceptionHandler = new ExceptionHandler();
 
+        // TODO: Separate no file into another print
         try {
             cardList = storage.load();
+            cardList = storage.load();
         } catch (StorageLoadFailure e) {
-            ui.printImportBad();
+            ui.printCreateNewSaveFile();
         }
     }
 
@@ -40,7 +42,7 @@ public class Inka {
         while (parser.getIsExecuting()) {
             String userInput = ui.getUserInput();
             Command command = exceptionHandler.mainExceptionHandler(parser, userInput, ui, cardList);
-            command.execute(cardList, ui);
+            command.execute(cardList, ui, storage);
         }
     }
 }

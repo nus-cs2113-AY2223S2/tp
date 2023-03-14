@@ -56,10 +56,28 @@ public class JsonStorage implements IStorage {
     @Override
     public void save(CardList cardList) throws StorageSaveFailure {
 
+        JsonObject exportData = new JsonObject();
+        exportData.addProperty("deckName", "lky deck");
+        exportData.addProperty("numCards", cardList.size());
+
+        // Serialize cards
+        JsonArray cardData = new JsonArray();
+        for (int i = 0; i < cardList.size(); i++) {
+            Card card = cardList.get(i);
+            JsonObject cardObject = new JsonObject();
+            cardObject.addProperty("uuid", card.getUuid());
+            cardObject.addProperty("question", card.getQuestion());
+            cardObject.addProperty("answer", card.getAnswer());
+            cardData.add(cardObject);
+        }
+        exportData.add("cards", cardData);
+
         try (FileWriter fileWriter = new FileWriter(saveFile);
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
 
-            String serialized = gsonBuilder.create().toJson(cardList);
+            Gson gson = gsonBuilder.setPrettyPrinting().create();
+            String serialized = gson.toJson(cardList);
+
             bufferedWriter.write(serialized);
         } catch (IOException e) {
             throw new StorageSaveFailure();

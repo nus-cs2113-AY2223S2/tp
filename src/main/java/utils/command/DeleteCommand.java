@@ -2,6 +2,7 @@ package utils.command;
 
 import model.CardList;
 import utils.UserInterface;
+import utils.storage.IStorage;
 
 public class DeleteCommand extends Command {
 
@@ -12,7 +13,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cardList, UserInterface ui) {
+    public void execute(CardList cardList, UserInterface ui, IStorage storage) {
         ui.printDeleteSuccess();
         // if the input is delete 1, this will delete the first element of the array which is element 0.
         cardList.delete(this.index - 1);
