@@ -4,12 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.ArrayList;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.entities.Food;
 import seedu.entities.Meal;
+import seedu.database.FoodStorage;
+import seedu.database.MealStorage;
+
 
 public class MealStorageTest {
     private static final String FILE_PATH = "./data/mealData.csv";
