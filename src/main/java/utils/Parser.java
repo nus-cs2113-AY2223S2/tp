@@ -5,10 +5,8 @@ package utils;
 import commands.AddStaffCommand;
 import commands.ViewStaffCommand;
 import commands.DeleteStaffCommand;
-import commands.Command;
 import commands.HelpCommand;
 import commands.ExitCommand;
-
 import commands.deadlinecommand.AddDeadlineCommand;
 import commands.deadlinecommand.ViewDeadlineCommand;
 import commands.deadlinecommand.DeleteDeadlineCommand;
@@ -17,8 +15,6 @@ import commands.menu.DeleteDishCommand;
 import commands.menu.ViewDishCommand;
 import commands.IncorrectCommand;
 import commands.Command;
-import common.Messages;
-import exceptions.DinerDirectorException;
 
 import common.Messages;
 import exceptions.DinerDirectorException;
