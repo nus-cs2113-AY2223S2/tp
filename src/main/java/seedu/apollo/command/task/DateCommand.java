@@ -32,6 +32,7 @@ public class DateCommand extends Command {
      */
     public DateCommand (String dateString) throws InvalidDateTime {
         assert dateString != null : "DateCommand: dateString should not be null!";
+        assert dateString.matches("\\d{4}-\\d{2}-\\d{2}") : "Date string should be in format yyyy-MM-dd";
         try {
             this.date = LocalDate.parse(dateString);
         } catch (DateTimeParseException e) {
