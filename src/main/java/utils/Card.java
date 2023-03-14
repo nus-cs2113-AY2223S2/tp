@@ -24,13 +24,8 @@ public class Card {
         return answer;
     }
 
-
-
     @Override
     public String toString() {
         return this.question + " " + this.answer;
-
     } // return the card
-
-
 }

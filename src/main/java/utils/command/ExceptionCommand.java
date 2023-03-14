@@ -1,6 +1,5 @@
 package utils.command;
 
-import utils.Card;
 import utils.cardlist.CardList;
 import utils.userinterface.UserInterface;
 

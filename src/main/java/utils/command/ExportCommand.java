@@ -1,19 +1,16 @@
 package utils.command;
 
-import utils.Card;
-import utils.cardlist.CardList;
-import utils.exceptions.DeleteRangeInvalid;
-import utils.userinterface.UserInterface;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import utils.Card;
+import utils.cardlist.CardList;
+import utils.userinterface.UserInterface;
 
-public class ExportCommand extends Command{
+public class ExportCommand extends Command {
 
     @Override
     public void execute(CardList cardList, UserInterface ui) {
@@ -44,6 +41,5 @@ public class ExportCommand extends Command{
             // Handle the IOException
             e.printStackTrace();
         }
-
     }
 }

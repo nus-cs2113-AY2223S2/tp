@@ -1,10 +1,9 @@
 package utils.command;
 
-import utils.Card;
 import utils.cardlist.CardList;
 import utils.userinterface.UserInterface;
 
-public class ListCommand extends Command{
+public class ListCommand extends Command {
     @Override
     public void execute(CardList cardList, UserInterface ui) {
         ui.printList(cardList);

@@ -1,4 +1,4 @@
 package utils.exceptions;
 
-public class DeleteMissingNumber extends Exception{
+public class DeleteMissingNumber extends Exception {
 }

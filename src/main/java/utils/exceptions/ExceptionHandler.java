@@ -8,7 +8,8 @@ import utils.userinterface.UserInterface;
 
 public class ExceptionHandler {
 
-    public Command mainExceptionHandler(Parser parser, String userCommand, UserInterface userInterface, CardList cardList) {
+    public Command mainExceptionHandler(Parser parser, String userCommand, UserInterface userInterface,
+            CardList cardList) {
         Command command = new ExceptionCommand();
         try {
             command = parser.parseCommand(userCommand, cardList);

@@ -1,4 +1,4 @@
 package utils.exceptions;
 
-public class AddEmptyQuestion extends Exception{
+public class AddEmptyQuestion extends Exception {
 }
