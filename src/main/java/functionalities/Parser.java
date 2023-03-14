@@ -4,19 +4,19 @@ import java.util.logging.Logger;
 
 public class Parser {
     protected static Command command;
-
     static Logger logger = Logger.getLogger("parser");
+    private static final int NA = 0;
 
     public static Command parse(String userCommand) throws SniffException {
         String task = userCommand.trim();
-        if (task.equalsIgnoreCase("add")) {
-            //parseAddCommand();
-        } else if (task.toLowerCase().startsWith("remove")) {
-            parseRemoveCommand(task);
-        } else if (task.toLowerCase().startsWith("list")) {
-            parseListCommand();
+        if (task.toLowerCase().startsWith("add")) {
+            parseAddCommand();
         } else if (task.toLowerCase().startsWith("view")) {
             parseViewCommand(task);
+        } else if (task.toLowerCase().startsWith("list")) {
+            parseListCommand();
+        } else if (task.toLowerCase().startsWith("remove")) {
+            parseRemoveCommand(task);
         } else if (task.equalsIgnoreCase("bye")) {
             parseByeCommand();
         } else {
@@ -25,11 +25,14 @@ public class Parser {
         return command;
     }
 
+    private static void parseAddCommand() {
+    }
+
     private static void parseViewCommand(String task) throws SniffException {
         try {
             String userCommand = "view";
             int uId = Integer.parseInt(task.split(" ", 2)[1]);
-            command = new Command(userCommand, 0, uId);
+            command = new Command(userCommand, NA, uId);
         } catch (ArrayIndexOutOfBoundsException emptyView) {
             logger.warning("No appointment ID provided for view command. Unable to execute view command.");
             throw new SniffException(" The view command description cannot be empty!");
@@ -39,25 +42,25 @@ public class Parser {
         }
     }
 
-    private static void parseByeCommand() {
-        String userCommand = "bye";
-        command = new Command(userCommand, 0, 0);
-    }
-
     private static void parseListCommand() {
         String userCommand = "list";
-        command = new Command(userCommand, 0, 0);
+        command = new Command(userCommand, NA, NA);
     }
 
     private static void parseRemoveCommand(String task) throws SniffException {
         try {
             String userCommand = "remove";
-            int apptNum = Integer.parseInt(task.split(" ", 2)[1]);
-            command = new Command(userCommand, apptNum, 0);
+            int appointmentNum = Integer.parseInt(task.split(" ", 2)[1]);
+            command = new Command(userCommand, appointmentNum, NA);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new SniffException(" The remove command description cannot be empty!");
         } catch (NumberFormatException e) {
             throw new SniffException(" The remove command description must be a number!");
         }
+    }
+
+    private static void parseByeCommand() {
+        String userCommand = "bye";
+        command = new Command(userCommand, NA, NA);
     }
 }

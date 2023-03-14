@@ -3,23 +3,21 @@ import exception.SniffException;
 
 public class Command {
     private final String command;
-    private final int apptNum;
+    private final int appointmentNum;
     private final int uId;
 
 
-    public Command(String userCommand, int apptNum, int userId) {
+    public Command(String userCommand, int appointmentNum, int userId) {
         this.command = userCommand;
-        this.apptNum = apptNum;
+        this.appointmentNum = appointmentNum;
         this.uId = userId;
-        //add variables that are read from parser class and used for adding, removing, and viewing appointments.
     }
 
-    //Implement the features
     public void executeSniffCommands(SniffTasks tasks, Ui ui) throws SniffException {
         if (command.equalsIgnoreCase("add")) {
             tasks.addAppointment();
         } else if (command.equalsIgnoreCase("remove")) {
-            tasks.removeAppointment(apptNum);
+            tasks.removeAppointment(appointmentNum);
         } else if (command.equalsIgnoreCase("list")) {
             tasks.listAppointments();
         } else if (command.equalsIgnoreCase("view")) {
@@ -32,9 +30,6 @@ public class Command {
     }
 
     public boolean isExit() {
-        if (command == "bye") {
-            return true;
-        }
-        return false;
+        return command.equals("bye");
     }
 }
