@@ -1,10 +1,16 @@
 package seedu.duke;
 
-import java.util.Currency;
 import java.util.Scanner;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.text.DateFormat;
+
+import seedu.workout.Exercise;
+import seedu.workout.Workout;
+import seedu.workout.WorkoutList;
 
 public class Duke {
-
 
     public static final String WELCOME_MESSAGE = "Let's get moving!\n" + "\"/start <DD/MM/YY>\" to begin " +
             "your workout";
@@ -16,25 +22,32 @@ public class Duke {
     private static final int REPS_PER_SET_INDEX = 2;
 
     public static Workout currentWorkout;
+    public static WorkoutList workoutList;
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
         System.out.println(WELCOME_MESSAGE);
         Scanner in = new Scanner(System.in);
+        workoutList = new WorkoutList();
         Boolean isExit = false;
 
         while (!isExit) {
             String[] userInputs = processUserInput(in.nextLine());
-            switch(userInputs[COMMAND_INDEX]) {
+            switch (userInputs[COMMAND_INDEX]) {
             case "/start":
                 startWorkout(userInputs);
                 break;
             case "/add":
                 addExerciseToWorkout(userInputs);
                 break;
+            case "/delete":
+                deleteWorkout(userInputs);
+                break;
             case "/end":
                 endWorkout();
+                break;
             case "/exit":
                 isExit = true;
                 System.out.println("Hope you had a great workout!");
@@ -46,10 +59,25 @@ public class Duke {
         }
     }
 
+    private static void deleteWorkout(String[] userInputs) {
+        String dateString = userInputs[DATE_INDEX];
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+            Date date = dateFormat.parse(dateString);
+
+            // Search for the workout with the matching date and remove it
+            workoutList.removeWorkout(date);
+        } catch (ParseException e) {
+            System.out.println("Invalid date format. Please enter the date in the format dd/mm/yy.");
+        }
+    }
+
     private static void endWorkout() {
+        workoutList.addWorkout(currentWorkout);
         currentWorkout = null;
         System.out.println("Ended current workout!");
     }
+
     private static void addExerciseToWorkout(String[] inputs) {
         try {
             String[] exerciseDetails = processExerciseDetails(inputs[EXERCISE_DETAILS_INDEX]);
@@ -83,6 +111,8 @@ public class Duke {
             System.out.println("Started new workout on " + currentWorkout.getDate());
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Incorrect workout format!");
+        } catch (ParseException e) {
+            System.out.println("Invalid date format. Please enter the date in the format dd/mm/yy.");
         }
     }
 }
