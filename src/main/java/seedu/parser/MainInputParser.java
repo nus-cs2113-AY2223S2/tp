@@ -36,7 +36,8 @@ public class MainInputParser {
         case DeleteCommand.COMMAND_WORD:
             return ParseDelete.deleteItem(userInput);
         case EditCommand.COMMAND_WORD:
-            return ParseEdit.editItem(userInput);
+            ParseEdit prepareEdit = new ParseEdit(splitValues[INDEX_USERSTRING]);
+            return prepareEdit.editItem();
         case ViewExpenditureCommand.COMMAND_WORD:
             return new ViewExpenditureCommand();
         case AcademicExpenditureCommand.COMMAND_WORD:
