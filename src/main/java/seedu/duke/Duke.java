@@ -36,7 +36,7 @@ public class Duke {
         while (!input.equals("exit")) {
             switch (parser.extractCommandKeyword(input)) {
             case "add":
-                new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input)).run();
+                new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input)).execute();
                 break;
             case "delete":
                 new CommandDelete(expenseList.getExpenseList(), parser.extractIndex(input)).execute();
