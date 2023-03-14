@@ -1,15 +1,16 @@
-package seedu.Database;
+package seedu.database;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.Database.FoodStorage;
+import seedu.Database.MealStorage;
 import seedu.Entities.Food;
 import seedu.Entities.Meal;
 
@@ -19,7 +20,7 @@ public class MealStorageTest {
 
     @Nested
     @DisplayName("Test Read Write Functionalities")
-    class readWriteTest {
+    class ReadWriteTest {
         private final MealStorage mealStorage = new MealStorage(FILE_PATH, foodStorage);
         private ArrayList<Food> foodList = new ArrayList<Food>();
         // private final Meal meal1 = new Meal();
