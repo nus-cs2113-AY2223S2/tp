@@ -7,6 +7,7 @@ public class DeleteCommand {
     public static final String NO_CATEGORY_MESSAGE = "Category does not exist";
     public static final String EVENT_DELETION_MESSAGE = "Event deleted: ";
     public static final String CATEGORY_DELETION_MESSAGE = "Category deleted: ";
+    public static final String NON_EXISTENT_EVENT = "Event does not exist";
     private String categoryName;
     private String eventName;
 
@@ -36,6 +37,7 @@ public class DeleteCommand {
      * Deletes the event.
      */
     private void deleteEvent() {
+        boolean isEventDeleted = false;
         if (CategoryCommand.categoryMap.get(categoryName) == null) {
             System.out.println(NO_CATEGORY_MESSAGE);
             return;
@@ -46,7 +48,11 @@ public class DeleteCommand {
             if (category.events.get(i).getDescription().equals(eventName)) {
                 category.events.remove(i);
                 System.out.println(EVENT_DELETION_MESSAGE + eventName);
+                isEventDeleted = true;
             }
+        }
+        if (!isEventDeleted) {
+            System.out.println(NON_EXISTENT_EVENT);
         }
     }
 

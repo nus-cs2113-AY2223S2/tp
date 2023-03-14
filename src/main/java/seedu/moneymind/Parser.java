@@ -13,9 +13,6 @@ public class Parser {
     public static final String EVENT = "event";
     public static final String CATEGORY = "category";
     public static final String INVALID_INPUT = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
-    public static final String DELETE_REGEX = "c/(.+) e/(.+)?";
-    public static final String CATEGORY_ADDED_MESSAGE = "Category name: ";
-    public static final String EVENT_ADDED_MESSAGE = "Event name: ";
     public static final String DELETE_FORMAT = "Please following the correct format: " +
             "delete c/<category name> e/<event name>";
     public static final String REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY = "Remember do not leave any things " +
@@ -29,6 +26,7 @@ public class Parser {
     public static final String REMINDING_MESSAGE_ABOUT_GIVING_BUDGET_A_NUMBER =
             "☹ OOPS!!! The budget and expense must be a number.";
     public static final String CATEGORY_EMPTY = "☹ OOPS!!! The description of a category cannot be empty.";
+    public static final String DELETE_REGEX = "^c\\/(?=\\S)(.*?)(?:\\s+e\\/(.*))?\\s*$";
     private String[] separatedKeywordAndDescription;
     private String keyword;
 
@@ -79,25 +77,20 @@ public class Parser {
     }
 
     private void executeDeleteCommand() {
-        if (separatedKeywordAndDescription[1].startsWith("c/")) {
-            try {
-                String afterCategorySpecifier = separatedKeywordAndDescription[1].substring(2);
-                Pattern pattern = Pattern.compile("(.+) e/(.+)");
-                Matcher matcher = pattern.matcher(afterCategorySpecifier);
-                if (matcher.find()) {
-                    String categoryName = matcher.group(1);
-                    String eventName = matcher.group(2);
-                    new DeleteCommand(categoryName, eventName);
-                } else {
-                    System.out.println(afterCategorySpecifier);
-                    new DeleteCommand(afterCategorySpecifier);
-                }
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println(DELETE_FORMAT);
-                System.out.println(REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
-            } catch (Exception e) {
-                System.out.println(SUBTLE_BUG_MESSAGE);
+        Pattern pattern = Pattern.compile(DELETE_REGEX);
+        if (separatedKeywordAndDescription.length == 1) {
+            System.out.println(EMPTY_DELETION);
+            return;
+        }
+        Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
+        if (matcher.find()) {
+            String categoryName = matcher.group(1);
+            String eventName = matcher.group(2);
+            if (eventName == null) {
+                new DeleteCommand(categoryName);
+                return;
             }
+            new DeleteCommand(categoryName, eventName);
         } else {
             System.out.println(DELETE_FORMAT);
             System.out.println(REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
