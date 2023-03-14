@@ -3,7 +3,6 @@ package seedu.pettracker;
 import seedu.pettracker.commands.Command;
 import seedu.pettracker.parser.CommandParser;
 import seedu.pettracker.ui.Ui;
-import java.util.Scanner;
 
 /**
  * Entry point for the Pet Tracker Application
@@ -37,11 +36,10 @@ public class Main {
     /**
      * Executes commands until isExit is changed to true
      */
-    public void runCommandTillExit() {
+    public void runCommandTillExit() {       
         boolean isExit = false;
-        Scanner in = new Scanner(System.in);
-        while (!isExit && in.hasNextLine()) {
-            String commandString = in.nextLine();
+        while (!isExit) {
+            String commandString = ui.getUserInput();
             Command c = commandParser.parseCommand(commandString);
             c.execute(ui);
             isExit = c.isExit();

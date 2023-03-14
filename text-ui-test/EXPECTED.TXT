@@ -1,3 +1,18 @@
-Example Welcome Message
-Exit Command Received
-Example Ending Message
+Welcome to the Pet Health Tracker!
+
+Successfully added new pet: Bob
+
+Updated Weight to 30 for Bob
+
+Name: Bob
+Type: 
+Age: 
+Weight: 30
+____________________
+Number of pets: 1
+
+Successfully removed Weight from Bob
+
+Successfully removed pet: Bob
+
+Goodbye! See you soon.

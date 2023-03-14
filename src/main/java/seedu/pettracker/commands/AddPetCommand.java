@@ -1,12 +1,13 @@
 package seedu.pettracker.commands;
 
 import seedu.pettracker.ui.Ui;
+import seedu.pettracker.data.PetList;
 
 public class AddPetCommand extends Command{
     protected String petName;
     public AddPetCommand(String commandArgs) {
         super();
-        this.petName = parseArgs(commandArgs)[0];
+        this.petName = commandArgs;
     }
 
     //TODO: Implement this method
@@ -18,7 +19,7 @@ public class AddPetCommand extends Command{
      */
     @Override
     public void execute(Ui ui) {
-        //petList.addPet(petName);
+        PetList.addPet(petName);
         ui.addPetCommandMessage(petName);
     }
 

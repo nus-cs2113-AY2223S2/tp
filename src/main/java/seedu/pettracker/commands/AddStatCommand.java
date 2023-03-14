@@ -1,11 +1,13 @@
 package seedu.pettracker.commands;
 
 import seedu.pettracker.ui.Ui;
+import seedu.pettracker.data.PetList;
 
 public class AddStatCommand extends Command {
     protected String petName;
     protected String statName;
     protected String statValue;
+
     public AddStatCommand(String commandArgs) {
         super();
         this.petName = parseArgs(commandArgs)[0];
@@ -13,7 +15,7 @@ public class AddStatCommand extends Command {
         this.statValue = parseArgs(commandArgs)[2];
     }
 
-    //TODO: Implement this method
+    // TODO: Implement this method
 
     /**
      * Executes the given command
@@ -22,12 +24,9 @@ public class AddStatCommand extends Command {
      */
     @Override
     public void execute(Ui ui) {
-        //petIndex = petList.find(petName);
-        //petList.get(petIndex).addStat(statName, statValue);
+        PetList.addStat(petName, statName, statValue);
         ui.addStatCommandMessage(petName, statName, statValue);
     }
-
-    //TODO: Implement this method
 
     /**
      * Parses the arguments of the command
@@ -37,11 +36,12 @@ public class AddStatCommand extends Command {
      */
     @Override
     public String[] parseArgs(String commandArgs) {
-        return new String[2];
+        return commandArgs.split(" ", 3);
     }
 
     /**
      * Sets isExit to be true to exit the program
+     * 
      * @return isExit boolean value for program to exit
      */
     @Override

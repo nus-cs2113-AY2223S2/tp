@@ -1,1 +1,6 @@
+add-pet Bob
+add-stat Bob Weight 30
+list
+remove-stat Bob Weight
+remove-pet Bob
 exit
