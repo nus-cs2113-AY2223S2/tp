@@ -20,6 +20,7 @@ public class HelpManual {
      */
     public static void readHelpManual() {
         try {
+            logger.log(Level.INFO, "going to start processing");
             File file = new File(filePath);
             if (file.isFile() && file.exists()) {
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file));
