@@ -11,6 +11,7 @@ public class Card {
         this.question = question;
         this.answer = answer;
     }
+
     public int getUuid() {
         return uuid;
     }
@@ -24,8 +25,12 @@ public class Card {
     }
 
 
+
     @Override
     public String toString() {
         return this.question + " " + this.answer;
+
     } // return the card
+
+
 }
