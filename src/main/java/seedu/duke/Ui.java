@@ -47,4 +47,8 @@ public class Ui {
         System.out.println(" ");
     }
 
+    public void showSuccessfulDeletionMessage() {
+        System.out.println("Company information successfully deleted!");
+    }
+
 }

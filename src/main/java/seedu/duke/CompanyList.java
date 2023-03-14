@@ -21,4 +21,10 @@ public class CompanyList {
             return false;
         }
     }
+
+    public void deleteCompanyInformation(int index) {
+        Ui ui = new Ui();
+        companyList.remove(index);
+        ui.showSuccessfulDeletionMessage();
+    }
 }
