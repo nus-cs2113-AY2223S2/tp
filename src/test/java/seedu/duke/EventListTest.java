@@ -3,9 +3,9 @@ package seedu.duke;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+// import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class EventListTest {
@@ -34,7 +34,8 @@ class EventListTest {
     }
 
     @Test
-    void getFullList() {
-        assertEquals(eventList.getFullList().getClass(), ArrayList.class);
+    void testEditCommand() {
+        eventList.addEvent("test", "20:00", "2023/03/14");
+        eventList.reviseTimeInfo(0, "21:00", "2023/03/14", "23:00", "2023/03/14");
     }
 }

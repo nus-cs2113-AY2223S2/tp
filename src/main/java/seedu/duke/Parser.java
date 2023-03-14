@@ -107,8 +107,17 @@ public class Parser {
             Ui.addErrorMsg();
         } else {
             //TODO: link to taskList edit event
+            System.out.println("LOL");
             System.out.println(details[1].substring(2) + "," + information[0] + "," + information[1] + "," 
                     + information[2] + "," + information[3]);
+
+            if (details[1].substring(0,2).trim().equalsIgnoreCase("i")){
+                int index = Integer.parseInt(details[1].substring(2).trim()) -OFFSET;
+                eventList.reviseTimeInfo( index, information[0], information[1], information[2], information[3]);
+            } else if (details[1].substring(0,2).trim().equalsIgnoreCase("e")){
+                String description = details[1].substring(2).trim();
+                eventList.reviseTimeInfo(description, information[0], information[1], information [2], information[3]);
+            }
         }
     }
 }
