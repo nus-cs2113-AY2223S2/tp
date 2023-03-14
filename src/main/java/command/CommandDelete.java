@@ -12,8 +12,8 @@ public class CommandDelete extends Command {
 
     protected ArrayList<Expense> expenseList;
     protected Integer index;
-    public static final String MESSAGE_INVALID_INDEX_ERROR = "Invalid expense index. Please try again.";
-    public static final String COMMAND_NAME = "delete";
+    private static final String MESSAGE_INVALID_INDEX_ERROR = "Invalid expense index. Please try again.";
+    private static final String COMMAND_NAME = "delete";
 
     public CommandDelete(ArrayList<Expense> expenseList, Integer index) {
         super(COMMAND_NAME);
