@@ -13,22 +13,22 @@ public class CommandHandler {
         boolean errorExists = false;
         try {
             switch (userCommands[0]) {
-                case "generate":
-                    command = new GenerateFilterCommand(userCommands);
-                    break;
-                case "bye":
-                case "exit":
-                    ui.byeUser();
-                    System.exit(0);
-                    break;
-                case "help":
-                    OuputText outputText = new OuputText();
-                    outputText.showAvailableCommands();
-                    break;
-                default:
-                    System.out.println("Unknown Command");
-                    errorExists = true;
-                    break;
+            case "generate":
+                command = new GenerateFilterCommand(userCommands);
+                break;
+            case "bye":
+            case "exit":
+                ui.byeUser();
+                System.exit(0);
+                break;
+            case "help":
+                OuputText outputText = new OuputText();
+                outputText.showAvailableCommands();
+                break;
+            default:
+                System.out.println("Unknown Command");
+                errorExists = true;
+                break;
             }
         } catch (DukeError e) {
             System.out.println(e.getMessage());
