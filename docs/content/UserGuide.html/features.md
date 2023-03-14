@@ -3,18 +3,34 @@ title: Features
 weight: 2
 ---
 
-{Give detailed description of each feature}
+The table below provides a summary of all the currently supported features in PocketPal.
+More detailed explanations on the usage of the commands are provided as well.
 
-## Adding a todo: `todo`
-Adds a new item to the list of todo items.
+If you face any problems, do visit the FAQ segment!
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+| Command |                      Function                       |
+| ------- | :-------------------------------------------------: |
+| /add    |                   Adds an expense                   |
+| /delete |                 Deletes an expense                  |
+| /edit   |                  Edits an expense                   |
+| /view   | Displays details of an expense e.g. Price, Category |
+| /help   |               Displays the help menu                |
+| /bye    |               Terminates the program                |
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+## Adding an expense: `/add`
 
-Example of usage: 
+Adds an expense to your current expenditure.
 
-`todo n/Write the rest of the User Guide d/next week`
+Format: `/add DESCRIPTION -c CATEGORY -p PRICE`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+-   The `DESCRIPTION` and `CATEGORY` can be in a natural language format.
+-   The `PRICE` must be in numeric or decimal format.
+-   The `-c` and `-p` flags can be used in any order.
+
+Here is a [list](#categories) of categories currently supported in PocketPal.
+
+Example of usage:
+
+`/add Lunch at McDonalds -c Food -19.9`
+
+`/add Apple Macbook Air -p 1300 -c Personal`
