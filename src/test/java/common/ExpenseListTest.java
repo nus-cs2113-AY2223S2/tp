@@ -67,9 +67,9 @@ class ExpenseListTest {
     void expenseAmountStandardization_successful() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/2.5658 " +
-                "t/02-02-2012 cur/USD cat/food")).run();
+                "t/02-02-2012 cur/USD cat/food")).execute();
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/5 " +
-                "t/02-02-2014 cur/SGD cat/food")).run();
+                "t/02-02-2014 cur/SGD cat/food")).execute();
 
         System.setOut(new PrintStream(outContent));
         new CommandList(expenseList.getExpenseList()).run();
