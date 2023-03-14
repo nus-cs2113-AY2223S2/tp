@@ -2,9 +2,11 @@ package seedu.rainyDay.modules;
 
 import seedu.rainyDay.data.FinancialStatement;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
-public class UI {
+public class Ui {
 
     public static final String WRONG_INPUT_FORMAT = "Wrong input format! " +
             "Please refer to 'help' for correct user input!";
@@ -17,13 +19,24 @@ public class UI {
     public static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
 
     private static String username;
+    private final Scanner in;
+    private final PrintStream out; // currently unused, to be implemented
 
-    public static void printLogo() {
+    public Ui() {
+        this(System.in, System.out);
+    }
+
+    public Ui(InputStream in, PrintStream out) {
+        this.in = new Scanner(in);
+        this.out = out;
+    }
+
+    public void printLogo() {
         System.out.println("Hello from rainyDay");
         System.out.println("What is your name?");
     }
 
-    public static void greetUser(String name) {
+    public void greetUser(String name) {
         username = name;
         if (name.trim().isEmpty()) {
             System.out.println("Very funny");
@@ -32,7 +45,7 @@ public class UI {
         System.out.println("Welcome " + username);
     }
 
-    public static void noFileExist() {
+    public void noFileExist() {
         System.out.println(NO_FILE_DETECTED);
     }
 
@@ -44,8 +57,16 @@ public class UI {
         System.out.println(financialStatement);
     }
 
-    public static String getUserInput(Scanner input) {
-        String userInput = input.nextLine().trim();
+    public String readUserName() {
+        String userInput = in.nextLine().trim();
+        return userInput;
+    }
+
+    public String readUserCommand() {
+        String userInput = in.nextLine().trim();
+        while (userInput.trim().isEmpty()) {
+            userInput = in.nextLine().trim();
+        }
         return userInput;
     }
 
@@ -87,7 +108,11 @@ public class UI {
         System.out.println("Please refer to the help table!");
     }
 
-    public static void sayFarewellToUser() {
+    public void sayFarewellToUser() {
         System.out.println("Bye " + username);
+    }
+
+    public void printEmptyLine() {
+        System.out.println();
     }
 }

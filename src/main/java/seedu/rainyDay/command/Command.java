@@ -1,5 +1,7 @@
 package seedu.rainyDay.command;
 
+import seedu.rainyDay.data.FinancialReport;
+
 public abstract class Command {
 
     public static final String COMMAND_ADD = "add";
@@ -12,6 +14,11 @@ public abstract class Command {
 
     public static final String COMMAND_EXIT = "bye";
 
-    public void execute() {
+    protected FinancialReport financialReport;
+
+    public void setData(FinancialReport financialReport) {
+        this.financialReport = financialReport;
     }
+
+    public abstract void execute();
 }

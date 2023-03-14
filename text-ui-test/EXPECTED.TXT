@@ -2,5 +2,7 @@ No valid save file detected. Starting with empty financial data.
 Hello from rainyDay
 What is your name?
 Welcome John
+
 Done! Added: in for noodles, +$5
+
 Bye John
