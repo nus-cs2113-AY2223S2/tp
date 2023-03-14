@@ -1,7 +1,4 @@
-Error loading Food Storage
-Error loading Meal Storage
-User File not found. Creating new user file...
-Error loading User Storage
+Loaded past user data.
 ------------------------------------------------------------
 Hello! Welcome to
  _      _  __  _______             _
@@ -13,6 +10,8 @@ Hello! Welcome to
 
 ------------------------------------------------------------
 Hello! I am LifeTracker, a program to aid you in keeping fit!
+
+view
 ------------------------------------------------------------
 View user settings
 1. View Name
@@ -40,7 +39,7 @@ View user settings
 7. View Calories Left Today
 8. Back
 
-Daily caloric limit: 1886.0 Kcal
+Daily caloric limit: 1592.0 Kcal
 
 Continue viewing?
 1. Yes
@@ -56,16 +55,18 @@ View user settings
 7. View Calories Left Today
 8. Back
 
-Calories left today: 1111.0 Kcal
+Calories left today: 620.0 Kcal
 
 Continue viewing?
 1. Yes
 2. No
 
 ------------------------------------------------------------
+
+bye
 ------------------------------------------------------------
 
 ------------------------------------------------------------
-Bye. Hope to see you again soon!
+Bye! Hope to see you again soon!
 ------------------------------------------------------------
 ------------------------------------------------------------
