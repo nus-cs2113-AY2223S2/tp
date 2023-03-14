@@ -10,6 +10,8 @@ public class RouteDescription {
     private Routable routable;
 
     public RouteDescription(String routeName, Routable routable) {
+        assert !routeName.isEmpty() && routeName != null;
+        assert routable != null;
         this.routeName = routeName;
         this.routable = routable;
     }
