@@ -24,9 +24,9 @@ public class Ui {
     }
 
     /**
-     * Message that prints when the exit command is executed.
+     * Message that prints when the program exits and closes the Scanner.
      */
-    public void exitCommandMessage() {
+    public void showEndingMessage() {
         in.close();
         System.out.println("Goodbye! See you soon.");
     }
