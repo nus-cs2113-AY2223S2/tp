@@ -8,6 +8,7 @@ import java.rmi.UnexpectedException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -204,7 +205,7 @@ public class Ui {
      * @param date Date that was used to shortlist the tasks.
      */
     public void printDateList(TaskList happeningTasks, LocalDate date) {
-        String dateString = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        String dateString = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH));
         if (happeningTasks.size() == 0) {
             System.out.println("There are no tasks on " + dateString + "!");
             return;
