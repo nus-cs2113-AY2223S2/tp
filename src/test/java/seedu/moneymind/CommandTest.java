@@ -1,9 +1,10 @@
 package seedu.moneymind;
 
 import org.junit.jupiter.api.Test;
-import seedu.moneymind.Command.CategoryCommand;
-import seedu.moneymind.Command.Command;
-import seedu.moneymind.Command.Parser;
+
+import seedu.moneymind.command.CategoryCommand;
+import seedu.moneymind.command.Command;
+import seedu.moneymind.command.Parser;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

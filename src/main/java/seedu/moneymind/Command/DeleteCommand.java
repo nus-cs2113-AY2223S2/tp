@@ -1,4 +1,4 @@
-package seedu.moneymind.Command;
+package seedu.moneymind.command;
 
 import seedu.moneymind.Category;
 import seedu.moneymind.CategoryList;
