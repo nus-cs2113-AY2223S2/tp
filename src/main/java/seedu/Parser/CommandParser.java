@@ -1,14 +1,14 @@
-package seedu.Parser;
+package seedu.parser;
 
-import seedu.Commands.AddMealCommand;
-import seedu.Commands.UpdateUserCommand;
-import seedu.Commands.ViewUserCommand;
-import seedu.Commands.Command;
-import seedu.Commands.DeleteMealCommand;
-import seedu.Commands.ExitCommand;
-import seedu.Commands.ListCommand;
-import seedu.Exceptions.InvalidCommandException;
-import seedu.Exceptions.LifeTrackerException;
+import seedu.commands.AddMealCommand;
+import seedu.commands.UpdateUserCommand;
+import seedu.commands.ViewUserCommand;
+import seedu.commands.Command;
+import seedu.commands.DeleteMealCommand;
+import seedu.commands.ExitCommand;
+import seedu.commands.ListCommand;
+import seedu.exceptions.InvalidCommandException;
+import seedu.exceptions.LifeTrackerException;
 
 public class CommandParser {
     public static Command parse(String userInput) throws LifeTrackerException {

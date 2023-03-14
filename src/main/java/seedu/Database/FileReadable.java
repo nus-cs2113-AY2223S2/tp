@@ -1,4 +1,4 @@
-package seedu.Database;
+package seedu.database;
 
 import java.io.IOException;
 

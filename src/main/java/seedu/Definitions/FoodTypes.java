@@ -1,4 +1,4 @@
-package seedu.Definitions;
+package seedu.definitions;
 
 public enum FoodTypes {
     INGREDIENT("Ingredient"),

@@ -1,22 +1,22 @@
-package seedu.Entities;
+package seedu.entities;
 
 import java.util.ArrayList;
 
 public class CaloricIntake {
-    private ArrayList<Meal> DailyCalories;
+    private ArrayList<Meal> dailyCalories;
     private float totalDailyCalories;
 
-    public CaloricIntake(ArrayList<Meal> DailyCalories) {
-        this.DailyCalories = DailyCalories;
+    public CaloricIntake(ArrayList<Meal> dailyCalories) {
+        this.dailyCalories = dailyCalories;
         calculateTotalCalories();
     }
 
     public ArrayList<Meal> getDailyCalories(){
-        return this.DailyCalories;
+        return this.dailyCalories;
     }
 
-    public void setDailyCalories(ArrayList<Meal> DailyCalories) {
-        this.DailyCalories = DailyCalories;
+    public void setDailyCalories(ArrayList<Meal> dailyCalories) {
+        this.dailyCalories = dailyCalories;
     }
 
     public float getTotalDailyCalories() {
@@ -24,7 +24,7 @@ public class CaloricIntake {
     }
 
     public void calculateTotalCalories() {
-        for (Meal meal : DailyCalories ) {
+        for (Meal meal : dailyCalories) {
             this.totalDailyCalories += meal.getTotalCalories();
         }
     }

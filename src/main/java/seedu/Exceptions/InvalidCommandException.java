@@ -1,4 +1,4 @@
-package seedu.Exceptions;
+package seedu.exceptions;
 
 public class InvalidCommandException extends LifeTrackerException{
 

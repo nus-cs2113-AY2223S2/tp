@@ -1,12 +1,12 @@
-package seedu.LifeTracker;
+package seedu.lifetracker;
 
-import seedu.Commands.Command;
-import seedu.Database.FoodStorage;
-import seedu.Database.MealStorage;
-import seedu.Database.UserStorage;
-import seedu.Exceptions.LifeTrackerException;
-import seedu.Parser.CommandParser;
-import seedu.Ui.GeneralUi;
+import seedu.commands.Command;
+import seedu.database.FoodStorage;
+import seedu.database.MealStorage;
+import seedu.database.UserStorage;
+import seedu.exceptions.LifeTrackerException;
+import seedu.parser.CommandParser;
+import seedu.ui.GeneralUi;
 import java.nio.file.Paths;
 
 public class LifeTracker {

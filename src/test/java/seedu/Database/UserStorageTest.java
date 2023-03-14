@@ -1,4 +1,4 @@
-package seedu.Database;
+package seedu.database;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,14 +7,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import seedu.Entities.User;
+import seedu.entities.User;
 
 public class UserStorageTest {
     private static final String FILE_PATH = "./data/userData.csv";
 
     @Nested
     @DisplayName("Test User Storage Functionalities")
-    class readWriteTest {
+    class ReadWriteTest {
         private final UserStorage userStorage = new UserStorage(FILE_PATH);
 
         @Test

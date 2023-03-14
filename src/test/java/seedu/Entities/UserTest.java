@@ -1,4 +1,4 @@
-package seedu.Entities;
+package seedu.entities;
 
 import org.junit.jupiter.api.Test;
 

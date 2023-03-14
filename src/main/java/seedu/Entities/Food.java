@@ -1,4 +1,4 @@
-package seedu.Entities;
+package seedu.entities;
 
 public abstract class Food {
     protected int id;
