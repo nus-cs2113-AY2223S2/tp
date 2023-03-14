@@ -10,7 +10,7 @@ public class IncorrectCommand extends Command {
      */
     @Override
     public void execute(TextUi ui) {
-        ui.printMessage(Messages.MESSAGE_VALID_COMMAND_LIST);
+        ui.printMessage(Messages.ERROR_COMMAND_INVALID);
     }
 
     /**
