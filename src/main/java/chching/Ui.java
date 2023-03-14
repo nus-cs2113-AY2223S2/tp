@@ -83,6 +83,7 @@ public class Ui {
     public void showError(String message) {
         System.out.println("    " + message);
     }
+
     public void showInvalidMessage() {
         System.out.println("Command is not recognized, use help for valid commands");
     }

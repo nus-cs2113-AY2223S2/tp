@@ -1,1 +1,2 @@
-
+I | monthly | today | 100.00
+E | meal | lunch | today | 3.50
