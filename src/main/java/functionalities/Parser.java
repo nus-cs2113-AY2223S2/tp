@@ -1,6 +1,6 @@
 package functionalities;
 import exception.SniffException;
-import java.util.logging.*;
+import java.util.logging.Logger;
 
 public class Parser {
     protected static Command command;
