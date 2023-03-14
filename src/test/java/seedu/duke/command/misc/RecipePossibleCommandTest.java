@@ -3,6 +3,7 @@ package seedu.duke.command.misc;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.duke.DukeException;
 import seedu.duke.DukeSession;
 import seedu.duke.ingredient.Ingredient;
 import seedu.duke.ingredient.IngredientList;
@@ -29,7 +30,7 @@ class RecipePossibleCommandTest {
     }
 
     @Test
-    public void recipePossibleAndRecipeNotPossible() {
+    public void recipePossibleAndRecipeNotPossible() throws DukeException {
         DukeSession dukeSession = new DukeSession();
         // Add ingredients to dukeSession's ingredients
         dukeSession.getIngredients().add(new Ingredient("bread", 2.0));

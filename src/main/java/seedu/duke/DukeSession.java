@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.command.ExecutableCommand;
 import seedu.duke.command.factory.ExecutableCommandFactory;
+import seedu.duke.command.factory.ingredients.IngredientsListCommandFactory;
 import seedu.duke.command.factory.misc.AddCommandFactory;
 import seedu.duke.command.factory.misc.ByeCommandFactory;
 import seedu.duke.command.factory.misc.HelloWorldCommandFactory;
@@ -32,6 +33,8 @@ public class DukeSession {
                     .route("recipe", new CommandRouterNode()
                             .route("possible", new RecipePossibleCommandFactory())
                             .route("all", new RecipeAllCommandFactory())
+                    .route("ingredients", new CommandRouterNode()
+                            .route("list", new IngredientsListCommandFactory())
                     );
     private final IngredientList ingredients;
     private final RecipeList recipes;

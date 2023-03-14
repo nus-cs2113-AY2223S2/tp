@@ -11,6 +11,7 @@ import seedu.duke.recipe.RecipeList;
  * Represents the "recipe possible" command.
  */
 public class RecipePossibleCommand extends ExecutableCommand {
+
     /**
      * Check if an ingredientList has a sufficient amount of an ingredient.
      *

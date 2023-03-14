@@ -4,6 +4,7 @@ import seedu.duke.DukeException;
 import seedu.duke.DukeSession;
 import seedu.duke.command.ExecutableCommand;
 import seedu.duke.ingredient.Ingredient;
+import seedu.duke.recipe.IngredientDatabase;
 
 /**
  * Represents the "add" command.
@@ -26,7 +27,11 @@ public class AddCommand extends ExecutableCommand {
         dukeSession.getIngredientStorage().writeIngredientsToFile(dukeSession.getIngredients());
     }
 
-    private void addNewIngredient(DukeSession dukeSession, Double quantity, String name) {
+    private void addNewIngredient(DukeSession dukeSession, Double quantity, String name) throws DukeException {
+        IngredientDatabase db = IngredientDatabase.getDbInstance();
+        if (!db.getKnownIngredients().containsKey(name)) {
+            throw new DukeException("Unknown ingredient named: " + name);
+        }
         Ingredient ingredient = new Ingredient(name, quantity);
         dukeSession.getIngredients().add(ingredient);
         dukeSession.getUi().printMessage("the following ingredient has been added");
@@ -36,7 +41,7 @@ public class AddCommand extends ExecutableCommand {
 
     public int findIndex(DukeSession dukeSession, String name) {
         for (int i = 0; i < dukeSession.getIngredients().size(); i += 1) {
-            if (dukeSession.getIngredients().get(i).getName().equals(name)) {
+            if (dukeSession.getIngredients().get(i).getMetadata().getName().equals(name)) {
                 return i;
             }
         }
