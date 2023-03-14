@@ -42,7 +42,7 @@ public class RemoveCommand extends ExecutableCommand {
      * @param dukeSession the DukeSession containing the list of ingredients
      * @param quantity the quantity of ingredient to be removed
      * @param name the name of the ingredient to be removed
-     * @throws DukeException
+     * @throws DukeException when user input results in unexpected behaviour
      */
     private static void validateInput(DukeSession dukeSession, Double quantity, String name) throws DukeException {
         if (quantity <= 0) {
