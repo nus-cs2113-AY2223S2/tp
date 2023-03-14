@@ -2,11 +2,11 @@ package seedu.Commands;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddMealCommandTest {
     @Test
-    void parseInput_EmptyInput_ExpectException() {
+    void parseInputEmptyInputExpectException() {
 
         String commandDescriptor = "";
         assertThrows(NumberFormatException.class,

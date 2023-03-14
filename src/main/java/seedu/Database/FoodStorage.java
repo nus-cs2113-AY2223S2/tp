@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.Definitions.FoodTypes;
 import seedu.Entities.Dish;
@@ -70,12 +72,19 @@ public class FoodStorage extends Storage implements FileReadable {
     public int getFoodsCount(){
         return this.foods.size();
     }
-    
+
     public ArrayList<Food> getFoods() {
         return this.foods;
     }
 
     public Food getFoodById(int id) {
-        return this.foods.get(id-1);
+        return this.foods.get(id);
+    }
+
+    public List<Food> getFoodsByName(String name) {
+        List<Food> filteredFoods = foods.stream()
+                .filter(f -> f.getName().toLowerCase().contains(name.toLowerCase()))
+                .collect(Collectors.toList());
+        return filteredFoods;
     }
 }
