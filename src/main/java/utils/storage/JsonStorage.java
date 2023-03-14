@@ -8,7 +8,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,13 +18,11 @@ import model.CardList;
 import utils.exceptions.StorageLoadFailure;
 import utils.exceptions.StorageSaveFailure;
 
-public class JsonStorage implements IStorage {
+public class JsonStorage extends Storage {
     private GsonBuilder gsonBuilder;
 
-    private File saveFile;
-
     public JsonStorage(String filePath) {
-        saveFile = new File(filePath);
+        super(filePath);
         gsonBuilder = new GsonBuilder();
     }
 

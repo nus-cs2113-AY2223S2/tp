@@ -50,7 +50,7 @@ public class UserInterface {
         System.out.println("PLease re-enter a valid command!");
     }
 
-    public void printCreateNewSaveFile() {
+    public void printNoSaveFile() {
         System.out.println("No savedata detected! make new one for uuuuuuuuuuuuuuu");
     }
 
@@ -59,7 +59,7 @@ public class UserInterface {
     }
 
     public void printLoadSuccess() {
-        System.out.println("Deck loaded");
+        System.out.println("Deck loaded!");
     }
 
     public void printLoadFailure() {

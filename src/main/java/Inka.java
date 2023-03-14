@@ -1,18 +1,19 @@
+import java.io.IOException;
 import model.CardList;
 import utils.Parser;
 import utils.UserInterface;
 import utils.command.Command;
 import utils.exceptions.ExceptionHandler;
 import utils.exceptions.StorageLoadFailure;
-import utils.storage.IStorage;
 import utils.storage.JsonStorage;
+import utils.storage.Storage;
 
 public class Inka {
 
     private final UserInterface ui;
     private final Parser parser;
     private ExceptionHandler exceptionHandler;
-    private IStorage storage;
+    private Storage storage;
 
     private CardList cardList;
 
@@ -20,20 +21,44 @@ public class Inka {
         storage = new JsonStorage(filePath);
         ui = new UserInterface();
         parser = new Parser();
-        cardList = new CardList();
         exceptionHandler = new ExceptionHandler();
 
-        // TODO: Separate no file into another print
-        try {
-            cardList = storage.load();
-            cardList = storage.load();
-        } catch (StorageLoadFailure e) {
-            ui.printCreateNewSaveFile();
-        }
+        cardList = loadSaveFile();
     }
 
     public static void main(String[] args) {
         new Inka("savedata.json").run();
+    }
+
+    /**
+     * Attempts to load from save file
+     *
+     * @return CardList containing all saved cards
+     * @note Will create a new file if no file exists
+     */
+    private CardList loadSaveFile() {
+        // No previously saved file
+        if (!storage.saveFileExists()) {
+            try {
+                storage.createSaveFile();
+                ui.printNoSaveFile();
+            } catch (IOException e) {
+                ui.printSaveFailure();
+            }
+
+            return new CardList();
+        }
+
+        // File exists; try to load from it
+        CardList cardList = new CardList();
+        try {
+            cardList = storage.load();
+            ui.printLoadSuccess();
+        } catch (StorageLoadFailure e) {
+            ui.printLoadFailure();
+        }
+
+        return cardList;
     }
 
     public void run() {

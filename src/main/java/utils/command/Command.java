@@ -2,8 +2,8 @@ package utils.command;
 
 import model.CardList;
 import utils.UserInterface;
-import utils.storage.IStorage;
+import utils.storage.IDataStorage;
 
 public abstract class Command {
-    public abstract void execute(CardList cardList, UserInterface ui, IStorage storage);
+    public abstract void execute(CardList cardList, UserInterface ui, IDataStorage storage);
 }
