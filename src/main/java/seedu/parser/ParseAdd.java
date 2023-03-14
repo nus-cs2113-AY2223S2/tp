@@ -14,11 +14,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class ParseAdd {
-    private final String userInput;
     public static final String BLANK = "";
     public static final String DSLASH = "d/";
     public static final String ASLASH = "a/";
     public static final String SSLASH = "s/";
+    private final String userInput;
 
     public ParseAdd(String userInput) {
         this.userInput = userInput;

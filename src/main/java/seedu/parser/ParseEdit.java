@@ -7,11 +7,11 @@ import seedu.commands.InvalidCommand;
 import java.time.LocalDate;
 
 public class ParseEdit {
-    private final String userInput;
     public static final String BLANK = "";
     public static final String DSLASH = "d/";
     public static final String ASLASH = "a/";
     public static final String SSLASH = "s/";
+    private final String userInput;
     public ParseEdit(String userInput) {
         this.userInput = userInput;
     }

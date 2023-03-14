@@ -5,9 +5,8 @@ import seedu.commands.DeleteCommand;
 import seedu.commands.InvalidCommand;
 
 public class ParseDelete {
-    private final String userInput;
-
     public static final String BLANK = "";
+    private final String userInput;
 
     public ParseDelete(String userInput) {
         this.userInput = userInput;
