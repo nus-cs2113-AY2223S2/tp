@@ -38,6 +38,11 @@ public class PetList {
         petList.get(index).addStat(statName, statValue);
     }
 
+    public static void removeStat (String petName, String statName) {
+        int index = PetList.find(petName);
+        petList.get(index).removeStat(statName);
+    }
+
     /**
      * Removes all pets with the provided name from the pet list
      *

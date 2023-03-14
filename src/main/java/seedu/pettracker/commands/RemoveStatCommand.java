@@ -21,15 +21,14 @@ public class RemoveStatCommand extends Command {
     public void execute(Ui ui) {
         //petIndex = petList.find(petName);
         //petList.get(petIndex).removeStat(statName);
+        PetList.removeStat(petName, statName);
         ui.removeStatCommandMessage(petName, statName);
     }
 
     //TODO: Implement this method
     @Override
     public String[] parseArgs(String commandArgs) {
-        String[] temp = new String[1];
-        temp[0] = commandArgs;
-        return temp;
+        return commandArgs.split(" ", 2);
     }
 
     /**
