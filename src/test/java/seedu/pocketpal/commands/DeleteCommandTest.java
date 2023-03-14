@@ -2,7 +2,6 @@ package seedu.pocketpal.commands;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import seedu.pocketpal.commands.DeleteCommand;
 import seedu.pocketpal.entries.Category;
 import seedu.pocketpal.entries.Entry;
 import seedu.pocketpal.entrylog.EntryLog;
