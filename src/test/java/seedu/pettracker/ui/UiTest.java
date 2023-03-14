@@ -20,7 +20,7 @@ public class UiTest {
         Ui ui = new Ui();
         ui.addStatCommandMessage("George", "age", "8");
 
-        assertEquals("Updated age to 8 for George", OUT_CONTENT.toString());
+        assertEquals("Updated age to 8 for George\n", OUT_CONTENT.toString());
 
         System.setOut(ORIGINAL_OUT);
 
