@@ -61,7 +61,7 @@ public class RecipePossibleCommand extends ExecutableCommand {
         dukeSession.getUi().printMessage("Here are the recipe(s) that you can make:");
         for (Recipe recipe : recipes.getRecipes()) {
             if (canMakeRecipe(recipe, fridgeIngredients)) {
-                dukeSession.getUi().printMessage(Integer.toString(index) + ". " + recipe.getMetadata().getName());
+                dukeSession.getUi().printMessage(Integer.toString(index) + ". " + recipe.getName());
                 index++;
             }
         }
