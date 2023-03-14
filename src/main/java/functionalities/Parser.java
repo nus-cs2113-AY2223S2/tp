@@ -4,14 +4,12 @@ import java.util.logging.Logger;
 
 public class Parser {
     protected static Command command;
-
     private static final int NA = 0;
-
     static Logger logger = Logger.getLogger("parser");
 
     public static Command parse(String userCommand) throws SniffException {
         String task = userCommand.trim();
-        if (task.toLowerCase().startsWith("add")) {
+        if (task.equalsIgnoreCase("add")) {
             parseAddCommand();
         } else if (task.toLowerCase().startsWith("view")) {
             parseViewCommand(task);
