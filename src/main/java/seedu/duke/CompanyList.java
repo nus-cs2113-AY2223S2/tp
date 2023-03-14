@@ -1,7 +1,6 @@
 package seedu.duke;
 
 import eventus.company.Company;
-import seedu.duke.venue.Venue;
 
 import java.util.ArrayList;
 

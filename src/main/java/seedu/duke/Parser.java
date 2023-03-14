@@ -1,9 +1,10 @@
 package seedu.duke;
 
-import seedu.duke.command.*;
-
-import java.util.Arrays;
-import java.util.List;
+import seedu.duke.command.AddCommand;
+import seedu.duke.command.Command;
+import seedu.duke.command.ListCompanyCommand;
+import seedu.duke.command.ListVenueCommand;
+import seedu.duke.command.DeleteCommand;
 
 public interface Parser {
     static Command parse(String input) throws WrongFormatException{
