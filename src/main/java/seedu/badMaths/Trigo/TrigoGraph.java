@@ -9,14 +9,13 @@ public class TrigoGraph {
     }
 
     public void startGraphAnalysis() {
-            TrigoGraphAnalyser analyser = new TrigoGraphAnalyser(trigoEqn);
-
-            if(analyser.canStartAnalyser()){
-                Ui.printAmplitude(analyser.getAmplitude());
-                Ui.printFrequency(analyser.getFreq());
-                Ui.printPhase(analyser.getPhase());
-                Ui.printVerticalShift(analyser.getVerticalShift());
-            }
+        TrigoGraphAnalyser analyser = new TrigoGraphAnalyser(trigoEqn);
+        if(analyser.canStartAnalyser()){
+            Ui.printAmplitude(analyser.getAmplitude());
+            Ui.printFrequency(analyser.getFreq());
+            Ui.printPhase(analyser.getPhase());
+            Ui.printVerticalShift(analyser.getVerticalShift());
+        }
     }
 }
 

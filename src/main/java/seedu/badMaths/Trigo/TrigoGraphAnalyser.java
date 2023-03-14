@@ -1,12 +1,8 @@
 package seedu.badMaths.Trigo;
-import seedu.badMaths.UI.Ui;
-public class TrigoGraphAnalyser {
-    private String trigoEqn;
-    private double phase;
-    private double amplitude;
-    private double verticalShift;
-    private double freq;
 
+import seedu.badMaths.UI.Ui;
+
+public class TrigoGraphAnalyser {
     private static final boolean CAN_RUN_ANALYSER = true;
     private static final boolean CANNOT_RUN_ANALYSER = false;
     private static final int PLACEHOLDER_SIZE_WITH_NEG_PHASE = 3;
@@ -14,10 +10,16 @@ public class TrigoGraphAnalyser {
     private static final int SIZE_OF_FREQ_AND_PHASE = 3;
     private static final int INDEX_FOR_NEG_PHASE_WITH_NEG_FREQ = 2;
     private static final int INDEX_FOR_NEG_PHASE_WITH_POS_FREQ = 1;
-
     private static final int INDEX_FOR_POS_FREQ = 0;
     private static final int INDEX_FOR_POS_PHASE = 1;
     private static final int INDEX_FOR_NEG_FREQ = 1;
+    private String trigoEqn;
+    private double phase;
+    private double amplitude;
+    private double verticalShift;
+    private double freq;
+
+
     public TrigoGraphAnalyser(String trigoEqn) {
         this.trigoEqn = trigoEqn;
     }
@@ -131,29 +133,31 @@ public class TrigoGraphAnalyser {
         boolean isFreqNegative = false;
         if (phasors.contains("+")) {
             freqAndShift = phasors.split("\\+", PLACEHOLDER_SIZE_WITH_POS_PHASE);
-            findPhase(freqAndShift[INDEX_FOR_POS_PHASE],isPhaseNegative);
+            findPhase(freqAndShift[INDEX_FOR_POS_PHASE], isPhaseNegative);
             isFreqNegative = testForNegativeFreq(freqAndShift);
-            findFreq(freqAndShift[INDEX_FOR_POS_FREQ],isFreqNegative);
-        } else if(phasors.contains("-")){
+            findFreq(freqAndShift[INDEX_FOR_POS_FREQ], isFreqNegative);
+        } else if (phasors.contains("-")) {
             freqAndShift = phasors.split("-", PLACEHOLDER_SIZE_WITH_NEG_PHASE);
             isPhaseNegative = true;
             isFreqNegative = testForNegativeFreq(freqAndShift);
-            if(isFreqNegative){
-                findPhase(freqAndShift[INDEX_FOR_NEG_PHASE_WITH_NEG_FREQ],isPhaseNegative);
-                findFreq(freqAndShift[INDEX_FOR_NEG_FREQ],isFreqNegative);
-            }else{
-                findPhase(freqAndShift[INDEX_FOR_NEG_PHASE_WITH_POS_FREQ],isPhaseNegative);
-                findFreq(freqAndShift[INDEX_FOR_POS_FREQ],isFreqNegative);
+            if (isFreqNegative) {
+                findPhase(freqAndShift[INDEX_FOR_NEG_PHASE_WITH_NEG_FREQ], isPhaseNegative);
+                findFreq(freqAndShift[INDEX_FOR_NEG_FREQ], isFreqNegative);
+            } else {
+                findPhase(freqAndShift[INDEX_FOR_NEG_PHASE_WITH_POS_FREQ], isPhaseNegative);
+                findFreq(freqAndShift[INDEX_FOR_POS_FREQ], isFreqNegative);
             }
         }
     }
-    private boolean testForNegativeFreq(String [] freqAndShift){
-        if(freqAndShift[INDEX_FOR_POS_FREQ].isEmpty()){
+
+    private boolean testForNegativeFreq(String[] freqAndShift) {
+        if (freqAndShift[INDEX_FOR_POS_FREQ].isEmpty()) {
             return true;
         }
         return false;
     }
-    private void findFreq(String freqWithX,boolean isFreqNeg) throws NumberFormatException {
+
+    private void findFreq(String freqWithX, boolean isFreqNeg) throws NumberFormatException {
         try {
             String freqComponents;
             if (freqWithX.equals("x")) {
@@ -171,12 +175,12 @@ public class TrigoGraphAnalyser {
                     freq = Double.parseDouble(freqComponents) / (2 * Math.PI);
                 }
             }
-            if(isFreqNeg){
-                freq = Math.abs(freq)*-1;
-            }else{
+            if (isFreqNeg) {
+                freq = Math.abs(freq) * -1;
+            } else {
                 freq = Math.abs(freq);
             }
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new NumberFormatException();
         }
     }
@@ -190,7 +194,7 @@ public class TrigoGraphAnalyser {
             } else {
                 phase = Double.parseDouble(phasor);
             }
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new NumberFormatException();
         }
     }
