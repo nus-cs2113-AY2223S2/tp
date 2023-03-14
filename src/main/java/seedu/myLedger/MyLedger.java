@@ -1,5 +1,4 @@
-
-package seedu.MyLedger;
+package seedu.myLedger;
 
 import seedu.parser.MainInputParser;
 import seedu.txtdata.TxtFileStatus;
