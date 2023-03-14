@@ -9,4 +9,9 @@ public class PetListTest {
         PetList pl = new PetList();
         assertEquals(0, pl.getNumberOfPets());
     }
+
+    void addPetToList() {
+        PetList.addPet("Bob");
+        assertEquals(1, PetList.getNumberOfPets());
+    }
 }

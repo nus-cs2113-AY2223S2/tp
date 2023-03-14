@@ -1,4 +1,5 @@
 package seedu.pettracker.data;
+
 import java.util.ArrayList;
 
 public class PetList {
@@ -16,12 +17,12 @@ public class PetList {
      * @param petName Name of pet to be added
      */
     public static void addPet(String petName) {
-        Pet newPet = new Pet (petName);
+        Pet newPet = new Pet(petName);
         petList.add(newPet);
         numberOfPets += 1;
     }
 
-    public static int find (String petName) {
+    public static int find(String petName) {
         for (int i = 0; i < petList.size(); i++) {
             if (petList.get(i).getPetName().equals(petName)) {
                 return i;
@@ -30,21 +31,20 @@ public class PetList {
         return -1;
     }
 
-    public static Pet get (int index) {
+    public static Pet get(int index) {
         return petList.get(index);
     }
 
-    public static void addStat (String petName, String statName, String statValue) {
+    public static void addStat(String petName, String statName, String statValue) {
         int index = PetList.find(petName);
         if (index == -1) {
             System.out.println("ERROR: Pet not Found");
-        }
-        else {
+        } else {
             petList.get(index).addStat(statName, statValue);
         }
     }
 
-    public static void removeStat (String petName, String statName) {
+    public static void removeStat(String petName, String statName) {
         int index = PetList.find(petName);
         petList.get(index).removeStat(statName);
     }
