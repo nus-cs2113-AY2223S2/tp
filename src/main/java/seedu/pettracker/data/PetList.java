@@ -3,12 +3,11 @@ import java.util.ArrayList;
 
 public class PetList {
     public static final String LINE = "____________________";
-    private static ArrayList<Pet> petList;
+    private static ArrayList<Pet> petList = new ArrayList<>();
     private static int numberOfPets;
 
     public PetList() {
-        petList = new ArrayList<Pet>();
-        this.numberOfPets = 0;
+        numberOfPets = 0;
     }
 
     /**

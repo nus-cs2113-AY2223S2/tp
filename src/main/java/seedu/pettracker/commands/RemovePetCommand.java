@@ -7,7 +7,7 @@ public class RemovePetCommand extends Command{
     protected String petName;
     public RemovePetCommand(String commandArgs) {
         super();
-        this.petName = parseArgs(commandArgs)[0];
+        this.petName = commandArgs;
     }
 
     //TODO: Implement this method
