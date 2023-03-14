@@ -29,7 +29,6 @@ public class Storage {
         ObjectInputStream readStream = new ObjectInputStream(readData);
 
         FinancialReport statements = (FinancialReport) readStream.readObject();
-        assert statements.getReportOwner() != null : "Loaded username should not be null";
 
         readStream.close();
         readData.close();
