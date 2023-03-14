@@ -26,6 +26,7 @@ public class UpdateCommand extends Command {
             printFlashCard(flashcards.get(i));
         }
     }
+
     public void findFlashcard(ArrayList<Flashcard> flashcards, String query) {
         for (int i = 0; i < flashcards.size(); i++) {
             Flashcard currentFlashcard = flashcards.get(i);

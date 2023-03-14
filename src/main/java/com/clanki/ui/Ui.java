@@ -1,5 +1,7 @@
 package com.clanki.ui;
 
+import com.clanki.objects.Flashcard;
+
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
