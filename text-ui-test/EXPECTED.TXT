@@ -5,5 +5,9 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-What is your name?
-Hello James Gosling
+Hi! I am Duke:)
+Let us track expiry dates and combat food waste!
+______________________________
+______________________________
+Exiting Food Supply Tracker as requested ...
+______________________________
