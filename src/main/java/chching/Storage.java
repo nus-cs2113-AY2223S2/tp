@@ -65,12 +65,12 @@ public class Storage {
                 String[] extract = line.split("\\|");
                 String symbol = extract[0].trim();
                 if (symbol.equals("E")) {
-                String category = extract[1].trim();
-                String description = extract[2].trim();
-                String date = extract[3].trim();
-                String value = extract[4].trim();
-                Expense expense = new Expense(category, description, date, Double.parseDouble(value));
-                expenses.add(expense);
+                    String category = extract[1].trim();
+                    String description = extract[2].trim();
+                    String date = extract[3].trim();
+                    String value = extract[4].trim();
+                    Expense expense = new Expense(category, description, date, Double.parseDouble(value));
+                    expenses.add(expense);
                 }
             }
             reader.close();
