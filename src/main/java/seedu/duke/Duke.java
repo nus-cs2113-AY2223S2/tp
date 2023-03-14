@@ -8,21 +8,21 @@ import seedu.duke.diagnosis.symptoms.Symptom;
 import java.util.ArrayList;
 import java.util.List;
  */
-import java.util.Scanner;
 
+import seedu.duke.save.Storage;
 import seedu.duke.ui.Menu;
 import seedu.duke.ui.Parser;
-import seedu.duke.save.Storage;
+
+import java.util.Scanner;
 
 public class Duke {
 
-    private static String password = ""; // Stores user's password
+    public static String password = ""; // Stores user's password
 
     /**
+     * Main entry-point for the java.duke.Duke application.
      * @author Jeraldchen
-     *     Main entry-point for the java.duke.Duke application.
      */
-    //@@author Jeraldchen
     public static void main(String[] args) {
         String logo = " ____         ____        _        \n"
                 + "|  _ \\  ___  |  _ \\ _  _ | | _____ \n"
@@ -37,11 +37,12 @@ public class Duke {
             String input = in.nextLine();
             Parser.parseWelcome(input);
         }
-        Menu.showAccountMenu();
-        Scanner in = new Scanner(System.in);
-        String input = in.nextLine();
-        Parser.parseAccountCommand(input);
-
+        while (true) {
+            Menu.showAccountMenu();
+            Scanner in = new Scanner(System.in);
+            String input = in.nextLine();
+            Parser.parseAccountCommand(input);
+        }
         /*
         For testing of Diagnosis
         for (IllnessMatch test : Diagnosis.getPossibleIllnesses(new ArrayList<Symptom>(List.of(Symptom.BLOCKED_NOSE,
@@ -57,10 +58,10 @@ public class Duke {
     }
 
     /**
+     * Sets the password.
      * @author Thunderdragon221
-     *     Sets the password.
      *
-     *     @param userPassword password to be set.
+     * @param userPassword password to be set.
      */
     public static void setPassword(String userPassword) {
         password = userPassword;
