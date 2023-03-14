@@ -1,7 +1,7 @@
 package seedu.badMaths;
 
 public class TrigoGraph {
-    private String trigoEqn;
+    private final String trigoEqn;
 
     public TrigoGraph(String trigoEqn) {
         this.trigoEqn = trigoEqn;
@@ -21,7 +21,8 @@ public class TrigoGraph {
             if (amplitudeAndEqn[1].startsWith("*")){
                 throw new NumberFormatException();
             }
-            if (amplitudeAndEqn[0].startsWith("cos") || amplitudeAndEqn[0].startsWith("sin") || amplitudeAndEqn[0].startsWith("tan") ){
+            if (amplitudeAndEqn[0].startsWith("cos") || amplitudeAndEqn[0].startsWith("sin")
+                    || amplitudeAndEqn[0].startsWith("tan") ){
                 amplitude = 1.0;
                 System.out.println("This is the amplitude: " + amplitude);
                 splitTrigoAndVerticalShift(trigoEqn);
@@ -40,7 +41,10 @@ public class TrigoGraph {
     public void splitTrigoAndVerticalShift(String trigoAndVerticalShift) {
         try {
             String[] TrigoAndVerticalShift = trigoAndVerticalShift.split("\\)", 2);
-            if(!TrigoAndVerticalShift[1].isEmpty()) {
+            if(TrigoAndVerticalShift.length == 1){
+                throw new StringIndexOutOfBoundsException();
+            }
+            if( !TrigoAndVerticalShift[1].isEmpty()) {
                 if (TrigoAndVerticalShift[1].trim().contains("+")) {
                     double positiveVShift = Double.parseDouble(TrigoAndVerticalShift[1].substring(1)); //+5
                     System.out.println("This is the vertical shift: " + positiveVShift);
@@ -55,6 +59,8 @@ public class TrigoGraph {
             splitTrigoIntoPhasors(TrigoAndVerticalShift[0]);
         } catch (NumberFormatException e) {
             System.out.println("Please enter the format as required: ");
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("Too little arguments. Please enter the format as required: ");
         }
     }
 
@@ -87,27 +93,27 @@ public class TrigoGraph {
             if(freqAndShift[1].contains("+")){
                 throw new NumberFormatException();
             }
-            if(!freqComponents[1].equals("pi*x") || !freqComponents[1].equals("x")){
-                throw new NumberFormatException();
-            }
-            if (trigoEqn.contains("pi")) {
-                freq = Double.parseDouble(freqComponents[0]) / 2;
-            } else {
-                freq = Double.parseDouble(freqComponents[0]) / (2 * Math.PI);
-            }
-            System.out.println("The Freq (HZ) is: " + freq);
-            if (freqAndShift.length == 2) {
-                if (is_negative) {
-                    System.out.println("The phase shift is: -" + Double.valueOf(freqAndShift[1]));
+            if(freqComponents[1].equals("pi*x") || freqComponents[1].equals("x")) {
+                if (trigoEqn.contains("pi")) {
+                    freq = Double.parseDouble(freqComponents[0]) / 2;
                 } else {
-                    System.out.println("The phase shift is: " + Double.valueOf(freqAndShift[1]));
+                    freq = Double.parseDouble(freqComponents[0]) / (2 * Math.PI);
+                }
+                System.out.println("The Freq (HZ) is: " + freq);
+                if (freqAndShift.length == 2) {
+                    if (is_negative) {
+                        System.out.println("The phase shift is: -" + Double.valueOf(freqAndShift[1]));
+                    } else {
+                        System.out.println("The phase shift is: " + Double.valueOf(freqAndShift[1]));
+                    }
+                } else {
+                    System.out.println("The phase shift is: 0.0");
                 }
             } else {
-                System.out.println("The phase shift is: 0.0");
+                throw new NumberFormatException();
             }
         } catch (NumberFormatException e) {
             System.out.println("Please enter the format as required: ");
         }
     }
-
 }
