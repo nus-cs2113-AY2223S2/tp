@@ -31,6 +31,8 @@ public class ModifyCommand extends Command {
      * @throws NumberFormatException If idx cannot be parsed, or is outside the current range of tasks.
      */
     public ModifyCommand(String command, String param, int size) throws NumberFormatException {
+        assert (command.equals(COMMAND_MARK_WORD) | command.equals(COMMAND_UNMARK_WORD) |
+                command.equals(COMMAND_DELETE_WORD)) : "ModifyCommand: Invalid Modify Command";
         int idx = Integer.parseInt(param) - 1;
         if (idx < 0 || idx >= size) {
             throw new NumberFormatException();
@@ -59,8 +61,11 @@ public class ModifyCommand extends Command {
             ui.printMarkNotDone(taskList.get(idx));
             break;
         case COMMAND_DELETE_WORD:
+            int initialCount = taskList.size();
             ui.printDeleted(taskList.get(idx), taskList.size());
             taskList.remove(idx);
+            int finalCount = taskList.size();
+            assert (finalCount == initialCount - 1) : "ModifyCommand : Unsuccessful deletion";
             break;
         default:
             throw new UnexpectedException("Modifying Task");

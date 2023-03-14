@@ -26,7 +26,7 @@ import static seedu.apollo.ui.Parser.COMMAND_TODO_WORD;
  */
 public class AddCommand extends Command {
 
-    protected String type;
+    protected String command;
     protected String desc;
     protected String by;
     protected String from;
@@ -35,15 +35,17 @@ public class AddCommand extends Command {
     /**
      * Initialises the class with the type and description of the task given in the command.
      *
-     * @param type Type of task being added (ToDo, Deadline, or Event).
+     * @param command Type of task being added (ToDo, Deadline, or Event).
      * @param param Description of task given by user (including date(s) for Deadline, Event).
      * @throws InvalidDeadline If the Deadline being added has the wrong format.
      * @throws InvalidEvent If the Event being added has the wrong format.
      * @throws UnexpectedException If the command word cannot be understood.
      */
-    public AddCommand(String type, String param) throws InvalidDeadline, InvalidEvent, UnexpectedException {
-        this.type = type;
-        switch (type) {
+    public AddCommand(String command, String param) throws InvalidDeadline, InvalidEvent, UnexpectedException {
+        this.command = command;
+        assert (command.equals(COMMAND_TODO_WORD) | command.equals(COMMAND_DEADLINE_WORD) |
+                command.equals(COMMAND_EVENT_WORD)) : "AddCommand: Invalid Add Command";
+        switch (command) {
         case COMMAND_TODO_WORD:
             this.desc = param;
             break;
@@ -73,7 +75,7 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
-        switch(type) {
+        switch(command) {
         case COMMAND_TODO_WORD:
             taskList.add(new ToDo(desc));
             break;
