@@ -41,7 +41,7 @@ public class ExpenseList extends RecordList{
         if(!(date == null)) {
             exp.date = date;
         }
-        if(!(value == 0)) {
+        if(value > 0) {
             exp.value = value;
         }
     }

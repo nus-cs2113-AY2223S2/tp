@@ -13,6 +13,7 @@ public class Expenses {
             String expenseDescription = argumentsByField.get("de");
             String expenseDate = argumentsByField.get("da");
             float expenseValue = Float.parseFloat(argumentsByField.get("v"));
+            assert expenseValue > 0 : "Expense value should be greater than zero";
             exp = new Expense(expenseCategory, expenseDescription, expenseDate, expenseValue);
         } catch (Exception e) {
             System.out.println("Trouble adding expenses");
@@ -24,6 +25,7 @@ public class Expenses {
         Expense exp = null;
         try {
             int index = Integer.parseInt(argumentsByField.get("i"));
+            assert index >= 0 : "index should be greater than or equal to zero";
             exp = (Expense) expenseList.get(index - 1);
             if (argumentsByField.containsKey("c")) {
                 String updateCategory = argumentsByField.get("c");
@@ -39,6 +41,7 @@ public class Expenses {
             }
             if (argumentsByField.containsKey("v")) {
                 float updateValue = Float.parseFloat(argumentsByField.get("v"));
+                assert updateValue > 0 : "updateValue has to be greater than zero";
                 exp.setValue(updateValue);
             }
         } catch (Exception e) {
