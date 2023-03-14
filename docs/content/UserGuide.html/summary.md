@@ -3,6 +3,12 @@ title: Command Summary
 weight: 4
 ---
 
-{Give a 'cheat sheet' of commands here}
+## Command Summary
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+| Command | Format                                            |
+|--------:|---------------------------------------------------|
+|    /add | `/add DESCRIPTION -c CATEGORY -p PRICE`          |
+|   /view | `/view ENTRY_ID -c CATEGORY`                      |
+|   /edit | `/edit ENTRY_ID -d DESCRIPTION -c CATEGORY -p PRICE` |
+| /delete | `/delete ENTRY_ID`                                |
+|   /help | `/help`                                           |
