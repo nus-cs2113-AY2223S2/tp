@@ -29,7 +29,8 @@ public class Parser {
     public static final String DELETE_REGEX = "^c/(?=\\S)(.*?)(?:\\s+e/(.*))?\\s*$";
     public static final String NULL_INPUT_ASSERTION = "Input cannot be null";
     public static final String NULL_DESCRIPTION = "Separated keyword and description cannot be null";
-    public static final String REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER = "Please enter a positive number for budget and expense";
+    public static final String REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER =
+            "Please enter a positive number for budget and expense";
     private String[] separatedKeywordAndDescription;
     private String keyword;
 
