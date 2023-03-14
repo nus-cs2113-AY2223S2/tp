@@ -10,6 +10,9 @@ import seedu.duke.recipe.Recipe;
 
 import java.util.List;
 
+/**
+ * Helper class for JSON deserialization from desired recipe format
+ */
 public class SerializableRecipe {
     private String name;
     private List<SerializableIngredient> ingredients;

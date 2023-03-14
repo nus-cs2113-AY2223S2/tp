@@ -1,5 +1,8 @@
 package seedu.duke.serde;
 
+/**
+ * Helper class for JSON deserialization from desired ingredient format
+ */
 public class SerializableIngredient {
     private String name;
     private double amount;

@@ -2,6 +2,9 @@ package seedu.duke.recipe;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Represents information about a type of ingredient
+ */
 public class IngredientMetadata {
     enum UnitType {
         @SerializedName("weight")

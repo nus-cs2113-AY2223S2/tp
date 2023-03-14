@@ -5,6 +5,9 @@ import seedu.duke.command.ExecutableCommand;
 import seedu.duke.ingredient.Ingredient;
 import seedu.duke.ingredient.IngredientList;
 
+/**
+ * Represents the "ingredients list" command
+ */
 public class IngredientsListCommand extends ExecutableCommand {
     @Override
     public void execute(DukeSession dukeSession) {

@@ -9,6 +9,9 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Singleton class which represents a list of all known ingredients
+ */
 public class IngredientDatabase {
     private static IngredientDatabase dbInstance = null;
     private HashMap<String, IngredientMetadata> knownIngredients;
@@ -32,6 +35,10 @@ public class IngredientDatabase {
                     "This should be caught by automatic testing");
         }
     }
+
+    /**
+     * @return the singleton instance of IngredientDatabase
+     */
     public static IngredientDatabase getDbInstance() {
         if (dbInstance == null) {
             dbInstance = new IngredientDatabase();
@@ -39,6 +46,9 @@ public class IngredientDatabase {
         return dbInstance;
     }
 
+    /**
+     * @return a hashmap between ingredient names and their metadata
+     */
     public HashMap<String, IngredientMetadata> getKnownIngredients() {
         return knownIngredients;
     }
