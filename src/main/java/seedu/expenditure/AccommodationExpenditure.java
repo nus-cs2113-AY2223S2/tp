@@ -1,4 +1,4 @@
-package seedu.Expenditure;
+package seedu.expenditure;
 
 import java.time.LocalDate;
 
@@ -26,5 +26,16 @@ public class AccommodationExpenditure extends Expenditure {
     @Override
     public String getExpenditureType() {
         return "Accom";
+    }
+
+    @Override
+    public String saveInfo() { // NOT DONE
+        return getExpenditureType() +
+                "d/" + getDescription() +
+                "v/" + getValue() +
+                "t/" + getDate() +
+                "p/" + getStatusIcon() +
+                "n/" + "None" +
+                "o/" + "None" + "\n";
     }
 }

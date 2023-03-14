@@ -1,4 +1,4 @@
-package seedu.Parser;
+package seedu.parser;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

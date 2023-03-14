@@ -1,6 +1,6 @@
-package seedu.Expenditure;
+package seedu.expenditure;
 
-import seedu.TxtData.TxtFileStatus;
+import seedu.txtdata.TxtFileStatus;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +19,14 @@ public class ExpenditureList {
     public void deleteExpenditure(int index) {
         expenditures.remove(index);
         expenditures.trimToSize();
+    }
+
+    public int getSize() {
+        return expenditures.size();
+    }
+
+    public Expenditure getExpenditure(int index) {
+        return expenditures.get(index);
     }
 
     @Override
