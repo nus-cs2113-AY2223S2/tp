@@ -20,10 +20,6 @@ public class Inka {
 
     public Inka(String filePath) {
         storage = new Storage(filePath);
-
-
-    public Inka() {
-
         ui = new UserInterface();
         parser = new Parser();
         cardList = new CardList();
