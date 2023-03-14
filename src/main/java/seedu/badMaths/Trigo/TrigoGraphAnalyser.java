@@ -1,10 +1,9 @@
 package seedu.badMaths.trigo;
 
-import seedu.badMaths.ui.Ui;
 
+import seedu.badMaths.ui.Ui;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -70,7 +69,6 @@ public class TrigoGraphAnalyser {
             if (!new File("trigoGraphAnalyser.log").exists()) {
                 new File("trigoGraphAnalyser.log").createNewFile();
             }
-
             FileHandler logFile = new FileHandler("trigoGraphAnalyser.log", true);
             logFile.setLevel(Level.FINE);
             logger.addHandler(logFile);
