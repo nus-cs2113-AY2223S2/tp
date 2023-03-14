@@ -33,6 +33,7 @@ public class EntryLog {
      */
     public void add(Entry entry) {
         assert entry != null : "Entry cannot be null when adding to EntryLog";
+        logger.info("Adding entry: " + entry.getDescription());
         entries.add(entry);
     }
 
@@ -44,6 +45,7 @@ public class EntryLog {
      */
     public void delete(int entryId) throws InvalidArgumentsException {
         try {
+            logger.info("Deleting entry: " + entryId);
             entries.remove(entryId);
         } catch (IndexOutOfBoundsException e) {
             logger.log(Level.WARNING, "Attempted to delete an invalid entry index: " + entryId, e);
@@ -77,8 +79,8 @@ public class EntryLog {
     public EntryLog filterByQuery(String query) {
         assert query != null;
         if (query.isEmpty()) {
-            logger.info("User entered empty query");
-            return this;
+            logger.info("User entered empty query, returning all entries.");
+            return this; // return all entries
         }
         Pattern pattern = Pattern.compile(query, Pattern.CASE_INSENSITIVE);
         List<Entry> filteredEntries = entries

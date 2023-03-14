@@ -12,6 +12,7 @@ import seedu.duke.constants.MessageConstants;
 import seedu.duke.constants.UIConstants;
 import seedu.duke.entries.Category;
 import seedu.duke.entries.Entry;
+import seedu.duke.util.UIUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -86,9 +87,9 @@ public class UITest {
 
         @Test
         void testFloatingPointPadding() {
-            assertEquals(UI.formatPrice(2), "2.00");
-            assertEquals(UI.formatPrice(0.123), "0.12");
-            assertEquals(UI.formatPrice(3.1), "3.10");
+            assertEquals(UIUtil.formatPrice(2), "2.00");
+            assertEquals(UIUtil.formatPrice(0.123), "0.12");
+            assertEquals(UIUtil.formatPrice(3.1), "3.10");
         }
 
         @Test
@@ -97,7 +98,7 @@ public class UITest {
                     testEntry.getAmount(),
                     testEntry.getCategoryString());
             assertEquals(MessageConstants.MESSAGE_EXPENDITURE_ADDED
-                            + UI.formatExpenditure(testEntry.getDescription(),
+                            + UIUtil.formatExpenditure(testEntry.getDescription(),
                             testEntry.getAmount(),
                             testEntry.getCategoryString())
                             + UIConstants.LINE,
@@ -110,7 +111,7 @@ public class UITest {
                     testEntry.getAmount(),
                     testEntry.getCategoryString());
             assertEquals(MessageConstants.MESSAGE_EXPENDITURE_DELETED
-                            + UI.formatExpenditure(testEntry.getDescription(),
+                            + UIUtil.formatExpenditure(testEntry.getDescription(),
                             testEntry.getAmount(),
                             testEntry.getCategoryString())
                             + UIConstants.LINE,
