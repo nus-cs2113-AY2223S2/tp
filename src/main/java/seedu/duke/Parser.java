@@ -206,13 +206,6 @@ public class Parser {
             Ui.printInvalidEditCommand();
         }
     }
-<<<<<<< HEAD
-=======
-
-    /* Temporary List Method created by Kai Wen for Edit Function Testing.*/
-    /*public void parseList() {
-        Inventory.listAll();
-    } */
 
     public void parseRemove(String rawInput) {
         // using f/item to remove using upc or f/index to remove using index of item in list
@@ -244,5 +237,4 @@ public class Parser {
             Ui.printInvalidRemove();
         }
     }
->>>>>>> c026f3dc3a34d5cefb05c2f3e61870d28e5ac2e8
 }
