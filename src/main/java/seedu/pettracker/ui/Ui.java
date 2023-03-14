@@ -26,7 +26,11 @@ public class Ui {
     }
 
     public void removePetCommandMessage(String petName) {
-        System.out.println("Successfully removed pet: " + petName)
+        System.out.println("Successfully removed pet: " + petName);
+    }
+
+    public void removeStatCommandMessage(String petName, String statName) {
+        System.out.println("Successfully removed " + statName + " from " + petName);
     }
 
 
