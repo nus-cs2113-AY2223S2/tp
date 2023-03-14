@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 @DisplayName("Test delete command")
 public class DeleteCommandTest {
     private Entry testEntry = new Entry("Rice", 8.50, Category.FOOD);
-    private List testEntriesList = new ArrayList<Entry>() {{
+    private List<Entry> testEntriesList = new ArrayList<>() {{
             add(testEntry);
         }};
     private EntryLog testEntries = new EntryLog(testEntriesList);

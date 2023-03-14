@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.duke.commands.EditCommand;
+import seedu.duke.commands.ExitCommand;
 import seedu.duke.entries.Category;
 import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.exceptions.InvalidCategoryException;
@@ -71,9 +72,9 @@ public class Parser {
         default:
             logger.log(Level.WARNING, "User command is invalid");
             logger.exiting(Parser.class.getName(), "parseUserInput()");
-            return null;
+            throw new InvalidCommandException(MessageConstants.MESSAGE_INVALID_COMMAND);
         }
-
+      
     }
 
     private Command parseByeCommand() {
@@ -81,7 +82,7 @@ public class Parser {
         logger.entering(Parser.class.getName(), "parseByeCommand()");
         logger.info("Program exiting.");
         logger.exiting(Parser.class.getName(), "parseByeCommand()");
-        return null;
+        return new ExitCommand();
     }
 
     private Command parseHelpCommand() {
@@ -255,7 +256,7 @@ public class Parser {
     /**
      * Returns a string array of length 3, containing the description, category and
      * price respectively.
-     *
+     * 
      * @param arguments User arguments entered after the add command.
      * @return String[] Array containing description, category and price
      *     respectively.
