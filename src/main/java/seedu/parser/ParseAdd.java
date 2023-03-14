@@ -9,8 +9,6 @@ import seedu.commands.OtherExpenditureCommand;
 import seedu.commands.TransportExpenditureCommand;
 import seedu.commands.TuitionExpenditureCommand;
 import seedu.commands.InvalidCommand;
-import seedu.exceptions.EmptyStringException;
-import seedu.exceptions.ExceptionChecker;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
