@@ -1,6 +1,13 @@
-package seedu.badMaths.Trigo;
+package seedu.badMaths.trigo;
 
-import seedu.badMaths.UI.Ui;
+
+import seedu.badMaths.ui.Ui;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class TrigoGraphAnalyser {
     private static final boolean CAN_RUN_ANALYSER = true;
@@ -13,6 +20,7 @@ public class TrigoGraphAnalyser {
     private static final int INDEX_FOR_POS_FREQ = 0;
     private static final int INDEX_FOR_POS_PHASE = 1;
     private static final int INDEX_FOR_NEG_FREQ = 1;
+    private static Logger logger = Logger.getLogger(TrigoGraphAnalyser.class.getName());
     private String trigoEqn;
     private double phase;
     private double amplitude;
@@ -25,6 +33,7 @@ public class TrigoGraphAnalyser {
     }
 
     public boolean canStartAnalyser() {
+        setUpLogger();
         try {
             String[] amplitudeAndEqn = splitAmplitudeFromTrigoEqn();
             findAmplitude(amplitudeAndEqn);
@@ -39,14 +48,35 @@ public class TrigoGraphAnalyser {
             splitTrigoIntoPhasors(trigo);
             return CAN_RUN_ANALYSER;
         } catch (NumberFormatException e) {
+            logger.log(Level.SEVERE, "NumberFormatException", e);
             Ui.printIncorrectFormatEntered();
             return CANNOT_RUN_ANALYSER;
         } catch (IllegalArgumentException e) {
+            logger.log(Level.SEVERE, "IllegalArgumentException", e);
             Ui.printNegativeAmplitudeEntered();
+            return CANNOT_RUN_ANALYSER;
+        } catch (ArrayIndexOutOfBoundsException e){
+            logger.log(Level.SEVERE, "ArrayIndexOutOfBounds", e);
+            Ui.printIncorrectFormatEntered();
             return CANNOT_RUN_ANALYSER;
         }
     }
 
+    public static void setUpLogger() {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.ALL);
+        try {
+            if (!new File("trigoGraphAnalyser.log").exists()) {
+                new File("trigoGraphAnalyser.log").createNewFile();
+            }
+            FileHandler logFile = new FileHandler("trigoGraphAnalyser.log", true);
+            logFile.setLevel(Level.FINE);
+            logger.addHandler(logFile);
+
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
+    }
     private void findAmplitude(String[] eqn) throws NumberFormatException {
         String[] trigoAndVerticalShift;
 
@@ -131,12 +161,16 @@ public class TrigoGraphAnalyser {
         String[] freqAndShift = new String[SIZE_OF_FREQ_AND_PHASE];
         boolean isPhaseNegative = false;
         boolean isFreqNegative = false;
-        if (phasors.contains("+")) {
+        if (phasors.endsWith("x")){
+            phase = 0.0;
+            isFreqNegative = testForNegativeFreq(phasors);
+            findFreq(phasors,isFreqNegative);
+        } else if (phasors.contains("+")) {
             freqAndShift = phasors.split("\\+", PLACEHOLDER_SIZE_WITH_POS_PHASE);
             findPhase(freqAndShift[INDEX_FOR_POS_PHASE], isPhaseNegative);
             isFreqNegative = testForNegativeFreq(freqAndShift);
             findFreq(freqAndShift[INDEX_FOR_POS_FREQ], isFreqNegative);
-        } else if (phasors.contains("-")) {
+        } else {
             freqAndShift = phasors.split("-", PLACEHOLDER_SIZE_WITH_NEG_PHASE);
             isPhaseNegative = true;
             isFreqNegative = testForNegativeFreq(freqAndShift);
@@ -152,6 +186,12 @@ public class TrigoGraphAnalyser {
 
     private boolean testForNegativeFreq(String[] freqAndShift) {
         if (freqAndShift[INDEX_FOR_POS_FREQ].isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+    private boolean testForNegativeFreq(String freq){
+        if(freq.startsWith("-")){
             return true;
         }
         return false;
