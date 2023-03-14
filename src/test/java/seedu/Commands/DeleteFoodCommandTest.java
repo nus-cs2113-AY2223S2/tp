@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DeleteFoodCommandTest {
     @Test
-    void parseInput_EmptyInput_ExpectException() {
+    void parseInputEmptyInputExpectException() {
 
         String commandDescriptor = "";
         assertThrows(NumberFormatException.class,
