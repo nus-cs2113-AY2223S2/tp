@@ -17,19 +17,7 @@ public class Appointment {
         this.date = date;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public String getAnimal() {
-        return animal;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDate() {
-        return date;
+    public String toString() {
+        return uid + " | " + type + " | " + animal + " | " + name + " | " + date;
     }
 }

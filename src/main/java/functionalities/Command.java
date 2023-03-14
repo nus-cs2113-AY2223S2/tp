@@ -3,21 +3,29 @@ import exception.SniffException;
 
 public class Command {
     private final String command;
-    private final int appointmentNum;
-    private final int uId;
+    private final String uId;
+    private final String type;
+    private final String animal;
+    private final String name;
+    private final String date;
 
 
-    public Command(String userCommand, int appointmentNum, int userId) {
+    public Command(String userCommand, String uId, String type, String animal, String name, String date) {
         this.command = userCommand;
-        this.appointmentNum = appointmentNum;
-        this.uId = userId;
+        this.uId = uId;
+        this.type = type;
+        this.animal = animal;
+        this.name = name;
+        this.date = date;
     }
 
     public void executeSniffCommands(SniffTasks tasks, Ui ui) throws SniffException {
         if (command.equalsIgnoreCase("add")) {
-            tasks.addAppointment();
+            tasks.addAppointment(uId, type, animal, name, date);
+            ui.showUserMessage("Task added successfully");
         } else if (command.equalsIgnoreCase("remove")) {
-            tasks.removeAppointment(appointmentNum);
+            tasks.removeAppointment(Integer.parseInt(uId));
+            ui.showUserMessage(" Task removed successfully");
         } else if (command.equalsIgnoreCase("list")) {
             tasks.listAppointments();
         } else if (command.equalsIgnoreCase("view")) {

@@ -3,9 +3,9 @@ import exception.SniffException;
 import java.util.Scanner;
 
 public class Ui {
-    private static final String SPACE = " ";
-    private static final String DOT_WITH_SPACES = " . ";
-    public void showUserMessage(String s) {
+    private static final String DOT_THEN_SPACE = ". ";
+
+    public static void showUserMessage(String s) {
         System.out.println(s);
     }
 
@@ -31,7 +31,7 @@ public class Ui {
         System.out.println(dividerLine);
     }
 
-    public static void formatPrintList(String count, String type, String animal, String name, String date) {
-        System.out.println(count + DOT_WITH_SPACES + type + SPACE + animal + SPACE + name + SPACE + date);
+    public static void formatPrintList(int count, String description) {
+        System.out.println(count + DOT_THEN_SPACE + description);
     }
 }
