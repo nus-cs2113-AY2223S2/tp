@@ -28,8 +28,8 @@ public class DeleteFoodCommand extends Command{
 
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage,
-                        MealStorage mealStorage, UserStorage userStorage) throws LifeTrackerException {
-        Food deletedFood = foodStorage.deleteFood(index);
-        ui.printDeletedFood(deletedFood);
+                MealStorage mealStorage, UserStorage userStorage) throws LifeTrackerException {
+        Food food = foodStorage.getFoodById(index);
+        ui.printDeletedFood(food);
     }
 }

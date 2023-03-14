@@ -70,21 +70,12 @@ public class FoodStorage extends Storage implements FileReadable {
     public int getFoodsCount(){
         return this.foods.size();
     }
+    
     public ArrayList<Food> getFoods() {
         return this.foods;
     }
 
-    public Food getFoodById(int id)
-    {
+    public Food getFoodById(int id) {
         return this.foods.get(id-1);
-    }
-
-    public void addFood(int index){
-        Food foodToAdd = getFoodById(index - 1);
-        foods.add(foodToAdd);
-    }
-
-    public Food deleteFood(int index) {
-        return foods.remove(index - 1);
     }
 }

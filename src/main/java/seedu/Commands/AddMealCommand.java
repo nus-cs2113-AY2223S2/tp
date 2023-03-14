@@ -16,8 +16,8 @@ public class AddMealCommand extends Command {
         parseInput(commandDescriptor);
     }
 
-    private void parseInput(String commandDescriptor) throws LifeTrackerException{
-        if (commandDescriptor.length() == 0){
+    private void parseInput(String commandDescriptor) throws LifeTrackerException {
+        if (commandDescriptor.length() == 0) {
             throw new InvalidCommandException();
         }
         try {
@@ -29,8 +29,8 @@ public class AddMealCommand extends Command {
 
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
-            throws LifeTrackerException {
-        foodStorage.getFoodById(index);
+                throws LifeTrackerException {
+        Food food = foodStorage.getFoodById(index);
         ui.printNewFoodAdded(foodStorage, index);
     }
 }
