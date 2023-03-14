@@ -4,9 +4,9 @@ import seedu.Commands.AddMealCommand;
 import seedu.Commands.UpdateUserCommand;
 import seedu.Commands.ViewUserCommand;
 import seedu.Commands.Command;
-import seedu.Commands.DeleteFoodCommand;
-import seedu.Commands.DisplayFoodCommand;
+import seedu.Commands.DeleteMealCommand;
 import seedu.Commands.ExitCommand;
+import seedu.Commands.ListCommand;
 import seedu.Exceptions.InvalidCommandException;
 import seedu.Exceptions.LifeTrackerException;
 
@@ -19,10 +19,10 @@ public class CommandParser {
 
         switch(commandWord) {
         case "add":
-            command = new AddMealCommand(commandDescriptor);
+            command = new AddMealCommand();
             break;
         case "delete":
-            command = new DeleteFoodCommand(commandDescriptor);
+            command = new DeleteMealCommand(commandWord, userInput);
             break;
         case "bye":
             command = new ExitCommand();
@@ -34,7 +34,7 @@ public class CommandParser {
             command = new ViewUserCommand();
             break;
         case "list":
-            command = new DisplayFoodCommand();
+            command = new ListCommand(commandWord, userInput);
             break;
         default:
             throw new InvalidCommandException();

@@ -9,9 +9,9 @@ import seedu.Parser.CommandParser;
 import seedu.Ui.GeneralUi;
 
 public class LifeTracker {
-    private static final String FOOD_FILE_PATH = "data/FoodData.csv";
-    private static final String MEAL_FILE_PATH = "data/MealData.csv";
-    private static final String USER_FILE_PATH = "data/userData.csv";
+    private static final String FOOD_FILE_PATH = "./data/FoodData.csv";
+    private static final String MEAL_FILE_PATH = "./data/MealData.csv";
+    private static final String USER_FILE_PATH = "./data/userData.csv";
     private FoodStorage foodStorage;
     private MealStorage mealStorage;
     private UserStorage userStorage;
@@ -38,6 +38,7 @@ public class LifeTracker {
                 System.out.println(e.getMessage());
             } finally {
                 ui.printLine();
+                System.out.println();
             }
         }
     }

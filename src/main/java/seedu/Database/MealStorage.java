@@ -79,7 +79,19 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         }
     }
 
+    public int getMealCount() {
+        return this.meals.size();
+    }
+
     public ArrayList<Meal> getMeal() {
         return this.meals;
+    }
+
+    public Meal getMealById(int id) {
+        return this.meals.get(id);
+    }
+
+    public Meal deleteMeal(int index) throws IndexOutOfBoundsException {
+        return meals.remove(index);
     }
 }

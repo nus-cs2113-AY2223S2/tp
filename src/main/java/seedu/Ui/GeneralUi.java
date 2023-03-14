@@ -1,7 +1,9 @@
 package seedu.Ui;
 
 import seedu.Database.FoodStorage;
+import seedu.Database.MealStorage;
 import seedu.Entities.Food;
+import seedu.Entities.Meal;
 
 import java.util.Scanner;
 
@@ -38,7 +40,7 @@ public class GeneralUi {
 
     private String endingMessage = "Bye! Hope to see you again soon!";
 
-    private String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!";
+    private String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!\n";
 
     /**
      * Prints Goodbye message when Duke exits
@@ -85,13 +87,26 @@ public class GeneralUi {
         }
     }
 
-    public void printNewFoodAdded(FoodStorage foodStorage, int food) {
-        Food newFood = foodStorage.getFoodById(food);
-        String foodDescription = newFood.toString();
-        System.out.println("You just added this food\n" + foodDescription);
+    public void printAllMeals(MealStorage mealStorage) {
+        if (mealStorage.getMealCount() == 0) {
+            System.out.println("There are no meals in your meal list!");
+        } else {
+            System.out.println("Here are the meals in your meal list:");
+            for (int i = 0; i < mealStorage.getMealCount(); i++) {
+                String taskDescription = mealStorage.getMealById(i).toString();
+                System.out.println((i + 1) + ". " + taskDescription);
+            }
+        }
+    }
+
+    public void printNewMealAdded(Meal meal) {
+        System.out.println("You just added this meal");
+        System.out.println(meal);
     }
 
 
-    public void printDeletedFood(Food newFood) {
+    public void printMealDeleted(Meal meal) {
+        System.out.println("Successfully deleted this meal:");
+        System.out.println(meal);
     }
 }

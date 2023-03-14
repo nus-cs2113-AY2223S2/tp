@@ -55,10 +55,10 @@ public class Meal {
     public String toString() {
         String output = "Meal was consumed on " + date + "\n";
         output += "Total Calories are: " + this.getTotalCalories() + "\n";
-        output += "Here are the foods you ate:";
+        output += "Here are the foods you ate:\n";
         for (int i = 0; i < foods.size(); i++)
         {
-            output += "\t" + i + ") " + foods.get(i).toString() + "\n";
+            output += (i+1) + ") " + foods.get(i).toString() + "\n";
         }
         return output;
     }
