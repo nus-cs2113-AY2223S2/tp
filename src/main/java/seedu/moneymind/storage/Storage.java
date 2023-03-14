@@ -83,7 +83,9 @@ public class Storage {
         String[] splitString = fileString.split(STORAGE_CATEGORY_MAP + NEW_LINE);
         // convert fileString to ArrayList of Category
         ArrayList<Category> savedList = StringToCategory.stringToCategory(splitString[0]);
-        LoadToCategoryMap.loadToCategoryMap(splitString[1]);
+        if (splitString.length == 2) {
+            LoadToCategoryMap.loadToCategoryMap(splitString[1]);
+        }
         return savedList;
     }
 
