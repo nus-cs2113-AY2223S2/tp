@@ -20,7 +20,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Only edits attributes which have new values provided by the user, the other attributes are unchanged
+     * Only edits attributes which have new values provided by the user, the other
+     * attributes are unchanged
      *
      * @param entryLog Entry Log containing all entries
      * @throws InvalidArgumentsException
@@ -49,8 +50,8 @@ public class EditCommand extends Command {
      * @return String Array of all attributes in editCommand
      */
     public String[] getAttributes() {
-        String[] attributeList = {Integer.toString(this.expenseId), this.newCategory, this.newDescription,
-                this.newPrice};
+        String[] attributeList = { Integer.toString(this.expenseId), this.newCategory, this.newDescription,
+            this.newPrice };
         return attributeList;
     }
 }

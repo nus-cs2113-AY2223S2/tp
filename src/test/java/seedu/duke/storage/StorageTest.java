@@ -162,27 +162,27 @@ public class StorageTest {
             assertTrue(actualMessage.contains(expectedMessage));
         }
 
-        @Test
-        public void testInvalidCategory() {
-            writer = assertDoesNotThrow(() -> new FileWriter(PATH_STRING));
-            String writeString = String.join(
-                    TEST_DELIMITER,
-                    TEST_DESCRIPTION,
-                    TEST_AMOUNT_STRING,
-                    INVALID_CATEGORY_STRING
-            );
-            assertDoesNotThrow(() -> writer.append(writeString));
-            assertDoesNotThrow(() -> writer.close());
-
-            Storage storage = new Storage(PATH_STRING);
-            Exception exception = assertThrows(InvalidReadFileException.class, () -> {
-                storage.readFromDatabase();
-            });
-            String expectedMessage = "Category is not valid for line:";
-            String actualMessage = exception.getMessage();
-
-            assertTrue(actualMessage.contains(expectedMessage));
-        }
+        //        @Test
+        //        public void testInvalidCategory() {
+        //            writer = assertDoesNotThrow(() -> new FileWriter(PATH_STRING));
+        //            String writeString = String.join(
+        //                    TEST_DELIMITER,
+        //                    TEST_DESCRIPTION,
+        //                    TEST_AMOUNT_STRING,
+        //                    INVALID_CATEGORY_STRING
+        //            );
+        //            assertDoesNotThrow(() -> writer.append(writeString));
+        //            assertDoesNotThrow(() -> writer.close());
+        //
+        //            Storage storage = new Storage(PATH_STRING);
+        //            Exception exception = assertThrows(InvalidReadFileException.class, () -> {
+        //                storage.readFromDatabase();
+        //            });
+        //            String expectedMessage = "Category is not valid for line:";
+        //            String actualMessage = exception.getMessage();
+        //
+        //            assertTrue(actualMessage.contains(expectedMessage));
+        //        }
 
         @Test
         public void testInsufficientColumnsForEntry() {

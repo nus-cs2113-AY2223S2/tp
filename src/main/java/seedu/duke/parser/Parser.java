@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import jdk.jshell.execution.Util;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.DeleteCommand;
@@ -187,10 +186,6 @@ public class Parser {
         logger.info("User input description: " + description);
         logger.info("User input category: " + category);
         logger.info("User input price: " + price);
-//        if (expenseId.isEmpty()) {
-//            logger.warning("Missing expense ID: " + MessageConstants.MESSAGE_INVALID_ID);
-//            throw new MissingArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
-//        }
 
         try {
             Integer.parseInt(argumentsArray[0]);

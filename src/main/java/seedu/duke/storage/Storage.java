@@ -124,8 +124,7 @@ public class Storage {
      * Deserializes all the entries in a stored text file into a List of Entry
      * instances.
      *
-     * @return An Entry[] List that represents all the entries that have been
-     * read from the stored text file
+     * @return An Entry[] List that represents all the entries that have been read from the stored text file
      * @throws IOException If an error occurs in the reading from the file
      */
     public List<Entry> readFromDatabase() throws IOException, InvalidReadFileException, InvalidCategoryException {
