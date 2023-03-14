@@ -1,0 +1,25 @@
+Hello from
+    _______ __                          ____        __      
+   / ____(_) /_____  ___  __________   / __ \__  __/ /_____ 
+  / /_  / / __/ __ \/ _ \/ ___/ ___/  / / / / / / / //_/ _ \
+ / __/ / / /_/ / / /  __(__  |__  )  / /_/ / /_/ / ,< /  __/
+/_/   /_/\__/_/ /_/\___/____/____/  /_____/\__,_/_/|_|\___/ 
+These are some commands available: 
+Generate a specific list of exercises: generate PARAM1 PARAM2 ... x 
+PARAM stands for a specific requirement you want to include in your exercise.
+
+The following parameters are available for Generate command:
+gym (filters for exercises that need gym equipment)
+static (filters for static exercises)
+easy/medium/hard (filters for exercises with a specific difficulty)
+upper/core/legs (filters for exercises with a specific workout type)
+    ____             __
+   / __ )__  _____  / /
+  / __  / / / / _ \/ / 
+ / /_/ / /_/ /  __/_/  
+/_____/\__, /\___(_)   
+      /____/    
+Thanks for using Fitness Duke!
+
+Hope to see you again!
+
