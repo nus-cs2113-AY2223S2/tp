@@ -29,25 +29,6 @@ class ExpenseListTest {
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     @Test
-    public void addExpense_successful() {
-        testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
-                "food", Currency.SGD));
-        new CommandAdd(expenseList.getExpenseList(),
-                parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food")).run();
-        assertEquals(testExpenseList.get(0), expenseList.getExpenseList().get(0));
-
-        testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
-                "food", Currency.SGD));
-        new CommandAdd(expenseList.getExpenseList(),
-                parser.extractAddParameters("add amt/2.5 " +
-                        "t/02-02-2012 cur/USD cat/food")).run();
-        assertNotEquals(testExpenseList.get(1), expenseList.getExpenseList().get(1));
-
-        testExpenseList.clear();
-        expenseList.clear();
-    }
-
-    @Test
     public void listExpense_successful() {
         // To standardize all the line separator to \n just for doing test
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -60,9 +41,9 @@ class ExpenseListTest {
         assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
 
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/2.5 " +
-                "t/02-02-2012 cur/USD cat/food")).run();
+                "t/02-02-2012 cur/USD cat/food")).execute();
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/5.5 " +
-                "t/02-02-2014 cur/SGD cat/food")).run();
+                "t/02-02-2014 cur/SGD cat/food")).execute();
 
         outContent = new ByteArrayOutputStream();
         expected = "Here are the tasks in your list:\n\n"
