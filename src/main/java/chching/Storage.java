@@ -38,13 +38,12 @@ public class Storage {
                 String line = reader.nextLine();
                 String[] extract = line.split("\\|");
                 String symbol = extract[0].trim();
-                String category = extract[1].trim();
                 String description = extract[2].trim();
                 String date = extract[3].trim();
                 String value = extract[4].trim();
 
                 if (symbol.equals("I")) {
-                    Income income = new Income(category, description, date, Double.parseDouble(value));
+                    Income income = new Income(description, date, Double.parseDouble(value));
                     incomes.add(income);
                 }
             }

@@ -49,19 +49,12 @@ public class Parser {
         case "list":
             command = new ListCommand();
             break;
-        case "edit income":
-            Incomes.editIncome(argumentsByField, incomeList);
-            break;
-        case "edit expense":
-            Expense updatedExpense = Expenses.parseUpdateExpense(argumentsByField, expenseList);
-            break;
         case "delete income":
             command = new DeleteIncomeCommand(Integer.parseInt(argumentsByField.get("no")));
             break;
         case "delete expense":
             command = new DeleteExpenseCommand(Integer.parseInt(argumentsByField.get("no")));
             break;
-            
         case "balance":
             command = new BalanceCommand();
             break;
