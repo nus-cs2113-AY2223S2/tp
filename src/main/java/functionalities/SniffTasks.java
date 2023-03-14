@@ -41,6 +41,7 @@ public class SniffTasks {
 
     public void viewAppointment(int uId) {
         for (Appointment appointment : APPOINTMENTS) {
+            assert appointment.uid != null;
             if (uId == Integer.parseInt(appointment.uid)) {
                 String type = appointment.getType();
                 String animal = appointment.getAnimal();
