@@ -13,22 +13,24 @@ public class Parser {
     public static final String EVENT = "event";
     public static final String CATEGORY = "category";
     public static final String INVALID_INPUT = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
-    public static final String DELETE_REGEX = "c/(.+) e/(.+)?";
-    public static final String CATEGORY_ADDED_MESSAGE = "Category name: ";
-    public static final String EVENT_ADDED_MESSAGE = "Event name: ";
     public static final String DELETE_FORMAT = "Please following the correct format: " +
             "delete c/<category name> e/<event name>";
     public static final String REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY = "Remember do not leave any things " +
             "inside the brackets empty!";
     public static final String EMPTY_DELETION = "☹ OOPS!!! The description of a delete cannot be empty.";
     public static final String SUBTLE_BUG_MESSAGE = "☹ OOPS!!! Something went wrong, please report to the developer.";
-    public static final String EVENT_REGEX = "(.+) b/(\\d+) e/(\\d+)?";
+    public static final String EVENT_REGEX = "(.+) b/(-?\\d+) e/(-?\\d+)";
     public static final String EVENT_FORMAT = "Please following the correct format: " +
             "event <event name> b/<budget> e/<expense>";
     public static final String EVENT_EMPTY = "☹ OOPS!!! The description of an event cannot be empty.";
     public static final String REMINDING_MESSAGE_ABOUT_GIVING_BUDGET_A_NUMBER =
             "☹ OOPS!!! The budget and expense must be a number.";
     public static final String CATEGORY_EMPTY = "☹ OOPS!!! The description of a category cannot be empty.";
+    public static final String DELETE_REGEX = "^c/(?=\\S)(.*?)(?:\\s+e/(.*))?\\s*$";
+    public static final String NULL_INPUT_ASSERTION = "Input cannot be null";
+    public static final String NULL_DESCRIPTION = "Separated keyword and description cannot be null";
+    public static final String REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER =
+            "Please enter a positive number for budget and expense";
     private String[] separatedKeywordAndDescription;
     private String keyword;
 
@@ -36,6 +38,7 @@ public class Parser {
      * Splits the user input into keyword and description.
      */
     public void splitKeywordAndDescription(String input) {
+        assert input != null : NULL_INPUT_ASSERTION;
         separatedKeywordAndDescription = input.split(WHITE_SPACE, 2);
         keyword = separatedKeywordAndDescription[0];
     }
@@ -44,6 +47,7 @@ public class Parser {
      * Executes the user input.
      */
     public void executeUserInput() {
+        assert separatedKeywordAndDescription != null : NULL_DESCRIPTION;
         switch (keyword) {
         case BYE:
             executeByeCommand();
@@ -67,7 +71,7 @@ public class Parser {
     }
 
     private void executeByeCommand() {
-        ByeCommand byeCommand = new ByeCommand();
+        new ByeCommand();
     }
 
     private void executeViewCommand() {
@@ -79,25 +83,20 @@ public class Parser {
     }
 
     private void executeDeleteCommand() {
-        if (separatedKeywordAndDescription[1].startsWith("c/")) {
-            try {
-                String afterCategorySpecifier = separatedKeywordAndDescription[1].substring(2);
-                Pattern pattern = Pattern.compile("(.+) e/(.+)");
-                Matcher matcher = pattern.matcher(afterCategorySpecifier);
-                if (matcher.find()) {
-                    String categoryName = matcher.group(1);
-                    String eventName = matcher.group(2);
-                    new DeleteCommand(categoryName, eventName);
-                } else {
-                    System.out.println(afterCategorySpecifier);
-                    new DeleteCommand(afterCategorySpecifier);
-                }
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println(DELETE_FORMAT);
-                System.out.println(REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
-            } catch (Exception e) {
-                System.out.println(SUBTLE_BUG_MESSAGE);
+        Pattern pattern = Pattern.compile(DELETE_REGEX);
+        if (separatedKeywordAndDescription.length == 1) {
+            System.out.println(EMPTY_DELETION);
+            return;
+        }
+        Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
+        if (matcher.find()) {
+            String categoryName = matcher.group(1);
+            String eventName = matcher.group(2);
+            if (eventName == null) {
+                new DeleteCommand(categoryName);
+                return;
             }
+            new DeleteCommand(categoryName, eventName);
         } else {
             System.out.println(DELETE_FORMAT);
             System.out.println(REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
@@ -112,24 +111,33 @@ public class Parser {
                 String eventName = matcher.group(1);
                 String budgetNumber = matcher.group(2);
                 String expenseNumber = matcher.group(3);
+                checkNegativeBudgetAndExpense(Integer.parseInt(budgetNumber), Integer.parseInt(expenseNumber));
                 new EventCommand(eventName, Integer.parseInt(budgetNumber), Integer.parseInt(expenseNumber));
             } else {
                 System.out.println(EVENT_FORMAT);
                 System.out.println(REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
             }
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException error) {
             System.out.println(EVENT_EMPTY);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException error) {
             System.out.println(REMINDING_MESSAGE_ABOUT_GIVING_BUDGET_A_NUMBER);
-        } catch (Exception e) {
+        } catch (NegativeNumberException error) {
+            System.out.println(REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER);
+        } catch (Exception error) {
             System.out.println(SUBTLE_BUG_MESSAGE);
+        }
+    }
+
+    private void checkNegativeBudgetAndExpense(int budget, int expense) throws NegativeNumberException {
+        if (budget < 0 || expense < 0) {
+            throw new NegativeNumberException();
         }
     }
 
     private void executeCategoryCommand() {
         try {
             new CategoryCommand(separatedKeywordAndDescription[1]);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException error) {
             System.out.println(CATEGORY_EMPTY);
         }
     }
