@@ -46,7 +46,16 @@ public class Parser {
     }
 
     private static void parseDeleteCommand(String remainder, EventList eventList) {
-        eventList.deleteThisTask(Integer.parseInt(remainder) - OFFSET);
+        String[] details = remainder.split("-");
+        String deleteAll = details[1].substring(2).trim();
+
+        if (deleteAll == "all") {
+            for (int i = 0; i < eventList.listSize; i++) {
+                eventList.deleteThisTask(Integer.parseInt(String.valueOf(i)));
+            }
+        } else {
+            eventList.deleteThisTask(Integer.parseInt(remainder) - OFFSET);
+        }
 
         //TODO: Show successful add on UI. (For all cases)
         Ui.deleteSuccessMsg();

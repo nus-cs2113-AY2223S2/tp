@@ -72,7 +72,7 @@ public class Ui {
      */
     public static void deleteSuccessMsg() {
         printDash();
-        System.out.println("Event successfully deleted!");
+        System.out.println("Event(s) successfully deleted!");
         printDash();
     }
 
