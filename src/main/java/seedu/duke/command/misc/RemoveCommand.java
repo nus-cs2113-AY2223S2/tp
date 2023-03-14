@@ -52,6 +52,7 @@ public class RemoveCommand extends ExecutableCommand {
             dukeSession.getIngredients().remove(indexOfExistingIngredient);
             dukeSession.getUi().printMessage(String.format("All %s has been removed", name));
         }
+        dukeSession.getIngredientStorage().writeIngredientsToFile(dukeSession.getIngredients());
     }
 
     public void execute(DukeSession dukeSession) {
