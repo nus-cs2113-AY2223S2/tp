@@ -2,6 +2,7 @@ package seedu.duke;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
@@ -24,6 +25,12 @@ public class UiTest {
         ui.showWelcome();
         assertEquals("Hello! Welcome to EveNtUS!", outputStreamCaptor.toString()
                 .trim());
+    }
+
+    @AfterEach
+    public void tearDown() {
+        System.setOut(standardOut);
+        System.setOut(null);
     }
 
 }
