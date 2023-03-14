@@ -62,20 +62,36 @@ public class UI {
      * message.
      *
      * @param entryList List of entry objects with the user-specified length
-     * @param category String denoting the category requested by the user
+     * @param category  String denoting the category requested by the user
      */
     public void printEntriesToBeViewed(List<Entry> entryList, String category) {
         StringBuilder finalString = new StringBuilder();
-        finalString.append("These are the latest " + entryList.size() + " entries from the " + category +
-                " category.\n");
+        finalString.append("These are the latest ")
+                   .append(entryList.size())
+                   .append(" entries")
+                   .append(category != null
+                           ? " from the " + category + " category."
+                           : ".")
+                   .append(System.lineSeparator());
 
-        for(int index = 0; index < entryList.size(); index ++){
-            String formattedEntry = formatViewEntries(entryList.get(index),index+1);
-            finalString.append(formattedEntry + "\n");
+        for (int index = 0; index < entryList.size(); index++) {
+            String formattedEntry = formatViewEntries(entryList.get(index), index + 1);
+            finalString.append(formattedEntry)
+                       .append(System.lineSeparator());
         }
-        System.out.print(finalString.toString());
+        print(finalString.toString());
+        printLine();
     }
 
+    /**
+     * Combines all individual entry strings into a list of entries and prints the list, along with an acknowledgement
+     * message.
+     *
+     * @param entryList List of entry objects with the user-specified length
+     */
+    public void printEntriesToBeViewed(List<Entry> entryList) {
+        printEntriesToBeViewed(entryList, null);
+    }
 
     // TODO: Add expenditure edited
 
