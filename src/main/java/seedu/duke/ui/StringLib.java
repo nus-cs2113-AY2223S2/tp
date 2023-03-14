@@ -100,7 +100,10 @@ public interface StringLib {
             + "\nException occurred: ";
     String FILE_LOADING_DEFAULT_ERROR = "\nError in loading file!"
             + "\nException occurred: ";
-
     String LINE = "__________________________________________________________";
+
+    String ADD_COMMAND_FORMAT = "\"Format      : \\\"add n/<insert recipe name> i/<insert ingredients with \\\", \\\" separation> \"\n"
+            + "\"t/<insert cuisine>\\\"\\n\"\n"
+            + "\"Example use : \\\"add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese\\\" \\n \\n\"";
 
 }
