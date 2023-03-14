@@ -35,6 +35,8 @@ public class Messages {
             "view_workers\n";
     public static final String MESSAGE_COMMAND_EXIT = "Thank you for using DinerDirector!";
 
+
+    public static final String ERROR_ADD_STAFF_COMMAND = "Insufficient information when adding a staff";
     /**
      * Errors for programs to print.
      */
@@ -63,4 +65,5 @@ public class Messages {
     public static final String MESSAGE_BLANK_DISH_NAME_COMMAND = "Name of dish cannot be empty!";
     public static final String MESSAGE_NEGATIVE_PRICE_COMMAND = "Price of dish cannot be negative!";
     public static final String MESSAGE_INGREDIENT_LIST_CANNOT_BE_EMPTY = "Ingredient list cannot be empty!";
+
 }
