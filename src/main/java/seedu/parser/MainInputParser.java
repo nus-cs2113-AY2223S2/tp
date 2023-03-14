@@ -34,7 +34,13 @@ public class MainInputParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
         case DeleteCommand.COMMAND_WORD:
-            return ParseDelete.deleteItem(userInput);
+            ParseDelete prepareDelete;
+            try {
+                prepareDelete = new ParseDelete(splitValues[INDEX_USERSTRING]);
+            } catch (IndexOutOfBoundsException e){
+                return new InvalidCommand("Input command does not have required parameters!");
+            }
+            return prepareDelete.deleteItem();
         case EditCommand.COMMAND_WORD:
             ParseEdit prepareEdit = new ParseEdit(splitValues[INDEX_USERSTRING]);
             return prepareEdit.editItem();

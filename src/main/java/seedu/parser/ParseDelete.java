@@ -5,11 +5,19 @@ import seedu.commands.DeleteCommand;
 import seedu.commands.InvalidCommand;
 
 public class ParseDelete {
-    public static Command deleteItem(String line) {
+    private final String userInput;
+
+    private static final String BLANK = "";
+
+    public ParseDelete(String userInput) {
+        this.userInput = userInput;
+    }
+    public Command deleteItem() {
         try {
-            int pos = line.indexOf(" ");
-            String details = line.substring(pos+1);
+            String details = ParseIndividualValue.parseIndividualValue(userInput, BLANK , BLANK);
+            System.out.println(userInput);
             int posToDelete = Integer.parseInt(details);
+            System.out.println(posToDelete);
             return new DeleteCommand(posToDelete);
         } catch (NumberFormatException numberFormatException) {
             // posToDelete is not a proper int
