@@ -1,4 +1,4 @@
-package utils;
+package utils.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -13,19 +13,22 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import model.Card;
 import model.CardList;
-import utils.exceptions.ImportBad;
+import utils.exceptions.StorageLoadFailure;
+import utils.exceptions.StorageSaveFailure;
 
-public class Storage {
+public class JsonStorage implements IStorage {
     private File f;
 
-    public Storage(String filePath) {
+    public JsonStorage(String filePath) {
         f = new File(filePath);
     }
 
-    public void load(String fileName, CardList cardList) throws ImportBad {
-        try {
+    @Override
+    public CardList load(String fileName) throws StorageLoadFailure {
+
+        CardList cardList;
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             Gson gson = new Gson();
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             JsonElement jsonElement = gson.fromJson(reader, JsonElement.class);
             JsonObject jsonObject = jsonElement.getAsJsonObject();
             String deckName = jsonObject.get("deckName").getAsString();
@@ -33,14 +36,19 @@ public class Storage {
             JsonArray jsonArray = jsonObject.getAsJsonArray("cards");
             Type cardListType = new TypeToken<ArrayList<Card>>() {
             }.getType();
-            ArrayList<Card> cards = gson.fromJson(jsonArray, cardListType); // creates an arraylist of cards
-            CardList currentCardList = new CardList(); // creates a new cardlist
-            currentCardList.cards = cards; // appends the arraylist to the cardlist class
-            cardList.cards = currentCardList.cards; // set the cards field in the CardList object
-            reader.close();
+
+            ArrayList<Card> cards = gson.fromJson(jsonArray, cardListType);
+            cardList = new CardList(cards);
         } catch (IOException E) {
-            //too bad!
-            throw new ImportBad();
+            throw new StorageLoadFailure();
         }
+
+        return cardList;
+    }
+
+    @Override
+    public void save(String fileName, CardList cardList) throws StorageSaveFailure {
+        // TODO: Not implemented
+        throw new StorageSaveFailure();
     }
 }

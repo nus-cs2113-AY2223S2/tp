@@ -1,14 +1,20 @@
 package model;
 
 import java.util.ArrayList;
-import model.Card;
+import java.util.List;
 
 public class CardList {
 
-    public ArrayList<Card> cards;
+    private List<Card> cards;
 
+    // Initialize with no cards
     public CardList() {
         this.cards = new ArrayList<>();
+    }
+
+    // Initialize from existing container of cards
+    public CardList(List<Card> cards) {
+        this.cards = cards;
     }
 
     public void addCard(Card card) {
