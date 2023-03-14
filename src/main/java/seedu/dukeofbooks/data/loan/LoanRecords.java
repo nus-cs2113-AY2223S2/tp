@@ -8,11 +8,6 @@ import java.util.ListIterator;
 
 import seedu.dukeofbooks.data.book.BorrowableItem;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
 public class LoanRecords {
     private final List<Loan> internalList;
 

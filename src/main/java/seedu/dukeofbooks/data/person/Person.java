@@ -53,7 +53,6 @@ public class Person {
         BorrowHistory.checkHistory(this);
     }
 
-
     /**
      * Returns true if both persons have the same identity fields (name and
      * telephone).
