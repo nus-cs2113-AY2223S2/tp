@@ -11,8 +11,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class ParseLendBorrow {
-    private final int offsetDelimiter = 2;
     private final String userInput;
+
+    private static final String BLANK = "";
+    private static final String DSLASH = "d/";
+    private static final String ASLASH = "a/";
+    private static final String SSLASH = "s/";
+    private static final String BSLASH = "b/";
+    private static final String NSLASH = "n/";
 
     public ParseLendBorrow(String userInput) {
         this.userInput = userInput;
@@ -20,12 +26,13 @@ public class ParseLendBorrow {
 
     public Command addItem(String command) {
         try {
-            // Format: category d/date, a/amount, s/description
-            String descriptionVal = fetchLendBorrowDescriptionInput();
-            double amount = Double.parseDouble(fetchLendBorrowAmountInput());
-            String name = fetchLendBorrowNameInput();
-            LocalDate lentDate = LocalDate.parse(fetchLendBorrowDateInput());
-            LocalDate deadline = LocalDate.parse(fetchLendBorrowDeadlineInput());
+            // Format: category d/date, n/name, a/amount, b/deadline, s/description
+            String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
+            String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, BSLASH);
+            double amount = Double.parseDouble(amountVal);
+            String name = ParseIndividualValue.parseIndividualValue(userInput,NSLASH, ASLASH);
+            LocalDate lentDate = LocalDate.parse(ParseIndividualValue.parseIndividualValue(userInput,DSLASH, NSLASH));
+            LocalDate deadline = LocalDate.parse(ParseIndividualValue.parseIndividualValue(userInput, BSLASH, SSLASH));
 
             switch (command) {
             case LendExpenditureCommand.COMMAND_WORD:
@@ -39,65 +46,6 @@ public class ParseLendBorrow {
             return new InvalidCommand("number format problem");
         } catch (DateTimeParseException d) {
             return new InvalidCommand("date time error");
-        }
-    }
-
-    public String fetchLendBorrowDateInput() {
-        try {
-            int positionOfDSlash = userInput.indexOf("d/");
-            int positionOfNSlash = userInput.indexOf("n/");
-            String date = userInput.substring(positionOfDSlash + offsetDelimiter, positionOfNSlash).trim();
-            ExceptionChecker.checkEmptyString(date);
-            return date;
-        } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
-            return e.getMessage();
-        }
-    }
-
-    public String fetchLendBorrowNameInput() {
-        try {
-            int positionOfNSlash = userInput.indexOf("n/");
-            int positionOfASlash = userInput.indexOf("a/");
-            String name = userInput.substring(positionOfNSlash + offsetDelimiter, positionOfASlash).trim();
-            ExceptionChecker.checkEmptyString(name);
-            return name;
-        } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
-            return e.getMessage();
-        }
-    }
-
-    public String fetchLendBorrowAmountInput() {
-        try {
-            int positionOfASlash = userInput.indexOf("a/");
-            int positionOfBSlash = userInput.indexOf("b/");
-            String amount = userInput.substring(positionOfASlash + offsetDelimiter, positionOfBSlash).trim();
-            ExceptionChecker.checkEmptyString(amount);
-            return amount;
-        } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
-            return e.getMessage();
-        }
-    }
-
-    public String fetchLendBorrowDeadlineInput() {
-        try {
-            int positionOfBSlash = userInput.indexOf("b/");
-            int positionOfSSlash = userInput.indexOf("s/");
-            String amount = userInput.substring(positionOfBSlash + offsetDelimiter, positionOfSSlash).trim();
-            ExceptionChecker.checkEmptyString(amount);
-            return amount;
-        } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
-            return e.getMessage();
-        }
-    }
-
-    public String fetchLendBorrowDescriptionInput() {
-        try {
-            int positionOfSSlash = userInput.indexOf("s/");
-            String description = userInput.substring(positionOfSSlash + offsetDelimiter).trim();
-            ExceptionChecker.checkEmptyString(description);
-            return description;
-        } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
-            return e.getMessage();
         }
     }
 }
