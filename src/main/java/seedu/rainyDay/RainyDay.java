@@ -41,6 +41,7 @@ public class RainyDay {
             try {
                 Command specificCommand = Parser.parseUserInput(userInput);
                 specificCommand.setData(financialReport);
+                assert specificCommand != null : "Parser returned null";
                 specificCommand.execute();
             } catch (RainyDayException e) {
                 logger.log(Level.INFO, "RainyDayException caught");
