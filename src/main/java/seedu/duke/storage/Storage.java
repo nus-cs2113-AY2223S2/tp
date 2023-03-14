@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +19,8 @@ import seedu.duke.exceptions.InvalidReadFileException;
 
 public class Storage {
 
-    private String filePath;
-    private String delimiter;
+    private final String filePath;
+    private final String delimiter;
 
     public Storage() {
         this.filePath = StorageConstants.RELATIVE_FILE_NAME;
@@ -130,20 +129,16 @@ public class Storage {
     public List<Entry> readFromDatabase() throws IOException, InvalidReadFileException, InvalidCategoryException {
         List<Entry> entries = new ArrayList<>();
         makeFileIfNotExists();
-
+        BufferedReader csvReader = new BufferedReader(
+                new FileReader(this.filePath)
+        );
         try {
-            BufferedReader csvReader = new BufferedReader(
-                    new FileReader(this.filePath)
-            );
-
             String row;
             while ((row = csvReader.readLine()) != null) {
                 entries.add(readEntryLine(row));
             }
+        } finally {
             csvReader.close();
-        } catch (FileNotFoundException e) {
-            // discard all entries if saved data is not found
-            entries.clear();
         }
 
         return entries;
