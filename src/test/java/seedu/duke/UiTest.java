@@ -23,14 +23,12 @@ public class UiTest {
     @Test
     public void showWelcome_onStartup_displayWelcomeMessage() {
         ui.showWelcome();
-        assertEquals("Hello! Welcome to EveNtUS!", outputStreamCaptor.toString()
-                .trim());
+        assertEquals("Hello! Welcome to EveNtUS!", outputStreamCaptor.toString());
     }
 
     @AfterEach
     public void tearDown() {
         System.setOut(standardOut);
-        System.setOut(null);
     }
 
 }
