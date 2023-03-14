@@ -40,6 +40,7 @@ public class DinerDirector {
         while (!isExit) {
             String userInput = ui.getUserInput();
             Command command = new Parser().parseCommand(userInput);
+            assert command.equals(command.getClass()) : "command should be a command class";
             command.execute(ui);
             isExit = command.isExit();
         }
