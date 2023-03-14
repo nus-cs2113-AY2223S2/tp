@@ -3,11 +3,11 @@ package seedu.rainyDay;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import seedu.rainyDay.command.DeleteFinancialStatement;
-import seedu.rainyDay.command.GenerateReport;
+import seedu.rainyDay.command.DeleteCommand;
+import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
-import seedu.rainyDay.command.AddFinancialStatement;
+import seedu.rainyDay.command.AddCommand;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -39,7 +39,7 @@ public class CommandTest {
     @Test
     public void addFinancialStatement() {
         setUpStreams();
-        new AddFinancialStatement("Ipad", "out", 120).execute();
+        new AddCommand("Ipad", "out", 120).execute();
         String expectedAddStatement = "Done! Added: out for Ipad, -$120" + System.lineSeparator();
         assertEquals(expectedAddStatement, outContent.toString());
         restoreStreams();
@@ -48,7 +48,7 @@ public class CommandTest {
     @Test
     public void addMultipleFinancialStatement() {
         setUpStreams();
-        new AddFinancialStatement("angpao", "in", 3000).execute();
+        new AddCommand("angpao", "in", 3000).execute();
         String expectedAddStatement = "Done! Added: in for angpao, +$3000" + System.lineSeparator();
         assertEquals(expectedAddStatement, outContent.toString());
         restoreStreams();
@@ -59,11 +59,11 @@ public class CommandTest {
     @Test
     public void deleteFinancialStatement() {
         //RainyDay.clearFinancialReport();
-        new AddFinancialStatement("Ipad", "out", 120).execute();
-        new AddFinancialStatement("angpao", "in", 3000).execute();
+        new AddCommand("Ipad", "out", 120).execute();
+        new AddCommand("angpao", "in", 3000).execute();
 
         setUpStreams();
-        new DeleteFinancialStatement(1).execute();
+        new DeleteCommand(1).execute();
         String expectedDeleteStatement = "Done, deleted \"Ipad\" from the financial report"
                 + System.lineSeparator();
         assertEquals(expectedDeleteStatement, outContent.toString());
@@ -81,7 +81,9 @@ public class CommandTest {
     public void generateEmptyReport() {
         setUpStreams();
         //RainyDay.clearFinancialReport();
-        new GenerateReport(financialReport).execute();
+        ViewCommand viewList = new ViewCommand();
+        viewList.setData(financialReport);
+        viewList.execute();
         String expectedReport = "Your financial report is empty" + System.lineSeparator();
         assertEquals(expectedReport, outContent.toString());
         restoreStreams();
@@ -94,7 +96,9 @@ public class CommandTest {
         financialReport.addStatement(new FinancialStatement("Ipad", "out", 120));
         financialReport.addStatement(new FinancialStatement("pork", "out", 5));
         financialReport.addStatement(new FinancialStatement("angpao", "in", 3000));
-        new GenerateReport(financialReport).execute();
+        ViewCommand viewList = new ViewCommand();
+        viewList.setData(financialReport);
+        viewList.execute();
         String expectedReport = String.join(System.lineSeparator(), "Here is your full financial report!",
                 "1. Ipad -$120 (out)", "2. pork -$5 (out)", "3. angpao +$3000 (in)" + System.lineSeparator(),
                 "Inflow: $3000", "Outflow: $125", "Remaining value: $2875" + System.lineSeparator());

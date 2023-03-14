@@ -1,21 +1,18 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.data.FinancialReport;
-import seedu.rainyDay.modules.UI;
+import seedu.rainyDay.modules.Ui;
 
-public class GenerateReport extends Command {
-    private FinancialReport financialReport;
+public class ViewCommand extends Command {
 
-    public GenerateReport(FinancialReport financialReport) {
-        this.financialReport = financialReport;
+    public ViewCommand() {
     }
 
     public void execute() {
         if (financialReport.getStatementCount() == 0) {
-            UI.emptyFinancialReport();
+            Ui.emptyFinancialReport();
             return;
         }
-        UI.acknowledgeViewCommand();
+        Ui.acknowledgeViewCommand();
         int totalInflow = 0;
         int totalOutflow = 0;
         for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
@@ -27,8 +24,8 @@ public class GenerateReport extends Command {
             int index = i + 1;
             String financialStatement = String.format("%d. %s", index,
                     financialReport.getFullStatement(i));
-            UI.printFinancialStatement(financialStatement);
+            Ui.printFinancialStatement(financialStatement);
         }
-        UI.printSummary(totalInflow, totalOutflow);
+        Ui.printSummary(totalInflow, totalOutflow);
     }
 }

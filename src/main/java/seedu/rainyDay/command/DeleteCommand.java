@@ -2,17 +2,18 @@ package seedu.rainyDay.command;
 
 import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.modules.Storage;
-import seedu.rainyDay.modules.UI;
+import seedu.rainyDay.modules.Ui;
 
-public class DeleteFinancialStatement extends Command{
+public class DeleteCommand extends Command {
     int index;
-    public DeleteFinancialStatement(int index) {
+
+    public DeleteCommand(int index) {
         this.index = index;
     }
 
     public void execute() {
         index -= 1;
-        UI.printDeletedFinancialStatement(RainyDay.financialReport.getStatementDescription(index));
+        Ui.printDeletedFinancialStatement(RainyDay.financialReport.getStatementDescription(index));
         RainyDay.financialReport.deleteStatement(index);
         Storage.writeToFile(RainyDay.financialReport, RainyDay.filePath);
     }

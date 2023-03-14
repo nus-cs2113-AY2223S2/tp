@@ -1,6 +1,6 @@
 package seedu.rainyDay;
 
-import seedu.rainyDay.modules.UI;
+import seedu.rainyDay.modules.Ui;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class UITest {
+class UiTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -31,9 +31,10 @@ class UITest {
 
     @Test
     void checkGreetingPrinted() {
+        Ui ui = new Ui();
         setUpStreams();
         String expectedGreeting = "Welcome pekopekopeko" + System.lineSeparator();
-        UI.greetUser("pekopekopeko");
+        ui.greetUser("pekopekopeko");
         assertEquals(expectedGreeting, outContent.toString());
         restoreStreams();
     }

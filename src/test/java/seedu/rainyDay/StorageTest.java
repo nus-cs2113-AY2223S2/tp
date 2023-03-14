@@ -1,6 +1,6 @@
 package seedu.rainyDay;
 
-import seedu.rainyDay.command.GenerateReport;
+import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.modules.Storage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,9 @@ public class StorageTest {
         String filePath = "rainyDay.txt";
         Storage.writeToFile(financialReport, filePath);
         FinancialReport financialReportLoaded = new FinancialReport(Storage.loadFromFile(filePath));
-        new GenerateReport(financialReportLoaded).execute();
+        ViewCommand viewList = new ViewCommand();
+        viewList.setData(financialReportLoaded);
+        viewList.execute();
         assertEquals(financialReport.getFullStatement(0),
                 financialReportLoaded.getFullStatement(0));
     }
