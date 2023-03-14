@@ -25,6 +25,7 @@ public class ParserAdd {
             if (type == INVALID_INDEX) {
                 continue;
             }
+            assert type != INVALID_INDEX;
             parsedInput[type] = words[i].substring(substringIndex(type));
         }
         return parsedInput;

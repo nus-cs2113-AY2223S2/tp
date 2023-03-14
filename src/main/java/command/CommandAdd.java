@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import static common.MessageList.MESSAGE_DIVIDER_LIST;
+import static common.MessageList.SUCCESSFUL_ADD;
 
 public class CommandAdd extends Command {
     public static final String COMMAND_NAME = "add";
@@ -32,29 +32,28 @@ public class CommandAdd extends Command {
         this.parsedInput = parsedInput;
     }
 
-    @Override
-    public CommandRes execute() {
-        return new CommandRes(MESSAGE_DIVIDER_LIST, expenseList, ExpenseList.getAllMessage(expenseList));
-    }
-
     /**
      * Adds an entry into the ArrayList based on the parsed input provided.
      */
-    public void run() {
+    @Override
+    public CommandRes execute() {
         try {
             Time date = new Time(LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter));
-            Expense expense = new Expense(Double.parseDouble(parsedInput[ParserAdd.AMOUNT_INDEX]),
+            Expense addedExpense = new Expense(Double.parseDouble(parsedInput[ParserAdd.AMOUNT_INDEX]),
                     date, parsedInput[ParserAdd.CATEGORY_INDEX],
                     Currency.checkCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]));
-            expenseList.add(expense);
-        }catch (NumberFormatException e) {
+            expenseList.add(addedExpense);
+            return new CommandRes(SUCCESSFUL_ADD, addedExpense,
+                    ExpenseList.getAllMessage(expenseList));
+        } catch (NumberFormatException e) {
             System.out.println("Please input a valid amount.");
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             System.out.println("Please input both the amount and date with amt/ and t/ respectively.");
-        }catch (DateTimeException e) {
+        } catch (DateTimeException e) {
             System.out.println("Invalid date. Please input the date in dd-MM-yyyy format.");
         }
-
+        assert false;
+        return null;
     }
 
 }
