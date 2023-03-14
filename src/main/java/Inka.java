@@ -1,12 +1,11 @@
 import model.CardList;
 import utils.Parser;
-import utils.exceptions.StorageLoadFailure;
-import utils.storage.IStorage;
-import utils.storage.JsonStorage;
 import utils.UserInterface;
 import utils.command.Command;
 import utils.exceptions.ExceptionHandler;
-import utils.exceptions.StorageSaveFailure;
+import utils.exceptions.StorageLoadFailure;
+import utils.storage.IStorage;
+import utils.storage.JsonStorage;
 
 public class Inka {
 
@@ -39,9 +38,8 @@ public class Inka {
         ui.printGreeting();
 
         while (parser.getIsExecuting()) {
-            // TODO: Confusing naming
-            String userCommand = ui.getCommand();
-            Command command = exceptionHandler.mainExceptionHandler(parser, userCommand, ui, cardList);
+            String userInput = ui.getUserInput();
+            Command command = exceptionHandler.mainExceptionHandler(parser, userInput, ui, cardList);
             command.execute(cardList, ui);
         }
     }

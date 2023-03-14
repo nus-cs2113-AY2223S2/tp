@@ -1,18 +1,18 @@
 package utils.exceptions;
 
 import model.CardList;
-import utils.command.Command;
-import utils.command.ExceptionCommand;
 import utils.Parser;
 import utils.UserInterface;
+import utils.command.Command;
+import utils.command.ExceptionCommand;
 
 public class ExceptionHandler {
 
-    public Command mainExceptionHandler(Parser parser, String userCommand, UserInterface userInterface,
+    public Command mainExceptionHandler(Parser parser, String userInput, UserInterface userInterface,
             CardList cardList) {
         Command command = new ExceptionCommand();
         try {
-            command = parser.parseCommand(userCommand, cardList);
+            command = parser.parseCommand(userInput, cardList);
         } catch (DeleteMissingNumber e) {
             userInterface.printDeleteError();
         } catch (NumberFormatException e) {

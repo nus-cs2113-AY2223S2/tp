@@ -12,26 +12,26 @@ public class UserInterface {
         scanner = new Scanner(System.in);
     }
 
-    public String getCommand() {
+    public String getUserInput() {
         return scanner.nextLine();
     }
 
-    public void printLine() {
+    public void printDivider() {
         System.out.println("_".repeat(LINE_LENGTH));
     }
 
     public void printGreeting() {
-        printLine();
+        printDivider();
         System.out.println(StringArt.INKA.art);
         System.out.println("Welcome to Inka ! Say no more to failing exams as Inka will be your lord and saviour!");
-        printLine();
+        printDivider();
     }
 
     public void printBye() {
-        printLine();
+        printDivider();
         System.out.println(StringArt.BYE.art);
         System.out.println("\n Bye! All the best for your exams man!!!");
-        printLine();
+        printDivider();
     }
 
     public void printNumOfQuestions(CardList cardList) {
