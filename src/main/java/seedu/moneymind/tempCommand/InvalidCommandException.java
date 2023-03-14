@@ -1,4 +1,4 @@
-package seedu.moneymind.command;
+package seedu.moneymind.tempCommand;
 
 public class InvalidCommandException extends Exception {
     private String errorMessage;
