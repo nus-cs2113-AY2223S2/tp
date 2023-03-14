@@ -2,10 +2,10 @@ package eventus.company;
 
 public class Company {
     private String companyName;
-    private String contactNumber;
+    private int contactNumber;
     private String contactEmail;
 
-    public Company(String companyName, String contactNumber, String contactEmail){
+    public Company(String companyName, int contactNumber, String contactEmail) throws seedu.duke.InputMismatchException{
         this.companyName = companyName;
         this.contactNumber = contactNumber;
         this.contactEmail = contactEmail;
@@ -15,7 +15,7 @@ public class Company {
         return companyName;
     }
 
-    public String getContactNumber(){
+    public int getContactNumber(){
         return contactNumber;
     }
 

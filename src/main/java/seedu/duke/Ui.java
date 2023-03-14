@@ -22,7 +22,6 @@ public class Ui {
         showLine();
         System.out.println("Bye!");
         showLine();
-        exitProgram();
     }
 
     public void exitProgram() {
