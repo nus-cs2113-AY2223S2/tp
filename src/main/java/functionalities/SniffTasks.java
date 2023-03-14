@@ -6,35 +6,40 @@ import java.util.ArrayList;
 
 public class SniffTasks {
 
-    private static final ArrayList<Appointment> APPOINTMENTS = new ArrayList<Appointment>();
+    private static final ArrayList<Appointment> APPOINTMENTS = new ArrayList<>();
+    private static final int appointmentCount = 0;
 
-    private static int apptCount = 0;
+    public void addAppointment(String uid, String type, String animal, String name, String date) throws SniffException {
+        try {
+            APPOINTMENTS.add(new Appointment(uid, type, animal, name, date));
 
-    public void addAppointment() {
+        }catch (StringIndexOutOfBoundsException e){
+            throw new SniffException("Invalid add description !!");
+        }
     }
 
-    public void removeAppointment(int apptNum) throws SniffException {
+    public void removeAppointment(int appointmentNumber) throws SniffException {
         try {
-            APPOINTMENTS.remove(apptNum);
+            APPOINTMENTS.remove(appointmentNumber);
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The remove command description is invalid!");
         }
     }
 
-    public Appointment getAppointment(int apptNum) {
-        return APPOINTMENTS.get(apptNum);
+    public Appointment getAppointment(int appointmentNumber) {
+        return APPOINTMENTS.get(appointmentNumber);
     }
 
     /**
      * Lists out all the appointment currently in the appointment list.
      */
     public void listAppointments() {
-        for (int count = 0; count < apptCount; count++) {
-            Appointment appt = getAppointment(count);
-            String type = appt.getType();
-            String animal = appt.getAnimal();
-            String name = appt.getName();
-            String date = appt.getDate();
+        for (int count = 0; count < appointmentCount; count++) {
+            Appointment appointment = getAppointment(count);
+            String type = appointment.getType();
+            String animal = appointment.getAnimal();
+            String name = appointment.getName();
+            String date = appointment.getDate();
             Ui.formatPrintList(Integer.toString(count + 1), type, animal, name, date);
         }
     }
