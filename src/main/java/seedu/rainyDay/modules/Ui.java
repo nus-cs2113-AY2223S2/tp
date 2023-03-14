@@ -18,7 +18,6 @@ public class Ui {
     public static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
     public static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
 
-    private static String username;
     private final Scanner in;
     private final PrintStream out; // currently unused, to be implemented
 
@@ -33,13 +32,12 @@ public class Ui {
 
     public void printLogo() {
         System.out.println("Hello from rainyDay");
-        System.out.println("What is your name?");
     }
 
-    public void greetUser(String name) {
-        username = name;
-        if (name.trim().isEmpty()) {
-            System.out.println("Very funny");
+    public void greetUser(String username) {
+
+        if (username.trim().isEmpty()) {
+            System.out.println("Very funny, you should not have an empty name!");
             System.exit(0);
         }
         System.out.println("Welcome " + username);
@@ -58,7 +56,9 @@ public class Ui {
     }
 
     public String readUserName() {
+        System.out.println("Welcome new user! What is your name?");
         String userInput = in.nextLine().trim();
+
         return userInput;
     }
 
@@ -108,7 +108,7 @@ public class Ui {
         System.out.println("Please refer to the help table!");
     }
 
-    public void sayFarewellToUser() {
+    public void sayFarewellToUser(String username) {
         System.out.println("Bye " + username);
     }
 

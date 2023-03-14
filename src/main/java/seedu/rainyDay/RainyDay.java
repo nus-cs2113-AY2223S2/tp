@@ -26,12 +26,13 @@ public class RainyDay {
         } catch (IOException | ClassNotFoundException | ClassCastException e) {
             logger.log(Level.INFO, "No valid save file detected. Starting with empty financial data.");
             ui.noFileExist();
+            financialReport.setReportOwner(ui.readUserName());
         }
     }
 
     private void run() {
         ui.printLogo();
-        ui.greetUser(ui.readUserName());
+        ui.greetUser(financialReport.getReportOwner());
         ui.printEmptyLine();
 
         while (true) {
@@ -52,7 +53,7 @@ public class RainyDay {
                 logger.log(Level.WARNING, e.getMessage());
             }
         }
-        ui.sayFarewellToUser();
+        ui.sayFarewellToUser(financialReport.getReportOwner());
     }
 
     public static void main(String[] args) {
