@@ -112,9 +112,6 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
-        assert (ui != null & storage != null & taskList != null & moduleList != null) :
-                "executing AddCommand";
-        
         switch (command) {
         case COMMAND_TODO_WORD:
             taskList.add(new ToDo(desc));
