@@ -16,9 +16,9 @@ import java.nio.file.Path;
 
 public class IngredientStorage {
 
+    public String filename = "ingredients.txt";
     private Gson gson = new Gson();
     private BufferedWriter bufferedWriter = null;
-    private String filename = "ingredients.txt";
 
     /**
      * Checks for existing file containing ingredients and initialises buffered writer accordingly
@@ -35,6 +35,7 @@ public class IngredientStorage {
             }
             return;
         }
+        assert ingredientFileExists;
         processStoredIngredients(ingredients);
         try {
             this.bufferedWriter = new BufferedWriter(new FileWriter(filename, true));
