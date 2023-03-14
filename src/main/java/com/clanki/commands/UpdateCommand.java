@@ -54,7 +54,7 @@ public class UpdateCommand extends Command {
     public void execute(FlashcardList flashcardList, Ui display) {
         ArrayList<Flashcard> flashcards = flashcardList.getFlashCards();
         findFlashcard(flashcards, query);
-        System.out.println("Found " + matchingFlashcards.size() + " cards with the query \"" + query + "\": ");
+        System.out.println("Found " + matchingFlashcards.size() + " cards with the query \"" + query + "\":");
         printFlashCards(matchingFlashcards);
         System.out.println("Which flashcard do you want to update?");
         String userText = display.getUserCommand();
