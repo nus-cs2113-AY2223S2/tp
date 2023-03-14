@@ -14,7 +14,7 @@ class RemoveTest {
         Inventory.addItem(item1);
         Inventory.addItem(item2);
         Inventory.addItem(item3);
-
+        
         Inventory.removeItemAtIndex(2, "Y");
 
         assertEquals(2, Inventory.getItemList().size());
