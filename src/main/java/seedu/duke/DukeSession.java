@@ -21,7 +21,6 @@ import java.util.Scanner;
 
 public class DukeSession {
 
-
     private static final CommandRouterNode COMMAND_TREE =
             new CommandRouterNode()
 
@@ -33,19 +32,26 @@ public class DukeSession {
                     .route("remove", new RemoveCommandFactory())
                     .route("recipe", new CommandRouterNode()
 <<<<<<< HEAD
+<<<<<<< HEAD
                             .route("possible", new RecipePossibleCommandFactory())
                             .route("all", new RecipeAllCommandFactory()));
 =======
                             .route("possible", new RecipePossibleCommandFactory()))
+=======
+                            .route("possible", new RecipePossibleCommandFactory())
+                            .route("all", new RecipeAllCommandFactory()))
+>>>>>>> c138406f7cafd97a5c4f25f7e43298a13cbac4de
                     .route("ingredients", new CommandRouterNode()
                             .route("list", new IngredientsListCommandFactory())
                     );
     private final IngredientList ingredients;
+<<<<<<< HEAD
 >>>>>>> 69196fcb766099f638bdd16c4d1cd2d3c79b9aef
+=======
+>>>>>>> c138406f7cafd97a5c4f25f7e43298a13cbac4de
     private final RecipeList recipes;
     private final DukeUI ui;
     private final DukeControlFlow controlFlow;
-
     private final IngredientStorage ingredientStorage;
 
 
