@@ -253,10 +253,10 @@ public class Inventory {
     /**
      * Removes item from the array list of items and upc of item from hashmap of upc
      * using item's unique upc.
-     * @param itemToRemove
-     * @param upcCode
-     * @param confirmation
-     * @return
+     * @param itemToRemove The item that user has specified to remove.
+     * @param upcCode The UPC value of the item to be removed.
+     * @param confirmation Confirmation string to be given by user.
+     * @return The index of the item to be removed, otherwise -1.
      */
     public static int removeByUpc(Item itemToRemove, String upcCode, String confirmation) {
         switch (confirmation.toUpperCase()) {
