@@ -61,14 +61,10 @@ public class Ui {
     public static void showHelp() {
         System.out.println("    ADD RECORDS:");
         System.out.println("    add expense /c <category> /de <description> /da <date> /v <value>");
-        System.out.println("    add income");
+        System.out.println("    add income /de <description> /da <date> /v <value>");
         System.out.println();
         System.out.println("    SHOW ALL RECORDS:");
         System.out.println("    list");
-        System.out.println();
-        System.out.println("    EDIT RECORDS:");
-        System.out.println("    edit expense <index> /c <category> /de <description> /da <date> /v <value>");
-        System.out.println("    edit income <index>");
         System.out.println();
         System.out.println("    DELETE RECORDS:");
         System.out.println("    delete expense <index>");
@@ -86,5 +82,8 @@ public class Ui {
 
     public void showError(String message) {
         System.out.println("    " + message);
+    }
+    public void showInvalidMessage() {
+        System.out.println("Command is not recognized, use help for valid commands");
     }
 }

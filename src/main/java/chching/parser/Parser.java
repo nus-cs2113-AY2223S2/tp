@@ -1,7 +1,7 @@
 package chching.parser;
 
-import chching.ChChingException;
 import chching.command.Command;
+import chching.command.InvalidCommand;
 import chching.command.DeleteExpenseCommand;
 import chching.command.DeleteIncomeCommand;
 import chching.command.AddExpenseCommand;
@@ -32,7 +32,7 @@ public class Parser {
         String instruction = lineParts.get(0);
         List<String> arguments = lineParts.subList(1, lineParts.size());
         HashMap<String, String> argumentsByField = sortArguments(arguments);
-        Command command = new ExitCommand();
+        Command command = new InvalidCommand();
         try {
             switch (instruction) {
             case "add income":
@@ -52,19 +52,12 @@ public class Parser {
             case "list":
                 command = new ListCommand();
                 break;
-            case "edit income":
-                Incomes.editIncome(argumentsByField, incomeList);
-                break;
-            case "edit expense":
-                Expense updatedExpense = Expenses.parseUpdateExpense(argumentsByField, expenseList);
-                break;
             case "delete income":
                 command = new DeleteIncomeCommand(Integer.parseInt(argumentsByField.get("no")));
                 break;
             case "delete expense":
                 command = new DeleteExpenseCommand(Integer.parseInt(argumentsByField.get("no")));
                 break;
-
             case "balance":
                 command = new BalanceCommand();
                 break;
@@ -75,9 +68,10 @@ public class Parser {
                 command = new HelpCommand();
                 break;
             default:
-                System.out.println("Command not recognized, please enter a valid command!");
+                command = new InvalidCommand();
             }
         } catch (Exception e) {
+            System.out.println("Error receiving command");
         }
         return command;
     }
