@@ -43,6 +43,10 @@ public class Ui {
         System.out.println("Bye. Don't forget to come back later to study!");
     }
 
+    public void printWelcomeMessage() {
+        System.out.println("Welcome to Clanki! Time to start studying!");
+    }
+
     public void printInvalidInput() {
         System.out.println("The input is in an incorrect format.");
     }

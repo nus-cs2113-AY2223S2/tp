@@ -22,6 +22,7 @@ public class Clanki {
     }
 
     public void run() {
+        ui.printWelcomeMessage();
         while (true) {
             String inputText = ui.getUserCommand();
             Command command = parser.parseCommand(inputText);
