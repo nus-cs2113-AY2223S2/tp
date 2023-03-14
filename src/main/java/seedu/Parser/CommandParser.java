@@ -14,7 +14,6 @@ public class CommandParser {
     public static Command parse(String userInput) throws LifeTrackerException {
         String[] userInputArray = userInput.split(" ");
         String commandWord = userInputArray[0];
-        String commandDescriptor = userInput.substring(commandWord.length()).trim();
         Command command;
 
         switch(commandWord) {

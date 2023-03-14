@@ -2,14 +2,14 @@ package seedu.Ui;
 
 import seedu.Database.FoodStorage;
 import seedu.Database.MealStorage;
-import seedu.Entities.Food;
 import seedu.Entities.Meal;
 
 import java.util.Scanner;
 
 public class GeneralUi {
-
     public static Scanner sc = new Scanner(System.in);
+    private static String endingMessage = "Bye! Hope to see you again soon!";
+    private static String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!\n";
 
     /**
      * Reads user input
@@ -38,9 +38,6 @@ public class GeneralUi {
         System.out.println("------------------------------------------------------------");
     }
 
-    private String endingMessage = "Bye! Hope to see you again soon!";
-
-    private String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!\n";
 
     /**
      * Prints Goodbye message when Duke exits
