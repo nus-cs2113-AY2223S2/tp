@@ -1,26 +1,30 @@
 package seedu.rainyDay.data;
 
-import seedu.rainyDay.RainyDay;
+import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.Command;
-import seedu.rainyDay.modules.UI;
+import seedu.rainyDay.command.DeleteCommand;
+import seedu.rainyDay.command.ViewCommand;
+import seedu.rainyDay.exceptions.ErrorMessage;
+import seedu.rainyDay.exceptions.RainyDayException;
+import seedu.rainyDay.modules.Ui;
 
 public class Parser {
-    public static void parseUserInput(String userInput) throws IllegalArgumentException {
+    public static Command parseUserInput(String userInput) throws IllegalArgumentException, RainyDayException {
         String action = userInput.split("\\s+")[0];
         if (action.equalsIgnoreCase(Command.COMMAND_ADD)) {
-            addStatement(userInput);
+            return addStatement(userInput);
         } else if (action.equalsIgnoreCase(Command.COMMAND_DELETE)) {
-            deleteStatement(userInput);
+            return deleteStatement(userInput);
         } else if (action.equalsIgnoreCase(Command.COMMAND_VIEW)) {
-            Command.generateReport(RainyDay.financialReport);
-        } else if (action.equalsIgnoreCase(Command.COMMAND_HELP)) {
-            UI.displayHelp();
+            return generateReport();
+            //} else if (action.equalsIgnoreCase(Command.COMMAND_HELP)) {
+            //    UI.displayHelp();
         } else {
-            UI.unrecognisedInput();
+            throw new RainyDayException(ErrorMessage.UNRECOGNIZED_INPUT.toString());
         }
     }
 
-    private static void addStatement(String userInput) {
+    private static AddCommand addStatement(String userInput) {
         try {
             String[] tokens = userInput.split("-", 2);
             String[] inputs = tokens[1].split("\\s+", 2);
@@ -28,22 +32,26 @@ public class Parser {
             String[] data = inputs[1].split("\\$");
             String description = data[0].trim();
             String amount = data[1];
-            Command.addFinancialStatement(description, flowDirection, Integer.parseInt(amount));
+            return new AddCommand(description, flowDirection, Integer.parseInt(amount));
         } catch (Exception e) {
-            throw new IllegalArgumentException(UI.WRONG_ADD_FORMAT);
+            throw new IllegalArgumentException(Ui.WRONG_ADD_FORMAT);
         }
     }
 
-    public static void deleteStatement(String userInput) throws IllegalArgumentException {
+    public static DeleteCommand deleteStatement(String userInput) throws IllegalArgumentException {
         String[] tokens = userInput.split("\\s+");
         if (tokens.length < 2) {
-            throw new IllegalArgumentException(UI.NO_DELETE_INDEX);
+            throw new IllegalArgumentException(Ui.NO_DELETE_INDEX);
         }
         try {
             int index = Integer.parseInt(tokens[1]);
-            Command.deleteFinancialStatement(index);
+            return new DeleteCommand(index);
         } catch (Exception e) {
-            throw new IllegalArgumentException(UI.WRONG_DELETE_INDEX);
+            throw new IllegalArgumentException(Ui.WRONG_DELETE_INDEX);
         }
+    }
+
+    public static ViewCommand generateReport() {
+        return new ViewCommand();
     }
 }

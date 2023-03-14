@@ -5,9 +5,19 @@ import java.util.ArrayList;
 
 public class FinancialReport implements Serializable {
     private final ArrayList<FinancialStatement> financialReport;
+    private String reportOwner = null;
+
 
     public FinancialReport(ArrayList<FinancialStatement> financialReport) {
         this.financialReport = financialReport;
+    }
+
+    public String getReportOwner() {
+        return reportOwner;
+    }
+
+    public void setReportOwner(String name) {
+        this.reportOwner = name;
     }
 
     public int getStatementCount() {
