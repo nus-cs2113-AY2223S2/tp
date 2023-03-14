@@ -74,5 +74,36 @@ public class Expense {
         return (currencyString + amountString + " cat:" + descriptionString + " date:" + timeString);
     }
 
+    public void printExpense() {
+        String currencyString = Currency.returnCurrency(this.currencyType);
+        String descriptionString = this.description;
+        String timeString = this.expenseTime.toString();
+
+        System.out.print(currencyString);
+        printExpenseAmount();
+        System.out.println(" cat:" + descriptionString + " date:" + timeString);
+    }
+
+    /**
+     * To standardize the printed expense amount to be 2 decimal places
+     * If the number is integer or only 1 digit, then no change
+     */
+    public void printExpenseAmount() {
+        String expenseAmountString = Double.toString(expenseAmount);
+        if (!expenseAmountString.contains(".")) {
+            // Without any digit
+            System.out.print(expenseAmountString);
+        } else {
+            int digitNumbers = expenseAmountString.length() - expenseAmountString.indexOf(".") - 1;
+            if (digitNumbers == 1) {
+                // One digit
+                System.out.print(expenseAmountString);
+            } else {
+                double expenseAmountTwoDecimal = Math.round(this.expenseAmount * 100.0) / 100.0;
+                System.out.printf("%.2f", expenseAmountTwoDecimal);
+            }
+
+        }
+    }
 }
 
