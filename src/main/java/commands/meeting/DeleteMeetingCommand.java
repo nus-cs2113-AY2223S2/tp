@@ -19,10 +19,10 @@ public class DeleteMeetingCommand extends Command {
 
     @Override
     public void execute(TextUi ui) {
-        boolean hasDelete=MeetingManager.deleteMeeting(issue);
-        if(hasDelete){
-            ui.printMessage(issue+" deleted");
-        } else{
+        boolean hasDelete = MeetingManager.deleteMeeting(issue);
+        if (hasDelete) {
+            ui.printMessage(issue + " deleted");
+        } else {
             ui.printMessage("Sorry! There's no such meeting");
         }
     }

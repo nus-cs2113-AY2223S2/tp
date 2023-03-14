@@ -1,7 +1,6 @@
 package utils;
 
 
-
 import commands.staff.AddStaffCommand;
 import commands.staff.ViewStaffCommand;
 import commands.staff.DeleteStaffCommand;
@@ -22,9 +21,11 @@ import commands.Command;
 import common.Messages;
 import exceptions.DinerDirectorException;
 import entity.Deadline;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
 import static manager.DishManager.getDishesSize;
 
 /**
@@ -74,6 +75,7 @@ public class Parser {
         }
         //@@damithc
     }
+
     //Solution below adapted from https://github.com/Stella1585/ip/blob/master/src/main/java/duke/Parser.java
     private Command prepareAddMeetingCommand(String description) {
         String[] words = (description.trim()).split("t/");
@@ -158,14 +160,17 @@ public class Parser {
     private Command prepareHelpCommand() {
         return new HelpCommand();
     }
+
     private Command prepareExitCommand() {
         return new ExitCommand();
     }
 
     //Solution below adapted from https://github.com/Stella1585/ip/blob/master/src/main/java/duke/Parser.java
+
     /**
      * Creates a deadline item based on descriptions given by the user, then returns
      * an add deadline command.
+     *
      * @param description contains the deadline description and due date.
      * @return the add deadline command.
      */
@@ -190,12 +195,13 @@ public class Parser {
 
     /**
      * Checks for error in the view deadline command, then returns a view deadline command.
+     *
      * @param userInput view deadline command
      * @return the view deadline command.
      */
-    private Command prepareViewDeadlineCommand(String userInput){
+    private Command prepareViewDeadlineCommand(String userInput) {
         try {
-            if(!(userInput.trim()).isEmpty()){
+            if (!(userInput.trim()).isEmpty()) {
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_EXCESS_LIST_PARAM);
             }
         } catch (DinerDirectorException e) {
@@ -209,6 +215,7 @@ public class Parser {
     /**
      * Checks for error in the delete deadline command, then returns
      * a delete deadline command.
+     *
      * @param description contains the index number.
      * @return the delete deadline command.
      */

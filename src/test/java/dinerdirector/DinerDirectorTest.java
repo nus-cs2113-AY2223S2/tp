@@ -33,7 +33,7 @@ public class DinerDirectorTest {
 
         for (String listOfCommand : listOfCommands) {
             Command command = new Parser().parseCommand(listOfCommand);
-            if (listOfCommand.equals("view_meeting")){
+            if (listOfCommand.equals("view_meeting")) {
                 assertTrue(command instanceof IncorrectCommand);
             } else if (listOfCommand.equals("view_meetings")) {
                 assertTrue(command instanceof ViewMeetingCommand);
@@ -41,7 +41,7 @@ public class DinerDirectorTest {
                 assertTrue(command instanceof AddMeetingCommand);
             } else if (listOfCommand.equals("delete_meeting n/a")) {
                 assertTrue(command instanceof DeleteMeetingCommand);
-            } 
+            }
         }
     }
 

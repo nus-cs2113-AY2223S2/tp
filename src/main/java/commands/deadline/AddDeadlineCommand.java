@@ -10,6 +10,7 @@ public class AddDeadlineCommand extends commands.Command {
 
     /**
      * Creates an add deadline command that adds the deadline item being passed through.
+     *
      * @param deadline the deadline to add to the list.
      */
     public AddDeadlineCommand(Deadline deadline) {
@@ -18,6 +19,7 @@ public class AddDeadlineCommand extends commands.Command {
 
     /**
      * Executes the add deadline command.
+     *
      * @param ui manages user input.
      */
     @Override

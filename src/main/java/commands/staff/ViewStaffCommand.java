@@ -6,6 +6,7 @@ import ui.TextUi;
 
 public class ViewStaffCommand extends Command {
     public static final String COMMAND_WORD = "view_staff";
+
     public ViewStaffCommand() {
     }
 

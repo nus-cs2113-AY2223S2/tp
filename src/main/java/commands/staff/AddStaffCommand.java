@@ -11,7 +11,8 @@ public class AddStaffCommand extends Command {
     private String workingDay;
     private String phoneNumber;
     private String dateOfBirth;
-    public AddStaffCommand(String name, String workingDay, String phoneNumber, String dateOfBirth){
+
+    public AddStaffCommand(String name, String workingDay, String phoneNumber, String dateOfBirth) {
         this.name = name;
         this.workingDay = workingDay;
         this.phoneNumber = phoneNumber;
@@ -19,14 +20,14 @@ public class AddStaffCommand extends Command {
     }
 
     @Override
-    public void execute (TextUi ui){
+    public void execute(TextUi ui) {
         Staff staff = new Staff(this.name, this.workingDay, this.phoneNumber, this.dateOfBirth);
         StaffManager.addStaff(staff);
         ui.printMessage(staff + " added!");
     }
 
     @Override
-    public boolean isExit (){
+    public boolean isExit() {
         return false;
     }
 }

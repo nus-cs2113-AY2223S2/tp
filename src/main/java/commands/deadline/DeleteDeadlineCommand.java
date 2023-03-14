@@ -9,6 +9,7 @@ public class DeleteDeadlineCommand extends commands.Command {
 
     /**
      * Creates a delete deadline command that deletes the deadline item of the index being passed through.
+     *
      * @param index the index of the deadline item to delete.
      */
     public DeleteDeadlineCommand(int index) {
@@ -17,6 +18,7 @@ public class DeleteDeadlineCommand extends commands.Command {
 
     /**
      * Executes the delete deadline command.
+     *
      * @param ui manages user input.
      */
     @Override

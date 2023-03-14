@@ -8,6 +8,7 @@ public class ViewDeadlineCommand extends commands.Command {
 
     /**
      * Executes the view deadline command.
+     *
      * @param ui manages user input.
      */
     @Override
