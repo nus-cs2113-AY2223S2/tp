@@ -7,7 +7,6 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Ui {
-
     public static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
     public static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
     public static final String ACKNOWLEDGE_VIEW_MESSAGE = "Here is your full financial report!";
