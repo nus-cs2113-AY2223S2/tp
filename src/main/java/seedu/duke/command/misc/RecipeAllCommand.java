@@ -6,7 +6,7 @@ import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 
 /**
- * Represents the "/recipe all" command.
+ * Represents the "recipe all" command.
  */
 public class RecipeAllCommand extends ExecutableCommand {
     /**
