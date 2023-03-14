@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.stream.IntStream;
 
 public class CommandRes {
-    public String messageTop = "";
-    public String messageBottom = "";
-    public ArrayList<Expense> expense = null;
+    public String messageTop;
+    public String messageBottom;
+    public ArrayList<Expense> expense;
 
     public CommandRes(String strTop) {
         this.messageTop = strTop;
@@ -25,8 +25,14 @@ public class CommandRes {
      */
     public CommandRes(String strTop, ArrayList<Expense> expense, String strBottom) {
         this.messageTop = strTop;
-        this.messageBottom = strBottom;
         this.expense = expense;
+        this.messageBottom = strBottom;
+    }
+
+    public CommandRes(String strTop, String message, String strBottom) {
+        this.messageTop = strTop;
+
+        this.messageBottom = strBottom;
     }
 
 

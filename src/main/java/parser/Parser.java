@@ -15,7 +15,11 @@ public class Parser {
 
     public int extractIndex(String userInput) {
         String[] input = userInput.split(WHITESPACE, EXTRACT_INDEX_LENGTH);
-        return Integer.parseInt(input[1]);
+        try {
+            return Integer.parseInt(input[1]);
+        } catch (StringIndexOutOfBoundsException e) {
+            return 0;
+        }
     }
 
     public String extractCommandParameters (String parameterType, String userInput) {

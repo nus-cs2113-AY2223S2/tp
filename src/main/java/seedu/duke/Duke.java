@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import command.CommandAdd;
+import command.CommandDelete;
 import command.CommandList;
 import data.ExpenseList;
 import parser.Parser;
@@ -37,7 +38,7 @@ public class Duke {
                 new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input)).run();
                 break;
             case "delete":
-                expenseList.deleteExpense(input);
+                new CommandDelete(expenseList.getExpenseList(), parser.extractIndex(input)).execute();
                 break;
             case "list":
                 new CommandList(expenseList.getExpenseList()).run();
