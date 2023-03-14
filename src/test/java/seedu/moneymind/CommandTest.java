@@ -1,13 +1,16 @@
 package seedu.moneymind;
-import java.io.*;
 
 import org.junit.jupiter.api.Test;
 import seedu.moneymind.Command.CategoryCommand;
 import seedu.moneymind.Command.Command;
 import seedu.moneymind.Command.Parser;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CommandTest {
     Category food = new Category("food");
