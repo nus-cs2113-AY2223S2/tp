@@ -30,8 +30,7 @@ public class AddModuleCommand extends Command {
      * @throws InvalidModule If the module code is invalid.
      */
     public AddModuleCommand(String moduleCode, ModuleList allModules) throws InvalidModule {
-        assert module != null : "Module should not be null!";
-        assert module.getCode().equals(moduleCode) : "Module code should be the same";
+
         AddModuleCommand.setUpLogger();
         Module toAdd = allModules.findModule(moduleCode);
 

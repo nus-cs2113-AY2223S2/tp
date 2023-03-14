@@ -49,9 +49,7 @@ public class DeleteModuleCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList){
-        assert moduleList != null : "ModuleList should not be null!";
-        assert taskList != null : "TaskList should not be null!";
-        assert storage != null : "Storage should not be null!";
+
         try {
             Module toDelete = moduleList.findModule(moduleCode);
             if (toDelete == null) {
