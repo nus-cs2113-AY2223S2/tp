@@ -2,7 +2,10 @@
 
 ## Introduction
 
-{Give a product intro}
+Doctor Duke is a desktop app for diagnosing patients who have mild illnesses, 
+optimised for use via a Command Line Interface (CLI). If you can type fast, 
+Doctor Duke can diagnose illnesses and dispense medicine accordingly faster 
+than visiting a General Practitioner.
 
 ## Quick Start
 

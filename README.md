@@ -13,7 +13,6 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
    > Task :compileJava
    > Task :processResources NO-SOURCE
    > Task :classes
-   
    > Task :Duke.main()
    Hello from
     ____        _        
