@@ -29,7 +29,7 @@ public class UiTest {
 
     @AfterEach
     public void tearDown() {
-        System.setOut(standardOut);
+        System.setOut(null);
     }
 
 }
