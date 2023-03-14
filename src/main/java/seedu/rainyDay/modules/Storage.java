@@ -33,6 +33,7 @@ public class Storage {
             throws IOException, ClassNotFoundException {
         FileInputStream readData = new FileInputStream(filePath);
         ObjectInputStream readStream = new ObjectInputStream(readData);
+        @SuppressWarnings("unchecked")
         ArrayList<FinancialStatement> statements = (ArrayList<FinancialStatement>) readStream.readObject();
         readStream.close();
         readData.close();
