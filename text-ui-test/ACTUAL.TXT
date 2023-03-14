@@ -13,6 +13,16 @@ gym (filters for exercises that need gym equipment)
 static (filters for static exercises)
 easy/medium/hard (filters for exercises with a specific difficulty)
 upper/core/legs (filters for exercises with a specific workout type)
+These are some commands available: 
+Generate a specific list of exercises: generate PARAM1 PARAM2 ... x 
+PARAM stands for a specific requirement you want to include in your exercise.
+
+The following parameters are available for Generate command:
+gym (filters for exercises that need gym equipment)
+static (filters for static exercises)
+easy/medium/hard (filters for exercises with a specific difficulty)
+upper/core/legs (filters for exercises with a specific workout type)
+________________________________________
     ____             __
    / __ )__  _____  / /
   / __  / / / / _ \/ / 
