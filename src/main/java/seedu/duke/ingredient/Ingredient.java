@@ -19,7 +19,10 @@ public class Ingredient {
     }
     @Override
     public String toString() {
-        return this.quantity + " " + this.metadata.getName();
+        if (this.metadata.getUnitLabel() == null ){
+            return this.quantity + " " + this.metadata.getName();
+        }
+        return this.quantity + " " + this.metadata.getUnitLabel() + " " + this.metadata.getName();
     }
 
     public IngredientMetadata getMetadata() {

@@ -14,7 +14,7 @@ public class IngredientMetadata {
 
     private String name;
     private UnitType units;
-    private String unitLabel;
+    private String unitLabel = null;
 
     public String getName() {
         return name;
