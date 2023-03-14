@@ -8,6 +8,10 @@ import java.util.ListIterator;
 
 import seedu.dukeofbooks.data.book.BorrowableItem;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class LoanRecords {
     private final List<Loan> internalList;
@@ -78,6 +82,11 @@ public class LoanRecords {
         return internalList.add(toAdd);
     }
 
+
+    public boolean removeItem(Loan toRemove) {
+        return internalList.remove(toRemove);
+    }
+
     public void clear() {
         internalList.clear();
     }
@@ -88,12 +97,8 @@ public class LoanRecords {
         }
         return internalList.get(index);
     }
-    
-    public boolean remove(Loan toRemove) {
-        return internalList.remove(toRemove);
-    }
 
-    public Loan remove(int index) throws IndexOutOfBoundsException {
+    public Loan removeIndex(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= internalList.size()) {
             throw new IndexOutOfBoundsException();
         }

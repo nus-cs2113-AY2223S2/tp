@@ -38,7 +38,7 @@ public class Inventory {
     /**
      * Removes one book from inventory
      * 
-     * @param isbn
+     * @param isbn book isbn string
      * @throws IllegalValueException
      */
     public Book removeBook(String isbn) throws IllegalValueException {
@@ -59,7 +59,7 @@ public class Inventory {
     /**
      * Removes all books from inventory
      * 
-     * @param isbn
+     * @param isbn book isbn string
      * @throws IllegalValueException
      */
     public Book purgeBook(String isbn) throws IllegalValueException {
