@@ -4,13 +4,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import seedu.moneymind.Category;
 import seedu.moneymind.CategoryList;
 import seedu.moneymind.StringToCategory;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import static seedu.moneymind.Strings.STORAGE_CATEGORY_MAP;
+import static seedu.moneymind.Strings.NEW_LINE;
 
 /**
  * Storage class to save and load data from a file
@@ -46,7 +48,7 @@ public class Storage {
      * @param list ArrayList of Category
      */
     public void saveToFile(ArrayList<Category> list) {
-        String writeToFile = FormatToTxt.formatToTxt(list);
+        String writeToFile = FormatToTxt.formatToTxt(list) + CategoryMapToString.categoryMapToString();
 
         // write task list to text file
         try {
@@ -77,8 +79,11 @@ public class Storage {
         } catch (FileNotFoundException e) {
             System.out.println("I cannot seem to access the saved tasks. Did you perhaps lock it away?");
         }
+        // split fileString into 2 parts using STORAGE_CATEGORY_MAP
+        String[] splitString = fileString.split(STORAGE_CATEGORY_MAP + NEW_LINE);
         // convert fileString to ArrayList of Category
-        ArrayList<Category> savedList = StringToCategory.stringToCategory(fileString);
+        ArrayList<Category> savedList = StringToCategory.stringToCategory(splitString[0]);
+        LoadToCategoryMap.loadToCategoryMap(splitString[1]);
         return savedList;
     }
 

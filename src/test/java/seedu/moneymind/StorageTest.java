@@ -4,13 +4,34 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.moneymind.command.CategoryCommand;
 import seedu.moneymind.storage.FormatToTxt;
 import seedu.moneymind.storage.Storage;
 
 public class StorageTest {
+    private HashMap<String, Integer> testCaseHashMap() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("test1", 1);
+        map.put("test2", 2);
+        map.put("test3", 3);
+        return map;
+    }
+    private ArrayList<Category> testCaseArrayList() {
+        ArrayList<Category> list = new ArrayList<>();
+        list.add(new Category("test1"));
+        list.get(0).addEvent(new Event("event1", 1234, 5678));
+        list.get(0).addEvent(new Event("event2", 9876, 5432));
+        list.add(new Category("test2"));
+        list.get(1).addEvent(new Event("event3", 1122, 3344));
+        list.get(1).addEvent(new Event("event4", 5566, 7788));
+        list.add(new Category("test3"));
+        return list;
+    }
+
     /** 
      * Tests setupFile() method<p>
      * Expected outcome: No exception thrown
@@ -32,14 +53,7 @@ public class StorageTest {
     public void saveToFile_descInput_exptOutcome() {
         Storage storage = new Storage();
         ArrayList<Category> list = new ArrayList<>();
-
-        // add test data
-        list.add(new Category("test cat"));
-        list.get(0).addEvent(new Event("test1", 1234, 5678));
-        list.get(0).addEvent(new Event("test2", 9876, 5432));
-        list.add(new Category("test dog"));
-        list.get(1).addEvent(new Event("test3", 1234, 5678));
-        list.get(1).addEvent(new Event("test4", 9876, 5432));
+        CategoryCommand.categoryMap = testCaseHashMap();
 
         assertDoesNotThrow(() -> {
             storage.saveToFile(list);
@@ -64,21 +78,14 @@ public class StorageTest {
     /** 
      * Tests save and load from file sequence<p>
      * Input: ArrayList of Events<p>
-     * Expected outcome: No exception thrown
+     * Expected outcome: Similar ArrayList of Events
      */
     @Test
-    public void saveAndLoadFromFile_descInput_exptOutcome() {
+    public void saveAndLoadFromFile_testCaseArrayList_testCaseArrayList() {
         try {
             Storage storage = new Storage();
-            ArrayList<Category> list = new ArrayList<>();
-
-            // add test data
-            list.add(new Category("test_cat"));
-            list.get(0).addEvent(new Event("test1", 1234, 5678));
-            list.get(0).addEvent(new Event("test2", 9876, 5432));
-            list.add(new Category("test_dog"));
-            list.get(1).addEvent(new Event("test3", 1122, 3344));
-            list.get(1).addEvent(new Event("test4", 5566, 7788));
+            ArrayList<Category> list = testCaseArrayList();
+            CategoryCommand.categoryMap = testCaseHashMap();
             
             storage.saveToFile(list);
             ArrayList<Category> list2 = storage.loadFromFile();

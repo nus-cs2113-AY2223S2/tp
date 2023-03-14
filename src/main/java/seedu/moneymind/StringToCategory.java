@@ -2,10 +2,13 @@ package seedu.moneymind;
 
 import java.util.ArrayList;
 
+import static seedu.moneymind.Strings.STORAGE_CATEGORY_NAME;
+import static seedu.moneymind.Strings.STORAGE_NEXT_VARIABLE;
+
 /**
  * Converts a String from file.txt to an ArrayList of Category objects.
  */
-public class StringToCategory extends CategoryToString{
+public class StringToCategory {
     /**
      * Converts a String from file.txt to an ArrayList of Category objects.
      * 
@@ -20,13 +23,13 @@ public class StringToCategory extends CategoryToString{
         String[] lines = inputFromFile.split(System.lineSeparator());
         for (String string : lines) {
             // Creates a new Category object if the line is a new category, ignoring the save file symbol
-            if (string.startsWith(CATEGORY_NAME)) {
-                categories.add(new Category(string.substring(CATEGORY_NAME.length())));
-            } else if (string.startsWith(NEXT_VARIABLE)) {
+            if (string.startsWith(STORAGE_CATEGORY_NAME)) {
+                categories.add(new Category(string.substring(STORAGE_CATEGORY_NAME.length())));
+            } else if (string.startsWith(STORAGE_NEXT_VARIABLE)) {
                 // Remove the first next variable symbol
-                string = string.substring(NEXT_VARIABLE.length());
+                string = string.substring(STORAGE_NEXT_VARIABLE.length());
                 // Splits the line into 3 parts, each part being a variable of an Event object
-                String[] eventDetails = string.split(NEXT_VARIABLE);
+                String[] eventDetails = string.split(STORAGE_NEXT_VARIABLE);
                 // Creates a new Event object
                 Event event = new Event(eventDetails[0], Integer.parseInt(eventDetails[1]),
                         Integer.parseInt(eventDetails[2]));
