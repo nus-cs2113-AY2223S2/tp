@@ -44,14 +44,12 @@ public class Ui {
 
     public void showAllRecords(IncomeList incomes, ExpenseList expenses) {
         System.out.println("    Here are the incomes in your list:");
-        for (int i = 0; i < incomes.getRecordCount(); i++) {
-            System.out.println("    " + (i+1) + ". "  + incomes.get(i));
-        }
+        incomes.printIncomeList();
+        
         System.out.println();
+        
         System.out.println("    Here are the expense in your list:");
-        for (int i = 0; i < expenses.getRecordCount(); i++) {
-            System.out.println("    " + (i+1) + ". "  + expenses.get(i));
-        }
+        expenses.printExpenseList();
     }
 
     public void showBalance(double balance) {
