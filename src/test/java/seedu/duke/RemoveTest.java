@@ -29,8 +29,11 @@ class RemoveTest {
         Inventory.addItem(item2);
         Inventory.addItem(item3);
 
-        assertEquals(2,Inventory.removeByUpc(item3, "876543210", "y"));
-        assertEquals(-1,Inventory.removeByUpc(item2, "012345678", "reply"));
-        assertEquals(-1, Inventory.removeByUpc(item2, "012345678", "n"));
+        Inventory.removeByUpc(item3, "876543210", "y");
+        assertEquals(2, Inventory.getItemList().size());
+        Inventory.removeByUpc(item2, "012345678", "reply");
+        assertEquals(2, Inventory.getItemList().size());
+        Inventory.removeByUpc(item2, "012345678", "Y");
+        assertEquals(1, Inventory.getItemList().size());
     }
 }

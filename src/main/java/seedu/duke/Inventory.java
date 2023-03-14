@@ -256,9 +256,8 @@ public class Inventory {
      * @param itemToRemove The item that user has specified to remove.
      * @param upcCode The UPC value of the item to be removed.
      * @param confirmation Confirmation string to be given by user.
-     * @return The index of the item to be removed, otherwise -1.
      */
-    public static int removeByUpc(Item itemToRemove, String upcCode, String confirmation) {
+    public static void removeByUpc(Item itemToRemove, String upcCode, String confirmation) {
         switch (confirmation.toUpperCase()) {
         case "Y":
             String itemName = itemToRemove.getName().toLowerCase();
@@ -272,7 +271,7 @@ public class Inventory {
                 itemNameHash.get(itemName).remove(itemToRemove);
             }
             Ui.printSuccessRemove(itemToRemove);
-            return i;
+            break;
         case "N":
             Ui.printNotRemoving();
             break;
@@ -280,7 +279,6 @@ public class Inventory {
             Ui.printInvalidReply();
             break;
         }
-        return -1;
     }
 
     public static ArrayList<Item> getItemList() {
