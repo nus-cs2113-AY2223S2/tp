@@ -19,6 +19,4 @@ class ParserTest {
         assertEquals(3, index);
     }
 
-    
-
 }

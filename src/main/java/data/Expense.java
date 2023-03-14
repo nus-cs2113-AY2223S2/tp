@@ -67,6 +67,7 @@ public class Expense {
      */
     @Override
     public String toString() {
+        // Currently not useful
         String currencyString = Currency.returnCurrency(this.currencyType);
         String amountString = Double.toString(this.expenseAmount);
         String descriptionString = this.description;
@@ -90,19 +91,17 @@ public class Expense {
      */
     public void printExpenseAmount() {
         String expenseAmountString = Double.toString(expenseAmount);
-        if (!expenseAmountString.contains(".")) {
-            // Without any digit
-            System.out.print(expenseAmountString);
-        } else {
-            int digitNumbers = expenseAmountString.length() - expenseAmountString.indexOf(".") - 1;
-            if (digitNumbers == 1) {
-                // One digit
-                System.out.print(expenseAmountString);
+        int digitNumbers = expenseAmountString.length() - expenseAmountString.indexOf(".") - 1;
+        if (digitNumbers == 1) {
+            // No digit
+            if (expenseAmountString.endsWith("0")) {
+                System.out.print(expenseAmountString.substring(0,expenseAmountString.length() - 2));
             } else {
-                double expenseAmountTwoDecimal = Math.round(this.expenseAmount * 100.0) / 100.0;
-                System.out.printf("%.2f", expenseAmountTwoDecimal);
+                System.out.print(expenseAmountString);
             }
-
+        } else {
+            double expenseAmountTwoDecimal = Math.round(this.expenseAmount * 100.0) / 100.0;
+            System.out.printf("%.2f", expenseAmountTwoDecimal);
         }
     }
 }
