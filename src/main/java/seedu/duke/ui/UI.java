@@ -41,9 +41,9 @@ public class UI {
         printLine();
     }
 
-
     /**
-     * Returns a string based on the details of the Entry object and entryID entered.
+     * Returns a string based on the details of the Entry object and entryID
+     * entered.
      *
      * @param entry   entry Object to be formatted
      * @param entryID ID of the entry Object
@@ -58,24 +58,24 @@ public class UI {
     }
 
     /**
-     * Combines all individual entry strings into a list of entries and prints the list, along with an acknowledgement
+     * Combines all individual entry strings into a list of entries and prints the
+     * list, along with an acknowledgement
      * message.
      *
      * @param entryList List of entry objects with the user-specified length
-     * @param category String denoting the category requested by the user
+     * @param category  String denoting the category requested by the user
      */
     public void printEntriesToBeViewed(List<Entry> entryList, String category) {
         StringBuilder finalString = new StringBuilder();
         finalString.append("These are the latest " + entryList.size() + " entries from the " + category +
                 " category.\n");
 
-        for(int index = 0; index < entryList.size(); index ++){
-            String formattedEntry = formatViewEntries(entryList.get(index),index+1);
+        for (int index = 0; index < entryList.size(); index++) {
+            String formattedEntry = formatViewEntries(entryList.get(index), index + 1);
             finalString.append(formattedEntry + "\n");
         }
         System.out.print(finalString.toString());
     }
-
 
     // TODO: Add expenditure edited
 
