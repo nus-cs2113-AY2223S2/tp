@@ -1,4 +1,4 @@
-package seedu.myledger;
+package seedu.myLedger;
 
 import seedu.parser.MainInputParser;
 import seedu.txtdata.TxtFileStatus;
@@ -27,6 +27,7 @@ public class MyLedger {
 
     public static void runMyLedger() {
         start();
+        initializeList();
         Ui.greetUser();
         readUserInputs();
     }
