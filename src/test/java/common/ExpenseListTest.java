@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 class ExpenseListTest {
     public ArrayList<Expense> testExpenseList = new ArrayList<>();
@@ -45,7 +44,7 @@ class ExpenseListTest {
         assertNotEquals(testExpenseList.get(1), expenseList.getExpenseList().get(1));
 
         testExpenseList.clear();
-        expenseList.clear(testExpenseList);
+        expenseList.clear();
     }
 
     @Test
@@ -81,20 +80,7 @@ class ExpenseListTest {
         assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
 
         testExpenseList.clear();
-        expenseList.clear(testExpenseList);
+        expenseList.clear();
     }
 
-    @Test
-    public void deleteExpense_successful() {
-        testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
-                "food", Currency.SGD));
-        new CommandAdd(expenseList.getExpenseList(),
-                parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food")).run();
-        testExpenseList.remove(0);
-        expenseList.deleteExpense("delete 1");
-        assertIterableEquals(testExpenseList, expenseList.getExpenseList());
-
-        testExpenseList.clear();
-        expenseList.clear(testExpenseList);
-    }
 }
