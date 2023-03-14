@@ -2,14 +2,11 @@ package common;
 
 import command.CommandAdd;
 import command.CommandList;
-import data.Currency;
 import data.Expense;
 import data.ExpenseList;
-import data.Time;
 import org.junit.jupiter.api.Test;
 import parser.Parser;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.io.ByteArrayOutputStream;
@@ -18,7 +15,6 @@ import java.io.PrintStream;
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.MESSAGE_DIVIDER_LIST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -67,9 +63,9 @@ class ExpenseListTest {
     void expenseAmountStandardization_successful() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/2.5658 " +
-                "t/02-02-2012 cur/USD cat/food")).run();
+                "t/02-02-2012 cur/USD cat/food")).execute();
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/5 " +
-                "t/02-02-2014 cur/SGD cat/food")).run();
+                "t/02-02-2014 cur/SGD cat/food")).execute();
 
         System.setOut(new PrintStream(outContent));
         new CommandList(expenseList.getExpenseList()).run();

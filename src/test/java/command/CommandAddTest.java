@@ -7,12 +7,13 @@ import data.Time;
 import org.junit.jupiter.api.Test;
 import parser.Parser;
 
-import java.lang.reflect.Executable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 
 class CommandAddTest {
     public ArrayList<Expense> testExpenseList = new ArrayList<>();
@@ -20,9 +21,6 @@ class CommandAddTest {
     public Parser parser = new Parser();
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-    /**
-     * Tests by comparing two separate ArrayList<Expense> when using CommandAdd and adding to the list directly.
-     */
     @Test
     public void addExpense_successful() {
         testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
@@ -41,5 +39,4 @@ class CommandAddTest {
         testExpenseList.clear();
         expenseList.clear();
     }
-
 }
