@@ -9,15 +9,16 @@ import seedu.commands.OtherExpenditureCommand;
 import seedu.commands.TransportExpenditureCommand;
 import seedu.commands.TuitionExpenditureCommand;
 import seedu.commands.InvalidCommand;
-import seedu.exceptions.EmptyStringException;
-import seedu.exceptions.ExceptionChecker;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class ParseAdd {
+    public static final String BLANK = "";
+    public static final String DSLASH = "d/";
+    public static final String ASLASH = "a/";
+    public static final String SSLASH = "s/";
     private final String userInput;
-    private final int offsetDelimiter = 2;
 
     public ParseAdd(String userInput) {
         this.userInput = userInput;
@@ -27,9 +28,12 @@ public class ParseAdd {
 
         try {
             // Format: category d/date, a/amount, s/description
-            String descriptionVal = fetchDescriptionInput();
-            double amount = Double.parseDouble(fetchAmountInput());
-            LocalDate date = LocalDate.parse(fetchDateInput());
+
+            String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput,SSLASH, BLANK);
+            String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, SSLASH);
+            double amount = Double.parseDouble(amountVal);
+            String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, ASLASH);
+            LocalDate date = LocalDate.parse(dateVal);
 
             switch (command) {
             case AcademicExpenditureCommand.COMMAND_WORD:
@@ -54,41 +58,6 @@ public class ParseAdd {
             return new InvalidCommand("number format problem");
         } catch (DateTimeParseException d) {
             return new InvalidCommand("date time error");
-        }
-    }
-
-    public String fetchDateInput() {
-        try {
-            int positionOfDSlash = userInput.indexOf("d/");
-            int positionOfASlash = userInput.indexOf("a/");
-            String date = userInput.substring(positionOfDSlash + offsetDelimiter, positionOfASlash).trim();
-            ExceptionChecker.checkEmptyString(date);
-            return date;
-        } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
-            return e.getMessage();
-        }
-    }
-
-    public String fetchAmountInput() {
-        try {
-            int positionOfASlash = userInput.indexOf("a/");
-            int positionOfSSlash = userInput.indexOf("s/");
-            String amount = userInput.substring(positionOfASlash + offsetDelimiter, positionOfSSlash).trim();
-            ExceptionChecker.checkEmptyString(amount);
-            return amount;
-        } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
-            return e.getMessage();
-        }
-    }
-
-    public String fetchDescriptionInput() {
-        try {
-            int positionOfSSlash = userInput.indexOf("s/");
-            String description = userInput.substring(positionOfSSlash + offsetDelimiter).trim();
-            ExceptionChecker.checkEmptyString(description);
-            return description;
-        } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
-            return e.getMessage();
         }
     }
 }
