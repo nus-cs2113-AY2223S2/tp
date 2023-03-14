@@ -10,26 +10,29 @@ import java.io.PrintStream;
 
 public class UiTest {
 
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    private Ui ui;
-
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream err = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+    private final PrintStream originalErr = System.err;
 
     @BeforeEach
-    public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
+    public void setStreams() {
+        System.setOut(new PrintStream(out));
+        System.setErr(new PrintStream(err));
     }
 
     @Test
-    public void showLine_onEachMethod_displayLine() throws NullPointerException {
+    public void showLine_onEachMethod_displayLine() {
+        Ui ui = new Ui();
         ui.showLine();
-        assertEquals("____________________________________________________________\n",
-                    outputStreamCaptor.toString());
+        assertEquals("____________________________________________________________",
+                out.toString());
     }
 
     @AfterEach
-    public void tearDown() {
-        System.setOut(standardOut);
+    public void restoreInitialStreams() {
+        System.setOut(originalOut);
+        System.setErr(originalErr);
     }
 
 }
