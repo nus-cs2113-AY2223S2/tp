@@ -18,8 +18,13 @@ public class AddFinancialStatement extends Command {
 
     @Override
     public void execute() {
+        int totalStatementCount = RainyDay.financialReport.getStatementCount();
+
         FinancialStatement currentFinancialStatement = new FinancialStatement(description, flowDirection, value);
         RainyDay.financialReport.addStatement(currentFinancialStatement);
+
+        assert totalStatementCount + 1 == RainyDay.financialReport.getStatementCount() : "statement count mismatch";
+
         UI.printAddedFinancialStatement(currentFinancialStatement);
         Storage.writeToFile(RainyDay.financialReport, RainyDay.filePath);
     }
