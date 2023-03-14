@@ -46,8 +46,9 @@ public class Duke {
                 ui.print(e.getMessage() + UIConstants.NEWLINE);
                 ui.printLine();
             }
-        } while (!command.isExit);
+        } while (!command.getIsExit());
         logger.info("Exiting application");
+        ui.printExit();
         exitLogging();
     }
 
