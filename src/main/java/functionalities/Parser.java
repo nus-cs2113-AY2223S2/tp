@@ -5,11 +5,13 @@ import java.util.logging.Logger;
 public class Parser {
     protected static Command command;
 
+    private static final int NA = 0;
+
     static Logger logger = Logger.getLogger("parser");
 
     public static Command parse(String userCommand) throws SniffException {
         String task = userCommand.trim();
-        if (task.equalsIgnoreCase("add")) {
+        if (task.toLowerCase().startsWith("add")) {
             //parseAddCommand();
         } else if (task.toLowerCase().startsWith("remove")) {
             parseRemoveCommand(task);
@@ -29,7 +31,7 @@ public class Parser {
         try {
             String userCommand = "view";
             int uId = Integer.parseInt(task.split(" ", 2)[1]);
-            command = new Command(userCommand, 0, uId);
+            command = new Command(userCommand, NA, uId);
         } catch (ArrayIndexOutOfBoundsException emptyView) {
             logger.warning("No appointment ID provided for view command. Unable to execute view command.");
             throw new SniffException(" The view command description cannot be empty!");
@@ -41,19 +43,19 @@ public class Parser {
 
     private static void parseByeCommand() {
         String userCommand = "bye";
-        command = new Command(userCommand, 0, 0);
+        command = new Command(userCommand, NA, NA);
     }
 
     private static void parseListCommand() {
         String userCommand = "list";
-        command = new Command(userCommand, 0, 0);
+        command = new Command(userCommand, NA, NA);
     }
 
     private static void parseRemoveCommand(String task) throws SniffException {
         try {
             String userCommand = "remove";
-            int apptNum = Integer.parseInt(task.split(" ", 2)[1]);
-            command = new Command(userCommand, apptNum, 0);
+            int appointmentNum = Integer.parseInt(task.split(" ", 2)[1]);
+            command = new Command(userCommand, appointmentNum, NA);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new SniffException(" The remove command description cannot be empty!");
         } catch (NumberFormatException e) {
