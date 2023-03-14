@@ -11,9 +11,14 @@ import commands.deadlinecommand.AddDeadlineCommand;
 import commands.deadlinecommand.DeleteDeadlineCommand;
 import commands.deadlinecommand.ViewDeadlineCommand;
 
+import commands.menu.AddDishCommand;
+import commands.menu.DeleteDishCommand;
+import commands.menu.ViewDishCommand;
+import common.Messages;
 import org.junit.jupiter.api.Test;
 import utils.Parser;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 public class DinerDirectorTest {
@@ -36,7 +41,7 @@ public class DinerDirectorTest {
             }
         }
     }
-    
+
     @Test
     void runCommandLoopUntilExit_userInput_deadlineCommand() {
         ArrayList<String> listOfCommands = new ArrayList<>();
@@ -66,4 +71,26 @@ public class DinerDirectorTest {
             }
         }
     }
+
+
+    @Test
+    void runCommandLoopUntilExit_userInput_ViewDishCommand() {
+        ArrayList<String> listOfCommands = new ArrayList<>();
+        listOfCommands.add("view_dish");
+        listOfCommands.add("sadsajdkjasdas");
+        listOfCommands.add("view_dish uweweiwi");
+
+        for (String listOfCommand : listOfCommands) {
+            Command command = new Parser().parseCommand(listOfCommand);
+            if (listOfCommand.equals("view_dish")) {
+                assertTrue(command instanceof ViewDishCommand);
+            } else {
+                assertTrue(command instanceof IncorrectCommand);
+            }
+        }
+    }
+
+
+
+
 }

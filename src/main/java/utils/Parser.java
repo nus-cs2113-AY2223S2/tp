@@ -46,9 +46,9 @@ public class Parser {
         case DeleteDeadlineCommand.COMMAND_WORD:
             return prepareDeleteDeadlineCommand(userInputNoCommand);
         case AddDishCommand.ADD_DISH_COMMAND:
-            return prepareAddDishCommand();
+            return prepareAddDishCommand(userInputNoCommand);
         case ViewDishCommand.VIEW_DISH_COMMAND:
-            return prepareViewDishCommand();
+            return prepareViewDishCommand(userInputNoCommand);
         case DeleteDishCommand.DELETE_DISH_COMMAND:
             return prepareDeleteDishCommand(userInputSplit);
         default:
@@ -151,38 +151,53 @@ public class Parser {
         return new DeleteDishCommand(indexToRemove);
     }
 
-    private Command prepareViewDishCommand() {
+    private Command prepareViewDishCommand(String userInputNoCommand) {
+        try {
+            if (!userInputNoCommand.isBlank()) {
+                throw new DinerDirectorException(Messages.ERROR_COMMAND_INVALID);
+            }
+        } catch (DinerDirectorException e) {
+            return new IncorrectCommand();
+        }
         return new ViewDishCommand();
     }
 
-    private Command prepareAddDishCommand() {
+    private Command prepareAddDishCommand(String userInputNoCommand) {
         //call for subsequent inputs:
         // name of dish?
         // price of dish?
         // list of ingredients, maybe indicate number of ingredients followed by listing them
+
+        try {
+            if (!userInputNoCommand.isBlank()) {
+                throw new DinerDirectorException(Messages.ERROR_COMMAND_INVALID);
+            }
+        } catch (DinerDirectorException e) {
+            return new IncorrectCommand();
+        }
 
         String name;
         int price;
         ArrayList<String> ingredients;
 
         try {
+            Scanner userInputName = new Scanner(System.in);
             System.out.println("Name of Dish?");
-            Scanner userInput = new Scanner(System.in);
-            name = userInput.nextLine();
+            name = userInputName.nextLine();
             if (name.isBlank()) {
                 throw new DinerDirectorException(Messages.MESSAGE_BLANK_DISH_NAME_COMMAND);
             }
 
+            Scanner userInputPrice = new Scanner(System.in);
             System.out.println("Price of Dish? (In cents)");
-            userInput = new Scanner(System.in);
-            price = Integer.parseInt(userInput.nextLine());
+            price = Integer.parseInt(userInputPrice.nextLine());
             if (price < 0) {
                 throw new DinerDirectorException(Messages.MESSAGE_NEGATIVE_PRICE_COMMAND);
             }
 
+            Scanner userInputIngredientsList = new Scanner(System.in);
             System.out.println("List of ingredients? (Separate it by spaces)");
-            userInput = new Scanner(System.in);
-            String[] userInputSplit = userInput.nextLine().split(" ");
+            String[] userInputSplit = userInputIngredientsList.nextLine().split(" ");
             ingredients = new ArrayList<>(Arrays.asList(userInputSplit));
 
         } catch (DinerDirectorException e) {
@@ -192,7 +207,6 @@ public class Parser {
             System.out.println("Price of dish must be an integer!");
             return new IncorrectCommand();
         }
-
         return new AddDishCommand(name, price, ingredients);
     }
 
