@@ -72,7 +72,7 @@ public class Parser {
             logger.warning("No appointment ID provided for remove command. Unable to execute view command.");
             throw new SniffException(" The remove command description cannot be empty!");
         } catch (NumberFormatException e) {
-            logger.warning("Invalid appointment ID format provided for remove command. " + "Integer numbers are expected.");
+            logger.warning("Invalid appointment ID format. Integer numbers are expected.");
             throw new SniffException(" The remove command description must be a number!");
         } catch (IndexOutOfBoundsException e) {
             logger.warning("Out of Range appointment ID provided for remove command.");
