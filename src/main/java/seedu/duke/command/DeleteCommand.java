@@ -12,6 +12,6 @@ public class DeleteCommand extends Command{
 
     @Override
     public void execute(CompanyList companyList) {
-        System.out.println("delete command");
+        companyList.deleteCompanyInformation(taskNum);
     }
 }
