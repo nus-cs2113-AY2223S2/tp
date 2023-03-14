@@ -24,7 +24,6 @@ public class TxtFileStatus {
     private static final String directoryPath = "myLedger_data";
     private static final String filePath = "myLedger_data/myLedger_inputs.txt";
 
-
     public static void getSaveFile() throws IOException {
         File directory = new File(directoryPath);
         if (!directory.exists()) {
@@ -63,7 +62,7 @@ public class TxtFileStatus {
         }
     }
 
-    //initialize saved list, undone
+    // initialize saved list, undone
     public static void initializeExpenditureList(ExpenditureList expenditures) throws FileNotFoundException {
         File f = new File(filePath); // create a File for the given file path
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
@@ -148,6 +147,7 @@ public class TxtFileStatus {
                 break;
             }
         }
+        s.close();
     }
-}
 
+}

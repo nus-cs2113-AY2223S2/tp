@@ -54,7 +54,7 @@ public class MyLedger {
     public static void initializeList() {
         try {
             TxtFileStatus.initializeExpenditureList(expenditures);
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("Error finding save file during initialization");
         }
     }

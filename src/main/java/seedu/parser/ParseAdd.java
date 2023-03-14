@@ -29,7 +29,7 @@ public class ParseAdd {
         try {
             // Format: category d/date, a/amount, s/description
 
-            String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput,SSLASH, BLANK);
+            String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
             String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, SSLASH);
             double amount = Double.parseDouble(amountVal);
             String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, ASLASH);
