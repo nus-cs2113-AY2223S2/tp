@@ -14,6 +14,7 @@ public class TextUi {
     //@@damithc darrenangwx-reused
     //Source: https://github.com/nus-cs2113-AY2223S2/personbook/blob/main/src/main/java/seedu/personbook/ui/TextUi.java
     //Reused TextUi, shouldIgnoreEmpty, getUserInput methods with minor modifications.
+
     /**
      * Constructor to call the other constructor.
      */
@@ -69,9 +70,15 @@ public class TextUi {
     }
 
     public static void printBanner() {
-        String logo = "<insert logo here>";
+        String logo =
+                "  _____  _                 _____  _               _\n"+
+                " |  __ \\(_)               |  __ \\(_)             | |\n"+
+                " | |  | |_ _ __   ___ _ __| |  | |_ _ __ ___  ___| |_ ___  _ __\n"+
+                " | |  | | | '_ \\ / _ \\ '__| |  | | | '__/ _ \\/ __| __/ _ \\| '__|\n"+
+                " | |__| | | | | |  __/ |  | |__| | | | |  __/ (__| || (_) | |\n"+
+                " |_____/|_|_| |_|\\___|_|  |_____/|_|_|  \\___|\\___|\\__\\___/|_|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("Welcome to DinerDirector");
+        System.out.println("Welcome to DinerDirector! Please type \"help\" for a list of valid commands.");
         System.out.println("What can I do for you?");
     }
 }
