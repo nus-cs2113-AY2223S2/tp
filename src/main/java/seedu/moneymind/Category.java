@@ -23,6 +23,10 @@ public class Category {
         return name;
     }
 
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
     /**
      * Add the event to the list.
      */

@@ -1,23 +1,18 @@
-package seedu.moneymind;
+package seedu.moneymind.Command;
+
+import seedu.moneymind.Ui;
 
 /**
  * Represents the command to exit the program.
  */
-public class ByeCommand {
-
-    private static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
-    private static final String HORIZONTAL_LINE = "____________________________________________________________";
-    /**
-     * Constructs a new ByeCommand object and exits the program.
-     */
-    public ByeCommand() {
-        doByeCommand();
+public class ByeCommand implements Command {
+    @Override
+    public void execute(Ui ui) {
+        ui.goodbye();
     }
 
-    private void doByeCommand() {
-        System.out.println(BYE_MESSAGE);
-        System.out.println(HORIZONTAL_LINE);
-        System.exit(0);
+    @Override
+    public boolean isExit() {
+        return true;
     }
-
 }

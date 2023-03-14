@@ -1,6 +1,7 @@
 package seedu.moneymind;
 
-import java.util.Scanner;
+import static seedu.moneymind.Strings.BYE_MESSAGE;
+import static seedu.moneymind.Strings.HORIZONTAL_LINE;
 
 public class Ui {
     private static final String LINE = "____________________________________________________________\n";
@@ -11,17 +12,6 @@ public class Ui {
     private static final String ERROR = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
     private static final String LIST = "Here are the events in your list:";
 
-    Scanner in;
-
-    public Ui() {
-        this.in = new Scanner(System.in);
-    }
-
-    public Command processNextCommand() throws InvalidCommandException {
-        String input = in.nextLine();
-        return new Command(input);
-    }
-
     public void greet() {
         System.out.println(GREETING);
     }
@@ -31,7 +21,8 @@ public class Ui {
     }
 
     public void goodbye() {
-        System.out.println(GOODBYE);
+        System.out.println(BYE_MESSAGE);
+        System.out.println(HORIZONTAL_LINE);
     }
 
     public void error(Exception e) {
