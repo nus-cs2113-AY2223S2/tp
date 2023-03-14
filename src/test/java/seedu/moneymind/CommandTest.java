@@ -1,13 +1,17 @@
 package seedu.moneymind;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.moneymind.command.CategoryCommand;
+import seedu.moneymind.command.Command;
+import seedu.moneymind.command.Parser;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CommandTest {
     Category food = new Category("food");
@@ -33,8 +37,8 @@ public class CommandTest {
         setup();
         String input = "category travel";
         executeInput(input);
-        assertTrue(CategoryList.categories.size() == 3);
-        assertTrue(CategoryList.categories.get(2).getName().equals("travel"));
+        assertEquals(3, CategoryList.categories.size());
+        assertEquals("travel", CategoryList.categories.get(2).getName());
         clear();
     }
 
@@ -46,9 +50,9 @@ public class CommandTest {
         InputStream in = new ByteArrayInputStream(categoryIndex.getBytes());
         System.setIn(in);
         executeInput(input);
-        assertTrue(food.events.get(2).getDescription().equals("banana"));
-        assertTrue(food.events.get(2).getBudget() == 20);
-        assertTrue(food.events.get(2).getExpense() == 10);
+        assertEquals("banana", food.events.get(2).getDescription());
+        assertEquals(20, food.events.get(2).getBudget());
+        assertEquals(10, food.events.get(2).getExpense());
         clear();
     }
 
@@ -57,8 +61,8 @@ public class CommandTest {
         setup();
         String input = "delete c/food";
         executeInput(input);
-        assertTrue(CategoryList.categories.size() == 1);
-        assertTrue(CategoryList.categories.get(0).getName().equals("book"));
+        assertEquals(1, CategoryList.categories.size());
+        assertEquals("book", CategoryList.categories.get(0).getName());
         clear();
     }
 
@@ -67,8 +71,8 @@ public class CommandTest {
         setup();
         String input = "delete c/book e/Harry Potter";
         executeInput(input);
-        assertTrue(book.events.size() == 1);
-        assertTrue(book.events.get(0).getDescription().equals("Lord of the Rings"));
+        assertEquals(1, book.events.size());
+        assertEquals("Lord of the Rings", book.events.get(0).getDescription());
         clear();
     }
 
@@ -80,8 +84,14 @@ public class CommandTest {
         // Get help from chatGPT for the next 2 lines
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
-        parser.splitKeywordAndDescription(input);
-        parser.executeUserInput();
+
+        try {
+            Command command = parser.parseNextCommand(input);
+            command.execute(new Ui());
+        } catch (Exception e) {
+            System.exit(-1);
+        }
+
         String actual = outputStream.toString();
         String expected = "1.food" + System.lineSeparator()
                 + "salad [budget]100 [expense]50" + System.lineSeparator()
@@ -101,8 +111,14 @@ public class CommandTest {
         // Get help from chatGPT for the next 2 lines
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
-        parser.splitKeywordAndDescription(input);
-        parser.executeUserInput();
+
+        try {
+            Command command = parser.parseNextCommand(input);
+            command.execute(new Ui());
+        } catch (Exception e) {
+            System.exit(-1);
+        }
+
         String actual = outputStream.toString();
         String expected = "1. salad [budget]100 [expense]50" + System.lineSeparator()
                 + "2. pizza [budget]200 [expense]100" + System.lineSeparator();
@@ -115,8 +131,12 @@ public class CommandTest {
         // Get help from chatGPT for the next 2 lines
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
-        parser.splitKeywordAndDescription(input);
-        parser.executeUserInput();
+        try {
+            Command command = parser.parseNextCommand(input);
+            command.execute(new Ui());
+        } catch (Exception e) {
+            System.exit(-1);
+        }
     }
 
     /**

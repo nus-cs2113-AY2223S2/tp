@@ -1,11 +1,17 @@
-package seedu.moneymind;
+package seedu.moneymind.command;
+
+import seedu.moneymind.Category;
+import seedu.moneymind.CategoryList;
+import seedu.moneymind.Event;
+import seedu.moneymind.Ui;
+import seedu.moneymind.InvalidCategoryNumberException;
 
 import java.util.Scanner;
 
 /**
  * A class to add an event
  */
-public class EventCommand {
+public class EventCommand implements Command {
     public static final String SELECTING_CATEGORY_MESSAGE = "Please select the category you want to add the event to: ";
     public static final String GO_BACK_MESSAGE = "Please enter back to go back to the main program";
     public static final String BACK = "back";
@@ -35,23 +41,6 @@ public class EventCommand {
         assert eventName != null : NULL_EVENT_ASSERTION;
         assert budget >= 0 : NON_NEGATIVE_BUDGET_ASSERTION;
         assert expense >= 0 : NON_NEGATIVE_EXPENSE_ASSERTION;
-        addEvent();
-    }
-
-    private void addEvent() {
-        Event event = new Event(eventName, budget, expense);
-        System.out.println(SELECTING_CATEGORY_MESSAGE);
-        String userInput;
-        Scanner in;
-        in = new Scanner(System.in);
-        userInput = in.nextLine();
-        while (!isChooseCategorySuccessful(userInput)) {
-            System.out.println(GO_BACK_MESSAGE);
-            userInput = in.nextLine();
-            if (userInput.equals(BACK)) {
-                break;
-            }
-        }
     }
 
     /**
@@ -96,5 +85,28 @@ public class EventCommand {
         if (categoryPosition > CategoryList.categories.size() || categoryPosition <= 0) {
             throw new InvalidCategoryNumberException();
         }
+    }
+
+    @Override
+    public void execute(Ui ui) {
+        Event event = new Event(eventName, budget, expense);
+        System.out.println(SELECTING_CATEGORY_MESSAGE);
+        String userInput;
+        Scanner in;
+        in = new Scanner(System.in);
+        userInput = in.nextLine();
+        while (!isChooseCategorySuccessful(userInput)) {
+            System.out.println(GO_BACK_MESSAGE);
+            userInput = in.nextLine();
+            if (userInput.equals(BACK)) {
+                break;
+            }
+        }
+        in.close();
+    }
+
+    @Override
+    public boolean isExit() {
+        return false;
     }
 }
