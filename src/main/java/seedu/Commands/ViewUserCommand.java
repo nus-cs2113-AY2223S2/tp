@@ -8,10 +8,11 @@ import seedu.Entities.User;
 import seedu.Exceptions.LifeTrackerException;
 import seedu.Ui.GeneralUi;
 
-public class ViewUserCommand extends Command{
+public class ViewUserCommand extends Command {
+
     @Override
-    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage) 
-            throws LifeTrackerException{
+    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
+            throws LifeTrackerException {
         User user = userStorage.getUser();
         CaloricIntake meals = new CaloricIntake(mealStorage.getMeal());
         int choice;
@@ -31,7 +32,7 @@ public class ViewUserCommand extends Command{
 
             choice = ui.readInt();
 
-            switch(choice) {
+            switch (choice) {
             case 1:
                 String name = user.getName();
                 System.out.println("Name: " + name);
@@ -42,11 +43,11 @@ public class ViewUserCommand extends Command{
                 break;
             case 3:
                 float height = user.getHeight();
-                System.out.println(height + " cm");
+                System.out.println("Height: " + height + " cm");
                 break;
             case 4:
                 int age = user.getAge();
-                System.out.println(age + " years old");
+                System.out.println("Age: " + age + " years old");
                 break;
             case 5:
                 String gender = user.getGender();
@@ -74,7 +75,7 @@ public class ViewUserCommand extends Command{
 
             choice = ui.readInt();
 
-            switch(choice) {
+            switch (choice) {
             case 1:
                 toContinue = true;
                 break;
@@ -84,8 +85,8 @@ public class ViewUserCommand extends Command{
             default:
                 toContinue = false;
                 System.out.println("Invalid Choice! Exiting...");
-                break;
             }
         }
     }
+    
 }
