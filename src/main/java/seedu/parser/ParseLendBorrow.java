@@ -4,8 +4,6 @@ import seedu.commands.Command;
 import seedu.commands.LendExpenditureCommand;
 import seedu.commands.BorrowExpenditureCommand;
 import seedu.commands.InvalidCommand;
-import seedu.exceptions.EmptyStringException;
-import seedu.exceptions.ExceptionChecker;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -13,12 +11,12 @@ import java.time.format.DateTimeParseException;
 public class ParseLendBorrow {
     private final String userInput;
 
-    private static final String BLANK = "";
-    private static final String DSLASH = "d/";
-    private static final String ASLASH = "a/";
-    private static final String SSLASH = "s/";
-    private static final String BSLASH = "b/";
-    private static final String NSLASH = "n/";
+    public static final String BLANK = "";
+    public static final String DSLASH = "d/";
+    public static final String ASLASH = "a/";
+    public static final String SSLASH = "s/";
+    public static final String BSLASH = "b/";
+    public static final String NSLASH = "n/";
 
     public ParseLendBorrow(String userInput) {
         this.userInput = userInput;

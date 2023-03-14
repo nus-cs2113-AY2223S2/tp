@@ -8,10 +8,10 @@ import java.time.LocalDate;
 
 public class ParseEdit {
     private final String userInput;
-    private static final String BLANK = "";
-    private static final String DSLASH = "d/";
-    private static final String ASLASH = "a/";
-    private static final String SSLASH = "s/";
+    public static final String BLANK = "";
+    public static final String DSLASH = "d/";
+    public static final String ASLASH = "a/";
+    public static final String SSLASH = "s/";
     public ParseEdit(String userInput) {
         this.userInput = userInput;
     }
