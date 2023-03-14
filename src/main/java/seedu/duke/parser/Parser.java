@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.duke.commands.ExitCommand;
 import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.exceptions.InvalidCategoryException;
 import seedu.duke.exceptions.InvalidCommandException;
@@ -69,9 +70,8 @@ public class Parser {
         default:
             logger.log(Level.WARNING, "User command is invalid");
             logger.exiting(Parser.class.getName(), "parseUserInput()");
-            return null;
+            throw new InvalidCommandException(MessageConstants.MESSAGE_INVALID_COMMAND);
         }
-      
     }
 
     private Command parseByeCommand() {
@@ -79,7 +79,7 @@ public class Parser {
         logger.entering(Parser.class.getName(), "parseByeCommand()");
         logger.info("Program exiting.");
         logger.exiting(Parser.class.getName(), "parseByeCommand()");
-        return null;
+        return new ExitCommand();
     }
 
     private Command parseHelpCommand() {

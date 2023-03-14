@@ -10,4 +10,9 @@ How may I help you?
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 > ________________________________________________
-error
+Please enter a valid command!
+________________________________________________
+Enter a command or /help to see the list of commands available.
+> ________________________________________________
+Bye. See you again :)
+________________________________________________

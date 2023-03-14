@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import seedu.duke.commands.Command;
+import seedu.duke.constants.UIConstants;
 import seedu.duke.constants.StorageConstants;
 import seedu.duke.entrylog.EntryLog;
 import seedu.duke.parser.Parser;
@@ -31,20 +32,23 @@ public class Duke {
         ui.printWelcome();
         EntryLog entrylog = new EntryLog();
         Scanner in = new Scanner(System.in);
+        Command command = new Command();
+        Parser parser = new Parser();
         do {
             ui.printAwaitUserInput();
             String userInput = in.nextLine();
             logger.info("> User entered: " + userInput);
             ui.printLine();
             try {
-                Command command = new Parser().parseUserInput(userInput);
+                command = parser.parseUserInput(userInput);
                 command.execute(entrylog);
             } catch (Exception e) {
-                ui.print("error");
+                ui.print(e.getMessage() + UIConstants.NEWLINE);
+                ui.printLine();
             }
-            // TODO: condition to be replaced when exit command is implemented
-        } while (in.hasNextLine());
+        } while (!command.getIsExit());
         logger.info("Exiting application");
+        ui.printExit();
         exitLogging();
     }
 

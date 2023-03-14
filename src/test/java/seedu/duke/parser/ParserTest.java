@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.duke.constants.MessageConstants;
 import seedu.duke.exceptions.InvalidArgumentsException;
+import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.MissingArgumentsException;
 
 
@@ -25,11 +26,12 @@ public class ParserTest {
     }
 
     @Test
-    public void parseUserInput_invalidCommand_nullReturned() {
-        Parser parser = new Parser();
-        assertDoesNotThrow(() -> {
-            parser.parseUserInput("/invalid");
-        });
+    public void parseUserInput_invalidCommand_exceptionThrown() {
+        assertThrows(InvalidCommandException.class,
+                () -> {
+                    Parser parser = new Parser();
+                    parser.parseUserInput("/invalid");
+                });
     }
 
     @Test
@@ -54,37 +56,37 @@ public class ParserTest {
     @Test
     public void parseUserInput_validViewCommand_parsedSuccessfully() {
         Parser parser = new Parser();
-        assertDoesNotThrow(()->parser.parseUserInput("/view"));
+        assertDoesNotThrow(() -> parser.parseUserInput("/view"));
     }
 
     @Test
     public void parseUserInput_validEditCommand_parsedSuccessfully() {
         Parser parser = new Parser();
-        assertDoesNotThrow(()->parser.parseUserInput("/edit 1 -d new description"));
+        assertDoesNotThrow(() -> parser.parseUserInput("/edit 1 -d new description"));
     }
 
     @Test
     public void parseUserInput_validDeleteCommand_parsedSuccessfully() {
         Parser parser = new Parser();
-        assertDoesNotThrow(()->parser.parseUserInput("/delete 1"));
+        assertDoesNotThrow(() -> parser.parseUserInput("/delete 1"));
     }
 
     @Test
     public void parseUserInput_validHelpCommand_parsedSuccessfully() {
         Parser parser = new Parser();
-        assertDoesNotThrow(()->parser.parseUserInput("/help"));
+        assertDoesNotThrow(() -> parser.parseUserInput("/help"));
     }
 
     @Test
     public void parseUserInput_validByeCommand_parsedSuccessfully() {
         Parser parser = new Parser();
-        assertDoesNotThrow(()->parser.parseUserInput("/bye"));
+        assertDoesNotThrow(() -> parser.parseUserInput("/bye"));
     }
 
     @Test
     public void parseUserInput_whitespaceTrimmed() {
         Parser parser = new Parser();
-        assertDoesNotThrow(()->parser.parseUserInput("   /view   "));
+        assertDoesNotThrow(() -> parser.parseUserInput("   /view   "));
     }
 
     @Test
@@ -112,7 +114,7 @@ public class ParserTest {
     @Test
     public void parseDeleteCommand_validArguments_parsedSuccessfully() {
         Parser parser = new Parser();
-        assertDoesNotThrow(()->parser.parseUserInput("/delete 1"));
+        assertDoesNotThrow(() -> parser.parseUserInput("/delete 1"));
     }
 
     @Test
@@ -129,6 +131,6 @@ public class ParserTest {
     @Test
     public void parseViewCommand_validArguments_parsedSuccessfully() {
         Parser parser = new Parser();
-        assertDoesNotThrow(()->parser.parseUserInput("/view 10"));
+        assertDoesNotThrow(() -> parser.parseUserInput("/view 10"));
     }
 }
