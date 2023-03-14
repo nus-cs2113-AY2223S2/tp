@@ -1,1 +1,19 @@
-James Gosling
+list
+add n/sorting notes t/SORTING
+add n/linked list notes t/LINKED_LIST
+add n/incorrect topic note t/sorting
+add n/hash table notes t/HASH_TABLE
+list
+remove n/       xxx
+remove n/linked list notes
+list
+filter k/topic
+filter k/topic t/SORTING
+remove n/    hash table notes
+list
+add n/sorting notes t/SORTING
+help c/add
+filter k/ topic
+filter k/topic t/MST
+filter k/topic t/MINIMUM_SPANNING_TREE
+exit

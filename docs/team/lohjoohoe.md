@@ -1,4 +1,4 @@
-# John Doe - Project Portfolio Page
+# Loh Joo Hoe - Project Portfolio Page
 
 ## Overview
 
