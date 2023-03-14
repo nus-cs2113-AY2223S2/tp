@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class SniffTasks {
 
-    private static final ArrayList<Appointment> appointments = new ArrayList<Appointment>();
+    private static final ArrayList<Appointment> APPOINTMENTS = new ArrayList<Appointment>();
 
     private static int apptCount = 0;
 
@@ -15,14 +15,14 @@ public class SniffTasks {
 
     public void removeAppointment(int apptNum) throws SniffException {
         try {
-            appointments.remove(apptNum);
+            APPOINTMENTS.remove(apptNum);
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The remove command description is invalid!");
         }
     }
 
     public Appointment getAppointment(int apptNum) {
-        return appointments.get(apptNum);
+        return APPOINTMENTS.get(apptNum);
     }
 
     /**
@@ -40,7 +40,8 @@ public class SniffTasks {
     }
 
     public void viewAppointment(int uId) {
-        for (Appointment appointment : appointments) {
+        for (Appointment appointment : APPOINTMENTS) {
+            assert appointment.uid != null;
             if (uId == Integer.parseInt(appointment.uid)) {
                 String type = appointment.getType();
                 String animal = appointment.getAnimal();
