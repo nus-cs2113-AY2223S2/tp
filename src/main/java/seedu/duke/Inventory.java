@@ -6,6 +6,7 @@ import seedu.duke.trie.Trie;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static seedu.duke.Parser.in;
 
 public class Inventory {
     private static ArrayList<Item> items = new ArrayList<>();
@@ -116,6 +117,7 @@ public class Inventory {
         }
         Ui.printSearchUPCItem(upcCodes.get(upc));
     }
+
     /**
      * Search for an item in the inventory by keyword and returns search query
      *
@@ -231,14 +233,31 @@ public class Inventory {
     }
 
     public static void removeItemAtIndex(int index) {
-        String itemName = items.get(index).getName().toLowerCase();
-        upcCodes.remove(items.get(index).getUpc());
-        if (itemNameHash.get(itemName).size() == 1) {
-            itemNameHash.remove(itemName);
-        } else {
-            itemNameHash.get(itemName).remove(items.get(index));
+        Item itemToRemove = items.get(index);
+        Ui.printConfirmMessage();
+        String confirmation = in.nextLine();
+        switch (confirmation.toUpperCase()) {
+        case "Y":
+            String itemName = itemToRemove.getName().toLowerCase();
+            String upcCode = itemToRemove.getUpc();
+            int i = items.indexOf(itemToRemove);
+            upcCodes.remove(upcCode);
+            items.remove(i);
+            trie.remove(itemName);
+            if (itemNameHash.get(itemName).size() == 1) {
+                itemNameHash.remove(itemName);
+            } else {
+                itemNameHash.get(itemName).remove(itemToRemove);
+            }
+            Ui.printSuccessRemove(itemToRemove);
+            break;
+        case "N":
+            Ui.printNotRemoving();
+            break;
+        default:
+            Ui.printInvalidReply();
+            break;
         }
-        items.remove(index);
     }
 
     public static void listItems() {
@@ -250,5 +269,49 @@ public class Inventory {
         } else {
             Ui.printInvalidList();
         }
+    }
+
+    /**
+     * Removes item from the array list of items and hashmap of upc
+     * using item's unique upc.
+     *
+     * @param upc UPC of item to be removed from the list.
+     * @return index of item in the arraylist for testing; otherwise -1.
+     */
+    public static int removeByUpc(String upc) {
+        String upcCode = upc.replaceFirst("upc/", "");
+        searchUPC(upcCode);
+        if (!upcCodes.containsKey(upcCode)) {
+            return -1;
+        }
+        Item itemToRemove = upcCodes.get(upcCode);
+        Ui.printConfirmMessage();
+        String confirmation = in.nextLine();
+        switch (confirmation.toUpperCase()) {
+        case "Y":
+            String itemName = itemToRemove.getName().toLowerCase();
+            int i = items.indexOf(itemToRemove);
+            upcCodes.remove(upcCode);
+            items.remove(i);
+            trie.remove(itemName);
+            if (itemNameHash.get(itemName).size() == 1) {
+                itemNameHash.remove(itemName);
+            } else {
+                itemNameHash.get(itemName).remove(itemToRemove);
+            }
+            Ui.printSuccessRemove(itemToRemove);
+            return i;
+        case "N":
+            Ui.printNotRemoving();
+            break;
+        default:
+            Ui.printInvalidReply();
+            break;
+        }
+        return -1;
+    }
+
+    public static ArrayList<Item> getItemList() {
+        return items;
     }
 }
