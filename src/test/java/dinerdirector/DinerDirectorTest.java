@@ -15,6 +15,7 @@ import commands.menu.ViewDishCommand;
 import org.junit.jupiter.api.Test;
 import utils.Parser;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 public class DinerDirectorTest {
@@ -86,7 +87,26 @@ public class DinerDirectorTest {
         }
     }
 
+    @Test
+    void runCommandLoopUntilExit_userInput_addDishCommand() {
+        ArrayList<String> listOfCommands = new ArrayList<>();
 
+        listOfCommands.add(" ");
+        listOfCommands.add("apple pie 2nd edition" + System.lineSeparator() +
+                "3.93");
+        listOfCommands.add("apple pie 2nd edition" + System.lineSeparator() +
+                "-1");
+        listOfCommands.add("apple pie 2nd edition" + System.lineSeparator() +
+                "321" + System.lineSeparator() +
+                "");
+        listOfCommands.add("apple pie 2nd edition" + System.lineSeparator() +
+                "321" + System.lineSeparator() +
+                "apple flour water butter");
 
-
+        for (String command : listOfCommands) {
+            ByteArrayInputStream in = new ByteArrayInputStream(command.getBytes());
+            System.setIn(in);
+            new Parser().parseCommand("add_dish");
+        }
+    }
 }

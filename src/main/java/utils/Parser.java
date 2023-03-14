@@ -181,23 +181,25 @@ public class Parser {
         ArrayList<String> ingredients;
 
         try {
-            Scanner userInputName = new Scanner(System.in);
+            Scanner userInput = new Scanner(System.in);
             System.out.println("Name of Dish?");
-            name = userInputName.nextLine();
+            name = userInput.nextLine();
             if (name.isBlank()) {
                 throw new DinerDirectorException(Messages.MESSAGE_BLANK_DISH_NAME_COMMAND);
             }
 
-            Scanner userInputPrice = new Scanner(System.in);
             System.out.println("Price of Dish? (In cents)");
-            price = Integer.parseInt(userInputPrice.nextLine());
+            String priceInString = userInput.nextLine();
+            price = Integer.parseInt(priceInString);
             if (price < 0) {
                 throw new DinerDirectorException(Messages.MESSAGE_NEGATIVE_PRICE_COMMAND);
             }
 
-            Scanner userInputIngredientsList = new Scanner(System.in);
             System.out.println("List of ingredients? (Separate it by spaces)");
-            String[] userInputSplit = userInputIngredientsList.nextLine().split(" ");
+            if (!userInput.hasNext()) {
+                throw new DinerDirectorException(Messages.MESSAGE_INGREDIENT_LIST_CANNOT_BE_EMPTY);
+            }
+            String[] userInputSplit = userInput.nextLine().split(" ");
             ingredients = new ArrayList<>(Arrays.asList(userInputSplit));
 
         } catch (DinerDirectorException e) {
