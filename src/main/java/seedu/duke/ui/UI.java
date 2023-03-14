@@ -148,7 +148,7 @@ public class UI {
      * @param entry Expenditure to be printed
      */
     public void printExpenditureDeleted(Entry entry) {
-        printExpenditureAdded(entry.getDescription(), entry.getAmount(), entry.getCategoryString());
+        printExpenditureDeleted(entry.getDescription(), entry.getAmount(), entry.getCategoryString());
     }
 
     /**

@@ -13,8 +13,7 @@ public final class MessageConstants {
     public static final String PRICE = "Price: $";
     public static final String MESSAGE_EXIT = "Bye. See you again :)" + NEWLINE;
     public static final String MESSAGE_EXPENDITURE_ADDED = "The following expenditure has been added:" + NEWLINE;
-    public static final String MESSAGE_EXPENDITURE_DELETED = "The following expenditure has been deleted:"
-            + NEWLINE;
+    public static final String MESSAGE_EXPENDITURE_DELETED = "The following expenditure has been deleted:" + NEWLINE;
     public static final String MESSAGE_EXPENDITURE_EDITED = "The following expenditure has been updated:" + NEWLINE;
     public static final String MESSAGE_INVALID_ID = "Please enter a valid numerical index!";
     public static final String MESSAGE_INVALID_PRICE = "Please enter the price in numeric or decimal form!";

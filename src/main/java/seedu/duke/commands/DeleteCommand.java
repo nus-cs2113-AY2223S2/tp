@@ -1,9 +1,11 @@
 package seedu.duke.commands;
 
 import seedu.duke.constants.MessageConstants;
+import seedu.duke.entries.Entry;
 import seedu.duke.entrylog.EntryLog;
 import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.exceptions.InvalidEntryIdException;
+import seedu.duke.ui.UI;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +40,7 @@ public class DeleteCommand extends Command {
             logger.log(Level.WARNING, "Input entry ID is invalid");
             throw new InvalidEntryIdException(MessageConstants.MESSAGE_INVALID_ID);
         }
-        entries.delete(entryId);
+        Entry deletedEntry = entries.delete(entryId);
+        new UI().printExpenditureDeleted(deletedEntry);
     }
 }
