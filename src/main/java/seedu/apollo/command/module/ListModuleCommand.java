@@ -10,7 +10,7 @@ public class ListModuleCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
-
+        assert (moduleList != null) : "ListModuleCommand: ModuleList should not be null!";
         ui.printModuleList(moduleList);
     }
 }
