@@ -38,11 +38,10 @@ public class Storage {
                 String line = reader.nextLine();
                 String[] extract = line.split("\\|");
                 String symbol = extract[0].trim();
-                String description = extract[2].trim();
-                String date = extract[3].trim();
-                String value = extract[4].trim();
-
-                if (symbol.equals("I")) {
+                if(symbol.equals("I")) {
+                    String description = extract[1].trim();
+                    String date = extract[2].trim();
+                    String value = extract[3].trim();
                     Income income = new Income(description, date, Double.parseDouble(value));
                     incomes.add(income);
                 }
@@ -65,12 +64,11 @@ public class Storage {
                 String line = reader.nextLine();
                 String[] extract = line.split("\\|");
                 String symbol = extract[0].trim();
-                String category = extract[1].trim();
-                String description = extract[2].trim();
-                String date = extract[3].trim();
-                String value = extract[4].trim();
-
                 if (symbol.equals("E")) {
+                    String category = extract[1].trim();
+                    String description = extract[2].trim();
+                    String date = extract[3].trim();
+                    String value = extract[4].trim();
                     Expense expense = new Expense(category, description, date, Double.parseDouble(value));
                     expenses.add(expense);
                 }
@@ -92,15 +90,15 @@ public class Storage {
 
             for (int i = 0; i < incomes.size(); i++) {
                 Record income = incomes.get(i);
-                String line = String.format("I | %s | %s | %s | %.2f", income.getCategory(),
-                        income.getDescription(), income.getDate(), income.getValue());
+                String line = String.format("I | %s | %s | %.2f", income.getDescription(),
+                        income.getDate(), income.getValue())  + "\n";
                 fileWriter.write(line);
             }
 
             for (int i = 0; i < expenses.size(); i++) {
                 Record expense = expenses.get(i);
                 String line = String.format("E | %s | %s | %s | %.2f", expense.getCategory(),
-                        expense.getDescription(), expense.getDate(), expense.getValue());
+                        expense.getDescription(), expense.getDate(), expense.getValue())  + "\n";
                 fileWriter.write(line);
             }
 

@@ -11,8 +11,7 @@ public class AddExpenseCommand extends Command {
     private final Expense expense;
 
     public AddExpenseCommand(Expense expense) throws ChChingException {
-        if(expense.getValue() <= 0)
-        {
+        if(expense.getValue() <= 0) {
             throw new ChChingException("Invalid expense value");
         }
         this.expense = expense;

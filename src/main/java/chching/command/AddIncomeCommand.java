@@ -11,7 +11,7 @@ public class AddIncomeCommand extends Command {
     private final Income income;
 
     public AddIncomeCommand(Income income) throws ChChingException {
-        if(income.getValue() <= 0){
+        if(income.getValue() <= 0) {
             throw new ChChingException("Invalid income value");
         }
         this.income = income;

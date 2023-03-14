@@ -50,7 +50,7 @@ public abstract class Record {
         this.value = value;
     }
     public String toString() {
-        return "Category - " + getCategory() +
+        return " Category - " + getCategory() +
                 " | Description - " + getDescription() +
                 " | Date - " + getDate() +
                 " | Value - " + getValue();

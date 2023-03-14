@@ -1,5 +1,6 @@
 package chching.parser;
 
+import chching.ChChingException;
 import chching.command.Command;
 import chching.command.InvalidCommand;
 import chching.command.DeleteExpenseCommand;
@@ -70,8 +71,8 @@ public class Parser {
             default:
                 command = new InvalidCommand();
             }
-        } catch (Exception e) {
-            System.out.println("Error receiving command");
+        } catch (ChChingException e) {
+            System.out.println(e.getMessage());
         }
         return command;
     }
