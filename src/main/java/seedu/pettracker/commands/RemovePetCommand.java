@@ -19,6 +19,7 @@ public class RemovePetCommand extends Command{
     @Override
     public void execute(Ui ui) {
         //petList.removePet(petName);
+        ui.removePetCommandMessage(petName);
     }
 
     //TODO: Implement this method
