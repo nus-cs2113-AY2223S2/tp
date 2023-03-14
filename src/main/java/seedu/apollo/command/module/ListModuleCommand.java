@@ -10,6 +10,7 @@ public class ListModuleCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
+
         ui.printModuleList(moduleList);
     }
 }
