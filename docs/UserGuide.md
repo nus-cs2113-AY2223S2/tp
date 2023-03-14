@@ -113,7 +113,7 @@ Please add a description of the bug found under our [Issue Tracker]([here](https
 ## Command Summary
 👉 Words in **CAPITAL LETTERS** are user input
 
-👉 Each word is separated by a **single whitespace** only
+👉 Each word is separated by only a **single whitespace**
 
 
 **Command | Description**
