@@ -26,7 +26,9 @@ public class RainyDay {
         } catch (IOException | ClassNotFoundException | ClassCastException e) {
             logger.log(Level.INFO, "No valid save file detected. Starting with empty financial data.");
             ui.noFileExist();
-            financialReport.setReportOwner(ui.readUserName());
+            String username = ui.readUserName();
+            assert username != null : "Inputted username should not be null";
+            financialReport.setReportOwner(username);
         }
     }
 
