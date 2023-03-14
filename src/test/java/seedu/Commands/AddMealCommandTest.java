@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AddMealCommandTest {
     @Test
     void parseInput_EmptyInput_ExpectException() {
+
         String commandDescriptor = "";
         assertThrows(NumberFormatException.class,
                 () -> Integer.parseInt(commandDescriptor));
