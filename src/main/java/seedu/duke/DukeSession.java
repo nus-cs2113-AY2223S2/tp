@@ -32,7 +32,7 @@ public class DukeSession {
                     .route("remove", new RemoveCommandFactory())
                     .route("recipe", new CommandRouterNode()
                             .route("possible", new RecipePossibleCommandFactory())
-                            .route("all", new RecipeAllCommandFactory())
+                            .route("all", new RecipeAllCommandFactory()))
                     .route("ingredients", new CommandRouterNode()
                             .route("list", new IngredientsListCommandFactory())
                     );
