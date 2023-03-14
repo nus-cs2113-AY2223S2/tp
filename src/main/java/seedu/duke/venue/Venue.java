@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.venue;
 
 public class Venue {
     private String venueName;
@@ -11,6 +11,18 @@ public class Venue {
         this.venueName = venueName;
         this.venueLocation = venueLocation;
         this.venueCapacity = venueCapacity;
+    }
+
+    public String getVenueName(){
+        return venueName;
+    }
+
+    public String getVenueLocation(){
+        return venueLocation;
+    }
+
+    public int getVenueCapacity(){
+        return venueCapacity;
     }
 
     @Override

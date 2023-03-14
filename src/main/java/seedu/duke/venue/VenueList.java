@@ -1,4 +1,6 @@
-package seedu.duke;
+package seedu.duke.venue;
+
+import seedu.duke.EmptyListException;
 
 import java.util.ArrayList;
 

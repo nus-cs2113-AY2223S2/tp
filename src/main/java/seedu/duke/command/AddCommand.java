@@ -1,6 +1,5 @@
-package seedu.duke.Command;
+package seedu.duke.command;
 
-import seedu.duke.VenueList;
 
 public class AddCommand extends Command {
     protected String companyName;
@@ -15,7 +14,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(VenueList venueList) {
-
+    public void execute() {
+        System.out.println("add command");
     }
 }
