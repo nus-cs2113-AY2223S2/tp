@@ -7,7 +7,7 @@ import seedu.duke.command.misc.RecipePossibleCommand;
 import seedu.duke.parser.CommandArguments;
 
 /**
- * Represents a factory for the "/recipe possible" command.
+ * Represents a factory for the "recipe possible" command.
  */
 public class RecipePossibleCommandFactory extends ExecutableCommandFactory {
     @Override

@@ -8,7 +8,7 @@ import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 
 /**
- * Represents the "/recipe possible" command.
+ * Represents the "recipe possible" command.
  */
 public class RecipePossibleCommand extends ExecutableCommand {
 

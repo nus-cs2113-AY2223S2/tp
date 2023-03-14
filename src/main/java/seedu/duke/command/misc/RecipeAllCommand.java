@@ -6,7 +6,7 @@ import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 
 /**
- * Represents the "/recipe all" command.
+ * Represents the "recipe all" command.
  */
 public class RecipeAllCommand extends ExecutableCommand {
     /**
@@ -18,7 +18,7 @@ public class RecipeAllCommand extends ExecutableCommand {
     public void execute(DukeSession dukeSession) {
         RecipeList recipes = dukeSession.getRecipes();
         int index = 1;
-        dukeSession.getUi().printMessage("Here is the full list of recipe:");
+        dukeSession.getUi().printMessage("Here is the full list of recipes:");
         for (Recipe recipe : recipes.getRecipes()) {
             dukeSession.getUi().printMessage(Integer.toString(index) + ". " + recipe.getName());
             index++;
