@@ -31,7 +31,7 @@ public class StorageTest {
         financialReport.addStatement(new FinancialStatement("noodles", "in", 5));
         String filePath = "rainyDay.txt";
         Storage.writeToFile(financialReport, filePath);
-        FinancialReport financialReportLoaded = new FinancialReport(Storage.loadFromFile(filePath));
+        FinancialReport financialReportLoaded =Storage.loadFromFile(filePath);
         ViewCommand viewList = new ViewCommand();
         viewList.setData(financialReportLoaded);
         viewList.execute();

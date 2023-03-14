@@ -21,9 +21,9 @@ public class RainyDay {
     private RainyDay(String filePath) {
         ui = new Ui();
         try {
-            financialReport = new FinancialReport(Storage.loadFromFile(filePath));
+            financialReport = Storage.loadFromFile(filePath);
             logger.log(Level.INFO, "File loaded successfully.");
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException | ClassCastException e) {
             logger.log(Level.INFO, "No valid save file detected. Starting with empty financial data.");
             ui.noFileExist();
         }
