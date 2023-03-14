@@ -70,24 +70,24 @@ public class TxtFileStatus {
             String saveString = s.nextLine();
             String[] saveData = saveString.split("d/|v/|t/|p/|n/|o/");
             switch (saveData[0]) {
-                case "Acad":
-                    AcademicExpenditure academicExpenditure = new AcademicExpenditure(
-                            saveData[1],
-                            Double.parseDouble(saveData[2]),
-                            LocalDate.parse(saveData[3]));
-                    expenditures.addExpenditure(academicExpenditure);
-                    break;
-                case "Accom":
-                    AccommodationExpenditure accommodationExpenditure = new AccommodationExpenditure(
-                            saveData[1],
-                            Double.parseDouble(saveData[2]),
-                            LocalDate.parse(saveData[3]));
-                    if (saveData[4].equals("[X]")) {
-                        accommodationExpenditure.setPaid();
-                    }
-                    expenditures.addExpenditure(accommodationExpenditure);
-                    break;
-                case "B":
+            case "Acad":
+                AcademicExpenditure academicExpenditure = new AcademicExpenditure(
+                        saveData[1],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]));
+                expenditures.addExpenditure(academicExpenditure);
+                break;
+            case "Accom":
+                AccommodationExpenditure accommodationExpenditure = new AccommodationExpenditure(
+                        saveData[1],
+                        Double.parseDouble(saveData[2]),
+                        LocalDate.parse(saveData[3]));
+                if (saveData[4].equals("[X]")) {
+                    accommodationExpenditure.setPaid();
+                }
+                expenditures.addExpenditure(accommodationExpenditure);
+                break;
+            case "B":
                     BorrowExpenditure borrowExpenditure = new BorrowExpenditure(
                             saveData[1],
                             saveData[5],

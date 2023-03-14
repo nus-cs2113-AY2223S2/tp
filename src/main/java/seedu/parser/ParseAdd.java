@@ -29,29 +29,29 @@ public class ParseAdd {
         try {
             // Format: category d/date, a/amount, s/description
 
-            String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput,SSLASH, BLANK);
+            String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
             String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, SSLASH);
             double amount = Double.parseDouble(amountVal);
             String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, ASLASH);
             LocalDate date = LocalDate.parse(dateVal);
 
             switch (command) {
-            case AcademicExpenditureCommand.COMMAND_WORD:
-                return new AcademicExpenditureCommand(descriptionVal, amount, date);
-            case AccommodationExpenditureCommand.COMMAND_WORD:
-                return new AccommodationExpenditureCommand(descriptionVal, amount, date);
-            case EntertainmentExpenditureCommand.COMMAND_WORD:
-                return new EntertainmentExpenditureCommand(descriptionVal, amount, date);
-            case FoodExpenditureCommand.COMMAND_WORD:
-                return new FoodExpenditureCommand(descriptionVal, amount, date);
-            case OtherExpenditureCommand.COMMAND_WORD:
-                return new OtherExpenditureCommand(descriptionVal, amount, date);
-            case TransportExpenditureCommand.COMMAND_WORD:
-                return new TransportExpenditureCommand(descriptionVal, amount, date);
-            case TuitionExpenditureCommand.COMMAND_WORD:
-                return new TuitionExpenditureCommand(descriptionVal, amount, date);
-            default:
-                return new InvalidCommand("Invalid");
+                case AcademicExpenditureCommand.COMMAND_WORD:
+                    return new AcademicExpenditureCommand(descriptionVal, amount, date);
+                case AccommodationExpenditureCommand.COMMAND_WORD:
+                    return new AccommodationExpenditureCommand(descriptionVal, amount, date);
+                case EntertainmentExpenditureCommand.COMMAND_WORD:
+                    return new EntertainmentExpenditureCommand(descriptionVal, amount, date);
+                case FoodExpenditureCommand.COMMAND_WORD:
+                    return new FoodExpenditureCommand(descriptionVal, amount, date);
+                case OtherExpenditureCommand.COMMAND_WORD:
+                    return new OtherExpenditureCommand(descriptionVal, amount, date);
+                case TransportExpenditureCommand.COMMAND_WORD:
+                    return new TransportExpenditureCommand(descriptionVal, amount, date);
+                case TuitionExpenditureCommand.COMMAND_WORD:
+                    return new TuitionExpenditureCommand(descriptionVal, amount, date);
+                default:
+                    return new InvalidCommand("Invalid");
             }
 
         } catch (NumberFormatException n) {
