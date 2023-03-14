@@ -25,6 +25,7 @@ public class Company {
 
     @Override
     public String toString() {
-        return "Company name: " + companyName + "\nCompany contact number: " + contactNumber + "\nCompany contact email: "  + contactEmail;
+        return "Company name: " + companyName + "\nCompany contact number: " + contactNumber +
+                "\nCompany contact email: "  + contactEmail;
     }
 }
