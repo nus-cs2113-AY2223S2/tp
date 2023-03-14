@@ -2,41 +2,53 @@
 
 ## Introduction
 
-{Give a product intro}
+FitnessDuke is a CLI Based workout organizer/tracker.
 
-## Quick Start
+## Getting Started
 
-{Give steps to get started quickly}
+1. Ensure you have Java 11 or later installed in your PC.
+2. Download the latest version of fitnessduke.jar from our GitHub releases 
+page [here](https://github.com/AY2223S2-CS2113-W13-2/tp/releases).
+3. Copy the file to the folder where you want to use fitness duke.
+4. Open a command terminal in the folder where you put duke.jar in
+6. Use the java -jar fitnessduke.jar command to run the application
+7. Type the command in the command box and press Enter to execute it.
+e.g. typing help and pressing Enter will open the help window.
+8. Refer to the Features below for details of each command.
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+## Features
 
-## Features 
+### Viewing help: ```help```
+Shows all possible commands that user can input
 
-{Give detailed description of each feature}
+Example Command: ```help```
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+### Start a quick workout: ```start [number]```
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Shows a list containing *number* of random workouts
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+Example Command: ```start 3```
 
-Example of usage: 
+### Getting a list of specific workouts: ```generate [arguments] [number]```
 
-`todo n/Write the rest of the User Guide d/next week`
+Shows a list containing *number* of random workouts that suits the arguments filter
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+Example Command: ```generate easy 3```, ```generate hard upper 4```
 
+### Exiting the programe: ```bye```,```exit```
+Gracefully exits the program and prints bye message
+
+Example command: ```bye```,```exit```
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: Can I add my own workouts to the program?
 
-**A**: {your answer here}
+**A**: This is a very intuitive feature, but we have not implemented it yet.
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
+* Viewing help: ```help```
+* Quick Start Workout: ```quick```
+* Generate specific Workout set: ```generate```
+* Exiting the program: ```exit```,```bye```
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
