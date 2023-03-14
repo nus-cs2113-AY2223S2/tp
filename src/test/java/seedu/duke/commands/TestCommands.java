@@ -1,8 +1,6 @@
 package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.commands.CommandHandler;
-import seedu.duke.commands.GenerateFilterCommand;
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
