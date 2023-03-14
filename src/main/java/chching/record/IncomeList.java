@@ -41,7 +41,7 @@ public class IncomeList extends RecordList{
         if(!(date == null)) {
             inc.date = date;
         }
-        if(!(value == 0)) {
+        if(value > 0) {
             inc.value = value;
         }
     }
