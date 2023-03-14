@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 public class CardList {
 
-    private ArrayList<Card> cards;
+
+    public ArrayList<Card> cards;
+
 
     public CardList() {
         this.cards = new ArrayList<>();

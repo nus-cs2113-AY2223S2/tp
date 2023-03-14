@@ -12,8 +12,25 @@ public class Card {
         this.answer = answer;
     }
 
+    public int getUuid() {
+        return uuid;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+
+
     @Override
     public String toString() {
         return this.question + " " + this.answer;
-    }
+
+    } // return the card
+
+
 }

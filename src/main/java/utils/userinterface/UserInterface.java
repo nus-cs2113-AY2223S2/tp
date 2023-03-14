@@ -62,9 +62,21 @@ public class UserInterface {
         System.out.println("Too easy ha? You won't see that question again!");
     }
 
+
+    public void printExportSuccess() {
+        System.out.println("Deck exported liao");
+    }
+
+
     public void printWrongCommand() {
         System.out.println("PLease re-enter a valid command!");
     }
+
+
+    public void printImportBad() {
+        System.out.println("No savedata detected! make new one for uuuuuuuuuuuuuuu");
+    }
+
 
     public void printCard(CardList cardlist, int id) {
         System.out.println(cardlist.get(id));
@@ -104,7 +116,9 @@ public class UserInterface {
         } else {
             System.out.println("Here is your current list of questions buddy:");
             for (int i = 0; i < cardList.size(); ++i) {
-                System.out.println((i + 1) + "." + cardList.get(i));
+
+                System.out.println((i + 1) + "." + cardList.get(i)); // 1. question  answer
+
             }
         }
     }

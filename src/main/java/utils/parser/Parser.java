@@ -40,13 +40,19 @@ public class Parser {
             Card card = new Card(question, answer);
             return new AddCommand(card); // main command return
         } else if (userCommandSplit[0].startsWith("delete") || userCommandSplit[0].startsWith("delete ")) {
-            if(userCommandSplit.length==1) {
+
+            if (userCommandSplit.length == 1) {
                 throw new DeleteMissingNumber();
-            }else if(Integer.parseInt(userCommandSplit[1])<1 ||Integer.parseInt(userCommandSplit[1])>cardList.size() ) {
+            } else if (Integer.parseInt(userCommandSplit[1]) < 1 || Integer.parseInt(userCommandSplit[1]) > cardList.size()) {
+
                 throw new DeleteRangeInvalid();
             }
             int deleteIndex = Integer.parseInt(userCommandSplit[1]);
             return new DeleteCommand(deleteIndex);
+
+        }else if (userCommandSplit[0].startsWith("export") || userCommandSplit[0].startsWith("export ")){
+            return new ExportCommand();
+
         } else if (userCommandSplit[0].startsWith("bye")) {
             this.setIsExecuting(false);
             return new TerminateCommand();
