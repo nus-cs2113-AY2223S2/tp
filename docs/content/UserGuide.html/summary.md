@@ -5,10 +5,10 @@ weight: 4
 
 ## Command Summary
 
-| Command | Format                                            |
-|--------:|---------------------------------------------------|
-|    /add | `/add DESCRIPTION -c CATEGORY -p PRICE`          |
-|   /view | `/view ENTRY_ID -c CATEGORY`                      |
-|   /edit | `/edit ENTRY_ID -d DESCRIPTION -c CATEGORY -p PRICE` |
-| /delete | `/delete ENTRY_ID`                                |
-|   /help | `/help`                                           |
+| Command | Format                                                                                       |
+|--------:|----------------------------------------------------------------------------------------------|
+|    /add | `/add <DESCRIPTION> <-c,-category CATEGORY> <-p,-price PRICE>`                               |
+|   /view | `/view [COUNT] [-c,-category CATEGORY]`                                                      | -categroCATEGORY]`                        |
+|   /edit | `/edit <EXPENSE_ID> [-d,-description DESCRIPTION] [-c,-category CATEGORY] [-p,-price PRICE]` |
+| /delete | `/delete <EXPENSE_ID>`                                                                       |
+|   /help | `/help`                                                                                      |
