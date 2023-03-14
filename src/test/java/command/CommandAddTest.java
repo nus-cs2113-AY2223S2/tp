@@ -19,6 +19,10 @@ class CommandAddTest {
     public ExpenseList expenseList = new ExpenseList();
     public Parser parser = new Parser();
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+    /**
+     * Tests by comparing two separate ArrayList<Expense> when using CommandAdd and adding to the list directly.
+     */
     @Test
     public void addExpense_successful() {
         testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
