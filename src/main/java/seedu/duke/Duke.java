@@ -1,5 +1,6 @@
 package seedu.duke;
 
+
 import seedu.duke.commands.CommandHandler;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;

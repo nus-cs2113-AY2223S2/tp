@@ -20,9 +20,9 @@ public class ExerciseData {
     @SerializedName("equipment")
     @Expose
     private String equipment;
-    @SerializedName("primaryMuscles")
+    @SerializedName("workoutType")
     @Expose
-    private List<String> primaryMuscles;
+    private List<String> workoutType;
     @SerializedName("secondaryMuscles")
     @Expose
     private List<Object> secondaryMuscles;
@@ -73,12 +73,12 @@ public class ExerciseData {
         this.equipment = equipment;
     }
 
-    public List<String> getPrimaryMuscles() {
-        return primaryMuscles;
+    public List<String> getWorkoutType() {
+        return workoutType;
     }
 
-    public void setPrimaryMuscles(List<String> primaryMuscles) {
-        this.primaryMuscles = primaryMuscles;
+    public void setWorkoutType(List<String> workoutType) {
+        this.workoutType = workoutType;
     }
 
     public List<Object> getSecondaryMuscles() {
