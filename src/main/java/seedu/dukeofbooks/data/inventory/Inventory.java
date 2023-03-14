@@ -35,12 +35,6 @@ public class Inventory {
         incrementBookEntry(book);
     }
 
-    /**
-     * Removes one book from inventory
-     * 
-     * @param book
-     * @throws IllegalValueException
-     */
     public Book removeBook(String isbn) throws IllegalValueException {
         // Check if book in inventory
         Optional<Book> target = inventoryListing.entrySet()
@@ -56,12 +50,6 @@ public class Inventory {
         return target.get();
     }
 
-    /**
-     * Removes all books from inventory
-     * 
-     * @param book
-     * @throws IllegalValueException
-     */
     public Book purgeBook(String isbn) throws IllegalValueException {
         // Check if book in inventory
         // Check if book in inventory

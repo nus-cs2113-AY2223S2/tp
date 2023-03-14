@@ -1,7 +1,5 @@
 package seedu.dukeofbooks.data.book;
 
-import seedu.dukeofbooks.data.exception.DuplicateActionException;
-
 
 public abstract class BorrowableItem {
     protected boolean isBorrowed;

@@ -10,7 +10,7 @@ public class BorrowHistory {
     /**
      * Prints previously borrowed books
      */
-    public static void CheckHistory(Person person) {
+    public static void checkHistory(Person person) {
         ArrayList<Loan> previousLoans = person.getBorrowedItems();
 
         if(previousLoans.size()==0) {
