@@ -13,6 +13,10 @@ public class InstructionList {
         return instructions;
     }
 
+    public void add(Instruction instruction) {
+        instructions.add(instruction);
+    }
+
     public void setInstructions(ArrayList<Instruction> instructions) {
         this.instructions = instructions;
     }
