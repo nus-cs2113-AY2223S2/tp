@@ -44,9 +44,9 @@ public class AddCommand extends Command {
      * Initialises the class with the type and description of the task given in the command.
      *
      * @param command Type of task being added (ToDo, Deadline, or Event).
-     * @param param Description of task given by user (including date(s) for Deadline, Event).
-     * @throws InvalidDeadline If the Deadline being added has the wrong format.
-     * @throws InvalidEvent If the Event being added has the wrong format.
+     * @param param   Description of task given by user (including date(s) for Deadline, Event).
+     * @throws InvalidDeadline     If the Deadline being added has the wrong format.
+     * @throws InvalidEvent        If the Event being added has the wrong format.
      * @throws UnexpectedException If the command word cannot be understood.
      */
     public AddCommand(String command, String param) throws InvalidDeadline, InvalidEvent, UnexpectedException {
@@ -106,15 +106,16 @@ public class AddCommand extends Command {
      * Executes the adding of a Task to the TaskList based on data in the class.
      *
      * @param taskList The TaskList to be added to.
-     * @param ui Prints success or error message to user.
-     * @param storage Gets updated after the Task has been added.
+     * @param ui       Prints success or error message to user.
+     * @param storage  Gets updated after the Task has been added.
      * @throws UnexpectedException If the command stored is not recognised.
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
         assert (ui != null & storage != null & taskList != null & moduleList != null) :
                 "executing AddCommand";
-        switch(command) {
+        
+        switch (command) {
         case COMMAND_TODO_WORD:
             taskList.add(new ToDo(desc));
             break;
@@ -132,6 +133,7 @@ public class AddCommand extends Command {
         default:
             throw new UnexpectedException("Adding Task");
         }
+        assert taskList.size() > 0;
         ui.printAddMessage(taskList.get(taskList.size() - 1));
         try {
             storage.updateTask(taskList);
