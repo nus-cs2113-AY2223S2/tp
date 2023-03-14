@@ -20,6 +20,10 @@ public class PetList {
         numberOfPets += 1;
     }
 
+    public static Pet get (int index) {
+        return petList.get(index);
+    }
+
     /**
      * Removes all pets with the provided name from the pet list
      *

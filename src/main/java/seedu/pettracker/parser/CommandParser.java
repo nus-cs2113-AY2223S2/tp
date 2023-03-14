@@ -61,7 +61,6 @@ public class CommandParser {
         case KEYWORD_EXIT:
             return new ExitCommand();
         case KEYWORD_ADD_PET:
-            System.out.println("add-pet command");
             try {
                 return new AddPetCommand(parseArgs(commandString));
             } catch (ArrayIndexOutOfBoundsException e) {

@@ -1,6 +1,7 @@
 package seedu.pettracker.commands;
 
 import seedu.pettracker.ui.Ui;
+import seedu.pettracker.data.PetList;
 
 public class AddStatCommand extends Command {
     protected String petName;
@@ -22,8 +23,8 @@ public class AddStatCommand extends Command {
      */
     @Override
     public void execute(Ui ui) {
-        //petIndex = petList.find(petName);
-        //petList.get(petIndex).addStat(statName, statValue);
+        int petIndex = PetList.find(petName);
+        PetList.get(petIndex).addStat(statName, statValue);
         ui.addStatCommandMessage(petName, statName, statValue);
     }
 
@@ -37,7 +38,7 @@ public class AddStatCommand extends Command {
      */
     @Override
     public String[] parseArgs(String commandArgs) {
-        return new String[2];
+        return commandArgs.split(" ", 3);
     }
 
     /**
