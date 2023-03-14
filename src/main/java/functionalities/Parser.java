@@ -4,8 +4,8 @@ import java.util.logging.Logger;
 
 public class Parser {
     protected static Command command;
+    static Logger logger = Logger.getLogger("parser");
     private static final int NA = 0;
-    public static Logger logger = Logger.getLogger("parser");
 
     public static Command parse(String userCommand) throws SniffException {
         String task = userCommand.trim();
