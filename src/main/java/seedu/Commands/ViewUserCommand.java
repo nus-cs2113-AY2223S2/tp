@@ -7,17 +7,16 @@ import seedu.Entities.CaloricIntake;
 import seedu.Entities.User;
 import seedu.Exceptions.LifeTrackerException;
 import seedu.Ui.GeneralUi;
-//import seedu.Entities.Meal;
-//import java.util.ArrayList;
 
 public class ViewUserCommand extends Command{
     @Override
-    public void execute(GeneralUi ui, FoodStorage foodStorage,
-                        MealStorage mealStorage, UserStorage userStorage) throws LifeTrackerException{
+    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage) 
+            throws LifeTrackerException{
         User user = userStorage.getUser();
         CaloricIntake meals = new CaloricIntake(mealStorage.getMeal());
         int choice;
         boolean toContinue = true;
+
         while (toContinue) {
             System.out.println("View user settings");
             System.out.println("1. View Name");
@@ -67,14 +66,15 @@ public class ViewUserCommand extends Command{
             default:
                 System.out.println("Invalid Choice!");
             }
-                System.out.println("\nContinue viewing?");
-                System.out.println("1. Yes");
-                System.out.println("2. No");
-                System.out.println();
 
-                choice = ui.readInt();
+            System.out.println("\nContinue viewing?");
+            System.out.println("1. Yes");
+            System.out.println("2. No");
+            System.out.println();
 
-            switch(choice){
+            choice = ui.readInt();
+
+            switch(choice) {
             case 1:
                 toContinue = true;
                 break;

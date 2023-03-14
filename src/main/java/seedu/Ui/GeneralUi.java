@@ -101,7 +101,6 @@ public class GeneralUi {
         System.out.println(meal);
     }
 
-
     public void printMealDeleted(Meal meal) {
         System.out.println("Successfully deleted this meal:");
         System.out.println(meal);
