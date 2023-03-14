@@ -14,11 +14,6 @@ public class ExpenseList {
         return expenseList;
     }
 
-    public void deleteExpense(String userInput) {
-        int expenseIndex = parser.extractIndex(userInput);
-        expenseList.remove(expenseIndex - 1); // change to 0-based indexing
-    }
-
     //for list
     public static String getAllMessage(ArrayList<Expense> expenseList) {
         int count = expenseList.size();
