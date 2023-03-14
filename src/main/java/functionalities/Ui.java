@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Ui {
     private static final String SPACE = " ";
-    private static final String DOT_WITH_SPACES = " . ";
+    private static final String DOT_THEN_SPACE = ". ";
     public void showUserMessage(String s) {
         System.out.println(s);
     }
@@ -32,6 +32,10 @@ public class Ui {
     }
 
     public static void formatPrintList(String count, String type, String animal, String name, String date) {
-        System.out.println(count + DOT_WITH_SPACES + type + SPACE + animal + SPACE + name + SPACE + date);
+        System.out.println(count + DOT_THEN_SPACE + type + SPACE + animal + SPACE + name + SPACE + date);
+    }
+
+    public static void printEmptyListMessage() {
+        System.out.println("Appointment list is empty.");
     }
 }
