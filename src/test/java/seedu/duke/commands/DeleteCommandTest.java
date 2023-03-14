@@ -38,7 +38,7 @@ public class DeleteCommandTest {
     void testExecute(){
         try {
             DeleteCommand testCommand = assertDoesNotThrow(() -> new DeleteCommand(1));
-            testCommand.execute(testEntries);
+            testCommand.executor(testEntries);
             assertFalse(testEntries.getEntries().contains(testEntry));
         } catch (Exception e) {
             fail("Unexpected exception");

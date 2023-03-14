@@ -26,7 +26,7 @@ public class EditCommand extends Command {
      * @throws InvalidArgumentsException
      */
     @Override
-    public void execute(EntryLog entryLog) throws InvalidArgumentsException {
+    public void executor(EntryLog entryLog) throws InvalidArgumentsException {
         UI ui = new UI();
         Entry oldEntry = entryLog.getEntry(this.expenseId);
 

@@ -6,6 +6,8 @@ import seedu.duke.entries.Category;
 import seedu.duke.entries.Entry;
 import seedu.duke.entrylog.EntryLog;
 import seedu.duke.exceptions.InvalidCategoryException;
+import seedu.duke.ui.UI;
+import seedu.duke.util.StringUtil;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +29,7 @@ public class AddCommand extends Command {
      * @param amount      Price of entry
      */
     public AddCommand(String description, double amount, String category) throws InvalidCategoryException {
-        switch(category){
+        switch (StringUtil.toTitleCase(category)) {
         case EntryConstants.CLOTHING:
             this.entryObj = new Entry(description, amount, Category.CLOTHING);
             break;
@@ -70,7 +72,7 @@ public class AddCommand extends Command {
         }
     }
 
-    public Entry getEntryObj(){
+    public Entry getEntryObj() {
         return this.entryObj;
     }
 
@@ -80,7 +82,9 @@ public class AddCommand extends Command {
      * @param entries List of entries to add to
      */
     @Override
-    public void execute(EntryLog entries) {
+    public void executor(EntryLog entries) {
+        UI ui = new UI();
         entries.add(entryObj);
+        ui.printExpenditureAdded(entryObj);
     }
 }

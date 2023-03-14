@@ -35,7 +35,7 @@ public class AddCommandTest {
     @DisplayName("Test execute method in AddCommand")
     void testExecute(){
         AddCommand testCommand = assertDoesNotThrow(() -> new AddCommand("Rice", 8.50, "Food"));
-        testCommand.execute(testEntries);
+        testCommand.executor(testEntries);
         assertTrue(testEntries.getEntries().contains(testCommand.getEntryObj()));
     }
 

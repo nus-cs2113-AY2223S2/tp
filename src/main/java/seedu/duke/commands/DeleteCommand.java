@@ -33,7 +33,7 @@ public class DeleteCommand extends Command{
      * @param entries List of entries to delete from
      */
     @Override
-    public void execute(EntryLog entries) throws InvalidArgumentsException, InvalidEntryIdException {
+    public void executor(EntryLog entries) throws InvalidArgumentsException, InvalidEntryIdException {
         if(entryId < 0 || entryId >= entries.getSize()){
             logger.log(Level.WARNING, "Input entry ID is invalid");
             throw new InvalidEntryIdException(MessageConstants.MESSAGE_INVALID_ID);

@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import seedu.duke.commands.EditCommand;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.ViewCommand;
 import seedu.duke.entries.Category;
 import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.exceptions.InvalidCategoryException;
@@ -35,8 +36,11 @@ public class Parser {
      *                                   incorrect format.
      * @throws MissingArgumentsException If required arguments are missing.
      */
-    public Command parseUserInput(String userInput)
-            throws InvalidCommandException, InvalidArgumentsException, MissingArgumentsException {
+    public Command parseUserInput(String userInput) throws
+            InvalidCommandException,
+            InvalidArgumentsException,
+            MissingArgumentsException,
+            InvalidCategoryException {
         logger.entering(Parser.class.getName(), "parseUserInput()");
         userInput = userInput.trim();
         if (userInput.isEmpty()) {
@@ -74,7 +78,6 @@ public class Parser {
             logger.exiting(Parser.class.getName(), "parseUserInput()");
             throw new InvalidCommandException(MessageConstants.MESSAGE_INVALID_COMMAND);
         }
-      
     }
 
     private Command parseByeCommand() {
@@ -130,7 +133,8 @@ public class Parser {
      *                                   category and price.
      * @throws InvalidArgumentsException
      */
-    private Command parseAddCommand(String arguments) throws MissingArgumentsException, InvalidArgumentsException {
+    private Command parseAddCommand(String arguments)
+            throws MissingArgumentsException, InvalidArgumentsException, InvalidCategoryException {
         logger.entering(Parser.class.getName(), "parseAddCommand()");
         logger.info("Parsing add command with arguments: " + arguments);
         if (arguments.isEmpty()) {
@@ -156,11 +160,7 @@ public class Parser {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
         }
         logger.exiting(Parser.class.getName(), "parseAddCommand()");
-        try {
-            return new AddCommand(description, priceDouble, category);
-        } catch (InvalidCategoryException e) {
-            return null;
-        }
+        return new AddCommand(description, priceDouble, category);
     }
 
     /**
@@ -237,26 +237,32 @@ public class Parser {
         if (arguments.isEmpty()) {
             logger.info("No count specified. Listing all expenses");
             // list all commands;
-            return null;
+            return new ViewCommand(Integer.MAX_VALUE);
         }
         String[] argumentsArray = arguments.split(" ", 2);
         assert argumentsArray.length >= 1 : "User input contains at least 1 argument";
         String viewCount = argumentsArray[0];
+        int viewCountInt;
         try {
-            int viewCountInt = Integer.parseInt(argumentsArray[0]);
+            viewCountInt = Integer.parseInt(argumentsArray[0]);
             // view tasks.
         } catch (NumberFormatException e) {
             logger.warning("Expense ID is not an integer: " + MessageConstants.MESSAGE_INVALID_ID);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
+
+        if (viewCountInt < 0) {
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+        }
+
         logger.exiting(Parser.class.getName(), "parseViewCommand()");
-        return null;
+        return new ViewCommand(viewCountInt);
     }
 
     /**
      * Returns a string array of length 3, containing the description, category and
      * price respectively.
-     * 
+     *
      * @param arguments User arguments entered after the add command.
      * @return String[] Array containing description, category and price
      *     respectively.
