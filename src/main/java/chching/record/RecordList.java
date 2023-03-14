@@ -6,7 +6,7 @@ public abstract class RecordList {
 
     protected ArrayList<Record> recordList = new ArrayList<>();
     protected int recordCount = 0;
-    private int balance;
+    private double balance;
     
 
     public RecordList() {
@@ -22,9 +22,10 @@ public abstract class RecordList {
         return recordCount;
     }
 
-    public int getBalance(){
-        for(int i = 0; i<this.recordCount; i++){
-            balance+= this.recordList.get(i).value;
+    public double getBalance(){
+
+        for(int i = 0; i < recordCount; i++){
+            balance+= recordList.get(i).value;
         }
         return balance;
     }

@@ -1,5 +1,7 @@
 package chching.parser;
 import chching.command.Command;
+import chching.command.DeleteExpenseCommand;
+import chching.command.DeleteIncomeCommand;
 import chching.command.AddExpenseCommand;
 import chching.command.AddIncomeCommand;
 import chching.command.BalanceCommand;
@@ -53,6 +55,13 @@ public class Parser {
         case "edit expense":
             Expense updatedExpense = Expenses.parseUpdateExpense(argumentsByField, expenseList);
             break;
+        case "delete income":
+            command = new DeleteIncomeCommand(Integer.parseInt(argumentsByField.get("no")));
+            break;
+        case "delete expense":
+            command = new DeleteExpenseCommand(Integer.parseInt(argumentsByField.get("no")));
+            break;
+            
         case "balance":
             command = new BalanceCommand();
             break;
