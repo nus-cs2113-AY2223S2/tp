@@ -65,6 +65,7 @@ public class Parser {
                 return new InvalidCommand(MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION);
             }
 
+            assert !description.equals("dummy") : MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
             index = Integer.parseInt(description);
         } catch (NumberFormatException nfe) {
             String errorMessage = new IndexNotAnIntegerException().getMessage();
@@ -104,6 +105,7 @@ public class Parser {
         if (type.equals("expense")) {
             return new AddExpenseCommand(amount, newDescription, time);
         }
+        assert type.equals("income") : "Type should be income";
         return new AddIncomeCommand(amount, newDescription, time);
     }
 
@@ -121,6 +123,7 @@ public class Parser {
 
         String[] splitDescriptions = description.split("/ ");
 
+        assert splitDescriptions.length == 4 : MESSAGE_INVALID_EDIT_COMMAND;
         int index;
         try {
             int length = splitDescriptions[1].length();
@@ -134,7 +137,7 @@ public class Parser {
         String newMoney = splitDescriptions[3];
 
         if (isTypeEqualsCost(type)) {
-            // do exception handling...
+            // do exception handling to check newMoney is double...
             double newAmount = Double.parseDouble(newMoney);
             if (moneyType.equals("expense")) {
                 return new EditExpenseCommand(index, type, newAmount);
