@@ -1,6 +1,5 @@
 package seedu.duke.ui;
 
-import javax.xml.transform.SourceLocator;
 import java.util.Scanner;
 
 /**
