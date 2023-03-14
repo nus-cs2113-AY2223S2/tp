@@ -5,7 +5,9 @@ import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class AddCommand extends Command {
@@ -20,8 +22,20 @@ public class AddCommand extends Command {
         this.value = value;
     }
 
+    private void setupLogger() {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.INFO);
+        try {
+            FileHandler fileHandler = new FileHandler("AddCommandExecute.log");
+            logger.addHandler(fileHandler);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
+    }
+
     @Override
     public void execute() {
+        setupLogger();
         logger.log(Level.INFO, "starting addCommand.execute");
 
         int totalStatementCount = financialReport.getStatementCount();
