@@ -20,7 +20,7 @@ public class RecipeAllCommand extends ExecutableCommand {
         int index = 1;
         dukeSession.getUi().printMessage("Here is the full list of recipes:");
         for (Recipe recipe : recipes.getRecipes()) {
-            dukeSession.getUi().printMessage(Integer.toString(index) + ". " + recipe.getName());
+            dukeSession.getUi().printMessage(Integer.toString(index) + ". " + recipe.getMetadata().getName());
             index++;
         }
     }
