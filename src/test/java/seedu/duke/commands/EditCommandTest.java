@@ -38,7 +38,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(proposedChanges[0], proposedChanges[1], proposedChanges[2]
                 , proposedChanges[3]);
         originalEntries.add(originalEntry);
-        assertDoesNotThrow(() -> editCommand.execute(originalEntries), MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
+        assertDoesNotThrow(() -> editCommand.executor(originalEntries), MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
         Entry changedEntry = originalEntries.getEntries().get(0);
         assertEquals(changedEntry.getDescription(), "Lunch");
         assertEquals(changedEntry.getCategoryString(), "Food");
