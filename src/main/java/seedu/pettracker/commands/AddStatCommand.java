@@ -24,6 +24,7 @@ public class AddStatCommand extends Command {
     public void execute(Ui ui) {
         //petIndex = petList.find(petName);
         //petList.get(petIndex).addStat(statName, statValue);
+        ui.addStatCommandMessage(petName, statName, statValue);
     }
 
     //TODO: Implement this method
