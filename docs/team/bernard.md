@@ -1,5 +1,4 @@
 # John Doe - Project Portfolio Page
-
 ## Overview
 
 
