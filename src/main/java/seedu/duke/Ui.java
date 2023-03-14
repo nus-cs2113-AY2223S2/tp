@@ -6,6 +6,7 @@ import static seedu.duke.ColorCode.ANSI_BLUE;
 import static seedu.duke.ColorCode.ANSI_RED;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Ui {
@@ -297,7 +298,7 @@ public class Ui {
      */
     public static void printInvalidEditCommand() {
         System.out.println(LINE);
-        System.out.println(INVALID_EDIT_FORMAT);
+        System.out.println(ANSI_RED + INVALID_EDIT_FORMAT + ANSI_RESET);
         System.out.println(LINE);
     }
 
@@ -306,7 +307,7 @@ public class Ui {
      */
     public static void printItemNotFound() {
         System.out.println(LINE);
-        System.out.println(ITEM_NOT_FOUND);
+        System.out.println(ANSI_RED + ITEM_NOT_FOUND + ANSI_RESET);
         System.out.println(LINE);
     }
 
@@ -326,6 +327,7 @@ public class Ui {
         System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
                 "Quantity Available: " + updatedItem.getQuantity() + "\n" + "Item Price: " + updatedItem.getPrice());
         System.out.println(LINE);
+        assert Objects.equals(oldItem.getUpc(), updatedItem.getUpc()) : "Both items should be of same UPC Code.";
     }
 
 }

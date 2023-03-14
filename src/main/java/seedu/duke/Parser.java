@@ -197,14 +197,10 @@ public class Parser {
             if (!editInfo[0].contains("upc/") || editInfo.length == 1) {
                 throw new EditErrorException();
             }
+            assert editInfo[0].contains("upc/") : "UPC Code is not present in user command!";
             Inventory.editItem(editInfo);
         } catch (EditErrorException eee) {
             Ui.printInvalidEditCommand();
         }
     }
-
-    /* Temporary List Method created by Kai Wen for Edit Function Testing.*/
-    /*public void parseList() {
-        Inventory.listAll();
-    } */
 }
