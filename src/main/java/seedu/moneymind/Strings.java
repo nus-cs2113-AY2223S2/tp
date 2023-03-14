@@ -28,4 +28,8 @@ public class Strings {
     public static final String NULL_DESCRIPTION = "Separated keyword and description cannot be null";
     public static final String REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER =
             "Please enter a positive number for budget and expense";
+    public static final String STORAGE_NEXT_VARIABLE = "&&next_detail&&";
+    public static final String NEW_LINE = System.lineSeparator();
+    public static final String STORAGE_CATEGORY_NAME = "&&new_category&&";
+    public static final String STORAGE_CATEGORY_MAP = "&&category_map&&";
 }
