@@ -1,10 +1,10 @@
 package utils.exceptions;
 
-import utils.cardlist.CardList;
+import model.CardList;
 import utils.command.Command;
 import utils.command.ExceptionCommand;
-import utils.parser.Parser;
-import utils.userinterface.UserInterface;
+import utils.Parser;
+import utils.UserInterface;
 
 public class ExceptionHandler {
 

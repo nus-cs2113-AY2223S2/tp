@@ -11,7 +11,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import utils.cardlist.CardList;
+import model.Card;
+import model.CardList;
 import utils.exceptions.ImportBad;
 
 public class Storage {

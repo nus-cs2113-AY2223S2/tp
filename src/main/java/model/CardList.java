@@ -1,7 +1,7 @@
-package utils.cardlist;
+package model;
 
 import java.util.ArrayList;
-import utils.Card;
+import model.Card;
 
 public class CardList {
 

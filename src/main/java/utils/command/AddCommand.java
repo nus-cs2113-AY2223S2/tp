@@ -1,8 +1,8 @@
 package utils.command;
 
-import utils.Card;
-import utils.cardlist.CardList;
-import utils.userinterface.UserInterface;
+import model.Card;
+import model.CardList;
+import utils.UserInterface;
 
 public class AddCommand extends Command {
     private final Card card;

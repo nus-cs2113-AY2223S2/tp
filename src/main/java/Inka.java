@@ -1,10 +1,10 @@
 import utils.Storage;
-import utils.cardlist.CardList;
+import model.CardList;
 import utils.command.Command;
 import utils.exceptions.ExceptionHandler;
 import utils.exceptions.ImportBad;
-import utils.parser.Parser;
-import utils.userinterface.UserInterface;
+import utils.Parser;
+import utils.UserInterface;
 
 
 public class Inka {
@@ -30,11 +30,6 @@ public class Inka {
         }
     }
 
-    public static void main(String[] args) {
-
-        new Inka("savedata.json").run();
-    }
-
     public void run() {
         ui.printGreeting();
 
@@ -43,5 +38,9 @@ public class Inka {
             Command command = exceptionHandler.mainExceptionHandler(parser, userCommand, ui, cardList);
             command.execute(cardList, ui);
         }
+    }
+
+    public static void main(String[] args) {
+        new Inka("savedata.json").run();
     }
 }

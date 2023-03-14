@@ -6,9 +6,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.io.FileWriter;
 import java.io.IOException;
-import utils.Card;
-import utils.cardlist.CardList;
-import utils.userinterface.UserInterface;
+import model.Card;
+import model.CardList;
+import utils.UserInterface;
 
 public class ExportCommand extends Command {
 

@@ -1,7 +1,7 @@
 package utils.command;
 
-import utils.cardlist.CardList;
-import utils.userinterface.UserInterface;
+import model.CardList;
+import utils.UserInterface;
 
 public class ListCommand extends Command {
     @Override

@@ -1,7 +1,7 @@
-package utils.userinterface;
+package utils;
 
 import java.util.Scanner;
-import utils.cardlist.CardList;
+import model.CardList;
 import utils.enums.StringArt;
 
 public class UserInterface {

@@ -1,7 +1,7 @@
-package utils.parser;
+package utils;
 
-import utils.Card;
-import utils.cardlist.CardList;
+import model.Card;
+import model.CardList;
 import utils.command.AddCommand;
 import utils.command.Command;
 import utils.command.DeleteCommand;
