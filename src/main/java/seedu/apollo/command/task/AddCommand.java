@@ -13,8 +13,14 @@ import seedu.apollo.exception.task.InvalidDeadline;
 import seedu.apollo.exception.task.InvalidEvent;
 import seedu.apollo.task.ToDo;
 
+import java.io.File;
 import java.io.IOException;
 import java.rmi.UnexpectedException;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import static seedu.apollo.ui.Parser.COMMAND_DEADLINE_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_EVENT_WORD;
@@ -25,6 +31,8 @@ import static seedu.apollo.ui.Parser.COMMAND_TODO_WORD;
  * Handles {@code todo}, {@code deadline}, and {@code event} commands.
  */
 public class AddCommand extends Command {
+
+    private static Logger logger = Logger.getLogger("AddCommand");
 
     protected String command;
     protected String desc;
@@ -64,6 +72,34 @@ public class AddCommand extends Command {
         default:
             throw new UnexpectedException("Adding Task");
         }
+        AddCommand.setUpLogger();
+    }
+
+    /**
+     * Sets up logger for AddCommand class.
+     *
+     * @throws IOException If logger file cannot be created.
+     */
+    public static void setUpLogger() {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.ALL);
+        ConsoleHandler logConsole = new ConsoleHandler();
+        logConsole.setLevel(Level.SEVERE);
+        logger.addHandler(logConsole);
+        try {
+
+            if (!new File("apollo.log").exists()) {
+                new File("apollo.log").createNewFile();
+            }
+
+            FileHandler logFile = new FileHandler("apollo.log", true);
+            logFile.setLevel(Level.FINE);
+            logger.addHandler(logFile);
+
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
+
     }
 
     /**
