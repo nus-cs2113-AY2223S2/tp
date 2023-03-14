@@ -21,7 +21,7 @@ public class UiTest {
     }
 
     @Test
-    public void showLine_onEachMethod_displayLine() {
+    public void showLine_onEachMethod_displayLine() throws NullPointerException {
         ui.showLine();
         assertEquals("____________________________________________________________",
                     outputStreamCaptor.toString());
