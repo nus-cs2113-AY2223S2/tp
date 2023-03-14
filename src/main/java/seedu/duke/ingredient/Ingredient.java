@@ -1,20 +1,29 @@
 package seedu.duke.ingredient;
 
+import seedu.duke.DukeException;
+import seedu.duke.recipe.IngredientDatabase;
+import seedu.duke.recipe.IngredientMetadata;
+
 public class Ingredient {
-    protected String name;
+    protected IngredientMetadata metadata;
     protected double quantity;
 
-    public Ingredient(String name, double quantity) {
-        this.name = name;
+    public Ingredient(String name, double quantity) throws DukeException {
+        IngredientDatabase db = IngredientDatabase.getDbInstance();
+
+        if (!db.getKnownIngredients().containsKey(name)) {
+            throw new DukeException("Ingredient with name: " + name + " does not exist");
+        }
+        this.metadata = db.getKnownIngredients().get(name);
         this.quantity = quantity;
     }
     @Override
     public String toString() {
-        return this.quantity + " " + this.name;
+        return this.quantity + " " + this.metadata.getName();
     }
 
-    public String getName() {
-        return name;
+    public IngredientMetadata getMetadata() {
+        return metadata;
     }
 
     public void setQuantity(double quantity) {

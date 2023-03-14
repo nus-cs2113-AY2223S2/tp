@@ -21,7 +21,7 @@ public class RemoveCommand extends ExecutableCommand {
 
     public static int findIndex(DukeSession dukeSession, String name) {
         for (int i = 0; i < dukeSession.getIngredients().size(); i += 1) {
-            if (dukeSession.getIngredients().get(i).getName().equals(name)) {
+            if (dukeSession.getIngredients().get(i).getMetadata().getName().equals(name)) {
                 return i;
             }
         }
