@@ -1,12 +1,15 @@
 package command;
 
 import data.Expense;
-import common.MessageList;
 
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 
-import static common.MessageList.*;
+import static common.MessageList.MESSAGE_DIVIDER;
+import static common.MessageList.MESSAGE_DIVIDER_LIST;
+import static common.MessageList.TAB;
+import static common.MessageList.OFFSET;
+
 
 public class CommandRes {
     public String messageTop;
@@ -20,8 +23,8 @@ public class CommandRes {
     /**
      * Instantiates and references the expense list for the entry to be shown as the result.
      *
-     * @param strTop The first result we need to show.
-     * @param expense The expense list.
+     * @param strTop    The first result we need to show.
+     * @param expense   The expense list.
      * @param strBottom The last result we need to show.
      */
     public CommandRes(String strTop, ArrayList<Expense> expense, String strBottom) {
@@ -33,8 +36,8 @@ public class CommandRes {
     /**
      * Prints out messages with single expense detail.
      *
-     * @param actionDone Message to tell user what has been done.
-     * @param expense Expense details.
+     * @param actionDone       Message to tell user what has been done.
+     * @param expense          Expense details.
      * @param numberOfExpenses Number of expenses in the expense list.
      */
     public CommandRes(String actionDone, Expense expense, String numberOfExpenses) {
@@ -48,9 +51,9 @@ public class CommandRes {
     public String[] printTask() {
         if (expense == null) {
             return new String[]{};
-        } else if (messageTop.equals(MessageList.MESSAGE_DIVIDER_LIST)) {
+        } else if (messageTop.equals(MESSAGE_DIVIDER_LIST)) {
             return IntStream.range(0, expense.size()).mapToObj(i ->
-                    (i + MessageList.OFFSET + "." + expense.get(i))).toArray(String[]::new);
+                    (i + OFFSET + "." + expense.get(i))).toArray(String[]::new);
         } else {
             return expense.stream().map(Expense::toString).toArray(String[]::new);
         }

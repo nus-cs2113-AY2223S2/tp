@@ -2,7 +2,6 @@ package command;
 
 import data.Currency;
 import data.Expense;
-import data.ExpenseList;
 import data.Time;
 import parser.ParserAdd;
 
@@ -10,8 +9,6 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
-import static common.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class CommandAdd extends Command {
     public static final String COMMAND_NAME = "add";
@@ -35,7 +32,7 @@ public class CommandAdd extends Command {
     @Override
     public CommandRes execute() {
         return null;
-//        return new CommandRes(MESSAGE_DIVIDER_LIST, expenseList, ExpenseList.getAllMessage(expenseList));
+        //return new CommandRes(MESSAGE_DIVIDER_LIST, expenseList, ExpenseList.getAllMessage(expenseList));
     }
 
     /**
