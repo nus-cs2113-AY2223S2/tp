@@ -23,7 +23,7 @@ public class UiTest {
     @Test
     public void showLine_onEachMethod_displayLine() throws NullPointerException {
         ui.showLine();
-        assertEquals("____________________________________________________________",
+        assertEquals("____________________________________________________________\n",
                     outputStreamCaptor.toString());
     }
 
