@@ -183,6 +183,9 @@ public class Parser {
     private Command prepareDeleteDishCommand(String[] userInputSplit) {
         int indexToRemove = 0;
         try {
+            if (userInputSplit.length <= 1) {
+                throw new DinerDirectorException(Messages.MESSAGE_EMPTY_INDEX_COMMAND);
+            }
             indexToRemove = Integer.parseInt(userInputSplit[1]) - 1;
             if (indexToRemove < 0 || indexToRemove >= getDishesSize()) {
                 throw new DinerDirectorException(Messages.MESSAGE_INVALID_INDEX_FOR_DISH_COMMAND);

@@ -12,6 +12,7 @@ import commands.deadlinecommand.DeleteDeadlineCommand;
 import commands.deadlinecommand.ViewDeadlineCommand;
 
 import commands.menu.AddDishCommand;
+import commands.menu.DeleteDishCommand;
 import commands.menu.ViewDishCommand;
 import org.junit.jupiter.api.Test;
 import utils.Parser;
@@ -141,15 +142,18 @@ public class DinerDirectorTest {
 
         ByteArrayInputStream setupIn = new ByteArrayInputStream(setup.getBytes());
         System.setIn(setupIn);
-        new Parser().parseCommand("add_dish");
 
         ArrayList<String> listOfCommands = new ArrayList<>();
 
-        final String TEST_CASE_NO_INDEX = "";
-        final String TEST_CASE_NEGATIVE_INDEX = "-1";
-        final String TEST_CASE_ZERO_INDEX = "0";
-        final String TEST_CASE_OUT_OF_BOUNDS_INDEX = "2";
-        final String TEST_CASE_VALID_INDEX = "1";
+        final String SETUP_ADD_DISH = "add_dish";
+
+        final String TEST_CASE_NO_INDEX = "delete_dish";
+        final String TEST_CASE_NEGATIVE_INDEX = "delete_dish -1";
+        final String TEST_CASE_ZERO_INDEX = "delete_dish 0";
+        final String TEST_CASE_OUT_OF_BOUNDS_INDEX = "delete_dish 2";
+        final String TEST_CASE_VALID_INDEX = "delete_dish 1";
+
+        Command setupCommand = new Parser().parseCommand(SETUP_ADD_DISH);
 
         listOfCommands.add(TEST_CASE_NO_INDEX);
         listOfCommands.add(TEST_CASE_NEGATIVE_INDEX);
@@ -158,7 +162,7 @@ public class DinerDirectorTest {
         listOfCommands.add(TEST_CASE_VALID_INDEX);
 
         for (String listOfCommand : listOfCommands) {
-            Command deleteCommand = new Parser().parseCommand("delete_dish " + listOfCommand);
+            Command deleteCommand = new Parser().parseCommand(listOfCommand);
             if (listOfCommand.equals(TEST_CASE_NO_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_NEGATIVE_INDEX)) {
@@ -167,8 +171,6 @@ public class DinerDirectorTest {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_OUT_OF_BOUNDS_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
-            } else if (listOfCommand.equals(TEST_CASE_VALID_INDEX)) {
-                assertTrue(deleteCommand instanceof AddDishCommand);
             }
         }
     }
