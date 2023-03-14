@@ -28,12 +28,10 @@ public class GenerateExercise {
     public GenerateExercise() {
         ParseData parseData = new ParseData();
         exerciseDataList = parseData.getExercises();
-        Random random = new Random();
     }
 
     public ArrayList<ExerciseData> generateRandomSetFrom(ArrayList<ExerciseData> exerciseList, int count) {
         Random random = new Random();
-        System.out.println(System.identityHashCode(exerciseList));
         filteredExerciseList = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             int indexToRemove = random.nextInt(exerciseList.size());
@@ -48,7 +46,7 @@ public class GenerateExercise {
     public ArrayList<ExerciseData> generateFilteredGymSetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
-            if (exercise.getEquipment() != null && !exercise.getEquipment().equals("body only")) {
+            if (exercise.getEquipment() != "null" && !exercise.getEquipment().equals("body only")) {
                 filteredExerciseList.add(exercise);
             }
         }
@@ -58,7 +56,7 @@ public class GenerateExercise {
     public ArrayList<ExerciseData> generateFilteredBodySetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
-            if (exercise.getEquipment() != null && exercise.getEquipment().equals("body only")) {
+            if (exercise.getEquipment() != "null" && exercise.getEquipment().equals("body only")) {
                 filteredExerciseList.add(exercise);
             }
         }
@@ -101,6 +99,14 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
+    /**
+     * This method is essentially "bogo-search". It continuously generates a random index to search for an exercise with
+     * "difficultyLevel" in it. If not found, generate another random index again. Runtime: O(n!)
+     *
+     * @param difficultyLevel
+     * @param count
+     * @return
+     */
     public ArrayList<ExerciseData> generateSpecificDifficultySet(String difficultyLevel, int count) {
         ArrayList<ExerciseData> specificDifficultyExerciseList = new ArrayList<>();
         Random random = new Random();

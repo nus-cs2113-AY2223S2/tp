@@ -3,7 +3,6 @@ package seedu.duke.commands;
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
-import seedu.duke.util.OuputText;
 
 public class CommandHandler {
 
@@ -22,8 +21,7 @@ public class CommandHandler {
                 System.exit(0);
                 break;
             case "help":
-                OuputText outputText = new OuputText();
-                outputText.showAvailableCommands();
+                command = new HelpCommand();
                 break;
             default:
                 System.out.println("Unknown Command");

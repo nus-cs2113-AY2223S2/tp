@@ -1,7 +1,5 @@
 package seedu.duke.ui;
 
-import seedu.duke.util.OuputText;
-
 public class Greet {
 
     private static final String LOGO = "    _______ __                          ____        __      \n" +
@@ -11,8 +9,9 @@ public class Greet {
             "/_/   /_/\\__/_/ /_/\\___/____/____/  /_____/\\__,_/_/|_|\\___/ ";
 
     public static void greet() {
-        OuputText outputText = new OuputText();
+        PrintHelpMessage printHelpMessage = new PrintHelpMessage();
         System.out.println("Hello from\n" + LOGO);
-        outputText.showAvailableCommands();
+        printHelpMessage.showAvailableCommands();
     }
+
 }
