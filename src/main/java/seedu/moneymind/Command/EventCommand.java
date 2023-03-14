@@ -1,6 +1,10 @@
 package seedu.moneymind.Command;
 
-import seedu.moneymind.*;
+import seedu.moneymind.Category;
+import seedu.moneymind.CategoryList;
+import seedu.moneymind.Event;
+import seedu.moneymind.Ui;
+import seedu.moneymind.InvalidCategoryNumberException;
 
 import java.util.Scanner;
 

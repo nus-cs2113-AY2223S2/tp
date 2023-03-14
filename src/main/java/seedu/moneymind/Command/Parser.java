@@ -1,10 +1,24 @@
 package seedu.moneymind.Command;
 
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.moneymind.Strings.*;
+
+import static seedu.moneymind.Strings.WHITE_SPACE;
+import static seedu.moneymind.Strings.BYE;
+import static seedu.moneymind.Strings.VIEW;
+import static seedu.moneymind.Strings.DELETE;
+import static seedu.moneymind.Strings.EVENT;
+import static seedu.moneymind.Strings.CATEGORY;
+import static seedu.moneymind.Strings.INVALID_INPUT;
+import static seedu.moneymind.Strings.DELETE_FORMAT;
+import static seedu.moneymind.Strings.REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY;
+import static seedu.moneymind.Strings.SUBTLE_BUG_MESSAGE;
+import static seedu.moneymind.Strings.EVENT_REGEX;
+import static seedu.moneymind.Strings.EVENT_FORMAT;
+import static seedu.moneymind.Strings.EVENT_EMPTY;
+import static seedu.moneymind.Strings.REMINDING_MESSAGE_ABOUT_GIVING_BUDGET_A_NUMBER;
+import static seedu.moneymind.Strings.CATEGORY_EMPTY;
 
 /**
  * A class to parse the user input.
