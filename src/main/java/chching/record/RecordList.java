@@ -20,7 +20,7 @@ public abstract class RecordList {
         return recordList.size();
     }
 
-    public int getBalance(){
+    public double getBalance(){
         for(int i = 0; i < getRecordCount(); i++){
             balance += this.recordList.get(i).value;
         }
