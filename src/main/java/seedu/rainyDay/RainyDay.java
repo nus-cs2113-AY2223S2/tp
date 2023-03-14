@@ -33,7 +33,8 @@ public class RainyDay {
                 if (userInput.equalsIgnoreCase(Command.COMMAND_EXIT)) {
                     break;
                 }
-                Parser.parseUserInput(userInput);
+                Command specificCommand = Parser.parseUserInput(userInput);
+                specificCommand.execute();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
