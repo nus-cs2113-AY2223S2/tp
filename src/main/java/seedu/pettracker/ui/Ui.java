@@ -1,6 +1,14 @@
 package seedu.pettracker.ui;
 
+import java.util.Scanner;
+
 public class Ui {
+
+    Scanner in;
+
+    public Ui () {
+        in = new Scanner(System.in);
+    }
 
     public void showWelcomeMessage() {
         System.out.println("Welcome to the Pet Health Tracker!");
@@ -10,6 +18,7 @@ public class Ui {
      * Message that prints when the exit command is executed
      */
     public void exitCommandMessage() {
+        in.close();
         System.out.println("Goodbye! See you soon.");
     }
 
@@ -35,8 +44,9 @@ public class Ui {
 
 
     public String getUserInput() {
-        //sample hard coded input to simulate the exit command
-        return "exit";
+        System.out.println();
+        String input = in.nextLine();
+        return input;
     }
 
 }
