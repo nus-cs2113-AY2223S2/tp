@@ -1,1 +1,2 @@
-Bd/loanv/10000.0t/2023-01-01p/Nonen/posb banko/2023-05-06
+Fd/212v/12.3t/2021-12-31p/Nonen/Noneo/None
+Trd/delv/0.4t/2021-12-08p/Nonen/Noneo/None

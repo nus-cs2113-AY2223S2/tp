@@ -11,15 +11,13 @@ public class ParseDelete {
     public ParseDelete(String userInput) {
         this.userInput = userInput;
     }
+
     public Command deleteItem() {
         try {
-            String details = ParseIndividualValue.parseIndividualValue(userInput, BLANK , BLANK);
-            System.out.println(userInput);
+            String details = ParseIndividualValue.parseIndividualValue(userInput, BLANK, BLANK);
             int posToDelete = Integer.parseInt(details);
-            System.out.println(posToDelete);
-            return new DeleteCommand(posToDelete);
+            return new DeleteCommand(posToDelete - 1);
         } catch (NumberFormatException numberFormatException) {
-            // posToDelete is not a proper int
             return new InvalidCommand("Invalid");
         }
     }
