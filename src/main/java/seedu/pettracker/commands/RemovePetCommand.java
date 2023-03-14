@@ -1,6 +1,7 @@
 package seedu.pettracker.commands;
 
 import seedu.pettracker.ui.Ui;
+import seedu.pettracker.data.PetList;
 
 public class RemovePetCommand extends Command{
     protected String petName;
@@ -18,7 +19,7 @@ public class RemovePetCommand extends Command{
      */
     @Override
     public void execute(Ui ui) {
-        //petList.removePet(petName);
+        PetList.removePet(petName);
         ui.removePetCommandMessage(petName);
     }
 

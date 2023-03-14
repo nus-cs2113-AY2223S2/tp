@@ -20,8 +20,22 @@ public class PetList {
         numberOfPets += 1;
     }
 
+    public static int find (String petName) {
+        for (int i = 0; i < petList.size(); i++) {
+            if (petList.get(i).getPetName().equals(petName)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public static Pet get (int index) {
         return petList.get(index);
+    }
+
+    public static void addStat (String petName, String statName, String statValue) {
+        int index = PetList.find(petName);
+        petList.get(index).addStat(statName, statValue);
     }
 
     /**
@@ -30,12 +44,10 @@ public class PetList {
      * @param petName Name of pet(s) to be removed
      */
     public static void removePet(String petName) {
-        for (Pet pet : petList) {
-            if (pet.getPetName().equals(petName)) {
-                petList.remove(pet);
-                numberOfPets -= 1;
-            }
-        }
+        int index = PetList.find(petName);
+        petList.remove(index);
+        numberOfPets -= 1;
+
     }
 
     /**
