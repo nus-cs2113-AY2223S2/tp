@@ -69,6 +69,7 @@ public class Messages {
     public static final String MESSAGE_NOT_A_VALID_INTEGER_COMMAND = "Your index has to be an integer!";
     public static final String MESSAGE_BLANK_DISH_NAME_COMMAND = "Name of dish cannot be empty!";
     public static final String MESSAGE_NEGATIVE_PRICE_COMMAND = "Price of dish cannot be negative!";
+    public static final String MESSAGE_INGREDIENT_LIST_CANNOT_BE_EMPTY = "Ingredient list cannot be empty!";
 
-
+    public static final String MESSAGE_EMPTY_INDEX_COMMAND = "Index cannot be empty!";
 }
