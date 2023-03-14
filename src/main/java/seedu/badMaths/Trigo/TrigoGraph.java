@@ -1,5 +1,5 @@
-package seedu.badMaths.Trigo;
-import seedu.badMaths.UI.Ui;
+package seedu.badMaths.trigo;
+import seedu.badMaths.ui.Ui;
 
 public class TrigoGraph {
     private String trigoEqn;
