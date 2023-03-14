@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
-import java.util.Scanner;
+
 
 public class RemoveTest {
     private Inventory inventory = new Inventory();
@@ -21,7 +21,7 @@ public class RemoveTest {
 
         String inputAnswer = "Y";
         System.setIn(new ByteArrayInputStream((inputAnswer.getBytes())));
-        //Scanner scanner = new Scanner(System.in);
+
         int i = inventory.removeByUpc("upc/123");
 
         assertTrue(i == 0);
