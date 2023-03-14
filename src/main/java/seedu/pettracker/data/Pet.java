@@ -41,7 +41,7 @@ public class Pet {
             break;
         case "weight":
             setWeight("");
-        case "default":
+        default:
             System.out.println("ERROR: The only valid stats are type, age, or weight.");
         }
     }
