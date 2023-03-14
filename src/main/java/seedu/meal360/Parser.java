@@ -59,20 +59,21 @@ public class Parser {
         // user inputted recipe name
         if (input[1].contains("r/")) {
             // skip over /r in recipe name
-            String recipeName = input[1].substring(2);
-            int recipeIndex = 1;
+            String recipeToDelete = input[1].substring(2);
+            int recipeIndex = 0;
             for (Recipe recipe : recipeList) {
                 // find index of recipe we want to delete
-                if (recipe.getName().equals(recipeName)) {
+                if (recipe.getName().equals(recipeToDelete)) {
                     break;
                 }
                 recipeIndex++;
             }
             return recipeList.deleteRecipe(recipeIndex);
-            // user inputted index of recipe in list
+        // user inputted index of recipe in list
         } else {
             int recipeIndex = Integer.parseInt(input[1]);
-            return recipeList.deleteRecipe(recipeIndex);
+            // need to subtract 1 since list is 1-based
+            return recipeList.deleteRecipe(recipeIndex - 1);
         }
     }
 
