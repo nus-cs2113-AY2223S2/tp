@@ -25,8 +25,8 @@ public class UiTest {
     public void showLine_onEachMethod_displayLine() {
         Ui ui = new Ui();
         ui.showLine();
-        assertEquals("____________________________________________________________" + "\n",
-                out.toString());
+        assertEquals("____________________________________________________________",
+                    out.toString().trim());
     }
 
     @AfterEach
