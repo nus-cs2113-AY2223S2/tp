@@ -1,7 +1,6 @@
 package data;
 
 import java.time.LocalDate;
-import java.text.DecimalFormat;
 
 public class Transform {
     // This class is used to transform the user input to a format that the computer can understand
