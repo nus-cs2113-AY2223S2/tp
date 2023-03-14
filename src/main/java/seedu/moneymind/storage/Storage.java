@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import seedu.moneymind.Category;
+import seedu.moneymind.StringToCategory;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,12 +15,7 @@ import java.io.IOException;
  * Storage class to save and load data from a file
  */
 public class Storage {
-    /**
-     * Divider used to separate details of a task saved in file
-     */
-    private static final String SAVEFILESEPARATOR = ", ";
     private static File textFile;
-    private static Scanner textFileScanner;
     private static String filePath = "EventList.txt";
 
     /**
@@ -41,18 +37,12 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("The file already exists.");
         }
-
-        try {
-            textFileScanner = new Scanner(textFile);
-        } catch (FileNotFoundException e) {
-            System.out.println("I cannot seem to access the saved tasks. Did you perhaps lock it away?");
-        }
     }
 
     /**
-     * Saves an ArrayList of Events to EventList.txt file
+     * Saves an ArrayList of Category to EventList.txt file
      * 
-     * @param list ArrayList of Events
+     * @param list ArrayList of Category
      */
     public void saveToFile(ArrayList<Category> list) {
         String writeToFile = FormatToTxt.formatToTxt(list);
@@ -68,31 +58,26 @@ public class Storage {
     }
 
     /**
-     * Returns an ArrayList of Events from EventList.txt file
+     * Loads an ArrayList of Category from EventList.txt file
      * 
-     * @return ArrayList of Events
+     * @return ArrayList of Category
      */
     public ArrayList<Category> loadFromFile() {
-        ArrayList<Category> savedList = new ArrayList<>();
+        Scanner textFileScanner;
+        // String to store the text file
+        String fileString = "";
 
-        while (textFileScanner.hasNext()) {
-            // TODO: Loading of objects from file
-            String[] loadTaskInfo = new String[3];
-            loadTaskInfo = textFileScanner.nextLine().split(SAVEFILESEPARATOR, 3);
-
-            // create tasks individually
-            switch (loadTaskInfo[0]) {
-            case "CATEGORY":
-                break;
-        
-            case "EVENT":
-                break;
-        
-            default:
-                break;
+        try {
+            textFileScanner = new Scanner(textFile);
+            // read file line by line and add to fileString
+            while (textFileScanner.hasNextLine()) {
+                fileString += textFileScanner.nextLine() + System.lineSeparator();
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("I cannot seem to access the saved tasks. Did you perhaps lock it away?");
         }
-
+        // convert fileString to ArrayList of Category
+        ArrayList<Category> savedList = StringToCategory.stringToCategory(fileString);
         return savedList;
     }
 }

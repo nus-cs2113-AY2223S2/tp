@@ -4,12 +4,12 @@ package seedu.moneymind;
  * Converts a Category object to a String.
  */
 public class CategoryToString {
-    // String separating each variable of an Event object
-    private static final String NEXT_VARIABLE = "&&next_detail&&";
+    // String symbol separating each variable of an Event object
+    protected static final String NEXT_VARIABLE = "&&next_detail&&";
     // Creates a new line
-    private static final String NEW_LINE = System.lineSeparator();
+    protected static final String NEW_LINE = System.lineSeparator();
     // Save file symbol for a new category
-    private static final String CATEGORY_NAME = "&&new_category&&";
+    protected static final String CATEGORY_NAME = "&&new_category&&";
 
     /**
      * Converts a Category object to a String.
