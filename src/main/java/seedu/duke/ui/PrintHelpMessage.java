@@ -1,7 +1,7 @@
-package seedu.duke.util;
+package seedu.duke.ui;
 
-public class OuputText {
-    public void showAvailableCommands() {
+public class PrintHelpMessage {
+    public static void showAvailableCommands() {
         System.out.println("These are some commands available: ");
         System.out.println("Get a quick exercise: quick x (where x is a positive integer)");
         System.out.println("Generate a specific list of exercises: generate PARAM1 PARAM2 ... x ");
@@ -13,4 +13,5 @@ public class OuputText {
         System.out.println("upper/core/legs (filters for exercises with a specific workout type)");
 
     }
+
 }

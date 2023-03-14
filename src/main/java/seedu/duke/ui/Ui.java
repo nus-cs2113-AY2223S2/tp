@@ -6,19 +6,24 @@ import java.util.ArrayList;
 
 public class Ui {
     private static final String SEPARATOR = "________________________________________";
-    public void printExerciseFromList(ArrayList<ExerciseData>exerciseData){
+
+    public void printExerciseFromList(ArrayList<ExerciseData> exerciseData) {
         PrintExercises.printExercise(exerciseData);
     }
 
-    public void greetUser(){
+    public void greetUser() {
         Greet.greet();
     }
 
-    public void byeUser(){
+    public void byeUser() {
         Bye.bye();
     }
 
-    public void splitLine(){
+    public void printHelp() {
+        PrintHelpMessage.showAvailableCommands();
+    }
+
+    public void splitLine() {
         System.out.println(SEPARATOR);
     }
 
