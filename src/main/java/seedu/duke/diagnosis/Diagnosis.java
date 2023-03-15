@@ -51,8 +51,10 @@ import static java.util.stream.Collectors.toCollection;
 
 /**
  * This class conducts the diagnosis by taking in the patient's symptoms and returning the most probable illnesses based
- * on the percentage of overlapping symptoms the patient has with each suspected illness, and based on a predefined threshold.
- * @Author Brennanzuz
+ * on the percentage of overlapping symptoms the patient has with each suspected illness, and based on a predefined
+ * threshold.
+ *
+ * @author Brennanzuz
  */
 public class Diagnosis {
     private static final double POSSIBILITY_THRESHOLD = 0.5;
@@ -105,11 +107,13 @@ public class Diagnosis {
     private static Logger diagnosisLogger = Logger.getLogger("diagnosisLogger");
 
     /**
-     * @param patientSymptoms The ArrayList of Symptoms the patient has indicated to have. Passed from UI.
-     * @param illnessSymptoms The ArrayList of Symptoms the suspected Illness has. To be matched with that of the patient
-     * @return An ArrayList of Symptoms that is the intersection between the arguments, or simply put, the symptoms both
-     * the patient and the suspected Illness at hand has.
-     * @Author Brennanzuz
+     * @author Brennanzuz
+     * @param patientSymptoms The ArrayList of Symptoms the patient has indicated to have.
+     *                        Passed from UI.
+     * @param illnessSymptoms The ArrayList of Symptoms the suspected Illness has.
+     *                        To be matched with that of the patient
+     * @return An ArrayList of Symptoms that is the intersection between the arguments,
+     *         or simply put, the symptoms both the patient and the suspected Illness at hand has.
      */
     private static ArrayList<Symptom> getMatchingSymptoms(ArrayList<Symptom> patientSymptoms,
                                                           ArrayList<Symptom> illnessSymptoms) {
@@ -119,9 +123,9 @@ public class Diagnosis {
     }
 
     /**
+     * @author Brennanzuz
      * @param patientSymptoms The ArrayList of Symptoms the patient has indicated to have. Passed from UI.
      * @return An ArrayList of IllnessMatch which indicates the most probable Illness and its similarity percentage.
-     * @Author Brennanzuz
      */
     public static ArrayList<IllnessMatch> getPossibleIllnesses(ArrayList<Symptom> patientSymptoms) {
         diagnosisLogger.log(Level.INFO, "Receiving patient symptoms for diagnosis.");
@@ -129,8 +133,12 @@ public class Diagnosis {
         IllnessMatch illnessMatch;
         for (Illness illness : ALL_ILLNESSES) {
             assert illness.getSymptoms().size() > 0 : illness.getIllnessName() + " should have symptoms listed";
-             illnessMatch = new IllnessMatch(illness, (double) getMatchingSymptoms(patientSymptoms, illness.getSymptoms()).size() / illness.getSymptoms().size());
-            diagnosisLogger.log(Level.INFO, "Compared patient's symptoms to those of " + illnessMatch.getIllness().getIllnessName() + " and found a " + illnessMatch.getSimilarityPercentage() * 100 + "% match.");
+            illnessMatch = new IllnessMatch(illness, (double) getMatchingSymptoms(patientSymptoms,
+                    illness.getSymptoms()).size() / illness.getSymptoms().size());
+            diagnosisLogger.log(Level.INFO, "Compared patient's symptoms to those of " +
+                    illnessMatch.getIllness().getIllnessName() +
+                    " and found a " + illnessMatch.getSimilarityPercentage() * 100 +
+                    "% match.");
             possibleIllnesses.add(illnessMatch);
         }
         return possibleIllnesses.stream()

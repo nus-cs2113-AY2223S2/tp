@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * A generic class to be inherited by all other illnesses. Its constructor class will be filled by predefined constants
  * when inherited by other classes to match the desired illness.
- * @Author Brennanzuz
+ * @author Brennanzuz
  */
 public class Illness {
     private final String illnessName;

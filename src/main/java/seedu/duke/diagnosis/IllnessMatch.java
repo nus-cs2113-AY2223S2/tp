@@ -5,7 +5,7 @@ import seedu.duke.diagnosis.illnesses.Illness;
 /**
  * A class to indicate a match found between the suspected illness and the actual illness by stating the percentage
  * similarity it has to the actual symptoms.
- * @Author Brennanzuz
+ * @author Brennanzuz
  */
 public class IllnessMatch {
     private final Illness illness;

@@ -2,7 +2,7 @@ package seedu.duke.diagnosis.symptoms;
 
 /**
  * An enumeration of all illnesses that can be identified by Dr. Duke.
- * @Author Brennanzuz
+ * @author Brennanzuz
  */
 public enum Symptom {
     DIFFICULTY_BREATHING,
