@@ -32,12 +32,27 @@ public class InventoryController implements IController {
             throw new IllegalOperationException(e.getMessage());
         }
     }
+    public Book addBook(Book newBook) throws IllegalOperationException {
+        checkDataExists();
+        inventory.addBook(newBook);
+        return newBook;
+    }
 
     public Book removeAllBooks(String isbn) throws IllegalOperationException {
         checkDataExists();
 
         try {
             return inventory.purgeBook(isbn);
+        } catch (IllegalValueException e) {
+            throw new IllegalOperationException(e.getMessage());
+        }
+    }
+
+    public Book removeAllBooks(Book book) throws IllegalOperationException {
+        checkDataExists();
+
+        try {
+            return inventory.purgeBook(book.getIsbn().toString());
         } catch (IllegalValueException e) {
             throw new IllegalOperationException(e.getMessage());
         }
@@ -52,6 +67,7 @@ public class InventoryController implements IController {
             throw new IllegalOperationException(e.getMessage());
         }
     }
+
     @Override
     public boolean checkDataExists() throws IllegalOperationException {
         if (inventory == null) {
