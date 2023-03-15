@@ -21,7 +21,6 @@ import java.util.logging.Logger;
  * @author Thunderdragon221
  */
 public class Storage {
-    private static Logger logger = Logger.getLogger(Storage.class.getName());
 
     /** Specifies the directory path to be created */
     static final String DIR_PATH = "./data/";
@@ -29,6 +28,7 @@ public class Storage {
     /** Specifies the file path to be created */
     static final String FILE_PATH = "./data/patient-data.txt";
 
+    private static Logger logger = Logger.getLogger(Storage.class.getName());
     /**
      * Loads each patient's data into a hashmap of patients in the Information class
      * by reading from the patient-data file.
