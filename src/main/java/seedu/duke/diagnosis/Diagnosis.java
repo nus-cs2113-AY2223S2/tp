@@ -47,7 +47,11 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toCollection;
 
-//@@author Brennanzuz
+/**
+ * This class conducts the diagnosis by taking in the patient's symptoms and returning the most probable illnesses based
+ * on the percentage of overlapping symptoms the patient has with each suspected illness, and based on a predefined threshold.
+ * @Author Brennanzuz
+ */
 public class Diagnosis {
     private static final double POSSIBILITY_THRESHOLD = 0.5;
     private static final ArrayList<Illness> ALL_ILLNESSES = new ArrayList<>(
@@ -97,6 +101,13 @@ public class Diagnosis {
             )
     );
 
+    /**
+     * @param patientSymptoms The ArrayList of Symptoms the patient has indicated to have. Passed from UI.
+     * @param illnessSymptoms The ArrayList of Symptoms the suspected Illness has. To be matched with that of the patient
+     * @return An ArrayList of Symptoms that is the intersection between the arguments, or simply put, the symptoms both
+     * the patient and the suspected Illness at hand has.
+     * @Author Brennanzuz
+     */
     private static ArrayList<Symptom> getMatchingSymptoms(ArrayList<Symptom> patientSymptoms,
                                                           ArrayList<Symptom> illnessSymptoms) {
         return illnessSymptoms.stream()
@@ -104,6 +115,11 @@ public class Diagnosis {
                 .collect(toCollection(ArrayList::new));
     }
 
+    /**
+     * @param patientSymptoms The ArrayList of Symptoms the patient has indicated to have. Passed from UI.
+     * @return An ArrayList of IllnessMatch which indicates the most probable Illness and its similarity percentage.
+     * @Author Brennanzuz
+     */
     public static ArrayList<IllnessMatch> getPossibleIllnesses(ArrayList<Symptom> patientSymptoms) {
         ArrayList<IllnessMatch> possibleIllnesses = new ArrayList<>();
         for (Illness illness : ALL_ILLNESSES) {
