@@ -70,10 +70,8 @@ public class AddModuleCommand extends Command {
     }
 
     public boolean isAdded(ModuleList moduleList, Module module) {
-        if (moduleList.contains(module)) {
-            return true;
-        }
-        return false;
+        return moduleList.contains(module);
+
     }
 
     @Override
