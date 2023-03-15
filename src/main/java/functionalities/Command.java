@@ -19,19 +19,19 @@ public class Command {
         this.date = date;
     }
 
-    public void executeSniffCommands(SniffTasks tasks, Ui ui) throws SniffException {
+    public void executeSniffCommands(SniffTasks tasks) throws SniffException {
         if (command.equalsIgnoreCase("add")) {
             tasks.addAppointment(uId, type, animal, name, date);
-            ui.showUserMessage("Task added successfully");
+            Ui.showUserMessage("Task added successfully");
         } else if (command.equalsIgnoreCase("remove")) {
             tasks.removeAppointment(Integer.parseInt(uId));
-            ui.showUserMessage(" Task removed successfully");
+            Ui.showUserMessage(" Task removed successfully");
         } else if (command.equalsIgnoreCase("list")) {
             tasks.listAppointments();
         } else if (command.equalsIgnoreCase("view")) {
             tasks.viewAppointment(uId);
         } else if (command.equalsIgnoreCase("bye")) {
-            ui.showUserMessage(" Bye. Hope to see you again soon!");
+            Ui.showUserMessage(" Bye. Hope to see you again soon!");
         } else {
             throw new SniffException(" Not a recognized Sniff Command!");
         }
