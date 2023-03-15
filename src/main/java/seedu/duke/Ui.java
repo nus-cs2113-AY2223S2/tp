@@ -5,20 +5,16 @@ import java.util.Scanner;
 
 public class Ui {
     /**
-     * Prints a line of dashes for
-     * better readability
+     * Prints a line of dashes for better readability
      */
     public static void printDash() {
         System.out.println("____________________________________________________________");
     }
 
     /**
-     * Obtains user input and interprets
-     * what needs to be performed by
-     * certain keywords.
+     * Obtains user input and interprets what needs to be performed by certain keywords.
      */
     public static void getUserCommand(EventList eventList) {
-
         Scanner in = new Scanner(System.in);
 
         String cmd;
@@ -29,11 +25,11 @@ public class Ui {
             cmd = in.nextLine();
         }
 
+        in.close();
     }
 
     /**
-     * Prints a welcome message for
-     * users when application is launched
+     * Prints a welcome message for users when application is launched
      */
     public static void showWelcome() {
         String logo = "???";
@@ -42,12 +38,12 @@ public class Ui {
     }
 
     /**
-     * Prints success message for
-     * users when event is added
+     * Prints success message for users when event is added
      */
-    public static void addSuccessMsg() {
+    public static void addSuccessMsg(String taskDetail) {
         printDash();
-        System.out.println("Event successfully added!");
+        System.out.println("Event successfully added: "+System.lineSeparator());
+        System.out.println("    > " + taskDetail);
         printDash();
     }
 
@@ -65,6 +61,7 @@ public class Ui {
      * Prints error message for
      * users when there is unrecognised
      * command
+     * Prints error message for users when there is unrecognised command
      */
     public static void addErrorMsg() {
         printDash();
@@ -72,23 +69,13 @@ public class Ui {
         printDash();
     }
 
-    /**
-     * Prints error message for 
-     * users with any error occurs
+    /*
+     * Prints success message for users when event is deleted
      */
-    public static void printErrorMsg(String s){
+    public static void deleteSuccessMsg(String taskDetail) {
         printDash();
-        System.out.println(s);
-        printDash();
-    }
-
-    /**
-     * Prints success message for
-     * users when event is deleted
-     */
-    public static void deleteSuccessMsg() {
-        printDash();
-        System.out.println("Event(s) successfully deleted!");
+        System.out.println("This event is deleted: "+System.lineSeparator());
+        System.out.println("    > "+taskDetail);
         printDash();
     }
 
@@ -109,8 +96,7 @@ public class Ui {
     }
 
     /**
-     * Prints an exit message when
-     * user intends to exit Duke
+     * Prints an exit message when user intends to exit Duke
      */
     public static void printExit() {
         printDash();

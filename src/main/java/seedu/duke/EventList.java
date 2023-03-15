@@ -34,10 +34,6 @@ public class EventList {
         listSize--;
     }
 
-    public ArrayList<Event> fullList() {
-        return this.taskList;
-    }
-
     private LocalDateTime changeToDate(String time, String date) {
         String combination = date + " " + time;
         return LocalDateTime.parse(combination, dfWithTime);
@@ -144,6 +140,10 @@ public class EventList {
             index++;
         }
         return -1;
+    }
+
+    public String getLastTaskDescription() {
+        return taskList.get(listSize-1).toString();
     }
 }
 

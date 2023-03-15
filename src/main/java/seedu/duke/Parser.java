@@ -46,20 +46,22 @@ public class Parser {
     }
 
     private static void parseListCommand(EventList eventList) {
-        Ui.listTask(eventList.fullList());
+        Ui.listTask(eventList.getFullList());
     }
 
     private static void parseDeleteCommand(String remainder, EventList eventList) {
-        eventList.deleteThisTask(Integer.parseInt(remainder) - OFFSET);
-
+        int index = Integer.parseInt(remainder) - OFFSET;
+        String deletedTask = eventList.getDetails(index);
+        eventList.deleteThisTask(index);
         //TODO: Show successful add on UI. (For all cases)
-        Ui.deleteSuccessMsg();
+        Ui.deleteSuccessMsg(deletedTask);
     }
 
     private static void parseAddCommand(String remainder, EventList eventList) throws NPExceptions {
         // Method is still broken, someone will have to fix it fully later on when handling exceptions
         // Note no "-" anywhere else.
         String[] details = remainder.split("-");
+
         if(details.length <= 1) {
             throw new NPExceptions("Event description and start day of your event are strictly required!");
         }
