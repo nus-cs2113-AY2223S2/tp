@@ -165,6 +165,14 @@ public class Ui {
         borderLine();
     }
 
+    static void invalidDateTimeMessage() {
+        borderLine();
+        System.out.println("\t Please check the inputted format human!\n" +
+                "\t There are only 24 hours in a day in Duck World, and 12 months a year...\n");
+        System.out.println("\t Please try again!");
+        borderLine();
+    }
+
     /** Prints the startup message, includes instructions on available commands */
     static void greetingMessage() {
         borderLine();
@@ -183,4 +191,5 @@ public class Ui {
         System.out.println("\t Bye. Hope to see you again soon!");
         borderLine();
     }
+
 }
