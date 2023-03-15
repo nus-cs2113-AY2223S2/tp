@@ -8,13 +8,16 @@ public class Parser {
     private static final String LINE = "____________________________________________________________";
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
 
+    // Todo: Throw Exception when commandWords.size() == 1
     public static ArrayList<String> parseCommand(String userInput) {
         String[] input = userInput.split((" "), 2);
         ArrayList<String> commandWords = new ArrayList<>();
         String commandInput = input[0];
-        String commandSpecifics = input[1];
         commandWords.add(commandInput);
-        commandWords.add(commandSpecifics);
+        if (commandWords.size() > 1) {
+            String commandSpecifics = input[1];
+            commandWords.add(commandSpecifics);
+        }
         return commandWords;
     }
 
