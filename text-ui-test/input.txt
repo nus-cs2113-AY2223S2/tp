@@ -10,6 +10,10 @@ delete 1
 list
 delete 3
 list
+add n/XiaoLongBao i/Pork, Soup, Dumplings t/Chinese
+add n/Guilinggao i/Tea, Milk, Sugar t/Chinese
+list
+view 1
 clear
 list
 exit

@@ -106,6 +106,18 @@ public class Command {
             recipeList.clearRecipeList();
             ui.showRecipeListCleared();
             break;
+        case VIEW:
+            try {
+                if (fullDescription.isEmpty()) {
+                    throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
+                }
+                recipeListIndex = Integer.parseInt(fullDescription);
+                Recipe recipeToBeViewed = recipeList.getRecipeFromList(recipeListIndex);
+                ui.showRecipeViewed(recipeToBeViewed);
+            } catch (Exception e) {
+                ui.showViewingRecipeErrorMessage(e);
+            }
+            break;
         case HELP:
             ui.showHelp();
             break;

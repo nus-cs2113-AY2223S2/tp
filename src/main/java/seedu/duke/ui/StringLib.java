@@ -83,6 +83,8 @@ public interface StringLib {
             + "\nException occurred: ";
     String RECIPE_FINDING_DEFAULT_ERROR = "\nError in finding recipe!"
             + "\nException occurred: ";
+    String RECIPE_VIEWING_DEFAULT_ERROR = "\nError in viewing recipe!"
+            + "\nException occurred: ";
     String FORMAT_CONVERT_ERROR = "\nError in inputs!"
             + "\nException occurred: The number is too big to process or the inputs contains words when "
             + "it is supposed to be numbers."

@@ -4,6 +4,7 @@ import seedu.duke.command.CommandType;
 import seedu.duke.exceptions.FileParseReadingException;
 import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.RecipeListEmptyError;
+import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
 
 import java.io.FileNotFoundException;
@@ -120,6 +121,23 @@ public class UI {
             System.out.println(MISSING_INPUTS_ERROR + e);
         } else {
             System.out.println(RECIPE_FINDING_DEFAULT_ERROR + e);
+        }
+    }
+    public void showRecipeViewed(Recipe recipe) {
+        System.out.println("Here is the recipe you requested, which is a "+ recipe.getTag() + " flavour:");
+        System.out.println("name: " + recipe.getName());
+        IngredientList ingredients = recipe.getIngredientList();
+        ingredients.showList();
+//        System.out.println("steps: " + recipe.getSteps());
+    }
+    public void showViewingRecipeErrorMessage(Exception e) {
+        if (e instanceof IncompleteInputException) {
+            System.out.println(MISSING_DESCRIPTION_ERROR + e);
+        } else if (e instanceof IndexOutOfBoundsException || e instanceof NullPointerException ||
+                e instanceof RecipeListEmptyError) {
+            System.out.println(PREFIX_EMPTY_LIMIT_LIST_ERROR + CommandType.VIEW + SUFFIX_EMPTY_LIMIT_LIST_ERROR);
+        } else {
+            System.out.println(RECIPE_VIEWING_DEFAULT_ERROR + e);
         }
     }
 }

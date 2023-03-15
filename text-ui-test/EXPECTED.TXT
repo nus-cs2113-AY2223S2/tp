@@ -117,6 +117,39 @@ RECIPE LIST
 __________________________________________________________
 __________________________________________________________
 
+Got it. I've added this recipe:
+  [Chinese] XiaoLongBao
+Now you have 4 recipes in the list.
+
+__________________________________________________________
+__________________________________________________________
+
+Got it. I've added this recipe:
+  [Chinese] Guilinggao
+Now you have 5 recipes in the list.
+
+__________________________________________________________
+__________________________________________________________
+
+RECIPE LIST
+
+1. [Chinese] MaLaXiangGuo
+2. [Italian] Spaghetti
+3. [Chinese] Bejing Duck
+4. [Chinese] XiaoLongBao
+5. [Chinese] Guilinggao
+
+__________________________________________________________
+__________________________________________________________
+Here is the recipe you requested, which is a Chinese flavour:
+name: MaLaXiangGuo
+Here are 3 ingredients in the list:
+1. Beef
+2. Mutton
+3. Mushrooms
+__________________________________________________________
+__________________________________________________________
+
 All recipes have been cleared!
 __________________________________________________________
 __________________________________________________________
