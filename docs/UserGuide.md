@@ -1,15 +1,23 @@
-# User Guide
+# Pet Tracker User Guide
 
 ## Introduction
 
-{Give a product intro}
+Keeping track of multiple pets can be daunting due to information overload. With Pet Tracker, keeping track of our
+furry friends will be easier! Pet owners can use this tool to monitor the health of their pet, including tracking their
+weight over time. This can help identify any nutritional or health needs.
+
+<br>
+The main features of Pet Tracker includes:
+
+* Tracking multiple pets at once
+* Viewing the full list of pets
+
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Down the latest version of `Pet Tracker` 
+from [here](https://github.com/AY2223S2-CS2113-T11-3/tp/releases/download/PetTrackerV1.0/pettracker.jar).
 
 ## Features 
 
