@@ -22,8 +22,9 @@
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Here are the expenses you have made.
-|  1. $6.00 spent on dinner - 6pm
-|  2. $4.00 spent on lunch - 12pm
+|  1. $4.00 spent on lunch - 12pm
+|  2. $6.00 spent on dinner - 6pm
+|  Total: $10.0
 |
 |  -----------------------------------------------------------------------
 |
@@ -44,40 +45,47 @@
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Here are the expenses you have made.
-|  1. $4.00 spent on lunch - 11am
+|  1. $6.00 spent on dinner - 11am
+|  Total: $6.0
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully added [$400.00 of salary - 12pm]
+|  Enter command: |  You have successfully added [$400.00 spent on salary - 12pm]
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully added [$600.00 of stocks - 6pm]
+|  Enter command: |  You have successfully added [$600.00 spent on stocks - 6pm]
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Here are the incomes you have made
-|  1. $400.00 of salary - 12pm
-|  2. $600.00 of stocks - 6pm
+|  Enter command: |  Here are the expenses you have made.
+|  1. $6.00 spent on dinner - 11am
+|  2. $400.00 spent on salary - 12pm
+|  3. $600.00 spent on stocks - 6pm
+|  Total: $1006.0
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Successfully edited income.
+|  Enter command: |  Successfully edited expense.
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Successfully edited income.
+|  Enter command: |  Successfully edited expense.
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Successfully edited income.
+|  Enter command: |  Successfully edited expense.
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Successfully deleted income.
+|  Enter command: |  Successfully deleted expense.
 |
-|  Enter command: |  Here are the incomes you have made
-|  1. $700.00 of pay - 12pm
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Here are the expenses you have made.
+|  1. $700.00 spent on pay - 11am
+|  2. $600.00 spent on stocks - 6pm
+|  Total: $1300.0
 |
 |  -----------------------------------------------------------------------
 |

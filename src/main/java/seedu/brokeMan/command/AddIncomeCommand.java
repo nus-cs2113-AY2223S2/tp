@@ -1,7 +1,7 @@
 package seedu.brokeMan.command;
 
-import seedu.brokeMan.income.Income;
-import seedu.brokeMan.income.IncomeList;
+import seedu.brokeMan.entry.Income;
+import seedu.brokeMan.entry.IncomeList;
 
 public class AddIncomeCommand extends Command {
     public static final String COMMAND_WORD = "addIncome";
