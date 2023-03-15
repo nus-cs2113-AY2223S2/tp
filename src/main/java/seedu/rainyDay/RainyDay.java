@@ -20,17 +20,6 @@ public class RainyDay {
     private static Logger logger = Logger.getLogger(RainyDay.class.getName());
     private final Ui ui;
 
-    private static void setupLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.INFO);
-        try {
-            FileHandler fileHandler = new FileHandler("RainyDay.log");
-            logger.addHandler(fileHandler);
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-    }
-
     private RainyDay(String filePath) {
         ui = new Ui();
         try {
@@ -68,6 +57,17 @@ public class RainyDay {
             }
         }
         ui.sayFarewellToUser(financialReport.getReportOwner());
+    }
+
+    private static void setupLogger() {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.INFO);
+        try {
+            FileHandler fileHandler = new FileHandler("RainyDay.log");
+            logger.addHandler(fileHandler);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
     }
 
     public static void main(String[] args) {
