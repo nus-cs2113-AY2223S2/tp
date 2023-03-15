@@ -40,4 +40,8 @@ public class RecipeList {
     public void add(Recipe recipe) {
         recipes.add(recipe);
     }
+
+    public Recipe getRecipe(int index) {
+        return recipes.get(index);
+    }
 }

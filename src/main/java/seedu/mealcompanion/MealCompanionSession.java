@@ -8,6 +8,7 @@ import seedu.mealcompanion.command.factory.misc.AddCommandFactory;
 import seedu.mealcompanion.command.factory.misc.ByeCommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelloWorldCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeAllCommandFactory;
+import seedu.mealcompanion.command.factory.misc.RecipeDetailCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipePossibleCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RemoveCommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelpCommandFactory;
@@ -18,6 +19,7 @@ import seedu.mealcompanion.recipe.RecipeList;
 import seedu.mealcompanion.router.CommandRouterNode;
 import seedu.mealcompanion.storage.IngredientStorage;
 import seedu.mealcompanion.ui.MealCompanionUI;
+
 
 import java.util.Scanner;
 
@@ -36,6 +38,7 @@ public class MealCompanionSession {
                     .route("recipe", new CommandRouterNode()
                             .route("possible", new RecipePossibleCommandFactory())
                             .route("all", new RecipeAllCommandFactory()))
+                    .route("recipe", new RecipeDetailCommandFactory())
                     .route("ingredients", new CommandRouterNode()
                             .route("list", new IngredientsListCommandFactory())
                             .route("search", new IngredientsSearchCommandFactory())

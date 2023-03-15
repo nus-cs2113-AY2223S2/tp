@@ -17,6 +17,13 @@ public class InstructionList {
         instructions.add(instruction);
     }
 
+    public int size() {
+        return instructions.size();
+    }
+
+    public Instruction get(int index) {
+        return instructions.get(index);
+    }
     public void setInstructions(ArrayList<Instruction> instructions) {
         this.instructions = instructions;
     }
