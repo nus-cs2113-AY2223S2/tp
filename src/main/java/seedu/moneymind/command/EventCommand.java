@@ -1,10 +1,6 @@
 package seedu.moneymind.command;
 
-import seedu.moneymind.Category;
-import seedu.moneymind.CategoryList;
-import seedu.moneymind.Event;
-import seedu.moneymind.Ui;
-import seedu.moneymind.InvalidCategoryNumberException;
+import seedu.moneymind.*;
 
 import java.util.Scanner;
 
@@ -92,17 +88,14 @@ public class EventCommand implements Command {
         Event event = new Event(eventName, budget, expense);
         System.out.println(SELECTING_CATEGORY_MESSAGE);
         String userInput;
-        Scanner in;
-        in = new Scanner(System.in);
-        userInput = in.nextLine();
+        userInput = Moneymind.in.nextLine();
         while (!isChooseCategorySuccessful(userInput)) {
             System.out.println(GO_BACK_MESSAGE);
-            userInput = in.nextLine();
+            userInput = Moneymind.in.nextLine();
             if (userInput.equals(BACK)) {
                 break;
             }
         }
-        in.close();
     }
 
     @Override

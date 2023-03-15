@@ -3,6 +3,7 @@ package seedu.moneymind.command;
 import seedu.moneymind.Category;
 import seedu.moneymind.CategoryList;
 import seedu.moneymind.Ui;
+import seedu.moneymind.Strings;
 
 import java.util.HashMap;
 
@@ -16,6 +17,10 @@ public class CategoryCommand implements Command {
 
     @Override
     public void execute(Ui ui) {
+        if (categoryMap.get(name) != null) {
+            System.out.println(Strings.EXISTED_CATEGORY);
+            return;
+        }
         Category category = new Category(name);
         CategoryList.categories.add(category);
         categoryMap.put(name, CategoryList.categories.size() - 1);

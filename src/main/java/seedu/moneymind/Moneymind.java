@@ -11,7 +11,8 @@ public class Moneymind {
     private Parser parser;
     private Storage storage;
     private Ui ui;
-    private Scanner in;
+    private String userInput;
+    public static Scanner in;
 
     public Moneymind() {
         this.parser = new Parser();
@@ -26,7 +27,9 @@ public class Moneymind {
         storage.load();
         while (!isExit) {
             try {
-                Command command = parser.parseNextCommand(in.nextLine());
+                getInput();
+                String refinedUserInput = userInput.trim().replaceAll(Strings.EXTRA_SPACE_REGEX_FORMAT, " ");
+                Command command = parser.parseNextCommand(refinedUserInput);
                 if (command.isExit()) {
                     ui.goodbye();
                     isExit = true;
@@ -40,6 +43,13 @@ public class Moneymind {
             }
         }
         storage.save();
+    }
+
+    private void getInput() {
+        System.out.println(Strings.HORIZONTAL_LINE);
+        System.out.println();
+        userInput = in.nextLine();
+        System.out.println(Strings.HORIZONTAL_LINE);
     }
 
     public static void main(String[] args) {

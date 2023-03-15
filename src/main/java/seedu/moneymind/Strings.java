@@ -32,4 +32,6 @@ public class Strings {
     public static final String NEW_LINE = System.lineSeparator();
     public static final String STORAGE_CATEGORY_NAME = "&&new_category&&";
     public static final String STORAGE_CATEGORY_MAP = "&&category_map&&";
+    public static final String EXISTED_CATEGORY = "Category already exists";
+    public static final String EXTRA_SPACE_REGEX_FORMAT = "\\s+";
 }

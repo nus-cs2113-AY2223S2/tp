@@ -96,7 +96,7 @@ public class Parser {
                 checkNegativeBudgetAndExpense(Integer.parseInt(budgetNumber), Integer.parseInt(expenseNumber));
                 return new EventCommand(eventName, Integer.parseInt(budgetNumber), Integer.parseInt(expenseNumber));
             } else {
-                throw new InvalidCommandException(EVENT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
+                throw new InvalidCommandException("");
             }
         } catch (IndexOutOfBoundsException error) {
             throw new InvalidCommandException(EVENT_EMPTY);
@@ -104,6 +104,8 @@ public class Parser {
             throw new InvalidCommandException(REMINDING_MESSAGE_ABOUT_GIVING_BUDGET_A_NUMBER);
         } catch (NegativeNumberException error) {
             throw new InvalidCommandException(REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER);
+        } catch (InvalidCommandException error) {
+            throw new InvalidCommandException(EVENT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
         } catch (Exception error) {
             throw new InvalidCommandException(SUBTLE_BUG_MESSAGE);
         }
