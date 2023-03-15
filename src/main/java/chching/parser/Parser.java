@@ -29,7 +29,12 @@ public class Parser {
 
     public static final String FIELD_DEMARCATION = " /";
 
-    public static Command parse(String line, IncomeList incomeList, ExpenseList expenseList, Ui ui) throws ChChingException {
+    public static Command parse(
+            String line,
+            IncomeList incomeList,
+            ExpenseList expenseList,
+            Ui ui
+    ) throws ChChingException {
         List<String> lineParts = splitLine(line);
         String instruction = lineParts.get(0);
         List<String> arguments = lineParts.subList(1, lineParts.size());
