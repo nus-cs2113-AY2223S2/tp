@@ -1,7 +1,7 @@
-package seedu.badMaths.trigo;
+package seedu.badMaths.Trigo;
 
 
-import seedu.badMaths.ui.Ui;
+import seedu.badMaths.UI.Ui;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.FileHandler;

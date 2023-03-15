@@ -9,6 +9,8 @@
 
 package seedu.badMaths;
 
+import seedu.badMaths.UI.Ui;
+
 public class Parser {
 
     protected String userInput;
