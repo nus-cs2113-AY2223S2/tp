@@ -96,7 +96,7 @@ public class DukeUI {
     }
 
     private static void printListIngredientsHelp() {
-        System.out.println("Command: list");
+        System.out.println("Command: ingredients list");
         System.out.println("Lists out current ingredients and their respective quantities stored in the fridge.");
         System.out.println(DIVIDER);
     }
