@@ -9,6 +9,8 @@ import seedu.pettracker.commands.ListPetCommand;
 import seedu.pettracker.commands.RemovePetCommand;
 import seedu.pettracker.commands.RemoveStatCommand;
 import seedu.pettracker.exceptions.UnknownKeywordException;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class CommandParser {
     final String KEYWORD_EXIT = "exit";
@@ -18,11 +20,15 @@ public class CommandParser {
     final String KEYWORD_ADD_STAT = "add-stat";
     final String KEYWORD_REMOVE_STAT = "remove-stat";
 
+    private static final Logger logger = Logger.getLogger("CommandLogger");
+
+
     public CommandParser() {
     }
 
     public Command parseCommand(String commandString) {
         try {
+            logger.log(Level.INFO, "Parser received: " + commandString + "\n");
             return newCommand(commandString);
         } catch (UnknownKeywordException e) {
             System.out.println("Unknown Keyword");
@@ -37,7 +43,7 @@ public class CommandParser {
      * @return Command keyword
      */
     private static String parseKeyword(String commandString) {
-        //assert false: "This method should be implemented";
+        logger.log(Level.INFO, "Parsing keyword: " + commandString.split(" ", 2)[0] + "\n");
         assert commandString.split(" ", 2).length > 0 : "No keyword";
         return commandString.split(" ", 2)[0];
     }
