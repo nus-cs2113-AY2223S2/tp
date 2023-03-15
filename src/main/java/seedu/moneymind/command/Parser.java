@@ -78,6 +78,7 @@ public class Parser {
             return new HelpCommand();
         } catch (InvalidCommandException error) {
             throw new InvalidCommandException("Help command should not have any description");
+        }
     }
 
     private Command createViewCommand(String[] separatedKeywordAndDescription) {
