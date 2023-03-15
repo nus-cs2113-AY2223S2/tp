@@ -8,6 +8,9 @@ import parser.Parser;
 
 import java.util.Scanner;
 
+import static common.MessageList.*;
+import static data.ExpenseList.showToUser;
+
 public class Duke {
 
     protected Parser parser;
@@ -22,14 +25,7 @@ public class Duke {
     }
 
     public void run() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
+        showToUser(HELLO_MESSAGE, MESSAGE_DIVIDER, COMMAND_LIST_MESSAGE, MESSAGE_DIVIDER, NAME_QUESTION);
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
         String input = in.nextLine();
