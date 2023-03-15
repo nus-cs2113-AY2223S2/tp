@@ -1,10 +1,12 @@
-package seedu.entities;
+package seedu.Entities;
 
 import org.junit.jupiter.api.Test;
+import seedu.entities.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserTest {
+    private final User newUser = new User("user", 80, 180, 21, "male");
 
     @Test
     void calculateCaloricNeedsMaleExpect1466() {
@@ -24,5 +26,25 @@ class UserTest {
     @Test
     void calculateCaloricNeedsFemaleExpect651p86() {
         assertEquals(651.86, 651.86);
+    }
+
+    @Test
+    void getWeight80Expect80() {
+        assertEquals(80.0, newUser.getWeight());
+    }
+
+    @Test
+    void getHeight180Expect180() {
+        assertEquals(180.0, newUser.getHeight());
+    }
+
+    @Test
+    void getAge21Expect21() {
+        assertEquals(21, newUser.getAge());
+    }
+
+    @Test
+    void getGenderMaleExpectMale() {
+        assertEquals("male", newUser.getGender());
     }
 }
