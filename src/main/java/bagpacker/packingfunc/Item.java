@@ -17,6 +17,7 @@ public class Item {
     public String getItemName() {
         return itemName;
     }
+
     public boolean isPacked() {
         return isPacked;
     }

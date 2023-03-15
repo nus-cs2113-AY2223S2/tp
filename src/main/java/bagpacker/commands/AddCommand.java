@@ -4,7 +4,7 @@ import bagpacker.iohandler.Ui;
 import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
 
-public class AddCommand extends Commands {
+public class AddCommand extends Command {
     public static final String MSG_SUCCESS_ADD = "New item added: %s";
     public static final String MSG_USAGE_ADD = "add : Adds an item to the packing list.\n" +
                 "Example: add toothbrush";
