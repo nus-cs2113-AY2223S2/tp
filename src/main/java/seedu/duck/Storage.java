@@ -1,13 +1,19 @@
 package seedu.duck;
 
+import seedu.duck.exception.IllegalSchoolClassException;
+import seedu.duck.exception.expiredDateException;
+import seedu.duck.exception.startAfterEndException;
 import seedu.duck.task.Deadline;
 import seedu.duck.task.Event;
+import seedu.duck.task.SchoolClass;
 import seedu.duck.task.Task;
 import seedu.duck.task.Todo;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,6 +33,8 @@ public class Storage {
     static void loadTask(String line, ArrayList<Task> tasks) {
         if (line.contains("/by")) {
             loadDeadline(line, tasks);
+        } else if (line.contains("/class")) {
+            loadSchoolClass(line, tasks);
         } else if (line.contains("/from") || line.contains("/to")) {
             loadEvent(line, tasks);
         } else {
@@ -59,6 +67,22 @@ public class Storage {
         String end = line.substring(line.indexOf("/to") + 3).trim();
         Event currEvent = new Event(description, start, end);
         tasks.add(currEvent);
+    }
+
+    /**
+     * Adds a schoolClass to the list without generating messages,
+     * to be used when loading from save data.
+     *
+     * @param line The line of input from the user
+     * @param tasks The array list of tasks
+     */
+    static void loadSchoolClass(String line, ArrayList<Task> tasks) {
+        String description = line.substring(0, line.indexOf("/class")).trim();
+        String className = line.substring(line.indexOf("/class") + 6, line.indexOf("/from")).trim();
+        String startString = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
+        String endString = line.substring(line.indexOf("/to") + 3).trim();
+        SchoolClass currSchoolClass = new SchoolClass(className, description, startString, endString);
+        tasks.add(currSchoolClass);
     }
 
     /**

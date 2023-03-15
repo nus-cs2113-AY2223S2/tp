@@ -165,6 +165,12 @@ public class Ui {
         borderLine();
     }
 
+    static void schoolClassErrorMessage() {
+        borderLine();
+        System.out.println("\t Error. Please enter a valid class name, description, start time and end time");
+        borderLine();
+    }
+
     static void invalidDateTimeMessage() {
         borderLine();
         System.out.println("\t Please check the inputted format human!\n" +

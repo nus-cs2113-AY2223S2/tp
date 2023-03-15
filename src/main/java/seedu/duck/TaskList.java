@@ -3,6 +3,7 @@ package seedu.duck;
 import seedu.duck.exception.*;
 import seedu.duck.task.Deadline;
 import seedu.duck.task.Event;
+import seedu.duck.task.SchoolClass;
 import seedu.duck.task.Task;
 import seedu.duck.task.Todo;
 
@@ -24,6 +25,19 @@ public class TaskList {
                 Ui.deadlineErrorMessage();
             } catch (expiredDateException e) {
                 Ui.expiredErrorMessage();
+            } catch (DateTimeException e) {
+                Ui.invalidDateTimeMessage();
+            }
+        } else if (line.contains("/class")){
+            // Adding a SchoolClass
+            try {
+                addSchoolClass(line, tasks);
+            } catch (IllegalSchoolClassException | IndexOutOfBoundsException e) {
+                Ui.eventErrorMessage();
+            } catch (expiredDateException e) {
+                Ui.expiredErrorMessage();
+            } catch (startAfterEndException e) {
+                Ui.startAfterEndErrorMessage();
             } catch (DateTimeException e) {
                 Ui.invalidDateTimeMessage();
             }
@@ -90,6 +104,34 @@ public class TaskList {
             Event currEvent = new Event(description, startString, endString);
             tasks.add(currEvent);
             Ui.addedTaskMessage(currEvent);
+        }
+    }
+
+    /**
+     * Adds a schoolClass to the list
+     *
+     * @param line The line of input from the user
+     * @param tasks The array list of tasks
+     */
+    static void addSchoolClass(String line, ArrayList<Task> tasks) throws IllegalSchoolClassException, startAfterEndException,
+            expiredDateException {
+        String description = line.substring(0, line.indexOf("/class")).trim();
+        String className = line.substring(line.indexOf("/class") + 6, line.indexOf("/from")).trim();
+        String startString = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
+        String endString = line.substring(line.indexOf("/to") + 3).trim();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        LocalDateTime start = LocalDateTime.parse(startString, dateFormat);
+        LocalDateTime end = LocalDateTime.parse(endString, dateFormat);
+        if (start.isAfter(end)) {
+            throw new startAfterEndException();
+        } else if (start.isBefore(LocalDateTime.now()) || end.isBefore(LocalDateTime.now())) {
+            throw new expiredDateException();
+        } else if (className.isBlank() || startString.isBlank() || endString.isBlank()) {
+            throw new IllegalSchoolClassException();
+        } else {
+            SchoolClass currSchoolClass = new SchoolClass(className, description, startString, endString);
+            tasks.add(currSchoolClass);
+            Ui.addedTaskMessage(currSchoolClass);
         }
     }
 
