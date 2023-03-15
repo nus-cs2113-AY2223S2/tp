@@ -34,7 +34,7 @@ public class ParserTest {
     }
     
     @Test
-    public void sortArguments_testScenario_expectedBehaviour() {
+    public void sortArguments_testScenario_expectedBehaviour() throws ChChingException {
         List<String> input = new ArrayList<String>();
         input.add("ca meal");
         input.add("de breakfast");
@@ -51,7 +51,7 @@ public class ParserTest {
     }
     
     @Test
-    public void sortArguments_emptyInput_returnsEmptyHashMap() {
+    public void sortArguments_emptyInput_returnsEmptyHashMap() throws ChChingException {
         List<String> input = new ArrayList<String>();
         
         HashMap<String, String> expectedOutput = new HashMap<String, String>();

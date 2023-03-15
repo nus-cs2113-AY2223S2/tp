@@ -29,12 +29,18 @@ public class Parser {
 
     public static final String FIELD_DEMARCATION = " /";
 
-    public static Command parse(String line, IncomeList incomeList, ExpenseList expenseList, Ui ui) {
+    public static Command parse(
+            String line,
+            IncomeList incomeList,
+            ExpenseList expenseList,
+            Ui ui
+    ) throws ChChingException {
         List<String> lineParts = splitLine(line);
         String instruction = lineParts.get(0);
         List<String> arguments = lineParts.subList(1, lineParts.size());
         HashMap<String, String> argumentsByField = sortArguments(arguments);
         Command command = new InvalidCommand();
+        int index;
         try {
             switch (instruction) {
             case "add income":
@@ -55,10 +61,12 @@ public class Parser {
                 command = new ListCommand();
                 break;
             case "delete income":
-                command = new DeleteIncomeCommand(Integer.parseInt(argumentsByField.get("no")));
+                index = Incomes.getIndex(argumentsByField);
+                command = new DeleteIncomeCommand(index);
                 break;
             case "delete expense":
-                command = new DeleteExpenseCommand(Integer.parseInt(argumentsByField.get("no")));
+                index = Expenses.getIndex(argumentsByField);
+                command = new DeleteExpenseCommand(index);
                 break;
             case "balance":
                 command = new BalanceCommand();
@@ -84,7 +92,7 @@ public class Parser {
         return lineParts;
     }
 
-    public static HashMap<String, String> sortArguments(List<String> arguments) {
+    public static HashMap<String, String> sortArguments(List<String> arguments) throws ChChingException {
         HashMap<String, String> argumentsByField = new HashMap<String, String>();
         int argumentsCount = arguments.size();
 
@@ -97,8 +105,8 @@ public class Parser {
                 String field = fieldAndValue[0].trim();
                 String value = fieldAndValue[1].trim();
                 argumentsByField.put(field, value);
-            } catch (NullPointerException e) {
-                System.out.println("Error: arguments not inputted correctly/missing a value");
+            } catch (Exception e) {
+                throw new ChChingException("arguments not inputted correctly or missing a value");
             }
         }
         return argumentsByField;

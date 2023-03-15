@@ -1,5 +1,6 @@
 package chching.parser;
 
+import chching.ChChingException;
 import chching.record.Expense;
 
 import java.util.HashMap;
@@ -18,5 +19,18 @@ public class Expenses {
             System.out.println("    Trouble adding expense value");
         }
         return exp;
+    }
+    
+    public static int getIndex(HashMap<String, String> argumentsByField) throws ChChingException {
+        int index = -1;
+        try {
+            String indexString = argumentsByField.get("no");
+            index = Integer.parseInt(indexString);
+        } catch (NumberFormatException e) {
+            throw new ChChingException("Index needs to be an integer");
+        } catch (NullPointerException e) {
+            throw new ChChingException("Index not found");
+        }
+        return index;
     }
 }
