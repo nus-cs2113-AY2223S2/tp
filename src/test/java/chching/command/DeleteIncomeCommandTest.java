@@ -34,7 +34,7 @@ class DeleteIncomeCommandTest {
     }
 
     @Test
-    void deleteIncome_positiveIntegerWithinSize_success() {
+    void execute_positiveIntegerWithinSize_success() {
         int defaultIncomeListSize = defaultIncomeList.size();
         Command command = new DeleteIncomeCommand(1);
         try {
@@ -46,22 +46,24 @@ class DeleteIncomeCommandTest {
     }
 
     @Test
-    void deleteIncome_positiveIntegerOutsideSize_exceptionThrown() {
+    void execute_positiveIntegerOutsideSize_exceptionThrown() {
         String expectedOutput = "The number is too big";
         Command command = new DeleteIncomeCommand(5);
         try {
             command.execute(defaultIncomeList, emptyExpenseList, ui, storage);
+            fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage(), "Delete income with integer outside size is not captured");
         }
     }
 
     @Test
-    void deleteIncome_negativeInteger_exceptionThrown() {
+    void execute_negativeInteger_exceptionThrown() {
         String expectedOutput = "Negative/Zero index";
         Command command = new DeleteIncomeCommand(-1);
         try {
             command.execute(defaultIncomeList, emptyExpenseList, ui, storage);
+            fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage(), "Delete income with negative integer is not captured");
         }

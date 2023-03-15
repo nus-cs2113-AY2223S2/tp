@@ -43,8 +43,7 @@ class DeleteExpenseCommandTest {
             command.execute(emptyIncomeList, defaultExpenseList, ui, storage);
             assertEquals(defaultExpenseListSize - 1, defaultExpenseList.size(), "Delete expense working");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            fail();
+            fail(); // test should not reach this line
         }
     }
 
@@ -54,6 +53,7 @@ class DeleteExpenseCommandTest {
         Command command = new DeleteExpenseCommand(5);
         try {
             command.execute(emptyIncomeList, defaultExpenseList, ui, storage);
+            fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage(), "Delete expense with integer outside size is not captured");
         }
@@ -65,6 +65,7 @@ class DeleteExpenseCommandTest {
         Command command = new DeleteExpenseCommand(-1);
         try {
             command.execute(emptyIncomeList, defaultExpenseList, ui, storage);
+            fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage(), "Delete expense with negative integer is not captured");
         }

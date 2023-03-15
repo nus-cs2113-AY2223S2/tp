@@ -8,67 +8,73 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class AddExpenseCommandTest {
     @Test
-    void addExpenseCommand_nullExpense_exceptionThrown() {
+    void execute_nullExpense_exceptionThrown() {
+        String expectedOutput = "No fields found";
         try {
             new AddExpenseCommand(null);
             fail(); // test should not reach this line
         } catch (Exception e) {
-            assertEquals("No fields found", e.getMessage());
+            assertEquals(expectedOutput, e.getMessage());
         }
     }
     
     @Test
-    void addExpenseCommand_missingCategoryField_exceptionThrown() {
+    void execute_missingCategoryField_exceptionThrown() {
+        String expectedOutput = "Missing category field";
         Expense input = new Expense(null, "public transport", "1st apr 2023", (float) 1.50);
         try {
             new AddExpenseCommand(input);
             fail(); // test should not reach this line
         } catch (Exception e) {
-            assertEquals("Missing category field", e.getMessage());
+            assertEquals(expectedOutput, e.getMessage());
         }
     }
     
     @Test
-    void addExpenseCommand_missingDescriptionField_exceptionThrown() {
+    void execute_missingDescriptionField_exceptionThrown() {
+        String expectedOutput = "Missing description field";
         Expense input = new Expense("transport", null, "1st apr 2023", (float) 1.50);
         try {
             new AddExpenseCommand(input);
             fail(); // test should not reach this line
         } catch (Exception e) {
-            assertEquals("Missing description field", e.getMessage());
+            assertEquals(expectedOutput, e.getMessage());
         }
     }
     
     @Test
-    void addExpenseCommand_missingDateField_exceptionThrown() {
+    void execute_missingDateField_exceptionThrown() {
+        String expectedOutput = "Missing date field";
         Expense input = new Expense("transport", "public transport", null, (float) 1.50);
         try {
             new AddExpenseCommand(input);
             fail(); // test should not reach this line
         } catch (Exception e) {
-            assertEquals("Missing date field", e.getMessage());
+            assertEquals(expectedOutput, e.getMessage());
         }
     }
     
     @Test
-    void addExpenseCommand_zeroValueField_exceptionThrown() {
+    void execute_zeroValueField_exceptionThrown() {
+        String expectedOutput = "Invalid/Missing expense value";
         Expense input = new Expense("transport", "public transport", "1st apr 2023", (float) 0);
         try {
             new AddExpenseCommand(input);
             fail(); // test should not reach this line
         } catch (Exception e) {
-            assertEquals("Invalid/Missing expense value", e.getMessage());
+            assertEquals(expectedOutput, e.getMessage());
         }
     }
     
     @Test
-    void addExpenseCommand_negativeValueField_exceptionThrown() {
+    void execute_negativeValueField_exceptionThrown() {
+        String expectedOutput = "Invalid/Missing expense value";
         Expense input = new Expense("transport", "public transport", "1st apr 2023", (float) -1.50);
         try {
             new AddExpenseCommand(input);
             fail(); // test should not reach this line
         } catch (Exception e) {
-            assertEquals("Invalid/Missing expense value", e.getMessage());
+            assertEquals(expectedOutput, e.getMessage());
         }
     }
 }
