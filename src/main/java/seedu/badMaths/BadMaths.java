@@ -22,9 +22,7 @@ public class BadMaths {
     }
 
     public static void main(String[] args) {
-
-        HelpManual.readHelpManual();
-        System.out.println("You can type 'Help' to learn what I can do for you :)");
+        System.out.println("This is BadMaths. You can type 'Help' to learn what I can do for you :)");
         Command inputCommand = null;
 
         while (true) {
