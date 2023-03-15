@@ -151,7 +151,6 @@ public class UI {
         System.out.println("name: " + recipe.getName());
         IngredientList ingredients = recipe.getIngredientList();
         ingredients.showList();
-//        System.out.println("steps: " + recipe.getSteps());
     }
     public void showViewingRecipeErrorMessage(Exception e) {
         if (e instanceof IncompleteInputException) {
