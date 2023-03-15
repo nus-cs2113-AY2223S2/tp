@@ -50,40 +50,40 @@ public class DukeUI {
      */
 
     public void printHelpMessages() {
-        PrintHelpMessageHeader();
+        printHelpMessageHeader();
         printListIngredientsHelp();
         printAddCommandHelp();
-        PrintRemoveCommandHelp();
-        PrintRecipePossibleHelp();
-        PrintRecipeAllHelp();
-        PrintByeCommandHelp();
+        printRemoveCommandHelp();
+        printRecipePossibleHelp();
+        printRecipeAllHelp();
+        printByeCommandHelp();
     }
 
-    private static void PrintHelpMessageHeader() {
+    private static void printHelpMessageHeader() {
         System.out.println("COMMAND SUMMARY:");
         System.out.println(DIVIDER);
     }
 
-    private static void PrintByeCommandHelp() {
+    private static void printByeCommandHelp() {
         System.out.println("Command: bye");
         System.out.println("Exits the program");
         System.out.println(DIVIDER);
     }
 
-    private static void PrintRecipeAllHelp() {
+    private static void printRecipeAllHelp() {
         System.out.println("Command: recipe all");
         System.out.println("Lists out all the recipes currently stored in the recipe inventory.");
         System.out.println(DIVIDER);
     }
 
-    private static void PrintRecipePossibleHelp() {
+    private static void printRecipePossibleHelp() {
         System.out.println("Command: recipe possible");
         System.out.println("Lists out all the recipes that can be made by the ingredients that are currently " +
                 "in the ingredient inventory.");
         System.out.println(DIVIDER);
     }
 
-    private static void PrintRemoveCommandHelp() {
+    private static void printRemoveCommandHelp() {
         System.out.println("Command: remove <ingredient> /qty <quantity>");
         System.out.println("Remove an ingredient of specified quantity from your ingredient inventory.");
         System.out.println(DIVIDER);
