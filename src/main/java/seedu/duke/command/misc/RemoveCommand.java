@@ -69,6 +69,7 @@ public class RemoveCommand extends ExecutableCommand {
 
     private static void removeIngredient(DukeSession dukeSession, Double quantity, String name) {
         double fridgeQuantity = dukeSession.getIngredients().get(indexOfExistingIngredient).getQuantity();
+        assert fridgeQuantity >= quantity: "fridgeQuantity should be more than quantity to be removed";
         double newQuantity = fridgeQuantity - quantity;
         dukeSession.getIngredients().get(indexOfExistingIngredient).setQuantity(newQuantity);
         dukeSession.getUi().printMessage(String.format("Success! new quantity of %s is %f", name, newQuantity));
