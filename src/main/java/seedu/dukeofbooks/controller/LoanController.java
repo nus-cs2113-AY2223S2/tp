@@ -1,6 +1,5 @@
 package seedu.dukeofbooks.controller;
 
-import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.book.BorrowableItem;
 import seedu.dukeofbooks.data.exception.DuplicateActionException;
 import seedu.dukeofbooks.data.exception.IllegalDateException;
@@ -10,7 +9,6 @@ import seedu.dukeofbooks.data.loan.LoanRecords;
 import seedu.dukeofbooks.data.person.Person;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class LoanController {
     private static final String AVAILABLE_STATUS_FORMAT =
