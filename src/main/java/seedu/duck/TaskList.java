@@ -25,9 +25,7 @@ public class TaskList {
             } catch (expiredDateException e) {
                 Ui.expiredErrorMessage();
             } catch (DateTimeException e) {
-                System.out.println("Please check the inputted format human!\n" +
-                        "There are only 24 hours in a day in Duck World, and 12 months a year...\n");
-                System.out.println("\t Please try again!");
+                Ui.invalidDateTimeMessage();
             }
         } else if (line.contains("/from") || line.contains("/to")) {
             // Adding an Event
@@ -40,9 +38,7 @@ public class TaskList {
             } catch (startAfterEndException e) {
                 Ui.startAfterEndErrorMessage();
             } catch (DateTimeException e) {
-                System.out.println("Please check the inputted format human!\n" +
-                        "There are only 24 hours in a day in Duck World, and 12 months a year...\n");
-                System.out.println("\t Please try again!");
+                Ui.invalidDateTimeMessage();
             }
         } else {
             // Adding a _Todo_
