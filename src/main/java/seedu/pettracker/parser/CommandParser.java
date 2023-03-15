@@ -14,14 +14,13 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class CommandParser {
+    private static final Logger logger = Logger.getLogger("CommandLogger");
     final String KEYWORD_EXIT = "exit";
     final String KEYWORD_ADD_PET = "add-pet";
     final String KEYWORD_REMOVE_PET = "remove-pet";
     final String KEYWORD_LIST_PET = "list";
     final String KEYWORD_ADD_STAT = "add-stat";
     final String KEYWORD_REMOVE_STAT = "remove-stat";
-
-    private final static Logger logger = Logger.getLogger("CommandLogger");
 
     public CommandParser() {
     }
