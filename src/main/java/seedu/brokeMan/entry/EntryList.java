@@ -29,6 +29,7 @@ public class EntryList {
             Ui.showToUser(message);
             counter++;
         }
+        Ui.showToUser("Total: $" + getTotalAmount());
         Ui.showToUserWithLineBreak("");
     }
 
@@ -92,6 +93,16 @@ public class EntryList {
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
             Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
         }
+    }
+
+    public static double getTotalAmount() {
+        double totalAmount = 0;
+        if (entryList.size() > 0) {
+            for (Entry entryLog : entryList) {
+                totalAmount += entryLog.getAmount();
+            }
+        }
+        return totalAmount;
     }
 
     /**

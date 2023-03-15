@@ -54,6 +54,14 @@ public class Expenses extends EntryList{
     }
 
     /**
+     * print out the total expenses
+     */
+    public static void getTotalExpense() {
+        double totalExpense = getTotalAmount();
+        System.out.println("Your total expenses are " + totalExpense + ".");
+    }
+
+    /**
      * Sorts expenses using Entry comparator
      */
     private static void sortExpensesByAmount() {
