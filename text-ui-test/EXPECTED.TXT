@@ -1,6 +1,7 @@
 Let's get moving!
 "/start <DD/MM/YY>" to begin your workout
-Started new workout on Wed Feb 01 00:00:00 SGT 2023
+Started new workout.
+"/add <exercise_name> /weight <weight_used> /rps <reps_per_set>"to add your exercises sets and reps
 Added Bench Press 100kg 6 5 4 4 3
 Added Cable Flys 30kg 10 10 10
 Ended current workout!

@@ -22,7 +22,7 @@ public class Workout {
         workoutExercises.add(exercise);
     }
     public Date getDate() {
-        return this.date;
+        return date;
     }
 
     public void setDate(Date date) {

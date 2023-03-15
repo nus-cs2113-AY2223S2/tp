@@ -108,7 +108,9 @@ public class Duke {
     public static void startWorkout(String[] inputs) {
         try {
             currentWorkout = new Workout(inputs[DATE_INDEX]);
-            System.out.println("Started new workout on " + currentWorkout.getDate());
+            System.out.println("Started new workout.");
+            System.out.println("\"/add <exercise_name> /weight <weight_used> /rps <reps_per_set>\"" + "to " +
+                    "add your exercises sets and reps");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Incorrect workout format!");
         } catch (ParseException e) {
