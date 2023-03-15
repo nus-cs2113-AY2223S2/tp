@@ -1,3 +1,12 @@
-Input math question please.
+——————————————————————————————————————————————————————————————————————
+Hello! What can I do for you?
+——————————————————————————————————————————————————————————————————————
+1. Graph
+2. Store
+3. Matrix
+——————————————————————————————————————————————————————————————————————
+For more details, please visit our GitHub website [xxx.github.com].
+If you have any queries, please contact [exxxxxxx@u.nus.edu].
+——————————————————————————————————————————————————————————————————————
 You can type 'Help' to learn what I can do for you :)
 Goodbye!
