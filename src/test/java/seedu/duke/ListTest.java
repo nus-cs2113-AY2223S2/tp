@@ -15,13 +15,13 @@ public class ListTest {
         items.add(item2);
 
         String expected =
-                "+-----------------+--------------+----------+-------+" + System.lineSeparator() +
-                "| Name            | UPC          | Quantity | Price |" + System.lineSeparator() +
-                "+-----------------+--------------+----------+-------+" + System.lineSeparator() +
-                "| apples          | 012345678    | 5000     | 12.0  |" + System.lineSeparator() +
-                "+-----------------+--------------+----------+-------+" + System.lineSeparator() +
-                "| oranges         | 876543210    | 3000     | 0.32  |" + System.lineSeparator() +
-                "+-----------------+--------------+----------+-------+" + System.lineSeparator();
+                "+-----------------+--------------+----------+----------+" + System.lineSeparator() +
+                "| Name            | UPC          | Quantity | Price    |" + System.lineSeparator() +
+                "+-----------------+--------------+----------+----------+" + System.lineSeparator() +
+                "| apples          | 012345678    | 5000     | $12.0    |" + System.lineSeparator() +
+                "+-----------------+--------------+----------+----------+" + System.lineSeparator() +
+                "| oranges         | 876543210    | 3000     | $0.32    |" + System.lineSeparator() +
+                "+-----------------+--------------+----------+----------+" + System.lineSeparator();
 
         assertTrue(Ui.printTable(items).equals(expected));
 
@@ -36,13 +36,13 @@ public class ListTest {
         items.add(item1);
 
         String expected =
-                "+-----------------+--------------+----------+-------+" + System.lineSeparator() +
-                "| Name            | UPC          | Quantity | Price |" + System.lineSeparator() +
-                "+-----------------+--------------+----------+-------+" + System.lineSeparator() +
-                "| applesorangesgr | 012345678    | 5000     | 12.0  |" + System.lineSeparator() +
-                "| eenbeansredbean |              |          |       |" + System.lineSeparator() +
-                "| s               |              |          |       |" + System.lineSeparator() +
-                "+-----------------+--------------+----------+-------+" + System.lineSeparator();
+                "+-----------------+--------------+----------+----------+" + System.lineSeparator() +
+                "| Name            | UPC          | Quantity | Price    |" + System.lineSeparator() +
+                "+-----------------+--------------+----------+----------+" + System.lineSeparator() +
+                "| applesorangesgr | 012345678    | 5000     | $12.0    |" + System.lineSeparator() +
+                "| eenbeansredbean |              |          |          |" + System.lineSeparator() +
+                "| s               |              |          |          |" + System.lineSeparator() +
+                "+-----------------+--------------+----------+----------+" + System.lineSeparator();
 
         assertTrue(Ui.printTable(items).equals(expected));
     }
