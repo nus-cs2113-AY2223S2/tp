@@ -5,11 +5,15 @@ import seedu.rainyDay.data.FinancialStatement;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Ui {
     public static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
     public static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
     public static final String ACKNOWLEDGE_VIEW_MESSAGE = "Here is your full financial report!";
+
+    private static Logger UILogger = Logger.getLogger("UILogger.log");
 
     private final Scanner in;
     private final PrintStream out; // currently unused, to be implemented
@@ -54,11 +58,17 @@ public class Ui {
     }
 
     public String readUserCommand() {
-        String userInput = in.nextLine().trim();
-        while (userInput.trim().isEmpty()) {
-            userInput = in.nextLine().trim();
+        String userInput = in.nextLine();
+        UILogger.log(Level.INFO, userInput);
+        if(userInput.trim().equals("")) {
+            EmptyInstructionHandling();
+            readUserCommand();
         }
-        return userInput;
+        return userInput.trim();
+    }
+
+    private void EmptyInstructionHandling() {
+        System.out.println("How can we help you? :D");
     }
 
     public static void printAddedFinancialStatement(FinancialStatement currentStatement) {
@@ -76,6 +86,7 @@ public class Ui {
     }
 
     public static void printSummary(int inflow, int outflow) {
+        assert (inflow != 0 && outflow != 0);
         System.out.print(System.lineSeparator());
         String inflowInformation = "Inflow: $" + inflow;
         String outflowInformation = "Outflow: $" + outflow;

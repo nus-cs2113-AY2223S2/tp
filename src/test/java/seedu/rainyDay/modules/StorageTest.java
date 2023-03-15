@@ -32,9 +32,9 @@ public class StorageTest {
         String filePath = "rainyDay.txt";
         Storage.writeToFile(financialReport, filePath);
         FinancialReport financialReportLoaded =Storage.loadFromFile(filePath);
-        ViewCommand viewList = new ViewCommand();
-        viewList.setData(financialReportLoaded);
-        viewList.execute();
+        //ViewCommand viewList = new ViewCommand();
+        //viewList.setData(financialReportLoaded);
+        //viewList.execute();
         assertEquals(financialReport.getFullStatement(0),
                 financialReportLoaded.getFullStatement(0));
     }

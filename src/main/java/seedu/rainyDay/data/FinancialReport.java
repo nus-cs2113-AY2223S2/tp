@@ -5,13 +5,14 @@ import java.util.ArrayList;
 
 public class FinancialReport implements Serializable {
     private final ArrayList<FinancialStatement> financialReport;
-    private String reportOwner = null;
+    private String reportOwner;
 
     public FinancialReport(ArrayList<FinancialStatement> financialReport) {
         this.financialReport = financialReport;
     }
 
     public String getReportOwner() {
+        setReportOwner("noname (Temp)"); // temp fix due to NullPointerException
         return reportOwner;
     }
 

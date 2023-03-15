@@ -46,8 +46,7 @@ public class RainyDay {
                 specificCommand.setData(financialReport);
                 assert specificCommand != null : "Parser returned null";
                 specificCommand.execute();
-                //ui.printEmptyLine();
-            } catch (RainyDayException e) {
+           } catch (RainyDayException e) {
                 logger.log(Level.INFO, "RainyDayException caught");
                 System.out.println(e.getMessage());
             } catch (Exception e) {
@@ -58,7 +57,6 @@ public class RainyDay {
     }
 
     public static void main(String[] args) {
-        assert false;
         logger.log(Level.INFO, "Starting RainyDay");
         new RainyDay(filePath).run();
         logger.log(Level.INFO, "Quitting RainyDay");

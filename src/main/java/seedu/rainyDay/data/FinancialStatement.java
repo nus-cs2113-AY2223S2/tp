@@ -23,6 +23,7 @@ public class FinancialStatement implements Serializable {
     }
 
     protected String getDescription() {
+        assert(!this.description.isEmpty());
         return this.description;
     }
 
@@ -34,6 +35,7 @@ public class FinancialStatement implements Serializable {
     }
 
     public int getValue() {
+        assert(this.value > 0);;
         return this.value;
     }
 
