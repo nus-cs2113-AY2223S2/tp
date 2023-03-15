@@ -12,7 +12,7 @@ public class FinancialReport implements Serializable {
     }
 
     public String getReportOwner() {
-        setReportOwner("noname (Temp)"); // temp fix due to NullPointerException
+        setReportOwner("John"); // temp fix due to NullPointerException
         return reportOwner;
     }
 
