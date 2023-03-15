@@ -10,15 +10,15 @@ public class UnpackCommand extends Command {
     public static final String MSG_USAGE_UNPACK = "pack : Marks an item as unpacked in the packing list.\n" +
             "Example: unpack toothbrush";
 
-    private final Item item;
 
-    public UnpackCommand(Item item) {
-        this.item = item;
+    public UnpackCommand(int targetIndex) {
+        super(targetIndex);
     }
 
     @Override
     public void execute(PackingList packingList) {
         this.packingList = packingList;
+        final Item item = getTargetItem();
         packingList.unpackItem(item);
         Ui.printToUser(String.format(MSG_SUCCESS_UNPACK, item));
     }

@@ -10,15 +10,16 @@ public class PackCommand extends Command {
     public static final String MSG_USAGE_PACK = "pack : Marks an item as packed in the packing list.\n" +
             "Example: pack toothbrush";
 
-    private final Item item;
 
-    public PackCommand(Item item) {
-        this.item = item;
+
+    public PackCommand(int targetIndex) {
+        super(targetIndex);
     }
 
     @Override
     public void execute(PackingList packingList) {
         this.packingList = packingList;
+        final Item item = getTargetItem();
         packingList.packItem(item);
         Ui.printToUser(String.format(MSG_SUCCESS_PACK, item));
     }
