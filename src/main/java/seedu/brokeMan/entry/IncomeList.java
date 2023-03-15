@@ -50,13 +50,6 @@ public class IncomeList extends EntryList{
     }
 
     /**
-     * print out the total income
-     */
-    public static void getTotalIncome() {
-        double totalExpense = getTotalAmount();
-        System.out.println("Your total expenses are " + totalExpense + ".");
-    }
-    /**
      * Sorts income using Entry comparator
      */
     private static void sortIncomeByAmount() {

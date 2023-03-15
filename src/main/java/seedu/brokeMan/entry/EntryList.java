@@ -57,7 +57,7 @@ public class EntryList {
     public static void editEntry(String type, int entryIndex, double newEntry) {
         try {
             Entry entryBeingEdited = entryList.get(entryIndex - 1);
-            if (type.equals("amount")) {
+            if (type.equals("cost") || type.equals("income")) {
                 entryBeingEdited.editAmount(newEntry);
             } else {
                 // throw a custom exception here
