@@ -24,7 +24,7 @@ public class Expenses {
     public static int getIndex(HashMap<String, String> argumentsByField) throws ChChingException {
         int index = -1;
         try {
-            String indexString = argumentsByField.get("no");
+            String indexString = argumentsByField.get("in");
             index = Integer.parseInt(indexString);
         } catch (NumberFormatException e) {
             throw new ChChingException("Index needs to be an integer");
