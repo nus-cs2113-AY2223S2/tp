@@ -8,10 +8,12 @@ public class BadMaths {
 
     public static void commandChecker(String userInput, String command) {
         try {
-            if (!(command.equals("Graph") || command.equals("Bye") || command.equals("List") || command.equals("Notes") || command.equals("Matrix") || command.equals("Help"))) {
+            if (!(command.equals("Graph") || command.equals("Bye") || command.equals("List") || command.equals("Notes")
+                    || command.equals("Matrix") || command.equals("Help"))) {
                 throw new IllegalArgumentException();
             }
-            if (!userInput.contains(".") && !(userInput.equals("List") || userInput.equals("Bye") || userInput.equals("Help"))) {
+            if (!userInput.contains(".") && !(userInput.equals("List") || userInput.equals("Bye")
+                    || userInput.equals("Help"))) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -38,7 +40,7 @@ public class BadMaths {
                 inputCommand = new Command(command, toDo);
             } else {
                 inputCommand.setCommand(command);
-                assert inputCommand.getCommand().equals(command) : "command in inputCommand should be the same as command";
+                assert inputCommand.getCommand().equals(command) : "inputCommand != command";
                 inputCommand.setToDo(toDo);
             }
 
