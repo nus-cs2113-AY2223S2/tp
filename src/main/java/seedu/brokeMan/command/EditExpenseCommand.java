@@ -4,11 +4,15 @@ import seedu.brokeMan.entry.Expenses;
 
 public class EditExpenseCommand extends Command {
     public static final String COMMAND_WORD = "editExpense";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": edit the expense from the list.\n" +
+            "|  Parameter: i/ <index> t/ <type> n/ <newEntry>\n" +
+            "|  There are 3 type that can be changed, cost, info, time\n" +
+            "|  Example: " + COMMAND_WORD + " i/ 1 t/ cost n/ 5";
     private int index;
     private String type;
     private double newCost;
     private String newEntry;
-
     private boolean isEditCost = false;
 
     public EditExpenseCommand(int index, String type, String newEntry) {
