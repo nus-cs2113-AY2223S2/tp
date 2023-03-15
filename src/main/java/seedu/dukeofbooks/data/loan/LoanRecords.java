@@ -61,6 +61,42 @@ public class LoanRecords {
         return res;
     }
 
+    public Loan getLastActiveLoan(Person person) {
+        ListIterator<Loan> it = internalList.listIterator(internalList.size());
+        while (it.hasPrevious()) {
+            Loan loan = it.previous();
+            if (loan.getBorrower().equals(person) && !loan.isReturned()) {
+                return loan;
+            }
+        }
+        return null;
+    }
+
+    public Loan getLastActiveLoan(BorrowableItem item) {
+        ListIterator<Loan> it = internalList.listIterator(internalList.size());
+        while (it.hasPrevious()) {
+            Loan loan = it.previous();
+            if (loan.getBorrowedItem().equals(item) && !loan.isReturned()) {
+                return loan;
+            }
+        }
+        return null;
+
+    }
+
+    public Loan getLastActiveLoan(Person person, BorrowableItem item) {
+        ListIterator<Loan> it = internalList.listIterator(internalList.size());
+        while (it.hasPrevious()) {
+            Loan loan = it.previous();
+            if (loan.getBorrowedItem().equals(item)
+                    && loan.getBorrower().equals(person)
+                    && !loan.isReturned()) {
+                return loan;
+            }
+        }
+        return null;
+    }
+
     public Iterator<Loan> iterator() {
         return internalList.iterator();
     }
