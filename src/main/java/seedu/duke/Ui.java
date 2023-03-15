@@ -1,13 +1,12 @@
 package seedu.duke;
 
-import static seedu.duke.ColorCode.ANSI_RESET;
-import static seedu.duke.ColorCode.ANSI_GREEN;
-import static seedu.duke.ColorCode.ANSI_BLUE;
-import static seedu.duke.ColorCode.ANSI_RED;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static seedu.duke.ColorCode.ANSI_BLUE;
+import static seedu.duke.ColorCode.ANSI_GREEN;
+import static seedu.duke.ColorCode.ANSI_RED;
+import static seedu.duke.ColorCode.ANSI_RESET;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
@@ -61,9 +60,6 @@ public class Ui {
     private static final String INVALID_REPLY = "Invalid response, only yes (Y) or no (N) answer is allowed.\n" +
             "Please try again :(";
     private static final String INVALID_INDEX = "This index is invalid.\nPlease enter a number ";
-    private static final String INVALID_REMOVE_FORMAT = "Wrong/Incomplete Format! Please remove items in the " +
-            "following format(s):\n" + "Remove by UPC: remove f/item upc/[UPC]\n" +
-            "Remove by item index: remove f/index [INDEX]";
 
     public Ui() {
         greetUser();
@@ -86,7 +82,7 @@ public class Ui {
         System.out.println(ANSI_GREEN + "Here is your item: ");
         ArrayList<Item> singleItem = new ArrayList<>();
         singleItem.add(item);
-        System.out.println(printTable(singleItem)+ ANSI_RESET);
+        System.out.println(printTable(singleItem) + ANSI_RESET);
         System.out.println(Ui.LINE);
     }
 
@@ -236,8 +232,8 @@ public class Ui {
         return attribute.toString();
     }
 
-    /*Method below adapted from https://stackoverflow.com/questions/4055430/java-
-  code-for-wrapping-text-lines-to-a-max-line-width*/
+    /* Method below adapted from https://stackoverflow.com/questions/4055430/java-
+    code-for-wrapping-text-lines-to-a-max-line-width */
     private static String[] wrapText(String input, int width) {
         String[] words = input.split("\\s+");
         ArrayList<String> lines = new ArrayList<>();
@@ -351,9 +347,11 @@ public class Ui {
         System.out.println(itemToRemove.toString());
         System.out.println(LINE);
     }
-    public static void printConfirmMessage() {
+
+    public static void printConfirmMessage(Item itemToRemove) {
         System.out.println(LINE);
         System.out.println(ANSI_BLUE + CONFIRM_MESSAGE + ANSI_RESET);
+        System.out.println(itemToRemove.toString());
         System.out.println(LINE);
     }
 
@@ -368,20 +366,25 @@ public class Ui {
             System.out.println(ANSI_RED + INVALID_INDEX + "0 to remove item successfully." + ANSI_RESET);
             break;
         default:
-            System.out.println(ANSI_RED + INVALID_INDEX + "between 0 to " + (listSize-1) +
+            System.out.println(ANSI_RED + INVALID_INDEX + "between 0 to " + (listSize - 1) +
                     " to remove item successfully." + ANSI_RESET);
             break;
         }
-
         System.out.println(LINE);
     }
 
-    public static void printInvalidRemove() {
+    public static void printInvalidUpc() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_REMOVE_FORMAT + ANSI_RESET);
+        int listSize = Inventory.getItemList().size();
+        switch (listSize) {
+        case 0:
+            System.out.println(ANSI_RED + INVALID_LIST + ANSI_RESET);
+            break;
+        default:
+            System.out.println(ANSI_RED + "This UPC is invalid. Try again." + ANSI_RESET);
+            break;
+        }
         System.out.println(LINE);
     }
-
-
 }
 
