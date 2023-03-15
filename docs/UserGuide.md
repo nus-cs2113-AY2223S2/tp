@@ -2,41 +2,73 @@
 
 ## Introduction
 
-{Give a product intro}
+rainyDay is a desktop application for managing your finances. With a command line interface, you can keep track of your
+financial inflows and outflows and view them with a single command.
 
 ## Quick Start
 
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Download the latest version of `rainyDay`
+   from [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/releases/download/v1.0/rainyDay.jar).
 
-## Features 
+## Features
 
-{Give detailed description of each feature}
+### Adding a transaction: `add`
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+Adds a new transaction to the financial report.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `add -DIRECTION TRANSACTION_NAME $AMOUNT`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+* The `DIRECTION` to be `in` signifying an inflow type of transaction, or `out` signifying an outflow type of
+  transaction
+* The `TRANSACTION_NAME` can be any keyboard input.
+* The `AMOUNT` needs to be a number.
 
-Example of usage: 
+Example of usage:
 
-`todo n/Write the rest of the User Guide d/next week`
+`add -in angpao $500`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+`add -out school fees $1000`
+
+### Deleting a transaction: `delete`
+
+Deletes a transaction in the financial report.
+
+Format: `delete INDEX`
+
+* The `INDEX` needs to be a number
+
+Example of usage:
+
+`delete 1`
+
+`delete 2`
+
+### Viewing the financial report: `view`
+
+Lists all the transaction added, the total resultant amount after inflow - outflow, total inflow amount, and total
+outflow amount
+
+Format: `view`
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: How do I transfer my data to another computer?
 
-**A**: {your answer here}
+**A**: Copy the txt file named "rainyDay" that is in the same directory as rainyDay.jar to the new device and location
+that
+rainyDay.jar is going to be stored in
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
+| Action | Format                              |
+|--------|-------------------------------------|
+| Add    | add -(in/out) (description) (value) |
+| Delete | delete (index)                      |
+| View   | view                                |
+| Help   | help                                |
+| Exit   | bye                                 |
 
 * Add todo `todo n/TODO_NAME d/DEADLINE`
