@@ -1,8 +1,8 @@
-package seedu.Ui;
+package seedu.ui;
 
-import seedu.Database.FoodStorage;
-import seedu.Database.MealStorage;
-import seedu.Entities.Meal;
+import seedu.database.FoodStorage;
+import seedu.database.MealStorage;
+import seedu.entities.Meal;
 
 import java.util.Scanner;
 
@@ -105,4 +105,13 @@ public class GeneralUi {
         System.out.println("Successfully deleted this meal:");
         System.out.println(meal);
     }
+
+    public void requestCalorieLimit(){
+    }
+
+    public void showCurrentIntake(){}
+
+    public void showRemainingIntake(){}
+    public void showDailyCaloricLimit(){}
+    public void showWellDoneMessage(){}
 }

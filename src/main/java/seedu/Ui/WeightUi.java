@@ -1,4 +1,4 @@
-package seedu.Ui;
+package seedu.ui;
 import java.util.ArrayList;
 public class WeightUi extends GeneralUi {
 

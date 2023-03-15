@@ -1,4 +1,4 @@
-package seedu.Entities;
+package seedu.entities;
 
 public class Ingredient extends Food {
     public Ingredient(int id, String name, String storeName, int storeNumber, float calories) {

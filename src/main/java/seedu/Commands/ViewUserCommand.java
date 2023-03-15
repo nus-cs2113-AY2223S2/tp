@@ -1,12 +1,14 @@
-package seedu.Commands;
+package seedu.commands;
 
-import seedu.Database.FoodStorage;
-import seedu.Database.MealStorage;
-import seedu.Database.UserStorage;
-import seedu.Entities.CaloricIntake;
-import seedu.Entities.User;
-import seedu.Exceptions.LifeTrackerException;
-import seedu.Ui.GeneralUi;
+import seedu.database.FoodStorage;
+import seedu.database.MealStorage;
+import seedu.database.UserStorage;
+import seedu.entities.CaloricIntake;
+import seedu.entities.User;
+import seedu.exceptions.LifeTrackerException;
+import seedu.ui.GeneralUi;
+import seedu.ui.CalorieUi;
+
 
 public class ViewUserCommand extends Command {
 
@@ -14,6 +16,7 @@ public class ViewUserCommand extends Command {
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
             throws LifeTrackerException {
         User user = userStorage.getUser();
+        CalorieUi calorieUi = new CalorieUi();
         CaloricIntake meals = new CaloricIntake(mealStorage.getMeal());
         int choice;
         boolean toContinue = true;
@@ -55,12 +58,14 @@ public class ViewUserCommand extends Command {
                 break;
             case 6:
                 double caloricLimit = user.getCaloricLimit();
-                System.out.println("Daily caloric limit: " + caloricLimit + " Kcal");
+                calorieUi.showDailyCaloricLimit();
+                System.out.println(caloricLimit + " Kcal");
                 break;
             case 7:
                 double calorieIntake = meals.getTotalDailyCalories();
                 double caloriesLeft = user.getCaloriesLeft(calorieIntake);
-                System.out.println("Calories left today: " + caloriesLeft + " Kcal");
+                calorieUi.showRemainingIntake();
+                System.out.println(caloriesLeft + " Kcal");
                 break;
             case 8:
                 break;

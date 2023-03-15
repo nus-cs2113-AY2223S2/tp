@@ -1,4 +1,4 @@
-package seedu.Database;
+package seedu.database;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -6,14 +6,15 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import seedu.Entities.Food;
+
+import seedu.entities.Food;
 
 public class FoodStorageTest {
     private static final String FILE_PATH = "./data/foodData.csv";
 
     @Nested
     @DisplayName("Test Read Functionalities")
-    class readTest {
+    class ReadTest {
         private final FoodStorage foodStorage = new FoodStorage(FILE_PATH);
 
         @Test

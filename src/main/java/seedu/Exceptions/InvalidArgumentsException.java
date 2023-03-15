@@ -1,4 +1,4 @@
-package seedu.Exceptions;
+package seedu.exceptions;
 
 public class InvalidArgumentsException extends LifeTrackerException {
     public InvalidArgumentsException(String commandWord) {
