@@ -6,7 +6,7 @@ import chching.record.Expense;
 import java.util.HashMap;
 
 public class Expenses {
-    public static Expense parseExpense(HashMap<String, String> argumentsByField) {
+    public static Expense parseExpense(HashMap<String, String> argumentsByField) throws ChChingException{
         Expense exp = null;
         try {
             String expenseCategory = argumentsByField.get("c");
@@ -16,7 +16,7 @@ public class Expenses {
             assert expenseValue > 0 : "Expense value should be greater than zero";
             exp = new Expense(expenseCategory, expenseDescription, expenseDate, expenseValue);
         } catch (Exception e) {
-            System.out.println("    Trouble adding expense value");
+            throw new ChChingException("Trouble adding expense value");
         }
         return exp;
     }

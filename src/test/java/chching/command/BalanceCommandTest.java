@@ -14,6 +14,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class BalanceCommandTest {
+    final static String INCOME_DESCRIPTION = "salary";
+
+    final static String INCOME_DATE = "1st apr 2023";
+    final static float INCOME_VALUE = (float) 5000;
+
+    final static String EXPENSE_CATEGORY = "grocery";
+    final static String EXPENSE_DESCRIPTION = "too much groceries";
+
+    final static String EXPENSE_DATE = "1st apr 2023";
+    final static float EXPENSE_VALUE = (float) 500;
+
     private Ui ui;
     private Storage storage;
     private Income salary;
@@ -25,8 +36,8 @@ class BalanceCommandTest {
     void setup() {
         ui = new Ui();
         
-        salary = new Income("salary", "1st apr 2023", 5000);
-        groceries = new Expense("groceries", "too much groceries", "1st apr 2023", 500);
+        salary = new Income(INCOME_DESCRIPTION, INCOME_DATE, INCOME_VALUE);
+        groceries = new Expense(EXPENSE_CATEGORY, EXPENSE_DESCRIPTION, EXPENSE_DATE, EXPENSE_VALUE);
         
         ArrayList<Income> incomeList = new ArrayList<Income>();
         incomeList.add(salary);
