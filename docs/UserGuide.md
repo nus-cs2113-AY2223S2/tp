@@ -12,9 +12,9 @@
 1. Enter your name when prompted in the command box and press enter.
 1. Type the command in the command box and press Enter to execute it.
 SOme example commands you can try:
-**`add amt/100 t/15-03-2023`: Add an expense entry with a value of SGD100.0 and a date of 15th March 2023 to the expense list.
-**`list`: List all expenses in the expense list.
-**`delete 1`: Delete the first entry in the expense list.
+*`add amt/100 t/15-03-2023`: Add an expense entry with a value of SGD100.0 and a date of 15th March 2023 to the expense list.
+*`list`: List all expenses in the expense list.
+*`delete 1`: Delete the first entry in the expense list.
 
 ## Features 
 
@@ -35,7 +35,7 @@ Example of usage:
 
 `add amt/9.5 t/01-11-2023 cat/food`
 
-### Listing all expenses: `add`
+### Listing all expenses: `list`
 List all tracked expenses in the expense list.
 
 Format: `list`
@@ -46,7 +46,7 @@ Example of usage:
 
 `list`
 
-### Delete an expense entry: `delete`
+### Deleting an expense entry: `delete`
 Delete expense entry with index X in the expense list
 
 Format: `delete X`
