@@ -9,6 +9,7 @@ import seedu.duke.command.factory.misc.HelloWorldCommandFactory;
 import seedu.duke.command.factory.misc.RecipeAllCommandFactory;
 import seedu.duke.command.factory.misc.RecipePossibleCommandFactory;
 import seedu.duke.command.factory.misc.RemoveCommandFactory;
+import seedu.duke.command.factory.misc.HelpCommandFactory;
 import seedu.duke.ingredient.IngredientList;
 import seedu.duke.parser.CommandArguments;
 import seedu.duke.parser.CommandTokens;
@@ -29,6 +30,7 @@ public class DukeSession {
                     )
                     .route("bye", new ByeCommandFactory())
                     .route("add", new AddCommandFactory())
+                    .route("help", new HelpCommandFactory())
                     .route("remove", new RemoveCommandFactory())
                     .route("recipe", new CommandRouterNode()
                             .route("possible", new RecipePossibleCommandFactory())
