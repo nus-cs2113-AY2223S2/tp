@@ -92,5 +92,4 @@ public class Storage {
     private static String writeTaskPreparation(String saveString) {
         return saveString + System.lineSeparator();
     }
-
 }
