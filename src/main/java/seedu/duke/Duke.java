@@ -12,14 +12,15 @@ public class Duke {
     private static UI ui = new UI();
 
     public static void main(String[] args) {
-        String logo = " ____        _        \n" + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n" + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        // data = new DataReader();
+//        String logo = " ____        _        \n" + "|  _ \\ _   _| | _____ \n"
+//                + "| | | | | | | |/ / _ \\\n" + "| |_| | |_| |   <  __/\n"
+//                + "|____/ \\__,_|_|\\_\\___|\n";
+//        System.out.println("Hello from\n" + logo);
+//        // data = new DataReader();
         Scanner in = new Scanner(System.in);
-        System.out.println("What is your name?");
-        System.out.println("Hello " + in.nextLine());
+        in.nextLine();
+//        System.out.println("What is your name?");
+//        System.out.println("Hello " + in.nextLine());
         String userInput;
         boolean isContinue = true;
         while (isContinue) {
