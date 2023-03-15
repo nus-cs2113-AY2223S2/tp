@@ -15,9 +15,7 @@ import seedu.brokeMan.command.ListIncomeCommand;
 import seedu.brokeMan.exception.AmountIsNotADoubleException;
 import seedu.brokeMan.exception.IndexNotAnIntegerException;
 
-import static seedu.brokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
-import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_ADD_COMMAND;
-import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
+import static seedu.brokeMan.common.Messages.*;
 
 
 /*
@@ -65,7 +63,10 @@ public class Parser {
         int index;
         try {
             if (description.equals("dummy")) {
-                return new InvalidCommand(MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION);
+                if (type.equals("expense")) {
+                    return new InvalidCommand(MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION, DeleteExpenseCommand.MESSAGE_USAGE);
+                }
+                return new InvalidCommand(MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION, DeleteIncomeCommand.MESSAGE_USAGE);
             }
 
             assert !description.equals("dummy") : MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
@@ -86,7 +87,10 @@ public class Parser {
 
         if (!description.contains("a/ ") || !description.contains(" d/ ") ||
                 !description.contains(" t/ ")) {
-            return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
+            if (type.equals("expense")) {
+                return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND, AddExpenseCommand.MESSAGE_USAGE);
+            }
+            return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND, AddIncomeCommand.MESSAGE_USAGE);
         }
 
         String[] splitDescriptions = description.split("/ ");
@@ -121,7 +125,10 @@ public class Parser {
 
     private static Command prepareEditCommand(String description, String moneyType) {
         if (!description.contains("i/ ") || !description.contains(" t/ ") || !description.contains(" n/ ")) {
-            return new InvalidCommand(MESSAGE_INVALID_EDIT_COMMAND);
+            if (moneyType.equals("expense")) {
+                return new InvalidCommand(MESSAGE_INVALID_EDIT_COMMAND, EditExpenseCommand.MESSAGE_USAGE);
+            }
+            return new InvalidCommand(MESSAGE_INVALID_EDIT_COMMAND, EditIncomeCommand.MESSAGE_USAGE);
         }
 
         String[] splitDescriptions = description.split("/ ");
