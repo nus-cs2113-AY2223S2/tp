@@ -52,9 +52,12 @@ public class Ui {
         expenses.printExpenseList();
     }
 
-    public void showBalance(double balance) {
+    public void showBalance(double totalExpense, double totalIncome, double balance) {
+        System.out.println("    totalExpense: " + String.format("%.02f", totalExpense));
+        System.out.println("    totalIncome: " + String.format("%.02f", totalIncome));
+        System.out.println();
         System.out.println("    Current balance:");
-        System.out.printf("    SGD %.2f%n", balance);
+        System.out.println("    SGD " + String.format("%.02f", balance));
     }
 
 
@@ -84,6 +87,6 @@ public class Ui {
         System.out.println("    " + message);
     }
     public void showInvalidMessage() {
-        System.out.println("Command is not recognized, use help for valid commands");
+        System.out.println("    Command is not recognized, use help for valid commands");
     }
 }

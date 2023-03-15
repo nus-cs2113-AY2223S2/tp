@@ -11,7 +11,13 @@ public class AddIncomeCommand extends Command {
     private final Income income;
 
     public AddIncomeCommand(Income income) throws ChChingException {
-        if(income.getValue() <= 0) {
+        if (income == null) {
+            throw new ChChingException("No fields found");
+        } else if (income.getDescription() == null) {
+            throw new ChChingException("Missing description field");
+        } else if (income.getDate() == null) {
+            throw new ChChingException("Missing date field");
+        } else if(income.getValue() <= 0) {
             throw new ChChingException("Invalid income value");
         }
         this.income = income;

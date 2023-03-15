@@ -16,9 +16,8 @@ public class BalanceCommand extends Command {
         for(int i = 0; i < expenses.size(); i++) {
             totalExpense += expenses.get(i).getValue();
         }
-        System.out.println("totalExpense: " + totalExpense);
-        System.out.println("totalIncome: " + totalIncome);
         double balance = totalIncome - totalExpense;
-        ui.showBalance(balance);
+        
+        ui.showBalance(totalExpense, totalIncome, balance);
     }
 }

@@ -1,6 +1,7 @@
 package chching.parser;
 
 import chching.ChChingException;
+import chching.Ui;
 import chching.command.Command;
 import chching.command.InvalidCommand;
 import chching.command.DeleteExpenseCommand;
@@ -28,7 +29,7 @@ public class Parser {
 
     public static final String FIELD_DEMARCATION = " /";
 
-    public static Command parse(String line, IncomeList incomeList, ExpenseList expenseList) {
+    public static Command parse(String line, IncomeList incomeList, ExpenseList expenseList, Ui ui) {
         List<String> lineParts = splitLine(line);
         String instruction = lineParts.get(0);
         List<String> arguments = lineParts.subList(1, lineParts.size());
@@ -72,7 +73,7 @@ public class Parser {
                 command = new InvalidCommand();
             }
         } catch (ChChingException e) {
-            System.out.println(e.getMessage());
+            ui.showError(e.getMessage());
         }
         return command;
     }

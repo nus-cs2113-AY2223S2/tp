@@ -32,7 +32,7 @@ public class ChChing {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand, incomes, expenses);
+                Command c = Parser.parse(fullCommand, incomes, expenses, ui);
                 c.execute(incomes, expenses, ui, storage);
                 isExit = c.isExit();
             } catch (ChChingException e) {
