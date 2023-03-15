@@ -1,13 +1,14 @@
 package seedu.duke.command.misc;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.DukeException;
 import seedu.duke.DukeSession;
 import seedu.duke.ingredient.Ingredient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RemoveCommandTest {
     @Test
-    public void removeSameNumberAsQuantity() {
+    public void removeSameNumberAsQuantity() throws DukeException {
         DukeSession dukeSession = new DukeSession();
         Ingredient ingredient = new Ingredient("apple", 2.0);
         dukeSession.getIngredients().add(ingredient);
@@ -17,7 +18,7 @@ public class RemoveCommandTest {
     }
 
     @Test
-    public void removeLesserThanFridgeQuantity() {
+    public void removeLesserThanFridgeQuantity() throws DukeException {
         DukeSession dukeSession = new DukeSession();
         Ingredient ingredient = new Ingredient("apple", 9.0);
         dukeSession.getIngredients().add(ingredient);

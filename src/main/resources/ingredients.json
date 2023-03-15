@@ -1,0 +1,54 @@
+[
+  {
+    "name": "ground beef",
+    "units": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "salt",
+    "units": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "black pepper",
+    "units": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "Worcestershire sauce",
+    "units": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "garlic powder",
+    "units": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "hamburger buns",
+    "units": "count"
+  },
+  {
+    "name": "water",
+    "units": "volume",
+    "unitLabel": "ml"
+  },
+  {
+    "name": "bread",
+    "units": "count",
+    "unitsLabel": "slices"
+  },
+  {
+    "name": "egg",
+    "units": "count"
+  },
+  {
+    "name": "ham",
+    "units": "weight",
+    "unitLabel": "g"
+  },
+  {
+    "name": "apple",
+    "units": "count"
+  }
+]
