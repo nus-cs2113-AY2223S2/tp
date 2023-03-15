@@ -84,7 +84,6 @@ public class Parser {
             } else {
                 // Adding a task to the list
                 TaskList.addTask(line, tasks);
-                Task.incrementCount();
                 Storage.trySave(tasks);
             }
             line = in.nextLine();
