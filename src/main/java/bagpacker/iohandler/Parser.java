@@ -4,6 +4,8 @@ import bagpacker.commands.AddCommand;
 import bagpacker.commands.DeleteCommand;
 import bagpacker.commands.PackCommand;
 import bagpacker.commands.UnpackCommand;
+import bagpacker.commands.ListCommand;
+import bagpacker.commands.DeleteListCommand;
 import bagpacker.exception.EmptyInputException;
 import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
@@ -143,5 +145,13 @@ public class Parser {
 
     }
 
+    public static void displayList(PackingList packingList) {
+        ListCommand listCommand = new ListCommand();
+        listCommand.execute(packingList);
+    }
 
+    public static void deleteList(PackingList packingList) {
+        DeleteListCommand deleteListCommand = new DeleteListCommand();
+        deleteListCommand.execute(packingList);
+    }
 }

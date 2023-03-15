@@ -51,9 +51,13 @@ public class BagPacker {
                 break;
             case "list":
                 //Add list function
+                Parser.displayList(packingList);
                 break;
             case "help":
                 Ui.helpMessage();
+                break;
+            case "deleteall":
+                Parser.deleteList(packingList);
                 break;
             default:
                 Ui.errorMessage("'" + Parser.getCommand() + "' is an invalid User Command",
