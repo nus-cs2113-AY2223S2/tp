@@ -15,7 +15,9 @@ import seedu.brokeMan.command.ListIncomeCommand;
 import seedu.brokeMan.exception.AmountIsNotADoubleException;
 import seedu.brokeMan.exception.IndexNotAnIntegerException;
 
-import static seedu.brokeMan.common.Messages.*;
+import static seedu.brokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_ADD_COMMAND;
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
 
 
 /*
@@ -64,9 +66,11 @@ public class Parser {
         try {
             if (description.equals("dummy")) {
                 if (type.equals("expense")) {
-                    return new InvalidCommand(MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION, DeleteExpenseCommand.MESSAGE_USAGE);
+                    return new InvalidCommand(MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION,
+                            DeleteExpenseCommand.MESSAGE_USAGE);
                 }
-                return new InvalidCommand(MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION, DeleteIncomeCommand.MESSAGE_USAGE);
+                return new InvalidCommand(MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION,
+                        DeleteIncomeCommand.MESSAGE_USAGE);
             }
 
             assert !description.equals("dummy") : MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
