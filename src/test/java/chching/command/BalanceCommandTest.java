@@ -14,16 +14,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class BalanceCommandTest {
-    final static String INCOME_DESCRIPTION = "salary";
+    static final String INCOME_DESCRIPTION = "salary";
 
-    final static String INCOME_DATE = "1st apr 2023";
-    final static float INCOME_VALUE = (float) 5000;
+    static final String INCOME_DATE = "1st apr 2023";
+    static final float INCOME_VALUE = (float) 5000;
 
-    final static String EXPENSE_CATEGORY = "grocery";
-    final static String EXPENSE_DESCRIPTION = "too much groceries";
+    static final String EXPENSE_CATEGORY = "grocery";
+    static final String EXPENSE_DESCRIPTION = "too much groceries";
 
-    final static String EXPENSE_DATE = "1st apr 2023";
-    final static float EXPENSE_VALUE = (float) 500;
+    static final String EXPENSE_DATE = "1st apr 2023";
+    static final float EXPENSE_VALUE = (float) 500;
 
     private Ui ui;
     private Storage storage;

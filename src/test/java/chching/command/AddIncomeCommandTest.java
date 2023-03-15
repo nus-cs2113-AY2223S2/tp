@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class AddIncomeCommandTest {
 
-    final static String DESCRIPTION = "salary";
+    static final String DESCRIPTION = "salary";
 
-    final static String DATE = "1st apr 2023";
-    final static float INCOME_VALUE = (float) 500;
-    final static float ZERO_INCOME_VALUE = (float) 0;
-    final static float NEGATIVE_INCOME_VALUE = (float) -500;
+    static final String DATE = "1st apr 2023";
+    static final float INCOME_VALUE = (float) 500;
+    static final float ZERO_INCOME_VALUE = (float) 0;
+    static final float NEGATIVE_INCOME_VALUE = (float) -500;
     @Test
     void addIncomeCommand_nullExpense_exceptionThrown() {
         String expectedOutput = "No fields found";

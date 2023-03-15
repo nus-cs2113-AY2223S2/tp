@@ -13,11 +13,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public class ParserTest {
-    final static String ADD_EXPENSE ="add expense";
-    final static String CA = "ca meal";
-    final static String DE ="de breakfast";
-    final static String DA = "da 01/02/23";
-    final static String V = "v 3.50";
+    static final String ADD_EXPENSE ="add expense";
+    static final String CA = "ca meal";
+    static final String DE ="de breakfast";
+    static final String DA = "da 01/02/23";
+    static final String V = "v 3.50";
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     

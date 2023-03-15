@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class AddExpenseCommandTest {
 
-    final static String CATEGORY = "transport";
-    final static String DESCRIPTION = "public transport";
+    static final String CATEGORY = "transport";
+    static final String DESCRIPTION = "public transport";
 
-    final static String DATE = "1st apr 2023";
-    final static float EXPENSE_VALUE = (float) 1.50;
-    final static float ZERO_EXPENSE_VALUE = (float) 0;
-    final static float NEGATIVE_EXPENSE_VALUE = (float) -1.50;
+    static final String DATE = "1st apr 2023";
+    static final float EXPENSE_VALUE = (float) 1.50;
+    static final float ZERO_EXPENSE_VALUE = (float) 0;
+    static final float NEGATIVE_EXPENSE_VALUE = (float) -1.50;
 
 
 
