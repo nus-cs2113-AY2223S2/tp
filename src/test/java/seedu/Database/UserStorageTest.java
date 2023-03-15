@@ -19,14 +19,14 @@ public class UserStorageTest {
 
         @Test
         @DisplayName("Test retrieve user")
-        public User testRetrieveUser() {
+        public User retrieveUser_EmptyInput_ExpectNoException() {
             User user = assertDoesNotThrow(() -> userStorage.getUser());
             return user;
         }
 
         @Test
         @DisplayName("Test Update User")
-        public void testUpdateUser() {
+        public void updateUser_NewUserDetails_ExpectUserHasNewUserDetails() {
             String name = "test";
             float weight = (float) 65.0;
             float height = (float) 175.0;
@@ -36,7 +36,7 @@ public class UserStorageTest {
             User newUser = new User(name, weight, height, age, gender);
 
             assertDoesNotThrow(() -> userStorage.updateUser(newUser));
-            User retrievedUser = testRetrieveUser();
+            User retrievedUser = retrieveUser_EmptyInput_ExpectNoException();
 
             assertEquals(name, retrievedUser.getName());
             assertEquals(weight, retrievedUser.getWeight());

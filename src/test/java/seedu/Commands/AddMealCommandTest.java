@@ -1,4 +1,4 @@
-package seedu.Commands;
+package seedu.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.database.FoodStorage;
@@ -18,7 +18,7 @@ class AddMealCommandTest {
     private ArrayList<Food> foodList = new ArrayList<>();
 
     @Test
-    void addMealSingleMealAddedExpectListSizeIncrease() throws InvalidArgumentsException {
+    void addMeal_SingleMealAdded_ExpectListSizeIncrease() throws InvalidArgumentsException {
         int oldSize = mealStorage.getMealCount();
         foodList.add(foodStorage.getFoodById(2));
         String date = "1/1/2023";
@@ -27,7 +27,7 @@ class AddMealCommandTest {
         assertEquals(oldSize + 1, newSize);
     }
     @Test
-    void parseInputEmptyInputExpectException() {
+    void parseInput_EmptyInput_ExpectException() {
 
         String commandDescriptor = "";
         assertThrows(NumberFormatException.class,
