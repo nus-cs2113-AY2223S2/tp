@@ -10,6 +10,10 @@ public class EditExpenseCommand extends Command {
     private String newEntry;
 
     private boolean isEditCost = false;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": edit the expense from the list.\n" +
+            "|  Parameter: i/ <index> t/ <type> n/ <newEntry>\n" +
+            "|  There are 3 type that can be changed, cost, info, time\n" +
+            "|  Example: " + COMMAND_WORD + " i/ 1 t/ cost n/ 5";
 
     public EditExpenseCommand(int index, String type, String newEntry) {
         this.index = index;

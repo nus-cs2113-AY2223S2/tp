@@ -8,6 +8,7 @@ import seedu.brokeMan.command.DeleteIncomeCommand;
 import seedu.brokeMan.command.EditExpenseCommand;
 import seedu.brokeMan.command.EditIncomeCommand;
 import seedu.brokeMan.command.ExitCommand;
+import seedu.brokeMan.command.HelpCommand;
 import seedu.brokeMan.command.InvalidCommand;
 import seedu.brokeMan.command.ListExpenseCommand;
 import seedu.brokeMan.command.ListIncomeCommand;
@@ -53,8 +54,10 @@ public class Parser {
             return prepareDeleteCommand(description, "income");
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+        case HelpCommand.COMMAND_WORD: // fall through
         default:
-            return new InvalidCommand("Invalid command word entered");
+            return new HelpCommand();
+            //return new InvalidCommand("Invalid command word entered");
         }
     }
 
