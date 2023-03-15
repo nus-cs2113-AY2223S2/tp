@@ -16,14 +16,15 @@ public class StorageTest {
                 "ME4231", "Aerodynamics", 4);
         storage.addModuleToModuleList(module);
         int lastIndex = storage.getModule().size() - 1;
-        assertEquals(storage.getModule().get(lastIndex).toString(), "1,AE320,Aerodynamics II,3,ME4231,Aerodynamics,4");
+        assertEquals("1,AE320,Aerodynamics II,3,ME4231,Aerodynamics,4",
+                storage.getModule().get(lastIndex).toString());
     }
 
     @Test
     @Order(2)
     public void initialiseStorage_noModuleSaved_success() {
         Storage storage = new Storage();
-        assertEquals(storage.getModule().size(), 0);
+        assertEquals(0, storage.getModule().size());
     }
 
 
