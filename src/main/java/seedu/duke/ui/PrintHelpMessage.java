@@ -10,7 +10,7 @@ public class PrintHelpMessage {
         System.out.println("static (filters for static exercises)");
         System.out.println("easy/medium/hard (filters for exercises with a specific difficulty)");
         System.out.println("upper/core/legs (filters for exercises with a specific workout type)");
-
+        //System.out.println(ErrorMessages.ERROR_GLOBAL_INVALID_COMMAND.toString());
     }
 
 }
