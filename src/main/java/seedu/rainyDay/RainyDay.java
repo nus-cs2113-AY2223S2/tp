@@ -9,14 +9,27 @@ import seedu.rainyDay.data.Parser;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class RainyDay {
     public static String filePath = "rainyDay.txt";
     public static FinancialReport financialReport = new FinancialReport(new ArrayList<>());
-    private static Logger logger = Logger.getLogger("RainyDayLog.log");
+    private static Logger logger = Logger.getLogger(RainyDay.class.getName());
     private final Ui ui;
+
+    private static void setupLogger() {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.INFO);
+        try {
+            FileHandler fileHandler = new FileHandler("RainyDay.log");
+            logger.addHandler(fileHandler);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
+    }
 
     private RainyDay(String filePath) {
         ui = new Ui();
@@ -58,6 +71,7 @@ public class RainyDay {
     }
 
     public static void main(String[] args) {
+        setupLogger();
         assert false;
         logger.log(Level.INFO, "Starting RainyDay");
         new RainyDay(filePath).run();
