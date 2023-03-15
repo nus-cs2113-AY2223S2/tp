@@ -33,7 +33,7 @@ public class ExpenseList extends RecordList{
     public void printExpenseList() {
         for (int i = 1; i <= expenseList.size(); i++) {
             Record record = expenseList.get(i - 1);
-            System.out.println(i + ". " + record.toString());
+            System.out.println("    " + i + ". " + record.toString());
         }
     }
 
