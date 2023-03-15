@@ -6,6 +6,8 @@ import java.util.HashMap;
 
 import static seedu.duke.save.Storage.saveData;
 
+import java.util.logging.*;
+
 /**
  * This class stores information on all patients registered by DoctorDuke.
  * @author Jeraldchen
@@ -13,16 +15,21 @@ import static seedu.duke.save.Storage.saveData;
 public class Information {
     private static HashMap<String, Patient> patientsList = new HashMap<>();
 
+    private static Logger logger = Logger.getLogger(Information.class.getName());
+
     //storePatientInfo(personalInfo(name), patient)
     public static void storePatientInfo(String password, Patient patient) {
+        logger.log(Level.INFO, "Storing patient information");
         patientsList.put(password, patient);
     }
 
     public static Patient getPatientInfo(String password) {
+        logger.log(Level.INFO, "Retrieving patient information");
         return patientsList.get(password);
     }
 
     public static void printDiagnosisHistory(String password) {
+        logger.log(Level.INFO, "Printing diagnosis history");
         Patient patient = patientsList.get(password);
         System.out.println("Your diagnosis history is: ");
         for (int i = 0; i < patient.getPatientDiagnosisHistory().size(); i++) {
@@ -36,6 +43,7 @@ public class Information {
      * @param password The password of the patient.
      */
     public static void resetDiagnosisHistory(String password) {
+        logger.log(Level.INFO, "Resetting diagnosis history");
         Patient patient = patientsList.get(password);
         patient.getPatientDiagnosisHistory().clear();
         assert patient.getPatientDiagnosisHistory().size() == 0 : "Diagnosis history should be empty";
@@ -51,6 +59,7 @@ public class Information {
      * @return true if password exists in Dr Duke, and false otherwise.
      */
     public static boolean checkPassword(String password) {
+        logger.log(Level.INFO, "Checking password");
         return patientsList.containsKey(password);
     }
 
@@ -60,6 +69,7 @@ public class Information {
      * @return Hashmap of all patient data.
      */
     public static HashMap<String, Patient> getAllPatientData() {
+        logger.log(Level.INFO, "Retrieving all patient data");
         return patientsList;
     }
 }
