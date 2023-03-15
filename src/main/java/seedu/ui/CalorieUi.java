@@ -1,4 +1,4 @@
-package seedu.Ui;
+package seedu.ui;
 
 
 public class CalorieUi extends GeneralUi {
