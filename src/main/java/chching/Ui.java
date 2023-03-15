@@ -74,8 +74,8 @@ public class Ui {
         System.out.println("    list");
         System.out.println();
         System.out.println("    DELETE RECORDS:");
-        System.out.println("    delete expense <index>");
-        System.out.println("    delete income <index>");
+        System.out.println("    delete expense /in <index>");
+        System.out.println("    delete income /in <index>");
         System.out.println();
         System.out.println("    SHOW BALANCE:");
         System.out.println("    balance");
