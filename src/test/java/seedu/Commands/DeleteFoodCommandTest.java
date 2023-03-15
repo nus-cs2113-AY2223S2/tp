@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class DeleteFoodCommandTest {
     private final FoodStorage foodStorage = new FoodStorage("./data/foodData.csv");
     private final MealStorage mealStorage = new MealStorage("./data/mealData.csv", foodStorage);
-    private ArrayList<Food> foodList = new ArrayList<Food>();
 
     @Test
     void deleteMealSingleMealAddedExpectListSizeIncrease() throws InvalidArgumentsException {
