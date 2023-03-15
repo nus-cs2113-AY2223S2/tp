@@ -8,8 +8,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Storage {
-    private static final String SAVED_MODULES_FILE_PATH = "./data/saved_modules.txt";
-    private static ArrayList<Module> modules;
+
+    private static final String SAVED_MODULES_FILE_PATH = "data/saved_modules.txt";
+    private ArrayList<Module> modules;
 
     public Storage() {
         this.modules = new ArrayList<>();
@@ -23,6 +24,8 @@ public class Storage {
     private void initialiseMods() throws IOException {
         File savedModulesFile = new File(SAVED_MODULES_FILE_PATH);
         if (!savedModulesFile.exists()) {
+            File directory = new File("data");
+            directory.mkdirs();
             savedModulesFile.createNewFile();
             return;
         }
