@@ -8,7 +8,10 @@ import parser.Parser;
 
 import java.util.Scanner;
 
-import static common.MessageList.*;
+import static common.MessageList.HELLO_MESSAGE;
+import static common.MessageList.COMMAND_LIST_MESSAGE;
+import static common.MessageList.MESSAGE_DIVIDER;
+import static common.MessageList.NAME_QUESTION;
 import static data.ExpenseList.showToUser;
 
 public class Duke {
