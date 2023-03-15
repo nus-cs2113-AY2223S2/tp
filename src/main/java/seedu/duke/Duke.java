@@ -49,6 +49,7 @@ public class Duke {
             }
             input = in.nextLine();
         }
+        in.close();
     }
 
     /**
