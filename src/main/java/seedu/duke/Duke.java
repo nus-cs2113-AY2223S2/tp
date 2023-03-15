@@ -28,7 +28,9 @@ public class Duke {
     }
 
     public void run() {
+    
         showToUser(HELLO_MESSAGE, MESSAGE_DIVIDER, COMMAND_LIST_MESSAGE, MESSAGE_DIVIDER, NAME_QUESTION);
+
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
         String input = in.nextLine();
