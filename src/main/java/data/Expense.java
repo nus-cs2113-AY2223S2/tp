@@ -1,5 +1,6 @@
 package data;
 
+import java.math.RoundingMode;
 import java.util.Objects;
 import java.math.BigDecimal;
 
@@ -10,10 +11,15 @@ public class Expense {
     protected Currency currencyType;
 
     public Expense(BigDecimal expenseAmount, Time expenseTime, String description, Currency currencyType) {
-        this.expenseAmount = expenseAmount;
+        this.expenseAmount = formatExpenseAmount(expenseAmount);
         this.expenseTime = expenseTime;
         this.description = description;
         this.currencyType = currencyType;
+    }
+
+    private BigDecimal formatExpenseAmount(BigDecimal originalExpenseAmount) {
+        BigDecimal roundedExpense = originalExpenseAmount.setScale(2, RoundingMode.HALF_UP);
+        return roundedExpense;
     }
 
     public BigDecimal getExpenseAmount() {
@@ -54,7 +60,7 @@ public class Expense {
             return true;
         }
         return Objects.equals(this.getDescription(), ((Expense) obj).getDescription())
-                && this.getExpenseAmount() == ((Expense) obj).getExpenseAmount()
+                && this.getExpenseAmount().equals(((Expense) obj).getExpenseAmount())
                 && Objects.equals(this.getExpenseTime(), ((Expense) obj).getExpenseTime())
                 && Objects.equals(this.getCurrencyType(), ((Expense) obj).getCurrencyType());
     }

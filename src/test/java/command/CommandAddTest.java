@@ -24,14 +24,13 @@ class CommandAddTest {
 
     @Test
     public void addExpense_successful() {
-        BigDecimal twoPointFive = new BigDecimal("2.5");
-        testExpenseList.add(new Expense(twoPointFive, new Time(LocalDate.parse("02-02-2012", formatter)),
+        testExpenseList.add(new Expense(new BigDecimal("2.5"), new Time(LocalDate.parse("02-02-2012", formatter)),
                 "food", Currency.SGD));
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food")).execute();
         assertEquals(testExpenseList.get(0), expenseList.getExpenseList().get(0));
 
-        testExpenseList.add(new Expense(twoPointFive, new Time(LocalDate.parse("02-02-2012", formatter)),
+        testExpenseList.add(new Expense(new BigDecimal("2.5"), new Time(LocalDate.parse("02-02-2012", formatter)),
                 "food", Currency.SGD));
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " +
