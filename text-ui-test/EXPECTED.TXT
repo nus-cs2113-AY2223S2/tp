@@ -1,9 +1,9 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
-What is your name?
-Hello James Gosling
+Let's get moving!
+"/start <DD/MM/YY>" to begin your workout
+Started new workout.
+"/add <exercise_name> /weight <weight_used> /rps <reps_per_set>"to add your exercises sets and reps
+Added Bench Press 100kg 6 5 4 4 3
+Added Cable Flys 30kg 10 10 10
+Ended current workout!
+Start a workout first!
+Hope you had a great workout!

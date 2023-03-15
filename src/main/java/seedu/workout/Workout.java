@@ -9,10 +9,6 @@ public class Workout {
     private Date date;
     private ArrayList<Exercise> workoutExercises;
 
-    public void addExercise(Exercise exercise) {
-        workoutExercises.add(exercise);
-    }
-
     public Workout(String dateString) throws ParseException {
         // Create a SimpleDateFormat object with the desired date format
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
@@ -22,8 +18,11 @@ public class Workout {
         workoutExercises = new ArrayList<>();
     }
 
+    public void addExercise(Exercise exercise) {
+        workoutExercises.add(exercise);
+    }
     public Date getDate() {
-        return this.date;
+        return date;
     }
 
     public void setDate(Date date) {

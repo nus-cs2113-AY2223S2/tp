@@ -1,1 +1,6 @@
-James Gosling
+/start 1/2/23
+/add Bench Press /weight 100kg /rps 6 5 4 4 3
+/add Cable Flys /weight 30kg /rps 10 10 10
+/end
+/add tricep extensions /weight 25kg /rps 8 7 6
+/exit

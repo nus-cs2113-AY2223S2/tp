@@ -21,8 +21,8 @@ public class Duke {
     private static final int WEIGHT_INDEX = 1;
     private static final int REPS_PER_SET_INDEX = 2;
 
-    public static Workout currentWorkout;
-    public static WorkoutList workoutList;
+    private static Workout currentWorkout;
+    private static WorkoutList workoutList;
 
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -108,7 +108,9 @@ public class Duke {
     public static void startWorkout(String[] inputs) {
         try {
             currentWorkout = new Workout(inputs[DATE_INDEX]);
-            System.out.println("Started new workout on " + currentWorkout.getDate());
+            System.out.println("Started new workout.");
+            System.out.println("\"/add <exercise_name> /weight <weight_used> /rps <reps_per_set>\"" + "to " +
+                    "add your exercises sets and reps");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Incorrect workout format!");
         } catch (ParseException e) {
