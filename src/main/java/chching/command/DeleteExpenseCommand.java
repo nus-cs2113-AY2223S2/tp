@@ -1,5 +1,6 @@
 package chching.command;
 
+import chching.ChChingException;
 import chching.Storage;
 import chching.Ui;
 import chching.record.ExpenseList;
@@ -11,7 +12,10 @@ public class DeleteExpenseCommand extends Command {
         this.index = index;
     }
     @Override
-    public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage) {
+    public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage) throws ChChingException {
+        if(index <0){
+            throw new ChChingException("Negative index");
+        }
         expenses.deleteExpense(index);
         System.out.println("Expense deleted, here is the updated list:");
         expenses.printExpenseList();
