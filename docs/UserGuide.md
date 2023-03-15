@@ -1,42 +1,140 @@
-# User Guide
+# Pet Tracker User Guide
 
 ## Introduction
 
-{Give a product intro}
+Keeping track of multiple pets can be daunting due to information overload. With Pet Tracker, keeping track of our
+furry friends will be easier! Pet owners can use this tool to monitor the health of their pet, including tracking their
+weight over time. This can help identify any nutritional or health needs.
+
+<br>
+The main features of Pet Tracker includes:
+
+* Tracking multiple pets at once
+* Viewing the full list of pets
+
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+2. Download the latest version of `Pet Tracker` 
+from [here](https://github.com/AY2223S2-CS2113-T11-3/tp/releases/download/PetTrackerV1.0/pettracker.jar).
+3. Launch a terminal and run the command `java -jar pettracker.jar`
 
 ## Features 
 
-{Give detailed description of each feature}
+Here is a list of features for Pet Tracker
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+* Tracking multiple pets at once
+* Viewing the full list of pets
 
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: Can I make my pet's data persistent after closing the app? 
 
-**A**: {your answer here}
+**A**: The team is currently planning on implementing that feature soon!
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
+### Adding a pet: `add-pet`
+Adds a pet to the Pet List.
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+Format: `add-pet NAME`
+
+* The `NAME` must not be empty.
+
+Example of usage:
+
+```
+add-pet Alice
+add-pet Bob
+```
+
+Expected Output:
+
+```
+Successfully added new pet: Alice
+Successfully added new pet: Bob
+```
+
+### Removing a pet: `remove-pet`
+Removes a pet to the Pet List.
+
+Format: `remove-pet NAME`
+
+* The `NAME` must not be empty.
+
+Example of usage:
+
+`remove-pet Alice`
+
+Expected Output:
+
+```
+Successfully removed pet: Alice
+```
+
+### Adding a stat to a pet: `add-stat`
+Adds a stat to a pet in the Pet List.
+
+Format: `add-stat NAME STAT VALUE`
+
+* The `NAME` must not be empty.
+* The `STAT` must not be empty.
+* The `VALUE` must not be empty.
+
+
+Example of usage:
+
+```
+add-stat Bob Weight 50
+add-stat Bob Age 10
+```
+
+Expected Output:
+
+```
+Updated Weight to 50 for Bob
+Updated Age to 10 for Bob
+```
+
+### Removing a stat from a pet: `remove-stat`
+Removes a stat from a pet in the Pet List.
+
+Format: `remove-stat NAME STAT`
+
+* The `NAME` must not be empty.
+* The `STAT` must not be empty.
+
+Example of usage:
+
+`
+remove-stat Bob Age
+`
+
+Expected Output:
+
+```
+Successfully removed Age from Bob
+```
+
+### Viewing Pet List: `list`
+View the current Pet List and total number of pets.
+
+Format: `list`
+
+Example of usage:
+
+`list`
+
+Expected Output:
+
+```
+Name: Bob
+Type:
+Age:
+Weight: 50
+____________________
+Number of pets: 1
+```
+
