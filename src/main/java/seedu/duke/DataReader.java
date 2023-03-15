@@ -7,8 +7,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class DataReader {
-    private final String MODULES_FILE_PATH = "modules.txt";
-    private final String UNIVERSITIES_FILE_PATH = "universities.txt";
+    private static final String MODULES_FILE_PATH = "modules.txt";
+    private static final String UNIVERSITIES_FILE_PATH = "universities.txt";
     private ArrayList<University> universities;
     private ArrayList<Module> puModules;
 
