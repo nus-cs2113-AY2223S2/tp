@@ -20,7 +20,7 @@ class ParserTest {
     }
     @Test
     void testParserDeleteCOmmand(){
-        parser.parseCommand("delete 1", eventList);
+        parser.parseCommand("delete -s 1", eventList);
         assert(eventList.getSize()==0);
     }
     // @Test

@@ -2,6 +2,8 @@ package seedu.duke;
 
 import java.util.Arrays;
 
+// import javax.swing.plaf.basic.BasicTreeUI.SelectionModelPropertyChangeHandler;
+
 public class Parser {
 
     private static final int OFFSET = 1;
@@ -49,12 +51,27 @@ public class Parser {
         Ui.listTask(eventList.getFullList());
     }
 
-    private static void parseDeleteCommand(String remainder, EventList eventList) {
-        int index = Integer.parseInt(remainder) - OFFSET;
-        String deletedTask = eventList.getDetails(index);
-        eventList.deleteThisTask(index);
-        //TODO: Show successful add on UI. (For all cases)
-        Ui.deleteSuccessMsg(deletedTask);
+    private static void parseDeleteCommand(String remainder, EventList eventList) throws NPExceptions {
+        String[] details = remainder.split("-");        
+        
+        if(details.length <= 1) {
+            throw new NPExceptions("need a flag to specify your action!");
+        }     
+
+        String information = details[1].substring(0,1).trim();
+        if(information.equals("s")) {
+            int index = Integer.parseInt(details[1].substring(1).trim()) - OFFSET;
+            String deletedTask = eventList.getDetails(index);
+            eventList.deleteThisTask(index);
+            //TODO: Show successful add on UI. (For all cases)
+            Ui.deleteSuccessMsg(deletedTask);
+        } else if(details[1].substring(0,3).trim().equals("all")) {
+            eventList.deleteAll();
+            Ui.deleteAllSuccess();
+        } else {
+            throw new NPExceptions("please input a valid flag!");
+        }
+    
     }
 
     private static void parseAddCommand(String remainder, EventList eventList) throws NPExceptions {
@@ -105,7 +122,7 @@ public class Parser {
             eventList.addEvent(eventName, startTime, startDate);
         }
 
-        Ui.addSuccessMsg();
+        Ui.addSuccessMsg(eventList.getLastTaskDescription());
     }
     private static void parseEditCommand(String remainder, EventList eventList) throws NPExceptions{
         String[] details = remainder.split("-");
@@ -152,6 +169,7 @@ public class Parser {
             } else {
                 eventList.reviseTimeInfo(eventIndex, information[0], information[1]);
             }
+            Ui.editSuccessMsg(eventList.getDescription(eventIndex), eventList.getTime(eventIndex));
         }
     }
     private static void addFormatChecker(String[] information) throws NPExceptions {

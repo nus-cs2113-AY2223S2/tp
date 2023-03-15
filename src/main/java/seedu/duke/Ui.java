@@ -103,4 +103,23 @@ public class Ui {
         System.out.println("Bye, see ya soon!");
         printDash();
     }
+
+    public static void printErrorMsg (String errorMessage) {
+        printDash();
+        System.out.println(errorMessage);
+        printDash();
+    }
+
+    public static void editSuccessMsg(String description, String time) {
+        printDash();
+        System.out.println("Time of event: " + description + " is changed to: ");
+        System.out.println("    > " + time);
+        printDash();
+    }
+
+    public static void deleteAllSuccess() {
+        printDash();
+        System.out.println("    > all events are deleted!");
+        printDash();
+    }
 }

@@ -27,7 +27,7 @@ public class Event {
         this.startTime = start;
         this.hasEndTime = false;
         this.hasStartTime = hasSt;
-        this.hasEndTime = false;
+        this.hasEndInfo = false;
     }
 
     public String getDescription() {
@@ -78,7 +78,7 @@ public class Event {
         this.startTime = start;
         this.hasEndTime = false;
         this.hasStartTime = hasSt;
-        this.hasEndTime = false;
+        this.hasEndInfo = false;
     }
 
     public LocalDateTime getStartTime() {
