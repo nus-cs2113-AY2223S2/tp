@@ -8,6 +8,8 @@ public class Parser {
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static final String LINE = "____________________________________________________________";
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
+    private static final String WELCOME_MESSAGE = "~Welcome to SEP Helper~";
+    private static final String READ_COMMAND_INPUT= "What can I do for you?";
 
     public static void printGreeting() {
         System.out.println("\n" +
@@ -17,6 +19,10 @@ public class Parser {
                 "  ___) | |___|  __/  |  _  |  __/ | |_) |  __/ |   \n" +
                 " |____/|_____|_|     |_| |_|\\___|_| .__/ \\___|_|   \n" +
                 "                                  |_|              \n");
+
+        System.out.println(WELCOME_MESSAGE);
+        System.out.println(READ_COMMAND_INPUT);
+        System.out.println(LINE);
     }
 
     // Todo: Throw Exception when commandWords.size() == 1
@@ -79,7 +85,7 @@ public class Parser {
             int nusModuleMCs = module.getNusModuleMCs();
             System.out.print(listIndex + ".");
             System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
-            System.out.print("   map to ----> ");
+            System.out.print("   maps to ----> ");
             System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
         }
         System.out.println(LINE);
