@@ -19,6 +19,9 @@ public class DeleteIncomeCommand extends Command {
         if(index <0){
             throw new ChChingException("Negative index");
         }
+        else if(index >= incomes.size()){
+            throw new ChChingException("The number is too big");
+        }
         incomes.deleteIncome(index);
         System.out.println("Income deleted, here is the updated list:");
         incomes.printIncomeList();
