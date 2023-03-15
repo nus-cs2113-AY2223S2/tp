@@ -67,7 +67,6 @@ public class Expense {
      */
     @Override
     public String toString() {
-        // Currently not useful
         String currencyString = Currency.returnCurrency(this.currencyType);
         String amountString = Double.toString(this.expenseAmount);
         String descriptionString = this.description;
@@ -79,7 +78,6 @@ public class Expense {
         String currencyString = Currency.returnCurrency(this.currencyType);
         String descriptionString = this.description;
         String timeString = this.expenseTime.toString();
-
         System.out.print(currencyString);
         printExpenseAmount();
         System.out.println(" cat:" + descriptionString + " date:" + timeString);
