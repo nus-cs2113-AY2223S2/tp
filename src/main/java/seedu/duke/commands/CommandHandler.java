@@ -36,7 +36,10 @@ public class CommandHandler {
         }
         if (!errorExists) {
             try {
-                command.executeCommand(ui, exerciseGenerator);
+                if (command != null){
+                    command.executeCommand(ui, exerciseGenerator);
+                }
+
             } catch (DukeError e) {
                 System.out.println(e.getMessage());
             }
