@@ -1,47 +1,36 @@
 package chching.parser;
 
-import chching.record.IncomeList;
+import chching.ChChingException;
+import chching.record.Income;
 
 import java.util.HashMap;
 
 public class Incomes {
-    public static chching.record.Income parseIncome(HashMap<String, String> argumentsByField) {
-        chching.record.Income inc = null;
+    public static Income parseIncome(HashMap<String, String> argumentsByField) throws ChChingException {
+        Income inc = null;
         try {
-            String incomeCategory = argumentsByField.get("c");
             String incomeDescription = argumentsByField.get("de");
             String incomeDate = argumentsByField.get("da");
             float incomeValue = Float.parseFloat(argumentsByField.get("v"));
-            inc = new chching.record.Income(incomeCategory, incomeDescription, incomeDate, incomeValue);
+            inc = new Income(incomeDescription, incomeDate, incomeValue);
+            assert incomeValue > 0 : "incomeValue has to be more than 0";
+            inc = new Income(incomeDescription, incomeDate, incomeValue);
         } catch (Exception e) {
-            System.out.println("Trouble adding income");
+            throw new ChChingException("Trouble adding income value");
         }
         return inc;
     }
-
-    public static void editIncome(HashMap<String, String> argumentsByField, IncomeList incomeList) {
+    
+    public static int getIndex(HashMap<String, String> argumentsByField) throws ChChingException {
+        int index = -1;
         try {
-            int index = Integer.parseInt(argumentsByField.get("i"));
-            String updateCategory = null;
-            String updateDescription = null;
-            String updateDate = null;
-            float updateValue = 0;
-            if (argumentsByField.containsKey("c")) {
-                updateCategory = argumentsByField.get("c");
-            }
-            if (argumentsByField.containsKey("de")) {
-                updateDescription = argumentsByField.get("de");
-            }
-            if (argumentsByField.containsKey("da")) {
-                updateDate = argumentsByField.get("da");
-            }
-            if (argumentsByField.containsKey("v")) {
-                updateValue = Float.parseFloat(argumentsByField.get("v"));
-            }
-            incomeList.editIncome(index, updateCategory, updateDescription, updateDate, updateValue);
-            System.out.println("Income modified");
-        } catch (Exception e) {
-            System.out.println("Trouble editing income");
+            String indexString = argumentsByField.get("in");
+            index = Integer.parseInt(indexString);
+        } catch (NumberFormatException e) {
+            throw new ChChingException("Index needs to be an integer");
+        } catch (NullPointerException e) {
+            throw new ChChingException("Index not found");
         }
+        return index;
     }
 }

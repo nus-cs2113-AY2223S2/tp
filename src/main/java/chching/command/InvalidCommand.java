@@ -5,10 +5,12 @@ import chching.Ui;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
 
-public class ListExpenseCommand extends Command {
+/**
+ * model a class to handle the invalid command. inherit from Command class.
+ */
+public class InvalidCommand extends Command {
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage) {
-        System.out.println("    Expenses:");
-        expenses.printExpenseList();
+        ui.showInvalidMessage();
     }
 }

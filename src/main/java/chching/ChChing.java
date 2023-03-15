@@ -18,7 +18,7 @@ public class ChChing {
         try {
             this.incomes = new IncomeList(storage.loadIncomes());
             this.expenses = new ExpenseList(storage.loadExpenses());
-        } catch (ChChingException e) {
+        } catch (Exception e) {
             ui.showError(e.getMessage());
             this.incomes = new IncomeList();
             this.expenses = new ExpenseList();
@@ -32,7 +32,7 @@ public class ChChing {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand, incomes, expenses);
+                Command c = Parser.parse(fullCommand, incomes, expenses, ui);
                 c.execute(incomes, expenses, ui, storage);
                 isExit = c.isExit();
             } catch (ChChingException e) {

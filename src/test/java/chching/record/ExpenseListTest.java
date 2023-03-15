@@ -3,13 +3,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ExpenseListTest {
+    static final int EXPECTED_SIZE = 1;
+    static final String CATEGORY = "entertainment";
+    static final String DESCRIPTION = "beach party";
+    static final String DATE = "23 may 2023";
+    static final float EXPENSE_VALUE = (float) 50;
 
     @Test
     void getExpenseCount_one_expectOne() {
 
-        Expense expenseOne = new Expense("entertainment", "beach party", "23 may 2023", 50);
+        Expense expenseOne = new Expense(CATEGORY, DESCRIPTION, DATE, EXPENSE_VALUE);
         ExpenseList list = new ExpenseList();
         list.addRecord(expenseOne);
-        assertEquals(1, list.getRecordCount());
+        assertEquals(EXPECTED_SIZE, list.getRecordCount());
     }
 }

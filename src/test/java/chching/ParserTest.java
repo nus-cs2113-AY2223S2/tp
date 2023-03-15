@@ -13,6 +13,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public class ParserTest {
+    static final String ADD_EXPENSE ="add expense";
+    static final String CA = "ca meal";
+    static final String DE ="de breakfast";
+    static final String DA = "da 01/02/23";
+    static final String V = "v 3.50";
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     
@@ -24,22 +29,22 @@ public class ParserTest {
     @Test
     public void splitLine_testScenario_expectedBehaviour() {
         List<String> expectedOutput = new ArrayList<String>();
-        expectedOutput.add("add expense");
-        expectedOutput.add("ca meal");
-        expectedOutput.add("de breakfast");
-        expectedOutput.add("da 01/02/23");
-        expectedOutput.add("v 3.50");
+        expectedOutput.add(ADD_EXPENSE);
+        expectedOutput.add(CA);
+        expectedOutput.add(DE);
+        expectedOutput.add(DA);
+        expectedOutput.add(V);
         
         assertEquals(expectedOutput, new Parser().splitLine("add expense /ca meal /de breakfast /da 01/02/23 /v 3.50"));
     }
     
     @Test
-    public void sortArguments_testScenario_expectedBehaviour() {
+    public void sortArguments_testScenario_expectedBehaviour() throws ChChingException {
         List<String> input = new ArrayList<String>();
-        input.add("ca meal");
-        input.add("de breakfast");
-        input.add("da 01/02/23");
-        input.add("v 3.50");
+        input.add(CA);
+        input.add(DE);
+        input.add(DA);
+        input.add(V);
         
         HashMap<String, String> expectedOutput = new HashMap<String, String>();
         expectedOutput.put("ca", "meal");
@@ -51,7 +56,7 @@ public class ParserTest {
     }
     
     @Test
-    public void sortArguments_emptyInput_returnsEmptyHashMap() {
+    public void sortArguments_emptyInput_returnsEmptyHashMap() throws ChChingException {
         List<String> input = new ArrayList<String>();
         
         HashMap<String, String> expectedOutput = new HashMap<String, String>();
