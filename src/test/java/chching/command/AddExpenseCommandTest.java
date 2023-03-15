@@ -22,7 +22,7 @@ public class AddExpenseCommandTest {
         Expense input = new Expense(null, "public transport", "1st apr 2023", (float) 1.50);
         try {
             new AddExpenseCommand(input);
-            fail();
+            fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals("Missing category field", e.getMessage());
         }
@@ -33,7 +33,7 @@ public class AddExpenseCommandTest {
         Expense input = new Expense("transport", null, "1st apr 2023", (float) 1.50);
         try {
             new AddExpenseCommand(input);
-            fail();
+            fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals("Missing description field", e.getMessage());
         }
@@ -44,7 +44,7 @@ public class AddExpenseCommandTest {
         Expense input = new Expense("transport", "public transport", null, (float) 1.50);
         try {
             new AddExpenseCommand(input);
-            fail();
+            fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals("Missing date field", e.getMessage());
         }
@@ -55,7 +55,7 @@ public class AddExpenseCommandTest {
         Expense input = new Expense("transport", "public transport", "1st apr 2023", (float) 0);
         try {
             new AddExpenseCommand(input);
-            fail();
+            fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals("Invalid/Missing expense value", e.getMessage());
         }
@@ -66,7 +66,7 @@ public class AddExpenseCommandTest {
         Expense input = new Expense("transport", "public transport", "1st apr 2023", (float) -1.50);
         try {
             new AddExpenseCommand(input);
-            fail();
+            fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals("Invalid/Missing expense value", e.getMessage());
         }

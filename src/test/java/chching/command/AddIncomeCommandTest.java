@@ -22,7 +22,7 @@ public class AddIncomeCommandTest {
         Income input = new Income(null, "1st apr 2023", (float) 500);
         try {
             new AddIncomeCommand(input);
-            fail();
+            fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals("Missing description field", e.getMessage());
         }
@@ -33,7 +33,7 @@ public class AddIncomeCommandTest {
         Income input = new Income("salary", null, (float) 500);
         try {
             new AddIncomeCommand(input);
-            fail();
+            fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals("Missing date field", e.getMessage());
         }
@@ -44,7 +44,7 @@ public class AddIncomeCommandTest {
         Income input = new Income("salary", "1st apr 2023", (float) 0);
         try {
             new AddIncomeCommand(input);
-            fail();
+            fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals("Invalid/Missing income value", e.getMessage());
         }
@@ -55,7 +55,7 @@ public class AddIncomeCommandTest {
         Income input = new Income("salary", "1st apr 2023", (float) -500);
         try {
             new AddIncomeCommand(input);
-            fail();
+            fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals("Invalid/Missing income value", e.getMessage());
         }
