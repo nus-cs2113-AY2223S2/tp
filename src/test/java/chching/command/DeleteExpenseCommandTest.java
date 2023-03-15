@@ -15,22 +15,22 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 
 class DeleteExpenseCommandTest {
-    final static int OFFSET = 1;
-    final static int CORRECT_INDEX = 1;
-    final static int TOO_LARGE_INDEX = 5;
-    final static int NEGATIVE_INDEX = -1;
+    static final int OFFSET = 1;
+    static final int CORRECT_INDEX = 1;
+    static final int TOO_LARGE_INDEX = 5;
+    static final int NEGATIVE_INDEX = -1;
 
-    final static String SPENDING_CATEGORY = "entertainment";
-    final static String SPENDING_DESCRIPTION = "movie";
+    static final String SPENDING_CATEGORY = "entertainment";
+    static final String SPENDING_DESCRIPTION = "movie";
 
-    final static String SPENDING_DATE = "02/10/23";
-    final static float SPENDING_EXPENSE_VALUE = (float) 10.50;
+    static final String SPENDING_DATE = "02/10/23";
+    static final float SPENDING_EXPENSE_VALUE = (float) 10.50;
 
-    final static String GROCERIES_CATEGORY = "entertainment";
-    final static String GROCERIES_DESCRIPTION = "movie";
+    static final String GROCERIES_CATEGORY = "entertainment";
+    static final String GROCERIES_DESCRIPTION = "movie";
 
-    final static String GROCERIES_DATE = "02/10/23";
-    final static float GROCERIES_EXPENSE_VALUE = (float) 500;
+    static final String GROCERIES_DATE = "02/10/23";
+    static final float GROCERIES_EXPENSE_VALUE = (float) 500;
     private Ui ui;
     private Storage storage;
     private Expense spending;

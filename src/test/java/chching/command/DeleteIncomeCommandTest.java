@@ -16,18 +16,18 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class DeleteIncomeCommandTest {
 
-    final static int OFFSET = 1;
-    final static int CORRECT_INDEX = 1;
-    final static int TOO_LARGE_INDEX = 5;
-    final static int NEGATIVE_INDEX = -1;
-    final static String SALARY_DESCRIPTION = "salary";
+    static final int OFFSET = 1;
+    static final int CORRECT_INDEX = 1;
+    static final int TOO_LARGE_INDEX = 5;
+    static final int NEGATIVE_INDEX = -1;
+    static final String SALARY_DESCRIPTION = "salary";
 
-    final static String SALARY_DATE = "1st apr 2023";
-    final static float SALARY_INCOME_VALUE = (float) 5000;
-    final static String BONUS_DESCRIPTION = "salary";
+    static final String SALARY_DATE = "1st apr 2023";
+    static final float SALARY_INCOME_VALUE = (float) 5000;
+    static final String BONUS_DESCRIPTION = "salary";
 
-    final static String BONUS_DATE = "5/2/23";
-    final static float BONUS_INCOME_VALUE = (float) 3000;
+    static final String BONUS_DATE = "5/2/23";
+    static final float BONUS_INCOME_VALUE = (float) 3000;
     private Ui ui;
     private Storage storage;
     private Income salary;

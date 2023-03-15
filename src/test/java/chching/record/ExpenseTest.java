@@ -5,11 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExpenseTest {
-    final static String CATEGORY = "transport";
-    final static String DESCRIPTION = "public transport";
-
-    final static String DATE = "1st apr 2023";
-    final static float EXPENSE_VALUE = (float) 1.50;
+    static final String CATEGORY = "transport";
+    static final String DESCRIPTION = "public transport";
+    static final String DATE = "1st apr 2023";
+    static final float EXPENSE_VALUE = (float) 1.50;
     @Test
     void getExpenseDescription_expected() {
         String test = "public transport";

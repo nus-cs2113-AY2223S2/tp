@@ -9,7 +9,7 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ExitTest {
-    final static String EXPECTED_STRING = "Bye!";
+    static final String EXPECTED_STRING = "Bye!";
 
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();

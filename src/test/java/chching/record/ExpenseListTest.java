@@ -3,12 +3,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ExpenseListTest {
-    final static int EXPECTED_SIZE = 1;
-    final static String CATEGORY = "entertainment";
-    final static String DESCRIPTION = "beach party";
-
-    final static String DATE = "23 may 2023";
-    final static float EXPENSE_VALUE = (float) 50;
+    static final int EXPECTED_SIZE = 1;
+    static final String CATEGORY = "entertainment";
+    static final String DESCRIPTION = "beach party";
+    static final String DATE = "23 may 2023";
+    static final float EXPENSE_VALUE = (float) 50;
 
     @Test
     void getExpenseCount_one_expectOne() {
