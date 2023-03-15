@@ -1,14 +1,8 @@
 package bagpacker.iohandler;
 
-import bagpacker.commands.AddCommand;
-import bagpacker.commands.DeleteCommand;
-import bagpacker.commands.PackCommand;
-import bagpacker.commands.UnpackCommand;
-import bagpacker.commands.ListCommand;
-import bagpacker.commands.DeleteListCommand;
+import bagpacker.commands.*;
 import bagpacker.exception.EmptyInputException;
 import bagpacker.packingfunc.Item;
-import bagpacker.packingfunc.PackingList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +14,7 @@ import java.util.Scanner;
 public class Parser {
     private static ArrayList<String> inputStringArray;
     private static String fullInput;
+    private static String itemDescrip;
     public static void setFullInput(String fullInput) {
         Parser.fullInput = fullInput;
     }
@@ -39,9 +34,10 @@ public class Parser {
     public static String getFullInput() {
         return fullInput;
     }
-    public static void receiveInput() {
+
+    public static Command parse() {
         String inputLine = "";
-        while(inputLine.isEmpty()){
+        while(inputLine.isEmpty()) {
             try {
                 inputLine = readLine();
             } catch (EmptyInputException e) {
@@ -49,9 +45,30 @@ public class Parser {
             }
         }
         setFullInput(inputLine);
-        String[] inputStringList = inputLine.split(" ");
+        String[] inputStringList = inputLine.trim().split(" ");
         setInputStringArray(inputStringList);
 
+
+        switch (inputStringList[0]) {
+        case "add":
+            //Add add function
+            return addItem(inputStringList[1]);
+        case "remove":
+            return removeItem(inputStringList[1]);
+        case "pack":
+            return packItem(inputStringList[1]);
+        case "unpack":
+            return unpackItem(inputStringList[1]);
+        case "list":
+            return listCommand();
+        case "help":
+            return helpCommand();
+        case "delete":
+            return deleteList();
+        default:
+            return new IncorrectCommand("'" + Parser.getCommand() + "' is an invalid User Command\n" +
+                    "input 'help' to receive all valid commands");
+        }
     }
 
     private static String readLine() throws EmptyInputException {
@@ -71,87 +88,59 @@ public class Parser {
         return getInputStringArray().get(0).toLowerCase();
     }
 
+    public static String getArgs() {
+        return getInputStringArray().get(1);
+    }
+
     /**
      * Returns the user item description
      */
     public static String getItemDescrip() {
         //String[] itemArray = Arrays.copyOfRange(getInputStringArray(),1,getInputStringArray().length);
-        int indexItemName = getFullInput().indexOf("/i") + 2;
-        String itemName = getFullInput().substring(indexItemName, getFullInput().length()).trim();
-        return itemName;
+        int indexItemName = getFullInput().indexOf("i/") + 2;
+        return getFullInput().substring(indexItemName).trim();
     }
+
 
     /**
      * Calls the AddCommand.execute() method to add an item to the packing list
      */
-
-    public static void addItem(String itemDescrip, PackingList packingList) {
-
+    public static Command addItem(String itemDescrip) {
         // Todo try, catch exception handling
-        // Create item object
-        Item item = new Item(itemDescrip,false);
-
-        AddCommand addCommand = new AddCommand(item);
-
-        addCommand.execute(packingList);
-
+        return new AddCommand(new Item(itemDescrip));
     }
 
     /**
      * Calls the DeleteCommand.execute() method to add an item to the packing list
      */
-
-    public static void removeItem(String itemDescrip, PackingList packingList) {
-
-        for (int i = 0; i < packingList.size(); i++) {
-            if (packingList.get(i).getItemName().equalsIgnoreCase(itemDescrip)) {
-                DeleteCommand deleteCommand = new DeleteCommand(packingList.get(i));
-                deleteCommand.execute(packingList);
-            }
-
-        }
-
+    public static Command removeItem(String itemDescrip) {
+        return new DeleteCommand(Integer.parseInt(itemDescrip));
     }
 
     /**
      * Calls the PackCommand.execute() method to mark an item as packed in the packing list
      */
-
-    public static void packItem(String itemDescrip, PackingList packingList) {
-
-        for (int i = 0; i < packingList.size(); i++) {
-            if (packingList.get(i).getItemName().equalsIgnoreCase(itemDescrip)) {
-                PackCommand packCommand = new PackCommand(packingList.get(i));
-                packCommand.execute(packingList);
-            }
-
-        }
-
+    public static Command packItem(String itemDescrip) {
+        return new PackCommand(Integer.parseInt(itemDescrip));
     }
 
     /**
      * Calls the UnpackCommand.execute() method to mark an item as unpacked in the packing list
      */
-
-    public static void unpackItem(String itemDescrip, PackingList packingList) {
-
-        for (int i = 0; i < packingList.size(); i++) {
-            if (packingList.get(i).getItemName().equalsIgnoreCase(itemDescrip)) {
-                UnpackCommand unpackCommand = new UnpackCommand(packingList.get(i));
-                unpackCommand.execute(packingList);
-            }
-
-        }
-
+    public static Command unpackItem(String itemDescrip) {
+        return new UnpackCommand(Integer.parseInt(itemDescrip));
     }
 
-    public static void displayList(PackingList packingList) {
-        ListCommand listCommand = new ListCommand();
-        listCommand.execute(packingList);
+    public static Command listCommand() {
+        return new ListCommand();
     }
 
-    public static void deleteList(PackingList packingList) {
-        DeleteListCommand deleteListCommand = new DeleteListCommand();
-        deleteListCommand.execute(packingList);
+    public static Command deleteList() {
+        return new DeleteListCommand();
     }
+
+    private static Command helpCommand() {
+        return new HelpCommand();
+    }
+
 }

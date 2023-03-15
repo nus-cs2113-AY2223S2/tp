@@ -7,9 +7,7 @@ public class DeleteListCommand extends Command {
 
     @Override
     public void execute(PackingList packingList) {
-        for (int i = 0; i < packingList.size(); i++) {
-            Parser.removeItem(String.valueOf(i), packingList);
-        }
+        packingList = new PackingList();
     }
 
 }
