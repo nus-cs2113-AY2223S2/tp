@@ -1,6 +1,5 @@
 package seedu.rainyDay.modules;
 
-import seedu.rainyDay.command.ViewCommand;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.rainyDay.data.FinancialReport;
