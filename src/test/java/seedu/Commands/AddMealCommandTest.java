@@ -1,4 +1,4 @@
-package seedu.Commands;
+package seedu.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.database.FoodStorage;

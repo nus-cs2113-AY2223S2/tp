@@ -24,7 +24,7 @@ public class MealStorageTest {
         // private final Meal meal1 = new Meal();
 
         @Test
-        public void testAddFood() {
+        public void addFood_SingleMealAdded_ExpectNoException() {
             assertFalse(foodStorage.getFoodsCount() == 0, "Food Storage is not empty :)");
             foodList.add(foodStorage.getFoodById(0));
             foodList.add(foodStorage.getFoodById(1));
@@ -34,14 +34,14 @@ public class MealStorageTest {
         }
 
         @Test
-        public void testRetrieveMeal() {
-            testAddFood();
+        public void retrieveMeal_SingleMealAlreadyAdded_ExpectNoException() {
+            addFood_SingleMealAdded_ExpectNoException();
             assertDoesNotThrow(() -> mealStorage.getMealById(0));
         }
 
         @Test
-        public void testDeleteMeal() {
-            testAddFood();
+        public void deleteMeal_SingleMealAlreadyAdded_ExpectNoException() {
+            addFood_SingleMealAdded_ExpectNoException();
             assertDoesNotThrow(() -> mealStorage.deleteMeal(0));
         }
     }
