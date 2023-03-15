@@ -27,7 +27,7 @@ public class CommandHandler {
                 command = new HelpCommand();
                 break;
             default:
-                System.out.println("Unknown Command");
+                ui.unknownCommand();
                 errorExists = true;
                 break;
             }
