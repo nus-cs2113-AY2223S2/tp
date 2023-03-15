@@ -1,4 +1,5 @@
 package seedu.duke;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class UI {
@@ -32,7 +33,7 @@ public class UI {
             executeExitCommand();
             break;
         case "add":
-            executeAddModuleCommand(storage, userCommandSecondKeyword, puModules);
+            executeAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
             break;
         case "remove":
             break; // Todo: Add remove function after darren PR
@@ -58,7 +59,7 @@ public class UI {
             University currentUniversity = universities.get(i);
             String currentUniversityName = currentUniversity.getUnivName();
             if (universityName.equals(currentUniversityName)) {
-                univId = currentUniversity.getUnivId() + 1; //Todo: change magic literal
+                univId = currentUniversity.getUnivId(); //Todo: change magic literal
             }
         }
         Parser.printPUModules(univId);
@@ -73,12 +74,25 @@ public class UI {
     }
 
     // The add comment currently searches only the module code
-    private void executeAddModuleCommand(Storage storage, String moduleCode, ArrayList<Module> allModules) {
+    private void executeAddModuleCommand(Storage storage, String abbreviationAndCode, ArrayList<Module> allModules,
+                                         ArrayList<University> universities) {
+        String[] stringSplit = abbreviationAndCode.split("/");
+        String abbreviation = stringSplit[0];
+        String moduleCode = stringSplit[1];
+        int univID = 0;
+        for (int i = 0; i < universities.size(); ++i) {
+            System.out.println(universities.get(i).getUnivAbbName());
+            if (universities.get(i).getUnivAbbName().equalsIgnoreCase(abbreviation)) {
+                univID = universities.get(i).getUnivId();
+                break;
+            }
+        }
         for (int i = 0; i < allModules.size(); i++) {
             Module currentModule = allModules.get(i);
-            if (currentModule.getModuleCode().equals(moduleCode)) {
+            if (currentModule.getUnivId() == univID && currentModule.getModuleCode().equalsIgnoreCase(moduleCode)) {
                 storage.addModuleToModuleList(currentModule);
             }
         }
     }
+
 }
