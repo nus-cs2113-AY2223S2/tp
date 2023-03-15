@@ -61,5 +61,7 @@ public class Parser {
         return getInputStringArray().get(0).toLowerCase();
     }
 
-
+    public static String getArgs() {
+        return getInputStringArray().get(1);
+    }
 }

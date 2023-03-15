@@ -48,6 +48,7 @@ public class BagPacker {
                         "input 'help' to receive all valid commands");
                 break;
             }
+
             Parser.receiveInput();
         }
         Storage.save();
