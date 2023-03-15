@@ -35,7 +35,7 @@ class DeleteIncomeCommandTest {
 
     @Test
     void deleteIncome_positiveIntegerOutsideSize_fail() {
-        String expectedOutput = "There is no income with this index";
+        String expectedOutput = "The number is too big";
         try {
             defaultIncomeList.deleteIncome(3);
         } catch (Exception e) {
@@ -45,7 +45,7 @@ class DeleteIncomeCommandTest {
 
     @Test
     void deleteIncome_negativeInteger_fail() {
-        String expectedOutput = "There is no income with this index";
+        String expectedOutput = "Negative/Zero index";
         try {
             defaultIncomeList.deleteIncome(-5);
         } catch (Exception e) {

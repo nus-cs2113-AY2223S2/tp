@@ -13,10 +13,10 @@ public class DeleteExpenseCommand extends Command {
     }
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage) throws ChChingException {
-        if(index <= 0){
+        if(index <= 0) {
             throw new ChChingException("Negative/Zero index");
         }
-        else if(index > incomes.size()){
+        else if(index > incomes.size()) {
             throw new ChChingException("The number is too big");
         }
         expenses.deleteExpense(index);

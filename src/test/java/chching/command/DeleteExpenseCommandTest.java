@@ -36,7 +36,7 @@ class DeleteExpenseCommandTest {
 
     @Test
     void deleteExpense_positiveIntegerOutsideSize_fail() {
-        String expectedOutput = "There is no expense with this index";
+        String expectedOutput = "The number is too big";
         try {
             defaultExpenseList.deleteExpense(3);
         } catch (Exception e) {
@@ -46,7 +46,7 @@ class DeleteExpenseCommandTest {
 
     @Test
     void deleteExpense_negativeInteger_fail() {
-        String expectedOutput = "There is no expense with this index";
+        String expectedOutput = "Negative/Zero index";
         try {
             defaultExpenseList.deleteExpense(-5);
         } catch (Exception e) {

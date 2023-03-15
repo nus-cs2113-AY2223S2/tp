@@ -35,6 +35,7 @@ public class Parser {
         List<String> arguments = lineParts.subList(1, lineParts.size());
         HashMap<String, String> argumentsByField = sortArguments(arguments);
         Command command = new InvalidCommand();
+        int index;
         try {
             switch (instruction) {
             case "add income":
@@ -55,10 +56,11 @@ public class Parser {
                 command = new ListCommand();
                 break;
             case "delete income":
-                command = new DeleteIncomeCommand(Integer.parseInt(argumentsByField.get("no")));
+                index = Incomes.getIndex(argumentsByField);
+                command = new DeleteIncomeCommand(index);
                 break;
             case "delete expense":
-                int index = Expenses.getIndex(argumentsByField);
+                index = Expenses.getIndex(argumentsByField);
                 command = new DeleteExpenseCommand(index);
                 break;
             case "balance":
