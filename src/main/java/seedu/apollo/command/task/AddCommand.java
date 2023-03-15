@@ -50,10 +50,10 @@ public class AddCommand extends Command {
      * @throws UnexpectedException If the command word cannot be understood.
      */
     public AddCommand(String command, String param) throws InvalidDeadline, InvalidEvent, UnexpectedException {
+        AddCommand.setUpLogger();
         this.command = command;
         assert (command.equals(COMMAND_TODO_WORD) | command.equals(COMMAND_DEADLINE_WORD) |
                 command.equals(COMMAND_EVENT_WORD)) : "AddCommand: Invalid Add Command";
-        assert param != null : "AddCommand: param should not be null!";
         switch (command) {
         case COMMAND_TODO_WORD:
             this.desc = param;
@@ -72,7 +72,6 @@ public class AddCommand extends Command {
         default:
             throw new UnexpectedException("Adding Task");
         }
-        AddCommand.setUpLogger();
     }
 
     /**
@@ -112,6 +111,25 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
+        int initialSize = taskList.size();
+        try {
+            addTask(taskList);
+        } catch (DateOrderException e) {
+            ui.printDateOrderException();
+            return;
+        }
+
+        assert (taskList.size() > initialSize) : "AddCommand : Task not added successfully";
+        ui.printAddMessage(taskList.get(taskList.size() - 1));
+
+        try {
+            storage.updateTask(taskList);
+        } catch (IOException e) {
+            ui.printErrorForIO();
+        }
+    }
+    private void addTask(TaskList taskList)
+            throws DateOverException, DateOrderException, UnexpectedException {
         switch (command) {
         case COMMAND_TODO_WORD:
             taskList.add(new ToDo(desc));
@@ -120,22 +138,10 @@ public class AddCommand extends Command {
             taskList.add(new Deadline(desc, by));
             break;
         case COMMAND_EVENT_WORD:
-            try {
-                taskList.add(new Event(desc, from, to));
-            } catch (DateOrderException e) {
-                ui.printDateOrderException();
-                return;
-            }
+            taskList.add(new Event(desc, from, to));
             break;
         default:
             throw new UnexpectedException("Adding Task");
-        }
-        assert taskList.size() > 0;
-        ui.printAddMessage(taskList.get(taskList.size() - 1));
-        try {
-            storage.updateTask(taskList);
-        } catch (IOException e) {
-            ui.printErrorForIO();
         }
     }
 

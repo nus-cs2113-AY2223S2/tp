@@ -69,8 +69,7 @@ public class Ui {
                 " Enter \"date [yyyy-MM-dd]\" to see all tasks occurring on that date\n" +
                 " Enter \"bye\" to exit the program\n\n" +
                 " ***NOTE***\n" +
-                " The \"date\" command only considers tasks when [date] is input in the format:\n" +
-                "     \"yyyy-MM-ddThh:mm\"\n" +
+                " Please enter all [date]s in the format: \"yyyy-MM-ddThh:mm\"\n" +
                 " eg. \"2023-10-30T23:59\" represents Oct 20 2023, 11:59PM");
     }
 

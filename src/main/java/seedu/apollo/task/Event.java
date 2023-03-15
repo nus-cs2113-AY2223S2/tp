@@ -16,8 +16,6 @@ public class Event extends Task {
     public static final String EVENT_LABEL = "E";
     protected LocalDateTime from;
     protected LocalDateTime to;
-    protected String fromString;
-    protected String toString;
 
     /**
      * Initialises as in Task, with added parsing for start and end dates.
@@ -27,18 +25,14 @@ public class Event extends Task {
      * @param fromString String describing the start date.
      * @param toString String describing the end date.
      * @throws DateOrderException If the end date occurs before the start date.
+     * @throws DateTimeParseException If either date is not entered in right format.
      */
-    public Event(String description, String fromString, String toString) throws DateOrderException {
+    public Event(String description, String fromString, String toString)
+            throws DateTimeParseException, DateOrderException, DateOverException {
         super(description);
-        try {
-            this.from = LocalDateTime.parse(fromString);
-        } catch (DateTimeParseException e) {
-            this.fromString = fromString;
-        }
-        try {
-            this.to = LocalDateTime.parse(toString);
-        } catch (DateTimeParseException e) {
-            this.toString = toString;
+        this.from = LocalDateTime.parse(fromString);
+        this.to = LocalDateTime.parse(toString);
+
         }
         if (this.from != null && this.to != null) {
             if (from.isAfter(to)) {
@@ -54,7 +48,7 @@ public class Event extends Task {
      * @return Parsed start date.
      */
     public String getFrom(DateTimeFormatter pattern) {
-        return Parser.parseDateTime(from, fromString, pattern);
+        return from.format(pattern);
     }
 
     /**
@@ -64,7 +58,7 @@ public class Event extends Task {
      * @return Parsed end date.
      */
     public String getTo(DateTimeFormatter pattern) {
-        return Parser.parseDateTime(to, toString, pattern);
+        return to.format(pattern);
     }
 
     /**

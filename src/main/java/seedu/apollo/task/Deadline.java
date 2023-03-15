@@ -15,7 +15,6 @@ public class Deadline extends Task {
 
     public static final String DEADLINE_LABEL = "D";
     protected LocalDateTime by;
-    protected String byString;
 
     /**
      * Initialises as in Task, with added parsing for due date.
@@ -23,13 +22,12 @@ public class Deadline extends Task {
      *
      * @param description String describing the Task.
      * @param byString String describing the due date.
+     * @throws DateTimeParseException If due date is not entered in right format.
      */
-    public Deadline(String description, String byString) {
+    public Deadline(String description, String byString)
+            throws DateTimeParseException, DateOverException {
         super(description);
-        try {
-            this.by = LocalDateTime.parse(byString);
-        } catch (DateTimeParseException e) {
-            this.byString = byString;
+        this.by = LocalDateTime.parse(byString);
         }
     }
 
@@ -40,7 +38,7 @@ public class Deadline extends Task {
      * @return Parsed due date.
      */
     public String getBy(DateTimeFormatter pattern) {
-        return Parser.parseDateTime(by, byString, pattern);
+        return by.format(pattern);
     }
 
     /**
