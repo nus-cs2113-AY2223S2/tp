@@ -1,4 +1,4 @@
 package utils.exceptions;
 
-public class DeleteRangeInvalid extends Exception{
+public class DeleteRangeInvalid extends Exception {
 }

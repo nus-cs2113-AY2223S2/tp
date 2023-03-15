@@ -1,13 +1,9 @@
 package utils.command;
 
-import utils.Card;
-import utils.cardlist.CardList;
-import utils.userinterface.UserInterface;
-
-
-import java.io.IOException;
-
+import model.CardList;
+import utils.UserInterface;
+import utils.storage.IDataStorage;
 
 public abstract class Command {
-    public abstract void execute(CardList cardList, UserInterface ui);
+    public abstract void execute(CardList cardList, UserInterface ui, IDataStorage storage);
 }

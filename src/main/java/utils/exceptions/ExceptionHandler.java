@@ -1,17 +1,19 @@
 package utils.exceptions;
 
-import utils.cardlist.CardList;
+import model.CardList;
+import utils.Parser;
+import utils.UserInterface;
 import utils.command.Command;
 import utils.command.ExceptionCommand;
-import utils.parser.Parser;
-import utils.userinterface.UserInterface;
 
 public class ExceptionHandler {
 
-    public Command mainExceptionHandler(Parser parser, String userCommand, UserInterface userInterface, CardList cardList) {
+    public Command mainExceptionHandler(Parser parser, String userInput, UserInterface userInterface,
+            CardList cardList) {
         Command command = new ExceptionCommand();
+
         try {
-            command = parser.parseCommand(userCommand, cardList);
+            command = parser.parseCommand(userInput, cardList);
         } catch (DeleteMissingNumber e) {
             userInterface.printDeleteError();
         } catch (NumberFormatException e) {
@@ -33,6 +35,7 @@ public class ExceptionHandler {
             //print something here
             userInterface.addMissingQuestionAndAnswerPrompt();
         }
+
         return command;
     }
 }

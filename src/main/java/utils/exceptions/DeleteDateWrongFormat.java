@@ -1,4 +1,4 @@
 package utils.exceptions;
 
-public class DeleteDateWrongFormat extends Exception{
+public class DeleteDateWrongFormat extends Exception {
 }

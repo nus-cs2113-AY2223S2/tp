@@ -1,8 +1,9 @@
 package utils.command;
 
-import utils.Card;
-import utils.cardlist.CardList;
-import utils.userinterface.UserInterface;
+import model.Card;
+import model.CardList;
+import utils.UserInterface;
+import utils.storage.IDataStorage;
 
 public class AddCommand extends Command {
     private final Card card;
@@ -12,7 +13,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cardList, UserInterface ui) {
+    public void execute(CardList cardList, UserInterface ui, IDataStorage storage) {
         cardList.addCard(card);
         ui.printAddQuestionSuccess();
         ui.printNumOfQuestions(cardList);

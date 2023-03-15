@@ -1,18 +1,20 @@
-package utils.cardlist;
-
-import utils.Card;
-import utils.userinterface.UserInterface;
+package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CardList {
 
+    private List<Card> cards;
 
-    public ArrayList<Card> cards;
-
-
+    // Initialize with no cards
     public CardList() {
         this.cards = new ArrayList<>();
+    }
+
+    // Initialize from existing container of cards
+    public CardList(List<Card> cards) {
+        this.cards = cards;
     }
 
     public void addCard(Card card) {

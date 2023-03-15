@@ -1,57 +1,73 @@
-import utils.cardlist.CardList;
+import java.io.IOException;
+import model.CardList;
+import utils.Parser;
+import utils.UserInterface;
+import utils.command.Command;
 import utils.exceptions.ExceptionHandler;
-
-import utils.exceptions.ImportBad;
-import utils.parser.Parser;
-import utils.userinterface.UserInterface;
-import utils.command.*;
-import utils.Storage;
-
+import utils.exceptions.StorageLoadFailure;
+import utils.storage.JsonStorage;
+import utils.storage.Storage;
 
 public class Inka {
+
     private final UserInterface ui;
     private final Parser parser;
-    private CardList cardList;
-
-
+    private ExceptionHandler exceptionHandler;
     private Storage storage;
 
-    private ExceptionHandler exceptionHandler;
+    private CardList cardList;
 
     public Inka(String filePath) {
-        storage = new Storage(filePath);
-
-
-    public Inka() {
-
+        storage = new JsonStorage(filePath);
         ui = new UserInterface();
         parser = new Parser();
-        cardList = new CardList();
         exceptionHandler = new ExceptionHandler();
 
-        try {
-            storage.load(filePath, cardList);
-        } catch (ImportBad e) {
-            ui.printImportBad();
+        cardList = loadSaveFile();
+    }
 
+    public static void main(String[] args) {
+        new Inka("savedata.json").run();
+    }
+
+    /**
+     * Attempts to load from save file
+     *
+     * @return CardList containing all saved cards
+     * @note Will create a new file if no file exists
+     */
+    private CardList loadSaveFile() {
+        // No previously saved file
+        if (!storage.saveFileExists()) {
+            try {
+                storage.createSaveFile();
+                ui.printNoSaveFile();
+            } catch (IOException e) {
+                ui.printSaveFailure();
+            }
+
+            return new CardList();
         }
 
+        // File exists; try to load from it
+        CardList cardList = new CardList();
+        try {
+            cardList = storage.load();
+            ui.printLoadSuccess();
+        } catch (StorageLoadFailure e) {
+            ui.printLoadFailure();
+        }
 
+        return cardList;
     }
 
     public void run() {
         ui.printGreeting();
 
         while (parser.getIsExecuting()) {
-            String userCommand = ui.getCommand();
-            Command command = exceptionHandler.mainExceptionHandler(parser, userCommand, ui, cardList);
-            command.execute(cardList, ui);
+            String userInput = ui.getUserInput();
+            Command command = exceptionHandler.mainExceptionHandler(parser, userInput, ui, cardList);
+            command.execute(cardList, ui, storage);
         }
-    }
-
-    public static void main(String[] args) {
-
-        new Inka("savedata.json").run();
-
     }
 }

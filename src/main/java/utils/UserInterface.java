@@ -1,53 +1,37 @@
-package utils.userinterface;
+package utils;
 
-import utils.Card;
-import utils.cardlist.CardList;
-import utils.enums.StringArt;
-
-import java.util.ArrayList;
 import java.util.Scanner;
+import model.CardList;
+import utils.enums.StringArt;
 
 public class UserInterface {
     private static final int LINE_LENGTH = 100;
-    private static final String INKA_ART =
-            ".___        __            \n" +
-                    "|   | ____ |  | _______   \n" +
-                    "|   |/    \\|  |/ /\\__  \\  \n" +
-                    "|   |   |  \\    <  / __ \\_\n" +
-                    "|___|___|  /__|_ \\(____  /\n" +
-                    "         \\/     \\/     \\/ ";
-
-    private static final String BYE_ART =
-            " ____  _  _  ____    _   \n" +
-                    "(  _ \\( \\/ )(  __)  / \\  \n" +
-                    " ) _ ( )  /  ) _)   \\_/  \n" +
-                    "(____/(__/  (____)  (_) ";
     private final Scanner scanner;
 
     public UserInterface() {
         scanner = new Scanner(System.in);
     }
 
-    public String getCommand() {
+    public String getUserInput() {
         return scanner.nextLine();
     }
 
-    public void printLine() {
+    public void printDivider() {
         System.out.println("_".repeat(LINE_LENGTH));
     }
 
     public void printGreeting() {
-        printLine();
+        printDivider();
         System.out.println(StringArt.INKA.art);
         System.out.println("Welcome to Inka ! Say no more to failing exams as Inka will be your lord and saviour!");
-        printLine();
+        printDivider();
     }
 
     public void printBye() {
-        printLine();
+        printDivider();
         System.out.println(StringArt.BYE.art);
         System.out.println("\n Bye! All the best for your exams man!!!");
-        printLine();
+        printDivider();
     }
 
     public void printNumOfQuestions(CardList cardList) {
@@ -62,21 +46,29 @@ public class UserInterface {
         System.out.println("Too easy ha? You won't see that question again!");
     }
 
-
-    public void printExportSuccess() {
-        System.out.println("Deck exported liao");
-    }
-
-
     public void printWrongCommand() {
         System.out.println("PLease re-enter a valid command!");
     }
 
-
-    public void printImportBad() {
+    public void printNoSaveFile() {
         System.out.println("No savedata detected! make new one for uuuuuuuuuuuuuuu");
     }
 
+    public void printSaveSuccess() {
+        System.out.println("Deck exported liao");
+    }
+
+    public void printLoadSuccess() {
+        System.out.println("Deck loaded!");
+    }
+
+    public void printLoadFailure() {
+        System.out.println("Failed to load deck :(");
+    }
+
+    public void printSaveFailure() {
+        System.out.println("Failed to save deck :(");
+    }
 
     public void printCard(CardList cardlist, int id) {
         System.out.println(cardlist.get(id));
@@ -105,10 +97,10 @@ public class UserInterface {
     public void addMissingAnswerPrompt() {
         System.out.println("Please ensure that you supply a valid answer to Inka!");
     }
+
     public void addMissingQuestionAndAnswerPrompt() {
         System.out.println("Please ensure that you supply a valid question and answer to Inka!");
     }
-
 
     public void printList(CardList cardList) {
         if (cardList.isEmpty()) {
@@ -116,9 +108,7 @@ public class UserInterface {
         } else {
             System.out.println("Here is your current list of questions buddy:");
             for (int i = 0; i < cardList.size(); ++i) {
-
                 System.out.println((i + 1) + "." + cardList.get(i)); // 1. question  answer
-
             }
         }
     }

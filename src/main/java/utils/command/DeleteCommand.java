@@ -1,8 +1,8 @@
 package utils.command;
 
-import utils.Card;
-import utils.cardlist.CardList;
-import utils.userinterface.UserInterface;
+import model.CardList;
+import utils.UserInterface;
+import utils.storage.IDataStorage;
 
 public class DeleteCommand extends Command {
 
@@ -13,10 +13,10 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cardList, UserInterface ui) {
+    public void execute(CardList cardList, UserInterface ui, IDataStorage storage) {
         ui.printDeleteSuccess();
-        //ui.printCard(cardList, index);
-        cardList.delete(this.index-1); // if the input is delete 1, this will delete the first element of the array which is element 0.
+        // if the input is delete 1, this will delete the first element of the array which is element 0.
+        cardList.delete(this.index - 1);
         ui.printNumOfQuestions(cardList);
     }
 }
