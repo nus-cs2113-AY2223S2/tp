@@ -70,13 +70,11 @@ public class Expense {
      */
     @Override
     public String toString() {
-        // Currently not useful
         String currencyString = Currency.returnCurrency(this.currencyType);
         String amountString = this.expenseAmount.toString();
         String descriptionString = this.description;
         String timeString = this.expenseTime.toString();
         return (currencyString + amountString + " cat:" + descriptionString + " date:" + timeString);
     }
-
 }
 
