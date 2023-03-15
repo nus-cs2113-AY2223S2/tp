@@ -2,12 +2,15 @@ package seedu.apollo;
 
 import org.junit.jupiter.api.Test;
 import seedu.apollo.command.Command;
-import seedu.apollo.exception.InvalidDeadline;
-import seedu.apollo.exception.InvalidEvent;
+import seedu.apollo.exception.task.InvalidDeadline;
+import seedu.apollo.exception.task.InvalidEvent;
+import seedu.apollo.ui.Parser;
+import seedu.apollo.ui.Ui;
 
 import java.rmi.UnexpectedException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -22,7 +25,7 @@ class ParserTest {
 
         LocalDateTime date = LocalDateTime.parse("2023-01-01T23:59");
         String dateString = null;
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mma");
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mma", Locale.ENGLISH);
         String output = Parser.parseDateTime(date, dateString, pattern);
         assertEquals("Jan 01 2023, 11:59PM", output);
 
@@ -33,7 +36,7 @@ class ParserTest {
 
         LocalDateTime date = null;
         String dateString = "test";
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mma");
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mma", Locale.ENGLISH);
         String output = Parser.parseDateTime(date, dateString, pattern);
         assertEquals("test", output);
 
@@ -73,7 +76,7 @@ class ParserTest {
         Ui ui = new Ui();
         int size = 1;
         String userCommand = "draw";
-        Command newCommand = Parser.getCommand(userCommand,ui,size);
+        Command newCommand = Parser.getCommand(userCommand,ui,size, null);
         assertNull(newCommand);
 
     }
@@ -142,8 +145,89 @@ class ParserTest {
         String userCommand = "find";
         Ui ui = new Ui();
         int size = 1;
-        Command newCommand = Parser.getCommand(userCommand, ui, size);
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertNull(newCommand);
     }
+
+    @Test
+    void getCommand_noModuleAdded_expectNull() throws UnexpectedException {
+        String userCommand = "addmod";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_noModuleDeleted_expectNull() throws UnexpectedException {
+        String userCommand = "delmod";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_noMarkIndex_expectNull() throws UnexpectedException {
+        String userCommand = "mark";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_noUnmarkIndex_expectNull() throws UnexpectedException {
+        String userCommand = "unmark";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_nonIntegerMarkIndex_expectException() throws UnexpectedException {
+        String userCommand = "mark a";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+    @Test
+    void getCommand_nonIntegerUnmarkIndex_expectException() throws UnexpectedException {
+        String userCommand = "unmark a";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_noTodoDescription_expectNull() throws UnexpectedException {
+        String userCommand = "todo";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_noEventDescription_expectNull() throws UnexpectedException {
+        String userCommand = "event";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_noDeadlineDescription_expectNull() throws UnexpectedException {
+        String userCommand = "deadline";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
 
 }

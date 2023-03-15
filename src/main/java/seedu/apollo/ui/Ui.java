@@ -1,12 +1,14 @@
-package seedu.apollo;
+package seedu.apollo.ui;
 
 import seedu.apollo.task.Task;
 import seedu.apollo.module.Module;
+import seedu.apollo.task.TaskList;
 
 import java.rmi.UnexpectedException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -54,12 +56,15 @@ public class Ui {
      */
     public void printHelpMessage() {
         System.out.println(" Enter \"list\" to see all tasks\n" +
+                " Enter \"listmod\" to see your module list\n"+
                 " Enter \"todo [task]\" to add a task\n" +
                 " Enter \"deadline [task] /by [date]\" to add a deadline\n" +
                 " Enter \"event [task] /from [date] /to [date]\" to add an event\n" +
+                " Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n"+
                 " Enter \"mark [idx]\" to mark task as done\n" +
                 " Enter \"unmark [idx]\" to mark task as not done\n" +
                 " Enter \"delete [idx]\" to remove task from list\n" +
+                " Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added\n"+
                 " Enter \"find [keyword]\" to see all tasks containing [keyword]\n" +
                 " Enter \"date [yyyy-MM-dd]\" to see all tasks occurring on that date\n" +
                 " Enter \"bye\" to exit the program\n\n" +
@@ -71,11 +76,11 @@ public class Ui {
 
     /**
      * For {@code list} command.
-     * Prints all Tasks within the ArrayList given.
+     * Prints all Tasks within the TaskList given.
      *
-     * @param allTasks ArrayList of Tasks.
+     * @param allTasks TaskList of Tasks.
      */
-    public void printList(ArrayList<Task> allTasks) {
+    public void printList(TaskList allTasks) {
         if (allTasks.size() == 0) {
             System.out.println("There are no tasks in your list!");
             return;
@@ -135,6 +140,11 @@ public class Ui {
                 "  " + newTask);
     }
 
+    public void printAddModuleMessage(Module newModule) {
+        System.out.println("Got it. I've added this module:\n" +
+                "  " + newModule);
+    }
+
     /**
      * For {@code mark} command.
      * Prints out message for successful marking of Task as done.
@@ -172,11 +182,11 @@ public class Ui {
 
     /**
      * For {@code find} command.
-     * Prints all Tasks within the ArrayList given, all containing a certain keyword.
+     * Prints all Tasks within the TaskList given, all containing a certain keyword.
      *
-     * @param foundTasks ArrayList of Tasks containing a keyword.
+     * @param foundTasks TaskList of Tasks containing a keyword.
      */
-    public void printFoundList(ArrayList<Task> foundTasks) {
+    public void printFoundList(TaskList foundTasks) {
         if (foundTasks.size() == 0) {
             System.out.println("There are no matching tasks!");
             return;
@@ -189,13 +199,13 @@ public class Ui {
 
     /**
      * For {@code date} command.
-     * Prints all Tasks within the ArrayList given, all happening on a certain date.
+     * Prints all Tasks within the TaskList given, all happening on a certain date.
      *
-     * @param happeningTasks ArrayList of Tasks happening on a date.
+     * @param happeningTasks TaskList of Tasks happening on a date.
      * @param date Date that was used to shortlist the tasks.
      */
-    public void printDateList(ArrayList<Task> happeningTasks, LocalDate date) {
-        String dateString = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+    public void printDateList(TaskList happeningTasks, LocalDate date) {
+        String dateString = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH));
         if (happeningTasks.size() == 0) {
             System.out.println("There are no tasks on " + dateString + "!");
             return;
@@ -234,15 +244,6 @@ public class Ui {
      */
     public void printErrorForIO() {
         System.out.println("Something went wrong with the hard disk :(");
-    }
-
-    /**
-     * Prints error message if the local save file cannot be found at the filepath.
-     */
-    public void printErrorFileNotFound() {
-        showLine();
-        System.out.println("Save file not found, initialising empty list...");
-        showLine();
     }
 
     /**
@@ -311,10 +312,32 @@ public class Ui {
     /**
      * Prints error message if an unexpected error occurs.
      *
-     * @param exception Contains detail message saying where error occurred.
+     * @param unexpectedException Contains detail message saying where unexpected exception occurred.
      */
-    public void printUnexpectedException(UnexpectedException exception) {
-        System.out.println("Oh no... Something went wrong while doing the following:  " + exception.getMessage() +
-                "\nExiting Apollo...");
+    public void printUnexpectedException(UnexpectedException unexpectedException) {
+        System.out.println("Oh no... Something went wrong while doing the following: " +
+                unexpectedException.getMessage() + "\nExiting Apollo...");
     }
+
+    /**
+     * Prints error message if the user tries to add a module which does not exist.
+     */
+    public void printInvalidModule() {
+        System.out.println("This module does not exist!");
+    }
+
+    /**
+     * Prints error message if the user does not specify the module to add.
+     */
+    public void printEmptyAddMod() {
+        System.out.println("Please specify a module to add!");
+    }
+
+    /**
+     * Prints error message if the user does not specify the module to delete.
+     */
+    public void printEmptyDelMod() {
+        System.out.println("Please specify a module to delete!");
+    }
+
 }

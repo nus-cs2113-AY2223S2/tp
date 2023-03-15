@@ -1,43 +1,15 @@
 package seedu.apollo.module;
 
-import seedu.apollo.exception.ModuleNotFoundException;
+import seedu.apollo.exception.module.ModuleNotFoundException;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+
 
 /**
- * ModuleList class that contains the module list.
+ * ModuleList class is a modified ArrayList of Modules.
  */
-public class ModuleList {
-
-    // Module list containing all Modules.
-    public ArrayList<Module> allModules;
-
-    /**
-     * Initialise allModules with the given Arraylist.
-     *
-     * @param allModules List of Modules.
-     */
-    public ModuleList(ArrayList<Module> allModules) {
-        this.allModules = allModules;
-    }
-
-    /**
-     * Get the list of all Modules.
-     *
-     * @return ArrayList of allModules.
-     */
-    public ArrayList<Module> getAllModules() {
-        return allModules;
-    }
-
-    /**
-     * Get the number of Modules currently in the ModuleList.
-     *
-     * @return Number of existing Modules.
-     */
-    public int getModuleListSize() {
-        return allModules.size();
-    }
+public class ModuleList extends ArrayList<Module> {
 
     /**
      * Finds the module in the ModuleList which matches the module name.
@@ -46,22 +18,18 @@ public class ModuleList {
      * @return module in the ModuleList which matches the module name.
      * @throws ModuleNotFoundException If the moduleCode is not found in allModules.
      */
-    public Module findModule(String moduleCode) throws ModuleNotFoundException {
-        for (Module module : allModules) {
-            if(Module.getModuleCode().equals(moduleCode)) {
-                return module;
-            }
-        }
-        throw new ModuleNotFoundException();
+    public Module findModule(String moduleCode) {
+        Module module = this.stream().filter(mod -> mod.getCode().equalsIgnoreCase(moduleCode))
+                .findFirst().orElse(null);
+
+        return module;
     }
 
     /**
-     * Removes the module in the ModuleList.
-     *
-     * @param module The module to be deleted.
+     * Sorts the ModuleList in alphabetical order.
      */
-    public void deleteModule(Module module){
-        allModules.remove(module);
+    public void sortModules() {
+        this.sort(Comparator.comparing(Module::getCode));
     }
 
 }
