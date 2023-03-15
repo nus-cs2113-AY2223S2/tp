@@ -44,7 +44,7 @@ class BalanceCommandTest {
             command.execute(defaultIncomeList, defaultExpenseList, ui, storage);
             assertEquals(expectedOutput, ((BalanceCommand) command).showBalance(), "Balance calculation is right");
         } catch (Exception e) {
-            fail();
+            fail(); // test should not reach this line
         }
     }
 }
