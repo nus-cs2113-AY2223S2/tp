@@ -48,18 +48,28 @@ Example of usage:
 `list`
 
 ### Deleting an expense entry: `delete`
-Delete expense entry with index X in the expense list
+Delete expense entry with index X in the expense list.
 
-Format: `delete X`
+Format: `delete INDEX`
 
-* X is entry number X in the expense list displayed with `list' command, following base-1 indexing.
-* Will display `Invalid expense index. Please try again.` if index X is greater than number of items in the list.
+* INDEX is entry number INDEX in the expense list displayed with `list' command, following base-1 indexing.
+* Will display `Invalid expense index. Please try again.` if INDEX is greater than number of items in the list.
 
 Example of usage:
 
 `delete 1`
 
 `delete 7`
+
+### Exiting the program: `exit`
+Exits the programn without saving expense list.
+
+Format: `exit`
+
+Example of usage:
+
+`exit`
+
 
 ## FAQ
 
