@@ -33,6 +33,9 @@ public class IngredientMetadata {
 
     @Override
     public String toString() {
-        return name.toString();
+        if (this.unitLabel == null) {
+            return name;
+        }
+        return name + ": " + this.unitLabel;
     }
 }
