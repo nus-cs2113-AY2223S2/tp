@@ -8,7 +8,6 @@ public class InvalidCommand extends Command {
     private ArrayList<String> invalidMessages = new ArrayList<>();
 
     public InvalidCommand(String ... invalidMessages) {
-//        this.invalidMessage = invalidMessage;
         for (String message : invalidMessages) {
             this.invalidMessages.add(message);
         }
