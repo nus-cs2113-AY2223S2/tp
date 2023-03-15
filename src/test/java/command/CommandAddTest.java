@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import java.math.BigDecimal;
 
 
 class CommandAddTest {
@@ -23,13 +24,13 @@ class CommandAddTest {
 
     @Test
     public void addExpense_successful() {
-        testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
+        testExpenseList.add(new Expense(new BigDecimal("2.5"), new Time(LocalDate.parse("02-02-2012", formatter)),
                 "food", Currency.SGD));
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food")).execute();
         assertEquals(testExpenseList.get(0), expenseList.getExpenseList().get(0));
 
-        testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
+        testExpenseList.add(new Expense(new BigDecimal("2.5"), new Time(LocalDate.parse("02-02-2012", formatter)),
                 "food", Currency.SGD));
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " +
