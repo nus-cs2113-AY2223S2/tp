@@ -36,12 +36,9 @@ public class Ui {
      * users when application is launched
      */
     public static void showWelcome() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        String logo =  "█▄ █ █ █ ▄▀▀ █▀▄ █   ▄▀▄ █▄ █ █▄ █ ██▀ █▀▄\n"
+                + "█ ▀█ ▀▄█ ▄██ █▀  █▄▄ █▀█ █ ▀█ █ ▀█ █▄▄ █▀▄\n\n";
+        System.out.println(logo + "Hello there! What can we do for you today?");
         printDash();
     }
 
@@ -52,6 +49,16 @@ public class Ui {
     public static void addSuccessMsg() {
         printDash();
         System.out.println("Event successfully added!");
+        printDash();
+    }
+
+    /**
+     * Prints success message for
+     * users when event is edited
+     */
+    public static void addSuccessEditMsg() {
+        printDash();
+        System.out.println("Event successfully edited!");
         printDash();
     }
 
@@ -82,7 +89,7 @@ public class Ui {
      */
     public static void deleteSuccessMsg() {
         printDash();
-        System.out.println("Event successfully deleted!");
+        System.out.println("Event(s) successfully deleted!");
         printDash();
     }
 
