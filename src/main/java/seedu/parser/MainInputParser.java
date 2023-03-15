@@ -29,6 +29,7 @@ public class MainInputParser {
         try {
             switch (command) {
             case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
             case HelpCommand.COMMAND_WORD:
                 return new HelpCommand();
             case DeleteCommand.COMMAND_WORD:
