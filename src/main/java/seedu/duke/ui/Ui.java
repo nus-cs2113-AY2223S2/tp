@@ -17,4 +17,6 @@ public class Ui {
         Bye.bye();
     }
 
+    public void printFilters() { Bye.printFiltersAvailable(); }
+
 }
