@@ -8,9 +8,6 @@ import seedu.apollo.ui.Parser;
 import seedu.apollo.ui.Ui;
 
 import java.rmi.UnexpectedException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;

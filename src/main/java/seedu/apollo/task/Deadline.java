@@ -1,7 +1,6 @@
 package seedu.apollo.task;
 
 import seedu.apollo.exception.task.DateOverException;
-import seedu.apollo.ui.Parser;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
