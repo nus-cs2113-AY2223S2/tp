@@ -16,26 +16,17 @@ The main features of Pet Tracker includes:
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Pet Tracker` 
+2. Download the latest version of `Pet Tracker` 
 from [here](https://github.com/AY2223S2-CS2113-T11-3/tp/releases/download/PetTrackerV1.0/pettracker.jar).
+3. Launch a terminal and run the command `java -jar pettracker.jar`
 
 ## Features 
 
-{Give detailed description of each feature}
+Here is a list of features for Pet Tracker
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+* Tracking multiple pets at once
+* Viewing the full list of pets
 
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
 ## FAQ
 
@@ -45,6 +36,52 @@ Example of usage:
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
+### Adding a pet: `add-pet`
+Adds a pet to the Pet List.
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+Format: `add-pet NAME`
+
+* The `NAME` must not be empty.
+
+Example of usage:
+
+`add-pet Alice`
+`add-pet Bob`
+
+Expected Output:
+
+```
+Successfully added new pet: Alice
+Successfully added new pet: Bob
+```
+
+### Removing a pet: `remove-pet`
+Removes a pet to the Pet List.
+
+Format: `remove-pet NAME`
+
+* The `NAME` must not be empty.
+
+Example of usage:
+
+`remove-pet Alice`
+
+Expected Output:
+
+`Successfully removed pet: Alice`
+
+### Removing a pet: `add-pet`
+Adds a pet to the Pet List.
+
+Format: `add-pet NAME`
+
+* The `NAME` must not be empty.
+
+Example of usage:
+
+`add-pet Bob`
+
+Expected Output:
+
+`Successfully added new pet: Bob`
+
