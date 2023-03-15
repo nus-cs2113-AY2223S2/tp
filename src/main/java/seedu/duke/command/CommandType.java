@@ -38,7 +38,11 @@ public enum CommandType {
      */
     HELP,
     /**
-     * Terminates the programme and exit with saving.
+     * Clear the current recipe list.
+     */
+    CLEAR,
+    /**
+     * Terminates the programme and exit without saving.
      */
     EXIT,
     /**

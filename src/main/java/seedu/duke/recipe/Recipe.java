@@ -30,7 +30,6 @@ public class Recipe {
     public String getTag() {
         return tag;
     }
-
     public String toString() {
         return '[' + tag + "] " + name;
     }

@@ -4,7 +4,7 @@ import seedu.duke.command.Command;
 import seedu.duke.parser.Parser;
 import seedu.duke.recipe.RecipeList;
 import seedu.duke.storage.Storage;
-import seedu.duke.ui.Ui;
+import seedu.duke.ui.UI;
 
 /**
  * Represents the Recipe Manager programme. A <code>Duke</code> object corresponds to
@@ -13,7 +13,7 @@ import seedu.duke.ui.Ui;
 public class Duke {
 
     private final RecipeList recipes;
-
+    private final UI ui = new UI();
     /**
      * Class constructor specifying filePath for saving data.
      *
@@ -24,10 +24,10 @@ public class Duke {
         try {
             Storage.createSavedFile();
         } catch (Exception e) {
-            Ui.showLoadingErrorMessage(e);
+            ui.showLoadingErrorMessage(e);
         } finally {
             recipes = new RecipeList();
-            Ui.showLine();
+            ui.showLine();
         }
     }
 
@@ -36,20 +36,20 @@ public class Duke {
      * it is terminated by the user.
      */
     public void run() {
-        Ui.showWelcome();
-        Ui.showLine();
+        ui.showWelcome();
+        ui.showLine();
         boolean isExit = false;
         while (!isExit) {
             try {
-                String fullCommand = Ui.readCommand();
-                Ui.showLine();
+                String fullCommand = ui.readCommand();
+                ui.showLine();
                 Command c = Parser.parseCommands(fullCommand);
-                c.execute(recipes);
+                c.execute(recipes,ui);
                 isExit = c.isExit();
             } catch (Exception e) {
-                Ui.showDudeMainError(e);
+                ui.showDudeMainError(e);
             } finally {
-                Ui.showLine();
+                ui.showLine();
             }
         }
     }

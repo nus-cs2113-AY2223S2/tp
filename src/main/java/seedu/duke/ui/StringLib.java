@@ -10,7 +10,7 @@ public interface StringLib {
             + "  \\_/\\__,_|___/\\__\\___|  \\___/|_|   \\_|  |_/\\___/|_| |_| |_| |___/  | |  \\_/  \\___/\\_|  |_/| |"
             + "\n"
             + "                                                                     \\_\\                  /_/\n";
-    String WELCOME_MESSAGE = "\nHELLLOO there! I am\n "
+    String WELCOME_MESSAGE = "\nHELLO there! I am\n "
             + LOGO + '\n'
             + "Your personal recipes assistant!\n"
             + "What can I do for you today?\n\n"
@@ -83,6 +83,8 @@ public interface StringLib {
             + "\nException occurred: ";
     String RECIPE_FINDING_DEFAULT_ERROR = "\nError in finding recipe!"
             + "\nException occurred: ";
+    String RECIPE_VIEWING_DEFAULT_ERROR = "\nError in viewing recipe!"
+            + "\nException occurred: ";
     String FORMAT_CONVERT_ERROR = "\nError in inputs!"
             + "\nException occurred: The number is too big to process or the inputs contains words when "
             + "it is supposed to be numbers."
@@ -106,5 +108,5 @@ public interface StringLib {
             + "i/<insert ingredients with \\\", \\\" separation> \"\n"
             + "\"t/<insert cuisine>\\\"\\n\"\n"
             + "\"Example use : \\\"add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese\\\" \\n \\n\"";
-
+    String RECIPE_CLEARED_MESSAGE = "\nAll recipes have been cleared!";
 }
