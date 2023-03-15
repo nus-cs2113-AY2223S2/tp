@@ -22,7 +22,6 @@ import static seedu.moneymind.string.Strings.BACK;
  * A class to add an event
  */
 public class EventCommand implements Command {
-
     private String eventName;
     private int budget;
     private int expense;

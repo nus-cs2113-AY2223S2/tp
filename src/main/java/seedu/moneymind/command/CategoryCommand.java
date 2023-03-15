@@ -10,6 +10,7 @@ import java.util.HashMap;
 /**
  * Represents the command to add a new category.
  */
+
 public class CategoryCommand implements Command {
     public static HashMap<String, Integer> categoryMap = new HashMap<String, Integer>();
     private final String name;
