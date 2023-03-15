@@ -1,8 +1,11 @@
 package seedu.duke;
+
 import java.util.ArrayList;
 
 public class UI {
-    public UI() {};
+    public UI() {
+    }
+
 
     // Todo: The userInput now is the whole string, and I am breaking it down into an Array of Strings here
     // Todo: This will be changed when the parser is added.
@@ -32,7 +35,7 @@ public class UI {
             executeExitCommand();
             break;
         case "add":
-            executeAddModuleCommand(storage, userCommandSecondKeyword, puModules);
+            executeAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
             break;
         case "remove":
             int indexToRemove = Integer.parseInt(userCommandSecondKeyword);
@@ -44,28 +47,29 @@ public class UI {
         }
         return toContinue;
     }
+
     private void executeListCurrentModulesCommand(ArrayList<Module> modules) {
         Parser.printCurrentModList(modules);
     }
 
     // Todo: Right now, it uses university Name only but since university object has 3 attributes:
-    // todo: handle exceptions such that the univeristyname inputted is incorrect
+    // todo: handle exceptions such that the universityname inputted is incorrect
     // 1. univId; 2. univName; 3. univAbbName; we can use this next time
     // Note that this function, takes in the arrayList of modules of ALL MODULES
-    // THIS IS NOT THE FUNCITON THAT RETURNS USER SELECTED MODULES SPECIFIED TO A PU.
+    // THIS IS NOT THE FUNCTION THAT RETURNS USER SELECTED MODULES SPECIFIED TO A PU.
     private void executeListPuModulesCommand(ArrayList<Module> modules, ArrayList<University> universities,
-                                             String universityName) {
+                                             String universityAbbName) {
         int univId = -1;
         for (int i = 0; i < universities.size(); i++) {
             University currentUniversity = universities.get(i);
-            String currentUniversityName = currentUniversity.getUnivName();
-            if (universityName.equals(currentUniversityName)) {
-                univId = currentUniversity.getUnivId() + 1; //Todo: change magic literal
+            String currentUniversityAbbName = currentUniversity.getUnivAbbName();
+            if (universityAbbName.equals(currentUniversityAbbName)) {
+                univId = currentUniversity.getUnivId(); //Todo: change magic literal
             }
         }
         Parser.printPUModules(univId);
     }
-    
+
     private void executeExitCommand() {
         System.out.println("Exiting program now");
     }
@@ -75,16 +79,29 @@ public class UI {
     }
 
     // The add comment currently searches only the module code
-    private void executeAddModuleCommand(Storage storage, String moduleCode, ArrayList<Module> allModules) {
+    private void executeAddModuleCommand(Storage storage, String abbreviationAndCode, ArrayList<Module> allModules,
+                                         ArrayList<University> universities) {
+        String[] stringSplit = abbreviationAndCode.split("/");
+        String abbreviation = stringSplit[0];
+        String moduleCode = stringSplit[1];
+        int univID = 0;
+        for (int i = 0; i < universities.size(); ++i) {
+            System.out.println(universities.get(i).getUnivAbbName());
+            if (universities.get(i).getUnivAbbName().equalsIgnoreCase(abbreviation)) {
+                univID = universities.get(i).getUnivId();
+                break;
+            }
+        }
         for (int i = 0; i < allModules.size(); i++) {
             Module currentModule = allModules.get(i);
-            if (currentModule.getModuleCode().equals(moduleCode)) {
+            if (currentModule.getUnivId() == univID && currentModule.getModuleCode().equalsIgnoreCase(moduleCode)) {
                 storage.addModuleToModuleList(currentModule);
             }
         }
     }
 
-    private void executeDeleteModuleCommand(Storage storage, int indexToDelete, ArrayList<Module> modules ) {
+    private void executeDeleteModuleCommand(Storage storage, int indexToDelete, ArrayList<Module> modules) {
         Parser.deleteModule(indexToDelete, modules, storage);
     }
+
 }
