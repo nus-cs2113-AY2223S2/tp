@@ -42,7 +42,7 @@ public class Meal360 {
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
-                        "Please enter a valid recipe number or mame. You entered %s, " + "which is in ivalid.",
+                        "Please enter a valid recipe number or name. You entered %s, " + "which is in invalid.",
                         command[1]);
                 ui.printMessage(errorMessage);
             }

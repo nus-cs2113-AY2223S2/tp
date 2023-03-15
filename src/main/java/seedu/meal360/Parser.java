@@ -83,13 +83,18 @@ public class Parser {
         // user inputted index of recipe in list
         } else {
             // deleting a range of recipes
-            if (input[1].contains("-")) {
+            if (input[1].length() >= 3) {
+                String rangeRecipes = "";
                 int startIndex = Integer.parseInt(input[1].charAt(0) + "");
                 int endIndex = Integer.parseInt(input[1].charAt(2) + "");
-                for (int i = startIndex; i <= endIndex; i++) {
-                    recipeList.deleteRecipe(i);
+                int newSize = recipeList.size() - ((endIndex - startIndex) + 1);
+                // endIndex -= 4;
+                while (recipeList.size() != newSize) {
+                    rangeRecipes += recipeList.deleteRecipe(endIndex).getName() + ", ";
+                    endIndex--;
                 }
-                return input[1];
+                rangeRecipes = rangeRecipes.substring(0, rangeRecipes.length() - 2);
+                return rangeRecipes;
             } else {
                 int recipeIndex = Integer.parseInt(input[1]);
                 // need to subtract 1 since list is 1-based
