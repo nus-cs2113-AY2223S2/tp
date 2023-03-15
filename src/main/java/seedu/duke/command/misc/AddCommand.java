@@ -34,7 +34,7 @@ public class AddCommand extends ExecutableCommand {
         dukeSession.getUi().printMessage(String.valueOf(dukeSession.getIngredients().get(index)));
         dukeSession.getIngredientStorage().writeIngredientsToFile(dukeSession.getIngredients());
     }
-    
+
     /**
      * Adds a specified quantity of a new ingredient to the ingredients list
      *
