@@ -1,8 +1,8 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.command.AddTaskCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.CommandParser;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
@@ -10,8 +10,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StorageTest {
     private static final String TEST_DATA_FOLDER = "./src/test/data"; // this is also a directory
@@ -22,16 +22,15 @@ class StorageTest {
     private static final String NON_EXISTENT_FILE = "./src/test/data/doesNotExist.txt";
     private static final String NEW_SAVE_FILE_FOR_COMPARISON = "./src/test/data/newSaveFileAfterLoading.txt";
 
-    TaskList taskList = new TaskList();
+    private CommandParser parser = new CommandParser();
+    private TaskList taskList = new TaskList();
     private Ui ui = new Ui();
 
     @Test
     void saveData_properFilePath_success() {
         try {
-            String[] sampleInput1 = {"add", "bubu", "-d", "18-02-2022", "18:00"};
-            String[] sampleInput2 = {"add", "baba", "-d", "12-05-2023", "17:00"};
-            Command addTaskCommand1 = new AddTaskCommand(sampleInput1);
-            Command addTaskCommand2 = new AddTaskCommand(sampleInput2);
+            Command addTaskCommand1 = parser.parseCommand("add bubu -d 18-02-2022 18:00");
+            Command addTaskCommand2 = parser.parseCommand("add baba -d 12-05-2023 17:00");
             addTaskCommand1.execute(taskList, ui);
             addTaskCommand2.execute(taskList, ui);
             Storage.saveData(ACTUAL_SAVE_FILE, taskList, ui);
@@ -47,7 +46,7 @@ class StorageTest {
                     isActualSaveEqualExpectedSave = false;
                 }
             }
-            assertEquals(true, isActualSaveEqualExpectedSave);
+            assertTrue(isActualSaveEqualExpectedSave);
         } catch (Exception e) {
             fail();
         }
@@ -60,7 +59,6 @@ class StorageTest {
             fail(); // the test should not reach this line
         } catch (Exception e) {
             System.out.println("Directory cannot be opened");
-            return;
         }
     }
 
@@ -105,7 +103,7 @@ class StorageTest {
                     isActualSaveEqualExpectedSave = false;
                 }
             }
-            assertEquals(true, isActualSaveEqualExpectedSave);
+            assertTrue(isActualSaveEqualExpectedSave);
         } catch (Exception e) {
             fail(); // should not reach this line
         }
