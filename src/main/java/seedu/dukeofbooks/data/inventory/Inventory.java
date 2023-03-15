@@ -64,7 +64,6 @@ public class Inventory {
      */
     public Book purgeBook(String isbn) throws IllegalValueException {
         // Check if book in inventory
-        // Check if book in inventory
         Optional<Book> target = inventoryListing.entrySet()
                                                 .stream()
                                                 .filter(e -> e.getKey().getIsbn().equals(isbn))
