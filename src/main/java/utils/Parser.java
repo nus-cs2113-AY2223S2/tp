@@ -253,6 +253,7 @@ public class Parser {
             System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
+        assert indexToRemove >= 0 : "indexToRemove should be 0 or greater";
         return new DeleteDishCommand(indexToRemove);
     }
 
