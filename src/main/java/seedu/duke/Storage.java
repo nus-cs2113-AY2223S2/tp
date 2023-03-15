@@ -1,14 +1,15 @@
 package seedu.duke;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Storage {
-
     private static final String SAVED_MODULES_FILE_PATH = "./data/saved_modules.txt";
-    private ArrayList<Module> modules;
+    private static ArrayList<Module> modules;
 
     public Storage() {
         this.modules = new ArrayList<>();
@@ -25,7 +26,24 @@ public class Storage {
             savedModulesFile.createNewFile();
             return;
         }
-        DataReader.readModData(SAVED_MODULES_FILE_PATH, modules);
+        readModData(SAVED_MODULES_FILE_PATH, modules);
+    }
+
+    private void readModData(String modulesFilePath, ArrayList<Module> modules) {
+        try (BufferedReader br = new BufferedReader(new FileReader(modulesFilePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] row = line.split(",");
+                if (row[3].equals("N/A")) {
+                    row[3] = "0";
+                }
+                Module module = new Module(Integer.parseInt(row[0]), row[1], row[2],
+                        Integer.parseInt(row[3]), row[4], row[5], Integer.parseInt(row[6]));
+                modules.add(module);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addModuleToModuleList(Module moduleToAdd) {
@@ -71,5 +89,4 @@ public class Storage {
     private static String writeTaskPreparation(String saveString) {
         return saveString + System.lineSeparator();
     }
-
 }

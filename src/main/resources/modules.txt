@@ -1,0 +1,156 @@
+1,AMSE216,Introduction to biomaterials,3,ME4253,Biomaterials Engineering,4
+1,IWC311,Heat Transfer,3,ME3122,Heat Transfer,4
+1,AE320,Aerodynamics II,3,ME4231,Aerodynamics,4
+1,IWC109,Engineering Design,3,ME4661,Exchange Elective,4
+2,HSS362,Special Lectures on Art<Korean Popular Culture and the Korean Wave>,3,EX3887,Exchange UEM,4
+2,ME320,Applied Fluid Mechanics,3,ME2135,Intermediate Fluid Mechanics,4
+2,NQE202,Introduction to Nuclear Engineering I,3,ME3662,Technical Elective,4
+2,ME311,Heat Transfer,3,ME3122,Heat Transfer,4
+2,AE410,Combustion Engineering,3,ME4227,Internal Combusion Engines,4
+2,ME251,Dynamics,3,ME2115,Mechanics of Machines,4
+2,ME221,Fluid Mechanics,3,ME2134,Fluid Mechanics I,4
+2,ME453,Introduction to Robotics Engineering,3,ME4245,Robot Mechanics and Control,4
+2,MAE221,Fluid Mechanics,3,ME2134,Fluid Mechanics I,4
+2,AE405,Satellite Systems,3,ME4661,Technical Elective,4
+2,COE202,Basics of Artificial Intelligence<Learning Artificial Intelligence with LEGO>,3,ME3663,Technical Elective,4
+2,MAE552,Introduction to Acoustics,N/A,ME3661,Technical Elective,4
+2,ENGME440,Engineering Design via FEM,3,ME4291,Finite Element Analysis,4
+2,ENGEE488,Special Topics in Electrical Engineering<Introduction to Multi-disciplinary Robotics>,3,ME4245,Robot Mechanics and Control,4
+2,AE321,Compressible Aerodynamics,3,ME4231,Aerodynamics,4
+2,ME361,MODELING AND CONTROL OF ENGINEERING SYSTEMS,3,ME2142,Feedback Control Systems,4
+2,AE310,Propulsion system,3,ME5309,Aircraft Engines and Rocket Propulsion,4
+2,ME535,Finite Element Analysis of Structures,3,ME4291,Finite Element Analysis,4
+2,AE522,Computational Fluid Dynamics,3,ME4233,Computational Methods in Fluid Mechanics,4
+2,ME521,Viscous Fluid Flow,3,ME2135,Intermediate Fluid Mechanics,4
+2,AE331,Aerospace Structures II,3,ME4212,Aircraft Structures,4
+2,ENGME203,Mechatronics system design,3,ME4661,Exchange Elective,4
+2,ENGME320,Applied Fluid Mechanics,3,ME2135,Intermediate Fluid Mechanics,4
+2,ME489,Special Topics in Mechanical Engineering Practice<Programming for Signal and image processing>,3,ME3663,Technical Elective,4
+2,ME207,Applied Electronics,3,ME3663,Technical Elective,4
+2,AE530,Flight Vehicle Structures,3,ME3663,Technical Elective,4
+2,ME492,Special Topics in Mechanical Engineering Practice<Mobile System Programming>,3,ME3663,Technical Elective,4
+2,CTP445,Augmented Reality,3,ME3663,Technical Elective,4
+2,ME491,Special Topics in Mechanical Engineering<Visual Intelligence>,3,ME3663,Technical Elective,4
+2,AE455,Global Positioning System,3,ME3663,Technical Elective,4
+2,CS374,Introduction to Human-Computer Interaction,3,ME3663,Technical Elective,4
+2,AE300,Flight Mechanics Project,3,ME3663,Technical Elective,4
+2,ID212,Basic Design,3,ME3663,Technical Elective,4
+2,ID303,Design Methods,3,ME3663,Technical Elective,4
+2,ME510,Advanced Fluid Mechanics,3,ME2135,Intermediate Fluid Mechanics,4
+2,PH221,Classical Mechanics I,3,ME2115,Mechanics of Machines,4
+2,ME502,Introduction to Finite Element Method,3,ME4291,Finite Element Analysis,4
+2,AE330,Aerospace Structures I,3,ME4212,Aircraft Structures,4
+2,ME200,Basic Mechanical Practice,3,ME2102,Engineering Innovation and Mod,4
+2,EE381,Control System Engineering,3,ME2142,Feedback Control Systems,4
+2,STP213,Silicon Valley in Perspective,3,EX4883,Exchange UEM,4
+2,BIS200,Bioengineering Fundamentals,3,ME3663,Technical Elective,4
+2,ID301,Interactive Product Design,3,ME3663,Technical Elective,4
+2,IE312,Introduction to Human Engineering,3,ME3663,Technical Elective,4
+2,CE201,Mechanics of Materials I,3,ME2112,Strength of Materials,4
+2,ME231,Solid Mechanics,3,ME2112,Strength of Materials,4
+2,CBE331,Fluid Mechanics for Chemical Engineering,3,ME2134,Fluid Mechanics I,4
+2,IE321,PRODUCTION MANAGEMENT I,N/A,ME3662,Technical Elective,4
+2,CE202,STRUCTURAL MECHANICS,N/A,ME2112,Strength of Materials,3
+3,MECH240,Solid mechanics,3,ME2112,Strength of Materials,4
+3,MECH370,Fluid mechanics,3,ME2134,Fluid Mechanics I,4
+3,SOSC351,Media and Society,3,EX3887,Exchange UEM,4
+3,AMSE361,Introduction to Polymers,3,ME3662,Technical Elective,4
+3,AMSE211,MATERIALS DESIGN,3,ME3662,Technical Elective,4
+3,AMSE212,Nanoscience and Nanotechnology,3,ME3662,Technical Elective,4
+3,IMEN585,Financial Engineering,3,ME3662,Technical Elective,4
+3,MECH541,MECHANICS OF COMPOSITE MATERIALS,3,ME3662,Technical Elective,4
+3,MECH678,FLOW VISUALISATION,N/A,ME3661,Technical Elective,4
+3,AMSE464,PHYSICAL PROPERTIES OF POLYMERS,3,ME3662,Technical Elective,4
+3,MEIE583,INTRO TO FINITE ELEMENT METHOD,3,ME4291,Finite Element Analysis,4
+3,MECH490G,Introduction to Appropriate Technology,3,ME3661,Technical Elective,4
+3,MECH490K,Artificial Intelligence for M.E.,3,ME3661,Technical Elective,4
+3,CITE490K,Fundamental of Robotics,3,ME3661,Technical Elective,4
+3,PHYS203,Mechanics,3,ME2115,Mechanics of Machines,4
+3,MECH583,Intro. to Finite Element Method,3,ME4291,Finite Element Analysis,4
+3,MECH583,Intro. to Finite Element Method,3,ME3661,Technical Elective,4
+3,MECH240,Solid Mechanics I,3,ME3661,Technical Elective,4
+3,MECH501,Analytical Methods in Engineering,3,ME3661,Technical Elective,4
+3,MECH303,MATHEMATICAL METHODS IN ENGINEERING,3,ME3661,Technical Elective,4
+3,MECH441,METAL FORMING,3,ME4661,Technical Elective,4
+3,MECH211,Dynamics,3,ME2115,Mechanics of Machines,4
+3,MECH515,CONTINUUM MECHANICS,3,ME3661,Technical Elective,4
+3,MECH550,ADVANCED THERMODYNAMICS,3,ME3661,Technical Elective,4
+3,MECH433,SYSTEMS DESIGN II,3,ME3661,Technical Elective,4
+3,AMSE321,Intro. to Metallic Materials,3,ME3661,Technical Elective,4
+3,MECH470,Applied Fluid Mechanics,3,ME3661,Technical Elective,4
+3,MECH381,ELECTRONICS FOR MECHANICAL ENGINEERS,3,ME3661,Technical Elective,4
+3,MECH465,ENGINEERING OF CREATIVE DESIGN,3,ME3661,Technical Elective,4
+3,AMSE501,ADVANCED THERMODYNAMICS OF MATERIALS,N/A,ME3995,Technical Elective,4
+3,MECH371,Heat Transfer,3,ME3122,Heat Transfer,4
+3,MECH323,SYSTEMS CONTROL,N/A,ME2142,Feedback Control Systems,4
+3,MECH579,INTRO TO MICROFLUIDS,N/A,ME3661,Technical Elective,4
+3,MECH450,APPLIED THERMAL ENGINEERING,N/A,ME3661,Technical Elective,4
+3,MECH471,AERODYNAMICS,N/A,ME4231,Aerodynamics and Propulsion,4
+3,ADMS568,NANO BIOMATERIALS,N/A,ME4253,Biomaterials Engineering,4
+4,M3228001000 001,Hypersonic Vehicle Design,3,ME3661,Technical Elective,4
+4,M1586001000 001,Computational Fluid Dynamics for Civil and Environmental Engineering,3,ME4233,Computational Methods in Fluid Mechanics,4
+4,046006 001,Man and the Universe,3,ME3661,Technical Elective,4
+4,458308,Process Control and Design,3,ME2142,Feedback Control Systems,4
+4,M2794.001700,MECHANICAL PRODUCT DESIGN,3,ME3661,Technical Elective,4
+4,414336,Fundamentals in Finite Element Analysis,3,ME4291,Finite Element Analysis,4
+4,M2795.002400,Mechanics of Aerospace Structures,3,ME4212,Aircraft Structures,4
+4,M2794.00400,Micro-nano Mechanics,3,ME3281,Microsystems Design and Applications,4
+4,M2794.01360,Micro-nano Manufacturing,3,ME3281,Microsystems Design and Applications,4
+4,M2795.00830,Computational Structural Analysis,3,ME4291,Finite Element Analysis,4
+4,M2794.0055,Robot Mechanics,3,ME4245,Robot Mechanics and Control,4
+4,M2794.007300,Finite Element Analysis,N/A,ME4291,Finite Element Analysis,4
+4,400.505,INTRODUCTION TO THE FINITE ELEMENT METHOD,N/A,ME4291,Finite Element Analysis,4
+4,M2794.003000,COMPUTER SIMULATION & DESIGN,N/A,ME4291,Finite Element Analysis,4
+4,446.345,INTRODUCTION TO ROBOTICS,3,ME4245,Robot Mechanics and Control,4
+4,406.752,VEHICLE ERGONOMICS,3,ME4661,Technical Elective 4,4
+4,ME446.632,CONTROL SYSTEM I,N/A,ME3662,Technical Elective,4
+4,M2795.002600,PRINCIPLES OF FLIGHT VEHICLE CONTROL,N/A,ME3661,Technical Elective,4
+4,446.781,DECISION MAKING FOR AUTONOMOUS AEROSPACE SYSTEMS,N/A,ME3661,Technical Elective,4
+4,M2794.00350,Micro Manufacturing,3,ME3661,Technical Elective,4
+4,M2794.01340,Mechatronics,3,ME3241,Microprocessor Applications,4
+4,M2794.00490,Digital Embedded Mechanical Systems,3,ME3661,Technical Elective,4
+4,M2794.01310,Mechanobiology,3,ME3661,Technical Elective,4
+4,M2794.00400,Micro-nano Mechanics,3,ME3661,Technical Elective,4
+4,M2794.00360,Optimal Design,3,ME3661,Technical Elective,4
+4,M2794.01350,Mechanical System Modeling and Control,3,ME2142,Feedback Control Systems,4
+4,M2794.0022,Applied Thermodynamics,3,ME3661,Technical Elective,4
+4,M2794.0041,Combustion and Environmental Engineering,3,ME3661,Technical Elective,4
+4,ZXX430.610A,Advanced Electricity Market Theory,3,ME3661,Technical Elective,4
+4,ZXX459.6,Topics in Petroleum and Gas engineering,3,ME3661,Technical Elective,4
+4,ZXX400.512,Design and Practice of Wind Turbine System,3,ME3661,Technical Elective,4
+4,M2794.0053,Control Systems 1,3,ME4246,Modern Control System,4
+4,ZXX5261.326,Biosystems Control and Lab,3,ME2142,Feedback Control Systems,4
+4,M2794.0077,Smart materials and design,3,ME3661,Technical Elective,4
+4,M2795.01070,Introduction to Innovative Aerospace Design,3,ME3661,Technical Elective,4
+4,M2794.00880,Advanced Gas Turbines,3,ME3661,Technical Elective,4
+4,M2794.00380,Flow and Design,3,ME3661,Technical Elective,4
+4,M2794.0068,Instrumentation for Measurement Analysis and Control,3,ME3661,Technical Elective,4
+4,M2794.0023,Internal Combusion Engines,3,ME4227,Internal Combusion Engines,4
+4,M2794.00270,INTRODUCTION TO ROBOTICS,3,ME4245,Robot Mechanics and Control,4
+4,M2795.0026,PRINCIPLES OF FLIGHT VEHICLE CONTROL,3,ME2142,Feedback Control Systems,4
+4,M2794.0073,Finite Element Analysis,3,ME4291,Finite Element Analysis,4
+4,M2794.0026,Heat Transfer,3,ME3122,Heat Transfer,4
+4,M2794.0104,FUEL CELL FUNDAMENTALS,3,ME3661,Technical Elective,4
+4,55006,LIFE IN CONTEMPORARY KOREA,N/A,EX1000,Exchange UEM,4
+4,ZXX4582.503,FUNCTIONAL POLYMER NANOMATERIALS,N/A,ME4661,Technical Elective,4
+4,M2794.00200,APPLIED FLUID MECHANICS,N/A,ME2135,Intermediate Fluid Mechanics,4
+4,ZXX458.305,PROCESS FLUID MECHANICS,N/A,ME2135,Intermediate Fluid Mechanics,4
+4,409.33,SYSTEMS ENGINEERING THERMODYNAMICS,3,ME3221,Energy Conversion Processes,4
+4,M2794.008600,INVISCID FLOW,N/A,ME4661,Technical Elective,4
+4,M2795.006500,AIR BREATHING PROPULSION THEORY,N/A,ME4661,Technical Elective,4
+4,457.206,SOIL MECHANICS,N/A,ME4661,Technical Elective,4
+4,M2795.002600,PRINCIPLES OF FLIGHT VEHICLE CONTROL,N/A,ME2142,Feedback Control Systems,4
+4,M2795.004300,ROCKET PROPULSION,N/A,ME4662,Technical Elective,4
+4,M2795.00400,HIGH ENERGY THERMOFLUID DYNAMICS,N/A,ME4661,Technical Elective,4
+4,M2794.002600,Heat Transfer,N/A,ME3122,Heat Transfer,4
+4,406.436,MANUFACTURING PROCESS DESIGN FOR INDUSTRIAL ENGINEERS,N/A,ME2162,Manufacturing Processes,4
+4,M2794.012000,MECHANICAL STRENGTHS AND BEHAVIORS OF SOLIDS,N/A,ME4255,Material Failure,4
+5,EEE3314,INTRODUCTION ARTIFICIAL INTELLIGENCE,3,ME3663,Technical Elective,4
+5,MEU3710,NANO MECHANICAL ENGINEERING,3,ME3662,Technical Elective,4
+5,MEU3700,BIOMECHANICS,3,ME3661,Technical Elective,4
+5,MEU3600,ADVANCED MECHANICS OF MATERIALS,3,ME2114,Mechanics of Materials,4
+5,MEU3680,MECHANICAL SYSTEM CONTROL,3,ME2142,Feedback Control Systems,4
+5,MEU3010,Micro Mechanical system,3,ME3281,Microsystems Design and Applications,4
+5,MEU5370,Finite Element Method,3,ME4291,Finite Element Analysis,4
+5,MEU6230,VISCOUS FLUID DYNAMICS,3,ME2135,Intermediate Fluid Mechanics,4
+5,DAA3250,CHEM ENG THERMODYNAMICS I,N/A,ME3221,Sustainable Energy Conversion,4

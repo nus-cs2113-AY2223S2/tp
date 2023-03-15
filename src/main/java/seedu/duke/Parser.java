@@ -4,42 +4,32 @@ import java.io.IOException;
 
 public class Parser {
     private static ArrayList<University> universities = new DataReader().getUniversities();
-    private static ArrayList<Module> modules = new DataReader().getModules();
+    private static ArrayList<Module> puModules = new DataReader().getModules();
     private static final String LINE = "____________________________________________________________";
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
 
-    public static void parseCommand(String userInput) {
-        String[] input = userInput.split((""), 2);
+    // Todo: Throw Exception when commandWords.size() == 1
+    public static ArrayList<String> parseCommand(String userInput) {
+        String[] input = userInput.split((" "), 2);
+        ArrayList<String> commandWords = new ArrayList<>();
         String commandInput = input[0];
-        String commandSpecifics = input[1];
-        if (commandInput.equalsIgnoreCase("list")) {
-            if (commandSpecifics.equalsIgnoreCase("pu")) { //list all korean partner uni
-                printPUList();
-            } else if (commandInput.equalsIgnoreCase("current")) { //list current added mods
-                printCurrentModList();
-            } else { //list [INDEX]
-                printPUModules(Integer.parseInt("commandSpecifics"));
-            }
-        } else if (commandInput.equalsIgnoreCase("add")) {
-            //add function
-        } else if (commandInput.equalsIgnoreCase("remove")) {
-            // delete function
-        } else {
-            System.out.println(LINE);
-            System.out.println(COMMAND_INPUT_ERROR);
-            System.out.println(LINE);
+        commandWords.add(commandInput);
+        if (input.length > 1) {
+            String commandSpecifics = input[1];
+            commandWords.add(commandSpecifics);
         }
+        return commandWords;
     }
 
     public static void printPUModules(int univID) {
-        ArrayList<Module> puModules = new ArrayList<>();
-        for (Module module : modules) {
+        ArrayList<Module> puModulesToPrint = new ArrayList<>();
+        for (Module module : puModules) {
             if (module.getUnivId() == univID) {
-                puModules.add(module);
+                puModulesToPrint.add(module);
             }
         }
         int puModulesIndex = 0;
-        for (Module module : puModules) {
+        for (Module module : puModulesToPrint) {
             puModulesIndex++;
             String moduleCode = module.getModuleCode();
             String moduleName = module.getModuleName();
@@ -65,7 +55,7 @@ public class Parser {
         System.out.println(LINE);
     }
 
-    public static void printCurrentModList() {
+    public static void printCurrentModList(ArrayList<Module> modules) {
         int listIndex = 0;
         System.out.println(LINE);
         for (Module module : modules) {
@@ -88,16 +78,15 @@ public class Parser {
      * Deletes the module corresponding to the uni specified by user. Module will the removed from user's
      * saved list of modules.
      *
-     * @param moduleToDelete Module to be deleted from user's saved list of modules.
      * @param indexToDelete  Index of that module that is given in user input.
      * @param uniModuleList  The corresponding ArrayList of that specified uni.
      * @param database       Database of the user's saved list of modules.
      */
-    public static void deleteModule(Module moduleToDelete, int indexToDelete, ArrayList<Module> uniModuleList,
+    public static void deleteModule(int indexToDelete, ArrayList<Module> uniModuleList,
                                     Storage database) {
         int indexToZeroBased = indexToDelete - 1;
         try {
-            uniModuleList.remove(indexToDelete);
+            uniModuleList.remove(indexToZeroBased);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Index out of bounds");
         }
@@ -109,3 +98,4 @@ public class Parser {
         }
     }
 }
+

@@ -1,25 +1,28 @@
 package seedu.duke;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class DataReader {
-    private final String MODULES_FILE_PATH = "./data/modules.txt";
-    private final String UNIVERSITIES_FILE_PATH = "./data/universities.txt";
+    private static final String MODULES_FILE_PATH = "modules.txt";
+    private static final String UNIVERSITIES_FILE_PATH = "universities.txt";
     private ArrayList<University> universities;
-    private ArrayList<Module> modules;
+    private ArrayList<Module> puModules;
 
     public DataReader() {
         this.universities = new ArrayList<>();
-        this.modules = new ArrayList<>();
+        this.puModules = new ArrayList<>();
         readUnivData();
-        readModData(MODULES_FILE_PATH, modules);
+        readModData(MODULES_FILE_PATH, puModules);
     }
 
     private void readUnivData() {
-        try (BufferedReader br = new BufferedReader(new FileReader(UNIVERSITIES_FILE_PATH))) {
+        ClassLoader classLoader = DataReader.class.getClassLoader();
+        InputStream input = classLoader.getResourceAsStream(UNIVERSITIES_FILE_PATH);
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(input))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
@@ -31,8 +34,10 @@ public class DataReader {
         }
     }
 
-    public static void readModData(String modulesFilePath, ArrayList<Module> modules) {
-        try (BufferedReader br = new BufferedReader(new FileReader(modulesFilePath))) {
+    private void readModData(String modulesFilePath, ArrayList<Module> modules) {
+        ClassLoader classLoader = DataReader.class.getClassLoader();
+        InputStream input = classLoader.getResourceAsStream(modulesFilePath);
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(input))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
@@ -53,12 +58,12 @@ public class DataReader {
     }
 
     public ArrayList<Module> getModules() {
-        return modules;
+        return puModules;
     }
 
     public ArrayList<Module> getModules(int univId) {
         ArrayList<Module> modules = new ArrayList<>();
-        for (Module module : this.modules) {
+        for (Module module : this.puModules) {
             if (module.getUnivId() == univId) {
                 modules.add(module);
             }
