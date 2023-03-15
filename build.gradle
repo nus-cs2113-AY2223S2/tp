@@ -30,7 +30,7 @@ test {
 }
 
 application {
-    mainClass = "seedu.LifeTracker.LifeTracker"
+    mainClass = "seedu.lifetracker.LifeTracker"
 }
 
 shadowJar {
