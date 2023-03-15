@@ -110,15 +110,27 @@ public class Parser {
         switch (command) {
 
         case COMMAND_LIST_MODULE_WORD:
+            if (!isOneWord(split)) {
+                throw new IllegalCommandException();
+            }
             return new ListModuleCommand();
 
         case COMMAND_EXIT_WORD:
+            if (!isOneWord(split)) {
+                throw new IllegalCommandException();
+            }
             return new ExitCommand();
 
         case COMMAND_HELP_WORD:
+            if (!isOneWord(split)) {
+                throw new IllegalCommandException();
+            }
             return new HelpCommand();
 
         case COMMAND_LIST_WORD:
+            if (!isOneWord(split)) {
+                throw new IllegalCommandException();
+            }
             return new ListCommand();
 
         case COMMAND_DATE_WORD:
@@ -174,6 +186,31 @@ public class Parser {
      */
     private static Boolean isEmptyParam(String[] split) {
         return (split.length != 2);
+    }
+
+    /**
+     * Checks if the user's input is only one word.
+     *
+     * @param split Parsed user input split into command and parameter.
+     * @return {@code true} if the input is only one word, {@code false} otherwise.
+     */
+    private static Boolean isOneWord(String[] split) {
+        return (split.length == 1);
+    }
+
+    /**
+     * Parses LocalDateTime into a String according to the given pattern.
+     *
+     * @param date       Date and time with LocalDateTime data type.
+     * @param dateString Date and time with String data type.
+     * @param pattern    Desired pattern to format String.
+     * @return Parsed date and time in a String.
+     */
+    public static String parseDateTime(LocalDateTime date, String dateString, DateTimeFormatter pattern) {
+        if (date != null) {
+            return date.format(pattern);
+        }
+        return dateString;
     }
 
     /**

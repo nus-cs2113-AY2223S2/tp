@@ -103,7 +103,7 @@ public class Ui {
             System.out.println("There are no modules in your module list!");
             return;
         }
-        System.out.println("These are the modules you are taking this semester:");
+        System.out.println("You are taking " + allModules.size() + " module(s) this semester:");
         for (int i = 0; i < allModules.size(); i++) {
             System.out.println(i+1 + "." + allModules.get(i).toString());
         }
@@ -116,7 +116,7 @@ public class Ui {
      * @param moduleCode The code of the module which was deleted.
      */
     public void printModuleDeleteMessage(String moduleCode) {
-        System.out.println("Got it, removed " + moduleCode + " from your Module list.");
+        System.out.println("Got it, removed " + moduleCode.toUpperCase() + " from your Module list.");
 
     }
 

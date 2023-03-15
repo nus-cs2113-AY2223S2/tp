@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-
 class ParserTest {
 
     @Test
@@ -50,15 +49,15 @@ class ParserTest {
     }
 
     @Test
-    void getCommand_invalidCommand_expectNull( ) throws UnexpectedException {
+    void getCommand_invalidCommand_expectNull() throws UnexpectedException {
         Ui ui = new Ui();
         int size = 1;
         String userCommand = "draw";
-        Command newCommand = Parser.getCommand(userCommand,ui,size, null);
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertNull(newCommand);
 
     }
-    
+
     @Test
     void parseEvent_normalEvent_expectDescriptionAndFromAndTo() throws InvalidEvent {
         String param = "test /from today /to tomorrow";
@@ -117,7 +116,13 @@ class ParserTest {
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
     }
-    
+
+    @Test
+    void parseEvent_toBeforeFrom_expectException() {
+        String param = "wedding /to 6pm /from 9am";
+        assertThrows(InvalidEvent.class, () -> Parser.parseEvent(param));
+    }
+
     @Test
     void getCommand_noKeywordFind_expectNull() throws UnexpectedException {
         String userCommand = "find";
@@ -171,6 +176,7 @@ class ParserTest {
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertNull(newCommand);
     }
+
     @Test
     void getCommand_nonIntegerUnmarkIndex_expectException() throws UnexpectedException {
         String userCommand = "unmark a";
