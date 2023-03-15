@@ -1,4 +1,4 @@
-package seedu.myLedger;
+package seedu.myledger;
 
 import seedu.parser.MainInputParser;
 import seedu.txtdata.TxtFileStatus;
