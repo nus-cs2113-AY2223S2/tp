@@ -3,16 +3,18 @@ package seedu.moneymind;
 import java.util.Scanner;
 
 import seedu.moneymind.command.Command;
-import seedu.moneymind.command.InvalidCommandException;
+import seedu.moneymind.exceptions.InvalidCommandException;
 import seedu.moneymind.command.Parser;
 import seedu.moneymind.storage.Storage;
+import seedu.moneymind.string.Strings;
+import seedu.moneymind.ui.Ui;
 
 public class Moneymind {
+    public static Scanner in;
     private Parser parser;
     private Storage storage;
     private Ui ui;
     private String userInput;
-    public static Scanner in;
 
     public Moneymind() {
         this.parser = new Parser();

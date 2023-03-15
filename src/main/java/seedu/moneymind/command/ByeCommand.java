@@ -1,11 +1,15 @@
 package seedu.moneymind.command;
 
-import seedu.moneymind.Ui;
+import seedu.moneymind.ui.Ui;
 
 /**
  * Represents the command to exit the program.
  */
 public class ByeCommand implements Command {
+
+    /**
+     * Exits the program.
+     */
     @Override
     public void execute(Ui ui) {
         ui.goodbye();

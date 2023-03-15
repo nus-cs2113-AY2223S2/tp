@@ -8,7 +8,9 @@ import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.moneymind.category.Category;
 import seedu.moneymind.command.CategoryCommand;
+import seedu.moneymind.event.Event;
 import seedu.moneymind.storage.FormatToTxt;
 import seedu.moneymind.storage.Storage;
 

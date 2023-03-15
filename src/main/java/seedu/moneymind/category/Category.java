@@ -1,10 +1,12 @@
-package seedu.moneymind;
+package seedu.moneymind.category;
+
+import seedu.moneymind.event.Event;
 
 import java.util.ArrayList;
+import static seedu.moneymind.string.Strings.NO_EVENTS_IN_THIS_CATEGORY_MESSAGE;
 
 public class Category {
-    public static final String NO_EVENTS_IN_THIS_CATEGORY_MESSAGE = "Opps! You have no events in this category.";
-    ArrayList<Event> events = new ArrayList<>();
+    public ArrayList<Event> events = new ArrayList<>();
 
     private String name;
 

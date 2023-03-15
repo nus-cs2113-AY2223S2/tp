@@ -1,7 +1,7 @@
-package seedu.moneymind;
+package seedu.moneymind.ui;
 
-import static seedu.moneymind.Strings.BYE_MESSAGE;
-import static seedu.moneymind.Strings.HORIZONTAL_LINE;
+import static seedu.moneymind.string.Strings.BYE_MESSAGE;
+import static seedu.moneymind.string.Strings.HORIZONTAL_LINE;
 
 public class Ui {
     private static final String LOGO = "[LOGO_PLACEHOLDER]\n";

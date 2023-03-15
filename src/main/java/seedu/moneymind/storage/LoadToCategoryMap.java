@@ -2,8 +2,8 @@ package seedu.moneymind.storage;
 
 import java.util.HashMap;
 
-import static seedu.moneymind.Strings.STORAGE_NEXT_VARIABLE;
-import static seedu.moneymind.Strings.NEW_LINE;
+import static seedu.moneymind.string.Strings.STORAGE_NEXT_VARIABLE;
+import static seedu.moneymind.string.Strings.NEW_LINE;
 import static seedu.moneymind.command.CategoryCommand.categoryMap;
 
 /**

@@ -1,8 +1,8 @@
 package seedu.moneymind.command;
 
-import seedu.moneymind.Category;
-import seedu.moneymind.CategoryList;
-import seedu.moneymind.Ui;
+import seedu.moneymind.category.Category;
+import seedu.moneymind.category.CategoryList;
+import seedu.moneymind.ui.Ui;
 
 /**
  * Represents the command to delete an event or a category.

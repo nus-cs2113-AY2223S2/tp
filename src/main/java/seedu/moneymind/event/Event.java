@@ -1,4 +1,4 @@
-package seedu.moneymind;
+package seedu.moneymind.event;
 
 public class Event {
     private static final int DEFAULT_EXPENSE = 0;

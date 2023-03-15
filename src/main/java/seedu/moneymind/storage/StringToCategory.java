@@ -1,9 +1,12 @@
-package seedu.moneymind;
+package seedu.moneymind.storage;
+
+import seedu.moneymind.event.Event;
+import seedu.moneymind.category.Category;
 
 import java.util.ArrayList;
 
-import static seedu.moneymind.Strings.STORAGE_CATEGORY_NAME;
-import static seedu.moneymind.Strings.STORAGE_NEXT_VARIABLE;
+import static seedu.moneymind.string.Strings.STORAGE_CATEGORY_NAME;
+import static seedu.moneymind.string.Strings.STORAGE_NEXT_VARIABLE;
 
 /**
  * Converts a String from file.txt to an ArrayList of Category objects.

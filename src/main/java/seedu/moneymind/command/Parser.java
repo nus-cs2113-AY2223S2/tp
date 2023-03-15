@@ -2,29 +2,31 @@ package seedu.moneymind.command;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import seedu.moneymind.NegativeNumberException;
+
+import seedu.moneymind.exceptions.InvalidCommandException;
+import seedu.moneymind.exceptions.NegativeNumberException;
 
 
-import static seedu.moneymind.Strings.WHITE_SPACE;
-import static seedu.moneymind.Strings.BYE;
-import static seedu.moneymind.Strings.HELP;
-import static seedu.moneymind.Strings.VIEW;
-import static seedu.moneymind.Strings.DELETE;
-import static seedu.moneymind.Strings.EVENT;
-import static seedu.moneymind.Strings.CATEGORY;
-import static seedu.moneymind.Strings.INVALID_INPUT;
-import static seedu.moneymind.Strings.DELETE_FORMAT;
-import static seedu.moneymind.Strings.REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY;
-import static seedu.moneymind.Strings.SUBTLE_BUG_MESSAGE;
-import static seedu.moneymind.Strings.EVENT_REGEX;
-import static seedu.moneymind.Strings.EVENT_FORMAT;
-import static seedu.moneymind.Strings.EVENT_EMPTY;
-import static seedu.moneymind.Strings.CATEGORY_EMPTY;
-import static seedu.moneymind.Strings.NULL_INPUT_ASSERTION;
-import static seedu.moneymind.Strings.NULL_DESCRIPTION;
-import static seedu.moneymind.Strings.DELETE_REGEX;
-import static seedu.moneymind.Strings.EMPTY_DELETION;
-import static seedu.moneymind.Strings.REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER;
+import static seedu.moneymind.string.Strings.WHITE_SPACE;
+import static seedu.moneymind.string.Strings.BYE;
+import static seedu.moneymind.string.Strings.HELP;
+import static seedu.moneymind.string.Strings.VIEW;
+import static seedu.moneymind.string.Strings.DELETE;
+import static seedu.moneymind.string.Strings.EVENT;
+import static seedu.moneymind.string.Strings.CATEGORY;
+import static seedu.moneymind.string.Strings.INVALID_INPUT;
+import static seedu.moneymind.string.Strings.DELETE_FORMAT;
+import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY;
+import static seedu.moneymind.string.Strings.SUBTLE_BUG_MESSAGE;
+import static seedu.moneymind.string.Strings.EVENT_REGEX;
+import static seedu.moneymind.string.Strings.EVENT_FORMAT;
+import static seedu.moneymind.string.Strings.EVENT_EMPTY;
+import static seedu.moneymind.string.Strings.CATEGORY_EMPTY;
+import static seedu.moneymind.string.Strings.NULL_INPUT_ASSERTION;
+import static seedu.moneymind.string.Strings.NULL_DESCRIPTION;
+import static seedu.moneymind.string.Strings.DELETE_REGEX;
+import static seedu.moneymind.string.Strings.EMPTY_DELETION;
+import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER;
 
 /**
  * A class to parse the user input.
