@@ -14,7 +14,7 @@ public class Parser {
         ArrayList<String> commandWords = new ArrayList<>();
         String commandInput = input[0];
         commandWords.add(commandInput);
-        if (commandWords.size() > 1) {
+        if (input.length > 1) {
             String commandSpecifics = input[1];
             commandWords.add(commandSpecifics);
         }
