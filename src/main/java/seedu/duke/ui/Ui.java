@@ -19,6 +19,9 @@ public class Ui {
         Bye.bye();
     }
 
+
+    public void printFilters() { PrintHelp.printFiltersAvailable(); }
+
     public void printHelp() {
         PrintHelpMessage.showAvailableCommands();
     }
@@ -26,5 +29,6 @@ public class Ui {
     public void splitLine() {
         System.out.println(SEPARATOR);
     }
+
 
 }

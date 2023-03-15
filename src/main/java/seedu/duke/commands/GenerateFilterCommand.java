@@ -35,6 +35,7 @@ public class GenerateFilterCommand extends Command {
         }
     }
 
+
     public void executeCommand(Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
         assert System.identityHashCode(exercises) != System.identityHashCode(exerciseGenerator.generateSetAll())
@@ -59,6 +60,7 @@ public class GenerateFilterCommand extends Command {
                 break;
             default:
                 throw new DukeError("Unknown filter input!");
+
             }
         }
         if (numberOfExercisesToGenerate > exercises.size()) {

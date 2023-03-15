@@ -15,6 +15,9 @@ public class CommandHandler {
             case "generate":
                 command = new GenerateFilterCommand(userCommands);
                 break;
+            case "filters":
+                ui.printFilters();
+                break;
             case "bye":
             case "exit":
                 ui.byeUser();

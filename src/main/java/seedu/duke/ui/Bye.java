@@ -13,4 +13,5 @@ public class Bye {
         System.out.println("Thanks for using Fitness Duke!\n");
         System.out.println("Hope to see you again!\n");
     }
+
 }
