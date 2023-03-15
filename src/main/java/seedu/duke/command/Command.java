@@ -6,7 +6,7 @@ import seedu.duke.parser.Parser;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
-import seedu.duke.ui.Ui;
+import seedu.duke.ui.UI;
 
 import java.util.ArrayList;
 
@@ -48,13 +48,13 @@ public class Command {
      *
      * @param recipeList the current list of recipes to be modified or used.
      */
-    public void execute(RecipeList recipeList) {
+    public void execute(RecipeList recipeList, UI ui) {
 
         int recipeListIndex;
 
         switch (type) {
         case LIST:
-            Ui.showRecipeList(recipeList.getRecipeList());
+            ui.showRecipeList(recipeList.getRecipeList());
             break;
         case ADD:
             try {
@@ -67,9 +67,9 @@ public class Command {
                 String recipeTag = parsed.get(2);
                 ArrayList<String> recipeSteps = new ArrayList<>();
                 recipeList.addNewRecipe(new Recipe(recipeName, recipeTag, ingredientLists, recipeSteps));
-                Ui.showRecipeAdded(recipeList.getNewestRecipe(), recipeList.getCurrRecipeNumber());
+                ui.showRecipeAdded(recipeList.getNewestRecipe(), recipeList.getCurrRecipeNumber());
             } catch (Exception e) {
-                Ui.showAddingRecipeErrorMessage(e);
+                ui.showAddingRecipeErrorMessage(e);
             }
             break;
         case DELETE:
@@ -79,10 +79,10 @@ public class Command {
                 }
                 recipeListIndex = Integer.parseInt(fullDescription);
                 Recipe recipeToBeDeleted = recipeList.getRecipeFromList(recipeListIndex);
-                Ui.showRecipeDeleted(recipeToBeDeleted, recipeList.getCurrRecipeNumber() - 1);
+                ui.showRecipeDeleted(recipeToBeDeleted, recipeList.getCurrRecipeNumber() - 1);
                 recipeList.removeRecipe(recipeListIndex);
             } catch (Exception e) {
-                Ui.showDeletingTaskErrorMessage(e, type);
+                ui.showDeletingTaskErrorMessage(e, type);
             }
             break;
         case FIND:
@@ -97,22 +97,26 @@ public class Command {
                         findRecipeResults.add(recipe);
                     }
                 }
-                Ui.showFindResults(findRecipeResults, keywords);
+                ui.showFindResults(findRecipeResults, keywords);
             } catch (Exception e) {
-                Ui.showFindingTaskErrorMessage(e);
+                ui.showFindingTaskErrorMessage(e);
             }
             break;
+        case CLEAR:
+            recipeList.clearRecipeList();
+            ui.showRecipeListCleared();
+            break;
         case HELP:
-            Ui.showHelp();
+            ui.showHelp();
             break;
         case EXIT:
-            Ui.showExit();
+            ui.showExit();
             break;
         case UNKNOWN:
-            Ui.showUnrecognizableErrorMessage();
+            ui.showUnrecognizableErrorMessage();
             break;
         default:
-            Ui.showUnrecognizableCommandErrorMessage();
+            ui.showUnrecognizableCommandErrorMessage();
         }
     }
 }

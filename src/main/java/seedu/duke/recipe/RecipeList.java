@@ -46,4 +46,8 @@ public class RecipeList {
         recipeList.remove(index-1);
         currRecipeNumber--;
     }
+    public void clearRecipeList() {
+        recipeList.clear();
+        currRecipeNumber = 0;
+    }
 }

@@ -54,6 +54,9 @@ public class Parser {
         case "find":
             type = CommandType.FIND;
             break;
+        case "clear":
+            type = CommandType.CLEAR;
+            break;
         case "exit":
             type = CommandType.EXIT;
             break;

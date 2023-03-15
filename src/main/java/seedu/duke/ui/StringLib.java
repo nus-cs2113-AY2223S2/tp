@@ -10,7 +10,7 @@ public interface StringLib {
             + "  \\_/\\__,_|___/\\__\\___|  \\___/|_|   \\_|  |_/\\___/|_| |_| |_| |___/  | |  \\_/  \\___/\\_|  |_/| |"
             + "\n"
             + "                                                                     \\_\\                  /_/\n";
-    String WELCOME_MESSAGE = "\nHELLLOO there! I am\n "
+    String WELCOME_MESSAGE = "\nHELLO there! I am\n "
             + LOGO + '\n'
             + "Your personal recipes assistant!\n"
             + "What can I do for you today?\n\n"
@@ -100,7 +100,11 @@ public interface StringLib {
             + "\nException occurred: ";
     String FILE_LOADING_DEFAULT_ERROR = "\nError in loading file!"
             + "\nException occurred: ";
-
     String LINE = "__________________________________________________________";
 
+    String ADD_COMMAND_FORMAT = "\"Format: \\\"add n/<insert recipe name>"
+            + "i/<insert ingredients with \\\", \\\" separation> \"\n"
+            + "\"t/<insert cuisine>\\\"\\n\"\n"
+            + "\"Example use : \\\"add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese\\\" \\n \\n\"";
+    String RECIPE_CLEARED_MESSAGE = "\nAll recipes have been cleared!";
 }
