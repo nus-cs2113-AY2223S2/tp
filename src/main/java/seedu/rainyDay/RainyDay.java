@@ -48,7 +48,6 @@ public class RainyDay {
                 specificCommand.setData(financialReport);
                 assert specificCommand != null : "Parser returned null";
                 specificCommand.execute();
-                //ui.printEmptyLine();
             } catch (RainyDayException e) {
                 logger.log(Level.INFO, "RainyDayException caught");
                 System.out.println(e.getMessage());
