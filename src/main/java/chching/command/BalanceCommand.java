@@ -17,6 +17,7 @@ public class BalanceCommand extends Command {
             totalExpense += expenses.get(i).getValue();
         }
         double balance = totalIncome - totalExpense;
+        assert balance <= totalIncome : "Wrong calculations";
         
         ui.showBalance(totalExpense, totalIncome, balance);
     }
