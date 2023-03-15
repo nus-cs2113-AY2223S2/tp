@@ -36,8 +36,7 @@ public class Ui {
      * users when application is launched
      */
     public static void showWelcome() {
-        String logo =  "█▄ █ █ █ ▄▀▀ █▀▄ █   ▄▀▄ █▄ █ █▄ █ ██▀ █▀▄\n"
-                + "█ ▀█ ▀▄█ ▄██ █▀  █▄▄ █▀█ █ ▀█ █ ▀█ █▄▄ █▀▄\n\n";
+        String logo = "???";
         System.out.println(logo + "Hello there! What can we do for you today?");
         printDash();
     }

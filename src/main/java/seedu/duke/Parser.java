@@ -133,7 +133,6 @@ public class Parser {
             throw new NPExceptions("Empty starting date detected! Please add starting date.");
         } else {
             int eventIndex = -1;
-
             details[0] = details[0].trim();
             try{
                 eventIndex = Integer.parseInt(details[0]);
