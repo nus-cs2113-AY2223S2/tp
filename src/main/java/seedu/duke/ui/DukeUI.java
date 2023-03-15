@@ -57,6 +57,8 @@ public class DukeUI {
         printRecipePossibleHelp();
         printRecipeAllHelp();
         printByeCommandHelp();
+        printSearchIngredientsHelp();
+        printListIngredientsHelp();
     }
 
     private static void printHelpMessageHeader() {
@@ -98,6 +100,13 @@ public class DukeUI {
     private static void printListIngredientsHelp() {
         System.out.println("Command: ingredients list");
         System.out.println("Lists out current ingredients and their respective quantities stored in the fridge.");
+        System.out.println(DIVIDER);
+    }
+
+    private static void printSearchIngredientsHelp() {
+        System.out.println("Command: ingredients search");
+        System.out.println("Searches the ingredients database for the specified keyword.");
+        System.out.println("If keyword is omitted, all ingredients will be printed.");
         System.out.println(DIVIDER);
     }
 }
