@@ -9,6 +9,7 @@ import seedu.pettracker.commands.ListPetCommand;
 import seedu.pettracker.commands.RemovePetCommand;
 import seedu.pettracker.commands.RemoveStatCommand;
 import seedu.pettracker.exceptions.UnknownKeywordException;
+
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -20,8 +21,7 @@ public class CommandParser {
     final String KEYWORD_ADD_STAT = "add-stat";
     final String KEYWORD_REMOVE_STAT = "remove-stat";
 
-    private static final Logger logger = Logger.getLogger("CommandLogger");
-
+    private final static Logger logger = Logger.getLogger("CommandLogger");
 
     public CommandParser() {
     }
