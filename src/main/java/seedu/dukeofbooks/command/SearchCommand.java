@@ -28,6 +28,7 @@ public class SearchCommand extends Command {
     public SearchCommand(BorrowableItem item, String action, Inventory inventory) {
         this(item,action);
         this.inventory = inventory;
+
     }
 
     @Override

@@ -10,7 +10,7 @@ import seedu.dukeofbooks.data.inventory.Inventory;
 import static seedu.dukeofbooks.common.Messages.INVALID_CONTROLLER;
 
 public class InventoryCommand extends Command {
-    public static final String COMMAND_WORD = "inventory";
+    public static final String COMMAND_WORD = "librarian";
     public static final String ADD_WORD = "add";
     public static final String DELETE_WORD = "delete";
     public static final String INVALID_ACTION = "ERROR: Action only search by add or delete";
