@@ -61,13 +61,13 @@ public class Ui {
         String userInput = in.nextLine();
         UILogger.log(Level.INFO, userInput);
         if(userInput.trim().equals("")) {
-            EmptyInstructionHandling();
+            emptyInstructionHandling();
             readUserCommand();
         }
         return userInput.trim();
     }
 
-    private void EmptyInstructionHandling() {
+    private void emptyInstructionHandling() {
         System.out.println("How can we help you? :D");
     }
 
