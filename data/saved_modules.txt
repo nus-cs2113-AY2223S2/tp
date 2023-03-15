@@ -1,2 +1,1 @@
-1,AE320,Aerodynamics II,3,ME4231,Aerodynamics,4
-2,CE202,STRUCTURAL MECHANICS,0,ME2112,Strength of Materials,3
+

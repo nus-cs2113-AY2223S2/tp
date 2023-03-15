@@ -16,6 +16,7 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         String userInput;
         boolean isContinue = true;
+        Parser.printGreeting();
         while (isContinue) {
             userInput = in.nextLine();
             ArrayList<University> universities = dataReader.getUniversities();
