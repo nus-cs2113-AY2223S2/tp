@@ -30,9 +30,9 @@ Here is a list of features for Pet Tracker
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: Can I make my pet's data persistent after closing the app? 
 
-**A**: {your answer here}
+**A**: The team is currently planning on implementing that feature soon!
 
 ## Command Summary
 
@@ -45,8 +45,10 @@ Format: `add-pet NAME`
 
 Example of usage:
 
-`add-pet Alice`
-`add-pet Bob`
+```
+add-pet Alice
+add-pet Bob
+```
 
 Expected Output:
 
@@ -70,16 +72,38 @@ Expected Output:
 
 `Successfully removed pet: Alice`
 
-### Removing a pet: `add-pet`
-Adds a pet to the Pet List.
+### Adding a stat to a pet: `add-stat`
+Adds a stat to a pet in the Pet List.
 
-Format: `add-pet NAME`
+Format: `add-stat NAME STAT VALUE`
 
 * The `NAME` must not be empty.
+* The `STAT` must not be empty.
+* The `VALUE` must not be empty.
+
 
 Example of usage:
 
-`add-pet Bob`
+```
+add-stat Bob Weight 50
+add-stat Bob Age 10
+```
+
+Expected Output:
+
+```
+Updated Weight to 50 for Bob
+Updated Age to 10 for Bob
+```
+
+### Viewing Pet List: `list`
+View the current Pet List and total number of pets.
+
+Format: `list`
+
+Example of usage:
+
+`list`
 
 Expected Output:
 
