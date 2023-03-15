@@ -5,6 +5,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ExerciseData {
+    @SerializedName("id")
+    @Expose
+    private String id;
     @SerializedName("name")
     @Expose
     private String name;
@@ -20,9 +23,9 @@ public class ExerciseData {
     @SerializedName("equipment")
     @Expose
     private String equipment;
-    @SerializedName("primaryMuscles")
+    @SerializedName("workoutType")
     @Expose
-    private List<String> primaryMuscles;
+    private List<String> workoutType;
     @SerializedName("secondaryMuscles")
     @Expose
     private List<Object> secondaryMuscles;
@@ -32,6 +35,10 @@ public class ExerciseData {
     @SerializedName("category")
     @Expose
     private String category;
+
+    public String getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -73,12 +80,12 @@ public class ExerciseData {
         this.equipment = equipment;
     }
 
-    public List<String> getPrimaryMuscles() {
-        return primaryMuscles;
+    public List<String> getWorkoutType() {
+        return workoutType;
     }
 
-    public void setPrimaryMuscles(List<String> primaryMuscles) {
-        this.primaryMuscles = primaryMuscles;
+    public void setWorkoutType(List<String> workoutType) {
+        this.workoutType = workoutType;
     }
 
     public List<Object> getSecondaryMuscles() {

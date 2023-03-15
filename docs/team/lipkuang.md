@@ -7,5 +7,3 @@ A CLI based fitness tracker intended to give users a way to manage and learn new
 
 
 ### Summary of Contributions
-
-Included UI and exceptions aspect

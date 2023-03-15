@@ -5,18 +5,30 @@ import seedu.duke.exersisedata.ExerciseData;
 import java.util.ArrayList;
 
 public class Ui {
-    public void printExerciseFromList(ArrayList<ExerciseData>exerciseData){
+    private static final String SEPARATOR = "________________________________________";
+
+    public void printExerciseFromList(ArrayList<ExerciseData> exerciseData) {
         PrintExercises.printExercise(exerciseData);
     }
 
-    public void greetUser(){
+    public void greetUser() {
         Greet.greet();
     }
 
-    public void byeUser(){
+    public void byeUser() {
         Bye.bye();
     }
 
-    public void printFilters() { Bye.printFiltersAvailable(); }
+
+    public void printFilters() { PrintHelp.printFiltersAvailable(); }
+
+    public void printHelp() {
+        PrintHelpMessage.showAvailableCommands();
+    }
+
+    public void splitLine() {
+        System.out.println(SEPARATOR);
+    }
+
 
 }

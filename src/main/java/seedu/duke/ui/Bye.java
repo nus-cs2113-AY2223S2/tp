@@ -14,7 +14,4 @@ public class Bye {
         System.out.println("Hope to see you again!\n");
     }
 
-    public static void printFiltersAvailable() {
-        System.out.println("Hope to see you again!\n");
-    }
 }

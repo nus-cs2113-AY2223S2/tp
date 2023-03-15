@@ -2,7 +2,7 @@ package seedu.duke.ui;
 
 public class PrintHelp {
     public static void printFiltersAvailable() {
-        /*
+
         System.out.println("By place:\n" +
                 "\t[gym] exercises that can be done with gym equipment\n" +
                 "\t[static]: exercises that only require your body\n" +
@@ -14,8 +14,5 @@ public class PrintHelp {
                 "\t[arms] exercises that trains your arms\n" +
                 "\t[core] exercises that trains your core\n" +
                 "\t[legs] exercises that trains your legs\n");
-
-         */
-        System.out.println("Hope to see you again!\n");
     }
 }
