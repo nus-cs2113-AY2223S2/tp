@@ -27,7 +27,6 @@ public class LifeTracker {
     }
 
     public void run() {
-        assert false : "dummy assertion set to fail";
         ui.printIntroduction();
         boolean isExit = false;
         while (!isExit) {
