@@ -3,6 +3,8 @@ package seedu.duck;
 import seedu.duck.task.Task;
 
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Scanner;
 
 /**
  * Deals with interactions with the user
@@ -24,6 +26,11 @@ public class Ui {
         borderLine();
     }
 
+
+
+
+
+
     /**
      * Finds tasks in the list that contain keywords input by the user
      *
@@ -43,6 +50,7 @@ public class Ui {
         }
         printFindResults(matchingResults, matchCount);
     }
+
 
     /**
      * Prints the results of the find command
@@ -90,14 +98,25 @@ public class Ui {
         borderLine();
     }
 
+    static boolean doubleCheck(){
+        System.out.println("THIS IS AN IRREVERSIBLE PROCESS. ARE YOU SURE? Y/N");
+        Scanner in = new Scanner(System.in);
+        String line;
+        line = in.nextLine();
+        return Objects.equals(line, "Y");
+    }
+
     static void help() {
         borderLine();
         System.out.println("\t （`･v･´ ）: Here are the commands you can give me:");
         System.out.println("\t - list: I'll list out all the tasks you have recorded.");
+        System.out.println("\t - clear: The list will be cleared. This in an irreversible process.");
         System.out.println("\t - mark <task_number>: I'll mark that task as done.");
         System.out.println("\t - unmark <task_number>: I'll mark that task as undone.");
         System.out.println("\t - delete <task_number>: I'll delete that task from your list.");
         System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
+        System.out.println("\t - priority <task_number> <1/2/3>: I'll set the priority of a given task as" +
+                " 1:Low , 2:Medium and 3:High.");
         System.out.println("\t - bye: I will shut down my program.");
         System.out.println("\t Here are the following ways to input tasks:");
         System.out.println("\t Deadlines: <description> /by <yyyy-MM-dd HHmm>");

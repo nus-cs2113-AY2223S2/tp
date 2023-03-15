@@ -7,6 +7,7 @@ import seedu.duck.task.Todo;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -33,6 +34,29 @@ public class Storage {
             loadTodo(line, tasks);
         }
     }
+    static void clearTask() throws IOException {
+        {
+
+            try {
+
+                FileWriter fw = new FileWriter(SAVEPATH, false);
+
+                PrintWriter pw = new PrintWriter(fw, false);
+
+                pw.flush();
+
+                pw.close();
+
+                fw.close();
+
+            } catch (Exception exception) {
+
+                System.out.println("Exception have been caught");
+
+            }
+
+        }
+    }
 
     /**
      * Adds a _Todo_ into the list without generating messages,
@@ -42,7 +66,10 @@ public class Storage {
      * @param tasks The array list of tasks
      */
     static void loadTodo(String line, ArrayList<Task> tasks) {
-        Todo currTodo = new Todo(line);
+        String description = line.substring(0, line.indexOf("<p>")).trim();
+        Todo currTodo = new Todo(description);
+        String priority = line.substring(line.indexOf("<p>") + 3).trim();
+        currTodo.setPriority(priority);
         tasks.add(currTodo);
     }
 
@@ -54,10 +81,12 @@ public class Storage {
      * @param tasks The array list of tasks
      */
     static void loadEvent(String line, ArrayList<Task> tasks) {
-        String description = line.substring(0, line.indexOf("/from")).trim();
+        String description = line.substring(0, line.indexOf("/from")-5).trim();
         String start = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
         String end = line.substring(line.indexOf("/to") + 3).trim();
         Event currEvent = new Event(description, start, end);
+        String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("<p>") + 4).trim();
+        currEvent.setPriority(priority);
         tasks.add(currEvent);
     }
 
@@ -69,9 +98,11 @@ public class Storage {
      * @param tasks The array list of tasks
      */
     static void loadDeadline(String line, ArrayList<Task> tasks) {
-        String description = line.substring(0, line.indexOf("/by")).trim();
+        String description = line.substring(0, line.indexOf("/by")-5).trim();
         String deadline = line.substring(line.indexOf("/by") + 3).trim();
         Deadline currDeadline = new Deadline(description, deadline);
+        String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("<p>") + 4).trim();
+        currDeadline.setPriority(priority);
         tasks.add(currDeadline);
     }
 
