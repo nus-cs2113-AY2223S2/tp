@@ -12,7 +12,6 @@ public class ExpenseList extends RecordList{
 
     public ExpenseList(){
         expenseList = new ArrayList<>();
-
     }
 
     public int size() {

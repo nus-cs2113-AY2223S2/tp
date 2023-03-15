@@ -31,15 +31,16 @@ public class Ui {
     public void showAdded(IncomeList incomes, ExpenseList expenses, Record record) {
         System.out.println("    Got it. I've added this record:");
         System.out.println("    " + record);
-        System.out.println("    Now you have " + incomes.getRecordCount() + " income records,");
-        System.out.println("    and " + expenses.getRecordCount() + " expense records in the list.");
+        System.out.println();
+        System.out.println("    Now you have " + incomes.size() + " income records,");
+        System.out.println("    and " + expenses.size() + " expense records in the list.");
     }
 
     public void showDelete(IncomeList incomes, ExpenseList expenses, Record record) {
         System.out.println("    Noted. I've removed this record:");
         System.out.println("    " + record);
-        System.out.println("    Now you have " + incomes.getRecordCount() + " income records,");
-        System.out.println("    and " + expenses.getRecordCount() + " expense records in the list.");
+        System.out.println("    Now you have " + incomes.size() + " income records,");
+        System.out.println("    and " + expenses.size() + " expense records in the list.");
     }
 
     public void showAllRecords(IncomeList incomes, ExpenseList expenses) {
@@ -86,6 +87,7 @@ public class Ui {
     public void showError(String message) {
         System.out.println("    " + message);
     }
+
     public void showInvalidMessage() {
         System.out.println("    Command is not recognized, use help for valid commands");
     }

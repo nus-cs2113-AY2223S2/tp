@@ -1,2 +1,2 @@
-I | test | test | 500.00
-E | cat | test | test | 300.00
+I | monthly | today | 100.00
+E | meal | lunch | today | 3.50
