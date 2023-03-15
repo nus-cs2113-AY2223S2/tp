@@ -28,7 +28,7 @@ public class ExpenseTest {
     @Test
     void getValue_expected() {
         Expense exp = new Expense("transport", "public transport", "1st apr 2023", (float) 1.50);
-        String expected = " Category - transport | Description - public transport | Date - 1st apr 2023 | Value - 1.50";
+        String expected = "Category - transport | Description - public transport | Date - 1st apr 2023 | Value - 1.50";
         assertEquals(expected, exp.toString());
     }
 }

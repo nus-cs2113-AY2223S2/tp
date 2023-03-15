@@ -12,18 +12,10 @@ public class Expense extends Record {
     public String getCategory() {
         return category;
     }
-
-    @Override
-    public String toString() {
-        return "Category - " + getCategory() +
-                " | Description - " + getDescription() +
-                " | Date - " + getDate() +
-                " | Value - " + String.format("%.2f", getValue());
-    }
     
     @Override
     public String toString() {
-        return " Category - " + getCategory() +
+        return "Category - " + getCategory() +
                 " | Description - " + getDescription() +
                 " | Date - " + getDate() +
                 " | Value - " + String.format("%.02f", getValue());

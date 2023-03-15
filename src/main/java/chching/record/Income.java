@@ -7,7 +7,7 @@ public class Income extends Record{
 
     @Override
     public String toString() {
-        return  " Description - " + getDescription() +
+        return  "Description - " + getDescription() +
                 " | Date - " + getDate() +
                 " | Value - " + String.format("%.02f", getValue());
     }

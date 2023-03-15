@@ -25,7 +25,6 @@ public class AddIncomeCommand extends Command {
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage) {
         incomes.addIncome(income);
-        System.out.println("Income added");
-        System.out.println(income.toString());
+        ui.showAdded(incomes, expenses, income);
     }
 }
