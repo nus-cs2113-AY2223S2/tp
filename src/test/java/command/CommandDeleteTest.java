@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.math.BigDecimal;
 
 public class CommandDeleteTest {
 
@@ -25,11 +26,13 @@ public class CommandDeleteTest {
      */
     @Test
     public void deleteExpense_successful() {
-        testExpenseList.add(new Expense(2.5, new Time(LocalDate.parse("02-02-2012", formatter)),
+        BigDecimal twoPointFive = new BigDecimal("2.5");
+        BigDecimal three = new BigDecimal("3");
+        testExpenseList.add(new Expense(twoPointFive, new Time(LocalDate.parse("02-02-2012", formatter)),
                 "food", Currency.SGD));
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food")).execute();
-        testExpenseList.add(new Expense(3.0, new Time(LocalDate.parse("05-02-2012", formatter)),
+        testExpenseList.add(new Expense(three, new Time(LocalDate.parse("05-02-2012", formatter)),
                 "food", Currency.SGD));
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/3.0 " + "t/05-02-2012 cat/food")).execute();
