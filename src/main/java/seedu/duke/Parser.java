@@ -141,6 +141,8 @@ public class Parser {
             } else {
                 reviseTimeInfoUsingIndex(information, eventList);
             }
+
+            Ui.addSuccessEditMsg();
         }
     }
     private static void addFormatChecker(String[] information) throws NPExceptions {
