@@ -1,22 +1,31 @@
 package seedu.duck.task;
 
+
 public class Task {
-    private static int taskCount = 0;
+    private static int taskCount;
     private String description;
+    private int priority;
     private boolean isDone;
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.priority = 0;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
+    public void setPriority(String priority) {
+        this.priority = Integer.parseInt(priority);
+    }
 
     public String getDescription() {
         return this.description;
     }
+
+    public static void clearCount() {
+        taskCount = 0;}
 
     public void markAsDone() {
         this.isDone = true;
@@ -32,6 +41,20 @@ public class Task {
             return "X";
         }
         return " ";
+    }
+
+    public String getPriority() {
+        if(priority == 1) {
+            // Mark done task with X
+            return "Low priority.";
+        } else if(priority == 2) {
+            // Mark done task with X
+            return "Medium priority.";
+        } else if(priority == 3) {
+            // Mark done task with X
+            return "High priority.";
+        }
+        return "No priority established.";
     }
 
     public static void incrementCount() {
@@ -54,11 +77,11 @@ public class Task {
     }
 
     public String toSaveString() {
-        return getDoneConditionString() + " " + getDescription();
+        return getDoneConditionString() + " " + getDescription() + " <p>" + this.priority;
     }
 
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + getDescription();
+        return "[" + getStatusIcon() + "] " + getDescription() + " (" + getPriority() + ")";
     }
 }
