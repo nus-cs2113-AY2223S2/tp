@@ -73,7 +73,7 @@ public class Parser {
                     tasks.clear();
                     Task.clearCount();
                     Ui.borderLine();
-                    System.out.println("\tGot it, all tasks have been cleared.");
+                    System.out.println("\t Got it, all tasks have been cleared.");
                     Ui.borderLine();
                     Storage.clearTask();
                 } else {
