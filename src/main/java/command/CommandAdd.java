@@ -10,6 +10,8 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static common.MessageList.SUCCESSFUL_ADD;
 
@@ -20,7 +22,7 @@ public class CommandAdd extends Command {
     protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     /**
-     * Instantiates and references the expense list for the entry to be add to as well as the parsed input from the
+     * Instantiates and references the expense list for the entry to be added to as well as the parsed input from the
      * parser.
      *
      * @param expenseList The expense list to add the entry to.
@@ -39,7 +41,7 @@ public class CommandAdd extends Command {
     public CommandRes execute() {
         try {
             Time date = new Time(LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter));
-            Expense addedExpense = new Expense(Double.parseDouble(parsedInput[ParserAdd.AMOUNT_INDEX]),
+            Expense addedExpense = new Expense(roundInput((parsedInput[ParserAdd.AMOUNT_INDEX])),
                     date, parsedInput[ParserAdd.CATEGORY_INDEX],
                     Currency.checkCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]));
             expenseList.add(addedExpense);
@@ -54,6 +56,15 @@ public class CommandAdd extends Command {
         }
         assert false;
         return null;
+    }
+
+    /**
+     * Standardize the format of double when we add it to expenseList
+     */
+    public BigDecimal roundInput(String expenseAmountInput) {
+        BigDecimal roundedExpense = new BigDecimal(expenseAmountInput);
+        roundedExpense = roundedExpense.setScale(2, RoundingMode.HALF_UP);
+        return roundedExpense;
     }
 
 }
