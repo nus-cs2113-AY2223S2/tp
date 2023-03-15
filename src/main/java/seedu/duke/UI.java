@@ -35,7 +35,9 @@ public class UI {
             executeAddModuleCommand(storage, userCommandSecondKeyword, puModules);
             break;
         case "remove":
-            break; // Todo: Add remove function after darren PR
+            int indexToRemove = Integer.parseInt(userCommandSecondKeyword);
+            executeDeleteModuleCommand(storage, indexToRemove, modules);
+            break;
         default:
             System.out.println("Invalid Input");
             break;
@@ -80,5 +82,9 @@ public class UI {
                 storage.addModuleToModuleList(currentModule);
             }
         }
+    }
+
+    private void executeDeleteModuleCommand(Storage storage, int indexToDelete, ArrayList<Module> modules ) {
+        Parser.deleteModule(indexToDelete, modules, storage);
     }
 }
