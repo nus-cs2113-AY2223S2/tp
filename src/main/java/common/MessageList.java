@@ -2,9 +2,9 @@ package common;
 
 public class MessageList {
     public static final String MESSAGE_DIVIDER =
-            "____________________________________________________________";
+            "_____________________________________________________________________________________";
     public static final String MESSAGE_DIVIDER_LIST =
-            "____________________________LIST____________________________";
+            "_________________________________________LIST_________________________________________";
     public static final int OFFSET = 1;
 
     public static final String SUCCESSFUL_DELETE = "The following expense is successfully deleted:";
