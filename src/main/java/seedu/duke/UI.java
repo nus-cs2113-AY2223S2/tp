@@ -1,9 +1,12 @@
 package seedu.duke;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class UI {
-    public UI() {};
+    public UI() {
+    }
+
 
     // Todo: The userInput now is the whole string, and I am breaking it down into an Array of Strings here
     // Todo: This will be changed when the parser is added.
@@ -36,13 +39,16 @@ public class UI {
             executeAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
             break;
         case "remove":
-            break; // Todo: Add remove function after darren PR
+            int indexToRemove = Integer.parseInt(userCommandSecondKeyword);
+            executeDeleteModuleCommand(storage, indexToRemove, modules);
+            break;
         default:
             System.out.println("Invalid Input");
             break;
         }
         return toContinue;
     }
+
     private void executeListCurrentModulesCommand(ArrayList<Module> modules) {
         Parser.printCurrentModList(modules);
     }
@@ -64,7 +70,7 @@ public class UI {
         }
         Parser.printPUModules(univId);
     }
-    
+
     private void executeExitCommand() {
         System.out.println("Exiting program now");
     }
@@ -93,6 +99,10 @@ public class UI {
                 storage.addModuleToModuleList(currentModule);
             }
         }
+    }
+
+    private void executeDeleteModuleCommand(Storage storage, int indexToDelete, ArrayList<Module> modules) {
+        Parser.deleteModule(indexToDelete, modules, storage);
     }
 
 }
