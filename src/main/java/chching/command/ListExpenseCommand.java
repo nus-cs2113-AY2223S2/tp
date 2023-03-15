@@ -8,7 +8,7 @@ import chching.record.IncomeList;
 public class ListExpenseCommand extends Command {
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage) {
-        System.out.println("Expenses:");
+        System.out.println("    Expenses:");
         expenses.printExpenseList();
     }
 }

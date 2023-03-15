@@ -33,7 +33,7 @@ public class IncomeList extends RecordList{
     public void printIncomeList() {
         for (int i = 1; i <= incomeList.size(); i++) {
             Record record = incomeList.get(i - 1);
-            System.out.println(i + ". " + record.toString());
+            System.out.println("    " + i + ". " + record.toString());
         }
     }
 
