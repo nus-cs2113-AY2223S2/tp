@@ -56,15 +56,15 @@ public class Ui {
      */
     public void printHelpMessage() {
         System.out.println(" Enter \"list\" to see all tasks\n" +
-                " Enter \"listmod\" to see your module list\n"+
+                " Enter \"listmod\" to see your module list\n" +
                 " Enter \"todo [task]\" to add a task\n" +
                 " Enter \"deadline [task] /by [date]\" to add a deadline\n" +
                 " Enter \"event [task] /from [date] /to [date]\" to add an event\n" +
-                " Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n"+
+                " Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n" +
                 " Enter \"mark [idx]\" to mark task as done\n" +
                 " Enter \"unmark [idx]\" to mark task as not done\n" +
                 " Enter \"delete [idx]\" to remove task from list\n" +
-                " Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added\n"+
+                " Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added\n" +
                 " Enter \"find [keyword]\" to see all tasks containing [keyword]\n" +
                 " Enter \"date [yyyy-MM-dd]\" to see all tasks occurring on that date\n" +
                 " Enter \"bye\" to exit the program\n\n" +
@@ -104,7 +104,7 @@ public class Ui {
         }
         System.out.println("These are the modules you are taking this semester:");
         for (int i = 0; i < allModules.size(); i++) {
-            System.out.println(i+1 + "." + allModules.get(i).toString());
+            System.out.println(i + 1 + "." + allModules.get(i).toString());
         }
     }
 
@@ -172,7 +172,7 @@ public class Ui {
      * Prints out message for successful deletion of Task.
      *
      * @param deletedTask Task that will be deleted.
-     * @param size Number of tasks left in the list after deletion.
+     * @param size        Number of tasks left in the list after deletion.
      */
     public void printDeleted(Task deletedTask, int size) {
         System.out.println("Noted, I've removed this task:\n" +
@@ -202,7 +202,7 @@ public class Ui {
      * Prints all Tasks within the TaskList given, all happening on a certain date.
      *
      * @param happeningTasks TaskList of Tasks happening on a date.
-     * @param date Date that was used to shortlist the tasks.
+     * @param date           Date that was used to shortlist the tasks.
      */
     public void printDateList(TaskList happeningTasks, LocalDate date) {
         String dateString = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH));
@@ -277,7 +277,7 @@ public class Ui {
     /**
      * Prints error message if there is corrupted data in the save file when initially reading from it.
      *
-     * @param counter Index of the line of the save file that is corrupted.
+     * @param counter  Index of the line of the save file that is corrupted.
      * @param filePath The location at which the save file is stored.
      */
     public void printInvalidSaveFile(int counter, String filePath) {
@@ -338,6 +338,10 @@ public class Ui {
      */
     public void printEmptyDelMod() {
         System.out.println("Please specify a module to delete!");
+    }
+
+    public void printDuplicateModule() {
+        System.out.println("Module already added in Module List!");
     }
 
 }

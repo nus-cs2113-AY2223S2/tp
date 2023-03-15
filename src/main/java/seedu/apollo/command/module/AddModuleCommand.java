@@ -1,5 +1,6 @@
 package seedu.apollo.command.module;
 
+import seedu.apollo.exception.module.DuplicateModuleException;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.ui.Ui;
 import seedu.apollo.command.Command;
@@ -45,6 +46,7 @@ public class AddModuleCommand extends Command {
         module = toAdd;
 
     }
+
     public static void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
@@ -67,18 +69,31 @@ public class AddModuleCommand extends Command {
         }
     }
 
+    public boolean isAdded(ModuleList moduleList, Module module) {
+        if (moduleList.contains(module)) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
         try {
-            if (module != null) {
+            if ((module != null) && (isAdded(moduleList, module) == false)) {
                 moduleList.add(module);
                 moduleList.sortModules();
                 ui.printAddModuleMessage(module);
+
+            } else if (isAdded(moduleList, module) == true) {
+                throw new DuplicateModuleException();
             }
             storage.updateModule(moduleList);
         } catch (IOException e) {
             logger.log(Level.SEVERE, "IO Exception", e);
             ui.printErrorForIO();
+
+        } catch (DuplicateModuleException e) {
+            ui.printDuplicateModule();
         }
     }
 }

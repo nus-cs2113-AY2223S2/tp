@@ -149,6 +149,9 @@ Got it. I've added this module:
   CS2113: Software Engineering & Object-Oriented Programming
 ____________________________________________________________
 ____________________________________________________________
+Module already added in Module List!
+____________________________________________________________
+____________________________________________________________
 Got it. I've added this module:
   CS2040C: Data Structures and Algorithms
 ____________________________________________________________
