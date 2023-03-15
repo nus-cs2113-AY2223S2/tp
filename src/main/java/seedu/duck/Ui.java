@@ -119,7 +119,7 @@ public class Ui {
         System.out.println("\t    Events: <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>");
         System.out.println("\t            (eg. Meeting /from 2023-03-15 2015 /to 2023-03-15 2215)");
         System.out.println("\t   Classes: <description> /class <class_name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>");
-        System.out.println("\t            (eg. Bring laptop /class Cs2113 /from 2023-03-15 1100 /to 2023-03-15 1200)");
+        System.out.println("\t            (eg. Bring laptop /class CS2113 /from 2023-03-15 1100 /to 2023-03-15 1200)");
         System.out.println("\t      Todo: <description>");
         System.out.println("\t            (eg. Water the plants) \n");
         System.out.println("\t （`･v･´ ）: How else may I assist you today, human?");
