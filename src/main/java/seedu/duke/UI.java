@@ -54,17 +54,17 @@ public class UI {
     }
 
     // Todo: Right now, it uses university Name only but since university object has 3 attributes:
-    // todo: handle exceptions such that the univeristyname inputted is incorrect
+    // todo: handle exceptions such that the universityname inputted is incorrect
     // 1. univId; 2. univName; 3. univAbbName; we can use this next time
     // Note that this function, takes in the arrayList of modules of ALL MODULES
-    // THIS IS NOT THE FUNCITON THAT RETURNS USER SELECTED MODULES SPECIFIED TO A PU.
+    // THIS IS NOT THE FUNCTION THAT RETURNS USER SELECTED MODULES SPECIFIED TO A PU.
     private void executeListPuModulesCommand(ArrayList<Module> modules, ArrayList<University> universities,
-                                             String universityName) {
+                                             String universityAbbName) {
         int univId = -1;
         for (int i = 0; i < universities.size(); i++) {
             University currentUniversity = universities.get(i);
-            String currentUniversityName = currentUniversity.getUnivName();
-            if (universityName.equals(currentUniversityName)) {
+            String currentUniversityAbbName = currentUniversity.getUnivAbbName();
+            if (universityAbbName.equals(currentUniversityAbbName)) {
                 univId = currentUniversity.getUnivId(); //Todo: change magic literal
             }
         }
