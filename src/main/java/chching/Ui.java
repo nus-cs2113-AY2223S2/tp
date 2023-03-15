@@ -57,8 +57,8 @@ public class Ui {
 
     public void showBalance(double totalExpense, double totalIncome, double balance) {
         assert(totalExpense >= 0);
-        System.out.println("    totalExpense: " + String.format("%.02f", totalExpense));
-        System.out.println("    totalIncome: " + String.format("%.02f", totalIncome));
+        System.out.println("    Total Expense: " + String.format("%.02f", totalExpense));
+        System.out.println("    Total Income: " + String.format("%.02f", totalIncome));
         System.out.println();
         System.out.println("    Current balance:");
         System.out.println("    SGD " + String.format("%.02f", balance));
