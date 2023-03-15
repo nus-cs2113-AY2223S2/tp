@@ -23,6 +23,7 @@ public class RecipeList {
     }
 
     public int getCurrRecipeNumber() {
+        assert(currRecipeNumber == recipeList.size());
         return currRecipeNumber;
     }
 
