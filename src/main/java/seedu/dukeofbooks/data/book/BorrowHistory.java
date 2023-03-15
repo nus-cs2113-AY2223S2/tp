@@ -10,20 +10,24 @@ public class BorrowHistory {
     /**
      * Prints previously borrowed books
      */
-    public static void checkHistory(Person person) {
+    public static String checkHistory(Person person) {
         ArrayList<Loan> previousLoans = person.getBorrowedItems();
 
         if(previousLoans.size()==0) {
-            System.out.println("You have not borrowed any book yet!");
+            return "You have not borrowed any book yet!";
         } else {
-            System.out.println("These are the books you have borrowed thus far:");
+            String output = "These are the books you have borrowed thus far:\n";
             int count = 1;
             for(Loan loan:previousLoans) {
                 BorrowableItem borrowedItem = loan.getBorrowedItem();
-                System.out.println(count + ". " + borrowedItem.toString());
+                output = output + count + ". " + borrowedItem.toString();
+                if(count!=previousLoans.size()) {
+                    output += '\n';
+                }
                 count++;
             }
+            return output;
         }
-
     }
 }
+
