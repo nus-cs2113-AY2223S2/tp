@@ -1,7 +1,7 @@
-package seedu.duke.util;
+package seedu.duke.ui;
 
-public class OuputText {
-    public void showAvailableCommands() {
+public class PrintHelpMessage {
+    public static void showAvailableCommands() {
         System.out.println("These are some commands available: ");
         System.out.println("Generate a specific list of exercises: generate PARAM1 PARAM2 ... x ");
         System.out.println("PARAM stands for a specific requirement you want to include in your exercise.\n");
@@ -12,4 +12,5 @@ public class OuputText {
         System.out.println("upper/core/legs (filters for exercises with a specific workout type)");
         //System.out.println(ErrorMessages.ERROR_GLOBAL_INVALID_COMMAND.toString());
     }
+
 }
