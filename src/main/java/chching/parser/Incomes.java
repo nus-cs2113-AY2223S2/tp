@@ -6,7 +6,7 @@ import chching.record.Income;
 import java.util.HashMap;
 
 public class Incomes {
-    public static Income parseIncome(HashMap<String, String> argumentsByField) {
+    public static Income parseIncome(HashMap<String, String> argumentsByField) throws ChChingException {
         Income inc = null;
         try {
             String incomeDescription = argumentsByField.get("de");
@@ -16,7 +16,7 @@ public class Incomes {
             assert incomeValue > 0 : "incomeValue has to be more than 0";
             inc = new Income(incomeDescription, incomeDate, incomeValue);
         } catch (Exception e) {
-            System.out.println("    Trouble adding income value");
+            throw new ChChingException("Trouble adding income value");
         }
         return inc;
     }

@@ -15,6 +15,19 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 
 class DeleteIncomeCommandTest {
+
+    final static int OFFSET = 1;
+    final static int CORRECT_INDEX = 1;
+    final static int TOO_LARGE_INDEX = 5;
+    final static int NEGATIVE_INDEX = -1;
+    final static String SALARY_DESCRIPTION = "salary";
+
+    final static String SALARY_DATE = "1st apr 2023";
+    final static float SALARY_INCOME_VALUE = (float) 5000;
+    final static String BONUS_DESCRIPTION = "salary";
+
+    final static String BONUS_DATE = "5/2/23";
+    final static float BONUS_INCOME_VALUE = (float) 3000;
     private Ui ui;
     private Storage storage;
     private Income salary;
@@ -24,8 +37,8 @@ class DeleteIncomeCommandTest {
     
     @BeforeEach
     void setup() {
-        salary = new Income("salary","1st apr 2023",5000);
-        bonus = new Income("bonus", "5/2/23", 3000);
+        salary = new Income(SALARY_DESCRIPTION, SALARY_DATE,SALARY_INCOME_VALUE);
+        bonus = new Income(BONUS_DESCRIPTION, BONUS_DATE, BONUS_INCOME_VALUE);
         
         ArrayList<Income> incomeList = new ArrayList<Income>();
         incomeList.add(salary);
@@ -36,10 +49,10 @@ class DeleteIncomeCommandTest {
     @Test
     void execute_positiveIntegerWithinSize_success() {
         int defaultIncomeListSize = defaultIncomeList.size();
-        Command command = new DeleteIncomeCommand(1);
+        Command command = new DeleteIncomeCommand(CORRECT_INDEX);
         try {
             command.execute(defaultIncomeList, emptyExpenseList, ui, storage);
-            assertEquals(defaultIncomeListSize - 1, defaultIncomeList.size(), "Delete income working");
+            assertEquals(defaultIncomeListSize - OFFSET, defaultIncomeList.size(), "Delete income working");
         } catch (Exception e) {
             fail(); // test should not reach here
         }
@@ -48,7 +61,7 @@ class DeleteIncomeCommandTest {
     @Test
     void execute_positiveIntegerOutsideSize_exceptionThrown() {
         String expectedOutput = "The number is too big";
-        Command command = new DeleteIncomeCommand(5);
+        Command command = new DeleteIncomeCommand(TOO_LARGE_INDEX);
         try {
             command.execute(defaultIncomeList, emptyExpenseList, ui, storage);
             fail(); // test should not reach this line
@@ -60,7 +73,7 @@ class DeleteIncomeCommandTest {
     @Test
     void execute_negativeInteger_exceptionThrown() {
         String expectedOutput = "Negative/Zero index";
-        Command command = new DeleteIncomeCommand(-1);
+        Command command = new DeleteIncomeCommand(NEGATIVE_INDEX);
         try {
             command.execute(defaultIncomeList, emptyExpenseList, ui, storage);
             fail(); // test should not reach this line

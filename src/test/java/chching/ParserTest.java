@@ -13,6 +13,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public class ParserTest {
+    final static String ADD_EXPENSE ="add expense";
+    final static String CA = "ca meal";
+    final static String DE ="de breakfast";
+    final static String DA = "da 01/02/23";
+    final static String V = "v 3.50";
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     
@@ -24,11 +29,11 @@ public class ParserTest {
     @Test
     public void splitLine_testScenario_expectedBehaviour() {
         List<String> expectedOutput = new ArrayList<String>();
-        expectedOutput.add("add expense");
-        expectedOutput.add("ca meal");
-        expectedOutput.add("de breakfast");
-        expectedOutput.add("da 01/02/23");
-        expectedOutput.add("v 3.50");
+        expectedOutput.add(ADD_EXPENSE);
+        expectedOutput.add(CA);
+        expectedOutput.add(DE);
+        expectedOutput.add(DA);
+        expectedOutput.add(V);
         
         assertEquals(expectedOutput, new Parser().splitLine("add expense /ca meal /de breakfast /da 01/02/23 /v 3.50"));
     }
@@ -36,10 +41,10 @@ public class ParserTest {
     @Test
     public void sortArguments_testScenario_expectedBehaviour() throws ChChingException {
         List<String> input = new ArrayList<String>();
-        input.add("ca meal");
-        input.add("de breakfast");
-        input.add("da 01/02/23");
-        input.add("v 3.50");
+        input.add(CA);
+        input.add(DE);
+        input.add(DA);
+        input.add(V);
         
         HashMap<String, String> expectedOutput = new HashMap<String, String>();
         expectedOutput.put("ca", "meal");
