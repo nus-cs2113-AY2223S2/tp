@@ -153,7 +153,7 @@ Got it. I've added this module:
   CS2040C: Data Structures and Algorithms
 ____________________________________________________________
 ____________________________________________________________
-These are the modules you are taking this semester:
+You are taking 2 module(s) this semester:
 1.CS2040C: Data Structures and Algorithms
 2.CS2113: Software Engineering & Object-Oriented Programming
 ____________________________________________________________
@@ -161,10 +161,10 @@ ____________________________________________________________
 Sorry, the module 2 does not exist in your Module list!
 ____________________________________________________________
 ____________________________________________________________
-Got it, removed cs2040c from your Module list.
+Got it, removed CS2040C from your Module list.
 ____________________________________________________________
 ____________________________________________________________
-These are the modules you are taking this semester:
+You are taking 1 module(s) this semester:
 1.CS2113: Software Engineering & Object-Oriented Programming
 ____________________________________________________________
 ____________________________________________________________
