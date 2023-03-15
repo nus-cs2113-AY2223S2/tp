@@ -75,4 +75,5 @@ public class Duke {
     public static String getPassword() {
         return password;
     }
+
 }
