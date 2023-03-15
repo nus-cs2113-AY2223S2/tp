@@ -34,7 +34,7 @@ public class Ui {
     public static final int UPC_COL_WIDTH = 12;
     public static final int QTY_COL_WIDTH = 8;
 
-    public static final int PRICE_COL_WIDTH = 5;
+    public static final int PRICE_COL_WIDTH = 8;
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
             "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
     public static final String ITEM_NOT_FOUND = "Edit failed! Reason: Item not found in database. Please add item " +
@@ -53,6 +53,8 @@ public class Ui {
     private static final String TABLE_LEFT = "| ";
     private static final String TABLE_RIGHT = " |";
     private static final String TABLE_MIDDLE = " | ";
+
+    private static final String DOLLAR_SIGN = "$";
     private static final String SUCCESS_REMOVE = "Successfully removed the following item: ";
     private static final String NOT_REMOVING = "Ok...You changed your mind really quickly.";
     private static final String INVALID_REPLY = "Invalid response, only yes (Y) or no (N) answer is allowed.\n" +
@@ -193,7 +195,7 @@ public class Ui {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
         String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
         String[] qtyLines = wrapText(qty, QTY_COL_WIDTH);
-        String[] priceLines = wrapText(price, PRICE_COL_WIDTH);
+        String[] priceLines = wrapText(DOLLAR_SIGN + price, PRICE_COL_WIDTH);
         StringBuilder row = new StringBuilder();
 
         int rowHeight = findRowHeight(nameLines, upcLines, qtyLines, priceLines);
