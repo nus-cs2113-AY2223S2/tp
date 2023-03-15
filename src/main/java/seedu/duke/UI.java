@@ -3,6 +3,11 @@ package seedu.duke;
 import java.util.ArrayList;
 
 public class UI {
+    private static final String LIST_PU_MESSAGE = "This is the list of PUs:";
+    private static final String LIST_CURRENT_MESSAGE = "List of Added modules:";
+    private static final String LINE = "____________________________________________________________";
+    private static final String ADD_MOD_MESSAGE = "This module has been added to the current list!";
+    private static final String DELETE_MOD_MESSAGE = "This module has been deleted from the current list!";
     public UI() {
     }
 
@@ -21,12 +26,15 @@ public class UI {
         switch (userCommandFirstKeyword) {
         case "list":
             if (userCommandSecondKeyword.equalsIgnoreCase("pu")) {
+                printPUList();
                 executeListAllPuUniversitiesCommand(universities);
             } else if (userCommandSecondKeyword.equalsIgnoreCase("current")) {
+                printCurrentList();
                 executeListCurrentModulesCommand(modules);
             } else {  // list PU name case
                 int indexOfFirstSpace = userInput.indexOf(' ');
                 String universityName = userInput.substring(indexOfFirstSpace + 1);
+                printPUModList(universityName);
                 executeListPuModulesCommand(puModules, universities, universityName);
             }
             break;
@@ -36,16 +44,42 @@ public class UI {
             break;
         case "add":
             executeAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
+            printAddMod();
             break;
         case "remove":
             int indexToRemove = Integer.parseInt(userCommandSecondKeyword);
             executeDeleteModuleCommand(storage, indexToRemove, modules);
+            printDeleteMod();
             break;
         default:
             System.out.println("Invalid Input");
             break;
         }
         return toContinue;
+    }
+
+    private void printPUList() {
+        System.out.println(LIST_PU_MESSAGE);
+        System.out.println(LINE);
+    }
+
+    private void printCurrentList() {
+        System.out.println(LIST_CURRENT_MESSAGE);
+    }
+
+    private void printPUModList(String univName) {
+        System.out.println(univName + " Modules");
+        System.out.println(LINE);
+    }
+
+    private void printAddMod() {
+        System.out.println(ADD_MOD_MESSAGE);
+        System.out.println(LINE);
+    }
+
+    private void printDeleteMod() {
+        System.out.println(DELETE_MOD_MESSAGE);
+        System.out.println(LINE);
     }
 
     private void executeListCurrentModulesCommand(ArrayList<Module> modules) {
@@ -86,7 +120,6 @@ public class UI {
         String moduleCode = stringSplit[1];
         int univID = 0;
         for (int i = 0; i < universities.size(); ++i) {
-            System.out.println(universities.get(i).getUnivAbbName());
             if (universities.get(i).getUnivAbbName().equalsIgnoreCase(abbreviation)) {
                 univID = universities.get(i).getUnivId();
                 break;
