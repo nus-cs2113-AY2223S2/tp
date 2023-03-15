@@ -3,7 +3,6 @@ package bagpacker.iohandler;
 import bagpacker.commands.*;
 import bagpacker.exception.EmptyInputException;
 import bagpacker.packingfunc.Item;
-import bagpacker.packingfunc.PackingList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,6 +14,7 @@ import java.util.Scanner;
 public class Parser {
     private static ArrayList<String> inputStringArray;
     private static String fullInput;
+    private static String itemDescrip;
     public static void setFullInput(String fullInput) {
         Parser.fullInput = fullInput;
     }
@@ -47,7 +47,7 @@ public class Parser {
         setFullInput(inputLine);
         String[] inputStringList = inputLine.trim().split(" ");
         setInputStringArray(inputStringList);
-        String itemDescrip;
+
 
         switch (inputStringList[0]) {
         case "add":
@@ -59,21 +59,16 @@ public class Parser {
             return packItem(inputStringList[1]);
         case "unpack":
             return unpackItem(inputStringList[1]);
+        case "list":
+            return listCommand();
+        case "help":
+            return helpCommand();
+        case "delete":
+            return deleteList();
         default:
-            return addItem(inputStringList[1]);
+            return new IncorrectCommand("'" + Parser.getCommand() + "' is an invalid User Command\n" +
+                    "input 'help' to receive all valid commands");
         }
-
-//        case "list":
-//            return
-//            break;
-//        case "help":
-//                Ui.helpMessage();
-//            break;
-//        default:
-//            return Command
-//            Ui.errorMessage("'" + Parser.getCommand() + "' is an invalid User Command",
-//                    "input 'help' to receive all valid commands");
-//            break;
     }
 
     private static String readLine() throws EmptyInputException {
@@ -93,13 +88,17 @@ public class Parser {
         return getInputStringArray().get(0).toLowerCase();
     }
 
+    public static String getArgs() {
+        return getInputStringArray().get(1);
+    }
+
     /**
      * Returns the user item description
      */
     public static String getItemDescrip() {
         //String[] itemArray = Arrays.copyOfRange(getInputStringArray(),1,getInputStringArray().length);
         int indexItemName = getFullInput().indexOf("i/") + 2;
-        return getFullInput().substring(indexItemName, getFullInput().length()).trim();
+        return getFullInput().substring(indexItemName).trim();
     }
 
 
@@ -130,6 +129,18 @@ public class Parser {
      */
     public static Command unpackItem(String itemDescrip) {
         return new UnpackCommand(Integer.parseInt(itemDescrip));
+    }
+
+    public static Command listCommand() {
+        return new ListCommand();
+    }
+
+    public static Command deleteList() {
+        return new DeleteListCommand();
+    }
+
+    private static Command helpCommand() {
+        return new HelpCommand();
     }
 
 }

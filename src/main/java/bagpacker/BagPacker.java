@@ -11,9 +11,8 @@ public class BagPacker {
      * Main entry-point for the java.BagPacker application.
      */
     public static void main(String[] args) {
-        // intialise variables
-        PackingList packingList = new PackingList();
-        BagPacker.packingList = packingList;
+        // initialise variables
+        BagPacker.packingList = new PackingList();
         //initialise BagPacker program
         Ui.initialMessage();
 
@@ -25,10 +24,8 @@ public class BagPacker {
     }
 
     public static void runBagPacker() {
-
         while (true) {
-
+            Parser.parse();
         }
-        Storage.save();
     }
 }
