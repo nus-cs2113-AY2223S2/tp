@@ -26,11 +26,6 @@ public class Ui {
         borderLine();
     }
 
-
-
-
-
-
     /**
      * Finds tasks in the list that contain keywords input by the user
      *
@@ -115,15 +110,17 @@ public class Ui {
         System.out.println("\t - unmark <task_number>: I'll mark that task as undone.");
         System.out.println("\t - delete <task_number>: I'll delete that task from your list.");
         System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
-        System.out.println("\t - priority <task_number> <1/2/3>: I'll set the priority of a given task as" +
-                " 1:Low , 2:Medium and 3:High.");
-        System.out.println("\t - bye: I will shut down my program.");
+        System.out.println("\t - priority <task_number> <1/2/3>: I'll set the priority of a given task as");
+        System.out.println("\t                                   1:Low, 2:Medium and 3:High.");
+        System.out.println("\t - bye: I will shut down my program.\n");
         System.out.println("\t Here are the following ways to input tasks:");
         System.out.println("\t Deadlines: <description> /by <yyyy-MM-dd HHmm>");
         System.out.println("\t            (eg. Eat bread /by 2023-03-15 2015)");
-        System.out.println("\t Events: <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>");
+        System.out.println("\t    Events: <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>");
         System.out.println("\t            (eg. Meeting /from 2023-03-15 2015 /to 2023-03-15 2215)");
-        System.out.println("\t Todo: <description>");
+        System.out.println("\t   Classes: <description> /class <class_name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>");
+        System.out.println("\t            (eg. Bring laptop /class Cs2113 /from 2023-03-15 1100 /to 2023-03-15 1200)");
+        System.out.println("\t      Todo: <description>");
         System.out.println("\t            (eg. Water the plants) \n");
         System.out.println("\t （`･v･´ ）: How else may I assist you today, human?");
         borderLine();
@@ -181,6 +178,12 @@ public class Ui {
     static void deadlineErrorMessage() {
         borderLine();
         System.out.println("\t Error. Please enter a valid description and deadline.");
+        borderLine();
+    }
+
+    static void schoolClassErrorMessage() {
+        borderLine();
+        System.out.println("\t Error. Please enter a valid class name, description, start time and end time");
         borderLine();
     }
 

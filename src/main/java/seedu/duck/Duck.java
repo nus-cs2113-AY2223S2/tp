@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duck {
-
-
     /** Runs the Duck bot */
     private static void runDuck() throws IOException {
         Ui.greetingMessage();

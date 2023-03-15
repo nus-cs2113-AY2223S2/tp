@@ -28,12 +28,13 @@ public class Event extends Task {
 
     @Override
     public String toSaveString() {
-        return super.toSaveString() + " /from " + getStart() + " /to " + getEnd() + System.lineSeparator();
+        return super.toSaveString() + " /from " + getStart() + " /to " + getEnd() +
+                " <p>" + getPriorityIndex() + System.lineSeparator();
     }
 
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (from: " + start
-                + " to: " + end + ")";
+                + " to: " + end + ")" + " (" + getPriority() + ")";
     }
 }
