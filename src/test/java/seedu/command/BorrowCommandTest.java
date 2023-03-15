@@ -14,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class BorrowCommandTest {
     private static final LoanRecords loanRecords = new LoanRecords();
     private static final Book sampleBook = createBook("java coffee");
-    private static final Book book2 = createBook("python snake");
-    private static final Person person1 = createPerson("john");
-    private static final Person person2 = createPerson("tan");
+    private static final Person samplePerson = createPerson("john");
+    private static final String SUCCESS_MSG = "Borrow is successful.";
+    private static final String FAIL_MSG = "This item is not borrowable.";
 
     private static Book createBook(String title) {
         try {
@@ -43,13 +43,13 @@ public class BorrowCommandTest {
         }
 
         // execution
-        BorrowCommand borrowCommand = new BorrowCommand(loanRecords, person1, sampleBook);
+        BorrowCommand borrowCommand = new BorrowCommand(loanRecords, samplePerson, sampleBook);
         CommandResult result = borrowCommand.execute();
 
         // check borrow is borrowed
         assertTrue(sampleBook.isBorrowed());
         // check command result
-        assertEquals("Borrow is successful.", result.feedbackToUser);
+        assertEquals(SUCCESS_MSG, result.feedbackToUser);
     }
 
     @Test
@@ -61,12 +61,12 @@ public class BorrowCommandTest {
         }
 
         // execution
-        BorrowCommand borrowCommand = new BorrowCommand(loanRecords, person1, sampleBook);
+        BorrowCommand borrowCommand = new BorrowCommand(loanRecords, samplePerson, sampleBook);
         CommandResult result = borrowCommand.execute();
 
         // check book is still borrowed
         assertTrue(sampleBook.isBorrowed());
         // check command result
-        assertEquals("This item is not borrowable.", result.feedbackToUser);
+        assertEquals(FAIL_MSG, result.feedbackToUser);
     }
 }

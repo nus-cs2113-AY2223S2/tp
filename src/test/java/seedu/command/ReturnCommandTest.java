@@ -14,14 +14,19 @@ import seedu.dukeofbooks.data.person.Person;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ReturnCommandTest {
     private static final LoanRecords loanRecords = new LoanRecords();
     private static final Book sampleBook = createBook("java coffee");
     private static final Person samplePerson = createPerson("john");
+    private static final Person randomPerson = createPerson("Toe");
     private static final String SUCCESS_MSG = "Item has been returned!";
     private static final String FAIL_MSG = "Item is not borrowed!";
+    private static final String ERROR_MSG_F = "Cannot return item: %s";
+    private static final String DEBUG_MSG = "Cannot find an active loan!";
 
     private static Book createBook(String title) {
         try {
@@ -42,6 +47,9 @@ public class ReturnCommandTest {
     @BeforeEach
     public void prepareData() {
         loanRecords.clear();
+        if (sampleBook.isBorrowed()) {
+            sampleBook.returnItem();
+        }
         LocalDateTime now = LocalDateTime.now();
         try {
             LoanController.borrowItem(loanRecords, samplePerson, sampleBook, now);
@@ -81,5 +89,13 @@ public class ReturnCommandTest {
         assertTrue(loanRecords.get(0).isReturned());
         assertFalse(sampleBook.isBorrowed());
         assertEquals(FAIL_MSG, result.feedbackToUser);
+    }
+
+    @Test
+    public void returnCommand_error() {
+        ReturnCommand command = new ReturnCommand(loanRecords, randomPerson, sampleBook);
+        CommandResult result = command.execute();
+
+        assertEquals(String.format(ERROR_MSG_F, DEBUG_MSG), result.feedbackToUser);
     }
 }
