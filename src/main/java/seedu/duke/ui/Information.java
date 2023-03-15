@@ -6,7 +6,8 @@ import java.util.HashMap;
 
 import static seedu.duke.save.Storage.saveData;
 
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class stores information on all patients registered by DoctorDuke.
