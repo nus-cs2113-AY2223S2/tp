@@ -6,7 +6,7 @@ import chching.record.ExpenseList;
 import chching.record.IncomeList;
 
 /**
- * model a class to handle the bye command. inherit from Command class.
+ * model a class to handle the invalid command. inherit from Command class.
  */
 public class InvalidCommand extends Command {
     @Override
