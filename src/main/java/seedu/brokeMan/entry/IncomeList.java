@@ -1,6 +1,5 @@
 package seedu.brokeMan.entry;
 
-import seedu.brokeMan.ui.Ui;
 
 import java.util.LinkedList;
 

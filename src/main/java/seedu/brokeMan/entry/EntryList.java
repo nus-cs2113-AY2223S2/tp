@@ -80,14 +80,14 @@ public class EntryList {
         try {
             Entry entryBeingEdited = entryList.get(entryIndex - 1);
             switch (type) {
-                case "info":
-                    entryBeingEdited.editInfo(newEntry);
-                    break;
-                case "time":
-                    entryBeingEdited.editTime(newEntry);
-                    break;
-                default:
-                    Ui.showToUserWithLineBreak("Invalid type parameter!", "");
+            case "info":
+                entryBeingEdited.editInfo(newEntry);
+                break;
+            case "time":
+                entryBeingEdited.editTime(newEntry);
+                break;
+            default:
+                Ui.showToUserWithLineBreak("Invalid type parameter!", "");
             }
             Ui.showToUserWithLineBreak("Successfully edited expense.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {

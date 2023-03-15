@@ -1,7 +1,5 @@
 package seedu.brokeMan.entry;
 
-import seedu.brokeMan.entry.Entry;
-
 import java.util.Comparator;
 
 public class EntryDateComparator implements Comparator<Entry> {
