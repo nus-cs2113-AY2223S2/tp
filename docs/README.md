@@ -1,4 +1,4 @@
-# Duke
+# MealCompanion
 
 {Give product intro here}
 
