@@ -4,6 +4,7 @@ import seedu.commands.Command;
 import seedu.commands.LendExpenditureCommand;
 import seedu.commands.BorrowExpenditureCommand;
 import seedu.commands.InvalidCommand;
+import seedu.exceptions.EmptyStringException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -42,6 +43,8 @@ public class ParseLendBorrow {
             return new InvalidCommand("number format problem");
         } catch (DateTimeParseException d) {
             return new InvalidCommand("date time error");
+        } catch (StringIndexOutOfBoundsException | EmptyStringException s) {
+            return new InvalidCommand(s.getMessage());
         }
     }
 }

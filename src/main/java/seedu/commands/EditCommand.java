@@ -23,13 +23,11 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(ExpenditureList expenditures) {
         try {
-            Expenditure editedExpenditure = expenditures.getExpenditure(index - 1);
+            Expenditure editedExpenditure = expenditures.getExpenditure(index);
             editedExpenditure.setDate(date);
             editedExpenditure.setValue(Double.parseDouble(amount));
             editedExpenditure.setDescription(category);
-
             return new CommandResult(String.format("Edited! Here is the updated list:\n" + expenditures.toString()));
-
         } catch (IndexOutOfBoundsException e) {
             return new CommandResult("Failed to edit! Please check the format and try again!");
         }

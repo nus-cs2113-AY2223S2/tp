@@ -20,6 +20,8 @@ public class Ui {
             "Format: delete INDEX\n" +
             "3. edit: Edits an existing expenditure in the record\n" +
             "Format: edit INDEX d/DATE a/AMOUNT s/DESCRIPTION\n" +
+            "Disclaimer: For v1.0 on Borrow or Lend Expenditures, " +
+            "editing can only change its borrow/lender date, amount and description\n" +
             "4. list: Shows a list of expenditures and loans in the record based on existing categories\n" +
             "Format: list /TYPE\n" +
             "5. borrow: Keep a record of an incoming loan\n" +

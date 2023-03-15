@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ExpenditureList {
+    public static final int LIST_OFFSET = 1;
     private static ArrayList<Expenditure> expenditures;
 
     public ExpenditureList() {
