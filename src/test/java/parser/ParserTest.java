@@ -18,4 +18,5 @@ class ParserTest {
         int index = parser.extractIndex("delete 3");
         assertEquals(3, index);
     }
+
 }

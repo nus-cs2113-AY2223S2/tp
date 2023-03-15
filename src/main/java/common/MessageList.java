@@ -8,6 +8,7 @@ public class MessageList {
     public static final int OFFSET = 1;
 
     public static final String SUCCESSFUL_DELETE = "The following expense is successfully deleted:";
+    public static final String SUCCESSFUL_ADD = "The following expense is successfully added:";
 
     public static final String TAB = "    ";
 

@@ -1,25 +1,28 @@
 package data;
 
+import java.math.RoundingMode;
 import java.util.Objects;
+import java.math.BigDecimal;
 
 public class Expense {
-    protected double expenseAmount;
+    protected BigDecimal expenseAmount;
     protected Time expenseTime;
     protected String description;
     protected Currency currencyType;
 
-    public Expense() {
-        this.expenseAmount = 0;
-    }
-
-    public Expense(double expenseAmount, Time expenseTime, String description, Currency currencyType) {
-        this.expenseAmount = expenseAmount;
+    public Expense(BigDecimal expenseAmount, Time expenseTime, String description, Currency currencyType) {
+        this.expenseAmount = formatExpenseAmount(expenseAmount);
         this.expenseTime = expenseTime;
         this.description = description;
         this.currencyType = currencyType;
     }
 
-    public double getExpenseAmount() {
+    private BigDecimal formatExpenseAmount(BigDecimal originalExpenseAmount) {
+        BigDecimal roundedExpense = originalExpenseAmount.setScale(2, RoundingMode.HALF_UP);
+        return roundedExpense;
+    }
+
+    public BigDecimal getExpenseAmount() {
         return expenseAmount;
     }
 
@@ -36,7 +39,7 @@ public class Expense {
     }
 
     // The setter method will be used if the User want to change some information in their previous expense
-    public void setExpenseAmount(double expenseAmount) {
+    public void setExpenseAmount(BigDecimal expenseAmount) {
         this.expenseAmount = expenseAmount;
     }
 
@@ -57,7 +60,7 @@ public class Expense {
             return true;
         }
         return Objects.equals(this.getDescription(), ((Expense) obj).getDescription())
-                && this.getExpenseAmount() == ((Expense) obj).getExpenseAmount()
+                && this.getExpenseAmount().equals(((Expense) obj).getExpenseAmount())
                 && Objects.equals(this.getExpenseTime(), ((Expense) obj).getExpenseTime())
                 && Objects.equals(this.getCurrencyType(), ((Expense) obj).getCurrencyType());
     }
@@ -68,11 +71,10 @@ public class Expense {
     @Override
     public String toString() {
         String currencyString = Currency.returnCurrency(this.currencyType);
-        String amountString = Double.toString(this.expenseAmount);
+        String amountString = this.expenseAmount.toString();
         String descriptionString = this.description;
         String timeString = this.expenseTime.toString();
         return (currencyString + amountString + " cat:" + descriptionString + " date:" + timeString);
     }
-
 }
 
