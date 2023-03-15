@@ -26,10 +26,8 @@ public class Incomes {
         try {
             String indexString = argumentsByField.get("in");
             index = Integer.parseInt(indexString);
-        } catch (NumberFormatException e) {
-            throw new ChChingException("Index needs to be an integer");
-        } catch (NullPointerException e) {
-            throw new ChChingException("Index not found");
+        } catch (Exception e) {
+            throw new ChChingException("Missing/invalid index");
         }
         return index;
     }
