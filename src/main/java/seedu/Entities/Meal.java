@@ -1,4 +1,4 @@
-package seedu.Entities;
+package seedu.entities;
 
 import java.util.ArrayList;
 
@@ -43,8 +43,7 @@ public class Meal {
         String[] output = new String[2];
         output[0] = date;
         String[] foodArray = new String[foods.size()];
-        for (int i = 0; i < foods.size(); i++)
-        {
+        for (int i = 0; i < foods.size(); i++) {
             foodArray[i] = String.valueOf(foods.get(i).getId());
         }
         output[1] = String.join(delimiter, foodArray);
@@ -56,8 +55,7 @@ public class Meal {
         String output = "Meal was consumed on " + date + "\n";
         output += "Total Calories are: " + this.getTotalCalories() + "\n";
         output += "Here are the foods you ate:\n";
-        for (int i = 0; i < foods.size(); i++)
-        {
+        for (int i = 0; i < foods.size(); i++) {
             output += (i+1) + ") " + foods.get(i).toString() + "\n";
         }
         return output;

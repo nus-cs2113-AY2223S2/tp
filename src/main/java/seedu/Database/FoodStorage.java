@@ -1,4 +1,4 @@
-package seedu.Database;
+package seedu.database;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import seedu.Definitions.FoodTypes;
-import seedu.Entities.Dish;
-import seedu.Entities.Food;
-import seedu.Entities.Ingredient;
-import seedu.Entities.Side;
+import seedu.definitions.FoodTypes;
+import seedu.entities.Dish;
+import seedu.entities.Food;
+import seedu.entities.Ingredient;
+import seedu.entities.Side;
 
 public class FoodStorage extends Storage implements FileReadable {
     private static final String csvDelimiter = ",";

@@ -1,12 +1,12 @@
-package seedu.Commands;
+package seedu.commands;
 
 import java.io.IOException;
 
-import seedu.Database.FoodStorage;
-import seedu.Database.MealStorage;
-import seedu.Database.UserStorage;
-import seedu.Exceptions.LifeTrackerException;
-import seedu.Ui.GeneralUi;
+import seedu.database.FoodStorage;
+import seedu.database.MealStorage;
+import seedu.database.UserStorage;
+import seedu.exceptions.LifeTrackerException;
+import seedu.ui.GeneralUi;
 
 public class ExitCommand extends Command{
     @Override
