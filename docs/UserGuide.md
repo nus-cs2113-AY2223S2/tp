@@ -11,10 +11,10 @@
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Duke.jar` command to run the application.
 1. Enter your name when prompted in the command box and press enter.
 1. Type the command in the command box and press Enter to execute it.
-SOme example commands you can try:
-*`add amt/100 t/15-03-2023`: Add an expense entry with a value of SGD100.0 and a date of 15th March 2023 to the expense list.
-*`list`: List all expenses in the expense list.
-*`delete 1`: Delete the first entry in the expense list.
+Some example commands you can try:
+** `add amt/100 t/15-03-2023`: Add an expense entry with a value of SGD100.0 and a date of 15th March 2023 to the expense list.
+** `list`: List all expenses in the expense list.
+** `delete 1`: Delete the first entry in the expense list.
 
 ## Features 
 
