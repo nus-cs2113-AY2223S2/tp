@@ -21,6 +21,7 @@ public class TaskList {
             // Adding a Deadline
             try {
                 addDeadline(line, tasks);
+                Task.incrementCount();
             } catch (IllegalDeadlineException e) {
                 Ui.deadlineErrorMessage();
             } catch (expiredDateException e) {
@@ -32,6 +33,7 @@ public class TaskList {
             // Adding a SchoolClass
             try {
                 addSchoolClass(line, tasks);
+                Task.incrementCount();
             } catch (IllegalSchoolClassException | IndexOutOfBoundsException e) {
                 Ui.eventErrorMessage();
             } catch (expiredDateException e) {
@@ -45,6 +47,7 @@ public class TaskList {
             // Adding an Event
             try {
                 addEvent(line, tasks);
+                Task.incrementCount();
             } catch (IllegalEventException | IndexOutOfBoundsException e) {
                 Ui.eventErrorMessage();
             } catch (expiredDateException e) {
@@ -58,6 +61,7 @@ public class TaskList {
             // Adding a _Todo_
             try {
                 addTodo(line, tasks);
+                Task.incrementCount();
             } catch (IllegalTodoException e) {
                 Ui.todoErrorMessage();
             }
