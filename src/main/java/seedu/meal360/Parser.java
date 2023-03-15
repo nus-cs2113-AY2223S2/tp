@@ -62,9 +62,12 @@ public class Parser {
             String recipeToDelete = input[1].substring(2);
             if (recipeToDelete.equals("all")) {
                 String allRecipes = "";
-                for (int i = 0; i < recipeList.size(); i++) {
-                    allRecipes += recipeList.deleteRecipe(i).getName() + " ";
+                System.out.println("recipeList size: " + recipeList.size());
+                int index = 0;
+                while (recipeList.size() != 0) {
+                    allRecipes += recipeList.deleteRecipe(index).getName() + ", ";
                 }
+                allRecipes = allRecipes.substring(0, allRecipes.length() - 2);
                 return allRecipes;
             } else {
                 int recipeIndex = 0;
