@@ -60,7 +60,7 @@ public class Ui {
     public String readUserCommand() {
         String userInput = in.nextLine();
         UILogger.log(Level.INFO, userInput);
-        if(userInput.trim().equals("")) {
+        if (userInput.trim().equals("")) {
             emptyInstructionHandling();
             readUserCommand();
         }
@@ -86,7 +86,7 @@ public class Ui {
     }
 
     public static void printSummary(int inflow, int outflow) {
-        assert (inflow != 0 && outflow != 0);
+        assert (inflow != 0 || outflow != 0);
         System.out.print(System.lineSeparator());
         String inflowInformation = "Inflow: $" + inflow;
         String outflowInformation = "Outflow: $" + outflow;
