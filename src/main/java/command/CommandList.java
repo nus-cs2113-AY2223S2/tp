@@ -28,7 +28,7 @@ public class CommandList extends Command {
             System.out.println(MESSAGE_DIVIDER_LIST);
             for (int i = 0; i < expenseList.size(); i++) {
                 System.out.print((i + 1) + ".");
-                expenseList.get(i).printExpense();
+                System.out.println(expenseList.get(i).toString());
             }
             System.out.println(ExpenseList.getAllMessage(expenseList));
             System.out.println(MESSAGE_DIVIDER);
