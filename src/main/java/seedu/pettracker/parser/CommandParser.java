@@ -37,6 +37,8 @@ public class CommandParser {
      * @return Command keyword
      */
     private static String parseKeyword(String commandString) {
+        //assert false: "This method should be implemented";
+        assert commandString.split(" ", 2).length > 0 : "No keyword";
         return commandString.split(" ", 2)[0];
     }
 
@@ -47,6 +49,7 @@ public class CommandParser {
      * @return Arguments
      */
     private static String parseArgs(String commandString) throws ArrayIndexOutOfBoundsException {
+        assert commandString.split(" ", 2).length > 1 : "No arguments";
         return commandString.split(" ", 2)[1];
     }
 
