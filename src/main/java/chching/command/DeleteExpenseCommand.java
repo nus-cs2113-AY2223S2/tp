@@ -16,6 +16,9 @@ public class DeleteExpenseCommand extends Command {
         if(index <0){
             throw new ChChingException("Negative index");
         }
+        else if(index >= incomes.size()){
+            throw new ChChingException("The number is too big");
+        }
         expenses.deleteExpense(index);
         System.out.println("Expense deleted, here is the updated list:");
         expenses.printExpenseList();
