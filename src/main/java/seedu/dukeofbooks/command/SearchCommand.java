@@ -1,13 +1,11 @@
 package seedu.dukeofbooks.command;
 
-import seedu.dukeofbooks.data.book.BorrowableItem;
-
 public class SearchCommand extends Command {
     public static final String COMMAND_WORD = "search";
-    BorrowableItem item;
+    private String title;
     
-    public SearchCommand(BorrowableItem item) {
-        this.item = item;
+    public SearchCommand(String title) {
+        this.title = title;
     }
 
     @Override

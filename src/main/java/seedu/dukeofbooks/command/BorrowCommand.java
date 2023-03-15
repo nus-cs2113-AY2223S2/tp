@@ -9,7 +9,7 @@ import seedu.dukeofbooks.data.book.BorrowableItem;
 import java.time.LocalDateTime;
 
 public final class BorrowCommand extends LoanCommand {
-    public static final String COMMAND_WORD = "history";
+    public static final String COMMAND_WORD = "borrow";
     private final Person person;
     private final BorrowableItem item;
 
@@ -17,6 +17,10 @@ public final class BorrowCommand extends LoanCommand {
         super(loanRecords);
         this.person = person;
         this.item = item;
+    }
+
+    public BorrowCommand(String title){
+        this.title=title;
     }
 
     @Override

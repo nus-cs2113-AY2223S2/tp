@@ -13,11 +13,16 @@ public final class ReturnCommand extends LoanCommand {
     private static final String ERROR_MSG_F = "Cannot return item: %s";
     Person person;
     BorrowableItem item;
+    private String title;
     
     public ReturnCommand(LoanRecords loanRecords, Person person, BorrowableItem item) {
         super(loanRecords);
         this.person = person;
         this.item = item;
+    }
+
+    public ReturnCommand(String title){
+        this.title=title;
     }
 
     @Override

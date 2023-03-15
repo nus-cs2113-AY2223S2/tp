@@ -19,6 +19,10 @@ public final class RenewCommand extends LoanCommand {
         this.person = person;
         this.item = item;
     }
+    
+    public RenewCommand(String title){
+        this.title=title;
+    }
 
     @Override
     public CommandResult execute() {
