@@ -13,6 +13,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class reads and writes information to and from the patient-data file.
@@ -26,6 +28,7 @@ public class Storage {
     /** Specifies the file path to be created */
     static final String FILE_PATH = "./data/patient-data.txt";
 
+    private static Logger logger = Logger.getLogger(Storage.class.getName());
     /**
      * Loads each patient's data into a hashmap of patients in the Information class
      * by reading from the patient-data file.
@@ -83,6 +86,7 @@ public class Storage {
 
             String name = scanner.nextLine();
             if (endOfFile(name)) {
+                logger.log(Level.WARNING, "Corrupted data file");
                 throw new CorruptedDataException();
             }
 
@@ -92,6 +96,7 @@ public class Storage {
             for (int i = 0; i < numberOfEntries; i++) {
                 String diagnosis = scanner.nextLine();
                 if (endOfFile(diagnosis)) {
+                    logger.log(Level.WARNING, "Corrupted data file");
                     throw new CorruptedDataException();
                 }
                 diagnosisHistory.add(diagnosis);
@@ -125,6 +130,7 @@ public class Storage {
             }
             writer.close();
         } catch (IOException e) {
+            logger.log(Level.WARNING, "Unable to save data to file");
             System.out.println("ERROR: Unable to save data to file.");
         }
     }
