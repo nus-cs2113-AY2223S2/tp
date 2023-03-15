@@ -1,6 +1,9 @@
 package seedu.duke.diagnosis.symptoms;
 
-//@@author Brennanzuz
+/**
+ * An enumeration of all illnesses that can be identified by Dr. Duke.
+ * @author Brennanzuz
+ */
 public enum Symptom {
     DIFFICULTY_BREATHING,
     HISTORY_OF_ASTHMA,

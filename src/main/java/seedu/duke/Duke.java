@@ -43,18 +43,6 @@ public class Duke {
             String input = in.nextLine();
             Parser.parseAccountCommand(input);
         }
-        /*
-        For testing of Diagnosis
-        for (IllnessMatch test : Diagnosis.getPossibleIllnesses(new ArrayList<Symptom>(List.of(Symptom.BLOCKED_NOSE,
-                Symptom.RUNNY_NOSE,
-                Symptom.SNEEZING,
-                Symptom.CHILLS,
-                Symptom.FATIGUE,
-                Symptom.THROAT_IRRITATION)))) {
-            System.out.println(test.getIllness().getIllnessName());
-            System.out.println(test.getSimilarityPercentage());
-        }
-         */
     }
 
     /**
