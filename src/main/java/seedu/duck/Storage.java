@@ -89,11 +89,11 @@ public class Storage {
      * @param tasks The array list of tasks
      */
     static void loadEvent(String line, ArrayList<Task> tasks) {
-        String description = line.substring(0, line.indexOf("/from")-5).trim();
+        String description = line.substring(0, line.indexOf("/from")).trim();
         String start = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
-        String end = line.substring(line.indexOf("/to") + 3).trim();
-        Event currEvent = new Event(description, start, end);
+        String end = line.substring(line.indexOf("/to") + 3, line.indexOf("<p>")).trim();
         String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("<p>") + 4).trim();
+        Event currEvent = new Event(description, start, end);
         currEvent.setPriority(priority);
         tasks.add(currEvent);
     }
@@ -109,8 +109,10 @@ public class Storage {
         String description = line.substring(0, line.indexOf("/class")).trim();
         String className = line.substring(line.indexOf("/class") + 6, line.indexOf("/from")).trim();
         String startString = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
-        String endString = line.substring(line.indexOf("/to") + 3).trim();
+        String endString = line.substring(line.indexOf("/to") + 3, line.indexOf("<p>")).trim();
+        String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("<p>") + 4).trim();
         SchoolClass currSchoolClass = new SchoolClass(className, description, startString, endString);
+        currSchoolClass.setPriority(priority);
         tasks.add(currSchoolClass);
     }
 
@@ -122,10 +124,10 @@ public class Storage {
      * @param tasks The array list of tasks
      */
     static void loadDeadline(String line, ArrayList<Task> tasks) {
-        String description = line.substring(0, line.indexOf("/by")-5).trim();
-        String deadline = line.substring(line.indexOf("/by") + 3).trim();
-        Deadline currDeadline = new Deadline(description, deadline);
+        String description = line.substring(0, line.indexOf("/by")).trim();
+        String deadline = line.substring(line.indexOf("/by") + 3, line.indexOf("<p>")).trim();
         String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("<p>") + 4).trim();
+        Deadline currDeadline = new Deadline(description, deadline);
         currDeadline.setPriority(priority);
         tasks.add(currDeadline);
     }

@@ -44,7 +44,7 @@ public class Task {
     }
 
     public String getPriority() {
-        if(priority == 1) {
+        if (priority == 1) {
             // Mark done task with X
             return "Low priority.";
         } else if(priority == 2) {
@@ -55,6 +55,10 @@ public class Task {
             return "High priority.";
         }
         return "No priority established.";
+    }
+
+    public int getPriorityIndex() {
+        return this.priority;
     }
 
     public static void incrementCount() {
@@ -77,11 +81,11 @@ public class Task {
     }
 
     public String toSaveString() {
-        return getDoneConditionString() + " " + getDescription() + " <p>" + this.priority;
+        return getDoneConditionString() + " " + getDescription();
     }
 
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + getDescription() + " (" + getPriority() + ")";
+        return "[" + getStatusIcon() + "] " + getDescription();
     }
 }

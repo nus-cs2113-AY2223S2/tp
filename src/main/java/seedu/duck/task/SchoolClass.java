@@ -36,20 +36,19 @@ public class SchoolClass extends Task{
         this.end = end;
     }
 
-    //todo modify save string to accept schoolClass
     @Override
     public String toSaveString() {
         return super.toSaveString() + " /class " + getClassName() + " /from " + getStart() + " /to "
-                + getEnd() + System.lineSeparator();
+                + getEnd() + " <p>" + getPriorityIndex() + System.lineSeparator();
     }
 
     @Override
     public String toString() {
         if (getDescription().isBlank()) {
             return "[C]" + "[" + getStatusIcon() + "] " + className + " (from: " + start
-                    + " to: " + end + ")";
+                    + " to: " + end + ")" + " (" + getPriority() + ")";
         }
         return "[C]" + "[" + getStatusIcon() + "] " + className + ": " + getDescription() +
-                " (from: " + start + " to: " + end + ")";
+                " (from: " + start + " to: " + end + ")" + " (" + getPriority() + ")";
     }
 }
