@@ -70,7 +70,9 @@ Example of usage:
 
 Expected Output:
 
-`Successfully removed pet: Alice`
+```
+Successfully removed pet: Alice
+```
 
 ### Adding a stat to a pet: `add-stat`
 Adds a stat to a pet in the Pet List.
@@ -96,6 +98,26 @@ Updated Weight to 50 for Bob
 Updated Age to 10 for Bob
 ```
 
+### Removing a stat from a pet: `remove-stat`
+Removes a stat from a pet in the Pet List.
+
+Format: `remove-stat NAME STAT`
+
+* The `NAME` must not be empty.
+* The `STAT` must not be empty.
+
+Example of usage:
+
+`
+remove-stat Bob Age
+`
+
+Expected Output:
+
+```
+Successfully removed Age from Bob
+```
+
 ### Viewing Pet List: `list`
 View the current Pet List and total number of pets.
 
@@ -107,5 +129,12 @@ Example of usage:
 
 Expected Output:
 
-`Successfully added new pet: Bob`
+```
+Name: Bob
+Type:
+Age:
+Weight: 50
+____________________
+Number of pets: 1
+```
 
