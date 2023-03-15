@@ -7,10 +7,15 @@ public class ReturnCommand extends Command {
     public static final String COMMAND_WORD = "return";
     Person person;
     BorrowableItem item;
+    private String title;
     
     public ReturnCommand(Person person, BorrowableItem item) {
         this.person = person;
         this.item = item;
+    }
+
+    public ReturnCommand(String title){
+        this.title=title;
     }
 
     @Override
