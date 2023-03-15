@@ -12,32 +12,36 @@ public class Parser {
     }
 
     public static void parseCommand(String userInput, EventList eventList) {
-        userInput = userInput.trim();
-        String command = "";
-        String remainder = "";
-        if (userInput.toLowerCase().equals("list")) {
-            command = "list";
-        } else {
-            command = userInput.substring(0, userInput.indexOf(" "));
-            remainder = userInput.substring(userInput.indexOf(" ") + 1);
+        try {
+            userInput = userInput.trim();
+            String command = "";
+            String remainder = "";
+            if (!userInput.contains(" ")){
+                command = userInput;
+            } else {
+                command = userInput.substring(0, userInput.indexOf(" "));
+                remainder = userInput.substring(userInput.indexOf(" ") + 1);
+            }
 
-        }
-        switch (command.toLowerCase()) {
-        case "add":
-            parseAddCommand(remainder, eventList);
-            break;
-        case "delete":
-            parseDeleteCommand(remainder, eventList);
-            break;
-        case "list":
-            parseListCommand(eventList);
-            break;
-        case "edit":
-            parseEditCommand(remainder, eventList);
-            break;
-        default:
-            Ui.addErrorMsg();
-            break;
+            switch (command.toLowerCase()) {
+            case "add":
+                parseAddCommand(remainder, eventList);
+                break;
+            case "delete":
+                parseDeleteCommand(remainder, eventList);
+                break;
+            case "list":
+                parseListCommand(eventList);
+                break;
+            case "edit":
+                parseEditCommand(remainder, eventList);
+                break;
+            default:
+                Ui.addErrorMsg();
+                break;
+            }
+        } catch(Exception e) {
+            Ui.printErrorMsg(e.getMessage());
         }
     }
 
@@ -52,37 +56,60 @@ public class Parser {
         Ui.deleteSuccessMsg();
     }
 
-    private static void parseAddCommand(String remainder, EventList eventList) {
+    private static void parseAddCommand(String remainder, EventList eventList) throws NPExceptions {
         // Method is still broken, someone will have to fix it fully later on when handling exceptions
         // Note no "-" anywhere else.
         String[] details = remainder.split("-");
-        String eventName = details[1].substring(2).trim();
-        String startTime = details[2].substring(2).trim();
-        String startDate = details[3].substring(2).trim();
-
-        boolean isValidFormat = (details[1].substring(0,1).equalsIgnoreCase("e")&&
-                details[2].substring(0,2).equalsIgnoreCase("st")&&
-                details[3].substring(0,2).equalsIgnoreCase("sd"));
-        //TODO: refactor isValidFormat into formatChecker method that raises exception.
-        if (isValidFormat) {
-            if (details.length == 6) {
-                String endTime = details[4].substring(2).trim();
-                String endDate = details[5].substring(2).trim();
-                eventList.addEvent(eventName, startTime, startDate, endTime, endDate);
-            } else {
-                eventList.addEvent(eventName, startTime, startDate);
-            }
-            Ui.addSuccessMsg();
-        } else{
-            Ui.addErrorMsg(); //placeholder
+        if(details.length <= 1) {
+            throw new NPExceptions("Event description and start day of your event are strictly required!");
         }
-        //TODO: Show successful add on UI. (For all cases)
+
+        String[] information = new String[5];
+        Arrays.fill(information, "");
+        for (int i = 1; i < details.length; i++){
+            String field = details[i].substring(0,2).trim();
+            String change = details[i].substring(2).trim();
+            switch(field) {
+            case ("e"):
+                information[0] = change;
+                break;
+            case ("st"):
+                information[1] = change;
+                break;
+            case ("sd"):
+                information[2] = change;
+                break;
+            case ("et"):
+                information[3] = change;
+                break;
+            case ("ed"):
+                information[4] = change;
+                break;
+            default:
+                break;
+            }
+        }
+        addFormatChecker(information);
+
+        String eventName = information[0];
+        String startTime = information[1];
+        String startDate = information[2];
+
+        if (details.length == 6) {
+            String endTime = information[3];
+            String endDate = information[4];
+            eventList.addEvent(eventName, startTime, startDate, endTime, endDate);
+        } else {
+            eventList.addEvent(eventName, startTime, startDate);
+        }
+
+        Ui.addSuccessMsg();
     }
-    private static void parseEditCommand(String remainder, EventList eventList){
+    private static void parseEditCommand(String remainder, EventList eventList) throws NPExceptions{
         String[] details = remainder.split("-");
         String[] information = new String[4];
         Arrays.fill(information, "");
-        for (int i = 2; i < details.length; i++){
+        for (int i = 1; i < details.length; i++){
             String field = details[i].substring(0,2);
             String change = details[i].substring(2).trim();
             switch(field) {
@@ -103,12 +130,36 @@ public class Parser {
             }
         }
         if (information[1].equals("")){  //Starting date field MUST NOT be empty.
-            //TODO: add exception for empty starting date
-            Ui.addErrorMsg();
+            throw new NPExceptions("Empty starting date detected! Please add starting date.");
         } else {
-            //TODO: link to taskList edit event
-            System.out.println(details[1].substring(2) + "," + information[0] + "," + information[1] + "," 
-                    + information[2] + "," + information[3]);
+            int eventIndex = -1;
+
+            details[0] = details[0].trim();
+            try{
+                eventIndex = Integer.parseInt(details[0]);
+                eventIndex--;
+            } catch(NumberFormatException e){
+                eventIndex = eventList.searchTaskIndex(details[0]);
+            }
+
+            if(eventIndex < 0 || eventIndex >= eventList.getSize()){
+                throw new NPExceptions("Event index out of bound!");
+            }
+
+            if(!information[3].equals("")) {
+                eventList.reviseTimeInfo(eventIndex, information[0], information[1], information[2], information[3]);
+            } else {
+                eventList.reviseTimeInfo(eventIndex, information[0], information[1]);
+            }
+        }
+    }
+    private static void addFormatChecker(String[] information) throws NPExceptions {
+        boolean isValidFormat = !information[0].equalsIgnoreCase("") &&
+                                !information[1].equalsIgnoreCase("") &&
+                                !information[2].equalsIgnoreCase("") ;
+        
+        if (!isValidFormat) {
+            throw new NPExceptions("Please use correct command format!");
         }
     }
 }

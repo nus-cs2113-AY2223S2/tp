@@ -67,6 +67,16 @@ public class Ui {
     }
 
     /**
+     * Prints error message for 
+     * users with any error occurs
+     */
+    public static void printErrorMsg(String s){
+        printDash();
+        System.out.println(s);
+        printDash();
+    }
+
+    /**
      * Prints success message for
      * users when event is deleted
      */
