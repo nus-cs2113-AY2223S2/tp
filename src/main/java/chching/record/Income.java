@@ -9,6 +9,6 @@ public class Income extends Record{
     public String toString() {
         return  " Description - " + getDescription() +
                 " | Date - " + getDate() +
-                " | Value - " + getValue();
+                " | Value - " + String.format("%.02f", getValue());
     }
 }

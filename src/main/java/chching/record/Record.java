@@ -43,4 +43,8 @@ public abstract class Record {
     public void setValue(float value) {
         this.value = value;
     }
+    
+    public String toString() {
+        return "";
+    }
 }

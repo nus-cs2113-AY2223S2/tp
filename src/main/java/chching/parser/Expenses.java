@@ -15,7 +15,7 @@ public class Expenses {
             assert expenseValue > 0 : "Expense value should be greater than zero";
             exp = new Expense(expenseCategory, expenseDescription, expenseDate, expenseValue);
         } catch (Exception e) {
-            System.out.println("Trouble adding expenses");
+            System.out.println("    Trouble adding expense value");
         }
         return exp;
     }

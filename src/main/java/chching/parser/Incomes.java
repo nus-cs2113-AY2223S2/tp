@@ -15,7 +15,7 @@ public class Incomes {
             assert incomeValue > 0 : "incomeValue has to be more than 0";
             inc = new Income(incomeDescription, incomeDate, incomeValue);
         } catch (Exception e) {
-            System.out.println("Trouble adding income");
+            System.out.println("    Trouble adding income value");
         }
         return inc;
     }
