@@ -7,7 +7,6 @@ import chching.record.Record;
 import java.util.Scanner;
 
 public class Ui {
-
     public String readCommand() {
         Scanner input = new Scanner((System.in));
         return input.nextLine();
@@ -32,6 +31,7 @@ public class Ui {
         System.out.println("    Got it. I've added this record:");
         System.out.println("    " + record);
         System.out.println();
+        assert(incomes.size() > 0);
         System.out.println("    Now you have " + incomes.size() + " income records,");
         System.out.println("    and " + expenses.size() + " expense records in the list.");
     }
@@ -39,6 +39,8 @@ public class Ui {
     public void showDelete(IncomeList incomes, ExpenseList expenses, Record record) {
         System.out.println("    Noted. I've removed this record:");
         System.out.println("    " + record);
+        System.out.println();
+        assert(expenses.size() >= 0);
         System.out.println("    Now you have " + incomes.size() + " income records,");
         System.out.println("    and " + expenses.size() + " expense records in the list.");
     }
@@ -54,6 +56,7 @@ public class Ui {
     }
 
     public void showBalance(double totalExpense, double totalIncome, double balance) {
+        assert(totalExpense >= 0);
         System.out.println("    totalExpense: " + String.format("%.02f", totalExpense));
         System.out.println("    totalIncome: " + String.format("%.02f", totalIncome));
         System.out.println();
