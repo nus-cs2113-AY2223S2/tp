@@ -8,7 +8,7 @@ class ParserTest {
     private Parser parser;
     private EventList eventList;
     @BeforeEach
-    void setup(){
+    void setup() throws NPExceptions{
         parser = new Parser();
         eventList = new EventList();
         eventList.addEvent("test0", "20:00", "2023/03/14");

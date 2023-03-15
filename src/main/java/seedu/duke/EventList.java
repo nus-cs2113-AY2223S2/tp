@@ -60,23 +60,27 @@ public class EventList {
      *
      * and the same for reviseTimeInfo()
      */
-    public TimeAndFlag convertToTimeInfo(String time, String day) {
-        boolean hasTime = true;
-        LocalDateTime combinedTime = LocalDateTime.parse(DTINIT, dfWithTime);
+    public TimeAndFlag convertToTimeInfo(String time, String day) throws NPExceptions {
+        try {
+            boolean hasTime = true;
+            LocalDateTime combinedTime = LocalDateTime.parse(DTINIT, dfWithTime);
 
-        if (time.equals("")) {
-            hasTime = false;
-            combinedTime = changeToDate(day);
-        } else {
-            combinedTime = changeToDate(time, day);
-        }        
+            if (time.equals("")) {
+                hasTime = false;
+                combinedTime = changeToDate(day);
+            } else {
+                combinedTime = changeToDate(time, day);
+            }        
 
-        TimeAndFlag result = new TimeAndFlag(hasTime, combinedTime);
-        return result;
+            TimeAndFlag result = new TimeAndFlag(hasTime, combinedTime);
+            return result;
+        } catch (Exception e) {
+            throw new NPExceptions("Wrong date/time format! \nPlease use yyyy/MM/dd for date and HH:mm for time.");
+        }
     }
     
     public void addEvent(String description, String startTime, String startDay, String endTime,
-                         String endDay) {
+                         String endDay) throws NPExceptions {
         
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
         TimeAndFlag endInfo = convertToTimeInfo(endTime, endDay);
@@ -86,7 +90,7 @@ public class EventList {
         listSize++;
     }
 
-    public void addEvent(String description, String startTime, String startDay) {
+    public void addEvent(String description, String startTime, String startDay) throws NPExceptions {
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
 
         Event newEvent = new Event(description, startInfo.time, startInfo.hasInfo);
@@ -95,14 +99,14 @@ public class EventList {
     }
 
     public void reviseTimeInfo(int index, String startTime, String startDay, String endTime,
-                         String endDay) {
+                         String endDay) throws NPExceptions {
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
         TimeAndFlag endInfo = convertToTimeInfo(endTime, endDay);
 
         taskList.get(index).changeTimeInfo(startInfo.time, endInfo.time, startInfo.hasInfo, endInfo.hasInfo);
     }
 
-    public void reviseTimeInfo(int index, String startTime, String startDay) {
+    public void reviseTimeInfo(int index, String startTime, String startDay) throws NPExceptions {
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
 
         taskList.get(index).changeTimeInfo(startInfo.time, startInfo.hasInfo);
@@ -110,19 +114,20 @@ public class EventList {
 
     //need handle exceptions when index = -1
     public void reviseTimeInfo(String description, String startTime, String startDay, String endTime,
-                         String endDay) {
-        
-        if(endDay.equals("") && endTime.equals("")) {
-            reviseTimeInfo(description, startTime, startDay);
-        } else {
-            int index = searchTaskIndex(description);
-            reviseTimeInfo(index, description, startTime, startDay, endTime);
+                         String endDay) throws NPExceptions {
+        int index = searchTaskIndex(description);
+        if(index == -1){
+            throw new NPExceptions("Event index out of bound!");
         }
+        reviseTimeInfo(index, description, startTime, startDay, endTime);
     }
 
     //need handle exceptions when index = -1
-    public void reviseTimeInfo(String description, String startTime, String startDay) {
+    public void reviseTimeInfo(String description, String startTime, String startDay) throws NPExceptions {
         int index = searchTaskIndex(description);
+        if(index == -1){
+            throw new NPExceptions("Event index out of bound!");
+        }
         reviseTimeInfo(index, startTime, startDay);
     }
 

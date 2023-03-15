@@ -13,7 +13,7 @@ class EventListTest {
     public final EventList eventList = new EventList();
 
     @BeforeEach
-    void setup(){
+    void setup() throws NPExceptions{
         eventList.addEvent("test", "20:00", "2023/03/14");
     }
     @Test
@@ -34,7 +34,7 @@ class EventListTest {
     }
 
     @Test
-    void testEditCommand() {
+    void testEditCommand() throws NPExceptions {
         eventList.addEvent("test", "20:00", "2023/03/14");
         eventList.reviseTimeInfo(0, "21:00", "2023/03/14", "23:00", "2023/03/14");
     }
