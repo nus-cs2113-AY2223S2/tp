@@ -2,7 +2,8 @@ package chching.record;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class IncomeTest {
 
@@ -30,7 +31,7 @@ class IncomeTest {
     @Test
     void getValue_expected() {
         Income income0 = new Income("salary", "1st apr 2023", 1000000);
-        String expected = "Description - salary | Date - 1st apr 2023 | Value - 1000000";
+        String expected = "Description - salary | Date - 1st apr 2023 | Value - 1000000.00";
         assertEquals(expected, income0.toString());
     }
 

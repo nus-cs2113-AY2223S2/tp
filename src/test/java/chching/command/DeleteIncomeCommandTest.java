@@ -2,42 +2,54 @@ package chching.command;
 
 import chching.record.IncomeList;
 import chching.record.Income;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class DeleteIncomeCommandTest {
-
-    @Test
-    void addDeleteIncome_positiveIntegerWithinSize_Success(){
-        Income income0 = new Income("salary","1st apr 2023",5000);
-        IncomeList incomes = new IncomeList();
-        incomes.addIncome(income0);
-        incomes.deleteIncome(0);
-        assertEquals(0,incomes.size(),"Delete income working");
-
+    private Income salary;
+    private Income bonus;
+    private IncomeList defaultIncomeList;
+    
+    @BeforeEach
+    void setup() {
+        salary = new Income("salary","1st apr 2023",5000);
+        bonus = new Income("bonus", "5/2/23", 3000);
+        
+        ArrayList<Income> incomeList = new ArrayList<Income>();
+        incomeList.add(salary);
+        incomeList.add(bonus);
+        defaultIncomeList = new IncomeList(incomeList);
     }
 
     @Test
-    void addDeleteIncome_positiveIntegerOutsideSize_Fail() {
-        Income income0 = new Income("salary", "1st apr 2023", 5000);
-        IncomeList incomes = new IncomeList();
-        incomes.addIncome(income0);
+    void deleteIncome_positiveIntegerWithinSize_success(){
+        int defaultIncomeListSize = defaultIncomeList.size();
+        defaultIncomeList.deleteIncome(1);
+        assertEquals(defaultIncomeListSize - 1, defaultIncomeList.size(),"Delete income working");
+    }
+
+    @Test
+    void deleteIncome_positiveIntegerOutsideSize_fail() {
+        String expectedOutput = "There is no income with this index";
         try {
-            incomes.deleteIncome(3);
+            defaultIncomeList.deleteIncome(3);
         } catch (Exception e) {
-            assertEquals("The number is too big", e.getMessage(), "Delete income with integer outside size is not captured");
+            assertEquals(expectedOutput, e.getMessage(), "Delete income with integer outside size is not captured");
         }
     }
 
-    void addDeleteIncome_NegativeInteger_Fail() {
-        Income income0 = new Income("salary", "1st apr 2023", 5000);
-        IncomeList incomes = new IncomeList();
-        incomes.addIncome(income0);
+    @Test
+    void deleteIncome_negativeInteger_fail() {
+        String expectedOutput = "There is no income with this index";
         try {
-            incomes.deleteIncome(-5);
+            defaultIncomeList.deleteIncome(-5);
         } catch (Exception e) {
-            assertEquals("Negative index", e.getMessage(), "Delete income with negative integer is not captured");
+            assertEquals(expectedOutput, e.getMessage(), "Delete income with negative integer is not captured");
         }
     }
 }

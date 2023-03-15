@@ -4,11 +4,14 @@ import chching.record.Expense;
 import chching.record.ExpenseList;
 import chching.record.Income;
 import chching.record.IncomeList;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class BalanceCommandTest {
-    void addDeleteIncome_positiveIntegerWithinSize_Success() {
+    @Test
+    void addDeleteIncome_positiveIntegerWithinSize_success() {
         Income income0 = new Income("salary", "1st apr 2023", 5000);
         IncomeList incomes = new IncomeList();
         incomes.addIncome(income0);
@@ -18,5 +21,4 @@ class BalanceCommandTest {
         double balance = incomes.getBalance() - expenses.getBalance();
         assertEquals(4500, balance, "Balance calculation is right");
     }
-
 }
