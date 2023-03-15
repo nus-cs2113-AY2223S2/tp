@@ -2,13 +2,15 @@ package seedu.duck;
 
 import seedu.duck.task.Task;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duck {
 
+
     /** Runs the Duck bot */
-    private static void runDuck() {
+    private static void runDuck() throws IOException {
         Ui.greetingMessage();
 
         ArrayList<Task> tasks = new ArrayList<>();
@@ -23,7 +25,7 @@ public class Duck {
         Ui.exitMessage();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         runDuck();
     }
 }

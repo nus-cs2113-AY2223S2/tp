@@ -66,6 +66,22 @@ public class TaskList {
         }
     }
 
+    static void setPriority(ArrayList<Task> tasks, String[] words) {
+        int taskNumber = Integer.parseInt(words[1]);
+        int taskCount = Task.getTaskCount();
+        if (taskNumber > taskCount) {
+            // Input task number exceeds the number of tasks in the list
+            Ui.exceedTaskNumberMessage(taskNumber);
+        } else {
+            tasks.get(taskNumber - 1).setPriority(words[2]);
+            // Printing out marked as done message
+            Ui.borderLine();
+            System.out.println("\t Understood. The task's new priority is:");
+            System.out.println("\t " + tasks.get(taskNumber - 1).getPriority());
+            Ui.borderLine();
+        }
+    }
+
     /**
      * Adds an event to the list
      *
