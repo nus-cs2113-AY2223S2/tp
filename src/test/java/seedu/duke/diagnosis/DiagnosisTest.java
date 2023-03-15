@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * JUnit test for testing of the output of Diagnosis.getPossibleIllnesses. Change the contents of the ArrayList to test
  * for different illnesses.
+ * @Author Brennanzuz
  */
 public class DiagnosisTest {
     @Test

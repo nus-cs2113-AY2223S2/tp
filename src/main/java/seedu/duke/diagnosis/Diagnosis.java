@@ -44,6 +44,8 @@ import seedu.duke.diagnosis.symptoms.Symptom;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static java.util.stream.Collectors.toCollection;
 
@@ -100,6 +102,7 @@ public class Diagnosis {
                     new GeneralFlu()
             )
     );
+    private static Logger diagnosisLogger = Logger.getLogger("diagnosisLogger");
 
     /**
      * @param patientSymptoms The ArrayList of Symptoms the patient has indicated to have. Passed from UI.
@@ -121,10 +124,14 @@ public class Diagnosis {
      * @Author Brennanzuz
      */
     public static ArrayList<IllnessMatch> getPossibleIllnesses(ArrayList<Symptom> patientSymptoms) {
+        diagnosisLogger.log(Level.INFO, "Receiving patient symptoms for diagnosis.");
         ArrayList<IllnessMatch> possibleIllnesses = new ArrayList<>();
+        IllnessMatch illnessMatch;
         for (Illness illness : ALL_ILLNESSES) {
-            possibleIllnesses.add(new IllnessMatch(illness, (double)getMatchingSymptoms(patientSymptoms,
-                    illness.getSymptoms()).size()/illness.getSymptoms().size()));
+            assert illness.getSymptoms().size() > 0 : illness.getIllnessName() + " should have symptoms listed";
+             illnessMatch = new IllnessMatch(illness, (double) getMatchingSymptoms(patientSymptoms, illness.getSymptoms()).size() / illness.getSymptoms().size());
+            diagnosisLogger.log(Level.INFO, "Compared patient's symptoms to those of " + illnessMatch.getIllness().getIllnessName() + " and found a " + illnessMatch.getSimilarityPercentage() * 100 + "% match.");
+            possibleIllnesses.add(illnessMatch);
         }
         return possibleIllnesses.stream()
                 .filter(possibleIllness -> possibleIllness.getSimilarityPercentage() > POSSIBILITY_THRESHOLD)
