@@ -24,7 +24,8 @@ public class Storage {
     private void initialiseMods() throws IOException {
         File savedModulesFile = new File(SAVED_MODULES_FILE_PATH);
         if (!savedModulesFile.exists()) {
-            savedModulesFile.mkdirs();
+            File directory = new File("data");
+            directory.mkdirs();
             savedModulesFile.createNewFile();
             return;
         }
