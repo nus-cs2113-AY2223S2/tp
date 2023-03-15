@@ -92,6 +92,6 @@ public class Ui {
     }
 
     public void showInvalidMessage() {
-        System.out.println("    Command is not recognized, use help for valid commands");
+        System.out.println("    Command is invalid, use help for valid commands");
     }
 }
