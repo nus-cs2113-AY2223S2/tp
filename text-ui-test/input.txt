@@ -1,6 +1,13 @@
-/start 1/2/23
+/start 11/11/23
 /add Bench Press /weight 100kg /rps 6 5 4 4 3
 /add Cable Flys /weight 30kg /rps 10 10 10
+/start
 /end
 /add tricep extensions /weight 25kg /rps 8 7 6
+/end
+/start 12/11/23
+/add Pullups /weight +10kg /rps 10 10 10
+/end
+/delete 11/11/23
+/delete 11/12/23
 /exit
