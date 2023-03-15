@@ -1,6 +1,7 @@
 package seedu.dukeofbooks.controller;
 
 import seedu.dukeofbooks.data.book.Book;
+import seedu.dukeofbooks.data.book.BorrowableItem;
 import seedu.dukeofbooks.data.exception.DuplicateActionException;
 import seedu.dukeofbooks.data.exception.IllegalDateException;
 import seedu.dukeofbooks.data.exception.LoanRecordNotFoundException;
@@ -20,14 +21,8 @@ public class LoanController {
             "Status: Overdue (borrower: %s, due: %s)";
     private static final int DEFAULT_RENEW_DAYS = 30;
 
-    private final LoanRecords loanRecords;
-
-    public LoanController(LoanRecords records) {
-        loanRecords = records;
-    }
-
-    public void borrowBook(Person borrower, Book toBorrow,
-                           LocalDateTime borrowTime)
+    public static void borrowItem(LoanRecords loanRecords, Person borrower,
+                                  BorrowableItem toBorrow, LocalDateTime borrowTime)
             throws DuplicateActionException {
         if (toBorrow.isBorrowed()) {
             throw new DuplicateActionException("Book is not available!");
@@ -39,39 +34,42 @@ public class LoanController {
         toBorrow.borrowItem();
     }
 
-    public void returnBook(Person borrower, Book toReturn)
+    public static void returnItem(LoanRecords loanRecords, Person borrower,
+                                  BorrowableItem toReturn)
             throws LoanRecordNotFoundException {
         if (!toReturn.isBorrowed()) {
             throw new LoanRecordNotFoundException("Book is not borrowed!");
         }
 
-        List<Loan> records = loanRecords.findByPersonItem(borrower, toReturn);
-        // TODO optimize find?
-        for (Loan loan : records) {
-            if (!loan.isReturned()) {
-                loan.setReturned(true);
-                toReturn.returnItem();
-            }
+        Loan loan = loanRecords.getLastActiveLoan(borrower);
+        if (loan == null) {
+            throw new LoanRecordNotFoundException("Cannot find an active loan!");
         }
+        loan.setReturned(true);
+        toReturn.returnItem();
     }
 
-    public void renewBook(Person person, Book book) {
+    public static void renewItem(LoanRecords loanRecords, Person person,
+                                 BorrowableItem toRenew)
+            throws LoanRecordNotFoundException {
         LocalDateTime newDue = LocalDateTime.now().plusDays(DEFAULT_RENEW_DAYS);
         try {
-            renewBook(person, book, newDue);
+            renewItem(loanRecords, person, toRenew, newDue);
         } catch (IllegalDateException ide) {
-            throw new RuntimeException();
+            assert false;
         }
     }
 
-    public void renewBook(Person person, Book book, LocalDateTime newDue)
-            throws IllegalDateException {
-        List<Loan> records = loanRecords.findByPersonItem(person, book);
-        // TODO optimize find?
-        for (Loan loan : records) {
-            if (!loan.isReturned()) {
-                loan.setLoanEnd(newDue);
-            }
+    public static void renewItem(LoanRecords loanRecords, Person person,
+                                 BorrowableItem toRenew, LocalDateTime newDue)
+            throws IllegalDateException, LoanRecordNotFoundException {
+        Loan loan = loanRecords.getLastActiveLoan(person, toRenew);
+        if (loan == null) {
+            throw new LoanRecordNotFoundException("Cannot find an active loan!");
         }
+        if (!loan.isReturned()) {
+            loan.setLoanEnd(newDue);
+        }
+
     }
 }
