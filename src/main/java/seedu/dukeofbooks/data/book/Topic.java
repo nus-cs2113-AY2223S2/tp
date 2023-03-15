@@ -32,7 +32,7 @@ public class Topic implements IVerifiable {
 
     @Override
     public String toString() {
-        return String.format("Topic: %S", topic);
+        return String.format("%s", topic);
     }
 
     public String getTopic() {

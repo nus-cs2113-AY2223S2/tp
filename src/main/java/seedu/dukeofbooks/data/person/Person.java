@@ -50,9 +50,8 @@ public class Person {
     }
 
     public void printPreviousLoans() {
-        BorrowHistory.CheckHistory(this);
+        BorrowHistory.checkHistory(this);
     }
-
 
     /**
      * Returns true if both persons have the same identity fields (name and
