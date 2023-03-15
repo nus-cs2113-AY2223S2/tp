@@ -21,8 +21,8 @@ public class Duke {
     private static final int WEIGHT_INDEX = 1;
     private static final int REPS_PER_SET_INDEX = 2;
 
-    public static Workout currentWorkout;
-    public static WorkoutList workoutList;
+    private static Workout currentWorkout;
+    private static WorkoutList workoutList;
 
     /**
      * Main entry-point for the java.duke.Duke application.
