@@ -46,7 +46,7 @@ class DeleteIncomeCommandTest {
     }
 
     @Test
-    void deleteIncome_positiveIntegerOutsideSize_fail() {
+    void deleteIncome_positiveIntegerOutsideSize_exceptionThrown() {
         String expectedOutput = "The number is too big";
         Command command = new DeleteExpenseCommand(5);
         try {
@@ -57,7 +57,7 @@ class DeleteIncomeCommandTest {
     }
 
     @Test
-    void deleteIncome_negativeInteger_fail() {
+    void deleteIncome_negativeInteger_exceptionThrown() {
         String expectedOutput = "Negative/Zero index";
         Command command = new DeleteExpenseCommand(-1);
         try {
