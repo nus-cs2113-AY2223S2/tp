@@ -9,6 +9,16 @@ public class Parser {
     private static final String LINE = "____________________________________________________________";
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
 
+    public static void printGreeting() {
+        System.out.println("\n" +
+                "  ____  _____ ____    _   _      _                 \n" +
+                " / ___|| ____|  _ \\  | | | | ___| |_ __   ___ _ __ \n" +
+                " \\___ \\|  _| | |_) | | |_| |/ _ \\ | '_ \\ / _ \\ '__|\n" +
+                "  ___) | |___|  __/  |  _  |  __/ | |_) |  __/ |   \n" +
+                " |____/|_____|_|     |_| |_|\\___|_| .__/ \\___|_|   \n" +
+                "                                  |_|              \n");
+    }
+
     // Todo: Throw Exception when commandWords.size() == 1
     public static ArrayList<String> parseCommand(String userInput) {
         String[] input = userInput.split((" "), 2);
