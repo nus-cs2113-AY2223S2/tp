@@ -25,6 +25,7 @@ import seedu.apollo.module.ModuleList;
 import java.rmi.UnexpectedException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 /**
  * Parser class that makes sense of user commands or text.
@@ -214,7 +215,8 @@ public class Parser {
      */
     public static String[] parseEvent(String param) throws InvalidEvent {
         String[] split = param.trim().split("\\s/from\\s|\\s/to\\s", 3);
-        if (split.length != 3) {
+        String[] checkFromToOrder = Arrays.copyOfRange(param.trim().split("/"), 1, 3);
+        if ((split.length != 3) || (!checkFromToOrder[0].startsWith("from") || !checkFromToOrder[1].startsWith("to"))) {
             throw new InvalidEvent();
         }
         return split;
