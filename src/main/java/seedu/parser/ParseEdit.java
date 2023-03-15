@@ -4,6 +4,8 @@ import seedu.commands.Command;
 import seedu.commands.EditCommand;
 import seedu.commands.InvalidCommand;
 
+import java.time.format.DateTimeParseException;
+
 import java.time.LocalDate;
 
 public class ParseEdit {
@@ -12,6 +14,7 @@ public class ParseEdit {
     public static final String ASLASH = "a/";
     public static final String SSLASH = "s/";
     private final String userInput;
+
     public ParseEdit(String userInput) {
         this.userInput = userInput;
     }
@@ -26,8 +29,9 @@ public class ParseEdit {
             int indexIntVal = Integer.parseInt(indexVal);
             LocalDate date = LocalDate.parse(dateVal);
             return new EditCommand(indexIntVal, date, amountVal, descriptionVal);
-        } catch (NumberFormatException numberFormatException) {
-            return new InvalidCommand("Input command in wrong format!");
+        } catch (NumberFormatException | DateTimeParseException e) {
+            return new InvalidCommand(
+                    "Input command cannot be recognised as it is in the wrong format. Please try again");
         }
     }
 }
