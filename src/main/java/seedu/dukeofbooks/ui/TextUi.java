@@ -1,5 +1,7 @@
-import static seedu.TP.common.Messages.WELCOME_STRING;
-import static seedu.TP.common.Messages.EXIT_STRING;
+package seedu.dukeofbooks.ui;
+
+import static seedu.dukeofbooks.common.Messages.WELCOME_STRING;
+import static seedu.dukeofbooks.common.Messages.EXIT_STRING;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -8,6 +10,7 @@ import java.util.Scanner;
 import seedu.dukeofbooks.command.CommandResult;
 import seedu.dukeofbooks.data.book.BorrowableItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TextUi {
@@ -35,8 +38,24 @@ public class TextUi {
         }
     }
 
-    public void showWelcomeMessage() {
-        showToUser(DIVIDER, WELCOME_STRING, DIVIDER);
+    private boolean toIgnore(String rawInputLine) {
+        return rawInputLine.trim().isEmpty();
+    }
+
+    public String getUserCommand() {
+        out.print(LINE_PREFIX + "Enter command: ");
+        String fullInputLine = in.nextLine();
+
+        while (toIgnore(fullInputLine)) {
+            fullInputLine = in.nextLine();
+        }
+
+        //showToUser("[Command entered:" + fullInputLine + "]");
+        return fullInputLine;
+    }
+
+    public void showWelcomeMessage(String version) {
+        showToUser(DIVIDER, WELCOME_STRING, version, DIVIDER);
     }
 
     public void showExitMessage() {
