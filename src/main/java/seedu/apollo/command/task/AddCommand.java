@@ -1,5 +1,6 @@
 package seedu.apollo.command.task;
 
+import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.ui.Parser;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.command.Command;
@@ -102,7 +103,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Executes the adding of a Task to the TaskList based on data in the class.
+     * Executes adding a Task to the TaskList and updating the hard disk.
      *
      * @param taskList The TaskList to be added to.
      * @param ui       Prints success or error message to user.
@@ -114,6 +115,9 @@ public class AddCommand extends Command {
         int initialSize = taskList.size();
         try {
             addTask(taskList);
+        } catch (DateOverException e) {
+            ui.printDateOverException(e);
+            return;
         } catch (DateOrderException e) {
             ui.printDateOrderException();
             return;
@@ -128,6 +132,15 @@ public class AddCommand extends Command {
             ui.printErrorForIO();
         }
     }
+
+    /**
+     * Adds a Task to the TaskList based on data in the class.
+     *
+     * @param taskList The TaskList to be added to.
+     * @throws DateOverException If any date of the task occurs before the current date.
+     * @throws DateOrderException If an Event's end date occurs before its start date.
+     * @throws UnexpectedException If the command stored is not recognised.
+     */
     private void addTask(TaskList taskList)
             throws DateOverException, DateOrderException, UnexpectedException {
         switch (command) {

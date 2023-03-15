@@ -2,6 +2,7 @@ package seedu.apollo.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.ui.Parser;
 import seedu.apollo.ui.Ui;
 import seedu.apollo.exception.task.DateOrderException;
@@ -222,6 +223,8 @@ public class Storage {
             } catch (InvalidSaveFile e) {
                 ui.printInvalidSaveFile(counter, filePath);
                 logger.log(Level.INFO, "Error in reading data from file");
+            } catch (DateOverException e) {
+                ui.printExistingDateOver(e);
             }
         }
         logger.log(Level.INFO, "Successfully read " + counter + " tasks from save file.");
@@ -255,7 +258,7 @@ public class Storage {
      * @return Corresponding Task to data stored in {@code text}.
      * @throws InvalidSaveFile If any line in the input data is not of the right format.
      */
-    private static Task newTask(String text) throws InvalidSaveFile {
+    private static Task newTask(String text) throws InvalidSaveFile, DateOverException {
         char type = getType(text);
         Boolean isDone = isStatusDone(text);
         String param = getParam(text);
@@ -289,7 +292,7 @@ public class Storage {
         return newToDo;
     }
 
-    private static Deadline newDeadline(Boolean isDone, String param) throws InvalidSaveFile {
+    private static Deadline newDeadline(Boolean isDone, String param) throws InvalidSaveFile, DateOverException {
         final String[] paramAndBy;
         try {
             paramAndBy = Parser.parseDeadline(param);
@@ -301,7 +304,7 @@ public class Storage {
         return newDeadline;
     }
 
-    private static Event newEvent(Boolean isDone, String param) throws InvalidSaveFile {
+    private static Event newEvent(Boolean isDone, String param) throws InvalidSaveFile, DateOverException {
         final String[] paramAndFromTo;
         try {
             paramAndFromTo = Parser.parseEvent(param);

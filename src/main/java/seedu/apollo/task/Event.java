@@ -1,5 +1,6 @@
 package seedu.apollo.task;
 
+import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.ui.Parser;
 import seedu.apollo.exception.task.DateOrderException;
 
@@ -24,8 +25,9 @@ public class Event extends Task {
      * @param description String describing the Task.
      * @param fromString String describing the start date.
      * @param toString String describing the end date.
-     * @throws DateOrderException If the end date occurs before the start date.
      * @throws DateTimeParseException If either date is not entered in right format.
+     * @throws DateOrderException If end date occurs before the start date.
+     * @throws DateOverException If start date occurs before the current date.
      */
     public Event(String description, String fromString, String toString)
             throws DateTimeParseException, DateOrderException, DateOverException {
@@ -33,11 +35,12 @@ public class Event extends Task {
         this.from = LocalDateTime.parse(fromString);
         this.to = LocalDateTime.parse(toString);
 
+        if (from.isAfter(to)) {
+            throw new DateOrderException();
         }
-        if (this.from != null && this.to != null) {
-            if (from.isAfter(to)) {
-                throw new DateOrderException();
-            }
+
+        if (from.isBefore(LocalDateTime.now())) {
+            throw new DateOverException(getType(), description, null, from, to);
         }
     }
 

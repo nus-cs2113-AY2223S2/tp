@@ -1,5 +1,6 @@
 package seedu.apollo.task;
 
+import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.ui.Parser;
 
 import java.time.LocalDate;
@@ -23,11 +24,14 @@ public class Deadline extends Task {
      * @param description String describing the Task.
      * @param byString String describing the due date.
      * @throws DateTimeParseException If due date is not entered in right format.
+     * @throws DateOverException If due date occurs before the current date.
      */
     public Deadline(String description, String byString)
             throws DateTimeParseException, DateOverException {
         super(description);
         this.by = LocalDateTime.parse(byString);
+        if (by.isBefore(LocalDateTime.now())) {
+            throw new DateOverException(getType(), description, by, null, null);
         }
     }
 
