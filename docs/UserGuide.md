@@ -56,19 +56,19 @@ Example of usage:
 
 ## Command Summary
 
-|    Action     | Format                           |
-|:-------------:|----------------------------------|
-|     Help      | `help`                           |
-|  List Tasks   | `list`                           |
-|     Todo      | `todo TASK`                      |
-|   Deadline    | `deadline TASK /by DATE`         |
-|     Event     | `event TASK /from DATE /to DATE` |
-|     Mark      | `mark IDX`                       |
-|    Unmark     | `unmark IDX`                     |
-|  Delete Task  | `delete IDX`                     |
-|     Find      | `find KEYWORD`                   |
-|     Date      | `date DATE`                      |
-|      Bye      | `bye`                            |
-|  Add Module   | `addmod MODULE_CODE`             |
-| Delete Module | `delmod IDX`                     |
-| List Modules  | `listmod`                        |
+|    Action     |               Format               |
+|:-------------:|:----------------------------------:|
+|     Help      |               `help`               |
+|  List Tasks   |               `list`               |
+|     Todo      |            `todo TASK`             |
+|   Deadline    |      `deadline TASK /by DATE`      |
+|     Event     |  `event TASK /from DATE /to DATE`  |
+|     Mark      |             `mark IDX`             |
+|    Unmark     |            `unmark IDX`            |
+|  Delete Task  |            `delete IDX`            |
+|     Find      |           `find KEYWORD`           |
+|     Date      |            `date DATE`             |
+|      Bye      |               `bye`                |
+|  Add Module   |        `addmod MODULE_CODE`        |
+| Delete Module |            `delmod IDX`            |
+| List Modules  |             `listmod`              |
