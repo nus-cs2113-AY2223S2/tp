@@ -11,9 +11,13 @@ import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Parser {
     private static final String QUESTION_OPTION_IDENTIFIER = "q";
     private static final String ANSWER_OPTION_IDENTIFIER = "a";
+    private static Logger logger = Logger.getLogger("Parser");
 
     public static Command parseCommand(String userInput) {
         try {
@@ -68,15 +72,19 @@ public class Parser {
     public static AddCommand getAddCommand(ParsedInput parsedInput)
             throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException,
             EmptyFlashcardAnswerException {
+        logger.log(Level.INFO, "Start to parse input to obtain question text.");
         String questionText = parsedInput.getOptionByName(QUESTION_OPTION_IDENTIFIER);
+        logger.log(Level.INFO, "Start to parse input to obtain answer text.");
         String answerText = parsedInput.getOptionByName(ANSWER_OPTION_IDENTIFIER);
         if (questionText == null || answerText == null) {
             throw new InvalidAddFlashcardInputException();
         }
         if (questionText.isEmpty()) {
+            logger.log(Level.INFO, "No input at question text detected.");
             throw new EmptyFlashcardQuestionException();
         }
         if (answerText.isEmpty()) {
+            logger.log(Level.INFO, "No input at answer text detected.");
             throw new EmptyFlashcardAnswerException();
         }
         return new AddCommand(questionText, answerText);
