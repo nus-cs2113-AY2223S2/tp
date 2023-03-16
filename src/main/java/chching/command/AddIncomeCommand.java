@@ -24,6 +24,7 @@ public class AddIncomeCommand extends Command {
     }
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage) {
+        assert income.getValue() > 0 : "Income value must be positive";
         incomes.addIncome(income);
         ui.showAdded(incomes, expenses, income);
     }
