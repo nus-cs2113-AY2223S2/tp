@@ -1,9 +1,11 @@
 ——————————————————————————————————————————————————————————————————————
 Hello! What can I do for you?
 ——————————————————————————————————————————————————————————————————————
-1. Graph
-2. Store
-3. Matrix
+1. Type -> Graph. equation <- to do graph calculation
+2. Type -> Matrix. equation <- to do matrix calculation
+3. Type -> Store. any_string <- to add notes
+4. Type -> List. <- to list stored notes
+5. Type -> Bye. <- to exit program
 ——————————————————————————————————————————————————————————————————————
 For more details, please visit our GitHub website [xxx.github.com].
 If you have any queries, please contact [exxxxxxx@u.nus.edu].
