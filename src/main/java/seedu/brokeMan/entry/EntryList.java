@@ -5,31 +5,25 @@ import seedu.brokeMan.ui.Ui;
 import java.util.LinkedList;
 
 public abstract class EntryList {
-    static final LinkedList<Entry> entryList = new LinkedList<>();
+    //static final LinkedList<Entry> entryList = new LinkedList<>();
 
     /**
      * Adds new expense/income to the list
      *
      * @param newEntry new entry to be added
      */
-    public static void addEntry(Entry newEntry) {
+    public static void addEntry(Entry newEntry, LinkedList<Entry> entryList) {
         entryList.add(newEntry);
         Ui.showToUserWithLineBreak("You have successfully added [" + newEntry + "]", "");
     }
 
 
     /**
-     * lists out entries in the list
-     */
-    public static void listEntry() {
-    }
-
-    /**
      * deletes specific entry in the list
      *
      * @param entryIndex Index of the entry in the list
      */
-    public static void deleteEntry(int entryIndex) {
+    public static void deleteEntry(int entryIndex, LinkedList<Entry> entryList) {
         try {
             entryList.remove(entryIndex - 1);
             Ui.showToUserWithLineBreak("Successfully deleted expense.", "");
@@ -45,7 +39,7 @@ public abstract class EntryList {
      * @param entryIndex index of the entry in the list
      * @param newEntry new entry that will replace current entry
      */
-    public static void editEntry(String type, int entryIndex, double newEntry) {
+    public static void editEntry(String type, int entryIndex, double newEntry, LinkedList<Entry> entryList) {
         try {
             Entry entryBeingEdited = entryList.get(entryIndex - 1);
             if (type.equals("cost") || type.equals("income")) {
@@ -67,7 +61,7 @@ public abstract class EntryList {
      * @param entryIndex index of the entry in the list
      * @param newEntry new entry that will replace current entry
      */
-    public static void editEntry(String type, int entryIndex, String newEntry) {
+    public static void editEntry(String type, int entryIndex, String newEntry, LinkedList<Entry> entryList) {
         try {
             Entry entryBeingEdited = entryList.get(entryIndex - 1);
             switch (type) {
@@ -86,7 +80,7 @@ public abstract class EntryList {
         }
     }
 
-    public static double getTotalAmount() {
+    public static double getTotalAmount(LinkedList<Entry> entryList) {
         double totalAmount = 0;
         if (entryList.size() > 0) {
             for (Entry entryLog : entryList) {
@@ -99,11 +93,11 @@ public abstract class EntryList {
     /**
      * Sorts entries using Entry comparator
      */
-    protected static void sortEntriesByAmount() {
+    protected static void sortEntriesByAmount(LinkedList<Entry> entryList) {
         entryList.sort(new EntryAmountComparator());
     }
 
-    protected static void sortEntriesByDate() {
+    protected static void sortEntriesByDate(LinkedList<Entry> entryList) {
         entryList.sort(new EntryDateComparator());
     }
 }

@@ -59,10 +59,9 @@
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Here are the income you have made.
-|  1. $6.00 spent on dinner - 11am
-|  2. $400.00 earned on salary - 12pm
-|  3. $600.00 earned on stocks - 6pm
-|  Total income: $1006.0
+|  1. $400.00 earned on salary - 12pm
+|  2. $600.00 earned on stocks - 6pm
+|  Total income: $1000.0
 |
 |  -----------------------------------------------------------------------
 |
@@ -83,9 +82,8 @@
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Here are the income you have made.
-|  1. $700.00 spent on pay - 11am
-|  2. $600.00 earned on stocks - 6pm
-|  Total income: $1300.0
+|  1. $700.00 earned on pay - 12pm
+|  Total income: $700.0
 |
 |  -----------------------------------------------------------------------
 |
