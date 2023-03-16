@@ -27,11 +27,14 @@ public class EditDeadlineCommand extends Command  {
         } catch (DateTimeParseException e) {
             throw new InvalidTimeException();
         }
+        assert index >= 0 : "Invalid index contained in variable";
+        assert !deadline.isEmpty() : "Empty deadline contained in variable";
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIndexException {
         String taskString = taskList.editDeadline(index, deadline);
+        assert !taskString.isEmpty() : "Conversion of task string failed";
         ui.printEditDeadlineNotification(taskString);
     }
 }
