@@ -186,7 +186,7 @@ public class Ui {
      *
      * @param foundTasks TaskList of Tasks containing a keyword.
      */
-    public void printFoundList(TaskList foundTasks) {
+    public void printFoundList(ArrayList<Task> foundTasks) {
         if (foundTasks.size() == 0) {
             System.out.println("There are no matching tasks!");
             return;
