@@ -3,6 +3,8 @@ package seedu.pettracker;
 import seedu.pettracker.commands.Command;
 import seedu.pettracker.parser.CommandParser;
 import seedu.pettracker.ui.Ui;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
  * Entry point for the Pet Tracker Application
@@ -13,6 +15,7 @@ public class Main {
 
     private final Ui ui;
     private final CommandParser commandParser;
+    private static final Logger logger = Logger.getLogger("MainLogger");
 
     /**
      * Creates the Main class by initializing the other classes
@@ -44,6 +47,7 @@ public class Main {
             c.execute(ui);
             isExit = c.isExit();
         }
+        logger.log(Level.INFO,"End of processing commands");
     }
 
     public static void main(String[] args) {
