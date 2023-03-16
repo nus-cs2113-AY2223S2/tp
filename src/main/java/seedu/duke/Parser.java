@@ -2,8 +2,6 @@ package seedu.duke;
 
 import java.util.Arrays;
 
-// import javax.swing.plaf.basic.BasicTreeUI.SelectionModelPropertyChangeHandler;
-
 public class Parser {
 
     private static final int OFFSET = 1;
@@ -160,7 +158,6 @@ public class Parser {
             } else {
                 reviseTimeInfoUsingIndex(information, eventList);
             }
-            Ui.editSuccessMsg(eventList.getDescription(eventIndex), eventList.getTime(eventIndex));
         }
     }
     private static void addFormatChecker(String[] information) throws NPExceptions {
@@ -172,6 +169,7 @@ public class Parser {
             throw new NPExceptions("Please use correct command format!");
         }
     }
+
     private static void reviseTimeInfoUsingIndex(String[] information, EventList eventList) throws NPExceptions{
         int eventIndex = -1;
         try{
@@ -190,12 +188,18 @@ public class Parser {
         } else {
             eventList.reviseTimeInfo(eventIndex, information[1], information[2]);
         }
+
+        Ui.editSuccessMsg(eventList.getDescription(eventIndex), eventList.getTime(eventIndex));
     }
+
     private static void reviseTimeInfoUsingName(String[] information, EventList eventList) throws NPExceptions{
         if(!information[4].equals("")) {
             eventList.reviseTimeInfo(information[0], information[1], information[2], information[3], information[4]);
         } else {
             eventList.reviseTimeInfo(information[0], information[1], information[2]);
         }
+
+        int eventIndex = eventList.searchTaskIndex(information[0]);
+        Ui.editSuccessMsg(eventList.getDescription(eventIndex), eventList.getTime(eventIndex));
     }
 }
