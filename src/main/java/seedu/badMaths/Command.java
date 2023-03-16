@@ -9,7 +9,7 @@
 package seedu.badMaths;
 
 import seedu.badMaths.temptrigograph.TrigoGraph;
-import seedu.badMaths.UI.Ui;
+import seedu.badMaths.tempui.Ui;
 
 public class Command {
 
