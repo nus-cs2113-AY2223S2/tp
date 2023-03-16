@@ -71,7 +71,9 @@ public class StorageTest {
         try {
             Storage storage = new Storage();
             ArrayList<Category> list = storage.loadFromFile();
-            System.out.println(list);
+            if (!list.isEmpty()) {
+                System.out.println(list);
+            }
         } catch (Exception e) {
             assertTrue(false, e.getMessage());
         }
