@@ -7,6 +7,8 @@ Added Cable Flys 30kg 10 10 10
 Invalid date format. Please enter the date in the format dd/mm/yy.
 Incorrect command given!
 Great job completing your workout!
+Here are the list of dates for your workout:
+Sat Nov 11 00:00:00 CST 2023
 Start a workout first!
 Great job completing your workout!
 Started new workout.

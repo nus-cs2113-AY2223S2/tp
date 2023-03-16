@@ -24,7 +24,6 @@ public class WorkoutList {
 
     public void removeWorkout(Date date) {
         for (Workout workout : workoutList) {
-            System.out.println(workout.getDate());
             if (workout.getDate().equals(date)) {
 
                 workoutList.remove(workout);
