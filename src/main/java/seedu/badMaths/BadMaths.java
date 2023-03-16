@@ -1,12 +1,28 @@
 package seedu.badMaths;
 
+import seedu.badMaths.UI.Ui;
+
 import java.util.Scanner;
+
 public class BadMaths {
 
-    public static void main(String[] args) {
+    public static void commandChecker(String userInput, String command) {
+        try {
+            if (!(command.equals("Graph") || command.equals("Bye") || command.equals("List") || command.equals("Notes")
+                    || command.equals("Matrix") || command.equals("Help"))) {
+                throw new IllegalArgumentException();
+            }
+            if (!userInput.contains(".") && !(userInput.equals("List") || userInput.equals("Bye")
+                    || userInput.equals("Help"))) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            Ui.printIncorrectFormatEntered();
+        }
+    }
 
-        System.out.println("Input math question please.");
-        System.out.println("You can type 'Help' to learn what I can do for you :)");
+    public static void main(String[] args) {
+        System.out.println("This is BadMaths. You can type 'Help' to learn what I can do for you :)");
         Command inputCommand = null;
 
         while (true) {
@@ -16,11 +32,13 @@ public class BadMaths {
             Parser parser = new Parser(userInput);
             String command = parser.getCommand();
             String toDo = parser.getToDo();
+            commandChecker(userInput, command);
 
             if (inputCommand == null) {
                 inputCommand = new Command(command, toDo);
             } else {
                 inputCommand.setCommand(command);
+                assert inputCommand.getCommand().equals(command) : "inputCommand != command";
                 inputCommand.setToDo(toDo);
             }
 

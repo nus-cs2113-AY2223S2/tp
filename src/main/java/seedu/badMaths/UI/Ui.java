@@ -1,4 +1,4 @@
-package seedu.badMaths.ui;
+package seedu.badMaths.UI;
 
 public class Ui {
     public static void printIncorrectFormatEntered(){
