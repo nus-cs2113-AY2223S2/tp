@@ -21,6 +21,19 @@ public class ViewCommandTest {
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
 
+    private static final String VIEW_TEST_RESULT =
+            "+-----+------------------------------+------------+----------------+\n" +
+            "|Here is your full financial report!                               |\n" +
+            "+-----+------------------------------+------------+----------------+\n" +
+            "|Index|Name                          |Amount      |Category        |\n" +
+            "|00001|Ipad                          | -$120      |Default         |\n" +
+            "|00002|pork                          | -$5        |Default         |\n" +
+            "|00003|angpao                        | +$3000     |Default         |\n" +
+            "+-----+------------------------------+------------+----------------+\n" +
+            "|Inflow: $3000\n" +
+            "|Outflow: $125\n" +
+            "|Remaining value: $2875\n";
+
     @Before
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
@@ -55,10 +68,7 @@ public class ViewCommandTest {
         ViewCommand viewList = new ViewCommand();
         viewList.setData(financialReport);
         viewList.execute();
-        String expectedReport = String.join(System.lineSeparator(), "Here is your full financial report!",
-                "1. Ipad -$120 (out)", "2. pork -$5 (out)", "3. angpao +$3000 (in)" + System.lineSeparator(),
-                "Inflow: $3000", "Outflow: $125", "Remaining value: $2875" + System.lineSeparator());
-        assertEquals(expectedReport, outContent.toString());
+        assertEquals(VIEW_TEST_RESULT, outContent.toString());
         restoreStreams();
     }
 }
