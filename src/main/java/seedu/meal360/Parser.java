@@ -110,7 +110,11 @@ public class Parser {
         if (inputs.length == 1) {
             filters = null;
         } else {
-            filters = inputs[1].split("&");
+            StringBuilder filterString = new StringBuilder(inputs[1]);
+            for (int i = 2; i < inputs.length; i++) {
+                filterString.append(" ").append(inputs[i]);
+            }
+            filters = filterString.toString().split("&");
         }
         return recipeList.listRecipes(filters);
     }
