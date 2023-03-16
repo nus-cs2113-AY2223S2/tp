@@ -29,11 +29,11 @@ test {
 }
 
 application {
-    mainClass = "seedu.duke.Duke"
+    mainClass = "seedu.pocketpal.PocketPal"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "PocketPal"
     archiveClassifier = null
 }
 
@@ -44,4 +44,10 @@ checkstyle {
 run{
     standardInput = System.in
     enableAssertions = true
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': application.mainClass
+    }
 }
