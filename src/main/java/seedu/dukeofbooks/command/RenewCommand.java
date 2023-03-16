@@ -11,6 +11,7 @@ public final class RenewCommand extends LoanCommand {
     private static final String SUCCESS_MSG = "Item has been renewed!";
     private static final String FAIL_MSG = "This book is not borrowed!";
     private static final String ERROR_MSG_F = "Cannot renew: %s";
+    private static final String NOT_FOUND_MSG = "This item is not found!";
     private final Person person;
     private final BorrowableItem item;
     
@@ -19,13 +20,13 @@ public final class RenewCommand extends LoanCommand {
         this.person = person;
         this.item = item;
     }
-    
-    public RenewCommand(String title){
-        this.title=title;
-    }
 
     @Override
     public CommandResult execute() {
+        assert person != null;
+        if (item == null) {
+            return new CommandResult(NOT_FOUND_MSG);
+        }
         if (!item.isBorrowed()) {
             return new CommandResult(FAIL_MSG);
         }

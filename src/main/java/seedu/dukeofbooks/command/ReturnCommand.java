@@ -11,6 +11,7 @@ public final class ReturnCommand extends LoanCommand {
     private static final String SUCCESS_MSG = "Item has been returned!";
     private static final String FAIL_MSG = "Item is not borrowed!";
     private static final String ERROR_MSG_F = "Cannot return item: %s";
+    private static final String NOT_FOUND_MSG = "Item not found!";
     Person person;
     BorrowableItem item;
     private String title;
@@ -21,12 +22,12 @@ public final class ReturnCommand extends LoanCommand {
         this.item = item;
     }
 
-    public ReturnCommand(String title){
-        this.title=title;
-    }
-
     @Override
     public CommandResult execute() {
+        assert person != null;
+        if (item == null) {
+            return new CommandResult(NOT_FOUND_MSG);
+        }
         if (!item.isBorrowed()) {
             return new CommandResult(FAIL_MSG);
         }
