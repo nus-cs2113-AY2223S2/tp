@@ -13,7 +13,7 @@ class DeleteFoodCommandTest {
     private final MealStorage mealStorage = new MealStorage("./data/mealData.csv", foodStorage);
 
     @Test
-    void deleteMeal_SingleMealDeleted_ExpectListSizeDecrease() throws InvalidArgumentsException {
+    void deleteMeal_singleMealDeleted_expectListSizeDecrease() throws InvalidArgumentsException {
         int oldSize = mealStorage.getMealCount();
         if (oldSize >= 0) {
             mealStorage.deleteMeal(oldSize - 1);
@@ -24,7 +24,7 @@ class DeleteFoodCommandTest {
         }
     }
     @Test
-    void parseInput_EmptyInput_ExpectException() {
+    void parseInput_emptyInput_expectException() {
         String commandDescriptor = "";
         assertThrows(NumberFormatException.class,
                 () -> Integer.parseInt(commandDescriptor));
