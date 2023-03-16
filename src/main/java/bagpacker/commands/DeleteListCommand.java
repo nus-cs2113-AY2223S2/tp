@@ -1,6 +1,5 @@
 package bagpacker.commands;
 
-import bagpacker.iohandler.Parser;
 import bagpacker.packingfunc.PackingList;
 
 public class DeleteListCommand extends Command {
