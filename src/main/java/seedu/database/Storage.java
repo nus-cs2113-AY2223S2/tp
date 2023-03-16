@@ -7,6 +7,10 @@ public abstract class Storage {
         this.filePath = filePath;
     }
 
+    public Storage() {
+        this.filePath = "";
+    }
+
     public String getFilePath() {
         return this.filePath;
     }
