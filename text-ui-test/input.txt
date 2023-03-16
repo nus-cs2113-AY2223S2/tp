@@ -11,4 +11,5 @@
 /end
 /delete 11/11/23
 /delete 11/12/23
+/list
 /exit

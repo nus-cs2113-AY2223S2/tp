@@ -89,7 +89,10 @@ public class Parser {
             System.out.println("Invalid date format. Please enter the date in the format dd/mm/yy.");
             return new IncorrectCommand();
         }
-        return new DeleteCommand(date);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        String formatDate = dateFormat.format(date);
+        return new DeleteCommand(formatDate);
     }
 
 }

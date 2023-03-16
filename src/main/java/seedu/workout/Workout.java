@@ -1,14 +1,16 @@
 package seedu.workout;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Workout {
-    private Date date;
+    private String date;
     private ArrayList<Exercise> workoutExercises;
 
     public Workout(Date date) {
-        this.date = date;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        this.date = dateFormat.format(date);
         workoutExercises = new ArrayList<>();
     }
 
@@ -17,11 +19,11 @@ public class Workout {
         System.out.println("Added " + exercise);
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

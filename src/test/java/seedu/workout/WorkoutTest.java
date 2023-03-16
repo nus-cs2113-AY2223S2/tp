@@ -17,7 +17,7 @@ public class WorkoutTest {
 
         String newDatestring = "06/03/24";
         Date newDate = dateFormat.parse(newDatestring);
-        workout.setDate(newDate);
+        workout.setDate(String.valueOf(newDate));
         assertEquals(newDate, workout.getDate());
     }
 }
