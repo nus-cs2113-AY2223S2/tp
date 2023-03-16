@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-class NotesTest {
+class NotesTest { // this class contains the various test methods
     ArrayList<String> cache = new ArrayList<>();
     @Test
     public void handleCache() {
