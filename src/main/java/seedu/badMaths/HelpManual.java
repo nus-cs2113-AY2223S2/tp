@@ -17,7 +17,6 @@ import java.util.logging.Level;
 public class HelpManual {
     protected static String filePath = "docs/HelpManual.txt";
     protected static String logFilePath = "Help";
-    protected static String content;
     private static final Logger logger = Logger.getLogger(logFilePath);
 
     public static void setUpLogger() {
@@ -59,10 +58,10 @@ public class HelpManual {
                 bufferedReader.close();
                 read.close();
 
-                // Add an assertion to check if the contents of the file match the expected contents
-                String expectedContent = new String(Files.readAllBytes(Paths.get(filePath)));
-                String actualContent = content.toString();
-                assert actualContent.equals(expectedContent) : "Contents of file do not match expected contents.";
+//                // Add an assertion to check if the contents of the file match the expected contents
+//                String expectedContent = new String(Files.readAllBytes(Paths.get(filePath)));
+//                String actualContent = content.toString();
+//                assert actualContent.equals(expectedContent) : "Contents of file do not match expected contents.";
 
                 // Log successful read to console and log file
                 logger.log(Level.INFO, "Successfully read Help Manual file.");
