@@ -58,7 +58,7 @@ In order to show a list of all ingredients currently stored in Meal Companion, u
 ![ingredientlist.png](images/ingredientlist.png)
 
 ### Search Ingredients
-If you would like to search for a specific ingredient in Meal Companion's storage, use the command `ingredients search <keyword>`.
+If you would like to search for a specific ingredient that Meal Companion recognizes as valid, use the command `ingredients search <keyword>`.
 ![search1.png](images/search1.png)
 
  Omitting the keyword will return a list of all valid ingredients.
@@ -66,6 +66,31 @@ If you would like to search for a specific ingredient in Meal Companion's storag
  
  ## Recipes
  This segment will go into detail about the recipe features that Meal Companion contains, and the usage of these features.
+ 
+ ### Default Recipes
+ Meal Companion comes included with a list of default recipes already initialized. The list of default recipes are found here:
+ 1. Beef Burger
+ 2. Cup of Water
+ 3. Chicken Burger
+ 4. Fish Burger
+ 5. Pasta (Tomato Sauce)
+ 6. Hainanese Chicken Rice
+ 7. Mee Goreng
+
+### All Recipes
+To display all stored recipes including default recipes, you may use the command `recipe all` to list them.
+![recipeall.png](images/recipeall.png)
+
+### Recipe Details
+To go into details about a certain recipe, use the command `recipe <index number>`, using the `<index number` from the generated list. 
+
+For example, to view the recipe for Hainanese Chicken Rice, use the command `recipe 6`.
+![recipedetails.png](images/recipedetails.png)
+
+### Possible Recipes
+Meal Companion includes the functionality to suggest recipes based on ingredient availability. Simply use the command `recipe possible`, and Meal Companion will list out the recipes that can be made with the ingredients you currently have.
+
+![recipepossible.png](images/recipepossible.png)
 
 ## FAQ
 
