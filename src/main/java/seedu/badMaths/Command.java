@@ -8,8 +8,8 @@
 
 package seedu.badMaths;
 
-import seedu.badMaths.temptrigograph.TrigoGraph;
-import seedu.badMaths.tempui.Ui;
+import seedu.badMaths.trigograph.TrigoGraph;
+import seedu.badMaths.ui.Ui;
 
 public class Command {
 

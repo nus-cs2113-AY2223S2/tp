@@ -1,7 +1,7 @@
-package seedu.badMaths.temptrigograph;
+package seedu.badMaths.trigograph;
 
 
-import seedu.badMaths.tempui.Ui;
+import seedu.badMaths.ui.Ui;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.FileHandler;
