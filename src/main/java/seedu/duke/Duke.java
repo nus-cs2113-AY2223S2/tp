@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.command.Command;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -24,7 +26,9 @@ public class Duke {
             ArrayList<University> universities = dataReader.getUniversities();
             ArrayList<Module> modules = storage.getModule();
             ArrayList<Module> allModules = dataReader.getModules();
-            isContinue = parser.executeUserCommand(userInput, universities, modules, allModules, storage);
+            Command command = parser.handleUserCommand(userInput, universities, modules, allModules, storage);
+            command.execute();
+            isContinue = !command.getIsExit();
         }
     }
 }
