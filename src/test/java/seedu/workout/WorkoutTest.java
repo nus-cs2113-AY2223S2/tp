@@ -9,15 +9,10 @@ public class WorkoutTest {
     public SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
 
     @Test
-    public void testInvalidDate() throws Exception {
-        Workout workout = new Workout("05/02/2023"); //invalid date format
-    }
-
-    @Test
     public void testGetDateAndSetDate() throws Exception {
-        Workout workout = new Workout("05/02/23");
         String expectedDatestring = "05/02/23";
         Date expectedDate = dateFormat.parse(expectedDatestring);
+        Workout workout = new Workout(expectedDate);
         assertEquals(expectedDate, workout.getDate());
 
         String newDatestring = "06/03/24";

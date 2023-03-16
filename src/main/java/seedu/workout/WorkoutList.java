@@ -3,20 +3,23 @@ package seedu.workout;
 import java.util.ArrayList;
 import java.util.Date;
 
-
 public class WorkoutList {
-
-    private ArrayList<Workout> workoutList = new ArrayList<>();
+    public static final int NO_CURRENT_WORKOUT = -1;
+    public ArrayList<Workout> workoutList;
+    public int currentWorkoutIndex;
     public WorkoutList() {
+        workoutList = new ArrayList<>();
+        currentWorkoutIndex = NO_CURRENT_WORKOUT;
     }
 
     public void addWorkout(Workout workout) {
         workoutList.add(workout);
-    }
-    public ArrayList<Workout> getWorkoutList() {
-        return workoutList;
+        currentWorkoutIndex = getLastIndex();
     }
 
+    public void setCurrentWorkoutIndex(int currentWorkoutIndex) {
+        this.currentWorkoutIndex = currentWorkoutIndex;
+    }
     public void removeWorkout(Date date) {
         for (Workout workout : workoutList) {
             if (workout.getDate().equals(date)) {
@@ -32,9 +35,14 @@ public class WorkoutList {
         for (Workout workout : workoutList) {
             if (workout.getDate().equals(date)) {
                 System.out.println(workout.workoutExercises);
-                System.out.println("test it worked");
                 return;
             }
         }
+    }
+    public int getLastIndex() {
+        return workoutList.size() - 1;
+    }
+    public Workout getCurrentWorkout() {
+        return workoutList.get(currentWorkoutIndex);
     }
 }
