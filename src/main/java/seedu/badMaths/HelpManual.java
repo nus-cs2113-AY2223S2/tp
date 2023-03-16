@@ -1,24 +1,35 @@
 package seedu.badMaths;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class HelpManual {
     protected static String filePath = "docs/HelpManual.txt";
+    protected static String logFilePath = "Help";
     protected static String content;
-    private static final Logger logger = Logger.getLogger(HelpManual.class.getName());
+    private static final Logger logger = Logger.getLogger(logFilePath);
 
+    public static void setUpLogger(){
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.ALL);
+        try{
+            if(!new File(logFilePath).exists()){
+                new File(logFilePath).createNewFile();
+            }
+        } catch (IOException e){
+           logger.log(Level.SEVERE, "File logger not working", e);
+        }
+    }
 
     /**
      * This method reads the content from docs/HelpManual.txt file.
      */
     public static void readHelpManual() {
+        setUpLogger();
         try {
             logger.log(Level.INFO, "going to start processing");
             File file = new File(filePath);
