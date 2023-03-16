@@ -3,7 +3,7 @@ import model.CardList;
 import utils.Parser;
 import utils.UserInterface;
 import utils.command.Command;
-import utils.exceptions.ExceptionHandler;
+import utils.exceptions.InkaException;
 import utils.exceptions.StorageLoadFailure;
 import utils.storage.JsonStorage;
 import utils.storage.Storage;
@@ -12,7 +12,6 @@ public class Inka {
 
     private final UserInterface ui;
     private final Parser parser;
-    private ExceptionHandler exceptionHandler;
     private Storage storage;
 
     private CardList cardList;
@@ -21,7 +20,6 @@ public class Inka {
         storage = new JsonStorage(filePath);
         ui = new UserInterface();
         parser = new Parser();
-        exceptionHandler = new ExceptionHandler();
 
         cardList = loadSaveFile();
     }
@@ -66,8 +64,13 @@ public class Inka {
 
         while (parser.getIsExecuting()) {
             String userInput = ui.getUserInput();
-            Command command = exceptionHandler.mainExceptionHandler(parser, userInput, ui, cardList);
-            command.execute(cardList, ui, storage);
+            //Command command = exceptionHandler.mainExceptionHandler(parser, userInput, ui, cardList);
+            try {
+                Command command = parser.parseCommand(userInput, cardList);
+                command.execute(cardList, ui, storage);
+            } catch (InkaException e) {
+                ui.printException(e);
+            }
         }
     }
 }
