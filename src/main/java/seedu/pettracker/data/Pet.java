@@ -17,7 +17,7 @@ public class Pet {
     }
 
     public void addStat(String statName, String statValue) {
-
+        assert statName != null && statValue != null : "statName/statValue is null";
         switch (statName.toLowerCase()) {
         case "type":
             setPetType(statValue);
@@ -31,11 +31,12 @@ public class Pet {
         default:
             System.out.println("ERROR: The only valid stats are type, age, or weight.");
         }
-    
+
     }
 
     public void removeStat(String statName) {
-        switch(statName.toLowerCase()) {
+        assert statName != null : "statName is null";
+        switch (statName.toLowerCase()) {
         case "type":
             setPetType("");
             break;
