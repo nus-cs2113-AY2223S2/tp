@@ -11,6 +11,8 @@ public class Module {
     private String code;
     private String title;
 
+    private String moduleCredits;
+
     private ArrayList<Timetable> timetable;
 
 
@@ -20,9 +22,10 @@ public class Module {
      * @param moduleCode The code of the module e.g. CS2113
      * @param moduleName The name of the module e.g. Software Engineering and Object-Oriented Programming
      */
-    public Module(String moduleCode, String moduleName) {
+    public Module(String moduleCode, String moduleName, String moduleCredits) {
         this.code = moduleCode;
         this.title = moduleName;
+        this.moduleCredits = moduleCredits;
     }
 
 
