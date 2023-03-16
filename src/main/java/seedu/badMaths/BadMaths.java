@@ -1,6 +1,6 @@
 package seedu.badMaths;
 
-import seedu.badMaths.UI.Ui;
+import seedu.badMaths.tempui.Ui;
 
 import java.util.Scanner;
 
