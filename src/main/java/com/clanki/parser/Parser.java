@@ -37,15 +37,14 @@ public class Parser {
         switch (command) {
         case "add":
             return getAddCommand(parsedInput);
-        case "del":
-            int index = Integer.parseInt(userInput.split(" ")[1]);
-            return new DeleteCommand(index);
         case "review":
-            return new ReviewCommand();
-        case "bye":
-            return new ByeCommand();
+            return getReviewCommand(parsedInput);
         case "update":
-            return new UpdateCommand(userInput);
+            return getUpdateCommand(parsedInput);
+        case "del":
+            return getDeleteCommand(parsedInput);
+        case "bye":
+            return getByeCommand(parsedInput);
         default:
             return new UnknownCommand();
         }
@@ -81,5 +80,22 @@ public class Parser {
             throw new EmptyFlashcardAnswerException();
         }
         return new AddCommand(questionText, answerText);
+    }
+
+    public static ReviewCommand getReviewCommand(ParsedInput parsedInput) {
+        return new ReviewCommand();
+    }
+
+    public static UpdateCommand getUpdateCommand(ParsedInput parsedInput) {
+        return new UpdateCommand(parsedInput.getBody());
+    }
+
+    public static DeleteCommand getDeleteCommand(ParsedInput parsedInput) {
+        int index = Integer.parseInt(parsedInput.getBody());
+        return new DeleteCommand(index);
+    }
+
+    public static ByeCommand getByeCommand(ParsedInput parsedInput) {
+        return new ByeCommand();
     }
 }

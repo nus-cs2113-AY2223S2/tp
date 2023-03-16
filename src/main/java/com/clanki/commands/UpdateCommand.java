@@ -10,9 +10,9 @@ public class UpdateCommand extends Command {
     String query;
     ArrayList<Flashcard> matchingFlashcards = new ArrayList<>();
 
-    public UpdateCommand(String userInput) {
+    public UpdateCommand(String query) {
         super();
-        this.query = userInput.split(" ")[1];
+        this.query = query;
     }
 
     public void printFlashCard(Flashcard flashcard) {
