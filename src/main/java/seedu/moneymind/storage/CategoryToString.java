@@ -1,8 +1,11 @@
-package seedu.moneymind;
+package seedu.moneymind.storage;
 
-import static seedu.moneymind.Strings.STORAGE_NEXT_VARIABLE;
-import static seedu.moneymind.Strings.NEW_LINE;
-import static seedu.moneymind.Strings.STORAGE_CATEGORY_NAME;
+import seedu.moneymind.event.Event;
+import seedu.moneymind.category.Category;
+
+import static seedu.moneymind.string.Strings.STORAGE_NEXT_VARIABLE;
+import static seedu.moneymind.string.Strings.NEW_LINE;
+import static seedu.moneymind.string.Strings.STORAGE_CATEGORY_NAME;
 
 /**
  * Converts a Category object to a String.

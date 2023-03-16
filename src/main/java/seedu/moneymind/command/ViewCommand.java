@@ -1,20 +1,21 @@
 package seedu.moneymind.command;
 
-import seedu.moneymind.Category;
-import seedu.moneymind.CategoryList;
-import seedu.moneymind.Event;
-import seedu.moneymind.Ui;
+import seedu.moneymind.category.Category;
+import seedu.moneymind.category.CategoryList;
+import seedu.moneymind.event.Event;
+import seedu.moneymind.ui.Ui;
+
+import static seedu.moneymind.string.Strings.NULL_CATEGORY_ASSERTION;
+import static seedu.moneymind.string.Strings.NO_CATEGORY_MESSAGE;
+import static seedu.moneymind.string.Strings.NULL_CATEGORY_LIST_ASSERTION;
+import static seedu.moneymind.string.Strings.NO_CATEGORIES_TO_VIEW;
+import static seedu.moneymind.string.Strings.DOT;
+import static seedu.moneymind.string.Strings.COUNT_ASSERTION;
 
 /**
  * ViewCommand class to view the categories and events.
  */
 public class ViewCommand implements Command {
-    public static final String NO_CATEGORY_MESSAGE = "Category does not exist";
-    public static final String DOT = ".";
-    public static final String NO_CATEGORIES_TO_VIEW = "There are no categories to view";
-    public static final String COUNT_ASSERTION = "Count should be greater than 1";
-    public static final String NULL_CATEGORY_ASSERTION = "Category name should not be null";
-    public static final String NULL_CATEGORY_LIST_ASSERTION = "Category list should not be null";
     private String categoryName;
 
     private final boolean isCategorySpecified;

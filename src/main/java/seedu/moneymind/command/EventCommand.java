@@ -1,28 +1,27 @@
 package seedu.moneymind.command;
 
-import seedu.moneymind.Category;
-import seedu.moneymind.CategoryList;
-import seedu.moneymind.Event;
-import seedu.moneymind.Ui;
-import seedu.moneymind.InvalidCategoryNumberException;
-
-import java.util.Scanner;
+import seedu.moneymind.Moneymind;
+import seedu.moneymind.category.Category;
+import seedu.moneymind.category.CategoryList;
+import seedu.moneymind.event.Event;
+import seedu.moneymind.exceptions.InvalidCategoryNumberException;
+import seedu.moneymind.ui.Ui;
+import static seedu.moneymind.string.Strings.NULL_EVENT_ASSERTION;
+import static seedu.moneymind.string.Strings.NON_NEGATIVE_BUDGET_ASSERTION;
+import static seedu.moneymind.string.Strings.NON_NEGATIVE_EXPENSE_ASSERTION;
+import static seedu.moneymind.string.Strings.NON_NEGATIVE_POSITION_ASSERTION;
+import static seedu.moneymind.string.Strings.EVENT_ADDED_MESSAGE;
+import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_TO_GIVE_A_NUMBER;
+import static seedu.moneymind.string.Strings.CATEGORY_OUT_OF_RANGE;
+import static seedu.moneymind.string.Strings.SUBTLE_BUG_MESSAGE;
+import static seedu.moneymind.string.Strings.SELECTING_CATEGORY_MESSAGE;
+import static seedu.moneymind.string.Strings.GO_BACK_MESSAGE;
+import static seedu.moneymind.string.Strings.BACK;
 
 /**
  * A class to add an event
  */
 public class EventCommand implements Command {
-    public static final String SELECTING_CATEGORY_MESSAGE = "Please select the category you want to add the event to: ";
-    public static final String GO_BACK_MESSAGE = "Please enter back to go back to the main program";
-    public static final String BACK = "back";
-    public static final String EVENT_ADDED_MESSAGE = "New event added: ";
-    public static final String REMINDING_MESSAGE_TO_GIVE_A_NUMBER = "Please enter a number.";
-    public static final String CATEGORY_OUT_OF_RANGE = "The category number you entered is out of range";
-    public static final String SUBTLE_BUG_MESSAGE = "Something went wrong, please report to the developer";
-    public static final String NON_NEGATIVE_POSITION_ASSERTION = "Category position cannot be negative";
-    public static final String NULL_EVENT_ASSERTION = "Event name cannot be null";
-    public static final String NON_NEGATIVE_BUDGET_ASSERTION = "Budget cannot be negative";
-    public static final String NON_NEGATIVE_EXPENSE_ASSERTION = "Expense cannot be negative";
     private String eventName;
     private int budget;
     private int expense;
@@ -92,17 +91,14 @@ public class EventCommand implements Command {
         Event event = new Event(eventName, budget, expense);
         System.out.println(SELECTING_CATEGORY_MESSAGE);
         String userInput;
-        Scanner in;
-        in = new Scanner(System.in);
-        userInput = in.nextLine();
+        userInput = Moneymind.in.nextLine();
         while (!isChooseCategorySuccessful(userInput)) {
             System.out.println(GO_BACK_MESSAGE);
-            userInput = in.nextLine();
+            userInput = Moneymind.in.nextLine();
             if (userInput.equals(BACK)) {
                 break;
             }
         }
-        in.close();
     }
 
     @Override
