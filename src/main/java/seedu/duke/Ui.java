@@ -13,6 +13,7 @@ public class Ui {
 
     /**
      * Obtains user input and interprets what needs to be performed by certain keywords.
+     * @param eventList List of events that ui interacts with
      */
     public static void getUserCommand(EventList eventList) {
         Scanner in = new Scanner(System.in);
@@ -51,6 +52,7 @@ public class Ui {
 
     /**
      * Prints success message for users when event is added
+     * @param taskDetail String containing information that was added to eventList
      */
     public static void addSuccessMsg(String taskDetail) {
         printDash();
@@ -90,6 +92,7 @@ public class Ui {
 
     /**
      * Prints list of events
+     * @param eventList Array List containing events to be printed to user
      */
     public static void listTask(ArrayList<Event> eventList) {
         printDash();
