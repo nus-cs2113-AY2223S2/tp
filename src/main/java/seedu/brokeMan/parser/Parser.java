@@ -64,7 +64,6 @@ public class Parser {
         case HelpCommand.COMMAND_WORD: // fall through
         default:
             return new HelpCommand();
-            //return new InvalidCommand("Invalid command word entered");
         }
     }
 
@@ -94,10 +93,6 @@ public class Parser {
             return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
         }
 
-//        if (budget < 0) {
-//            String errorMessage = new BudgetNotADoubleException().getMessage();
-//            return new InvalidCommand(errorMessage);
-//        }
         return new SetBudgetCommand(budget);
     }
 
