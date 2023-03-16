@@ -14,7 +14,7 @@ public class Notes {
     }
 
     public void handleCache(String input){
-
+        assert (input.equals("Store") || input.equals("List")): "input should either be Store or List";
         switch(input) {
         case "Store":
             cache.add(toDo);
