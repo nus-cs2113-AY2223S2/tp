@@ -24,4 +24,5 @@ public class Recipe {
     public int getNumOfIngredients() {
         return ingredients.size();
     }
+
 }
