@@ -10,6 +10,7 @@ package seedu.badMaths;
 
 import seedu.badMaths.trigograph.TrigoGraph;
 import seedu.badMaths.ui.Ui;
+import seedu.badMaths.matrix.Calculator;
 
 public class Command {
 
@@ -40,6 +41,7 @@ public class Command {
 
     public void executeCommand() {
         TrigoGraph trigoGraph = new TrigoGraph(toDo);
+        Calculator calculator = new Calculator();
 
         switch (command) {
         case "Bye":
@@ -57,6 +59,9 @@ public class Command {
             break;
         case "Help":
             HelpManual.readHelpManual();
+            break;
+        case "Matrix":
+            calculator.run();
             break;
         default:
             break;
