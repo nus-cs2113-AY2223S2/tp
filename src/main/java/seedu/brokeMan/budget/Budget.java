@@ -5,8 +5,8 @@ import seedu.brokeMan.ui.Ui;
 import static seedu.brokeMan.entry.Expenses.getTotalExpense;
 
 public class Budget {
-    private static double budget;
     public static boolean hasSetBudget = false;
+    private static double budget;
 
     public static void viewBudget() {
         double totalExpenses = getTotalExpense();
