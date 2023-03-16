@@ -15,9 +15,12 @@ public class CategoryMapToString {
      * @return String of categoryMap
      */
     public static String categoryMapToString() {
-        String output = STORAGE_CATEGORY_MAP + NEW_LINE;
-        for (String key : categoryMap.keySet()) {
-            output += STORAGE_NEXT_VARIABLE + key + STORAGE_NEXT_VARIABLE + categoryMap.get(key) + NEW_LINE;
+        String output = "";
+        if (!categoryMap.isEmpty()) {
+            output = STORAGE_CATEGORY_MAP + NEW_LINE;
+            for (String key : categoryMap.keySet()) {
+                output += STORAGE_NEXT_VARIABLE + key + STORAGE_NEXT_VARIABLE + categoryMap.get(key) + NEW_LINE;
+            }
         }
         return output;
     }
