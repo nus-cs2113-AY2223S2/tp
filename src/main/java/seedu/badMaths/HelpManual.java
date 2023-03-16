@@ -2,11 +2,9 @@ package seedu.badMaths;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-import java.io.PrintStream;
 
 
 import java.nio.file.Files;
