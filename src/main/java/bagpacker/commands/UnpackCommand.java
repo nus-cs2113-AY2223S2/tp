@@ -7,8 +7,8 @@ import bagpacker.packingfunc.PackingList;
 public class UnpackCommand extends Command {
 
     public static final String MSG_SUCCESS_UNPACK = "Item unpacked: %s";
-    public static final String MSG_USAGE_UNPACK = "pack : Marks an item as unpacked in the packing list.\n" +
-            "Example: unpack toothbrush";
+    public static final String HELP_MSG = "unpack : Marks an item as unpacked in the packing list.\n" +
+            "\tExample: unpack toothbrush";
 
 
     public UnpackCommand(int targetIndex) {

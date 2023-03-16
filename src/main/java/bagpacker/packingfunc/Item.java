@@ -14,6 +14,7 @@ public class Item {
         this.itemName = description;
         this.isPacked = isPacked;
     }
+    
     public String getItemName() {
         return itemName;
     }
