@@ -2,6 +2,8 @@ package seedu.apollo.task;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * TaskList class is a modified ArrayList of Tasks.
@@ -30,14 +32,14 @@ public class TaskList extends ArrayList<Task> {
      * @param keyword The given keyword to check for.
      * @return TaskList of all shortlisted tasks.
      */
-    public TaskList findTasks(String keyword) {
-        TaskList foundTasks = new TaskList();
-        for (Task task : this) {
-            if (task.description.contains(keyword)) {
-                foundTasks.add(task);
-            }
-        }
-        return foundTasks;
+    public ArrayList<Task> findTasks(String keyword) {
+
+        String lowerKeyword = keyword.toLowerCase();
+        Stream<Task> filteredTasks = this.stream()
+                .filter(task -> task.getDescription().toLowerCase().contains(lowerKeyword));
+
+        ArrayList<Task> filteredTasksList = (ArrayList<Task>) filteredTasks.collect(Collectors.toList());
+        return filteredTasksList;
     }
 
 }
