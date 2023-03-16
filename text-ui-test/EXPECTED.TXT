@@ -1,2 +1,2 @@
-This is BadMaths. You can type 'Help' to learn what I can do for you :)
+This is BadMaths. You can type 'Help.' to learn what I can do for you :)
 Goodbye!
