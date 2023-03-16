@@ -9,6 +9,7 @@ public class Pet {
     public Pet(String petName) {
         this.petName = petName;
         petType = "";
+        assert petType.equals("") : "petType should be an empty string when a pet is added";
         age = "";
         weight = "";
     }
