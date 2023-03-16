@@ -5,7 +5,7 @@ import seedu.brokeMan.ui.Ui;
 import java.util.LinkedList;
 
 public class Expenses extends EntryList{
-    private static final LinkedList<Expense> expenseList = new LinkedList<>();
+    private static final LinkedList<Entry> expenseList = new LinkedList<>();
     //private final EntryList expenseList;
 
     /**
@@ -14,7 +14,7 @@ public class Expenses extends EntryList{
      * @param newExpense new expense to be added
      */
     public static void addExpense(Expense newExpense) {
-        addEntry(newExpense);
+        addEntry(newExpense, expenseList);
     }
 
     /**
@@ -28,12 +28,12 @@ public class Expenses extends EntryList{
         //sortExpenses(); I think maybe no need to sort the list automatically without asking the user?
         Ui.showToUser("Here are the expenses you have made.");
         int counter = 1;
-        for (Entry entryLog : entryList) {
+        for (Entry entryLog : expenseList) {
             String message = String.format("%d. %s", counter, entryLog.toString());
             Ui.showToUser(message);
             counter++;
         }
-        Ui.showToUser("Total expenses: $" + getTotalAmount());
+        Ui.showToUser("Total expenses: $" + getTotalAmount(expenseList));
         Ui.showToUserWithLineBreak("");
     }
 
@@ -45,7 +45,7 @@ public class Expenses extends EntryList{
      * @param expenseIndex Index of the expense in the list
      */
     public static void deleteExpense(int expenseIndex) {
-        deleteEntry(expenseIndex);
+        deleteEntry(expenseIndex, expenseList);
     }
 
     /**
@@ -56,7 +56,7 @@ public class Expenses extends EntryList{
      * @param newEntry new entry that will replace current entry
      */
     public static void editExpenseCost(String type, int expenseIndex, double newEntry) {
-        editEntry(type, expenseIndex, newEntry);
+        editEntry(type, expenseIndex, newEntry, expenseList);
     }
 
     /**
@@ -67,7 +67,7 @@ public class Expenses extends EntryList{
      * @param newEntry new entry that will replace current entry
      */
     public static void editExpense(String type, int expenseIndex, String newEntry) {
-        editEntry(type, expenseIndex, newEntry);
+        editEntry(type, expenseIndex, newEntry, expenseList);
     }
 
 
@@ -75,10 +75,10 @@ public class Expenses extends EntryList{
      * Sorts expenses using Entry comparator
      */
     private static void sortExpensesByAmount() {
-        sortEntriesByAmount();
+        sortEntriesByAmount(expenseList);
     }
     private static void sortExpensesByDate() {
-        sortEntriesByDate();
+        sortEntriesByDate(expenseList);
     }
 
 
