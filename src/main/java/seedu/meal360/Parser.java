@@ -5,53 +5,96 @@ import java.util.Scanner;
 
 public class Parser {
 
-    public Recipe parseAddRecipe(String[] input, RecipeList recipeList) {
-        StringBuilder recipeName = new StringBuilder(input[2]);
-        for (int i = 3; i < input.length; i++) {
-            recipeName.append(" ").append(input[i]);
+    Ui ui = new Ui();
+
+    public String combineWords(String[] input, int startIndex){
+        StringBuilder word = new StringBuilder(input[startIndex]);
+        for(int i = startIndex+1; i< input.length-1; i++) {
+            word.append(" ").append(input[i]);
         }
+
+        return word.toString();
+    }
+
+    public Recipe parseAddRecipe(String[] input, RecipeList recipeList) {
+        String recipeName = combineWords(input, 2);
         HashMap<String, Integer> ingredients = new HashMap<>();
         Scanner userInput = new Scanner(System.in);
         System.out.println("Please Enter The Ingredients & Quantity: ");
         while (true) {
             String line = userInput.nextLine();
             if (line.equals("done")) {
+                ui.printSeparator();
                 break;
             } else {
                 String[] command = line.trim().split(" ");
-                StringBuilder iName = new StringBuilder(command[0]);
-                for (int i = 1; i < command.length - 1; i++) {
-                    iName.append(" ").append(command[i]);
-                }
-                ingredients.put(iName.toString(), Integer.parseInt(command[command.length - 1]));
+                String ingredientName = combineWords(command, 0);
+                ingredients.put(ingredientName, Integer.parseInt(command[command.length - 1]));
             }
         }
-        Recipe newRecipe = new Recipe(recipeName.toString(), ingredients);
+        Recipe newRecipe = new Recipe(recipeName, ingredients);
         recipeList.addRecipe(newRecipe);
         return newRecipe;
     }
 
     public Recipe parseEditRecipe(String[] input, RecipeList recipeList) {
-        String recipeName = input[1].substring(2);
+        String recipeName = combineWords(input, 2);
         Recipe recipeToEdit;
         HashMap<String, Integer> ingredients = new HashMap<>();
         Scanner userInput = new Scanner(System.in);
         if (recipeList.findByName(recipeName) == null) {
-            // ui recipe not found
             return null;
         } else {
             recipeToEdit = recipeList.findByName(recipeName);
         }
-        System.out.println("Please Enter New Ingredients & Quantity: ");
-        while (true) {
-            String line = userInput.nextLine();
-            if (line.equals("done")) {
-                break;
+        System.out.println("Do you want to edit recipe fully or partially?");
+        System.out.println("Press 1 for full edit | Press 2 for partial edit");
+
+        Scanner getInput = new Scanner(System.in);
+        int index = getInput.nextInt();
+        if(index == 1){
+            System.out.println("Please Enter New Ingredients & Quantity: ");
+            while (true) {
+                String line = userInput.nextLine();
+                if (line.equals("done")) {
+                    break;
+                }
+                String[] command = line.trim().split(" ");
+                ingredients.put(command[0], Integer.parseInt(command[1]));
+                recipeList.editRecipe(recipeToEdit, ingredients);
             }
+        } else if(index == 2){
+            System.out.println("These are the ingredients for the recipe:");
+            ui.printSeparator();
+            Recipe recipe = parseViewRecipe(recipeName, recipeList);
+            ui.printRecipe(recipe);
+            ui.printSeparator();
+            System.out.println("Which ingredient do you want to change?");
+            int ingredientIndex = getInput.nextInt();
+            ingredientIndex -= 1;
+            int count = 0;
+            String ingredientToRemove = null;
+            for (String ingredient : recipeToEdit.getIngredients().keySet()) {
+                if(ingredientIndex == count){
+                    ingredientToRemove = ingredient;
+                    System.out.println("Ingredient to be changed:");
+                    ui.printSeparator();
+                    String toPrint = String.format("%s(%d)", ingredient, recipeToEdit.getIngredients().get(ingredient));
+                    System.out.println(ui.formatMessage(toPrint));
+                    ui.printSeparator();
+                    break;
+                }
+                count++;
+            }
+            System.out.println("Please enter the new ingredient:");
+            String line = userInput.nextLine();
             String[] command = line.trim().split(" ");
-            ingredients.put(command[0], Integer.parseInt(command[1]));
+            String newIngredientName = combineWords(command, 0);
+            recipeToEdit.getIngredients().remove(ingredientToRemove);
+            recipeToEdit.getIngredients().put(newIngredientName, Integer.parseInt(command[command.length-1]));
+            recipeList.editRecipe(recipeToEdit, recipeToEdit.getIngredients());
         }
-        recipeList.editRecipe(recipeToEdit, ingredients);
+
         return recipeToEdit;
     }
 
@@ -121,6 +164,16 @@ public class Parser {
         assert command[0].equals("view");
         int recipeIndex = Integer.parseInt(command[1]) - 1;
         return recipes.get(recipeIndex);
+    }
+    public Recipe parseViewRecipe(String recipeName, RecipeList recipes){
+        int recipeIndex = 1;
+        for (Recipe recipe : recipes) {
+            if (recipe.getName().equals(recipeName)) {
+                break;
+            }
+            recipeIndex++;
+        }
+        return recipes.get(recipeIndex-1);
     }
 
     public WeeklyPlan parseWeeklyPlan(String[] command, RecipeList recipes) {

@@ -73,14 +73,36 @@ public class Meal360 {
             ui.listRecipe(recipeListToPrint);
         } else if (command[0].equals("add")) {
             ui.printSeparator();
-            Recipe newRecipe = parser.parseAddRecipe(command, recipeList);
-            ui.printMessage("I've added this new recipe:" + newRecipe.getName());
-            ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
+            try{
+                Recipe newRecipe = parser.parseAddRecipe(command, recipeList);
+                ui.printMessage("I've added this new recipe:" + newRecipe.getName());
+                ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
+            } catch(ArrayIndexOutOfBoundsException e) {
+                String errorMessage = String.format("Please enter a valid recipe name.");
+                ui.printMessage(errorMessage);
+            }
             ui.printSeparator();
         } else if (command[0].equals("edit")) {
             ui.printSeparator();
-            Recipe newRecipe = parser.parseEditRecipe(command, recipeList);
-            ui.printMessage("I've edited this recipe:" + newRecipe.getName());
+            try{
+                Recipe recipeToEdit = parser.parseEditRecipe(command, recipeList);
+                ui.printSeparator();
+                ui.printMessage("I've edited this recipe:" + recipeToEdit.getName());
+            } catch (NumberFormatException e) {
+                String errorMessage = String.format(
+                        "Please enter a valid recipe number. You entered %s, " + "which is not a number.",
+                        command[1]);
+                ui.printMessage(errorMessage);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                String errorMessage = String.format(
+                        "Please enter a valid recipe name.");
+                ui.printMessage(errorMessage);
+            } catch (IndexOutOfBoundsException e) {
+                String errorMessage = String.format(
+                        "Please enter a valid recipe number. You entered %s, " + "which is out of bounds.",
+                        command[1]);
+                ui.printMessage(errorMessage);
+            }
             ui.printSeparator();
         } else if (command[0].equals("weekly")) {
             try {

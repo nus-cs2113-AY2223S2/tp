@@ -35,10 +35,12 @@ public class Ui {
 
     public void printRecipe(Recipe recipe) {
         System.out.println(formatMessage("Name of recipe: " + recipe.getName()));
+        int index = 1;
         for (String ingredient : recipe.getIngredients().keySet()) {
             String outputMessage = String.format("%s(%d)", ingredient,
                     recipe.getIngredients().get(ingredient));
-            System.out.println(formatMessage(outputMessage));
+            System.out.println(formatMessage(index + ". " + outputMessage));
+            index++;
         }
     }
 
