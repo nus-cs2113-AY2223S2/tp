@@ -46,7 +46,7 @@ public class HelpManual {
 
             if (file.isFile() && file.exists()) {
                 logger.log(Level.INFO, "Help manual file found at: " + file.getAbsolutePath());
-                InputStreamReader read = new InputStreamReader(new FileInputStream(file));
+                InputStreamReader read = new InputStreamReader(new FileInputStream(file), "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(read);
 
                 String lineTxt;
@@ -76,12 +76,5 @@ public class HelpManual {
             logger.severe("Error while loading Help Manual. Please try again.");
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Returns the content of the help manual as a string.
-     */
-    public static String getContent() {
-        return content;
     }
 }
