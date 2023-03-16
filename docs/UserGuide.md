@@ -1,7 +1,7 @@
 # User Guide
 
 ## Introduction
-Hey there! Thanks for choosing Meal Companion, your one-stop solution to handling meal prep, ingredient tracking and cookbook! This guide will show you how to get started
+Hey there! Thanks for choosing Meal Companion, your one-stop solution to handling meal prep, ingredient tracking and cookbook! This guide will show you how to get started, and take control of your own meal planning!
 
 # Table of Contents
 1. [Getting Started](#getting-started)
