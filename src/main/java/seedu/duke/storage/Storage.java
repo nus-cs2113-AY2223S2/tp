@@ -1,15 +1,12 @@
 package seedu.duke.storage;
 
 import seedu.duke.recipe.Ingredient;
-import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Scanner;
+
 
 /**
  * The <code>Storage</code> class contains various methods which involves
@@ -23,7 +20,6 @@ public class Storage {
     private static final String FILE_CREATED = "Save file created.";
     private static final String FILE_EXISTS = "Save file already exists.";
     private static final String FILE_PARSING_ERROR = "The task does not meet the parsing requirements for unpacking.";
-    public static final String DISH = "Dish";
     public static final String INGREDIENT_LIST = "Ingredient List";
     public static final String STEPS = "Steps";
     private static String filePath;
@@ -64,7 +60,6 @@ public class Storage {
             for (Ingredient ingredient : dish.getIngredientList().getList()) {
                 saveWriter.write( ingredient.getName() + "\n");
             }
-            saveWriter.write(SEPARATOR + "\n");
             saveWriter.write(STEPS + "\n");
             for (String step : dish.getSteps()) {
                 saveWriter.write(step + "\n");
