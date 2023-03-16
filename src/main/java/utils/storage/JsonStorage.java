@@ -1,6 +1,7 @@
 package utils.storage;
 
-import java.util.logging.*;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -14,15 +15,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 import model.Card;
 import model.CardList;
 import utils.exceptions.StorageLoadFailure;
 import utils.exceptions.StorageSaveFailure;
 
 public class JsonStorage extends Storage {
-    private GsonBuilder gsonBuilder;
     private static Logger logger = Logger.getLogger("storage.JsonStorage");
+    private GsonBuilder gsonBuilder;
+
     public JsonStorage(String filePath) {
         super(filePath);
         gsonBuilder = new GsonBuilder();
