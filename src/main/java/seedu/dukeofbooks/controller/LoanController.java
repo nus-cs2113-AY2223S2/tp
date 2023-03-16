@@ -30,6 +30,7 @@ public class LoanController {
 
         loanRecords.add(newLoan);
         toBorrow.borrowItem();
+        borrower.addLoan(newLoan);
     }
 
     public static void returnItem(LoanRecords loanRecords, Person borrower,
@@ -43,6 +44,7 @@ public class LoanController {
         if (loan == null) {
             throw new LoanRecordNotFoundException("Cannot find an active loan!");
         }
+
         loan.setReturned(true);
         toReturn.returnItem();
     }
