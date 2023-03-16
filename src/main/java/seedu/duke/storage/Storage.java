@@ -1,13 +1,17 @@
 package seedu.duke.storage;
 
 import seedu.duke.recipe.Ingredient;
+import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
-import seedu.duke.ui.StringLib;
-
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Scanner;
+import static seedu.duke.ui.StringLib.INGREDIENT_LIST;
+import static seedu.duke.ui.StringLib.STEPS;
 
 
 /**
@@ -56,16 +60,55 @@ public class Storage {
             saveWriter = new FileWriter("data/" + dish.getName() + ".txt");
             saveWriter.write(dish.getName() + "\n");
             saveWriter.write(dish.getTag() + "\n");
-            saveWriter.write(StringLib.INGREDIENT_LIST + "\n");
+            saveWriter.write(INGREDIENT_LIST + "\n");
             for (Ingredient ingredient : dish.getIngredientList().getList()) {
                 saveWriter.write( ingredient.getName() + "\n");
             }
-            saveWriter.write(StringLib.STEPS + "\n");
+            saveWriter.write(STEPS + "\n");
             for (String step : dish.getSteps()) {
                 saveWriter.write(step + "\n");
             }
             saveWriter.close();
         }
     }
-
+    public static ArrayList<File> findValidSaveFiles() {
+        File searchArea = new File("data");
+        File[] saveList = searchArea.listFiles();
+        ArrayList<File> validSaveFiles = new ArrayList<>();
+        for (File item : saveList) {
+            if (item.getName().contains(".txt")) {
+                validSaveFiles.add(item);
+            }
+        }
+        return validSaveFiles;
+    }
+    public static ArrayList<Recipe> readSaveFiles() throws FileNotFoundException {
+        ArrayList<File> validSaves = findValidSaveFiles();
+        ArrayList<Recipe> recipeList = new ArrayList<>();
+        for (File saveFile : validSaves) {
+            Scanner reader = new Scanner(saveFile);
+            String name = reader.nextLine();
+            String tag = reader.nextLine();
+            ArrayList<Ingredient> ingredientList = new ArrayList<>();
+            ArrayList<String> stepList = new ArrayList<>();
+            while (reader.hasNextLine()) {
+                String ingredient = reader.nextLine();
+                if (ingredient.equals(STEPS)) {
+                    break;
+                } else if (ingredient.equals(INGREDIENT_LIST)) {
+                } else {
+                    ingredientList.add(new Ingredient(ingredient));
+                }
+            }
+            while (reader.hasNextLine()) {
+                stepList.add(reader.nextLine());
+            }
+            recipeList.add(new Recipe(
+                    name,
+                    tag,
+                    new IngredientList(ingredientList),
+                    stepList));
+        }
+        return recipeList;
+    }
 }
