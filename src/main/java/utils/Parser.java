@@ -2,6 +2,8 @@ package utils;
 
 import model.Card;
 import model.CardList;
+
+
 import utils.command.AddCommand;
 import utils.command.Command;
 import utils.command.DeleteCommand;
@@ -18,6 +20,7 @@ import utils.exceptions.DeleteRangeInvalid;
 
 public class Parser {
     private boolean isExecuting;
+
 
     public Parser() {
         this.isExecuting = true;
