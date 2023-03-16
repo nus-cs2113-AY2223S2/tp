@@ -4,15 +4,12 @@ import seedu.duke.recipe.Ingredient;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
-import seedu.duke.ui.StringLib;
-
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import static seedu.duke.ui.StringLib.INGREDIENT_LIST;
 import static seedu.duke.ui.StringLib.STEPS;
 
