@@ -73,11 +73,11 @@ public class Parser {
 
     private Command prepareRenewCommand(String arguments) {
         String[] parts = arguments.split("-title ");
-        if (parts.length != 2) {
+        if (parts.length != 1) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         try {
-            BorrowableItem toRenew = searchController.searchBookByTitle(parts[1]);
+            BorrowableItem toRenew = searchController.searchBookByTitle(parts[0]);
             return new RenewCommand(loanRecords, currentUser, toRenew);
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
@@ -86,11 +86,11 @@ public class Parser {
     
     private Command prepareBorrowCommand(String arguments) {
         String[] parts = arguments.split("-title ");
-        if (parts.length != 2) {
+        if (parts.length != 1) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         try {
-            BorrowableItem toBorrow = searchController.searchBookByTitle(parts[1]);
+            BorrowableItem toBorrow = searchController.searchBookByTitle(parts[0]);
             return new BorrowCommand(loanRecords, currentUser, toBorrow);
         } catch (IllegalValueException e) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
@@ -99,11 +99,11 @@ public class Parser {
     
     private Command prepareReturnCommand(String arguments) {
         String[] parts = arguments.split("-title ");
-        if (parts.length != 2) {
+        if (parts.length != 1) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         try {
-            BorrowableItem toReturn = searchController.searchBookByTitle(parts[1]);
+            BorrowableItem toReturn = searchController.searchBookByTitle(parts[0]);
             return new ReturnCommand(loanRecords, currentUser, toReturn);
         } catch (IllegalValueException e) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
