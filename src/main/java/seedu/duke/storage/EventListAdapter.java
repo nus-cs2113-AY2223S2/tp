@@ -10,8 +10,18 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * EventListAdapter is a custom serializer/deserializer type adapter for saving and loading information.
+ */
 public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
     private static final DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+
+    /**
+     * Custom serializer for ArrayList of class Event.
+     * @param writer the JsonWriter that writes the object to file.
+     * @param eventList the Java object to write. May be null.
+     * @throws IOException If there is an error writing to file
+     */
     @Override
     public void write(JsonWriter writer, ArrayList<Event> eventList) throws IOException {
         writer.beginArray();
@@ -20,6 +30,13 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
         }
         writer.endArray();
     }
+
+    /**
+     * Custom serializer for the Event class. Called by the write function
+     * @param writer the JsonWriter that writes the object to file.
+     * @param event the Event object to write.
+     * @throws IOException If there is an error writing to file
+     */
     public void writeEvent(JsonWriter writer, Event event) throws IOException {
         writer.beginObject();
         writer.name("description").value(event.getDescription());
@@ -60,6 +77,13 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
         writer.name("hasEndTime").value(event.hasEndTime());
         writer.endObject();
     }
+
+    /**
+     * Reads information from a json file and deserializes it into an ArrayList of Event class.
+     * @param reader reader to receive data from JSON file.
+     * @return ArrayList of type event. This is the previously saved data from the application.
+     * @throws IOException If there was an error reading the JSON file.
+     */
     @Override
     public ArrayList<Event> read (JsonReader reader) throws IOException{
         ArrayList<Event> eventList = new ArrayList<>();
@@ -71,6 +95,12 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
         return eventList;
     }
 
+    /**
+     * Deserializes an Event Json Object into Event Java Object
+     * @param reader Json Reader to interpret JSON file.
+     * @return  Event. This is the deserialized Event java object.
+     * @throws IOException If there was an error deserializing the event class.
+     */
     public Event readEvent(JsonReader reader) throws IOException{
         String description = null;
         LocalDateTime startTime = null;

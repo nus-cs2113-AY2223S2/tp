@@ -46,24 +46,42 @@ public class Parser {
     }
 
     private static void parseListCommand(EventList eventList) {
-        Ui.listTask(eventList.fullList());
+        Ui.listTask(eventList.getFullList());
     }
 
-    private static void parseDeleteCommand(String remainder, EventList eventList) {
-        eventList.deleteThisTask(Integer.parseInt(remainder) - OFFSET);
+    private static void parseDeleteCommand(String remainder, EventList eventList) throws NPExceptions {
+        String[] details = remainder.split("-");        
+        
+        if(details.length <= 1) {
+            throw new NPExceptions("need a flag to specify your action!");
+        }     
 
-        //TODO: Show successful add on UI. (For all cases)
-        Ui.deleteSuccessMsg();
+        String information = details[1].substring(0,1).trim();
+        if(information.equals("s")) {
+            int index = Integer.parseInt(details[1].substring(1).trim()) - OFFSET;
+            String deletedTask = eventList.getDetails(index);
+            eventList.deleteThisTask(index);
+            //TODO: Show successful add on UI. (For all cases)
+            Ui.deleteSuccessMsg(deletedTask);
+        } else if(details[1].substring(0,3).trim().equals("all")) {
+            eventList.deleteAll();
+            Ui.deleteAllSuccess();
+        } else {
+            throw new NPExceptions("please input a valid flag!");
+        }
+    
     }
 
     private static void parseAddCommand(String remainder, EventList eventList) throws NPExceptions {
         // Method is still broken, someone will have to fix it fully later on when handling exceptions
         // Note no "-" anywhere else.
         String[] details = remainder.split("-");
+
         if(details.length <= 1) {
             throw new NPExceptions("Event description and start day of your event are strictly required!");
         }
-
+        boolean[] duplicity = new boolean[5];  //to detect duplicate flags in command
+        Arrays.fill(duplicity, false);
         String[] information = new String[5];
         Arrays.fill(information, "");
         for (int i = 1; i < details.length; i++){
@@ -71,19 +89,44 @@ public class Parser {
             String change = details[i].substring(2).trim();
             switch(field) {
             case ("e"):
-                information[0] = change;
+                if (!duplicity[0]) {
+                    information[0] = change;
+                    duplicity[0] = true;
+                } else{
+                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                }
                 break;
             case ("st"):
-                information[1] = change;
+                if (!duplicity[1]) {
+                    information[1] = change;
+                    duplicity[1] = true;
+                } else{
+                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                }
                 break;
             case ("sd"):
-                information[2] = change;
+                if (!duplicity[2]){
+                    information[2] = change;
+                    duplicity[2] = true;
+                } else{
+                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                }
                 break;
             case ("et"):
-                information[3] = change;
+                if (!duplicity[3]) {
+                    information[3] = change;
+                    duplicity[3] = true;
+                } else{
+                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                }
                 break;
             case ("ed"):
-                information[4] = change;
+                if (!duplicity[4]) {
+                    information[4] = change;
+                    duplicity[4] = true;
+                } else{
+                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                }
                 break;
             default:
                 break;
@@ -103,54 +146,48 @@ public class Parser {
             eventList.addEvent(eventName, startTime, startDate);
         }
 
-        Ui.addSuccessMsg();
+        Ui.addSuccessMsg(eventList.getLastTaskDescription());
     }
     private static void parseEditCommand(String remainder, EventList eventList) throws NPExceptions{
         String[] details = remainder.split("-");
-        String[] information = new String[4];
+        String[] information = new String[5];
         Arrays.fill(information, "");
         for (int i = 1; i < details.length; i++){
-            String field = details[i].substring(0,2);
+            String field = details[i].substring(0,2).trim();
             String change = details[i].substring(2).trim();
             switch(field) {
-            case ("st"):
+            case ("i"):
                 information[0] = change;
                 break;
-            case ("sd"):
+            case ("st"):
                 information[1] = change;
                 break;
-            case ("et"):
+            case ("sd"):
                 information[2] = change;
                 break;
-            case ("ed"):
+            case ("et"):
                 information[3] = change;
+                break;
+            case ("ed"):
+                information[4] = change;
                 break;
             default:
                 break;
             }
         }
-        if (information[1].equals("")){  //Starting date field MUST NOT be empty.
+        if (information[1].equals("")){  //Starting time field MUST NOT be empty.
+            throw new NPExceptions("Empty starting time detected! Please add starting time.");
+        } 
+
+        if (information[2].equals("")){  //Starting date field MUST NOT be empty.
             throw new NPExceptions("Empty starting date detected! Please add starting date.");
+        } 
+
+        if (information[0].equals("")) {
+            information[0] = details[0].trim();
+            reviseTimeInfoUsingName(information, eventList);
         } else {
-            int eventIndex = -1;
-
-            details[0] = details[0].trim();
-            try{
-                eventIndex = Integer.parseInt(details[0]);
-                eventIndex--;
-            } catch(NumberFormatException e){
-                eventIndex = eventList.searchTaskIndex(details[0]);
-            }
-
-            if(eventIndex < 0 || eventIndex >= eventList.getSize()){
-                throw new NPExceptions("Event index out of bound!");
-            }
-
-            if(!information[3].equals("")) {
-                eventList.reviseTimeInfo(eventIndex, information[0], information[1], information[2], information[3]);
-            } else {
-                eventList.reviseTimeInfo(eventIndex, information[0], information[1]);
-            }
+            reviseTimeInfoUsingIndex(information, eventList);
         }
     }
     private static void addFormatChecker(String[] information) throws NPExceptions {
@@ -161,5 +198,38 @@ public class Parser {
         if (!isValidFormat) {
             throw new NPExceptions("Please use correct command format!");
         }
+    }
+
+    private static void reviseTimeInfoUsingIndex(String[] information, EventList eventList) throws NPExceptions{
+        int eventIndex = -1;
+        try{
+            eventIndex = Integer.parseInt(information[0]);
+            eventIndex--;
+        } catch(NumberFormatException e){
+            throw new NPExceptions("Event index is invalid!");
+        }
+
+        if(eventIndex < 0 || eventIndex >= eventList.getSize()){
+            throw new NPExceptions("Event index out of bound!");
+        }
+
+        if(!information[4].equals("")) {
+            eventList.reviseTimeInfo(eventIndex, information[1], information[2], information[3], information[4]);
+        } else {
+            eventList.reviseTimeInfo(eventIndex, information[1], information[2]);
+        }
+
+        Ui.editSuccessMsg(eventList.getDescription(eventIndex), eventList.getTime(eventIndex));
+    }
+
+    private static void reviseTimeInfoUsingName(String[] information, EventList eventList) throws NPExceptions{
+        if(!information[4].equals("")) {
+            eventList.reviseTimeInfo(information[0], information[1], information[2], information[3], information[4]);
+        } else {
+            eventList.reviseTimeInfo(information[0], information[1], information[2]);
+        }
+
+        int eventIndex = eventList.searchTaskIndex(information[0]);
+        Ui.editSuccessMsg(eventList.getDescription(eventIndex), eventList.getTime(eventIndex));
     }
 }
