@@ -3,7 +3,7 @@ package seedu.dukeofbooks.command;
 import seedu.dukeofbooks.controller.IController;
 
 public abstract class Command {
-    private IController controller;
+    protected IController controller;
     public Command() {
     }
 
