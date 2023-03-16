@@ -3,6 +3,8 @@ package seedu.duke.storage;
 import seedu.duke.recipe.Ingredient;
 import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
+import seedu.duke.ui.StringLib;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
@@ -32,7 +34,7 @@ public class Storage {
     }
 
     /**
-     * Creates a new file and directory to store
+     * Creates a new directory to store
      * save file, if it does not already exist.
      *
      * @throws IOException if an I/O error has occurred.
@@ -54,11 +56,11 @@ public class Storage {
             saveWriter = new FileWriter("data/" + dish.getName() + ".txt");
             saveWriter.write(dish.getName() + "\n");
             saveWriter.write(dish.getTag() + "\n");
-            saveWriter.write("Ingredient List" + "\n");
+            saveWriter.write(StringLib.INGREDIENT_LIST + "\n");
             for (Ingredient ingredient : dish.getIngredientList().getList()) {
                 saveWriter.write( ingredient.getName() + "\n");
             }
-            saveWriter.write("Steps" + "\n");
+            saveWriter.write(StringLib.STEPS + "\n");
             for (String step : dish.getSteps()) {
                 saveWriter.write(step + "\n");
             }

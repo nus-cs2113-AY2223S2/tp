@@ -4,7 +4,7 @@ add n/MaLaXiangGuo i/Beef, Mutton, Mushrooms t/Chinese
 list
 add n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian
 add n/Carbonara i/Pasta, Bacon, Egg, Cheese t/Italian
-add n/Bejing Duck i/Duck, Pancakes t/Chinese
+add n/Beijing Duck i/Duck, Pancakes t/Chinese
 list
 delete 1
 list
@@ -16,4 +16,6 @@ list
 view 1
 clear
 list
+add n/Guilinggao i/Tea, Milk, Sugar t/Chinese
+save
 exit

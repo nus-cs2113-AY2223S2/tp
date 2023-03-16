@@ -163,6 +163,6 @@ public class UI {
         }
     }
     public void showSave() {
-        System.out.println("Recipe list saved!");
+        System.out.println(StringLib.RECIPE_SAVED);
     }
 }

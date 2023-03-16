@@ -109,4 +109,7 @@ public interface StringLib {
             + "\"t/<insert cuisine>\\\"\\n\"\n"
             + "\"Example use : \\\"add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese\\\" \\n \\n\"";
     String RECIPE_CLEARED_MESSAGE = "\nAll recipes have been cleared!";
+    String INGREDIENT_LIST = "Ingredient list";
+    String STEPS = "Steps";
+    String RECIPE_SAVED = "\nRecipe list saved!";
 }
