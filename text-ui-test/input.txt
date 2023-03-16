@@ -1,5 +1,7 @@
 add /q q1 /a a1
 add /q q1 /a a1
+update q1
+2 /q q2
 review
 a
 y

@@ -6,6 +6,7 @@ import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
 import com.clanki.commands.ReviewCommand;
 import com.clanki.commands.UnknownCommand;
+import com.clanki.commands.UpdateCommand;
 import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
@@ -54,10 +55,10 @@ class ParserTest {
         parsedCommand = Parser.parseCommand("bye whatever");
         assertTrue(parsedCommand instanceof ByeCommand);
     }
+
     @Test
     public void parserReviewCommand_reviewCommand_successful() {
-        Parser parser = new Parser();
-        Command parsedCommand = parser.parseCommand("review");
+        Command parsedCommand = Parser.parseCommand("review");
         assertTrue(parsedCommand instanceof ReviewCommand);
     }
 
@@ -65,5 +66,11 @@ class ParserTest {
     public void parserUnknownCommand_unknownCommand_successful() {
         Command parsedCommand = Parser.parseCommand("unknown");
         assertTrue(parsedCommand instanceof UnknownCommand);
+    }
+
+    @Test
+    public void parserUpdateCommand_updateCommand_successful() {
+        Command parsedCommand = Parser.parseCommand("update Question");
+        assertTrue(parsedCommand instanceof UpdateCommand);
     }
 }

@@ -4,10 +4,10 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-/*
-    Parts of the code below are copied and adapted from TextUi.java of addressbook-level2,
-    link of original code:
-    https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/ui/TextUi.java.
+/**
+ * Parts of the code below are copied and adapted from TextUi.java of
+ * addressbook-level2, link of original code:
+ * https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/ui/TextUi.java.
  */
 public class Ui {
     private final Scanner in;
@@ -43,13 +43,20 @@ public class Ui {
         System.out.println("Bye. Don't forget to come back later to study!");
     }
 
+    public void printWelcomeMessage() {
+        System.out.println("Welcome to Clanki! Time to start studying!");
+    }
+
     public void printInvalidInput() {
         System.out.println("The input is in an incorrect format.");
     }
 
+    public void printSuccessfulDelete() {
+        System.out.print("Got it. Deleted the flashcard at index ");
+    }
+
     /**
-     * reused from Kong Dehao ip
-     * for general printing to console
+     * reused from Kong Dehao ip for general printing to console
      *
      * @param message multiple strings to be shown to user
      */

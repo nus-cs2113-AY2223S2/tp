@@ -14,6 +14,10 @@ public class FlashcardList {
         flashcards.add(newFlashcard);
     }
 
+    public void deleteFlashcard(int index) {
+        flashcards.remove(index);
+    }
+
     public ArrayList<Flashcard> getFlashCards() {
         return flashcards;
     }

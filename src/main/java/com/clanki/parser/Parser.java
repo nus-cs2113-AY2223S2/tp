@@ -1,11 +1,12 @@
 package com.clanki.parser;
 
-
 import com.clanki.commands.AddCommand;
 import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
+import com.clanki.commands.DeleteCommand;
 import com.clanki.commands.ReviewCommand;
 import com.clanki.commands.UnknownCommand;
+import com.clanki.commands.UpdateCommand;
 import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
@@ -36,10 +37,15 @@ public class Parser {
         switch (command) {
         case "add":
             return getAddCommand(parsedInput);
+        case "del":
+            int index = Integer.parseInt(userInput.split(" ")[1]);
+            return new DeleteCommand(index);
         case "review":
             return new ReviewCommand();
         case "bye":
             return new ByeCommand();
+        case "update":
+            return new UpdateCommand(userInput);
         default:
             return new UnknownCommand();
         }
@@ -52,7 +58,7 @@ public class Parser {
      * @param parsedInput The input collected by Ui from the user, after being
      *                    parsed with the ParsedInput class.
      * @return An AddCommand with the question and answer text extracted from user
-     *     input.
+     *         input.
      * @throws InvalidAddFlashcardInputException If the start indicators cannot be
      *                                           found.
      * @throws EmptyFlashcardQuestionException   If the string is empty after

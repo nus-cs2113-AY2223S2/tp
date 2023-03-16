@@ -1,9 +1,21 @@
+Welcome to Clanki! Time to start studying!
 A new card is now added:
 Question: q1
 Answer: a1
 A new card is now added:
 Question: q1
 Answer: a1
+Found 2 cards with the query "q1":
+[1]
+Q: q1
+A: a1
+[2]
+Q: q1
+A: a1
+Which flashcard do you want to update?
+Understood. The card has been updated to
+Q: q2
+A: a1
 Let's see the next flashcard!
 Question for the current flashcard is:
 q1
@@ -13,7 +25,7 @@ Have you got this correct?
 Great, you got it right!
 Let's see the next flashcard!
 Question for the current flashcard is:
-q1
+q2
 Are you ready to view the answer?
 a1
 Have you got this correct?
