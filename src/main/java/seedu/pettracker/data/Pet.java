@@ -15,11 +15,13 @@ public class Pet {
         petType = "";
         age = "";
         weight = "";
+        assert petType.equals("") && age.equals("") && weight.equals("") :
+                "petType/age/weight should be an empty string when a pet is added";
         logger.log(Level.INFO, "Pet successfully created with pet name: " + petName + "\n");
     }
 
     public void addStat(String statName, String statValue) {
-
+        assert statName != null && statValue != null : "statName/statValue is null";
         switch (statName.toLowerCase()) {
         case "type":
             setPetType(statValue);
@@ -33,11 +35,12 @@ public class Pet {
         default:
             System.out.println("ERROR: The only valid stats are type, age, or weight.");
         }
-    
+
     }
 
     public void removeStat(String statName) {
-        switch(statName.toLowerCase()) {
+        assert statName != null : "statName is null";
+        switch (statName.toLowerCase()) {
         case "type":
             setPetType("");
             break;
