@@ -4,26 +4,40 @@ import seedu.dukeofbooks.data.loan.Loan;
 import seedu.dukeofbooks.data.person.Person;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BorrowHistory {
+
+    private static Logger logger = Logger.getLogger("checkHistoryLogger");
 
     /**
      * Prints previously borrowed books
      */
-    public static void checkHistory(Person person) {
+    public static String checkHistory(Person person) {
         ArrayList<Loan> previousLoans = person.getBorrowedItems();
+        String output;
 
-        if(previousLoans.size()==0) {
-            System.out.println("You have not borrowed any book yet!");
+        logger.log(Level.INFO, "Processing checkHistory class...");
+        if (previousLoans.size() == 0) {
+            output = "You have not borrowed any book yet!";
         } else {
-            System.out.println("These are the books you have borrowed thus far:");
+            output = "These are the books you have borrowed thus far:\n";
             int count = 1;
-            for(Loan loan:previousLoans) {
+            for (Loan loan : previousLoans) {
                 BorrowableItem borrowedItem = loan.getBorrowedItem();
-                System.out.println(count + ". " + borrowedItem.toString());
+                if (borrowedItem == null) {
+                    logger.log(Level.WARNING, "Error with borrowed item.");
+                }
+                output = output + count + ". " + borrowedItem.toString();
+                if (count != previousLoans.size()) {
+                    output += '\n';
+                }
                 count++;
             }
         }
-
+        logger.log(Level.INFO, "Finished processing checkHistory class!");
+        return output;
     }
 }
+

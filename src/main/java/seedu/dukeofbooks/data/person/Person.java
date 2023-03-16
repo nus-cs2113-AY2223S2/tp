@@ -50,7 +50,7 @@ public class Person {
     }
 
     public void printPreviousLoans() {
-        BorrowHistory.checkHistory(this);
+        System.out.println(BorrowHistory.checkHistory(this));
     }
 
     /**
