@@ -5,7 +5,7 @@ import static seedu.dukeofbooks.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import seedu.dukeofbooks.command.BorrowCommand;
 import seedu.dukeofbooks.command.Command;
 import seedu.dukeofbooks.command.ExitCommand;
-import seedu.dukeofbooks.command.HistoryCommand;
+// import seedu.dukeofbooks.command.HistoryCommand;
 import seedu.dukeofbooks.command.IncorrectCommand;
 import seedu.dukeofbooks.command.InventoryCommand;
 import seedu.dukeofbooks.command.ListCommand;
@@ -41,26 +41,25 @@ public class Parser {
         final String arguments = userInput.replaceFirst(commandWord, "").trim();
 
         switch (commandWord) {
-
-            case InventoryCommand.COMMAND_WORD:
-                return prepareInventoryCommand(arguments);
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
-            case RenewCommand.COMMAND_WORD:
-                return prepareRenewCommand(arguments);
-            case BorrowCommand.COMMAND_WORD:
-                return prepareBorrowCommand(arguments);
-           //Commented out first to avoid giving error, HistoryCommand needs to take a person param
-                // case HistoryCommand.COMMAND_WORD:
-            //     return HistoryCommand();
-            case ReturnCommand.COMMAND_WORD:
-                return prepareReturnCommand(arguments);
-            case SearchCommand.COMMAND_WORD:
-                return prepareSearchCommand(arguments);
-            default:
-                return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT));
+        case InventoryCommand.COMMAND_WORD:
+            return prepareInventoryCommand(arguments);
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+        case RenewCommand.COMMAND_WORD:
+            return prepareRenewCommand(arguments);
+        case BorrowCommand.COMMAND_WORD:
+            return prepareBorrowCommand(arguments);
+        //Commented out first to avoid giving error, HistoryCommand needs to take a person param
+        // case HistoryCommand.COMMAND_WORD:
+        //     return HistoryCommand();
+        case ReturnCommand.COMMAND_WORD:
+            return prepareReturnCommand(arguments);
+        case SearchCommand.COMMAND_WORD:
+            return prepareSearchCommand(arguments);
+        default:
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT));
         }
     }
 
