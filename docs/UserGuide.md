@@ -21,6 +21,35 @@ ___
 * Remove recipes from weekly plan
 * View weekly plan
 
+### Adding recipes: `add`
+
+Add new recipes to your list.
+
+Format: `add /r [recipe_name]`
+
+* `recipe_name` is basically a string.
+* Type the recipe name after typing `/r `.
+
+Example of usage:
+
+`add /r chicken rice`
+`add /r noodles`
+
+### Editing recipes: `edit`
+
+Edit recipes in your list either partially or fully.
+
+Format: `edit /r [recipe_name]`
+
+* `recipe_name` is basically a string.
+* Type the recipe name after typing `/r `.
+
+
+Example of usage:
+
+`edit /r chicken rice`
+`edit /r noodles`
+
 ### Listing recipes: `list`
 
 List all recipes or filtered list recipes by the name or ingredients.
@@ -119,6 +148,8 @@ Format: `bye`
 ## Command Summary
 | Action | Format, Examples                      | 
 |--------|---------------------------------------|
+|Add recipe | `add /r [recipe_name]`<br/>e.g `add /r chicken rice` |
+|Edit recipe | `edit /r [recipe_name]`<br/>e.g `edit /r chicken rice` |
 |List recipe | `list [KEYWORD]`<br/>e.g `list pizza` |
 |View recipe | `view INDEX`<br/>e.g `view 1` |
 |Add to weekly plan | `weekly /add RECIPE NAME QUANTITY`<br/>e.g `weekly /add pizza 2` |
