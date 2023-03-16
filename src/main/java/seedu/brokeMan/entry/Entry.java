@@ -1,7 +1,6 @@
 package seedu.brokeMan.entry;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public abstract class Entry {
     protected String info;
