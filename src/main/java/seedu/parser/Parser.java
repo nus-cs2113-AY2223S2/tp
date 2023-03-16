@@ -1,6 +1,13 @@
 package seedu.parser;
 
-import seedu.commands.*;
+import seedu.commands.AddCommand;
+import seedu.commands.Command;
+import seedu.commands.DeleteCommand;
+import seedu.commands.EndCommand;
+import seedu.commands.ExitCommand;
+import seedu.commands.IncorrectCommand;
+import seedu.commands.ListCommand;
+import seedu.commands.StartCommand;
 import seedu.workout.Exercise;
 
 import java.text.DateFormat;
@@ -12,9 +19,6 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-
-    private static final int COMMAND_INDEX = 0;
-    private static final int ARGUMENT_INDEX = 1;
     private static final int EXERCISE_NAME_INDEX = 0;
     private static final int WEIGHT_INDEX = 1;
     private static final int REPS_PER_SET_INDEX = 2;
