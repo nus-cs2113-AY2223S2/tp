@@ -1,33 +1,71 @@
 # User Guide
 
 ## Introduction
+Hey there! Thanks for choosing Meal Companion, your one-stop solution to handling meal prep, ingredient tracking and cookbook! This guide will show you how to get started
 
-{Give a product intro}
+# Table of Contents
+1. [Getting Started](#getting-started)
+2. [Features](#features)
+    1. [Ingredients](#ingredients)
+       1. [Add Ingredients](#add-ingredients)
+       2. [Remove Ingredients](#remove-ingredients)
+       3. [List Ingredients](#list-ingredients)
+       4. [Search Ingredients](#search-ingredients)
+    2. [Recipes](#recipes)
+        1. [Default Recipes](#default-recipes)
+        2. [All Recipes](#all-recipes)
+        3. [Recipe Details](#recipe-details)
+        4. [Possible Recipes](#possible-recipes)
+    3. [Saving Data](#saving-data)
+    4. [Help](#help)
+    5. [Command List](#command-list)
+3. [Conclusion](#conclusion)
 
-## Quick Start
+# Getting Started
 
-{Give steps to get started quickly}
+1. Java 11 is required for Mikey to function properly, please make sure your device has Java 11 installed. If not, you may download it [here](https://www.oracle.com/sg/java/technologies/downloads/#java11)
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `MealCompanion` from [here](http://link.to/mealcompanion).
+2. Once you have ascertained that your device has Java 11 installed, you may download the `.jar file` [here](https://github.com/AY2223S2-CS2113T-T09-3/tp/releases/tag/v1.0). 
+![jar1.png](images/jar1.png)
+Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
 
-## Features 
+3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file path>` commands as necessary.
+4. Ensure the terminal is within the correct folder.
+5. Use the command `java -jar mealcompanion.jar` to launch Meal Companion.
+![startup1.png](images/startup1.png)
+6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
 
-{Give detailed description of each feature}
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+# Features
+This section will focus on some of the key features of Meal Companion and explain their usage.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+## Ingredients
+Meal Companion will assist you in tracking the items in your refridgerator, and is capable of adding new ingredients, removing used ingredients, as well as listing the available ingredients in your refridgerator. This guide will detail these features below.
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+### Add Ingredients
+To add an ingredient of a certain quantity to Meal Companion's storage, use the command `add <ingredient> /qty <quantity>`.
+The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command. 
+For example, `add ground chicken /qty 300`.
+![add.png](images/add.png)
 
-Example of usage: 
+### Remove Ingredients
+To remove an ingredient of a certain quantity from Meal Companion's storage, use the command `remove <ingredient> /qty <quantity>`. The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command.
+For example, `remove ground chicken /qty 100`.
+![remove.png](images/remove.png)
 
-`todo n/Write the rest of the User Guide d/next week`
+### List Ingredients
+In order to show a list of all ingredients currently stored in Meal Companion, use the command `ingredients list`.
+![ingredientlist.png](images/ingredientlist.png)
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+### Search Ingredients
+If you would like to search for a specific ingredient in Meal Companion's storage, use the command `ingredients search <keyword>`.
+![search1.png](images/search1.png)
+
+ Omitting the keyword will return a list of all valid ingredients.
+ ![search2.png](images/search2.png)
+ 
+ ## Recipes
+ This segment will go into detail about the recipe features that Meal Companion contains, and the usage of these features.
 
 ## FAQ
 
