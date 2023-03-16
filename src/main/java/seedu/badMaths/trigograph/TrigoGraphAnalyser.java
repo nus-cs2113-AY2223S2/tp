@@ -77,7 +77,7 @@ public class TrigoGraphAnalyser {
             logger.log(Level.SEVERE, "File logger not working.", e);
         }
     }
-    private void findAmplitude(String[] eqn) throws NumberFormatException {
+    public void findAmplitude(String[] eqn) throws NumberFormatException {
         String[] trigoAndVerticalShift;
 
         if (isAmplitudeEqualsToOne(eqn[0])) {
@@ -99,7 +99,7 @@ public class TrigoGraphAnalyser {
         }
     }
 
-    private String[] splitAmplitudeFromTrigoEqn() throws NumberFormatException, IllegalArgumentException {
+    public String[] splitAmplitudeFromTrigoEqn() throws NumberFormatException, IllegalArgumentException {
         testForSignOfAmplitude();
         String[] amplitudeAndEqn = trigoEqn.split("\\*", 2);
         testForMultipleAsterisk(amplitudeAndEqn[1]);
