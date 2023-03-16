@@ -64,9 +64,11 @@ In order to show a list of all ingredients currently stored in Meal Companion, u
 
 ### Search Ingredients
 If you would like to search for a specific ingredient that Meal Companion recognizes as valid, use the command `ingredients search <keyword>`.
+
 ![search1.png](images/search1.png)
 
  Omitting the keyword will return a list of all valid ingredients.
+ 
  ![search2.png](images/search2.png)
  
  ###### [Back to table of contents](#table-of-contents)
