@@ -7,13 +7,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class Storage {
-    private static Logger logger = Logger.getLogger("StorageLog.log");
+    private static Logger logger = Logger.getLogger("Storage.log");
+
 
     public static void writeToFile(FinancialReport statements, String filePath) {
+        setupLogger();
         try {
             FileOutputStream writeData = new FileOutputStream(filePath);
             ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
@@ -38,8 +42,18 @@ public class Storage {
 
         readStream.close();
         readData.close();
-        logger.log(Level.INFO, "File read and closed.");
 
         return statements;
+    }
+
+    private static void setupLogger() {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.INFO);
+        try {
+            FileHandler fileHandler = new FileHandler("Storage.log");
+            logger.addHandler(fileHandler);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
     }
 }

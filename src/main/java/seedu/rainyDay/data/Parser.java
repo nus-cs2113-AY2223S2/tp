@@ -5,9 +5,9 @@ import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.command.DeleteCommand;
 import seedu.rainyDay.command.ViewCommand;
+import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
-import seedu.rainyDay.modules.Ui;
 
 import java.util.logging.Logger;
 
@@ -21,14 +21,14 @@ public class Parser {
         if (action.equalsIgnoreCase(Command.COMMAND_ADD)) {
             logger.info("add command executing");
             return addStatement(userInput);
-        } else if (action.equalsIgnoreCase(Command.COMMAND_DELETE)) {
+        } if (action.equalsIgnoreCase(Command.COMMAND_DELETE)) {
             logger.info("delete command executing");
             return deleteStatement(userInput);
-        } else if (action.equalsIgnoreCase(Command.COMMAND_VIEW)) {
+        } if (action.equalsIgnoreCase(Command.COMMAND_VIEW)) {
             logger.info("view command executing");
             return generateReport();
-            //} else if (action.equalsIgnoreCase(Command.COMMAND_HELP)) {
-            //    UI.displayHelp();
+        } if (action.equalsIgnoreCase(Command.COMMAND_HELP)) {
+            return displayHelp();
         } else {
             logger.warning("unrecognised input from user!");
             throw new RainyDayException(ErrorMessage.UNRECOGNIZED_INPUT.toString());
@@ -46,29 +46,33 @@ public class Parser {
             return new AddCommand(description, flowDirection, Integer.parseInt(amount));
         } catch (Exception e) {
             logger.warning("add command given by user in the wrong format");
-            throw new IllegalArgumentException(Ui.WRONG_ADD_FORMAT);
+            throw new IllegalArgumentException(ErrorMessage.WRONG_ADD_FORMAT.toString());
         }
     }
 
     public static DeleteCommand deleteStatement(String userInput) throws IllegalArgumentException {
         String[] tokens = userInput.split("\\s+");
-        if (tokens.length != 2) {
-            logger.warning("invalid delete index from user");
-            throw new IllegalArgumentException(Ui.NO_DELETE_INDEX);
-        }
         try {
+            if (tokens.length != 2) {
+                logger.warning("invalid delete index from user");
+                throw new IllegalArgumentException(ErrorMessage.NO_DELETE_INDEX.toString());
+            }
             int index = Integer.parseInt(tokens[1]);
             if (index > RainyDay.financialReport.getStatementCount()) {
-                throw new IllegalArgumentException(Ui.WRONG_DELETE_INDEX);
+                throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
             }
             return new DeleteCommand(index);
         } catch (Exception e) {
             logger.warning("delete index provided incorrectly");
-            throw new IllegalArgumentException(Ui.WRONG_DELETE_INDEX);
+            throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
         }
     }
 
     public static ViewCommand generateReport() {
         return new ViewCommand();
+    }
+
+    public static HelpCommand displayHelp() {
+        return new HelpCommand();
     }
 }
