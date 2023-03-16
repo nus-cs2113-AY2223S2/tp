@@ -20,8 +20,8 @@ public class Storage {
     private static final String FILE_CREATED = "Save file created.";
     private static final String FILE_EXISTS = "Save file already exists.";
     private static final String FILE_PARSING_ERROR = "The task does not meet the parsing requirements for unpacking.";
-    public static final String INGREDIENT_LIST = "Ingredient List";
     public static final String STEPS = "Steps";
+    public static final String INGREDIENT_LIST = "Ingredient List";
     private static String filePath;
 
     /**
