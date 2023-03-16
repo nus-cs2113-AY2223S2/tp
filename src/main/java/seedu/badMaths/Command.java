@@ -15,6 +15,7 @@ public class Command {
 
     protected String command;
     protected String toDo;
+    Notes notes = new Notes(toDo);
 
     public Command(String command, String toDo) {
         this.command = command;
@@ -38,7 +39,6 @@ public class Command {
     }
 
     public void executeCommand() {
-        Notes notes = new Notes(toDo);
         TrigoGraph trigoGraph = new TrigoGraph(toDo);
 
         switch (command) {
@@ -48,7 +48,7 @@ public class Command {
         case "Graph":
             trigoGraph.startGraphAnalysis();
             break;
-        case "Notes":
+        case "Store":
             notes.setToDo(toDo);
             notes.handleCache(command);
             break;

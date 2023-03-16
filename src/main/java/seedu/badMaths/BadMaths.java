@@ -8,12 +8,8 @@ public class BadMaths {
 
     public static void commandChecker(String userInput, String command) {
         try {
-            if (!(command.equals("Graph") || command.equals("Bye") || command.equals("List") || command.equals("Notes")
+            if (!(command.equals("Graph") || command.equals("Bye") || command.equals("List") || command.equals("Store")
                     || command.equals("Matrix") || command.equals("Help"))) {
-                throw new IllegalArgumentException();
-            }
-            if (!userInput.contains(".") && !(userInput.equals("List") || userInput.equals("Bye")
-                    || userInput.equals("Help"))) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -22,12 +18,13 @@ public class BadMaths {
     }
 
     public static void main(String[] args) {
-        System.out.println("This is BadMaths. You can type 'Help' to learn what I can do for you :)");
+        System.out.println("This is BadMaths. You can type 'Help.' to learn what I can do for you :)");
         Command inputCommand = null;
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String userInput = scanner.nextLine();
+            assert userInput.contains(".") : "Wrong input format, must include .";
 
             Parser parser = new Parser(userInput);
             String command = parser.getCommand();
@@ -43,7 +40,7 @@ public class BadMaths {
             }
 
             inputCommand.executeCommand();
-            if (userInput.equals("Bye")) {
+            if (userInput.equals("Bye.")) {
                 break;
             }
         }

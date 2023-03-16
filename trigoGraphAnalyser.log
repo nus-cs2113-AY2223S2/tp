@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-16T08:16:05.311447100Z</date>
+  <millis>1678954565311</millis>
+  <nanos>447100</nanos>
+  <sequence>0</sequence>
+  <logger>seedu.badMaths.trigograph.TrigoGraphAnalyser</logger>
+  <level>SEVERE</level>
+  <class>seedu.badMaths.trigograph.TrigoGraphAnalyser</class>
+  <method>canStartAnalyser</method>
+  <thread>1</thread>
+  <message>ArrayIndexOutOfBounds</message>
+  <exception>
+    <message>java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1</message>
+    <frame>
+      <class>seedu.badMaths.trigograph.TrigoGraphAnalyser</class>
+      <method>splitAmplitudeFromTrigoEqn</method>
+      <line>105</line>
+    </frame>
+    <frame>
+      <class>seedu.badMaths.trigograph.TrigoGraphAnalyser</class>
+      <method>canStartAnalyser</method>
+      <line>38</line>
+    </frame>
+    <frame>
+      <class>seedu.badMaths.trigograph.TrigoGraph</class>
+      <method>startGraphAnalysis</method>
+      <line>13</line>
+    </frame>
+    <frame>
+      <class>seedu.badMaths.Command</class>
+      <method>executeCommand</method>
+      <line>49</line>
+    </frame>
+    <frame>
+      <class>seedu.badMaths.BadMaths</class>
+      <method>main</method>
+      <line>41</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>

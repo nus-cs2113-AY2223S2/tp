@@ -21,15 +21,15 @@ public class Parser {
         if (userInput.contains(".")) {
             return userInput.substring(0, userInput.indexOf("."));
         } else {
-            return userInput;
+            return "Invalid command";
         }
     }
 
     public String getToDo() {
-        if (userInput.contains(".")) {
+        if (userInput.contains(".") && userInput.contains(" ")) {
             return userInput.substring(userInput.indexOf(".") + 2);
         } else {
-            return "Nothing to do";
+            return "Invalid todo";
         }
     }
 
