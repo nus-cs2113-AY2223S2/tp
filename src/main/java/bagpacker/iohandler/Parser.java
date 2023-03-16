@@ -1,6 +1,16 @@
 package bagpacker.iohandler;
 
-import bagpacker.commands.*;
+
+import bagpacker.commands.AddCommand;
+import bagpacker.commands.ByeCommand;
+import bagpacker.commands.Command;
+import bagpacker.commands.DeleteCommand;
+import bagpacker.commands.DeleteListCommand;
+import bagpacker.commands.HelpCommand;
+import bagpacker.commands.IncorrectCommand;
+import bagpacker.commands.ListCommand;
+import bagpacker.commands.PackCommand;
+import bagpacker.commands.UnpackCommand;
 import bagpacker.exception.EmptyInputException;
 import bagpacker.packingfunc.Item;
 
@@ -47,14 +57,11 @@ public class Parser {
         setFullInput(inputLine);
         String[] inputStringList = inputLine.trim().split(" ");
         setInputStringArray(inputStringList);
-
-
         switch (inputStringList[0]) {
         case "add":
-            //Add add function
             return addItem(inputStringList[1]);
-        case "remove":
-            return removeItem(inputStringList[1]);
+        case "delete":
+            return deleteItem(inputStringList[1]);
         case "pack":
             return packItem(inputStringList[1]);
         case "unpack":
@@ -63,8 +70,10 @@ public class Parser {
             return listCommand();
         case "help":
             return helpCommand();
-        case "delete":
+        case "deletelist":
             return deleteList();
+        case "bye":
+            return callByeCmd();
         default:
             return new IncorrectCommand("'" + Parser.getCommand() + "' is an invalid User Command\n" +
                     "input 'help' to receive all valid commands");
@@ -113,7 +122,7 @@ public class Parser {
     /**
      * Calls the DeleteCommand.execute() method to add an item to the packing list
      */
-    public static Command removeItem(String itemDescrip) {
+    public static Command deleteItem(String itemDescrip) {
         return new DeleteCommand(Integer.parseInt(itemDescrip));
     }
 
@@ -143,4 +152,7 @@ public class Parser {
         return new HelpCommand();
     }
 
+    private static Command callByeCmd() {
+        return new ByeCommand();
+    }
 }

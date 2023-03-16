@@ -3,6 +3,9 @@ package bagpacker.commands;
 import bagpacker.packingfunc.PackingList;
 
 public class ListCommand extends Command {
+    public static final String HELP_MSG = "add : Adds an item to the packing list.\n" +
+            "\tExample: add toothbrush";
+
     @Override
     public void execute(PackingList packingList) {
 
@@ -17,7 +20,7 @@ public class ListCommand extends Command {
         System.out.println("Here are the items in your list");
         for (int i = 0; i < packingList.size(); i++) {
             String isItemPacked;
-            if (packingList.get(i).isPacked()) {
+            if (packingList.get(i).getIsPacked()) {
                 isItemPacked = "X";
             } else {
                 isItemPacked = " ";

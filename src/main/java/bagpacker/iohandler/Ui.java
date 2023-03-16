@@ -1,4 +1,12 @@
 package bagpacker.iohandler;
+
+import bagpacker.commands.AddCommand;
+import bagpacker.commands.ByeCommand;
+import bagpacker.commands.DeleteCommand;
+import bagpacker.commands.ListCommand;
+import bagpacker.commands.PackCommand;
+import bagpacker.commands.UnpackCommand;
+
 /**
  * Ui class contains methods to print messages to user interface on Command Line Interface
  */
@@ -54,13 +62,12 @@ public class Ui {
     public static void helpMessage() {
         printLine();
         System.out.println("All Commands:");
-        System.out.println("1. 'add i/ITEM'");
-        System.out.println("2. 'remove n/ITEM_INDEX'");
-        System.out.println("3. 'list'");
-        System.out.println("4. 'pack n/ITEM_INDEX' ");
-        System.out.println("5. 'unpack n/ITEM_INDEX'");
-        System.out.println("6. 'deleteall'");
-
+        System.out.println("1. " + AddCommand.HELP_MSG);
+        System.out.println("2. " + DeleteCommand.HELP_MSG);
+        System.out.println("3. " + ListCommand.HELP_MSG);
+        System.out.println("4. " + PackCommand.HELP_MSG);
+        System.out.println("5. " + UnpackCommand.HELP_MSG);
+        System.out.println("6. " + ByeCommand.HELP_MSG);
         printLine();
     }
 

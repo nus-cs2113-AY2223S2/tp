@@ -6,6 +6,7 @@ package bagpacker.packingfunc;
 public class Item {
     private String itemName;
     private boolean isPacked;
+    private String packIcon = " ";
     public Item(String description) {
         this.itemName = description;
         isPacked = false;
@@ -14,18 +15,27 @@ public class Item {
         this.itemName = description;
         this.isPacked = isPacked;
     }
+    public void setPackIcon() {
+        if (this.isPacked) {
+            this.packIcon = "X";
+        } else {
+            this.packIcon = " ";
+        }
+    }
+
     public String getItemName() {
         return itemName;
     }
 
-    public boolean isPacked() {
+    public boolean getIsPacked() {
         return isPacked;
     }
     public void setPacked(boolean packed) {
         isPacked = packed;
+        setPackIcon();
     }
 
     public String toString() {
-        return "[" + this.isPacked() + "] " + this.getItemName();
+        return "[" + this.packIcon + "] " + this.getItemName();
     }
 }
