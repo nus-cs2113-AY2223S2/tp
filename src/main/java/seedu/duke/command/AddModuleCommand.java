@@ -5,6 +5,7 @@ import seedu.duke.Storage;
 
 public class AddModuleCommand extends Command {
 
+
     private Module moduleToAdd;
     private Storage storage;
 
@@ -13,9 +14,17 @@ public class AddModuleCommand extends Command {
         this.storage = storage;
     }
 
+    public Module getModuleToAdd() {
+        return moduleToAdd;
+    }
+
+    public Storage getStorage() {
+        return storage;
+    }
+
     @Override
     public void execute() {
-        ui.printAddModMessage();
         storage.addModuleToModuleList(moduleToAdd);
+        ui.printAddModMessage();
     }
 }
