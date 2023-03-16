@@ -35,6 +35,7 @@ test/*
 
 # Application Logging
 /logs
+*/logs
 
 ### Hugo ###
 # Generated files by hugo
