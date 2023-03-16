@@ -20,7 +20,9 @@ import seedu.brokeMan.exception.IndexNotAnIntegerException;
 import seedu.brokeMan.exception.NegativeBudgetException;
 import seedu.brokeMan.exception.hasNotSetBudgetException;
 
-import static seedu.brokeMan.common.Messages.*;
+import static seedu.brokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_ADD_COMMAND;
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
 
 
 /*
