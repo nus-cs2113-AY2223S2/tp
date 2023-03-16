@@ -14,11 +14,9 @@ import seedu.entities.Side;
 public class FoodStorage extends Storage implements FileReadable {
     private static final String csvDelimiter = ",";
     private ArrayList<Food> foods;
-    private FoodData foodData;
 
     public FoodStorage() {
         foods = new ArrayList<Food>();
-        foodData = new FoodData();
         try {
             this.load();
         } catch (IOException e) {
@@ -38,7 +36,7 @@ public class FoodStorage extends Storage implements FileReadable {
         float calories;
         Food food;
         
-        String[] foodDataList = foodData.getFoodData();
+        String[] foodDataList = FoodData.getFoodData();
         
         for (int i = 1; i < foodDataList.length; i++) {
             line = foodDataList[i];
