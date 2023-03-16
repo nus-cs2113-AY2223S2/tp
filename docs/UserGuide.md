@@ -18,7 +18,7 @@
 Before we get started, here's what you need to do:
 
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of `NUSPlanner.jar` from [here](http://link.to/NUSPlanner.jar).
+2. Down the latest version of `NUSPlanner.jar` from [here](https://github.com/AY2223S2-CS2113-F13-3/tp/releases).
 3. Open your terminal or command prompt
 4. Navigate to the file directory of where the jar file is saved
 5. Execute `NUSPlanner.jar` using the following command: `java -jar NUSPlanner.jar` 
@@ -111,7 +111,7 @@ ____________________________________________________________
 **Q**: Where can I report bugs I found while using NUSPlanner?
 
 **A**: Our team of developers are always on the look-out to fix such bugs.
-Please add a description of the bug found under our [Issue Tracker]([here](https://github.com/AY2223S2-CS2113-F13-3/tp/issues)).
+Please add a description of the bug found under our [Issue Tracker](https://github.com/AY2223S2-CS2113-F13-3/tp/issues).
 
 ## Command Summary
 👉 Words in **CAPITAL LETTERS** are user input
