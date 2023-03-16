@@ -175,15 +175,19 @@ public class Parser {
                 break;
             }
         }
+        if (information[1].equals("")){  //Starting time field MUST NOT be empty.
+            throw new NPExceptions("Empty starting time detected! Please add starting time.");
+        } 
+
         if (information[2].equals("")){  //Starting date field MUST NOT be empty.
             throw new NPExceptions("Empty starting date detected! Please add starting date.");
+        } 
+
+        if (information[0].equals("")) {
+            information[0] = details[0].trim();
+            reviseTimeInfoUsingName(information, eventList);
         } else {
-            if (information[0].equals("")) {
-                information[0] = details[0].trim();
-                reviseTimeInfoUsingName(information, eventList);
-            } else {
-                reviseTimeInfoUsingIndex(information, eventList);
-            }
+            reviseTimeInfoUsingIndex(information, eventList);
         }
     }
     private static void addFormatChecker(String[] information) throws NPExceptions {
