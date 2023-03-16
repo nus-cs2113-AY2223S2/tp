@@ -12,10 +12,9 @@ import java.util.logging.Level;
  */
 
 public class Main {
-
+    private static final Logger logger = Logger.getLogger("MainLogger");
     private final Ui ui;
     private final CommandParser commandParser;
-    private static final Logger logger = Logger.getLogger("MainLogger");
 
     /**
      * Creates the Main class by initializing the other classes
