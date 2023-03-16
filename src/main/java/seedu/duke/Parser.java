@@ -4,25 +4,47 @@ import java.util.ArrayList;
 import java.io.IOException;
 
 public class Parser {
-    private static ArrayList<University> universities = new DataReader().getUniversities();
-    private static ArrayList<Module> puModules = new DataReader().getModules();
-    private static final String LINE = "____________________________________________________________";
-    private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
-    private static final String WELCOME_MESSAGE = "~Welcome to SEP Helper~";
-    private static final String READ_COMMAND_INPUT= "What can I do for you?";
+    private static UI ui = new UI();
 
-    public static void printGreeting() {
-        System.out.println("\n" +
-                "  ____  _____ ____    _   _      _                 \n" +
-                " / ___|| ____|  _ \\  | | | | ___| |_ __   ___ _ __ \n" +
-                " \\___ \\|  _| | |_) | | |_| |/ _ \\ | '_ \\ / _ \\ '__|\n" +
-                "  ___) | |___|  __/  |  _  |  __/ | |_) |  __/ |   \n" +
-                " |____/|_____|_|     |_| |_|\\___|_| .__/ \\___|_|   \n" +
-                "                                  |_|              \n");
-
-        System.out.println(WELCOME_MESSAGE);
-        System.out.println(READ_COMMAND_INPUT);
-        System.out.println(LINE);
+    public boolean executeUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
+                                      ArrayList<Module> puModules, Storage storage) {
+        ArrayList<String> userInputWords = Parser.parseCommand(userInput);
+        String userCommandFirstKeyword = userInputWords.get(0);
+        String userCommandSecondKeyword = "";
+        if (userInputWords.size() > 1) {
+            userCommandSecondKeyword = userInputWords.get(1);
+        }
+        boolean toContinue = true;
+        switch (userCommandFirstKeyword) {
+        case "list":
+            if (userCommandSecondKeyword.equalsIgnoreCase("pu")) {
+                executeListAllPuUniversitiesCommand();
+            } else if (userCommandSecondKeyword.equalsIgnoreCase("current")) {
+                executeListCurrentModulesCommand(modules);
+            } else {  // list PU name case
+                int indexOfFirstSpace = userInput.indexOf(' ');
+                String universityName = userInput.substring(indexOfFirstSpace + 1);
+                executeListPuModulesCommand(puModules, universities, universityName);
+            }
+            break;
+        case "exit":
+            toContinue = false;
+            executeExitCommand();
+            break;
+        case "add":
+            executeAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
+            ui.printAddModMessage();
+            break;
+        case "remove":
+            int indexToRemove = Integer.parseInt(userCommandSecondKeyword);
+            executeDeleteModuleCommand(storage, indexToRemove, modules);
+            ui.printDeleteModMessage();
+            break;
+        default:
+            ui.printInvalidInputMessage();
+            break;
+        }
+        return toContinue;
     }
 
     // Todo: Throw Exception when commandWords.size() == 1
@@ -36,59 +58,6 @@ public class Parser {
             commandWords.add(commandSpecifics);
         }
         return commandWords;
-    }
-
-    public static void printPUModules(int univID) {
-        ArrayList<Module> puModulesToPrint = new ArrayList<>();
-        for (Module module : puModules) {
-            if (module.getUnivId() == univID) {
-                puModulesToPrint.add(module);
-            }
-        }
-        int puModulesIndex = 0;
-        for (Module module : puModulesToPrint) {
-            puModulesIndex++;
-            String moduleCode = module.getModuleCode();
-            String moduleName = module.getModuleName();
-            int moduleMCs = module.getModuleMCs();
-            String nusModuleCode = module.getNusModuleCode();
-            String nusModuleName = module.getNusModuleName();
-            int nusModuleMCs = module.getNusModuleMCs();
-            System.out.print(puModulesIndex + ". ");
-            System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
-            System.out.print("   maps to ----> ");
-            System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
-        }
-    }
-
-    public static void printPUList() {
-        System.out.println(LINE);
-        for (University university : universities) {
-            int uniId = university.getUnivId();
-            String uniName = university.getUnivName();
-            String uniAbbName = university.getUnivAbbName();
-            System.out.println(uniId + ". " + uniName + " " + uniAbbName);
-        }
-        System.out.println(LINE);
-    }
-
-    public static void printCurrentModList(ArrayList<Module> modules) {
-        int listIndex = 0;
-        System.out.println(LINE);
-        for (Module module : modules) {
-            listIndex++;
-            String moduleCode = module.getModuleCode();
-            String moduleName = module.getModuleName();
-            int moduleMCs = module.getModuleMCs();
-            String nusModuleCode = module.getNusModuleCode();
-            String nusModuleName = module.getNusModuleName();
-            int nusModuleMCs = module.getNusModuleMCs();
-            System.out.print(listIndex + ".");
-            System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
-            System.out.print("   maps to ----> ");
-            System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
-        }
-        System.out.println(LINE);
     }
 
     /**
@@ -113,6 +82,66 @@ public class Parser {
         } catch (IOException e) {
             System.out.println("Unable to save to database");
         }
+    }
+
+    private void executeListCurrentModulesCommand(ArrayList<Module> modules) {
+        ui.printCurrentModList(modules);
+        ui.printCurrentListMessage();
+    }
+
+    // Todo: Right now, it uses university Name only but since university object has 3 attributes:
+    // todo: handle exceptions such that the universityname inputted is incorrect
+    // 1. univId; 2. univName; 3. univAbbName; we can use this next time
+    // Note that this function, takes in the arrayList of modules of ALL MODULES
+    // THIS IS NOT THE FUNCTION THAT RETURNS USER SELECTED MODULES SPECIFIED TO A PU.
+    private void executeListPuModulesCommand(ArrayList<Module> modules, ArrayList<University> universities,
+                                             String universityAbbName) {
+        int univId = -1;
+        String universityName = "";
+        for (int i = 0; i < universities.size(); i++) {
+            University currentUniversity = universities.get(i);
+            String currentUniversityAbbName = currentUniversity.getUnivAbbName();
+            if (universityAbbName.equals(currentUniversityAbbName)) {
+                univId = currentUniversity.getUnivId(); //Todo: change magic literal
+                universityName = currentUniversity.getUnivName(); // Todo: might be empty string
+            }
+        }
+        ui.printPUModules(univId);
+        ui.printPUModListMessage(universityName);  //Todo: exception this is not found, it is a empty string
+    }
+
+    private void executeExitCommand() {
+        ui.printExitMessage();
+    }
+
+    private void executeListAllPuUniversitiesCommand() {
+        ui.printPUList();
+        ui.printPUListMessage();
+    }
+
+    // The add comment currently searches only the module code
+    private void executeAddModuleCommand(Storage storage, String abbreviationAndCode, ArrayList<Module> allModules,
+                                         ArrayList<University> universities) {
+        String[] stringSplit = abbreviationAndCode.split("/");
+        String abbreviation = stringSplit[0];
+        String moduleCode = stringSplit[1];
+        int univID = 0;
+        for (int i = 0; i < universities.size(); ++i) {
+            if (universities.get(i).getUnivAbbName().equalsIgnoreCase(abbreviation)) {
+                univID = universities.get(i).getUnivId();
+                break;
+            }
+        }
+        for (int i = 0; i < allModules.size(); i++) {
+            Module currentModule = allModules.get(i);
+            if (currentModule.getUnivId() == univID && currentModule.getModuleCode().equalsIgnoreCase(moduleCode)) {
+                storage.addModuleToModuleList(currentModule);
+            }
+        }
+    }
+
+    private void executeDeleteModuleCommand(Storage storage, int indexToDelete, ArrayList<Module> modules) {
+        Parser.deleteModule(indexToDelete, modules, storage);
     }
 }
 

@@ -12,17 +12,19 @@ public class Duke {
     private static Storage storage = new Storage();
     private static UI ui = new UI();
 
+    private static Parser parser = new Parser();
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         String userInput;
         boolean isContinue = true;
-        Parser.printGreeting();
+        ui.printGreetingMessage();
         while (isContinue) {
             userInput = in.nextLine();
             ArrayList<University> universities = dataReader.getUniversities();
             ArrayList<Module> modules = storage.getModule();
             ArrayList<Module> allModules = dataReader.getModules();
-            isContinue = ui.executeUserCommand(userInput, universities, modules, allModules, storage);
+            isContinue = parser.executeUserCommand(userInput, universities, modules, allModules, storage);
         }
     }
 }
