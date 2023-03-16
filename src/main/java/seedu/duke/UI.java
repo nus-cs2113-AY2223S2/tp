@@ -8,6 +8,9 @@ public class UI {
     private static final String LINE = "____________________________________________________________";
     private static final String ADD_MOD_MESSAGE = "This module has been added to the current list!";
     private static final String DELETE_MOD_MESSAGE = "This module has been deleted from the current list!";
+
+    private static final String ADD_MOD_FAILURE_MESSAGE = "Save Module Failed";
+
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
     private static final String WELCOME_MESSAGE = "~Welcome to SEP Helper~";
     private static final String READ_COMMAND_INPUT= "What can I do for you?";
@@ -110,6 +113,10 @@ public class UI {
 
     public void printInvalidInputMessage() {
         System.out.println("Invalid Input");
+    }
+
+    public static void printAddModuleFailureMessage() {
+        System.out.println(ADD_MOD_FAILURE_MESSAGE);
     }
 
     public void printExitMessage() {

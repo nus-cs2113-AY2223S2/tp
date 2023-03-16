@@ -50,11 +50,15 @@ public class Storage {
     }
 
     public void addModuleToModuleList(Module moduleToAdd) {
+        if (moduleToAdd == null) {
+            UI.printAddModuleFailureMessage();
+            return;
+        }
         modules.add(moduleToAdd);
         try {
             saveModuleToStorage(moduleToAdd.toString());
         } catch (IOException e) {
-            System.out.println("Save Module Failed");
+            UI.printAddModuleFailureMessage();
         }
     }
 
