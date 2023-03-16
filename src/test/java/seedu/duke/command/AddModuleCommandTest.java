@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.Module;
 import seedu.duke.Storage;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddModuleCommandTest {
 
@@ -21,7 +21,7 @@ class AddModuleCommandTest {
     @Test
     public void addModuleCommandConstructor_nullModule_success() {
         AddModuleCommand command = new AddModuleCommand(null, storage);
-        assertEquals(null,command.getModuleToAdd());
+        assertEquals(null, command.getModuleToAdd());
     }
 
     @Test
@@ -41,9 +41,9 @@ class AddModuleCommandTest {
         try {
             command.execute();
         } catch (NullPointerException e) {
-            assertEquals(databaseSize, storage.getModule().size());
+            System.out.println("Null Pointer caught");
         }
+        assertEquals(databaseSize, storage.getModule().size());
     }
-
 
 }
