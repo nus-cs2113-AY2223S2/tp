@@ -59,7 +59,6 @@ public class RainyDay {
     }
 
     public static void main(String[] args) {
-        assert false;
         logger.log(Level.INFO, "Starting RainyDay");
         new RainyDay(filePath).run();
         logger.log(Level.INFO, "Quitting RainyDay");
