@@ -1,4 +1,4 @@
-package seedu.badMaths.UI;
+package seedu.badMaths.tempui;
 
 public class Ui {
     public static void printIncorrectFormatEntered(){
