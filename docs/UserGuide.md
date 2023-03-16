@@ -51,6 +51,24 @@ Example of usage:
 
 `view 1`
 
+### Deleting recipes: `delete`
+
+Deletes one, a range, or all recipes currently in list.
+
+Format: `delete INDEX/RANGE` or `delete r/NAME`
+
+* Deletes the recipe(s) specified by the user either through the recipe index or name.
+* The index refers to the index number shown in the displayed person list.
+* The name refers to the recipe name in the list.
+
+Example of usage:
+
+`delete 1`
+`delete 1-3`
+`delete r/pizza`
+`delete r/all`
+
+
 ### Adding to this week's plan: `weekly /add`
 
 Adds an existing recipe to this week's plan.
