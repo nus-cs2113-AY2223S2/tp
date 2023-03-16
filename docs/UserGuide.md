@@ -28,6 +28,7 @@ Hey there! Thanks for choosing Meal Companion, your one-stop solution to handlin
 
 2. Once you have ascertained that your device has Java 11 installed, you may download the `.jar file` [here](https://github.com/AY2223S2-CS2113T-T09-3/tp/releases/tag/v1.0). 
 ![jar1.png](images/jar1.png)
+
 Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
 
 3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file path>` commands as necessary.
