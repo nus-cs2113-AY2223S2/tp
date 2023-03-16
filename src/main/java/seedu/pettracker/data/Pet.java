@@ -1,6 +1,10 @@
 package seedu.pettracker.data;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Pet {
+    private static final Logger logger = Logger.getLogger("PetLogger");
     private String petName;
     private String petType;
     private String age;
@@ -11,6 +15,9 @@ public class Pet {
         petType = "";
         age = "";
         weight = "";
+        assert petType.equals("") && age.equals("") && weight.equals("") :
+                "petType/age/weight should be an empty string when a pet is added";
+        logger.log(Level.INFO, "Pet successfully created with pet name: " + petName + "\n");
     }
 
     public void addStat(String statName, String statValue) {
