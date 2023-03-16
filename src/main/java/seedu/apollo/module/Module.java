@@ -1,6 +1,8 @@
 package seedu.apollo.module;
 
 
+import java.util.ArrayList;
+
 /**
  * Class representing a Module.
  * Contains the Module's code and name.
@@ -9,7 +11,7 @@ public class Module {
     private String code;
     private String title;
 
-    private Timetable timetable;
+    private ArrayList<Timetable> timetable;
 
 
     /**
@@ -47,7 +49,7 @@ public class Module {
      *
      * @return ArrayList of the module timetable information.
      */
-    public Timetable getModuleTimetable() {
+    public ArrayList<Timetable> getModuleTimetable() {
         return timetable;
     }
 
