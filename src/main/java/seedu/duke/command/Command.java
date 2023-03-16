@@ -1,13 +1,12 @@
 package seedu.duke.command;
 
-import seedu.duke.Module;
 import seedu.duke.UI;
 
-import java.util.ArrayList;
-
 public abstract class Command {
-    private boolean isExit;
+
     public UI ui;
+    private boolean isExit;
+
     public Command() {
         isExit = false;
         ui = new UI();
@@ -17,9 +16,9 @@ public abstract class Command {
         return isExit;
     }
 
-    public void setExit(boolean exit) {
-        isExit = exit;
+    public void setExit(boolean isExit) {
+        this.isExit = isExit;
     }
 
-    public abstract void execute(ArrayList<Module> modules);
+    public abstract void execute();
 }
