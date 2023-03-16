@@ -12,9 +12,25 @@ import seedu.dukeofbooks.command.ListCommand;
 import seedu.dukeofbooks.command.RenewCommand;
 import seedu.dukeofbooks.command.ReturnCommand;
 import seedu.dukeofbooks.command.SearchCommand;
+import seedu.dukeofbooks.controller.SearchController;
+import seedu.dukeofbooks.data.book.BorrowableItem;
+import seedu.dukeofbooks.data.exception.IllegalValueException;
+import seedu.dukeofbooks.data.loan.LoanRecords;
 import seedu.dukeofbooks.data.person.Person;
 
 public class Parser {
+    // todo set data for search controller
+    private final SearchController searchController = new SearchController();
+    // todo set current logged in user
+    private final Person currentUser;
+    // todo set loan records
+    private final LoanRecords loanRecords;
+
+    public Parser(Person user, LoanRecords loanRecords) {
+        this.currentUser = user;
+        this.loanRecords = loanRecords;
+    }
+
     public Command parseCommand(String userInput) {
         String[] words = userInput.trim().split(" ", 2); // split the input into command and arguments
         if (words.length == 0) {
@@ -58,26 +74,41 @@ public class Parser {
 
     private Command prepareRenewCommand(String arguments) {
         String[] parts = arguments.split("-title ");
-        if (parts.length != 1) {
+        if (parts.length != 2) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        return new RenewCommand(parts[0].trim());
+        try {
+            BorrowableItem toRenew = searchController.searchBookByTitle(parts[1]);
+            return new RenewCommand(loanRecords, currentUser, toRenew);
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
     }
     
     private Command prepareBorrowCommand(String arguments) {
         String[] parts = arguments.split("-title ");
-        if (parts.length != 1) {
+        if (parts.length != 2) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        return new BorrowCommand(parts[0].trim());
+        try {
+            BorrowableItem toBorrow = searchController.searchBookByTitle(parts[1]);
+            return new BorrowCommand(loanRecords, currentUser, toBorrow);
+        } catch (IllegalValueException e) {
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
     }
     
     private Command prepareReturnCommand(String arguments) {
         String[] parts = arguments.split("-title ");
-        if (parts.length != 1) {
+        if (parts.length != 2) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        return new ReturnCommand(parts[0].trim());
+        try {
+            BorrowableItem toReturn = searchController.searchBookByTitle(parts[1]);
+            return new ReturnCommand(loanRecords, currentUser, toReturn);
+        } catch (IllegalValueException e) {
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
     }
     
     private Command prepareSearchCommand(String arguments) {

@@ -12,6 +12,10 @@ public final class BorrowCommand extends LoanCommand {
     public static final String COMMAND_WORD = "borrow";
     private final Person person;
     private final BorrowableItem item;
+    private static final String SUCCESS_MSG = "Borrow is successful.";
+    private static final String FAIL_MSG = "This item is not borrowable!";
+    private static final String ERROR_MSG = "Cannot borrow: %s";
+    private static final String NOT_FOUND_MSG = "Item not found!";
 
     public BorrowCommand(LoanRecords loanRecords,Person person, BorrowableItem item) {
         super(loanRecords);
@@ -19,21 +23,21 @@ public final class BorrowCommand extends LoanCommand {
         this.item = item;
     }
 
-    public BorrowCommand(String title){
-        this.title=title;
-    }
-
     @Override
     public CommandResult execute() {
+        assert person != null;
+        if (item == null) {
+            return new CommandResult(NOT_FOUND_MSG);
+        }
         if (item.isBorrowed()) {
-            return new CommandResult("This item is not borrowable.");
+            return new CommandResult(FAIL_MSG);
         }
         LocalDateTime borrowTime = LocalDateTime.now();
         try {
             LoanController.borrowItem(loanRecords, person, item, borrowTime);
         } catch (DuplicateActionException dae) {
-            return new CommandResult("Cannot borrow: " + dae.getMessage());
+            return new CommandResult(String.format(ERROR_MSG, dae.getMessage()));
         }
-        return new CommandResult("Borrow is successful.");
+        return new CommandResult(SUCCESS_MSG);
     }
 }
