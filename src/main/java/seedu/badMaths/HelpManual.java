@@ -1,6 +1,11 @@
 package seedu.badMaths;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.logging.LogManager;
@@ -13,15 +18,15 @@ public class HelpManual {
     protected static String content;
     private static final Logger logger = Logger.getLogger(logFilePath);
 
-    public static void setUpLogger(){
+    public static void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
-        try{
-            if(!new File(logFilePath).exists()){
+        try {
+            if (!new File(logFilePath).exists()) {
                 new File(logFilePath).createNewFile();
             }
-        } catch (IOException e){
-           logger.log(Level.SEVERE, "File logger not working", e);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "File logger not working", e);
         }
     }
 
@@ -59,6 +64,7 @@ public class HelpManual {
             e.printStackTrace();
         }
     }
+
     /**
      * Returns the content of the help manual as a string.
      */
