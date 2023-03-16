@@ -11,6 +11,7 @@ public class Pet {
         petType = "";
         assert petType.equals("") : "petType should be an empty string when a pet is added";
         age = "";
+        assert age.equals("") : "age should be an empty string when a pet is added";
         weight = "";
     }
 
