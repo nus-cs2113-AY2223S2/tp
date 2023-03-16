@@ -17,11 +17,27 @@ public abstract class EntryList {
         Ui.showToUserWithLineBreak("You have successfully added [" + newEntry + "]", "");
     }
 
+    /**
+     * Lists the entries in the entryList
+     *
+     * @param entryList LinkedList that contains the entries
+     */
+    public static void listEntry(LinkedList<Entry> entryList) {
+        int counter = 1;
+        for (Entry entryLog : entryList) {
+            String message = String.format("%d. %s", counter, entryLog.toString());
+            Ui.showToUser(message);
+            counter++;
+        }
+    }
+
 
     /**
      * deletes specific entry in the list
      *
      * @param entryIndex Index of the entry in the list
+     * @param entryList LinkedList that contains the entries
+     *
      */
     public static void deleteEntry(int entryIndex, LinkedList<Entry> entryList) {
         try {
@@ -38,6 +54,8 @@ public abstract class EntryList {
      * @param type type of the entry to be changed (can be amount, info, time)
      * @param entryIndex index of the entry in the list
      * @param newEntry new entry that will replace current entry
+     * @param entryList LinkedList that contains the entries
+     *
      */
     public static void editEntry(String type, int entryIndex, double newEntry, LinkedList<Entry> entryList) {
         try {
@@ -60,6 +78,8 @@ public abstract class EntryList {
      * @param type entry type of the expense to be changed (can be amount, info, time)
      * @param entryIndex index of the entry in the list
      * @param newEntry new entry that will replace current entry
+     * @param entryList LinkedList that contains the entries
+     *
      */
     public static void editEntry(String type, int entryIndex, String newEntry, LinkedList<Entry> entryList) {
         try {
@@ -80,7 +100,7 @@ public abstract class EntryList {
         }
     }
 
-    public static double getTotalAmount(LinkedList<Entry> entryList) {
+    protected static double getTotalAmount(LinkedList<Entry> entryList) {
         double totalAmount = 0;
         if (entryList.size() > 0) {
             for (Entry entryLog : entryList) {
@@ -92,6 +112,8 @@ public abstract class EntryList {
 
     /**
      * Sorts entries using Entry comparator
+     * @param entryList LinkedList that contains the entries
+     *
      */
     protected static void sortEntriesByAmount(LinkedList<Entry> entryList) {
         entryList.sort(new EntryAmountComparator());
