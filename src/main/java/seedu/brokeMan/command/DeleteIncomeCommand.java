@@ -7,7 +7,7 @@ public class DeleteIncomeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes an income from the list\n" +
             "|  Parameter: <index>\n" +
             "|  Example: " + COMMAND_WORD + " 1";
-    private int index;
+    private final int index;
 
     public DeleteIncomeCommand(int index) {
         this.index = index;

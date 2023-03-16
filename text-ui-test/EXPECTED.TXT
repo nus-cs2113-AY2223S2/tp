@@ -87,6 +87,31 @@
 |
 |  -----------------------------------------------------------------------
 |
+|  Enter command: |  You have not set your budget.
+|
+|  setBudget: sets your budget.
+|  Parameter: <amount>
+|  Example: setBudget 500
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  You cannot set negative budget.
+|
+|  setBudget: sets your budget.
+|  Parameter: <amount>
+|  Example: setBudget 500
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  You have successfully set 500.0 as your budget.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  You have set your budget as $500.0
+|  The amount of budget left is $494.0
+|
+|  -----------------------------------------------------------------------
+|
 |  Enter command: |  Exiting program...
 |
 |  -----------------------------------------------------------------------

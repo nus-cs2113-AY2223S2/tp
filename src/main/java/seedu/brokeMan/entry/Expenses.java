@@ -27,6 +27,10 @@ public class Expenses extends EntryList{
         Ui.showToUserWithLineBreak("");
     }
 
+    public static double getTotalExpense() {
+        return getTotalAmount(expenseList);
+    }
+
     /**
      * deletes specific expense in the list
      *
