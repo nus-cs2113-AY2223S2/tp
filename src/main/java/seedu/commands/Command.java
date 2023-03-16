@@ -4,7 +4,6 @@ import seedu.workout.WorkoutList;
 
 public class Command {
     protected WorkoutList workoutList;
-
     protected Command() {
     }
 

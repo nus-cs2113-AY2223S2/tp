@@ -1,5 +1,5 @@
 package seedu.commands;
-import seedu.workout.Workout;
+
 import java.util.Date;
 
 public class ViewCommand extends Command {

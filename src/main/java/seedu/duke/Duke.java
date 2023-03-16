@@ -33,5 +33,4 @@ public class Duke {
             command.execute();
         } while (!ExitCommand.isExit(command));
     }
-
 }

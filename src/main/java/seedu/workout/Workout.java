@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Workout {
     private Date date;
-    ArrayList<Exercise> workoutExercises;
+    private ArrayList<Exercise> workoutExercises;
 
     public Workout(Date date) {
         this.date = date;
@@ -24,4 +24,9 @@ public class Workout {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    public ArrayList<Exercise> getWorkoutExercises() {
+        return workoutExercises;
+    }
 }
+
