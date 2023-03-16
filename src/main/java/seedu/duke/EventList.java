@@ -29,13 +29,17 @@ public class EventList {
         return taskList.get(index).toString();
     }
 
+    public String getDescription(int index) {
+        return taskList.get(index).getDescription();
+    }
+
+    public String getTime(int index) {
+        return taskList.get(index).getTime();
+    }
+
     public void deleteThisTask(int index) {
         taskList.remove(index);
         listSize--;
-    }
-
-    public ArrayList<Event> fullList() {
-        return this.taskList;
     }
 
     private LocalDateTime changeToDate(String time, String date) {
@@ -144,6 +148,15 @@ public class EventList {
             index++;
         }
         return -1;
+    }
+
+    public String getLastTaskDescription() {
+        return taskList.get(listSize-1).toString();
+    }
+
+    public void deleteAll() {
+        this.taskList = new ArrayList<Event>();
+        this.listSize = 0;
     }
 }
 

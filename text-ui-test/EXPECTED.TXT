@@ -1,5 +1,2 @@
-█▄ █ █ █ ▄▀▀ █▀▄ █   ▄▀▄ █▄ █ █▄ █ ██▀ █▀▄
-█ ▀█ ▀▄█ ▄██ █▀  █▄▄ █▀█ █ ▀█ █ ▀█ █▄▄ █▀▄
-
-Hello there! What can we do for you today?
+???Hello there! What can we do for you today?
 ____________________________________________________________
