@@ -13,9 +13,6 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ViewCommandTest {
-    ArrayList<FinancialStatement> statements = new ArrayList<>();
-    FinancialReport financialReport = new FinancialReport(statements);
-
     private static final String VIEW_TEST_RESULT =
             "+-----+------------------------------+------------+----------------+\n" +
                     "|Here is your full financial report!                               |\n" +
@@ -28,6 +25,9 @@ public class ViewCommandTest {
                     "|Inflow: $3000\n" +
                     "|Outflow: $125\n" +
                     "|Remaining value: $2875\n";
+    
+    ArrayList<FinancialStatement> statements = new ArrayList<>();
+    FinancialReport financialReport = new FinancialReport(statements);
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
