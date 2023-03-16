@@ -10,12 +10,10 @@ import org.junit.jupiter.api.Test;
 import seedu.entities.Food;
 
 public class FoodStorageTest {
-    private static final String FILE_PATH = "./data/foodData.csv";
-
     @Nested
     @DisplayName("Test Read Functionalities")
     class ReadTest {
-        private final FoodStorage foodStorage = new FoodStorage(FILE_PATH);
+        private final FoodStorage foodStorage = new FoodStorage();
 
         @Test
         public void getFoodListSize_emptyInput_expectSizeGreaterThanZero() {

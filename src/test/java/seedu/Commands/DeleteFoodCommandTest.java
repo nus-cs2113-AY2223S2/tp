@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DeleteFoodCommandTest {
-    private final FoodStorage foodStorage = new FoodStorage("./data/foodData.csv");
+    private final FoodStorage foodStorage = new FoodStorage();
     private final MealStorage mealStorage = new MealStorage("./data/mealData.csv", foodStorage);
 
     @Test

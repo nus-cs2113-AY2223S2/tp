@@ -1,4 +1,3 @@
-Error loading Food Storage
 Error loading Meal Storage
 User File not found. Creating new user file...
 Error loading User Storage

@@ -1,7 +1,5 @@
 package seedu.database;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +15,7 @@ public class FoodStorage extends Storage implements FileReadable {
     private static final String csvDelimiter = ",";
     private ArrayList<Food> foods;
 
-    public FoodStorage(String filePath) {
-        super(filePath);
+    public FoodStorage() {
         foods = new ArrayList<Food>();
         try {
             this.load();
@@ -38,13 +35,11 @@ public class FoodStorage extends Storage implements FileReadable {
         int storeNumber;
         float calories;
         Food food;
-        // parsing a CSV file into BufferedReader class constructor
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
-
-        // Skip Line 1 (header)
-        br.readLine();
-
-        while ((line = br.readLine()) != null) {
+        
+        String[] foodDataList = FoodData.getFoodData();
+        
+        for (int i = 1; i < foodDataList.length; i++) {
+            line = foodDataList[i];
             foodLine = line.split(csvDelimiter); // use comma as separator
             id = Integer.parseInt(foodLine[0]);
             foodType = foodLine[1];
@@ -66,7 +61,6 @@ public class FoodStorage extends Storage implements FileReadable {
                 foods.add(food);
             }
         }
-        br.close();
     }
 
     public int getFoodsCount() {

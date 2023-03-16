@@ -14,7 +14,7 @@ import seedu.entities.Meal;
 
 public class MealStorageTest {
     private static final String FILE_PATH = "./data/mealData.csv";
-    private final FoodStorage foodStorage = new FoodStorage("./data/foodData.csv");
+    private final FoodStorage foodStorage = new FoodStorage();
 
     @Nested
     @DisplayName("Test Read Write Functionalities")
