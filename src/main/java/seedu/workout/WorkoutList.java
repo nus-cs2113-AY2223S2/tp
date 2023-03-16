@@ -1,7 +1,7 @@
 package seedu.workout;
 
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class WorkoutList {
     public static final int NO_CURRENT_WORKOUT = -1;
