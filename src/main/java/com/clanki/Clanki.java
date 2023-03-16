@@ -7,14 +7,12 @@ import com.clanki.parser.Parser;
 import com.clanki.ui.Ui;
 
 public class Clanki {
-    private final Ui ui;
-    private final FlashcardList flashcardList;
-    private final Parser parser;
+    private Ui ui;
+    private FlashcardList flashcardList;
 
     public Clanki() {
         this.ui = new Ui();
         this.flashcardList = new FlashcardList();
-        this.parser = new Parser();
     }
 
     public static void main(String[] args) {
@@ -25,7 +23,7 @@ public class Clanki {
         ui.printWelcomeMessage();
         while (true) {
             String inputText = ui.getUserCommand();
-            Command command = parser.parseCommand(inputText);
+            Command command = Parser.parseCommand(inputText);
             command.execute(flashcardList, ui);
 
             if (command instanceof ByeCommand) {

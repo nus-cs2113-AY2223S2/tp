@@ -10,9 +10,9 @@ public class UpdateCommand extends Command {
     String query;
     ArrayList<Flashcard> matchingFlashcards = new ArrayList<>();
 
-    public UpdateCommand(String userInput) {
+    public UpdateCommand(String query) {
         super();
-        this.query = userInput.split(" ")[1];
+        this.query = query;
     }
 
     public void printFlashCard(Flashcard flashcard) {
@@ -30,7 +30,8 @@ public class UpdateCommand extends Command {
     public void findFlashcard(ArrayList<Flashcard> flashcards, String query) {
         for (int i = 0; i < flashcards.size(); i++) {
             Flashcard currentFlashcard = flashcards.get(i);
-            if (currentFlashcard.getQuestion().contains(query) || currentFlashcard.getAnswer().contains(query)) {
+            if (currentFlashcard.getQuestion().contains(query)
+                    || currentFlashcard.getAnswer().contains(query)) {
                 matchingFlashcards.add(currentFlashcard);
             }
         }
@@ -54,7 +55,8 @@ public class UpdateCommand extends Command {
     public void execute(FlashcardList flashcardList, Ui display) {
         ArrayList<Flashcard> flashcards = flashcardList.getFlashCards();
         findFlashcard(flashcards, query);
-        System.out.println("Found " + matchingFlashcards.size() + " cards with the query \"" + query + "\":");
+        System.out.println(
+                "Found " + matchingFlashcards.size() + " cards with the query \"" + query + "\":");
         printFlashCards(matchingFlashcards);
         System.out.println("Which flashcard do you want to update?");
         String userText = display.getUserCommand();

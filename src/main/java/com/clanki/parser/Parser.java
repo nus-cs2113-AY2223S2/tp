@@ -12,72 +12,67 @@ import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
 
 public class Parser {
-    public static final String QUESTION_START_INDICATOR = "/q";
-    public static final String ANSWER_START_INDICATOR = "/a";
+    private static final String QUESTION_OPTION_IDENTIFIER = "q";
+    private static final String ANSWER_OPTION_IDENTIFIER = "a";
 
-    public Command parseCommand(String userInput) {
-        String commandPhrase = userInput.split(" ")[0];
-        switch (commandPhrase) {
+    public static Command parseCommand(String userInput) {
+        try {
+            return parseCommandStrict(userInput);
+        } catch (InvalidAddFlashcardInputException e) {
+            System.out.println(
+                    "The input is in an incorrect format, please follow the format in user guide");
+        } catch (EmptyFlashcardQuestionException e) {
+            System.out.println("The question of this card is empty, please enter one.");
+        } catch (EmptyFlashcardAnswerException e) {
+            System.out.println("The answer for this flashcard is empty, please enter one.");
+        }
+        return new UnknownCommand();
+    }
+
+    public static Command parseCommandStrict(String userInput)
+            throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException,
+            EmptyFlashcardAnswerException {
+        ParsedInput parsedInput = new ParsedInput(userInput);
+        String command = parsedInput.getCommand();
+        switch (command) {
         case "add":
-            try {
-                return reformatAddCommandInput(userInput);
-            } catch (InvalidAddFlashcardInputException e) {
-                System.out.println("The input is in an incorrect format, please follow the format in user guide");
-            } catch (EmptyFlashcardQuestionException e) {
-                System.out.println("The question of this card is empty, please enter one.");
-            } catch (EmptyFlashcardAnswerException e) {
-                System.out.println("The answer for this flashcard is empty, please enter one.");
-            }
-            break;
-        case "del":
-            int index = Integer.parseInt(userInput.split(" ")[1]);
-            return new DeleteCommand(index);
+            return getAddCommand(parsedInput);
         case "review":
-            return new ReviewCommand();
-        case "bye":
-            return new ByeCommand();
+            return getReviewCommand(parsedInput);
         case "update":
-            return new UpdateCommand(userInput);
+            return getUpdateCommand(parsedInput);
+        case "del":
+            return getDeleteCommand(parsedInput);
+        case "bye":
+            return getByeCommand(parsedInput);
         default:
             return new UnknownCommand();
         }
-        return new UnknownCommand();
     }
 
     /**
      * Constructs an AddCommand from the input of the user, if the input is of an
      * incorrect format, a respective exception will be thrown.
      *
-     * @param userInput The input collected by Ui from the user.
-     * @return An AddCommand with the question and answer text extracted from user input.
+     * @param parsedInput The input collected by Ui from the user, after being
+     *                    parsed with the ParsedInput class.
+     * @return An AddCommand with the question and answer text extracted from user
+     *         input.
      * @throws InvalidAddFlashcardInputException If the start indicators cannot be
      *                                           found.
      * @throws EmptyFlashcardQuestionException   If the string is empty after
-     *                                           QUESTION_START_INDICATOR.
+     *                                           QUESTION_OPTION_IDENTIFIER.
      * @throws EmptyFlashcardAnswerException     If the string is empty after
-     *                                           ANSWER_START_INDICATOR.
+     *                                           ANSWER_OPTION_IDENTIFIER.
      */
-    public Command reformatAddCommandInput(String userInput)
-            throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException, EmptyFlashcardAnswerException {
-        int positionOfStartOfQuestion = userInput.indexOf(QUESTION_START_INDICATOR);
-        int positionOfStartOfAnswer = userInput.indexOf(ANSWER_START_INDICATOR);
-        if (positionOfStartOfAnswer == -1 || positionOfStartOfQuestion == -1) {
+    public static AddCommand getAddCommand(ParsedInput parsedInput)
+            throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException,
+            EmptyFlashcardAnswerException {
+        String questionText = parsedInput.getOptionByName(QUESTION_OPTION_IDENTIFIER);
+        String answerText = parsedInput.getOptionByName(ANSWER_OPTION_IDENTIFIER);
+        if (questionText == null || answerText == null) {
             throw new InvalidAddFlashcardInputException();
         }
-        String questionText = "";
-        String answerText = "";
-        if (positionOfStartOfAnswer > positionOfStartOfQuestion) {
-            questionText = userInput
-                    .substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length(), positionOfStartOfAnswer)
-                    .trim();
-            answerText = userInput.substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length()).trim();
-        } else {
-            questionText = userInput.substring(positionOfStartOfQuestion + QUESTION_START_INDICATOR.length()).trim();
-            answerText = userInput
-                    .substring(positionOfStartOfAnswer + ANSWER_START_INDICATOR.length(), positionOfStartOfQuestion)
-                    .trim();
-        }
-
         if (questionText.isEmpty()) {
             throw new EmptyFlashcardQuestionException();
         }
@@ -85,5 +80,22 @@ public class Parser {
             throw new EmptyFlashcardAnswerException();
         }
         return new AddCommand(questionText, answerText);
+    }
+
+    public static ReviewCommand getReviewCommand(ParsedInput parsedInput) {
+        return new ReviewCommand();
+    }
+
+    public static UpdateCommand getUpdateCommand(ParsedInput parsedInput) {
+        return new UpdateCommand(parsedInput.getBody());
+    }
+
+    public static DeleteCommand getDeleteCommand(ParsedInput parsedInput) {
+        int index = Integer.parseInt(parsedInput.getBody());
+        return new DeleteCommand(index);
+    }
+
+    public static ByeCommand getByeCommand(ParsedInput parsedInput) {
+        return new ByeCommand();
     }
 }
