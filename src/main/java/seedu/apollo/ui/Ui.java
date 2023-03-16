@@ -85,10 +85,16 @@ public class Ui {
             System.out.println("There are no tasks in your list!");
             return;
         }
-        System.out.println("Here are the tasks in your list:");
+        System.out.println("You have a total of " + allTasks.size() + " tasks in your tasklist.\n"
+                + "Here are the tasks in your list:");
+        int unmarkedTaskSize = 0;
         for (int i = 0; i < allTasks.size(); i++) {
             System.out.println(i + 1 + "." + allTasks.get(i));
+            if (!allTasks.get(i).isDone()) {
+                unmarkedTaskSize += 1;
+            }
         }
+        System.out.println("There are " + unmarkedTaskSize + " unmarked tasks in your tasklist.");
     }
 
     /**
