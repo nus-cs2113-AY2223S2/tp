@@ -1,5 +1,6 @@
 package bagpacker;
 
+import bagpacker.commands.Command;
 import bagpacker.iohandler.Storage;
 import bagpacker.iohandler.Ui;
 import bagpacker.iohandler.Parser;
@@ -25,7 +26,8 @@ public class BagPacker {
 
     public static void runBagPacker() {
         while (true) {
-            Parser.parse();
+            Command c = Parser.parse();
+            c.execute(packingList);
         }
     }
 }
