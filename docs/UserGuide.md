@@ -41,6 +41,9 @@ financial inflows and outflows and view them with a single command.
     4. Right-click in the file window
     5. Select paste
 4. Right-click on the directory with "rainyDay.jar" and select "open in terminal"
+   ![](\images\right-click-to-open-terminal.png)
+    - Screenshot of file directory containing rainyDay.jar, after performing a right click on an empty space in the file
+      directory
 5. Type `java -jar rainyDay.jar` and press Enter on your keyboard to start the application
 
 ## Features
