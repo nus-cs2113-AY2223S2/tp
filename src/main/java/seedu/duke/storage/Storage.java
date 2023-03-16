@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import seedu.duke.Event;
 import seedu.duke.EventList;
+import seedu.duke.Ui;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
@@ -25,9 +27,9 @@ import java.util.ArrayList;
 
 
 public class Storage {
-    //private final Ui ui = new Ui();
+
     private static final String fileLocation = System.getProperty("user.dir") + "/save.json";
-    //final TypeToken<ArrayList<Event>> eventToken = new TypeToken<ArrayList<Event>>(){};
+
     GsonBuilder builder = new GsonBuilder().registerTypeAdapter(ArrayList.class, new EventListAdapter())
             .setPrettyPrinting();
     Gson gson = builder.create();
@@ -39,7 +41,7 @@ public class Storage {
             try {
                 saveFile.createNewFile();
             } catch (IOException e) {
-                //ui.showException("IOException");
+                Ui.printErrorMsg("IOException occurred while creating new save file.");
             }
 
         }
@@ -49,7 +51,7 @@ public class Storage {
             taskWriter.write(gsonData);
             taskWriter.close();
         } catch (IOException e) {
-            System.out.println("IOException");
+            Ui.printErrorMsg("IOException occurred while writing to file");
         }
     }
 
@@ -63,10 +65,9 @@ public class Storage {
         InputStreamReader fileReader;
         try {
             fileReader = new InputStreamReader(new FileInputStream(saveFile), StandardCharsets.UTF_8);
-            JsonReader gsonInterpreter = new JsonReader(fileReader);
             savedList = gson.fromJson(fileReader, ArrayList.class); //Placeholder.
         } catch (Exception e) {
-            System.out.println(e);
+            Ui.printErrorMsg("IOException occured while reading from save.json. It is likely corrupted");
         }
         return savedList;
     }
