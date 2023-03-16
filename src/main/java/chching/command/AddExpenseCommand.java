@@ -26,6 +26,7 @@ public class AddExpenseCommand extends Command {
     }
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage) {
+        assert expense.getValue() > 0 : "Expense value should be greater than 0";
         expenses.addExpense(expense);
         ui.showAdded(incomes, expenses, expense);
     }
