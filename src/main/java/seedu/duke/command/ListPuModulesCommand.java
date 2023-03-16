@@ -9,9 +9,10 @@ public class ListPuModulesCommand extends Command {
         this.univId = univId;
         this.universityName = universityName;
     }
+
     @Override
     public void execute() {
-        ui.printPUModules(univId);
         ui.printPUModListMessage(universityName);  //Todo: exception this is not found, it is a empty string
+        ui.printPUModules(univId);
     }
 }
