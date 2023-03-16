@@ -20,5 +20,7 @@ public abstract class Command {
         this.financialReport = financialReport;
     }
 
+    protected abstract void setupLogger();
+
     public abstract void execute();
 }
