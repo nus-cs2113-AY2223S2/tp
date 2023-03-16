@@ -20,8 +20,6 @@ public class Storage {
     private static final String FILE_CREATED = "Save file created.";
     private static final String FILE_EXISTS = "Save file already exists.";
     private static final String FILE_PARSING_ERROR = "The task does not meet the parsing requirements for unpacking.";
-    public static final String STEPS = "Steps";
-    public static final String INGREDIENT_LIST = "Ingredient List";
     private static String filePath;
 
     /**
@@ -56,11 +54,11 @@ public class Storage {
             saveWriter = new FileWriter("data/" + dish.getName() + ".txt");
             saveWriter.write(dish.getName() + "\n");
             saveWriter.write(dish.getTag() + "\n");
-            saveWriter.write(INGREDIENT_LIST + "\n");
+            saveWriter.write("Ingredient List" + "\n");
             for (Ingredient ingredient : dish.getIngredientList().getList()) {
                 saveWriter.write( ingredient.getName() + "\n");
             }
-            saveWriter.write(STEPS + "\n");
+            saveWriter.write("Steps" + "\n");
             for (String step : dish.getSteps()) {
                 saveWriter.write(step + "\n");
             }
