@@ -13,6 +13,7 @@ public class Pet {
         age = "";
         assert age.equals("") : "age should be an empty string when a pet is added";
         weight = "";
+        assert weight.equals("") : "weight should be an empty string when a pet is added";
     }
 
     public void addStat(String statName, String statValue) {
