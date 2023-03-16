@@ -87,11 +87,11 @@ public class Parser {
                 String rangeRecipes = "";
                 int startIndex = Integer.parseInt(input[1].charAt(0) + "");
                 int endIndex = Integer.parseInt(input[1].charAt(2) + "");
+                startIndex -= 1;
+                endIndex -= 1;
                 int newSize = recipeList.size() - ((endIndex - startIndex) + 1);
-                // endIndex -= 4;
                 while (recipeList.size() != newSize) {
-                    rangeRecipes += recipeList.deleteRecipe(endIndex).getName() + ", ";
-                    endIndex--;
+                    rangeRecipes += recipeList.deleteRecipe(startIndex).getName() + ", ";
                 }
                 rangeRecipes = rangeRecipes.substring(0, rangeRecipes.length() - 2);
                 return rangeRecipes;
