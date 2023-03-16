@@ -16,23 +16,23 @@ public class ViewCommandTest {
     ArrayList<FinancialStatement> statements = new ArrayList<>();
     FinancialReport financialReport = new FinancialReport(statements);
 
+    private static final String VIEW_TEST_RESULT =
+            "+-----+------------------------------+------------+----------------+\n" +
+                    "|Here is your full financial report!                               |\n" +
+                    "+-----+------------------------------+------------+----------------+\n" +
+                    "|Index|Name                          |Amount      |Category        |\n" +
+                    "|00001|Ipad                          | -$120      |Default         |\n" +
+                    "|00002|pork                          | -$5        |Default         |\n" +
+                    "|00003|angpao                        | +$3000     |Default         |\n" +
+                    "+-----+------------------------------+------------+----------------+\n" +
+                    "|Inflow: $3000\n" +
+                    "|Outflow: $125\n" +
+                    "|Remaining value: $2875\n";
+
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
-
-    private static final String VIEW_TEST_RESULT =
-            "+-----+------------------------------+------------+----------------+\n" +
-            "|Here is your full financial report!                               |\n" +
-            "+-----+------------------------------+------------+----------------+\n" +
-            "|Index|Name                          |Amount      |Category        |\n" +
-            "|00001|Ipad                          | -$120      |Default         |\n" +
-            "|00002|pork                          | -$5        |Default         |\n" +
-            "|00003|angpao                        | +$3000     |Default         |\n" +
-            "+-----+------------------------------+------------+----------------+\n" +
-            "|Inflow: $3000\n" +
-            "|Outflow: $125\n" +
-            "|Remaining value: $2875\n";
 
     @Before
     public void setUpStreams() {
