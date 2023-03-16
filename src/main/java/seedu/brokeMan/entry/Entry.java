@@ -1,6 +1,6 @@
 package seedu.brokeMan.entry;
 
-public class Entry {
+public abstract class Entry {
     protected String info;
     protected double amount;
     protected String time;
@@ -44,7 +44,5 @@ public class Entry {
 
     public String getTime() { return this.time; }
 
-    public String toString() {
-        return String.format("$%.2f spent on %s - %s", amount, info, time);
-    }
+    public abstract String toString();
 }
