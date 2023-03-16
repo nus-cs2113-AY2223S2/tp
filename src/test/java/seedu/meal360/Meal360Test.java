@@ -205,42 +205,30 @@ class Meal360Test {
 
     @Test
     public void testListRecipe() {
-        RecipeList recipes = new RecipeList();
-        Parser parser = new Parser();
-        String input;
-        String[] command;
         RecipeList recipeListToPrint;
+        String[] inputs;
 
-        HashMap<String, Integer> testIngredients1 = new HashMap<>();
-        testIngredients1.put("test ingredient1-1", 10);
-        testIngredients1.put("test ingredient1-2", 20);
-        testIngredients1.put("test ingredient1-3", 30);
-        Recipe testRecipe1 = new Recipe("test recipe1", testIngredients1);
-        recipes.addRecipe(testRecipe1);
-
-        HashMap<String, Integer> testIngredients2 = new HashMap<>();
-        testIngredients2.put("test ingredient2-1", 10);
-        testIngredients2.put("test ingredient2-2", 20);
-        Recipe testRecipe2 = new Recipe("test recipe2", testIngredients2);
-        recipes.addRecipe(testRecipe2);
-
-        input = "list";
-        command = input.split(" ",2);
-        recipeListToPrint = parser.parseListRecipe(command, recipes);
-        assertEquals(2, recipeListToPrint.size());
+        inputs = new String[] {"list"};
+        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+        assertEquals(3, recipeListToPrint.size());
         assertEquals(3, recipeListToPrint.get(0).getNumOfIngredients());
-        assertEquals(2, recipeListToPrint.get(1).getNumOfIngredients());
+        assertEquals(4, recipeListToPrint.get(1).getNumOfIngredients());
+        assertEquals(3, recipeListToPrint.get(2).getNumOfIngredients());
 
-        input = "list test ingredient2-1";
-        command = input.split(" ",2);
-        recipeListToPrint = parser.parseListRecipe(command, recipes);
+        inputs = new String[] {"list", "tomato", "sauce"};
+        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(1, recipeListToPrint.size());
-        assertEquals(2, recipeListToPrint.get(0).getNumOfIngredients());
-        assertEquals("test recipe2", recipeListToPrint.get(0).getName());
+        assertEquals(4, recipeListToPrint.get(0).getNumOfIngredients());
+        assertEquals("pizza", recipeListToPrint.get(0).getName());
 
-        input = "list test ingredient2-1 & test recipe1";
-        command = input.split(" ",2);
-        recipeListToPrint = parser.parseListRecipe(command, recipes);
+        inputs = new String[] {"list", "salad", "&", "tomato"};
+        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+        assertEquals(1, recipeListToPrint.size());
+        assertEquals(3, recipeListToPrint.get(0).getNumOfIngredients());
+        assertEquals("salad", recipeListToPrint.get(0).getName());
+
+        inputs = new String[] {"list", "salad", "&", "pizza"};
+        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(0, recipeListToPrint.size());
     }
 }
