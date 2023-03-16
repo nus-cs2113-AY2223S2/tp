@@ -23,7 +23,7 @@ public class Expenses extends EntryList{
     public static void listExpense() {
         Ui.showToUser("Here are the expenses you have made.");
         listEntry(expenseList);
-        Ui.showToUser("Total expense: $" + getTotalAmount(expenseList));
+        Ui.showToUser("Total expenses: $" + getTotalAmount(expenseList));
         Ui.showToUserWithLineBreak("");
     }
 
