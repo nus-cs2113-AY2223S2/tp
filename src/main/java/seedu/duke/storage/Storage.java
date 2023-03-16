@@ -8,6 +8,7 @@ import seedu.duke.ui.StringLib;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
+import java.util.ArrayList;
 
 
 /**
@@ -67,5 +68,15 @@ public class Storage {
             saveWriter.close();
         }
     }
-
+    public static ArrayList<File> findValidSaveFiles() {
+        File searchArea = new File("data");
+        File[] saveList = searchArea.listFiles();
+        ArrayList<File> validSaveFiles = new ArrayList<>();
+        for (File item : saveList) {
+            if (item.getName().contains(".txt")) {
+                validSaveFiles.add(item);
+            }
+        }
+        return validSaveFiles;
+    }
 }
