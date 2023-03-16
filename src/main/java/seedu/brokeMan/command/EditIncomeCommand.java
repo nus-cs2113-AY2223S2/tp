@@ -2,6 +2,10 @@ package seedu.brokeMan.command;
 
 import seedu.brokeMan.entry.IncomeList;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class EditIncomeCommand extends Command {
     public static final String COMMAND_WORD = "editIncome";
 
@@ -11,28 +15,33 @@ public class EditIncomeCommand extends Command {
             "|  Example: " + COMMAND_WORD + " i/ 1 t/ info n/ stocks";
     private int index;
     private String type;
-    private String newEntry;
+    private String newInfo;
     private double newIncome;
-    private boolean isEditIncome = false;
+    private LocalDateTime newTime;
 
-    public EditIncomeCommand(int index, String type, String newEntry) {
+    public EditIncomeCommand(int index, String type, String newInfo) {
         this.index = index;
         this.type = type;
-        this.newEntry= newEntry;
+        this.newInfo = newInfo;
     }
 
     public EditIncomeCommand(int index, String type, double newIncome) {
         this.index = index;
         this.type = type;
         this.newIncome = newIncome;
-        isEditIncome = true;
+    }
+
+    public EditIncomeCommand(int index, String type, LocalDateTime newIncome) {
+        this.index = index;
+        this.type = type;
+        this.newTime = newIncome;
     }
 
     public void execute() {
-        if (isEditIncome) {
-            IncomeList.editIncomeDouble(type, index, newIncome);
-        } else {
-            IncomeList.editIncome(type, index, newEntry);
+        switch (type) {
+        case "cost": IncomeList.editIncome(index, newIncome);
+        case "info": IncomeList.editIncome(index, newInfo);
+        case "time": IncomeList.editIncome(index, newTime);
         }
     }
 }

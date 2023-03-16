@@ -1,4 +1,4 @@
-package seedu.brokeMan.entry;
+package seedu.brokeMan.parser;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;

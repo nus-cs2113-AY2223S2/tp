@@ -20,9 +20,10 @@ import seedu.brokeMan.exception.IndexNotAnIntegerException;
 import seedu.brokeMan.exception.NegativeBudgetException;
 import seedu.brokeMan.exception.hasNotSetBudgetException;
 
-import static seedu.brokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
-import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_ADD_COMMAND;
-import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+
+import static seedu.brokeMan.common.Messages.*;
 
 
 /*
@@ -136,19 +137,22 @@ public class Parser {
 
         String[] splitDescriptions = description.split("/ ");
         double amount;
+        LocalDateTime time;
 
         // handle error for the input "addExpense a/ d/ t/ time"
         // similarly for prepareEditExpenseCommand
         try {
             int length = splitDescriptions[1].length();
             amount = Double.parseDouble(splitDescriptions[1].substring(0, length - 2));
+            time = StringToTime.convertStringToTime(splitDescriptions[3]);
         } catch (NumberFormatException nfe) {
             String errorMessage = new AmountIsNotADoubleException().getMessage();
             return new InvalidCommand(errorMessage);
+        } catch (DateTimeException dte) {
+            return new InvalidCommand(MESSAGE_INVALID_TIME);
         }
 
         String newDescription = splitDescriptions[2].substring(0, splitDescriptions[2].length() - 2);
-        String time = splitDescriptions[3];
 
         if (type.equals("expense")) {
             return new AddExpenseCommand(amount, newDescription, time);
@@ -176,29 +180,35 @@ public class Parser {
 
         assert splitDescriptions.length == 4 : MESSAGE_INVALID_EDIT_COMMAND;
         int index;
+        String type;
+        String newEntry;
+        double newMoney;
+        LocalDateTime newTime;
+
         try {
             int length = splitDescriptions[1].length();
             index = Integer.parseInt(splitDescriptions[1].substring(0, length - 2));
+            type = splitDescriptions[2].substring(0, splitDescriptions[2].length() - 2);
+            newEntry = splitDescriptions[3];
+
+            if (type.equals("cost")) {
+                newMoney = Double.parseDouble(newEntry);
+                return (moneyType.equals("expense") ? new EditExpenseCommand(index, type, newMoney)
+                        : new EditIncomeCommand(index, type, newMoney));
+            } else if (type.equals("time")) {
+                newTime = StringToTime.convertStringToTime(newEntry);
+                return (moneyType.equals("expense") ? new EditExpenseCommand(index, type, newTime)
+                        : new EditIncomeCommand(index, type, newTime));
+            }
+            return (moneyType.equals("expense") ? new EditExpenseCommand(index, type, newEntry)
+                    : new EditIncomeCommand(index, type, newEntry));
+
         } catch (NumberFormatException nfe) {
             String errorMessage = new IndexNotAnIntegerException().getMessage();
             return new InvalidCommand(errorMessage);
+        } catch (DateTimeException dte) {
+            return new InvalidCommand(MESSAGE_INVALID_TIME);
         }
-
-        String type = splitDescriptions[2].substring(0, splitDescriptions[2].length() - 2);
-        String newMoney = splitDescriptions[3];
-
-        if (isTypeEqualsCost(type)) {
-            // do exception handling to check newMoney is double...
-            double newAmount = Double.parseDouble(newMoney);
-            if (moneyType.equals("expense")) {
-                return new EditExpenseCommand(index, type, newAmount);
-            }
-            return new EditIncomeCommand(index, type, newAmount);
-        }
-        if (moneyType.equals("expense")) {
-            return new EditExpenseCommand(index, type, newMoney);
-        }
-        return new EditIncomeCommand(index, type, newMoney);
     }
 
     private static boolean isTypeEqualsCost(String type) {

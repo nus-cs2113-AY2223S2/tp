@@ -7,10 +7,10 @@ public abstract class Entry {
     protected double amount;
     protected LocalDateTime time;
 
-    public Entry(double amount, String info, String time) {
+    public Entry(double amount, String info, LocalDateTime time) {
         this.amount = amount;
         this.info = info;
-        this.time = StringToTime.convertStringToTime(time);
+        this.time = time;
     }
 
     /**
@@ -27,7 +27,7 @@ public abstract class Entry {
      *
      * @param newInfo New desired information of the expense/income
      */
-    public void editInfo(String newInfo) {
+    public void editDescription(String newInfo) {
         this.info = newInfo;
     }
 
