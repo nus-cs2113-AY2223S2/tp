@@ -12,7 +12,10 @@ import bagpacker.commands.ListCommand;
 import bagpacker.commands.PackCommand;
 import bagpacker.commands.UnpackCommand;
 import bagpacker.exception.EmptyInputException;
+import bagpacker.exception.InvalidIndexException;
+import bagpacker.exception.InvalidVariablesException;
 import bagpacker.packingfunc.Item;
+import bagpacker.packingfunc.PackingList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +27,7 @@ import java.util.Scanner;
 public class Parser {
     private static ArrayList<String> inputStringArray;
     private static String fullInput;
-    private static String itemDescrip;
+
     public static void setFullInput(String fullInput) {
         Parser.fullInput = fullInput;
     }
@@ -35,9 +38,11 @@ public class Parser {
     public static ArrayList<String> getInputStringArray() {
         return inputStringArray;
     }
+
     public static void setInputStringArray(String[] inputStringArray) {
         Parser.inputStringArray = new ArrayList<>(Arrays.asList(inputStringArray));
     }
+
     /**
      * Returns the user input in String format
      */
@@ -47,11 +52,12 @@ public class Parser {
 
     public static Command parse() {
         String inputLine = "";
-        while(inputLine.isEmpty()) {
+        while (inputLine.isEmpty()) {
             try {
                 inputLine = readLine();
             } catch (EmptyInputException e) {
-                Ui.errorMessage("Empty input received", "try to input a command, to view all commands input 'help'");
+                Ui.errorMessage("Empty input received",
+                        "try to input a command, to view all commands input 'help'");
             }
         }
         setFullInput(inputLine);
@@ -59,13 +65,13 @@ public class Parser {
         setInputStringArray(inputStringList);
         switch (inputStringList[0]) {
         case "add":
-            return addItem(inputStringList[1]);
+            return addItem();
         case "delete":
-            return deleteItem(inputStringList[1]);
+            return deleteItem();
         case "pack":
-            return packItem(inputStringList[1]);
+            return packItem();
         case "unpack":
-            return unpackItem(inputStringList[1]);
+            return unpackItem();
         case "list":
             return listCommand();
         case "help":
@@ -75,7 +81,7 @@ public class Parser {
         case "bye":
             return callByeCmd();
         default:
-            return new IncorrectCommand("'" + Parser.getCommand() + "' is an invalid User Command\n" +
+            return new IncorrectCommand("'" + Parser.getCommand() + "' is an invalid User Command",
                     "input 'help' to receive all valid commands");
         }
     }
@@ -84,7 +90,7 @@ public class Parser {
         String inputLine;
         Scanner in = new Scanner(System.in);
         inputLine = in.nextLine().trim();
-        if(inputLine.isEmpty()){
+        if (inputLine.isEmpty()) {
             throw new EmptyInputException();
         }
         return inputLine;
@@ -97,9 +103,55 @@ public class Parser {
         return getInputStringArray().get(0).toLowerCase();
     }
 
-    public static String getArgs() {
-        return getInputStringArray().get(1);
+    public static String getItemName() throws InvalidVariablesException {
+        String inputVariables;
+        if (inputStringArray.size() <= 1) {
+            throw new InvalidVariablesException();
+        }
+        try {
+            int itemIndStart = fullInput.indexOf(" ") + 1;
+            inputVariables = fullInput.substring(itemIndStart);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidVariablesException();
+        }
+        return inputVariables;
     }
+
+    public static String getItemIndex() throws InvalidIndexException {
+        String inputIndex;
+        int itemIndex;
+        if (inputStringArray.size() != 2) {
+            throw new InvalidIndexException();
+        }
+        try {
+            int itemIndStart = fullInput.indexOf(" ") + 1;
+            inputIndex = fullInput.substring(itemIndStart);
+            itemIndex = Integer.parseInt(inputIndex);
+            if (itemIndex < 1 | itemIndex > PackingList.getItemList().size()) {
+                throw new InvalidIndexException();
+            }
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
+            throw new InvalidIndexException();
+        }
+        return inputIndex;
+    }
+
+    public static String getVariable(String command) throws InvalidVariablesException, InvalidIndexException {
+        String variable;
+        try {
+            if (command.equals("add")) {
+                variable = getItemName();
+            } else {
+                variable = getItemIndex();
+            }
+        } catch (InvalidVariablesException e) {
+            throw new InvalidVariablesException();
+        } catch (InvalidIndexException e) {
+            throw new InvalidIndexException();
+        }
+        return variable;
+    }
+
 
     /**
      * Returns the user item description
@@ -114,30 +166,81 @@ public class Parser {
     /**
      * Calls the AddCommand.execute() method to add an item to the packing list
      */
-    public static Command addItem(String itemDescrip) {
-        // Todo try, catch exception handling
-        return new AddCommand(new Item(itemDescrip));
+    public static Command addItem() {
+        try {
+            String itemName = getVariable("add");
+            return new AddCommand(new Item(itemName));
+        } catch (InvalidVariablesException e) {
+            return new IncorrectCommand("Invalid Item Name",
+                    "try to input a name (word(s)) to be added into the list");
+        } catch (InvalidIndexException e) {
+            return new IncorrectCommand("Invalid Item Index",
+                    "try to input an integer number between 1 and " + PackingList.getItemList().size());
+        }
     }
 
     /**
      * Calls the DeleteCommand.execute() method to add an item to the packing list
      */
-    public static Command deleteItem(String itemDescrip) {
-        return new DeleteCommand(Integer.parseInt(itemDescrip));
+    public static Command deleteItem() {
+        try {
+            String itemIndex = getVariable("delete");
+            return new DeleteCommand(Integer.parseInt(itemIndex));
+        } catch (InvalidVariablesException e) {
+            return new IncorrectCommand("Invalid Item Name",
+                    "Try to input a name (word(s)) to be added into the list");
+        } catch (InvalidIndexException e) {
+            if (PackingList.getItemList().size() == 0) {
+                return new IncorrectCommand("Invalid Item Index",
+                        "Your packing list is empty, there is nothing to delete");
+            } else {
+                return new IncorrectCommand("Invalid Item Index",
+                        "Try to input an integer number between 1 and " + PackingList.getItemList().size());
+            }
+        }
     }
 
     /**
      * Calls the PackCommand.execute() method to mark an item as packed in the packing list
      */
-    public static Command packItem(String itemDescrip) {
-        return new PackCommand(Integer.parseInt(itemDescrip));
+    public static Command packItem() {
+        try {
+            String itemIndex = getVariable("pack");
+            return new PackCommand(Integer.parseInt(itemIndex));
+        } catch (InvalidVariablesException e) {
+            return new IncorrectCommand("Invalid Item Name",
+                    "try to input a name (word(s)) to be added into the list");
+        } catch (InvalidIndexException e) {
+            if (PackingList.getItemList().size() == 0) {
+                return new IncorrectCommand("Invalid Item Index",
+                        "Your packing list is empty, there is nothing to pack");
+            } else {
+                return new IncorrectCommand("Invalid Item Index",
+                        "Try to input an integer number between 1 and " + PackingList.getItemList().size());
+            }
+        }
     }
+
 
     /**
      * Calls the UnpackCommand.execute() method to mark an item as unpacked in the packing list
      */
-    public static Command unpackItem(String itemDescrip) {
-        return new UnpackCommand(Integer.parseInt(itemDescrip));
+    public static Command unpackItem() {
+        try {
+            String itemIndex = getVariable("delete");
+            return new UnpackCommand(Integer.parseInt(itemIndex));
+        } catch (InvalidVariablesException e) {
+            return new IncorrectCommand("Invalid Item Name",
+                    "try to input a name (word(s)) to be added into the list");
+        } catch (InvalidIndexException e) {
+            if (PackingList.getItemList().size() == 0) {
+                return new IncorrectCommand("Invalid Item Index",
+                        "Your packing list is empty, there is nothing to unpack");
+            } else {
+                return new IncorrectCommand("Invalid Item Index",
+                        "Try to input an integer number between 1 and " + PackingList.getItemList().size());
+            }
+        }
     }
 
     public static Command listCommand() {

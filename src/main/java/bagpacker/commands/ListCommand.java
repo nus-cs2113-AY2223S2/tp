@@ -11,7 +11,7 @@ public class ListCommand extends Command {
 
         if (packingList.size() == 0) {
             System.out.println("____________________________________________________________");
-            System.out.println("There are no items in your list. What would you like to pack?");
+            System.out.println("There are no items in your list. What would you like to add?");
             System.out.println("____________________________________________________________");
             return;
         }
