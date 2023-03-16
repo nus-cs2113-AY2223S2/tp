@@ -12,7 +12,7 @@ public abstract class Task {
 
     // Formatters used to parse and print date and time
     public static DateTimeFormatter storePattern = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-    protected static DateTimeFormatter printPattern = DateTimeFormatter
+    public static DateTimeFormatter printPattern = DateTimeFormatter
             .ofPattern("MMM dd yyyy, hh:mma", Locale.ENGLISH);
 
     protected String description;

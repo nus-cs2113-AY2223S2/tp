@@ -34,10 +34,10 @@ public class Apollo {
         ui = new Ui();
         storage = new Storage(filePath, moduleDataFilePath);
         try {
-            taskList = storage.loadTaskList(ui);
-            storage.updateTask(taskList);
             moduleData = storage.loadModuleData();
             moduleList = storage.loadModuleList(ui, moduleData);
+            taskList = storage.loadTaskList(ui);
+            storage.updateTask(taskList);
             ui.printWelcomeMessage();
         } catch (IOException e) {
             ui.printErrorForIO();

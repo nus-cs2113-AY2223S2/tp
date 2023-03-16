@@ -1,5 +1,6 @@
 package seedu.apollo.command.task;
 
+import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.ui.Parser;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.command.Command;
@@ -50,10 +51,10 @@ public class AddCommand extends Command {
      * @throws UnexpectedException If the command word cannot be understood.
      */
     public AddCommand(String command, String param) throws InvalidDeadline, InvalidEvent, UnexpectedException {
+        AddCommand.setUpLogger();
         this.command = command;
         assert (command.equals(COMMAND_TODO_WORD) | command.equals(COMMAND_DEADLINE_WORD) |
                 command.equals(COMMAND_EVENT_WORD)) : "AddCommand: Invalid Add Command";
-        assert param != null : "AddCommand: param should not be null!";
         switch (command) {
         case COMMAND_TODO_WORD:
             this.desc = param;
@@ -72,7 +73,6 @@ public class AddCommand extends Command {
         default:
             throw new UnexpectedException("Adding Task");
         }
-        AddCommand.setUpLogger();
     }
 
     /**
@@ -103,7 +103,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Executes the adding of a Task to the TaskList based on data in the class.
+     * Executes adding a Task to the TaskList and updating the hard disk.
      *
      * @param taskList The TaskList to be added to.
      * @param ui       Prints success or error message to user.
@@ -112,6 +112,37 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
+        int initialSize = taskList.size();
+        try {
+            addTask(taskList);
+        } catch (DateOverException e) {
+            ui.printDateOverException(e);
+            return;
+        } catch (DateOrderException e) {
+            ui.printDateOrderException();
+            return;
+        }
+
+        assert (taskList.size() > initialSize) : "AddCommand : Task not added successfully";
+        ui.printAddMessage(taskList.get(taskList.size() - 1));
+
+        try {
+            storage.updateTask(taskList);
+        } catch (IOException e) {
+            ui.printErrorForIO();
+        }
+    }
+
+    /**
+     * Adds a Task to the TaskList based on data in the class.
+     *
+     * @param taskList The TaskList to be added to.
+     * @throws DateOverException If any date of the task occurs before the current date.
+     * @throws DateOrderException If an Event's end date occurs before its start date.
+     * @throws UnexpectedException If the command stored is not recognised.
+     */
+    private void addTask(TaskList taskList)
+            throws DateOverException, DateOrderException, UnexpectedException {
         switch (command) {
         case COMMAND_TODO_WORD:
             taskList.add(new ToDo(desc));
@@ -120,22 +151,10 @@ public class AddCommand extends Command {
             taskList.add(new Deadline(desc, by));
             break;
         case COMMAND_EVENT_WORD:
-            try {
-                taskList.add(new Event(desc, from, to));
-            } catch (DateOrderException e) {
-                ui.printDateOrderException();
-                return;
-            }
+            taskList.add(new Event(desc, from, to));
             break;
         default:
             throw new UnexpectedException("Adding Task");
-        }
-        assert taskList.size() > 0;
-        ui.printAddMessage(taskList.get(taskList.size() - 1));
-        try {
-            storage.updateTask(taskList);
-        } catch (IOException e) {
-            ui.printErrorForIO();
         }
     }
 

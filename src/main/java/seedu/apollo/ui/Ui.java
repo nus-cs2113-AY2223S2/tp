@@ -1,5 +1,6 @@
 package seedu.apollo.ui;
 
+import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.task.Task;
 import seedu.apollo.module.Module;
 import seedu.apollo.task.TaskList;
@@ -69,8 +70,7 @@ public class Ui {
                 " Enter \"date [yyyy-MM-dd]\" to see all tasks occurring on that date\n" +
                 " Enter \"bye\" to exit the program\n\n" +
                 " ***NOTE***\n" +
-                " The \"date\" command only considers tasks when [date] is input in the format:\n" +
-                "     \"yyyy-MM-ddThh:mm\"\n" +
+                " Please enter all [date]s in the format: \"yyyy-MM-ddThh:mm\"\n" +
                 " eg. \"2023-10-30T23:59\" represents Oct 20 2023, 11:59PM");
     }
 
@@ -307,6 +307,24 @@ public class Ui {
      */
     public void printDateOrderException() {
         System.out.println("Oops, the start date for your event occurs after the end date!");
+    }
+
+    /**
+     * Prints error message if the task being added occurs before the current date.
+     *
+     * @param exception Contains details about the task that was not added successfully.
+     */
+    public void printDateOverException(DateOverException exception) {
+        System.out.println("Oops, your " + exception + " occurs before today!");
+    }
+
+    /**
+     * Prints error message if the task being loaded from hard disk occurs before the current date.
+     *
+     * @param exception Contains details about the task that was not added successfully.
+     */
+    public void printExistingDateOver(DateOverException exception) {
+        System.out.println("Deleting old " + exception);
     }
 
     /**
