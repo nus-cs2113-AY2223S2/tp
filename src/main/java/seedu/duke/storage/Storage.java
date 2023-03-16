@@ -2,7 +2,6 @@ package seedu.duke.storage;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 import seedu.duke.Event;
 import seedu.duke.EventList;
 import seedu.duke.Ui;
@@ -15,17 +14,6 @@ import java.io.FileInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-/*
-//Importing classes from ui, parser and Duke.
- import seedu.duke.Parser
- import seedu.duke.ui.Ui
- import seedu.duke.Duke
- import seedu.duke.Event
- import seedu.duke.EventList
- */
-
-
-
 public class Storage {
 
     private static final String fileLocation = System.getProperty("user.dir") + "/save.json";
@@ -34,6 +22,10 @@ public class Storage {
             .setPrettyPrinting();
     Gson gson = builder.create();
 
+    /**
+     * Saves an EventList object's Array List to a file with JSON formatting.
+     * @param eventList The EventList object that needs to be saved.
+     */
     public void saveToFile(EventList eventList) {
         File saveFile = new File(fileLocation);
         String gsonData = gson.toJson(eventList.getFullList());
@@ -43,7 +35,6 @@ public class Storage {
             } catch (IOException e) {
                 Ui.printErrorMsg("IOException occurred while creating new save file.");
             }
-
         }
         try {
             FileWriter taskWriter;
@@ -55,7 +46,11 @@ public class Storage {
         }
     }
 
-
+    /**
+     * Loads and deserializes information from save.json into an ArrayList of events.
+     * @return ArrayList of Event class containing information of previous load state
+     */
+    @SuppressWarnings("unchecked")
     public ArrayList<Event> loadEvents() {
         File saveFile = new File(fileLocation);
         ArrayList<Event> savedList = new ArrayList<>();
