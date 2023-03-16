@@ -77,12 +77,12 @@ public class AddModuleCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
         try {
-            if ((module != null) && (isAdded(moduleList, module) == false)) {
+            if ((module != null) && (!isAdded(moduleList, module))) {
                 moduleList.add(module);
                 moduleList.sortModules();
                 ui.printAddModuleMessage(module);
 
-            } else if (isAdded(moduleList, module) == true) {
+            } else if (isAdded(moduleList, module)) {
                 throw new DuplicateModuleException();
             }
             storage.updateModule(moduleList);
