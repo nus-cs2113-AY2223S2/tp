@@ -16,7 +16,7 @@ public class Notes {
     public void handleCache(String input){
 
         switch(input) {
-        case "Notes":
+        case "Store":
             cache.add(toDo);
             System.out.println("You have stored: " + toDo);
             break;

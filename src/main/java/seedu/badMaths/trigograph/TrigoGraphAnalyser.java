@@ -156,31 +156,38 @@ public class TrigoGraphAnalyser {
         splitPhasorsIntoFreq(phase);
     }
 
+    private void findFreqForNoPhasors(String phasors) {
+        phase = 0.0;
+        boolean isFreqNegative = testForNegativeFreq(phasors);
+        findFreq(phasors,isFreqNegative);
+    }
+    private void findFreqForPlus(String phasors) {
+        String[] freqAndShift = phasors.split("\\+", PLACEHOLDER_SIZE_WITH_POS_PHASE);
+        findPhase(freqAndShift[INDEX_FOR_POS_PHASE], false);
+        boolean isFreqNegative = testForNegativeFreq(freqAndShift);
+        findFreq(freqAndShift[INDEX_FOR_POS_FREQ], isFreqNegative);
+    }
+
+    private void findFreqForMinus(String phasors) {
+        String[] freqAndShift = phasors.split("-", PLACEHOLDER_SIZE_WITH_NEG_PHASE);
+        boolean isPhaseNegative = true;
+        boolean isFreqNegative = testForNegativeFreq(freqAndShift);
+        if (isFreqNegative) {
+            findPhase(freqAndShift[INDEX_FOR_NEG_PHASE_WITH_NEG_FREQ], isPhaseNegative);
+            findFreq(freqAndShift[INDEX_FOR_NEG_FREQ], isFreqNegative);
+        } else {
+            findPhase(freqAndShift[INDEX_FOR_NEG_PHASE_WITH_POS_FREQ], isPhaseNegative);
+            findFreq(freqAndShift[INDEX_FOR_POS_FREQ], isFreqNegative);
+        }
+    }
 
     private void splitPhasorsIntoFreq(String phasors) {
-        String[] freqAndShift = new String[SIZE_OF_FREQ_AND_PHASE];
-        boolean isPhaseNegative = false;
-        boolean isFreqNegative = false;
         if (phasors.endsWith("x")){
-            phase = 0.0;
-            isFreqNegative = testForNegativeFreq(phasors);
-            findFreq(phasors,isFreqNegative);
+            findFreqForNoPhasors(phasors);
         } else if (phasors.contains("+")) {
-            freqAndShift = phasors.split("\\+", PLACEHOLDER_SIZE_WITH_POS_PHASE);
-            findPhase(freqAndShift[INDEX_FOR_POS_PHASE], isPhaseNegative);
-            isFreqNegative = testForNegativeFreq(freqAndShift);
-            findFreq(freqAndShift[INDEX_FOR_POS_FREQ], isFreqNegative);
+            findFreqForPlus(phasors);
         } else {
-            freqAndShift = phasors.split("-", PLACEHOLDER_SIZE_WITH_NEG_PHASE);
-            isPhaseNegative = true;
-            isFreqNegative = testForNegativeFreq(freqAndShift);
-            if (isFreqNegative) {
-                findPhase(freqAndShift[INDEX_FOR_NEG_PHASE_WITH_NEG_FREQ], isPhaseNegative);
-                findFreq(freqAndShift[INDEX_FOR_NEG_FREQ], isFreqNegative);
-            } else {
-                findPhase(freqAndShift[INDEX_FOR_NEG_PHASE_WITH_POS_FREQ], isPhaseNegative);
-                findFreq(freqAndShift[INDEX_FOR_POS_FREQ], isFreqNegative);
-            }
+            findFreqForMinus(phasors);
         }
     }
 
