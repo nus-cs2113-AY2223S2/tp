@@ -2,15 +2,19 @@ package seedu.badMaths;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.PrintStream;
+
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+
 
 public class HelpManual {
     protected static String filePath = "docs/HelpManual.txt";
@@ -38,29 +42,40 @@ public class HelpManual {
         try {
             logger.log(Level.INFO, "going to start processing");
             File file = new File(filePath);
+
+            // assert that the file exists and is a regular file
+            assert file.exists() && file.isFile() : "Invalid file: " + filePath;
+
             if (file.isFile() && file.exists()) {
+                logger.log(Level.INFO, "Help manual file found at: " + file.getAbsolutePath());
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file));
                 BufferedReader bufferedReader = new BufferedReader(read);
+
                 String lineTxt;
-                StringBuilder contentBuilder = new StringBuilder();
+                StringBuilder content = new StringBuilder();
+
                 while ((lineTxt = bufferedReader.readLine()) != null) {
+                    content.append(lineTxt).append("\n");
                     System.out.println(lineTxt);
-                    contentBuilder.append(lineTxt).append("\n");
                 }
-                content = contentBuilder.toString();
+                bufferedReader.close();
                 read.close();
+
                 // Add an assertion to check if the contents of the file match the expected contents
                 String expectedContent = new String(Files.readAllBytes(Paths.get(filePath)));
-                String actualContent = contentBuilder.toString();
+                String actualContent = content.toString();
                 assert actualContent.equals(expectedContent) : "Contents of file do not match expected contents.";
+
                 // Log successful read to console and log file
                 logger.log(Level.INFO, "Successfully read Help Manual file.");
+
             } else {
                 System.out.println("Cannot find Help Manual. Please try again.");
-                logger.log(Level.WARNING, "Cannot find Help Manual.");
+                logger.log(Level.WARNING, "Cannot find Help Manual. Please try again.");
             }
         } catch (Exception e) {
             System.out.println("Error while loading files. Please try again.");
+            logger.severe("Error while loading Help Manual. Please try again.");
             e.printStackTrace();
         }
     }
