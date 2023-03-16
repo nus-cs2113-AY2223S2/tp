@@ -9,7 +9,7 @@ public class Parser {
 
     public String combineWords(String[] input, int startIndex){
         StringBuilder word = new StringBuilder(input[startIndex]);
-        for(int i = startIndex+1; i< input.length; i++) {
+        for(int i = startIndex+1; i< input.length-1; i++) {
             word.append(" ").append(input[i]);
         }
 
