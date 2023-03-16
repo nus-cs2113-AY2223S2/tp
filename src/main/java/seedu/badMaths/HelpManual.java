@@ -57,12 +57,7 @@ public class HelpManual {
                 }
                 bufferedReader.close();
                 read.close();
-
-//                // Add an assertion to check if the contents of the file match the expected contents
-//                String expectedContent = new String(Files.readAllBytes(Paths.get(filePath)));
-//                String actualContent = content.toString();
-//                assert actualContent.equals(expectedContent) : "Contents of file do not match expected contents.";
-
+                
                 // Log successful read to console and log file
                 logger.log(Level.INFO, "Successfully read Help Manual file.");
 
