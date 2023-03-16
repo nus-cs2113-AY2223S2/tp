@@ -1,7 +1,8 @@
 {
+  "deckName" : "lky deck",
   "cards": [
     {
-      "uuid": 0,
+      "uuid": "38271ef5-1d40-4570-9d6e-c8d12c17c853",
       "question": "why do other groups keep attackin ian",
       "answer": "he is not a dirty commie"
     }
