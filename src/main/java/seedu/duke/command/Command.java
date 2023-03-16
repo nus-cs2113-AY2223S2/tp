@@ -6,8 +6,10 @@ import seedu.duke.parser.Parser;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
+import seedu.duke.storage.Storage;
 import seedu.duke.ui.UI;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -48,7 +50,7 @@ public class Command {
      *
      * @param recipeList the current list of recipes to be modified or used.
      */
-    public void execute(RecipeList recipeList, UI ui) {
+    public void execute(RecipeList recipeList, UI ui) throws IOException {
 
         int recipeListIndex;
 
@@ -120,6 +122,10 @@ public class Command {
             break;
         case HELP:
             ui.showHelp();
+            break;
+        case SAVE:
+            ui.showSave();
+            Storage.writeSavedFile();
             break;
         case EXIT:
             ui.showExit();

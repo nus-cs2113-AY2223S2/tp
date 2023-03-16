@@ -55,4 +55,7 @@ public class IngredientList {
             System.out.println((i + 1) + ". " + list.get(i).getName());
         }
     }
+    public ArrayList<Ingredient> getList() {
+        return list;
+    }
 }

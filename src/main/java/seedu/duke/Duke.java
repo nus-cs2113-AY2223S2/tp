@@ -22,7 +22,7 @@ public class Duke {
     public Duke(String filePath) {
         Storage.setFilePath(filePath);
         try {
-            Storage.createSavedFile();
+            Storage.createDirectory();
         } catch (Exception e) {
             ui.showLoadingErrorMessage(e);
         } finally {

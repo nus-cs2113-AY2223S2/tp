@@ -60,6 +60,9 @@ public class Parser {
         case "exit":
             type = CommandType.EXIT;
             break;
+        case "save":
+            type = CommandType.SAVE;
+            break;
         default:
             type = CommandType.UNKNOWN;
         }

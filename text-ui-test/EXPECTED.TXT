@@ -1,6 +1,5 @@
 
 Directory for file saving created.
-Save file created.
 
 __________________________________________________________
 
@@ -67,7 +66,7 @@ __________________________________________________________
 __________________________________________________________
 
 Got it. I've added this recipe:
-  [Chinese] Bejing Duck
+  [Chinese] Beijing Duck
 Now you have 5 recipes in the list.
 
 __________________________________________________________
@@ -79,7 +78,7 @@ RECIPE LIST
 2. [Chinese] MaLaXiangGuo
 3. [Italian] Spaghetti
 4. [Italian] Carbonara
-5. [Chinese] Bejing Duck
+5. [Chinese] Beijing Duck
 
 __________________________________________________________
 __________________________________________________________
@@ -96,7 +95,7 @@ RECIPE LIST
 1. [Chinese] MaLaXiangGuo
 2. [Italian] Spaghetti
 3. [Italian] Carbonara
-4. [Chinese] Bejing Duck
+4. [Chinese] Beijing Duck
 
 __________________________________________________________
 __________________________________________________________
@@ -112,7 +111,7 @@ RECIPE LIST
 
 1. [Chinese] MaLaXiangGuo
 2. [Italian] Spaghetti
-3. [Chinese] Bejing Duck
+3. [Chinese] Beijing Duck
 
 __________________________________________________________
 __________________________________________________________
@@ -135,7 +134,7 @@ RECIPE LIST
 
 1. [Chinese] MaLaXiangGuo
 2. [Italian] Spaghetti
-3. [Chinese] Bejing Duck
+3. [Chinese] Beijing Duck
 4. [Chinese] XiaoLongBao
 5. [Chinese] Guilinggao
 
@@ -156,6 +155,18 @@ __________________________________________________________
 
 MATE! Your list is empty!
 
+__________________________________________________________
+__________________________________________________________
+
+Got it. I've added this recipe:
+  [Chinese] Guilinggao
+Now you have 1 recipes in the list.
+
+__________________________________________________________
+__________________________________________________________
+
+Recipe list saved!
+Guilinggao
 __________________________________________________________
 __________________________________________________________
 

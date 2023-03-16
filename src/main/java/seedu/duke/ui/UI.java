@@ -162,4 +162,7 @@ public class UI {
             System.out.println(RECIPE_VIEWING_DEFAULT_ERROR + e);
         }
     }
+    public void showSave() {
+        System.out.println(StringLib.RECIPE_SAVED);
+    }
 }

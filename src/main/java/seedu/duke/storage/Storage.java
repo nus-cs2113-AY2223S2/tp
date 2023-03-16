@@ -1,7 +1,14 @@
 package seedu.duke.storage;
 
+import seedu.duke.recipe.Ingredient;
+import seedu.duke.recipe.Recipe;
+import seedu.duke.recipe.RecipeList;
+import seedu.duke.ui.StringLib;
+
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
+
 
 /**
  * The <code>Storage</code> class contains various methods which involves
@@ -27,25 +34,38 @@ public class Storage {
     }
 
     /**
-     * Creates a new file and directory to store
+     * Creates a new directory to store
      * save file, if it does not already exist.
      *
      * @throws IOException if an I/O error has occurred.
      */
-    public static void createSavedFile() throws IOException {
-        File f = new File(filePath);
+    public static void createDirectory() throws IOException {
         File directory = new File("data");
         if (directory.mkdir()) {
-            System.out.println(DIRECTORY_CREATED);
+            System.out.println(DIRECTORY_CREATED + "\n");
         } else {
-            System.out.println(DIRECTORY_EXISTS);
+            System.out.println(DIRECTORY_EXISTS + "\n");
         }
-        if (f.createNewFile()) {
-            System.out.println(FILE_CREATED);
-        } else {
-            System.out.println(FILE_EXISTS);
+    }
+    public static void writeSavedFile() throws IOException {
+        File saveFile;
+        FileWriter saveWriter;
+        for (Recipe dish : RecipeList.getRecipeList()) {
+            saveFile = new File("data/" + dish.getName());
+            System.out.println(dish.getName());
+            saveWriter = new FileWriter("data/" + dish.getName() + ".txt");
+            saveWriter.write(dish.getName() + "\n");
+            saveWriter.write(dish.getTag() + "\n");
+            saveWriter.write(StringLib.INGREDIENT_LIST + "\n");
+            for (Ingredient ingredient : dish.getIngredientList().getList()) {
+                saveWriter.write( ingredient.getName() + "\n");
+            }
+            saveWriter.write(StringLib.STEPS + "\n");
+            for (String step : dish.getSteps()) {
+                saveWriter.write(step + "\n");
+            }
+            saveWriter.close();
         }
-        System.out.println();
     }
 
 }
