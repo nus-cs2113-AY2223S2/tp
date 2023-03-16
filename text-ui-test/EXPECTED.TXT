@@ -24,7 +24,7 @@
 |  Enter command: |  Here are the expenses you have made.
 |  1. $4.00 spent on lunch - 12pm
 |  2. $6.00 spent on dinner - 6pm
-|  Total: $10.0
+|  Total expenses: $10.0
 |
 |  -----------------------------------------------------------------------
 |
@@ -46,23 +46,23 @@
 |
 |  Enter command: |  Here are the expenses you have made.
 |  1. $6.00 spent on dinner - 11am
-|  Total: $6.0
+|  Total expenses: $6.0
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully added [$400.00 spent on salary - 12pm]
+|  Enter command: |  You have successfully added [$400.00 earned on salary - 12pm]
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully added [$600.00 spent on stocks - 6pm]
+|  Enter command: |  You have successfully added [$600.00 earned on stocks - 6pm]
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Here are the expenses you have made.
+|  Enter command: |  Here are the income you have made.
 |  1. $6.00 spent on dinner - 11am
-|  2. $400.00 spent on salary - 12pm
-|  3. $600.00 spent on stocks - 6pm
-|  Total: $1006.0
+|  2. $400.00 earned on salary - 12pm
+|  3. $600.00 earned on stocks - 6pm
+|  Total income: $1006.0
 |
 |  -----------------------------------------------------------------------
 |
@@ -82,10 +82,10 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Here are the expenses you have made.
+|  Enter command: |  Here are the income you have made.
 |  1. $700.00 spent on pay - 11am
-|  2. $600.00 spent on stocks - 6pm
-|  Total: $1300.0
+|  2. $600.00 earned on stocks - 6pm
+|  Total income: $1300.0
 |
 |  -----------------------------------------------------------------------
 |

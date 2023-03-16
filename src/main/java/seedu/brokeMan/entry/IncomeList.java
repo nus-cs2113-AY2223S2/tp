@@ -1,6 +1,8 @@
 package seedu.brokeMan.entry;
 
 
+import seedu.brokeMan.ui.Ui;
+
 import java.util.LinkedList;
 
 public class IncomeList extends EntryList{
@@ -27,6 +29,19 @@ public class IncomeList extends EntryList{
      */
     public static void listIncome() {
         listEntry();
+    }
+
+    public static void listEntry() {
+        //sortExpenses(); I think maybe no need to sort the list automatically without asking the user?
+        Ui.showToUser("Here are the income you have made.");
+        int counter = 1;
+        for (Entry entryLog : entryList) {
+            String message = String.format("%d. %s", counter, entryLog.toString());
+            Ui.showToUser(message);
+            counter++;
+        }
+        Ui.showToUser("Total income: $" + getTotalAmount());
+        Ui.showToUserWithLineBreak("");
     }
 
     /**
