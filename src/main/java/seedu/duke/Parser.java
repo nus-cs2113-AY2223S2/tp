@@ -80,7 +80,8 @@ public class Parser {
         if(details.length <= 1) {
             throw new NPExceptions("Event description and start day of your event are strictly required!");
         }
-
+        boolean[] duplicity = new boolean[5];  //to detect duplicate flags in command
+        Arrays.fill(duplicity, false);
         String[] information = new String[5];
         Arrays.fill(information, "");
         for (int i = 1; i < details.length; i++){
@@ -88,19 +89,44 @@ public class Parser {
             String change = details[i].substring(2).trim();
             switch(field) {
             case ("e"):
-                information[0] = change;
+                if (!duplicity[0]) {
+                    information[0] = change;
+                    duplicity[0] = true;
+                } else{
+                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                }
                 break;
             case ("st"):
-                information[1] = change;
+                if (!duplicity[1]) {
+                    information[1] = change;
+                    duplicity[1] = true;
+                } else{
+                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                }
                 break;
             case ("sd"):
-                information[2] = change;
+                if (!duplicity[2]){
+                    information[2] = change;
+                    duplicity[2] = true;
+                } else{
+                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                }
                 break;
             case ("et"):
-                information[3] = change;
+                if (!duplicity[3]) {
+                    information[3] = change;
+                    duplicity[3] = true;
+                } else{
+                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                }
                 break;
             case ("ed"):
-                information[4] = change;
+                if (!duplicity[4]) {
+                    information[4] = change;
+                    duplicity[4] = true;
+                } else{
+                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                }
                 break;
             default:
                 break;
