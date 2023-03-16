@@ -20,8 +20,6 @@ import java.util.regex.Pattern;
 public class Parser {
 
 
-    private static final int COMMAND_INDEX = 0;
-    private static final int ARGUMENT_INDEX = 1;
     private static final int EXERCISE_NAME_INDEX = 0;
     private static final int WEIGHT_INDEX = 1;
     private static final int REPS_PER_SET_INDEX = 2;
