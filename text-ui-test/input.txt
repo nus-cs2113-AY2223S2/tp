@@ -30,6 +30,7 @@ date 2025-01-01
 date 2023-05-03
 addmod software engineering
 addmod cs2113
+addmod cs2113
 addmod cs2040c
 listmod
 delmod 2
