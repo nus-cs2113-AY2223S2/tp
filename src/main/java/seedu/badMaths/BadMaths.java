@@ -24,7 +24,6 @@ public class BadMaths {
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String userInput = scanner.nextLine();
-            assert userInput.contains(".") : "Wrong input format, must include .";
 
             Parser parser = new Parser(userInput);
             String command = parser.getCommand();
