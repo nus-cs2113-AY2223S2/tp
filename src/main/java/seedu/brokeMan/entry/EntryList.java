@@ -89,7 +89,7 @@ public abstract class EntryList {
                 entryBeingEdited.editInfo(newEntry);
                 break;
             case "time":
-                entryBeingEdited.editTime(newEntry);
+                entryBeingEdited.editTime(StringToTime.convertStringToTime(newEntry));
                 break;
             default:
                 Ui.showToUserWithLineBreak("Invalid type parameter!", "");

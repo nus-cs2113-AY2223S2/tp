@@ -1,14 +1,17 @@
 package seedu.brokeMan.entry;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 public abstract class Entry {
     protected String info;
     protected double amount;
-    protected String time;
+    protected LocalDateTime time;
 
     public Entry(double amount, String info, String time) {
         this.amount = amount;
         this.info = info;
-        this.time = time;
+        this.time = StringToTime.convertStringToTime(time);
     }
 
     /**
@@ -34,7 +37,7 @@ public abstract class Entry {
      *
      * @param newTime New desired time of the expense/income
      */
-    public void editTime(String newTime) {
+    public void editTime(LocalDateTime newTime) {
         this.time = newTime;
     }
 
@@ -42,7 +45,7 @@ public abstract class Entry {
         return this.amount;
     }
 
-    public String getTime() { return this.time; }
+    public String getTime() { return this.time.toString(); }
 
     public abstract String toString();
 }
