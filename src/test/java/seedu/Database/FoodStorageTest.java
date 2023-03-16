@@ -18,17 +18,17 @@ public class FoodStorageTest {
         private final FoodStorage foodStorage = new FoodStorage(FILE_PATH);
 
         @Test
-        public void getFoodListSize_EmptyInput_ExpectSizeGreaterThanZero() {
+        public void getFoodListSize_emptyInput_expectSizeGreaterThanZero() {
             assertFalse(foodStorage.getFoodsCount() == 0, "Food Storage is not empty :)");
         }
 
         @Test
-        public void getFood_EmptyInput_ExpectNoException() {
+        public void getFood_emptyInput_expectNoException() {
             assertDoesNotThrow(() -> foodStorage.getFoodById(0));
         }
 
         @Test
-        public void searchFood_StringInput_ExpectReturnedSizeGreaterThanZero() {
+        public void searchFood_stringInput_expectReturnedSizeGreaterThanZero() {
             List<Food> foods = assertDoesNotThrow(() -> foodStorage.getFoodsByName("chicken"));
             assertFalse(foods.size() == 0, "Filter returned values :)");
         }

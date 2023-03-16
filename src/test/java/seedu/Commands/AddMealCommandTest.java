@@ -18,7 +18,7 @@ class AddMealCommandTest {
     private ArrayList<Food> foodList = new ArrayList<>();
 
     @Test
-    void addMeal_SingleMealAdded_ExpectListSizeIncrease() throws InvalidArgumentsException {
+    void addMeal_singleMealAdded_expectListSizeIncrease() throws InvalidArgumentsException {
         int oldSize = mealStorage.getMealCount();
         foodList.add(foodStorage.getFoodById(2));
         String date = "1/1/2023";
@@ -27,7 +27,7 @@ class AddMealCommandTest {
         assertEquals(oldSize + 1, newSize);
     }
     @Test
-    void parseInput_EmptyInput_ExpectException() {
+    void parseInput_emptyInput_expectException() {
 
         String commandDescriptor = "";
         assertThrows(NumberFormatException.class,
