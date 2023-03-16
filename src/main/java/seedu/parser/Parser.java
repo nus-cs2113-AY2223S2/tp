@@ -1,8 +1,15 @@
 package seedu.parser;
 
-import seedu.commands.*;
-import seedu.workout.Exercise;
+import seedu.commands.ListCommand;
+import seedu.commands.ExitCommand;
+import seedu.commands.EndCommand;
+import seedu.commands.IncorrectCommand;
+import seedu.commands.StartCommand;
+import seedu.commands.AddCommand;
+import seedu.commands.DeleteCommand;
+import seedu.commands.Command;
 
+import seedu.workout.Exercise;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
