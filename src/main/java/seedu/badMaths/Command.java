@@ -8,7 +8,8 @@
 
 package seedu.badMaths;
 
-import seedu.badMaths.trigo.TrigoGraph;
+import seedu.badMaths.Trigo.TrigoGraph;
+import seedu.badMaths.UI.Ui;
 
 public class Command {
 
@@ -25,7 +26,11 @@ public class Command {
     }
 
     public void setCommand(String command) {
-        this.command = command;
+        try {
+            this.command = command;
+        } catch (IllegalArgumentException e) {
+            Ui.printIncorrectFormatEntered();
+        }
     }
 
     public void setToDo(String toDo){
