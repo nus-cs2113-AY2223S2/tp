@@ -55,24 +55,51 @@ public class Parser {
         return recipeToEdit;
     }
 
-    public Recipe parseDeleteRecipe(String[] input, RecipeList recipeList) {
+    public String parseDeleteRecipe(String[] input, RecipeList recipeList) {
         // user inputted recipe name
         if (input[1].contains("r/")) {
             // skip over /r in recipe name
-            String recipeName = input[1].substring(2);
-            int recipeIndex = 1;
-            for (Recipe recipe : recipeList) {
-                // find index of recipe we want to delete
-                if (recipe.getName().equals(recipeName)) {
-                    break;
+            String recipeToDelete = input[1].substring(2);
+            if (recipeToDelete.equals("all")) {
+                String allRecipes = "";
+                System.out.println("recipeList size: " + recipeList.size());
+                int index = 0;
+                while (recipeList.size() != 0) {
+                    allRecipes += recipeList.deleteRecipe(index).getName() + ", ";
                 }
-                recipeIndex++;
+                allRecipes = allRecipes.substring(0, allRecipes.length() - 2);
+                return allRecipes;
+            } else {
+                int recipeIndex = 0;
+                for (Recipe recipe : recipeList) {
+                    // find index of recipe we want to delete
+                    if (recipe.getName().equals(recipeToDelete)) {
+                        break;
+                    }
+                    recipeIndex++;
+                }
+                return recipeList.deleteRecipe(recipeIndex).getName();
             }
-            return recipeList.deleteRecipe(recipeIndex);
             // user inputted index of recipe in list
         } else {
-            int recipeIndex = Integer.parseInt(input[1]);
-            return recipeList.deleteRecipe(recipeIndex);
+            // deleting a range of recipes
+            if (input[1].length() >= 3) {
+                String rangeRecipes = "";
+                int startIndex = Integer.parseInt(input[1].charAt(0) + "");
+                int endIndex = Integer.parseInt(input[1].charAt(2) + "");
+                startIndex -= 1;
+                endIndex -= 1;
+                int newSize = recipeList.size() - ((endIndex - startIndex) + 1);
+                while (recipeList.size() != newSize) {
+                    rangeRecipes += recipeList.deleteRecipe(startIndex).getName() + ", ";
+                }
+                rangeRecipes = rangeRecipes.substring(0, rangeRecipes.length() - 2);
+                return rangeRecipes;
+            } else {
+                int recipeIndex = Integer.parseInt(input[1]);
+                // need to subtract 1 since list is 1-based
+                return recipeList.deleteRecipe(recipeIndex - 1).getName();
+            }
         }
     }
 
