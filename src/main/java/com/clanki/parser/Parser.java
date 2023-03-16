@@ -34,6 +34,7 @@ public class Parser {
             EmptyFlashcardAnswerException {
         ParsedInput parsedInput = new ParsedInput(userInput);
         String command = parsedInput.getCommand();
+        assert !command.isEmpty() : "The command string must not be empty";
         switch (command) {
         case "add":
             return getAddCommand(parsedInput);
@@ -57,7 +58,7 @@ public class Parser {
      * @param parsedInput The input collected by Ui from the user, after being
      *                    parsed with the ParsedInput class.
      * @return An AddCommand with the question and answer text extracted from user
-     *         input.
+     * input.
      * @throws InvalidAddFlashcardInputException If the start indicators cannot be
      *                                           found.
      * @throws EmptyFlashcardQuestionException   If the string is empty after
