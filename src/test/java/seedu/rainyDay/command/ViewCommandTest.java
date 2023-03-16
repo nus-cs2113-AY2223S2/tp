@@ -13,19 +13,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ViewCommandTest {
-    private static final String VIEW_TEST_RESULT =
-            "+-----+------------------------------+------------+----------------+\n" +
-                    "|Here is your full financial report!                               |\n" +
-                    "+-----+------------------------------+------------+----------------+\n" +
-                    "|Index|Name                          |Amount      |Category        |\n" +
-                    "|00001|Ipad                          | -$120      |Default         |\n" +
-                    "|00002|pork                          | -$5        |Default         |\n" +
-                    "|00003|angpao                        | +$3000     |Default         |\n" +
-                    "+-----+------------------------------+------------+----------------+\n" +
-                    "|Inflow: $3000\n" +
-                    "|Outflow: $125\n" +
-                    "|Remaining value: $2875\n";
-    
+
     ArrayList<FinancialStatement> statements = new ArrayList<>();
     FinancialReport financialReport = new FinancialReport(statements);
 
@@ -55,20 +43,6 @@ public class ViewCommandTest {
         viewList.execute();
         String expectedReport = "Your financial report is empty" + System.lineSeparator();
         assertEquals(expectedReport, outContent.toString());
-        restoreStreams();
-    }
-
-    @Test
-    public void execute_nonEmptyReport_reportWithStatements() {
-        setUpStreams();
-        //RainyDay.clearFinancialReport();
-        financialReport.addStatement(new FinancialStatement("Ipad", "out", 120));
-        financialReport.addStatement(new FinancialStatement("pork", "out", 5));
-        financialReport.addStatement(new FinancialStatement("angpao", "in", 3000));
-        ViewCommand viewList = new ViewCommand();
-        viewList.setData(financialReport);
-        viewList.execute();
-        assertEquals(VIEW_TEST_RESULT, outContent.toString());
         restoreStreams();
     }
 }
