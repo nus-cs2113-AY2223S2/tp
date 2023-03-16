@@ -17,8 +17,9 @@ Hey there! Thanks for choosing Meal Companion, your one-stop solution to handlin
         3. [Recipe Details](#recipe-details)
         4. [Possible Recipes](#possible-recipes)
     3. [Saving Data](#saving-data)
-    4. [Help](#help)
-    5. [Command List](#command-list)
+        1. [Transferring Saved Data to other devices](#transferring-saved-data-to-other-devices) 
+    5. [Help](#help)
+    6. [Command List](#command-list)
 3. [Conclusion](#conclusion)
 
 # Getting Started
@@ -35,6 +36,7 @@ Click on `mealcompanion.jar` to automatically download the file. Place the file 
 ![startup1.png](images/startup1.png)
 6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
 
+###### [Back to table of contents](#table-of-contents)
 
 # Features
 This section will focus on some of the key features of Meal Companion and explain their usage.
@@ -64,6 +66,8 @@ If you would like to search for a specific ingredient that Meal Companion recogn
  Omitting the keyword will return a list of all valid ingredients.
  ![search2.png](images/search2.png)
  
+ ###### [Back to table of contents](#table-of-contents)
+ 
  ## Recipes
  This segment will go into detail about the recipe features that Meal Companion contains, and the usage of these features.
  
@@ -92,14 +96,39 @@ Meal Companion includes the functionality to suggest recipes based on ingredient
 
 ![recipepossible.png](images/recipepossible.png)
 
-## FAQ
+###### [Back to table of contents](#table-of-contents)
 
-**Q**: How do I transfer my data to another computer? 
+## Saving Data
+Meal Companion automatically saves the ingredients you add to a text file named `ingredients.txt`. This text file can be accessed from the same folder where you downloaded the original `mealcompanion.jar` file. 
+![save.png](images/save.png)
 
-**A**: {your answer here}
+### Transferring Saved Data to Other Devices
+If you would like to access your saved ingredients list on a new instance of Meal Companion on a different device, it is as simple as copying and pasting the `ingredients.txt` text file to the new device. As long as it is saved in the same folder, Meal Companion will be able to detect it and utilize the existing data. 
 
-## Command Summary
+###### [Back to table of contents](#table-of-contents)
 
-{Give a 'cheat sheet' of commands here}
+## Help
+If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use.
+![help.png](images/help.png)
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+###### [Back to table of contents](#table-of-contents)
+
+## Command List
+Please see the below table for the list of available commands.
+
+| Feature | Command | Examples |
+| ------- | ------- | -------- |
+| Add ingredients to your list | `add <ingredient> /qty <quantity>` | `add apple /qty 3` |
+| Remove ingredients from your list | `remove <ingredient> /qty <quantity>` | `remove ground chicken /qty 100` |
+| List all stored ingredients | `ingredients list` | `ingredients list` |
+| Search for a valid ingredient | `ingredients search <keyword>` | `ingredients search salt` |
+| List all stored recipes | `recipe all` | `recipe all` |
+| List details of a specific recipe | `recipe <index of recipe>` | `recipe 6` (recipe for Hainanese Chicken Rice) |
+| List recipes that can be made with current list of stored ingredients | `recipe possible` | `recipe possible` |
+
+###### [Back to table of contents](#table-of-contents)
+
+# Conclusion
+Congratulations! You have reached the end of this user guide, which means you are ready to make full use of Meal Companion! Of course, you may refer to this guide at any time, and if you have any further questions, feel free to reach out to the Meal Companion team at any of our contact links at the top of the page! Have a good time, and we hope you enjoy using Meal Companion!
+
+###### [Back to top](#user-guide)
