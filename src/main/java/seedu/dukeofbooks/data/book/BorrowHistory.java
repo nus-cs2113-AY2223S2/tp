@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public class BorrowHistory {
 
-    private static Logger logger = Logger.getLogger("checkHistoryLogger");
+    // private static Logger logger = Logger.getLogger("checkHistoryLogger");
 
     /**
      * Prints previously borrowed books
@@ -18,7 +18,7 @@ public class BorrowHistory {
         ArrayList<Loan> previousLoans = person.getBorrowedItems();
         String output;
 
-        logger.log(Level.INFO, "Processing checkHistory class...");
+        // logger.log(Level.INFO, "Processing checkHistory class...");
         if (previousLoans.size() == 0) {
             output = "You have not borrowed any book yet!";
         } else {
@@ -27,16 +27,18 @@ public class BorrowHistory {
             for (Loan loan : previousLoans) {
                 BorrowableItem borrowedItem = loan.getBorrowedItem();
                 if (borrowedItem == null) {
-                    logger.log(Level.WARNING, "Error with borrowed item.");
+                    // logger.log(Level.WARNING, "Error with borrowed item.");
                 }
                 output = output + count + ". " + borrowedItem.toString();
+                output = output + " Status: " +
+                        (borrowedItem.isBorrowed ? "borrowed" : "returned");
                 if (count != previousLoans.size()) {
                     output += '\n';
                 }
                 count++;
             }
         }
-        logger.log(Level.INFO, "Finished processing checkHistory class!");
+        // logger.log(Level.INFO, "Finished processing checkHistory class!");
         return output;
     }
 }

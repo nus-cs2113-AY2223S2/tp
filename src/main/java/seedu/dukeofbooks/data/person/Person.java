@@ -12,7 +12,7 @@ public class Person {
     private PersonName name;
     private Phone phone;
 
-    private ArrayList<Loan> borrowedItems = new ArrayList<>();
+    private final ArrayList<Loan> borrowedItems = new ArrayList<>();
 
     /**
      * Assumption: Every field must be present and not null.
