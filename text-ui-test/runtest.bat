@@ -1,6 +1,6 @@
 @echo off
-set local enable extensions
-push d %~dp0
+setlocal enableextensions
+pushd %~dp0
 
 cd ..
 call gradlew clean shadowJar
@@ -9,10 +9,10 @@ cd build\libs
 for /f "tokens=*" %%a in (
     'dir /b *.jar'
 ) do (
-    set jar loc=%%a
+    set jarloc=%%a
 )
 
-java -jar %jar loc% < ..\..\text-ui-test\input.txt > ..\..\text-ui-test\ACTUAL.TXT
+java -jar %jarloc% < ..\..\text-ui-test\input.txt > ..\..\text-ui-test\ACTUAL.TXT
 
 cd ..\..\text-ui-test
 

@@ -5,16 +5,9 @@ import java.util.Scanner;
 
 public class Parser {
 
-    private static final Ui ui = new Ui();
-
-    public String[] parseCommand(String command) {
-        return command.split(" ");
-    }
-
     public Recipe parseAddRecipe(String[] input, RecipeList recipeList) {
-
         StringBuilder recipeName = new StringBuilder(input[2]);
-        for(int i = 3; i < input.length; i++){
+        for (int i = 3; i < input.length; i++) {
             recipeName.append(" ").append(input[i]);
         }
         HashMap<String, Integer> ingredients = new HashMap<>();
@@ -27,19 +20,15 @@ public class Parser {
             } else {
                 String[] command = line.trim().split(" ");
                 StringBuilder iName = new StringBuilder(command[0]);
-                for(int i=1; i < command.length-1; i++){
+                for (int i = 1; i < command.length - 1; i++) {
                     iName.append(" ").append(command[i]);
                 }
-                ingredients.put(iName.toString(), Integer.parseInt(command[command.length-1]));
+                ingredients.put(iName.toString(), Integer.parseInt(command[command.length - 1]));
             }
         }
         Recipe newRecipe = new Recipe(recipeName.toString(), ingredients);
         recipeList.addRecipe(newRecipe);
         return newRecipe;
-    }
-
-    public Recipe parseAddRecipe(String[] input) {
-        return new Recipe("test", null);
     }
 
     public Recipe parseEditRecipe(String[] input, RecipeList recipeList) {
@@ -87,24 +76,6 @@ public class Parser {
         }
     }
 
-    public void parseHelpUser(){
-        ui.printSeparator();
-        System.out.println("These are the operations you can do. Please follow the proper input" +
-                            " formats while typing.");
-        ui.printSeparator();
-        System.out.println("1. Add Recipe: add /r {recipe name}");
-        System.out.println("2. View Recipe: view {index number} or view /r {recipe name}");
-        System.out.println("3. Edit Recipe: edit {index number} or view /r {recipe name}");
-        System.out.println("4. Delete Recipe: delete {index number} or view /r {recipe name}");
-        System.out.println("5. List All Recipes: list");
-        System.out.println("6. Exit: bye");
-        ui.printSeparator();
-    }
-
-    public String parsePrepareRecipe(String[] input) {
-        return "test";
-    }
-
     public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList) {
         String[] filters;
         if (inputs.length == 1) {
@@ -120,8 +91,39 @@ public class Parser {
     }
 
     public Recipe parseViewRecipe(String[] command, RecipeList recipes) {
+        assert command[0].equals("view");
         int recipeIndex = Integer.parseInt(command[1]) - 1;
         return recipes.get(recipeIndex);
+    }
+
+    public WeeklyPlan parseWeeklyPlan(String[] command, RecipeList recipes) {
+        if (!command[1].equals("/add") && !command[1].equals("/delete")) {
+            throw new IllegalArgumentException(
+                    "Please indicate if you would want to add or delete the recipe from your weekly "
+                            + "plan.");
+        }
+
+        int numDays = 0;
+        if (command[1].equals("/add")) {
+            numDays = Integer.parseInt(command[command.length - 1]);
+            if (numDays < 1) {
+                throw new NumberFormatException();
+            }
+        }
+
+        int nameLastIndex = (command[1].equals("/add")) ? command.length - 1 : command.length;
+        WeeklyPlan thisWeekPlan = new WeeklyPlan();
+        StringBuilder recipeName = new StringBuilder(command[2]);
+        for (int i = 3; i < nameLastIndex; i++) {
+            recipeName.append(" ").append(command[i]);
+        }
+
+        if (recipes.findByName(recipeName.toString().trim()) != null) {
+            thisWeekPlan.put(recipeName.toString(), numDays);
+            return thisWeekPlan;
+        } else {
+            throw new IllegalArgumentException("Please indicate a valid recipe name.");
+        }
     }
 
     public RecipeList parseLoadDatabase(String input) {
