@@ -1,8 +1,8 @@
 package seedu.moneymind.command;
 
-import seedu.moneymind.Category;
-import seedu.moneymind.CategoryList;
-import seedu.moneymind.Ui;
+import seedu.moneymind.category.Category;
+import seedu.moneymind.category.CategoryList;
+import seedu.moneymind.ui.Ui;
 
 /**
  * Represents the command to delete an event or a category.
@@ -54,12 +54,15 @@ public class DeleteCommand implements Command {
         }
         int categoryIndex = CategoryCommand.categoryMap.get(categoryName);
         Category category = CategoryList.categories.get(categoryIndex);
-        for (int i = 0; i < category.getEvents().size(); i++) {
-            if (category.getEvents().get(i).getDescription().equals(eventName)) {
-                category.getEvents().remove(i);
+        int eventIndex = 0;
+        while (eventIndex < category.getEvents().size()) {
+            if (category.getEvents().get(eventIndex).getDescription().equals(eventName)) {
+                category.getEvents().remove(eventIndex);
                 System.out.println(EVENT_DELETION_MESSAGE + eventName);
                 isEventDeleted = true;
+                --eventIndex;
             }
+            ++eventIndex;
         }
         if (!isEventDeleted) {
             System.out.println(NON_EXISTENT_EVENT);
@@ -77,6 +80,12 @@ public class DeleteCommand implements Command {
         int categoryIndex = CategoryCommand.categoryMap.get(categoryName);
         CategoryList.categories.remove(categoryIndex);
         CategoryCommand.categoryMap.remove(categoryName);
+        // loop through the hashmap and update the index of the categories
+        for (String key : CategoryCommand.categoryMap.keySet()) {
+            if (CategoryCommand.categoryMap.get(key) > categoryIndex) {
+                CategoryCommand.categoryMap.put(key, CategoryCommand.categoryMap.get(key) - 1);
+            }
+        }
         System.out.println(CATEGORY_DELETION_MESSAGE + categoryName);
     }
 

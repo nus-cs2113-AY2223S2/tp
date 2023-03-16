@@ -8,12 +8,11 @@ import java.util.logging.Logger;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import seedu.moneymind.Category;
-import seedu.moneymind.CategoryList;
-import seedu.moneymind.StringToCategory;
+import seedu.moneymind.category.Category;
+import seedu.moneymind.category.CategoryList;
 
-import static seedu.moneymind.Strings.STORAGE_CATEGORY_MAP;
-import static seedu.moneymind.Strings.NEW_LINE;
+import static seedu.moneymind.string.Strings.STORAGE_CATEGORY_MAP;
+import static seedu.moneymind.string.Strings.NEW_LINE;
 
 /**
  * Storage class to save and load data from a file

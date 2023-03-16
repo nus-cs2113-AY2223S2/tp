@@ -1,6 +1,7 @@
 package seedu.moneymind;
 
 import org.junit.jupiter.api.Test;
+import seedu.moneymind.category.CategoryList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

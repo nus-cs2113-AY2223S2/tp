@@ -2,29 +2,31 @@ package seedu.moneymind.command;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import seedu.moneymind.NegativeNumberException;
+
+import seedu.moneymind.exceptions.InvalidCommandException;
+import seedu.moneymind.exceptions.NegativeNumberException;
 
 
-import static seedu.moneymind.Strings.WHITE_SPACE;
-import static seedu.moneymind.Strings.BYE;
-import static seedu.moneymind.Strings.VIEW;
-import static seedu.moneymind.Strings.DELETE;
-import static seedu.moneymind.Strings.EVENT;
-import static seedu.moneymind.Strings.CATEGORY;
-import static seedu.moneymind.Strings.INVALID_INPUT;
-import static seedu.moneymind.Strings.DELETE_FORMAT;
-import static seedu.moneymind.Strings.REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY;
-import static seedu.moneymind.Strings.SUBTLE_BUG_MESSAGE;
-import static seedu.moneymind.Strings.EVENT_REGEX;
-import static seedu.moneymind.Strings.EVENT_FORMAT;
-import static seedu.moneymind.Strings.EVENT_EMPTY;
-import static seedu.moneymind.Strings.REMINDING_MESSAGE_ABOUT_GIVING_BUDGET_A_NUMBER;
-import static seedu.moneymind.Strings.CATEGORY_EMPTY;
-import static seedu.moneymind.Strings.NULL_INPUT_ASSERTION;
-import static seedu.moneymind.Strings.NULL_DESCRIPTION;
-import static seedu.moneymind.Strings.DELETE_REGEX;
-import static seedu.moneymind.Strings.EMPTY_DELETION;
-import static seedu.moneymind.Strings.REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER;
+import static seedu.moneymind.string.Strings.WHITE_SPACE;
+import static seedu.moneymind.string.Strings.BYE;
+import static seedu.moneymind.string.Strings.HELP;
+import static seedu.moneymind.string.Strings.VIEW;
+import static seedu.moneymind.string.Strings.DELETE;
+import static seedu.moneymind.string.Strings.EVENT;
+import static seedu.moneymind.string.Strings.CATEGORY;
+import static seedu.moneymind.string.Strings.INVALID_INPUT;
+import static seedu.moneymind.string.Strings.DELETE_FORMAT;
+import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY;
+import static seedu.moneymind.string.Strings.SUBTLE_BUG_MESSAGE;
+import static seedu.moneymind.string.Strings.EVENT_REGEX;
+import static seedu.moneymind.string.Strings.EVENT_FORMAT;
+import static seedu.moneymind.string.Strings.EVENT_EMPTY;
+import static seedu.moneymind.string.Strings.CATEGORY_EMPTY;
+import static seedu.moneymind.string.Strings.NULL_INPUT_ASSERTION;
+import static seedu.moneymind.string.Strings.NULL_DESCRIPTION;
+import static seedu.moneymind.string.Strings.DELETE_REGEX;
+import static seedu.moneymind.string.Strings.EMPTY_DELETION;
+import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER;
 
 /**
  * A class to parse the user input.
@@ -41,7 +43,9 @@ public class Parser {
         assert separatedKeywordAndDescription != null : NULL_DESCRIPTION;
         switch (keyword) {
         case BYE:
-            return createByeCommand();
+            return createByeCommand(separatedKeywordAndDescription);
+        case HELP:
+            return createHelpCommand(separatedKeywordAndDescription);
         case VIEW:
             return createViewCommand(separatedKeywordAndDescription);
         case DELETE:
@@ -55,8 +59,26 @@ public class Parser {
         }
     }
 
-    private Command createByeCommand() {
-        return new ByeCommand();
+    private Command createByeCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
+        try {
+            if (separatedKeywordAndDescription.length > 1) {
+                throw new InvalidCommandException("");
+            }
+            return new ByeCommand();
+        } catch (InvalidCommandException error) {
+            throw new InvalidCommandException("Bye command should not have any description");
+        }
+    }
+
+    private Command createHelpCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
+        try {
+            if (separatedKeywordAndDescription.length > 1) {
+                throw new InvalidCommandException("");
+            }
+            return new HelpCommand();
+        } catch (InvalidCommandException error) {
+            throw new InvalidCommandException("Help command should not have any description");
+        }
     }
 
     private Command createViewCommand(String[] separatedKeywordAndDescription) {
@@ -78,6 +100,8 @@ public class Parser {
             String eventName = matcher.group(2);
             if (eventName == null) {
                 return new DeleteCommand(categoryName);
+            } else if (eventName.isEmpty()) {
+                throw new InvalidCommandException(DELETE_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
             }
             return new DeleteCommand(categoryName, eventName);
         } else {
@@ -96,14 +120,14 @@ public class Parser {
                 checkNegativeBudgetAndExpense(Integer.parseInt(budgetNumber), Integer.parseInt(expenseNumber));
                 return new EventCommand(eventName, Integer.parseInt(budgetNumber), Integer.parseInt(expenseNumber));
             } else {
-                throw new InvalidCommandException(EVENT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
+                throw new InvalidCommandException("");
             }
         } catch (IndexOutOfBoundsException error) {
             throw new InvalidCommandException(EVENT_EMPTY);
-        } catch (NumberFormatException error) {
-            throw new InvalidCommandException(REMINDING_MESSAGE_ABOUT_GIVING_BUDGET_A_NUMBER);
-        } catch (NegativeNumberException error) {
+        }  catch (NegativeNumberException error) {
             throw new InvalidCommandException(REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER);
+        } catch (InvalidCommandException error) {
+            throw new InvalidCommandException(EVENT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
         } catch (Exception error) {
             throw new InvalidCommandException(SUBTLE_BUG_MESSAGE);
         }

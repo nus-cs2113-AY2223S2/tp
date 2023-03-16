@@ -1,4 +1,4 @@
-package seedu.moneymind;
+package seedu.moneymind.exceptions;
 
 /**
  * Throws exception when the user input a negative number.

@@ -1,4 +1,4 @@
-package seedu.moneymind;
+package seedu.moneymind.category;
 
 import java.util.ArrayList;
 
