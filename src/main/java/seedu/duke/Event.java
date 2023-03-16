@@ -27,7 +27,7 @@ public class Event {
         this.startTime = start;
         this.hasEndTime = false;
         this.hasStartTime = hasSt;
-        this.hasEndTime = false;
+        this.hasEndInfo = false;
     }
 
     public String getDescription() {
@@ -64,5 +64,28 @@ public class Event {
 
     public String toString() {
         return "[E] " + getDescription() + " (" + getTime() + ")";
+    }
+
+    public void changeTimeInfo(LocalDateTime start, LocalDateTime end, boolean hasSt, boolean hasEd) {
+        this.startTime = start;
+        this.endTime = end;
+        this.hasEndInfo = true;
+        this.hasStartTime = hasSt;
+        this.hasEndTime = hasEd;
+    }
+
+    public void changeTimeInfo(LocalDateTime start, boolean hasSt) {
+        this.startTime = start;
+        this.hasEndTime = false;
+        this.hasStartTime = hasSt;
+        this.hasEndInfo = false;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
 }

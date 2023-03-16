@@ -19,3 +19,4 @@ text-ui-test/EXPECTED-UNIX.TXT
 /src/main/java/seedu/duke/*.class
 
 .gitignore
+save.json

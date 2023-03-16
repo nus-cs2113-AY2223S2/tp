@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import seedu.duke.EventList;
+import seedu.duke.NPExceptions;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,7 +24,7 @@ class StorageTest {
     }
     @Test
     @Order(2)
-    public void saveEvents(){ //check that storage class saves a file
+    public void saveEvents() throws NPExceptions{ //check that storage class saves a file
         EventList testList = new EventList();
         testList.addEvent("testing", "10:00", "2023/03/20", "10:00", "2023/03/21");
         testList.addEvent("testing2","03:24", "2023/04/01", "08:50", "2023/03/23");
@@ -35,7 +36,7 @@ class StorageTest {
 
     @Test
     @Order(3)
-    public void loadEvents() throws FileNotFoundException {
+    public void loadEvents() throws FileNotFoundException, NPExceptions {
         //checks that storage EventList from deserialized save.json matches original EventList data
         EventList original = new EventList();
         original.addEvent("testing", "10:00", "2023/03/20",
@@ -56,7 +57,7 @@ class StorageTest {
     }
     @Test
     @Order(4)
-    public void updateEvents(){ //Check that data can be updated and matches what was updated.
+    public void updateEvents() throws NPExceptions{ //Check that data can be updated and matches what was updated.
         EventList original = new EventList();
         original.addEvent("testing", "10:00", "2023/03/20",
                 "10:00", "2023/03/21");
