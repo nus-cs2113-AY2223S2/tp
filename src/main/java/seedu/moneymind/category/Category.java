@@ -1,9 +1,12 @@
-package seedu.moneymind;
+package seedu.moneymind.category;
+
+import seedu.moneymind.event.Event;
 
 import java.util.ArrayList;
+import static seedu.moneymind.string.Strings.NO_EVENTS_IN_THIS_CATEGORY_MESSAGE;
 
 public class Category {
-    ArrayList<Event> events = new ArrayList<>();
+    public ArrayList<Event> events = new ArrayList<>();
 
     private String name;
 
@@ -45,6 +48,10 @@ public class Category {
      * Gets the list of events.
      */
     public void viewEventList() {
+        if (events.size() == 0) {
+            System.out.println(NO_EVENTS_IN_THIS_CATEGORY_MESSAGE);
+            return;
+        }
         for (int i = 0; i < events.size(); i++) {
             System.out.println(i + 1 + ". " + events.get(i).toString());
         }

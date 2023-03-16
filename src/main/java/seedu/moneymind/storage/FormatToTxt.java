@@ -2,8 +2,7 @@ package seedu.moneymind.storage;
 
 import java.util.ArrayList;
 
-import seedu.moneymind.Category;
-import seedu.moneymind.CategoryToString;
+import seedu.moneymind.category.Category;
 
 /**
  * Converts an ArrayList of Category objects to a String.
