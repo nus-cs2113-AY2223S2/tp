@@ -142,7 +142,7 @@ public class EventList {
     public int searchTaskIndex(String description) {
         int index = 0;
         for(Event cur: taskList) {
-            if(cur.getDescription().equals(description)) {
+            if(cur.getDescription().indexOf(description) != -1) {
                 return index;
             }
             index++;
