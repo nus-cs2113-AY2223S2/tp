@@ -21,23 +21,15 @@ public class Expenses extends EntryList{
      * lists out expenses in the list
      */
     public static void listExpense() {
-        listEntry();
-    }
-
-    public static void listEntry() {
-        //sortExpenses(); I think maybe no need to sort the list automatically without asking the user?
         Ui.showToUser("Here are the expenses you have made.");
-        int counter = 1;
-        for (Entry entryLog : expenseList) {
-            String message = String.format("%d. %s", counter, entryLog.toString());
-            Ui.showToUser(message);
-            counter++;
-        }
+        listEntry(expenseList);
         Ui.showToUser("Total expenses: $" + getTotalAmount(expenseList));
         Ui.showToUserWithLineBreak("");
     }
 
-
+    public static double getTotalExpense() {
+        return getTotalAmount(expenseList);
+    }
 
     /**
      * deletes specific expense in the list

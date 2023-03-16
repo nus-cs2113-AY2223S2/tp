@@ -12,8 +12,13 @@ import seedu.brokeMan.command.HelpCommand;
 import seedu.brokeMan.command.InvalidCommand;
 import seedu.brokeMan.command.ListExpenseCommand;
 import seedu.brokeMan.command.ListIncomeCommand;
+import seedu.brokeMan.command.SetBudgetCommand;
+import seedu.brokeMan.command.ViewBudgetCommand;
 import seedu.brokeMan.exception.AmountIsNotADoubleException;
+import seedu.brokeMan.exception.BudgetNotADoubleException;
 import seedu.brokeMan.exception.IndexNotAnIntegerException;
+import seedu.brokeMan.exception.NegativeBudgetException;
+import seedu.brokeMan.exception.hasNotSetBudgetException;
 
 import static seedu.brokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
 import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_ADD_COMMAND;
@@ -52,13 +57,45 @@ public class Parser {
             return prepareDeleteCommand(description, "expense");
         case DeleteIncomeCommand.COMMAND_WORD:
             return prepareDeleteCommand(description, "income");
+        case SetBudgetCommand.COMMAND_WORD:
+            return prepareSetBudgetCommand(description);
+        case ViewBudgetCommand.COMMAND_WORD:
+            return prepareViewBudgetCommand();
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD: // fall through
         default:
             return new HelpCommand();
-            //return new InvalidCommand("Invalid command word entered");
         }
+    }
+
+    private static Command prepareViewBudgetCommand() {
+        try {
+            return new ViewBudgetCommand();
+        } catch (hasNotSetBudgetException e) {
+            return new InvalidCommand(e.getMessage(), SetBudgetCommand.MESSAGE_USAGE);
+        }
+    }
+
+    private static Command prepareSetBudgetCommand(String description) {
+        if (description.equals("dummy")) {
+            return new InvalidCommand("You did not specify your budget.",
+                    SetBudgetCommand.MESSAGE_USAGE);
+        }
+
+        double budget;
+        try {
+            budget = Double.parseDouble(description);
+            if (budget < 0) {
+                String errorMessage = new NegativeBudgetException().getMessage();
+                return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
+            }
+        } catch (NumberFormatException nfe) {
+            String errorMessage = new BudgetNotADoubleException().getMessage();
+            return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
+        }
+
+        return new SetBudgetCommand(budget);
     }
 
     private static Command prepareDeleteCommand(String description, String type) {

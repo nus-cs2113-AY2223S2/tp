@@ -14,4 +14,8 @@ editIncome i/ 1 t/ info n/ pay
 editIncome i/ 2 t/ time n/ 9pm
 deleteIncome 2
 listIncome
+viewBudget
+setBudget -1
+setBudget 500
+viewBudget
 exit

@@ -28,18 +28,8 @@ public class IncomeList extends EntryList{
      * list out income in the list
      */
     public static void listIncome() {
-        listEntry();
-    }
-
-    public static void listEntry() {
-        //sortExpenses(); I think maybe no need to sort the list automatically without asking the user?
         Ui.showToUser("Here are the income you have made.");
-        int counter = 1;
-        for (Entry entryLog : incomeList) {
-            String message = String.format("%d. %s", counter, entryLog.toString());
-            Ui.showToUser(message);
-            counter++;
-        }
+        listEntry(incomeList);
         Ui.showToUser("Total income: $" + getTotalAmount(incomeList));
         Ui.showToUserWithLineBreak("");
     }
