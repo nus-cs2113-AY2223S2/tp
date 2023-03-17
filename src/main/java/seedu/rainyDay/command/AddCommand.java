@@ -19,10 +19,13 @@ public class AddCommand extends Command {
 
     private final int value;
 
-    public AddCommand(String description, String flowDirection, int value) {
+    private final String category;
+
+    public AddCommand(String description, String flowDirection, int value, String category) {
         this.description = description;
         this.flowDirection = flowDirection;
         this.value = value;
+        this.category = category;
     }
 
     @Override
@@ -45,7 +48,8 @@ public class AddCommand extends Command {
 
         int totalStatementCount = financialReport.getStatementCount();
 
-        FinancialStatement currentFinancialStatement = new FinancialStatement(description, flowDirection, value);
+        FinancialStatement currentFinancialStatement =
+                new FinancialStatement(description, flowDirection, value, category);
         financialReport.addStatement(currentFinancialStatement);
 
         assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";

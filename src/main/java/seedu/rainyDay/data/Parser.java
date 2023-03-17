@@ -43,7 +43,8 @@ public class Parser {
             String[] data = inputs[1].split("\\$");
             String description = data[0].trim();
             String amount = data[1];
-            return new AddCommand(description, flowDirection, Integer.parseInt(amount));
+            String category = "Default"; //TODO Placeholder: to implement
+            return new AddCommand(description, flowDirection, Integer.parseInt(amount), category);
         } catch (Exception e) {
             logger.warning("add command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_ADD_FORMAT.toString());

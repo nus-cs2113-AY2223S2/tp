@@ -14,7 +14,7 @@ class ParserTest {
     public void parseAddInCommand() {
         try {
             FinancialReport testReport = new FinancialReport(statements);
-            testReport.addStatement(new FinancialStatement("noodles", "in", 5));
+            testReport.addStatement(new FinancialStatement("noodles", "in", 5, "Default"));
             Parser.parseUserInput("add -in noodles $5");
             assertEquals(financialReport.getFullStatement(0),
                     testReport.getFullStatement(0));
@@ -27,7 +27,8 @@ class ParserTest {
     public void parseAddOutCommand() {
         try {
             FinancialReport testReport = new FinancialReport(statements);
-            testReport.addStatement(new FinancialStatement("noodles", "out", 5));
+            testReport.addStatement(new FinancialStatement
+                    ("noodles", "out", 5, "Default"));
             Parser.parseUserInput("add -out noodles $5");
             assertEquals(financialReport.getFullStatement(0),
                     testReport.getFullStatement(0));

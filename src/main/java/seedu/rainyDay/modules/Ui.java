@@ -11,7 +11,13 @@ import java.util.logging.Logger;
 public class Ui {
     public static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
     public static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
-    public static final String ACKNOWLEDGE_VIEW_MESSAGE = "Here is your full financial report!";
+    private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
+            "+-----+------------------------------+------------+----------------+\n" +
+            "|Here is your full financial report!                               |\n" +
+            "+-----+------------------------------+------------+----------------+\n" +
+            "|Index|Name                          |Amount      |Category        |";
+    private static final String VIEW_SUMMARY = "" +
+            "+-----+------------------------------+------------+----------------+\n";
 
     private static Logger UILogger = Logger.getLogger("UILogger.log");
 
@@ -47,14 +53,9 @@ public class Ui {
         System.out.println(FINANCIAL_REPORT_EMPTY);
     }
 
-    public static void printFinancialStatement(String financialStatement) {
-        System.out.println(financialStatement);
-    }
-
     public String readUserName() {
         System.out.println("Welcome new user! What is your name?");
-        String userInput = in.nextLine().trim();
-        return userInput;
+        return in.nextLine().trim();
     }
 
     public String readUserCommand() {
@@ -82,15 +83,32 @@ public class Ui {
     }
 
     public static void acknowledgeViewCommand() {
-        System.out.println(ACKNOWLEDGE_VIEW_MESSAGE);
+        System.out.println(ACKNOWLEDGE_VIEW_COMMAND);
+    }
+
+    public static void printFinancialStatement(int statementIndex, FinancialStatement currentStatement) {
+        String statementName = currentStatement.getDescription();
+        int statementValue = currentStatement.getValue();
+        String statementCategory = currentStatement.getCategory();
+        String statementDirection = currentStatement.getFlowSymbol();
+
+        String index = String.format("00000%d", statementIndex);
+        index = index.substring(index.length()-5);
+        String value = String.format(" %s$%d            ", statementDirection, statementValue);
+        value = value.substring(0, 12);
+        String name = String.format("%s                              ", statementName);
+        name = name.substring(0, 30);
+        String category = String.format("%s                ",statementCategory);
+        category = category.substring(0,16);
+        System.out.printf("|%s|%s|%s|%s|\n", index, name, value, category);
     }
 
     public static void printSummary(int inflow, int outflow) {
         assert (inflow != 0 || outflow != 0);
-        System.out.print(System.lineSeparator());
-        String inflowInformation = "Inflow: $" + inflow;
-        String outflowInformation = "Outflow: $" + outflow;
-        String remainingValueInformation = "Remaining value: $" + (inflow - outflow);
+        System.out.print(VIEW_SUMMARY);
+        String inflowInformation = "|Inflow: $" + inflow;
+        String outflowInformation = "|Outflow: $" + outflow;
+        String remainingValueInformation = "|Remaining value: $" + (inflow - outflow);
         String summary = String.join(System.lineSeparator(), inflowInformation, outflowInformation,
                 remainingValueInformation);
         System.out.println(summary);
