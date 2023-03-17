@@ -73,18 +73,18 @@ public class Meal360 {
             ui.listRecipe(recipeListToPrint);
         } else if (command[0].equals("add")) {
             ui.printSeparator();
-            try{
+            try {
                 Recipe newRecipe = parser.parseAddRecipe(command, recipeList);
                 ui.printMessage("I've added this new recipe:" + newRecipe.getName());
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
-            } catch(ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 String errorMessage = String.format("Please enter a valid recipe name.");
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
         } else if (command[0].equals("edit")) {
             ui.printSeparator();
-            try{
+            try {
                 Recipe recipeToEdit = parser.parseEditRecipe(command, recipeList);
                 ui.printSeparator();
                 ui.printMessage("I've edited this recipe:" + recipeToEdit.getName());

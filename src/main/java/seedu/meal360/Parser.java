@@ -7,9 +7,9 @@ public class Parser {
 
     Ui ui = new Ui();
 
-    public String combineWords(String[] input, int startIndex){
+    public String combineWords(String[] input, int startIndex) {
         StringBuilder word = new StringBuilder(input[startIndex]);
-        for(int i = startIndex+1; i< input.length-1; i++) {
+        for (int i = startIndex + 1; i < input.length - 1; i++) {
             word.append(" ").append(input[i]);
         }
 
@@ -48,11 +48,11 @@ public class Parser {
             recipeToEdit = recipeList.findByName(recipeName);
         }
         System.out.println("Do you want to edit recipe fully or partially?");
-        System.out.println("Press 1 for full edit | Press 2 for partial edit");
+        System.out.println("Press 1 for full edit | Press 2 for partial edit | Press 3 to add ingredients");
 
         Scanner getInput = new Scanner(System.in);
         int index = getInput.nextInt();
-        if(index == 1){
+        if (index == 1) {
             System.out.println("Please Enter New Ingredients & Quantity: ");
             while (true) {
                 String line = userInput.nextLine();
@@ -63,7 +63,7 @@ public class Parser {
                 ingredients.put(command[0], Integer.parseInt(command[1]));
                 recipeList.editRecipe(recipeToEdit, ingredients);
             }
-        } else if(index == 2){
+        } else if (index == 2) {
             System.out.println("These are the ingredients for the recipe:");
             ui.printSeparator();
             Recipe recipe = parseViewRecipe(recipeName, recipeList);
@@ -75,7 +75,7 @@ public class Parser {
             int count = 0;
             String ingredientToRemove = null;
             for (String ingredient : recipeToEdit.getIngredients().keySet()) {
-                if(ingredientIndex == count){
+                if (ingredientIndex == count) {
                     ingredientToRemove = ingredient;
                     System.out.println("Ingredient to be changed:");
                     ui.printSeparator();
@@ -91,7 +91,26 @@ public class Parser {
             String[] command = line.trim().split(" ");
             String newIngredientName = combineWords(command, 0);
             recipeToEdit.getIngredients().remove(ingredientToRemove);
-            recipeToEdit.getIngredients().put(newIngredientName, Integer.parseInt(command[command.length-1]));
+            recipeToEdit.getIngredients().put(newIngredientName, Integer.parseInt(command[command.length - 1]));
+            recipeList.editRecipe(recipeToEdit, recipeToEdit.getIngredients());
+        } else if (index == 3) {
+            System.out.println("These are the current ingredients:");
+            ui.printSeparator();
+            Recipe recipe = parseViewRecipe(recipeName, recipeList);
+            ui.printRecipe(recipe);
+            ui.printSeparator();
+            System.out.println("Please Enter Additional Ingredients & Quantity (Enter done when complete): ");
+            while (true) {
+                String line = userInput.nextLine();
+                if (line.equals("done")) {
+                    ui.printSeparator();
+                    break;
+                } else {
+                    String[] command = line.trim().split(" ");
+                    String ingredientName = combineWords(command, 0);
+                    recipeToEdit.getIngredients().put(ingredientName, Integer.parseInt(command[command.length - 1]));
+                }
+            }
             recipeList.editRecipe(recipeToEdit, recipeToEdit.getIngredients());
         }
 
@@ -165,7 +184,8 @@ public class Parser {
         int recipeIndex = Integer.parseInt(command[1]) - 1;
         return recipes.get(recipeIndex);
     }
-    public Recipe parseViewRecipe(String recipeName, RecipeList recipes){
+
+    public Recipe parseViewRecipe(String recipeName, RecipeList recipes) {
         int recipeIndex = 1;
         for (Recipe recipe : recipes) {
             if (recipe.getName().equals(recipeName)) {
@@ -173,7 +193,7 @@ public class Parser {
             }
             recipeIndex++;
         }
-        return recipes.get(recipeIndex-1);
+        return recipes.get(recipeIndex - 1);
     }
 
     public WeeklyPlan parseWeeklyPlan(String[] command, RecipeList recipes) {
