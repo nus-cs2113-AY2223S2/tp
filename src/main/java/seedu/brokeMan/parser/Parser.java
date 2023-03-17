@@ -185,8 +185,6 @@ public class Parser {
         int index;
         String type;
         String newEntry;
-        double newMoney;
-        LocalDateTime newTime;
 
         try {
             int length = splitDescriptions[1].length();

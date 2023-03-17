@@ -1,12 +1,15 @@
 package seedu.brokeMan.command;
 
+import seedu.brokeMan.entry.Expenses;
 import seedu.brokeMan.entry.IncomeList;
 import seedu.brokeMan.parser.StringToTime;
 import seedu.brokeMan.ui.Ui;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
 import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_TIME;
 
 public class EditExpenseCommand extends Command {
     public static final String COMMAND_WORD = "editExpense";
@@ -26,19 +29,25 @@ public class EditExpenseCommand extends Command {
     }
 
     public void execute() {
-        switch (type) {
-        case "cost": Double newCost = Double.parseDouble(newEntry);
-            IncomeList.editIncome(index, newCost);
-            break;
-        case "info": IncomeList.editIncome(index, newEntry);
-            break;
-        case "time":
-            LocalDateTime newTime = StringToTime.convertStringToTime(newEntry);
-            IncomeList.editIncome(index, newTime);
-            break;
-        default:
-            Ui.showToUserWithLineBreak(MESSAGE_INVALID_EDIT_COMMAND);
+        try {
+            switch (type) {
+            case "cost":
+                Double newCost = Double.parseDouble(newEntry);
+                Expenses.editExpense(index, newCost);
+                break;
+            case "info":
+                Expenses.editExpense(index, newEntry);
+                break;
+            case "time":
+                LocalDateTime newTime = StringToTime.convertStringToTime(newEntry);
+                Expenses.editExpense(index, newTime);
+                break;
+            default:
+                Ui.showToUserWithLineBreak(MESSAGE_INVALID_EDIT_COMMAND);
 
+            }
+        } catch (DateTimeException dte) {
+            Ui.showToUserWithLineBreak(MESSAGE_INVALID_TIME, "");
         }
     }
 }
