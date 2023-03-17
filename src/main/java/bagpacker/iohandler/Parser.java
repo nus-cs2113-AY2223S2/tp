@@ -85,7 +85,13 @@ public class Parser {
                     "input 'help' to receive all valid commands");
         }
     }
-
+    /**
+     * Reads and returns the full user input from the command line interface
+     * - trims the leading and trailing white spaces
+     *
+     * @throws EmptyInputException when user input empty line
+     * @return inputLine the String input of the user
+     */
     private static String readLine() throws EmptyInputException {
         String inputLine;
         Scanner in = new Scanner(System.in);
@@ -103,20 +109,32 @@ public class Parser {
         return getInputStringArray().get(0).toLowerCase();
     }
 
+    /**
+     * Returns a string which represents the name of the item from the user input
+     *
+     * @throws InvalidVariablesException when the item name cannot be found
+     * @return inputVariables which is the name of the item
+     */
     public static String getItemName() throws InvalidVariablesException {
-        String inputVariables;
+        String itemName;
         if (inputStringArray.size() <= 1) {
             throw new InvalidVariablesException();
         }
         try {
             int itemIndStart = fullInput.indexOf(" ") + 1;
-            inputVariables = fullInput.substring(itemIndStart);
+            itemName = fullInput.substring(itemIndStart);
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidVariablesException();
         }
-        return inputVariables;
+        return itemName;
     }
 
+    /**
+     * Returns a string which represents the index of the item from the user input
+     *
+     * @throws InvalidIndexException when the item index is not valid
+     * @return inputIndex which is the item index of the item in packing list
+     */
     public static String getItemIndex() throws InvalidIndexException {
         String inputIndex;
         int itemIndex;
@@ -135,21 +153,29 @@ public class Parser {
         }
         return inputIndex;
     }
-
+    /**
+     * Returns a string which represents the relevant variable depending on the command
+     * - "add" will return the item name
+     * - "delete", "pack", "unpack" will return item index
+     *
+     * @param command used to determine the type of variable to return
+     * @throws InvalidIndexException when the item index is not valid
+     * @return itemVariable which is the index OR name of the item in packing list
+     */
     public static String getVariable(String command) throws InvalidVariablesException, InvalidIndexException {
-        String variable;
+        String itemVariable;
         try {
             if (command.equals("add")) {
-                variable = getItemName();
+                itemVariable = getItemName();
             } else {
-                variable = getItemIndex();
+                itemVariable = getItemIndex();
             }
         } catch (InvalidVariablesException e) {
             throw new InvalidVariablesException();
         } catch (InvalidIndexException e) {
             throw new InvalidIndexException();
         }
-        return variable;
+        return itemVariable;
     }
 
 
