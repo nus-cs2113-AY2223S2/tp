@@ -95,11 +95,13 @@ Sample output:
 
 ```
 >> list
+You have a total of 4 tasks in your tasklist.
 Here are the tasks in your list:
 1.[T][ ] Eat Lunch
 2.[E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
 3.[D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
 4.[T][ ] Feed the fish
+There are 4 unmarked tasks in your tasklist.
 ```
 
 ### `todo` - Adding a ToDo
