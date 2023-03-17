@@ -8,9 +8,8 @@ import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_TIME;
 public class StringToTime {
     public static LocalDateTime convertStringToTime(String timeInString) throws DateTimeException {
         String[] timeByWord = timeInString.split(" ");
-        if (timeByWord.length != 5) {
-            throw new DateTimeException(MESSAGE_INVALID_TIME);
-        } else if (!areWordsValidTimeNumbers(timeByWord)) {
+        assert (timeByWord.length == 5) : MESSAGE_INVALID_TIME;
+        if (!areWordsValidTimeNumbers(timeByWord)) {
             throw new DateTimeException(MESSAGE_INVALID_TIME);
         }
 
