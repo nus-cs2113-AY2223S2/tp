@@ -5,7 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PetList {
-    private static final Logger logger = Logger.getLogger("petListLogger");
     public static final String LINE = "____________________";
     private static ArrayList<Pet> petList = new ArrayList<>();
     private static int numberOfPets;
@@ -13,6 +12,7 @@ public class PetList {
     public PetList() {
         numberOfPets = 0;
     }
+    private static final Logger logger = Logger.getLogger("petListLogger");
 
     /**
      * Adds a new pet to the pet list
