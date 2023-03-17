@@ -35,7 +35,6 @@ with the link to the original code at:
 https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/parser/Parser.java
  */
 
-
 public class Parser {
 
     public static Command parseCommand(String userFullInput) {
@@ -178,8 +177,6 @@ public class Parser {
         return new AddIncomeCommand(amount, newDescription, time);
     }
 
-//    private static String[] checkAddCommandException(String description) throws InvalidAddCommandException,
-//            ContainsEmptyFlagException, AmountIsNotADoubleException {
 private static String[] checkAddCommandException(String description) throws BrokeManException {
 
         boolean containsAllFlags = description.contains("a/ ") &&
@@ -209,7 +206,7 @@ private static String[] checkAddCommandException(String description) throws Brok
         return splitDescriptions;
     }
 
-    private static void checkEmptyFlag(String[] splitDescriptions) throws ContainsEmptyFlagException {
+    private static void checkEmptyFlag(String[] splitDescriptions) throws BrokeManException {
         if (splitDescriptions.length == 3) {
             throw new ContainsEmptyFlagException();
         }
@@ -291,8 +288,6 @@ private static String[] checkAddCommandException(String description) throws Brok
         return amount;
     }
 
-//    private static String[] checkEditCommandException(String description) throws InvalidEditCommandException,
-//            ContainsEmptyFlagException, IncorrectTypeException, IndexNotAnIntegerException {
 private static String[] checkEditCommandException(String description) throws BrokeManException {
 
         boolean containsAllFlags = description.contains("i/ ") &&
@@ -318,99 +313,20 @@ private static String[] checkEditCommandException(String description) throws Bro
         return splitDescriptions;
     }
 
-    private static void checkIsIntegerIndex(String index) throws IndexNotAnIntegerException {
+    private static void checkIsIntegerIndex(String index) throws BrokeManException {
         try {
-//            System.out.println(index);
             Integer.parseInt(index);
         } catch (NumberFormatException nfe) {
             throw new IndexNotAnIntegerException();
         }
     }
 
-    private static void checkCorrectType(String type) throws IncorrectTypeException {
+    private static void checkCorrectType(String type) throws BrokeManException {
         if (!type.equals("amount") && !type.equals("info") &&
                 !type.equals("time")) {
             throw new IncorrectTypeException();
         }
     }
-
-//    private static Command prepareEditExpenseCommand(String description) {
-//        if (!description.contains("i/ ") || !description.contains(" t/ ") || !description.contains(" n/ ")) {
-//            if (moneyType.equals("expense")) {
-//                return new InvalidCommand(MESSAGE_INVALID_EDIT_COMMAND, EditExpenseCommand.MESSAGE_USAGE);
-//            }
-//            return new InvalidCommand(MESSAGE_INVALID_EDIT_COMMAND, EditIncomeCommand.MESSAGE_USAGE);
-//        }
-//
-//        String[] splitDescriptions = description.split("/ ");
-//
-//        assert splitDescriptions.length == 4 : MESSAGE_INVALID_EDIT_COMMAND;
-//        int index;
-//        try {
-//            int length = splitDescriptions[1].length();
-//            index = Integer.parseInt(splitDescriptions[1].substring(0, length - 2));
-//        } catch (NumberFormatException nfe) {
-//            String errorMessage = new IndexNotAnIntegerException().getMessage();
-//            return new InvalidCommand(errorMessage);
-//        }
-//
-//        String type = splitDescriptions[2].substring(0, splitDescriptions[2].length() - 2);
-//        String newMoney = splitDescriptions[3];
-//
-//        if (isTypeEqualsCost(type)) {
-//            // do exception handling to check newMoney is double...
-//            double newAmount = Double.parseDouble(newMoney);
-//            if (moneyType.equals("expense")) {
-//                return new EditExpenseCommand(index, type, newAmount);
-//            }
-//            return new EditIncomeCommand(index, type, newAmount);
-//        }
-//        if (moneyType.equals("expense")) {
-//            return new EditExpenseCommand(index, type, newMoney);
-//        }
-//        return new EditIncomeCommand(index, type, newMoney);
-//    }
-
-//    private static Command prepareEditCommand(String description, String moneyType) {
-//        if (!description.contains("i/ ") || !description.contains(" t/ ") || !description.contains(" n/ ")) {
-//            if (moneyType.equals("expense")) {
-//                return new InvalidCommand(MESSAGE_INVALID_EDIT_COMMAND, EditExpenseCommand.MESSAGE_USAGE);
-//            }
-//            return new InvalidCommand(MESSAGE_INVALID_EDIT_COMMAND, EditIncomeCommand.MESSAGE_USAGE);
-//        }
-//
-//        String[] splitDescriptions = description.split("/ ");
-//
-//        assert splitDescriptions.length == 4 : MESSAGE_INVALID_EDIT_COMMAND;
-//        int index;
-//        try {
-//            int length = splitDescriptions[1].length();
-//            index = Integer.parseInt(splitDescriptions[1].substring(0, length - 2));
-//        } catch (NumberFormatException nfe) {
-//            String errorMessage = new IndexNotAnIntegerException().getMessage();
-//            return new InvalidCommand(errorMessage);
-//        }
-//
-//        String type = splitDescriptions[2].substring(0, splitDescriptions[2].length() - 2);
-//        String newMoney = splitDescriptions[3];
-//
-//        if (isTypeEqualsCost(type)) {
-//            // do exception handling to check newMoney is double...
-//            double newAmount = Double.parseDouble(newMoney);
-//            if (moneyType.equals("expense")) {
-//                return new EditExpenseCommand(index, type, newAmount);
-//            }
-//            return new EditIncomeCommand(index, type, newAmount);
-//        }
-//        if (moneyType.equals("expense")) {
-//            return new EditExpenseCommand(index, type, newMoney);
-//        }
-//        return new EditIncomeCommand(index, type, newMoney);
-//    }
-//
-//    private static boolean isTypeEqualsCost(String type) {
-//        return type.equals("cost") || type.equals("income");
-//    }
 }
 
 
