@@ -1,8 +1,5 @@
 package seedu.badMaths.matrix;
 
-import seedu.badMaths.matrix.exception.ExceptionChecker;
-import seedu.badMaths.matrix.exception.ShapeMismatchException;
-
 import java.util.HashMap;
 import java.util.Map;
 

@@ -3,7 +3,6 @@ package seedu.badMaths.matrix;
 import seedu.badMaths.matrix.exception.ExceptionChecker;
 import seedu.badMaths.matrix.exception.ShapeMismatchException;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Calculate {
