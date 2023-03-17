@@ -12,6 +12,7 @@ public class Duke {
     private final Ui ui;
     private final GenerateExercise exerciseGenerator;
 
+
     public Duke(){
         ui = new Ui();
         exerciseGenerator = new GenerateExercise();
@@ -19,7 +20,6 @@ public class Duke {
 
     @SuppressWarnings("InfiniteLoopStatement")
     public void run(){
-        assert false : "Dummy test fail";
         CommandHandler commandHandler = new CommandHandler();
         Scanner in = new Scanner(System.in);
         ui.greetUser();
