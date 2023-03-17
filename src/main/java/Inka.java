@@ -1,4 +1,3 @@
-import java.io.IOException;
 import model.CardList;
 import utils.Parser;
 import utils.UserInterface;
@@ -32,18 +31,11 @@ public class Inka {
      * Attempts to load from save file
      *
      * @return CardList containing all saved cards
-     * @note Will create a new file if no file exists
      */
     private CardList loadSaveFile() {
-        // No previously saved file
+        // Notify user of no previously saved file
         if (!storage.saveFileExists()) {
-            try {
-                storage.createSaveFile();
-                ui.printNoSaveFile();
-            } catch (IOException e) {
-                ui.printSaveFailure();
-            }
-
+            ui.printNoSaveFile();
             return new CardList();
         }
 

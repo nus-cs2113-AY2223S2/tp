@@ -77,7 +77,7 @@ public class JsonStorage extends Storage {
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
 
             Gson gson = gsonBuilder.setPrettyPrinting().create();
-            String serialized = gson.toJson(cardList);
+            String serialized = gson.toJson(exportData);
 
             bufferedWriter.write(serialized);
         } catch (IOException e) {
