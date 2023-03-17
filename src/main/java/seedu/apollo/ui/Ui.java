@@ -1,5 +1,6 @@
 package seedu.apollo.ui;
 
+import seedu.apollo.module.LessonType;
 import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.task.Task;
 import seedu.apollo.module.Module;
@@ -9,6 +10,7 @@ import java.rmi.UnexpectedException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -368,4 +370,31 @@ public class Ui {
         System.out.println("Module already added in Module List!");
     }
 
+    /**
+     * Prints the available lesson types for that module.
+     *
+     * @param lessonTypes List of lesson types for that module.
+     */
+    public void printLessonTypeMessage(ArrayList<LessonType> lessonTypes) {
+        if (lessonTypes.size() == 0) {
+            System.out.println("This module has no lessons.");
+            return;
+        }
+        System.out.println("Here are the lesson types for this module:");
+        lessonTypes.sort(
+                Comparator.comparing(Enum::toString));
+
+        for (LessonType lessonType: lessonTypes){
+            System.out.println(lessonType);
+        }
+    }
+
+    public void printClassAddedMessage(String moduleCode, LessonType lessonType, String classNumber) {
+        System.out.println("Adding lesson type: " + lessonType + " for Module: " + moduleCode);
+        System.out.println("Class Number: " + classNumber);
+    }
+
+    public void printInvalidLessonType() {
+        System.out.println("This lesson type does not exist!");
+    }
 }

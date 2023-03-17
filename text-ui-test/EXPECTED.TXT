@@ -148,11 +148,14 @@ Here are the tasks happening on May 03 2023:
 2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
-This module does not exist!
+Sorry, but I don't know what that means :(
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this module:
   CS2113: Software Engineering & Object-Oriented Programming
+Here are the lesson types for this module:
+LECTURE
+TUTORIAL
 ____________________________________________________________
 ____________________________________________________________
 Module already added in Module List!
@@ -160,6 +163,9 @@ ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this module:
   CS2040C: Data Structures and Algorithms
+Here are the lesson types for this module:
+LABORATORY
+LECTURE
 ____________________________________________________________
 ____________________________________________________________
 You are taking 2 module(s) this semester:

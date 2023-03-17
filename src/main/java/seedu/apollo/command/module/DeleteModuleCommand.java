@@ -48,7 +48,7 @@ public class DeleteModuleCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList){
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules){
 
         try {
             Module toDelete = moduleList.findModule(moduleCode);

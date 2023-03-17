@@ -47,6 +47,14 @@ public class Module {
         return title;
     }
 
+    public String getModuleCredits() {
+        return moduleCredits;
+    }
+
+    public void setTimetable(ArrayList<Timetable> timetable) {
+        this.timetable = timetable;
+    }
+
     /**
      * Retrieves a ArrayList with the module's timetable information.
      *
@@ -56,11 +64,16 @@ public class Module {
         return timetable;
     }
 
+
     /**
      * Prints out the Module in desired format.
      */
     @Override
     public String toString() {
         return code + ": " + title;
+    }
+
+    public void createNewTimeTable() {
+        this.timetable = new ArrayList<>();
     }
 }

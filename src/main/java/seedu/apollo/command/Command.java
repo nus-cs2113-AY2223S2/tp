@@ -22,7 +22,8 @@ public abstract class Command {
      * @param storage Updates the local save file if the TaskList is modified.
      * @throws UnexpectedException If something unexpected occurs.
      */
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules)
+            throws UnexpectedException {
     }
 
     protected void setExit() {
