@@ -62,7 +62,7 @@ public class UpdateUserCommand extends Command {
                 System.out.println("Invalid Choice!");
             }
 
-            System.out.println("\nContinue updating?");
+            System.out.println( System.lineSeparator() + "Continue updating?");
             System.out.println("1. Yes");
             System.out.println("2. No");
             System.out.println();
