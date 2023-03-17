@@ -11,13 +11,14 @@ public class SniffTasks {
     public void addAppointment(String uid, String type, String animal, String name, String date) throws SniffException {
         try {
             APPOINTMENTS.add(new Appointment(uid, type, animal, name, date));
-        }catch (StringIndexOutOfBoundsException e){
+        } catch (StringIndexOutOfBoundsException e){
             throw new SniffException("Invalid add description !!");
         }
     }
 
     public void removeAppointment(int appointmentNumber) throws SniffException {
         try {
+            assert appointmentNumber != 0;
             APPOINTMENTS.remove(appointmentNumber - 1);
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The remove command entry is invalid!");
@@ -29,7 +30,7 @@ public class SniffTasks {
      */
     public void listAppointments() {
         int counter = 1;
-        if(APPOINTMENTS.isEmpty()) {
+        if (APPOINTMENTS.isEmpty()) {
             Ui.showUserMessage("No entries found!");
         }
         for (Appointment appointment : APPOINTMENTS) {
@@ -47,7 +48,7 @@ public class SniffTasks {
                 counter++;
             }
         }
-        if(counter == 1) {
+        if (counter == 1) {
             Ui.showUserMessage(" There are no appointments with this ID!");
         }
     }

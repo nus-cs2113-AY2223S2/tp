@@ -26,7 +26,7 @@ public class Parser {
     }
 
     private static void parseAddCommand(String task) throws SniffException {
-        try{
+        try {
             String userCommand = "add";
             int uidIndex = task.indexOf("aID/");
             int typeIndex = task.indexOf("t/");
@@ -37,9 +37,9 @@ public class Parser {
             String type = task.substring(typeIndex + 2, animalIndex - 1);
             String animal = task.substring(animalIndex + 2, nameIndex - 1);
             String name = task.substring(nameIndex + 2, dateIndex - 1);
-            String date = task.substring(dateIndex + 2, task.length());
+            String date = task.substring(dateIndex + 2);
             command = new Command(userCommand, uId, type, animal, name, date);
-        } catch(StringIndexOutOfBoundsException e){
+        } catch (StringIndexOutOfBoundsException e){
             throw new SniffException(" The add command description is invalid!");
         }
     }
