@@ -2,6 +2,7 @@ package utils;
 
 import java.util.Scanner;
 import model.CardList;
+import model.TagList;
 import utils.enums.StringArt;
 import utils.exceptions.InkaException;
 
@@ -88,6 +89,17 @@ public class UserInterface {
             System.out.println("Here is your current list of questions buddy:");
             for (int i = 0; i < cardList.size(); ++i) {
                 System.out.println((i + 1) + "." + cardList.get(i)); // 1. question  answer
+            }
+        }
+    }
+
+    public void printTagList(TagList tagList) {
+        if (tagList.isEmpty()) {
+            System.out.println("Your current list of tags is empty.");
+        } else {
+            System.out.println("Here is your current list of tags:");
+            for (int i = 0; i < tagList.size(); ++i) {
+                System.out.println((i + 1) + "." + tagList.get(i));
             }
         }
     }

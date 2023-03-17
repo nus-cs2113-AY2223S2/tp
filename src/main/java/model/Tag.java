@@ -12,4 +12,9 @@ public class Tag {
         this.tagName = tagName;
         cards.add(cardUUID);
     }
+
+    @Override
+    public String toString() {
+        return "Tag name : " + tagName + ", tag uuid : " + uuid;
+    }
 }

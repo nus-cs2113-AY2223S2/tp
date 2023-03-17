@@ -3,13 +3,14 @@ package utils;
 import model.Card;
 import model.CardList;
 
-
+import model.TagList;
 import utils.command.AddCardCommand;
 import utils.command.Command;
-import utils.command.DeleteCommand;
+import utils.command.DeleteCardCommand;
 import utils.command.ExceptionCommand;
 import utils.command.ExportCommand;
 import utils.command.ListCardCommand;
+import utils.command.ListTagsCommand;
 import utils.command.TerminateCommand;
 import utils.exceptions.AddEmptyAnswer;
 import utils.exceptions.AddEmptyQuestion;
@@ -34,14 +35,14 @@ public class Parser {
         this.isExecuting = bool;
     }
 
-    public Command parseCommand(String userCommand, CardList cardList)
+    public Command parseCommand(String userCommand, CardList cardList, TagList tagList)
             throws DeleteMissingNumber, DeleteRangeInvalid, AddGoneWrong, AddEmptyQuestion, AddEmptyAnswer,
             AddEmptyQuestionAndAnswer {
         String[] userCommandSplit = userCommand.split("-", 3);
         assert userCommandSplit.length >=1 : "User Command must be specified";
-        if (userCommandSplit[0].startsWith("list")) {
+        if (userCommandSplit[0].startsWith("card list")) {
             return new ListCardCommand();
-        } else if (userCommandSplit[0].startsWith("add") || userCommandSplit[0].startsWith(" add")) {
+        } else if (userCommandSplit[0].startsWith("card add")) {
             if (userCommandSplit.length < 3) {
                 throw new AddGoneWrong();
             } else if (userCommandSplit[1].isBlank() && userCommandSplit[2].isBlank()) {
@@ -56,7 +57,7 @@ public class Parser {
             String answer = userCommandSplit[2];
             Card card = new Card(question, answer);
             return new AddCardCommand(card); // main command return
-        } else if (userCommandSplit[0].startsWith("delete") || userCommandSplit[0].startsWith("delete ")) {
+        } else if (userCommandSplit[0].startsWith("card delete")) {
 
             if (userCommandSplit.length == 1) {
                 throw new DeleteMissingNumber();
@@ -67,8 +68,11 @@ public class Parser {
             }
             int deleteIndex = Integer.parseInt(userCommandSplit[1]);
             assert deleteIndex >= 0 : "deleteIndex should be a number";
-            return new DeleteCommand(deleteIndex);
-        } else if (userCommandSplit[0].startsWith("export") || userCommandSplit[0].startsWith("export ")) {
+            return new DeleteCardCommand(deleteIndex);
+        } else if (userCommandSplit[0].startsWith("tag list")) {
+            return new ListTagsCommand();
+        }
+        else if (userCommandSplit[0].startsWith("export") || userCommandSplit[0].startsWith("export ")) {
             return new ExportCommand();
         } else if (userCommandSplit[0].startsWith("bye")) {
             this.setIsExecuting(false);

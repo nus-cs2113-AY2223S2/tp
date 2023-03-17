@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardList {
+public class CardList  {
 
     private List<Card> cards;
 
