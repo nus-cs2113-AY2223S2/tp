@@ -89,7 +89,7 @@ public class Ui {
     public static void printFinancialStatement(int statementIndex, FinancialStatement currentStatement) {
         String statementName = currentStatement.getDescription();
         int statementValue = currentStatement.getValue();
-        String statementCategory = "Default";
+        String statementCategory = currentStatement.getCategory();
         String statementDirection = currentStatement.getFlowSymbol();
 
         String index = String.format("00000%d", statementIndex);
