@@ -2,7 +2,6 @@ package seedu.brokeMan.entry;
 
 import seedu.brokeMan.ui.Ui;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 

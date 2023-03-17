@@ -23,7 +23,10 @@ import seedu.brokeMan.exception.hasNotSetBudgetException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
-import static seedu.brokeMan.common.Messages.*;
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_TIME;
+import static seedu.brokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_ADD_COMMAND;
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
 
 
 /*
@@ -211,9 +214,6 @@ public class Parser {
         }
     }
 
-    private static boolean isTypeEqualsCost(String type) {
-        return type.equals("cost") || type.equals("income");
-    }
 }
 
 
