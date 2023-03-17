@@ -22,7 +22,7 @@ public class FinancialStatement implements Serializable {
         this.value = value;
     }
 
-    protected String getDescription() {
+    public String getDescription() {
         assert(!this.description.isEmpty());
         return this.description;
     }

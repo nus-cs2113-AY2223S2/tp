@@ -1,5 +1,6 @@
 package seedu.rainyDay.command;
 
+import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.modules.Ui;
 
 import java.util.logging.FileHandler;
@@ -53,17 +54,13 @@ public class ViewCommand extends Command {
         int totalOutflow = 0;
         for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
             logger.log(Level.INFO, "starting statement " + i);
-
-            if (financialReport.getStatementDirection(i).equals("in")) {
-                totalInflow += financialReport.getStatementValue(i);
+            FinancialStatement currentStatement = financialReport.getFinancialStatement(i);
+            if (currentStatement.getFlowDirection().equals("in")) {
+                totalInflow += currentStatement.getValue();
             } else {
-                totalOutflow += financialReport.getStatementValue(i);
+                totalOutflow += currentStatement.getValue();
             }
-            int index = i + 1;
-            String financialStatement = String.format("%d. %s", index,
-                    financialReport.getFullStatement(i));
-            Ui.printFinancialStatement(financialStatement);
-
+            Ui.printFinancialStatement(i + 1, currentStatement);
             logger.log(Level.INFO, "passed statement " + i);
         }
 
