@@ -27,11 +27,9 @@ class ParserTest {
     public void parseAddOutCommand() {
         try {
             FinancialReport testReport = new FinancialReport(statements);
-            testReport.addStatement(new FinancialStatement
-                    ("noodles", "out", 5, "Default"));
+            testReport.addStatement(new FinancialStatement("noodles", "out", 5, "Default"));
             Parser.parseUserInput("add -out noodles $5");
-            assertEquals(financialReport.getFullStatement(0),
-                    testReport.getFullStatement(0));
+            assertEquals(financialReport.getFullStatement(0), testReport.getFullStatement(0));
         } catch (Exception e) {
             System.out.println("Wrong input format! Please refer to help for correct user input!");
         }
