@@ -1,9 +1,8 @@
-package seedu.pocketpal.entrylog;
+package seedu.pocketpal.data.entrylog;
 
 import seedu.pocketpal.frontend.constants.MessageConstants;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
-import seedu.pocketpal.data.entrylog.EntryLog;
 import seedu.pocketpal.frontend.exceptions.InvalidArgumentsException;
 
 import java.util.ArrayList;

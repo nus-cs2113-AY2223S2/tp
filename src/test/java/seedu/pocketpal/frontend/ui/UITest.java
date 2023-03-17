@@ -1,4 +1,4 @@
-package seedu.pocketpal.ui;
+package seedu.pocketpal.frontend.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,7 +12,6 @@ import seedu.pocketpal.frontend.constants.MessageConstants;
 import seedu.pocketpal.frontend.constants.UIConstants;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
-import seedu.pocketpal.frontend.ui.UI;
 import seedu.pocketpal.frontend.util.UIUtil;
 
 import java.io.ByteArrayOutputStream;

@@ -1,4 +1,4 @@
-package seedu.pocketpal.storage;
+package seedu.pocketpal.backend.storage;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.pocketpal.backend.constants.Config;
-import seedu.pocketpal.backend.storage.Storage;
 import seedu.pocketpal.frontend.constants.EntryConstants;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;

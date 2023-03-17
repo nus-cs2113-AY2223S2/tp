@@ -1,4 +1,4 @@
-package seedu.pocketpal.entry;
+package seedu.pocketpal.data.entry;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -6,8 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import seedu.pocketpal.frontend.constants.EntryConstants;
-import seedu.pocketpal.data.entry.Category;
-import seedu.pocketpal.data.entry.Entry;
 
 @DisplayName("Test Entry class")
 public class EntryTest {

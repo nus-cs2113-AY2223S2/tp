@@ -1,4 +1,4 @@
-package seedu.pocketpal.parser;
+package seedu.pocketpal.frontend.parser;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,7 +10,6 @@ import seedu.pocketpal.frontend.constants.MessageConstants;
 import seedu.pocketpal.frontend.exceptions.InvalidArgumentsException;
 import seedu.pocketpal.frontend.exceptions.InvalidCommandException;
 import seedu.pocketpal.frontend.exceptions.MissingArgumentsException;
-import seedu.pocketpal.frontend.parser.Parser;
 
 
 public class ParserTest {
