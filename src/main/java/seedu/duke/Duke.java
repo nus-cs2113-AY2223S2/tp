@@ -12,6 +12,7 @@ public class Duke {
     private final Ui ui;
     private final GenerateExercise exerciseGenerator;
 
+
     public Duke(){
         ui = new Ui();
         exerciseGenerator = new GenerateExercise();
