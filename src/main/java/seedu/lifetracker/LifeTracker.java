@@ -11,7 +11,6 @@ import java.nio.file.Paths;
 
 public class LifeTracker {
     private static final String PATH_HOME = System.getProperty("user.dir");
-    private static final String FOOD_FILE_PATH = Paths.get(PATH_HOME, "data", "foodData.csv").toString();
     private static final String MEAL_FILE_PATH = Paths.get(PATH_HOME, "data", "mealData.csv").toString();
     private static final String USER_FILE_PATH = Paths.get(PATH_HOME, "data", "userData.csv").toString();
     private FoodStorage foodStorage;
@@ -19,8 +18,8 @@ public class LifeTracker {
     private UserStorage userStorage;
     private GeneralUi ui;
 
-    public LifeTracker(String foodFilePath, String mealFilePath, String userFilePath) {
-        foodStorage = new FoodStorage(foodFilePath);
+    public LifeTracker(String mealFilePath, String userFilePath) {
+        foodStorage = new FoodStorage();
         mealStorage = new MealStorage(mealFilePath, foodStorage);
         userStorage = new UserStorage(userFilePath);
         ui = new GeneralUi();
@@ -45,6 +44,6 @@ public class LifeTracker {
     }
 
     public static void main(String[] args) {
-        new LifeTracker(FOOD_FILE_PATH, MEAL_FILE_PATH, USER_FILE_PATH).run();
+        new LifeTracker(MEAL_FILE_PATH, USER_FILE_PATH).run();
     }
 }
