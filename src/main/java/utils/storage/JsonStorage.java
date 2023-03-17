@@ -1,5 +1,6 @@
 package utils.storage;
 
+import com.google.gson.JsonSyntaxException;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import com.google.gson.Gson;
@@ -47,7 +48,11 @@ public class JsonStorage extends Storage {
             ArrayList<Card> cards = gson.fromJson(jsonArray, cardListType);
             cardList = new CardList(cards);
         } catch (IOException e) {
-            logger.log(Level.WARNING, "Failed to load file from savedata.json", e);
+            logger.log(Level.WARNING, "Failed to load file from " + this.saveFile.getAbsolutePath(), e);
+            throw new StorageLoadFailure();
+        } catch (NullPointerException | JsonSyntaxException e) {
+            logger.log(Level.WARNING, "Corrupted save file: " + this.saveFile.getAbsolutePath(), e);
+            // TODO: New exception type?
             throw new StorageLoadFailure();
         }
 
