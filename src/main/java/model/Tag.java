@@ -14,8 +14,8 @@ public class Tag {
         cards.add(UUID.fromString(cardUUID));
     }
 
-    public String getUUID() {
-        return this.uuid.toString();
+    public UUID getUUID() {
+        return this.uuid;
     }
     public String getTagName() {
         return this.tagName;

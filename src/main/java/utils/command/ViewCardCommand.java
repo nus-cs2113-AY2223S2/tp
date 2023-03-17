@@ -21,7 +21,7 @@ public class ViewCardCommand extends Command {
         ArrayList<Tag> tags = new ArrayList<>();
        for (UUID uuid : uuids) {
            for (Tag tag : tagList.getTags()) {
-               if (tag.getUUID().equals(uuid.toString())) {
+               if (tag.getUUID().equals(uuid)) {
                    tags.add(tag);
                }
            }
@@ -33,7 +33,7 @@ public class ViewCardCommand extends Command {
         List<Card> cards = cardList.getCards();
         ArrayList<Tag> tags;
         for (Card card : cards) {
-            if (card.getUuid().equals(cardUUID)) {
+            if (card.getUuid().toString().equals(cardUUID)) {
                 ui.printCard(card);
                 ArrayList<UUID> tagsUUID = card.getTagsUUID();
                 tags = findTagsFromTagUUID(tagsUUID, tagList);

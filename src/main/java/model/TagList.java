@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class TagList {
     private List<Tag> tags;
@@ -33,6 +34,9 @@ public class TagList {
         return null;
     }
 
+    public void deleteTagByUUID(UUID uuid) {
+        tags.removeIf(tag -> (tag.getUUID().equals(uuid)));
+    }
     public void delete(int id) {
         this.tags.remove(id);
     }

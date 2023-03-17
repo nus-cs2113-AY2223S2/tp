@@ -2,6 +2,7 @@ package utils;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 import model.Card;
 import model.CardList;
 import model.Tag;
@@ -120,6 +121,13 @@ public class UserInterface {
                 System.out.println((i + 1) + "." + tags.get(i));
             }
         }
+    }
 
+    public void printRemoveTagFromCard(UUID cardUUID, UUID tagUUID) {
+        System.out.println("Successfully removed tag " + tagUUID + " from card " + cardUUID);
+    }
+
+    public void printRemoveTagFromTagList(UUID tagUUID) {
+        System.out.println("Successfully removed tag " + tagUUID +" from the tag list.");
     }
 }

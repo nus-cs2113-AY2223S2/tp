@@ -71,7 +71,7 @@ public class JsonStorage extends Storage {
         for (int i = 0; i < cardList.size(); i++) {
             Card card = cardList.get(i);
             JsonObject cardObject = new JsonObject();
-            cardObject.addProperty("uuid", card.getUuid());
+            cardObject.addProperty("uuid", card.getUuid().toString());
             cardObject.addProperty("question", card.getQuestion());
             cardObject.addProperty("answer", card.getAnswer());
             cardData.add(cardObject);

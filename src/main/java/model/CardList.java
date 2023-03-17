@@ -31,7 +31,7 @@ public class CardList  {
 
     public Card findCard(String cardUUID) {
         for (Card card : cards) {
-            if (card.getUuid().equals(cardUUID)) {
+            if (card.getUuid().toString().equals(cardUUID)) {
                 return card;
             }
         }

@@ -10,6 +10,7 @@ import utils.command.AddCardCommand;
 import utils.command.AddCardToTagCommand;
 import utils.command.Command;
 import utils.command.DeleteCardCommand;
+import utils.command.DeleteTagCommand;
 import utils.command.ExceptionCommand;
 import utils.command.ExportCommand;
 import utils.command.ListCardCommand;
@@ -94,7 +95,11 @@ public class Parser {
             else {
                 return new ListTagsCommand();
             }
-
+        }
+        else if (userCommandSplit[0].startsWith("tag delete")) {
+            //please check for exception
+            String tagName = userCommandSplit[1];
+            return new DeleteTagCommand(tagName);
         }
         else if (userCommandSplit[0].startsWith("export") || userCommandSplit[0].startsWith("export ")) {
             return new ExportCommand();

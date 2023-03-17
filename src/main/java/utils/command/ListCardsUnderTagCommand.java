@@ -26,7 +26,7 @@ public class ListCardsUnderTagCommand extends Command{
         CardList foundCardList = new CardList();
 
         for (Card card : cardList.getCards()) {
-            if (cardsUUID.contains(UUID.fromString(card.getUuid()))) {
+            if (cardsUUID.contains(card.getUuid())) {
                 foundCardList.addCard(card);
             }
         }

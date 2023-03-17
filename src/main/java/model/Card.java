@@ -18,8 +18,8 @@ public class Card {
         tags.add(UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"));
     }
 
-    public String getUuid() {
-        return this.uuid.toString() ;
+    public UUID getUuid() {
+        return this.uuid ;
     }
 
     public ArrayList<UUID> getTagsUUID () {
@@ -34,10 +34,12 @@ public class Card {
     }
 
     public void addTag(UUID tagUUID) {
-        //System.out.println(tags.size());
         tags.add(tagUUID);
-        //tags.add(tagUUID);
     }
+    public void removeTag(UUID tagUUID) {
+        tags.remove(tagUUID);
+    }
+
 
     @Override
     public String toString() {
