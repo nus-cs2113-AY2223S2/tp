@@ -9,7 +9,7 @@ import utils.command.Command;
 import utils.command.DeleteCommand;
 import utils.command.ExceptionCommand;
 import utils.command.ExportCommand;
-import utils.command.ListCommand;
+import utils.command.ListCardCommand;
 import utils.command.TerminateCommand;
 import utils.exceptions.AddEmptyAnswer;
 import utils.exceptions.AddEmptyQuestion;
@@ -40,7 +40,7 @@ public class Parser {
         String[] userCommandSplit = userCommand.split("-", 3);
         assert userCommandSplit.length >=1 : "User Command must be specified";
         if (userCommandSplit[0].startsWith("list")) {
-            return new ListCommand();
+            return new ListCardCommand();
         } else if (userCommandSplit[0].startsWith("add") || userCommandSplit[0].startsWith(" add")) {
             if (userCommandSplit.length < 3) {
                 throw new AddGoneWrong();
