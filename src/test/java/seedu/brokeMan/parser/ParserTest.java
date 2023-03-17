@@ -88,7 +88,7 @@ class ParserTest {
 
     @Test
     void validDeleteExpenseCommandShouldReturnDeleteExpenseCommand() {
-        final String userFirstInput = "addExpense a/ 4.0 d/ lunch t/ 12pm";
+        final String userFirstInput = "addExpense a/ 4.0 d/ lunch t/ 2022 07 21 10 41";
         Command addExpenseCommand = Parser.parseCommand(userFirstInput);
         addExpenseCommand.execute();
         final String userFullInput = "deleteExpense 1";
@@ -99,7 +99,7 @@ class ParserTest {
 
     @Test
     void validDeleteIncomeCommandShouldReturnDeleteIncomeCommand() {
-        final String userFirstInput = "addIncome a/ 4000 d/ salary t/ 12pm";
+        final String userFirstInput = "addIncome a/ 4000 d/ salary t/ 2012 04 29 01 40";
         Command addIncomeCommand = Parser.parseCommand(userFirstInput);
         addIncomeCommand.execute();
         final String userFullInput = "deleteIncome 1";
@@ -110,7 +110,7 @@ class ParserTest {
 
     @Test
     void validEditExpenseCommandShouldReturnEditExpenseCommand() {
-        final String userFirstInput = "addExpense a/ 4.0 d/ lunch t/ 12pm";
+        final String userFirstInput = "addExpense a/ 4.0 d/ lunch t/ 2017 08 19 13 29";
         Command addExpenseCommand = Parser.parseCommand(userFirstInput);
         addExpenseCommand.execute();
         final String userFullInput = "editExpense i/ 1 t/ info n/ brunch";
@@ -121,7 +121,7 @@ class ParserTest {
 
     @Test
     void validEditIncomeCommandShouldReturnEditIncomeCommand() {
-        final String userFirstInput = "addIncome a/ 4000 d/ salary t/ 12pm";
+        final String userFirstInput = "addIncome a/ 4000 d/ salary t/ 2000 10 19 12 42";
         Command addExpenseCommand = Parser.parseCommand(userFirstInput);
         addExpenseCommand.execute();
         final String userFullInput = "editIncome i/ 1 t/ income n/ 3000";
