@@ -76,7 +76,8 @@ public class Execute {
 
     public Tensor2D parseMatrix(String command) {
         int[][] tensor;
-        int rowNum, colNum;
+        int rowNum;
+        int colNum;
 
         command = command.replace("[", "");
         command = command.replace("]", "");

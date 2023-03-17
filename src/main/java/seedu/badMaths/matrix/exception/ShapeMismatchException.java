@@ -1,4 +1,4 @@
 package seedu.badMaths.matrix.exception;
 
-public class ShapeMismatchException {
+public class ShapeMismatchException extends Exception {
 }
