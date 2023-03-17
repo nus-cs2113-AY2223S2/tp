@@ -55,7 +55,7 @@ public abstract class Storage {
             return taskList;
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException();
-        } catch (ConversionErrorException e) {
+        } catch (AssertionError e) {
             throw new ConversionErrorException();
         }
     }
