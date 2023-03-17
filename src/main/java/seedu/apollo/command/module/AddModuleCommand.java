@@ -78,6 +78,7 @@ public class AddModuleCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
         try {
             if ((module != null) && (!isAdded(moduleList, module))) {
+                assert module != null;
                 moduleList.add(module);
                 moduleList.sortModules();
                 ui.printAddModuleMessage(module);
