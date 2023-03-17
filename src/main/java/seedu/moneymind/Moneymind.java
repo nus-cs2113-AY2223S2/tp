@@ -36,7 +36,7 @@ public class Moneymind {
                     ui.goodbye();
                     isExit = true;
                 } else {
-                    assert !command.isExit() : "Command must exist";
+                    assert !command.isExit() : "Command must have a valid execute method";
                     command.execute(ui); // should also accept storage object as parameter
                 }
             } catch (InvalidCommandException e) {
