@@ -9,7 +9,8 @@ import java.util.Scanner;
 public class GeneralUi {
     public static Scanner sc = new Scanner(System.in);
     private static String endingMessage = "Bye! Hope to see you again soon!";
-    private static String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!" + System.lineSeparator();
+    private static String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!" 
+            + System.lineSeparator();
 
     /**
      * Reads user input

@@ -1,6 +1,5 @@
 package seedu.logger;
 
-import seedu.exceptions.LifeTrackerException;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
