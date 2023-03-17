@@ -15,7 +15,7 @@ import java.util.logging.Level;
 
 
 public class HelpManual {
-    protected static String filePath = "docs/HelpManual.txt";
+    protected static String filePath = "src/main/resources/HelpManual.txt";
     protected static String logFilePath = "Help";
     private static final Logger logger = Logger.getLogger(logFilePath);
 
