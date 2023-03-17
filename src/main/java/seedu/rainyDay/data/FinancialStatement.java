@@ -11,8 +11,9 @@ public class FinancialStatement implements Serializable {
     public String description;
     public FlowDirection flowDirection;
     public int value;
+    public String category;
 
-    public FinancialStatement(String description, String flowDirection, int value) {
+    public FinancialStatement(String description, String flowDirection, int value, String category) {
         this.description = description;
         if (flowDirection.equals(INFLOW_WORD)) {
             this.flowDirection = FlowDirection.INFLOW;
@@ -20,6 +21,11 @@ public class FinancialStatement implements Serializable {
             this.flowDirection = FlowDirection.OUTFLOW;
         }
         this.value = value;
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return this.category;
     }
 
     public String getDescription() {
