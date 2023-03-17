@@ -107,8 +107,9 @@ public class AddModuleCommand extends Command {
                 if (module != null) {
                     moduleList.add(module);
                     moduleList.sortModules();
+                    Module referenceModule = allModules.findModule(module.getCode());
                     ui.printAddModuleMessage(module);
-                    ui.printLessonTypeMessage(getLessonTypes(module));
+                    ui.printLessonTypeMessage(getLessonTypes(referenceModule));
 
                 }
             }
