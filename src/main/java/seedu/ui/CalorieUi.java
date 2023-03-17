@@ -1,7 +1,11 @@
 package seedu.ui;
 
 
+import java.util.logging.Logger;
+
 public class CalorieUi extends GeneralUi {
+
+    private static Logger logger = Logger.getLogger(CalorieUi.class.getName());
 
     public void requestCalorieLimit() {
         System.out.println("What do you wish to set as the limit of your daily calorie intake (kcal)?");
