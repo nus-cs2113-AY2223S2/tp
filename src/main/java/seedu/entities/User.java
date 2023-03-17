@@ -1,16 +1,15 @@
 package seedu.entities;
 
 import java.util.Objects;
-import java.util.logging.*;
+import java.util.logging.Logger;
 
 public class User {
+    private static Logger logger = Logger.getLogger(Logger.class.getName());
     private String name;
     private float weight;
     private float height;
     private int age;
     private String gender;
-
-    private static Logger logger = Logger.getLogger(Logger.class.getName());
 
     private double caloricLimit;
     public User() {
