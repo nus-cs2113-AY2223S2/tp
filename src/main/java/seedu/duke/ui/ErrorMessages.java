@@ -1,4 +1,4 @@
-package seedu.duke.util;
+package seedu.duke.ui;
 
 /**
  * Provides enum variables for storing custom program error messages.
