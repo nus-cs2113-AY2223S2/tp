@@ -29,10 +29,13 @@ public class EditExpenseCommand extends Command {
         switch (type) {
         case "cost": Double newCost = Double.parseDouble(newEntry);
             IncomeList.editIncome(index, newCost);
+            break;
         case "info": IncomeList.editIncome(index, newEntry);
+            break;
         case "time":
             LocalDateTime newTime = StringToTime.convertStringToTime(newEntry);
             IncomeList.editIncome(index, newTime);
+            break;
         default:
             Ui.showToUserWithLineBreak(MESSAGE_INVALID_EDIT_COMMAND);
 
