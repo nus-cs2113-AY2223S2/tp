@@ -17,8 +17,9 @@ public class Calculator {
         ui.printBeginning();
         while (true) {
             command = ui.readCommand();
-            if(command.equals("exit"))
+            if(command.equals("exit")) {
                 break;
+            }
             e.parse(command);
         }
         ui.printEnding();
