@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exceptions.FileReadError;
-import seedu.duke.userdata.SessionData;
+import seedu.duke.userdata.Session;
 
 /**
  * Class to read and parse the json file containing userData into an ArrayList of completed workouts.
@@ -20,13 +20,14 @@ import seedu.duke.userdata.SessionData;
 public class LoadUserData {
 
     /**
-     * Reads in the user data json file and parses the data into an ArrayList of SessionData.
+     * Reads in the user career data json file and parses the data into an ArrayList of Session.
+     * All elements must be written into the json file
      *
      * @return ArrayList containing all CompletedWorkouts from the json file.
      *
      * @throws DukeError when there is an error in reading data from the json file.
      */
-    public static UserCareerData loadUserCareer () throws DukeError {
+    public static UserCareerData loadUserCareer (String fileName) throws DukeError {
         UserCareerData userCareerData = new UserCareerData();
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder
@@ -34,15 +35,16 @@ public class LoadUserData {
                 .setPrettyPrinting()
                 .create();
         try {
-            Reader reader = new FileReader("userData.json");
+            Reader reader = new FileReader(fileName);
             JsonElement jsonTree = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonTree.getAsJsonObject().getAsJsonArray("History");
             for (JsonElement element : jsonArray) {
-                userCareerData.addWorkoutSession(gson.fromJson(element, SessionData.class));
+                userCareerData.addWorkoutSession(gson.fromJson(element, Session.class));
             }
             assert jsonArray.size() == userCareerData.getTotalUserCareerSessions()
                                                      .size() : "All elements from json must be written" +
                     "into arrayList";
+            reader.close();
         } catch (Exception e) {
             throw new FileReadError();
         }

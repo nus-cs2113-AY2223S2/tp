@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import seedu.duke.exersisedata.ExerciseData;
 
-public class SessionData {
+public class Session {
     private final LocalDateTime dateAdded;
     private final ArrayList<ExerciseData> sessionExercises;
     private LocalDateTime dateComplete;
@@ -17,7 +17,7 @@ public class SessionData {
      *
      * @param sessionExercises the exercise which the user plans to do
      */
-    public SessionData (ArrayList<ExerciseData> sessionExercises) {
+    public Session (ArrayList<ExerciseData> sessionExercises) {
         this.sessionExercises = sessionExercises;
         this.dateAdded = LocalDateTime.now();
         this.status = "Incomplete";
@@ -33,9 +33,9 @@ public class SessionData {
     }
 
     /**
-     * Gets the datetime in which the TodoWorkout was last added
+     * Gets the datetime in which the session was last added
      *
-     * @return datetime object of when TodoWorkout was added
+     * @return datetime object of when session was added
      */
     public LocalDateTime getDateAdded () {
         return this.dateAdded;
@@ -44,14 +44,14 @@ public class SessionData {
     /**
      * Gets the ArrayList of all exercises listed in the current session and returns to the user
      *
-     * @return exercise data of the exercise added to their TodoWorkout
+     * @return exercise data of the exercise added to their session
      */
     public ArrayList<ExerciseData> getSessionExercises () {
         return this.sessionExercises;
     }
 
     /**
-     * Marks the TodoWorkout as completed
+     * Marks the session as completed
      */
     public void markComplete () {
         this.status = "Complete";

@@ -14,14 +14,15 @@ import java.time.LocalDateTime;
 public class WriteUserData {
 
     /**
-     * Takes in an Arraylist containing todoWorkouts by user and writes it into a jsonArray which then saves it into a
+     * Takes in an Arraylist containing sessions (in user career data) by user and writes it into a jsonArray which
+     * then saves it into a
      * json file called userData.json.
      *
      * @param userCareerData ArrayList containing all userWorkoutHistory by the user.
      */
-    public static void writeToJson (UserCareerData userCareerData) {
+    public static void writeToJson (String fileName, UserCareerData userCareerData) {
         try {
-            Writer writer = new FileWriter("userData.json");
+            Writer writer = new FileWriter(fileName);
             GsonBuilder gsonBuilder = new GsonBuilder();
             Gson gson = gsonBuilder
                     .registerTypeAdapter(LocalDateTime.class, new LocalDateAdapter())
