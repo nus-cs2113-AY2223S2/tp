@@ -1,6 +1,8 @@
 package seedu.mealcompanion.ingredient;
 
 import java.util.ArrayList;
+
+//@@author TJW0911
 public class IngredientList {
     ArrayList<Ingredient> ingredients;
 
