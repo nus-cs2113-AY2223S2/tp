@@ -89,8 +89,8 @@ public class Parser {
      * Reads and returns the full user input from the command line interface
      * - trims the leading and trailing white spaces
      *
-     * @throws EmptyInputException when user input empty line
      * @return inputLine the String input of the user
+     * @throws EmptyInputException when user input empty line
      */
     private static String readLine() throws EmptyInputException {
         String inputLine;
@@ -104,16 +104,19 @@ public class Parser {
 
     /**
      * Returns the user command in lower case
+     *
+     * @return command from user
      */
     public static String getCommand() {
-        return getInputStringArray().get(0).toLowerCase();
+        String command = getInputStringArray().get(0).toLowerCase();
+        return command;
     }
 
     /**
      * Returns a string which represents the name of the item from the user input
      *
-     * @throws InvalidVariablesException when the item name cannot be found
      * @return inputVariables which is the name of the item
+     * @throws InvalidVariablesException when the item name cannot be found
      */
     public static String getItemName() throws InvalidVariablesException {
         String itemName;
@@ -132,8 +135,8 @@ public class Parser {
     /**
      * Returns a string which represents the index of the item from the user input
      *
-     * @throws InvalidIndexException when the item index is not valid
      * @return inputIndex which is the item index of the item in packing list
+     * @throws InvalidIndexException when the item index is not valid
      */
     public static String getItemIndex() throws InvalidIndexException {
         String inputIndex;
@@ -159,8 +162,8 @@ public class Parser {
      * - "delete", "pack", "unpack" will return item index
      *
      * @param command used to determine the type of variable to return
-     * @throws InvalidIndexException when the item index is not valid
      * @return itemVariable which is the index OR name of the item in packing list
+     * @throws InvalidIndexException when the item index is not valid
      */
     public static String getVariable(String command) throws InvalidVariablesException, InvalidIndexException {
         String itemVariable;
@@ -193,7 +196,7 @@ public class Parser {
      * Attempts to create AddCommand object to be executed where it is called from
      *
      * @return AddCommand the command to be executed to add an item to the packing list, else
-     * an IncorrectCommand is created to be executed
+     *      an IncorrectCommand is created to be executed
      */
     public static Command createAddObj() {
         try {
@@ -212,7 +215,7 @@ public class Parser {
      * Attempts to create DeleteCommand object to be executed where it is called from
      *
      * @return DeleteCommand the command to be executed to delete an item to the packing list, else
-     * an IncorrectCommand is created to be executed
+     *      an IncorrectCommand is created to be executed
      */
     public static Command createDeleteObj() {
         try {
@@ -236,7 +239,7 @@ public class Parser {
      * Attempts to create PackCommand object to be executed where it is called from
      *
      * @return PackCommand the command to be executed to Pack an item in the packing list, else
-     * an IncorrectCommand is created to be executed
+     *      an IncorrectCommand is created to be executed
      */
     public static Command createPackObj() {
         try {
@@ -261,11 +264,11 @@ public class Parser {
      * Attempts to create UnpackCommand object to be executed where it is called from
      *
      * @return UnpackCommand the command to be executed to unpack an item in the packing list, else
-     * an IncorrectCommand is created to be executed
+     *      an IncorrectCommand is created to be executed
      */
     public static Command createUnpackObj() {
         try {
-            String itemIndex = getVariable("delete");
+            String itemIndex = getVariable("unpack");
             return new UnpackCommand(Integer.parseInt(itemIndex));
         } catch (InvalidVariablesException e) {
             return new IncorrectCommand("Invalid Item Name",
