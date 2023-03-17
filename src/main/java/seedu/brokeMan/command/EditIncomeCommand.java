@@ -7,7 +7,7 @@ public class EditIncomeCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": edit the income from the list.\n" +
             "|  Parameter: i/ <index> t/ <type> n/ <newEntry>\n" +
-            "|  There are 3 type that can be changed, income, info, time\n" +
+            "|  There are 3 type that can be changed, amount, info, time\n" +
             "|  Example: " + COMMAND_WORD + " i/ 1 t/ info n/ stocks";
     private int index;
     private String type;

@@ -178,8 +178,9 @@ public class Parser {
         return new AddIncomeCommand(amount, newDescription, time);
     }
 
-    private static String[] checkAddCommandException(String description) throws InvalidAddCommandException,
-            ContainsEmptyFlagException, AmountIsNotADoubleException {
+//    private static String[] checkAddCommandException(String description) throws InvalidAddCommandException,
+//            ContainsEmptyFlagException, AmountIsNotADoubleException {
+private static String[] checkAddCommandException(String description) throws BrokeManException {
 
         boolean containsAllFlags = description.contains("a/ ") &&
                 description.contains(" d/ ") && description.contains(" t/");
@@ -190,18 +191,11 @@ public class Parser {
 
         String[] splitDescriptions = description.split("/");
 
-//        int length = splitDescriptions[1].length();
-//        int length1 = splitDescriptions[2].length();
-//
-//        splitDescriptions[1] = splitDescriptions[1].substring(0, length - 1);
-//        splitDescriptions[2] = splitDescriptions[2].substring(0, length1 - 1).trim();
-//        checkEmptyFlag(splitDescriptions);
-
         try {
             int length = splitDescriptions[1].length();
             int length1 = splitDescriptions[2].length();
 
-            splitDescriptions[1] = splitDescriptions[1].substring(0, length - 1);
+            splitDescriptions[1] = splitDescriptions[1].substring(0, length - 1).trim();
             splitDescriptions[2] = splitDescriptions[2].substring(0, length1 - 1).trim();
             checkEmptyFlag(splitDescriptions);
             splitDescriptions[3] = splitDescriptions[3].trim();
@@ -239,7 +233,7 @@ public class Parser {
 
         try {
             splitDescriptions = checkEditCommandException(description);
-            if (!splitDescriptions[3].equals("amount")) {
+            if (splitDescriptions[2].equals("amount")) {
                 amount = checkDoubleException(splitDescriptions[3]);
             }
         } catch (BrokeManException bme) {
@@ -265,7 +259,7 @@ public class Parser {
 
         try {
             splitDescriptions = checkEditCommandException(description);
-            if (!splitDescriptions[3].equals("amount")) {
+            if (splitDescriptions[2].equals("amount")) {
                 amount = checkDoubleException(splitDescriptions[3]);
             }
         } catch (BrokeManException bme) {
@@ -300,6 +294,7 @@ public class Parser {
 //    private static String[] checkEditCommandException(String description) throws InvalidEditCommandException,
 //            ContainsEmptyFlagException, IncorrectTypeException, IndexNotAnIntegerException {
 private static String[] checkEditCommandException(String description) throws BrokeManException {
+
         boolean containsAllFlags = description.contains("i/ ") &&
                 description.contains(" t/ ") && description.contains(" n/");
 
@@ -308,23 +303,24 @@ private static String[] checkEditCommandException(String description) throws Bro
         }
 
         String[] splitDescriptions = description.split("/");
-        checkEmptyFlag(splitDescriptions);
 
         int length1 = splitDescriptions[1].length();
         int length2 = splitDescriptions[2].length();
 
-        splitDescriptions[1] = splitDescriptions[1].substring(0, length1 - 2);
-        splitDescriptions[2] = splitDescriptions[2].substring(0, length2 - 2);
+        splitDescriptions[1] = splitDescriptions[1].substring(0, length1 - 1).trim();
+        splitDescriptions[2] = splitDescriptions[2].substring(0, length2 - 1).trim();
 
+        checkEmptyFlag(splitDescriptions);
         checkIsIntegerIndex(splitDescriptions[1]);
         checkCorrectType(splitDescriptions[2]);
+        splitDescriptions[3] = splitDescriptions[3].trim();
 
         return splitDescriptions;
     }
 
     private static void checkIsIntegerIndex(String index) throws IndexNotAnIntegerException {
         try {
-            System.out.println(index);
+//            System.out.println(index);
             Integer.parseInt(index);
         } catch (NumberFormatException nfe) {
             throw new IndexNotAnIntegerException();
@@ -332,8 +328,8 @@ private static String[] checkEditCommandException(String description) throws Bro
     }
 
     private static void checkCorrectType(String type) throws IncorrectTypeException {
-        if (!type.equals("cost") || !type.equals("info") ||
-                type.equals("time") || type.equals("income")) {
+        if (!type.equals("amount") && !type.equals("info") &&
+                !type.equals("time")) {
             throw new IncorrectTypeException();
         }
     }
@@ -411,10 +407,10 @@ private static String[] checkEditCommandException(String description) throws Bro
 //        }
 //        return new EditIncomeCommand(index, type, newMoney);
 //    }
-
-    private static boolean isTypeEqualsCost(String type) {
-        return type.equals("cost") || type.equals("income");
-    }
+//
+//    private static boolean isTypeEqualsCost(String type) {
+//        return type.equals("cost") || type.equals("income");
+//    }
 }
 
 
