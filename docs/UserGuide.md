@@ -21,11 +21,12 @@ If you can type fast, Apollo can get your timetable management done faster than 
     + [`delete` - Deleting a task](#delete---deleting-a-task)
     + [`find` - Finding a task](#find---finding-a-task)
     + [`date` - Find tasks on date](#date---find-tasks-on-date)
-    + [`bye` - Exiting the program](#bye---exiting-the-program)
     + [`addmod` - Adding a module](#addmod---adding-a-module)
     + [`delmod` - Deleting a module](#delmod---deleting-a-module)
     + [`listmod` - Listing all modules](#listmod---listing-all-modules)
+    + [`bye` - Exiting the program](#bye---exiting-the-program)
     + [Loading and saving of data](#loading-and-saving-of-data)
+
 3. [Command summary](#command-summary)
 4. [FAQ](#faq)
 
@@ -50,7 +51,6 @@ ____________________________________________________________
 
 ```
 
-
 ## Command Summary
 
 |    Action     |              Format              |
@@ -69,6 +69,7 @@ ____________________________________________________________
 |  Add Module   |       `addmod MODULE_CODE`       |
 | Delete Module |           `delmod IDX`           |
 | List Modules  |            `listmod`             |
+
 > Notes about the command format:
 > + Words in `UPPER_CASE` are the parameters to be supplied by the user.
 > > e.g. in 'todo TASK', `TASK` is a parameter that can be used as `todo read book`.
@@ -78,23 +79,203 @@ ____________________________________________________________
 
 ## Features
 
-Adds a new item to the list of todo items.
+### `help` - Viewing help
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Shows a menu of commands available in Apollo and their usage, as well as their required format/parameters.
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.
+Format: `help`
 
-Example of usage:
+### `list` - Listing all saved tasks
 
-`todo n/Write the rest of the User Guide d/next week`
+Shows a numbered list of all tasks (Todos, Events, Deadlines) in Apollo.
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+Format: `list`
 
-## FAQ
+Sample output:
 
-**Q**: How do I transfer my data to another computer?
+```
+>> list
+Here are the tasks in your list:
+1.[T][ ] Eat Lunch
+2.[E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
+3.[D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
+4.[T][ ] Feed the fish
+```
 
-**A**: {your answer here}
+### `todo` - Adding a ToDo
+
+Adds a normal task to Apollo.
+
+Format: `todo TASK`
+
+Example input:
+
+```
+>> todo Feed the fish
+Got it. I've added this todo:
+   [T][ ] Feed the fish
+```
+
+### `deadline` - Adding a Deadline
+
+Adds a task with a due date to Apollo.
+
+Format: `deadline TASK /by DATE`
+
+- Enter `DATE` in `yyyy-MM-ddThh:mm` format to use `date` on this task.
+
+```
+>> deadline submit tutorial /by 2023-03-30T23:59
+Got it. I've added this deadline:
+  [D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
+```
+
+### `event` - Adding an Event
+
+Adds a task with a start and end date to Apollo.
+
+Format: `event TASK /from DATE /to DATE`
+
+- Enter `DATE` in `yyyy-MM-ddThh:mm` format to use `date` on this task.
+
+```
+>> event holiday /from 2023-03-25T00:00 /to 2023-03-30T23:59
+Got it. I've added this event:
+  [E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
+```
+
+### `mark` - Marking done
+
+Marks the specified task as completed.
+
+Format: `mark IDX`
+
+- `IDX` can be obtained by using `list` to find the task's index.
+
+```
+>> mark 4
+Nice!, I've marked this task as done:
+[T][X] Feed the fish
+```
+
+### `unmark` - Marking not done
+
+Marks the specified task as not completed.
+Format: `unmark IDX`
+
+- `IDX` can be obtained by using `list` to find the task's index.
+
+```
+>> unmark 4
+OK, I've marked this task as not done yet:
+  [T][ ] Feed the fish
+```
+
+### `delete` - Deleting a task
+
+Deletes the specified task from Apollo.
+Format: `delete IDX`
+
+- `IDX` can be obtained by using `list` to find the task's index.
+
+```
+>> delete 4
+Noted, I've removed this task:
+  [T][ ] Feed the fish
+Now you have 3 tasks in the list
+```
+
+### `find` - Finding a task
+
+Shows all tasks in Apollo that contain the specified keyword.
+
+Format: `find KEYWORD`
+
+```
+>> find tutorial
+Here are the matching tasks in your list:
+1.[D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
+```
+
+### `date` - Find tasks on date
+
+Shows all tasks in Apollo that occur on the specified date.
+
+Format: `date DATE`
+
+- `DATE` should be entered in the format `yyyy-MM-dd`.
+
+```
+>> date 2023-03-30
+Here are the tasks happening on Mar 30 2023:
+1.[E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
+2.[D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
+```
+
+### `addmod` - Adding a module
+
+Adds a module to Apollo.
+
+Format: `addmod MODULE_CODE`
+> Note: `MODULE_CODE` can be either uppercase or lowercase. However, if the module code is not found in NUSMods,
+> Apollo will not add the invalid module into the list.
+
+```
+>> addmod cs2113
+Got it. I've added this module:
+  CS2113: Software Engineering & Object-Oriented Programming
+```
+
+### `delmod` - Deleting a module
+
+Removes a module from Apollo.
+Format: `delmod MODULE_CODE`
+> Note: `MODULE_CODE` can be either uppercase or lowercase. However, if the module code is not found in the module list,
+> Apollo alerts the user that the module is not found.
+
+```
+>> delmod cs2113
+Got it, removed CS2113 from your Module list.
+```
+
+### `listmod` - Listing all modules
+
+Shows a list of all modules in Apollo.
+Format: `listmod`
+
+```
+>> listmod
+You are taking 7 module(s) this semester:
+1.CDE2000: Creating Narratives
+2.CG2023: Signals and Systems
+3.CS2040C: Data Structures and Algorithms
+4.EE2026: Digital Design
+5.EE2211: Introduction to Machine Learning
+6.EE4204: Computer Networks
+7.MA2002: Calculus
+```
+
+### `bye` - Exiting the program
+
+Format: `exit`
+
+```
+>> bye 
+Bye. Hope to see you again soon!
+```
+
+### Loading and saving of data
+
+Apollo automatically loads up your todo and module lists on start-up.
+
+After any command that changes the data, Apollo will save the changes into your hard disk automatically.
+No need to save manually!
+
+The save file for your tasks is located at save.txt within the *home folder* for Apollo.
+The save file for your modules is located at moduleData.txt within the *home folder* for Apollo.
+If either file is corrupted, Apollo will show you a warning before the welcome message.
+
+
+
 
 
