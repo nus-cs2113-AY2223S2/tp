@@ -15,6 +15,9 @@ public class CommandHandler {
             case "generate":
                 command = new GenerateFilterCommand(userCommands);
                 break;
+            case "filters":
+                ui.printFilters();
+                break;
             case "bye":
             case "exit":
                 ui.byeUser();
@@ -24,7 +27,7 @@ public class CommandHandler {
                 command = new HelpCommand();
                 break;
             default:
-                System.out.println("Unknown Command");
+                ui.unknownCommand();
                 errorExists = true;
                 break;
             }

@@ -9,9 +9,8 @@ public class Greet {
             "/_/   /_/\\__/_/ /_/\\___/____/____/  /_____/\\__,_/_/|_|\\___/ ";
 
     public static void greet() {
-        PrintHelpMessage printHelpMessage = new PrintHelpMessage();
         System.out.println("Hello from\n" + LOGO);
-        printHelpMessage.showAvailableCommands();
+        System.out.println("Start your fitness journey! Type [help] to see the things you can do!");
     }
 
 }

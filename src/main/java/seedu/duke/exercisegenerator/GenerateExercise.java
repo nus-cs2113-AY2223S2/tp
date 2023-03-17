@@ -63,6 +63,7 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
+
     //Dylan's set - filter by difficulty
     public ArrayList<ExerciseData> generateFilteredDifficultySetFrom(ArrayList<ExerciseData> exerciseList,
                                                                      String difficulty) throws DukeError {
@@ -99,28 +100,7 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
-    /**
-     * This method is essentially "bogo-search". It continuously generates a random index to search for an exercise with
-     * "difficultyLevel" in it. If not found, generate another random index again. Runtime: O(n!)
-     *
-     * @param difficultyLevel
-     * @param count
-     * @return
-     */
-    public ArrayList<ExerciseData> generateSpecificDifficultySet(String difficultyLevel, int count) {
-        ArrayList<ExerciseData> specificDifficultyExerciseList = new ArrayList<>();
-        Random random = new Random();
-        for (int i = 0; i < count; i++) {
-            while (true) {
-                ExerciseData randomExercise = exerciseDataList.get(random.nextInt(exerciseDataList.size()));
-                if (randomExercise.getLevel().equals(difficultyLevel)) {
-                    specificDifficultyExerciseList.add(randomExercise);
-                    break;
-                }
-            }
-        }
-        return specificDifficultyExerciseList;
-    }
+
 
     public ArrayList<ExerciseData> generateSetAll() {
         return this.exerciseDataList;
