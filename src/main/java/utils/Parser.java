@@ -34,6 +34,7 @@ import static manager.DishManager.getDishesSize;
 public class Parser {
 
     public Command parseCommand(String userInput) {
+        assert userInput != null : "userInput should not be null";
         String[] userInputSplit = userInput.split(" ");
         String commandWord = userInputSplit[0];
         String userInputNoCommand = userInput.replace(userInputSplit[0], "");
@@ -253,6 +254,7 @@ public class Parser {
             System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
+        assert indexToRemove >= 0 : "indexToRemove should be 0 or greater";
         return new DeleteDishCommand(indexToRemove);
     }
 
