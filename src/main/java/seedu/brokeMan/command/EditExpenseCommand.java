@@ -1,7 +1,8 @@
 package seedu.brokeMan.command;
 
-import seedu.brokeMan.entry.Expenses;
 import seedu.brokeMan.entry.IncomeList;
+import seedu.brokeMan.ui.Ui;
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
 
 import java.time.LocalDateTime;
 
@@ -41,6 +42,9 @@ public class EditExpenseCommand extends Command {
         case "cost": IncomeList.editIncome(index, newCost);
         case "info": IncomeList.editIncome(index, newEntry);
         case "time": IncomeList.editIncome(index, newTime);
+        default:
+            Ui.showToUserWithLineBreak(MESSAGE_INVALID_EDIT_COMMAND);
+
         }
     }
 }

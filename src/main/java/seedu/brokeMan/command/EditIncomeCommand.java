@@ -1,10 +1,11 @@
 package seedu.brokeMan.command;
 
 import seedu.brokeMan.entry.IncomeList;
+import seedu.brokeMan.ui.Ui;
 
-import java.time.DateTimeException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
 
 public class EditIncomeCommand extends Command {
     public static final String COMMAND_WORD = "editIncome";
@@ -42,6 +43,9 @@ public class EditIncomeCommand extends Command {
         case "cost": IncomeList.editIncome(index, newIncome);
         case "info": IncomeList.editIncome(index, newInfo);
         case "time": IncomeList.editIncome(index, newTime);
+        default:
+            Ui.showToUserWithLineBreak(MESSAGE_INVALID_EDIT_COMMAND);
+
         }
     }
 }
