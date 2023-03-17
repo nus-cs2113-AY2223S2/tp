@@ -1,6 +1,5 @@
 package utils.command;
 
-import java.util.ArrayList;
 import java.util.UUID;
 import model.Card;
 import model.CardList;

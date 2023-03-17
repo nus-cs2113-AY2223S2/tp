@@ -19,14 +19,14 @@ public class ViewCardCommand extends Command {
 
     public ArrayList<Tag>  findTagsFromTagUUID (ArrayList<UUID> uuids, TagList tagList) {
         ArrayList<Tag> tags = new ArrayList<>();
-       for (UUID uuid : uuids) {
-           for (Tag tag : tagList.getTags()) {
-               if (tag.getUUID().equals(uuid)) {
-                   tags.add(tag);
-               }
-           }
-       }
-       return tags;
+        for (UUID uuid : uuids) {
+            for (Tag tag : tagList.getTags()) {
+                if (tag.getUUID().equals(uuid)) {
+                    tags.add(tag);
+                }
+            }
+        }
+        return tags;
     }
 
     public void execute (CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage) {

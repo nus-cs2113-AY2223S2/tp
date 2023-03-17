@@ -20,7 +20,7 @@ public class AddCardToTagCommand extends Command {
 
 
 
-    protected void AddCardToTag(TagList tagList, CardList cardList) {
+    protected void addCardToTag(TagList tagList, CardList cardList) {
         //find the corresponding Tag and Card based on its tagName and card uuid
         Tag tagToAdd = tagList.findTag(tagName);
         Card cardToAdd = cardList.findCard(cardUUID);
@@ -45,7 +45,7 @@ public class AddCardToTagCommand extends Command {
 
     @Override
     public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage) {
-        AddCardToTag(tagList, cardList);
+        addCardToTag(tagList, cardList);
         ui.printAddTagToCardSuccess(cardUUID, tagUUID);
     }
 }
