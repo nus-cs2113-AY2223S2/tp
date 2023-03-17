@@ -1,50 +1,51 @@
 package seedu.duke;
 
+import seedu.duke.command.AddModuleCommand;
+import seedu.duke.command.Command;
+import seedu.duke.command.DeleteModuleCommand;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.command.InvalidCommand;
+import seedu.duke.command.ListCurrentCommand;
+import seedu.duke.command.ListPuCommand;
+import seedu.duke.command.ListPuModulesCommand;
+
 import java.util.ArrayList;
 import java.io.IOException;
 
 public class Parser {
     private static UI ui = new UI();
 
-    public boolean executeUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
-                                      ArrayList<Module> puModules, Storage storage) {
-        ArrayList<String> userInputWords = Parser.parseCommand(userInput);
+    public Command handleUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
+                                     ArrayList<Module> puModules, Storage storage) {
+        ArrayList<String> userInputWords = parseCommand(userInput);
         String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
         if (userInputWords.size() > 1) {
             userCommandSecondKeyword = userInputWords.get(1);
         }
-        boolean toContinue = true;
         switch (userCommandFirstKeyword) {
         case "list":
             if (userCommandSecondKeyword.equalsIgnoreCase("pu")) {
-                executeListAllPuUniversitiesCommand();
+                return new ListPuCommand();
             } else if (userCommandSecondKeyword.equalsIgnoreCase("current")) {
-                executeListCurrentModulesCommand(modules);
+                return new ListCurrentCommand(modules);
             } else {  // list PU name case
+                // Change the below code index stuff to be in the handleListPuModules, use SLAP
                 int indexOfFirstSpace = userInput.indexOf(' ');
-                String universityName = userInput.substring(indexOfFirstSpace + 1);
-                executeListPuModulesCommand(puModules, universities, universityName);
+                String universityAbbName = userInput.substring(indexOfFirstSpace + 1);
+                return handleListPuModulesCommand(universities, universityAbbName);
             }
-            break;
         case "exit":
-            toContinue = false;
-            executeExitCommand();
-            break;
+            return new ExitCommand();
         case "add":
-            executeAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
-            ui.printAddModMessage();
-            break;
+            return handleAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
         case "remove":
+            // Handle exception for parseInt, use try catch, shift it to another Function thanks
             int indexToRemove = Integer.parseInt(userCommandSecondKeyword);
-            executeDeleteModuleCommand(storage, indexToRemove, modules);
-            ui.printDeleteModMessage();
-            break;
+            return new DeleteModuleCommand(storage, indexToRemove, modules);
         default:
-            ui.printInvalidInputMessage();
-            break;
+            return new InvalidCommand();
         }
-        return toContinue;
     }
 
     // Todo: Throw Exception when commandWords.size() == 1
@@ -68,25 +69,22 @@ public class Parser {
      * @param uniModuleList The corresponding ArrayList of that specified uni.
      * @param database      Database of the user's saved list of modules.
      */
-    public static void deleteModule(int indexToDelete, ArrayList<Module> uniModuleList,
-                                    Storage database) {
+    public static boolean deleteModule(int indexToDelete, ArrayList<Module> uniModuleList,
+                                       Storage database) {
         int indexToZeroBased = indexToDelete - 1;
         try {
             uniModuleList.remove(indexToZeroBased);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Index out of bounds");
+            return false;
         }
-
         try {
             database.writeListToFile(uniModuleList);
         } catch (IOException e) {
             System.out.println("Unable to save to database");
+            return false;
         }
-    }
-
-    private void executeListCurrentModulesCommand(ArrayList<Module> modules) {
-        ui.printCurrentModList(modules);
-        ui.printCurrentListMessage();
+        return true;
     }
 
     // Todo: Right now, it uses university Name only but since university object has 3 attributes:
@@ -94,8 +92,8 @@ public class Parser {
     // 1. univId; 2. univName; 3. univAbbName; we can use this next time
     // Note that this function, takes in the arrayList of modules of ALL MODULES
     // THIS IS NOT THE FUNCTION THAT RETURNS USER SELECTED MODULES SPECIFIED TO A PU.
-    private void executeListPuModulesCommand(ArrayList<Module> modules, ArrayList<University> universities,
-                                             String universityAbbName) {
+    private Command handleListPuModulesCommand(ArrayList<University> universities,
+                                               String universityAbbName) {
         int univId = -1;
         String universityName = "";
         for (int i = 0; i < universities.size(); i++) {
@@ -106,38 +104,39 @@ public class Parser {
                 universityName = currentUniversity.getUnivName(); // Todo: might be empty string
             }
         }
-        ui.printPUModules(univId);
-        ui.printPUModListMessage(universityName);  //Todo: exception this is not found, it is a empty string
+        return new ListPuModulesCommand(univId, universityName);
     }
 
-    private void executeExitCommand() {
-        ui.printExitMessage();
-    }
-
-    private void executeListAllPuUniversitiesCommand() {
-        ui.printPUList();
-        ui.printPUListMessage();
-    }
-
-    // The add comment currently searches only the module code
-    private void executeAddModuleCommand(Storage storage, String abbreviationAndCode, ArrayList<Module> allModules,
-                                         ArrayList<University> universities) {
+    // The add comment currently works in the format of PartnerAbb/ModuleCode
+    private Command handleAddModuleCommand(Storage storage, String abbreviationAndCode, ArrayList<Module> allModules,
+                                           ArrayList<University> universities) {
         String[] stringSplit = abbreviationAndCode.split("/");
+        if (stringSplit.length != 2) {
+            return new InvalidCommand();
+        }
         String abbreviation = stringSplit[0];
         String moduleCode = stringSplit[1];
-        int univID = 0;
+        Module moduleToAdd = null;
+        int univID = -1;
         for (int i = 0; i < universities.size(); ++i) {
             if (universities.get(i).getUnivAbbName().equalsIgnoreCase(abbreviation)) {
                 univID = universities.get(i).getUnivId();
                 break;
             }
         }
+        if (univID == -1) {
+            return new InvalidCommand();
+        }
         for (int i = 0; i < allModules.size(); i++) {
             Module currentModule = allModules.get(i);
             if (currentModule.getUnivId() == univID && currentModule.getModuleCode().equalsIgnoreCase(moduleCode)) {
-                storage.addModuleToModuleList(currentModule);
+                moduleToAdd = currentModule;
             }
         }
+        if (moduleToAdd == null) {
+            return new InvalidCommand();
+        }
+        return new AddModuleCommand(moduleToAdd, storage);
     }
 
     private void executeDeleteModuleCommand(Storage storage, int indexToDelete, ArrayList<Module> modules) {
