@@ -23,10 +23,10 @@ class DeleteTaskCommandTest {
 
     @BeforeEach
     void setUp() {
-        final String SAMPLE_TASK = "add something -d 06-04-2000 23:59";
+        String sampleTask = "add something -d 06-04-2000 23:59";
         testList = new TaskList();
         try {
-            parser.parseCommand(SAMPLE_TASK).execute(testList, ui);
+            parser.parseCommand(sampleTask).execute(testList, ui);
         } catch (ToDoListException e) {
             fail("Failed to initialize test task list");
         }

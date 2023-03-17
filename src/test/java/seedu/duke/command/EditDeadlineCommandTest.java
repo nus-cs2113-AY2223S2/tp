@@ -27,10 +27,10 @@ public class EditDeadlineCommandTest {
 
     @BeforeEach
     void setUp() {
-        final String SAMPLE_TASK = "add something -d 02-02-2023 18:00";
+        String sampleTask = "add something -d 02-02-2023 18:00";
         testList = new TaskList();
         try {
-            parser.parseCommand(SAMPLE_TASK).execute(testList, ui);
+            parser.parseCommand(sampleTask).execute(testList, ui);
         } catch (ToDoListException e) {
             fail("Failed to initialize test task list");
         }
