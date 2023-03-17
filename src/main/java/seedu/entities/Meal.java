@@ -52,11 +52,11 @@ public class Meal {
 
     @Override
     public String toString() {
-        String output = "Meal was consumed on " + date + "\n";
-        output += "Total Calories are: " + this.getTotalCalories() + "\n";
-        output += "Here are the foods you ate:\n";
+        String output = "Meal was consumed on " + date + System.lineSeparator();
+        output += "Total Calories are: " + this.getTotalCalories() + System.lineSeparator();
+        output += "Here are the foods you ate:" + System.lineSeparator();
         for (int i = 0; i < foods.size(); i++) {
-            output += (i+1) + ") " + foods.get(i).toString() + "\n";
+            output += (i+1) + ") " + foods.get(i).toString() + System.lineSeparator();
         }
         return output;
     }

@@ -2,7 +2,6 @@ package seedu.commands;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
@@ -13,8 +12,6 @@ import seedu.logger.LogFileHandler;
 import seedu.ui.GeneralUi;
 
 public class AddMealCommand extends Command {
-
-    private static final Logger logger = Logger.getLogger(AddMealCommand.class.getName());
 
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
@@ -36,23 +33,23 @@ public class AddMealCommand extends Command {
 
             List<Food> filteredFoods = foodStorage.getFoodsByName(foodName);
             if (filteredFoods.size() == 0) {
-                throw new LifeTrackerException("\nNo food found with " + foodName);
+                throw new LifeTrackerException(System.lineSeparator() + "No food found with " + foodName);
             }
 
-            System.out.println("\nThese are the food with " + foodName);
+            System.out.println(System.lineSeparator() + "These are the food with " + foodName);
             System.out.println("Please select which food:");
             for (int i = 0; i < filteredFoods.size(); i++) {
-                System.out.printf("%d) %s\n", i+1, filteredFoods.get(i).toString());
+                System.out.printf("%d) %s" + System.lineSeparator(), i+1, filteredFoods.get(i).toString());
             }
 
             choice = ui.readInt();
             if (choice <= 0 || choice > filteredFoods.size()) {
-                throw new LifeTrackerException("\nInvalid index!");
+                throw new LifeTrackerException(System.lineSeparator() + "Invalid index!");
             }
 
             foods.add(filteredFoods.get(choice-1));
 
-            System.out.println("\nType 1 to add more food. Type any other number to quit");
+            System.out.println(System.lineSeparator() +"Type 1 to add more food. Type any other number to quit");
             choice = ui.readInt();
             if (choice != 1) {
                 toContinue = false;
