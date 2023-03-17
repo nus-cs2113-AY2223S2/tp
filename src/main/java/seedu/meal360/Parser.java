@@ -28,8 +28,8 @@ public class Parser {
                 break;
             } else {
                 String[] command = line.trim().split(" ");
-                String iName = combineWords(command, 0);
-                ingredients.put(iName, Integer.parseInt(command[command.length - 1]));
+                String ingredientName = combineWords(command, 0);
+                ingredients.put(ingredientName, Integer.parseInt(command[command.length - 1]));
             }
         }
         Recipe newRecipe = new Recipe(recipeName, ingredients);

@@ -73,9 +73,9 @@ public class Meal360 {
         } else if (command[0].equals("edit")) {
             ui.printSeparator();
             try{
-                Recipe newRecipe = parser.parseEditRecipe(command, recipeList);
+                Recipe recipeToEdit = parser.parseEditRecipe(command, recipeList);
                 ui.printSeparator();
-                ui.printMessage("I've edited this recipe:" + newRecipe.getName());
+                ui.printMessage("I've edited this recipe:" + recipeToEdit.getName());
             } catch (NumberFormatException e) {
                 String errorMessage = String.format(
                         "Please enter a valid recipe number. You entered %s, " + "which is not a number.",
