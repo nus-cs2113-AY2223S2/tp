@@ -59,7 +59,7 @@ public class Apollo {
             ui.showLine();
             Command c = Parser.getCommand(fullCommand, ui, taskList.size(), moduleData);
             if (c != null) {
-                c.execute(taskList, ui, storage, moduleList);
+                c.execute(taskList, ui, storage, moduleList, moduleData);
                 isExit = c.isExit;
             }
             ui.showLine();

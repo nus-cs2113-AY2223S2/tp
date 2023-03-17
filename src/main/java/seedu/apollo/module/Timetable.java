@@ -2,7 +2,7 @@ package seedu.apollo.module;
 
 public class Timetable {
     private String classnumber;
-    private String classType;
+    private String lessonType;
     private String day;
     private String startTime;
     private String endTime;
@@ -16,12 +16,12 @@ public class Timetable {
         this.classnumber = classnumber;
     }
 
-    public String getClassType() {
-        return classType;
+    public String getLessonType() {
+        return lessonType;
     }
 
-    public void setClassType(String classType) {
-        this.classType = classType;
+    public void setLessonType(String lessonType) {
+        this.lessonType = lessonType;
     }
 
     public String getDay() {

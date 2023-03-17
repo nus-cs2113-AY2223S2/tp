@@ -1,6 +1,9 @@
 package seedu.apollo.command.module;
 
 import seedu.apollo.exception.module.DuplicateModuleException;
+import seedu.apollo.exception.utils.IllegalCommandException;
+import seedu.apollo.module.LessonType;
+import seedu.apollo.module.Timetable;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.ui.Ui;
 import seedu.apollo.command.Command;
@@ -11,6 +14,7 @@ import seedu.apollo.task.TaskList;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -22,20 +26,30 @@ public class AddModuleCommand extends Command {
     private static Logger logger = Logger.getLogger("AddModuleCommand");
     private Module module;
 
+    private String params;
+
 
     /**
      * Constructor for AddModuleCommand.
      *
-     * @param moduleCode The module code of the module to be added.
+     * @param param The module code of the module to be added.
      * @param allModules The list of all modules.
      * @throws InvalidModule If the module code is invalid.
      */
-    public AddModuleCommand(String moduleCode, ModuleList allModules) throws InvalidModule {
+    public AddModuleCommand(String param, ModuleList allModules) throws InvalidModule, IllegalCommandException {
 
         AddModuleCommand.setUpLogger();
-
-        assert (moduleCode != null) : "AddModuleCommand: Module code should not be null!";
+        assert (param != null) : "AddModuleCommand: Params should not be null!";
         assert (allModules != null) : "AddModuleCommand: Module list should not be null!";
+
+        params = param;
+        String[] args = param.split("\\s+");
+
+        if (args.length != 3 && args.length != 1) {
+            throw new IllegalCommandException();
+        }
+
+        String moduleCode = args[0];
         Module toAdd = allModules.findModule(moduleCode);
 
         if (toAdd == null) {
@@ -43,7 +57,7 @@ public class AddModuleCommand extends Command {
             throw new InvalidModule();
         }
 
-        module = toAdd;
+        module = new Module(toAdd.getCode(), toAdd.getTitle(), toAdd.getModuleCredits());
 
     }
 
@@ -70,21 +84,35 @@ public class AddModuleCommand extends Command {
     }
 
     public boolean isAdded(ModuleList moduleList, Module module) {
-        return moduleList.contains(module);
-
+        for (Module mod: moduleList) {
+            if (mod.getCode().equals(module.getCode())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules) {
         try {
-            if ((module != null) && (!isAdded(moduleList, module))) {
-                moduleList.add(module);
-                moduleList.sortModules();
-                ui.printAddModuleMessage(module);
+            String[] args = params.split("\\s+");
+            if (args.length == 3) {
+                handleMultiCommand(moduleList, allModules, args);
+            } else {
+                if (isAdded(moduleList, module)) {
+                    throw new DuplicateModuleException();
+                }
 
-            } else if (isAdded(moduleList, module)) {
-                throw new DuplicateModuleException();
+                if (module != null) {
+                    moduleList.add(module);
+                    moduleList.sortModules();
+                    ui.printAddModuleMessage(module);
+                    ui.printLessonTypeMessage(getLessonTypes(module));
+
+                }
             }
+
+
             storage.updateModule(moduleList);
         } catch (IOException e) {
             logger.log(Level.SEVERE, "IO Exception", e);
@@ -92,6 +120,130 @@ public class AddModuleCommand extends Command {
 
         } catch (DuplicateModuleException e) {
             ui.printDuplicateModule();
+
+        } catch (IllegalCommandException e) {
+            ui.printInvalidCommand();
         }
     }
+
+    private void handleMultiCommand(ModuleList moduleList, ModuleList allModules, String[] args)
+            throws IllegalCommandException {
+
+        LessonType lessonType = this.getCommand(args[1]);
+        Module searchModule = null;
+        for (Module module1: allModules){
+            if (module1.getCode().equalsIgnoreCase(this.module.getCode())){
+                searchModule = module1;
+                break;
+            }
+        }
+
+        if (this.isAdded(moduleList, module)){
+            int index = 0;
+            for (Module module: moduleList){
+                if (module.getCode().equals(this.module.getCode())){
+                    this.module.setTimetable(module.getModuleTimetable());
+                    break;
+                }
+                index++;
+            }
+            module.setTimetable(moduleList.get(index).getModuleTimetable());
+            addTimetable(searchModule, lessonType, args[2]);
+            moduleList.get(index).setTimetable(module.getModuleTimetable());
+        } else {
+            module.createNewTimeTable();
+            addTimetable(searchModule, lessonType, args[2]);
+            moduleList.add(module);
+        }
+    }
+
+    private void addTimetable(Module searchModule, LessonType lessonType, String args) {
+        Boolean isFound = false;
+        ArrayList<Timetable> copyList = new ArrayList<>(searchModule.getModuleTimetable());
+        for (Timetable timetable: copyList){
+            LessonType searchLessonType = this.determineLessonType(timetable.getLessonType());
+            if (searchLessonType.equals(lessonType) && timetable.getClassnumber().equals(args)){
+                module.getModuleTimetable().add(timetable);
+                isFound = true;
+            }
+        }
+
+        if (!isFound){
+            System.out.println("Class number not found!");
+        }
+    }
+
+    public ArrayList<LessonType> getLessonTypes(Module module) {
+        ArrayList<LessonType> lessonTypes = new ArrayList<>();
+        for (Timetable timetable : module.getModuleTimetable()) {
+            LessonType lessonType = this.determineLessonType(timetable.getLessonType());
+            if (!lessonTypes.contains(lessonType) && lessonType != null) {
+                lessonTypes.add(lessonType);
+            }
+        }
+        return lessonTypes;
+    }
+
+    private LessonType getCommand(String arg) throws IllegalCommandException {
+        switch (arg) {
+        case "-lec":
+            return LessonType.LECTURE;
+        case "-plec":
+            return LessonType.PACKAGED_LECTURE;
+        case "-st":
+            return LessonType.SECTIONAL_TEACHING;
+        case "-dlec":
+            return LessonType.DESIGN_LECTURE;
+        case "-tut":
+            return LessonType.TUTORIAL;
+        case "-ptut":
+            return LessonType.PACKAGED_TUTORIAL;
+        case "-rcit":
+            return LessonType.RECITATION;
+        case "-lab":
+            return LessonType.LABORATORY;
+        case "-ws":
+            return LessonType.WORKSHOP;
+        case "-smc":
+            return LessonType.SEMINAR_STYLE_MODULE_CLASS;
+        case "-mp":
+            return LessonType.MINI_PROJECT;
+        case "-tt2":
+            return LessonType.TUTORIAL_TYPE_2;
+        default:
+            throw new IllegalCommandException();
+        }
+    }
+
+    public LessonType determineLessonType(String lessonType) {
+        switch (lessonType) {
+        case "Lecture":
+            return LessonType.LECTURE;
+        case "Packaged Lecture":
+            return LessonType.PACKAGED_LECTURE;
+        case "Sectional Teaching":
+            return LessonType.SECTIONAL_TEACHING;
+        case "Design Lecture":
+            return LessonType.DESIGN_LECTURE;
+        case "Tutorial":
+            return LessonType.TUTORIAL;
+        case "Packaged Tutorial":
+            return LessonType.PACKAGED_TUTORIAL;
+        case "Recitation":
+            return LessonType.RECITATION;
+        case "Laboratory":
+            return LessonType.LABORATORY;
+        case "Workshop":
+            return LessonType.WORKSHOP;
+        case "Seminar-Style Module Class":
+            return LessonType.SEMINAR_STYLE_MODULE_CLASS;
+        case "Mini-Project":
+            return LessonType.MINI_PROJECT;
+        case "Tutorial Type 2":
+            return LessonType.TUTORIAL_TYPE_2;
+        default:
+            return null;
+        }
+    }
+
 }

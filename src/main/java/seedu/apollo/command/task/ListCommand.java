@@ -61,7 +61,7 @@ public class ListCommand extends Command {
      * @param ui Prints shortlisted Tasks to user.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules) {
         ui.printList(taskList);
     }
 
