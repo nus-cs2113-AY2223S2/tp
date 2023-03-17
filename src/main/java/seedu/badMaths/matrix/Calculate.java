@@ -1,10 +1,27 @@
 package seedu.badMaths.matrix;
 
+import seedu.badMaths.matrix.exception.ExceptionChecker;
+import seedu.badMaths.matrix.exception.ShapeMismatchException;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Calculate {
+    ExceptionChecker check = new ExceptionChecker();
+    Logger logger = Logger.getLogger("Exception");
+    Ui ui = new Ui();
+
     // TODO : Implement exception related to tensor's shape mismatch
     public Tensor2D mul(Tensor2D t1, Tensor2D t2){
         Shape t1Shape = t1.shape();
         Shape t2Shape = t2.shape();
+
+        try{
+            check.checkShapeMismatch(t1, t2);
+        }catch (ShapeMismatchException e){
+            ui.printShapeMismatchExceptionLog();
+            return null;
+        }
 
         Tensor2D t2T = t2.t();
         int[][] output = new int[t1Shape.row][t2Shape.column];

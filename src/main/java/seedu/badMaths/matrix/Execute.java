@@ -1,5 +1,8 @@
 package seedu.badMaths.matrix;
 
+import seedu.badMaths.matrix.exception.ExceptionChecker;
+import seedu.badMaths.matrix.exception.ShapeMismatchException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,8 +28,10 @@ public class Execute {
 
         assert !assign.isEmpty();
 
-        System.out.println(assign);
-        System.out.println(cache.get(assign));
+        if(cache.get(assign) != null) {
+            System.out.println(assign);
+            System.out.println(cache.get(assign));
+        }
     }
 
     public Tensor2D execute(String command) {
@@ -39,8 +44,6 @@ public class Execute {
         }else{
             result = executeTranspose(command);
         }
-
-        assert result != null;
 
         return result;
     }
@@ -55,7 +58,6 @@ public class Execute {
         Tensor2D t2 = executeTranspose(operator[1]);
 
         result = c.mul(t1, t2);
-        assert result != null;
 
         return result;
     }
