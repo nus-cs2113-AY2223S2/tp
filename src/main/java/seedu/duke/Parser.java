@@ -8,6 +8,7 @@ import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCurrentCommand;
 import seedu.duke.command.ListPuCommand;
 import seedu.duke.command.ListPuModulesCommand;
+import seedu.duke.command.HelpCommand;
 
 import java.util.ArrayList;
 import java.io.IOException;
@@ -43,6 +44,8 @@ public class Parser {
             // Handle exception for parseInt, use try catch, shift it to another Function thanks
             int indexToRemove = Integer.parseInt(userCommandSecondKeyword);
             return new DeleteModuleCommand(storage, indexToRemove, modules);
+        case "/help":
+            return new HelpCommand();
         default:
             return new InvalidCommand();
         }
@@ -69,7 +72,7 @@ public class Parser {
      * @param uniModuleList The corresponding ArrayList of that specified uni.
      * @param database      Database of the user's saved list of modules.
      */
-    public static boolean deleteModule(int indexToDelete, ArrayList<Module> uniModuleList,
+    public static boolean handleDeleteModule(int indexToDelete, ArrayList<Module> uniModuleList,
                                        Storage database) {
         int indexToZeroBased = indexToDelete - 1;
         try {
@@ -137,10 +140,6 @@ public class Parser {
             return new InvalidCommand();
         }
         return new AddModuleCommand(moduleToAdd, storage);
-    }
-
-    private void executeDeleteModuleCommand(Storage storage, int indexToDelete, ArrayList<Module> modules) {
-        Parser.deleteModule(indexToDelete, modules, storage);
     }
 }
 
