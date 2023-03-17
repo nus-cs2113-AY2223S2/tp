@@ -1,8 +1,13 @@
 package seedu.duke.command;
 
+import seedu.duke.exception.InvalidCommandException;
+import seedu.duke.exception.InvalidFlagException;
+import seedu.duke.exception.InvalidTimeException;
+import seedu.duke.exception.ToDoListException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.StringJoiner;
@@ -17,8 +22,10 @@ public class CommandParser {
      * @param splitInput The command string, split into words.
      * @param flags Map of flags of the arguments that the command string are expected to contain.
      * @return Map of flags to arguments extracted from the command string.
+     * @throws InvalidFlagException if there are multiple of the same flag, which is not allowed.
      */
-    public static HashMap<String, String> getArguments(String[] splitInput, HashSet<String> flags) {
+    public HashMap<String, String> getArguments(String[] splitInput, HashSet<String> flags)
+            throws InvalidFlagException {
         HashMap<String, String> arguments = new HashMap<>();
         StringJoiner currentArgument = new StringJoiner(" ");
         String currentFlag = splitInput[0];
@@ -32,8 +39,7 @@ public class CommandParser {
 
             // Repeating flags are not allowed.
             if (arguments.containsKey(splitInput[i]) || currentFlag.equals(splitInput[i])) {
-                // Unimplemented exception, break as placeholder
-                break;
+                throw new InvalidFlagException();
             }
 
             // Add current flag-argument combo to argument list if current word is a new flag.
@@ -48,12 +54,15 @@ public class CommandParser {
     }
 
     // Adapted from Clement559 iP
-    public static String formatDateTime(String date) throws DateTimeParseException {
-        DateTimeFormatter dateTimeFormatterInput = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
-        DateTimeFormatter dateTimeFormatterOutput = DateTimeFormatter.ofPattern("LLL dd uuuu HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(date, dateTimeFormatterInput);
-        String formattedDateTime = dateTime.format(dateTimeFormatterOutput);
-        return formattedDateTime;
+    public static String formatDateTime(String date) throws InvalidTimeException {
+        if (date == null) {
+            throw new InvalidTimeException();
+        }
+
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(ArgumentList.TIME_FORMAT_IN)
+                .withResolverStyle(ResolverStyle.STRICT);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(ArgumentList.TIME_FORMAT_OUT);
+        return LocalDateTime.parse(date, inputFormatter).format(outputFormatter);
     }
 
     /**
@@ -61,41 +70,27 @@ public class CommandParser {
      *
      * @param input The unparsed command string.
      * @return A command that can be executed by calling the run() method.
+     * @throws ToDoListException if there is an error in parsing the command.
      */
-    public static Command parseCommand(String input) {
+    public Command parseCommand(String input) throws ToDoListException {
         String[] splitInput = input.trim().replaceAll("\\s+", " ").split(" ");
         switch (splitInput[0]) {
         case AddTaskCommand.KEYWORD:
-            return checkValidityAdd(splitInput);
+            return new AddTaskCommand(getArguments(splitInput, AddTaskCommand.FLAGS));
         case ListTasksCommand.KEYWORD:
             return new ListTasksCommand();
         case MarkTaskCommand.KEYWORD:
-            return new MarkTaskCommand(splitInput);
+            return new MarkTaskCommand(getArguments(splitInput, MarkTaskCommand.FLAGS));
         case UnmarkTaskCommand.KEYWORD:
-            return new UnmarkTaskCommand(splitInput);
+            return new UnmarkTaskCommand(getArguments(splitInput, UnmarkTaskCommand.FLAGS));
         case EditDeadlineCommand.KEYWORD:
-            return checkValidityEdit(splitInput);
-        case DeleteCommand.KEYWORD:
-            return new DeleteCommand(splitInput);
+            return new EditDeadlineCommand(getArguments(splitInput, EditDeadlineCommand.FLAGS));
+        case DeleteTaskCommand.KEYWORD:
+            return new DeleteTaskCommand(getArguments(splitInput, DeleteTaskCommand.FLAGS));
         case ExitCommand.KEYWORD:
             return new ExitCommand();
         default:
-            return new InvalidCommand();
-        }
-    }
-
-    public static Command checkValidityAdd (String[] splitInput) {
-        try {
-            return new AddTaskCommand(splitInput);
-        } catch (NullPointerException | DateTimeParseException e) {
-            return new InvalidCommand();
-        }
-    }
-    public static Command checkValidityEdit (String[] splitInput) {
-        try {
-            return new EditDeadlineCommand(splitInput);
-        } catch (DateTimeParseException | NumberFormatException e) {
-            return new InvalidCommand();
+            throw new InvalidCommandException();
         }
     }
 }

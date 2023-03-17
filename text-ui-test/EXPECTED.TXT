@@ -1,11 +1,12 @@
+No save file was found. Creating a new list and save file 'data.txt' for you to use.
 Hello, I am Duke and I will help you remember the tasks you need to do!
 For now, you can do the following:
 Add a task using: add <description> -d <deadline>
 List all tasks using: list
+Delete a task using: delete <index>
 Mark a task as done using: mark <index>
 Mark a task as undone using: unmark <index>
-Edit a task deadline using: editdeadline <index> -d <deadline>
-Exit the program using: bye
+Edit a task deadline using: edit <index> -d <deadline>
+Exit the program using: exit
 
-No save file was found. Creating a new list and save file 'data.txt' for you to use.
 See you again, bye!

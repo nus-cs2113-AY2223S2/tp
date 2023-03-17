@@ -1,23 +1,30 @@
 package seedu.duke.command;
 
+import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.ui.Ui;
-import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class UnmarkTaskCommand extends Command{
     public static final String KEYWORD = "unmark";
-    private int index;
-    private boolean isDone;
+    public static final HashSet<String> FLAGS = new HashSet<>(Arrays.asList(KEYWORD));
 
-    public UnmarkTaskCommand(String[] command){
-        index = Integer.parseInt(command[1]) - 1;
-        isDone = command[0].equals("mark");
+    private int index;
+
+    public UnmarkTaskCommand(HashMap<String, String> args) throws InvalidIndexException {
+        try {
+            index = Integer.parseInt(args.get(KEYWORD)) - 1;
+        } catch (NumberFormatException e) {
+            throw new InvalidIndexException();
+        }
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        Task task = taskList.getTask(index);
-        task.setDone(isDone);
-        ui.printUnmarkTaskNotification(task);
+    public void execute(TaskList taskList, Ui ui) throws InvalidIndexException {
+        String taskString = taskList.setDone(index, false);
+        ui.printUnmarkTaskNotification(taskString);
     }
 }

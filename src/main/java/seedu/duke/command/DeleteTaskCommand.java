@@ -8,13 +8,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class MarkTaskCommand extends Command{
-    public static final String KEYWORD = "mark";
+public class DeleteTaskCommand extends Command{
+    public static final String KEYWORD = "delete";
     public static final HashSet<String> FLAGS = new HashSet<>(Arrays.asList(KEYWORD));
 
     private int index;
 
-    public MarkTaskCommand(HashMap<String, String> args) throws InvalidIndexException {
+    public DeleteTaskCommand(HashMap<String, String> args) throws InvalidIndexException {
         try {
             index = Integer.parseInt(args.get(KEYWORD)) - 1;
         } catch (NumberFormatException e) {
@@ -24,7 +24,7 @@ public class MarkTaskCommand extends Command{
 
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIndexException {
-        String taskString = taskList.setDone(index, true);
-        ui.printMarkTaskNotification(taskString);
+        String taskString = taskList.deleteTask(index);
+        ui.printDeleteTaskNotification(taskString);
     }
 }

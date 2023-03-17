@@ -10,14 +10,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-
 // This class was largely based off the Storage classes from jeromeongithub/ip and erjunze/ip.
 // The supporting code e.g. toSaveString() methods in TaskList and Task class were largely based off erjunze/ip.
 
 /**
  * A class for saving the task list as a text file and loading it.
  */
-
 public abstract class Storage {
     public static final String DELIMITER = "\u001D";
 

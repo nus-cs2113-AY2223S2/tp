@@ -1,5 +1,7 @@
 package seedu.duke.task;
 
+import seedu.duke.exception.InvalidIndexException;
+
 import java.util.ArrayList;
 import java.util.StringJoiner;
 
@@ -29,7 +31,10 @@ public class TaskList {
      *              Must be between 1 and the size of the task list.
      * @return The task at the given index of the task list.
      */
-    public Task getTask(int index) {
+    Task getTask(int index) throws InvalidIndexException {
+        if (index < 0 || index > tasks.size() - 1) {
+            throw new InvalidIndexException();
+        }
         return tasks.get(index);
     }
 
@@ -52,8 +57,12 @@ public class TaskList {
      * @param isDone Whether the task should be marked as completed.
      * @return String representation of the task whose completion status was set.
      */
-    public String setDone(int index, boolean isDone) {
+    public String setDone(int index, boolean isDone) throws InvalidIndexException {
+        if (index < 0 || index > tasks.size() - 1) {
+            throw new InvalidIndexException();
+        }
         tasks.get(index).setDone(isDone);
+        assert tasks.get(index).isDone() == isDone;
         return tasks.get(index).toString();
     }
 
@@ -64,7 +73,10 @@ public class TaskList {
      *              Must be between 1 and the size of the task list.
      * @return String representation of the task that was deleted.
      */
-    public String deleteTask(int index) {
+    public String deleteTask(int index) throws InvalidIndexException {
+        if (index < 0 || index > size() - 1) {
+            throw new InvalidIndexException();
+        }
         String taskString = tasks.get(index).toString();
         tasks.remove(index);
         return taskString;
@@ -77,7 +89,10 @@ public class TaskList {
      *              Must be between 1 and the size of the task list.
      * @return String representation of the task whose deadline was changed.
      */
-    public String editDeadline(int index, String deadline) {
+    public String editDeadline(int index, String deadline) throws InvalidIndexException {
+        if (index < 0 || index > tasks.size() - 1) {
+            throw new InvalidIndexException();
+        }
         tasks.get(index).editDeadline(deadline);
         return tasks.get(index).toString();
     }
@@ -90,7 +105,7 @@ public class TaskList {
     public String toString() {
         StringJoiner taskListString = new StringJoiner(System.lineSeparator());
         for (int i = 0; i < size(); i++) {
-            taskListString.add((i + 1) + "." + getTask(i).toString());
+            taskListString.add((i + 1) + "." + tasks.get(i).toString());
         }
         return taskListString.toString();
     }
@@ -98,7 +113,7 @@ public class TaskList {
     public String toSaveString() {
         StringJoiner taskListString = new StringJoiner(System.lineSeparator());
         for (int i = 0; i < size(); i++) {
-            taskListString.add(getTask(i).toSaveString());
+            taskListString.add(tasks.get(i).toSaveString());
         }
         return taskListString.toString();
     }
@@ -106,7 +121,7 @@ public class TaskList {
     /**
      * Sorts the ArrayList tasks, by the corresponding Task deadlines
      */
-    public void sortTaskList() {
-        tasks.sort(Task.TaskDeadlineComparator);
+    public void sortByDeadline() {
+        tasks.sort(Task.taskDeadlineComparator);
     }
 }

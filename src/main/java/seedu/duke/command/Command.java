@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.exception.ToDoListException;
 import seedu.duke.ui.Ui;
 import seedu.duke.task.TaskList;
 
@@ -10,7 +11,7 @@ public abstract class Command {
     /**
      * Executes the command.
      */
-    public abstract void execute(TaskList taskList, Ui ui);
+    public abstract void execute(TaskList taskList, Ui ui) throws ToDoListException;
 
     /**
      * Returns whether a command, by default, should terminate the program.
