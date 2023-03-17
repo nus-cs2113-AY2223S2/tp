@@ -72,7 +72,7 @@ class ParserTest {
 
     @Test
     void validAddExpenseCommandShouldReturnAddExpenseCommand() {
-        final String userFullInput = "addExpense a/ 4.0 d/ lunch t/ 12pm";
+        final String userFullInput = "addExpense a/ 4.0 d/ lunch t/ 2022 08 12 11 59";
         Command actualCommand = Parser.parseCommand(userFullInput);
 
         assertTrue(actualCommand instanceof AddExpenseCommand);
@@ -80,7 +80,7 @@ class ParserTest {
 
     @Test
     void validAddIncomeCommandShouldReturnAddIncomeCommand() {
-        final String userFullInput = "addIncome a/ 400 d/ stocks t/ 12pm";
+        final String userFullInput = "addIncome a/ 400 d/ stocks t/ 2023 12 11 12 41";
         Command actualCommand = Parser.parseCommand(userFullInput);
 
         assertTrue(actualCommand instanceof AddIncomeCommand);
