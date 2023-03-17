@@ -16,6 +16,10 @@ public class TagList {
         this.tags = tags;
     }
 
+    public List<Tag> getTags() {
+        return this.tags;
+    }
+
     public void addTag(Tag tag) {
         this.tags.add(tag);
     }

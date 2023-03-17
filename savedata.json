@@ -5,12 +5,14 @@
     {
       "uuid": "f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454",
       "question": "is akhil a dirty commie",
-      "answer": "yes"
+      "answer": "yes",
+      "tags": []
     },
     {
       "uuid": "00000000-0000-0000-0000-000000000001",
       "question": "why do other groups keep attackin ian",
-      "answer": "he is not a dirty commie"
+      "answer": "he is not a dirty commie",
+      "tags": []
     }
   ]
 }

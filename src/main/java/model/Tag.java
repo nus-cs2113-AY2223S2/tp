@@ -21,7 +21,7 @@ public class Tag {
         return this.tagName;
     }
 
-    public ArrayList<UUID> getCards() {
+    public ArrayList<UUID> getCardsUUID() {
         return this.cards;
     }
 

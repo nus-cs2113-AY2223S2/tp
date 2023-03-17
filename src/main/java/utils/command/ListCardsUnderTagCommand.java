@@ -22,7 +22,7 @@ public class ListCardsUnderTagCommand extends Command{
             //throw exceptions
         }
 
-        ArrayList<UUID> cardsUUID = foundTag.getCards();
+        ArrayList<UUID> cardsUUID = foundTag.getCardsUUID();
         CardList foundCardList = new CardList();
 
         for (Card card : cardList.getCards()) {

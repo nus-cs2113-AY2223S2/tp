@@ -1,7 +1,10 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import model.Card;
 import model.CardList;
+import model.Tag;
 import model.TagList;
 import utils.enums.StringArt;
 import utils.exceptions.InkaException;
@@ -76,6 +79,10 @@ public class UserInterface {
         System.out.println(cardlist.get(id));
     }
 
+    public void printCard(Card card) {
+        System.out.println(card);
+    }
+
 
 
     public void printException(InkaException e) {
@@ -102,5 +109,17 @@ public class UserInterface {
                 System.out.println((i + 1) + "." + tagList.get(i));
             }
         }
+    }
+
+    public void printTags(ArrayList<Tag> tags) {
+        if (tags.isEmpty()) {
+            System.out.println("There is currently no tags");
+        } else {
+            System.out.println("Here are the tags : ");
+            for (int i = 0; i < tags.size(); ++i) {
+                System.out.println((i + 1) + "." + tags.get(i));
+            }
+        }
+
     }
 }
