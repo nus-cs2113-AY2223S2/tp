@@ -12,13 +12,14 @@ import java.util.Scanner;
 
 public class Duke {
     private static boolean isInUse = true;
+    private static final String DEFAULT_SAVE_FILE = "./data.txt";
 
     public static void main(String[] args) {
         Ui ui = new Ui();
         TaskList taskList = new TaskList();
         CommandParser parser = new CommandParser();
         try {
-            taskList = Storage.loadData("./data.txt", ui);
+            taskList = Storage.loadData(DEFAULT_SAVE_FILE, ui);
         } catch (FileNotFoundException e) {
             ui.printFileNotFoundMessage();
         } catch (ConversionErrorException e) {
@@ -32,7 +33,7 @@ public class Duke {
                     String userInput = in.nextLine();
                     Command parsedCommand = parser.parseCommand(userInput);
                     parsedCommand.execute(taskList, ui);
-                    Storage.saveData("./data.txt", taskList, ui);
+                    Storage.saveData(DEFAULT_SAVE_FILE, taskList, ui);
                     isInUse = !parsedCommand.isExit();
                 } catch (IOException e) {
                     ui.printSavingErrorMessage();

@@ -21,6 +21,7 @@ public abstract class Storage {
 
     // code provided by module website
     private static void writeToFile(String filepath, String textToAdd) throws IOException {
+        assert filepath != null : "Invalid file path used.";
         FileWriter fw = new FileWriter(filepath);
         fw.write(textToAdd);
         fw.close();
@@ -54,21 +55,17 @@ public abstract class Storage {
             return taskList;
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException();
-        } catch (ConversionErrorException e) {
+        } catch (AssertionError e) {
             throw new ConversionErrorException();
         }
-    }
-
-    private static boolean isInvalidSaveString(String[] splitTasks, int expectedArgs) {
-        return splitTasks.length != expectedArgs || !(splitTasks[0].equals("1") || splitTasks[0].equals("0"));
     }
 
     private static Task convertStringToTask(String taskString) throws ConversionErrorException {
         String[] splitTasks = taskString.split(DELIMITER);
+        assert splitTasks.length == 3 : "Save string is split incorrectly.";
+        assert splitTasks[0].equals("1") || splitTasks[0].equals("0") : "Save string has invalid completion status.";
+
         Task task;
-        if (isInvalidSaveString(splitTasks, 3)) {
-            throw new ConversionErrorException();
-        }
         task = new Task(splitTasks[1], splitTasks[2]);
         task.setDone(splitTasks[0].equals("1"));
         return task;
