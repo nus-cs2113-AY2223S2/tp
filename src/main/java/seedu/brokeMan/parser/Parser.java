@@ -194,17 +194,10 @@ public class Parser {
             type = splitDescriptions[2].substring(0, splitDescriptions[2].length() - 2);
             newEntry = splitDescriptions[3];
 
-            if (type.equals("cost")) {
-                newMoney = Double.parseDouble(newEntry);
-                return (moneyType.equals("expense") ? new EditExpenseCommand(index, type, newMoney)
-                        : new EditIncomeCommand(index, type, newMoney));
-            } else if (type.equals("time")) {
-                newTime = StringToTime.convertStringToTime(newEntry);
-                return (moneyType.equals("expense") ? new EditExpenseCommand(index, type, newTime)
-                        : new EditIncomeCommand(index, type, newTime));
+            if (moneyType.equals("expense")) {
+                return new EditExpenseCommand(index, type, newEntry);
             }
-            return (moneyType.equals("expense") ? new EditExpenseCommand(index, type, newEntry)
-                    : new EditIncomeCommand(index, type, newEntry));
+            return new EditIncomeCommand(index, type, newEntry);
 
         } catch (NumberFormatException nfe) {
             String errorMessage = new IndexNotAnIntegerException().getMessage();

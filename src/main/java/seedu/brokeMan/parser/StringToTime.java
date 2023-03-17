@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_TIME;
 
 public class StringToTime {
-    static LocalDateTime convertStringToTime(String timeInString) throws DateTimeException {
+    public static LocalDateTime convertStringToTime(String timeInString) throws DateTimeException {
         String[] timeByWord = timeInString.split(" ");
         if (timeByWord.length != 5) {
             throw new DateTimeException(MESSAGE_INVALID_TIME);

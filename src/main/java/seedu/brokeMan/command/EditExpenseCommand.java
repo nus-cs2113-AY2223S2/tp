@@ -1,10 +1,12 @@
 package seedu.brokeMan.command;
 
 import seedu.brokeMan.entry.IncomeList;
+import seedu.brokeMan.parser.StringToTime;
 import seedu.brokeMan.ui.Ui;
-import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
 
 import java.time.LocalDateTime;
+
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
 
 public class EditExpenseCommand extends Command {
     public static final String COMMAND_WORD = "editExpense";
@@ -15,9 +17,7 @@ public class EditExpenseCommand extends Command {
             "|  Example: " + COMMAND_WORD + " i/ 1 t/ cost n/ 5";
     private int index;
     private String type;
-    private double newCost;
     private String newEntry;
-    private LocalDateTime newTime;
 
     public EditExpenseCommand(int index, String type, String newEntry) {
         this.index = index;
@@ -25,23 +25,14 @@ public class EditExpenseCommand extends Command {
         this.newEntry = newEntry;
     }
 
-    public EditExpenseCommand(int index, String type, double newCost) {
-        this.index = index;
-        this.type = type;
-        this.newCost = newCost;
-    }
-
-    public EditExpenseCommand(int index, String type, LocalDateTime newTime) {
-        this.index = index;
-        this.type = type;
-        this.newCost = newCost;
-    }
-
     public void execute() {
         switch (type) {
-        case "cost": IncomeList.editIncome(index, newCost);
+        case "cost": Double newCost = Double.parseDouble(newEntry);
+            IncomeList.editIncome(index, newCost);
         case "info": IncomeList.editIncome(index, newEntry);
-        case "time": IncomeList.editIncome(index, newTime);
+        case "time":
+            LocalDateTime newTime = StringToTime.convertStringToTime(newEntry);
+            IncomeList.editIncome(index, newTime);
         default:
             Ui.showToUserWithLineBreak(MESSAGE_INVALID_EDIT_COMMAND);
 
