@@ -47,7 +47,6 @@ public class TodoWorkout {
     public ExerciseData getExerciseData() {
         return this.exerciseData;
     }
-
     /**
      * Marks the TodoWorkout as completed
      */
