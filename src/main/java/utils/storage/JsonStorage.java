@@ -1,5 +1,7 @@
 package utils.storage;
 
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -19,6 +21,7 @@ import utils.exceptions.StorageLoadFailure;
 import utils.exceptions.StorageSaveFailure;
 
 public class JsonStorage extends Storage {
+    private static Logger logger = Logger.getLogger("storage.JsonStorage");
     private GsonBuilder gsonBuilder;
 
     public JsonStorage(String filePath) {
@@ -43,7 +46,8 @@ public class JsonStorage extends Storage {
 
             ArrayList<Card> cards = gson.fromJson(jsonArray, cardListType);
             cardList = new CardList(cards);
-        } catch (IOException E) {
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "Failed to load file from savedata.json", e);
             throw new StorageLoadFailure();
         }
 
@@ -77,6 +81,7 @@ public class JsonStorage extends Storage {
 
             bufferedWriter.write(serialized);
         } catch (IOException e) {
+            logger.log(Level.WARNING, "Failed to save data to savedata.json", e);
             throw new StorageSaveFailure();
         }
     }

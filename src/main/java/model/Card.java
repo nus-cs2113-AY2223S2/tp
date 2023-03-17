@@ -1,8 +1,9 @@
 package model;
+import java.util.UUID;
 
 //to be made into an abstract class containing a few types of Cards later, for now just a single Card will do
 public class Card {
-    private int uuid; //to be made into a hash later
+    private UUID uuid; //to be made into a hash later
     private String question;
     private String answer;
 
@@ -10,10 +11,11 @@ public class Card {
     public Card(String question, String answer) {
         this.question = question;
         this.answer = answer;
+        this.uuid =  UUID.randomUUID();
     }
 
-    public int getUuid() {
-        return uuid;
+    public String getUuid() {
+        return this.uuid.toString() ;
     }
 
     public String getQuestion() {
@@ -26,6 +28,6 @@ public class Card {
 
     @Override
     public String toString() {
-        return this.question + " " + this.answer;
+        return "Qn: " + this.question + "\nAns: " + this.answer + "\nUUID:  " + this.uuid;
     } // return the card
 }
