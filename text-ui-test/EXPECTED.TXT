@@ -64,10 +64,12 @@ Got it. I've added this event:
   [E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
+You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
 3.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+There are 3 unmarked tasks in your tasklist.
 ____________________________________________________________
 ____________________________________________________________
 Please enter [idx] in the form of an integer from 1 to 3
@@ -80,10 +82,12 @@ Nice!, I've marked this task as done:
   [D][X] submit tutorial (by: May 03 2023, 11:59PM)
 ____________________________________________________________
 ____________________________________________________________
+You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][X] submit tutorial (by: May 03 2023, 11:59PM)
 3.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+There are 2 unmarked tasks in your tasklist.
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
@@ -94,11 +98,13 @@ Got it. I've added this todo:
   [T][ ] sleep
 ____________________________________________________________
 ____________________________________________________________
+You have a total of 4 tasks in your tasklist.
 Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
 3.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
 4.[T][ ] sleep
+There are 4 unmarked tasks in your tasklist.
 ____________________________________________________________
 ____________________________________________________________
 Please enter [idx] in the form of an integer from 1 to 4
@@ -112,10 +118,12 @@ Noted, I've removed this task:
 Now you have 3 tasks in the list
 ____________________________________________________________
 ____________________________________________________________
+You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
 1.[T][ ] eat lunch
 2.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
 3.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+There are 3 unmarked tasks in your tasklist.
 ____________________________________________________________
 ____________________________________________________________
 Please specify a keyword to do the search with!
