@@ -5,10 +5,10 @@ import model.CardList;
 import utils.UserInterface;
 import utils.storage.IDataStorage;
 
-public class AddCommand extends Command {
+public class AddCardCommand extends Command {
     private final Card card;
 
-    public AddCommand(Card card) {
+    public AddCardCommand(Card card) {
         this.card = card;
     }
 

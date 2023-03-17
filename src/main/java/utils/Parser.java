@@ -4,7 +4,7 @@ import model.Card;
 import model.CardList;
 
 
-import utils.command.AddCommand;
+import utils.command.AddCardCommand;
 import utils.command.Command;
 import utils.command.DeleteCommand;
 import utils.command.ExceptionCommand;
@@ -55,7 +55,7 @@ public class Parser {
             String question = userCommandSplit[1];
             String answer = userCommandSplit[2];
             Card card = new Card(question, answer);
-            return new AddCommand(card); // main command return
+            return new AddCardCommand(card); // main command return
         } else if (userCommandSplit[0].startsWith("delete") || userCommandSplit[0].startsWith("delete ")) {
 
             if (userCommandSplit.length == 1) {
