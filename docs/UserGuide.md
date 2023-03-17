@@ -229,12 +229,12 @@ Got it. I've added this module:
 ### `delmod` - Deleting a module
 
 Removes a module from Apollo.
-Format: `delmod MODULE_CODE`
-> Note: `MODULE_CODE` can be either uppercase or lowercase. However, if the module code is not found in the module list,
-> Apollo alerts the user that the module is not found.
+Format: `delmod IDX`
+
+- `IDX` can be obtained by using `list` to find the task's index.
 
 ```
->> delmod cs2113
+>> delmod 1
 Got it, removed CS2113 from your Module list.
 ```
 
