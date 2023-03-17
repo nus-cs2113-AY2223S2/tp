@@ -65,13 +65,13 @@ public class Parser {
         setInputStringArray(inputStringList);
         switch (inputStringList[0]) {
         case "add":
-            return addItem();
+            return createAddObj();
         case "delete":
-            return deleteItem();
+            return createDeleteObj();
         case "pack":
-            return packItem();
+            return createPackObj();
         case "unpack":
-            return unpackItem();
+            return createUnpackObj();
         case "list":
             return listCommand();
         case "help":
@@ -190,9 +190,12 @@ public class Parser {
 
 
     /**
-     * Calls the AddCommand.execute() method to add an item to the packing list
+     * Attempts to create AddCommand object to be executed where it is called from
+     *
+     * @return AddCommand the command to be executed to add an item to the packing list, else
+     * an IncorrectCommand is created to be executed
      */
-    public static Command addItem() {
+    public static Command createAddObj() {
         try {
             String itemName = getVariable("add");
             return new AddCommand(new Item(itemName));
@@ -206,9 +209,12 @@ public class Parser {
     }
 
     /**
-     * Calls the DeleteCommand.execute() method to add an item to the packing list
+     * Attempts to create DeleteCommand object to be executed where it is called from
+     *
+     * @return DeleteCommand the command to be executed to delete an item to the packing list, else
+     * an IncorrectCommand is created to be executed
      */
-    public static Command deleteItem() {
+    public static Command createDeleteObj() {
         try {
             String itemIndex = getVariable("delete");
             return new DeleteCommand(Integer.parseInt(itemIndex));
@@ -227,9 +233,12 @@ public class Parser {
     }
 
     /**
-     * Calls the PackCommand.execute() method to mark an item as packed in the packing list
+     * Attempts to create PackCommand object to be executed where it is called from
+     *
+     * @return PackCommand the command to be executed to Pack an item in the packing list, else
+     * an IncorrectCommand is created to be executed
      */
-    public static Command packItem() {
+    public static Command createPackObj() {
         try {
             String itemIndex = getVariable("pack");
             return new PackCommand(Integer.parseInt(itemIndex));
@@ -249,9 +258,12 @@ public class Parser {
 
 
     /**
-     * Calls the UnpackCommand.execute() method to mark an item as unpacked in the packing list
+     * Attempts to create UnpackCommand object to be executed where it is called from
+     *
+     * @return UnpackCommand the command to be executed to unpack an item in the packing list, else
+     * an IncorrectCommand is created to be executed
      */
-    public static Command unpackItem() {
+    public static Command createUnpackObj() {
         try {
             String itemIndex = getVariable("delete");
             return new UnpackCommand(Integer.parseInt(itemIndex));
