@@ -8,9 +8,10 @@ public class Tag {
     private String tagName;
     private ArrayList<UUID> cards = new ArrayList<>();
 
-    public Tag (String tagName, UUID cardUUID) {
+    public Tag (String tagName, String cardUUID) {
         this.tagName = tagName;
-        cards.add(cardUUID);
+        this.uuid = UUID.randomUUID();
+        cards.add(UUID.fromString(cardUUID));
     }
 
     @Override

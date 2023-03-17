@@ -16,7 +16,7 @@ public class TagList {
         this.tags = tags;
     }
 
-    public void addCard(Tag tag) {
+    public void addTag(Tag tag) {
         this.tags.add(tag);
     }
 

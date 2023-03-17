@@ -3,8 +3,10 @@ package utils;
 import model.Card;
 import model.CardList;
 
+import model.Tag;
 import model.TagList;
 import utils.command.AddCardCommand;
+import utils.command.AddTagCommand;
 import utils.command.Command;
 import utils.command.DeleteCardCommand;
 import utils.command.ExceptionCommand;
@@ -18,6 +20,7 @@ import utils.exceptions.AddEmptyQuestionAndAnswer;
 import utils.exceptions.AddGoneWrong;
 import utils.exceptions.DeleteMissingNumber;
 import utils.exceptions.DeleteRangeInvalid;
+import utils.exceptions.InkaException;
 
 public class Parser {
     private boolean isExecuting;
@@ -35,14 +38,13 @@ public class Parser {
         this.isExecuting = bool;
     }
 
-    public Command parseCommand(String userCommand, CardList cardList, TagList tagList)
-            throws DeleteMissingNumber, DeleteRangeInvalid, AddGoneWrong, AddEmptyQuestion, AddEmptyAnswer,
-            AddEmptyQuestionAndAnswer {
-        String[] userCommandSplit = userCommand.split("-", 3);
+    public Command parseCommand(String userCommand, CardList cardList, TagList tagList) throws InkaException {
+        String[] userCommandSplit = userCommand.split("--", 3);
         assert userCommandSplit.length >=1 : "User Command must be specified";
         if (userCommandSplit[0].startsWith("card list")) {
             return new ListCardCommand();
-        } else if (userCommandSplit[0].startsWith("card add")) {
+        }
+        else if (userCommandSplit[0].startsWith("card add")) {
             if (userCommandSplit.length < 3) {
                 throw new AddGoneWrong();
             } else if (userCommandSplit[1].isBlank() && userCommandSplit[2].isBlank()) {
@@ -57,7 +59,8 @@ public class Parser {
             String answer = userCommandSplit[2];
             Card card = new Card(question, answer);
             return new AddCardCommand(card); // main command return
-        } else if (userCommandSplit[0].startsWith("card delete")) {
+        }
+        else if (userCommandSplit[0].startsWith("card delete")) {
 
             if (userCommandSplit.length == 1) {
                 throw new DeleteMissingNumber();
@@ -69,12 +72,20 @@ public class Parser {
             int deleteIndex = Integer.parseInt(userCommandSplit[1]);
             assert deleteIndex >= 0 : "deleteIndex should be a number";
             return new DeleteCardCommand(deleteIndex);
-        } else if (userCommandSplit[0].startsWith("tag list")) {
+        }
+        else if (userCommandSplit[0].startsWith("card tag")) {
+            String cardUUID = userCommandSplit[1].trim();
+            String tagName = userCommandSplit[2];
+            Tag tag = new Tag(tagName,cardUUID);
+            return new AddTagCommand(tag);
+        }
+        else if (userCommandSplit[0].startsWith("tag list")) {
             return new ListTagsCommand();
         }
         else if (userCommandSplit[0].startsWith("export") || userCommandSplit[0].startsWith("export ")) {
             return new ExportCommand();
-        } else if (userCommandSplit[0].startsWith("bye")) {
+        }
+        else if (userCommandSplit[0].startsWith("bye")) {
             this.setIsExecuting(false);
             return new TerminateCommand();
         } else {
