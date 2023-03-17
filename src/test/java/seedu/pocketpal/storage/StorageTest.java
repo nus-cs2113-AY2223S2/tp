@@ -6,12 +6,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import seedu.pocketpal.constants.EntryConstants;
-import seedu.pocketpal.constants.StorageConstants;
-import seedu.pocketpal.entries.Category;
-import seedu.pocketpal.entries.Entry;
-import seedu.pocketpal.entrylog.EntryLog;
-import seedu.pocketpal.exceptions.InvalidReadFileException;
+import seedu.pocketpal.backend.constants.Config;
+import seedu.pocketpal.backend.storage.Storage;
+import seedu.pocketpal.frontend.constants.EntryConstants;
+import seedu.pocketpal.data.entry.Category;
+import seedu.pocketpal.data.entry.Entry;
+import seedu.pocketpal.data.entrylog.EntryLog;
+import seedu.pocketpal.backend.exceptions.InvalidReadFileException;
 
 import java.util.List;
 import java.io.FileOutputStream;
@@ -97,7 +98,7 @@ public class StorageTest {
     @Nested
     @DisplayName("Test invalid read code")
     class ExceptionTests {
-        private static final String TEST_DELIMITER = StorageConstants.DELIMITER;
+        private static final String TEST_DELIMITER = Config.DELIMITER;
         private static final String TEST_DESCRIPTION = "Mango Juice";
         private static final String TEST_AMOUNT_STRING = "4";
         private static final String TEST_CATEGORY_STRING = EntryConstants.FOOD;

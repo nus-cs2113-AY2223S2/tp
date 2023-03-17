@@ -6,10 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.pocketpal.constants.MessageConstants;
-import seedu.pocketpal.exceptions.InvalidArgumentsException;
-import seedu.pocketpal.exceptions.InvalidCommandException;
-import seedu.pocketpal.exceptions.MissingArgumentsException;
+import seedu.pocketpal.frontend.constants.MessageConstants;
+import seedu.pocketpal.frontend.exceptions.InvalidArgumentsException;
+import seedu.pocketpal.frontend.exceptions.InvalidCommandException;
+import seedu.pocketpal.frontend.exceptions.MissingArgumentsException;
+import seedu.pocketpal.frontend.parser.Parser;
 
 
 public class ParserTest {

@@ -2,11 +2,12 @@ package seedu.pocketpal.commands;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import seedu.pocketpal.constants.MessageConstants;
-import seedu.pocketpal.entries.Category;
-import seedu.pocketpal.entries.Entry;
-import seedu.pocketpal.entrylog.EntryLog;
-import seedu.pocketpal.ui.UI;
+import seedu.pocketpal.frontend.commands.EditCommand;
+import seedu.pocketpal.frontend.constants.MessageConstants;
+import seedu.pocketpal.data.entry.Category;
+import seedu.pocketpal.data.entry.Entry;
+import seedu.pocketpal.data.entrylog.EntryLog;
+import seedu.pocketpal.frontend.ui.UI;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,7 +41,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(proposedChanges[0], proposedChanges[1], proposedChanges[2]
                 , proposedChanges[3]);
         originalEntries.addEntry(originalEntry);
-        assertDoesNotThrow(() -> editCommand.executor(originalEntries, ui), MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
+        assertDoesNotThrow(() -> editCommand.execute(ui, null), MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
         Entry changedEntry = originalEntries.getEntriesList().get(0);
         assertEquals(changedEntry.getDescription(), "Lunch");
         assertEquals(changedEntry.getCategoryString(), "Food");

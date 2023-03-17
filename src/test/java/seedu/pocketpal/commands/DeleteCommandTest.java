@@ -2,10 +2,11 @@ package seedu.pocketpal.commands;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import seedu.pocketpal.entries.Category;
-import seedu.pocketpal.entries.Entry;
-import seedu.pocketpal.entrylog.EntryLog;
-import seedu.pocketpal.ui.UI;
+import seedu.pocketpal.data.entry.Category;
+import seedu.pocketpal.data.entry.Entry;
+import seedu.pocketpal.data.entrylog.EntryLog;
+import seedu.pocketpal.frontend.commands.DeleteCommand;
+import seedu.pocketpal.frontend.ui.UI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class DeleteCommandTest {
     void testExecute(){
         try {
             DeleteCommand testCommand = assertDoesNotThrow(() -> new DeleteCommand(1));
-            testCommand.executor(testEntries, ui);
+            testCommand.execute(ui, null);
             assertFalse(testEntries.getEntriesList().contains(testEntry));
         } catch (Exception e) {
             fail("Unexpected exception");

@@ -1,9 +1,10 @@
 package seedu.pocketpal.entrylog;
 
-import seedu.pocketpal.constants.MessageConstants;
-import seedu.pocketpal.entries.Category;
-import seedu.pocketpal.entries.Entry;
-import seedu.pocketpal.exceptions.InvalidArgumentsException;
+import seedu.pocketpal.frontend.constants.MessageConstants;
+import seedu.pocketpal.data.entry.Category;
+import seedu.pocketpal.data.entry.Entry;
+import seedu.pocketpal.data.entrylog.EntryLog;
+import seedu.pocketpal.frontend.exceptions.InvalidArgumentsException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +79,7 @@ public class EntryLogTest {
         void add_entry_noExceptionThrown() {
             assertDoesNotThrow(() -> {
                 entryLog.addEntry(entry4);
-                Entry addedEntry = entryLog.getEntry(entryLog.getSize() - 1);
+                Entry addedEntry = entryLog.getEntry(entryLog.getSize());
                 assertEquals(addedEntry, entry4);
             });
         }

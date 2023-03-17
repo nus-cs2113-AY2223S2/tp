@@ -3,10 +3,11 @@ package seedu.pocketpal.commands;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import seedu.pocketpal.entries.Category;
-import seedu.pocketpal.entries.Entry;
-import seedu.pocketpal.entrylog.EntryLog;
-import seedu.pocketpal.ui.UI;
+import seedu.pocketpal.data.entry.Category;
+import seedu.pocketpal.data.entry.Entry;
+import seedu.pocketpal.data.entrylog.EntryLog;
+import seedu.pocketpal.frontend.commands.AddCommand;
+import seedu.pocketpal.frontend.ui.UI;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,7 +38,7 @@ public class AddCommandTest {
     @DisplayName("Test execute method in AddCommand")
     void testExecute(){
         AddCommand testCommand = assertDoesNotThrow(() -> new AddCommand("Rice", 8.50, "Food"));
-        testCommand.executor(testEntries, ui);
+        testCommand.execute(ui, null);
         assertTrue(testEntries.getEntriesList().contains(testCommand.getEntryObj()));
     }
 

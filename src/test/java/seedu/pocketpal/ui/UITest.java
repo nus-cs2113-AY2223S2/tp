@@ -8,11 +8,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import seedu.pocketpal.constants.MessageConstants;
-import seedu.pocketpal.constants.UIConstants;
-import seedu.pocketpal.entries.Category;
-import seedu.pocketpal.entries.Entry;
-import seedu.pocketpal.util.UIUtil;
+import seedu.pocketpal.frontend.constants.MessageConstants;
+import seedu.pocketpal.frontend.constants.UIConstants;
+import seedu.pocketpal.data.entry.Category;
+import seedu.pocketpal.data.entry.Entry;
+import seedu.pocketpal.frontend.ui.UI;
+import seedu.pocketpal.frontend.util.UIUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
