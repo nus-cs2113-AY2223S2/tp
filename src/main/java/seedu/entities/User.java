@@ -74,9 +74,11 @@ public class User {
         switch(gender.toLowerCase()) {
         case "male":
             caloricNeeds = 66 + (13.7 * weight) + (5 * height) - (4.7 * age);
+            assert caloricNeeds > 0: "Caloric Needs should be more than O";
             return caloricNeeds;
         case "female":
             caloricNeeds = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
+            assert caloricNeeds > 0: "Caloric Needs should be more than O";
             return caloricNeeds;
         default:
             System.out.println("Gender not provided, cannot calculate caloric needs accurately");
