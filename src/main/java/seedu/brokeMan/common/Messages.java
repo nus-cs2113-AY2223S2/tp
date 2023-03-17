@@ -25,4 +25,7 @@ public class Messages {
     public static final String MESSAGE_AMOUNT_NOT_DOUBLE = "Amount is not a double";
     public static final String MESSAGE_INDEX_NOT_INTEGER = "Index is not an integer";
     public static final String MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION = "Index is not specified";
+
+    public static final String MESSAGE_INVALID_TIME = "Invalid time information. " +
+            "Please present your time as 'YYYY MM DD HH mm'";
 }

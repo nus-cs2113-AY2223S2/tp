@@ -3,6 +3,8 @@ package seedu.brokeMan.command;
 import seedu.brokeMan.entry.Expense;
 import seedu.brokeMan.entry.Expenses;
 
+import java.time.LocalDateTime;
+
 public class AddExpenseCommand extends Command {
     public static final String COMMAND_WORD = "addExpense";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": add expense to the expense list.\n" +
@@ -10,7 +12,8 @@ public class AddExpenseCommand extends Command {
             "|  Example: " + COMMAND_WORD + " a/ 4.5 d/ lunch t/ 12pm";
     private final Expense expense;
 
-    public AddExpenseCommand(double cost, String info, String time) {
+    public AddExpenseCommand(double cost, String info, LocalDateTime time) {
+
         this.expense = new Expense(cost, info, time);
     }
 

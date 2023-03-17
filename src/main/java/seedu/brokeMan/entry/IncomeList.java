@@ -3,6 +3,7 @@ package seedu.brokeMan.entry;
 
 import seedu.brokeMan.ui.Ui;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 public class IncomeList extends EntryList{
@@ -36,23 +37,21 @@ public class IncomeList extends EntryList{
 
     /**
      * Edits a specific income entry in the list
-     * @param type entry type of the income to be changed
      * @param index index of the expense in the list
      * @param newEntry new entry that will replace current entry
      */
-    public static void editIncome(String type, int index, String newEntry) {
-        editEntry(type, index, newEntry, incomeList);
+    public static void editIncome(int index, String newEntry) {
+        editEntryDescription(index, newEntry, incomeList);
     }
 
-    /**
-     * Edits a specific index in the list
-     * @param type entry type of the income to be changed
-     * @param index index of the expense in the list
-     * @param newIncome new income that will replace current entry
-     */
-    public static void editIncomeDouble(String type, int index, double newIncome) {
-        editEntry(type, index, newIncome, incomeList);
+    public static void editIncome(int index, Double newEntry) {
+        editEntryCost(index, newEntry, incomeList);
     }
+
+    public static void editIncome(int index, LocalDateTime newEntry) {
+        editEntryTime(index, newEntry, incomeList);
+    }
+
 
     /**
      * Sorts income using Entry comparator

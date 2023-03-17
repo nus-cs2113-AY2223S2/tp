@@ -1,6 +1,14 @@
 package seedu.brokeMan.command;
 
 import seedu.brokeMan.entry.IncomeList;
+import seedu.brokeMan.parser.StringToTime;
+import seedu.brokeMan.ui.Ui;
+
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_TIME;
 
 public class EditIncomeCommand extends Command {
     public static final String COMMAND_WORD = "editIncome";
@@ -12,27 +20,33 @@ public class EditIncomeCommand extends Command {
     private int index;
     private String type;
     private String newEntry;
-    private double newIncome;
-    private boolean isEditIncome = false;
 
     public EditIncomeCommand(int index, String type, String newEntry) {
         this.index = index;
         this.type = type;
-        this.newEntry= newEntry;
-    }
-
-    public EditIncomeCommand(int index, String type, double newIncome) {
-        this.index = index;
-        this.type = type;
-        this.newIncome = newIncome;
-        isEditIncome = true;
+        this.newEntry = newEntry;
     }
 
     public void execute() {
-        if (isEditIncome) {
-            IncomeList.editIncomeDouble(type, index, newIncome);
-        } else {
-            IncomeList.editIncome(type, index, newEntry);
+        try {
+            switch (type) {
+            case "income":
+                Double newCost = Double.parseDouble(newEntry);
+                IncomeList.editIncome(index, newCost);
+                break;
+            case "info":
+                IncomeList.editIncome(index, newEntry);
+                break;
+            case "time":
+                LocalDateTime newTime = StringToTime.convertStringToTime(newEntry);
+                IncomeList.editIncome(index, newTime);
+                break;
+            default:
+                Ui.showToUserWithLineBreak(MESSAGE_INVALID_EDIT_COMMAND);
+
+            }
+        } catch (DateTimeException dte) {
+            Ui.showToUserWithLineBreak(MESSAGE_INVALID_TIME, "");
         }
     }
 }

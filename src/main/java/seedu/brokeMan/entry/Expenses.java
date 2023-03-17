@@ -2,6 +2,7 @@ package seedu.brokeMan.entry;
 
 import seedu.brokeMan.ui.Ui;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 public class Expenses extends EntryList{
@@ -40,28 +41,24 @@ public class Expenses extends EntryList{
         deleteEntry(expenseIndex, expenseList);
     }
 
-    /**
-     * Edits a specific index in the list
-     *
-     * @param type entry type of the expense to be changed
-     * @param expenseIndex index of the expense in the list
-     * @param newEntry new entry that will replace current entry
-     */
-    public static void editExpenseCost(String type, int expenseIndex, double newEntry) {
-        editEntry(type, expenseIndex, newEntry, expenseList);
-    }
 
     /**
      * Edits a specific index in the list
      *
-     * @param type entry type of the expense to be changed
      * @param expenseIndex index of the expense in the list
      * @param newEntry new entry that will replace current entry
      */
-    public static void editExpense(String type, int expenseIndex, String newEntry) {
-        editEntry(type, expenseIndex, newEntry, expenseList);
+    public static void editExpense(int expenseIndex, String newEntry) {
+        editEntryDescription(expenseIndex, newEntry, expenseList);
     }
 
+    public static void editExpense(int expenseIndex, Double newEntry) {
+        editEntryCost(expenseIndex, newEntry, expenseList);
+    }
+
+    public static void editExpense(int expenseIndex, LocalDateTime newEntry) {
+        editEntryTime(expenseIndex, newEntry, expenseList);
+    }
 
     /**
      * Sorts expenses using Entry comparator
