@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class CardList  {
 
@@ -29,9 +30,9 @@ public class CardList  {
         return this.cards;
     }
 
-    public Card findCard(String cardUUID) {
+    public Card findCard(UUID cardUUID) {
         for (Card card : cards) {
-            if (card.getUuid().toString().equals(cardUUID)) {
+            if (card.getUuid().equals(cardUUID)) {
                 return card;
             }
         }

@@ -84,8 +84,6 @@ public class UserInterface {
         System.out.println(card);
     }
 
-
-
     public void printException(InkaException e) {
         System.out.println(e.getUiMessage());
     }
@@ -94,7 +92,7 @@ public class UserInterface {
         if (cardList.isEmpty()) {
             System.out.println("Your current list is empty.");
         } else {
-            System.out.println("Here is your current list of questions buddy:");
+            System.out.println("Here is a list of your cards :");
             for (int i = 0; i < cardList.size(); ++i) {
                 System.out.println((i + 1) + "." + cardList.get(i)); // 1. question  answer
             }
@@ -121,6 +119,10 @@ public class UserInterface {
                 System.out.println((i + 1) + "." + tags.get(i));
             }
         }
+    }
+
+    public void printAddTagToCardSuccess(UUID cardUUID, UUID tagUUID) {
+        System.out.println("Successfully added tag " + tagUUID + " to card " + cardUUID);
     }
 
     public void printRemoveTagFromCard(UUID cardUUID, UUID tagUUID) {

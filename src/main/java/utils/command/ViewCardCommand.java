@@ -11,10 +11,10 @@ import utils.UserInterface;
 import utils.storage.IDataStorage;
 
 public class ViewCardCommand extends Command {
-    private String cardUUID;
+    private UUID cardUUID;
 
     public ViewCardCommand(String cardUUID) {
-        this.cardUUID = cardUUID;
+        this.cardUUID = UUID.fromString(cardUUID);
     }
 
     public ArrayList<Tag>  findTagsFromTagUUID (ArrayList<UUID> uuids, TagList tagList) {
@@ -32,8 +32,10 @@ public class ViewCardCommand extends Command {
     public void execute (CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage) {
         List<Card> cards = cardList.getCards();
         ArrayList<Tag> tags;
+
+        //find the card with the specified uuid, print the card, find all the tags under it, print all the tags
         for (Card card : cards) {
-            if (card.getUuid().toString().equals(cardUUID)) {
+            if (card.getUuid().equals(cardUUID)) {
                 ui.printCard(card);
                 ArrayList<UUID> tagsUUID = card.getTagsUUID();
                 tags = findTagsFromTagUUID(tagsUUID, tagList);

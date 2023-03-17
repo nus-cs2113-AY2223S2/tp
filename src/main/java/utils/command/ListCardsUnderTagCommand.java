@@ -19,7 +19,7 @@ public class ListCardsUnderTagCommand extends Command{
     protected CardList findCardsUnderTag(CardList cardList, TagList tagList) {
         Tag foundTag = tagList.findTag(tagName);
         if (foundTag == null) {
-            //throw exceptions
+            //means the tag does not even exist to begin with , throw exception
         }
 
         ArrayList<UUID> cardsUUID = foundTag.getCardsUUID();
