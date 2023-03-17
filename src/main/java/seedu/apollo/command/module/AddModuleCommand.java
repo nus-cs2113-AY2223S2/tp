@@ -98,6 +98,7 @@ public class AddModuleCommand extends Command {
             String[] args = params.split("\\s+");
             if (args.length == 3) {
                 handleMultiCommand(moduleList, allModules, args);
+                ui.printClassAddedMessage(args[0].toUpperCase(), getCommand(args[1]), args[2]);
             } else {
                 if (isAdded(moduleList, module)) {
                     throw new DuplicateModuleException();
@@ -123,11 +124,13 @@ public class AddModuleCommand extends Command {
 
         } catch (IllegalCommandException e) {
             ui.printInvalidCommand();
+        } catch (ClassNotFoundException e) {
+            ui.printInvalidLessonType();
         }
     }
 
     private void handleMultiCommand(ModuleList moduleList, ModuleList allModules, String[] args)
-            throws IllegalCommandException {
+            throws IllegalCommandException, ClassNotFoundException {
 
         LessonType lessonType = this.getCommand(args[1]);
         Module searchModule = null;
@@ -157,7 +160,7 @@ public class AddModuleCommand extends Command {
         }
     }
 
-    private void addTimetable(Module searchModule, LessonType lessonType, String args) {
+    private void addTimetable(Module searchModule, LessonType lessonType, String args) throws ClassNotFoundException {
         Boolean isFound = false;
         ArrayList<Timetable> copyList = new ArrayList<>(searchModule.getModuleTimetable());
         for (Timetable timetable: copyList){
@@ -169,7 +172,7 @@ public class AddModuleCommand extends Command {
         }
 
         if (!isFound){
-            System.out.println("Class number not found!");
+            throw new ClassNotFoundException();
         }
     }
 

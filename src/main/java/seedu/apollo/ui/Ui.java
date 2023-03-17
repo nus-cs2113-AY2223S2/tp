@@ -382,4 +382,13 @@ public class Ui {
             System.out.println(lessonType);
         }
     }
+
+    public void printClassAddedMessage(String moduleCode, LessonType lessonType, String classNumber) {
+        System.out.println("Adding lesson type: " + lessonType + " for Module: " + moduleCode);
+        System.out.println("Class Number: " + classNumber);
+    }
+
+    public void printInvalidLessonType() {
+        System.out.println("This lesson type does not exist!");
+    }
 }
