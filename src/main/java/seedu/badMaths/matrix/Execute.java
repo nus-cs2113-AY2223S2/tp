@@ -23,6 +23,8 @@ public class Execute {
             assign = command;
         }
 
+        assert !assign.isEmpty();
+
         System.out.println(assign);
         System.out.println(cache.get(assign));
     }
@@ -38,6 +40,8 @@ public class Execute {
             result = executeTranspose(command);
         }
 
+        assert result != null;
+
         return result;
     }
 
@@ -46,18 +50,26 @@ public class Execute {
 
         String[] operator = command.split("\\*");
 
+        Tensor2D result;
         Tensor2D t1 = executeTranspose(operator[0]);
         Tensor2D t2 = executeTranspose(operator[1]);
 
-        return c.mul(t1, t2);
+        result = c.mul(t1, t2);
+        assert result != null;
+
+        return result;
     }
 
     public Tensor2D executeTranspose(String command){
         String operator;
         if(command.contains(".T")){
             operator = command.replace(".T", "");
+
+            assert cache.get(operator) != null;
             return cache.get(operator).t();
         }else{
+
+            assert cache.get(command) != null;
             return cache.get(command);
         }
     }
@@ -75,6 +87,8 @@ public class Execute {
         rows = command.split(";");
         rowNum = rows.length;
         colNum = rows[0].split(",").length;
+
+        assert rowNum == 1 || colNum == rows[1].split(",").length;
 
         tensor = new int[rowNum][colNum];
         for(int i=0; i<rowNum; i++){
