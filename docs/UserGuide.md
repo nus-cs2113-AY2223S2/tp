@@ -18,7 +18,7 @@
 Before we get started, here's what you need to do:
 
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of `NUSPlanner.jar` from [here](http://link.to/NUSPlanner.jar).
+2. Down the latest version of `NUSPlanner.jar` from [here](https://github.com/AY2223S2-CS2113-F13-3/tp/releases).
 3. Open your terminal or command prompt
 4. Navigate to the file directory of where the jar file is saved
 5. Execute `NUSPlanner.jar` using the following command: `java -jar NUSPlanner.jar` 
@@ -33,7 +33,8 @@ Adds an event to the schedule. Assuming x is an switch. Use –x to specify the 
 
 Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE`
 * sd and ed must be of the format YYYY/MM/DD
-* ed is an optional field, where the default value is sd when not specified
+* e, sd and st are compulsory fields 
+* ed and et are optional, but they must be written together if you use them
 
 #### Examples of usage
 * Add event that starts and ends on different days: `add –e Career Fair –st 14:00 –sd 2023/02/10 –et 16:00 –ed 2023-02-11`
@@ -84,8 +85,10 @@ ____________________________________________________________
 ### Editing an event: `edit`
 Edit an event that has been added to the schedule. Use –x to specify the attributes to edit.
 
-Format:
-* `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE`
+Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE`
+* sd is required and it must be of the format YYYY/MM/DD
+* st is required and it must be of the format HH:MM
+* Other fields are optional
 
 #### Examples of usage
 * Edit the start time of an event: `edit –i 2 –st 16:00`
@@ -108,7 +111,7 @@ ____________________________________________________________
 **Q**: Where can I report bugs I found while using NUSPlanner?
 
 **A**: Our team of developers are always on the look-out to fix such bugs.
-Please add a description of the bug found under our [Issue Tracker]([here](https://github.com/AY2223S2-CS2113-F13-3/tp/issues)).
+Please add a description of the bug found under our [Issue Tracker](https://github.com/AY2223S2-CS2113-F13-3/tp/issues).
 
 ## Command Summary
 👉 Words in **CAPITAL LETTERS** are user input

@@ -2,9 +2,10 @@ package seedu.duke.storage;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 import seedu.duke.Event;
 import seedu.duke.EventList;
+import seedu.duke.Ui;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
@@ -13,25 +14,18 @@ import java.io.FileInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-/*
-//Importing classes from ui, parser and Duke.
- import seedu.duke.Parser
- import seedu.duke.ui.Ui
- import seedu.duke.Duke
- import seedu.duke.Event
- import seedu.duke.EventList
- */
-
-
-
 public class Storage {
-    //private final Ui ui = new Ui();
+
     private static final String fileLocation = System.getProperty("user.dir") + "/save.json";
-    //final TypeToken<ArrayList<Event>> eventToken = new TypeToken<ArrayList<Event>>(){};
+
     GsonBuilder builder = new GsonBuilder().registerTypeAdapter(ArrayList.class, new EventListAdapter())
             .setPrettyPrinting();
     Gson gson = builder.create();
 
+    /**
+     * Saves an EventList object's Array List to a file with JSON formatting.
+     * @param eventList The EventList object that needs to be saved.
+     */
     public void saveToFile(EventList eventList) {
         File saveFile = new File(fileLocation);
         String gsonData = gson.toJson(eventList.getFullList());
@@ -39,9 +33,8 @@ public class Storage {
             try {
                 saveFile.createNewFile();
             } catch (IOException e) {
-                //ui.showException("IOException");
+                Ui.printErrorMsg("IOException occurred while creating new save file.");
             }
-
         }
         try {
             FileWriter taskWriter;
@@ -49,11 +42,15 @@ public class Storage {
             taskWriter.write(gsonData);
             taskWriter.close();
         } catch (IOException e) {
-            System.out.println("IOException");
+            Ui.printErrorMsg("IOException occurred while writing to file");
         }
     }
 
-
+    /**
+     * Loads and deserializes information from save.json into an ArrayList of events.
+     * @return ArrayList of Event class containing information of previous load state
+     */
+    @SuppressWarnings("unchecked")
     public ArrayList<Event> loadEvents() {
         File saveFile = new File(fileLocation);
         ArrayList<Event> savedList = new ArrayList<>();
@@ -63,10 +60,9 @@ public class Storage {
         InputStreamReader fileReader;
         try {
             fileReader = new InputStreamReader(new FileInputStream(saveFile), StandardCharsets.UTF_8);
-            JsonReader gsonInterpreter = new JsonReader(fileReader);
             savedList = gson.fromJson(fileReader, ArrayList.class); //Placeholder.
         } catch (Exception e) {
-            System.out.println(e);
+            Ui.printErrorMsg("IOException occured while reading from save.json. It is likely corrupted");
         }
         return savedList;
     }

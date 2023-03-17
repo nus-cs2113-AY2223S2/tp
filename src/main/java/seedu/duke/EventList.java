@@ -52,17 +52,20 @@ public class EventList {
     }
     /**
      * For two addEvent funcs below:
-     * if user doesn't input endDay(which means there is also no endTime),
-     * you can just call .addEvent(description, startTime, startDay)
-     *
-     * I also make the specific time(hh:mm) optional, so if user doesn't input the specfic time,
-     * you can just pass an empty String to that param and it will handle the rest things
-     * e.g. addEvent(descrption, "", startDay, "", endDay)
-     *      addEvent(descrption, "", startDay, endTime, endDay)
-     *      addEvent(descrption, "", startDay)
-     * so only startDay is strictly required.
-     *
-     * and the same for reviseTimeInfo()
+     *      if user doesn't input endDay(which means there is also no endTime),
+     *      you can just call .addEvent(description, startTime, startDay)
+     *      I also make the specific time(hh:mm) optional, so if user doesn't input the specfic time,
+     *      you can just pass an empty String to that param and it will handle the rest things
+     *      e.g. addEvent(descrption, "", startDay, "", endDay)
+     *           addEvent(descrption, "", startDay, endTime, endDay)
+     *           addEvent(descrption, "", startDay)
+     *      so only startDay is strictly required.
+     *      and the same for reviseTimeInfo()
+     * @param time String representing Time to be converted to dateTime format in combinedTime. Format "HH:MM".
+     * @param day String representing Date to be converted to dateTime format in combinedTime. Format "YYYY/MM/DD".
+     * @return TimeAndFlag
+     * @throws  NPExceptions if format of time or day is not as specified above
+     * @see TimeAndFlag
      */
     public TimeAndFlag convertToTimeInfo(String time, String day) throws NPExceptions {
         try {
