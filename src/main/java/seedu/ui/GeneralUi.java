@@ -106,12 +106,17 @@ public class GeneralUi {
         System.out.println(meal);
     }
 
-    public void requestCalorieLimit(){
+    public void requestCalorieLimit() {
     }
 
-    public void showCurrentIntake(){}
+    public void showCurrentIntake() {
+    }
 
-    public void showRemainingIntake(){}
-    public void showDailyCaloricLimit(){}
-    public void showWellDoneMessage(){}
+    public void showRemainingIntake() {
+
+    }
+    public void showDailyCaloricLimit() {
+    }
+    public void showWellDoneMessage(){
+    }
 }

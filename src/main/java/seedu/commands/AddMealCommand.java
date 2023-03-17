@@ -2,15 +2,20 @@ package seedu.commands;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
 import seedu.entities.Food;
 import seedu.entities.Meal;
 import seedu.exceptions.LifeTrackerException;
+import seedu.logger.LogFileHandler;
 import seedu.ui.GeneralUi;
 
 public class AddMealCommand extends Command {
+
+    private static final Logger logger = Logger.getLogger(AddMealCommand.class.getName());
+
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
                 throws LifeTrackerException {
@@ -58,5 +63,6 @@ public class AddMealCommand extends Command {
         meal = new Meal(foods, date);
         mealStorage.saveMeal(meal);
         ui.printNewMealAdded(meal);
+        LogFileHandler.logInfo(meal.toString());
     }
 }

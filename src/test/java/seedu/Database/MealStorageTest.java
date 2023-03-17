@@ -14,7 +14,7 @@ import seedu.entities.Meal;
 
 public class MealStorageTest {
     private static final String FILE_PATH = "./data/mealData.csv";
-    private final FoodStorage foodStorage = new FoodStorage("./data/foodData.csv");
+    private final FoodStorage foodStorage = new FoodStorage();
 
     @Nested
     @DisplayName("Test Read Write Functionalities")
@@ -24,7 +24,7 @@ public class MealStorageTest {
         // private final Meal meal1 = new Meal();
 
         @Test
-        public void testAddFood() {
+        public void addFood_singleMealAdded_expectNoException() {
             assertFalse(foodStorage.getFoodsCount() == 0, "Food Storage is not empty :)");
             foodList.add(foodStorage.getFoodById(0));
             foodList.add(foodStorage.getFoodById(1));
@@ -34,14 +34,14 @@ public class MealStorageTest {
         }
 
         @Test
-        public void testRetrieveMeal() {
-            testAddFood();
+        public void retrieveMeal_singleMealAlreadyAdded_expectNoException() {
+            addFood_singleMealAdded_expectNoException();
             assertDoesNotThrow(() -> mealStorage.getMealById(0));
         }
 
         @Test
-        public void testDeleteMeal() {
-            testAddFood();
+        public void deleteMeal_singleMealAlreadyAdded_expectNoException() {
+            addFood_singleMealAdded_expectNoException();
             assertDoesNotThrow(() -> mealStorage.deleteMeal(0));
         }
     }
