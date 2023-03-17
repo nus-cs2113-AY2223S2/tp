@@ -20,6 +20,15 @@ public class TagList {
         this.tags.add(tag);
     }
 
+    public Tag findTag(String tagName) {
+        for (Tag tag : tags) {
+            if (tag.getTagName().equals(tagName)) {
+                return tag;
+            }
+        }
+        return null;
+    }
+
     public void delete(int id) {
         this.tags.remove(id);
     }

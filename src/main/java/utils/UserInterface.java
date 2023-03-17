@@ -82,7 +82,7 @@ public class UserInterface {
         System.out.println(e.getUiMessage());
     }
 
-    public void printList(CardList cardList) {
+    public void printCardList(CardList cardList) {
         if (cardList.isEmpty()) {
             System.out.println("Your current list is empty.");
         } else {

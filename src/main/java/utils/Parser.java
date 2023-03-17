@@ -1,19 +1,22 @@
 package utils;
 
+import java.util.UUID;
 import model.Card;
 import model.CardList;
 
 import model.Tag;
 import model.TagList;
 import utils.command.AddCardCommand;
-import utils.command.AddTagCommand;
+import utils.command.AddCardToTagCommand;
 import utils.command.Command;
 import utils.command.DeleteCardCommand;
 import utils.command.ExceptionCommand;
 import utils.command.ExportCommand;
 import utils.command.ListCardCommand;
+import utils.command.ListCardsUnderTagCommand;
 import utils.command.ListTagsCommand;
 import utils.command.TerminateCommand;
+import utils.command.ViewCardCommand;
 import utils.exceptions.AddEmptyAnswer;
 import utils.exceptions.AddEmptyQuestion;
 import utils.exceptions.AddEmptyQuestionAndAnswer;
@@ -60,6 +63,10 @@ public class Parser {
             Card card = new Card(question, answer);
             return new AddCardCommand(card); // main command return
         }
+        else if (userCommandSplit[0].startsWith("card view")) {
+            String cardUUID = userCommandSplit[1];
+            return new ViewCardCommand(cardUUID);
+        }
         else if (userCommandSplit[0].startsWith("card delete")) {
 
             if (userCommandSplit.length == 1) {
@@ -76,11 +83,18 @@ public class Parser {
         else if (userCommandSplit[0].startsWith("card tag")) {
             String cardUUID = userCommandSplit[1].trim();
             String tagName = userCommandSplit[2];
-            Tag tag = new Tag(tagName,cardUUID);
-            return new AddTagCommand(tag);
+
+            return new AddCardToTagCommand(tagName, cardUUID);
         }
         else if (userCommandSplit[0].startsWith("tag list")) {
-            return new ListTagsCommand();
+            if (userCommandSplit.length >1) {
+                String tagName = userCommandSplit[1];
+                return new ListCardsUnderTagCommand(tagName);
+            }
+            else {
+                return new ListTagsCommand();
+            }
+
         }
         else if (userCommandSplit[0].startsWith("export") || userCommandSplit[0].startsWith("export ")) {
             return new ExportCommand();

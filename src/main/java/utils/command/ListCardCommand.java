@@ -8,6 +8,6 @@ import utils.storage.IDataStorage;
 public class ListCardCommand extends Command {
     @Override
     public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage) {
-        ui.printList(cardList);
+        ui.printCardList(cardList);
     }
 }

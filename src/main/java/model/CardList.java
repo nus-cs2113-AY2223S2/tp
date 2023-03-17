@@ -25,6 +25,19 @@ public class CardList  {
         this.cards.remove(id);
     }
 
+    public List<Card> getCards() {
+        return this.cards;
+    }
+
+    public Card findCard(String cardUUID) {
+        for (Card card : cards) {
+            if (card.getUuid().equals(cardUUID)) {
+                return card;
+            }
+        }
+        return null;
+    }
+
     public boolean isEmpty() {
         return cards.isEmpty();
     }

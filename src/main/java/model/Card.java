@@ -1,4 +1,5 @@
 package model;
+import java.util.ArrayList;
 import java.util.UUID;
 
 //to be made into an abstract class containing a few types of Cards later, for now just a single Card will do
@@ -6,6 +7,7 @@ public class Card {
     private UUID uuid; //to be made into a hash later
     private String question;
     private String answer;
+    private ArrayList<UUID> tags;
 
     // Temporary constructor for Card, to be revised later to also consider uuid and tag etc
     public Card(String question, String answer) {
@@ -24,6 +26,10 @@ public class Card {
 
     public String getAnswer() {
         return answer;
+    }
+
+    public void addTag(UUID uuid) {
+        tags.add(uuid);
     }
 
     @Override
