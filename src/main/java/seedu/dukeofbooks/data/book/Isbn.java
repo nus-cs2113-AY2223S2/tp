@@ -29,6 +29,10 @@ public class Isbn implements IVerifiable {
         return isbn.hashCode();
     }
 
+    public String getStringValue() {
+        return isbn;
+    }
+
     @Override
     public String toString() {
         return String.format("Isbn: %S", isbn);

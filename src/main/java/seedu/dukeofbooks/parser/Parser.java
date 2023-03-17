@@ -13,15 +13,19 @@ import seedu.dukeofbooks.command.RenewCommand;
 import seedu.dukeofbooks.command.ReturnCommand;
 import seedu.dukeofbooks.command.SearchCommand;
 import seedu.dukeofbooks.controller.SearchController;
+import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.book.BorrowableItem;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.loan.LoanRecords;
 import seedu.dukeofbooks.data.person.Person;
+import static seedu.dukeofbooks.common.Messages.TITLE_ARG;
+import static seedu.dukeofbooks.common.Messages.TOPIC_ARG;
+import static seedu.dukeofbooks.common.Messages.AUTHOR_ARG;
+import static seedu.dukeofbooks.common.Messages.ACTION_ARG;
+import static seedu.dukeofbooks.common.Messages.ISBN_ARG;
+import static seedu.dukeofbooks.common.Messages.SPACE_CHAR;
 
 public class Parser {
-    // todo set data for search controller
-    private final SearchController searchController;
-    // todo set current logged in user
     private final Person currentUser;
     // todo set loan records
     private final LoanRecords loanRecords;
@@ -29,7 +33,6 @@ public class Parser {
     public Parser(Person user, LoanRecords loanRecords, SearchController searchController) {
         this.currentUser = user;
         this.loanRecords = loanRecords;
-        this.searchController = searchController;
     }
 
     public Command parseCommand(String userInput) {
@@ -52,8 +55,8 @@ public class Parser {
             return prepareRenewCommand(arguments);
         case BorrowCommand.COMMAND_WORD:
             return prepareBorrowCommand(arguments);
-         case HistoryCommand.COMMAND_WORD:
-             return new HistoryCommand(currentUser);
+        case HistoryCommand.COMMAND_WORD:
+            return new HistoryCommand(currentUser);
         case ReturnCommand.COMMAND_WORD:
             return prepareReturnCommand(arguments);
         case SearchCommand.COMMAND_WORD:
@@ -64,19 +67,53 @@ public class Parser {
     }
 
     private Command prepareInventoryCommand(String arguments) {
-//        String[] parts = arguments.split("-");
-//        if (parts.length != 2) {
-//            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-//        }
-//        try {
-//            String action = parts[0].trim();
-//            String title = parts[1].trim();
-//            String topic = parts
-//            BorrowableItem item = searchController.searchBookByTitle(parts[0]);
-//            return new InventoryCommand(item);
-//        } catch (IllegalValueException ive) {
-//            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-//        }
+        String[] parts = arguments.split(" ");
+        int titleIndex = -1;
+        int topicIndex = -1;
+        int authorIndex = -1;
+        int actionIndex = -1;
+        int isbnIndex = -1;
+        for (int i = 0; i < parts.length; ++i) {
+            if (parts[i].equals(TITLE_ARG)) {
+                titleIndex = i;
+            }
+            if (parts[i].equals(TOPIC_ARG)) {
+                topicIndex = i;
+            }
+            if (parts[i].equals(AUTHOR_ARG)) {
+                authorIndex = i;
+            }
+            if (parts[i].equals(ACTION_ARG)) {
+                actionIndex = i;
+            }
+            if (parts[i].equals(ISBN_ARG)) {
+                isbnIndex = i;
+            }
+        }
+
+        if (titleIndex == -1 && topicIndex == -1 && authorIndex == -1
+                && actionIndex == -1 && actionIndex == -1) {
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+
+        try {
+            String title = getWord(titleIndex, parts);
+            String topic = getWord(topicIndex, parts);
+            String author = getWord(authorIndex, parts);
+            String action = getWord(actionIndex, parts);
+            String isbn = getWord(isbnIndex, parts);
+            // String isbn = Book.createISBN();
+            Book target =  new Book(isbn, title, topic, author);
+
+            if (action.equals(InventoryCommand.ADD_WORD)) {
+                return new InventoryCommand(target, InventoryCommand.ADD_WORD);
+            } else {
+                return new InventoryCommand(target, InventoryCommand.DELETE_WORD);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        
         return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
     }
 
@@ -84,7 +121,7 @@ public class Parser {
         String[] parts = arguments.split(" ");
         int titleIndex = -1;
         for (int i = 0; i < parts.length; ++i) {
-            if (parts[i].equals("-title")) {
+            if (parts[i].equals(TITLE_ARG)) {
                 titleIndex = i;
                 break;
             }
@@ -98,7 +135,7 @@ public class Parser {
                 sb.append(parts[i]).append(" ");
             }
             String title = sb.toString().trim();
-            BorrowableItem toRenew = searchController.searchBookByTitle(title);
+            BorrowableItem toRenew = SearchController.searchBookByTitle(title);
             return new RenewCommand(loanRecords, currentUser, toRenew);
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
@@ -123,7 +160,7 @@ public class Parser {
                 sb.append(parts[i]).append(" ");
             }
             String title = sb.toString().trim();
-            BorrowableItem toBorrow = searchController.searchBookByTitle(title);
+            BorrowableItem toBorrow = SearchController.searchBookByTitle(title);
             return new BorrowCommand(loanRecords, currentUser, toBorrow);
         } catch (IllegalValueException e) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
@@ -148,7 +185,7 @@ public class Parser {
                 sb.append(parts[i]).append(" ");
             }
             String title = sb.toString().trim();
-            BorrowableItem toReturn = searchController.searchBookByTitle(title);
+            BorrowableItem toReturn = SearchController.searchBookByTitle(title);
             return new ReturnCommand(loanRecords, currentUser, toReturn);
         } catch (IllegalValueException e) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
@@ -156,11 +193,49 @@ public class Parser {
     }
     
     private Command prepareSearchCommand(String arguments) {
-//        String[] parts = arguments.split("-title ");
-//        if (parts.length!=1){
-//            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-//        }
-//        return new SearchCommand(parts[0].trim());
-        return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        String[] parts = arguments.split(SPACE_CHAR);
+        int titleIndex = -1;
+        int topicIndex = -1;
+        for (int i = 0; i < parts.length; ++i) {
+            if (parts[i].equals(TITLE_ARG)) {
+                titleIndex = i;
+            }
+            if (parts[i].equals(TOPIC_ARG)) {
+                topicIndex = i;
+            }
+        }
+
+        if ((titleIndex != -1) && (topicIndex!=-1)) {
+            String title = getWord(titleIndex, parts);
+            String topic = getWord(topicIndex, parts);
+            return new SearchCommand(title,SearchCommand.COMBINED_SEARCH);
+        } else if (titleIndex != -1) {
+            String title = getWord(titleIndex, parts);
+            return new SearchCommand(title,SearchCommand.TITLE_SEARCH);
+        } else if (topicIndex != -1) {
+            String topic = getWord(topicIndex, parts);
+            return new SearchCommand(topic,SearchCommand.TOPIC_SEARCH);
+        } else {
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+    }
+
+    private String getWord(int index, String[] parts) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = index + 1; i < parts.length; ++i) {
+            if (checkIfArg(parts[i])) {
+                return sb.toString().trim();
+            }
+            sb.append(parts[i]).append(SPACE_CHAR);
+        }
+        return sb.toString().trim();
+    }
+
+    private boolean checkIfArg(String word) {
+        if (word.startsWith("-")){
+            return true;
+        }
+        return false;
     }
 }

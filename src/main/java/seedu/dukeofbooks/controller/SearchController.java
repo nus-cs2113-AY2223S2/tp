@@ -10,28 +10,29 @@ import seedu.dukeofbooks.data.exception.IllegalOperationException;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.inventory.Inventory;
 import seedu.dukeofbooks.data.inventory.InventoryDetails;
+import static seedu.dukeofbooks.common.Messages.BOOK_TITLE_NOT_FOUND;
+import static seedu.dukeofbooks.common.Messages.BOOK_TOPIC_NOT_FOUND;
 
-public class SearchController implements IController{
-    public static final String BOOK_TITLE_NOT_FOUND = "Book title is not found";
-    public static final String BOOK_TOPIC_NOT_FOUND = "Book topic is not found";
-    private Inventory inventory;
+public class SearchController {
+    private static Inventory inventory;
     
-    @Override
-    public <T> void setData(T dataPoint) throws IllegalOperationException {
+    public static <T> void setData(T dataPoint) throws IllegalOperationException {
         if (!(dataPoint instanceof Inventory)) {
             throw new IllegalOperationException(Messages.DATA_NOT_VALID);
         }
         inventory = (Inventory) dataPoint;
     }
 
-    @Override
-    public boolean checkDataExists() throws IllegalOperationException {
+    public static boolean checkDataExists() throws IllegalOperationException {
         if (inventory == null) {
             throw new IllegalOperationException(Messages.DATA_NOT_SET);
         }
         return true;
     }
-    public Book searchBookByTitle(String titleString) throws IllegalValueException {
+
+    public static Book searchBookByTitle(String titleString) throws IllegalValueException {
+        assert(inventory != null);
+        
         HashMap<Book, InventoryDetails> listing = inventory.getInventoryMap();
         Optional<Book> target = listing.entrySet()
                                         .stream()
@@ -43,7 +44,9 @@ public class SearchController implements IController{
         }
         return target.get();
     }
-    public Book searchBookByTopic(String topic) throws IllegalValueException {
+    public static Book searchBookByTopic(String topic) throws IllegalValueException {
+        assert(inventory != null);
+        
         HashMap<Book, InventoryDetails> listing = inventory.getInventoryMap();
         Optional<Book> target = listing.entrySet()
                                         .stream()
