@@ -8,11 +8,11 @@ public class PetList {
     public static final String LINE = "____________________";
     private static ArrayList<Pet> petList = new ArrayList<>();
     private static int numberOfPets;
+    private static final Logger logger = Logger.getLogger("petListLogger");
 
     public PetList() {
         numberOfPets = 0;
     }
-    private static final Logger logger = Logger.getLogger("petListLogger");
 
     /**
      * Adds a new pet to the pet list
