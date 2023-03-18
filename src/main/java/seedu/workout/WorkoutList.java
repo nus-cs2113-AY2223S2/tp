@@ -2,6 +2,7 @@ package seedu.workout;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 
 public class WorkoutList {
@@ -39,7 +40,9 @@ public class WorkoutList {
             if (!workoutList.isEmpty()) {
                 System.out.println("Here are the list of dates for your workout: ");
                 for (Workout workout : workoutList) {
-                    System.out.println(workout.getDate());
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+                    String formattedDate = dateFormat.format(workout.getDate());
+                    System.out.println(formattedDate);
                 }
             } else {
                 System.out.println("Haven't start your workout, please enter your workout");
