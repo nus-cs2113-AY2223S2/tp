@@ -61,10 +61,7 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
         } catch (FileNotFoundException e) {
             System.out.println("User File not found. Creating new user file...");
             File newFile = new File(filePath);
-            if (!newFile.getParentFile().exists()) {
-                newFile.getParentFile().mkdirs();
-                newFile.createNewFile();
-            }
+            newFile.createNewFile();
             user = new User();
         } catch (NullPointerException e) {
             System.out.println("User File empty. Initialising blank user...");
