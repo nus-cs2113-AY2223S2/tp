@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-18T19:30:08.921305900Z</date>
+  <millis>1679167808921</millis>
+  <nanos>305900</nanos>
+  <sequence>5</sequence>
+  <logger>seedu.rainyDay.command.AddCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.AddCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting AddCommand.execute()</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-18T19:32:45.917604400Z</date>
+  <millis>1679167965917</millis>
+  <nanos>604400</nanos>
+  <sequence>18</sequence>
+  <logger>seedu.rainyDay.command.AddCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.AddCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting AddCommand.execute()</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-18T19:33:16.097092800Z</date>
+  <millis>1679167996097</millis>
+  <nanos>92800</nanos>
+  <sequence>25</sequence>
+  <logger>seedu.rainyDay.command.AddCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.AddCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting AddCommand.execute()</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-18T19:35:11.794516800Z</date>
+  <millis>1679168111794</millis>
+  <nanos>516800</nanos>
+  <sequence>39</sequence>
+  <logger>seedu.rainyDay.command.AddCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.AddCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting AddCommand.execute()</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-18T19:36:23.245104200Z</date>
+  <millis>1679168183245</millis>
+  <nanos>104200</nanos>
+  <sequence>68</sequence>
+  <logger>seedu.rainyDay.command.AddCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.AddCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting AddCommand.execute()</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-18T20:50:23.177755200Z</date>
+  <millis>1679172623177</millis>
+  <nanos>755200</nanos>
+  <sequence>16</sequence>
+  <logger>seedu.rainyDay.command.AddCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.AddCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting AddCommand.execute()</message>
+</record>
+</log>
