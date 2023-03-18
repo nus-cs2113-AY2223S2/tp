@@ -10,5 +10,4 @@ Exit the program using: exit
 
 No save file was found. Creating a new list and save file 'data.txt' for you to use.
 There are no tasks in your list.
-
 See you again, bye!
