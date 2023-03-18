@@ -2,10 +2,11 @@ package seedu.duke.task;
 
 import seedu.duke.Storage;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.StringJoiner;
 
-public class Task {
+public class Task implements Serializable {
     /**
      * Compares the task1 deadline and task2 deadline. Used for sorting the ArrayList tasks by deadline.
      */
