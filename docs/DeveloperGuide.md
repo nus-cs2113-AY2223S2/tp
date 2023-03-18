@@ -40,7 +40,27 @@
 6. [Appendix B: Instructions for manual testing](#appendix-b-instructions-for-manual-testing)
     + [Launch and Shutdown](#launch-and-shutdown)
 
-## Delete Module {#delete-module}
+## Acknowledgements
+
+We would like to acknowledge:
+
+## Design & implementation
+
+### Architecture
+
+### UI Component
+
+### Logic Component
+
+### Model Component
+
+### Storage Component
+
+### Common Classes
+
+## Implementation
+
+### Delete Module
 
 The DeleteModule functionality allows users to remove a module from the ModuleList.
 It is facilitated by DeleteModuleCommand class which is an extension of the Command class.
@@ -70,24 +90,6 @@ A confirmation message is printed to the user indicating that the module has bee
 
 Step 7: Update the storage :
 The storage is updated with the new ModuleList
-
-## Acknowledgements
-
-We would like to acknowledge:
-
-## Design & implementation
-
-### Architecture
-
-### UI Component
-
-### Logic Component
-
-### Model Component
-
-### Storage Component
-
-### Common Classes
 
 ## Documentation, logging, testing, configuration, dev-ops
 
