@@ -80,22 +80,21 @@ public class Storage {
                                        Storage database) {
         if (indexToDelete == -1) {
             return false;
-        } else {
-            int indexToZeroBased = indexToDelete - 1;
-            try {
-                uniModuleList.remove(indexToZeroBased);
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Index out of bounds");
-                return false;
-            }
-            try {
-                database.writeListToFile(uniModuleList);
-            } catch (IOException e) {
-                System.out.println("Unable to save to database");
-                return false;
-            }
-            return true;
         }
+        int indexToZeroBased = indexToDelete - 1;
+        try {
+            uniModuleList.remove(indexToZeroBased);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Index out of bounds");
+            return false;
+        }
+        try {
+            database.writeListToFile(uniModuleList);
+        } catch (IOException e) {
+            System.out.println("Unable to save to database");
+            return false;
+        }
+        return true;
     }
 
     /**
