@@ -7,7 +7,6 @@ import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
