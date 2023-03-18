@@ -13,10 +13,3 @@ src/main/resources/docs/
 *.iml
 bin/
 
-/text-ui-test/ACTUAL.TXT
-text-ui-test/EXPECTED-UNIX.TXT
-
-text-ui-test/EXPECTED.TXT
-text-ui-test/input.txt
-text-ui-test/runtest.sh
-text-ui-test/runtest.bat
