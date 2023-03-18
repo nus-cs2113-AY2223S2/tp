@@ -2,6 +2,7 @@ package seedu.apollo.ui;
 
 import seedu.apollo.module.LessonType;
 import seedu.apollo.exception.task.DateOverException;
+import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.Task;
 import seedu.apollo.module.Module;
 import seedu.apollo.task.TaskList;
@@ -49,6 +50,7 @@ public class Ui {
                 "| |_| | | |_| | | | | | | |     | |     | | | |\n" +
                 "| | | | |  __/  | |_| | | |___  | |___  | |_| |\n" +
                 "|_| |_| |_|     \\_____/ |_____| |_____| \\_____/\n" +
+                "\n" +
                 "Enter \"help\" to see a list of commands.");
         showLine();
     }
@@ -58,12 +60,13 @@ public class Ui {
      * Prints out a list of all available commands.
      */
     public void printHelpMessage() {
-        System.out.println(" Enter \"list\" to see all tasks\n" +
+        System.out.println("\n" + "Enter \"list\" to see all tasks\n" +
                 " Enter \"listmod\" to see your module list\n" +
                 " Enter \"todo [task]\" to add a task\n" +
                 " Enter \"deadline [task] /by [date]\" to add a deadline\n" +
                 " Enter \"event [task] /from [date] /to [date]\" to add an event\n" +
                 " Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n" +
+                " Enter \"addmod [MODULE_CODE] -[LESSON_TYPE]\" to add a lesson\n" +
                 " Enter \"mark [idx]\" to mark task as done\n" +
                 " Enter \"unmark [idx]\" to mark task as not done\n" +
                 " Enter \"delete [idx]\" to remove task from list\n" +
@@ -73,8 +76,23 @@ public class Ui {
                 " Enter \"bye\" to exit the program\n\n" +
                 " ***NOTE***\n" +
                 " Please enter all [date]s in the format: \"yyyy-MM-ddThh:mm\"\n" +
-                " eg. \"2023-10-30T23:59\" represents Oct 20 2023, 11:59PM");
+                " eg. \"2023-10-30T23:59\" represents Oct 20 2023, 11:59PM\n");
+        printAddModuleOptions();
     }
+
+    /**
+     * Prints out a list of all available lesson types and their flags.
+     */
+    public void printAddModuleOptions() {
+        System.out.println("There are various lessons options per module:\n" +
+                "-lec\t\t\t" + "LECTURE\n" + "-plec\t\t\t" + "PACKAGED LECTURE\n" + "-st \t\t\t"
+                + "SECTIONAL TEACHING\n" + "-dlec\t\t\t" + "DESIGN LECTURE\n" + "-tut\t\t\t" + "TUTORIAL\n"
+                + "-ptut\t\t\t" + "PACKAGED TUTORIAL\n" + "-rcit\t\t\t" + "RECITATION\n" + "-lab\t\t\t"
+                + "LABORATORY\n" + "-ws\t\t\t\t" + "WORKSHOP\n" + "-smc\t\t\t"
+                + "SEMINAR STYLE MODULE CLASS\n" + "-mp\t\t\t\t" + "MINI PROJECT\n" + "-tt2\t\t\t"
+                + "TUTORIAL TYPE 2\n");
+    }
+
 
     /**
      * For {@code list} command.
@@ -105,15 +123,17 @@ public class Ui {
      *
      * @param allModules ArrayList of Modules
      */
-    public void printModuleList(ArrayList<Module> allModules) {
+    public void printModuleList(ModuleList allModules) {
         if (allModules.size() == 0) {
             System.out.println("There are no modules in your module list!");
             return;
         }
         System.out.println("You are taking " + allModules.size() + " module(s) this semester:");
         for (int i = 0; i < allModules.size(); i++) {
-            System.out.println(i + 1 + "." + allModules.get(i).toString());
+            System.out.printf("%d.%s (%s MCs)%n", i + 1, allModules.get(i).toString(),
+                    allModules.get(i).getModuleCredits());
         }
+        printTotalModularCredits(allModules);
     }
 
     /**
@@ -148,10 +168,35 @@ public class Ui {
                 "  " + newTask);
     }
 
+    /**
+     * For {@code addmod} command.
+     * Prints out message for successful adding of Module.
+     *
+     * @param newModule Module that has just been added.
+     */
     public void printAddModuleMessage(Module newModule) {
         System.out.println("Got it. I've added this module:\n" +
                 "  " + newModule);
     }
+
+    /**
+     * For {@code addmod, delmod, listmod} commands.
+     * Prints out total modular credits of all modules in the ModuleList.
+     *
+     * @param allModules ArrayList of Modules
+     */
+    public void printTotalModularCredits(ModuleList allModules) {
+        allModules.totalModuleCredits();
+    }
+
+    /**
+     * For {@code addmod} command.
+     * Prints out a message for user to refer to help menu for lesson option flags.
+     */
+    public void printAddLessonOptions() {
+        System.out.println("To see how to add lessons, enter 'help'.");
+    }
+
 
     /**
      * For {@code mark} command.
@@ -384,7 +429,7 @@ public class Ui {
         lessonTypes.sort(
                 Comparator.comparing(Enum::toString));
 
-        for (LessonType lessonType: lessonTypes){
+        for (LessonType lessonType : lessonTypes) {
             System.out.println(lessonType);
         }
     }

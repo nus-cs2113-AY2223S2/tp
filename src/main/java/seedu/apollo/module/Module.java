@@ -10,11 +10,8 @@ import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 public class Module {
     private String code;
     private String title;
-
     private String moduleCredits;
-
     private ArrayList<Timetable> timetable;
-
 
     /**
      * Initialises the Module with its corresponding code and name.
@@ -72,6 +69,9 @@ public class Module {
         return code + ": " + title;
     }
 
+    /**
+     * Creates a new Timetable
+     */
     public void createNewTimeTable() {
         this.timetable = new ArrayList<>();
     }

@@ -33,6 +33,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+
 /**
  * Storage class that initialises the task list and updates the save file.
  */
@@ -166,10 +167,9 @@ public class Storage implements seedu.apollo.utils.Logger {
         ArrayList<Timetable> timetableList = module.getModuleTimetable();
         if (timetableList != null) {
             for (Timetable timetable : timetableList) {
-                overwrite.write(timetable.getLessonType() + ": " + timetable.getClassnumber() + "|");
+                overwrite.write(timetable.getLessonType() + ":" + timetable.getClassnumber() + "|");
             }
         }
-
         overwrite.write("\n");
     }
 
@@ -261,8 +261,9 @@ public class Storage implements seedu.apollo.utils.Logger {
                 if (newModule == null) {
                     throw new InvalidSaveFile();
                 }
-
-                newModuleList.add(newModule);
+                Module module = new Module(newModule.getCode(), newModule.getTitle(), newModule.getModuleCredits());
+                addLessons(module, newModule, moduleInfoArgs);
+                newModuleList.add(module);
                 counter++;
             } catch (InvalidSaveFile e) {
                 ui.printInvalidSaveFile(counter, filePath);
@@ -271,6 +272,26 @@ public class Storage implements seedu.apollo.utils.Logger {
         return newModuleList;
     }
 
+    private static void addLessons(Module module, Module searchModule, String[] moduleInfo) {
+        module.createNewTimeTable();
+
+        for (int i = 1; i < moduleInfo.length; i++) {
+            String[] lessonInfo = moduleInfo[i].split(":");
+
+            for (Timetable timetable: searchModule.getModuleTimetable()) {
+                if (timetable.getLessonType().equals(lessonInfo[0])
+                        && timetable.getClassnumber().equals(lessonInfo[1])) {
+
+                    if (!module.getModuleTimetable().contains(timetable)) {
+                        module.getModuleTimetable().add(timetable);
+                    }
+
+                }
+            }
+        }
+
+
+    }
 
     /**
      * Interprets a line from the save file, returns it as a new Task.

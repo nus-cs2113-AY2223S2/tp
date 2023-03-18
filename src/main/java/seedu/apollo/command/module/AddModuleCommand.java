@@ -117,7 +117,9 @@ public class AddModuleCommand extends Command implements seedu.apollo.utils.Logg
                     moduleList.sortModules();
                     Module referenceModule = allModules.findModule(module.getCode());
                     ui.printAddModuleMessage(module);
+                    ui.printTotalModularCredits(moduleList);
                     ui.printLessonTypeMessage(getLessonTypes(referenceModule));
+                    ui.printAddLessonOptions();
 
                 }
             }
@@ -183,7 +185,7 @@ public class AddModuleCommand extends Command implements seedu.apollo.utils.Logg
         }
     }
 
-    private void addTimetable(Module searchModule, LessonType lessonType, String args) throws ClassNotFoundException {
+    public void addTimetable(Module searchModule, LessonType lessonType, String args) throws ClassNotFoundException {
         Boolean isFound = false;
         ArrayList<Timetable> copyList = new ArrayList<>(searchModule.getModuleTimetable());
         for (Timetable timetable: copyList){

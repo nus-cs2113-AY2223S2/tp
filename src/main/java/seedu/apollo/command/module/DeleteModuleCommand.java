@@ -1,4 +1,5 @@
 package seedu.apollo.command.module;
+
 import seedu.apollo.storage.Storage;
 import seedu.apollo.command.Command;
 import seedu.apollo.exception.module.ModuleNotFoundException;
@@ -16,16 +17,18 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 /**
-     * For {@code delmod} command.
-     * Delete Module Command class that finds the module using moduleCode and removes it from the ModuleList
-     */
+ * For {@code delmod} command.
+ * Delete Module Command class that finds the module using moduleCode and removes it from the ModuleList
+ */
 public class DeleteModuleCommand extends Command {
     private static Logger logger = Logger.getLogger("DeleteModuleCommand");
     protected String moduleCode;
-    public DeleteModuleCommand(String moduleCode){
+
+    public DeleteModuleCommand(String moduleCode) {
         this.moduleCode = moduleCode;
         DeleteModuleCommand.setUpLogger();
     }
+
     public static void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
@@ -48,7 +51,7 @@ public class DeleteModuleCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules){
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules) {
 
         try {
             Module toDelete = moduleList.findModule(moduleCode);
@@ -56,11 +59,12 @@ public class DeleteModuleCommand extends Command {
                 throw new ModuleNotFoundException();
             }
             moduleList.remove(toDelete);
-            //update storage later
             ui.printModuleDeleteMessage(moduleCode);
+            moduleList.totalModuleCredits();
             storage.updateModule(moduleList);
         } catch (ModuleNotFoundException e) {
             ui.printUnsuccessfulModuleDelete(moduleCode);
+            ui.printTotalModularCredits(moduleList);
         } catch (IOException e) {
             ui.printErrorForIO();
         }
