@@ -1,6 +1,13 @@
 package seedu.parser;
 
-import seedu.commands.*;
+import seedu.commands.Command;
+import seedu.commands.ListCommand;
+import seedu.commands.StartCommand;
+import seedu.commands.AddCommand;
+import seedu.commands.DeleteCommand;
+import seedu.commands.ExitCommand;
+import seedu.commands.EndCommand;
+import seedu.commands.IncorrectCommand;
 import seedu.workout.Exercise;
 
 import java.text.DateFormat;
@@ -41,6 +48,7 @@ public class Parser {
                 return new IncorrectCommand();
             }
             return new ListCommand();
+
         case "/end":
             return new EndCommand();
         case "/exit":
