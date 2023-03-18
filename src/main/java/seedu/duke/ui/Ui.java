@@ -58,25 +58,4 @@ public class Ui {
     public void printError(Exception e) {
         System.out.println(e.getMessage());
     }
-
-    public void printSavingErrorMessage() {
-        System.out.println("Error encountered while saving!");
-    }
-
-    public void printFileNotFoundMessage() {
-        System.out.println("No save file was found. Creating a new list and save file 'data.txt' for you to use.");
-    }
-
-    public void printLoadingErrorMessage() {
-        System.out.println("Error encountered while loading your saved file! Creating a new list for you to use.");
-    }
-
-    public void printNullFilepathErrorMessage() {
-        System.out.println("Error encountered! Save file name given was NULL!");
-    }
-
-    public void printClassNotFoundErrorMessage() {
-        System.out.println("Error! Encountered unidentified class while loading data! Please contact a developer to" +
-                " fix this issue.");
-    };
 }

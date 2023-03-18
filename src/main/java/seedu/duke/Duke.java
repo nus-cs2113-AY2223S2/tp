@@ -8,8 +8,6 @@ import seedu.duke.exception.ToDoListException;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
