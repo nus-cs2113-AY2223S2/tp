@@ -8,7 +8,7 @@ Invalid date format. Please enter the date in the format dd/mm/yy.
 Incorrect command given!
 Great job completing your workout!
 Here are the list of dates for your workout:
-11/11/2023
+Sat Nov 11 00:00:00 CST 2023
 Start a workout first!
 Great job completing your workout!
 Started new workout.
@@ -18,5 +18,5 @@ Great job completing your workout!
 Workout deleted successfully.
 No workout found with the specified date.
 Here are the list of dates for your workout:
-11/12/2023
+Sun Nov 12 00:00:00 CST 2023
 Thank you and see you next time
