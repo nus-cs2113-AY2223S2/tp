@@ -26,6 +26,8 @@ class StorageTest {
     private TaskList taskList = new TaskList();
     private Ui ui = new Ui();
 
+    private Storage storage = new Storage();
+
     @Test
     void saveData_properFilePath_success() {
         try {
@@ -33,7 +35,7 @@ class StorageTest {
             Command addTaskCommand2 = parser.parseCommand("add baba -d 12-05-2023 17:00");
             addTaskCommand1.execute(taskList, ui);
             addTaskCommand2.execute(taskList, ui);
-            Storage.saveData(ACTUAL_SAVE_FILE, taskList, ui);
+            storage.saveData(ACTUAL_SAVE_FILE, taskList, ui);
             File f1 = new File(ACTUAL_SAVE_FILE);
             File f2 = new File(EXPECTED_SAVE_FILE);
             Scanner s1 = new Scanner(f1);
@@ -55,41 +57,39 @@ class StorageTest {
     @Test
     void saveData_directoryAsFilePath_exceptionThrown() { // if the path exists but is a directory, not a regular file
         try {
-            Storage.saveData(TEST_DATA_FOLDER, taskList, ui);
+            storage.saveData(TEST_DATA_FOLDER, taskList, ui);
             fail(); // the test should not reach this line
         } catch (Exception e) {
-            System.out.println("Directory cannot be opened");
+            ui.printError(e);
         }
     }
 
     @Test
     void loadData_fileWithInvalidData_exceptionThrown() {
         try {
-            taskList = Storage.loadData(INVALID_DATA_FILE, ui);
+            taskList = storage.loadData(INVALID_DATA_FILE, ui);
             fail(); // should not reach this line
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            ui.printError(e);
         }
     }
 
     @Test
     void loadData_nonExistentFile_throwsException() {
         try {
-            taskList = Storage.loadData(NON_EXISTENT_FILE, ui);
+            taskList = storage.loadData(NON_EXISTENT_FILE, ui);
             fail(); // should not reach this line
         } catch (Exception e) {
-            if (e instanceof FileNotFoundException) {
-                ui.printFileNotFoundMessage();
-            }
+            ui.printError(e);
         }
     }
 
     @Test
     void loadData_fileWithValidData_taskListCreated() {
         try {
-            taskList = Storage.loadData(VALID_DATA_FILE, ui);
-            Storage.saveData(NEW_SAVE_FILE_FOR_COMPARISON, taskList, ui);
-            TaskList newlySavedTaskList = Storage.loadData(NEW_SAVE_FILE_FOR_COMPARISON, ui);
+            taskList = storage.loadData(VALID_DATA_FILE, ui);
+            storage.saveData(NEW_SAVE_FILE_FOR_COMPARISON, taskList, ui);
+            TaskList newlySavedTaskList = storage.loadData(NEW_SAVE_FILE_FOR_COMPARISON, ui);
             boolean isActualSaveEqualExpectedSave = true;
             System.out.println("original task list: ");
             System.out.println(taskList.toString());

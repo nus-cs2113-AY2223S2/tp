@@ -2,6 +2,8 @@ package seedu.duke;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.CommandParser;
+import seedu.duke.exception.FailedLoadException;
+import seedu.duke.exception.FailedSaveException;
 import seedu.duke.exception.ToDoListException;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
@@ -16,19 +18,14 @@ public class Duke {
 
     public static void main(String[] args) {
         Ui ui = new Ui();
+        Storage storage = new Storage();
         TaskList taskList = new TaskList();
         CommandParser parser = new CommandParser();
         ui.printWelcomeMessage();
         try {
-            taskList = Storage.loadData(DEFAULT_SAVE_FILE, ui);
-        } catch (FileNotFoundException e) {
-            ui.printFileNotFoundMessage();
-        } catch (NullPointerException e) {
-            ui.printNullFilepathErrorMessage(); // something went wrong with filename given, we got null as filename
-        } catch (IOException e) {
-            ui.printLoadingErrorMessage(); // something went wrong while accessing your file
-        } catch (ClassNotFoundException e) {
-            ui.printClassNotFoundErrorMessage(); // something went wrong while looking for a class - not user issue
+            taskList = storage.loadData(DEFAULT_SAVE_FILE, ui);
+        } catch (FailedLoadException e) {
+            ui.printError(e);
         }
         ui.listTasks(taskList);
         try (Scanner in = new Scanner(System.in)) {
@@ -37,12 +34,10 @@ public class Duke {
                     String userInput = in.nextLine();
                     Command parsedCommand = parser.parseCommand(userInput);
                     parsedCommand.execute(taskList, ui);
-                    Storage.saveData(DEFAULT_SAVE_FILE, taskList, ui);
+                    storage.saveData(DEFAULT_SAVE_FILE, taskList, ui);
                     isInUse = !parsedCommand.isExit();
-                } catch (IOException e) {
-                    ui.printSavingErrorMessage();
-                } catch (NullPointerException e) {
-                    ui.printNullFilepathErrorMessage();
+                } catch (FailedSaveException e) {
+                    ui.printError(e);
                 } catch (ToDoListException e) {
                     ui.printError(e);
                 }
