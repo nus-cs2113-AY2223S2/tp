@@ -1,7 +1,5 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 
 import java.util.logging.FileHandler;
@@ -51,9 +49,5 @@ public class DeleteCommand extends Command {
         assert previousStatementCount - 1 == financialReport.getStatementCount() : "statement count mismatch";
 
         logger.log(Level.INFO, "deleted from financial report");
-
-        Storage.writeToFile(financialReport, RainyDay.filePath);
-
-        logger.log(Level.INFO, "passed storage");
     }
 }

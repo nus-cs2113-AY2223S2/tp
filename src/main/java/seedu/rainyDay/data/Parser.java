@@ -21,13 +21,16 @@ public class Parser {
         if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
             logger.info("add command executing");
             return addStatement(action[1]);
-        } if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
+        }
+        if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
             logger.info("delete command executing");
             return deleteStatement(userInput); //todo: fix this to reduce calls of split.();
-        } if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
+        }
+        if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
             logger.info("view command executing");
             return generateReport();
-        } if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
+        }
+        if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
             return displayHelp();
         } else {
             logger.warning("unrecognised input from user!");
@@ -39,15 +42,13 @@ public class Parser {
         try {
             userInput = userInput.trim();
             String direction;
-            if(userInput.substring(0,3).equalsIgnoreCase("-in")) {
-                direction = userInput.substring(1,3);
+            if (userInput.substring(0, 3).equalsIgnoreCase("-in")) {
+                direction = userInput.substring(1, 3);
                 userInput = userInput.substring(3);
-            }
-            else if (userInput.substring(0,4).equalsIgnoreCase("-out")) {
-                direction = userInput.substring(1,4);
+            } else if (userInput.substring(0, 4).equalsIgnoreCase("-out")) {
+                direction = userInput.substring(1, 4);
                 userInput = userInput.substring(4);
-            }
-            else {
+            } else {
                 throw new IllegalArgumentException();
             }
             String[] data = userInput.split("\\$");
