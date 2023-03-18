@@ -1,7 +1,13 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import model.Card;
 import model.CardList;
+import model.CardUUID;
+import model.Tag;
+import model.TagList;
+import model.TagUUID;
 import utils.enums.StringArt;
 import utils.exceptions.InkaException;
 
@@ -75,20 +81,60 @@ public class UserInterface {
         System.out.println(cardlist.get(id));
     }
 
-
+    public void printCard(Card card) {
+        System.out.println(card);
+    }
 
     public void printException(InkaException e) {
         System.out.println(e.getUiMessage());
     }
 
-    public void printList(CardList cardList) {
+    public void printCardList(CardList cardList) {
         if (cardList.isEmpty()) {
             System.out.println("Your current list is empty.");
         } else {
-            System.out.println("Here is your current list of questions buddy:");
+            System.out.println("Here is a list of your cards :");
             for (int i = 0; i < cardList.size(); ++i) {
                 System.out.println((i + 1) + "." + cardList.get(i)); // 1. question  answer
             }
         }
+    }
+
+    public void printTagList(TagList tagList) {
+        if (tagList.isEmpty()) {
+            System.out.println("Your current list of tags is empty.");
+        } else {
+            System.out.println("Here is your current list of tags:");
+            for (int i = 0; i < tagList.size(); ++i) {
+                System.out.println((i + 1) + "." + tagList.get(i));
+            }
+        }
+    }
+
+    public void printTags(ArrayList<Tag> tags) {
+        if (tags.isEmpty()) {
+            System.out.println("There is currently no tags");
+        } else {
+            System.out.println("Here are the tags : ");
+            for (int i = 0; i < tags.size(); ++i) {
+                System.out.println((i + 1) + "." + tags.get(i));
+            }
+        }
+    }
+
+    public void printAddTagToCardSuccess(CardUUID cardUUID, TagUUID tagUUID) {
+        System.out.println("Successfully added tag " + tagUUID + " to card " + cardUUID);
+    }
+
+    public void printTagCreationSuccess() {
+        System.out.println("Tag does not exist.. creating a new one");
+    }
+
+    public void printRemoveTagFromCard(CardUUID cardUUID, TagUUID tagUUID) {
+        System.out.println("Successfully removed tag " + tagUUID + " from card " + cardUUID);
+    }
+
+    public void printRemoveTagFromTagList(TagUUID tagUUID) {
+        System.out.println("Successfully removed tag " + tagUUID + " from the tag list.");
     }
 }

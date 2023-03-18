@@ -1,10 +1,11 @@
 import model.CardList;
+import model.TagList;
 import utils.Parser;
 import utils.UserInterface;
 import utils.command.Command;
 import utils.exceptions.InkaException;
 import utils.exceptions.StorageLoadFailure;
-import utils.storage.JsonStorage;
+import utils.storage.json.JsonStorage;
 import utils.storage.Storage;
 
 public class Inka {
@@ -13,7 +14,8 @@ public class Inka {
     private final Parser parser;
     private Storage storage;
 
-    private CardList cardList;
+    private CardList cardList = new CardList();
+    private TagList tagList;
 
     public Inka(String filePath) {
         storage = new JsonStorage(filePath);
@@ -21,6 +23,7 @@ public class Inka {
         parser = new Parser();
 
         cardList = loadSaveFile();
+        tagList = new TagList();
     }
 
     public static void main(String[] args) {
@@ -58,8 +61,8 @@ public class Inka {
             String userInput = ui.getUserInput();
             //Command command = exceptionHandler.mainExceptionHandler(parser, userInput, ui, cardList);
             try {
-                Command command = parser.parseCommand(userInput, cardList);
-                command.execute(cardList, ui, storage);
+                Command command = parser.parseCommand(userInput, cardList, tagList);
+                command.execute(cardList, tagList, ui, storage);
             } catch (InkaException e) {
                 ui.printException(e);
             }
