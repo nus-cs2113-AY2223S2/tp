@@ -2,7 +2,6 @@ package utils;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.UUID;
 import model.Card;
 import model.CardList;
 import model.CardUUID;

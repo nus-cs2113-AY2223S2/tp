@@ -1,6 +1,5 @@
 package utils.command;
 
-import java.util.UUID;
 import model.Card;
 import model.CardList;
 import model.CardUUID;
@@ -33,7 +32,7 @@ public class DeleteTagCommand extends Command {
     @Override
     public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage) {
         removeTagFromCards(cardList, tagList, ui);
-        boolean IsDeleted = tagList.deleteTagByUUID(tagUUID);
+        boolean isDeleted = tagList.deleteTagByUUID(tagUUID);
         // if isDeleted is false, it means tag doesn't exist in the first place, throw exception here
         ui.printRemoveTagFromTagList(tagUUID);
     }
