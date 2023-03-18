@@ -38,8 +38,7 @@
     + [Non-Functional Requirements](#non-functional-requirements)
     + [Glossary](#glossary)
 6. [Appendix B: Instructions for manual testing](#appendix-b-instructions-for-manual-testing)
-   + [Launch and Shutdown](#launch-and-shutdown)
-   
+    + [Launch and Shutdown](#launch-and-shutdown)
 
 ## Acknowledgements
 
@@ -58,6 +57,43 @@ We would like to acknowledge:
 ### Storage Component
 
 ### Common Classes
+
+## Implementation
+
+### Delete Module
+
+The DeleteModule functionality allows users to remove a module from the ModuleList.
+It is facilitated by DeleteModuleCommand class which is an extension of the Command class.
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1: Define the Constructor :
+When user executes the command `delmod cs2113` the Parser class calls the `DeleteModuleCommand()` method of the
+DeleteModuleCommand class.
+The constructor of the DeleteModuleCommand class takes in a
+moduleCode `cs2113` as a parameter. This moduleCode is
+used to find `cs2113`  from the ModuleList.
+
+Step 2: Define the setUpLogger() method :
+The setUpLogger() method sets up the logger for the DeleteModuleCommand class. It creates a ConsoleHandler and a
+FileHandler to handle logging.
+
+Step 3: Override the execute() method :
+The execute() method is overridden to execute the delete module functionality. It takes in the necessary parameters,
+including the ModuleList, Ui, Storage, and TaskList.
+
+Step 4: Find the module to delete :
+The first step in the execute() method is to find the module using the module code parameter  `cs2113` by calling
+the `findModule()` method of the moduleList class.
+If the module `cs2113` is not found, a ModuleNotFoundException is thrown.
+
+Step 5: Remove the module from the ModuleList :
+If `cs2113` is found, it is removed from the ModuleList by calling `remove()` method of moduleList class.
+
+Step 6: Print the confirmation message :
+A confirmation message is printed to the user indicating that the `cs2113` has been successfully deleted.
+
+Step 7: Update the storage :
+The storage is updated with the new ModuleList without `cs2113`
 
 ## Documentation, logging, testing, configuration, dev-ops
 
