@@ -30,7 +30,7 @@ test {
 }
 
 application {
-    mainClass = "seedu.LifeTracker.LifeTracker"
+    mainClass = "seedu.lifetracker.LifeTracker"
 }
 
 shadowJar {
@@ -44,4 +44,5 @@ checkstyle {
 
 run{
     standardInput = System.in
+    enableAssertions = true
 }

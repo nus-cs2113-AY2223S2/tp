@@ -1,0 +1,34 @@
+package seedu.commands;
+
+import seedu.database.FoodStorage;
+import seedu.database.MealStorage;
+import seedu.database.UserStorage;
+import seedu.exceptions.LifeTrackerException;
+import seedu.exceptions.MissingArgumentsException;
+import seedu.ui.GeneralUi;
+
+public class ListCommand extends Command {
+    private String argument;
+
+    public ListCommand(String commandWord, String userInput) throws LifeTrackerException {
+        if (commandWord.length() == userInput.length() || userInput.split(" ").length < 2) {
+            throw new MissingArgumentsException(commandWord, "[foods/meals]");
+        }
+
+        this.argument = userInput.split(" ")[1];
+
+        if (!this.argument.equals("meals") && !this.argument.equals("foods")) {
+            throw new MissingArgumentsException(commandWord, "[foods/meals]");
+        }
+    }
+
+    @Override
+    public void execute(GeneralUi ui, FoodStorage foodStorage,
+                        MealStorage mealStorage, UserStorage userStorage) throws LifeTrackerException {
+        if (argument.equals("meals")) {
+            ui.printAllMeals(mealStorage);
+        } else {
+            ui.printAllFoods(foodStorage);
+        }
+    }
+}
