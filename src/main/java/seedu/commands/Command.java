@@ -1,9 +1,6 @@
 package seedu.commands;
 
-import seedu.workout.Workout;
 import seedu.workout.WorkoutList;
-
-import java.util.ArrayList;
 
 public class Command {
     protected WorkoutList workoutList;
