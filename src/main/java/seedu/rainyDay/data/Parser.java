@@ -13,26 +13,31 @@ import java.util.logging.Logger;
 
 public class Parser {
 
-    private static Logger logger = Logger.getLogger("Parser.log");
+    private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
     public static Command parseUserInput(String userInput) throws IllegalArgumentException, RainyDayException {
         assert userInput != null : "Failed to read user input!";
         String[] action = userInput.split("\\s+", 2);
-        if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
-            logger.info("add command executing");
-            return addStatement(action[1]);
-        }
-        if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
-            logger.info("delete command executing");
-            return deleteStatement(userInput); //todo: fix this to reduce calls of split.();
-        }
-        if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
-            logger.info("view command executing");
-            return generateReport();
-        }
-        if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
-            return displayHelp();
-        } else {
+        try {
+            if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
+                logger.info("add command executing");
+                return addStatement(action[1]);
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
+                logger.info("delete command executing");
+                return deleteStatement(userInput); //todo: fix this to reduce calls of split.();
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
+                logger.info("view command executing");
+                return generateReport();
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
+                return displayHelp();
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
+                logger.info("filter command executing");
+                return filter(action[1]);
+            } else {
+                logger.warning("unrecognised input from user!");
+                throw new RainyDayException(ErrorMessage.UNRECOGNIZED_INPUT.toString());
+            }
+        } catch (Exception e) {
             logger.warning("unrecognised input from user!");
             throw new RainyDayException(ErrorMessage.UNRECOGNIZED_INPUT.toString());
         }
