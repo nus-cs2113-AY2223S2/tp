@@ -1,6 +1,7 @@
 package seedu.apollo.command.module;
 
 import seedu.apollo.exception.module.DuplicateModuleException;
+import seedu.apollo.exception.module.LessonAddedException;
 import seedu.apollo.exception.utils.IllegalCommandException;
 import seedu.apollo.module.LessonType;
 import seedu.apollo.module.Timetable;
@@ -127,11 +128,13 @@ public class AddModuleCommand extends Command {
             ui.printInvalidCommand();
         } catch (ClassNotFoundException e) {
             ui.printInvalidLessonType();
+        } catch (LessonAddedException e) {
+            ui.printLessonExists();
         }
     }
 
     private void handleMultiCommand(ModuleList moduleList, ModuleList allModules, String[] args)
-            throws IllegalCommandException, ClassNotFoundException {
+            throws IllegalCommandException, ClassNotFoundException, LessonAddedException {
 
         LessonType lessonType = this.getCommand(args[1]);
         Module searchModule = null;
@@ -152,6 +155,10 @@ public class AddModuleCommand extends Command {
                 index++;
             }
             module.setTimetable(moduleList.get(index).getModuleTimetable());
+            if (module.hasLessonType(lessonType)){
+                throw new LessonAddedException();
+            }
+
             addTimetable(searchModule, lessonType, args[2]);
             moduleList.get(index).setTimetable(module.getModuleTimetable());
         } else {
@@ -165,7 +172,7 @@ public class AddModuleCommand extends Command {
         Boolean isFound = false;
         ArrayList<Timetable> copyList = new ArrayList<>(searchModule.getModuleTimetable());
         for (Timetable timetable: copyList){
-            LessonType searchLessonType = this.determineLessonType(timetable.getLessonType());
+            LessonType searchLessonType = determineLessonType(timetable.getLessonType());
             if (searchLessonType.equals(lessonType) && timetable.getClassnumber().equals(args)){
                 module.getModuleTimetable().add(timetable);
                 isFound = true;
@@ -180,7 +187,7 @@ public class AddModuleCommand extends Command {
     public ArrayList<LessonType> getLessonTypes(Module module) {
         ArrayList<LessonType> lessonTypes = new ArrayList<>();
         for (Timetable timetable : module.getModuleTimetable()) {
-            LessonType lessonType = this.determineLessonType(timetable.getLessonType());
+            LessonType lessonType = determineLessonType(timetable.getLessonType());
             if (!lessonTypes.contains(lessonType) && lessonType != null) {
                 lessonTypes.add(lessonType);
             }
@@ -219,7 +226,7 @@ public class AddModuleCommand extends Command {
         }
     }
 
-    public LessonType determineLessonType(String lessonType) {
+    public static LessonType determineLessonType(String lessonType) {
         switch (lessonType) {
         case "Lecture":
             return LessonType.LECTURE;
