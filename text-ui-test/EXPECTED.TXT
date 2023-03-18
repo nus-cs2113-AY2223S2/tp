@@ -1,4 +1,3 @@
-No save file was found. Creating a new list and save file 'data.txt' for you to use.
 Hello, I am Duke and I will help you remember the tasks you need to do!
 For now, you can do the following:
 Add a task using: add <description> -d <deadline>
@@ -8,5 +7,9 @@ Mark a task as done using: mark <index>
 Mark a task as undone using: unmark <index>
 Edit a task deadline using: edit <index> -d <deadline>
 Exit the program using: exit
+
+Here are the tasks in your list:
+1.[X] bubu due by: 18 Dec 2022 18:00
+2.[ ] baba due by: 18 Dec 2023 17:00
 
 See you again, bye!
