@@ -68,9 +68,7 @@ class StorageTest {
             taskList = Storage.loadData(INVALID_DATA_FILE, ui);
             fail(); // should not reach this line
         } catch (Exception e) {
-            if (e instanceof ConversionErrorException) {
-                ui.printLoadingErrorMessage();
-            }
+            System.out.println(e.getMessage());
         }
     }
 

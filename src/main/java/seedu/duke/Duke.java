@@ -22,11 +22,15 @@ public class Duke {
             taskList = Storage.loadData(DEFAULT_SAVE_FILE, ui);
         } catch (FileNotFoundException e) {
             ui.printFileNotFoundMessage();
-        } catch (ConversionErrorException e) {
-            ui.printLoadingErrorMessage();
+        } catch (NullPointerException e) {
+            ui.printNullFilepathErrorMessage(); // something went wrong with filename given, we got null as filename
+        } catch (IOException e) {
+            ui.printLoadingErrorMessage(); // something went wrong while accessing your file
+        } catch (ClassNotFoundException e) {
+            ui.printClassNotFoundErrorMessage(); // something went wrong while looking for a class - not user issue
         }
 
-        ui.printWelcomeMessage();
+        ui.printWelcomeMessage(taskList);
         try (Scanner in = new Scanner(System.in)) {
             while (isInUse) {
                 try {
@@ -37,7 +41,10 @@ public class Duke {
                     isInUse = !parsedCommand.isExit();
                 } catch (IOException e) {
                     ui.printSavingErrorMessage();
-                } catch (ToDoListException e) {
+                } catch (NullPointerException e) {
+                    ui.printNullFilepathErrorMessage();
+                }
+                catch (ToDoListException e) {
                     ui.printError(e);
                 }
             }

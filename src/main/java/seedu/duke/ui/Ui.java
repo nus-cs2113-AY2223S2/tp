@@ -3,7 +3,7 @@ package seedu.duke.ui;
 import seedu.duke.task.TaskList;
 
 public class Ui {
-    public void printWelcomeMessage() {
+    public void printWelcomeMessage(TaskList taskList) {
         System.out.println("Hello, I am Duke and I will help you remember the tasks you need to do!");
         System.out.println("For now, you can do the following:");
         System.out.println("Add a task using: add <description> -d <deadline>");
@@ -14,6 +14,7 @@ public class Ui {
         System.out.println("Edit a task deadline using: edit <index> -d <deadline>");
         System.out.println("Exit the program using: exit");
         System.out.println();
+        listTasks(taskList);
     }
 
     public void printGoodbyeMessage() {
@@ -70,4 +71,13 @@ public class Ui {
     public void printLoadingErrorMessage() {
         System.out.println("Error encountered while loading your saved file! Creating a new list for you to use.");
     }
+
+    public void printNullFilepathErrorMessage() {
+        System.out.println("Error encountered! Save file name given was NULL!");
+    }
+
+    public void printClassNotFoundErrorMessage() {
+        System.out.println("Error! Encountered unidentified class while loading data! Please contact a developer to" +
+                " fix this issue.");
+    };
 }
