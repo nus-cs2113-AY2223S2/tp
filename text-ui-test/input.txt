@@ -1,3 +1,8 @@
 John
-add -in noodles $5
+add -in ang bao $1337 -c Money
+add -out noodles $5 -c Default
+add -out bak kwa $20 -c Default
+view
+delete 2
+view
 bye

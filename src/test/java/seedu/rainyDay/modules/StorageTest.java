@@ -27,7 +27,8 @@ public class StorageTest {
     public void writeToFileTest_contentMatch() throws IOException, ClassNotFoundException {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport financialReport = new FinancialReport(statements);
-        financialReport.addStatement(new FinancialStatement("noodles", "in", 5));
+        financialReport.addStatement(
+                new FinancialStatement("noodles", "in", 5, "Default"));
         String filePath = "rainyDay.txt";
         Storage.writeToFile(financialReport, filePath);
         FinancialReport financialReportLoaded =Storage.loadFromFile(filePath);

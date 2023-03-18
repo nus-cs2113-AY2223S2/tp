@@ -36,10 +36,10 @@ public class DeleteCommandTest {
     @Test
     public void execute() {
         //RainyDay.clearFinancialReport();
-        AddCommand addFirstCommand = new AddCommand("Ipad", "out", 120);
+        AddCommand addFirstCommand = new AddCommand("Ipad", "out", 120, "Default");
         addFirstCommand.setData(financialReport);
         addFirstCommand.execute();
-        AddCommand addSecondCommand = new AddCommand("angpao", "in", 3000);
+        AddCommand addSecondCommand = new AddCommand("angpao", "in", 3000, "Default");
         addSecondCommand.setData(financialReport);
         addSecondCommand.execute();
 
