@@ -18,6 +18,7 @@ public class Duke {
         Ui ui = new Ui();
         TaskList taskList = new TaskList();
         CommandParser parser = new CommandParser();
+        ui.printWelcomeMessage();
         try {
             taskList = Storage.loadData(DEFAULT_SAVE_FILE, ui);
         } catch (FileNotFoundException e) {
@@ -29,8 +30,7 @@ public class Duke {
         } catch (ClassNotFoundException e) {
             ui.printClassNotFoundErrorMessage(); // something went wrong while looking for a class - not user issue
         }
-
-        ui.printWelcomeMessage(taskList);
+        ui.listTasks(taskList);
         try (Scanner in = new Scanner(System.in)) {
             while (isInUse) {
                 try {
