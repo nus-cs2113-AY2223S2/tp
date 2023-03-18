@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
@@ -8,11 +7,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Scanner;
 
 // This class was largely based off the Storage classes from jeromeongithub/ip and erjunze/ip.
 // The supporting code e.g. toSaveString() methods in TaskList and Task class were largely based off erjunze/ip.
