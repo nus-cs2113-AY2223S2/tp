@@ -1,6 +1,8 @@
 package seedu.apollo.module;
 
 
+import seedu.apollo.command.module.AddModuleCommand;
+
 import java.util.ArrayList;
 
 /**
@@ -75,5 +77,16 @@ public class Module {
 
     public void createNewTimeTable() {
         this.timetable = new ArrayList<>();
+    }
+
+    public Boolean hasLessonType(LessonType lessonType) {
+        for (Timetable timetable : this.timetable) {
+            LessonType checkLessonType = AddModuleCommand.determineLessonType(timetable.getLessonType());
+            assert checkLessonType != null : "Lesson type should not be null";
+            if (checkLessonType.equals(lessonType)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -397,4 +397,8 @@ public class Ui {
     public void printInvalidLessonType() {
         System.out.println("This lesson type does not exist!");
     }
+
+    public void printLessonExists() {
+        System.out.println("This lesson type already exists for this lesson!");
+    }
 }
