@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Meal {
+public class Meal implements Comparable<Meal> {
     private static final String DATE_FORMAT = "d/M/yyyy";
     private ArrayList<Food> foods;
     private LocalDate date;
@@ -64,5 +64,13 @@ public class Meal {
             output += (i+1) + ") " + foods.get(i).toString() + System.lineSeparator();
         }
         return output;
+    }
+
+    @Override
+    public int compareTo(Meal otherMeal) {
+        if (getDate() == null || otherMeal.getDate() == null) {
+            return 0;
+        }
+        return this.getDate().compareTo(otherMeal.getDate());
     }
 }

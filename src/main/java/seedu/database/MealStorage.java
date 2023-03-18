@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
 
 import seedu.entities.Meal;
@@ -41,6 +42,7 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
                 CSVWriter.RFC4180_LINE_END);
         String[] header = { "Date", "Foods" };
         writer.writeNext(header);
+        Collections.sort(meals);
         for (Meal meal : meals) {
             writer.writeNext(meal.toWriteFormat(FOODS_DELIMITER, DATE_FORMAT));
         }
@@ -81,6 +83,16 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
             System.out.println("Meal was successfully added!");
         } catch (IOException e) {
             System.out.println("Could not add meal to storage!");
+        }
+    }
+
+    public void resetStorage() {
+        meals = new ArrayList<Meal>();
+        try {
+            this.write();
+            System.out.println("MealStorage was successfully resetted!");
+        } catch (IOException e) {
+            System.out.println("Could not reset MealStorage!");
         }
     }
 
