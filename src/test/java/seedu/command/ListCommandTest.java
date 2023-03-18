@@ -1,14 +1,11 @@
 package seedu.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.commands.IncorrectCommand;
-import seedu.commands.StartCommand;
 import seedu.workout.Workout;
 import seedu.workout.WorkoutList;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,7 +35,8 @@ public class ListCommandTest {
         testList.showWorkoutList();
 
         // Assert that the console output matches the expected output
-        assertEquals("Here are the list of dates for your workout: \nSat Nov 11 00:00:00 CST 2023", outContent.toString());
+        assertEquals("Here are the list of dates for your workout: \nSat Nov 11 00:00:00 CST 2023",
+                outContent.toString());
 
     }
 }

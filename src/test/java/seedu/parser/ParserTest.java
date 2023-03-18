@@ -3,9 +3,6 @@ package seedu.parser;
 import org.junit.jupiter.api.Test;
 import seedu.commands.Command;
 import seedu.commands.IncorrectCommand;
-import seedu.commands.ListCommand;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ParserTest {
