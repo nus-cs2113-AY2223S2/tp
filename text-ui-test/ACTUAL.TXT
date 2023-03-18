@@ -9,7 +9,7 @@ Incorrect command given!
 Great job completing your workout!
 Started new workout.
 Use add command to add exercises to your workout!
-Here are the list of dates for your workout: 
+Here are the list of dates for your workout:
 11-11-23
 11-10-23
 Added tricep extensions 25kg 8 7 6

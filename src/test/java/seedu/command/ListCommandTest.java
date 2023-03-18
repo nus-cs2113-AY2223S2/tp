@@ -9,7 +9,6 @@ import java.io.PrintStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ListCommandTest {
@@ -35,8 +34,10 @@ public class ListCommandTest {
         testList.showWorkoutList();
 
         // Assert that the console output matches the expected output
-        assertEquals("Here are the list of dates for your workout: \n" +
-                        "11-11-23\n" + "11-10-23\n", outContent.toString());
+        assertEquals("Here are the list of dates for your workout:\n" +
+                        "11-11-23\n" +
+                        "11-10-23\n",
+                outContent.toString());
 
     }
 }
