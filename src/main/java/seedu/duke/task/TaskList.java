@@ -111,14 +111,6 @@ public class TaskList implements Serializable {
         return taskListString.toString();
     }
 
-    public String toSaveString() {
-        StringJoiner taskListString = new StringJoiner(System.lineSeparator());
-        for (int i = 0; i < size(); i++) {
-            taskListString.add(tasks.get(i).toSaveString());
-        }
-        return taskListString.toString();
-    }
-
     /**
      * Sorts the ArrayList tasks, by the corresponding Task deadlines
      */

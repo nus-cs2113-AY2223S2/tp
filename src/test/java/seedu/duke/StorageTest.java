@@ -89,17 +89,14 @@ class StorageTest {
         try {
             taskList = Storage.loadData(VALID_DATA_FILE, ui);
             Storage.saveData(NEW_SAVE_FILE_FOR_COMPARISON, taskList, ui);
-            File f1 = new File(VALID_DATA_FILE);
-            File f2 = new File(NEW_SAVE_FILE_FOR_COMPARISON);
-            Scanner s1 = new Scanner(f1);
-            Scanner s2 = new Scanner(f2);
+            TaskList newlySavedTaskList = Storage.loadData(NEW_SAVE_FILE_FOR_COMPARISON, ui);
             boolean isActualSaveEqualExpectedSave = true;
-            while (s1.hasNext() && s2.hasNext()) {
-                String line1 = s1.nextLine();
-                String line2 = s2.nextLine();
-                if (!line1.equals(line2)) {
-                    isActualSaveEqualExpectedSave = false;
-                }
+            System.out.println("original tasklist: ");
+            System.out.println(taskList.toString());
+            System.out.println("newly saved tasklist: ");
+            System.out.println(newlySavedTaskList.toString());
+            if (!newlySavedTaskList.toString().equals(taskList.toString())) {
+                isActualSaveEqualExpectedSave = false;
             }
             assertTrue(isActualSaveEqualExpectedSave);
         } catch (Exception e) {
