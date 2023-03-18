@@ -4,6 +4,7 @@ import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.command.DeleteCommand;
+import seedu.rainyDay.command.FilterCommand;
 import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
@@ -65,7 +66,7 @@ public class Parser {
             if (data.length >= 2) {
                 category = data[1].trim();
             }
-            
+
             return new AddCommand(description, direction, amount, category);
         } catch (Exception e) {
             logger.warning("add command given by user in the wrong format");
@@ -97,5 +98,17 @@ public class Parser {
 
     public static HelpCommand displayHelp() {
         return new HelpCommand();
+    }
+
+    private static FilterCommand filter(String input) {
+        //filter by description
+        //filter by category
+        try {
+            String userInput = input.trim();
+            return new FilterCommand(userInput);
+        } catch (Exception e) {
+            logger.warning("filter command given by user in the wrong format");
+            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
     }
 }
