@@ -22,6 +22,7 @@ If you can type fast, Apollo can get your timetable management done faster than 
     + [`find` - Finding a task](#find---finding-a-task)
     + [`date` - Find tasks on date](#date---find-tasks-on-date)
     + [`addmod` - Adding a module](#addmod---adding-a-module)
+      + [`addmod` flags](#addmod-flags)
     + [`delmod` - Deleting a module](#delmod---deleting-a-module)
     + [`listmod` - Listing all modules](#listmod---listing-all-modules)
     + [`bye` - Exiting the program](#bye---exiting-the-program)
@@ -226,7 +227,37 @@ Format: `addmod MODULE_CODE`
 >> addmod cs2113
 Got it. I've added this module:
   CS2113: Software Engineering & Object-Oriented Programming
+Total modular credits you have in this semester: 36
+Here are the lesson types for this module:
+LECTURE
+TUTORIAL
+To see how to add lessons, enter 'help'.
 ```
+#### `addmod` flags
+There are many lesson options and types, the below is a list of all the flags and their respective lesson types.
+```
+-lec        LECTURE
+-plec       PACKAGED LECTURE
+-st         SECTIONAL TEACHING
+-dlec       DESIGN LECTURE
+-tut        TUTORIAL
+-ptut       PACKAGED TUTORIAL
+-rcit       RECITATION
+-lab        LABORATORY
+-ws         WORKSHOP
+-smc        SEMINAR STYLE MODULE CLASS
+-mp         MINI PROJECT
+-tt2        TUTORIAL TYPE 2
+```
+
+To add a lesson, use the following format:
+`addmod MODULE_CODE -FLAG [LESSON NUMBER]`
+
+Example:
+```
+addmod CS1010 -st 1
+```
+This will add the first section teaching lesson of CS1010 to your module list.
 
 ### `delmod` - Deleting a module
 
