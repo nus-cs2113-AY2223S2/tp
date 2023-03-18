@@ -4,7 +4,11 @@ import seedu.duke.diagnosis.symptoms.Symptom;
 
 import java.util.ArrayList;
 
-//@@author Brennanzuz
+/**
+ * A generic class to be inherited by all other illnesses. Its constructor class will be filled by predefined constants
+ * when inherited by other classes to match the desired illness.
+ * @author Brennanzuz
+ */
 public class Illness {
     private final String illnessName;
     private final int severityLevel;
