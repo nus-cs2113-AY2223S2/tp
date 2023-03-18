@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class UI {
     private static final String LIST_PU_MESSAGE = "This is the list of PUs:";
     private static final String LIST_CURRENT_MESSAGE = "List of Added modules:";
-    private static final String LINE = "____________________________________________________________";
+    private static final String LINE = "____________________________________________________________\n";
     private static final String ADD_MOD_MESSAGE = "This module has been added to the current list!";
     private static final String DELETE_MOD_MESSAGE = "This module has been deleted from the current list!";
 
@@ -14,6 +14,7 @@ public class UI {
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
     private static final String WELCOME_MESSAGE = "~Welcome to SEP Helper~";
     private static final String READ_COMMAND_INPUT= "What can I do for you?";
+    private static final String GREETING_HELP_MESSAGE = "\nType /help if you need help getting started :)";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
@@ -55,6 +56,7 @@ public class UI {
 
         System.out.println(WELCOME_MESSAGE);
         System.out.println(READ_COMMAND_INPUT);
+        System.out.println(GREETING_HELP_MESSAGE);
         System.out.println(LINE);
     }
 
@@ -117,6 +119,20 @@ public class UI {
 
     public static void printAddModuleFailureMessage() {
         System.out.println(ADD_MOD_FAILURE_MESSAGE);
+    }
+
+    public static void printHelpCommandMessage() {
+        System.out.println("Here are the list of commands: \n"
+                + "LIST PU                     : Provides the list of Partner Universities available\n"
+                + "LIST [PU ABBRV]             : Provides the list of all modules available " +
+                "in the specified Partner University\n"
+                + "LIST CURRENT                : Provides the list of modules that the user has added to his/her " +
+                "list of interest\n"
+                + "ADD [PU ABBRV]/[MODULE CODE]: Adds the specified module into user's current list of modules\n"
+                + "REMOVE [INDEX]              : Removes the specified module by index from user's current list\n"
+                + "EXIT                        : Exits the program\n\n");
+        System.out.println(READ_COMMAND_INPUT);
+        System.out.println(LINE);
     }
 
     public void printExitMessage() {

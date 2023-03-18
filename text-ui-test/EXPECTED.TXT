@@ -8,6 +8,9 @@
 
 ~Welcome to SEP Helper~
 What can I do for you?
+
+Type /help if you need help getting started :)
 ____________________________________________________________
+
 Invalid Input
 Exiting program now

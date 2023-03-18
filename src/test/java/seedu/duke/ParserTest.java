@@ -14,7 +14,7 @@ public class ParserTest {
         Module module = new Module(1, "AE320", "Aerodynamics II", 3,
                 "ME4231", "Aerodynamics", 4);
         uniList1.add(module);
-        Parser.deleteModule(1, uniList1, storage);
+        Parser.handleDeleteModule(1, uniList1, storage);
         assertEquals(uniList1.size(), 0);
     }
 }
