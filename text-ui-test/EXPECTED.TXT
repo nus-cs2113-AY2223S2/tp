@@ -8,6 +8,7 @@ Mark a task as undone using: unmark <index>
 Edit a task deadline using: edit <index> -d <deadline>
 Exit the program using: exit
 
-No save file was found. Creating a new list and save file 'data.txt' for you to use.
+Error encountered while loading your data. Please check that you have provided the filepath to a file previously saved
+by Duke. If this is your first time using Duke, you can ignore this message.
 There are no tasks in your list.
 See you again, bye!
