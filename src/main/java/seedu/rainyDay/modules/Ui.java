@@ -10,17 +10,17 @@ import java.util.logging.Logger;
 
 public class Ui {
     private static final String WELCOME_MESSAGE = "" +
-            "Hello from rainyDay!     \n" +
-            "        __.|.__          \n" +
-            "    .-\"'..':`..`\"-.    \n" +
-            "  .' .' .  :  . `. `.    \n" +
-            " / .   .   :   .   . \\  \n" +
-            "/_ _._ _.._:_.._ _._ _\\ \n" +
-            "  '   '    |    '   '    \n" +
-            "           |             \n" +
-            "           |             \n" +
-            "           |             \n" +
-            "         `='               ";
+            "Hello from rainyDay!\n" +
+            "        __.|.__\n" +
+            "    .-\"'..':`..`\"-.\n" +
+            "  .' .' .  :  . `. `.\n" +
+            " / .   .   :   .   . \\\n" +
+            "/_ _._ _.._:_.._ _._ _\\\n" +
+            "  '   '    |    '   '\n" +
+            "           |\n" +
+            "           |\n" +
+            "           |\n" +
+            "         `='";
     private static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
     private static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
     private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
