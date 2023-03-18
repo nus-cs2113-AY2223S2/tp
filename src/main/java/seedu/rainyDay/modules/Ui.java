@@ -9,16 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Ui {
-    public static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
-    public static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
-    private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
-            "+-----+------------------------------+------------+----------------+\n" +
-            "|Here is your full financial report!                               |\n" +
-            "+-----+------------------------------+------------+----------------+\n" +
-            "|Index|Name                          |Amount      |Category        |";
-    private static final String VIEW_SUMMARY = "" +
-            "+-----+------------------------------+------------+----------------+\n";
-    public static final String WELCOME_MESSAGE = "" +
+    private static final String WELCOME_MESSAGE = "" +
             "Hello from rainyDay!     \n" +
             "        __.|.__          \n" +
             "    .-\"'..':`..`\"-.    \n" +
@@ -30,6 +21,16 @@ public class Ui {
             "           |             \n" +
             "           |             \n" +
             "         `='               ";
+    private static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
+    private static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
+    private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
+            "+-----+------------------------------+------------+----------------+\n" +
+            "|Here is your full financial report!                               |\n" +
+            "+-----+------------------------------+------------+----------------+\n" +
+            "|Index|Name                          |Amount      |Category        |";
+    private static final String VIEW_SUMMARY = "" +
+            "+-----+------------------------------+------------+----------------+\n";
+
 
 
     private static Logger UILogger = Logger.getLogger("UILogger.log");
