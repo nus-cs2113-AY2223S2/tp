@@ -24,6 +24,15 @@ public class GenerateFilterCommand extends Command {
     private final String[] userCommands;
     private final int numberOfExercisesToGenerate;
 
+    private ArrayList<ExerciseData> exerciseListGenerated;
+
+
+    /**
+     * Parses the user input into data required
+     * for generating an exercise
+     * @param userCommands
+     * @throws DukeError
+     */
     public GenerateFilterCommand(String[] userCommands) throws DukeError {
         this.filterArguments = userCommands.length - 1;
         this.userCommands = userCommands;
@@ -35,7 +44,13 @@ public class GenerateFilterCommand extends Command {
         }
     }
 
-
+    /**
+     * Filters the whole list of available exercises based off the
+     * input from the user.
+     * @param ui Prints out the respective exercises for a given input
+     * @param exerciseGenerator Generates Exercises
+     * @throws DukeError
+     */
     public void executeCommand(Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
         assert System.identityHashCode(exercises) != System.identityHashCode(exerciseGenerator.generateSetAll())
@@ -60,14 +75,17 @@ public class GenerateFilterCommand extends Command {
                 break;
             default:
                 throw new DukeError("Unknown filter input!");
-
             }
         }
         if (numberOfExercisesToGenerate > exercises.size()) {
             throw new FilterTooManyError();
         }
         exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
+        exerciseListGenerated = exercises;
         ui.printExerciseFromList(exercises);
     }
 
+    public ArrayList<ExerciseData> provideExerciseList() {
+        return exerciseListGenerated;
+    }
 }

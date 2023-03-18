@@ -22,6 +22,7 @@ public class WriteUserData {
      */
     public static void writeToJson (String fileName, UserCareerData userCareerData) {
         try {
+            System.out.println("This is saved");
             Writer writer = new FileWriter(fileName);
             GsonBuilder gsonBuilder = new GsonBuilder();
             Gson gson = gsonBuilder

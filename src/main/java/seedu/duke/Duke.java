@@ -6,6 +6,7 @@ import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.storage.LoadUserData;
 import seedu.duke.storage.UserCareerData;
 import seedu.duke.ui.Ui;
+import seedu.duke.states.ExerciseStateHandler;
 
 import java.util.Scanner;
 
@@ -13,9 +14,11 @@ public class Duke {
 
     private final Ui ui;
     private final GenerateExercise exerciseGenerator;
+    private final ExerciseStateHandler exerciseHandler;
     private UserCareerData userCareerData;
 
-    public Duke () {
+    public Duke() {
+        exerciseHandler = new ExerciseStateHandler();
         ui = new Ui();
         exerciseGenerator = new GenerateExercise();
         try {
@@ -28,16 +31,16 @@ public class Duke {
     }
 
     @SuppressWarnings("InfiniteLoopStatement")
-    public void run () {
+    public void run() {
         CommandHandler commandHandler = new CommandHandler();
         Scanner in = new Scanner(System.in);
         ui.greetUser();
         while (true) {
-            commandHandler.handleUserCommands(in.nextLine(), ui, exerciseGenerator, userCareerData);
+            commandHandler.handleUserCommands(in.nextLine(), ui, exerciseGenerator, userCareerData, exerciseHandler);
         }
     }
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         new Duke().run();
     }
 
