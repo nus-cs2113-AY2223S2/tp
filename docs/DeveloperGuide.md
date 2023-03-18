@@ -64,11 +64,14 @@ We would like to acknowledge:
 
 The DeleteModule functionality allows users to remove a module from the ModuleList.
 It is facilitated by DeleteModuleCommand class which is an extension of the Command class.
-Below are the steps to recreate it
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
 Step 1: Define the Constructor :
-The constructor of the DeleteModuleCommand class takes in a moduleCode as a parameter. This moduleCode is used to find
-the module that needs to be deleted from the ModuleList.
+When user executes the command `delmod cs2113` the Parser class calls the `DeleteModuleCommand()` method of the
+DeleteModuleCommand class.
+The constructor of the DeleteModuleCommand class takes in a
+moduleCode `cs2113` as a parameter. This moduleCode is
+used to find `cs2113`  from the ModuleList.
 
 Step 2: Define the setUpLogger() method :
 The setUpLogger() method sets up the logger for the DeleteModuleCommand class. It creates a ConsoleHandler and a
@@ -79,17 +82,18 @@ The execute() method is overridden to execute the delete module functionality. I
 including the ModuleList, Ui, Storage, and TaskList.
 
 Step 4: Find the module to delete :
-The first step in the execute() method is to find the module that needs to be deleted using the moduleCode parameter. If
-the module is not found, a ModuleNotFoundException is thrown.
+The first step in the execute() method is to find the module using the module code parameter  `cs2113` by calling
+the `findModule()` method of the moduleList class.
+If the module `cs2113` is not found, a ModuleNotFoundException is thrown.
 
 Step 5: Remove the module from the ModuleList :
-If the module is found, it is removed from the ModuleList using the remove() method.
+If `cs2113` is found, it is removed from the ModuleList by calling `remove()` method of moduleList class.
 
 Step 6: Print the confirmation message :
-A confirmation message is printed to the user indicating that the module has been successfully deleted.
+A confirmation message is printed to the user indicating that the `cs2113` has been successfully deleted.
 
 Step 7: Update the storage :
-The storage is updated with the new ModuleList
+The storage is updated with the new ModuleList without `cs2113`
 
 ## Documentation, logging, testing, configuration, dev-ops
 
