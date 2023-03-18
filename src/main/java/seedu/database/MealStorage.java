@@ -4,14 +4,20 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
+
 import seedu.entities.Meal;
 import seedu.entities.Food;
 import com.opencsv.CSVWriter;
 
 public class MealStorage extends Storage implements FileReadable, FileWritable {
-    private static final String csvDelimiter = ",";
-    private static final String foodsDelimiter = "-";
+    private static final String CSV_DELIMITER = ",";
+    private static final String FOODS_DELIMITER = "-";
+    private static final String DATE_FORMAT = "d/M/yyyy";
+    private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern(DATE_FORMAT, Locale.ENGLISH);
     private ArrayList<Meal> meals;
     private FoodStorage foodStorage;
 
@@ -36,7 +42,7 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         String[] header = { "Date", "Foods" };
         writer.writeNext(header);
         for (Meal meal : meals) {
-            writer.writeNext(meal.toWriteFormat(foodsDelimiter));
+            writer.writeNext(meal.toWriteFormat(FOODS_DELIMITER, DATE_FORMAT));
         }
         writer.close();
     }
@@ -45,7 +51,7 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
     public void load() throws IOException {
         String line = "";
         String[] mealLine;
-        String date;
+        LocalDate date;
         String[] foodIndexes;
         ArrayList<Food> foods;
 
@@ -55,9 +61,9 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         br.readLine();
 
         while ((line = br.readLine()) != null) {
-            mealLine = line.split(csvDelimiter);
-            date = mealLine[0];
-            foodIndexes = mealLine[1].split(foodsDelimiter);
+            mealLine = line.split(CSV_DELIMITER);
+            date = LocalDate.parse(mealLine[0], DTF);
+            foodIndexes = mealLine[1].split(FOODS_DELIMITER);
             foods = new ArrayList<Food>();
             for (String foodIndex : foodIndexes) {
                 foods.add(foodStorage.getFoodById(Integer.parseInt(foodIndex)));
@@ -92,5 +98,9 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
 
     public Meal deleteMeal(int index) throws IndexOutOfBoundsException {
         return meals.remove(index);
+    }
+
+    public DateTimeFormatter getDateTimeFormatter() {
+        return DTF;
     }
 }
