@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
 
@@ -33,7 +34,7 @@ public class MealStorageTest {
             foodList.add(foodStorage.getFoodById(1));
             foodList.add(foodStorage.getFoodById(2));
             LocalDate date = LocalDate.parse("1/1/2023", dtf);
-            assertDoesNotThrow(() -> mealStorage.saveMeal(new Meal(foodList, date)));
+            assertDoesNotThrow(() -> mealStorage.saveMeal(new Meal(foodList, date, MealTypes.BREAKFAST)));
         }
 
         @Test

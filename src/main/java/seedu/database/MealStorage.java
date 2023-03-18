@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Locale;
 
 import seedu.entities.Meal;
+import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import com.opencsv.CSVWriter;
 
@@ -40,7 +41,7 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
                 CSVWriter.NO_QUOTE_CHARACTER,
                 CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                 CSVWriter.RFC4180_LINE_END);
-        String[] header = { "Date", "Foods" };
+        String[] header = { "Date", "Foods", "Meal Type" };
         writer.writeNext(header);
         Collections.sort(meals);
         for (Meal meal : meals) {
@@ -56,6 +57,7 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         LocalDate date;
         String[] foodIndexes;
         ArrayList<Food> foods;
+        MealTypes mealType;
 
         BufferedReader br = new BufferedReader(new FileReader(filePath));
 
@@ -65,12 +67,16 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         while ((line = br.readLine()) != null) {
             mealLine = line.split(CSV_DELIMITER);
             date = LocalDate.parse(mealLine[0], DTF);
+
             foodIndexes = mealLine[1].split(FOODS_DELIMITER);
             foods = new ArrayList<Food>();
             for (String foodIndex : foodIndexes) {
                 foods.add(foodStorage.getFoodById(Integer.parseInt(foodIndex)));
             }
-            meals.add(new Meal(foods, date));
+
+            mealType = MealTypes.fromString(mealLine[2]);
+
+            meals.add(new Meal(foods, date, mealType));
         }
 
         br.close();

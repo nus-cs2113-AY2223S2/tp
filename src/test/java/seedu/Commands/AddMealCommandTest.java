@@ -3,6 +3,7 @@ package seedu.commands;
 import org.junit.jupiter.api.Test;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
+import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
 import seedu.exceptions.InvalidArgumentsException;
@@ -27,23 +28,37 @@ class AddMealCommandTest {
         int oldSize = mealStorage.getMealCount();
         foodList.add(foodStorage.getFoodById(2));
         LocalDate date = LocalDate.parse("1/1/2023", dtf);
-        mealStorage.saveMeal(new Meal(foodList, date));
+        mealStorage.saveMeal(new Meal(foodList, date, MealTypes.BREAKFAST));
         int newSize = mealStorage.getMealCount();
         assertEquals(oldSize + 1, newSize);
     }
 
     @Test
-    void addTwoMeal_twoDifferentMealAdded_expectSortedMeals() {
+    void addTwoMeals_twoDifferentMealsAddedAtDifferentDates_expectSortedMeals() {
         mealStorage.resetStorage();
         LocalDate date;
         foodList.add(foodStorage.getFoodById(2));
         date = LocalDate.parse("31/12/2023", dtf);
-        mealStorage.saveMeal(new Meal(foodList, date));
+        mealStorage.saveMeal(new Meal(foodList, date, MealTypes.BREAKFAST));
         date = LocalDate.parse("1/11/2023", dtf);
-        mealStorage.saveMeal(new Meal(foodList, date));
+        mealStorage.saveMeal(new Meal(foodList, date, MealTypes.BREAKFAST));
         Meal meal0 = mealStorage.getMealById(0);
-        Meal meal1 = mealStorage.getMealById(0);
-        assertFalse(meal0.getDate().compareTo(meal1.getDate()) > 0, "Array is sorted!");
+        Meal meal1 = mealStorage.getMealById(1);
+        assertFalse(meal0.compareTo(meal1) > 0, "Array is not sorted!");
+    }
+
+    @Test
+    void addTwoMeals_twoDifferentMealsAddedAtDifferentMealTypes_expectSortedMeals() {
+        mealStorage.resetStorage();
+        LocalDate date;
+        foodList.add(foodStorage.getFoodById(2));
+        date = LocalDate.parse("31/12/2023", dtf);
+        mealStorage.saveMeal(new Meal(foodList, date, MealTypes.LUNCH));
+        date = LocalDate.parse("31/12/2023", dtf);
+        mealStorage.saveMeal(new Meal(foodList, date, MealTypes.BREAKFAST));
+        Meal meal0 = mealStorage.getMealById(0);
+        Meal meal1 = mealStorage.getMealById(1);
+        assertFalse(meal0.compareTo(meal1) > 0, "Array is not sorted!");
     }
 
     @Test
