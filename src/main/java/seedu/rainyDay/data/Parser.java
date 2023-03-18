@@ -43,32 +43,7 @@ public class Parser {
             throw new RainyDayException(ErrorMessage.UNRECOGNIZED_INPUT.toString());
         }
     }
-/**
-    private static AddCommand addStatement(String userInput) {
-        try {
-            userInput = userInput.trim();
-            String direction;
-            if (userInput.substring(0, 3).equalsIgnoreCase("-in")) {
-                direction = userInput.substring(1, 3);
-                userInput = userInput.substring(3);
-            } else if (userInput.substring(0, 4).equalsIgnoreCase("-out")) {
-                direction = userInput.substring(1, 4);
-                userInput = userInput.substring(4);
-            } else {
-                throw new IllegalArgumentException();
-            }
-            String[] data = userInput.split("\\$");
-            String description = data[0].trim();
-            data = data[1].split("-c");
-            int amount = Integer.parseInt(data[0].trim());
-            String category = data[1].trim();
-            return new AddCommand(description, direction, amount, category);
-        } catch (Exception e) {
-            logger.warning("add command given by user in the wrong format");
-            throw new IllegalArgumentException(ErrorMessage.WRONG_ADD_FORMAT.toString());
-        }
-    }
-**/
+
     private static AddCommand addStatement(String userInput) throws IllegalArgumentException {
         try {
             if (userInput.contains("-d") && userInput.contains("-c")) {
@@ -88,14 +63,14 @@ public class Parser {
     }
 
     private static void parseDescriptionAndCategory(String userInput) throws IllegalArgumentException {
-        if(userInput.contains("-d") && userInput.contains("-c")) {
+        if (userInput.contains("-d") && userInput.contains("-c")) {
             Pattern pattern = Pattern.compile("-(in|out)\\s+(?:-d\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+" +
                     "-c\\s+(\\S+(?:\\s+\\S+)*)\\s+\\$([\\d.]+)");
             Matcher matcher = pattern.matcher(userInput);
             Pattern pattern2 = Pattern.compile("-(in|out)\\s+(?:-c\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+" +
                     "-d\\s+(\\S+(?:\\s+\\S+)*)\\s+\\$([\\d.]+)");
             Matcher matcher2 = pattern2.matcher(userInput);
-            if(matcher.find()) {
+            if (matcher.find()) {
                 direction = matcher.group(1);
                 description = matcher.group(2);
                 category = matcher.group(3);
@@ -115,7 +90,7 @@ public class Parser {
     private static void parseDescriptionOnly(String userInput) throws IllegalArgumentException {
         Pattern pattern = Pattern.compile("-(in|out)\\s+(?:-d\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+\\$([\\d.]+)");
         Matcher matcher = pattern.matcher(userInput);
-        if(matcher.find()) {
+        if (matcher.find()) {
             direction = matcher.group(1);
             description = matcher.group(2);
             amount = Double.parseDouble(matcher.group(3));
@@ -129,7 +104,7 @@ public class Parser {
     private static void parseCategoryOnly(String userInput) throws IllegalArgumentException {
         Pattern pattern = Pattern.compile("-(in|out)\\s+(?:-c\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+\\$([\\d.]+)");
         Matcher matcher = pattern.matcher(userInput);
-        if(matcher.find()) {
+        if (matcher.find()) {
             direction = matcher.group(1);
             description = "miscellaneous";
             amount = Double.parseDouble(matcher.group(3));
@@ -143,7 +118,7 @@ public class Parser {
     private static void parseOnly(String userInput) throws IllegalArgumentException {
         Pattern pattern = Pattern.compile("-(in|out)\\s+\\$([\\d.]+)");
         Matcher matcher = pattern.matcher(userInput);
-        if(matcher.find()) {
+        if (matcher.find()) {
             direction = matcher.group(1);
             description = "miscellaneous";
             amount = Double.parseDouble(matcher.group(2));

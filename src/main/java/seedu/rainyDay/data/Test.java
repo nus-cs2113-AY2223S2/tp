@@ -14,6 +14,7 @@ public class Test {
     public static String description = null;
     public static String category = null;
     public static Double amount = -1.0;
+
     public static void main(String[] args) {
         String input = "add";
         try {
@@ -40,14 +41,14 @@ public class Test {
     }
 
     private static void parseDescriptionAndCategory(String userInput) throws IllegalArgumentException {
-        if(userInput.contains("-d") && userInput.contains("-c")) {
+        if (userInput.contains("-d") && userInput.contains("-c")) {
             Pattern pattern = Pattern.compile("-(in|out)\\s+(?:-d\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+" +
                     "-c\\s+(\\S+(?:\\s+\\S+)*)\\s+\\$([\\d.]+)");
             Matcher matcher = pattern.matcher(userInput);
             Pattern pattern2 = Pattern.compile("-(in|out)\\s+(?:-c\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+" +
                     "-d\\s+(\\S+(?:\\s+\\S+)*)\\s+\\$([\\d.]+)");
             Matcher matcher2 = pattern2.matcher(userInput);
-            if(matcher.find()) {
+            if (matcher.find()) {
                 direction = matcher.group(1);
                 description = matcher.group(2);
                 category = matcher.group(3);
@@ -66,7 +67,7 @@ public class Test {
     private static void parseDescriptionOnly(String userInput) throws IllegalArgumentException {
         Pattern pattern = Pattern.compile("-(in|out)\\s+(?:-d\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+\\$([\\d.]+)");
         Matcher matcher = pattern.matcher(userInput);
-        if(matcher.find()) {
+        if (matcher.find()) {
             direction = matcher.group(1);
             description = matcher.group(2);
             amount = Double.parseDouble(matcher.group(3));
@@ -79,7 +80,7 @@ public class Test {
     private static void parseCategoryOnly(String userInput) throws IllegalArgumentException {
         Pattern pattern = Pattern.compile("-(in|out)\\s+(?:-c\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+\\$([\\d.]+)");
         Matcher matcher = pattern.matcher(userInput);
-        if(matcher.find()) {
+        if (matcher.find()) {
             direction = matcher.group(1);
             description = "miscellaneous";
             amount = Double.parseDouble(matcher.group(3));
@@ -92,7 +93,7 @@ public class Test {
     private static void parseOnly(String userInput) throws IllegalArgumentException {
         Pattern pattern = Pattern.compile("-(in|out)\\s+\\$([\\d.]+)");
         Matcher matcher = pattern.matcher(userInput);
-        if(matcher.find()) {
+        if (matcher.find()) {
             direction = matcher.group(1);
             description = "miscellaneous";
             amount = Double.parseDouble(matcher.group(2));

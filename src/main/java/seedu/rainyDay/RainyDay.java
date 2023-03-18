@@ -1,6 +1,6 @@
 package seedu.rainyDay;
 
-import  seedu.rainyDay.exceptions.RainyDayException;
+import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 import seedu.rainyDay.command.Command;
