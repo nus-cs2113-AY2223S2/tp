@@ -22,7 +22,7 @@ public class WorkoutList {
         this.currentWorkoutIndex = currentWorkoutIndex;
     }
 
-    public void removeWorkout(String date) {
+    public void removeWorkout(Date date) {
         for (Workout workout : workoutList) {
             if (workout.getDate().equals(date)) {
                 workoutList.remove(workout);

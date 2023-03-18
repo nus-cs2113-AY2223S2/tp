@@ -90,9 +90,7 @@ public class Parser {
             return new IncorrectCommand();
         }
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        String formatDate = dateFormat.format(date);
-        return new DeleteCommand(formatDate);
+        return new DeleteCommand(date);
     }
 
 }
