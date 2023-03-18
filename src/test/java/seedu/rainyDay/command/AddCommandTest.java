@@ -36,7 +36,7 @@ public class AddCommandTest {
     @Test
     public void execute_singleStatement_statementInformation() {
         setUpStreams();
-        AddCommand addCommand = new AddCommand("Ipad", "out", 120);
+        AddCommand addCommand = new AddCommand("Ipad", "out", 120, "Default");
         addCommand.setData(financialReport);
         addCommand.execute();
         String expectedAddStatement = "Done! Added: out for Ipad, -$120" + System.lineSeparator();
@@ -47,13 +47,15 @@ public class AddCommandTest {
     @Test
     public void execute_multipleStatements_statementsInformation() {
         setUpStreams();
-        AddCommand addCommand = new AddCommand("angpao", "in", 3000);
+        AddCommand addCommand = new AddCommand("angpao", "in", 3000, "Default");
         addCommand.setData(financialReport);
         addCommand.execute();
         String expectedAddStatement = "Done! Added: in for angpao, +$3000" + System.lineSeparator();
         assertEquals(expectedAddStatement, outContent.toString());
         restoreStreams();
-        //Command.addFinancialStatement("Ipad", "out", 120);
-        //TODO: assertequal() to check if size is 2, and if the 2 tasks are correctly stored
+        addCommand = new AddCommand("textbook", "out", 50, "Default");
+        addCommand.setData(financialReport);
+        addCommand.execute();
+        assertEquals(2, financialReport.getStatementCount());
     }
 }

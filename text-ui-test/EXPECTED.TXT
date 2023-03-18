@@ -9,7 +9,7 @@ Done! Added: out for bak kwa, -$20
 |Here is your full financial report!                               |
 +-----+------------------------------+------------+----------------+
 |Index|Name                          |Amount      |Category        |
-|00001|ang bao                       | +$1337     |Default         |
+|00001|ang bao                       | +$1337     |Money           |
 |00002|noodles                       | -$5        |Default         |
 |00003|bak kwa                       | -$20       |Default         |
 +-----+------------------------------+------------+----------------+
@@ -21,7 +21,7 @@ Done, deleted "noodles" from the financial report
 |Here is your full financial report!                               |
 +-----+------------------------------+------------+----------------+
 |Index|Name                          |Amount      |Category        |
-|00001|ang bao                       | +$1337     |Default         |
+|00001|ang bao                       | +$1337     |Money           |
 |00002|bak kwa                       | -$20       |Default         |
 +-----+------------------------------+------------+----------------+
 |Inflow: $1337

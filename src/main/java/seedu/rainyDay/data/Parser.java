@@ -17,17 +17,17 @@ public class Parser {
 
     public static Command parseUserInput(String userInput) throws IllegalArgumentException, RainyDayException {
         assert userInput != null : "Failed to read user input!";
-        String action = userInput.split("\\s+")[0];
-        if (action.equalsIgnoreCase(Command.COMMAND_ADD)) {
+        String[] action = userInput.split("\\s+", 2);
+        if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
             logger.info("add command executing");
-            return addStatement(userInput);
-        } if (action.equalsIgnoreCase(Command.COMMAND_DELETE)) {
+            return addStatement(action[1]);
+        } if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
             logger.info("delete command executing");
-            return deleteStatement(userInput);
-        } if (action.equalsIgnoreCase(Command.COMMAND_VIEW)) {
+            return deleteStatement(userInput); //todo: fix this to reduce calls of split.();
+        } if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
             logger.info("view command executing");
             return generateReport();
-        } if (action.equalsIgnoreCase(Command.COMMAND_HELP)) {
+        } if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
             return displayHelp();
         } else {
             logger.warning("unrecognised input from user!");
@@ -37,13 +37,25 @@ public class Parser {
 
     private static AddCommand addStatement(String userInput) {
         try {
-            String[] tokens = userInput.split("-", 2);
-            String[] inputs = tokens[1].split("\\s+", 2);
-            String flowDirection = inputs[0];
-            String[] data = inputs[1].split("\\$");
+            userInput = userInput.trim();
+            String direction;
+            if(userInput.substring(0,3).equalsIgnoreCase("-in")) {
+                direction = userInput.substring(1,3);
+                userInput = userInput.substring(3);
+            }
+            else if (userInput.substring(0,4).equalsIgnoreCase("-out")) {
+                direction = userInput.substring(1,4);
+                userInput = userInput.substring(4);
+            }
+            else {
+                throw new IllegalArgumentException();
+            }
+            String[] data = userInput.split("\\$");
             String description = data[0].trim();
-            String amount = data[1];
-            return new AddCommand(description, flowDirection, Integer.parseInt(amount));
+            data = data[1].split("-c");
+            int amount = Integer.parseInt(data[0].trim());
+            String category = data[1].trim();
+            return new AddCommand(description, direction, amount, category);
         } catch (Exception e) {
             logger.warning("add command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_ADD_FORMAT.toString());
