@@ -1,8 +1,8 @@
 package seedu.database;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
+// import java.io.File;
+// import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -65,14 +65,16 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         ArrayList<Food> foods;
         MealTypes mealType;
 
-        try {
-            br = new BufferedReader(new FileReader(filePath));
-        } catch (FileNotFoundException e) {
-            File newFile = new File(filePath);
-            newFile.createNewFile();
-            br = new BufferedReader(new FileReader(filePath));
-            // LogFileHandler.logWarning("Meal Storage was not found!");
-        }
+        // try {
+        //     br = new BufferedReader(new FileReader(filePath));
+        // } catch (FileNotFoundException e) {
+        //     File newFile = new File(filePath);
+        //     newFile.createNewFile();
+        //     br = new BufferedReader(new FileReader(filePath));
+        //     // LogFileHandler.logWarning("Meal Storage was not found!");
+        // }
+
+        br = new BufferedReader(new FileReader(filePath));
 
         // Skip Line 1 (header)
         br.readLine();
