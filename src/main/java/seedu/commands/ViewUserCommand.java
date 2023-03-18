@@ -73,7 +73,7 @@ public class ViewUserCommand extends Command {
                 System.out.println("Invalid Choice!");
             }
 
-            System.out.println("\nContinue viewing?");
+            System.out.println(System.lineSeparator() + "Continue viewing?");
             System.out.println("1. Yes");
             System.out.println("2. No");
             System.out.println();
