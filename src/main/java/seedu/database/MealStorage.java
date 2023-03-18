@@ -68,9 +68,12 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         try {
             br = new BufferedReader(new FileReader(filePath));
         } catch (FileNotFoundException e) {
-            LogFileHandler.logWarning("Meal Storage was not found!");
             File newFile = new File(filePath);
-            newFile.createNewFile();
+            if (!newFile.getParentFile().exists()) {
+                newFile.getParentFile().mkdirs();
+                newFile.createNewFile();
+            }
+            // LogFileHandler.logWarning("Meal Storage was not found!");
         }
 
         // Skip Line 1 (header)
