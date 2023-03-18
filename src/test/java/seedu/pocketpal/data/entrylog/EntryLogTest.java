@@ -1,9 +1,7 @@
 package seedu.pocketpal.data.entrylog;
 
-import seedu.pocketpal.frontend.constants.MessageConstants;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
-import seedu.pocketpal.frontend.exceptions.InvalidArgumentsException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EntryLogTest {
     private static final Entry entry1 = new Entry(
@@ -84,21 +82,13 @@ public class EntryLogTest {
         }
 
         @Test
-        void getEntry_negativeId_exceptionThrown() {
-            Exception invalidIdException = assertThrows(
-                    InvalidArgumentsException.class,
-                    () -> entryLog.getEntry(-1));
-            String exceptionMessage = invalidIdException.getMessage();
-            assertTrue(exceptionMessage.contains(MessageConstants.MESSAGE_INVALID_ID));
+        void getEntry_negativeId_returnsNull() {
+            assertNull(entryLog.getEntry(-1));
         }
 
         @Test
-        void getEntry_idMoreThanSize_exceptionThrown() {
-            Exception invalidIdException = assertThrows(
-                    InvalidArgumentsException.class,
-                    () -> entryLog.getEntry(entryLog.getSize() + 10));
-            String exceptionMessage = invalidIdException.getMessage();
-            assertTrue(exceptionMessage.contains(MessageConstants.MESSAGE_INVALID_ID));
+        void getEntry_idMoreThanSize_returnsNull() {
+            assertNull(entryLog.getEntry(entryLog.getSize() + 10));
         }
 
         @Test
@@ -112,20 +102,14 @@ public class EntryLogTest {
 
         @Test
         void deleteEntry_negativeId_exceptionThrown() {
-            Exception invalidIdException = assertThrows(
-                    InvalidArgumentsException.class,
+            assertThrows(IndexOutOfBoundsException.class,
                     () -> entryLog.deleteEntry(-1));
-            String exceptionMessage = invalidIdException.getMessage();
-            assertTrue(exceptionMessage.contains(MessageConstants.MESSAGE_INVALID_ID));
         }
 
         @Test
         void deleteEntry_idMoreThanSize_exceptionThrown() {
-            Exception invalidIdException = assertThrows(
-                    InvalidArgumentsException.class,
+            assertThrows(IndexOutOfBoundsException.class,
                     () -> entryLog.deleteEntry(entryLog.getSize() + 10));
-            String exceptionMessage = invalidIdException.getMessage();
-            assertTrue(exceptionMessage.contains(MessageConstants.MESSAGE_INVALID_ID));
         }
     }
 

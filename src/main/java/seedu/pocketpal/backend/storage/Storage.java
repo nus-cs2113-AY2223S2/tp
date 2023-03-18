@@ -21,8 +21,7 @@ public class Storage {
     private final String delimiter;
 
     public Storage() {
-        this.filePath = Config.RELATIVE_FILE_NAME;
-        this.delimiter = Config.DELIMITER;
+        this(Config.RELATIVE_FILE_NAME);
     }
 
     /**

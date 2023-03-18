@@ -31,14 +31,26 @@ public class EntryEndpoint extends Endpoint {
     public Response handleDelete(Request request) {
         logger.info("/entry [DELETE]: request received");
         int targetId = Integer.parseInt(request.getData());
-        boolean isValidId = targetId > 0 && targetId <= entries.getSize();
-        if (!isValidId) {
+        try {
+            Entry deletedEntry = entries.deleteEntry(targetId - 1);
+            logger.info("/entry [DELETE]: OK");
+            return new Response(ResponseStatus.OK, deletedEntry.serialise());
+        } catch (IndexOutOfBoundsException e) {
             logger.warning("/entry [DELETE]: received invalid entry ID");
             return new Response(ResponseStatus.NOT_FOUND, "");
         }
-        Entry deletedEntry = entries.deleteEntry(targetId - 1);
-        logger.info("/entry [DELETE]: OK");
-        return new Response(ResponseStatus.OK, deletedEntry.serialise());
+    }
+
+    @Override
+    public Response handleGet(Request request) {
+        logger.info("/entry [GET]: request received - " + request.getData());
+        Entry entry = entries.getEntry(Integer.parseInt(request.getData()));
+        if (entry == null) {
+            logger.warning("/entry [GET]: received invalid entry ID " + request.getData());
+            return new Response(ResponseStatus.NOT_FOUND, "");
+        }
+        logger.info("/entry [GET]: OK");
+        return new Response(ResponseStatus.OK, entry.serialise());
     }
 
     /**
@@ -81,7 +93,7 @@ public class EntryEndpoint extends Endpoint {
             logger.info("/entry [PATCH]: update description" + request.getData());
         }
 
-        logger.info("/entry [PATCH]: OK" + request.getData());
+        logger.info("/entry [PATCH]: OK");
         return new Response(ResponseStatus.OK, editEntry.serialise());
     }
 

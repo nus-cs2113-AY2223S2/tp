@@ -1,4 +1,6 @@
 package seedu.pocketpal.backend;
+
+import seedu.pocketpal.backend.constants.Config;
 import seedu.pocketpal.backend.endpoints.EntriesEndpoint;
 import seedu.pocketpal.backend.endpoints.EntryEndpoint;
 import seedu.pocketpal.communication.Request;
@@ -22,7 +24,14 @@ public class Backend {
     private final EntriesEndpoint entriesEndpoint;
 
     public Backend() {
-        Storage storage = new Storage();
+        this(false);
+    }
+
+    public Backend(boolean isTest) {
+        Storage storage = isTest
+                ? new Storage(Config.TEST_PATH_STRING)
+                : new Storage();
+
         List<Entry> savedEntries;
 
         try {
@@ -46,6 +55,16 @@ public class Backend {
             logger.info("Successfully performed save operation.");
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Unable to perform IO operation.", e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void clearData() {
+        try {
+            storage.reset();
+            entries.clearAllEntries();
+        } catch (IOException e) {
+            logger.severe("backend: encountered IOException on data clear.");
             throw new RuntimeException(e);
         }
     }

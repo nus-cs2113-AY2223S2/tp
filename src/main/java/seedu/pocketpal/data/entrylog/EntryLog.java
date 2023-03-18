@@ -38,12 +38,18 @@ public class EntryLog implements Serialisable {
     }
 
     /**
+     * Delete all entries.
+     */
+    public void clearAllEntries() {
+        entries.clear();
+    }
+
+    /**
      * Delete an entry from the log. Should only be called in the main log.
      *
      * @param entryId Id corresponding to the index (0-based)
      */
-    public Entry deleteEntry(int entryId) {
-        assert entryId >= 0 && entryId < getSize() : "Expected valid entry ID";
+    public Entry deleteEntry(int entryId) throws IndexOutOfBoundsException {
         logger.info("Deleting entry: " + entryId);
         Entry target = entries.get(entryId);
         entries.remove(entryId);

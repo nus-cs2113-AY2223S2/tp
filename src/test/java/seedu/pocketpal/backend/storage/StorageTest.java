@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.pocketpal.backend.constants.Config;
-import seedu.pocketpal.frontend.constants.EntryConstants;
+import seedu.pocketpal.data.entrylog.EntryLog;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
-import seedu.pocketpal.data.entrylog.EntryLog;
+import seedu.pocketpal.frontend.constants.EntryConstants;
 import seedu.pocketpal.backend.exceptions.InvalidReadFileException;
 
 import java.util.List;
