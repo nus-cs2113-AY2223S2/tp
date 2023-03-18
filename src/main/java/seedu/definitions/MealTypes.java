@@ -1,5 +1,7 @@
 package seedu.definitions;
 
+import seedu.exceptions.InvalidMealException;
+
 public enum MealTypes {
     BREAKFAST("Breakfast", 0),
     LUNCH("Lunch", 1),
@@ -26,13 +28,13 @@ public enum MealTypes {
         return this.getOrder() < other.getOrder() ? -1 : 1;
     }
 
-    public static MealTypes fromString(String mealType) {
+    public static MealTypes fromString(String mealType) throws InvalidMealException {
         for (MealTypes mt : MealTypes.values()) {
             if (mt.mealType.equalsIgnoreCase(mealType)) {
                 return mt;
             }
         }
-        return null;
+        throw new InvalidMealException(mealType);
     }
 
     public static String getSupportedMealTypes() {

@@ -1,6 +1,8 @@
 package seedu.database;
 
 import java.io.BufferedReader;
+// import java.io.File;
+// import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,6 +13,9 @@ import java.util.Collections;
 import java.util.Locale;
 
 import seedu.entities.Meal;
+import seedu.exceptions.InvalidMealException;
+import seedu.logger.LogFileHandler;
+import seedu.constants.DateConstants;
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import com.opencsv.CSVWriter;
@@ -18,10 +23,11 @@ import com.opencsv.CSVWriter;
 public class MealStorage extends Storage implements FileReadable, FileWritable {
     private static final String CSV_DELIMITER = ",";
     private static final String FOODS_DELIMITER = "-";
-    private static final String DATE_FORMAT = "d/M/yyyy";
-    private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern(DATE_FORMAT, Locale.ENGLISH);
+    private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern(
+            DateConstants.DATABASE_FORMAT, Locale.ENGLISH);
     private ArrayList<Meal> meals;
     private FoodStorage foodStorage;
+    private BufferedReader br;
 
     public MealStorage(String filePath, FoodStorage foodStorage) {
         super(filePath);
@@ -45,7 +51,7 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         writer.writeNext(header);
         Collections.sort(meals);
         for (Meal meal : meals) {
-            writer.writeNext(meal.toWriteFormat(FOODS_DELIMITER, DATE_FORMAT));
+            writer.writeNext(meal.toWriteFormat(FOODS_DELIMITER, DateConstants.DATABASE_FORMAT));
         }
         writer.close();
     }
@@ -59,7 +65,16 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         ArrayList<Food> foods;
         MealTypes mealType;
 
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        // try {
+        //     br = new BufferedReader(new FileReader(filePath));
+        // } catch (FileNotFoundException e) {
+        //     File newFile = new File(filePath);
+        //     newFile.createNewFile();
+        //     br = new BufferedReader(new FileReader(filePath));
+        //     // LogFileHandler.logWarning("Meal Storage was not found!");
+        // }
+
+        br = new BufferedReader(new FileReader(filePath));
 
         // Skip Line 1 (header)
         br.readLine();
@@ -73,10 +88,13 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
             for (String foodIndex : foodIndexes) {
                 foods.add(foodStorage.getFoodById(Integer.parseInt(foodIndex)));
             }
-
-            mealType = MealTypes.fromString(mealLine[2]);
-
-            meals.add(new Meal(foods, date, mealType));
+            
+            try {
+                mealType = MealTypes.fromString(mealLine[2]);
+                meals.add(new Meal(foods, date, mealType));
+            } catch (InvalidMealException e) {
+                LogFileHandler.logError(line + " has an invalid meal type");
+            }
         }
 
         br.close();

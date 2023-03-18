@@ -18,7 +18,7 @@ public class CommandParser {
 
         switch(commandWord) {
         case "add":
-            command = new AddMealCommand();
+            command = new AddMealCommand(commandWord, userInput);
             break;
         case "delete":
             command = new DeleteMealCommand(commandWord, userInput);
