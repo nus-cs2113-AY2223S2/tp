@@ -85,10 +85,12 @@ public class Ui {
      */
     public void printAddModuleOptions() {
         System.out.println("There are various lessons options per module:\n" +
-                "-lec\t\t\t" + "LECTURE\n" + "-plec\t\t\t" + "PACKAGED LECTURE\n" + "-st \t\t\t" + "SECTIONAL TEACHING\n" +
-                "-dlec\t\t\t" + "DESIGN LECTURE\n" + "-tut\t\t\t" + "TUTORIAL\n" + "-ptut\t\t\t" + "PACKAGED TUTORIAL\n" +
-                "-rcit\t\t\t" + "RECITATION\n" + "-lab\t\t\t" + "LABORATORY\n" + "-ws\t\t\t\t" + "WORKSHOP\n" +
-                "-smc\t\t\t" + "SEMINAR STYLE MODULE CLASS\n" + "-mp\t\t\t\t" + "MINI PROJECT\n" + "-tt2\t\t\t" + "TUTORIAL TYPE 2\n");
+                "-lec\t\t\t" + "LECTURE\n" + "-plec\t\t\t" + "PACKAGED LECTURE\n" + "-st \t\t\t"
+                + "SECTIONAL TEACHING\n" + "-dlec\t\t\t" + "DESIGN LECTURE\n" + "-tut\t\t\t" + "TUTORIAL\n"
+                + "-ptut\t\t\t" + "PACKAGED TUTORIAL\n" + "-rcit\t\t\t" + "RECITATION\n" + "-lab\t\t\t"
+                + "LABORATORY\n" + "-ws\t\t\t\t" + "WORKSHOP\n" + "-smc\t\t\t"
+                + "SEMINAR STYLE MODULE CLASS\n" + "-mp\t\t\t\t" + "MINI PROJECT\n" + "-tt2\t\t\t"
+                + "TUTORIAL TYPE 2\n");
     }
 
 
@@ -128,7 +130,8 @@ public class Ui {
         }
         System.out.println("You are taking " + allModules.size() + " module(s) this semester:");
         for (int i = 0; i < allModules.size(); i++) {
-            System.out.printf("%d.%s (%s MCs)%n", i + 1, allModules.get(i).toString(), allModules.get(i).getModuleCredits());
+            System.out.printf("%d.%s (%s MCs)%n", i + 1, allModules.get(i).toString(),
+                    allModules.get(i).getModuleCredits());
         }
         printTotalModularCredits(allModules);
     }
