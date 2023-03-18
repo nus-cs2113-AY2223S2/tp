@@ -1,7 +1,6 @@
 package seedu.duke.command;
 
 import seedu.duke.Module;
-import seedu.duke.Parser;
 import seedu.duke.Storage;
 
 import java.util.ArrayList;

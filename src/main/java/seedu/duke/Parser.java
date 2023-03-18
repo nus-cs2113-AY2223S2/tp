@@ -11,7 +11,6 @@ import seedu.duke.command.ListPuModulesCommand;
 import seedu.duke.command.HelpCommand;
 
 import java.util.ArrayList;
-import java.io.IOException;
 
 public class Parser {
     private static UI ui = new UI();
