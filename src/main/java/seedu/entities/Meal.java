@@ -5,10 +5,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import seedu.constants.DateConstants;
 import seedu.definitions.MealTypes;
 
 public class Meal implements Comparable<Meal> {
-    private static final String DATE_FORMAT = "d/M/yyyy";
     private ArrayList<Food> foods;
     private LocalDate date;
     private double totalCalories;
@@ -75,7 +75,8 @@ public class Meal implements Comparable<Meal> {
     @Override
     public String toString() {
         String output = this.identifier + " was consumed on " + 
-                date.format(DateTimeFormatter.ofPattern(DATE_FORMAT, Locale.ENGLISH)) + System.lineSeparator();
+                date.format(DateTimeFormatter.ofPattern(DateConstants.PARSE_FORMAT, Locale.ENGLISH)) + 
+                System.lineSeparator();
         output += "Total Calories are: " + this.totalCalories + System.lineSeparator();
         output += "Here are the foods you ate:" + System.lineSeparator();
         for (int i = 0; i < foods.size(); i++) {

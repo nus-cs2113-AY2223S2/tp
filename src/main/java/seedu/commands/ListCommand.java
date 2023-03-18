@@ -4,22 +4,21 @@ import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
 import seedu.exceptions.LifeTrackerException;
-import seedu.exceptions.InvalidArgumentsException;
-//import seedu.Output.UI;
+import seedu.exceptions.MissingArgumentsException;
 import seedu.ui.GeneralUi;
 
 public class ListCommand extends Command {
     private String argument;
 
-    public ListCommand(String commandWord, String userInput) throws InvalidArgumentsException {
+    public ListCommand(String commandWord, String userInput) throws LifeTrackerException {
         if (commandWord.length() == userInput.length() || userInput.split(" ").length < 2) {
-            throw new InvalidArgumentsException(commandWord);
+            throw new MissingArgumentsException(commandWord, "[foods/meals]");
         }
 
         this.argument = userInput.split(" ")[1];
 
         if (!this.argument.equals("meals") && !this.argument.equals("foods")) {
-            throw new InvalidArgumentsException(commandWord);
+            throw new MissingArgumentsException(commandWord, "[foods/meals]");
         }
     }
 
