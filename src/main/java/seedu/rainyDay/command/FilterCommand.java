@@ -40,7 +40,8 @@ public class FilterCommand extends Command {
         setupLogger();
         logger.log(Level.INFO, "starting FilterCommand.execute()");
 
-        ArrayList<FinancialStatement> filteredList = (ArrayList<FinancialStatement>) financialReport.getFinancialReport().stream()
+        ArrayList<FinancialStatement> filteredList = (ArrayList<FinancialStatement>) financialReport
+                .getFinancialReport().stream()
                 .filter(t -> t.getDescription().contains(this.description))
                 .collect(Collectors.toList());
 
