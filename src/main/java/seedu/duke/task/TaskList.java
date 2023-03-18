@@ -2,13 +2,14 @@ package seedu.duke.task;
 
 import seedu.duke.exception.InvalidIndexException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.StringJoiner;
 
 /**
  * A list of Task objects representing the current list of tasks.
  */
-public class TaskList {
+public class TaskList implements Serializable {
     private ArrayList<Task> tasks;
 
     public TaskList(){
@@ -106,14 +107,6 @@ public class TaskList {
         StringJoiner taskListString = new StringJoiner(System.lineSeparator());
         for (int i = 0; i < size(); i++) {
             taskListString.add((i + 1) + "." + tasks.get(i).toString());
-        }
-        return taskListString.toString();
-    }
-
-    public String toSaveString() {
-        StringJoiner taskListString = new StringJoiner(System.lineSeparator());
-        for (int i = 0; i < size(); i++) {
-            taskListString.add(tasks.get(i).toSaveString());
         }
         return taskListString.toString();
     }
