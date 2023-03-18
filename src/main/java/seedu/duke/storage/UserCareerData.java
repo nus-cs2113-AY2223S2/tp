@@ -2,6 +2,8 @@ package seedu.duke.storage;
 
 import java.util.ArrayList;
 import seedu.duke.userdata.Session;
+import seedu.duke.ui.PrintExercises;
+
 
 /**
  * This class consists of all user sessions that the user has completed in FitnessDuke and handles the addition of
@@ -38,5 +40,19 @@ public class UserCareerData {
     public void addWorkoutSession (Session session) {
         totalUserCareerSessions.add(session);
     }
+    public void printAllFinishedWorkoutSessions (){
+        PrintExercises exercisePrinter = new PrintExercises();
+        for (int i = 0 ; i < totalUserCareerSessions.size(); i++){
+            System.out.println("Session " + (i+1));
+            String dateTime = totalUserCareerSessions.get(i).getDateAdded().toString();
+            String dateSplit[] = dateTime.split("T", 2);
+            assert dateSplit.length == 2;
+            System.out.println("On this date: " + dateSplit[0]);
+            exercisePrinter.printExercise(totalUserCareerSessions.get(i).getSessionExercises());
+            if (i != totalUserCareerSessions.size() - 1){
+                System.out.println("\n ");
+            }
+        }
 
+    }
 }
