@@ -38,8 +38,38 @@
     + [Non-Functional Requirements](#non-functional-requirements)
     + [Glossary](#glossary)
 6. [Appendix B: Instructions for manual testing](#appendix-b-instructions-for-manual-testing)
-   + [Launch and Shutdown](#launch-and-shutdown)
-   
+    + [Launch and Shutdown](#launch-and-shutdown)
+
+## Delete Module {#delete-module}
+
+The DeleteModule functionality allows users to remove a module from the ModuleList.
+It is facilitated by DeleteModuleCommand class which is an extension of the Command class.
+Below are the steps to recreate it
+
+Step 1: Define the Constructor :
+The constructor of the DeleteModuleCommand class takes in a moduleCode as a parameter. This moduleCode is used to find
+the module that needs to be deleted from the ModuleList.
+
+Step 2: Define the setUpLogger() method :
+The setUpLogger() method sets up the logger for the DeleteModuleCommand class. It creates a ConsoleHandler and a
+FileHandler to handle logging.
+
+Step 3: Override the execute() method :
+The execute() method is overridden to execute the delete module functionality. It takes in the necessary parameters,
+including the ModuleList, Ui, Storage, and TaskList.
+
+Step 4: Find the module to delete :
+The first step in the execute() method is to find the module that needs to be deleted using the moduleCode parameter. If
+the module is not found, a ModuleNotFoundException is thrown.
+
+Step 5: Remove the module from the ModuleList :
+If the module is found, it is removed from the ModuleList using the remove() method.
+
+Step 6: Print the confirmation message :
+A confirmation message is printed to the user indicating that the module has been successfully deleted.
+
+Step 7: Update the storage :
+The storage is updated with the new ModuleList
 
 ## Acknowledgements
 

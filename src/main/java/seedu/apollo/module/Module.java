@@ -75,10 +75,17 @@ public class Module {
         return code + ": " + title;
     }
 
+    /**
+     * Creates a new Timetable
+     */
     public void createNewTimeTable() {
         this.timetable = new ArrayList<>();
     }
 
+    /**
+     * @param lessonType the type of lesson
+     * @return {@code true} if the lesson type exists in the timetable, {@code false} otherwise.
+     */
     public Boolean hasLessonType(LessonType lessonType) {
         for (Timetable timetable : this.timetable) {
             LessonType checkLessonType = AddModuleCommand.determineLessonType(timetable.getLessonType());
