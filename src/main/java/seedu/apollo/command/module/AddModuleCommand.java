@@ -110,7 +110,9 @@ public class AddModuleCommand extends Command {
                     moduleList.sortModules();
                     Module referenceModule = allModules.findModule(module.getCode());
                     ui.printAddModuleMessage(module);
+                    ui.printTotalModularCredits(moduleList);
                     ui.printLessonTypeMessage(getLessonTypes(referenceModule));
+                    ui.printAddLessonOptions();
 
                 }
             }
