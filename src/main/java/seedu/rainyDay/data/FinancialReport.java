@@ -1,5 +1,8 @@
 package seedu.rainyDay.data;
 
+import seedu.rainyDay.RainyDay;
+import seedu.rainyDay.modules.Storage;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -20,6 +23,7 @@ public class FinancialReport implements Serializable {
 
     public void setReportOwner(String name) {
         this.reportOwner = name;
+        Storage.writeToFile(this, RainyDay.filePath);
     }
 
     public int getStatementCount() {
@@ -28,10 +32,12 @@ public class FinancialReport implements Serializable {
 
     public void addStatement(FinancialStatement statement) {
         financialReport.add(statement);
+        Storage.writeToFile(this, RainyDay.filePath);
     }
 
     public void deleteStatement(int statementNumber) {
         financialReport.remove(financialReport.get(statementNumber));
+        Storage.writeToFile(this, RainyDay.filePath);
     }
 
     public String getFullStatement(int statementNumber) {
