@@ -91,9 +91,9 @@ class StorageTest {
             Storage.saveData(NEW_SAVE_FILE_FOR_COMPARISON, taskList, ui);
             TaskList newlySavedTaskList = Storage.loadData(NEW_SAVE_FILE_FOR_COMPARISON, ui);
             boolean isActualSaveEqualExpectedSave = true;
-            System.out.println("original tasklist: ");
+            System.out.println("original task list: ");
             System.out.println(taskList.toString());
-            System.out.println("newly saved tasklist: ");
+            System.out.println("newly saved task list: ");
             System.out.println(newlySavedTaskList.toString());
             if (!newlySavedTaskList.toString().equals(taskList.toString())) {
                 isActualSaveEqualExpectedSave = false;
