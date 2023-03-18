@@ -55,7 +55,12 @@ public class Parser {
             String description = data[0].trim();
             data = data[1].split("-c");
             int amount = Integer.parseInt(data[0].trim());
-            String category = data[1].trim();
+
+            String category = "Default";
+            if (data.length >= 2) {
+                category = data[1].trim();
+            }
+            
             return new AddCommand(description, direction, amount, category);
         } catch (Exception e) {
             logger.warning("add command given by user in the wrong format");
