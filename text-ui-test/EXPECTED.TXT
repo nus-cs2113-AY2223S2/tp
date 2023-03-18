@@ -1,3 +1,4 @@
+Unable to read the data file from hard disk. We will generate a new file for you.
 Hello from
     _______ __                          ____        __      
    / ____(_) /_____  ___  __________   / __ \__  __/ /_____ 
