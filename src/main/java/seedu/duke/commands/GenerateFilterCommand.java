@@ -24,6 +24,8 @@ public class GenerateFilterCommand extends Command {
     private final String[] userCommands;
     private final int numberOfExercisesToGenerate;
 
+    private ArrayList<ExerciseData> exerciseListGenerated;
+
     public GenerateFilterCommand(String[] userCommands) throws DukeError {
         this.filterArguments = userCommands.length - 1;
         this.userCommands = userCommands;
@@ -34,7 +36,6 @@ public class GenerateFilterCommand extends Command {
             throw new DukeError("Invalid input! Please enter the number of exercises you want!");
         }
     }
-
 
     public void executeCommand(Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
@@ -60,14 +61,16 @@ public class GenerateFilterCommand extends Command {
                 break;
             default:
                 throw new DukeError("Unknown filter input!");
-
             }
         }
         if (numberOfExercisesToGenerate > exercises.size()) {
             throw new FilterTooManyError();
         }
         exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
+        exerciseListGenerated = exercises;
         ui.printExerciseFromList(exercises);
     }
-
+     public ArrayList<ExerciseData> provideExerciseList(){
+        return exerciseListGenerated;
+     }
 }

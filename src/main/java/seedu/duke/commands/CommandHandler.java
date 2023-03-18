@@ -2,11 +2,14 @@ package seedu.duke.commands;
 
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
+import seedu.duke.states.ExerciseStateHandler;
 import seedu.duke.ui.Ui;
 
 public class CommandHandler {
+    private static final boolean COMPLETED_EXERCISE = true;
+    private static final boolean INCOMPLETE_EXERCISE = false;
 
-    public void handleUserCommands(String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator) {
+    public void handleUserCommands(String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator, ExerciseStateHandler exerciseStateHandler) {
         String[] userCommands = rawUserCommands.split(" ");
         Command command = null;
         boolean errorExists = false;
@@ -26,6 +29,18 @@ public class CommandHandler {
             case "help":
                 command = new HelpCommand();
                 break;
+            case "start":
+                exerciseStateHandler.startWorkout();
+                break;
+            case "current":
+                exerciseStateHandler.printCurrentWorkout();
+                break;
+            case "finish":
+                exerciseStateHandler.endWorkout(COMPLETED_EXERCISE);
+                break;
+            case "end":
+                exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE);
+                break;
             default:
                 ui.unknownCommand();
                 errorExists = true;
@@ -37,10 +52,12 @@ public class CommandHandler {
         }
         if (!errorExists) {
             try {
-                if (command != null){
+                if (command != null) {
                     command.executeCommand(ui, exerciseGenerator);
+                    if (command instanceof GenerateFilterCommand) {
+                        exerciseStateHandler.storePreviousGeneratedWorkout(((GenerateFilterCommand) command).provideExerciseList());
+                    }
                 }
-
             } catch (DukeError e) {
                 System.out.println(e.getMessage());
             }

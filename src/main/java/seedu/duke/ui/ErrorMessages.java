@@ -8,7 +8,6 @@ public enum ErrorMessages {
     ERROR_EDIT_UNCHANGED("Your tags inputted does not edit the transaction.");
 
     public final String message;
-
     /**
      * Instantiates a new error message when user initialises a new instance of this enum.
      *
@@ -26,5 +25,4 @@ public enum ErrorMessages {
     public String toString() {
         return message;
     }
-
 }
