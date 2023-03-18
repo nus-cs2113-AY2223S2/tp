@@ -17,7 +17,8 @@ import commands.meeting.AddMeetingCommand;
 import commands.meeting.DeleteMeetingCommand;
 import commands.meeting.ViewMeetingCommand;
 import commands.Command;
-import java.util.logging.*;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import common.Messages;
 import exceptions.DinerDirectorException;
@@ -182,7 +183,8 @@ public class Parser {
         String[] words = (description.trim()).split("t/"); // n/
         try {
             String[] testName = (words[0].trim()).split("n/");  // n/
-            if (((description.trim()).isEmpty()) || (!description.contains("n/")) || (words.length < 2) || (testName.length < 1)) {
+            if (((description.trim()).isEmpty()) || (!description.contains("n/"))
+                    || (words.length < 2) || (testName.length < 1)) {
                 logger.log(Level.WARNING, "Error parsing add deadline command.");
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_PARAM);
             } else if ((testName.length > 2) || (words.length > 2)) {
