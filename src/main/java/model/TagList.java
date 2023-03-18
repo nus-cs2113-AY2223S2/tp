@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import utils.exceptions.TagNotFoundException;
 
 public class TagList {
     private List<Tag> tags;
@@ -24,6 +25,13 @@ public class TagList {
         this.tags.add(tag);
     }
 
+    /**
+     * Find the tag with tagName specified from the tagList.
+     *
+     * @param tagName
+     * @return The tag with the tagName specified if the tag is found, returns null otherwise.
+     * @throws TagNotFoundException
+     */
     public Tag findTagFromName(String tagName) {
         for (Tag tag : tags) {
             if (tag.getTagName().equals(tagName)) {

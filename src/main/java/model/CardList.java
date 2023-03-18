@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import utils.exceptions.CardNotFoundException;
 
 public class CardList {
 
@@ -29,13 +30,20 @@ public class CardList {
         return this.cards;
     }
 
-    public Card findCardFromUUID(CardUUID cardUUID) {
+    /**
+     * Find the card with cardUUID from the cardList.
+     *
+     * @param cardUUID
+     * @return The card with the cardUUID specified that exists in the cardList
+     * @throws CardNotFoundException
+     */
+    public Card findCardFromUUID(CardUUID cardUUID) throws CardNotFoundException {
         for (Card card : cards) {
             if (card.getUuid().equals(cardUUID)) {
                 return card;
             }
         }
-        return null;
+        throw new CardNotFoundException();
     }
 
     public boolean isEmpty() {

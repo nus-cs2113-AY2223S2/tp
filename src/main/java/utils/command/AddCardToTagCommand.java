@@ -8,6 +8,8 @@ import model.Tag;
 import model.TagList;
 import model.TagUUID;
 import utils.UserInterface;
+import utils.exceptions.InkaException;
+import utils.exceptions.UUIDWrongFormatException;
 import utils.storage.IDataStorage;
 
 public class AddCardToTagCommand extends Command {
@@ -15,19 +17,27 @@ public class AddCardToTagCommand extends Command {
     private TagUUID tagUUID;
     private CardUUID cardUUID;
 
-    public AddCardToTagCommand(String tagName, String cardUUID) {
+    public AddCardToTagCommand(String tagName, String cardUUID) throws InkaException {
         this.tagName = tagName;
-        this.cardUUID = new CardUUID(UUID.fromString(cardUUID));
+        try {
+            this.cardUUID = new CardUUID(UUID.fromString(cardUUID));
+        } catch (IllegalArgumentException e) {
+            throw new UUIDWrongFormatException();
+        }
     }
 
-    private void addCardToTag(TagList tagList, CardList cardList, UserInterface ui) {
+    /**
+     * Adds the tagName tag to the Card with cardUUID, creates the tag beforehand if it currently does not exist.
+     *
+     * @param tagList  The tagList into which to add the tag that has been created
+     * @param cardList The cardList from which to find the card with cardUUID
+     * @param ui       The userInterface to print the success of the tag creation
+     * @throws InkaException
+     */
+    private void addCardToTag(TagList tagList, CardList cardList, UserInterface ui) throws InkaException {
         //find the corresponding Tag and Card based on its tagName and card uuid
         Tag tagToAdd = tagList.findTagFromName(tagName);
         Card cardToAdd = cardList.findCardFromUUID(cardUUID);
-
-        if (cardToAdd == null) {
-            //means the card doesn't exist yet, throw exception
-        }
 
         if (tagToAdd == null) {
             ui.printTagCreationSuccess();
@@ -39,12 +49,12 @@ public class AddCardToTagCommand extends Command {
 
         //add the tag uuid to the card
         tagUUID = tagToAdd.getUUID();
-        System.out.println(cardToAdd);
         cardToAdd.addTag(tagUUID);
     }
 
     @Override
-    public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage) {
+    public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage)
+            throws InkaException {
         addCardToTag(tagList, cardList, ui);
         ui.printAddTagToCardSuccess(cardUUID, tagUUID);
     }
