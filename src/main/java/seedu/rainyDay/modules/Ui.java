@@ -9,8 +9,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Ui {
-    public static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
-    public static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
+    private static final String WELCOME_MESSAGE = "" +
+            "Hello from rainyDay!\n" +
+            "        __.|.__\n" +
+            "    .-\"'..':`..`\"-.\n" +
+            "  .' .' .  :  . `. `.\n" +
+            " / .   .   :   .   . \\\n" +
+            "/_ _._ _.._:_.._ _._ _\\\n" +
+            "  '   '    |    '   '\n" +
+            "           |\n" +
+            "           |\n" +
+            "           |\n" +
+            "         `='";
+    private static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
+    private static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
     private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
             "+-----+------------------------------+------------+----------------+\n" +
             "|Here is your full financial report!                               |\n" +
@@ -18,6 +30,8 @@ public class Ui {
             "|Index|Name                          |Amount      |Category        |";
     private static final String VIEW_SUMMARY = "" +
             "+-----+------------------------------+------------+----------------+\n";
+
+
 
     private static Logger UILogger = Logger.getLogger("UILogger.log");
 
@@ -34,7 +48,7 @@ public class Ui {
     }
 
     public void printLogo() {
-        System.out.println("Hello from rainyDay");
+        System.out.println(WELCOME_MESSAGE);
     }
 
     public void greetUser(String username) {
