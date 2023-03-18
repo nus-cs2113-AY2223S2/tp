@@ -1,9 +1,7 @@
 package seedu.apollo.module;
 
-
-import seedu.apollo.command.module.AddModuleCommand;
-
 import java.util.ArrayList;
+import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
 /**
  * Class representing a Module.
@@ -29,7 +27,6 @@ public class Module {
         this.title = moduleName;
         this.moduleCredits = moduleCredits;
     }
-
 
     /**
      * Retrieves a String with the module's code.
@@ -79,9 +76,20 @@ public class Module {
         this.timetable = new ArrayList<>();
     }
 
+    /**
+     * Checks if the module has a lesson of the specified lesson type.
+     *
+     * @param lessonType The lesson type to be checked.
+     * @return True if the module has a lesson of the specified lesson type.
+     */
     public Boolean hasLessonType(LessonType lessonType) {
+
+        if (this.timetable == null) {
+            return false;
+        }
+
         for (Timetable timetable : this.timetable) {
-            LessonType checkLessonType = AddModuleCommand.determineLessonType(timetable.getLessonType());
+            LessonType checkLessonType = determineLessonType(timetable.getLessonType());
             assert checkLessonType != null : "Lesson type should not be null";
             if (checkLessonType.equals(lessonType)) {
                 return true;
