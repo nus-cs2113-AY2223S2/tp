@@ -4,28 +4,29 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Tag {
-    private UUID uuid;
+    private TagUUID uuid;
     private String tagName;
-    private ArrayList<UUID> cards = new ArrayList<>();
+    private ArrayList<CardUUID> cards = new ArrayList<>();
 
-    public Tag (String tagName, UUID cardUUID) {
+    public Tag(String tagName, CardUUID cardUUID) {
         this.tagName = tagName;
-        this.uuid = UUID.randomUUID();
+        this.uuid = new TagUUID(UUID.randomUUID());
         cards.add(cardUUID);
     }
 
-    public UUID getUUID() {
+    public TagUUID getUUID() {
         return this.uuid;
     }
+
     public String getTagName() {
         return this.tagName;
     }
 
-    public ArrayList<UUID> getCardsUUID() {
+    public ArrayList<CardUUID> getCardsUUID() {
         return this.cards;
     }
 
-    public void addCard(UUID cardUUID) {
+    public void addCard(CardUUID cardUUID) {
         cards.add(cardUUID);
     }
 

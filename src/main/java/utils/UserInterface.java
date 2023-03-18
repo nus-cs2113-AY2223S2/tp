@@ -5,8 +5,10 @@ import java.util.Scanner;
 import java.util.UUID;
 import model.Card;
 import model.CardList;
+import model.CardUUID;
 import model.Tag;
 import model.TagList;
+import model.TagUUID;
 import utils.enums.StringArt;
 import utils.exceptions.InkaException;
 
@@ -121,15 +123,19 @@ public class UserInterface {
         }
     }
 
-    public void printAddTagToCardSuccess(UUID cardUUID, UUID tagUUID) {
+    public void printAddTagToCardSuccess(CardUUID cardUUID, TagUUID tagUUID) {
         System.out.println("Successfully added tag " + tagUUID + " to card " + cardUUID);
     }
 
-    public void printRemoveTagFromCard(UUID cardUUID, UUID tagUUID) {
+    public void printTagCreationSuccess() {
+        System.out.println("Tag does not exist.. creating a new one");
+    }
+
+    public void printRemoveTagFromCard(CardUUID cardUUID, TagUUID tagUUID) {
         System.out.println("Successfully removed tag " + tagUUID + " from card " + cardUUID);
     }
 
-    public void printRemoveTagFromTagList(UUID tagUUID) {
-        System.out.println("Successfully removed tag " + tagUUID +" from the tag list.");
+    public void printRemoveTagFromTagList(TagUUID tagUUID) {
+        System.out.println("Successfully removed tag " + tagUUID + " from the tag list.");
     }
 }

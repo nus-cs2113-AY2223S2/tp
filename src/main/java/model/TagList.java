@@ -25,7 +25,7 @@ public class TagList {
         this.tags.add(tag);
     }
 
-    public Tag findTag(String tagName) {
+    public Tag findTagFromName(String tagName) {
         for (Tag tag : tags) {
             if (tag.getTagName().equals(tagName)) {
                 return tag;
@@ -34,9 +34,10 @@ public class TagList {
         return null;
     }
 
-    public void deleteTagByUUID(UUID uuid) {
-        tags.removeIf(tag -> (tag.getUUID().equals(uuid)));
+    public boolean deleteTagByUUID(TagUUID uuid) {
+        return tags.removeIf(tag -> (tag.getUUID().equals(uuid)));
     }
+
     public void delete(int id) {
         this.tags.remove(id);
     }

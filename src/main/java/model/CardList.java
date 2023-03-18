@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class CardList  {
+public class CardList {
 
     private List<Card> cards;
 
@@ -30,7 +30,7 @@ public class CardList  {
         return this.cards;
     }
 
-    public Card findCard(UUID cardUUID) {
+    public Card findCardFromUUID(CardUUID cardUUID) {
         for (Card card : cards) {
             if (card.getUuid().equals(cardUUID)) {
                 return card;

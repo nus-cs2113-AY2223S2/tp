@@ -14,7 +14,7 @@ public class Inka {
     private final Parser parser;
     private Storage storage;
 
-    private CardList cardList;
+    private CardList cardList = new CardList();
     private TagList tagList;
 
     public Inka(String filePath) {
