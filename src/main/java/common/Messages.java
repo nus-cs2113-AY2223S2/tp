@@ -24,7 +24,8 @@ public class Messages {
     public static final String MESSAGE_RECIPE_COMMANDS = "add_dish\n" +
             "delete_dish <integer>\n" +
             "view_dish\n";
-    public static final String MESSAGE_WORKER_COMMANDS = "add_staff n/<name> w/<working day> d/<date of birth> p/phone\n" +
+    public static final String MESSAGE_WORKER_COMMANDS =
+            "add_staff n/<name> w/<working day> d/<date of birth> p/phone\n" +
             "delete_staff n/<name>\n" +
             "view_staff\n";
     public static final String MESSAGE_COMMAND_EXIT = "Thank you for using DinerDirector!";

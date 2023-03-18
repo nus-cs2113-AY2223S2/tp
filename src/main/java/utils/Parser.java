@@ -19,7 +19,6 @@ import commands.meeting.ViewMeetingCommand;
 import commands.Command;
 
 import common.Messages;
-import dinerdirector.DinerDirector;
 import exceptions.DinerDirectorException;
 import entity.Deadline;
 
@@ -128,13 +127,15 @@ public class Parser {
     private Command prepareAddStaffCommand(String userInputNoCommand) {
         String[] userInputNoCommandSplitBySlash = userInputNoCommand.trim().split("/");
         try {
-            if (userInputNoCommandSplitBySlash.length < 5 || userInputNoCommand.trim().isEmpty()  || !userInputNoCommand.contains("n/") || !userInputNoCommand.contains("w/")
+            if (userInputNoCommandSplitBySlash.length < 5 || userInputNoCommand.trim().isEmpty()
+                    || !userInputNoCommand.contains("n/") || !userInputNoCommand.contains("w/")
                     || !userInputNoCommand.contains("d/") || !userInputNoCommand.contains("p/")) {
                 throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_MISSING_PARAM);
             } else if (userInputNoCommandSplitBySlash.length > 5) {
                 throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_EXCESS_PARAM);
             }
-            String pattern = "n/(?<name>[\\w\\s]+)\\sw/(?<workingDay>[\\w\\s]+)\\sd/(?<dateOfBirth>[\\w\\s\\-]+)\\sp/(?<phoneNumber>[\\w\\s]+)";
+            String pattern = "n/(?<name>[\\w\\s]+)\\sw/(?<workingDay>[\\w\\s]+)" +
+                    "\\sd/(?<dateOfBirth>[\\w\\s\\-]+)\\sp/(?<phoneNumber>[\\w\\s]+)";
 
             Pattern regex = Pattern.compile(pattern);
             Matcher matcher = regex.matcher(userInputNoCommand);
