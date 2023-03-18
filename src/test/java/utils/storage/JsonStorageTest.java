@@ -4,6 +4,8 @@ import java.nio.file.Path;
 import model.CardList;
 import org.junit.jupiter.api.Test;
 import utils.exceptions.StorageLoadFailure;
+import utils.storage.json.JsonStorage;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class JsonStorageTest {

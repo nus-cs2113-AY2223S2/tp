@@ -5,7 +5,7 @@ import utils.UserInterface;
 import utils.command.Command;
 import utils.exceptions.InkaException;
 import utils.exceptions.StorageLoadFailure;
-import utils.storage.JsonStorage;
+import utils.storage.json.JsonStorage;
 import utils.storage.Storage;
 
 public class Inka {

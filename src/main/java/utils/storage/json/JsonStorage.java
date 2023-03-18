@@ -1,4 +1,4 @@
-package utils.storage;
+package utils.storage.json;
 
 import com.google.gson.JsonSyntaxException;
 import java.util.logging.Logger;
@@ -18,16 +18,23 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import model.Card;
 import model.CardList;
+import model.CardUUID;
+import model.TagUUID;
 import utils.exceptions.StorageLoadFailure;
 import utils.exceptions.StorageSaveFailure;
+import utils.storage.Storage;
 
 public class JsonStorage extends Storage {
     private static Logger logger = Logger.getLogger("storage.JsonStorage");
-    private GsonBuilder gsonBuilder;
+    private GsonBuilder gsonBuilder = new GsonBuilder();
 
     public JsonStorage(String filePath) {
         super(filePath);
         gsonBuilder = new GsonBuilder();
+
+        //Add custom adapters
+        gsonBuilder.registerTypeAdapter(CardUUID.class, new CardUuidJsonAdapter());
+        gsonBuilder.registerTypeAdapter(TagUUID.class, new TagUuidJsonAdapter());
     }
 
     @Override
@@ -45,7 +52,7 @@ public class JsonStorage extends Storage {
             Type cardListType = new TypeToken<ArrayList<Card>>() {
             }.getType();
 
-            ArrayList<Card> cards = gson.fromJson(jsonArray, cardListType);
+            ArrayList<Card> cards = gsonBuilder.create().fromJson(jsonArray, cardListType);
             cardList = new CardList(cards);
         } catch (IOException e) {
             logger.log(Level.WARNING, "Failed to load file from " + this.saveFile.getAbsolutePath(), e);
