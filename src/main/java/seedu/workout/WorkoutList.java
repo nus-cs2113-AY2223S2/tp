@@ -48,6 +48,7 @@ public class WorkoutList {
         } catch (NullPointerException e) {
             System.out.println("Haven't start your workout, please enter your workout");
         }
+
     }
 
     public int getLastIndex() {
