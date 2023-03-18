@@ -3,6 +3,7 @@
 /add Cable Flys /weight 30kg /rps 10 10 10
 /start
 /end
+/start 11/10/23
 /list
 /add tricep extensions /weight 25kg /rps 8 7 6
 /end
