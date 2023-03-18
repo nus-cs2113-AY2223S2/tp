@@ -28,22 +28,22 @@ class AddModuleCommandTest {
     public void addModuleCommandExecuteFunction_correctVariableType_success() {
         AddModuleCommand command = new AddModuleCommand(module, storage);
         command.execute();
-        int lastIndex = storage.getModule().size() - 1;
+        int lastIndex = storage.getModules().size() - 1;
         assert lastIndex >= 0 : "ArraySize should be more than 0";
         assertEquals("1,AE320,Aerodynamics II,3,ME4231,Aerodynamics,4",
-                storage.getModule().get(lastIndex).toString());
+                storage.getModules().get(lastIndex).toString());
     }
 
     @Test
     public void addModuleCommandExecuteFunction_nullModule_successfullyCatchNullPointerException() {
-        int databaseSize = storage.getModule().size();
+        int databaseSize = storage.getModules().size();
         AddModuleCommand command = new AddModuleCommand(null, storage);
         try {
             command.execute();
         } catch (NullPointerException e) {
             System.out.println("Null Pointer caught");
         }
-        assertEquals(databaseSize, storage.getModule().size());
+        assertEquals(databaseSize, storage.getModules().size());
     }
 
 }

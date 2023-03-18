@@ -22,7 +22,7 @@ public class DeleteModuleCommand extends Command {
 
     @Override
     public void execute() {
-        boolean isDeleteSuccessful = Parser.handleDeleteModule(indexToRemove, modules, storage);
+        boolean isDeleteSuccessful = Storage.deleteModule(indexToRemove, modules, storage);
         if (!isDeleteSuccessful) {
             return;
         }
