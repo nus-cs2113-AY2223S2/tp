@@ -65,13 +65,13 @@ public class Parser {
         setInputStringArray(inputStringList);
         switch (inputStringList[0]) {
         case "add":
-            return addItem();
+            return createAddObj();
         case "delete":
-            return deleteItem();
+            return createDeleteObj();
         case "pack":
-            return packItem();
+            return createPackObj();
         case "unpack":
-            return unpackItem();
+            return createUnpackObj();
         case "list":
             return listCommand();
         case "help":
@@ -85,7 +85,13 @@ public class Parser {
                     "input 'help' to receive all valid commands");
         }
     }
-
+    /**
+     * Reads and returns the full user input from the command line interface
+     * - trims the leading and trailing white spaces
+     *
+     * @return inputLine the String input of the user
+     * @throws EmptyInputException when user input empty line
+     */
     private static String readLine() throws EmptyInputException {
         String inputLine;
         Scanner in = new Scanner(System.in);
@@ -98,25 +104,40 @@ public class Parser {
 
     /**
      * Returns the user command in lower case
+     *
+     * @return command from user
      */
     public static String getCommand() {
-        return getInputStringArray().get(0).toLowerCase();
+        String command = getInputStringArray().get(0).toLowerCase();
+        return command;
     }
 
+    /**
+     * Returns a string which represents the name of the item from the user input
+     *
+     * @return inputVariables which is the name of the item
+     * @throws InvalidVariablesException when the item name cannot be found
+     */
     public static String getItemName() throws InvalidVariablesException {
-        String inputVariables;
+        String itemName;
         if (inputStringArray.size() <= 1) {
             throw new InvalidVariablesException();
         }
         try {
             int itemIndStart = fullInput.indexOf(" ") + 1;
-            inputVariables = fullInput.substring(itemIndStart);
+            itemName = fullInput.substring(itemIndStart);
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidVariablesException();
         }
-        return inputVariables;
+        return itemName;
     }
 
+    /**
+     * Returns a string which represents the index of the item from the user input
+     *
+     * @return inputIndex which is the item index of the item in packing list
+     * @throws InvalidIndexException when the item index is not valid
+     */
     public static String getItemIndex() throws InvalidIndexException {
         String inputIndex;
         int itemIndex;
@@ -135,21 +156,29 @@ public class Parser {
         }
         return inputIndex;
     }
-
+    /**
+     * Returns a string which represents the relevant variable depending on the command
+     * - "add" will return the item name
+     * - "delete", "pack", "unpack" will return item index
+     *
+     * @param command used to determine the type of variable to return
+     * @return itemVariable which is the index OR name of the item in packing list
+     * @throws InvalidIndexException when the item index is not valid
+     */
     public static String getVariable(String command) throws InvalidVariablesException, InvalidIndexException {
-        String variable;
+        String itemVariable;
         try {
             if (command.equals("add")) {
-                variable = getItemName();
+                itemVariable = getItemName();
             } else {
-                variable = getItemIndex();
+                itemVariable = getItemIndex();
             }
         } catch (InvalidVariablesException e) {
             throw new InvalidVariablesException();
         } catch (InvalidIndexException e) {
             throw new InvalidIndexException();
         }
-        return variable;
+        return itemVariable;
     }
 
 
@@ -164,9 +193,12 @@ public class Parser {
 
 
     /**
-     * Calls the AddCommand.execute() method to add an item to the packing list
+     * Attempts to create AddCommand object to be executed where it is called from
+     *
+     * @return AddCommand the command to be executed to add an item to the packing list, else
+     *      an IncorrectCommand is created to be executed
      */
-    public static Command addItem() {
+    public static Command createAddObj() {
         try {
             String itemName = getVariable("add");
             return new AddCommand(new Item(itemName));
@@ -180,9 +212,12 @@ public class Parser {
     }
 
     /**
-     * Calls the DeleteCommand.execute() method to add an item to the packing list
+     * Attempts to create DeleteCommand object to be executed where it is called from
+     *
+     * @return DeleteCommand the command to be executed to delete an item to the packing list, else
+     *      an IncorrectCommand is created to be executed
      */
-    public static Command deleteItem() {
+    public static Command createDeleteObj() {
         try {
             String itemIndex = getVariable("delete");
             return new DeleteCommand(Integer.parseInt(itemIndex));
@@ -201,9 +236,12 @@ public class Parser {
     }
 
     /**
-     * Calls the PackCommand.execute() method to mark an item as packed in the packing list
+     * Attempts to create PackCommand object to be executed where it is called from
+     *
+     * @return PackCommand the command to be executed to Pack an item in the packing list, else
+     *      an IncorrectCommand is created to be executed
      */
-    public static Command packItem() {
+    public static Command createPackObj() {
         try {
             String itemIndex = getVariable("pack");
             return new PackCommand(Integer.parseInt(itemIndex));
@@ -223,11 +261,14 @@ public class Parser {
 
 
     /**
-     * Calls the UnpackCommand.execute() method to mark an item as unpacked in the packing list
+     * Attempts to create UnpackCommand object to be executed where it is called from
+     *
+     * @return UnpackCommand the command to be executed to unpack an item in the packing list, else
+     *      an IncorrectCommand is created to be executed
      */
-    public static Command unpackItem() {
+    public static Command createUnpackObj() {
         try {
-            String itemIndex = getVariable("delete");
+            String itemIndex = getVariable("unpack");
             return new UnpackCommand(Integer.parseInt(itemIndex));
         } catch (InvalidVariablesException e) {
             return new IncorrectCommand("Invalid Item Name",

@@ -14,6 +14,7 @@ public class PackCommand extends Command {
 
     public PackCommand(int targetIndex) {
         super(targetIndex);
+        assert (targetIndex >= 1 & targetIndex <= packingList.size()) : "Pack Command Target index is out of bounds";
     }
 
     @Override
