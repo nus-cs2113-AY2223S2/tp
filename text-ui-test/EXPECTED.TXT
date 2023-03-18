@@ -8,8 +8,6 @@ Mark a task as undone using: unmark <index>
 Edit a task deadline using: edit <index> -d <deadline>
 Exit the program using: exit
 
-Here are the tasks in your list:
-1.[X] bubu due by: 18 Dec 2022 18:00
-2.[ ] baba due by: 18 Dec 2023 17:00
+There are no tasks in your list.
 
 See you again, bye!
