@@ -3,13 +3,11 @@ package seedu.duke;
 import seedu.duke.commands.CommandHandler;
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
-import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.storage.LoadUserData;
 import seedu.duke.storage.UserCareerData;
 import seedu.duke.ui.Ui;
 import seedu.duke.states.ExerciseStateHandler;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {

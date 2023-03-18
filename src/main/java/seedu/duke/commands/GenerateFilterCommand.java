@@ -70,7 +70,8 @@ public class GenerateFilterCommand extends Command {
         exerciseListGenerated = exercises;
         ui.printExerciseFromList(exercises);
     }
-     public ArrayList<ExerciseData> provideExerciseList(){
+
+    public ArrayList<ExerciseData> provideExerciseList() {
         return exerciseListGenerated;
-     }
+    }
 }

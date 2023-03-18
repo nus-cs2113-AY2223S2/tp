@@ -45,7 +45,7 @@ public class UserCareerData {
         for (int i = 0 ; i < totalUserCareerSessions.size(); i++){
             System.out.println("Session " + (i+1));
             String dateTime = totalUserCareerSessions.get(i).getDateAdded().toString();
-            String dateSplit[] = dateTime.split("T", 2);
+            String[] dateSplit = dateTime.split("T", 2);
             assert dateSplit.length == 2;
             System.out.println("On this date: " + dateSplit[0]);
             exercisePrinter.printExercise(totalUserCareerSessions.get(i).getSessionExercises());

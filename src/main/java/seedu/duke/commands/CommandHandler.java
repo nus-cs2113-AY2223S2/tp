@@ -13,20 +13,19 @@ public class CommandHandler {
     private static final boolean INCOMPLETE_EXERCISE = false;
 
     /**
-     *
-     * @param rawUserCommands This refers to the
-     * @param ui This allows us to output messages
-     * @param exerciseGenerator This takes in filter parameters and outputs a curated exercise list
-     * @param userCareerData This keeps track and allows logging of all user data
+     * @param rawUserCommands      This refers to the
+     * @param ui                   This allows us to output messages
+     * @param exerciseGenerator    This takes in filter parameters and outputs a curated exercise list
+     * @param userCareerData       This keeps track and allows logging of all user data
      * @param exerciseStateHandler This allows us to know when we are
      */
     public void handleUserCommands(String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator,
-            UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler) {
+                                   UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler) {
         String[] userCommands = rawUserCommands.split(" ");
         Command command = null;
         boolean errorExists = false;
         try {
-            if (exerciseStateHandler.workoutOngoing){
+            if (exerciseStateHandler.workoutOngoing) {
                 //Workout is on going,
                 //There is no access to:
                 //generate, filter, help, start, history
@@ -39,11 +38,10 @@ public class CommandHandler {
                 case "bye":
                 case "exit":
                     boolean exit = confirmExitDuringWorkout();
-                    if (exit){
+                    if (exit) {
                         ui.byeUser();
                         System.exit(0);
-                    }
-                    else{
+                    } else {
                         System.out.println("You got this! Finish your exercise session!");
                     }
                     break;
@@ -62,14 +60,14 @@ public class CommandHandler {
                     exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData);
                     break;
                 case "history":
-                    throw new DukeError("Finish your exercise! You can look and feel good about your previous workout sessions later!");
+                    throw new DukeError("Finish your exercise!"+
+                            "You can look and feel good about your previous workout sessions later!");
                 default:
                     ui.unknownCommand();
                     errorExists = true;
                     break;
                 }
-            }
-            else{
+            } else {
                 switch (userCommands[0]) {
                 case "generate":
                     command = new GenerateFilterCommand(userCommands);
@@ -100,7 +98,8 @@ public class CommandHandler {
                 case "current":
                 case "finish":
                 case "cancel":
-                    System.out.println("No workout session active. Please generate a workout and use the \"start\" command!");
+                    System.out.println("No workout session active." +
+                            " Please generate a workout and use the \"start\" command!");
                     break;
                 case "history":
                     userCareerData.printAllFinishedWorkoutSessions();
@@ -132,7 +131,7 @@ public class CommandHandler {
         ui.splitLine();
     }
 
-    private static boolean confirmExitDuringWorkout(){
+    private static boolean confirmExitDuringWorkout() {
         System.out.println("Are you sure you want to exit? You have a workout session ongoing." +
                 "\n You will lose your progress!" + "\n Type in 'y' for yes or 'n' for no");
         Scanner in = new Scanner(System.in);
