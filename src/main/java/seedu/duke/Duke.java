@@ -24,7 +24,7 @@ public class Duke {
         while (isContinue) {
             userInput = in.nextLine();
             ArrayList<University> universities = dataReader.getUniversities();
-            ArrayList<Module> modules = storage.getModule();
+            ArrayList<Module> modules = storage.getModules();
             ArrayList<Module> allModules = dataReader.getModules();
             Command command = parser.handleUserCommand(userInput, universities, modules, allModules, storage);
             command.execute();

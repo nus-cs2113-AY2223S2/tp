@@ -69,6 +69,35 @@ public class Storage {
     }
 
     /**
+     * Deletes the module corresponding to the uni specified by user. Module will the removed from user's
+     * saved list of modules.
+     * @param indexToDelete Index of that module that is given in user input.
+     * @param uniModuleList The corresponding ArrayList of that specified uni.
+     * @param database      Database of the user's saved list of modules.
+     * @return True if successfully deleted the module, false if unsuccessful.
+     */
+    public static boolean deleteModule(int indexToDelete, ArrayList<Module> uniModuleList,
+                                       Storage database) {
+        if (indexToDelete == -1) {
+            return false;
+        }
+        int indexToZeroBased = indexToDelete - 1;
+        try {
+            uniModuleList.remove(indexToZeroBased);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Index out of bounds");
+            return false;
+        }
+        try {
+            database.writeListToFile(uniModuleList);
+        } catch (IOException e) {
+            System.out.println("Unable to save to database");
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Adds and overwrites ArrayList of user's saved modules list in database.
      *
      * @param modules ArrayList of modules to be written into database.
@@ -89,7 +118,7 @@ public class Storage {
      *
      * @return ArrayList of modules.
      */
-    public ArrayList<Module> getModule() {
+    public ArrayList<Module> getModules() {
         return modules;
     }
 

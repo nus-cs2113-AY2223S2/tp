@@ -13,8 +13,9 @@ public class UI {
 
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
     private static final String WELCOME_MESSAGE = "~Welcome to SEP Helper~";
-    private static final String READ_COMMAND_INPUT= "What can I do for you?";
-    private static final String GREETING_HELP_MESSAGE = "\nType /help if you need help getting started :)";
+    private static final String READ_COMMAND_INPUT = "What can I do for you?";
+    private static final String HELP_MESSAGE = "\nType /help if you need help getting started :)";
+    private static final String INPUT_NOT_INT_MESSAGE = "The input for the given command is not an integer";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
@@ -45,6 +46,11 @@ public class UI {
         System.out.println(LINE);
     }
 
+    public void printInputNotNumMessage() {
+        System.out.println(INPUT_NOT_INT_MESSAGE);
+        System.out.println(LINE);
+    }
+
     public void printGreetingMessage() {
         System.out.println("\n" +
                 "  ____  _____ ____    _   _      _                 \n" +
@@ -56,7 +62,7 @@ public class UI {
 
         System.out.println(WELCOME_MESSAGE);
         System.out.println(READ_COMMAND_INPUT);
-        System.out.println(GREETING_HELP_MESSAGE);
+        System.out.println(HELP_MESSAGE);
         System.out.println(LINE);
     }
 
@@ -81,6 +87,7 @@ public class UI {
             System.out.print("   maps to ----> ");
             System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
         }
+        System.out.println(LINE);
     }
 
     public void printPUList() {

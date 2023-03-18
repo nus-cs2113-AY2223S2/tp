@@ -11,7 +11,6 @@ import seedu.duke.command.ListPuModulesCommand;
 import seedu.duke.command.HelpCommand;
 
 import java.util.ArrayList;
-import java.io.IOException;
 
 public class Parser {
     private static UI ui = new UI();
@@ -41,8 +40,7 @@ public class Parser {
         case "add":
             return handleAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
         case "remove":
-            // Handle exception for parseInt, use try catch, shift it to another Function thanks
-            int indexToRemove = Integer.parseInt(userCommandSecondKeyword);
+            int indexToRemove = stringToInt(userCommandSecondKeyword);
             return new DeleteModuleCommand(storage, indexToRemove, modules);
         case "/help":
             return new HelpCommand();
@@ -62,32 +60,6 @@ public class Parser {
             commandWords.add(commandSpecifics);
         }
         return commandWords;
-    }
-
-    /**
-     * Deletes the module corresponding to the uni specified by user. Module will the removed from user's
-     * saved list of modules.
-     *
-     * @param indexToDelete Index of that module that is given in user input.
-     * @param uniModuleList The corresponding ArrayList of that specified uni.
-     * @param database      Database of the user's saved list of modules.
-     */
-    public static boolean handleDeleteModule(int indexToDelete, ArrayList<Module> uniModuleList,
-                                       Storage database) {
-        int indexToZeroBased = indexToDelete - 1;
-        try {
-            uniModuleList.remove(indexToZeroBased);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index out of bounds");
-            return false;
-        }
-        try {
-            database.writeListToFile(uniModuleList);
-        } catch (IOException e) {
-            System.out.println("Unable to save to database");
-            return false;
-        }
-        return true;
     }
 
     // Todo: Right now, it uses university Name only but since university object has 3 attributes:
@@ -140,6 +112,22 @@ public class Parser {
             return new InvalidCommand();
         }
         return new AddModuleCommand(moduleToAdd, storage);
+    }
+
+    /**
+     * Converts given string to int type.
+     * @param stringToConvert String to be converted
+     * @return The number in int type
+     */
+
+    private int stringToInt(String stringToConvert) {
+        int intConverted = -1;
+        try {
+            intConverted = Integer.parseInt(stringToConvert);
+        } catch (NumberFormatException e) {
+            ui.printInputNotNumMessage();
+        }
+        return intConverted;
     }
 }
 
