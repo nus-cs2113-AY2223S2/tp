@@ -10,12 +10,13 @@ public class UI {
     private static final String DELETE_MOD_MESSAGE = "This module has been deleted from the current list!";
 
     private static final String ADD_MOD_FAILURE_MESSAGE = "Save Module Failed";
-
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
     private static final String WELCOME_MESSAGE = "~Welcome to SEP Helper~";
     private static final String READ_COMMAND_INPUT = "What can I do for you?";
     private static final String HELP_MESSAGE = "\nType /help if you need help getting started :)";
     private static final String INPUT_NOT_INT_MESSAGE = "The input for the given command is not an integer";
+    private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name\n";
+    private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name\n";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
@@ -49,6 +50,14 @@ public class UI {
     public void printInputNotNumMessage() {
         System.out.println(INPUT_NOT_INT_MESSAGE);
         System.out.println(LINE);
+    }
+
+    public String getInvalidPuMessage() {
+        return INVALID_PU_MESSAGE + LINE;
+    }
+
+    public String getInvalidModuleMessage() {
+        return INVALID_MODULE_MESSAGE + LINE;
     }
 
     public void printGreetingMessage() {
@@ -140,6 +149,10 @@ public class UI {
                 + "EXIT                        : Exits the program\n\n");
         System.out.println(READ_COMMAND_INPUT);
         System.out.println(LINE);
+    }
+
+    public static void printExceptionErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
     }
 
     public void printExitMessage() {
