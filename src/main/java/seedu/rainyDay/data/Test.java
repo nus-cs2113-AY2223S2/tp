@@ -1,6 +1,5 @@
 package seedu.rainyDay.data;
 
-import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
 
 import java.util.regex.Matcher;
