@@ -40,9 +40,9 @@ public class AddMealCommand extends Command {
                     "! Please format using d/m/yyyy");
         }
 
-        System.out.println(System.lineSeparator() + "Enter date of meal:");
+        System.out.println(System.lineSeparator() + "Enter type of meal:");
         mealTypeString = ui.readLine();
-        if (MealTypes.fromString(mealTypeString) == null) {
+        if ((mealType = MealTypes.fromString(mealTypeString)) == null) {
             throw new LifeTrackerException(System.lineSeparator() + "Invalid meal type: " + mealTypeString +
                     "! Supported meal types: " + MealTypes.getSupportedMealTypes());
         }
