@@ -1,9 +1,12 @@
 package seedu.rainyDay.modules;
 
 import seedu.rainyDay.data.FinancialReport;
+import seedu.rainyDay.data.FinancialStatement;
+import seedu.rainyDay.data.FlowDirection;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -11,6 +14,9 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+
+import com.opencsv.CSVWriter;
+
 
 public class Storage {
     private static Logger logger = Logger.getLogger("Storage.log");
@@ -44,6 +50,38 @@ public class Storage {
         readData.close();
 
         return statements;
+    }
+
+    public static void writeToCSV(FinancialReport report) {
+        String CSVFilePath = "report.csv";
+
+        try {
+            FileWriter outputFile = new FileWriter(CSVFilePath);
+            CSVWriter tableWriter = new CSVWriter(outputFile);
+            String[] tableHeader = {"ID", "Description", "Value", "Category"};
+            tableWriter.writeNext(tableHeader);
+
+            for (int i = 0; i < report.getStatementCount(); i++) {
+                FinancialStatement currStatement = report.getFinancialStatement(i);
+
+                String statementID = Integer.toString(i + 1);
+                String description = currStatement.getDescription();
+                String value;
+                if (currStatement.getFlowDirection() == FlowDirection.INFLOW) {
+                    value = Integer.toString(currStatement.getValue());
+                } else {
+                    value = Integer.toString(-currStatement.getValue());
+                }
+                String category = currStatement.getCategory();
+
+                String[] tableRow = {statementID, description, value, category};
+                tableWriter.writeNext(tableRow);
+            }
+            tableWriter.close();
+
+        } catch (IOException e) {
+            Ui.csvExportError();
+        }
     }
 
     private static void setupLogger() {
