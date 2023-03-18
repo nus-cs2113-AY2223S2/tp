@@ -1,6 +1,7 @@
 package seedu.workout;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class WorkoutList {
@@ -22,7 +23,7 @@ public class WorkoutList {
         this.currentWorkoutIndex = currentWorkoutIndex;
     }
 
-    public void removeWorkout(String date) {
+    public void removeWorkout(Date date) {
         for (Workout workout : workoutList) {
             if (workout.getDate().equals(date)) {
                 workoutList.remove(workout);

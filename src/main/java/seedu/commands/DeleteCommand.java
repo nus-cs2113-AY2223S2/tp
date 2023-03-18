@@ -1,8 +1,10 @@
 package seedu.commands;
 
+import java.util.Date;
+
 public class DeleteCommand extends Command {
-    String workoutToDeleteDate;
-    public DeleteCommand(String workoutToDeleteDate) {
+    Date workoutToDeleteDate;
+    public DeleteCommand(Date workoutToDeleteDate) {
         this.workoutToDeleteDate = workoutToDeleteDate;
     }
 
@@ -11,3 +13,4 @@ public class DeleteCommand extends Command {
         workoutList.removeWorkout(workoutToDeleteDate);
     }
 }
+
