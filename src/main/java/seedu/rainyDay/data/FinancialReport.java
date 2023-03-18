@@ -39,7 +39,7 @@ public class FinancialReport implements Serializable {
     }
 
     public String getStatementDirection(int statementNumber) {
-        return financialReport.get(statementNumber).getFlowDirection();
+        return financialReport.get(statementNumber).getFlowDirectionWord();
     }
 
     public int getStatementValue(int statementNumber) {

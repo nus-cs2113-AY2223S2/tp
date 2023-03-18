@@ -55,7 +55,7 @@ public class ViewCommand extends Command {
         for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
             logger.log(Level.INFO, "starting statement " + i);
             FinancialStatement currentStatement = financialReport.getFinancialStatement(i);
-            if (currentStatement.getFlowDirection().equals("in")) {
+            if (currentStatement.getFlowDirectionWord().equals("in")) {
                 totalInflow += currentStatement.getValue();
             } else {
                 totalOutflow += currentStatement.getValue();
