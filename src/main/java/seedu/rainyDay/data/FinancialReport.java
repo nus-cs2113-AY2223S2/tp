@@ -32,10 +32,12 @@ public class FinancialReport implements Serializable {
 
     public void addStatement(FinancialStatement statement) {
         financialReport.add(statement);
+        Storage.writeToFile(this, RainyDay.filePath);
     }
 
     public void deleteStatement(int statementNumber) {
         financialReport.remove(financialReport.get(statementNumber));
+        Storage.writeToFile(this, RainyDay.filePath);
     }
 
     public String getFullStatement(int statementNumber) {

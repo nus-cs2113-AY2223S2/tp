@@ -60,9 +60,6 @@ public class AddCommand extends Command {
 
         logger.log(Level.INFO, " passed Ui");
 
-        Storage.writeToFile(financialReport, RainyDay.filePath);
-
-        logger.log(Level.INFO, " passed storage");
         logger.log(Level.INFO, " end of AddCommand.execute()");
     }
 }
