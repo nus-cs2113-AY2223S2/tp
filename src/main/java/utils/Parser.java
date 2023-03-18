@@ -19,12 +19,15 @@ import commands.meeting.ViewMeetingCommand;
 import commands.Command;
 
 import common.Messages;
+import dinerdirector.DinerDirector;
 import exceptions.DinerDirectorException;
 import entity.Deadline;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static manager.DishManager.getDishesSize;
 
@@ -54,9 +57,9 @@ public class Parser {
         case ViewMeetingCommand.COMMAND_WORD:
             return prepareViewMeetingCommand(commandWord);
         case AddStaffCommand.COMMAND_WORD:
-            return prepareAddStaffCommand(userInput);
+            return prepareAddStaffCommand(userInputNoCommand);
         case DeleteStaffCommand.COMMAND_WORD:
-            return prepareDeleteStaffCommand(userInput);
+            return prepareDeleteStaffCommand(userInputNoCommand);
         case ViewStaffCommand.COMMAND_WORD:
             return prepareViewStaffCommand();
         case AddDeadlineCommand.COMMAND_WORD:
@@ -122,17 +125,31 @@ public class Parser {
         return new DeleteMeetingCommand(issue);
     }
 
-    private Command prepareAddStaffCommand(String userInput) {
-        String[] userInputSplit = userInput.split(" ");
+    private Command prepareAddStaffCommand(String userInputNoCommand) {
+        String[] userInputNoCommandSplitBySlash = userInputNoCommand.trim().split("/");
         try {
-            if (userInputSplit.length < 5) {
+            if (userInputNoCommandSplitBySlash.length < 5 || userInputNoCommand.trim().isEmpty()  || !userInputNoCommand.contains("n/") || !userInputNoCommand.contains("w/")
+                    || !userInputNoCommand.contains("d/") || !userInputNoCommand.contains("p/")) {
                 throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_MISSING_PARAM);
+            } else if (userInputNoCommandSplitBySlash.length > 5) {
+                throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_EXCESS_PARAM);
             }
-            String staffName = userInputSplit[1];
-            String staffWorkingDay = userInputSplit[2];
-            String staffPhoneNumber = userInputSplit[3];
-            String staffDateOfBirth = userInputSplit[4];
-            return new AddStaffCommand(staffName, staffWorkingDay, staffPhoneNumber, staffDateOfBirth);
+            String pattern = "n/(?<name>[\\w\\s]+)\\sw/(?<workingDay>[\\w\\s]+)\\sd/(?<dateOfBirth>[\\w\\s\\-]+)\\sp/(?<phoneNumber>[\\w\\s]+)";
+
+            Pattern regex = Pattern.compile(pattern);
+            Matcher matcher = regex.matcher(userInputNoCommand);
+            String staffName = "";
+            String staffWorkingDay = "";
+            String staffPhoneNumber = "";
+            String staffDateOfBirth = "";
+            if (matcher.find()) {
+                staffName = matcher.group("name");
+                staffWorkingDay = matcher.group("workingDay");
+                staffPhoneNumber = matcher.group("phoneNumber");
+                staffDateOfBirth = matcher.group("dateOfBirth");
+            }
+
+            return new AddStaffCommand(staffName, staffWorkingDay, staffDateOfBirth, staffPhoneNumber);
         } catch (DinerDirectorException e) {
             System.out.println(e.getMessage());
             return new IncorrectCommand();
@@ -143,14 +160,15 @@ public class Parser {
         return new ViewStaffCommand();
     }
 
-    private Command prepareDeleteStaffCommand(String userInput) {
-        String[] userInputSplit = userInput.split(" ");
+    private Command prepareDeleteStaffCommand(String userInputNoCommand) {
+        String[] userInputNoCommandSplitBySlash = userInputNoCommand.split("/");
         try {
-            if (userInputSplit.length < 2) {
-                throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_MISSING_PARAM);
+            if (userInputNoCommandSplitBySlash.length < 2 || !userInputNoCommand.contains("n/")) {
+                throw new DinerDirectorException(Messages.ERROR_STAFF_DELETE_MISSING_PARAM);
+            } else if (userInputNoCommandSplitBySlash.length > 2) {
+                throw new DinerDirectorException(Messages.ERROR_STAFF_DELETE_EXCESS_PARAM);
             }
-            String staffName = userInputSplit[1];
-
+            String staffName = userInputNoCommandSplitBySlash[1];
             return new DeleteStaffCommand(staffName);
         } catch (DinerDirectorException e) {
             System.out.println(e.getMessage());

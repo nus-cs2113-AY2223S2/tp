@@ -24,7 +24,7 @@ public class Messages {
     public static final String MESSAGE_RECIPE_COMMANDS = "add_dish\n" +
             "delete_dish <integer>\n" +
             "view_dish\n";
-    public static final String MESSAGE_WORKER_COMMANDS = "add_staff n/<name> w/<working day> d<date of birth> p/phone\n" +
+    public static final String MESSAGE_WORKER_COMMANDS = "add_staff n/<name> w/<working day> d/<date of birth> p/phone\n" +
             "delete_staff n/<name>\n" +
             "view_staff\n";
     public static final String MESSAGE_COMMAND_EXIT = "Thank you for using DinerDirector!";
@@ -50,6 +50,9 @@ public class Messages {
     public static final String ERROR_DEADLINE_EXCESS_LIST_PARAM =
             "Excess input detected! Please only type \"view_deadlines\".";
     public static final String ERROR_STAFF_ADD_MISSING_PARAM = "Insufficient information when adding a staff";
+    public static final String ERROR_STAFF_ADD_EXCESS_PARAM = "Excess information when adding a staff";
+    public static final String ERROR_STAFF_DELETE_MISSING_PARAM = "Insufficient information when deleting a staff";
+    public static final String ERROR_STAFF_DELETE_EXCESS_PARAM = "Excess information when deleting a staff";
     public static final String ERROR_MEETING_MISSING_PARAM = "Missing meeting parameter!";
     public static final String ERROR_MEETING_EXCESS_ADD_PARAM = "You cannot have multiple name/time for your meeting!";
     public static final String ERROR_MEETING_EXCESS_VIEW_PARAM =
