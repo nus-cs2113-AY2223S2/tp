@@ -4,7 +4,6 @@ import seedu.commands.Command;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
-import seedu.exceptions.LifeTrackerException;
 import seedu.parser.CommandParser;
 import seedu.ui.GeneralUi;
 import java.nio.file.Paths;
@@ -35,7 +34,7 @@ public class LifeTracker {
                 Command command = CommandParser.parse(userInput);
                 command.execute(ui, foodStorage, mealStorage, userStorage);
                 isExit = command.isExit();
-            } catch (LifeTrackerException e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             } finally {
                 ui.printLine();

@@ -59,19 +59,19 @@ public class UI {
 
     private void printLogo() {
         System.out.println(
-                " _      _  __  _______             _              \n"
-                        + "| |    (_)/ _||__   __|           | |            \n"
-                        + "| |     _| |_ ___| |_ __ __ _  ___| | _____ _ __ \n"
-                        + "| |    | |  _/ _ \\ | '__/ _` |/ __| |/ / _ \\ '__|\n"
-                        + "| |____| | ||  __/ | | | (_| | (__|   <  __/ |   \n"
-                        + "|______|_|_| \\___|_|_|  \\__,_|\\___|_|\\_\\___|_|   \n"
+                " _      _  __  _______             _              " + System.lineSeparator()
+                        + "| |    (_)/ _||__   __|           | |            " + System.lineSeparator()
+                        + "| |     _| |_ ___| |_ __ __ _  ___| | _____ _ __ " + System.lineSeparator()
+                        + "| |    | |  _/ _ \\ | '__/ _` |/ __| |/ / _ \\ '__|" + System.lineSeparator()
+                        + "| |____| | ||  __/ | | | (_| | (__|   <  __/ |   " + System.lineSeparator()
+                        + "|______|_|_| \\___|_|_|  \\__,_|\\___|_|\\_\\___|_|   " + System.lineSeparator()
         );
     }
 
     public void printNewFoodAdded(FoodStorage foodStorage, int food) {
         Food newFood = foodStorage.getFoodById(food);
         String foodDescription = newFood.toString();
-        System.out.println("You just added this food\n" + foodDescription);
+        System.out.println("You just added this food"+ System.lineSeparator() + foodDescription);
     }
 
     public void printAllFoods(FoodStorage foodStorage) {

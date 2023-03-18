@@ -1,19 +1,33 @@
 package seedu.database;
 
 import java.io.BufferedReader;
+// import java.io.File;
+// import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Locale;
+
 import seedu.entities.Meal;
+import seedu.exceptions.InvalidMealException;
+import seedu.logger.LogFileHandler;
+import seedu.constants.DateConstants;
+import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import com.opencsv.CSVWriter;
 
 public class MealStorage extends Storage implements FileReadable, FileWritable {
-    private static final String csvDelimiter = ",";
-    private static final String foodsDelimiter = "-";
+    private static final String CSV_DELIMITER = ",";
+    private static final String FOODS_DELIMITER = "-";
+    private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern(
+            DateConstants.DATABASE_FORMAT, Locale.ENGLISH);
     private ArrayList<Meal> meals;
     private FoodStorage foodStorage;
+    private BufferedReader br;
 
     public MealStorage(String filePath, FoodStorage foodStorage) {
         super(filePath);
@@ -33,10 +47,11 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
                 CSVWriter.NO_QUOTE_CHARACTER,
                 CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                 CSVWriter.RFC4180_LINE_END);
-        String[] header = { "Date", "Foods" };
+        String[] header = { "Date", "Foods", "Meal Type" };
         writer.writeNext(header);
+        Collections.sort(meals);
         for (Meal meal : meals) {
-            writer.writeNext(meal.toWriteFormat(foodsDelimiter));
+            writer.writeNext(meal.toWriteFormat(FOODS_DELIMITER, DateConstants.DATABASE_FORMAT));
         }
         writer.close();
     }
@@ -45,24 +60,41 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
     public void load() throws IOException {
         String line = "";
         String[] mealLine;
-        String date;
+        LocalDate date;
         String[] foodIndexes;
         ArrayList<Food> foods;
+        MealTypes mealType;
 
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        // try {
+        //     br = new BufferedReader(new FileReader(filePath));
+        // } catch (FileNotFoundException e) {
+        //     File newFile = new File(filePath);
+        //     newFile.createNewFile();
+        //     br = new BufferedReader(new FileReader(filePath));
+        //     // LogFileHandler.logWarning("Meal Storage was not found!");
+        // }
+
+        br = new BufferedReader(new FileReader(filePath));
 
         // Skip Line 1 (header)
         br.readLine();
 
         while ((line = br.readLine()) != null) {
-            mealLine = line.split(csvDelimiter);
-            date = mealLine[0];
-            foodIndexes = mealLine[1].split(foodsDelimiter);
+            mealLine = line.split(CSV_DELIMITER);
+            date = LocalDate.parse(mealLine[0], DTF);
+
+            foodIndexes = mealLine[1].split(FOODS_DELIMITER);
             foods = new ArrayList<Food>();
             for (String foodIndex : foodIndexes) {
                 foods.add(foodStorage.getFoodById(Integer.parseInt(foodIndex)));
             }
-            meals.add(new Meal(foods, date));
+            
+            try {
+                mealType = MealTypes.fromString(mealLine[2]);
+                meals.add(new Meal(foods, date, mealType));
+            } catch (InvalidMealException e) {
+                LogFileHandler.logError(line + " has an invalid meal type");
+            }
         }
 
         br.close();
@@ -75,6 +107,16 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
             System.out.println("Meal was successfully added!");
         } catch (IOException e) {
             System.out.println("Could not add meal to storage!");
+        }
+    }
+
+    public void resetStorage() {
+        meals = new ArrayList<Meal>();
+        try {
+            this.write();
+            System.out.println("MealStorage was successfully resetted!");
+        } catch (IOException e) {
+            System.out.println("Could not reset MealStorage!");
         }
     }
 
@@ -92,5 +134,9 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
 
     public Meal deleteMeal(int index) throws IndexOutOfBoundsException {
         return meals.remove(index);
+    }
+
+    public DateTimeFormatter getDateTimeFormatter() {
+        return DTF;
     }
 }
