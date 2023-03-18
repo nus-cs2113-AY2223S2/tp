@@ -43,8 +43,7 @@ public class Duke {
                     ui.printSavingErrorMessage();
                 } catch (NullPointerException e) {
                     ui.printNullFilepathErrorMessage();
-                }
-                catch (ToDoListException e) {
+                } catch (ToDoListException e) {
                     ui.printError(e);
                 }
             }
