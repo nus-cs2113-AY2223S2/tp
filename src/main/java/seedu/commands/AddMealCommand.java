@@ -8,6 +8,7 @@ import java.util.List;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
+import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
 import seedu.exceptions.LifeTrackerException;
@@ -21,6 +22,8 @@ public class AddMealCommand extends Command {
                 throws LifeTrackerException {
         String dateString = "";
         LocalDate date;
+        String mealTypeString = "";
+        MealTypes mealType = null;
         String foodName;
         boolean toContinue = true;
         int choice;
@@ -37,8 +40,15 @@ public class AddMealCommand extends Command {
                     "! Please format using d/m/yyyy");
         }
 
+        System.out.println(System.lineSeparator() + "Enter type of meal:");
+        mealTypeString = ui.readLine();
+        if ((mealType = MealTypes.fromString(mealTypeString)) == null) {
+            throw new LifeTrackerException(System.lineSeparator() + "Invalid meal type: " + mealTypeString +
+                    "! Supported meal types: " + MealTypes.getSupportedMealTypes());
+        }
+
         do {
-            System.out.println("Enter food:");
+            System.out.println(System.lineSeparator() + "Enter food:");
             foodName = ui.readLine();
 
 
@@ -68,7 +78,7 @@ public class AddMealCommand extends Command {
             
         } while (toContinue);
         
-        meal = new Meal(foods, date);
+        meal = new Meal(foods, date, mealType);
         mealStorage.saveMeal(meal);
         ui.printNewMealAdded(meal);
         LogFileHandler.logInfo(meal.toString());

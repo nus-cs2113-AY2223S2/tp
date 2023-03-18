@@ -5,15 +5,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import seedu.definitions.MealTypes;
+
 public class Meal implements Comparable<Meal> {
     private static final String DATE_FORMAT = "d/M/yyyy";
     private ArrayList<Food> foods;
     private LocalDate date;
     private double totalCalories;
+    private MealTypes identifier;
 
-    public Meal(ArrayList<Food> foods, LocalDate date) {
+    public Meal(ArrayList<Food> foods, LocalDate date, MealTypes identifier) {
         this.foods = foods;
         this.date = date;
+        this.identifier = identifier;
         calculateTotalCalories();
     }
 
@@ -37,6 +41,19 @@ public class Meal implements Comparable<Meal> {
         return this.totalCalories;
     }
 
+    public void setTotalCalories(double totalCalories) {
+        this.totalCalories = totalCalories;
+    }
+
+    public MealTypes getIdentifier() {
+        return this.identifier;
+    }
+
+    public void setIdentifier(MealTypes identifier) {
+        this.identifier = identifier;
+    }
+
+
     public void calculateTotalCalories() {
         for (Food food : foods) {
             this.totalCalories += food.getCalories();
@@ -44,21 +61,22 @@ public class Meal implements Comparable<Meal> {
     }
 
     public String[] toWriteFormat(String delimiter, String dateFormat) {
-        String[] output = new String[2];
+        String[] output = new String[3];
         output[0] = date.format(DateTimeFormatter.ofPattern(dateFormat, Locale.ENGLISH));
         String[] foodArray = new String[foods.size()];
         for (int i = 0; i < foods.size(); i++) {
             foodArray[i] = String.valueOf(foods.get(i).getId());
         }
         output[1] = String.join(delimiter, foodArray);
+        output[2] = this.identifier.toString();
         return output;
     }
 
     @Override
     public String toString() {
-        String output = "Meal was consumed on " + 
+        String output = this.identifier + " was consumed on " + 
                 date.format(DateTimeFormatter.ofPattern(DATE_FORMAT, Locale.ENGLISH)) + System.lineSeparator();
-        output += "Total Calories are: " + this.getTotalCalories() + System.lineSeparator();
+        output += "Total Calories are: " + this.totalCalories + System.lineSeparator();
         output += "Here are the foods you ate:" + System.lineSeparator();
         for (int i = 0; i < foods.size(); i++) {
             output += (i+1) + ") " + foods.get(i).toString() + System.lineSeparator();
@@ -71,6 +89,11 @@ public class Meal implements Comparable<Meal> {
         if (getDate() == null || otherMeal.getDate() == null) {
             return 0;
         }
-        return this.getDate().compareTo(otherMeal.getDate());
+        int comparator = this.getDate().compareTo(otherMeal.getDate());
+        if (comparator != 0) {
+            return comparator;
+        } else {
+            return this.getIdentifier().isBefore(otherMeal.getIdentifier());
+        }
     }
 }
