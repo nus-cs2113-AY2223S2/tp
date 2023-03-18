@@ -1,0 +1,7 @@
+package seedu.pocketpal.communication;
+
+public enum RequestParams {
+    GET_SIZE, NUM_ENTRIES,
+    EDIT_AMOUNT, EDIT_CATEGORY, EDIT_DESCRIPTION,
+    FILTER_BY_CATEGORY, FILTER_BY_QUERY, FILTER_BY_AMOUNT_START, FILTER_BY_AMOUNT_END
+}

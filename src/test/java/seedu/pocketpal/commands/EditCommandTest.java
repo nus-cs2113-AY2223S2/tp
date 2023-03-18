@@ -1,24 +1,27 @@
 package seedu.pocketpal.commands;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import seedu.pocketpal.constants.MessageConstants;
-import seedu.pocketpal.entries.Category;
-import seedu.pocketpal.entries.Entry;
-import seedu.pocketpal.entrylog.EntryLog;
-import seedu.pocketpal.ui.UI;
+import seedu.pocketpal.frontend.commands.EditCommand;
+import seedu.pocketpal.frontend.constants.MessageConstants;
+import seedu.pocketpal.data.entry.Category;
+import seedu.pocketpal.data.entry.Entry;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @DisplayName("Test edit command")
-public class EditCommandTest {
+public class EditCommandTest extends CommandTest {
     private final EditCommand expectedEditCommand = new EditCommand("1", "Lunch", "Food", "5");
     private final Entry originalEntry = new Entry("Dinner", 7.50, Category.FOOD);
-    private final EntryLog originalEntries = new EntryLog();
-    private final UI ui = new UI();
     private final String[] proposedChanges = {"1", "Lunch", "", ""};
+
+    @BeforeEach
+    void init() {
+        TEST_BACKEND.clearData();
+    }
 
     @Test
     @DisplayName("Test constructor for EditCommand")
@@ -37,11 +40,13 @@ public class EditCommandTest {
     @Test
     @DisplayName("Test execute method in editCommand")
     void testExecuteMethod() {
+        System.out.println(getNumEntries());
         EditCommand editCommand = new EditCommand(proposedChanges[0], proposedChanges[1], proposedChanges[2]
                 , proposedChanges[3]);
-        originalEntries.addEntry(originalEntry);
-        assertDoesNotThrow(() -> editCommand.executor(originalEntries, ui), MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
-        Entry changedEntry = originalEntries.getEntriesList().get(0);
+        addEntry(originalEntry);
+        assertDoesNotThrow(() -> editCommand.execute(TEST_UI, TEST_BACKEND),
+                MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
+        Entry changedEntry = getEntryById(1);
         assertEquals(changedEntry.getDescription(), "Lunch");
         assertEquals(changedEntry.getCategoryString(), "Food");
         assertEquals(changedEntry.getAmount(), 7.50);

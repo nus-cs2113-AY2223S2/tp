@@ -1,35 +1,33 @@
 package seedu.pocketpal.commands;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import seedu.pocketpal.entries.Category;
-import seedu.pocketpal.entries.Entry;
-import seedu.pocketpal.entrylog.EntryLog;
-import seedu.pocketpal.ui.UI;
-
-import java.util.ArrayList;
-import java.util.List;
+import seedu.pocketpal.data.entry.Category;
+import seedu.pocketpal.data.entry.Entry;
+import seedu.pocketpal.frontend.commands.DeleteCommand;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @DisplayName("Test delete command")
-public class DeleteCommandTest {
+public class DeleteCommandTest extends CommandTest {
     private final Entry testEntry = new Entry("Rice", 8.50, Category.FOOD);
-    private final List<Entry> testEntriesList = new ArrayList<>() {{
-            add(testEntry);
-        }};
-    private final EntryLog testEntries = new EntryLog(testEntriesList);
-    private final UI ui = new UI();
+
+    @BeforeEach
+    void init() {
+        TEST_BACKEND.clearData();
+        addEntry(testEntry);
+    }
 
     @Test
     @DisplayName("Test constructor for DeleteCommand")
-    void testDeleteCommand(){
+    void testDeleteCommand() {
         try {
             DeleteCommand deleteCommand = new DeleteCommand(1);
-            assertEquals(0, deleteCommand.getEntryId());
+            assertEquals(1, deleteCommand.getEntryId());
         } catch (Exception e) {
             fail("Unexpected exception");
         }
@@ -37,11 +35,11 @@ public class DeleteCommandTest {
 
     @Test
     @DisplayName("Test execute method in DeleteCommand")
-    void testExecute(){
+    void testExecute() {
         try {
             DeleteCommand testCommand = assertDoesNotThrow(() -> new DeleteCommand(1));
-            testCommand.executor(testEntries, ui);
-            assertFalse(testEntries.getEntriesList().contains(testEntry));
+            testCommand.execute(TEST_UI, TEST_BACKEND);
+            assertNull(getEntryById(1));
         } catch (Exception e) {
             fail("Unexpected exception");
         }
