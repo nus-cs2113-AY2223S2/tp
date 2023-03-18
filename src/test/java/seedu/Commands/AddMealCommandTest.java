@@ -6,6 +6,9 @@ import seedu.database.MealStorage;
 import seedu.entities.Food;
 import seedu.entities.Meal;
 import seedu.exceptions.InvalidArgumentsException;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,13 +17,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class AddMealCommandTest {
     private final FoodStorage foodStorage = new FoodStorage();
     private final MealStorage mealStorage = new MealStorage("./data/mealData.csv", foodStorage);
+    private final DateTimeFormatter dtf = mealStorage.getDateTimeFormatter();
     private ArrayList<Food> foodList = new ArrayList<>();
 
     @Test
     void addMeal_singleMealAdded_expectListSizeIncrease() throws InvalidArgumentsException {
         int oldSize = mealStorage.getMealCount();
         foodList.add(foodStorage.getFoodById(2));
-        String date = "1/1/2023";
+        LocalDate date = LocalDate.parse("1/1/2023", dtf);
         mealStorage.saveMeal(new Meal(foodList, date));
         int newSize = mealStorage.getMealCount();
         assertEquals(oldSize + 1, newSize);

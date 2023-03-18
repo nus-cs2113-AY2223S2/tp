@@ -1,5 +1,8 @@
 package seedu.commands;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import seedu.database.FoodStorage;
@@ -16,15 +19,23 @@ public class AddMealCommand extends Command {
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
                 throws LifeTrackerException {
-        String date;
+        String dateString = "";
+        LocalDate date;
         String foodName;
         boolean toContinue = true;
         int choice;
         Meal meal;
         ArrayList<Food> foods = new ArrayList<Food>();
+        DateTimeFormatter dtf = mealStorage.getDateTimeFormatter();
 
         System.out.println("Enter date of meal:");
-        date = ui.readLine();
+        try {
+            dateString = ui.readLine();
+            date = LocalDate.parse(dateString, dtf);
+        } catch (DateTimeParseException e) {
+            throw new LifeTrackerException(System.lineSeparator() + "Invalid Date: " + dateString + 
+                    "! Please format using d/m/yyyy");
+        }
 
         do {
             System.out.println("Enter food:");

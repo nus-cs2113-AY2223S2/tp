@@ -1,13 +1,17 @@
 package seedu.entities;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Meal {
+    private static final String DATE_FORMAT = "d/M/yyyy";
     private ArrayList<Food> foods;
-    private String date;
+    private LocalDate date;
     private double totalCalories;
 
-    public Meal(ArrayList<Food> foods, String date) {
+    public Meal(ArrayList<Food> foods, LocalDate date) {
         this.foods = foods;
         this.date = date;
         calculateTotalCalories();
@@ -21,11 +25,11 @@ public class Meal {
         this.foods = foods;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return this.date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -39,9 +43,9 @@ public class Meal {
         }
     }
 
-    public String[] toWriteFormat(String delimiter) {
+    public String[] toWriteFormat(String delimiter, String dateFormat) {
         String[] output = new String[2];
-        output[0] = date;
+        output[0] = date.format(DateTimeFormatter.ofPattern(dateFormat, Locale.ENGLISH));
         String[] foodArray = new String[foods.size()];
         for (int i = 0; i < foods.size(); i++) {
             foodArray[i] = String.valueOf(foods.get(i).getId());
@@ -52,7 +56,8 @@ public class Meal {
 
     @Override
     public String toString() {
-        String output = "Meal was consumed on " + date + System.lineSeparator();
+        String output = "Meal was consumed on " + 
+                date.format(DateTimeFormatter.ofPattern(DATE_FORMAT, Locale.ENGLISH)) + System.lineSeparator();
         output += "Total Calories are: " + this.getTotalCalories() + System.lineSeparator();
         output += "Here are the foods you ate:" + System.lineSeparator();
         for (int i = 0; i < foods.size(); i++) {
