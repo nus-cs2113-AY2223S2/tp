@@ -20,7 +20,7 @@ public class ListCommandTest {
         // Create a new instance of the class that contains the showWorkoutList() method
         // and add some sample data to the workoutList
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
         Date date = format.parse("06/03/23");
 
 
