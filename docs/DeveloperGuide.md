@@ -60,6 +60,42 @@ We would like to acknowledge:
 
 ## Implementation
 
+### Add Module
+
+The AddModule functionality allows users to add a module to their Module List. Beyond just adding their modules to the
+module list, users are also able to add their specific lessons (e.g Lectures and Tutorials) to their module list. 
+This is facilitated by the AddMod command which is an extension of the Command class. Below is an example usage of how 
+the AddMod command can be used to add both modules and their specific lessons.
+
+For when a user adds only a module (e.g CS2113) to the module list with no specific lessons, the following command can 
+be used:
+
+Step 1: Define the Constructor :
+When user executes the command `addmod cs2113` the Parser class calls the `AddModCommand()` method of the AddModCommand. 
+The constructor of the AddModCommand class takes in a moduleCode `cs2113` as a parameter and `allModules`. This 
+moduleCode is used to find `cs2113` from the ModuleData list.
+
+Step 2: Define the `setUpLogger()` method :
+The `setUpLogger()` method sets up the logger for the DeleteModuleCommand class. It creates a ConsoleHandler and a
+FileHandler to handle logging.
+
+Step 3: Override the `execute()` method :
+The `execute()` method is overridden to execute the delete module functionality. It takes in the necessary parameters,
+including the `ModuleList`, `Ui`, `Storage`, `TaskList` and `allModules`.
+
+Step 4: Check if the module exists in the list :
+The first step in the `execute()` method is to split the parameters into the module code and the lesson type. It then 
+calls the `isAdded()` method of the `ModuleList` class to check if the module already exists in the list. If the module
+exists, a `DuplicateModuleException` is thrown.
+
+Step 5: Add the module to the ModuleList :
+If the module does not exist, it is added to the `ModuleList` by calling the `add()` method of the `ModuleList` class.
+The module is sorted alphabetically by the `sort()` method of the `ModuleList` class.
+
+Step 6: Print the confirmation message :
+A confirmation message is printed to the user indicating that the module has been successfully added. The message
+includes the module code and title of the module added as well as the available lesson types for the module.
+
 ### Delete Module
 
 The DeleteModule functionality allows users to remove a module from the ModuleList.
