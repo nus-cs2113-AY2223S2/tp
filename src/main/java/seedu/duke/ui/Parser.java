@@ -63,6 +63,9 @@ public class Parser {
             Information.resetDiagnosisHistory(Duke.getPassword());
             break;
         case "4":
+            Information.resetSymptomChoice(Menu.symptoms);
+            break;
+        case "5":
             Menu.exit();
             break;
         default:

@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class DiagnosisTest {
     @Test
     public void diagnoseGeneralCold() {
-        ArrayList<Symptom> testSymptoms = new ArrayList<>(List.of(Symptom.BLOCKED_NOSE,
+        ArrayList<Symptom> testSymptoms = new ArrayList<>(List.of(Symptom.FATIGUE,
                 Symptom.RUNNY_NOSE,
                 Symptom.SNEEZING,
                 Symptom.CHILLS,

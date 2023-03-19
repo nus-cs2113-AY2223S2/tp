@@ -11,7 +11,7 @@ public class GeneralCold extends Illness {
 
     public GeneralCold() {
         super("General Cold", 2, true, new ArrayList<>(
-                List.of(Symptom.BLOCKED_NOSE,
+                List.of(Symptom.FATIGUE,
                         Symptom.RUNNY_NOSE,
                         Symptom.SNEEZING,
                         Symptom.CHILLS,
