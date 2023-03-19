@@ -2,7 +2,6 @@ package seedu.commands;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import seedu.database.FoodStorage;
@@ -11,10 +10,10 @@ import seedu.database.UserStorage;
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
-import seedu.exceptions.InvalidDateException;
 import seedu.exceptions.InvalidIndexException;
 import seedu.exceptions.InvalidMealException;
 import seedu.exceptions.LifeTrackerException;
+import seedu.exceptions.MissingArgumentsException;
 import seedu.logger.LogFileHandler;
 import seedu.parser.DateParser;
 import seedu.ui.GeneralUi;
@@ -47,7 +46,11 @@ public class AddMealCommand extends Command {
         mealTypeString = "";
         mealType = null;
 
-        getDetails(ui, foodStorage);
+        if (commandWord.length() == userInput.length()) {
+            getDetails(ui, foodStorage);
+        } else {
+            parseCommand(ui, foodStorage);
+        }
         
         meal = new Meal(foods, date, mealType);
         mealStorage.saveMeal(meal);
@@ -101,5 +104,48 @@ public class AddMealCommand extends Command {
             
         } while (toContinue);
 
+    }
+
+    private void parseCommand(GeneralUi ui, FoodStorage foodStorage) throws LifeTrackerException {
+        int dateIndex;
+        int mealTypeIndex;
+        int foodIndex;
+        String dateString;
+        String mealTypeString;
+        String foodString;
+        String[] foodList;
+        String dateIdentifier = "/on";
+        String mealTypeIdentifier = "/type";
+        String foodIdentifier = "/foods";
+
+        dateIndex = userInput.indexOf(dateIdentifier);
+        if (dateIndex == -1) {
+            throw new MissingArgumentsException(commandWord, dateIdentifier);
+        }
+        mealTypeIndex = userInput.indexOf(mealTypeIdentifier);
+        if (mealTypeIndex == -1) {
+            throw new MissingArgumentsException(commandWord, mealTypeIdentifier);
+        }
+        foodIndex = userInput.indexOf(foodIdentifier);
+        if (foodIndex == -1) {
+            throw new MissingArgumentsException(commandWord, foodIdentifier);
+        }
+
+        dateString = userInput.substring(dateIndex+dateIdentifier.length(), mealTypeIndex-1).trim();
+        mealTypeString = userInput.substring(mealTypeIndex+mealTypeIdentifier.length(), foodIndex-1).trim();
+        foodString = userInput.substring(foodIndex+foodIdentifier.length());
+
+        date = DateParser.parse(dateString, dtf);
+        mealType = MealTypes.fromString(mealTypeString);
+        foodList = foodString.split(", ");
+
+        for (int i = 0; i < foodList.length; i++) {
+            List<Food> filteredFoods = foodStorage.getFoodsByName(foodList[i]);
+            if (filteredFoods.size() == 0) {
+                System.out.println("Could not parse: " + foodList[i] + ". Skipping...");
+                continue;
+            }
+            foods.add(filteredFoods.get(0));
+        }
     }
 }
