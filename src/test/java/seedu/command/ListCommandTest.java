@@ -34,7 +34,7 @@ public class ListCommandTest {
         testList.showWorkoutList();
 
         // Assert that the console output matches the expected output
-        assertEquals("Here are the list of dates for your workout:\n" +
+        assertEquals("Here are the list of dates for your workout: \n" +
                         "11-11-23\n" +
                         "11-10-23\n",
                 outContent.toString());
