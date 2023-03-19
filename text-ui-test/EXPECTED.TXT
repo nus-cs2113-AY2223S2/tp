@@ -14,14 +14,14 @@ Hello from rainyDay!
 Welcome John
 Done! Added: in for ang bao, +$1337.00
 Done! Added: out for noodles, -$5.00
-Done! Added: out for bak kwa, -$20.00
+Done! Added: out for miscellaneous, -$20.00
 +-----+------------------------------+------------+----------------+
 |Here is your full financial report!                               |
 +-----+------------------------------+------------+----------------+
 |Index|Name                          |Amount      |Category        |
 |00001|ang bao                       | +$1337.00  |Money           |
-|00002|noodles                       | -$5.00     |Default         |
-|00003|bak kwa                       | -$20.00    |Default         |
+|00002|noodles                       | -$5.00     |miscellaneous   |
+|00003|miscellaneous                 | -$20.00    |food            |
 +-----+------------------------------+------------+----------------+
 |Inflow: $1337.00
 |Outflow: $25.00
@@ -32,7 +32,7 @@ Done, deleted "noodles" from the financial report
 +-----+------------------------------+------------+----------------+
 |Index|Name                          |Amount      |Category        |
 |00001|ang bao                       | +$1337.00  |Money           |
-|00002|bak kwa                       | -$20.00    |Default         |
+|00002|miscellaneous                 | -$20.00    |food            |
 +-----+------------------------------+------------+----------------+
 |Inflow: $1337.00
 |Outflow: $20.00
