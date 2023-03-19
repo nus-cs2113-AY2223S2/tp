@@ -34,7 +34,7 @@ internal reference to the list of expenses `expenseList` to be added to.
 The `CommandAdd#execute()` operation is exposed in the main `Duke` class, while the operations in `ParserAdd` are
 exposed in the `Parser` class.
 
-![](./diagrams/AddFeature.puml)
+![](/docs/diagrams/AddFeature.puml)
 
 Given below is an example usage of the feature.
 
