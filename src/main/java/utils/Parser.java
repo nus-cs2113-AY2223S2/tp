@@ -23,9 +23,7 @@ import exceptions.DinerDirectorException;
 import entity.Deadline;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -294,10 +292,9 @@ public class Parser {
     }
 
     private Command prepareAddDishCommand(String userInputNoCommand) {
-//        MENU COMMANDS:
-//        add_dish n/<name>
-//        pc/<price in cents>
-//        [<ingredient 1>;<ingredients 2>;<ingredient 3>; ... ]
+        //MENU COMMANDS: add_dish n/<name>
+        //                      pc/<price in cents>
+        //                      [<ingredient 1>;<ingredients 2>;<ingredient 3>; ... ]
 
         String name = "";
         int price = 0;
