@@ -1,6 +1,6 @@
 package seedu.rainyDay;
 
-import  seedu.rainyDay.exceptions.RainyDayException;
+import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 import seedu.rainyDay.command.Command;
@@ -53,6 +53,7 @@ public class RainyDay {
                 System.out.println(e.getMessage());
             } catch (Exception e) {
                 logger.log(Level.WARNING, e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
         ui.sayFarewellToUser(financialReport.getReportOwner());

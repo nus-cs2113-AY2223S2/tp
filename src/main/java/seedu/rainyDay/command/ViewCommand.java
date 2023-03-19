@@ -50,8 +50,8 @@ public class ViewCommand extends Command {
 
         logger.log(Level.INFO, "passed Ui acknowledge view command");
 
-        int totalInflow = 0;
-        int totalOutflow = 0;
+        double totalInflow = 0;
+        double totalOutflow = 0;
         for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
             logger.log(Level.INFO, "starting statement " + i);
             FinancialStatement currentStatement = financialReport.getFinancialStatement(i);

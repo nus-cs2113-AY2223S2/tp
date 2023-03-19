@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-18T19:35:48.038983500Z</date>
+  <millis>1679168148038</millis>
+  <nanos>983500</nanos>
+  <sequence>52</sequence>
+  <logger>seedu.rainyDay.command.DeleteCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.DeleteCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting DeleteCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-18T19:35:48.038983500Z</date>
+  <millis>1679168148038</millis>
+  <nanos>983500</nanos>
+  <sequence>53</sequence>
+  <logger>seedu.rainyDay.command.DeleteCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.DeleteCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T07:24:04.136476200Z</date>
+  <millis>1679210644136</millis>
+  <nanos>476200</nanos>
+  <sequence>14</sequence>
+  <logger>seedu.rainyDay.command.DeleteCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.DeleteCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting DeleteCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-19T07:24:04.137500400Z</date>
+  <millis>1679210644137</millis>
+  <nanos>500400</nanos>
+  <sequence>15</sequence>
+  <logger>seedu.rainyDay.command.DeleteCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.DeleteCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui</message>
+</record>
+</log>

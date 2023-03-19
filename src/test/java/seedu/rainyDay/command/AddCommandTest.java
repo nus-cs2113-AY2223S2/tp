@@ -36,10 +36,10 @@ public class AddCommandTest {
     @Test
     public void execute_singleStatement_statementInformation() {
         setUpStreams();
-        AddCommand addCommand = new AddCommand("Ipad", "out", 120, "Default");
+        AddCommand addCommand = new AddCommand("Ipad", "out", 120.50, "Default");
         addCommand.setData(financialReport);
         addCommand.execute();
-        String expectedAddStatement = "Done! Added: out for Ipad, -$120" + System.lineSeparator();
+        String expectedAddStatement = "Done! Added: out for Ipad, -$120.50" + System.lineSeparator();
         assertEquals(expectedAddStatement, outContent.toString());
         restoreStreams();
     }
@@ -47,13 +47,13 @@ public class AddCommandTest {
     @Test
     public void execute_multipleStatements_statementsInformation() {
         setUpStreams();
-        AddCommand addCommand = new AddCommand("angpao", "in", 3000, "Default");
+        AddCommand addCommand = new AddCommand("angpao", "in", 3000.00, "Default");
         addCommand.setData(financialReport);
         addCommand.execute();
-        String expectedAddStatement = "Done! Added: in for angpao, +$3000" + System.lineSeparator();
+        String expectedAddStatement = "Done! Added: in for angpao, +$3000.00" + System.lineSeparator();
         assertEquals(expectedAddStatement, outContent.toString());
         restoreStreams();
-        addCommand = new AddCommand("textbook", "out", 50, "Default");
+        addCommand = new AddCommand("textbook", "out", 50.00, "Default");
         addCommand.setData(financialReport);
         addCommand.execute();
         assertEquals(2, financialReport.getStatementCount());
