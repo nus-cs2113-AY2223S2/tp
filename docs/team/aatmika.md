@@ -1,4 +1,4 @@
-# John Doe - Project Portfolio Page
+# Aatmika - Project Portfolio Page
 
 ## Overview
 
