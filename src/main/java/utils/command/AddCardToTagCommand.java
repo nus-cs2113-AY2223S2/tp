@@ -38,6 +38,7 @@ public class AddCardToTagCommand extends Command {
         //find the corresponding Tag and Card based on its tagName and card uuid
         Tag tagToAdd = tagList.findTagFromName(tagName);
         Card cardToAdd = cardList.findCardFromUUID(cardUUID);
+        assert cardToAdd != null;
 
         if (tagToAdd == null) {
             ui.printTagCreationSuccess();

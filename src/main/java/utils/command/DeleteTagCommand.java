@@ -37,6 +37,7 @@ public class DeleteTagCommand extends Command {
         //for each card whose uuid is listed under the tag, remove the tag uuid from that card
         for (CardUUID cardUUID : tag.getCardsUUID()) {
             Card affectedCard = cardList.findCardFromUUID(cardUUID);
+            assert affectedCard != null;
             affectedCard.removeTag(tagUUID);
             ui.printRemoveTagFromCard(affectedCard.getUuid(), tagUUID);
         }
