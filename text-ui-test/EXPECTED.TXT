@@ -30,7 +30,7 @@ ____________________________________________________________
  Please enter all [date]s in the format: "yyyy-MM-ddThh:mm"
  eg. "2023-10-30T23:59" represents Oct 20 2023, 11:59PM
 
-There are various lessons options per module:
+There are -FLAGS for the various lessons options per module:
 -lec			LECTURE
 -plec			PACKAGED LECTURE
 -st 			SECTIONAL TEACHING
@@ -173,8 +173,8 @@ Got it. I've added this module:
   CS2113: Software Engineering & Object-Oriented Programming
 Total modular credits you have in this semester: 4
 Here are the lesson types for this module:
-LECTURE
-TUTORIAL
+Lecture
+Tutorial
 To see how to add lessons, enter 'help'.
 ____________________________________________________________
 ____________________________________________________________
