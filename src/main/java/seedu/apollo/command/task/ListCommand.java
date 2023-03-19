@@ -1,5 +1,6 @@
 package seedu.apollo.command.task;
 
+import seedu.apollo.calendar.Calendar;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.command.Command;
 import seedu.apollo.module.ModuleList;
@@ -61,7 +62,8 @@ public class ListCommand extends Command {
      * @param ui Prints shortlisted Tasks to user.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules) {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
+                        Calendar calendar) {
         ui.printList(taskList);
     }
 
