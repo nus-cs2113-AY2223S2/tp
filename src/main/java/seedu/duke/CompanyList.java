@@ -21,6 +21,14 @@ public class CompanyList {
             return false;
         }
     }
+    public void printCompanyInformation() throws EmptyListException {
+        if (companyList.isEmpty()) {
+            throw new EmptyListException();
+        }
+        for (int i = 0; i < companyList.size(); i++) {
+            System.out.println(companyList.get(i));
+        }
+    }
 
     public void deleteCompanyInformation(int index) {
         Ui ui = new Ui();
