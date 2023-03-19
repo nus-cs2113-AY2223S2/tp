@@ -130,4 +130,8 @@ public class Ui {
     public void sayFarewellToUser(String username) {
         System.out.println("Bye " + username);
     }
+
+    public void showToUser(String message) {
+        out.println(message);
+    }
 }
