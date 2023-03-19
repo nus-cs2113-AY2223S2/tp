@@ -30,8 +30,29 @@ public class DeleteCommand extends Command {
         }
     }
 
+//    @Override
+//    public void execute() {
+//        setupLogger();
+//        logger.log(Level.INFO, "starting DeleteCommand.execute()");
+//
+//        index -= 1;
+//
+//        int previousStatementCount = financialReport.getStatementCount();
+//        assert (index < financialReport.getStatementCount() && index >= 0) : "invalid index provided for delete";
+//
+//        Ui.printDeletedFinancialStatement(financialReport.getStatementDescription(index));
+//
+//        logger.log(Level.INFO, "passed Ui");
+//
+//        financialReport.deleteStatement(index);
+//
+//        assert previousStatementCount - 1 == financialReport.getStatementCount() : "statement count mismatch";
+//
+//        logger.log(Level.INFO, "deleted from financial report");
+//    }
+
     @Override
-    public void execute() {
+    public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting DeleteCommand.execute()");
 
@@ -40,14 +61,15 @@ public class DeleteCommand extends Command {
         int previousStatementCount = financialReport.getStatementCount();
         assert (index < financialReport.getStatementCount() && index >= 0) : "invalid index provided for delete";
 
-        Ui.printDeletedFinancialStatement(financialReport.getStatementDescription(index));
-
-        logger.log(Level.INFO, "passed Ui");
+        String output = "Done, deleted \"" + financialReport.getStatementDescription(index)
+                + "\" from the financial report";
 
         financialReport.deleteStatement(index);
 
         assert previousStatementCount - 1 == financialReport.getStatementCount() : "statement count mismatch";
 
         logger.log(Level.INFO, "deleted from financial report");
+
+        return new CommandResult(output);
     }
 }
