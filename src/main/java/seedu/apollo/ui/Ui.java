@@ -67,7 +67,7 @@ public class Ui {
                 " Enter \"deadline [task] /by [date]\" to add a deadline\n" +
                 " Enter \"event [task] /from [date] /to [date]\" to add an event\n" +
                 " Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n" +
-                " Enter \"addmod [MODULE_CODE] -FLAG [LESSON NUMBER]\" to add a lesson\n" +
+                " Enter \"addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a lesson\n" +
                 " Enter \"mark [idx]\" to mark task as done\n" +
                 " Enter \"unmark [idx]\" to mark task as not done\n" +
                 " Enter \"delete [idx]\" to remove task from list\n" +
@@ -175,9 +175,13 @@ public class Ui {
      *
      * @param newModule Module that has just been added.
      */
-    public void printAddModuleMessage(Module newModule) {
+    public void printAddModuleMessage(Module newModule, ModuleList allModules, ArrayList<LessonType> lessonTypes) {
         System.out.println("Got it. I've added this module:\n" +
-                "  " + newModule);
+                "  " + newModule + "\n");
+        printTotalModularCredits(allModules);
+        System.out.println("Enter \"addmod " + newModule.getCode() + " -[FLAG] [LESSON NUMBER]\" " +
+                "to add lessons for this module.");
+        printLessonTypeMessage(lessonTypes);
     }
 
     /**
@@ -187,15 +191,8 @@ public class Ui {
      * @param allModules ArrayList of Modules
      */
     public void printTotalModularCredits(ModuleList allModules) {
-        allModules.totalModuleCredits();
-    }
-
-    /**
-     * For {@code addmod} command.
-     * Prints out a message for user to refer to help menu for lesson option flags.
-     */
-    public void printAddLessonOptions() {
-        System.out.println("To see how to add lessons, enter 'help'.");
+        int moduleCredits = allModules.getTotalModuleCredits();
+        System.out.println("Total modular credits you have in this semester: " + moduleCredits);
     }
 
 
@@ -422,8 +419,15 @@ public class Ui {
         System.out.println("Please specify a module to delete!");
     }
 
-    public void printDuplicateModule() {
+    /**
+     * Prints warning that the module being added by the user has been added before.
+     *
+     * @param module The module being added.
+     */
+    public void printDuplicateModule(Module module) {
         System.out.println("Module already added in Module List!");
+        System.out.println("Enter \"addmod " + module.getCode() + " -[FLAG] [LESSON NUMBER]\" " +
+                "to add lessons for this module.");
     }
 
     /**
@@ -437,11 +441,10 @@ public class Ui {
             return;
         }
         System.out.println("Here are the lesson types for this module:");
-        lessonTypes.sort(
-                Comparator.comparing(Enum::toString));
+        lessonTypes.sort(Comparator.comparing(Enum::toString));
 
         for (LessonType lessonType : lessonTypes) {
-            System.out.println(LessonTypeUtil.enumToString(lessonType));
+            System.out.println(LessonTypeUtil.enumToString(lessonType, true));
         }
     }
 
