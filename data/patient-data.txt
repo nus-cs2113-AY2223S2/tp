@@ -1,6 +1,14 @@
 1
 Demo
-0
+8
+Bronchitis
+Fever
+Headache
+Insomnia
+COVID-19
+Dengue Fever
+General Cold
+General Flu
 12
 Bob
 0

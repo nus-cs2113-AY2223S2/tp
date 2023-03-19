@@ -66,13 +66,15 @@ public class MedicineManager {
      */
     public ArrayList<IllnessMatch> analyseIllness (ArrayList<Symptom> symptoms) {
         ArrayList<IllnessMatch> possibleIllnesses = Diagnosis.getPossibleIllnesses(symptoms);
-        assert possibleIllnesses != null : "possibleIllnesses should not be null";
         for (IllnessMatch illnessMatch : possibleIllnesses) {
             System.out.println("Medication for: " + illnessMatch.getIllness().getIllnessName());
             ArrayList<Medicine> relevantMedications = getRelevantMedication(illnessMatch.getIllness().getIllnessName());
-            assert relevantMedications != null : "relevantMedications should not be null";
-            for (Medicine medicine : relevantMedications) {
-                System.out.println("    " + medicine.toString() + " / Dosage: " + medicine.getDosage());
+            if (relevantMedications != null) { //@@author Jeraldchen
+                for (Medicine medicine : relevantMedications) {
+                    System.out.println("    " + medicine.toString() + " / Dosage: " + medicine.getDosage());
+                }
+            } else {//@@author Jeraldchen
+                System.out.println("    No medication available. Please consult a doctor."); //@@author Jeraldchen
             }
         }
         return possibleIllnesses;

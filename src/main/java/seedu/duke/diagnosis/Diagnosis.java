@@ -89,7 +89,6 @@ public class Diagnosis {
                     new GeneralHeadAche(),
                     new GeneralMuscleAche(),
                     new Osteoporosis(),
-                    new GeneralHeadAche(),
                     new Migraine(),
                     new Fracture(),
                     new InternalBleeding(),
