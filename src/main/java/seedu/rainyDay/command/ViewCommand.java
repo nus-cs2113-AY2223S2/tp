@@ -1,15 +1,20 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
-import seedu.rainyDay.modules.Ui;
 
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-public class ViewCommand extends Command {
-
+public class ViewCommand extends Command implements FormatReport {
+    private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
+            "+-----+------------------------------+------------+----------------+\n" +
+            "|Here is your full financial report!                               |\n" +
+            "+-----+------------------------------+------------+----------------+\n" +
+            "|Index|Name                          |Amount      |Category        |\n";
+    private static final String VIEW_SUMMARY = "" +
+            "+-----+------------------------------+------------+----------------+\n";
     private static final Logger logger = Logger.getLogger(ViewCommand.class.getName());
 
     public ViewCommand() {
@@ -28,46 +33,92 @@ public class ViewCommand extends Command {
         }
     }
 
+//    @Override
+//    public void execute() {
+//        setupLogger();
+//        logger.log(Level.INFO, "starting ViewCommand.execute()");
+//
+//        if (financialReport.getStatementCount() == 0) {
+//            assert financialReport.getStatementCount() == 0 : "statement count mismatch";
+//
+//            logger.log(Level.INFO, "empty financial report");
+//
+//            Ui.emptyFinancialReport();
+//
+//            logger.log(Level.INFO, "passed Ui, exiting method");
+//            return;
+//        }
+//
+//        assert financialReport.getStatementCount() != 0 : "statement count mismatch";
+//
+//        Ui.acknowledgeViewCommand();
+//
+//        logger.log(Level.INFO, "passed Ui acknowledge view command");
+//
+//        double totalInflow = 0;
+//        double totalOutflow = 0;
+//        for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
+//            logger.log(Level.INFO, "starting statement " + i);
+//            FinancialStatement currentStatement = financialReport.getFinancialStatement(i);
+//            if (currentStatement.getFlowDirection().equals("in")) {
+//                totalInflow += currentStatement.getValue();
+//            } else {
+//                totalOutflow += currentStatement.getValue();
+//            }
+//            Ui.printFinancialStatement(i + 1, currentStatement);
+//            logger.log(Level.INFO, "passed statement " + i);
+//        }
+//
+//        logger.log(Level.INFO, "passed Ui acknowledge view command");
+//
+//        Ui.printSummary(totalInflow, totalOutflow);
+//
+//        logger.log(Level.INFO, "passed Ui, exiting method");
+//    }
+
     @Override
-    public void execute() {
+    public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting ViewCommand.execute()");
 
+        String outcome;
         if (financialReport.getStatementCount() == 0) {
             assert financialReport.getStatementCount() == 0 : "statement count mismatch";
 
             logger.log(Level.INFO, "empty financial report");
 
-            Ui.emptyFinancialReport();
+            outcome = "Your financial report is empty";
 
-            logger.log(Level.INFO, "passed Ui, exiting method");
-            return;
+            return new CommandResult(outcome);
         }
 
         assert financialReport.getStatementCount() != 0 : "statement count mismatch";
 
-        Ui.acknowledgeViewCommand();
-
-        logger.log(Level.INFO, "passed Ui acknowledge view command");
+        outcome = ACKNOWLEDGE_VIEW_COMMAND;
 
         double totalInflow = 0;
         double totalOutflow = 0;
         for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
             logger.log(Level.INFO, "starting statement " + i);
+
             FinancialStatement currentStatement = financialReport.getFinancialStatement(i);
             if (currentStatement.getFlowDirection().equals("in")) {
                 totalInflow += currentStatement.getValue();
             } else {
                 totalOutflow += currentStatement.getValue();
             }
-            Ui.printFinancialStatement(i + 1, currentStatement);
+
+            outcome += FormatReport.formatFinancialStatement(i + 1, currentStatement);
+
             logger.log(Level.INFO, "passed statement " + i);
         }
+        outcome += VIEW_SUMMARY;
 
         logger.log(Level.INFO, "passed Ui acknowledge view command");
 
-        Ui.printSummary(totalInflow, totalOutflow);
+        outcome += FormatReport.formatSummary(totalInflow, totalOutflow);
 
         logger.log(Level.INFO, "passed Ui, exiting method");
+        return new CommandResult(outcome);
     }
 }
