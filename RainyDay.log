@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-03-18T21:08:27.503308100Z</date>
-  <millis>1679173707503</millis>
-  <nanos>308100</nanos>
+  <date>2023-03-19T07:32:59.686210600Z</date>
+  <millis>1679211179686</millis>
+  <nanos>210600</nanos>
   <sequence>0</sequence>
   <logger>seedu.rainyDay.RainyDay</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Starting RainyDay</message>
 </record>
 <record>
-  <date>2023-03-18T21:08:27.561307900Z</date>
-  <millis>1679173707561</millis>
-  <nanos>307900</nanos>
+  <date>2023-03-19T07:32:59.730212200Z</date>
+  <millis>1679211179730</millis>
+  <nanos>212200</nanos>
   <sequence>1</sequence>
   <logger>seedu.rainyDay.RainyDay</logger>
   <level>INFO</level>
@@ -26,35 +26,10 @@
   <message>File loaded successfully.</message>
 </record>
 <record>
-  <date>2023-03-18T21:08:32.340440600Z</date>
-  <millis>1679173712340</millis>
-  <nanos>440600</nanos>
-  <sequence>5</sequence>
-  <logger>seedu.rainyDay.RainyDay</logger>
-  <level>WARNING</level>
-  <class>seedu.rainyDay.RainyDay</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>'add' input not correct!
-Please refer to 'help' for correct user inputs for 'add' commands</message>
-</record>
-<record>
-  <date>2023-03-18T21:08:43.413444800Z</date>
-  <millis>1679173723413</millis>
-  <nanos>444800</nanos>
-  <sequence>9</sequence>
-  <logger>seedu.rainyDay.RainyDay</logger>
-  <level>WARNING</level>
-  <class>seedu.rainyDay.RainyDay</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>Please include a delete index!</message>
-</record>
-<record>
-  <date>2023-03-18T21:11:05.307650500Z</date>
-  <millis>1679173865307</millis>
-  <nanos>650500</nanos>
-  <sequence>13</sequence>
+  <date>2023-03-19T07:33:03.546837600Z</date>
+  <millis>1679211183546</millis>
+  <nanos>837600</nanos>
+  <sequence>4</sequence>
   <logger>seedu.rainyDay.RainyDay</logger>
   <level>INFO</level>
   <class>seedu.rainyDay.RainyDay</class>
@@ -62,3 +37,4 @@ Please refer to 'help' for correct user inputs for 'add' commands</message>
   <thread>1</thread>
   <message>RainyDayException caught</message>
 </record>
+</log>

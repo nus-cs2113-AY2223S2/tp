@@ -830,3 +830,1201 @@
   <thread>1</thread>
   <message>passed Ui, exiting method</message>
 </record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T05:37:16.082930100Z</date>
+  <millis>1679204236082</millis>
+  <nanos>930100</nanos>
+  <sequence>12</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting ViewCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-19T05:37:16.083964300Z</date>
+  <millis>1679204236083</millis>
+  <nanos>964300</nanos>
+  <sequence>13</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T05:37:16.086930300Z</date>
+  <millis>1679204236086</millis>
+  <nanos>930300</nanos>
+  <sequence>14</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T05:37:16.086930300Z</date>
+  <millis>1679204236086</millis>
+  <nanos>930300</nanos>
+  <sequence>15</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T05:37:16.087931600Z</date>
+  <millis>1679204236087</millis>
+  <nanos>931600</nanos>
+  <sequence>16</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T05:37:16.087931600Z</date>
+  <millis>1679204236087</millis>
+  <nanos>931600</nanos>
+  <sequence>17</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui, exiting method</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T07:20:54.594237100Z</date>
+  <millis>1679210454594</millis>
+  <nanos>237100</nanos>
+  <sequence>4</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting ViewCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-19T07:20:54.594237100Z</date>
+  <millis>1679210454594</millis>
+  <nanos>237100</nanos>
+  <sequence>5</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:20:54.597229900Z</date>
+  <millis>1679210454597</millis>
+  <nanos>229900</nanos>
+  <sequence>6</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:20:54.600246400Z</date>
+  <millis>1679210454600</millis>
+  <nanos>246400</nanos>
+  <sequence>7</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:20:54.600246400Z</date>
+  <millis>1679210454600</millis>
+  <nanos>246400</nanos>
+  <sequence>8</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:20:54.602138Z</date>
+  <millis>1679210454602</millis>
+  <nanos>138000</nanos>
+  <sequence>9</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui, exiting method</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T07:21:58.746164200Z</date>
+  <millis>1679210518746</millis>
+  <nanos>164200</nanos>
+  <sequence>4</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting ViewCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-19T07:21:58.746164200Z</date>
+  <millis>1679210518746</millis>
+  <nanos>164200</nanos>
+  <sequence>5</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:21:58.749057900Z</date>
+  <millis>1679210518749</millis>
+  <nanos>57900</nanos>
+  <sequence>6</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:21:58.752151200Z</date>
+  <millis>1679210518752</millis>
+  <nanos>151200</nanos>
+  <sequence>7</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:21:58.752151200Z</date>
+  <millis>1679210518752</millis>
+  <nanos>151200</nanos>
+  <sequence>8</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:21:58.753118400Z</date>
+  <millis>1679210518753</millis>
+  <nanos>118400</nanos>
+  <sequence>9</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui, exiting method</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T07:22:46.296529900Z</date>
+  <millis>1679210566296</millis>
+  <nanos>529900</nanos>
+  <sequence>4</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting ViewCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-19T07:22:46.296529900Z</date>
+  <millis>1679210566296</millis>
+  <nanos>529900</nanos>
+  <sequence>5</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:22:46.300525Z</date>
+  <millis>1679210566300</millis>
+  <nanos>525000</nanos>
+  <sequence>6</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:22:46.303421700Z</date>
+  <millis>1679210566303</millis>
+  <nanos>421700</nanos>
+  <sequence>7</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:22:46.304421800Z</date>
+  <millis>1679210566304</millis>
+  <nanos>421800</nanos>
+  <sequence>8</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:22:46.304421800Z</date>
+  <millis>1679210566304</millis>
+  <nanos>421800</nanos>
+  <sequence>9</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui, exiting method</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T07:23:06.470071400Z</date>
+  <millis>1679210586470</millis>
+  <nanos>71400</nanos>
+  <sequence>19</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting ViewCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:06.471069600Z</date>
+  <millis>1679210586471</millis>
+  <nanos>69600</nanos>
+  <sequence>20</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:06.471069600Z</date>
+  <millis>1679210586471</millis>
+  <nanos>69600</nanos>
+  <sequence>21</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:06.471069600Z</date>
+  <millis>1679210586471</millis>
+  <nanos>69600</nanos>
+  <sequence>22</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:06.472069300Z</date>
+  <millis>1679210586472</millis>
+  <nanos>69300</nanos>
+  <sequence>23</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:06.473072300Z</date>
+  <millis>1679210586473</millis>
+  <nanos>72300</nanos>
+  <sequence>24</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:06.473072300Z</date>
+  <millis>1679210586473</millis>
+  <nanos>72300</nanos>
+  <sequence>25</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:06.473072300Z</date>
+  <millis>1679210586473</millis>
+  <nanos>72300</nanos>
+  <sequence>26</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui, exiting method</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T07:23:58.094008600Z</date>
+  <millis>1679210638094</millis>
+  <nanos>8600</nanos>
+  <sequence>4</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting ViewCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:58.094008600Z</date>
+  <millis>1679210638094</millis>
+  <nanos>8600</nanos>
+  <sequence>5</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:58.097897900Z</date>
+  <millis>1679210638097</millis>
+  <nanos>897900</nanos>
+  <sequence>6</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:58.100901100Z</date>
+  <millis>1679210638100</millis>
+  <nanos>901100</nanos>
+  <sequence>7</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:58.100901100Z</date>
+  <millis>1679210638100</millis>
+  <nanos>901100</nanos>
+  <sequence>8</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:58.101899100Z</date>
+  <millis>1679210638101</millis>
+  <nanos>899100</nanos>
+  <sequence>9</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:58.101899100Z</date>
+  <millis>1679210638101</millis>
+  <nanos>899100</nanos>
+  <sequence>10</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:23:58.101899100Z</date>
+  <millis>1679210638101</millis>
+  <nanos>899100</nanos>
+  <sequence>11</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui, exiting method</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T07:24:06.150238100Z</date>
+  <millis>1679210646150</millis>
+  <nanos>238100</nanos>
+  <sequence>20</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting ViewCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-19T07:24:06.150238100Z</date>
+  <millis>1679210646150</millis>
+  <nanos>238100</nanos>
+  <sequence>21</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:24:06.150238100Z</date>
+  <millis>1679210646150</millis>
+  <nanos>238100</nanos>
+  <sequence>22</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:24:06.151233500Z</date>
+  <millis>1679210646151</millis>
+  <nanos>233500</nanos>
+  <sequence>23</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:24:06.151233500Z</date>
+  <millis>1679210646151</millis>
+  <nanos>233500</nanos>
+  <sequence>24</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:24:06.151233500Z</date>
+  <millis>1679210646151</millis>
+  <nanos>233500</nanos>
+  <sequence>25</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui, exiting method</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T07:24:22.309744100Z</date>
+  <millis>1679210662309</millis>
+  <nanos>744100</nanos>
+  <sequence>35</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting ViewCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-19T07:24:22.310751Z</date>
+  <millis>1679210662310</millis>
+  <nanos>751000</nanos>
+  <sequence>36</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:24:22.310751Z</date>
+  <millis>1679210662310</millis>
+  <nanos>751000</nanos>
+  <sequence>37</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:24:22.311743700Z</date>
+  <millis>1679210662311</millis>
+  <nanos>743700</nanos>
+  <sequence>38</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:24:22.311743700Z</date>
+  <millis>1679210662311</millis>
+  <nanos>743700</nanos>
+  <sequence>39</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:24:22.312743300Z</date>
+  <millis>1679210662312</millis>
+  <nanos>743300</nanos>
+  <sequence>40</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:24:22.312743300Z</date>
+  <millis>1679210662312</millis>
+  <nanos>743300</nanos>
+  <sequence>41</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:24:22.312743300Z</date>
+  <millis>1679210662312</millis>
+  <nanos>743300</nanos>
+  <sequence>42</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui, exiting method</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T07:26:09.915793200Z</date>
+  <millis>1679210769915</millis>
+  <nanos>793200</nanos>
+  <sequence>4</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting ViewCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:09.915793200Z</date>
+  <millis>1679210769915</millis>
+  <nanos>793200</nanos>
+  <sequence>5</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:09.919794800Z</date>
+  <millis>1679210769919</millis>
+  <nanos>794800</nanos>
+  <sequence>6</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:09.922792800Z</date>
+  <millis>1679210769922</millis>
+  <nanos>792800</nanos>
+  <sequence>7</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:09.922792800Z</date>
+  <millis>1679210769922</millis>
+  <nanos>792800</nanos>
+  <sequence>8</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:09.922792800Z</date>
+  <millis>1679210769922</millis>
+  <nanos>792800</nanos>
+  <sequence>9</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:09.922792800Z</date>
+  <millis>1679210769922</millis>
+  <nanos>792800</nanos>
+  <sequence>10</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:09.923791900Z</date>
+  <millis>1679210769923</millis>
+  <nanos>791900</nanos>
+  <sequence>11</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui, exiting method</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T07:26:32.107649100Z</date>
+  <millis>1679210792107</millis>
+  <nanos>649100</nanos>
+  <sequence>21</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting ViewCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:32.107649100Z</date>
+  <millis>1679210792107</millis>
+  <nanos>649100</nanos>
+  <sequence>22</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:32.107649100Z</date>
+  <millis>1679210792107</millis>
+  <nanos>649100</nanos>
+  <sequence>23</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:32.108647200Z</date>
+  <millis>1679210792108</millis>
+  <nanos>647200</nanos>
+  <sequence>24</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:32.108647200Z</date>
+  <millis>1679210792108</millis>
+  <nanos>647200</nanos>
+  <sequence>25</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:32.108647200Z</date>
+  <millis>1679210792108</millis>
+  <nanos>647200</nanos>
+  <sequence>26</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:32.108647200Z</date>
+  <millis>1679210792108</millis>
+  <nanos>647200</nanos>
+  <sequence>27</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 2</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:32.109646800Z</date>
+  <millis>1679210792109</millis>
+  <nanos>646800</nanos>
+  <sequence>28</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 2</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:32.109646800Z</date>
+  <millis>1679210792109</millis>
+  <nanos>646800</nanos>
+  <sequence>29</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:32.110644900Z</date>
+  <millis>1679210792110</millis>
+  <nanos>644900</nanos>
+  <sequence>30</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui, exiting method</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T07:26:46.246475400Z</date>
+  <millis>1679210806246</millis>
+  <nanos>475400</nanos>
+  <sequence>44</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting ViewCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:46.246475400Z</date>
+  <millis>1679210806246</millis>
+  <nanos>475400</nanos>
+  <sequence>45</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:46.247471300Z</date>
+  <millis>1679210806247</millis>
+  <nanos>471300</nanos>
+  <sequence>46</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:46.247471300Z</date>
+  <millis>1679210806247</millis>
+  <nanos>471300</nanos>
+  <sequence>47</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:46.247471300Z</date>
+  <millis>1679210806247</millis>
+  <nanos>471300</nanos>
+  <sequence>48</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:46.248533100Z</date>
+  <millis>1679210806248</millis>
+  <nanos>533100</nanos>
+  <sequence>49</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:46.248533100Z</date>
+  <millis>1679210806248</millis>
+  <nanos>533100</nanos>
+  <sequence>50</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 2</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:46.249471500Z</date>
+  <millis>1679210806249</millis>
+  <nanos>471500</nanos>
+  <sequence>51</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 2</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:46.249471500Z</date>
+  <millis>1679210806249</millis>
+  <nanos>471500</nanos>
+  <sequence>52</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 3</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:46.249471500Z</date>
+  <millis>1679210806249</millis>
+  <nanos>471500</nanos>
+  <sequence>53</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 3</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:46.249471500Z</date>
+  <millis>1679210806249</millis>
+  <nanos>471500</nanos>
+  <sequence>54</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:26:46.250470800Z</date>
+  <millis>1679210806250</millis>
+  <nanos>470800</nanos>
+  <sequence>55</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui, exiting method</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T07:33:25.740968600Z</date>
+  <millis>1679211205740</millis>
+  <nanos>968600</nanos>
+  <sequence>7</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting ViewCommand.execute()</message>
+</record>
+<record>
+  <date>2023-03-19T07:33:25.741968800Z</date>
+  <millis>1679211205741</millis>
+  <nanos>968800</nanos>
+  <sequence>8</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:33:25.744967100Z</date>
+  <millis>1679211205744</millis>
+  <nanos>967100</nanos>
+  <sequence>9</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:33:25.748969200Z</date>
+  <millis>1679211205748</millis>
+  <nanos>969200</nanos>
+  <sequence>10</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 0</message>
+</record>
+<record>
+  <date>2023-03-19T07:33:25.748969200Z</date>
+  <millis>1679211205748</millis>
+  <nanos>969200</nanos>
+  <sequence>11</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:33:25.748969200Z</date>
+  <millis>1679211205748</millis>
+  <nanos>969200</nanos>
+  <sequence>12</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 1</message>
+</record>
+<record>
+  <date>2023-03-19T07:33:25.749969300Z</date>
+  <millis>1679211205749</millis>
+  <nanos>969300</nanos>
+  <sequence>13</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 2</message>
+</record>
+<record>
+  <date>2023-03-19T07:33:25.749969300Z</date>
+  <millis>1679211205749</millis>
+  <nanos>969300</nanos>
+  <sequence>14</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 2</message>
+</record>
+<record>
+  <date>2023-03-19T07:33:25.749969300Z</date>
+  <millis>1679211205749</millis>
+  <nanos>969300</nanos>
+  <sequence>15</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>starting statement 3</message>
+</record>
+<record>
+  <date>2023-03-19T07:33:25.750968100Z</date>
+  <millis>1679211205750</millis>
+  <nanos>968100</nanos>
+  <sequence>16</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed statement 3</message>
+</record>
+<record>
+  <date>2023-03-19T07:33:25.750968100Z</date>
+  <millis>1679211205750</millis>
+  <nanos>968100</nanos>
+  <sequence>17</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui acknowledge view command</message>
+</record>
+<record>
+  <date>2023-03-19T07:33:25.750968100Z</date>
+  <millis>1679211205750</millis>
+  <nanos>968100</nanos>
+  <sequence>18</sequence>
+  <logger>seedu.rainyDay.command.ViewCommand</logger>
+  <level>INFO</level>
+  <class>seedu.rainyDay.command.ViewCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>passed Ui, exiting method</message>
+</record>
+</log>

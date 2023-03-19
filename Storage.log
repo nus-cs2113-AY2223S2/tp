@@ -2,10 +2,10 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-03-18T20:50:23.183754800Z</date>
-  <millis>1679172623183</millis>
-  <nanos>754800</nanos>
-  <sequence>17</sequence>
+  <date>2023-03-19T07:26:43.225240300Z</date>
+  <millis>1679210803225</millis>
+  <nanos>240300</nanos>
+  <sequence>38</sequence>
   <logger>Storage.log</logger>
   <level>INFO</level>
   <class>seedu.rainyDay.modules.Storage</class>
@@ -13,3 +13,4 @@
   <thread>1</thread>
   <message>Data successfully written and writeStream successfully flushed and closed</message>
 </record>
+</log>
