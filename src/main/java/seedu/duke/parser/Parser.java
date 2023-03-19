@@ -52,7 +52,7 @@ public interface Parser {
         default:
             throw new WrongFormatException();
         }
-        Command default_command = new Command(command);
-        return default_command;
+        Command defaultCommand = new Command(command);
+        return defaultCommand;
     }
 }

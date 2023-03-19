@@ -23,7 +23,7 @@ public class Eventus {
         storage = new Storage();
         ArrayList<Company> companyArrayList = new ArrayList<>();
         companyList = new CompanyList(companyArrayList);
-        venueList = new VenueList(Storage.venueListInit());
+        venueList = new VenueList(storage.venueListInit());
         ui = new Ui();
         run();
     }
