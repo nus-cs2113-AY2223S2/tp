@@ -98,7 +98,7 @@ public class Storage {
             ArrayList<Step> stepList = new ArrayList<>();
             while (reader.hasNextLine()) {
                 String ingredient = reader.nextLine();
-            if (ingredient.equals(INGREDIENT_LIST)) {
+                if (ingredient.equals(INGREDIENT_LIST)) {
                 } else {
                     ingredientList.add(new Ingredient(ingredient));
                 }
