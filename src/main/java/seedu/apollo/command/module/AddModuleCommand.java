@@ -127,10 +127,8 @@ public class AddModuleCommand extends Command implements seedu.apollo.utils.Logg
         } catch (IOException e) {
             logger.log(Level.SEVERE, "IO Exception", e);
             ui.printErrorForIO();
-
         } catch (DuplicateModuleException e) {
             ui.printDuplicateModule();
-
         } catch (IllegalCommandException e) {
             ui.printInvalidCommand();
         } catch (ClassNotFoundException e) {

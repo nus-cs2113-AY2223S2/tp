@@ -96,6 +96,42 @@ Step 6: Print the confirmation message :
 A confirmation message is printed to the user indicating that the module has been successfully added. The message
 includes the module code and title of the module added as well as the available lesson types for the module.
 
+
+For when a user adds a module (e.g CS2113) to the module list with specific lessons (e.g Lectures and Tutorials), the
+following command can be used:
+
+Step 1: Define the Constructor :
+
+When user executes the command `addmod cs2113 -lec 1` the Parser class calls the `AddModCommand()` method of the 
+AddModCommand class. The constructor of the AddModCommand class takes in the string `cs2113 -lec 1` as a parameter and
+`allModules`. The string is split into a moduleCode `cs2113`, lessonType `-lec` and `1` as class number.
+
+Step 2: Define the `setUpLogger()` method :
+
+The setUpLogger() method sets up the logger for the DeleteModuleCommand class. It creates a ConsoleHandler and a
+FileHandler to handle logging.
+
+Step 3: Override `execute()` method :
+
+The `execute()` method is overridden to execute the delete module functionality. It takes in the necessary parameters,
+including the ModuleList, Ui, Storage, and TaskList.
+
+Step 4: Calls the `handleMultiCommand()` method:
+
+The `handleMultiCommand()` method is called to handle the command. It takes in `moduleList`, `lessonType` and `args` as
+parameters. It then checks if the module already exists in the `ModuleList` by calling the `isAdded()` method.
+
+Step 5: Add the module lessons to the ModuleList :
+
+If the module already exists, the timetable of the classes are added to the module by calling the `addTimetable()` 
+method which takes in `searchModule` and `lessonType` as parameters. If the module does not exist, it is added to the
+Module list and the lessons are added to the module using the `addTimetable()` method of the `ModuleList` class.
+
+Step 6: 
+
+Print the confirmation message :
+A confirmation message is printed to the user indicating that the module lesson has been successfully added.
+
 ### Delete Module
 
 The DeleteModule functionality allows users to remove a module from the ModuleList.

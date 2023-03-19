@@ -40,7 +40,6 @@ import java.util.logging.Logger;
 public class Storage implements seedu.apollo.utils.Logger {
     // Location of save file
     protected static String filePath;
-
     protected static String moduleDataFilePath;
 
     // ints indicating position of terms in each line of the save file
