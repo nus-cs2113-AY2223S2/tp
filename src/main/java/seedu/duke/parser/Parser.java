@@ -10,7 +10,7 @@ import seedu.duke.command.DeleteCommand;
 
 public interface Parser {
 
-    static Command parse(String input) throws WrongFormatException {
+    static Command parse(String input) throws WrongFormatException, NumberFormatException {
         Ui ui = new Ui();
         String[] inputWords = input.split(" ");
         String command = inputWords[0];
@@ -32,7 +32,7 @@ public interface Parser {
             int indexOfSlash = input.indexOf("/");
             int lastIndexOfSlash = input.lastIndexOf("/");
             String companyName = input.substring(0, indexOfSlash - 2);
-            String contactNumber = input.substring(indexOfSlash + 1, lastIndexOfSlash - 2);
+            int contactNumber = Integer.parseInt(input.substring(indexOfSlash + 1, lastIndexOfSlash - 2));
             String contactEmail = input.substring(lastIndexOfSlash + 1);
             AddCommand addCommand = new AddCommand(command, companyName, contactNumber, contactEmail);
             return addCommand;
@@ -49,7 +49,7 @@ public interface Parser {
         default:
             throw new WrongFormatException();
         }
-        Command c = new Command(command);
-        return c;
+        Command default_command = new Command(command);
+        return default_command;
     }
 }

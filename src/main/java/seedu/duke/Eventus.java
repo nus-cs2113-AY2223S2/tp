@@ -43,6 +43,8 @@ public class Eventus {
                 }
             } catch (WrongFormatException err){
                 System.out.println("Wrong Format! Please type <help> for more information");
+            } catch (NumberFormatException err){
+                System.out.println("Number expected! Please type <help> for more information");
             }
         }
     }
