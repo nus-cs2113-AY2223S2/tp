@@ -1,7 +1,6 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
-import seedu.rainyDay.modules.Ui;
 
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -39,25 +38,43 @@ public class AddCommand extends Command {
         }
     }
 
+//    @Override
+//    public void execute() {
+//        setupLogger();
+//        logger.log(Level.INFO, "starting AddCommand.execute()");
+//
+//        int totalStatementCount = financialReport.getStatementCount();
+//
+//        FinancialStatement currentFinancialStatement =
+//                new FinancialStatement(description, flowDirection, value, category);
+//        financialReport.addStatement(currentFinancialStatement);
+//
+//        assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";
+//
+//        logger.log(Level.INFO, " passed assertion");
+//
+//        Ui.printAddedFinancialStatement(currentFinancialStatement);
+//
+//        logger.log(Level.INFO, " passed Ui");
+//
+//        logger.log(Level.INFO, " end of AddCommand.execute()");
+//    }
+
     @Override
-    public void execute() {
+    public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting AddCommand.execute()");
 
         int totalStatementCount = financialReport.getStatementCount();
 
-        FinancialStatement currentFinancialStatement =
-                new FinancialStatement(description, flowDirection, value, category);
-        financialReport.addStatement(currentFinancialStatement);
+        financialReport.addStatement(new FinancialStatement(description, flowDirection, value, category));
 
         assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";
 
-        logger.log(Level.INFO, " passed assertion");
-
-        Ui.printAddedFinancialStatement(currentFinancialStatement);
-
-        logger.log(Level.INFO, " passed Ui");
+        String output = "Done! Added: " + financialReport.getFullStatement(totalStatementCount);
 
         logger.log(Level.INFO, " end of AddCommand.execute()");
+
+        return new CommandResult(output);
     }
 }
