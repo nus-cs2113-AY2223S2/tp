@@ -6,6 +6,7 @@ import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.Task;
 import seedu.apollo.module.Module;
 import seedu.apollo.task.TaskList;
+import seedu.apollo.utils.LessonTypeUtil;
 
 import java.rmi.UnexpectedException;
 import java.time.LocalDate;
@@ -60,13 +61,13 @@ public class Ui {
      * Prints out a list of all available commands.
      */
     public void printHelpMessage() {
-        System.out.println("\n" + "Enter \"list\" to see all tasks\n" +
+        System.out.println("\n" + " Enter \"list\" to see all tasks\n" +
                 " Enter \"listmod\" to see your module list\n" +
                 " Enter \"todo [task]\" to add a task\n" +
                 " Enter \"deadline [task] /by [date]\" to add a deadline\n" +
                 " Enter \"event [task] /from [date] /to [date]\" to add an event\n" +
                 " Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n" +
-                " Enter \"addmod [MODULE_CODE] -[LESSON_TYPE]\" to add a lesson\n" +
+                " Enter \"addmod [MODULE_CODE] -FLAG [LESSON NUMBER]\" to add a lesson\n" +
                 " Enter \"mark [idx]\" to mark task as done\n" +
                 " Enter \"unmark [idx]\" to mark task as not done\n" +
                 " Enter \"delete [idx]\" to remove task from list\n" +
@@ -84,7 +85,7 @@ public class Ui {
      * Prints out a list of all available lesson types and their flags.
      */
     public void printAddModuleOptions() {
-        System.out.println("There are various lessons options per module:\n" +
+        System.out.println("There are -FLAGS for the various lessons options per module:\n" +
                 "-lec\t\t\t" + "LECTURE\n" + "-plec\t\t\t" + "PACKAGED LECTURE\n" + "-st \t\t\t"
                 + "SECTIONAL TEACHING\n" + "-dlec\t\t\t" + "DESIGN LECTURE\n" + "-tut\t\t\t" + "TUTORIAL\n"
                 + "-ptut\t\t\t" + "PACKAGED TUTORIAL\n" + "-rcit\t\t\t" + "RECITATION\n" + "-lab\t\t\t"
@@ -430,7 +431,7 @@ public class Ui {
                 Comparator.comparing(Enum::toString));
 
         for (LessonType lessonType : lessonTypes) {
-            System.out.println(lessonType);
+            System.out.println(LessonTypeUtil.enumToString(lessonType));
         }
     }
 
