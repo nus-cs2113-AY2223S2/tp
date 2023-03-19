@@ -49,7 +49,7 @@ public class AddCommand extends Command {
 
         assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";
 
-        String output = "Done! Added: " + financialReport.getFullStatement(totalStatementCount);
+        String output = "Done! Added: " + financialReport.getFinancialStatement(totalStatementCount).getFullStatement();
 
         logger.log(Level.INFO, " end of AddCommand.execute()");
 
