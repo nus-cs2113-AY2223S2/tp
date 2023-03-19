@@ -2,6 +2,7 @@ package seedu.duke.company;
 
 import seedu.duke.exception.EmptyListException;
 import seedu.duke.exception.InputMismatchException;
+import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -33,7 +34,10 @@ public class CompanyList {
         }
     }
 
-    public void deleteCompanyInformation(int index) {
+    public void deleteCompanyInformation(int index) throws InvalidIndexException {
+        if (index < 0 | index > companyList.size()){
+            throw new InvalidIndexException();
+        }
         Ui ui = new Ui();
         companyList.remove(index);
         ui.showSuccessfulDeletionMessage();

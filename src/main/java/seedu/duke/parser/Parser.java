@@ -37,6 +37,9 @@ public interface Parser {
             AddCommand addCommand = new AddCommand(command, companyName, contactNumber, contactEmail);
             return addCommand;
         case "delete":
+            if (inputWords.length == 1){
+                throw new WrongFormatException();
+            }
             int taskNum = Integer.parseInt(inputWords[1]) - 1;
             DeleteCommand deleteCommand = new DeleteCommand(command, taskNum);
             return deleteCommand;
