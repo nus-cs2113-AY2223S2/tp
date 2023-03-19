@@ -1,6 +1,5 @@
 package seedu.duke.command;
 
-
 import seedu.duke.exception.EmptyListException;
 import seedu.duke.venue.VenueList;
 

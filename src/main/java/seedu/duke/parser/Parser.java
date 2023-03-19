@@ -9,8 +9,8 @@ import seedu.duke.command.ListVenueCommand;
 import seedu.duke.command.DeleteCommand;
 
 public interface Parser {
-    static Command parse(String input) throws WrongFormatException {
 
+    static Command parse(String input) throws WrongFormatException {
         Ui ui = new Ui();
         String[] inputWords = input.split(" ");
         String command = inputWords[0];

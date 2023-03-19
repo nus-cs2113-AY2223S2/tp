@@ -14,11 +14,21 @@ import java.util.Scanner;
 
 public class Eventus {
 
-    public static void main(String[] args) {
-        Ui ui = new Ui();
+    private Storage storage;
+    private CompanyList companyList;
+    private VenueList venueList;
+    private Ui ui;
+
+    public Eventus(){
+        storage = new Storage();
         ArrayList<Company> companyArrayList = new ArrayList<>();
-        CompanyList companyList = new CompanyList(companyArrayList);
-        VenueList venueList = new VenueList(Storage.venueListInit());
+        companyList = new CompanyList(companyArrayList);
+        venueList = new VenueList(Storage.venueListInit());
+        ui = new Ui();
+        run();
+    }
+
+    public void run(){
         ui.showWelcome();
         String input;
         Scanner in = new Scanner(System.in);
@@ -35,5 +45,9 @@ public class Eventus {
                 System.out.println("Wrong Format! Please type <help> for more information");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new Eventus();
     }
 }
