@@ -2,7 +2,6 @@ package seedu.duke.userdata;
 
 import java.util.ArrayList;
 
-import seedu.duke.userdata.Session;
 import seedu.duke.ui.PrintExercises;
 
 /**

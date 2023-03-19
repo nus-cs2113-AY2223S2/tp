@@ -1,120 +1,195 @@
+
+
+
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-    <title>Coverage Report > CommandHandler</title>
-    <style type="text/css">
-        @import "../../css/coverage.css";
-        @import "../../css/idea.min.css";
-    </style>
-    <script type="text/javascript" src="../../js/highlight.min.js"></script>
-    <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+  <title>Coverage Report > CommandHandler</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
 <div class="content">
-    <div class="breadCrumbs">
-        Current scope: <a href="../../index.html">all classes</a>
-        <span class="separator">|</span>
-        <a href="../index.html">seedu.duke.commands</a>
-    </div>
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">seedu.duke.commands</a>
+</div>
 
-    <h1>Coverage Summary for Class: CommandHandler (seedu.duke.commands)</h1>
+<h1>Coverage Summary for Class: CommandHandler (seedu.duke.commands)</h1>
 
-    <table class="coverageStats">
-        <tr>
-            <th class="name">Class</th>
-            <th class="coverageStat
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
 ">
-                Class, %
-            </th>
-            <th class="coverageStat
+  Class, %
+</th>
+<th class="coverageStat 
 ">
-                Method, %
-            </th>
-            <th class="coverageStat
+  Method, %
+</th>
+<th class="coverageStat 
 ">
-                Line, %
-            </th>
-        </tr>
-        <tr>
-            <td class="name">CommandHandler</td>
-            <td class="coverageStat">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CommandHandler</td>
+<td class="coverageStat">
   <span class="percent">
     0%
   </span>
-                <span class="absValue">
+  <span class="absValue">
     (0/1)
   </span>
-            </td>
-            <td class="coverageStat">
+</td>
+<td class="coverageStat">
   <span class="percent">
     0%
   </span>
-                <span class="absValue">
-    (0/2)
+  <span class="absValue">
+    (0/3)
   </span>
-            </td>
-            <td class="coverageStat">
+</td>
+<td class="coverageStat">
   <span class="percent">
     0%
   </span>
-                <span class="absValue">
-    (0/33)
+  <span class="absValue">
+    (0/74)
   </span>
-            </td>
-        </tr>
+</td>
+</tr>
 
-    </table>
+</table>
 
-    <br/>
-    <br/>
+<br/>
+<br/>
 
 
-    <pre>
+<pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package seedu.duke.commands;
 &nbsp;
 &nbsp;import seedu.duke.exceptions.DukeError;
 &nbsp;import seedu.duke.exercisegenerator.GenerateExercise;
+&nbsp;import seedu.duke.storage.StorageHandler;
 &nbsp;import seedu.duke.userdata.UserCareerData;
+&nbsp;import seedu.duke.states.ExerciseStateHandler;
 &nbsp;import seedu.duke.ui.Ui;
 &nbsp;
-<b class="nc">&nbsp;public class CommandHandler {</b>
+&nbsp;import java.util.Scanner;
 &nbsp;
+<b class="nc">&nbsp;public class CommandHandler {</b>
+&nbsp;    private static final boolean COMPLETED_EXERCISE = true;
+&nbsp;    private static final boolean INCOMPLETE_EXERCISE = false;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * @param rawUserCommands This refers to the
+&nbsp;     * @param ui This allows us to output messages
+&nbsp;     * @param exerciseGenerator This takes in filter parameters and outputs a curated exercise list
+&nbsp;     * @param userCareerData This keeps track and allows logging of all user data
+&nbsp;     * @param exerciseStateHandler This allows us to know when we are
+&nbsp;     */
 &nbsp;    public void handleUserCommands (String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator,
-&nbsp;                                    UserCareerData userCareerData) {
+&nbsp;                                    UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
+&nbsp;                                    StorageHandler storageHandler) {
 <b class="nc">&nbsp;        String[] userCommands = rawUserCommands.split(&quot; &quot;);</b>
 <b class="nc">&nbsp;        Command command = null;</b>
 <b class="nc">&nbsp;        boolean errorExists = false;</b>
 &nbsp;        try {
-<b class="nc">&nbsp;            switch (userCommands[0]) {</b>
-&nbsp;            case &quot;generate&quot;:
-<b class="nc">&nbsp;                command = new GenerateFilterCommand(userCommands);</b>
-<b class="nc">&nbsp;                break;</b>
-&nbsp;            case &quot;filters&quot;:
-<b class="nc">&nbsp;                ui.printFilters();</b>
-<b class="nc">&nbsp;                break;</b>
-&nbsp;            case &quot;bye&quot;:
-&nbsp;            case &quot;exit&quot;:
-<b class="nc">&nbsp;                ui.byeUser();</b>
-<b class="nc">&nbsp;                System.exit(0);</b>
-<b class="nc">&nbsp;                break;</b>
-&nbsp;            case &quot;help&quot;:
-<b class="nc">&nbsp;                command = new HelpCommand();</b>
-<b class="nc">&nbsp;                break;</b>
-&nbsp;            case &quot;readSample&quot;:
-<b class="nc">&nbsp;                command = new SampleReadCommand(userCareerData);</b>
-<b class="nc">&nbsp;                break;</b>
-&nbsp;            case &quot;writeSample&quot;:
-&nbsp;                //sample data
-<b class="nc">&nbsp;                command = new SampleSavingCommand(userCareerData,</b>
-<b class="nc">&nbsp;                                                  exerciseGenerator.generateRandomSetFrom(</b>
-<b class="nc">&nbsp;                                                          exerciseGenerator.generateSetAll(), 3));</b>
-<b class="nc">&nbsp;                break;</b>
-&nbsp;            default:
-<b class="nc">&nbsp;                ui.unknownCommand();</b>
-<b class="nc">&nbsp;                errorExists = true;</b>
-&nbsp;                break;
+<b class="nc">&nbsp;            if (exerciseStateHandler.workoutOngoing) {</b>
+&nbsp;                //Workout is on going,
+&nbsp;                //There is no access to:
+&nbsp;                //generate, filter, help, start, history
+<b class="nc">&nbsp;                switch (userCommands[0]) {</b>
+&nbsp;                case &quot;generate&quot;:
+<b class="nc">&nbsp;                    throw new DukeError(&quot;Finish your exercise! Cannot generate new exercise&quot;);</b>
+&nbsp;                case &quot;help&quot;:
+&nbsp;                case &quot;filters&quot;:
+<b class="nc">&nbsp;                    throw new DukeError(&quot;Finish your exercise! Cannot print help messages!&quot;);</b>
+&nbsp;                case &quot;bye&quot;:
+&nbsp;                case &quot;exit&quot;:
+<b class="nc">&nbsp;                    boolean exit = confirmExitDuringWorkout();</b>
+<b class="nc">&nbsp;                    if (exit) {</b>
+<b class="nc">&nbsp;                        ui.byeUser();</b>
+<b class="nc">&nbsp;                        System.exit(0);</b>
+&nbsp;                    } else {
+<b class="nc">&nbsp;                        System.out.println(&quot;You got this! Finish your exercise session!&quot;);</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case &quot;readSample&quot;:
+&nbsp;                case &quot;writeSample&quot;:
+<b class="nc">&nbsp;                    throw new DukeError(&quot;Finish your exercise! Testing of our features can come after that :)&quot;);</b>
+&nbsp;                case &quot;start&quot;:
+<b class="nc">&nbsp;                    throw new DukeError(&quot;Exercise already in progress!&quot;);</b>
+&nbsp;                case &quot;current&quot;:
+<b class="nc">&nbsp;                    exerciseStateHandler.printCurrentWorkout();</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case &quot;finish&quot;:
+<b class="nc">&nbsp;                    exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData);</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case &quot;cancel&quot;:
+<b class="nc">&nbsp;                    exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData);</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case &quot;history&quot;:
+<b class="nc">&nbsp;                    throw new DukeError(&quot;Finish your exercise!&quot; +</b>
+&nbsp;                                                &quot;You can look and feel good about your previous workout sessions &quot; +
+&nbsp;                                                &quot;later!&quot;);
+&nbsp;                default:
+<b class="nc">&nbsp;                    ui.unknownCommand();</b>
+<b class="nc">&nbsp;                    errorExists = true;</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                }
+&nbsp;            } else {
+<b class="nc">&nbsp;                switch (userCommands[0]) {</b>
+&nbsp;                case &quot;generate&quot;:
+<b class="nc">&nbsp;                    command = new GenerateFilterCommand(userCommands);</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case &quot;filters&quot;:
+<b class="nc">&nbsp;                    ui.printFilters();</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case &quot;bye&quot;:
+&nbsp;                case &quot;exit&quot;:
+<b class="nc">&nbsp;                    ui.byeUser();</b>
+<b class="nc">&nbsp;                    System.exit(0);</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case &quot;help&quot;:
+<b class="nc">&nbsp;                    command = new HelpCommand();</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case &quot;readSample&quot;:
+<b class="nc">&nbsp;                    command = new SampleReadCommand(userCareerData);</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case &quot;writeSample&quot;:
+&nbsp;                    // sample data
+<b class="nc">&nbsp;                    command = new SampleSavingCommand(userCareerData,</b>
+<b class="nc">&nbsp;                                                      exerciseGenerator.generateRandomSetFrom(</b>
+<b class="nc">&nbsp;                                                              exerciseGenerator.generateSetAll(), 3), storageHandler);</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case &quot;start&quot;:
+<b class="nc">&nbsp;                    exerciseStateHandler.startWorkout();</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case &quot;current&quot;:
+&nbsp;                case &quot;finish&quot;:
+&nbsp;                case &quot;cancel&quot;:
+<b class="nc">&nbsp;                    System.out.println(&quot;No workout session active.&quot; +</b>
+&nbsp;                                               &quot; Please generate a workout and use the \&quot;start\&quot; command!&quot;);
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case &quot;history&quot;:
+<b class="nc">&nbsp;                    userCareerData.printAllFinishedWorkoutSessions();</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                default:
+<b class="nc">&nbsp;                    ui.unknownCommand();</b>
+<b class="nc">&nbsp;                    errorExists = true;</b>
+&nbsp;                    break;
+&nbsp;                }
 &nbsp;            }
+&nbsp;
 <b class="nc">&nbsp;        } catch (DukeError e) {</b>
 <b class="nc">&nbsp;            System.out.println(e.getMessage());</b>
 <b class="nc">&nbsp;            errorExists = true;</b>
@@ -123,13 +198,35 @@
 &nbsp;            try {
 <b class="nc">&nbsp;                if (command != null) {</b>
 <b class="nc">&nbsp;                    command.executeCommand(ui, exerciseGenerator);</b>
+<b class="nc">&nbsp;                    if (command instanceof GenerateFilterCommand) {</b>
+<b class="nc">&nbsp;                        exerciseStateHandler</b>
+<b class="nc">&nbsp;                                .storePreviousGeneratedWorkout(((GenerateFilterCommand) command).provideExerciseList());</b>
+&nbsp;                    }
 &nbsp;                }
-&nbsp;
 <b class="nc">&nbsp;            } catch (DukeError e) {</b>
 <b class="nc">&nbsp;                System.out.println(e.getMessage());</b>
 <b class="nc">&nbsp;            }</b>
 &nbsp;        }
 <b class="nc">&nbsp;        ui.splitLine();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static boolean confirmExitDuringWorkout () {
+<b class="nc">&nbsp;        System.out.println(&quot;Are you sure you want to exit? You have a workout session ongoing.&quot; +</b>
+&nbsp;                                   &quot;\n You will lose your progress!&quot; + &quot;\n Type in &#39;y&#39; for yes or &#39;n&#39; for no&quot;);
+<b class="nc">&nbsp;        Scanner in = new Scanner(System.in);</b>
+&nbsp;        while (true) {
+<b class="nc">&nbsp;            String input = in.nextLine();</b>
+<b class="nc">&nbsp;            switch (input.toLowerCase()) {</b>
+&nbsp;            case &quot;y&quot;:
+<b class="nc">&nbsp;                System.out.println(&quot;I return true&quot;);</b>
+<b class="nc">&nbsp;                return true;</b>
+&nbsp;            case &quot;n&quot;:
+<b class="nc">&nbsp;                System.out.println(&quot;I return false&quot;);</b>
+<b class="nc">&nbsp;                return false;</b>
+&nbsp;            default:
+<b class="nc">&nbsp;                System.out.println(&quot;Please type in a &#39;y&#39; or a &#39;n&#39; to state whether you wish to exit or not&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;
 &nbsp;}
@@ -138,25 +235,25 @@
 </div>
 
 <script type="text/javascript">
-    (function () {
-        var msie = false, msie9 = false;
-        /*@cc_on
-          msie = true;
-          @if (@_jscript_version >= 9)
-            msie9 = true;
-          @end
-        @*/
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
 
-        if (!msie || msie && msie9) {
-            hljs.highlightAll()
-            hljs.initLineNumbersOnLoad();
-        }
-    })();
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
 </script>
 
 <div class="footer">
-
-    <div style="float:right;">generated on 2023-03-19 14:43</div>
+    
+    <div style="float:right;">generated on 2023-03-19 17:25</div>
 </div>
 </body>
 </html>

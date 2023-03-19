@@ -13,6 +13,9 @@ src/main/resources/docs/
 *.iml
 bin/
 
+# Code coverage reports
+/htmlReport/
+
 # UserData files
 testData.json
 userData.json

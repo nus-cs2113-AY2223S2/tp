@@ -13,8 +13,8 @@ public class ExerciseStateHandler {
 
     private static ArrayList<ExerciseData> previousGeneratedWorkout = new ArrayList<>();
     private final StorageHandler storageHandler;
-    public boolean workoutOngoing;
     private Session currentSessionWorkout;
+    public boolean workoutOngoing;
 
     public ExerciseStateHandler (StorageHandler storageHandler) {
         this.storageHandler = storageHandler;

@@ -30,9 +30,21 @@ public class StorageHandler {
         System.out.println("File has been written successfully!");
     }
 
-    public UserCareerData loadUserCareer () throws DukeError {
-        UserCareerData userCareerData = userDataLoader.loadFromJson(FILEPATH);
-        System.out.println("Data has been restored from previous session!");
+    public UserCareerData loadUserCareer () {
+        UserCareerData userCareerData;
+        try {
+            userCareerData = userDataLoader.loadFromJson(FILEPATH);
+            System.out.println("Data has been restored from previous session!");
+        } catch (DukeError e) {
+            userCareerData = new UserCareerData();
+            try {
+                writeToJson(userCareerData);
+                System.out.println(
+                        "Data file has been corrupted or missing, we will create a new file and reset your progress.");
+            } catch (DukeError error) {
+                System.out.println(error.getMessage());
+            }
+        }
         return userCareerData;
     }
 

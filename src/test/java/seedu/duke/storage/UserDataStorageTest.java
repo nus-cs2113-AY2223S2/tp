@@ -1,6 +1,8 @@
 package seedu.duke.storage;
 
 import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -12,6 +14,8 @@ import seedu.duke.userdata.Session;
 import seedu.duke.userdata.UserCareerData;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -21,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class UserDataStorageTest {
     private final String FILEPATH = "testData.json";
     private final GenerateExercise generateExercise = new GenerateExercise();
-    private StorageHandler storageHandler = new StorageHandler(FILEPATH);
+    private final StorageHandler storageHandler = new StorageHandler(FILEPATH);
 
     /**
      * Initialises the data by generating the workouts for this pseudo-session and adds to a new session and then to
@@ -46,10 +50,6 @@ public class UserDataStorageTest {
         ArrayList<Session> completedSessionWorkouts;
         completedSessionWorkouts = storageHandler.loadUserCareer().getTotalUserCareerSessions();
         TestReading.testReading(completedSessionWorkouts, sessionExercises);
-        File file = new File("testData.json");
-        boolean deletionResult = file.delete();
-        assertTrue(deletionResult, "Unable to delete testing user data file, Ensure all other programs are not using " +
-                "the file");
     }
 
     /**
@@ -75,11 +75,73 @@ public class UserDataStorageTest {
         }
         UserCareerData userCareerDataFromFile = storageHandler.loadUserCareer();
         TestReading.testReadingUserCareer(userCareerDataFromFile, userCareerData);
-        File file = new File("testData.json");
+    }
+
+    /**
+     * Tests the handling of the case where there is a missing user data file. The program should not break but
+     * generate a new empty user data file
+     */
+    @Test
+    void TestMissingUserFile () {
+        File file = new File(FILEPATH);
+        boolean deletionResult = file.delete();
+        assertFalse(checkIfUserFileExists(), "Testing userData file must be deleted to ensure the integrity of the " +
+                "test");
+        UserCareerData userCareerDataFromFile = storageHandler.loadUserCareer();
+        assertNotNull(userCareerDataFromFile, "Missing instance of user career data, userCareerData must be empty but" +
+                " initialised");
+        assertTrue(checkIfUserFileExists(), "New user file has not been created");
+    }
+
+    /**
+     * Tests the initialisation of localdatetime in Sessions by generating a sample test session and comparing the
+     * current pc time against the datetime that was initialised in the newly created Session. The user data is saved
+     * for testing of the deserializer later.
+     *
+     * @throws DukeError Occurs when there is a file writer error.
+     */
+    @Test
+    void TestDateTime () throws DukeError {
+        ArrayList<ExerciseData> generatedWorkouts = generateExercise.generateFilteredDifficultySetFrom(
+                generateExercise.generateSetAll(), "hard");
+        ArrayList<ExerciseData> sessionExercises = generateExercise.generateRandomSetFrom(generatedWorkouts, 5);
+        Session session = new Session(sessionExercises);
+        assertEquals(session.getDateAdded().toString(), LocalDateTime.now().toString(), "Session datetime conflict!");
+        UserCareerData userCareerData = new UserCareerData();
+        userCareerData.addWorkoutSession(session);
+    }
+
+    /**
+     * Tests the custom LocalDateTime Serializer and Deserializer by comparing the time from the user file and time
+     * on the pc. Time offset should not be longer than one minute.
+     */
+    @Test
+    void TestDateTimeSerializers () {
+        UserCareerData userCareerDataFromFile = storageHandler.loadUserCareer();
+        Session session = userCareerDataFromFile.getTotalUserCareerSessions().get(0);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String timeFromFile = dateTimeFormatter.format(session.getDateAdded());
+        String currentTime = dateTimeFormatter.format(LocalDateTime.now());
+        assertEquals(timeFromFile, currentTime, "User file and current time conflict, conflict should not be more " +
+                "than 1 minute");
+        deleteTestingFile();
+    }
+
+    /**
+     * Checks if user file exists to assert the presence of the user file
+     *
+     * @return Presence of the user file in program's root directory
+     */
+    private boolean checkIfUserFileExists () {
+        File userFile = new File(FILEPATH);
+        return userFile.exists();
+    }
+
+    private void deleteTestingFile () {
+        File file = new File(FILEPATH);
         boolean deletionResult = file.delete();
         assertTrue(deletionResult, "Unable to delete testing user data file, Ensure all other programs are not using " +
                 "the file");
-
     }
 
 }

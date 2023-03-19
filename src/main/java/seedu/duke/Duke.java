@@ -11,25 +11,19 @@ import seedu.duke.states.ExerciseStateHandler;
 import java.util.Scanner;
 
 public class Duke {
-
+    private static final String FILEPATH = "userData.json";
     private final Ui ui;
     private final GenerateExercise exerciseGenerator;
     private final ExerciseStateHandler exerciseHandler;
     private UserCareerData userCareerData;
-    private StorageHandler storageHandler;
-    private final String FILEPATH = "userData.json";
+    private final StorageHandler storageHandler;
 
     public Duke () {
         ui = new Ui();
         exerciseGenerator = new GenerateExercise();
         storageHandler = new StorageHandler(FILEPATH);
         exerciseHandler = new ExerciseStateHandler(storageHandler);
-        try {
-            this.userCareerData = storageHandler.loadUserCareer();
-        } catch (DukeError e) {
-            System.out.println(e.getMessage());
-            this.userCareerData = new UserCareerData();
-        }
+        this.userCareerData = storageHandler.loadUserCareer();
 
     }
 
