@@ -185,8 +185,8 @@ Got it. I've added this module:
   CS2040C: Data Structures and Algorithms
 Total modular credits you have in this semester: 8
 Here are the lesson types for this module:
-LABORATORY
-LECTURE
+Laboratory
+Lecture
 To see how to add lessons, enter 'help'.
 ____________________________________________________________
 ____________________________________________________________
