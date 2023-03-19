@@ -52,7 +52,7 @@ public class Parser {
             //parseSearchUPC(commandInfo);
             break;
         case "filter":
-            //parseFilter(commandInfo);
+            parseFilter(commandInfo, inventory);
             break;
         case "remove":
             parseRemove(commandInfo, inventory);
@@ -63,67 +63,65 @@ public class Parser {
         }
     }
 
-//    public void parseFilter(String rawInput) {
-//        try {
-//            if (rawInput == null) {
-//                throw new MissingParametersException();
-//            }
-//            String[] commands = rawInput.split(" ");
-//            switch (commands[0]) {
-//            case "f/price":
-//                if (commands.length != 3) {
-//                    throw new MissingParametersException();
-//                }
-//                parseFilterPrice(commands);
-//                break;
-//            case "f/category":
-//            case "f/tag":
-//                if (commands.length < 2) {
-//                    throw new MissingParametersException();
-//                }
-//                parseFilterCategoryOrTag(commands, commands[0]);
-//                break;
-//            default:
-//                throw new MissingParametersException();
-//            }
-//        } catch (MissingParametersException e) {
-//            e.missingSearchItemParameters();
-//        }
-//    }
+    public void parseFilter(String rawInput, Inventory inventory) {
+        try {
+            if (rawInput == null) {
+                throw new MissingParametersException();
+            }
+            String[] commands = rawInput.split(" ");
+            switch (commands[0]) {
+            case "f/price":
+                if (commands.length != 3) {
+                    throw new MissingParametersException();
+                }
+                parseFilterPrice(commands, inventory);
+                break;
+            case "f/category":
+            case "f/tag":
+                if (commands.length < 2) {
+                    throw new MissingParametersException();
+                }
+                parseFilterCategoryOrTag(commands, commands[0], inventory);
+                break;
+            default:
+                throw new MissingParametersException();
+            }
+        } catch (MissingParametersException e) {
+            e.missingSearchItemParameters();
+        }
+    }
 
-//    public void parseFilterPrice(String[] commands) {
-//        try {
-//            double price = Double.parseDouble(commands[2]);
-//            switch (commands[1]) {
-//            case "p/lt":
-//            case "p/gt":
-//            case "p/let":
-//            case "p/get":
-//                Inventory.filterPrice(price, commands[1]);
-//                break;
-//            default:
-//                throw new SearchFilterErrorException();
-//            }
-//        } catch (SearchFilterErrorException e) {
-//            e.missingPriceComparator();
-//        } catch (NumberFormatException numberFormatException) {
-//            Ui.printDoubleNeeded();
-//        }
-//    }
-//
-//    public void parseFilterCategoryOrTag(String[] commands, String mode) {
-//        String keyword = "";
-//        for (int i = 1; i < commands.length; i++) {
-//            keyword += commands[i];
-//            keyword += ' ';
-//        }
-//        keyword.trim();
-//        if (mode.equals("f/category")) {
-//            Inventory.filterCategory(keyword);
-//        } else {
-//            Inventory.filterTags(keyword);
-//        }
-//    }
+    public void parseFilterPrice(String[] commands, Inventory inventory) {
+        try {
+            double price = Double.parseDouble(commands[2]);
+            switch (commands[1]) {
+            case "p/lt":
+            case "p/gt":
+            case "p/let":
+            case "p/get":
+                Command filterCommand = new FilterCommand(inventory, price, commands[1]);
+                filterCommand.run();
+                break;
+            default:
+                throw new SearchFilterErrorException();
+            }
+        } catch (SearchFilterErrorException e) {
+            e.missingPriceComparator();
+        } catch (NumberFormatException numberFormatException) {
+            Ui.printDoubleNeeded();
+        }
+    }
+
+    public void parseFilterCategoryOrTag(String[] commands, String mode, Inventory inventory) {
+        String keyword = "";
+        for (int i = 1; i < commands.length; i++) {
+            keyword += commands[i];
+            keyword += ' ';
+        }
+        keyword.trim();
+        Command filterCommand = new FilterCommand(inventory, keyword, mode);
+        filterCommand.run();
+    }
 //
 //    /**
 //     * Handles the "searchUPC" command by checking the validity of search term provided before passing to

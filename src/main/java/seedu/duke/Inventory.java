@@ -13,7 +13,6 @@ public class Inventory {
     private final HashMap<String, ArrayList<Item>> itemNameHash = new HashMap<>();
 
 
-
     /**
      * Retrieves all the UPC Codes in the inventory currently
      *
@@ -23,87 +22,28 @@ public class Inventory {
         return upcCodes;
     }
 
-    public  ArrayList<Item> getItemInventory() {
+    /**
+     * Retrieves all the items in the inventory currently
+     *
+     * @return itemInventory an arraylist of items in the inventory
+     */
+    public ArrayList<Item> getItemInventory() {
         return itemInventory;
     }
+
 
     public Trie getTrie() {
         return trie;
     }
 
+    /**
+     * Retrieves all the items Name Hash in the inventory currently
+     *
+     * @return itemInventory an arraylist of items in the inventory
+     */
     public HashMap<String, ArrayList<Item>> getItemNameHash() {
         return itemNameHash;
     }
 
-
-//    public static void filterCategory(String category) {
-//        ArrayList<Item> filteredItems = new ArrayList<>();
-//        for (Item item : itemInventory) {
-//            if (item.getCategory().equals(category)) {
-//                filteredItems.add(item);
-//            }
-//        }
-//        if (filteredItems.isEmpty()) {
-//            Ui.printEmptySearch();
-//            return;
-//        }
-//        Ui.printSearchItems(filteredItems);
-//    }
-
-//    public static void filterTags(final String tag) {
-//        ArrayList<Item> filteredItems = new ArrayList<>();
-//        for (Item item : itemInventory) {
-//            if (item.getTags().isEmpty()) {
-//                continue;
-//            }
-//            for (String itemTag : item.getTags()) {
-//                if (itemTag.equals(tag)) {
-//                    filteredItems.add(item);
-//                }
-//            }
-//        }
-//        if (filteredItems.isEmpty()) {
-//            Ui.printEmptySearch();
-//            return;
-//        }
-//        Ui.printSearchItems(filteredItems);
-//    }
-//
-//    public static void filterPrice(final double price, final String mode) {
-//        ArrayList<Item> filteredItems = new ArrayList<>();
-//        for (Item item : itemInventory) {
-//            switch (mode) {
-//            case "p/lt":
-//                if (item.getPrice() < price) {
-//                    filteredItems.add(item);
-//                }
-//                break;
-//            case "p/gt":
-//                if (item.getPrice() > price) {
-//                    filteredItems.add(item);
-//                }
-//                break;
-//            case "p/let":
-//                if (item.getPrice() <= price) {
-//                    filteredItems.add(item);
-//                }
-//                break;
-//            case "p/get":
-//                if (item.getPrice() >= price) {
-//                    filteredItems.add(item);
-//                }
-//                break;
-//            default:
-//                break;
-//            }
-//        }
-//        if (filteredItems.isEmpty()) {
-//            Ui.printEmptySearch();
-//            return;
-//        }
-//        Ui.printSearchItems(filteredItems);
-//    }
-//
-//
 
 }

@@ -9,14 +9,14 @@ public class RemoveCommand extends Command {
      * //     * Remove an item from the inventory by the index given
      * //     *
      * //     * @param itemIndex        item of index to be removed the inventory
-     * //     * @param confirmation
+     * //     * @param inputConfirmation Y/N confirmation from user input
      * //
      */
-    public RemoveCommand(Inventory inventory, int itemIndex, String confirmation) {
+    public RemoveCommand(Inventory inventory, int itemIndex, String inputConfirmation) {
         super(inventory);
         this.itemNameHash = inventory.getItemNameHash();
         Item itemToRemove = itemInventory.get(itemIndex);
-        switch (confirmation.toUpperCase()) {
+        switch (inputConfirmation.toUpperCase()) {
         case "Y":
             String itemName = itemToRemove.getName().toLowerCase();
             String upcCode = itemToRemove.getUpc();
@@ -76,7 +76,7 @@ public class RemoveCommand extends Command {
             Ui.printSuccessList();
             String table = Ui.printTable(itemInventory);
             System.out.println(table);
-            System.out.println(Ui.LINE);
+            Ui.printLine();
         } else {
             Ui.printInvalidList();
         }
