@@ -3,6 +3,7 @@ package seedu.apollo.storage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import seedu.apollo.exception.task.DateOverException;
+import seedu.apollo.module.Timetable;
 import seedu.apollo.ui.Parser;
 import seedu.apollo.ui.Ui;
 import seedu.apollo.exception.task.DateOrderException;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
@@ -31,13 +33,13 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+
 /**
  * Storage class that initialises the task list and updates the save file.
  */
-public class Storage {
+public class Storage implements seedu.apollo.utils.Logger {
     // Location of save file
     protected static String filePath;
-
     protected static String moduleDataFilePath;
 
     // ints indicating position of terms in each line of the save file
@@ -59,8 +61,7 @@ public class Storage {
     public Storage(String filePath, String moduleDataFilePath) {
         Storage.filePath = filePath;
         Storage.moduleDataFilePath = moduleDataFilePath;
-        Storage.setUpLogger();
-
+        setUpLogger();
     }
 
     /**
@@ -68,7 +69,7 @@ public class Storage {
      *
      * @throws IOException If logger file cannot be created.
      */
-    public static void setUpLogger() {
+    public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
         ConsoleHandler logConsole = new ConsoleHandler();
@@ -155,9 +156,20 @@ public class Storage {
         FileWriter overwrite = new FileWriter(moduleDataFilePath);
         for (Module module : modules) {
             String code = module.getCode();
-            overwrite.write(code + "\n");
+            overwrite.write(code + "|");
+            writeModules(overwrite, module);
         }
         overwrite.close();
+    }
+
+    private void writeModules(FileWriter overwrite, Module module) throws IOException {
+        ArrayList<Timetable> timetableList = module.getModuleTimetable();
+        if (timetableList != null) {
+            for (Timetable timetable : timetableList) {
+                overwrite.write(timetable.getLessonType() + ":" + timetable.getClassnumber() + "|");
+            }
+        }
+        overwrite.write("\n");
     }
 
     /**
@@ -238,17 +250,46 @@ public class Storage {
         int counter = 0;
         while (s.hasNext()) {
             try {
-                Module newModule = allModules.findModule(s.nextLine());
+                String moduleInfo = s.nextLine();
+                String[] moduleInfoArgs = moduleInfo.split("\\|");
+                String moduleCode = moduleInfoArgs[0];
+                if (moduleCode == null) {
+                    throw new InvalidSaveFile();
+                }
+                Module newModule = allModules.findModule(moduleCode);
                 if (newModule == null) {
                     throw new InvalidSaveFile();
                 }
-                newModuleList.add(newModule);
+                Module module = new Module(newModule.getCode(), newModule.getTitle(), newModule.getModuleCredits());
+                addLessons(module, newModule, moduleInfoArgs);
+                newModuleList.add(module);
                 counter++;
             } catch (InvalidSaveFile e) {
                 ui.printInvalidSaveFile(counter, filePath);
             }
         }
         return newModuleList;
+    }
+
+    private static void addLessons(Module module, Module searchModule, String[] moduleInfo) {
+        module.createNewTimeTable();
+
+        for (int i = 1; i < moduleInfo.length; i++) {
+            String[] lessonInfo = moduleInfo[i].split(":");
+
+            for (Timetable timetable: searchModule.getModuleTimetable()) {
+                if (timetable.getLessonType().equals(lessonInfo[0])
+                        && timetable.getClassnumber().equals(lessonInfo[1])) {
+
+                    if (!module.getModuleTimetable().contains(timetable)) {
+                        module.getModuleTimetable().add(timetable);
+                    }
+
+                }
+            }
+        }
+
+
     }
 
     /**

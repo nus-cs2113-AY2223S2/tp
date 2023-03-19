@@ -17,7 +17,7 @@ public class HelpCommand extends Command {
      * @param ui Prints list of Commands to user.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules) {
         ui.printHelpMessage();
     }
 

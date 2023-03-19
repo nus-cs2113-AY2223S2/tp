@@ -75,7 +75,7 @@ public class DateCommand extends Command {
      * @param ui Prints shortlisted Tasks to user.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules) {
         ui.printDateList(taskList.getTasksOnDate(date), date);
     }
 

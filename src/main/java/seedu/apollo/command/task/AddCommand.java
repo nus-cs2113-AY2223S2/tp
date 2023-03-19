@@ -111,7 +111,8 @@ public class AddCommand extends Command {
      * @throws UnexpectedException If the command stored is not recognised.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList) throws UnexpectedException {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules)
+            throws UnexpectedException {
         int initialSize = taskList.size();
         try {
             addTask(taskList);

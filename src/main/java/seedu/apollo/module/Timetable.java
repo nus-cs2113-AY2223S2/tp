@@ -1,27 +1,44 @@
 package seedu.apollo.module;
 
+/**
+ * A class representing a timetable for the week.
+ */
 public class Timetable {
     private String classnumber;
-    private String classType;
+    private String lessonType;
     private String day;
     private String startTime;
     private String endTime;
 
-
+    /**
+     * Gets the class number.
+     *
+     * @return The class number.
+     */
     public String getClassnumber() {
         return classnumber;
     }
 
+    /**
+     * Sets the class number.
+     *
+     * @param classnumber The class number to set.
+     */
     public void setClassnumber(String classnumber) {
         this.classnumber = classnumber;
     }
 
-    public String getClassType() {
-        return classType;
+    /**
+     * Gets the type of lesson.
+     *
+     * @return The type of lesson.
+     */
+    public String getLessonType() {
+        return lessonType;
     }
 
-    public void setClassType(String classType) {
-        this.classType = classType;
+    public void setLessonType(String lessonType) {
+        this.lessonType = lessonType;
     }
 
     public String getDay() {
