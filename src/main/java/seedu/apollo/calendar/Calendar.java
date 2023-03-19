@@ -1,6 +1,5 @@
 package seedu.apollo.calendar;
 
-import seedu.apollo.exception.utils.IllegalCommandException;
 import seedu.apollo.exception.utils.InvalidSaveFile;
 import seedu.apollo.module.CalendarModule;
 import seedu.apollo.module.Module;

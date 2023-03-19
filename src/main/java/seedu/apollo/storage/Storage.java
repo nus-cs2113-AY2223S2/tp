@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import seedu.apollo.calendar.Calendar;
 import seedu.apollo.exception.task.DateOverException;
-import seedu.apollo.exception.utils.IllegalCommandException;
-import seedu.apollo.module.CalendarModule;
 import seedu.apollo.module.Timetable;
 import seedu.apollo.ui.Parser;
 import seedu.apollo.ui.Ui;
