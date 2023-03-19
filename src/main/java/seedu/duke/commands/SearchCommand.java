@@ -21,7 +21,7 @@ public class SearchCommand extends Command {
         this.keyword = keyword;
     }
 
-    // TODO: Split the search feature into 2 here, ternary condition within run() to determine
+    // TODO: Split the search feature into 2 here, if-else within run() to determine
     //  if search should be by UPC or keyword correspondingly
 
     /**
@@ -29,23 +29,18 @@ public class SearchCommand extends Command {
      *
      * @param upc numeric UPC number which user provides for querying
      */
-    private void searchUPC(final String upc) {
-        if (!upcCodes.containsKey(upc)) {
-            Ui.printEmptySearch();
-            return;
-        }
-        Ui.printSearchUPCItem(upcCodes.get(upc));
-    }
-
-    private void searchKeyword() {
-
-    }
+//    private void searchUPC(final String upc) {
+//        if (!upcCodes.containsKey(upc)) {
+//            Ui.printEmptySearch();
+//            return;
+//        }
+//        Ui.printSearchUPCItem(upcCodes.get(upc));
+//    }
 
     /**
-     * Search for an item in the inventory by keyword and displays the search query
+     * Search for an item in the inventory by its keyword and returns search query
      */
-    @Override
-    public void run() {
+    private void searchKeyword() {
         ArrayList<String> resultNames = itemsTrie.prefixFind(keyword);
         if (resultNames.size() == 0) {
             Ui.printEmptySearch();
@@ -60,5 +55,14 @@ public class SearchCommand extends Command {
         }
         Ui.printSearchItems(resultItems);
         Ui.printLine();
+    }
+
+    /**
+     * Delegate and executes search command for an item in the inventory by keyword or upc
+     */
+    @Override
+    public void run() {
+        // TODO: Split the search feature into 2 here, if-else condition within run() to determine
+        searchKeyword();
     }
 }

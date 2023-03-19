@@ -8,8 +8,10 @@ public class ListCommand extends Command {
         super(inventory);
     }
 
-    @Override
-    public void run() {
+    /**
+     * Lists all items in the inventory.
+     */
+    private void listItems() {
         if (!itemInventory.isEmpty()) {
             Ui.printSuccessList();
             String table = Ui.printTable(itemInventory);
@@ -18,5 +20,13 @@ public class ListCommand extends Command {
         } else {
             Ui.printInvalidList();
         }
+    }
+
+    /**
+     * Executes the list command.
+     */
+    @Override
+    public void run() {
+        listItems();
     }
 }

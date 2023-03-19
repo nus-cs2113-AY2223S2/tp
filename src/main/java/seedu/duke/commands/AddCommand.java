@@ -16,11 +16,9 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Add an item object into the inventory
-     *
+     * Adds an item to the inventory.
      */
-    @Override
-    public void run() {
+    private void addItem() {
         if (upcCodes.containsKey(item.getUpc())) {
             Ui.printDuplicateAdd();
         } else {
@@ -34,5 +32,13 @@ public class AddCommand extends Command {
             itemNameHash.get(itemName).add(item);
             itemsTrie.add(itemName);
         }
+    }
+
+    /**
+     * Executes the add command.
+     */
+    @Override
+    public void run() {
+        addItem();
     }
 }

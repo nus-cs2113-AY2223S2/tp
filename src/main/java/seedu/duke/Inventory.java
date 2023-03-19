@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.trie.Trie;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ public class Inventory {
 
 
     /**
-     * Retrieves all the UPC Codes in the inventory currently
+     * Retrieves all the UPC Codes in the inventory currently.
      *
      * @return upcCodes a hashmap of UPC code with its corresponding item in the inventory
      */
@@ -37,7 +36,7 @@ public class Inventory {
     }
 
     /**
-     * Retrieves all the items Name Hash in the inventory currently
+     * Retrieves all the items Name Hash in the inventory currently.
      *
      * @return itemInventory an arraylist of items in the inventory
      */

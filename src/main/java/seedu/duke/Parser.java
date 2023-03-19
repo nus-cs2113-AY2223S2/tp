@@ -1,6 +1,12 @@
 package seedu.duke;
 
-import seedu.duke.commands.*;
+import seedu.duke.commands.AddCommand;
+import seedu.duke.commands.EditCommand;
+import seedu.duke.commands.FilterCommand;
+import seedu.duke.commands.ListCommand;
+import seedu.duke.commands.RemoveCommand;
+import seedu.duke.commands.SearchCommand;
+import seedu.duke.commands.Command;
 import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.RemoveErrorException;
@@ -40,7 +46,7 @@ public class Parser {
             parseAdd(commandInfo, inventory);
             break;
         case "edit":
-            parseEdit(commandInfo , inventory);
+            parseEdit(commandInfo, inventory);
             break;
         case "list":
             parseList(inventory);
@@ -63,7 +69,7 @@ public class Parser {
         }
     }
 
-    public void parseFilter(String rawInput, Inventory inventory) {
+    public void parseFilter(final String rawInput, Inventory inventory) {
         try {
             if (rawInput == null) {
                 throw new MissingParametersException();
@@ -145,6 +151,7 @@ public class Parser {
 //        }
 //    }
 //
+
     /**
      * Handles the "search" command by checking the validity of search term provided before passing to
      * the search function
@@ -202,6 +209,7 @@ public class Parser {
      * to another function to handle the edits needed to be made.
      *
      * @param editingInstructions The string containing the user input.
+     * @param inventory           The inventory to be edited.
      */
     public void parseEdit(String editingInstructions, Inventory inventory) {
         String[] editInfo = editingInstructions.split(" ");
@@ -218,7 +226,13 @@ public class Parser {
         }
     }
 
-    public void parseRemove(String rawInput, Inventory  inventory) {
+    /**
+     * Handles the "remove" command by making sure that formatting is correct, before passing the user inputs
+     *
+     * @param rawInput  The string containing the user input.
+     * @param inventory The inventory where item will be removed.
+     */
+    public void parseRemove(String rawInput, Inventory inventory) {
         // using f/item to remove using upc or f/index to remove using index of item in list
         try {
             if (rawInput == null) {
@@ -244,7 +258,7 @@ public class Parser {
         }
     }
 
-    private static void parseRemoveByIndex(String[] commands, Inventory inventory) throws MissingParametersException {
+    private static void parseRemoveByIndex(final String[] commands, Inventory inventory) throws MissingParametersException {
         if (commands.length == 1) {
             throw new MissingParametersException();
         }
@@ -258,7 +272,7 @@ public class Parser {
         removeCommand.run();
     }
 
-    private static void parseRemoveByUpc(String[] commands, Inventory  inventory) throws MissingParametersException, RemoveErrorException {
+    private static void parseRemoveByUpc(final String[] commands, Inventory inventory) throws MissingParametersException, RemoveErrorException {
         String confirmation;
         Item itemToRemove;
         if (commands.length == 1 || !commands[1].startsWith("upc/")) {

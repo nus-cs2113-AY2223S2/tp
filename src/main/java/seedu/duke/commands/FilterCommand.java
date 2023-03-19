@@ -125,6 +125,9 @@ public class FilterCommand extends Command {
         Ui.printSearchItems(filteredItems);
     }
 
+    /**
+     * Delegate and executes the correct filter command.
+     */
     @Override
     public void run() {
         switch (filterType) {

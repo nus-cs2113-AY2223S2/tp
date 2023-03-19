@@ -12,11 +12,11 @@ public class RemoveCommand extends Command {
      * //     * @param inputConfirmation Y/N confirmation from user input
      * //
      */
-    public RemoveCommand(Inventory inventory, int itemIndex, String inputConfirmation) {
+    public RemoveCommand(Inventory inventory, int itemIndex, String userConfirmation) {
         super(inventory);
         this.itemNameHash = inventory.getItemNameHash();
         Item itemToRemove = itemInventory.get(itemIndex);
-        switch (inputConfirmation.toUpperCase()) {
+        switch (userConfirmation.toUpperCase()) {
         case "Y":
             String itemName = itemToRemove.getName().toLowerCase();
             String upcCode = itemToRemove.getUpc();
@@ -40,13 +40,20 @@ public class RemoveCommand extends Command {
         }
     }
 
-    public RemoveCommand(Inventory inventory, String upcCode, String confirmation) {
+    /**
+     * Remove an item from the inventory by the upc code given
+     *
+     * @param inventory        the inventory which item is to be removed from
+     * @param upcCode          the upc code of the item to be removed
+     * @param userConfirmation Y/N confirmation from user input
+     */
+    public RemoveCommand(Inventory inventory, String upcCode, String userConfirmation) {
         super(inventory);
         this.itemInventory = inventory.getItemInventory();
         this.itemNameHash = inventory.getItemNameHash();
         this.upcCodes = inventory.getUpcCodes();
         Item itemToRemove = inventory.getUpcCodes().get(upcCode);
-        switch (confirmation.toUpperCase()) {
+        switch (userConfirmation.toUpperCase()) {
         case "Y":
             String itemName = itemToRemove.getName().toLowerCase();
             int indexOfItem = itemInventory.indexOf(itemToRemove);
@@ -69,7 +76,9 @@ public class RemoveCommand extends Command {
         }
     }
 
-
+    /**
+     * Executes the remove command.
+     */
     @Override
     public void run() {
         if (!itemInventory.isEmpty()) {
