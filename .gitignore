@@ -16,9 +16,12 @@ bin/
 # Code coverage reports
 /htmlReport/
 
+#logging files
+**/logging*
+
 # UserData files
-testData.json
-userData.json
+**/testData.json
+**/userData.json
 
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT

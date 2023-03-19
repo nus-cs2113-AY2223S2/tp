@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T10:17:51.194178800Z</date>
+  <millis>1679221071194</millis>
+  <nanos>178800</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>

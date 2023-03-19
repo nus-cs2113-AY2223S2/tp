@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
@@ -23,9 +24,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * into an ArrayList of CompletedWorkouts in which identity codes of saved and completed workouts are the same.
  */
 public class UserDataStorageTest {
-    private final String FILEPATH = "testData.json";
+    private final String filePath = "testData.json";
     private final GenerateExercise generateExercise = new GenerateExercise();
-    private final StorageHandler storageHandler = new StorageHandler(FILEPATH);
+    private final StorageHandler storageHandler = new StorageHandler(filePath);
 
     /**
      * Initialises the data by generating the workouts for this pseudo-session and adds to a new session and then to
@@ -82,8 +83,8 @@ public class UserDataStorageTest {
      * generate a new empty user data file
      */
     @Test
-    void TestMissingUserFile () {
-        File file = new File(FILEPATH);
+    void testMissingUserFile () {
+        File file = new File(filePath);
         boolean deletionResult = file.delete();
         assertFalse(checkIfUserFileExists(), "Testing userData file must be deleted to ensure the integrity of the " +
                 "test");
@@ -101,7 +102,7 @@ public class UserDataStorageTest {
      * @throws DukeError Occurs when there is a file writer error.
      */
     @Test
-    void TestDateTime () throws DukeError {
+    void testDateTime () throws DukeError {
         ArrayList<ExerciseData> generatedWorkouts = generateExercise.generateFilteredDifficultySetFrom(
                 generateExercise.generateSetAll(), "hard");
         ArrayList<ExerciseData> sessionExercises = generateExercise.generateRandomSetFrom(generatedWorkouts, 5);
@@ -116,7 +117,7 @@ public class UserDataStorageTest {
      * on the pc. Time offset should not be longer than one minute.
      */
     @Test
-    void TestDateTimeSerializers () {
+    void testDateTimeSerializers () {
         UserCareerData userCareerDataFromFile = storageHandler.loadUserCareer();
         Session session = userCareerDataFromFile.getTotalUserCareerSessions().get(0);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -133,12 +134,12 @@ public class UserDataStorageTest {
      * @return Presence of the user file in program's root directory
      */
     private boolean checkIfUserFileExists () {
-        File userFile = new File(FILEPATH);
+        File userFile = new File(filePath);
         return userFile.exists();
     }
 
     private void deleteTestingFile () {
-        File file = new File(FILEPATH);
+        File file = new File(filePath);
         boolean deletionResult = file.delete();
         assertTrue(deletionResult, "Unable to delete testing user data file, Ensure all other programs are not using " +
                 "the file");

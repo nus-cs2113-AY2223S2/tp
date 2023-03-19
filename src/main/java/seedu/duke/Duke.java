@@ -1,7 +1,6 @@
 package seedu.duke;
 
 import seedu.duke.commands.CommandHandler;
-import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.storage.StorageHandler;
 import seedu.duke.userdata.UserCareerData;

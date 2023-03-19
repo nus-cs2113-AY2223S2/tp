@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class ExerciseStateHandler {
 
     private static ArrayList<ExerciseData> previousGeneratedWorkout = new ArrayList<>();
+    public boolean workoutOngoing;
     private final StorageHandler storageHandler;
     private Session currentSessionWorkout;
-    public boolean workoutOngoing;
 
     public ExerciseStateHandler (StorageHandler storageHandler) {
         this.storageHandler = storageHandler;
