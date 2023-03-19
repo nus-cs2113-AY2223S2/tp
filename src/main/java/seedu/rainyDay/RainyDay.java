@@ -1,5 +1,6 @@
 package seedu.rainyDay;
 
+import seedu.rainyDay.command.CommandResult;
 import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
@@ -35,19 +36,26 @@ public class RainyDay {
     }
 
     private void run() {
+        showStartingMessage();
+        runCommand();
+        ui.sayFarewellToUser(financialReport.getReportOwner());
+    }
+
+    private void showStartingMessage() {
         ui.printLogo();
         ui.greetUser(financialReport.getReportOwner());
+    }
 
-        while (true) {
-            String userInput = ui.readUserCommand();
-            if (userInput.equalsIgnoreCase(Command.COMMAND_EXIT)) {
-                break;
-            }
+    private void runCommand() {
+        Command specificCommand;
+        String userInput = ui.readUserCommand();
+        while (!userInput.equalsIgnoreCase(Command.COMMAND_EXIT)) {
             try {
-                Command specificCommand = Parser.parseUserInput(userInput);
-                specificCommand.setData(financialReport);
+                specificCommand = new Parser().parseUserInput(userInput);
                 assert specificCommand != null : "Parser returned null";
-                specificCommand.execute();
+                CommandResult outcome = executeCommand(specificCommand);
+                ui.showToUser(outcome.output);
+                userInput = ui.readUserCommand();
             } catch (RainyDayException e) {
                 logger.log(Level.INFO, "RainyDayException caught");
                 System.out.println(e.getMessage());
@@ -56,7 +64,11 @@ public class RainyDay {
                 System.out.println(e.getMessage());
             }
         }
-        ui.sayFarewellToUser(financialReport.getReportOwner());
+    }
+
+    private CommandResult executeCommand(Command command) {
+        command.setData(financialReport);
+        return command.execute();
     }
 
     private static void setupLogger() {
@@ -73,7 +85,9 @@ public class RainyDay {
     public static void main(String[] args) {
         setupLogger();
         logger.log(Level.INFO, "Starting RainyDay");
+
         new RainyDay(filePath).run();
+
         logger.log(Level.INFO, "Quitting RainyDay");
     }
 }
