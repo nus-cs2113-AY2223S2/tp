@@ -230,24 +230,52 @@ Adding lesson type: LECTURE for Module: ST2334
 Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
-Here's your week:
+Here's your week from 2023-03-20 to 2023-03-26:
 ______________________
-Monday:
+MONDAY
+
+Lessons:
+
+Tasks:
 ______________________
-Tuesday:
+TUESDAY
+
+Lessons:
 1. ST2334 Lecture: 0800-1000
+
+Tasks:
 ______________________
-Wednesday:
+WEDNESDAY
+
+Lessons:
 1. CS2113 Tutorial: 1200-1300
+
+Tasks:
 ______________________
-Thursday:
+THURSDAY
+
+Lessons:
+
+Tasks:
 ______________________
-Friday:
+FRIDAY
+
+Lessons:
 1. CS2113 Lecture: 1600-1800
+
+Tasks:
 ______________________
-Saturday:
+SATURDAY
+
+Lessons:
+
+Tasks:
 ______________________
-Sunday:
+SUNDAY
+
+Lessons:
+
+Tasks:
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(
