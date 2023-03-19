@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
+    public static ArrayList <Symptom> symptoms = new ArrayList<>();
 
     /**
      * Shows the welcome menu.
@@ -88,7 +89,8 @@ public class Menu {
         System.out.println("1. Report symptoms");
         System.out.println("2. View diagnosis history");
         System.out.println("3. Reset diagnosis history");
-        System.out.println("4. Exit");
+        System.out.println("4. Reset symptoms");
+        System.out.println("5. Exit");
     }
 
     /**
@@ -98,7 +100,6 @@ public class Menu {
      */
     public static ArrayList<Symptom> getUserSymptoms() {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Symptom> symptoms = new ArrayList<>();
         displaySymptomList();
         addSymptomToSymptomList(scanner, symptoms);
         while (true) {
@@ -126,21 +127,21 @@ public class Menu {
      */
     private static void addSymptomToSymptomList(Scanner scanner, ArrayList<Symptom> symptoms) {
         String symptomChoiceAlphabets;
-        symptomChoiceAlphabets = scanner.nextLine();
-        symptomChoiceAlphabets = symptomChoiceAlphabets.toUpperCase();
-        symptomChoiceAlphabets = symptomChoiceAlphabets.trim();
+        symptomChoiceAlphabets = scanner.nextLine(); //@@author Jeraldchen
+        symptomChoiceAlphabets = symptomChoiceAlphabets.toUpperCase(); //@@author Jeraldchen
+        symptomChoiceAlphabets = symptomChoiceAlphabets.trim();  //@@author Jeraldchen
         String[] symptomChoices = symptomChoiceAlphabets.split("(?!^)"); //@@author Jeraldchen
         parseSymptomInput(symptoms, symptomChoices);
     }
 
     /**
      * Parses user's input to a Symptom enumerator.
-     *
+     * @@author Jeraldchen
      * @param symptoms      an ArrayList of symptoms.
      * @param symptomChoices an array of strings containing the user's input.
      */
     private static void parseSymptomInput(ArrayList<Symptom> symptoms , String[] symptomChoices) {
-        for (String symptomChoice : symptomChoices) { //@@author Jeraldchen
+        for (String symptomChoice : symptomChoices) {
             if (symptomChoice.equals("A")) {
                 if (!symptoms.contains(Symptom.FEVER)) {
                     assert Symptom.FEVER != null : "Fever should not be null";
@@ -156,15 +157,15 @@ public class Menu {
                     System.out.println("You have already entered this symptom!");
                 }
             } else if (symptomChoice.equals("C")) {
-                if (!symptoms.contains(Symptom.COUGH_WITH_PHELGM)) {
-                    assert Symptom.COUGH_WITH_PHELGM != null : "Tiredness should not be null";
-                    symptoms.add(Symptom.COUGH_WITH_PHELGM);
+                if (!symptoms.contains(Symptom.LOSS_OF_TASTE_OR_SMELL)) {
+                    assert Symptom.LOSS_OF_TASTE_OR_SMELL != null : "Loss of taste or smell should not be null";
+                    symptoms.add(Symptom.LOSS_OF_TASTE_OR_SMELL);
                 } else {
                     System.out.println("You have already entered this symptom!");
                 }
             } else if (symptomChoice.equals("D")) {
                 if (!symptoms.contains(Symptom.RUNNY_NOSE)) {
-                    assert Symptom.RUNNY_NOSE != null : "Tiredness should not be null";
+                    assert Symptom.RUNNY_NOSE != null : "Runny Nose should not be null";
                     symptoms.add(Symptom.RUNNY_NOSE);
                 } else {
                     System.out.println("You have already entered this symptom!");
@@ -231,7 +232,7 @@ public class Menu {
         System.out.println("Here is the list of possible symptoms:");
         System.out.println("a. Fever");
         System.out.println("b. Dry Cough");
-        System.out.println("c. Cough with phlegm");
+        System.out.println("c. Red Eyes");
         System.out.println("d. Runny nose");
         System.out.println("e. Headache");
         System.out.println("f. Chills");

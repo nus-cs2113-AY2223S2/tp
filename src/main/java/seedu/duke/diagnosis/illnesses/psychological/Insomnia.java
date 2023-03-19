@@ -10,7 +10,7 @@ import java.util.List;
 public class Insomnia extends Illness {
     public Insomnia() {
         super("Insomnia", 1, false, new ArrayList<>(
-                List.of(Symptom.COUGH_WITH_PHELGM
+                List.of(Symptom.LOSS_OF_TASTE_OR_SMELL
                 ))
         );
     }

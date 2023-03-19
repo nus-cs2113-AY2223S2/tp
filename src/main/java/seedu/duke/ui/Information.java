@@ -1,7 +1,9 @@
 package seedu.duke.ui;
 
+import seedu.duke.diagnosis.symptoms.Symptom;
 import seedu.duke.patient.Patient;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static seedu.duke.save.Storage.saveData;
@@ -72,5 +74,17 @@ public class Information {
     public static HashMap<String, Patient> getAllPatientData() {
         logger.log(Level.INFO, "Retrieving all patient data");
         return patientsList;
+    }
+
+    /**
+     * Resets the symptom choice of the patient.
+     * @@author Jeraldchen
+     * @param symptoms The symptom choice of the patient.
+     */
+    public static void resetSymptomChoice(ArrayList<Symptom> symptoms) {
+        if (symptoms.size() != 0) {
+            symptoms.clear();
+            System.out.println("Your symptom choice has been reset.");
+        }
     }
 }
