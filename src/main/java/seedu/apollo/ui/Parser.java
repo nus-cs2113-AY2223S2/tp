@@ -24,8 +24,6 @@ import seedu.apollo.exception.module.InvalidModule;
 import seedu.apollo.module.ModuleList;
 
 import java.rmi.UnexpectedException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 /**
@@ -204,20 +202,6 @@ public class Parser {
         return (split.length == 1);
     }
 
-    /**
-     * Parses LocalDateTime into a String according to the given pattern.
-     *
-     * @param date       Date and time with LocalDateTime data type.
-     * @param dateString Date and time with String data type.
-     * @param pattern    Desired pattern to format String.
-     * @return Parsed date and time in a String.
-     */
-    public static String parseDateTime(LocalDateTime date, String dateString, DateTimeFormatter pattern) {
-        if (date != null) {
-            return date.format(pattern);
-        }
-        return dateString;
-    }
 
     /**
      * Separates a Deadline's input data into its description, and due date.

@@ -1,5 +1,7 @@
 package seedu.apollo.ui;
 
+import seedu.apollo.calendar.Calendar;
+import seedu.apollo.module.CalendarModule;
 import seedu.apollo.module.LessonType;
 import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.module.ModuleList;
@@ -9,12 +11,15 @@ import seedu.apollo.task.TaskList;
 import seedu.apollo.utils.LessonTypeUtil;
 
 import java.rmi.UnexpectedException;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Locale;
 import java.util.Scanner;
+
+import static seedu.apollo.utils.DayTypeUtil.determineDay;
 
 /**
  * User Interface class that deals with inputs from and outputs to the user.
@@ -116,6 +121,50 @@ public class Ui {
             }
         }
         System.out.println("There are " + unmarkedTaskSize + " unmarked tasks in your tasklist.");
+    }
+
+    /**
+     * Prints out the user's schedule for the week.
+     *
+     * @param taskList Contains details about the user's tasks during the week.
+     * @param calendar Contains details about the user's lessons during the week.
+     */
+    public void printWeek(TaskList taskList, Calendar calendar) {
+        LocalDate now = LocalDate.now();
+        LocalDate startWeek = now.with(DayOfWeek.MONDAY);
+        LocalDate endWeek = now.with(DayOfWeek.SUNDAY);
+        LocalDate curr = startWeek;
+        System.out.println("Here's your week from " + startWeek + " to " + endWeek + ":");
+        for (int i = 0; i<7; i++) {
+            System.out.println("______________________");
+            DayOfWeek day = determineDay(i);
+            System.out.println(day + "\n");
+
+            printLessonsOnDay(calendar, i);
+            printTasksOnDay(taskList, curr);
+
+            curr = curr.plusDays(1);
+        }
+    }
+
+    private static void printLessonsOnDay(Calendar calendar, int i) {
+        System.out.println("Lessons:");
+        int count = 1;
+        for (CalendarModule module : calendar.get(i)) {
+            System.out.println(count + ". " + module.getCode() + " " + module.getSchedule());
+            count++;
+        }
+    }
+
+    private static void printTasksOnDay(TaskList taskList, LocalDate curr) {
+        System.out.println("\nTasks:");
+        int count = 1;
+        for (Task task : taskList) {
+            if (task.isOnDate(curr)) {
+                System.out.println(count + ". " + task);
+                count++;
+            }
+        }
     }
 
     /**

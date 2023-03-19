@@ -1,23 +1,25 @@
 package seedu.apollo.utils;
 
+import java.time.DayOfWeek;
+
 public class DayTypeUtil {
 
-    public static String determineDay(int dayInt) {
+    public static DayOfWeek determineDay(int dayInt) {
         switch (dayInt) {
         case 0:
-            return "Monday";
+            return DayOfWeek.MONDAY;
         case 1:
-            return "Tuesday";
+            return DayOfWeek.TUESDAY;
         case 2:
-            return "Wednesday";
+            return DayOfWeek.WEDNESDAY;
         case 3:
-            return "Thursday";
+            return DayOfWeek.THURSDAY;
         case 4:
-            return "Friday";
+            return DayOfWeek.FRIDAY;
         case 5:
-            return "Saturday";
+            return DayOfWeek.SATURDAY;
         case 6:
-            return "Sunday";
+            return DayOfWeek.SUNDAY;
         default:
             return null;
         }
