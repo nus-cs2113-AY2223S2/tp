@@ -6,6 +6,7 @@ import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
 import seedu.exceptions.LifeTrackerException;
+import seedu.logger.LogFileHandler;
 import seedu.ui.GeneralUi;
 
 public class ExitCommand extends Command{
@@ -14,6 +15,7 @@ public class ExitCommand extends Command{
             throws LifeTrackerException {
         setIsExit(true);
         ui.printGoodbye();
+        LogFileHandler.logInfo("User exited the programme.");
         try {
             mealStorage.write();
             userStorage.write();
