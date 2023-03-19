@@ -76,7 +76,6 @@ public class Ui {
         UILogger.log(Level.INFO, userInput);
         if (userInput.trim().equals("")) {
             emptyInstructionHandling();
-            readUserCommand();
         }
         return userInput.trim();
     }
@@ -116,12 +115,12 @@ public class Ui {
         System.out.printf("|%s|%s|%s|%s|\n", index, name, value, category);
     }
 
-    public static void printSummary(int inflow, int outflow) {
+    public static void printSummary(double inflow, double outflow) {
         assert (inflow != 0 || outflow != 0);
         System.out.print(VIEW_SUMMARY);
-        String inflowInformation = "|Inflow: $" + inflow;
-        String outflowInformation = "|Outflow: $" + outflow;
-        String remainingValueInformation = "|Remaining value: $" + (inflow - outflow);
+        String inflowInformation = String.format("|Inflow: $%.2f", inflow);
+        String outflowInformation = String.format("|Outflow: $%.2f", outflow);;
+        String remainingValueInformation = String.format("|Remaining value: $%.2f",(inflow - outflow));
         String summary = String.join(System.lineSeparator(), inflowInformation, outflowInformation,
                 remainingValueInformation);
         System.out.println(summary);
