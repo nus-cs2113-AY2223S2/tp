@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+box 'Add'
+participant ":Duke" as Duke
+participant "parser:Parser" as Parser
+participant "parserAdd:ParserAdd" as ParserAdd
+participant "expenseList:ExpenseList" as ExpenseList
+participant ":CommandAdd" as CommandAdd
+ -> Duke: input
+Duke -> Parser: extractCommandKeyword(input)
+Parser --> Duke
+Duke -> CommandAdd: execute()
+CommandAdd -> Parser: extractAddParameters(input)
+Parser -> ParserAdd: parseInput(input)
+ParserAdd --> Parser: parsedInput
+Parser --> CommandAdd: parsedInput
+CommandAdd -> ExpenseList: getExpenseList()
+ExpenseList --> CommandAdd: expenseList
+CommandAdd -> ExpenseList: add(Expense)
+ExpenseList --> CommandAdd
+CommandAdd --> Duke
+@enduml
