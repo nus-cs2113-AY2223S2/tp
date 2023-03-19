@@ -1,3 +1,5 @@
+package seedu.duke;
+
 import seedu.duke.company.Company;
 import seedu.duke.company.CompanyList;
 import seedu.duke.parser.Parser;

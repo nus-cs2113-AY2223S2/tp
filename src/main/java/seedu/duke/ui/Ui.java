@@ -22,6 +22,7 @@ public class Ui {
         showLine();
         System.out.println("Bye!");
         showLine();
+        exitProgram();
     }
 
     public void exitProgram() {
@@ -45,6 +46,14 @@ public class Ui {
         System.out.println("To display this guide at any time, type:");
         System.out.println("                    help");
         System.out.println(" ");
+    }
+
+    public void showSuccessfulDeletionMessage() {
+        System.out.println("Company information successfully deleted!");
+    }
+
+    public void showSuccessfulAdditionMessage() {
+        System.out.println("Company information added successfully!");
     }
 
 }

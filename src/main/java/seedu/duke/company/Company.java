@@ -24,4 +24,10 @@ public class Company {
     public String getContactEmail(){
         return contactEmail;
     }
+
+    @Override
+    public String toString() {
+        return "Company name: " + companyName + "\nCompany contact number: " + contactNumber +
+                "\nCompany contact email: "  + contactEmail;
+    }
 }
