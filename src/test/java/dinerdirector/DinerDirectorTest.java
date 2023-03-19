@@ -16,6 +16,9 @@ import commands.deadline.ViewDeadlineCommand;
 
 import commands.menu.AddDishCommand;
 import commands.menu.ViewDishCommand;
+import commands.staff.AddStaffCommand;
+import commands.staff.DeleteStaffCommand;
+import commands.staff.ViewStaffCommand;
 import org.junit.jupiter.api.Test;
 import utils.Parser;
 
@@ -191,6 +194,34 @@ public class DinerDirectorTest {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_OUT_OF_BOUNDS_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
+            }
+        }
+    }
+
+    @Test
+    void runCommandLoopUntilExit_userInput_staffCommand() {
+        ArrayList<String> listOfCommands = new ArrayList<>();
+        listOfCommands.add("add_staff");
+        listOfCommands.add("add_staff n/John Doe");
+        listOfCommands.add("add_staff p/123-456-7890 d/1990-01-01 w/Monday");
+        listOfCommands.add("add_staff n/John Doe p/123-456-7890 w/Monday d/1990-01-01");
+        listOfCommands.add("view_staff");
+        listOfCommands.add("delete_staff n/John");
+        listOfCommands.add("delete_staff John");
+
+        for (String listOfCommand : listOfCommands) {
+            Command command = new Parser().parseCommand(listOfCommand);
+            if (listOfCommand.equals("add_staff") ||
+                    listOfCommand.equals("add_staff n/John Doe") ||
+                    listOfCommand.equals("add_staff p/123-456-7890 d/1990-01-01 w/Monday") ||
+                    listOfCommand.equals("delete_staff John")) {
+                assertTrue(command instanceof IncorrectCommand);
+            } else if (listOfCommand.equals("view_deadlines")) {
+                assertTrue(command instanceof ViewStaffCommand);
+            } else if (listOfCommand.equals("add_staff n/John Doe p/123-456-7890 w/Monday d/1990-01-01")) {
+                assertTrue(command instanceof AddStaffCommand);
+            } else if (listOfCommand.equals("delete_deadline n/John")) {
+                assertTrue(command instanceof DeleteStaffCommand);
             }
         }
     }

@@ -7,12 +7,12 @@ import ui.TextUi;
 
 public class AddStaffCommand extends Command {
     public static final String COMMAND_WORD = "add_staff";
-    private String name;
-    private String workingDay;
-    private String phoneNumber;
-    private String dateOfBirth;
+    private final String name;
+    private final String workingDay;
+    private final String phoneNumber;
+    private final String dateOfBirth;
 
-    public AddStaffCommand(String name, String workingDay, String phoneNumber, String dateOfBirth) {
+    public AddStaffCommand(String name, String workingDay, String dateOfBirth, String phoneNumber) {
         this.name = name;
         this.workingDay = workingDay;
         this.phoneNumber = phoneNumber;
