@@ -12,7 +12,7 @@ public class VenueList {
         this.venueList = venueList;
     }
     
-    public static void print() throws EmptyListException {
+    public static void printVenueInformation() throws EmptyListException {
         if (venueList.isEmpty()) {
             throw new EmptyListException();
         }

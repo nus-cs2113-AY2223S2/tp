@@ -10,7 +10,7 @@ public class ListVenueCommand extends Command{
     @Override
     public void execute(VenueList venueList) {
         try {
-            venueList.print();
+            venueList.printVenueInformation();
         } catch (EmptyListException err){
             System.out.println("Nothing inside venue list");
         }
