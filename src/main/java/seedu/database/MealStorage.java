@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Locale;
 
 import seedu.entities.Meal;
+import seedu.constants.DateConstants;
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import com.opencsv.CSVWriter;
@@ -18,8 +19,7 @@ import com.opencsv.CSVWriter;
 public class MealStorage extends Storage implements FileReadable, FileWritable {
     private static final String CSV_DELIMITER = ",";
     private static final String FOODS_DELIMITER = "-";
-    private static final String DATE_FORMAT = "d/M/yyyy";
-    private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern(DATE_FORMAT, Locale.ENGLISH);
+    private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern(DateConstants.DATABASE_FORMAT, Locale.ENGLISH);
     private ArrayList<Meal> meals;
     private FoodStorage foodStorage;
 
@@ -45,7 +45,7 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         writer.writeNext(header);
         Collections.sort(meals);
         for (Meal meal : meals) {
-            writer.writeNext(meal.toWriteFormat(FOODS_DELIMITER, DATE_FORMAT));
+            writer.writeNext(meal.toWriteFormat(FOODS_DELIMITER, DateConstants.DATABASE_FORMAT));
         }
         writer.close();
     }

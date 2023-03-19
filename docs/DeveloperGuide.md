@@ -2,12 +2,24 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+1. Command, Parser and UI java files are adapted from one of our group member's [Duke Project](https://github.com/MingEn82/tp)
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+### Architecture
 
+![](../out/docs/uml/Architecture/architecture.svg)
+**Main Components of LifeTracer**
+`LifeTracker` is where users will access the application from. It is responsible for:
+
+- At app launch: Initialise the Databases and UI classes
+- At app closure: Saves all updated data to databases
+
+The rest of the Application consists of three components:
+
+- `UI`: Reponsible for I/O between user and application
+- `Command`: Handles execution of user inputs
+- `Storage`: Stores information of the user and meals eaten
 
 ## Product scope
 ### Target user profile
