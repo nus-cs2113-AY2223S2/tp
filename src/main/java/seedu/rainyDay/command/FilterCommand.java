@@ -14,14 +14,14 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class FilterCommand extends Command {
-
     private static final Logger logger = Logger.getLogger(FilterCommand.class.getName());
     private final String description;
+    private final String filterFlag;
 
-    public FilterCommand(String description) {
+    public FilterCommand(String description, String filterFlag) {
         this.description = description;
+        this.filterFlag = filterFlag;
     }
-
     @Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
@@ -36,14 +36,22 @@ public class FilterCommand extends Command {
     }
 
     @Override
-    public void execute() throws RainyDayException{
+    public void execute() throws RainyDayException {
         setupLogger();
         logger.log(Level.INFO, "starting FilterCommand.execute()");
+        ArrayList<FinancialStatement> filteredList = new ArrayList<>();
 
-        ArrayList<FinancialStatement> filteredList = (ArrayList<FinancialStatement>) financialReport
-                .getFinancialReport().stream()
-                .filter(t -> t.getDescription().contains(this.description))
-                .collect(Collectors.toList());
+        if (filterFlag.equalsIgnoreCase("-d")) {
+            filteredList = (ArrayList<FinancialStatement>) financialReport
+                    .getFinancialReport().stream()
+                    .filter(t -> t.getDescription().contains(this.description))
+                    .collect(Collectors.toList());
+        } else if (filterFlag.equalsIgnoreCase("-c")) {
+            filteredList = (ArrayList<FinancialStatement>) financialReport
+                    .getFinancialReport().stream()
+                    .filter(t -> t.getCategory().contains(this.description))
+                    .collect(Collectors.toList());
+        }
 
         if (filteredList.size() == 0) {
             throw new RainyDayException(ErrorMessage.NO_STATEMENTS_MATCH_DESCRIPTION.toString());

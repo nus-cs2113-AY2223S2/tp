@@ -19,6 +19,7 @@ public class Parser {
     private static String direction = null;
     private static String description = null;
     private static String category = null;
+    private static String filterFlag = null;
     private static double amount = -1.0;
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
@@ -28,17 +29,16 @@ public class Parser {
         if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
             logger.info("add command executing");
             return addStatement(userInput);
-        }
-        if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
+        } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
             logger.info("delete command executing");
             return deleteStatement(userInput); //todo: fix this to reduce calls of split.();
-        }
-        if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
+        } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
             logger.info("view command executing");
             return generateReport();
-        }
-        if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
+        } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
             return displayHelp();
+        } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
+            return filterStatement(action[1]);
         } else {
             logger.warning("unrecognised input from user!");
             throw new RainyDayException(ErrorMessage.UNRECOGNIZED_INPUT.toString());
@@ -155,13 +155,46 @@ public class Parser {
         return new HelpCommand();
     }
 
-    private static FilterCommand filter(String input) {
-        //filter by description
-        //filter by category
+    private static FilterCommand filterStatement(String input) {
         try {
-            String userInput = input.trim();
-            return new FilterCommand(userInput);
+            if (input.contains("-d")) {
+                parseFilterByDescription(input);
+            } else if (input.contains("-c")) {
+                parseFilterByCategory(input);
+            } else {
+                parseDefaultFilterByDescription(input);
+            }
+            return new FilterCommand(description, filterFlag);
         } catch (Exception e) {
+            logger.warning("filter command given by user in the wrong format");
+            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
+    }
+
+    private static void parseDefaultFilterByDescription(String input) {
+        description = input.trim();
+        filterFlag = "-d";
+    }
+
+    private static void parseFilterByDescription(String input) {
+        Pattern pattern = Pattern.compile("(-d)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            filterFlag = matcher.group(1);
+            description = matcher.group(2);
+        } else {
+            logger.warning("filter command given by user in the wrong format");
+            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
+    }
+
+    private static void parseFilterByCategory(String input) {
+        Pattern pattern = Pattern.compile("(-c)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            filterFlag = matcher.group(1);
+            description = matcher.group(2);
+        } else {
             logger.warning("filter command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
         }
