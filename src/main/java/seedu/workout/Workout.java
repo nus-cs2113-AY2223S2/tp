@@ -27,4 +27,7 @@ public class Workout {
     public void setDate(Date date) {
         this.date = date;
     }
+    public ArrayList<Exercise> getExercises() {
+        return workoutExercises;
+    }
 }
