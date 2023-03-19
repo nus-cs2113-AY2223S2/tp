@@ -31,52 +31,9 @@ public class ViewCommand extends Command implements FormatReport {
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             System.out.println("unable to log ViewCommand class");
-            logger.log(Level.SEVERE, "File logger not working.", e); // todo check if useless
+            logger.log(Level.SEVERE, "File logger not working.", e);
         }
     }
-
-//    @Override
-//    public void execute() {
-//        setupLogger();
-//        logger.log(Level.INFO, "starting ViewCommand.execute()");
-//
-//        if (financialReport.getStatementCount() == 0) {
-//            assert financialReport.getStatementCount() == 0 : "statement count mismatch";
-//
-//            logger.log(Level.INFO, "empty financial report");
-//
-//            Ui.emptyFinancialReport();
-//
-//            logger.log(Level.INFO, "passed Ui, exiting method");
-//            return;
-//        }
-//
-//        assert financialReport.getStatementCount() != 0 : "statement count mismatch";
-//
-//        Ui.acknowledgeViewCommand();
-//
-//        logger.log(Level.INFO, "passed Ui acknowledge view command");
-//
-//        double totalInflow = 0;
-//        double totalOutflow = 0;
-//        for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
-//            logger.log(Level.INFO, "starting statement " + i);
-//            FinancialStatement currentStatement = financialReport.getFinancialStatement(i);
-//            if (currentStatement.getFlowDirection().equals("in")) {
-//                totalInflow += currentStatement.getValue();
-//            } else {
-//                totalOutflow += currentStatement.getValue();
-//            }
-//            Ui.printFinancialStatement(i + 1, currentStatement);
-//            logger.log(Level.INFO, "passed statement " + i);
-//        }
-//
-//        logger.log(Level.INFO, "passed Ui acknowledge view command");
-//
-//        Ui.printSummary(totalInflow, totalOutflow);
-//
-//        logger.log(Level.INFO, "passed Ui, exiting method");
-//    }
 
     @Override
     public CommandResult execute() {
@@ -118,13 +75,6 @@ public class ViewCommand extends Command implements FormatReport {
 
             logger.log(Level.INFO, "passed statement " + i);
         }
-        outcome += VIEW_SUMMARY;
-
-        logger.log(Level.INFO, "passed Ui acknowledge view command");
-
-        outcome += FormatReport.formatSummary(totalInflow, totalOutflow);
-
-        logger.log(Level.INFO, "passed Ui, exiting method");
-        return new CommandResult(outcome);
+        return outcome;
     }
 }
