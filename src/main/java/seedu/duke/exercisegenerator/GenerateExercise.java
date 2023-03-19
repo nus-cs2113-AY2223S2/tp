@@ -15,6 +15,8 @@ public class GenerateExercise {
     private static final String UPPER_BODY = "upper body";
     private static final String CORE = "core";
     private static final String LEGS = "legs";
+    private static final String NULL = "null";
+    private static final String OUTPUT_BODY = "body only";
 
     private static final String BEGINNER = "beginner";
     private static final String INTERMEDIATE = "intermediate";
@@ -46,7 +48,7 @@ public class GenerateExercise {
     public ArrayList<ExerciseData> generateFilteredGymSetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
-            if (exercise.getEquipment() != "null" && !exercise.getEquipment().equals("body only")) {
+            if (exercise.getEquipment() != NULL && !exercise.getEquipment().equals(OUTPUT_BODY)) {
                 filteredExerciseList.add(exercise);
             }
         }
@@ -56,7 +58,7 @@ public class GenerateExercise {
     public ArrayList<ExerciseData> generateFilteredBodySetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
-            if (exercise.getEquipment() != "null" && exercise.getEquipment().equals("body only")) {
+            if (exercise.getEquipment() != NULL && exercise.getEquipment().equals(OUTPUT_BODY)) {
                 filteredExerciseList.add(exercise);
             }
         }
@@ -78,9 +80,17 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
-    //lipkuang - Added new filter for workout type.
+    /**
+     * Returns an exercise list which is filtered according to the workout type
+     * chosen by the user.
+     * @param exerciseList Arraylist containing the entire set of workout exercises.
+     * @param workoutType The workout type as input by the user.
+     * @return returns list of exercises filtered according to work out type input by the user.
+     * @throws DukeError Occurs if user inputs invalid workout type.
+     */
     public ArrayList<ExerciseData> generateFilteredWorkoutTypeFrom(ArrayList<ExerciseData> exerciseList,
                                                                    String workoutType) throws DukeError {
+        assert exerciseList != null : "exerciseList should not be null.";
         String exerciseDataWorkoutType;
         String getWorkoutType;
         String getWorkoutTypeFinal;
@@ -119,7 +129,14 @@ public class GenerateExercise {
         }
     }
 
+    /**
+     * Parse the user input to return the corresponding workout type within the data file.
+     * @param workoutType The workout type as input by the user.
+     * @return The corresponding workout type within the data file.
+     * @throws DukeError if the workout type input provided by the user is invalid
+     */
     private static String parseWorkoutType(String workoutType) throws DukeError {
+        assert workoutType != null : "workout type should not be null.";
         switch (workoutType) {
         case UPPER:
             return UPPER_BODY;
