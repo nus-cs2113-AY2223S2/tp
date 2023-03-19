@@ -2,7 +2,8 @@ package seedu.duke.commands;
 
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
-import seedu.duke.storage.UserCareerData;
+import seedu.duke.storage.StorageHandler;
+import seedu.duke.userdata.UserCareerData;
 import seedu.duke.states.ExerciseStateHandler;
 import seedu.duke.ui.Ui;
 
@@ -13,14 +14,15 @@ public class CommandHandler {
     private static final boolean INCOMPLETE_EXERCISE = false;
 
     /**
-     * @param rawUserCommands      This refers to the
-     * @param ui                   This allows us to output messages
-     * @param exerciseGenerator    This takes in filter parameters and outputs a curated exercise list
-     * @param userCareerData       This keeps track and allows logging of all user data
+     * @param rawUserCommands This refers to the
+     * @param ui This allows us to output messages
+     * @param exerciseGenerator This takes in filter parameters and outputs a curated exercise list
+     * @param userCareerData This keeps track and allows logging of all user data
      * @param exerciseStateHandler This allows us to know when we are
      */
-    public void handleUserCommands(String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator,
-                                   UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler) {
+    public void handleUserCommands (String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator,
+                                    UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
+                                    StorageHandler storageHandler) {
         String[] userCommands = rawUserCommands.split(" ");
         Command command = null;
         boolean errorExists = false;
@@ -60,8 +62,9 @@ public class CommandHandler {
                     exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData);
                     break;
                 case "history":
-                    throw new DukeError("Finish your exercise!"+
-                            "You can look and feel good about your previous workout sessions later!");
+                    throw new DukeError("Finish your exercise!" +
+                                                "You can look and feel good about your previous workout sessions " +
+                                                "later!");
                 default:
                     ui.unknownCommand();
                     errorExists = true;
@@ -89,8 +92,8 @@ public class CommandHandler {
                 case "writeSample":
                     // sample data
                     command = new SampleSavingCommand(userCareerData,
-                            exerciseGenerator.generateRandomSetFrom(
-                                    exerciseGenerator.generateSetAll(), 3));
+                                                      exerciseGenerator.generateRandomSetFrom(
+                                                              exerciseGenerator.generateSetAll(), 3), storageHandler);
                     break;
                 case "start":
                     exerciseStateHandler.startWorkout();
@@ -99,7 +102,7 @@ public class CommandHandler {
                 case "finish":
                 case "cancel":
                     System.out.println("No workout session active." +
-                            " Please generate a workout and use the \"start\" command!");
+                                               " Please generate a workout and use the \"start\" command!");
                     break;
                 case "history":
                     userCareerData.printAllFinishedWorkoutSessions();
@@ -131,9 +134,9 @@ public class CommandHandler {
         ui.splitLine();
     }
 
-    private static boolean confirmExitDuringWorkout() {
+    private static boolean confirmExitDuringWorkout () {
         System.out.println("Are you sure you want to exit? You have a workout session ongoing." +
-                "\n You will lose your progress!" + "\n Type in 'y' for yes or 'n' for no");
+                                   "\n You will lose your progress!" + "\n Type in 'y' for yes or 'n' for no");
         Scanner in = new Scanner(System.in);
         while (true) {
             String input = in.nextLine();
@@ -149,6 +152,5 @@ public class CommandHandler {
             }
         }
     }
-
 
 }
