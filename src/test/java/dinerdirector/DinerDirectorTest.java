@@ -31,7 +31,7 @@ public class DinerDirectorTest {
         ArrayList<String> listOfCommands = new ArrayList<>();
         listOfCommands.add("add_meeting n/a t/3pm");
         listOfCommands.add("view_meetings");
-        listOfCommands.add("delete_meeting n/a");
+        listOfCommands.add("delete_meeting 1");
         listOfCommands.add("view_meeting");
 
         for (String listOfCommand : listOfCommands) {
@@ -42,7 +42,7 @@ public class DinerDirectorTest {
                 assertTrue(command instanceof ViewMeetingCommand);
             } else if (listOfCommand.equals("add_meeting n/a t/3pm")) {
                 assertTrue(command instanceof AddMeetingCommand);
-            } else if (listOfCommand.equals("delete_meeting n/a")) {
+            } else if (listOfCommand.equals("delete_meeting 1")) {
                 assertTrue(command instanceof DeleteMeetingCommand);
             }
         }
