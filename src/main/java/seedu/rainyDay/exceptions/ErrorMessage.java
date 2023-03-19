@@ -5,7 +5,9 @@ public enum ErrorMessage {
     WRONG_INPUT_FORMAT("Wrong input format!\nPlease refer to 'help' for correct user input!"),
     WRONG_DELETE_INDEX("Please ensure delete index is a number!"),
     NO_DELETE_INDEX("Please include a delete index!"),
-    WRONG_ADD_FORMAT("'add' input not correct!\nPlease refer to 'help' for correct user inputs for 'add' commands");
+    WRONG_ADD_FORMAT("'add' input not correct!\nPlease refer to 'help' for correct user inputs for 'add' commands"),
+    WRONG_FILTER_FORMAT("Please refer to 'help' for correct user input!"),
+    NO_STATEMENTS_MATCH_DESCRIPTION("We could not find any matches for your description in your report");
 
     private final String error;
 

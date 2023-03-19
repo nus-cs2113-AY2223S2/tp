@@ -10,10 +10,10 @@ public class FinancialStatement implements Serializable {
 
     public String description;
     public FlowDirection flowDirection;
-    public int value;
+    public double value;
     public String category;
 
-    public FinancialStatement(String description, String flowDirection, int value, String category) {
+    public FinancialStatement(String description, String flowDirection, double value, String category) {
         this.description = description;
         if (flowDirection.equals(INFLOW_WORD)) {
             this.flowDirection = FlowDirection.INFLOW;
@@ -29,13 +29,14 @@ public class FinancialStatement implements Serializable {
     }
 
     public String getDescription() {
-        assert(!this.description.isEmpty());
+        assert (!this.description.isEmpty());
         return this.description;
     }
 
     public FlowDirection getFlowDirection() {
         return this.flowDirection;
     }
+
     public String getFlowDirectionWord() {
         if (flowDirection == FlowDirection.INFLOW) {
             return INFLOW_WORD;
@@ -43,8 +44,8 @@ public class FinancialStatement implements Serializable {
         return OUTFLOW_WORD;
     }
 
-    public int getValue() {
-        assert(this.value > 0);;
+    public double getValue() {
+        assert (this.value > 0);
         return this.value;
     }
 
@@ -56,10 +57,10 @@ public class FinancialStatement implements Serializable {
     }
 
     public String getFullStatement() {
-        return String.format("%s for %s, %s$%d", getFlowDirectionWord(), getDescription(), getFlowSymbol(), getValue());
+        return String.format("%s for %s, %s$%.2f", getFlowDirection(), getDescription(), getFlowSymbol(), getValue());
     }
 
     public String getStatementForList() {
-        return String.format("%s %s$%d (%s)", getDescription(), getFlowSymbol(), getValue(), getFlowDirectionWord());
+        return String.format("%s %s$%.2f (%s)", getDescription(), getFlowSymbol(), getValue(), getFlowDirection());
     }
 }

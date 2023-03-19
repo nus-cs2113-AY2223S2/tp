@@ -68,9 +68,9 @@ public class Storage {
                 String description = currStatement.getDescription();
                 String value;
                 if (currStatement.getFlowDirection() == FlowDirection.INFLOW) {
-                    value = Integer.toString(currStatement.getValue());
+                    value = Double.toString(currStatement.getValue());
                 } else {
-                    value = Integer.toString(-currStatement.getValue());
+                    value = Double.toString(-currStatement.getValue());
                 }
                 String category = currStatement.getCategory();
 

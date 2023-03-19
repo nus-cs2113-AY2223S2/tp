@@ -48,7 +48,7 @@ public class FinancialReport implements Serializable {
         return financialReport.get(statementNumber).getFlowDirectionWord();
     }
 
-    public int getStatementValue(int statementNumber) {
+    public double getStatementValue(int statementNumber) {
         return financialReport.get(statementNumber).getValue();
     }
 
@@ -68,5 +68,8 @@ public class FinancialReport implements Serializable {
         return financialReport.get(statementNumber);
     }
 
+    public ArrayList<FinancialStatement> getFinancialReport() {
+        return this.financialReport;
+    }
 
 }

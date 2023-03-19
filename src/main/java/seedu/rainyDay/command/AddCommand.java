@@ -15,11 +15,11 @@ public class AddCommand extends Command {
 
     private final String flowDirection;
 
-    private final int value;
+    private final double value;
 
     private final String category;
 
-    public AddCommand(String description, String flowDirection, int value, String category) {
+    public AddCommand(String description, String flowDirection, double value, String category) {
         this.description = description;
         this.flowDirection = flowDirection;
         this.value = value;
