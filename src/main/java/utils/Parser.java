@@ -8,6 +8,7 @@ import utils.command.AddCardToTagCommand;
 import utils.command.Command;
 import utils.command.DeleteCardCommand;
 import utils.command.DeleteTagCommand;
+import utils.command.EditTagNameCommand;
 import utils.command.ExceptionCommand;
 import utils.command.ExportCommand;
 import utils.command.ListCardCommand;
@@ -21,11 +22,11 @@ import utils.exceptions.AddEmptyQuestionAndAnswer;
 import utils.exceptions.AddGoneWrong;
 import utils.exceptions.DeleteMissingNumber;
 import utils.exceptions.DeleteRangeInvalid;
+import utils.exceptions.EditTagNameIncompleteException;
 import utils.exceptions.InkaException;
 
 public class Parser {
     private boolean isExecuting;
-
 
     public Parser() {
         this.isExecuting = true;
@@ -39,18 +40,17 @@ public class Parser {
         this.isExecuting = bool;
     }
 
-
     //Sorry I know this is painful to read, thanks for migrating it to a parser library!
     public Command parseCommand(String userCommand, CardList cardList, TagList tagList) throws InkaException {
         String[] userCommandSplit = userCommand.split("--", 3);
-        assert userCommandSplit.length >=1 : "User Command must be specified";
+        assert userCommandSplit.length >= 1 : "User Command must be specified";
         if (userCommandSplit[0].startsWith("card list")) {
             return new ListCardCommand();
         } else if (userCommandSplit[0].startsWith("card add")) {
             if (userCommandSplit.length < 3) {
                 throw new AddGoneWrong();
             } else if (userCommandSplit[1].isBlank() && userCommandSplit[2].isBlank()) {
-                assert userCommandSplit.length < 3 : "Questions and answers should be specified " ;
+                assert userCommandSplit.length < 3 : "Questions and answers should be specified ";
                 throw new AddEmptyQuestionAndAnswer();
             } else if (userCommandSplit[1].isBlank()) {
                 throw new AddEmptyQuestion();
@@ -81,7 +81,7 @@ public class Parser {
 
             return new AddCardToTagCommand(tagName, cardUUID);
         } else if (userCommandSplit[0].startsWith("tag list")) {
-            if (userCommandSplit.length >1) {
+            if (userCommandSplit.length > 1) {
                 String tagName = userCommandSplit[1];
                 return new ListCardsUnderTagCommand(tagName);
             } else {
@@ -91,6 +91,15 @@ public class Parser {
             //please check for exception
             String tagName = userCommandSplit[1];
             return new DeleteTagCommand(tagName);
+        } else if (userCommandSplit[0].startsWith("tag edit")) {
+            if (userCommandSplit.length < 3) {
+                throw new EditTagNameIncompleteException();
+            }
+
+            String oldTagName = userCommandSplit[1].trim();
+            String newTagName = userCommandSplit[2].trim();
+
+            return new EditTagNameCommand(oldTagName, newTagName);
         } else if (userCommandSplit[0].startsWith("export") || userCommandSplit[0].startsWith("export ")) {
             return new ExportCommand();
         } else if (userCommandSplit[0].startsWith("bye")) {
