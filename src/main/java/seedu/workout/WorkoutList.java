@@ -35,6 +35,11 @@ public class WorkoutList {
         System.out.println("No workout found with the specified date.");
     }
 
+    /**
+     * This method will loop the workout list and print out the date in this list
+     *
+     */
+    //@@ author ZIZI-czh
     public void showWorkoutList() {
         try {
             if (!workoutList.isEmpty()) {
@@ -45,6 +50,7 @@ public class WorkoutList {
                     System.out.println(formattedDate);
                 }
             } else {
+                //if there is no workout have been done
                 System.out.println("Haven't start your workout, please enter your workout");
             }
 

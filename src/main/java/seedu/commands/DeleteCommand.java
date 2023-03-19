@@ -2,6 +2,7 @@ package seedu.commands;
 
 import java.util.Date;
 
+
 public class DeleteCommand extends Command {
     Date workoutToDeleteDate;
     public DeleteCommand(Date workoutToDeleteDate) {
