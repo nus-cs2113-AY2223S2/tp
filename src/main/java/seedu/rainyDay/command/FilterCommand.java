@@ -13,7 +13,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class FilterCommand extends Command {
+public class FilterCommand extends Command implements ReportFormat {
 
     private static final Logger logger = Logger.getLogger(FilterCommand.class.getName());
     private final String description;
@@ -35,8 +35,33 @@ public class FilterCommand extends Command {
         }
     }
 
+//    @Override
+//    public void execute() throws RainyDayException{
+//        setupLogger();
+//        logger.log(Level.INFO, "starting FilterCommand.execute()");
+//
+//        ArrayList<FinancialStatement> filteredList = (ArrayList<FinancialStatement>) financialReport
+//                .getFinancialReport().stream()
+//                .filter(t -> t.getDescription().contains(this.description))
+//                .collect(Collectors.toList());
+//
+//        if (filteredList.size() == 0) {
+//            throw new RainyDayException(ErrorMessage.NO_STATEMENTS_MATCH_DESCRIPTION.toString());
+//        } else {
+//            for (int i = 0; i < filteredList.size(); i += 1) {
+//                logger.log(Level.INFO, "starting statement " + i);
+//                FinancialStatement currentStatement = filteredList.get(i);
+//
+//                Ui.printFinancialStatement(i + 1, currentStatement);
+//                logger.log(Level.INFO, "passed statement " + i);
+//            }
+//        }
+//
+//        logger.log(Level.INFO, " end of FilterCommand.execute()");
+//    }
+
     @Override
-    public void execute() throws RainyDayException{
+    public CommandResult execute() throws RainyDayException {
         setupLogger();
         logger.log(Level.INFO, "starting FilterCommand.execute()");
 
@@ -48,6 +73,7 @@ public class FilterCommand extends Command {
         if (filteredList.size() == 0) {
             throw new RainyDayException(ErrorMessage.NO_STATEMENTS_MATCH_DESCRIPTION.toString());
         } else {
+            String outcome = "";
             for (int i = 0; i < filteredList.size(); i += 1) {
                 logger.log(Level.INFO, "starting statement " + i);
                 FinancialStatement currentStatement = filteredList.get(i);
@@ -58,5 +84,7 @@ public class FilterCommand extends Command {
         }
 
         logger.log(Level.INFO, " end of FilterCommand.execute()");
+
+        return new CommandResult(outcome);
     }
 }
