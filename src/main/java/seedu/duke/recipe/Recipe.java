@@ -1,7 +1,5 @@
 package seedu.duke.recipe;
 
-import java.util.ArrayList;
-
 public class Recipe {
     protected IngredientList ingredientList;
     protected StepList stepList;
