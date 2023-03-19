@@ -1,18 +1,17 @@
 package seedu.duke.storage;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
 import java.io.FileReader;
 import java.io.Reader;
-import java.time.LocalDateTime;
 
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exceptions.FileReadError;
 import seedu.duke.userdata.Session;
+import seedu.duke.userdata.UserCareerData;
 
 /**
  * Class to read and parse the json file containing userData into an ArrayList of completed workouts.

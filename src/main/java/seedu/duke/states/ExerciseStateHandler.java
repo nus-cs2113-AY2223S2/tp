@@ -2,8 +2,8 @@ package seedu.duke.states;
 
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exersisedata.ExerciseData;
-import seedu.duke.storage.UserCareerData;
-import seedu.duke.storage.UserDataWriter;
+import seedu.duke.storage.StorageHandler;
+import seedu.duke.userdata.UserCareerData;
 import seedu.duke.ui.Ui;
 import seedu.duke.userdata.Session;
 
@@ -12,11 +12,14 @@ import java.util.ArrayList;
 public class ExerciseStateHandler {
 
     private static ArrayList<ExerciseData> previousGeneratedWorkout = new ArrayList<>();
-    private static final String SESSION_HISTORY_FILENAME = "userData.json";
-
+    private final StorageHandler storageHandler;
     public boolean workoutOngoing;
+    private Session currentSessionWorkout;
 
-    private Session currentSessionWorkout = new Session(null);
+    public ExerciseStateHandler (StorageHandler storageHandler) {
+        this.storageHandler = storageHandler;
+        this.currentSessionWorkout = new Session(null);
+    }
 
     /**
      * This function logs the previous workout everytime a workout is generated
@@ -60,7 +63,7 @@ public class ExerciseStateHandler {
      * @param workoutCompleted Will add current session to saved sessions if true
      * @param userCareerData Stores and contains user data
      */
-    public void endWorkout (boolean workoutCompleted, UserCareerData userCareerData) {
+    public void endWorkout (boolean workoutCompleted, UserCareerData userCareerData) throws DukeError {
         assert userCareerData != null;
         workoutOngoing = false;
         if (workoutCompleted) {
@@ -75,12 +78,11 @@ public class ExerciseStateHandler {
      * @param completedWorkout The workout to be saved to userData.json
      * @param userCareerData Stores User Data
      */
-    private static void saveWorkoutSession (Session completedWorkout, UserCareerData userCareerData) {
+    private void saveWorkoutSession (Session completedWorkout, UserCareerData userCareerData) throws DukeError {
         assert completedWorkout != null;
         System.out.println("Workout completed! Congratulations on your hard work!");
         userCareerData.addWorkoutSession(completedWorkout);
-        UserDataWriter userDataWriter = new UserDataWriter();
-        userDataWriter.writeToJson(SESSION_HISTORY_FILENAME, userCareerData);
+        storageHandler.writeToJson(userCareerData);
         //complete workout
     }
 

@@ -2,10 +2,12 @@ package seedu.duke.userdata;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
 import seedu.duke.exersisedata.ExerciseData;
 
 public class Session {
     private final LocalDateTime dateAdded;
+
     private final ArrayList<ExerciseData> sessionExercises;
     private LocalDateTime dateComplete;
     private String status;

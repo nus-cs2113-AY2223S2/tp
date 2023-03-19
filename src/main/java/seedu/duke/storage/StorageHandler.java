@@ -3,6 +3,7 @@ package seedu.duke.storage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import seedu.duke.exceptions.DukeError;
+import seedu.duke.userdata.UserCareerData;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +21,7 @@ public class StorageHandler {
                 .create();
         this.userDataWriter = new UserDataWriter(gson);
         this.userDataLoader = new UserDataLoader(gson);
-
+        this.FILEPATH = filePath;
     }
 
     public void writeToJson (UserCareerData userCareerData) throws DukeError {

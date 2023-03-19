@@ -4,8 +4,7 @@ import seedu.duke.commands.CommandHandler;
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.storage.StorageHandler;
-import seedu.duke.storage.UserDataLoader;
-import seedu.duke.storage.UserCareerData;
+import seedu.duke.userdata.UserCareerData;
 import seedu.duke.ui.Ui;
 import seedu.duke.states.ExerciseStateHandler;
 
@@ -21,10 +20,10 @@ public class Duke {
     private final String FILEPATH = "userData.json";
 
     public Duke () {
-        exerciseHandler = new ExerciseStateHandler();
         ui = new Ui();
         exerciseGenerator = new GenerateExercise();
         storageHandler = new StorageHandler(FILEPATH);
+        exerciseHandler = new ExerciseStateHandler(storageHandler);
         try {
             this.userCareerData = storageHandler.loadUserCareer();
         } catch (DukeError e) {
@@ -40,7 +39,8 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         ui.greetUser();
         while (true) {
-            commandHandler.handleUserCommands(in.nextLine(), ui, exerciseGenerator, userCareerData, exerciseHandler);
+            commandHandler.handleUserCommands(in.nextLine(), ui, exerciseGenerator, userCareerData, exerciseHandler,
+                                              storageHandler);
         }
     }
 

@@ -3,17 +3,17 @@ package seedu.duke.commands;
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
-import seedu.duke.storage.UserCareerData;
+import seedu.duke.userdata.UserCareerData;
 import seedu.duke.ui.Ui;
 import seedu.duke.userdata.Session;
 
 public class SampleReadCommand extends Command {
-    private UserCareerData userCareerData;
+    private final UserCareerData userCareerData;
 
     /**
      * Sets the userCareerData as a local variable for use later
      *
-     * @param userCareerData
+     * @param userCareerData Data of sessions completed by user
      */
 
     public SampleReadCommand (UserCareerData userCareerData) {

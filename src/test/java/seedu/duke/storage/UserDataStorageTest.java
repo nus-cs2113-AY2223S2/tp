@@ -9,6 +9,7 @@ import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.userdata.Session;
+import seedu.duke.userdata.UserCareerData;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -41,9 +42,9 @@ public class UserDataStorageTest {
         UserCareerData userCareerData = new UserCareerData();
         userCareerData.addWorkoutSession(session);
         TestWriting.testWriting(sessionExercises, userCareerData);
-        UserDataWriter.writeToJson("testData.json", userCareerData);
+        storageHandler.writeToJson(userCareerData);
         ArrayList<Session> completedSessionWorkouts;
-        completedSessionWorkouts = UserDataLoader.loadUserCareer("testData.json").getTotalUserCareerSessions();
+        completedSessionWorkouts = storageHandler.loadUserCareer().getTotalUserCareerSessions();
         TestReading.testReading(completedSessionWorkouts, sessionExercises);
         File file = new File("testData.json");
         boolean deletionResult = file.delete();
@@ -70,9 +71,9 @@ public class UserDataStorageTest {
                                                                                              random.nextInt(30));
             Session session = new Session(sessionWorkouts);
             userCareerData.addWorkoutSession(session);
-            UserDataWriter.writeToJson("testData.json", userCareerData);
+            storageHandler.writeToJson(userCareerData);
         }
-        UserCareerData userCareerDataFromFile = UserDataLoader.loadUserCareer("testData.json");
+        UserCareerData userCareerDataFromFile = storageHandler.loadUserCareer();
         TestReading.testReadingUserCareer(userCareerDataFromFile, userCareerData);
         File file = new File("testData.json");
         boolean deletionResult = file.delete();

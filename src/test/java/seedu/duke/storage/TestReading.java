@@ -2,6 +2,7 @@ package seedu.duke.storage;
 
 import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.userdata.Session;
+import seedu.duke.userdata.UserCareerData;
 
 import java.util.ArrayList;
 

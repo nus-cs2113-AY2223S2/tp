@@ -1,14 +1,13 @@
 package seedu.duke.storage;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import seedu.duke.exceptions.DukeError;
+import seedu.duke.userdata.UserCareerData;
 
 import java.io.FileWriter;
 import java.io.Writer;
-import java.time.LocalDateTime;
 
 /**
  * Class to write an ArrayList of completedWorkouts into a json file.
