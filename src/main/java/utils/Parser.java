@@ -294,13 +294,10 @@ public class Parser {
     }
 
     private Command prepareAddDishCommand(String userInputNoCommand) {
-//    MENU COMMANDS:
-//    add_dish n/<name>
-//    pc/<price in cents>
-//    [<ingredient 1>, <ingredients 2>, <ingredient 3>]
-
-//    delete_dish <index>
-//    view_dish
+//        MENU COMMANDS:
+//        add_dish n/<name>
+//        pc/<price in cents>
+//        [<ingredient 1>;<ingredients 2>;<ingredient 3>; ... ]
 
         String name = "";
         int price = 0;
