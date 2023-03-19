@@ -13,6 +13,7 @@ import seedu.apollo.utils.LessonTypeUtil;
 import java.rmi.UnexpectedException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -130,7 +131,8 @@ public class Ui {
      * @param calendar Contains details about the user's lessons during the week.
      */
     public void printWeek(TaskList taskList, Calendar calendar) {
-        LocalDate now = LocalDate.now();
+        ZoneId zid = ZoneId.of("Asia/Singapore");
+        LocalDate now = LocalDate.now(zid);
         LocalDate startWeek = now.with(DayOfWeek.MONDAY);
         LocalDate endWeek = now.with(DayOfWeek.SUNDAY);
         LocalDate curr = startWeek;
