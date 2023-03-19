@@ -1,7 +1,6 @@
-# Lin Shang - Project Portfolio Page
+# Irving - Project Portfolio Page
 
 ## Overview
 
 
 ### Summary of Contributions
-
