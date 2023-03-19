@@ -24,10 +24,10 @@ public class Card {
      * @param answer   The answer in the card.
      * @param UUIDStr  The custom UUID String that the user specifies for the card.
      */
-    public Card(String question, String answer, String UUIDStr) {
+    public Card(String question, String answer, String uuidStr) {
         this.question = question;
         this.answer = answer;
-        this.uuid = new CardUUID(UUID.fromString(UUIDStr));
+        this.uuid = new CardUUID(UUID.fromString(uuidStr));
     }
 
     public CardUUID getUuid() {
