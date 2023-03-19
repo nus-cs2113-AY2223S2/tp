@@ -17,6 +17,19 @@ public class Card {
         this.uuid = new CardUUID(UUID.randomUUID());
     }
 
+    /**
+     * Constructor function where user specifies the UUID himself, mainly used for unit testing purposes
+     *
+     * @param question The question in the card.
+     * @param answer   The answer in the card.
+     * @param UUIDStr  The custom UUID String that the user specifies for the card.
+     */
+    public Card(String question, String answer, String UUIDStr) {
+        this.question = question;
+        this.answer = answer;
+        this.uuid = new CardUUID(UUID.fromString(UUIDStr));
+    }
+
     public CardUUID getUuid() {
         return this.uuid;
     }
