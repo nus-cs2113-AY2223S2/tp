@@ -16,6 +16,8 @@ public class ViewCommand extends Command implements FormatReport {
     private static final String VIEW_SUMMARY = "" +
             "+-----+------------------------------+------------+----------------+\n";
     private static final Logger logger = Logger.getLogger(ViewCommand.class.getName());
+    private double totalInflow = 0;
+    private double totalOutflow = 0;
 
     public ViewCommand() {
     }
@@ -95,9 +97,13 @@ public class ViewCommand extends Command implements FormatReport {
         assert financialReport.getStatementCount() != 0 : "statement count mismatch";
 
         outcome = ACKNOWLEDGE_VIEW_COMMAND;
+        outcome = getStatementsOutput(outcome);
+        outcome += VIEW_SUMMARY + FormatReport.formatSummary(totalInflow, totalOutflow);
 
-        double totalInflow = 0;
-        double totalOutflow = 0;
+        return new CommandResult(outcome);
+    }
+
+    private String getStatementsOutput(String outcome) {
         for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
             logger.log(Level.INFO, "starting statement " + i);
 
