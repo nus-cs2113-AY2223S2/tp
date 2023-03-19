@@ -81,12 +81,11 @@ public class GenerateExercise {
     }
 
     /**
-     * Returns a exercise list which is filtered according to the workout type
+     * Returns an exercise list which is filtered according to the workout type
      * chosen by the user.
      * @param exerciseList Arraylist containing the entire set of workout exercises.
      * @param workoutType The workout type as input by the user.
-     * @return returns the list of exercises filtered according to workout
-     * type input by the user.
+     * @return returns list of exercises filtered according to work out type input by the user.
      * @throws DukeError Occurs if user inputs invalid workout type.
      */
     public ArrayList<ExerciseData> generateFilteredWorkoutTypeFrom(ArrayList<ExerciseData> exerciseList,
