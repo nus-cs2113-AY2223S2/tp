@@ -25,8 +25,8 @@ public class Storage {
     }
 
     public static void load() throws FileNotFoundException {
-        File file = new File(filePath); // create a File for the given file path
-        Scanner s = new Scanner(file); // create a Scanner using the File as the source
+        File file = new File(filePath);
+        Scanner s = new Scanner(file);
         while (s.hasNext()) {
             String textLine = s.nextLine();
             String[] parsedTextLine = textLine.split("\\|");
