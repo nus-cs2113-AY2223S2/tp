@@ -7,6 +7,8 @@
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+![Record Class](/images/UML_class.png)
+![Record Class](/images/Sequence_diagram.png)
 
 ### Delete Income command
 
