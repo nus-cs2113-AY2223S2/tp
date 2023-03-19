@@ -17,8 +17,6 @@ import commands.meeting.AddMeetingCommand;
 import commands.meeting.DeleteMeetingCommand;
 import commands.meeting.ViewMeetingCommand;
 import commands.Command;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 
 import common.Messages;
 import exceptions.DinerDirectorException;
@@ -35,7 +33,6 @@ import static manager.DishManager.getDishesSize;
  */
 public class Parser {
 
-    private static final Logger logger = Logger.getLogger("Foo");
 
     public Command parseCommand(String userInput) {
         assert userInput != null : "userInput should not be null";
@@ -185,10 +182,8 @@ public class Parser {
             String[] testName = (words[0].trim()).split("n/");  // n/
             if (((description.trim()).isEmpty()) || (!description.contains("n/"))
                     || (words.length < 2) || (testName.length < 1)) {
-                logger.log(Level.WARNING, "Error parsing add deadline command.");
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_PARAM);
             } else if ((testName.length > 2) || (words.length > 2)) {
-                logger.log(Level.WARNING, "Error parsing add deadline command.");
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_EXCESS_PARAM);
             }
         } catch (DinerDirectorException e) {
@@ -212,7 +207,6 @@ public class Parser {
     private Command prepareViewDeadlineCommand(String userInput) {
         try {
             if (!(userInput.trim()).isEmpty()) {
-                logger.log(Level.WARNING, "Error parsing view deadline command.");
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_EXCESS_LIST_PARAM);
             }
         } catch (DinerDirectorException e) {
@@ -236,12 +230,10 @@ public class Parser {
         try {
             index = Integer.parseInt((description.trim())) - 1;
             if (description.isEmpty()) {
-                logger.log(Level.WARNING, "Error parsing add deadline command.");
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_INDEX);
             }
         } catch (NumberFormatException e) {
             System.out.println(Messages.ERROR_DEADLINE_MISSING_INDEX);
-            logger.log(Level.WARNING, "Input in delete deadline command was not an integer.", e);
             return new IncorrectCommand();
         } catch (DinerDirectorException e) {
             System.out.println(e);
