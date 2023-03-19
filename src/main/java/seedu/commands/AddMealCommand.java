@@ -11,40 +11,63 @@ import seedu.database.UserStorage;
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
+import seedu.exceptions.InvalidDateException;
+import seedu.exceptions.InvalidIndexException;
+import seedu.exceptions.InvalidMealException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.logger.LogFileHandler;
+import seedu.parser.DateParser;
 import seedu.ui.GeneralUi;
 
 public class AddMealCommand extends Command {
+    private String commandWord;
+    private String userInput;
+    private String dateString;
+    private LocalDate date;
+    private String mealTypeString;
+    private MealTypes mealType;
+    private String foodName;
+    private int choice;
+    private Meal meal;
+    private ArrayList<Food> foods;
+    private DateTimeFormatter dtf;
+
+    public AddMealCommand(String commandWord, String userInput) {
+        this.commandWord = commandWord;
+        this.userInput = userInput;
+    }
+
 
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
                 throws LifeTrackerException {
-        String dateString = "";
-        LocalDate date;
-        String mealTypeString = "";
-        MealTypes mealType = null;
-        String foodName;
+        foods = new ArrayList<Food>();
+        dtf = mealStorage.getDateTimeFormatter();
+        dateString = "";
+        mealTypeString = "";
+        mealType = null;
+
+        getDetails(ui, foodStorage);
+        
+        meal = new Meal(foods, date, mealType);
+        mealStorage.saveMeal(meal);
+        ui.printNewMealAdded(meal);
+        LogFileHandler.logInfo(meal.toString());
+    }
+
+
+
+    private void getDetails(GeneralUi ui, FoodStorage foodStorage) throws LifeTrackerException {
         boolean toContinue = true;
-        int choice;
-        Meal meal;
-        ArrayList<Food> foods = new ArrayList<Food>();
-        DateTimeFormatter dtf = mealStorage.getDateTimeFormatter();
 
         System.out.println("Enter date of meal:");
-        try {
-            dateString = ui.readLine();
-            date = LocalDate.parse(dateString, dtf);
-        } catch (DateTimeParseException e) {
-            throw new LifeTrackerException(System.lineSeparator() + "Invalid Date: " + dateString + 
-                    "! Please format using d/m/yyyy");
-        }
+        dateString = ui.readLine();
+        date = DateParser.parse(dateString, dtf);
 
         System.out.println(System.lineSeparator() + "Enter type of meal:");
         mealTypeString = ui.readLine();
         if ((mealType = MealTypes.fromString(mealTypeString)) == null) {
-            throw new LifeTrackerException(System.lineSeparator() + "Invalid meal type: " + mealTypeString +
-                    "! Supported meal types: " + MealTypes.getSupportedMealTypes());
+            throw new InvalidMealException(mealTypeString);
         }
 
         do {
@@ -65,7 +88,7 @@ public class AddMealCommand extends Command {
 
             choice = ui.readInt();
             if (choice <= 0 || choice > filteredFoods.size()) {
-                throw new LifeTrackerException(System.lineSeparator() + "Invalid index!");
+                throw new InvalidIndexException(choice);
             }
 
             foods.add(filteredFoods.get(choice-1));
@@ -77,10 +100,6 @@ public class AddMealCommand extends Command {
             }
             
         } while (toContinue);
-        
-        meal = new Meal(foods, date, mealType);
-        mealStorage.saveMeal(meal);
-        ui.printNewMealAdded(meal);
-        LogFileHandler.logInfo(meal.toString());
+
     }
 }

@@ -5,6 +5,7 @@ import seedu.database.MealStorage;
 import seedu.database.UserStorage;
 import seedu.entities.Meal;
 import seedu.exceptions.InvalidCommandException;
+import seedu.exceptions.InvalidIndexException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.logger.LogFileHandler;
 import seedu.ui.GeneralUi;
@@ -36,7 +37,7 @@ public class DeleteMealCommand extends Command{
             ui.printMealDeleted(deletedMeal);
             LogFileHandler.logInfo(deletedMeal.toString());
         } catch (IndexOutOfBoundsException e) {
-            throw new LifeTrackerException("Invalid Index!");
+            throw new InvalidIndexException(index);
         }
     }
 }
