@@ -1,0 +1,26 @@
+package seedu.apollo.utils;
+
+public class DayTypeUtil {
+
+    public static String determineDay(int dayInt) {
+        switch (dayInt) {
+        case 0:
+            return "Monday";
+        case 1:
+            return "Tuesday";
+        case 2:
+            return "Wednesday";
+        case 3:
+            return "Thursday";
+        case 4:
+            return "Friday";
+        case 5:
+            return "Saturday";
+        case 6:
+            return "Sunday";
+        default:
+            return null;
+        }
+    }
+
+}

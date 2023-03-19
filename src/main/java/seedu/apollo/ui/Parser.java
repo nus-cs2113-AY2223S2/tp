@@ -1,5 +1,6 @@
 package seedu.apollo.ui;
 
+import seedu.apollo.command.WeekCommand;
 import seedu.apollo.command.task.AddCommand;
 import seedu.apollo.command.module.AddModuleCommand;
 import seedu.apollo.command.Command;
@@ -36,6 +37,7 @@ public class Parser {
     public static final String COMMAND_EXIT_WORD = "bye";
     public static final String COMMAND_HELP_WORD = "help";
     public static final String COMMAND_LIST_WORD = "list";
+    public static final String COMMAND_WEEK_WORD = "week";
     public static final String COMMAND_DATE_WORD = "date";
     public static final String COMMAND_FIND_WORD = "find";
     public static final String COMMAND_MARK_WORD = "mark";
@@ -133,6 +135,9 @@ public class Parser {
             }
             return new ListCommand();
 
+        case COMMAND_WEEK_WORD:
+            return new WeekCommand();
+
         case COMMAND_DATE_WORD:
             if (isEmptyParam(split)) {
                 throw new InvalidDateTime();
@@ -173,6 +178,7 @@ public class Parser {
             }
             String moduleCode = split[1];
             return new DeleteModuleCommand(moduleCode);
+
         default:
             throw new IllegalCommandException();
         }
