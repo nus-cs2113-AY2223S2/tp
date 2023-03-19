@@ -186,8 +186,6 @@ public class DinerDirectorTest {
         String dishSetup = "add_dish n/Chicken Burger pc/1099 " +
                 "[tomatoes;chicken fillet;cheese;bread with sesame seeds]";
 
-//        Command deleteCommand = new Parser().parseCommand(dishSetup);
-
         ArrayList<String> listOfCommands = new ArrayList<>();
 
         final String TEST_CASE_NO_INDEX = "delete_dish";
