@@ -13,6 +13,8 @@ import java.util.Scanner;
 public class Eventus {
 
     public static void main(String[] args) {
+        assert false : "dummy assertion set to fail";
+
         Ui ui = new Ui();
         ArrayList<Company> companyArrayList = new ArrayList<>();
         CompanyList companyList = new CompanyList(companyArrayList);
