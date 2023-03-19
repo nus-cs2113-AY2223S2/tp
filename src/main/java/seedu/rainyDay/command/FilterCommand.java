@@ -22,6 +22,7 @@ public class FilterCommand extends Command {
         this.description = description;
         this.filterFlag = filterFlag;
     }
+
     @Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
