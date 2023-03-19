@@ -75,7 +75,8 @@ public class Meal implements Comparable<Meal> {
     @Override
     public String toString() {
         String output = this.identifier + " was consumed on " + 
-                date.format(DateTimeFormatter.ofPattern(DateConstants.PARSE_FORMAT, Locale.ENGLISH)) + System.lineSeparator();
+                date.format(DateTimeFormatter.ofPattern(DateConstants.PARSE_FORMAT, Locale.ENGLISH)) + 
+                System.lineSeparator();
         output += "Total Calories are: " + this.totalCalories + System.lineSeparator();
         output += "Here are the foods you ate:" + System.lineSeparator();
         for (int i = 0; i < foods.size(); i++) {
