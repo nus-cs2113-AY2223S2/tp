@@ -1,5 +1,6 @@
 package seedu.apollo;
 
+import seedu.apollo.calendar.Calendar;
 import seedu.apollo.command.Command;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.storage.Storage;
@@ -22,6 +23,7 @@ public class Apollo {
     private static TaskList taskList;
     private static ModuleList moduleList;
     private static ModuleList moduleData;
+    private static Calendar calendar;
     private static Ui ui;
 
 
@@ -33,6 +35,7 @@ public class Apollo {
     public Apollo(String filePath, String moduleDataFilePath) {
         ui = new Ui();
         storage = new Storage(filePath, moduleDataFilePath);
+        calendar = new Calendar();
         try {
             moduleData = storage.loadModuleData();
             moduleList = storage.loadModuleList(ui, moduleData);
@@ -59,7 +62,7 @@ public class Apollo {
             ui.showLine();
             Command c = Parser.getCommand(fullCommand, ui, taskList.size(), moduleData);
             if (c != null) {
-                c.execute(taskList, ui, storage, moduleList, moduleData);
+                c.execute(taskList, ui, storage, moduleList, moduleData, calendar);
                 isExit = c.isExit;
             }
             ui.showLine();

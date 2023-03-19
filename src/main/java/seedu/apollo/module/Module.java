@@ -89,4 +89,12 @@ public class Module {
         }
         return false;
     }
+
+    public CalendarModule toCalendarModule() {
+        CalendarModule calendarModule = new CalendarModule(this.code, this.title, this.moduleCredits);
+        for (Timetable timetable : this.timetable) {
+            calendarModule.setSchedule(timetable);
+        }
+        return calendarModule;
+    }
 }

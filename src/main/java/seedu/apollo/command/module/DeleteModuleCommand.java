@@ -1,4 +1,5 @@
 package seedu.apollo.command.module;
+import seedu.apollo.calendar.Calendar;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.command.Command;
 import seedu.apollo.exception.module.ModuleNotFoundException;
@@ -48,7 +49,8 @@ public class DeleteModuleCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules){
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
+                        Calendar calendar){
 
         try {
             Module toDelete = moduleList.findModule(moduleCode);
