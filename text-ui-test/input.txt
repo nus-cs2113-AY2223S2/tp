@@ -4,11 +4,13 @@ todo
 todo eat lunch
 deadline
 deadline submit tutorial
+deadline submit tutorial /by tomorrow
 deadline submit tutorial /by 2023-03-03T23:59
 deadline submit tutorial /by 2023-05-03T23:59
 event
 event lecture /from 2023-05-03T09:00
 event lecture /from 2023-05-03T11:00 /to 2023-05-03T09:00
+event lecture /from 2023-05-03T11:00 /to 1 hour later
 event lecture /from 2023-05-03T09:00 /to 2023-05-03T11:00
 list
 mark eat lunch

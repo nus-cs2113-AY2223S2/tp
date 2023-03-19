@@ -80,7 +80,7 @@ public class Parser {
         } catch (InvalidEvent e) {
             ui.printInvalidEvent();
         } catch (InvalidDateTime e) {
-            ui.printInvalidDateTime();
+            ui.printInvalidDate();
         } catch (InvalidModule e) {
             ui.printInvalidModule();
         }
