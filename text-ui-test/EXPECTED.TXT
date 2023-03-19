@@ -12,9 +12,9 @@ Hello from rainyDay!
            |
          `='
 Welcome John
-Done! Added: in for ang bao +$1337.00
-Done! Added: out for noodles -$5.00
-Done! Added: out for miscellaneous -$20.00
+Done! Added: in for ang bao, +$1337.00
+Done! Added: out for noodles, -$5.00
+Done! Added: out for miscellaneous, -$20.00
 +-----+------------------------------+------------+----------------+
 |Here is your full financial report!                               |
 +-----+------------------------------+------------+----------------+
