@@ -1,6 +1,4 @@
-____________________________________________________________
-Save file not found, initialising empty list...
-____________________________________________________________
+Module Data loaded
 ____________________________________________________________
 Hello from
  ____    ____    _____  __      __       _____
@@ -8,24 +6,44 @@ Hello from
 | |_| | | |_| | | | | | | |     | |     | | | |
 | | | | |  __/  | |_| | | |___  | |___  | |_| |
 |_| |_| |_|     \_____/ |_____| |_____| \_____/
+
 Enter "help" to see a list of commands.
 ____________________________________________________________
 ____________________________________________________________
+
  Enter "list" to see all tasks
+ Enter "listmod" to see your module list
  Enter "todo [task]" to add a task
  Enter "deadline [task] /by [date]" to add a deadline
  Enter "event [task] /from [date] /to [date]" to add an event
+ Enter "addmod [MODULE_CODE]" to add a Module to the Module list
+ Enter "addmod [MODULE_CODE] -FLAG [LESSON NUMBER]" to add a lesson
  Enter "mark [idx]" to mark task as done
  Enter "unmark [idx]" to mark task as not done
  Enter "delete [idx]" to remove task from list
+ Enter "delmod [MODULE_CODE]" to remove a Module you previously added
  Enter "find [keyword]" to see all tasks containing [keyword]
  Enter "date [yyyy-MM-dd]" to see all tasks occurring on that date
  Enter "bye" to exit the program
 
  ***NOTE***
- The "date" command only considers tasks when [date] is input in the format:
-     "yyyy-MM-ddThh:mm"
+ Please enter all [date]s in the format: "yyyy-MM-ddThh:mm"
  eg. "2023-10-30T23:59" represents Oct 20 2023, 11:59PM
+
+There are -FLAGS for the various lessons options per module:
+-lec			LECTURE
+-plec			PACKAGED LECTURE
+-st 			SECTIONAL TEACHING
+-dlec			DESIGN LECTURE
+-tut			TUTORIAL
+-ptut			PACKAGED TUTORIAL
+-rcit			RECITATION
+-lab			LABORATORY
+-ws				WORKSHOP
+-smc			SEMINAR STYLE MODULE CLASS
+-mp				MINI PROJECT
+-tt2			TUTORIAL TYPE 2
+
 ____________________________________________________________
 ____________________________________________________________
 There are no tasks in your list!
@@ -44,8 +62,11 @@ ____________________________________________________________
 Please enter deadline as "deadline [task] /by [date]".
 ____________________________________________________________
 ____________________________________________________________
+Oops, your deadline: submit tutorial (by: Mar 03 2023, 11:59PM) occurs before today!
+____________________________________________________________
+____________________________________________________________
 Got it. I've added this deadline:
-  [D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
+  [D][ ] submit tutorial (by: May 03 2023, 11:59PM)
 ____________________________________________________________
 ____________________________________________________________
 Oops! The description of a task cannot be empty.
@@ -54,14 +75,19 @@ ____________________________________________________________
 Please enter event as "event [task] /from [date] /to [date]".
 ____________________________________________________________
 ____________________________________________________________
+Oops, the start date for your event occurs after the end date!
+____________________________________________________________
+____________________________________________________________
 Got it. I've added this event:
-  [E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
+  [E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
+You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
 1.[T][ ] eat lunch
-2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
-3.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
+2.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
+3.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+There are 3 unmarked tasks in your tasklist.
 ____________________________________________________________
 ____________________________________________________________
 Please enter [idx] in the form of an integer from 1 to 3
@@ -71,28 +97,32 @@ Please enter [idx] in the form of an integer from 1 to 3
 ____________________________________________________________
 ____________________________________________________________
 Nice!, I've marked this task as done:
-  [D][X] submit tutorial (by: Mar 03 2023, 11:59PM)
+  [D][X] submit tutorial (by: May 03 2023, 11:59PM)
 ____________________________________________________________
 ____________________________________________________________
+You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
 1.[T][ ] eat lunch
-2.[D][X] submit tutorial (by: Mar 03 2023, 11:59PM)
-3.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
+2.[D][X] submit tutorial (by: May 03 2023, 11:59PM)
+3.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+There are 2 unmarked tasks in your tasklist.
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
-  [D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
+  [D][ ] submit tutorial (by: May 03 2023, 11:59PM)
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this todo:
   [T][ ] sleep
 ____________________________________________________________
 ____________________________________________________________
+You have a total of 4 tasks in your tasklist.
 Here are the tasks in your list:
 1.[T][ ] eat lunch
-2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
-3.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
+2.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
+3.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
 4.[T][ ] sleep
+There are 4 unmarked tasks in your tasklist.
 ____________________________________________________________
 ____________________________________________________________
 Please enter [idx] in the form of an integer from 1 to 4
@@ -106,17 +136,12 @@ Noted, I've removed this task:
 Now you have 3 tasks in the list
 ____________________________________________________________
 ____________________________________________________________
+You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
 1.[T][ ] eat lunch
-2.[D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
-3.[E][ ] lecture (from: May 03 2023, 09:00AM to: 11:00AM)
-____________________________________________________________
-____________________________________________________________
-Oops, the start date for your event occurs after the end date!
-____________________________________________________________
-____________________________________________________________
-Got it. I've added this event:
-  [E][ ] holiday (from: Feb 25 2023, 12:00AM to: Mar 04 2023, 11:59PM)
+2.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
+3.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+There are 3 unmarked tasks in your tasklist.
 ____________________________________________________________
 ____________________________________________________________
 Please specify a keyword to do the search with!
@@ -127,7 +152,7 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the matching tasks in your list:
 1.[T][ ] eat lunch
-2.[E][ ] holiday (from: Feb 25 2023, 12:00AM to: Mar 04 2023, 11:59PM)
+2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 Please enter date in the format of yyyy-MM-dd.
@@ -136,9 +161,52 @@ ____________________________________________________________
 There are no tasks on Jan 01 2025!
 ____________________________________________________________
 ____________________________________________________________
-Here are the tasks happening on Mar 03 2023:
-1.[D][ ] submit tutorial (by: Mar 03 2023, 11:59PM)
-2.[E][ ] holiday (from: Feb 25 2023, 12:00AM to: Mar 04 2023, 11:59PM)
+Here are the tasks happening on May 03 2023:
+1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
+2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+____________________________________________________________
+____________________________________________________________
+Sorry, but I don't know what that means :(
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this module:
+  CS2113: Software Engineering & Object-Oriented Programming
+Total modular credits you have in this semester: 4
+Here are the lesson types for this module:
+Lecture
+Tutorial
+To see how to add lessons, enter 'help'.
+____________________________________________________________
+____________________________________________________________
+Module already added in Module List!
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this module:
+  CS2040C: Data Structures and Algorithms
+Total modular credits you have in this semester: 8
+Here are the lesson types for this module:
+Laboratory
+Lecture
+To see how to add lessons, enter 'help'.
+____________________________________________________________
+____________________________________________________________
+You are taking 2 module(s) this semester:
+1.CS2040C: Data Structures and Algorithms (4 MCs)
+2.CS2113: Software Engineering & Object-Oriented Programming (4 MCs)
+Total modular credits you have in this semester: 8
+____________________________________________________________
+____________________________________________________________
+Sorry, the module 2 does not exist in your Module list!
+Total modular credits you have in this semester: 8
+____________________________________________________________
+____________________________________________________________
+Got it, removed CS2040C from your Module list.
+Total modular credits you have in this semester: 4
+____________________________________________________________
+____________________________________________________________
+You are taking 1 module(s) this semester:
+1.CS2113: Software Engineering & Object-Oriented Programming (4 MCs)
+Total modular credits you have in this semester: 4
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(
