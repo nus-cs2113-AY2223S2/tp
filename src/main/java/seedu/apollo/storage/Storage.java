@@ -2,6 +2,7 @@ package seedu.apollo.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import seedu.apollo.calendar.Calendar;
 import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.module.Timetable;
 import seedu.apollo.ui.Parser;
@@ -32,6 +33,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+
 
 
 /**
@@ -152,9 +154,11 @@ public class Storage implements seedu.apollo.utils.Logger {
      * @param modules Contains all stored modules.
      * @throws IOException If save file is not found.
      */
-    public void updateModule(ModuleList modules) throws IOException {
+    public void updateModule(ModuleList modules, Calendar calendar) throws IOException, InvalidSaveFile {
         FileWriter overwrite = new FileWriter(moduleDataFilePath);
+        calendar.clearCalendar();
         for (Module module : modules) {
+            calendar.addModule(module);
             String code = module.getCode();
             overwrite.write(code + "|");
             writeModules(overwrite, module);
@@ -180,11 +184,11 @@ public class Storage implements seedu.apollo.utils.Logger {
      * @return ModuleList of Tasks (containing data from save file / empty).
      * @throws IOException If save file is not found.
      */
-    public ModuleList loadModuleList(Ui ui, ModuleList allModules) throws IOException {
+    public ModuleList loadModuleList(Ui ui, ModuleList allModules, Calendar calendar) throws IOException {
         ModuleList newModuleList = new ModuleList();
         File save = new File(moduleDataFilePath);
         try {
-            newModuleList = readModuleFileContents(save, ui, allModules);
+            newModuleList = readModuleFileContents(save, ui, allModules, calendar);
             return newModuleList;
         } catch (FileNotFoundException e) {
             logger.log(Level.INFO, "File for ModuleList not found, creating new file.");
@@ -243,7 +247,7 @@ public class Storage implements seedu.apollo.utils.Logger {
         return newTaskList;
     }
 
-    private static ModuleList readModuleFileContents(File save, Ui ui, ModuleList allModules)
+    private static ModuleList readModuleFileContents(File save, Ui ui, ModuleList allModules, Calendar calendar)
             throws FileNotFoundException {
         Scanner s = new Scanner(save);
         ModuleList newModuleList = new ModuleList();
@@ -262,6 +266,7 @@ public class Storage implements seedu.apollo.utils.Logger {
                 }
                 Module module = new Module(newModule.getCode(), newModule.getTitle(), newModule.getModuleCredits());
                 addLessons(module, newModule, moduleInfoArgs);
+                calendar.addModule(module);
                 newModuleList.add(module);
                 counter++;
             } catch (InvalidSaveFile e) {

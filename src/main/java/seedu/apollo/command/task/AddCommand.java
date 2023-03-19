@@ -1,5 +1,6 @@
 package seedu.apollo.command.task;
 
+import seedu.apollo.calendar.Calendar;
 import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.ui.Parser;
 import seedu.apollo.storage.Storage;
@@ -112,7 +113,8 @@ public class AddCommand extends Command {
      * @throws UnexpectedException If the command stored is not recognised.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules)
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
+                        Calendar calendar)
             throws UnexpectedException {
         int initialSize = taskList.size();
         try {

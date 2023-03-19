@@ -1,5 +1,6 @@
 package seedu.apollo.command.module;
-
+import seedu.apollo.calendar.Calendar;
+import seedu.apollo.exception.utils.InvalidSaveFile;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.command.Command;
 import seedu.apollo.exception.module.ModuleNotFoundException;
@@ -51,7 +52,8 @@ public class DeleteModuleCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules) {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
+                        Calendar calendar){
 
         try {
             Module toDelete = moduleList.findModule(moduleCode);
@@ -61,11 +63,11 @@ public class DeleteModuleCommand extends Command {
             moduleList.remove(toDelete);
             ui.printModuleDeleteMessage(moduleCode);
             moduleList.totalModuleCredits();
-            storage.updateModule(moduleList);
+            storage.updateModule(moduleList, calendar);
         } catch (ModuleNotFoundException e) {
             ui.printUnsuccessfulModuleDelete(moduleCode);
             ui.printTotalModularCredits(moduleList);
-        } catch (IOException e) {
+        } catch (IOException | InvalidSaveFile e) {
             ui.printErrorForIO();
         }
     }

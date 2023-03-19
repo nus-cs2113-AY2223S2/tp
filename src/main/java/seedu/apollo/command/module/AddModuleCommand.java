@@ -1,16 +1,18 @@
 package seedu.apollo.command.module;
 
+import seedu.apollo.calendar.Calendar;
 import seedu.apollo.exception.module.DuplicateModuleException;
 import seedu.apollo.exception.module.LessonAddedException;
 import seedu.apollo.exception.utils.IllegalCommandException;
+import seedu.apollo.exception.utils.InvalidSaveFile;
 import seedu.apollo.module.LessonType;
+import seedu.apollo.module.Module;
+import seedu.apollo.module.ModuleList;
 import seedu.apollo.module.Timetable;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.ui.Ui;
 import seedu.apollo.command.Command;
 import seedu.apollo.exception.module.InvalidModule;
-import seedu.apollo.module.Module;
-import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 
 import java.io.File;
@@ -101,7 +103,8 @@ public class AddModuleCommand extends Command implements seedu.apollo.utils.Logg
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules) {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
+                        Calendar calendar) {
         try {
             String[] args = params.split("\\s+");
             if (args.length == 3) {
@@ -123,7 +126,8 @@ public class AddModuleCommand extends Command implements seedu.apollo.utils.Logg
 
                 }
             }
-            storage.updateModule(moduleList);
+
+            storage.updateModule(moduleList, calendar);
         } catch (IOException e) {
             logger.log(Level.SEVERE, "IO Exception", e);
             ui.printErrorForIO();
@@ -135,6 +139,8 @@ public class AddModuleCommand extends Command implements seedu.apollo.utils.Logg
             ui.printInvalidLessonType();
         } catch (LessonAddedException e) {
             ui.printLessonExists();
+        } catch (InvalidSaveFile e) {
+            ui.printErrorForIO();
         }
     }
 
