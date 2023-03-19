@@ -28,6 +28,7 @@ public class CompanyList {
             throw new EmptyListException();
         }
         for (int i = 0; i < companyList.size(); i++) {
+            System.out.println(i + 1);
             System.out.println(companyList.get(i));
         }
     }
