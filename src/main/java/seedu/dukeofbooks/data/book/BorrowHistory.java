@@ -4,8 +4,6 @@ import seedu.dukeofbooks.data.loan.Loan;
 import seedu.dukeofbooks.data.person.Person;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class BorrowHistory {
 

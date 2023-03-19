@@ -1,7 +1,12 @@
 package seedu.data.book;
 
 import org.junit.jupiter.api.Test;
-import seedu.dukeofbooks.data.book.*;
+
+import seedu.dukeofbooks.data.book.Book;
+import seedu.dukeofbooks.data.book.BorrowHistory;
+import seedu.dukeofbooks.data.book.Title;
+import seedu.dukeofbooks.data.book.Isbn;
+import seedu.dukeofbooks.data.book.Topic;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.loan.Loan;
 import seedu.dukeofbooks.data.person.Person;

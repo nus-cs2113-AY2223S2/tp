@@ -33,6 +33,7 @@ public class DukeOfBooks {
 
     public static void main(String[] args) {
         // System.out.println("Hello, world!");
+
         new DukeOfBooks().run();
     }
 
@@ -54,9 +55,9 @@ public class DukeOfBooks {
             Person author = new Person(authorName, authorPhone);
             Book book = new Book(isbn, title, topic, author);
             Inventory inventory = new Inventory();
-            inventoryController.setData(inventory);
-            inventoryController.addBook(book);
-            searchController.setData(inventory);
+            InventoryController.setData(inventory);
+            InventoryController.addBook(book);
+            SearchController.setData(inventory);
         } catch (IllegalValueException | IllegalOperationException ive) {
             ive.printStackTrace();
         }

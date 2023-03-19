@@ -24,7 +24,7 @@ public class Book extends BorrowableItem implements IVerifiable {
         setTopic(new Topic(topic));
         setAuthor(new Person(author));
     }
-
+    
     public Isbn getIsbn() {
         return isbn;
     }
@@ -72,6 +72,27 @@ public class Book extends BorrowableItem implements IVerifiable {
         boolean sameTopic = topic.equals(book.getTopic());
         boolean sameIsbn = isbn.equals(book.getIsbn());
         return sameAuthor && sameTitle && sameTopic && sameIsbn;
+    }
+
+    public static String createISBN() {
+        String alphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(13);
+
+        for (int i = 0; i < 13; i++) {
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index = (int)(alphaNumericString.length()
+                * Math.random());
+
+            // add Character one by one in end of sb
+            sb.append(alphaNumericString.charAt(index));
+        }
+
+        return sb.toString();
     }
 
     @Override
