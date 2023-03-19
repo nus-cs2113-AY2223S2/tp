@@ -1,11 +1,11 @@
-import eventus.company.Company;
-import seedu.duke.CompanyList;
-import seedu.duke.Parser;
-import seedu.duke.Storage;
-import seedu.duke.Ui;
+import seedu.duke.company.Company;
+import seedu.duke.company.CompanyList;
+import seedu.duke.parser.Parser;
+import seedu.duke.storage.Storage;
+import seedu.duke.ui.Ui;
 import seedu.duke.command.Command;
 import seedu.duke.venue.VenueList;
-import seedu.duke.WrongFormatException;
+import seedu.duke.exception.WrongFormatException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -26,8 +26,7 @@ public class Eventus {
                 Command c = Parser.parse(input);
                 if (c.getCommandType().equals("list venues")){
                     c.execute(venueList);
-                }
-                else {
+                } else {
                     c.execute(companyList);
                 }
             } catch (WrongFormatException err){

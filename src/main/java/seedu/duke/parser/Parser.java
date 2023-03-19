@@ -1,5 +1,7 @@
-package seedu.duke;
+package seedu.duke.parser;
 
+import seedu.duke.ui.Ui;
+import seedu.duke.exception.WrongFormatException;
 import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.ListCompanyCommand;
@@ -7,7 +9,7 @@ import seedu.duke.command.ListVenueCommand;
 import seedu.duke.command.DeleteCommand;
 
 public interface Parser {
-    static Command parse(String input) throws WrongFormatException{
+    static Command parse(String input) throws WrongFormatException {
 
         Ui ui = new Ui();
         String[] inputWords = input.split(" ");

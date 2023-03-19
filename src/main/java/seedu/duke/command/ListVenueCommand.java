@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 
-import seedu.duke.EmptyListException;
+import seedu.duke.exception.EmptyListException;
 import seedu.duke.venue.VenueList;
 
 public class ListVenueCommand extends Command{

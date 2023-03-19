@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 
-import seedu.duke.CompanyList;
+import seedu.duke.company.CompanyList;
 
 public class ListCompanyCommand extends Command{
     public ListCompanyCommand(String commandType){

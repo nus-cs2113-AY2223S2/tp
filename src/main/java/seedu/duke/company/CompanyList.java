@@ -1,6 +1,6 @@
-package seedu.duke;
+package seedu.duke.company;
 
-import eventus.company.Company;
+import seedu.duke.exception.InputMismatchException;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class CompanyList {
             Company newCompany = new Company(companyName, contactNumber, contactEmail);
             companyList.add(newCompany);
             return true;
-        } catch(seedu.duke.InputMismatchException e){
+        } catch(InputMismatchException e){
             return false;
         }
     }
