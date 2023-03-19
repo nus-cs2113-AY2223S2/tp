@@ -38,7 +38,7 @@ public class Apollo {
         calendar = new Calendar();
         try {
             moduleData = storage.loadModuleData();
-            moduleList = storage.loadModuleList(ui, moduleData);
+            moduleList = storage.loadModuleList(ui, moduleData, calendar);
             taskList = storage.loadTaskList(ui);
             storage.updateTask(taskList);
             ui.printWelcomeMessage();

@@ -2,7 +2,11 @@ package seedu.apollo.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import seedu.apollo.calendar.Calendar;
 import seedu.apollo.exception.task.DateOverException;
+import seedu.apollo.exception.utils.IllegalCommandException;
+import seedu.apollo.module.CalendarModule;
+import seedu.apollo.module.Timetable;
 import seedu.apollo.ui.Parser;
 import seedu.apollo.ui.Ui;
 import seedu.apollo.exception.task.DateOrderException;
@@ -24,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
@@ -31,13 +36,14 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+
+
 /**
  * Storage class that initialises the task list and updates the save file.
  */
-public class Storage {
+public class Storage implements seedu.apollo.utils.Logger {
     // Location of save file
     protected static String filePath;
-
     protected static String moduleDataFilePath;
 
     // ints indicating position of terms in each line of the save file
@@ -59,8 +65,7 @@ public class Storage {
     public Storage(String filePath, String moduleDataFilePath) {
         Storage.filePath = filePath;
         Storage.moduleDataFilePath = moduleDataFilePath;
-        Storage.setUpLogger();
-
+        setUpLogger();
     }
 
     /**
@@ -68,7 +73,7 @@ public class Storage {
      *
      * @throws IOException If logger file cannot be created.
      */
-    public static void setUpLogger() {
+    public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
         ConsoleHandler logConsole = new ConsoleHandler();
@@ -151,13 +156,26 @@ public class Storage {
      * @param modules Contains all stored modules.
      * @throws IOException If save file is not found.
      */
-    public void updateModule(ModuleList modules) throws IOException {
+    public void updateModule(ModuleList modules, Calendar calendar) throws IOException, InvalidSaveFile {
         FileWriter overwrite = new FileWriter(moduleDataFilePath);
+        calendar.clearCalendar();
         for (Module module : modules) {
+            calendar.addModule(module);
             String code = module.getCode();
-            overwrite.write(code + "\n");
+            overwrite.write(code + "|");
+            writeModules(overwrite, module);
         }
         overwrite.close();
+    }
+
+    private void writeModules(FileWriter overwrite, Module module) throws IOException {
+        ArrayList<Timetable> timetableList = module.getModuleTimetable();
+        if (timetableList != null) {
+            for (Timetable timetable : timetableList) {
+                overwrite.write(timetable.getLessonType() + ":" + timetable.getClassnumber() + "|");
+            }
+        }
+        overwrite.write("\n");
     }
 
     /**
@@ -168,11 +186,11 @@ public class Storage {
      * @return ModuleList of Tasks (containing data from save file / empty).
      * @throws IOException If save file is not found.
      */
-    public ModuleList loadModuleList(Ui ui, ModuleList allModules) throws IOException {
+    public ModuleList loadModuleList(Ui ui, ModuleList allModules, Calendar calendar) throws IOException {
         ModuleList newModuleList = new ModuleList();
         File save = new File(moduleDataFilePath);
         try {
-            newModuleList = readModuleFileContents(save, ui, allModules);
+            newModuleList = readModuleFileContents(save, ui, allModules, calendar);
             return newModuleList;
         } catch (FileNotFoundException e) {
             logger.log(Level.INFO, "File for ModuleList not found, creating new file.");
@@ -231,24 +249,54 @@ public class Storage {
         return newTaskList;
     }
 
-    private static ModuleList readModuleFileContents(File save, Ui ui, ModuleList allModules)
+    private static ModuleList readModuleFileContents(File save, Ui ui, ModuleList allModules, Calendar calendar)
             throws FileNotFoundException {
         Scanner s = new Scanner(save);
         ModuleList newModuleList = new ModuleList();
         int counter = 0;
         while (s.hasNext()) {
             try {
-                Module newModule = allModules.findModule(s.nextLine());
+                String moduleInfo = s.nextLine();
+                String[] moduleInfoArgs = moduleInfo.split("\\|");
+                String moduleCode = moduleInfoArgs[0];
+                if (moduleCode == null) {
+                    throw new InvalidSaveFile();
+                }
+                Module newModule = allModules.findModule(moduleCode);
                 if (newModule == null) {
                     throw new InvalidSaveFile();
                 }
-                newModuleList.add(newModule);
+                Module module = new Module(newModule.getCode(), newModule.getTitle(), newModule.getModuleCredits());
+                addLessons(module, newModule, moduleInfoArgs);
+                calendar.addModule(module);
+                newModuleList.add(module);
                 counter++;
             } catch (InvalidSaveFile e) {
                 ui.printInvalidSaveFile(counter, filePath);
             }
         }
         return newModuleList;
+    }
+
+    private static void addLessons(Module module, Module searchModule, String[] moduleInfo) {
+        module.createNewTimeTable();
+
+        for (int i = 1; i < moduleInfo.length; i++) {
+            String[] lessonInfo = moduleInfo[i].split(":");
+
+            for (Timetable timetable: searchModule.getModuleTimetable()) {
+                if (timetable.getLessonType().equals(lessonInfo[0])
+                        && timetable.getClassnumber().equals(lessonInfo[1])) {
+
+                    if (!module.getModuleTimetable().contains(timetable)) {
+                        module.getModuleTimetable().add(timetable);
+                    }
+
+                }
+            }
+        }
+
+
     }
 
     /**

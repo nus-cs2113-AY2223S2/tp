@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.apollo.command.Command;
 import seedu.apollo.exception.task.InvalidDeadline;
 import seedu.apollo.exception.task.InvalidEvent;
+import seedu.apollo.module.ModuleList;
 import seedu.apollo.ui.Parser;
 import seedu.apollo.ui.Ui;
 
@@ -118,6 +119,16 @@ class ParserTest {
     void parseEvent_toBeforeFrom_expectException() {
         String param = "wedding /to 6pm /from 9am";
         assertThrows(InvalidEvent.class, () -> Parser.parseEvent(param));
+    }
+
+    @Test
+    void parseModule_invalidModuleCode_expectException() throws UnexpectedException {
+        String userCommand = "addmod cs4949";
+        Ui ui = new Ui();
+        ModuleList moduleList = new ModuleList();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, moduleList);
+        assertNull(newCommand);
     }
 
     @Test

@@ -4,7 +4,7 @@ import seedu.apollo.calendar.Calendar;
 import seedu.apollo.exception.module.DuplicateModuleException;
 import seedu.apollo.exception.module.LessonAddedException;
 import seedu.apollo.exception.utils.IllegalCommandException;
-import seedu.apollo.module.CalendarModule;
+import seedu.apollo.exception.utils.InvalidSaveFile;
 import seedu.apollo.module.LessonType;
 import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
@@ -24,13 +24,13 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
-public class AddModuleCommand extends Command {
+
+public class AddModuleCommand extends Command implements seedu.apollo.utils.Logger {
     private static Logger logger = Logger.getLogger("AddModuleCommand");
     private Module module;
-
     private String params;
-
 
     /**
      * Constructor for AddModuleCommand.
@@ -41,7 +41,7 @@ public class AddModuleCommand extends Command {
      */
     public AddModuleCommand(String param, ModuleList allModules) throws InvalidModule, IllegalCommandException {
 
-        AddModuleCommand.setUpLogger();
+        setUpLogger();
         assert (param != null) : "AddModuleCommand: Params should not be null!";
         assert (allModules != null) : "AddModuleCommand: Module list should not be null!";
 
@@ -64,7 +64,7 @@ public class AddModuleCommand extends Command {
 
     }
 
-    public static void setUpLogger() {
+    public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
         ConsoleHandler logConsole = new ConsoleHandler();
@@ -86,6 +86,13 @@ public class AddModuleCommand extends Command {
         }
     }
 
+    /**
+     * Checks if the module is already in the module list.
+     *
+     * @param moduleList The list of modules.
+     * @param module The module to be checked.
+     * @return True if the module is already in the list of modules.
+     */
     public boolean isAdded(ModuleList moduleList, Module module) {
         for (Module mod: moduleList) {
             if (mod.getCode().equals(module.getCode())) {
@@ -113,30 +120,40 @@ public class AddModuleCommand extends Command {
                     moduleList.sortModules();
                     Module referenceModule = allModules.findModule(module.getCode());
                     ui.printAddModuleMessage(module);
+                    ui.printTotalModularCredits(moduleList);
                     ui.printLessonTypeMessage(getLessonTypes(referenceModule));
+                    ui.printAddLessonOptions();
 
                 }
             }
 
-            CalendarModule calendarModule = module.toCalendarModule();
-            calendar.addModule(calendarModule);
-            storage.updateModule(moduleList);
+            storage.updateModule(moduleList, calendar);
         } catch (IOException e) {
             logger.log(Level.SEVERE, "IO Exception", e);
             ui.printErrorForIO();
-
         } catch (DuplicateModuleException e) {
             ui.printDuplicateModule();
-
         } catch (IllegalCommandException e) {
             ui.printInvalidCommand();
         } catch (ClassNotFoundException e) {
             ui.printInvalidLessonType();
         } catch (LessonAddedException e) {
             ui.printLessonExists();
+        } catch (InvalidSaveFile e) {
+            ui.printErrorForIO();
         }
     }
 
+    /**
+     * Handles the case where the user wants to add a class to a module.
+     *
+     * @param moduleList The list of modules.
+     * @param allModules Module backend data.
+     * @param args The arguments of the command.
+     * @throws IllegalCommandException If the command is invalid.
+     * @throws ClassNotFoundException If the lesson type is invalid.
+     * @throws LessonAddedException If the lesson already exists.
+     */
     private void handleMultiCommand(ModuleList moduleList, ModuleList allModules, String[] args)
             throws IllegalCommandException, ClassNotFoundException, LessonAddedException {
 
@@ -178,6 +195,10 @@ public class AddModuleCommand extends Command {
         for (Timetable timetable: copyList){
             LessonType searchLessonType = determineLessonType(timetable.getLessonType());
             if (searchLessonType.equals(lessonType) && timetable.getClassnumber().equals(args)){
+
+                if (module.getModuleTimetable() == null){
+                    module.createNewTimeTable();
+                }
                 module.getModuleTimetable().add(timetable);
                 isFound = true;
             }
@@ -188,6 +209,12 @@ public class AddModuleCommand extends Command {
         }
     }
 
+    /**
+     * Returns the available lesson type of the module.
+     *
+     * @param module The module being checked.
+     * @return The lesson types available for this module.
+     */
     public ArrayList<LessonType> getLessonTypes(Module module) {
         ArrayList<LessonType> lessonTypes = new ArrayList<>();
         for (Timetable timetable : module.getModuleTimetable()) {
@@ -230,35 +257,5 @@ public class AddModuleCommand extends Command {
         }
     }
 
-    public static LessonType determineLessonType(String lessonType) {
-        switch (lessonType) {
-        case "Lecture":
-            return LessonType.LECTURE;
-        case "Packaged Lecture":
-            return LessonType.PACKAGED_LECTURE;
-        case "Sectional Teaching":
-            return LessonType.SECTIONAL_TEACHING;
-        case "Design Lecture":
-            return LessonType.DESIGN_LECTURE;
-        case "Tutorial":
-            return LessonType.TUTORIAL;
-        case "Packaged Tutorial":
-            return LessonType.PACKAGED_TUTORIAL;
-        case "Recitation":
-            return LessonType.RECITATION;
-        case "Laboratory":
-            return LessonType.LABORATORY;
-        case "Workshop":
-            return LessonType.WORKSHOP;
-        case "Seminar-Style Module Class":
-            return LessonType.SEMINAR_STYLE_MODULE_CLASS;
-        case "Mini-Project":
-            return LessonType.MINI_PROJECT;
-        case "Tutorial Type 2":
-            return LessonType.TUTORIAL_TYPE_2;
-        default:
-            return null;
-        }
-    }
 
 }

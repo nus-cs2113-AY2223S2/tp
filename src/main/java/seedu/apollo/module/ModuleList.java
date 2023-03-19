@@ -32,4 +32,15 @@ public class ModuleList extends ArrayList<Module> {
         this.sort(Comparator.comparing(Module::getCode));
     }
 
+    /**
+     * Prints the total modular credit in ArrayList of all modules.
+     */
+    public void totalModuleCredits() {
+        int totalSemesterCredits = 0;
+        for (Module module : this) {
+            totalSemesterCredits += Integer.parseInt(module.getModuleCredits());
+        }
+        System.out.println("Total modular credits you have in this semester: " + totalSemesterCredits);
+    }
+
 }

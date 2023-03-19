@@ -1,7 +1,10 @@
 package seedu.apollo.calendar;
 
 import seedu.apollo.exception.utils.IllegalCommandException;
+import seedu.apollo.exception.utils.InvalidSaveFile;
 import seedu.apollo.module.CalendarModule;
+import seedu.apollo.module.Module;
+import seedu.apollo.module.Timetable;
 
 import java.util.ArrayList;
 
@@ -13,37 +16,32 @@ public class Calendar extends ArrayList<ArrayList<CalendarModule>> {
         }
     }
 
-    public void addModule(CalendarModule module) throws IllegalCommandException {
-        String day = module.getSchedule().getDay();
-        int dayIndex = getDayIndex(day);
+    public void addModule(Module module) throws InvalidSaveFile {
 
-        if (dayIndex == -1) {
-            throw new IllegalCommandException();
+        try {
+            for (Timetable timetable : module.getModuleTimetable()) {
+                CalendarModule calendarModule = new CalendarModule(module.getCode(),
+                        module.getTitle(), module.getModuleCredits());
+
+                calendarModule.setSchedule(timetable);
+                int index = calendarModule.getDayIndex();
+                if (index == -1) {
+                    throw new InvalidSaveFile();
+                }
+
+                this.get(index).add(calendarModule);
+
+            }
+        } catch (NullPointerException e) {
+            return;
         }
 
-        this.get(dayIndex).add(module);
     }
 
-    private static int getDayIndex(String day) {
-
-        switch (day) {
-
-        case "Monday":
-            return 0;
-        case "Tuesday":
-            return 1;
-        case "Wednesday":
-            return 2;
-        case "Thursday":
-            return 3;
-        case "Friday":
-            return 4;
-        case "Saturday":
-            return 5;
-        case "Sunday":
-            return 6;
-        default:
-            return -1;
+    public void clearCalendar() {
+        for (int i = 0; i < 7; i++) {
+            this.get(i).clear();
         }
     }
+
 }
