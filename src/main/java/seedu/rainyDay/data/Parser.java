@@ -4,6 +4,7 @@ import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.command.DeleteCommand;
+import seedu.rainyDay.command.FilterCommand;
 import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
@@ -13,26 +14,31 @@ import java.util.logging.Logger;
 
 public class Parser {
 
-    private static Logger logger = Logger.getLogger("Parser.log");
+    private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
     public static Command parseUserInput(String userInput) throws IllegalArgumentException, RainyDayException {
         assert userInput != null : "Failed to read user input!";
         String[] action = userInput.split("\\s+", 2);
-        if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
-            logger.info("add command executing");
-            return addStatement(action[1]);
-        }
-        if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
-            logger.info("delete command executing");
-            return deleteStatement(userInput); //todo: fix this to reduce calls of split.();
-        }
-        if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
-            logger.info("view command executing");
-            return generateReport();
-        }
-        if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
-            return displayHelp();
-        } else {
+        try {
+            if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
+                logger.info("add command executing");
+                return addStatement(action[1]);
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
+                logger.info("delete command executing");
+                return deleteStatement(userInput); //todo: fix this to reduce calls of split.();
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
+                logger.info("view command executing");
+                return generateReport();
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
+                return displayHelp();
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
+                logger.info("filter command executing");
+                return filter(action[1]);
+            } else {
+                logger.warning("unrecognised input from user!");
+                throw new RainyDayException(ErrorMessage.UNRECOGNIZED_INPUT.toString());
+            }
+        } catch (Exception e) {
             logger.warning("unrecognised input from user!");
             throw new RainyDayException(ErrorMessage.UNRECOGNIZED_INPUT.toString());
         }
@@ -55,7 +61,12 @@ public class Parser {
             String description = data[0].trim();
             data = data[1].split("-c");
             int amount = Integer.parseInt(data[0].trim());
-            String category = data[1].trim();
+
+            String category = "Default";
+            if (data.length >= 2) {
+                category = data[1].trim();
+            }
+
             return new AddCommand(description, direction, amount, category);
         } catch (Exception e) {
             logger.warning("add command given by user in the wrong format");
@@ -87,5 +98,17 @@ public class Parser {
 
     public static HelpCommand displayHelp() {
         return new HelpCommand();
+    }
+
+    private static FilterCommand filter(String input) {
+        //filter by description
+        //filter by category
+        try {
+            String userInput = input.trim();
+            return new FilterCommand(userInput);
+        } catch (Exception e) {
+            logger.warning("filter command given by user in the wrong format");
+            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
     }
 }

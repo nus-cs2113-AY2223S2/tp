@@ -1,6 +1,7 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialReport;
+import seedu.rainyDay.exceptions.RainyDayException;
 
 public abstract class Command {
 
@@ -14,6 +15,8 @@ public abstract class Command {
 
     public static final String COMMAND_EXIT = "bye";
 
+    public static final String COMMAND_FILTER = "filter";
+
     protected FinancialReport financialReport;
 
     public void setData(FinancialReport financialReport) {
@@ -22,5 +25,5 @@ public abstract class Command {
 
     protected abstract void setupLogger();
 
-    public abstract void execute();
+    public abstract void execute() throws RainyDayException;
 }
