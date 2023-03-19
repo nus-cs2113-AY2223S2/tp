@@ -2,6 +2,8 @@
 package seedu.duke.commands;
 
 import seedu.duke.exceptions.DukeError;
+import seedu.duke.exceptions.InvalidInputError;
+import seedu.duke.exceptions.UnknownFilterInputError;
 import seedu.duke.exceptions.FilterTooManyError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
@@ -40,7 +42,7 @@ public class GenerateFilterCommand extends Command {
         try {
             this.numberOfExercisesToGenerate = Integer.parseInt(userGenerateCount);
         } catch (NumberFormatException error) {
-            throw new DukeError("Invalid input! Please enter the number of exercises you want!");
+            throw new InvalidInputError();
         }
     }
 
@@ -74,7 +76,7 @@ public class GenerateFilterCommand extends Command {
                 exercises = exerciseGenerator.generateFilteredWorkoutTypeFrom(exercises, userCommands[i]);
                 break;
             default:
-                throw new DukeError("Unknown filter input!");
+                throw new UnknownFilterInputError();
             }
         }
         if (numberOfExercisesToGenerate > exercises.size()) {

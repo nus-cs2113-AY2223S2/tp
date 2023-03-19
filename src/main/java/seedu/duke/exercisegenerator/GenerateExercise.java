@@ -1,6 +1,8 @@
 package seedu.duke.exercisegenerator;
 
 import seedu.duke.exceptions.DukeError;
+import seedu.duke.exceptions.InvalidDifficultyInputError;
+import seedu.duke.exceptions.InvalidWorkoutTypeError;
 import seedu.duke.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
@@ -125,7 +127,7 @@ public class GenerateExercise {
         case HARD:
             return EXPERT;
         default:
-            throw new DukeError("Incorrect difficulty level input");
+            throw new InvalidDifficultyInputError();
         }
     }
 
@@ -145,7 +147,7 @@ public class GenerateExercise {
         case LEGS:
             return LEGS;
         default:
-            throw new DukeError("Incorrect workout type input");
+            throw new InvalidWorkoutTypeError();
         }
     }
 
