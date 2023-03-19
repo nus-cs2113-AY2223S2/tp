@@ -143,9 +143,9 @@ public class Ui {
      *
      * @param moduleCode The code of the module which was deleted.
      */
-    public void printModuleDeleteMessage(String moduleCode) {
+    public void printModuleDeleteMessage(String moduleCode, ModuleList moduleList) {
         System.out.println("Got it, removed " + moduleCode.toUpperCase() + " from your Module list.");
-
+        printTotalModularCredits(moduleList);
     }
 
     /**
@@ -177,7 +177,7 @@ public class Ui {
      */
     public void printAddModuleMessage(Module newModule, ModuleList allModules, ArrayList<LessonType> lessonTypes) {
         System.out.println("Got it. I've added this module:\n" +
-                "  " + newModule + "\n");
+                "  " + newModule);
         printTotalModularCredits(allModules);
         System.out.println("Enter \"addmod " + newModule.getCode() + " -[FLAG] [LESSON NUMBER]\" " +
                 "to add lessons for this module.");

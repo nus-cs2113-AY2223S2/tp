@@ -17,7 +17,7 @@ ____________________________________________________________
  Enter "deadline [task] /by [date]" to add a deadline
  Enter "event [task] /from [date] /to [date]" to add an event
  Enter "addmod [MODULE_CODE]" to add a Module to the Module list
- Enter "addmod [MODULE_CODE] -FLAG [LESSON NUMBER]" to add a lesson
+ Enter "addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a lesson
  Enter "mark [idx]" to mark task as done
  Enter "unmark [idx]" to mark task as not done
  Enter "delete [idx]" to remove task from list
@@ -180,22 +180,31 @@ ____________________________________________________________
 Got it. I've added this module:
   CS2113: Software Engineering & Object-Oriented Programming
 Total modular credits you have in this semester: 4
+Enter "addmod CS2113 -[FLAG] [LESSON NUMBER]" to add lessons for this module.
 Here are the lesson types for this module:
-Lecture
-Tutorial
-To see how to add lessons, enter 'help'.
+Lecture (-lec)
+Tutorial (-tut)
 ____________________________________________________________
 ____________________________________________________________
 Module already added in Module List!
+Enter "addmod CS2113 -[FLAG] [LESSON NUMBER]" to add lessons for this module.
+____________________________________________________________
+____________________________________________________________
+Adding lesson type: LECTURE for Module: CS2113
+Class Number: 1
+____________________________________________________________
+____________________________________________________________
+Adding lesson type: TUTORIAL for Module: CS2113
+Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this module:
   CS2040C: Data Structures and Algorithms
 Total modular credits you have in this semester: 8
+Enter "addmod CS2040C -[FLAG] [LESSON NUMBER]" to add lessons for this module.
 Here are the lesson types for this module:
-Laboratory
-Lecture
-To see how to add lessons, enter 'help'.
+Laboratory (-lab)
+Lecture (-lec)
 ____________________________________________________________
 ____________________________________________________________
 You are taking 2 module(s) this semester:
@@ -215,6 +224,30 @@ ____________________________________________________________
 You are taking 1 module(s) this semester:
 1.CS2113: Software Engineering & Object-Oriented Programming (4 MCs)
 Total modular credits you have in this semester: 4
+____________________________________________________________
+____________________________________________________________
+Adding lesson type: LECTURE for Module: ST2334
+Class Number: 1
+____________________________________________________________
+____________________________________________________________
+Here's your week:
+______________________
+Monday:
+______________________
+Tuesday:
+1. ST2334 Lecture: 0800-1000
+______________________
+Wednesday:
+1. CS2113 Tutorial: 1200-1300
+______________________
+Thursday:
+______________________
+Friday:
+1. CS2113 Lecture: 1600-1800
+______________________
+Saturday:
+______________________
+Sunday:
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(

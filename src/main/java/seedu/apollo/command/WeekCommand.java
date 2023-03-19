@@ -17,14 +17,15 @@ public class WeekCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar) {
+        System.out.println("Here's your week: ");
         for (int i = 0; i<7; i++) {
+            System.out.println("______________________");
             System.out.println(determineDay(i) + ":");
             int count = 1;
             for (CalendarModule module : calendar.get(i)) {
                 System.out.println(count + ". " + module.getCode() + " " + module.getSchedule());
                 count++;
             }
-            System.out.println("______________________");
         }
     }
 

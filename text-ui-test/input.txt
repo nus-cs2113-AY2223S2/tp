@@ -33,10 +33,14 @@ date 2023-05-03
 addmod software engineering
 addmod cs2113
 addmod cs2113
+addmod cs2113 -lec 1
+addmod cs2113 -tut 1
 addmod cs2040c
 listmod
 delmod 2
 delmod cs2040c
 listmod
+addmod st2334 -lec 1
+week
 hello
 bye

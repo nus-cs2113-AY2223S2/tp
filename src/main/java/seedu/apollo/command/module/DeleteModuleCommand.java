@@ -61,8 +61,7 @@ public class DeleteModuleCommand extends Command {
                 throw new ModuleNotFoundException();
             }
             moduleList.remove(toDelete);
-            ui.printModuleDeleteMessage(moduleCode);
-            moduleList.getTotalModuleCredits();
+            ui.printModuleDeleteMessage(moduleCode, moduleList);
             storage.updateModule(moduleList, calendar);
         } catch (ModuleNotFoundException e) {
             ui.printUnsuccessfulModuleDelete(moduleCode);
