@@ -53,6 +53,7 @@ public class RainyDay {
                 System.out.println(e.getMessage());
             } catch (Exception e) {
                 logger.log(Level.WARNING, e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
         ui.sayFarewellToUser(financialReport.getReportOwner());
