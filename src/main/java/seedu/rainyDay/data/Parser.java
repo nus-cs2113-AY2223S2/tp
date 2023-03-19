@@ -161,6 +161,10 @@ public class Parser {
                 parseFilterByDescription(input);
             } else if (input.contains("-c")) {
                 parseFilterByCategory(input);
+            } else if (input.contains("-in")) {
+                parseFilterByFlowDirection(input);
+            } else if (input.contains("-out")) {
+                parseFilterByFlowDirection(input);
             } else {
                 parseDefaultFilterByDescription(input);
             }
@@ -194,6 +198,18 @@ public class Parser {
         if (matcher.find()) {
             filterFlag = matcher.group(1);
             description = matcher.group(2);
+        } else {
+            logger.warning("filter command given by user in the wrong format");
+            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
+    }
+
+    private static void parseFilterByFlowDirection(String input) {
+        Pattern pattern = Pattern.compile("(-in|-out)\\s*");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            filterFlag = matcher.group(1);
+            description = "none";
         } else {
             logger.warning("filter command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());

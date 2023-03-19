@@ -51,6 +51,16 @@ public class FilterCommand extends Command {
                     .getFinancialReport().stream()
                     .filter(t -> t.getCategory().contains(this.description))
                     .collect(Collectors.toList());
+        } else if (filterFlag.equalsIgnoreCase("-in")) {
+            filteredList = (ArrayList<FinancialStatement>) financialReport
+                    .getFinancialReport().stream()
+                    .filter(t -> t.getFlowDirection().equals("in"))
+                    .collect(Collectors.toList());
+        } else if (filterFlag.equalsIgnoreCase("-out")) {
+            filteredList = (ArrayList<FinancialStatement>) financialReport
+                    .getFinancialReport().stream()
+                    .filter(t -> t.getFlowDirection().equals("out"))
+                    .collect(Collectors.toList());
         }
 
         if (filteredList.size() == 0) {
