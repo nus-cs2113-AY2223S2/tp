@@ -25,6 +25,7 @@ If you can type fast, Apollo can get your timetable management done faster than 
       + [`addmod` flags](#addmod-flags)
     + [`delmod` - Deleting a module](#delmod---deleting-a-module)
     + [`listmod` - Listing all modules](#listmod---listing-all-modules)
+    + [`week` - Viewing weekly schedule](#week---viewing-weekly-schedule)
     + [`bye` - Exiting the program](#bye---exiting-the-program)
     + [Loading and saving of data](#loading-and-saving-of-data)
 
@@ -54,22 +55,23 @@ ____________________________________________________________
 
 ## Command Summary
 
-|    Action     |              Format              |
-|:-------------:|:--------------------------------:|
-|     Help      |              `help`              |
-|  List Tasks   |              `list`              |
-|     Todo      |           `todo TASK`            |
-|   Deadline    |     `deadline TASK /by DATE`     |
-|     Event     | `event TASK /from DATE /to DATE` |
-|     Mark      |            `mark IDX`            |
-|    Unmark     |           `unmark IDX`           |
-|  Delete Task  |           `delete IDX`           |
-|     Find      |          `find KEYWORD`          |
-|     Date      |           `date DATE`            |
-|      Bye      |              `bye`               |
-|  Add Module   |       `addmod MODULE_CODE`       |
-| Delete Module |           `delmod IDX`           |
-| List Modules  |            `listmod`             |
+|     Action      |              Format              |
+|:---------------:|:--------------------------------:|
+|      Help       |              `help`              |
+|   List Tasks    |              `list`              |
+|      Todo       |           `todo TASK`            |
+|    Deadline     |     `deadline TASK /by DATE`     |
+|      Event      | `event TASK /from DATE /to DATE` |
+|      Mark       |            `mark IDX`            |
+|     Unmark      |           `unmark IDX`           |
+|   Delete Task   |           `delete IDX`           |
+|      Find       |          `find KEYWORD`          |
+|      Date       |           `date DATE`            |
+|       Bye       |              `bye`               |
+|   Add Module    |       `addmod MODULE_CODE`       |
+|  Delete Module  |           `delmod IDX`           |
+|  List Modules   |            `listmod`             |
+ | Weekly Schedule |              `week`              |
 
 > Notes about the command format:
 > + Words in `UPPER_CASE` are the parameters to be supplied by the user.
@@ -278,15 +280,16 @@ Format: `listmod`
 
 ```
 >> listmod
-You are taking 7 module(s) this semester:
+You are taking 3 module(s) this semester:
 1.CDE2000: Creating Narratives
 2.CG2023: Signals and Systems
 3.CS2040C: Data Structures and Algorithms
-4.EE2026: Digital Design
-5.EE2211: Introduction to Machine Learning
-6.EE4204: Computer Networks
-7.MA2002: Calculus
 ```
+
+### `week` - Viewing weekly schedule
+
+Shows a list of all lessons and tasks occuring during the current week (Mon to Sun).   
+Format: `week`
 
 ### `bye` - Exiting the program
 

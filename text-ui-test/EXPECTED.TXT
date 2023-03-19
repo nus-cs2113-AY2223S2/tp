@@ -22,6 +22,7 @@ ____________________________________________________________
  Enter "unmark [idx]" to mark task as not done
  Enter "delete [idx]" to remove task from list
  Enter "delmod [MODULE_CODE]" to remove a Module you previously added
+ Enter "week" to see your schedule for the week
  Enter "find [keyword]" to see all tasks containing [keyword]
  Enter "date [yyyy-MM-dd]" to see all tasks occurring on that date
  Enter "bye" to exit the program
