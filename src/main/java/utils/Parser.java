@@ -35,6 +35,7 @@ import static manager.DishManager.getDishesSize;
  */
 public class Parser {
 
+
     public Command parseCommand(String userInput) {
         assert userInput != null : "userInput should not be null";
         String[] userInputSplit = userInput.split(" ");
@@ -194,11 +195,12 @@ public class Parser {
      * @param description contains the deadline description and due date.
      * @return the add deadline command.
      */
-    private Command prepareAddDeadlineCommand(String description) {
-        String[] words = (description.trim()).split("t/");
-        String[] testName = (description.trim()).split("n/");
+    private Command prepareAddDeadlineCommand(String description) { //  n/ t/
+        String[] words = (description.trim()).split("t/"); // n/
         try {
-            if (((description.trim()).isEmpty()) || (!description.contains("n/")) || (words.length < 2)) {
+            String[] testName = (words[0].trim()).split("n/");  // n/
+            if (((description.trim()).isEmpty()) || (!description.contains("n/"))
+                    || (words.length < 2) || (testName.length < 1)) {
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_PARAM);
             } else if ((testName.length > 2) || (words.length > 2)) {
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_EXCESS_PARAM);
@@ -209,6 +211,8 @@ public class Parser {
         }
         String name = (words[0].substring(2)).trim();
         String dueDate = words[1].trim();
+        assert !name.isEmpty() : "name should be present";
+        assert !dueDate.isEmpty() : "dueDate should be present";
         Deadline deadline = new Deadline(name, dueDate);
         return new AddDeadlineCommand(deadline);
     }
@@ -228,6 +232,7 @@ public class Parser {
             System.out.println(e);
             return new IncorrectCommand();
         }
+        assert (userInput.trim()).isEmpty() : Messages.ERROR_DEADLINE_EXCESS_LIST_PARAM;
         return new ViewDeadlineCommand();
     }
 
@@ -253,6 +258,7 @@ public class Parser {
             System.out.println(e);
             return new IncorrectCommand();
         }
+        assert index >= 0 : "indexToRemove should be 0 or greater.";
         return new DeleteDeadlineCommand(index);
     }
 
