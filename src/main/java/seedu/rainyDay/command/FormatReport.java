@@ -18,7 +18,7 @@ public interface FormatReport {
         name = name.substring(0, 30);
         String category = String.format("%s                ", statementCategory);
         category = category.substring(0, 16);
-        statementOutput = "\\|" + index + "\\|" + name + "\\|" + value + "\\|" + category + "\\|"
+        statementOutput = "|" + index + "|" + name + "|" + value + "|" + category + "|"
                 + System.lineSeparator();
 
         return statementOutput;
