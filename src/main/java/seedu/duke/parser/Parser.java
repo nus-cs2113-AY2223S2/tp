@@ -1,12 +1,14 @@
 package seedu.duke.parser;
 
-import seedu.duke.ui.Ui;
-import seedu.duke.exception.WrongFormatException;
 import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.ListCompanyCommand;
 import seedu.duke.command.ListVenueCommand;
 import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.LoadSampleCompanyCommand;
+
+import seedu.duke.ui.Ui;
+import seedu.duke.exception.WrongFormatException;
 
 public interface Parser {
 
@@ -43,6 +45,15 @@ public interface Parser {
             int taskNum = Integer.parseInt(inputWords[1]) - 1;
             DeleteCommand deleteCommand = new DeleteCommand(command, taskNum);
             return deleteCommand;
+        case "load":
+            if (inputWords.length == 1){
+                throw new WrongFormatException();
+            }
+            if (inputWords[1].equals("samples")) {
+                LoadSampleCompanyCommand loadSampleCompanyCommand = new LoadSampleCompanyCommand(command + " samples");
+                return loadSampleCompanyCommand;
+            }
+            throw new WrongFormatException();
         case "help":
             ui.showGuide();
             break;
