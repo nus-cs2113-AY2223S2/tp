@@ -1,6 +1,5 @@
 package seedu.meal360;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Meal360 {
@@ -13,16 +12,25 @@ public class Meal360 {
     private static final Ui ui = new Ui();
     private static final Parser parser = new Parser();
     private static final Database database = new Database();
-    private static final RecipeList recipeList = new RecipeList();
+    private static RecipeList recipeList;
     private static final WeeklyPlan weeklyPlan = new WeeklyPlan();
 
     public static void startApp() {
+        ui.printSeparator();
         ui.printWelcomeMessage();
-        // Dummy recipe for testing purposes
-        HashMap<String, Integer> testIngredients = new HashMap<>();
-        testIngredients.put("test ingredient", 100);
-        Recipe testR = new Recipe("test recipe name", testIngredients);
-        recipeList.addRecipe(testR);
+        ui.printSeparator();
+
+        // Load database
+        ui.printMessage("Loading database...");
+        try {
+            recipeList = database.loadDatabase();
+            ui.printMessage("Database loaded successfully.");
+        } catch (Exception e) {
+            ui.printMessage(String.valueOf(e));
+            ui.printMessage("Overwriting database with new default database...");
+        }
+
+        ui.printSeparator();
     }
 
     public static void receiveInput(String input) {
@@ -38,12 +46,13 @@ public class Meal360 {
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
                 String errorMessage = String.format(
-                        "Please enter a valid recipe number or name. You did not enter a recipe number or name.");
+                        "Please enter a valid recipe number or name. You did not enter a recipe number or "
+                                + "name.");
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
-                        "Please enter a valid recipe number or name. You entered %s, " + "which is in invalid.",
-                        command[1]);
+                        "Please enter a valid recipe number or name. You entered %s, "
+                                + "which is in invalid.", command[1]);
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
@@ -73,18 +82,18 @@ public class Meal360 {
             ui.listRecipe(recipeListToPrint);
         } else if (command[0].equals("add")) {
             ui.printSeparator();
-            try{
+            try {
                 Recipe newRecipe = parser.parseAddRecipe(command, recipeList);
                 ui.printMessage("I've added this new recipe:" + newRecipe.getName());
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
-            } catch(ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 String errorMessage = String.format("Please enter a valid recipe name.");
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
         } else if (command[0].equals("edit")) {
             ui.printSeparator();
-            try{
+            try {
                 Recipe recipeToEdit = parser.parseEditRecipe(command, recipeList);
                 ui.printSeparator();
                 ui.printMessage("I've edited this recipe:" + recipeToEdit.getName());
@@ -94,8 +103,7 @@ public class Meal360 {
                         command[1]);
                 ui.printMessage(errorMessage);
             } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage = String.format(
-                        "Please enter a valid recipe name.");
+                String errorMessage = String.format("Please enter a valid recipe name.");
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
@@ -142,11 +150,24 @@ public class Meal360 {
     }
 
     public static void exitApp() {
+        ui.printSeparator();
+
+        // Save database
+        ui.printMessage("Saving database...");
+        try {
+            database.saveDatabase(recipeList);
+            ui.printMessage("Database saved successfully.");
+        } catch (Exception e) {
+            ui.printMessage(String.valueOf(e));
+        }
+
         ui.printGoodbyeMessage();
+        ui.printSeparator();
     }
 
     public static void main(String[] args) {
         startApp();
+
         String line;
         Scanner userInput = new Scanner(System.in);
 
