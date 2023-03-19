@@ -107,7 +107,10 @@ public class UserDataStorageTest {
                 generateExercise.generateSetAll(), "hard");
         ArrayList<ExerciseData> sessionExercises = generateExercise.generateRandomSetFrom(generatedWorkouts, 5);
         Session session = new Session(sessionExercises);
-        assertEquals(session.getDateAdded().toString(), LocalDateTime.now().toString(), "Session datetime conflict!");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String timeSession = dateTimeFormatter.format(session.getDateAdded());
+        String currentTime = dateTimeFormatter.format(LocalDateTime.now());
+        assertEquals(timeSession, currentTime, "Session datetime conflict!");
         UserCareerData userCareerData = new UserCareerData();
         userCareerData.addWorkoutSession(session);
     }
