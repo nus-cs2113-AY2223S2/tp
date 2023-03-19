@@ -316,8 +316,18 @@ public class Ui {
 
     /**
      * Prints error message if the date entered does not fit the format.
+     * For new Deadline, Event.
      */
     public void printInvalidDateTime() {
+        System.out.println("Please enter [date]s in the format of yyyy-MM-ddThh:mm.\n" +
+                "eg. \"2023-10-30T23:59\" for Oct 20 2023, 11:59PM");
+    }
+
+    /**
+     * Prints error message if the date entered does not fit the format.
+     * For Date command.
+     */
+    public void printInvalidDate() {
         System.out.println("Please enter date in the format of yyyy-MM-dd.");
     }
 
