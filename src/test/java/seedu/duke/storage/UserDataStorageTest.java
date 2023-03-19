@@ -1,6 +1,9 @@
 package seedu.duke.storage;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
+
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
@@ -8,62 +11,16 @@ import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.userdata.Session;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests the writing of a sample set of Completed workouts by ensuring that the current session workouts are copied
  * into an ArrayList of CompletedWorkouts in which identity codes of saved and completed workouts are the same.
  */
 public class UserDataStorageTest {
-
+    private final String FILEPATH = "testData.json";
     private final GenerateExercise generateExercise = new GenerateExercise();
-
-    /**
-     * Tests the mapping of data into the UserCareerData class such that all sessionExercises are mapped accordingly.
-     * This test checks that all sessionExercises are mapped correctly to the userCareer by checking the identity has
-     * code of each exercise that is written into the sessionExercise.
-     *
-     * @param sessionExercises exercises that has been completed by the user in the current session but not yet
-     *         added to the user career data.
-     * @param userCareerData All exercises that the user has completed, but for this test only a single session
-     *         is used.
-     */
-    void testWriting (ArrayList<ExerciseData> sessionExercises, UserCareerData userCareerData) {
-        int i = 0;
-        for (ExerciseData sessionExercise : sessionExercises) {
-            assertEquals(System.identityHashCode(sessionExercise)
-                    , System.identityHashCode(userCareerData
-                                                      .getTotalUserCareerSessions()
-                                                      .get(0)
-                                                      .getSessionExercises()
-                                                      .get(i)));
-            i++;
-        }
-        assertEquals(3, userCareerData.getTotalUserCareerSessions()
-                                      .get(0)
-                                      .getSessionExercises()
-                                      .size());
-
-    }
-
-    /**
-     * Tests the reading of user career data from the json file such that all data from the json file is correctly
-     * read into the respective classes.
-     *
-     * @param completedSessionWorkouts The arrayList of all completed sessions from the userCareerData (in this
-     *         test case only one session is created) that has been read from the json file.
-     * @param sessionExercises The total completed session exercises that was initially added before saving to
-     *         the json file which is used as the reference for this test.
-     */
-    void testReading (ArrayList<Session> completedSessionWorkouts, ArrayList<ExerciseData> sessionExercises) {
-        assertEquals(completedSessionWorkouts.get(0)
-                                             .getSessionExercises()
-                                             .get(0)
-                                             .getName(), sessionExercises.get(0).getName());
-        assertEquals(3, completedSessionWorkouts
-                .get(0)
-                .getSessionExercises()
-                .size());
-    }
+    private StorageHandler storageHandler = new StorageHandler(FILEPATH);
 
     /**
      * Initialises the data by generating the workouts for this pseudo-session and adds to a new session and then to
@@ -83,11 +40,45 @@ public class UserDataStorageTest {
         Session session = new Session(sessionExercises);
         UserCareerData userCareerData = new UserCareerData();
         userCareerData.addWorkoutSession(session);
-        testWriting(sessionExercises, userCareerData);
-        WriteUserData.writeToJson("testData.json", userCareerData);
+        TestWriting.testWriting(sessionExercises, userCareerData);
+        UserDataWriter.writeToJson("testData.json", userCareerData);
         ArrayList<Session> completedSessionWorkouts;
-        completedSessionWorkouts = LoadUserData.loadUserCareer("testData.json").getTotalUserCareerSessions();
-        testReading(completedSessionWorkouts, sessionExercises);
+        completedSessionWorkouts = UserDataLoader.loadUserCareer("testData.json").getTotalUserCareerSessions();
+        TestReading.testReading(completedSessionWorkouts, sessionExercises);
+        File file = new File("testData.json");
+        boolean deletionResult = file.delete();
+        assertTrue(deletionResult, "Unable to delete testing user data file, Ensure all other programs are not using " +
+                "the file");
+    }
+
+    /**
+     * Tests the writing and reading of multiple user sessions of varying exercises within each session
+     * User data is written to the file and checked upon data from the file and original data
+     *
+     * @throws DukeError
+     */
+    @Test
+    void testReadingCareerData () throws DukeError {
+        ArrayList<ExerciseData> generatedWorkouts = generateExercise.generateFilteredDifficultySetFrom(
+                generateExercise.generateSetAll(), "medium");
+        UserCareerData userCareerData = new UserCareerData();
+        Random random = new Random();
+        random.setSeed(1);
+        int sessions = random.nextInt(30);
+        for (int i = 0; i < sessions; i++) {
+            ArrayList<ExerciseData> sessionWorkouts = generateExercise.generateRandomSetFrom(generatedWorkouts,
+                                                                                             random.nextInt(30));
+            Session session = new Session(sessionWorkouts);
+            userCareerData.addWorkoutSession(session);
+            UserDataWriter.writeToJson("testData.json", userCareerData);
+        }
+        UserCareerData userCareerDataFromFile = UserDataLoader.loadUserCareer("testData.json");
+        TestReading.testReadingUserCareer(userCareerDataFromFile, userCareerData);
+        File file = new File("testData.json");
+        boolean deletionResult = file.delete();
+        assertTrue(deletionResult, "Unable to delete testing user data file, Ensure all other programs are not using " +
+                "the file");
+
     }
 
 }

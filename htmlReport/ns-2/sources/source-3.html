@@ -1,0 +1,176 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > GenerateFilterCommand</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">seedu.duke.commands</a>
+</div>
+
+<h1>Coverage Summary for Class: GenerateFilterCommand (seedu.duke.commands)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GenerateFilterCommand</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/26)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;
+&nbsp;package seedu.duke.commands;
+&nbsp;
+&nbsp;import seedu.duke.exceptions.DukeError;
+&nbsp;import seedu.duke.exceptions.FilterTooManyError;
+&nbsp;import seedu.duke.exercisegenerator.GenerateExercise;
+&nbsp;import seedu.duke.exersisedata.ExerciseData;
+&nbsp;import seedu.duke.ui.Ui;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;
+<b class="nc">&nbsp;public class GenerateFilterCommand extends Command {</b>
+&nbsp;
+&nbsp;    private static final String GYM = &quot;gym&quot;;
+&nbsp;    private static final String STATIC = &quot;static&quot;;
+&nbsp;    private static final String EASY = &quot;easy&quot;;
+&nbsp;    private static final String MEDIUM = &quot;medium&quot;;
+&nbsp;    private static final String HARD = &quot;hard&quot;;
+&nbsp;    private static final String UPPER = &quot;upper&quot;;
+&nbsp;    private static final String CORE = &quot;core&quot;;
+&nbsp;    private static final String LEGS = &quot;legs&quot;;
+&nbsp;
+&nbsp;    private final int filterArguments;
+&nbsp;    private final String[] userCommands;
+&nbsp;    private final int numberOfExercisesToGenerate;
+&nbsp;
+<b class="nc">&nbsp;    public GenerateFilterCommand(String[] userCommands) throws DukeError {</b>
+<b class="nc">&nbsp;        this.filterArguments = userCommands.length - 1;</b>
+<b class="nc">&nbsp;        this.userCommands = userCommands;</b>
+<b class="nc">&nbsp;        String userGenerateCount = userCommands[userCommands.length - 1];</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            this.numberOfExercisesToGenerate = Integer.parseInt(userGenerateCount);</b>
+<b class="nc">&nbsp;        } catch (NumberFormatException error) {</b>
+<b class="nc">&nbsp;            throw new DukeError(&quot;Invalid input! Please enter the number of exercises you want!&quot;);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public void executeCommand(Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
+<b class="nc">&nbsp;        ArrayList&lt;ExerciseData&gt; exercises = new ArrayList&lt;&gt;(exerciseGenerator.generateSetAll());</b>
+<b class="nc">&nbsp;        assert System.identityHashCode(exercises) != System.identityHashCode(exerciseGenerator.generateSetAll())</b>
+&nbsp;                : &quot;Do not modify the ArrayList of GenerateExercise&quot;;
+<b class="nc">&nbsp;        for (int i = 1; i &lt; filterArguments; i++) {</b>
+<b class="nc">&nbsp;            switch (userCommands[i]) {</b>
+&nbsp;            case GYM:
+<b class="nc">&nbsp;                exercises = exerciseGenerator.generateFilteredGymSetFrom(exercises);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case STATIC:
+<b class="nc">&nbsp;                exercises = exerciseGenerator.generateFilteredBodySetFrom(exercises);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case EASY:
+&nbsp;            case MEDIUM:
+&nbsp;            case HARD:
+<b class="nc">&nbsp;                exercises = exerciseGenerator.generateFilteredDifficultySetFrom(exercises, userCommands[i]);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case UPPER:
+&nbsp;            case CORE:
+&nbsp;            case LEGS:
+<b class="nc">&nbsp;                exercises = exerciseGenerator.generateFilteredWorkoutTypeFrom(exercises, userCommands[i]);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            default:
+<b class="nc">&nbsp;                throw new DukeError(&quot;Unknown filter input!&quot;);</b>
+&nbsp;
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        if (numberOfExercisesToGenerate &gt; exercises.size()) {</b>
+<b class="nc">&nbsp;            throw new FilterTooManyError();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);</b>
+<b class="nc">&nbsp;        ui.printExerciseFromList(exercises);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-19 14:43</div>
+</div>
+</body>
+</html>

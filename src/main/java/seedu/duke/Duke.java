@@ -3,7 +3,8 @@ package seedu.duke;
 import seedu.duke.commands.CommandHandler;
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
-import seedu.duke.storage.LoadUserData;
+import seedu.duke.storage.StorageHandler;
+import seedu.duke.storage.UserDataLoader;
 import seedu.duke.storage.UserCareerData;
 import seedu.duke.ui.Ui;
 import seedu.duke.states.ExerciseStateHandler;
@@ -16,13 +17,16 @@ public class Duke {
     private final GenerateExercise exerciseGenerator;
     private final ExerciseStateHandler exerciseHandler;
     private UserCareerData userCareerData;
+    private StorageHandler storageHandler;
+    private final String FILEPATH = "userData.json";
 
-    public Duke() {
+    public Duke () {
         exerciseHandler = new ExerciseStateHandler();
         ui = new Ui();
         exerciseGenerator = new GenerateExercise();
+        storageHandler = new StorageHandler(FILEPATH);
         try {
-            this.userCareerData = LoadUserData.loadUserCareer("userData.json");
+            this.userCareerData = storageHandler.loadUserCareer();
         } catch (DukeError e) {
             System.out.println(e.getMessage());
             this.userCareerData = new UserCareerData();
@@ -31,7 +35,7 @@ public class Duke {
     }
 
     @SuppressWarnings("InfiniteLoopStatement")
-    public void run() {
+    public void run () {
         CommandHandler commandHandler = new CommandHandler();
         Scanner in = new Scanner(System.in);
         ui.greetUser();
@@ -40,7 +44,7 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main (String[] args) {
         new Duke().run();
     }
 

@@ -1,10 +1,11 @@
 package seedu.duke.commands;
 
 import java.util.ArrayList;
+
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.storage.UserCareerData;
-import seedu.duke.storage.WriteUserData;
+import seedu.duke.storage.UserDataWriter;
 import seedu.duke.ui.Ui;
 import seedu.duke.userdata.Session;
 
@@ -33,7 +34,7 @@ public class SampleSavingCommand extends Command {
      * @param exerciseGenerator (unused here)
      */
     public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) {
-        WriteUserData.writeToJson("userData.json", this.userCareerData);
+        UserDataWriter.writeToJson("userData.json", this.userCareerData);
         System.out.println("I have written:");
         for (var i : session.getSessionExercises()) {
             System.out.println(i.getName());
