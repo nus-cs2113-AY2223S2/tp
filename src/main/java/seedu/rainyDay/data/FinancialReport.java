@@ -68,5 +68,8 @@ public class FinancialReport implements Serializable {
         return financialReport.get(statementNumber);
     }
 
+    public ArrayList<FinancialStatement> getFinancialReport() {
+        return this.financialReport;
+    }
 
 }

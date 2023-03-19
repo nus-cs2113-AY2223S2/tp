@@ -4,6 +4,7 @@ import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.command.DeleteCommand;
+import seedu.rainyDay.command.FilterCommand;
 import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
@@ -15,11 +16,11 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-    private static Logger logger = Logger.getLogger("Parser.log");
     private static String direction = null;
     private static String description = null;
     private static String category = null;
     private static double amount = -1.0;
+    private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
     public static Command parseUserInput(String userInput) throws RainyDayException {
         assert userInput != null : "Failed to read user input!";
@@ -152,5 +153,17 @@ public class Parser {
 
     public static HelpCommand displayHelp() {
         return new HelpCommand();
+    }
+
+    private static FilterCommand filter(String input) {
+        //filter by description
+        //filter by category
+        try {
+            String userInput = input.trim();
+            return new FilterCommand(userInput);
+        } catch (Exception e) {
+            logger.warning("filter command given by user in the wrong format");
+            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
     }
 }
