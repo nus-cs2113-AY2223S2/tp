@@ -8,15 +8,17 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### Delete Income command
+
 
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+Target users are people who are keen on improving their financial accountability
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+The value proposition of ChChing is its ability to track income and expenses on a daily basis.
 
 ## User Stories
 
