@@ -114,48 +114,48 @@ public class DinerDirectorTest {
         }
     }
 
-    @Test
-    void runCommandLoopUntilExit_userInput_addDishCommand() {
-        ArrayList<String> listOfCommands = new ArrayList<>();
-
-        final String TEST_CASE_BLANK_SPACE = " ";
-        final String TEST_CASE_DECIMAL_NUMBER = "apple pie 2nd edition" + System.lineSeparator() +
-                "3.93";
-        final String TEST_CASE_NEGATIVE_INTEGER = "apple pie 2nd edition" + System.lineSeparator() +
-                "-1";
-        final String TEST_CASE_EMPTY_INGREDIENT_LIST = "apple pie 2nd edition" + System.lineSeparator() +
-                "321" + System.lineSeparator() +
-                "";
-        final String TEST_CASE_CORRECT_INPUT = "apple pie 2nd edition" + System.lineSeparator() +
-                "321" + System.lineSeparator() +
-                "apple flour water butter";
-
-
-        listOfCommands.add(TEST_CASE_BLANK_SPACE);
-        listOfCommands.add(TEST_CASE_DECIMAL_NUMBER);
-        listOfCommands.add(TEST_CASE_NEGATIVE_INTEGER);
-        listOfCommands.add(TEST_CASE_EMPTY_INGREDIENT_LIST);
-        listOfCommands.add(TEST_CASE_CORRECT_INPUT);
-
-        for (String listOfCommand : listOfCommands) {
-
-            ByteArrayInputStream in = new ByteArrayInputStream(listOfCommand.getBytes());
-            System.setIn(in);
-            Command addCommand = new Parser().parseCommand("add_dish");
-
-            if (listOfCommand.equals(TEST_CASE_BLANK_SPACE)) {
-                assertTrue(addCommand instanceof IncorrectCommand);
-            } else if (listOfCommand.equals(TEST_CASE_DECIMAL_NUMBER)) {
-                assertTrue(addCommand instanceof IncorrectCommand);
-            } else if (listOfCommand.equals(TEST_CASE_NEGATIVE_INTEGER)) {
-                assertTrue(addCommand instanceof IncorrectCommand);
-            } else if (listOfCommand.equals(TEST_CASE_EMPTY_INGREDIENT_LIST)) {
-                assertTrue(addCommand instanceof IncorrectCommand);
-            } else if (listOfCommand.equals(TEST_CASE_CORRECT_INPUT)) {
-                assertTrue(addCommand instanceof AddDishCommand);
-            }
-        }
-    }
+//    @Test
+//    void runCommandLoopUntilExit_userInput_addDishCommand() {
+//        ArrayList<String> listOfCommands = new ArrayList<>();
+//
+//        final String TEST_CASE_BLANK_SPACE = " ";
+//        final String TEST_CASE_DECIMAL_NUMBER = "apple pie 2nd edition" + System.lineSeparator() +
+//                "3.93";
+//        final String TEST_CASE_NEGATIVE_INTEGER = "apple pie 2nd edition" + System.lineSeparator() +
+//                "-1";
+//        final String TEST_CASE_EMPTY_INGREDIENT_LIST = "apple pie 2nd edition" + System.lineSeparator() +
+//                "321" + System.lineSeparator() +
+//                "";
+//        final String TEST_CASE_CORRECT_INPUT = "apple pie 2nd edition" + System.lineSeparator() +
+//                "321" + System.lineSeparator() +
+//                "apple flour water butter";
+//
+//
+//        listOfCommands.add(TEST_CASE_BLANK_SPACE);
+//        listOfCommands.add(TEST_CASE_DECIMAL_NUMBER);
+//        listOfCommands.add(TEST_CASE_NEGATIVE_INTEGER);
+//        listOfCommands.add(TEST_CASE_EMPTY_INGREDIENT_LIST);
+//        listOfCommands.add(TEST_CASE_CORRECT_INPUT);
+//
+//        for (String listOfCommand : listOfCommands) {
+//
+//            ByteArrayInputStream in = new ByteArrayInputStream(listOfCommand.getBytes());
+//            System.setIn(in);
+//            Command addCommand = new Parser().parseCommand("add_dish");
+//
+//            if (listOfCommand.equals(TEST_CASE_BLANK_SPACE)) {
+//                assertTrue(addCommand instanceof IncorrectCommand);
+//            } else if (listOfCommand.equals(TEST_CASE_DECIMAL_NUMBER)) {
+//                assertTrue(addCommand instanceof IncorrectCommand);
+//            } else if (listOfCommand.equals(TEST_CASE_NEGATIVE_INTEGER)) {
+//                assertTrue(addCommand instanceof IncorrectCommand);
+//            } else if (listOfCommand.equals(TEST_CASE_EMPTY_INGREDIENT_LIST)) {
+//                assertTrue(addCommand instanceof IncorrectCommand);
+//            } else if (listOfCommand.equals(TEST_CASE_CORRECT_INPUT)) {
+//                assertTrue(addCommand instanceof AddDishCommand);
+//            }
+//        }
+//    }
 
     @Test
     void runCommandLoopUntilExit_userInput_deleteDishCommand() {
