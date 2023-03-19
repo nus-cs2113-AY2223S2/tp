@@ -25,5 +25,5 @@ public abstract class Command {
 
     protected abstract void setupLogger();
 
-    public abstract void execute() throws RainyDayException;
+    public abstract CommandResult execute() throws RainyDayException;
 }
