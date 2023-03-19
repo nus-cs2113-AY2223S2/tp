@@ -18,6 +18,7 @@ import seedu.apollo.task.ToDo;
 import java.io.File;
 import java.io.IOException;
 import java.rmi.UnexpectedException;
+import java.time.format.DateTimeParseException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -118,6 +119,9 @@ public class AddCommand extends Command {
         int initialSize = taskList.size();
         try {
             addTask(taskList);
+        } catch (DateTimeParseException e) {
+            ui.printInvalidDateTime();
+            return;
         } catch (DateOverException e) {
             ui.printDateOverException(e);
             return;
@@ -140,12 +144,13 @@ public class AddCommand extends Command {
      * Adds a Task to the TaskList based on data in the class.
      *
      * @param taskList The TaskList to be added to.
+     * @throws DateTimeParseException If any date is entered in the wrong format.
      * @throws DateOverException If any date of the task occurs before the current date.
      * @throws DateOrderException If an Event's end date occurs before its start date.
      * @throws UnexpectedException If the command stored is not recognised.
      */
     private void addTask(TaskList taskList)
-            throws DateOverException, DateOrderException, UnexpectedException {
+            throws DateTimeParseException, DateOverException, DateOrderException, UnexpectedException {
         switch (command) {
         case COMMAND_TODO_WORD:
             taskList.add(new ToDo(desc));
