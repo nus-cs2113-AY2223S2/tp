@@ -265,22 +265,13 @@ public class Parser {
 
     private Command prepareDeleteDishCommand(String userInputNoCommand) {
         int indexToRemove = 0;
-        String[] userInputNoCommandSplit = userInputNoCommand.split(" ");
 
         try {
-            if (userInputNoCommandSplit.length == 0) {
-                throw new DinerDirectorException(Messages.ERROR_DISH_EMPTY_INDEX);
-            }
-
-            if (userInputNoCommandSplit.length > 1) {
-                throw new DinerDirectorException(Messages.ERROR_COMMAND_INVALID);
-            }
-
-            assert indexToRemove >= 0 : "indexToRemove should be 0 or greater";
-            indexToRemove = Integer.parseInt(userInputNoCommandSplit[0]) - 1;
+            indexToRemove = Integer.parseInt(userInputNoCommand.trim()) - 1;
             if (indexToRemove < 0 || indexToRemove >= getDishesSize()) {
                 throw new DinerDirectorException(Messages.ERROR_DISH_INVALID_INDEX);
             }
+            assert indexToRemove >= 0 : "indexToRemove should be 0 or greater";
         } catch (NumberFormatException e) {
             System.out.println(Messages.ERROR_DISH_NOT_A_VALID_INTEGER);
             return new IncorrectCommand();
@@ -303,21 +294,19 @@ public class Parser {
     }
 
     private Command prepareAddDishCommand(String userInputNoCommand) {
+//    MENU COMMANDS:
+//    add_dish n/<name>
+//    pc/<price in cents>
+//    [<ingredient 1>, <ingredients 2>, <ingredient 3>]
 
-//        MENU COMMANDS:
-//        add_dish n/<name>
-//                pc/<price in cents>
-//                [<ingredient 1>, <ingredients 2>, <ingredient 3>]
-//        delete_dish <index>
-//        view_dish
-
-        System.out.println(userInputNoCommand);
+//    delete_dish <index>
+//    view_dish
 
         String name = "";
         int price = 0;
         ArrayList<String> ingredients = new ArrayList<>();
 
-        String regex = " n/(.*?) pc/(\\d+) \\[(.*?)\\]";
+        String regex = " n/(?=\\S)(.*?) pc/(\\d+) \\[(.*?)\\]";
 
         Pattern dishPattern = Pattern.compile(regex);
         Matcher parsedDishInput = dishPattern.matcher(userInputNoCommand);
@@ -329,7 +318,6 @@ public class Parser {
                 String[] ingredientList = parsedDishInput.group(3).split(";");
                 Collections.addAll(ingredients, ingredientList);
             } else {
-                System.out.println("error");
                 throw new DinerDirectorException(Messages.ERROR_COMMAND_INVALID);
             }
         } catch (DinerDirectorException e) {
@@ -337,5 +325,4 @@ public class Parser {
         }
         return new AddDishCommand(name, price, ingredients);
     }
-
 }
