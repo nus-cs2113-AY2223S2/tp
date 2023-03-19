@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class Database {
 
     private static final Ui ui = new Ui();
-    private static final String recipesDatabaseFilepath = "./database/recipesDatabase.json";
+    private static final String recipesDatabaseFilepath = "./src/main/resources/recipesDatabase.json";
 
     public RecipeList loadDatabase() throws IOException {
         RecipeList database;
@@ -63,16 +63,12 @@ public class Database {
         Gson gson = new Gson();
         // Write the data object to the JSON file
         FileWriter writer;
-        try {
-            writer = new FileWriter(recipesDatabaseFilepath);
-            gson.toJson(recipeList, writer);
-            writer.close();
-        } catch (IOException e) {
-            throw new IOException("Error writing to database file. File not saved.");
-        }
+        writer = new FileWriter(recipesDatabaseFilepath);
+        gson.toJson(recipeList, writer);
+        writer.close();
     }
 
-    private RecipeList defaultRecipeList() {
+    public RecipeList defaultRecipeList() {
         RecipeList defaultRecipeList = new RecipeList();
         defaultRecipeList.add(new Recipe("Chicken Rice", new HashMap<String, Integer>() {
             {

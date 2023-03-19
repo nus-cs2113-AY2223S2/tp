@@ -26,8 +26,9 @@ public class Meal360 {
             recipeList = database.loadDatabase();
             ui.printMessage("Database loaded successfully.");
         } catch (Exception e) {
-            ui.printMessage(String.valueOf(e));
+            ui.printMessage("Error loading database, loading default database instead.");
             ui.printMessage("Overwriting database with new default database...");
+            recipeList = database.defaultRecipeList();
         }
 
         ui.printSeparator();
@@ -158,7 +159,7 @@ public class Meal360 {
             database.saveDatabase(recipeList);
             ui.printMessage("Database saved successfully.");
         } catch (Exception e) {
-            ui.printMessage(String.valueOf(e));
+            ui.printMessage("Error saving database.");
         }
 
         ui.printGoodbyeMessage();
