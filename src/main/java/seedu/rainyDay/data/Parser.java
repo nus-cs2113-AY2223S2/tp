@@ -60,8 +60,8 @@ public class Parser {
             return new AddCommand(description, direction, amount, category);
         } catch (Exception e) {
             return new InvalidCommand();
-//            logger.warning("add command given by user in the wrong format");
-//            throw new IllegalArgumentException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+            //logger.warning("add command given by user in the wrong format");
+            //throw new IllegalArgumentException(ErrorMessage.WRONG_ADD_FORMAT.toString());
         }
     }
 
@@ -145,8 +145,8 @@ public class Parser {
             return new DeleteCommand(index);
         } catch (Exception e) {
             return new InvalidCommand();
-//            logger.warning("delete index provided incorrectly");
-//            throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
+            //logger.warning("delete index provided incorrectly");
+            //throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
         }
     }
 
@@ -174,8 +174,8 @@ public class Parser {
             return new FilterCommand(description, filterFlag);
         } catch (Exception e) {
             return new InvalidCommand();
-//            logger.warning("filter command given by user in the wrong format");
-//            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+            //logger.warning("filter command given by user in the wrong format");
+            //throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
         }
     }
 
