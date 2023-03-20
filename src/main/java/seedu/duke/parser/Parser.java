@@ -46,7 +46,7 @@ public interface Parser {
             DeleteCommand deleteCommand = new DeleteCommand(command, taskNum);
             return deleteCommand;
         case "load":
-            if (inputWords.length == 1){
+            if (inputWords.length == 1) {
                 throw new WrongFormatException();
             }
             if (inputWords[1].equals("samples")) {

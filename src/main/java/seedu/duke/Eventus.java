@@ -19,7 +19,7 @@ public class Eventus {
     private VenueList venueList;
     private Ui ui;
 
-    public Eventus(){
+    public Eventus() {
         storage = new Storage();
         ArrayList<Company> companyArrayList = new ArrayList<>();
         companyList = new CompanyList(companyArrayList);
@@ -28,7 +28,7 @@ public class Eventus {
         run();
     }
 
-    public void run(){
+    public void run() {
         ui.showWelcome();
         String input;
         Scanner in = new Scanner(System.in);

@@ -14,16 +14,16 @@ public class CompanyList {
     public CompanyList(ArrayList<Company> companyList) {
         this.companyList = companyList;
     }
-    public boolean add(String companyName, int contactNumber, String contactEmail){
+    public boolean add(String companyName, int contactNumber, String contactEmail) {
         try{
             Company newCompany = new Company(companyName, contactNumber, contactEmail);
             companyList.add(newCompany);
-
             return true;
-        } catch(InputMismatchException e){
+        } catch(InputMismatchException e) {
             return false;
         }
     }
+
     public void printCompanyInformation() throws EmptyListException {
         if (companyList.isEmpty()) {
             throw new EmptyListException();
@@ -35,7 +35,7 @@ public class CompanyList {
     }
 
     public void deleteCompanyInformation(int index) throws InvalidIndexException {
-        if (index < 0 | index >= companyList.size()){
+        if (index < 0 | index >= companyList.size()) {
             throw new InvalidIndexException();
         }
         Ui ui = new Ui();
