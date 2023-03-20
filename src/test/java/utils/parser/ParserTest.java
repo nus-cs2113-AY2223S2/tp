@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
 import utils.command.Command;
+import utils.exceptions.DeleteUnknown;
 import utils.exceptions.InkaException;
 import utils.exceptions.InvalidSyntaxException;
 import utils.storage.FakeStorage;
@@ -35,6 +36,7 @@ public class ParserTest {
         parser = new Parser();
     }
 
+    //region `card add` tests
     @Test
     public void parse_card_add() throws InkaException {
         Command cmd = parser.parseCommand("card add -q QUESTION -a ANSWER");
@@ -85,4 +87,45 @@ public class ParserTest {
         assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand("card add -q QUESTION -a"),
                 "Should be invalid syntax");
     }
+    //endregion
+
+    //region `card delete` tests
+
+    @Test
+    public void parse_card_delete() throws InkaException {
+        cardList.addCard(new Card("QUESTION", "ANSWER"));
+
+        Command cmd = parser.parseCommand("card delete -i 1");
+        cmd.execute(cardList, tagList, ui, storage);
+
+        assert cardList.isEmpty() : "Should have deleted Card";
+    }
+
+    @Test
+    public void parse_card_deleteLongFlag() throws InkaException {
+        cardList.addCard(new Card("QUESTION", "ANSWER"));
+
+        Command cmd = parser.parseCommand("card delete --index 1");
+        cmd.execute(cardList, tagList, ui, storage);
+
+        assert cardList.isEmpty() : "Should have deleted Card";
+    }
+
+    @Test
+    public void parse_card_deleteEmpty() throws InkaException {
+        Command cmd = parser.parseCommand("card delete -i 1");
+        assertThrows(DeleteUnknown.class, () -> cmd.execute(cardList, tagList, ui, storage),
+                "Should fail to delete nothing");
+    }
+
+    @Test
+    public void parse_card_deleteBadIndex() throws InkaException {
+        cardList.addCard(new Card("QUESTION", "ANSWER"));
+
+        Command cmd = parser.parseCommand("card delete -i 0");
+        assertThrows(DeleteUnknown.class, () -> cmd.execute(cardList, tagList, ui, storage),
+                "Should fail to delete nothing");
+    }
+
+    //endregion
 }
