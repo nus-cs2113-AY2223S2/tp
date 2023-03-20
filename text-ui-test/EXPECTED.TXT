@@ -4,16 +4,16 @@ Hello from
   / /_  / / __/ __ \/ _ \/ ___/ ___/  / / / / / / / //_/ _ \
  / __/ / / /_/ / / /  __(__  |__  )  / /_/ / /_/ / ,< /  __/
 /_/   /_/\__/_/ /_/\___/____/____/  /_____/\__,_/_/|_|\___/ 
-Start your fitness journey! Type [help] to see the things you can do!
 These are some commands available: 
-[generate]
-	Generate a specific list of exercises: generate FILTER1 FILTER2 ... x
-	FILTER stands for a specific requirement you want to include in your exercise
-[filters]
-	View all available filters
-[bye]
-	End the program
-________________________________________
+Get a quick exercise: quick x (where x is a positive integer)
+Generate a specific list of exercises: generate PARAM1 PARAM2 ... x 
+PARAM stands for a specific requirement you want to include in your exercise.
+
+The following parameters are available for Generate command:
+gym (filters for exercises that need gym equipment)
+static (filters for static exercises)
+easy/medium/hard (filters for exercises with a specific difficulty)
+upper/core/legs (filters for exercises with a specific workout type)
     ____             __
    / __ )__  _____  / /
   / __  / / / / _ \/ / 
