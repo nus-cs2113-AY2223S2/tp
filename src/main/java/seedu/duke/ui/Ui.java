@@ -47,7 +47,7 @@ public class Ui {
         System.out.println("                    help");
         System.out.println(" ");
         System.out.println("To load sample data, type:");
-        System.out.println("                    load sample");
+        System.out.println("                    load samples");
         System.out.println(" ");
         System.out.println("To purge list data, type:");
         System.out.println("                    purge");
@@ -76,7 +76,7 @@ public class Ui {
     }
 
     public void showSampleDataLoadedMessage() {
-        System.out.println("Sample data has been loaded for your reference!");
+        System.out.println("Sample data has been loaded into the list!");
     }
 
 }
