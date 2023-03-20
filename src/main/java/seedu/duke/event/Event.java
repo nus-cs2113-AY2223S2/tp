@@ -1,6 +1,7 @@
 package seedu.duke.event;
 
 import seedu.duke.company.CompanyList;
+import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.venue.Venue;
 import seedu.duke.venue.VenueList;
 
@@ -14,7 +15,10 @@ public class Event {
         this.companyList = companyList;
     }
 
-    public void updateVenue(VenueList venueList, int venueNum){
+    public void updateVenue(VenueList venueList, int venueNum) throws InvalidIndexException {
+        if (venueNum < 0 | venueNum >= venueList.getVenueListSize()) {
+            throw new InvalidIndexException();
+        }
         venue = venueList.getVenue(venueNum);
     }
 
@@ -22,6 +26,4 @@ public class Event {
     public String toString() {
         return venue.getVenueName();
     }
-
-
 }
