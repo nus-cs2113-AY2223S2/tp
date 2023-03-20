@@ -87,7 +87,8 @@ public class RainyDay {
         logger.log(Level.INFO, "Starting RainyDay");
 
         new RainyDay(filePath).run();
-
+        Storage.writeToCSV(financialReport);
+        
         logger.log(Level.INFO, "Quitting RainyDay");
     }
 }
