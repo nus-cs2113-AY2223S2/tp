@@ -39,6 +39,8 @@ public class Parser {
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
             return displayHelp();
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
+            System.out.println(action[0]);
+            System.out.println(action[1]);
             return filterStatement(action[1]);
         } else { // todo add filter
             logger.warning("unrecognised input from user!");
@@ -185,7 +187,7 @@ public class Parser {
     }
 
     private static void parseFilterByDescription(String input) {
-        Pattern pattern = Pattern.compile("(-d)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
+        Pattern pattern = Pattern.compile("^(-d)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             filterFlag = matcher.group(1);
@@ -197,7 +199,7 @@ public class Parser {
     }
 
     private static void parseFilterByCategory(String input) {
-        Pattern pattern = Pattern.compile("(-c)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
+        Pattern pattern = Pattern.compile("^(-c)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             filterFlag = matcher.group(1);
@@ -209,7 +211,7 @@ public class Parser {
     }
 
     private static void parseFilterByFlowDirection(String input) {
-        Pattern pattern = Pattern.compile("(-in|-out)\\s*$");
+        Pattern pattern = Pattern.compile("^(-in|-out)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             filterFlag = matcher.group(1);
