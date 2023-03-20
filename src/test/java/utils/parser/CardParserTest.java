@@ -13,7 +13,7 @@ import utils.command.AddCardToTagCommand;
 import utils.command.Command;
 import utils.command.DeleteCardCommand;
 import utils.command.ViewCardCommand;
-import utils.exceptions.DeleteUnknown;
+import utils.exceptions.UnknownItem;
 import utils.exceptions.InkaException;
 import utils.exceptions.InvalidSyntaxException;
 import utils.storage.FakeStorage;
@@ -118,7 +118,7 @@ public class CardParserTest {
     @Test
     public void parse_card_deleteEmpty() throws InkaException {
         Command cmd = parser.parseCommand("card delete -i 1");
-        assertThrows(DeleteUnknown.class, () -> cmd.execute(cardList, tagList, ui, storage),
+        assertThrows(UnknownItem.class, () -> cmd.execute(cardList, tagList, ui, storage),
                 "Should fail to delete nothing");
     }
 
@@ -127,7 +127,7 @@ public class CardParserTest {
         cardList.addCard(new Card("QUESTION", "ANSWER"));
 
         Command cmd = parser.parseCommand("card delete -i 0");
-        assertThrows(DeleteUnknown.class, () -> cmd.execute(cardList, tagList, ui, storage),
+        assertThrows(UnknownItem.class, () -> cmd.execute(cardList, tagList, ui, storage),
                 "Should fail to delete nothing");
     }
 

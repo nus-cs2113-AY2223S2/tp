@@ -1,7 +1,7 @@
 package utils.exceptions;
 
-public class DeleteUnknown extends InkaException {
-    public DeleteUnknown() {
+public class UnknownItem extends InkaException {
+    public UnknownItem() {
         super("Can't find what you're referring to...");
     }
 }
