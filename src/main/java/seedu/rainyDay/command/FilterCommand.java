@@ -54,18 +54,17 @@ public class FilterCommand extends Command implements FormatReport {
         } else if (filterFlag.equalsIgnoreCase("-in")) {
             filteredList = (ArrayList<FinancialStatement>) financialReport
                     .getFinancialReport().stream()
-                    .filter(t -> t.getFlowDirection().equals("in"))
+                    .filter(t -> t.getFlowDirectionWord().equals("in"))
                     .collect(Collectors.toList());
         } else if (filterFlag.equalsIgnoreCase("-out")) {
             filteredList = (ArrayList<FinancialStatement>) financialReport
                     .getFinancialReport().stream()
-                    .filter(t -> t.getFlowDirection().equals("out"))
+                    .filter(t -> t.getFlowDirectionWord().equals("out"))
                     .collect(Collectors.toList());
         }
 
 
         String outcome = "";
-
         if (filteredList.size() == 0) {
             outcome = "We could not find any matches for your description in your report";
         } else {
