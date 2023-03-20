@@ -1,40 +1,48 @@
 package seedu.apollo.module;
 
+import seedu.apollo.exception.module.ModuleNotFoundException;
+
 import java.util.ArrayList;
+import java.util.Comparator;
+
 
 /**
- * ModuleList class that contains the module list.
+ * ModuleList class is a modified ArrayList of Modules.
  */
-public class ModuleList {
-    /**
-     * Module list containing all Modules.
-     */
-    public ArrayList<Module> allModules;
+public class ModuleList extends ArrayList<Module> {
 
     /**
-     * Initialise allModules with the given Arraylist.
+     * Finds the module in the ModuleList which matches the module name.
      *
-     * @param allModules List of Modules.
+     * @param moduleCode The code of the module to be found.
+     * @return module in the ModuleList which matches the module name.
+     * @throws ModuleNotFoundException If the moduleCode is not found in allModules.
      */
-    public ModuleList(ArrayList<Module> allModules) {
-        this.allModules = allModules;
+    public Module findModule(String moduleCode) {
+        Module module = this.stream().filter(mod -> mod.getCode().equalsIgnoreCase(moduleCode))
+                .findFirst().orElse(null);
+
+        return module;
     }
 
     /**
-     * Get the list of all Modules.
-     *
-     * @return ArrayList of allModules.
+     * Sorts the ModuleList in alphabetical order.
      */
-    public ArrayList<Module> getAllModules() {
-        return allModules;
+    public void sortModules() {
+        this.sort(Comparator.comparing(Module::getCode));
     }
 
     /**
-     * Get the number of Modules currently in the ModuleList.
+     * Calculate the total modular credit in ArrayList of all modules.
      *
-     * @return Number of existing Modules.
+     * @return Total modular credits.
      */
-    public int getModuleListSize() {
-        return allModules.size();
+    public int getTotalModuleCredits() {
+        int totalSemesterCredits = 0;
+        for (Module module : this) {
+            totalSemesterCredits += Integer.parseInt(module.getModuleCredits());
+        }
+        return totalSemesterCredits;
     }
+
 }

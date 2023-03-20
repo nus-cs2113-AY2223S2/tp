@@ -2,6 +2,7 @@ package seedu.apollo.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Parent class of all types of Tasks.
@@ -11,7 +12,8 @@ public abstract class Task {
 
     // Formatters used to parse and print date and time
     public static DateTimeFormatter storePattern = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-    protected static DateTimeFormatter printPattern = DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mma");
+    public static DateTimeFormatter printPattern = DateTimeFormatter
+            .ofPattern("MMM dd yyyy, hh:mma", Locale.ENGLISH);
 
     protected String description;
     protected boolean isDone;
