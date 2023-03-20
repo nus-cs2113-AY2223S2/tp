@@ -71,15 +71,12 @@ If you would like to search for a specific ingredient that Meal Companion recogn
  
  ![search2.png](images/search2.png)
  
- ######  [Back to table of contents](#table-of-contents)
+ ###### [Back to table of contents](#table-of-contents)
  
- 
- ##  Recipes
- 
+ ## Recipes
  This segment will go into detail about the recipe features that Meal Companion contains, and the usage of these features.
  
- ###  Default Recipes
- 
+### Default Recipes
  Meal Companion comes included with a list of default recipes already initialized. The list of default recipes are found here:
  1. Beef Burger
  2. Cup of Water
