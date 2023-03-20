@@ -171,7 +171,41 @@ The storage is updated with the new ModuleList without `cs2113`
 (TO BE ADDED SOON)
 
 ### Add Task
-(TO BE ADDED SOON)
+The add task mechanism is facilitated by `AddCommand`. It extends `Command` with the ability to add three different 
+types of `Task`s to the TaskList, namely: `ToDo`, `Deadline`, and `Event`. 
+
+Given below is an example usage scenario and how the add task mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. `run()` method in Apollo is called and the program waits 
+for a command.
+
+Step 2. The user executes `event concert /from 2023-06-06T20:00 /to 2023-06-06T22:00` command.  
+This is to add a `Task` with the description "concert" on Jun 6 2023 from 8-10pm to their TaskList. 
+The String containing the command is parsed in `Parser` and determined to be an Add Task command since it starts
+with "event". 
+
+Step 3. Within `Parser`, an `AddCommand` is initialised with the String `command` "event". 
+The remaining params of the command are further parsed into Strings: `desc` "concert" (description), `from` 
+"2023-06-06T20:00" (start date), and `to` "2023-06-06T22:00" (end date) based on the delimiters "/from" and "/to". 
+- For `command` "deadline", remaining params are parsed into `desc` and `by` (due date) based on the delimiter "/by". 
+- For `command` "todo", all remaining params are parsed into `desc`.
+
+Step 4. The initialised `AddCommand` is returned to the `run()` method in Apollo. 
+In the event of the following, an error message is printed and steps 5-6 are skipped.
+- Delimiters are not entered correctly
+- Remaining params of the command are empty (ie. CLI input of user is "todo"/"deadline"/"event" only)
+
+Step 5. `Command#execute()` is called. This in turn calls `AddCommand#addTask()`. As `command` has been initialised to
+"event", `addTask()` will try to initialise a new `Event` by parsing the Strings `from` and `to` into LocalDateTimes.
+In the event of the following, an error message is printed and step 6 is skipped.
+- String for date cannot be parsed into LocalDateTime (wrong format of input)
+- Task occurs entirely before the current date
+- (for `Event`) Start date occurs after end date
+
+Step 6. The initialised `Event` is added to the TaskList. A success message is printed and the hard disk storage is 
+updated to reflect these changes. 
+
+Step 7. Apollo waits for the next CLI command to be input by the user.
 
 ### Delete Task
 
