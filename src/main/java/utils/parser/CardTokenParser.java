@@ -134,7 +134,7 @@ public class CardTokenParser {
         return new ListCardCommand();
     }
 
-    private Command handleTag(List<String> tokens) throws ParseException {
+    private Command handleTag(List<String> tokens) throws ParseException, InkaException {
         CommandLine cmd = parser.parse(buildTagOptions(), tokens.toArray(new String[0]));
 
         String cardUUID = cmd.getOptionValue("c");
@@ -143,7 +143,7 @@ public class CardTokenParser {
         return new AddCardToTagCommand(tagName, cardUUID);
     }
 
-    private Command handleView(List<String> tokens) throws ParseException {
+    private Command handleView(List<String> tokens) throws ParseException, InkaException {
         CommandLine cmd = parser.parse(buildViewOptions(), tokens.toArray(new String[0]));
 
         String cardUUID = cmd.getOptionValue("c");
