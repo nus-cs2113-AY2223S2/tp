@@ -15,7 +15,7 @@ These are some commands available:
 	finds all relevant exercises based on the keyword : find [keyword]
 [bye]
 	End the program
-----------------------------------------
+________________________________________
     ____             __
    / __ )__  _____  / /
   / __  / / / / _ \/ / 

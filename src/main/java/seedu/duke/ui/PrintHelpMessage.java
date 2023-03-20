@@ -2,7 +2,7 @@ package seedu.duke.ui;
 
 public class PrintHelpMessage {
     public static void showAvailableCommands() {
-        System.out.println("These are some commands available: ");
+        System.out.println("These are some commands available:");
         System.out.println("[generate]");
         System.out.println("\tGenerate a specific list of exercises: generate FILTER1 FILTER2 ... x");
         System.out.println("\tFILTER stands for a specific requirement you want to include in your exercise");
