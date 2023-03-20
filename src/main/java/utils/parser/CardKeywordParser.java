@@ -1,12 +1,9 @@
 package utils.parser;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import model.Card;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.MissingArgumentException;
-import org.apache.commons.cli.MissingOptionException;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
@@ -15,22 +12,23 @@ import utils.command.AddCardToTagCommand;
 import utils.command.Command;
 import utils.command.DeleteCardCommand;
 import utils.command.ListCardCommand;
+import utils.command.PrintHelpCommand;
 import utils.command.ViewCardCommand;
 import utils.exceptions.InkaException;
-import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.UnrecognizedCommandException;
 
-public class CardTokenParser {
+public class CardKeywordParser extends KeywordParser {
 
-    private static final String CARD_ADD_ACTION = "add";
-    private static final String CARD_DELETE_ACTION = "delete";
-    private static final String CARD_LIST_ACTION = "list";
-    private static final String CARD_TAG_ACTION = "tag";
-    private static final String CARD_VIEW_ACTION = "view";
+    public static final String ADD_ACTION = "add";
+    public static final String DELETE_ACTION = "delete";
+    public static final String HELP_ACTION = "help";
+    public static final String LIST_ACTION = "list";
+    public static final String TAG_ACTION = "tag";
+    public static final String VIEW_ACTION = "view";
 
     private DefaultParser parser;
 
-    public CardTokenParser() {
+    public CardKeywordParser() {
         this.parser = new DefaultParser(false);
     }
 
@@ -76,39 +74,24 @@ public class CardTokenParser {
         return options;
     }
 
-    @SuppressWarnings("unchecked") // Safe, CLI library just returns List instead of List<String>
-    public Command parseTokens(List<String> tokens) throws InkaException {
-        if (tokens.size() == 0) {
-            throw InvalidSyntaxException.buildGenericMessage();
-        }
-
-        String action = tokens.get(0);
-        List<String> flags = tokens.subList(1, tokens.size());
-
-        try {
-            switch (action) {
-            case CARD_ADD_ACTION:
-                return handleAdd(flags);
-            case CARD_DELETE_ACTION:
-                return handleDelete(flags);
-            case CARD_LIST_ACTION:
-                return handleList(flags);
-            case CARD_TAG_ACTION:
-                return handleTag(flags);
-            case CARD_VIEW_ACTION:
-                return handleView(flags);
-            default:
-                throw new UnrecognizedCommandException();
-            }
-        } catch (MissingArgumentException e) {
-            String missingArgumentOption = e.getOption().getArgName();
-            throw InvalidSyntaxException.buildMissingArgumentMessage(missingArgumentOption);
-        } catch (MissingOptionException e) {
-            List<String> opts = e.getMissingOptions();
-            String missingOptions = opts.stream().map(str -> "-" + str).collect(Collectors.joining(", "));
-            throw InvalidSyntaxException.buildMissingOptionMessage(missingOptions);
-        } catch (ParseException e) {
-            throw InvalidSyntaxException.buildGenericMessage();
+    @Override
+    protected Command handleAction(String action, List<String> tokens)
+            throws ParseException, InkaException {
+        switch (action) {
+        case ADD_ACTION:
+            return handleAdd(tokens);
+        case DELETE_ACTION:
+            return handleDelete(tokens);
+        case HELP_ACTION:
+            return handleHelp();
+        case LIST_ACTION:
+            return handleList();
+        case TAG_ACTION:
+            return handleTag(tokens);
+        case VIEW_ACTION:
+            return handleView(tokens);
+        default:
+            throw new UnrecognizedCommandException();
         }
     }
 
@@ -130,7 +113,21 @@ public class CardTokenParser {
         return new DeleteCardCommand(deleteIndex);
     }
 
-    private Command handleList(List<String> tokens) {
+    private Command handleHelp() {
+        // Combine all actions
+        // @formatter:off
+        String[] actionList = {ADD_ACTION, DELETE_ACTION, LIST_ACTION, TAG_ACTION,
+            VIEW_ACTION};
+        // @formatter:on
+        String[] headerList = {"Adding cards", "Deleting cards", "List all cards", "Tagging cards", "View cards"};
+        Options[] optionsList = {buildAddOptions(), buildDeleteOptions(), new Options(), buildTagOptions(),
+                buildViewOptions()};
+
+        String helpMessage = formatHelpMessage("card", actionList, headerList, optionsList);
+        return new PrintHelpCommand(helpMessage);
+    }
+
+    private Command handleList() {
         return new ListCardCommand();
     }
 
@@ -149,5 +146,4 @@ public class CardTokenParser {
         String cardUUID = cmd.getOptionValue("c");
         return new ViewCardCommand(cardUUID);
     }
-
 }

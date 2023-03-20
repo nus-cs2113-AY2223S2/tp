@@ -41,6 +41,12 @@ public class UserInterface {
         printDivider();
     }
 
+    public void printHelp(String helpMessage) {
+        printDivider();
+        System.out.print(helpMessage);
+        printDivider();
+    }
+
     public void printNumOfQuestions(CardList cardList) {
         System.out.println("You now have " + cardList.size() + " questions in the bank.");
     }

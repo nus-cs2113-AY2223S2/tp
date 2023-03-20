@@ -4,25 +4,22 @@ import java.util.Arrays;
 import java.util.List;
 import utils.command.Command;
 import utils.command.ExportCommand;
+import utils.command.PrintHelpCommand;
 import utils.command.TerminateCommand;
 import utils.exceptions.InkaException;
 import utils.exceptions.UnrecognizedCommandException;
 
 public class Parser {
 
-    /* Card-related tokens */
-    private static final String CARD_KEYWORD = "card";
-
-    /* Tag-related tokens */
-    private static final String TAG_KEYWORD = "tag";
-
-    /* Miscellaneous tokens */
-    private static final String EXPORT_KEYWORD = "export";
-    private static final String EXIT_KEYWORD = "bye";
+    public static final String CARD_KEYWORD = "card";
+    public static final String TAG_KEYWORD = "tag";
+    public static final String EXPORT_KEYWORD = "export";
+    public static final String EXIT_KEYWORD = "bye";
+    public static final String HELP_KEYWORD = "help";
 
     // Keyword-specific parsers
-    private final CardTokenParser cardTokenParser = new CardTokenParser();
-    private final TagTokenParser tagTokenParser = new TagTokenParser();
+    private final CardKeywordParser cardKeywordParser = new CardKeywordParser();
+    private final TagKeywordParser tagKeywordParser = new TagKeywordParser();
 
     private boolean isExecuting;
 
@@ -56,10 +53,13 @@ public class Parser {
 
         switch (keyword) {
         case CARD_KEYWORD:
-            return cardTokenParser.parseTokens(optionTokens);
+            return cardKeywordParser.parseTokens(optionTokens);
 
         case TAG_KEYWORD:
-            return tagTokenParser.parseToken(optionTokens);
+            return tagKeywordParser.parseTokens(optionTokens);
+
+        case HELP_KEYWORD:
+            return new PrintHelpCommand(getTopLevelHelpMessage());
 
         case EXPORT_KEYWORD:
             return new ExportCommand();
@@ -71,5 +71,38 @@ public class Parser {
         default:
             throw new UnrecognizedCommandException();
         }
+    }
+
+    /**
+     * Gets top-level help message for Inka
+     *
+     * @return Formatted help message
+     */
+    private String getTopLevelHelpMessage() {
+        String helpMessage = "";
+
+        helpMessage +=
+                "Welcome to Inka! Type " + HELP_KEYWORD + " at any time to show this message" + System.lineSeparator();
+        helpMessage += "== Deck Management (run `<keyword> help` for more info) ===" + System.lineSeparator();
+        helpMessage += formatHelpLine(CARD_KEYWORD, "Card-related functionality");
+        helpMessage += formatHelpLine(TAG_KEYWORD, "Tag-related functionality)");
+        helpMessage += "================== Miscellaneous Commands =================" + System.lineSeparator();
+        helpMessage += formatHelpLine(EXPORT_KEYWORD, "Saves your deck");
+        helpMessage += formatHelpLine(EXIT_KEYWORD, "Exits Inka");
+
+        return helpMessage;
+    }
+
+    private String formatHelpLine(String keyword, String description) {
+        final int PAD_LENGTH = 12;
+
+        String formatted = keyword;
+        // Right-pad to PAD_LENGTH
+        formatted += " ".repeat(PAD_LENGTH - formatted.length());
+        formatted += " - ";
+        formatted += description;
+        formatted += System.lineSeparator();
+
+        return formatted;
     }
 }
