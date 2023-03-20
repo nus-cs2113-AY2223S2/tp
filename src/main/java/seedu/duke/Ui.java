@@ -82,18 +82,18 @@ public class Ui {
     }
 
     public static void printSearchUPCItem(Item item) {
-        System.out.println(Ui.LINE);
+        Ui.printLine();
         System.out.println(ANSI_GREEN + "Here is your item: ");
         ArrayList<Item> singleItem = new ArrayList<>();
         singleItem.add(item);
         System.out.println(printTable(singleItem) + ANSI_RESET);
-        System.out.println(Ui.LINE);
+        Ui.printLine();
     }
 
     public static void printSearchItems(ArrayList<Item> items) {
-        System.out.println(Ui.LINE);
+        Ui.printLine();
         System.out.println(ANSI_GREEN + printTable(items) + ANSI_RESET);
-        System.out.println(Ui.LINE);
+        Ui.printLine();
     }
 
     public static void printExitMessage() {
@@ -364,7 +364,7 @@ public class Ui {
         int listSize = inventory.getItemInventory().size();
         switch (listSize) {
         case 0:
-            System.out.println(ANSI_RED + INVALID_LIST + ANSI_RESET);
+            System.out.println(ANSI_RED + EMPTY_LIST + ANSI_RESET);
             break;
         case 1:
             System.out.println(ANSI_RED + INVALID_INDEX + "0 to remove item successfully." + ANSI_RESET);
@@ -382,7 +382,7 @@ public class Ui {
         int listSize = inventory.getItemInventory().size();
         switch (listSize) {
         case 0:
-            System.out.println(ANSI_RED + INVALID_LIST + ANSI_RESET);
+            System.out.println(ANSI_RED + EMPTY_LIST + ANSI_RESET);
             break;
         default:
             System.out.println(ANSI_RED + "This UPC is invalid. Try again." + ANSI_RESET);

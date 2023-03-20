@@ -134,7 +134,8 @@ public class Parser {
         Command filterCommand = new FilterCommand(inventory, keyword, mode);
         filterCommand.run();
     }
-//
+// TODO: MERGE THIS FUNCTION TO SEARCH AND USE IF-ELSE CONDITION
+
 //    /**
 //     * Handles the "searchUPC" command by checking the validity of search term provided before passing to
 //     * the searchUPC function

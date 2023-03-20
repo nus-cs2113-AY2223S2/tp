@@ -6,6 +6,9 @@ import seedu.duke.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the command to search for an item in the inventory.
+ */
 public class SearchCommand extends Command {
     private String keyword;
 

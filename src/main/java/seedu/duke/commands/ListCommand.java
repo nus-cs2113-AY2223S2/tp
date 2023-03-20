@@ -3,6 +3,9 @@ package seedu.duke.commands;
 import seedu.duke.Inventory;
 import seedu.duke.Ui;
 
+/**
+ * Represents the command to list all items in the inventory.
+ */
 public class ListCommand extends Command {
     public ListCommand(Inventory inventory) {
         super(inventory);

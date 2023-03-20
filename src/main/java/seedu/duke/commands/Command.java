@@ -7,6 +7,9 @@ import seedu.duke.trie.Trie;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Represents an abstract command class for all commands.
+ */
 public abstract class Command {
     protected ArrayList<Item> itemInventory;
     protected HashMap<String, ArrayList<Item>> itemNameHash;

@@ -6,6 +6,9 @@ import seedu.duke.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the command to add an item to the inventory.
+ */
 
 public class AddCommand extends Command {
     private final Item item;

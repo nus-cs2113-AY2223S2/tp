@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ParserTest {
 
+class ParserTest {
     @Test
     void parseAdd() {
         Inventory inventory = new Inventory();

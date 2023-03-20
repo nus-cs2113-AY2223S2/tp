@@ -6,6 +6,9 @@ import seedu.duke.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the command to filter items in the inventory.
+ */
 public class FilterCommand extends Command {
     private String filterType;
     private String filterValue;
