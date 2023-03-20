@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class Duke {
 
-    public static String password = ""; // Stores user's password
+    public static int hash = 0; // Stores hash of user's password
 
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -31,7 +31,7 @@ public class Duke {
                 + "|____/|_|    |____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello I am\n" + logo);
         Storage.loadData();
-        while (password.equals("")) {
+        while (hash == 0) {
             Menu.showWelcomeMenu();
             Scanner in = new Scanner(System.in);
             String input = in.nextLine();
@@ -51,17 +51,16 @@ public class Duke {
      *
      * @param userPassword password to be set.
      */
-    public static void setPassword(String userPassword) {
-        password = userPassword;
+    public static void setPassword(int userPassword) {
+        hash = userPassword;
     }
 
     /**
      * Returns the password.
      *
-     * @return password.
+     * @return hashedPassword.
      */
-    public static String getPassword() {
-        return password;
+    public static int getPassword() {
+        return hash;
     }
-
 }

@@ -102,8 +102,9 @@ public class Storage {
                 diagnosisHistory.add(diagnosis);
             }
 
-            Patient patient = new Patient(name, password, diagnosisHistory);
-            Information.storePatientInfo(password, patient);
+            int hash = Integer.parseInt(password);
+            Patient patient = new Patient(name, hash, diagnosisHistory);
+            Information.storePatientInfo(hash, patient);
         }
         scanner.close();
     }
@@ -114,10 +115,10 @@ public class Storage {
     public static void saveData() {
         try {
             FileWriter writer = new FileWriter(FILE_PATH);
-            for (Map.Entry<String, Patient> entry : Information.getAllPatientData().entrySet()) {
+            for (Map.Entry<Integer, Patient> entry : Information.getAllPatientData().entrySet()) {
                 Patient patient = entry.getValue();
                 String name = patient.getName();
-                String password = patient.getPassword();
+                int password = patient.getPassword();
                 ArrayList<String> diagnosisHistory = patient.getPatientDiagnosisHistory();
                 int numberOfDiagnoses = diagnosisHistory.size();
 
