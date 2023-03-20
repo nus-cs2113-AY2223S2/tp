@@ -1,12 +1,9 @@
 1
 Demo
-8
-Bronchitis
+5
 Fever
-Headache
 Insomnia
 COVID-19
-Dengue Fever
 General Cold
 General Flu
 12
