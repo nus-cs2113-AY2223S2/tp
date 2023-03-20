@@ -20,13 +20,15 @@ import model.Card;
 import model.CardList;
 import model.CardUUID;
 import model.TagUUID;
+import utils.exceptions.InkaException;
+import utils.exceptions.StorageCorrupted;
 import utils.exceptions.StorageLoadFailure;
 import utils.exceptions.StorageSaveFailure;
 import utils.storage.Storage;
 
 public class JsonStorage extends Storage {
     private static Logger logger = Logger.getLogger("storage.JsonStorage");
-    private GsonBuilder gsonBuilder = new GsonBuilder();
+    private GsonBuilder gsonBuilder;
 
     public JsonStorage(String filePath) {
         super(filePath);
@@ -38,12 +40,11 @@ public class JsonStorage extends Storage {
     }
 
     @Override
-    public CardList load() throws StorageLoadFailure {
+    public CardList load() throws InkaException {
 
         CardList cardList;
         try (FileReader fileReader = new FileReader(saveFile);
                 BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-            Gson gson = new Gson();
             JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
             JsonObject jsonObject = jsonElement.getAsJsonObject();
             String deckName = jsonObject.get("deckName").getAsString();
@@ -55,12 +56,15 @@ public class JsonStorage extends Storage {
             ArrayList<Card> cards = gsonBuilder.create().fromJson(jsonArray, cardListType);
             cardList = new CardList(cards);
         } catch (IOException e) {
-            logger.log(Level.WARNING, "Failed to load file from " + this.saveFile.getAbsolutePath(), e);
-            throw new StorageLoadFailure();
+            String absolutePath = this.saveFile.getAbsolutePath();
+            logger.log(Level.WARNING, "Failed to load file from " + absolutePath, e);
+
+            throw new StorageLoadFailure(absolutePath);
         } catch (NullPointerException | JsonSyntaxException e) {
-            logger.log(Level.WARNING, "Corrupted save file: " + this.saveFile.getAbsolutePath(), e);
-            // TODO: New exception type?
-            throw new StorageLoadFailure();
+            String absolutePath = this.saveFile.getAbsolutePath();
+            logger.log(Level.WARNING, "Corrupted save file: " + absolutePath, e);
+
+            throw new StorageCorrupted(absolutePath);
         }
 
         return cardList;
@@ -93,8 +97,10 @@ public class JsonStorage extends Storage {
 
             bufferedWriter.write(serialized);
         } catch (IOException e) {
-            logger.log(Level.WARNING, "Failed to save data to savedata.json", e);
-            throw new StorageSaveFailure();
+            String absolutePath = this.saveFile.getAbsolutePath();
+            logger.log(Level.WARNING, "Failed to save data to savedata.json" + absolutePath, e);
+
+            throw new StorageSaveFailure(absolutePath);
         }
     }
 }

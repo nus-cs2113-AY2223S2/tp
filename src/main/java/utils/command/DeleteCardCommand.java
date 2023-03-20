@@ -3,7 +3,7 @@ package utils.command;
 import model.CardList;
 import model.TagList;
 import utils.UserInterface;
-import utils.exceptions.DeleteRangeInvalid;
+import utils.exceptions.DeleteUnknown;
 import utils.exceptions.InkaException;
 import utils.storage.IDataStorage;
 
@@ -24,7 +24,7 @@ public class DeleteCardCommand extends Command {
             ui.printDeleteSuccess();
             ui.printNumOfQuestions(cardList);
         } catch (IndexOutOfBoundsException e) {
-            throw new DeleteRangeInvalid();
+            throw new DeleteUnknown();
         }
     }
 }

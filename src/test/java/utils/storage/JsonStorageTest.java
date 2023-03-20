@@ -1,12 +1,13 @@
 package utils.storage;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.nio.file.Path;
 import model.CardList;
 import org.junit.jupiter.api.Test;
-import utils.exceptions.StorageLoadFailure;
+import utils.exceptions.InkaException;
+import utils.exceptions.StorageCorrupted;
 import utils.storage.json.JsonStorage;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class JsonStorageTest {
 
@@ -20,17 +21,17 @@ public class JsonStorageTest {
     @Test
     public void load_emptyFile() {
         Storage storage = new JsonStorage(EMPTY_FILE.toString());
-        assertThrows(StorageLoadFailure.class, storage::load);
+        assertThrows(StorageCorrupted.class, storage::load);
     }
 
     @Test
     public void load_malformedFile() {
         Storage storage = new JsonStorage(MALFORMED_FILE.toString());
-        assertThrows(StorageLoadFailure.class, storage::load);
+        assertThrows(StorageCorrupted.class, storage::load);
     }
 
     @Test
-    public void load_validFile() throws StorageLoadFailure {
+    public void load_validFile() throws InkaException {
         Storage storage = new JsonStorage(VALID_FILE.toString());
         CardList cardList = storage.load();
 

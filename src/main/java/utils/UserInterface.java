@@ -69,14 +69,6 @@ public class UserInterface {
         System.out.println("Deck loaded!");
     }
 
-    public void printLoadFailure() {
-        System.out.println("Failed to load deck :(");
-    }
-
-    public void printSaveFailure() {
-        System.out.println("Failed to save deck :(");
-    }
-
     public void printCard(CardList cardlist, int id) {
         System.out.println(cardlist.get(id));
     }
