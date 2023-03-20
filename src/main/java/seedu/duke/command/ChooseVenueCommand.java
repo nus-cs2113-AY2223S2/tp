@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.event.Event;
+import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.venue.VenueList;
 
 public class ChooseVenueCommand extends Command{
@@ -14,6 +15,10 @@ public class ChooseVenueCommand extends Command{
 
     @Override
     public void execute(Event event, VenueList venueList) {
-        event.updateVenue(venueList, venueNum);
+        try{
+            event.updateVenue(venueList, venueNum);
+        } catch (InvalidIndexException err){
+            System.out.println("Invalid index provided! Please try again");
+        }
     }
 }

@@ -1,6 +1,13 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.*;
+import seedu.duke.command.Command;
+import seedu.duke.command.ChooseVenueCommand;
+import seedu.duke.command.ListCompanyCommand;
+import seedu.duke.command.PurgeCommand;
+import seedu.duke.command.AddCommand;
+import seedu.duke.command.LoadSampleCompanyCommand;
+import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.ListVenueCommand;
 
 import seedu.duke.ui.Ui;
 import seedu.duke.exception.WrongFormatException;

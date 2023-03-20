@@ -24,4 +24,8 @@ public class VenueList {
     public Venue getVenue(int venueNum) {
         return venueList.get(venueNum);
     }
+
+    public int getVenueListSize(){
+        return venueList.size();
+    }
 }

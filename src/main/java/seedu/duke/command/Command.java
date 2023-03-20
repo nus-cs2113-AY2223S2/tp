@@ -2,10 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.company.CompanyList;
 import seedu.duke.event.Event;
-import seedu.duke.venue.Venue;
 import seedu.duke.venue.VenueList;
-
-
 
 public class Command {
 
