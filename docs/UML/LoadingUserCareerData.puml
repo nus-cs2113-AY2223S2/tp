@@ -1,6 +1,13 @@
 @startuml
 hide footbox
 activate ":StorageHandler"
+create ":UserDataLoader"
+
+":StorageHandler" -> ":UserDataLoader" : <<create>>
+activate ":UserDataLoader"
+":UserDataLoader" --> ":StorageHandler"
+deactivate ":UserDataLoader"
+
     ":StorageHandler" -> ":StorageHandler" : loadUserCareer()
     activate ":StorageHandler"
     ":StorageHandler" -> ":UserDataLoader": loadFromJson()

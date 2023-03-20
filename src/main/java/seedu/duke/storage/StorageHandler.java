@@ -15,15 +15,13 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class StorageHandler {
-    private static Logger logger = Logger.getLogger("Storage");
+    private static final Logger logger = Logger.getLogger("Storage");
     private final UserDataWriter userDataWriter;
     private final UserDataLoader userDataLoader;
     private final String filePath;
-    private Gson gson;
-    private GsonBuilder gsonBuilder;
 
     public StorageHandler (String filePath) {
-        gson = new GsonBuilder()
+        Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateAdapter())
                 .setPrettyPrinting()
                 .create();

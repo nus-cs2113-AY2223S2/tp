@@ -45,7 +45,7 @@ public class UserDataLoader {
                     "into arrayList";
             reader.close();
         } catch (Exception e) {
-            return userCareerData;
+            throw new FileReadError();
         }
         return userCareerData;
     }

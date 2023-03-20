@@ -1,22 +1,38 @@
 @startuml
-'https://plantuml.com/class-diagram
-
+skinparam classAttributeIconSize 0
 hide circle
 class StorageHandler{
+- userDataLoader: UserDataLoader
+- userDataLoader: UserDataWriter
+- FilePath: String
++ StorageHandler(String: FilePath)
 + writeToJson(UserCareerData) : void
 + loadUserCareer() : UserCareerData
 }
 
 class UserDataLoader{
-+ loadFromJson(): UserCareerData
+- gson : Gson
++ UserDataLoader(Gson gson)
++ loadFromJson(String FilePath): UserCareerData
 }
 
 class UserDataWriter{
-+ saveToJson(UserCareerData):
+- gson : Gson
++ UserDataWriter(Gson gson)
++ saveToJson(Sting filePath,UserCareerData UserCareerData): void
 }
 
-StorageHandler --> UserDataWriter : Uses
-StorageHandler --> UserDataLoader : Uses
+class UserCareerData{
+}
+
+class Session{
+}
+
+
+StorageHandler --> "1" UserDataWriter
+StorageHandler --> "1" UserDataLoader
+UserDataLoader --> "1" UserCareerData
+UserCareerData --> "*" Session
 
 
 @enduml
