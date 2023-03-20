@@ -15,13 +15,9 @@ public class CompanyList {
         this.companyList = companyList;
     }
     public boolean add(String companyName, int contactNumber, String contactEmail) {
-        try{
             Company newCompany = new Company(companyName, contactNumber, contactEmail);
             companyList.add(newCompany);
             return true;
-        } catch(InputMismatchException e) {
-            return false;
-        }
     }
 
     public void printCompanyInformation() throws EmptyListException {
