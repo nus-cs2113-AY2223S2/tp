@@ -24,7 +24,7 @@ public class Sniff {
                 String fullCommand = UI.readUserCommand();
                 UI.showLine();
                 Command c = Parser.parse(fullCommand);
-                c.executeSniffCommands(tasks, UI);
+                c.executeSniffCommands(tasks);
                 isExit = c.isExit();
             } catch (SniffException e) {
                 UI.showErrorMessage();
