@@ -46,7 +46,7 @@ public class Parser {
         }
     }
 
-    private AddCommand addStatement(String userInput) throws IllegalArgumentException {
+    private Command addStatement(String userInput) throws IllegalArgumentException {
         try {
             if (userInput.contains("-d") && userInput.contains("-c")) {
                 parseDescriptionAndCategory(userInput);
@@ -59,8 +59,9 @@ public class Parser {
             }
             return new AddCommand(description, direction, amount, category);
         } catch (Exception e) {
-            logger.warning("add command given by user in the wrong format");
-            throw new IllegalArgumentException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+            return new InvalidCommand();
+            //logger.warning("add command given by user in the wrong format");
+            //throw new IllegalArgumentException(ErrorMessage.WRONG_ADD_FORMAT.toString());
         }
     }
 
@@ -130,7 +131,7 @@ public class Parser {
         }
     }
 
-    public DeleteCommand deleteStatement(String userInput) throws IllegalArgumentException {
+    public Command deleteStatement(String userInput) throws IllegalArgumentException {
         String[] tokens = userInput.split("\\s+");
         if (tokens.length != 2) {
             logger.warning("invalid delete index from user");
@@ -143,8 +144,9 @@ public class Parser {
             }
             return new DeleteCommand(index);
         } catch (Exception e) {
-            logger.warning("delete index provided incorrectly");
-            throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
+            return new InvalidCommand();
+            //logger.warning("delete index provided incorrectly");
+            //throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
         }
     }
 
@@ -156,7 +158,7 @@ public class Parser {
         return new HelpCommand();
     }
 
-    private static FilterCommand filterStatement(String input) {
+    private static Command filterStatement(String input) {
         try {
             if (input.contains("-d")) {
                 parseFilterByDescription(input);
@@ -171,8 +173,9 @@ public class Parser {
             }
             return new FilterCommand(description, filterFlag);
         } catch (Exception e) {
-            logger.warning("filter command given by user in the wrong format");
-            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+            return new InvalidCommand();
+            //logger.warning("filter command given by user in the wrong format");
+            //throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
         }
     }
 
