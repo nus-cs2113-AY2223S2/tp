@@ -1,12 +1,13 @@
 package seedu.rainyDay.data;
 
 import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.Command;
+import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.DeleteCommand;
-import seedu.rainyDay.command.FilterCommand;
 import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.command.HelpCommand;
+import seedu.rainyDay.command.FilterCommand;
+import seedu.rainyDay.command.InvalidCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 
@@ -23,7 +24,7 @@ public class Parser {
     private static double amount = -1.0;
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
-    public static Command parseUserInput(String userInput) throws RainyDayException {
+    public Command parseUserInput(String userInput) throws RainyDayException {
         assert userInput != null : "Failed to read user input!";
         String[] action = userInput.split("\\s+", 2);
         if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
@@ -39,13 +40,13 @@ public class Parser {
             return displayHelp();
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
             return filterStatement(action[1]);
-        } else {
+        } else { // todo add filter
             logger.warning("unrecognised input from user!");
-            throw new RainyDayException(ErrorMessage.UNRECOGNIZED_INPUT.toString());
+            return new InvalidCommand();
         }
     }
 
-    private static AddCommand addStatement(String userInput) throws IllegalArgumentException {
+    private AddCommand addStatement(String userInput) throws IllegalArgumentException {
         try {
             if (userInput.contains("-d") && userInput.contains("-c")) {
                 parseDescriptionAndCategory(userInput);
@@ -63,7 +64,7 @@ public class Parser {
         }
     }
 
-    private static void parseDescriptionAndCategory(String userInput) throws IllegalArgumentException {
+    private void parseDescriptionAndCategory(String userInput) throws IllegalArgumentException {
         if (userInput.contains("-d") && userInput.contains("-c")) {
             Pattern pattern = Pattern.compile("-(in|out)\\s+(?:-d\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+" +
                     "-c\\s+(\\S+(?:\\s+\\S+)*)\\s+\\$([\\d.]+)");
@@ -88,7 +89,7 @@ public class Parser {
         }
     }
 
-    private static void parseDescriptionOnly(String userInput) throws IllegalArgumentException {
+    private void parseDescriptionOnly(String userInput) throws IllegalArgumentException {
         Pattern pattern = Pattern.compile("-(in|out)\\s+(?:-d\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+\\$([\\d.]+)");
         Matcher matcher = pattern.matcher(userInput);
         if (matcher.find()) {
@@ -102,7 +103,7 @@ public class Parser {
         }
     }
 
-    private static void parseCategoryOnly(String userInput) throws IllegalArgumentException {
+    private void parseCategoryOnly(String userInput) throws IllegalArgumentException {
         Pattern pattern = Pattern.compile("-(in|out)\\s+(?:-c\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+\\$([\\d.]+)");
         Matcher matcher = pattern.matcher(userInput);
         if (matcher.find()) {
@@ -116,7 +117,7 @@ public class Parser {
         }
     }
 
-    private static void parseOnly(String userInput) throws IllegalArgumentException {
+    private void parseOnly(String userInput) throws IllegalArgumentException {
         Pattern pattern = Pattern.compile("-(in|out)\\s+\\$([\\d.]+)");
         Matcher matcher = pattern.matcher(userInput);
         if (matcher.find()) {
@@ -129,7 +130,7 @@ public class Parser {
         }
     }
 
-    public static DeleteCommand deleteStatement(String userInput) throws IllegalArgumentException {
+    public DeleteCommand deleteStatement(String userInput) throws IllegalArgumentException {
         String[] tokens = userInput.split("\\s+");
         if (tokens.length != 2) {
             logger.warning("invalid delete index from user");
@@ -147,11 +148,11 @@ public class Parser {
         }
     }
 
-    public static ViewCommand generateReport() {
+    public ViewCommand generateReport() {
         return new ViewCommand();
     }
 
-    public static HelpCommand displayHelp() {
+    public HelpCommand displayHelp() {
         return new HelpCommand();
     }
 
