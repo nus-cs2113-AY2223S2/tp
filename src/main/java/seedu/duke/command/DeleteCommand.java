@@ -1,7 +1,8 @@
 package seedu.duke.command;
 
 
-import seedu.duke.CompanyList;
+import seedu.duke.company.CompanyList;
+import seedu.duke.exception.InvalidIndexException;
 
 public class DeleteCommand extends Command{
     protected int taskNum;
@@ -12,6 +13,10 @@ public class DeleteCommand extends Command{
 
     @Override
     public void execute(CompanyList companyList) {
-        companyList.deleteCompanyInformation(taskNum);
+        try{
+            companyList.deleteCompanyInformation(taskNum);
+        } catch (InvalidIndexException err){
+            System.out.println("Invalid index provided! Please try again");
+        }
     }
 }
