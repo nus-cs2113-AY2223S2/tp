@@ -46,6 +46,21 @@ public class Ui {
         System.out.println("To display this guide at any time, type:");
         System.out.println("                    help");
         System.out.println(" ");
+        System.out.println("To load sample data, type:");
+        System.out.println("                    load sample");
+        System.out.println(" ");
+        System.out.println("To purge list data, type:");
+        System.out.println("                    purge");
+        System.out.println(" ");
+        System.out.println("To search for a company, type:");
+        System.out.println("                    find company");
+        System.out.println(" ");
+        System.out.println("To filter according to industry, type:");
+        System.out.println("                    find industry");
+        System.out.println(" ");
+        System.out.println("To display unconfirmed attendees, type:");
+        System.out.println("                    list unconfirmed");
+        System.out.println(" ");
     }
 
     public void showSuccessfulDeletionMessage() {
@@ -54,6 +69,14 @@ public class Ui {
 
     public void showSuccessfulAdditionMessage() {
         System.out.println("Company information added successfully!");
+    }
+
+    public void showSuccessfulDeleteMessage() {
+        System.out.println("Data has been deleted successfully!");
+    }
+
+    public void showSampleDataLoadedMessage() {
+        System.out.println("Sample data has been loaded for your reference!");
     }
 
 }
