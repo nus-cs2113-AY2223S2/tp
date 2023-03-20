@@ -2,8 +2,8 @@
 
 ## Acknowledgements
 
-* The CS2113 Team (Professor and Teaching Assistants) </br> For their guidance in teaching us concepts
-  of Software Engineering and OOP
+* The CS2113 Team (Professor and Teaching Assistants) For their guidance in teaching us concepts of Software
+  Engineering and OOP
 
 * Exercise Data retrieved from: [Wrkout](https://github.com/wrkout/exercises.json) (open source MIT license)
   Used to generate the data.json file containing all the exercises data used
