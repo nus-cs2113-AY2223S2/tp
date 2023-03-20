@@ -7,7 +7,7 @@ public class Company {
     private int contactNumber;
     private String contactEmail;
 
-    public Company(String companyName, int contactNumber, String contactEmail) throws InputMismatchException {
+    public Company(String companyName, int contactNumber, String contactEmail){
         this.companyName = companyName;
         this.contactNumber = contactNumber;
         this.contactEmail = contactEmail;
