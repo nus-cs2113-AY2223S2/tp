@@ -181,7 +181,7 @@ public class Parser {
     }
 
     private static void parseFilterByDescription(String input) {
-        Pattern pattern = Pattern.compile("(-d)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*");
+        Pattern pattern = Pattern.compile("(-d)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             filterFlag = matcher.group(1);
@@ -193,7 +193,7 @@ public class Parser {
     }
 
     private static void parseFilterByCategory(String input) {
-        Pattern pattern = Pattern.compile("(-c)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*");
+        Pattern pattern = Pattern.compile("(-c)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             filterFlag = matcher.group(1);
