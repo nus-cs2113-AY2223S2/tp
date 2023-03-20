@@ -1,6 +1,6 @@
-package seedu.duke;
+package seedu.duke.objects;
 
-import seedu.duke.trie.Trie;
+import seedu.duke.utils.trie.Trie;
 
 import java.util.ArrayList;
 import java.util.HashMap;

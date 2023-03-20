@@ -1,12 +1,15 @@
-package seedu.duke;
+package seedu.duke.utils;
+
+import seedu.duke.objects.Inventory;
+import seedu.duke.objects.Item;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static seedu.duke.ColorCode.ANSI_BLUE;
-import static seedu.duke.ColorCode.ANSI_GREEN;
-import static seedu.duke.ColorCode.ANSI_RED;
-import static seedu.duke.ColorCode.ANSI_RESET;
+import static seedu.duke.utils.ColorCode.ANSI_BLUE;
+import static seedu.duke.utils.ColorCode.ANSI_GREEN;
+import static seedu.duke.utils.ColorCode.ANSI_RED;
+import static seedu.duke.utils.ColorCode.ANSI_RESET;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";

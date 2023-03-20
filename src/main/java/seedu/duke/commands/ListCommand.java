@@ -1,7 +1,7 @@
 package seedu.duke.commands;
 
-import seedu.duke.Inventory;
-import seedu.duke.Ui;
+import seedu.duke.objects.Inventory;
+import seedu.duke.utils.Ui;
 
 /**
  * Represents the command to list all items in the inventory.

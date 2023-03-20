@@ -1,4 +1,4 @@
-package seedu.duke.trie;
+package seedu.duke.utils.trie;
 
 import java.util.ArrayList;
 import java.util.HashSet;

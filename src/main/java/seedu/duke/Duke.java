@@ -1,6 +1,11 @@
 package seedu.duke;
 
 
+import seedu.duke.objects.Inventory;
+import seedu.duke.utils.Storage;
+import seedu.duke.utils.Ui;
+import seedu.duke.utils.parser.Parser;
+
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.

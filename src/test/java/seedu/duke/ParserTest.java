@@ -1,6 +1,8 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.objects.Inventory;
+import seedu.duke.utils.parser.Parser;
 
 import static org.junit.jupiter.api.Assertions.*;
 

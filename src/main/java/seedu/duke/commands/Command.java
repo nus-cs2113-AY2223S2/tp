@@ -1,8 +1,8 @@
 package seedu.duke.commands;
 
-import seedu.duke.Inventory;
-import seedu.duke.Item;
-import seedu.duke.trie.Trie;
+import seedu.duke.objects.Inventory;
+import seedu.duke.objects.Item;
+import seedu.duke.utils.trie.Trie;
 
 import java.util.ArrayList;
 import java.util.HashMap;
