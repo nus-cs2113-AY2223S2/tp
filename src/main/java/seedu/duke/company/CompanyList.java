@@ -16,8 +16,10 @@ public class CompanyList {
     }
     public boolean add(String companyName, int contactNumber, String contactEmail) {
         try{
+            Ui ui = new Ui();
             Company newCompany = new Company(companyName, contactNumber, contactEmail);
             companyList.add(newCompany);
+            ui.showSuccessfulAdditionMessage(companyName);
             return true;
         } catch(InputMismatchException e) {
             return false;
