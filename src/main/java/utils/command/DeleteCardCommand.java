@@ -3,6 +3,8 @@ package utils.command;
 import model.CardList;
 import model.TagList;
 import utils.UserInterface;
+import utils.exceptions.DeleteRangeInvalid;
+import utils.exceptions.InkaException;
 import utils.storage.IDataStorage;
 
 public class DeleteCardCommand extends Command {
@@ -14,10 +16,15 @@ public class DeleteCardCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage) {
-        ui.printDeleteSuccess();
-        // if the input is delete 1, this will delete the first element of the array which is element 0.
-        cardList.delete(this.index - 1);
-        ui.printNumOfQuestions(cardList);
+    public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage)
+            throws InkaException {
+        try {
+            // if the input is delete 1, this will delete the first element of the array which is element 0.
+            cardList.delete(this.index - 1);
+            ui.printDeleteSuccess();
+            ui.printNumOfQuestions(cardList);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DeleteRangeInvalid();
+        }
     }
 }

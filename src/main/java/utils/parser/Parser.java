@@ -6,19 +6,19 @@ import utils.command.Command;
 import utils.command.ExportCommand;
 import utils.command.TerminateCommand;
 import utils.exceptions.InkaException;
-import utils.exceptions.InvalidCommandException;
+import utils.exceptions.UnrecognizedCommandException;
 
 public class Parser {
 
     /* Card-related tokens */
-    private final static String CARD_KEYWORD = "card";
+    private static final String CARD_KEYWORD = "card";
 
     /* Tag-related tokens */
-    private final static String TAG_KEYWORD = "tag";
+    private static final String TAG_KEYWORD = "tag";
 
     /* Miscellaneous tokens */
-    private final static String EXPORT_KEYWORD = "exit";
-    private final static String EXIT_KEYWORD = "bye";
+    private static final String EXPORT_KEYWORD = "export";
+    private static final String EXIT_KEYWORD = "bye";
 
     // Keyword-specific parsers
     private final CardTokenParser cardTokenParser = new CardTokenParser();
@@ -44,10 +44,10 @@ public class Parser {
          *  [keyword] [action (optional)] [flag(s) (optional)]
          */
 
-        List<String> userInputTokens = Arrays.asList(userInput.split(""));
+        List<String> userInputTokens = Arrays.asList(userInput.split("\\s+"));
 
         if (userInputTokens.size() == 0) {
-            throw new InvalidCommandException();
+            throw new UnrecognizedCommandException();
         }
 
         // Parse action and flags based on keyword
@@ -55,21 +55,21 @@ public class Parser {
         List<String> optionTokens = userInputTokens.subList(1, userInputTokens.size());
 
         switch (keyword) {
-            case CARD_KEYWORD:
-                return cardTokenParser.parseTokens(optionTokens);
+        case CARD_KEYWORD:
+            return cardTokenParser.parseTokens(optionTokens);
 
-            case TAG_KEYWORD:
-                return tagTokenParser.parseToken(optionTokens);
+        case TAG_KEYWORD:
+            return tagTokenParser.parseToken(optionTokens);
 
-            case EXPORT_KEYWORD:
-                return new ExportCommand();
+        case EXPORT_KEYWORD:
+            return new ExportCommand();
 
-            case EXIT_KEYWORD:
-                this.setIsExecuting(false);
-                return new TerminateCommand();
+        case EXIT_KEYWORD:
+            this.setIsExecuting(false);
+            return new TerminateCommand();
 
-            default:
-                throw new InvalidCommandException();
+        default:
+            throw new UnrecognizedCommandException();
         }
     }
 }
