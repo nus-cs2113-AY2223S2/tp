@@ -52,7 +52,7 @@ public class CompanyList {
         companyList.add(sampleCompany3);
     }
 
-    public void purgeSampleData(){
+    public void purgeData(){
         companyList.clear();
     }
 }

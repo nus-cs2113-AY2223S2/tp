@@ -10,6 +10,6 @@ public class PurgeCommand extends Command{
 
     @Override
     public void execute(CompanyList companyList) {
-        companyList.purgeSampleData();
+        companyList.purgeData();
     }
 }
