@@ -22,6 +22,7 @@ public class Ui {
             "           |\n" +
             "         `='";
     private static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
+    private static final String CSV_EXPORT_ERROR = "Error exporting to CSV";
     private static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
     private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
             "+-----+------------------------------+------------+----------------+\n" +
@@ -60,6 +61,10 @@ public class Ui {
 
     public void noFileExist() {
         System.out.println(NO_FILE_DETECTED);
+    }
+
+    public static void csvExportError() {
+        System.out.println(CSV_EXPORT_ERROR);
     }
 
     public static void emptyFinancialReport() {
