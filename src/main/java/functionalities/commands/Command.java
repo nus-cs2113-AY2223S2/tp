@@ -1,7 +1,6 @@
 package functionalities.commands;
 import exception.SniffException;
 import functionalities.SniffTasks;
-import seedu.sniff.Sniff;
 
 public abstract class Command {
     public boolean isExit;

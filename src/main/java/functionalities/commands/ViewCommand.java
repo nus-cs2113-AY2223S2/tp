@@ -3,7 +3,6 @@ package functionalities.commands;
 import exception.SniffException;
 import functionalities.SniffTasks;
 
-import javax.swing.text.View;
 
 public class ViewCommand extends Command{
 

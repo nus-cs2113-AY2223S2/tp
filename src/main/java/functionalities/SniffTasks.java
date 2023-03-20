@@ -8,21 +8,24 @@ public class SniffTasks {
 
     private static final ArrayList<Appointment> APPOINTMENTS = new ArrayList<>();
 
-    public void addConsultation(String uid, Animal animal, Owner owner, String date, String time) throws SniffException {
+    public void addConsultation(String uid, Animal animal, Owner owner,
+                                String date, String time) throws SniffException {
         try {
             APPOINTMENTS.add(new Consultation(uid, animal, owner, date, time));
         } catch (StringIndexOutOfBoundsException e){
             throw new SniffException("Invalid consultation description !!");
         }
     }
-    public void addVaccination(String uid, Animal animal, Owner owner, String date, String time, String vaccine) throws SniffException {
+    public void addVaccination(String uid, Animal animal, Owner owner,
+                               String date, String time, String vaccine) throws SniffException {
         try {
             APPOINTMENTS.add(new Vaccination(uid, animal, owner, date, time, vaccine));
         } catch (StringIndexOutOfBoundsException e){
             throw new SniffException("Invalid vaccination description !!");
         }
     }
-    public void addSurgery(String uid, Animal animal, Owner owner, String priority, String startDate, String startTime,
+    public void addSurgery(String uid, Animal animal, Owner owner,
+                           String priority, String startDate, String startTime,
                            String endDate, String endTime) throws SniffException {
         try {
             APPOINTMENTS.add(new Surgery(uid, animal, owner, priority, startDate, startTime, endDate, endTime));
