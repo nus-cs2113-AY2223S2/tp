@@ -8,11 +8,11 @@ import java.util.ArrayList;
 public class Patient {
     protected ArrayList<String> patientDiagnosisHistory = new ArrayList<>();
     protected String name;
-    protected String password;
+    protected int hash;
 
-    public Patient(String name, String password, ArrayList<String> patientDiagnosisHistory) {
+    public Patient(String name, int hash, ArrayList<String> patientDiagnosisHistory) {
         this.setName(name);
-        this.setPassword(password);
+        this.setPassword(hash);
         this.setPatientDiagnosisHistory(patientDiagnosisHistory);
     }
 
@@ -24,12 +24,12 @@ public class Patient {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public int getPassword() {
+        return hash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(int hash) {
+        this.hash = hash;
     }
 
     public void setPatientDiagnosisHistory(ArrayList<String> diagnosisHistory) {
