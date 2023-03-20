@@ -7,6 +7,8 @@ import model.CardUUID;
 import model.Tag;
 import model.TagList;
 import utils.UserInterface;
+import utils.exceptions.InkaException;
+import utils.exceptions.TagNotFoundException;
 import utils.storage.IDataStorage;
 
 public class ListCardsUnderTagCommand extends Command {
@@ -16,10 +18,19 @@ public class ListCardsUnderTagCommand extends Command {
         this.tagName = tagName;
     }
 
-    private CardList findCardsUnderTag(CardList cardList, TagList tagList) {
+    /**
+     * Finds all the cards that have been tagged with tagName tag.
+     *
+     * @param cardList The cardList from which to search for the cards.
+     * @param tagList  The tagList that contains the specified tagName.
+     * @return The ArrayList containing all the cards that has the tagName tag.
+     * @throws InkaException
+     */
+    private CardList findCardsUnderTag(CardList cardList, TagList tagList) throws InkaException {
         Tag foundTag = tagList.findTagFromName(tagName);
+
         if (foundTag == null) {
-            //means the tag does not even exist to begin with , throw exception
+            throw new TagNotFoundException();
         }
 
         ArrayList<CardUUID> cardsUUID = foundTag.getCardsUUID();
@@ -36,7 +47,8 @@ public class ListCardsUnderTagCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage) {
+    public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage)
+            throws InkaException {
         CardList foundCardList = findCardsUnderTag(cardList, tagList);
         ui.printCardList(foundCardList);
     }

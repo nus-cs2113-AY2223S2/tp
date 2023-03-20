@@ -17,6 +17,33 @@ public class Card {
         this.uuid = new CardUUID(UUID.randomUUID());
     }
 
+    /**
+     * Constructor function where user specifies the UUID himself This is private and is only called by the static
+     * factory method createCardWithUUID()
+     *
+     * @param question The question in the card.
+     * @param answer   The answer in the card.
+     * @param uuidStr  The custom UUID String that the user specifies for the card.
+     */
+    private Card(String question, String answer, String uuidStr) {
+        this.question = question;
+        this.answer = answer;
+        this.uuid = new CardUUID(UUID.fromString(uuidStr));
+    }
+
+    /**
+     * A method that calls a private constructor function where user can specify the UUID himself. This method is mainly
+     * used for unit-testing purpose
+     *
+     * @param question The question in the card
+     * @param answer   The answer in the card
+     * @param uuidStr  The custom UUID String that the user wants for the card
+     * @return
+     */
+    public static Card createCardWithUUID(String question, String answer, String uuidStr) {
+        return new Card(question, answer, uuidStr);
+    }
+
     public CardUUID getUuid() {
         return this.uuid;
     }

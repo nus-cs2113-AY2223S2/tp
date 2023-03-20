@@ -22,6 +22,10 @@ public class Tag {
         return this.tagName;
     }
 
+    public void editTagName(String newTagName) {
+        this.tagName = newTagName;
+    }
+
     public ArrayList<CardUUID> getCardsUUID() {
         return this.cards;
     }

@@ -137,4 +137,9 @@ public class UserInterface {
     public void printRemoveTagFromTagList(TagUUID tagUUID) {
         System.out.println("Successfully removed tag " + tagUUID + " from the tag list.");
     }
+
+    public void printEditTagNameSuccess(String oldTagName, Tag tag) {
+        System.out.println(
+                "Tag " + tag.getUUID() + "tag name has been changed from " + oldTagName + " to " + tag.getTagName());
+    }
 }
