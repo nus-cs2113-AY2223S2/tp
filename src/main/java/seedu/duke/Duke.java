@@ -26,7 +26,7 @@ public class Duke {
             ArrayList<University> universities = dataReader.getUniversities();
             ArrayList<Module> modules = storage.getModules();
             ArrayList<Module> allModules = dataReader.getModules();
-            Command command = parser.handleUserCommand(userInput, universities, modules, allModules, storage);
+            Command command = parser.parseUserCommand(userInput, universities, modules, allModules, storage);
             command.execute();
             isContinue = !command.getIsExit();
         }
