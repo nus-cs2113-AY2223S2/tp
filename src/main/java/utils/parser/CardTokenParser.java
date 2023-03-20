@@ -69,6 +69,13 @@ public class CardTokenParser {
         return options;
     }
 
+    private static Options buildViewOptions() {
+        Options options = new Options();
+        options.addRequiredOption("c", "card", true, "card UUID");
+
+        return options;
+    }
+
     @SuppressWarnings("unchecked") // Safe, CLI library just returns List instead of List<String>
     public Command parseTokens(List<String> tokens) throws InkaException {
         if (tokens.size() == 0) {
@@ -127,23 +134,20 @@ public class CardTokenParser {
         return new ListCardCommand();
     }
 
-    private Command handleTag(List<String> tokens) throws InkaException {
-        if (tokens.size() != 2) {
-            throw InvalidSyntaxException.buildGenericMessage();
-        }
+    private Command handleTag(List<String> tokens) throws ParseException {
+        CommandLine cmd = parser.parse(buildTagOptions(), tokens.toArray(new String[0]));
 
-        String cardUUID = tokens.get(0);
-        String tagName = tokens.get(1);
+        String cardUUID = cmd.getOptionValue("c");
+        String tagName = cmd.getOptionValue("t");
 
         return new AddCardToTagCommand(tagName, cardUUID);
     }
 
-    private Command handleView(List<String> tokens) throws InkaException {
-        if (tokens.size() != 1) {
-            throw InvalidSyntaxException.buildGenericMessage();
-        }
+    private Command handleView(List<String> tokens) throws ParseException {
+        CommandLine cmd = parser.parse(buildViewOptions(), tokens.toArray(new String[0]));
 
-        String cardUUID = tokens.get(0);
+        String cardUUID = cmd.getOptionValue("c");
         return new ViewCardCommand(cardUUID);
     }
+
 }
