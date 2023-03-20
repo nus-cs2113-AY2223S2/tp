@@ -26,6 +26,8 @@ class UserDataWriter {
 class Session{
 - sessionExercises : ArrayList<ExerciseData>
 }
+interface Storage <<interface>>{
+}
 
 class UserCareerData{
 - Sessions : ArrayList<Session>
@@ -35,6 +37,8 @@ UserDataLoader . UserCareerData : writes to >
 UserCareerData . UserDataWriter : gets data from <
 
 UserCareerData *-- "*" Session
+
+Storage <|.. StorageHandler
 
 StorageHandler --> "1" UserDataLoader
 StorageHandler --> "1" UserDataWriter

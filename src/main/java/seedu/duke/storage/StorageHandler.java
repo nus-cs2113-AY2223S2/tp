@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-public class StorageHandler {
+public class StorageHandler implements Storage {
     private static final Logger logger = Logger.getLogger("Storage");
     private final UserDataWriter userDataWriter;
     private final UserDataLoader userDataLoader;
