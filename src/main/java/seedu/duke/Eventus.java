@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.company.Company;
 import seedu.duke.company.CompanyList;
+import seedu.duke.event.Event;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.VenueListStorage;
@@ -18,12 +19,15 @@ public class Eventus {
     private Storage storage;
     private CompanyList companyList;
     private VenueList venueList;
+
+    private Event event;
     private Ui ui;
 
     public Eventus() {
         storage = new Storage();
         ArrayList<Company> companyArrayList = new ArrayList<>();
         companyList = new CompanyList(companyArrayList);
+        event = new Event(companyList);
         venueList = new VenueList(VenueListStorage.venueListInit());
         ui = new Ui();
         run();
