@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
  * list of data
  */
 public class GenerateGymExerciseTest {
-    private static String BODY = "body only";
+    private static final String BODY = "body only";
     @Test
     void testGymWorkout() {
         ArrayList<ExerciseData> exerciseData;

@@ -1,8 +1,9 @@
 package seedu.duke.exceptions;
 
+import seedu.duke.ui.ErrorMessages;
+
 public class NoOngoingExError extends DukeError{
     public NoOngoingExError(){
-        super("There is no current workout session!" +
-                "Please start a session now");
+        super(ErrorMessages.ERROR_NO_ONGOING_EXERCISE.toString());
     }
 }

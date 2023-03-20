@@ -2,9 +2,9 @@
 package seedu.duke.commands;
 
 import seedu.duke.exceptions.DukeError;
-import seedu.duke.exceptions.InvalidInputError;
+import seedu.duke.exceptions.ExerciseNumberInputAsStringError;
 import seedu.duke.exceptions.UnknownFilterInputError;
-import seedu.duke.exceptions.FilterTooManyError;
+import seedu.duke.exceptions.TooManyFiltersError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.ui.Ui;
@@ -32,7 +32,8 @@ public class GenerateFilterCommand extends Command {
     /**
      * Parses the user input into data required
      * for generating an exercise
-     * @param userCommands
+     * @param userCommands The parameters that the user wishes their exercises to have
+     *                     and includes the number of exercises to have.
      * @throws DukeError
      */
     public GenerateFilterCommand(String[] userCommands) throws DukeError {
@@ -42,7 +43,7 @@ public class GenerateFilterCommand extends Command {
         try {
             this.numberOfExercisesToGenerate = Integer.parseInt(userGenerateCount);
         } catch (NumberFormatException error) {
-            throw new InvalidInputError();
+            throw new ExerciseNumberInputAsStringError();
         }
     }
 
@@ -80,7 +81,7 @@ public class GenerateFilterCommand extends Command {
             }
         }
         if (numberOfExercisesToGenerate > exercises.size()) {
-            throw new FilterTooManyError();
+            throw new TooManyFiltersError();
         }
         exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
         exerciseListGenerated = exercises;
