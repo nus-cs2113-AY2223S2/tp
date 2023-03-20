@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class VenueListTest {
     @Test
-    public void intDivision_zeroDivisor_exceptionThrown() {
+    public void testPrintVenueList() {
         try {
             VenueList venueList = new VenueList(new ArrayList<>());
             venueList.printVenueInformation();
