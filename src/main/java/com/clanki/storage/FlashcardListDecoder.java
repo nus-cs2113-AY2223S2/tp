@@ -26,7 +26,7 @@ public class FlashcardListDecoder {
      *
      * @throws StorageOperationException if the {@code encodedFlashcardList} is in an invalid format.
      */
-    public static ArrayList<Flashcard> decodeAddressBook(List<String> encodedFlashcardList)
+    public static ArrayList<Flashcard> decodeFlashcardList(List<String> encodedFlashcardList)
             throws StorageOperationException {
         final ArrayList<Flashcard> decodedFlashcard = new ArrayList<>();
         for (String encodedFlashcard : encodedFlashcardList) {

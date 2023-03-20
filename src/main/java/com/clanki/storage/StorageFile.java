@@ -80,7 +80,7 @@ public class StorageFile {
         }
 
         try {
-            return FlashcardListDecoder.decodeAddressBook(Files.readAllLines(path));
+            return FlashcardListDecoder.decodeFlashcardList(Files.readAllLines(path));
         } catch (FileNotFoundException fnfe) {
             throw new AssertionError("A non-existent file scenario is already handled earlier.");
             // other errors
