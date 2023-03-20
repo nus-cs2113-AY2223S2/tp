@@ -40,7 +40,7 @@ class AddModuleCommandTest {
         AddModuleCommand command = new AddModuleCommand(null, storage);
         try {
             command.execute();
-        } catch (NullPointerException e) {
+        } catch (AssertionError e) {
             System.out.println("Null Pointer caught");
         }
         assertEquals(databaseSize, storage.getModules().size());

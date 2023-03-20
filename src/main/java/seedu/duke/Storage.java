@@ -50,6 +50,7 @@ public class Storage {
     }
 
     public void addModuleToModuleList(Module moduleToAdd) {
+        assert (moduleToAdd != null) : "error line 53";
         if (moduleToAdd == null) {
             UI.printAddModuleFailureMessage();
             return;
