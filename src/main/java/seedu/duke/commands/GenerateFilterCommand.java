@@ -30,8 +30,8 @@ public class GenerateFilterCommand extends Command {
     /**
      * Parses the user input into data required
      * for generating an exercise
-     * @param userCommands
-     * @throws DukeError
+     * @param userCommands commands that user inputs
+     * @throws DukeError duke error
      */
     public GenerateFilterCommand(String[] userCommands) throws DukeError {
         this.filterArguments = userCommands.length - 1;
@@ -49,7 +49,7 @@ public class GenerateFilterCommand extends Command {
      * input from the user.
      * @param ui Prints out the respective exercises for a given input
      * @param exerciseGenerator Generates Exercises
-     * @throws DukeError
+     * @throws DukeError duke error
      */
     public void executeCommand(Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
@@ -61,7 +61,7 @@ public class GenerateFilterCommand extends Command {
                 exercises = exerciseGenerator.generateFilteredGymSetFrom(exercises);
                 break;
             case STATIC:
-                exercises = exerciseGenerator.generateFilteredBodySetFrom(exercises);
+                exercises = exerciseGenerator.generateFilteredStaticSetFrom(exercises);
                 break;
             case EASY:
             case MEDIUM:

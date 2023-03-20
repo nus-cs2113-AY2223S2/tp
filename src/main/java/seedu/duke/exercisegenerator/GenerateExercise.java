@@ -25,7 +25,7 @@ public class GenerateExercise {
     private static final String CLOSE_BRACE = "]";
     private final ArrayList<ExerciseData> exerciseDataList;
 
-    private ArrayList<ExerciseData> filteredExerciseList;
+    private static ArrayList<ExerciseData> filteredExerciseList;
 
     public GenerateExercise() {
         ParseData parseData = new ParseData();
@@ -44,21 +44,33 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
+    /**
+     * Returns an exercise list which is filtered according to the workout type: Gym
+     * chosen by the user.
+     * @param exerciseList Arraylist containing a set of workout exercises.
+     * @return returns list of exercises filtered according to work out type: Gym
+     */
     //Cleon's gym set - filter by body and gym
     public ArrayList<ExerciseData> generateFilteredGymSetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
-            if (exercise.getEquipment() != NULL && !exercise.getEquipment().equals(OUTPUT_BODY)) {
+            if (!exercise.getEquipment().equals(NULL) && !exercise.getEquipment().equals(OUTPUT_BODY)) {
                 filteredExerciseList.add(exercise);
             }
         }
         return filteredExerciseList;
     }
 
-    public ArrayList<ExerciseData> generateFilteredBodySetFrom(ArrayList<ExerciseData> exerciseList) {
+    /**
+     * Returns an exercise list which is filtered according to the workout type: Static
+     * chosen by the user.
+     * @param exerciseList Arraylist containing a set of workout exercises.
+     * @return returns list of exercises filtered according to work out type: Static
+     */
+    public ArrayList<ExerciseData> generateFilteredStaticSetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
-            if (exercise.getEquipment() != NULL && exercise.getEquipment().equals(OUTPUT_BODY)) {
+            if (!exercise.getEquipment().equals(NULL) && exercise.getEquipment().equals(OUTPUT_BODY)) {
                 filteredExerciseList.add(exercise);
             }
         }
