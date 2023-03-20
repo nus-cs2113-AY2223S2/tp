@@ -119,11 +119,7 @@ public class AddModuleCommand extends Command implements seedu.apollo.utils.Logg
                     moduleList.add(module);
                     moduleList.sortModules();
                     Module referenceModule = allModules.findModule(module.getCode());
-                    ui.printAddModuleMessage(module);
-                    ui.printTotalModularCredits(moduleList);
-                    ui.printLessonTypeMessage(getLessonTypes(referenceModule));
-                    ui.printAddLessonOptions();
-
+                    ui.printAddModuleMessage(module, moduleList, getLessonTypes(referenceModule));
                 }
             }
 
@@ -132,7 +128,7 @@ public class AddModuleCommand extends Command implements seedu.apollo.utils.Logg
             logger.log(Level.SEVERE, "IO Exception", e);
             ui.printErrorForIO();
         } catch (DuplicateModuleException e) {
-            ui.printDuplicateModule();
+            ui.printDuplicateModule(module);
         } catch (IllegalCommandException e) {
             ui.printInvalidCommand();
         } catch (ClassNotFoundException e) {

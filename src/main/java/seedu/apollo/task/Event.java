@@ -26,7 +26,7 @@ public class Event extends Task {
      * @param toString String describing the end date.
      * @throws DateTimeParseException If either date is not entered in right format.
      * @throws DateOrderException If end date occurs before the start date.
-     * @throws DateOverException If start date occurs before the current date.
+     * @throws DateOverException If end date occurs before the current date.
      */
     public Event(String description, String fromString, String toString)
             throws DateTimeParseException, DateOrderException, DateOverException {
@@ -38,7 +38,7 @@ public class Event extends Task {
             throw new DateOrderException();
         }
 
-        if (from.isBefore(LocalDateTime.now())) {
+        if (to.isBefore(LocalDateTime.now())) {
             throw new DateOverException(getType(), description, null, from, to);
         }
     }

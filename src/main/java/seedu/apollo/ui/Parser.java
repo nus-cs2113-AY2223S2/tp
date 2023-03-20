@@ -1,5 +1,6 @@
 package seedu.apollo.ui;
 
+import seedu.apollo.command.WeekCommand;
 import seedu.apollo.command.task.AddCommand;
 import seedu.apollo.command.module.AddModuleCommand;
 import seedu.apollo.command.Command;
@@ -23,8 +24,6 @@ import seedu.apollo.exception.module.InvalidModule;
 import seedu.apollo.module.ModuleList;
 
 import java.rmi.UnexpectedException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 /**
@@ -36,6 +35,7 @@ public class Parser {
     public static final String COMMAND_EXIT_WORD = "bye";
     public static final String COMMAND_HELP_WORD = "help";
     public static final String COMMAND_LIST_WORD = "list";
+    public static final String COMMAND_WEEK_WORD = "week";
     public static final String COMMAND_DATE_WORD = "date";
     public static final String COMMAND_FIND_WORD = "find";
     public static final String COMMAND_MARK_WORD = "mark";
@@ -133,6 +133,9 @@ public class Parser {
             }
             return new ListCommand();
 
+        case COMMAND_WEEK_WORD:
+            return new WeekCommand();
+
         case COMMAND_DATE_WORD:
             if (isEmptyParam(split)) {
                 throw new InvalidDateTime();
@@ -173,6 +176,7 @@ public class Parser {
             }
             String moduleCode = split[1];
             return new DeleteModuleCommand(moduleCode);
+
         default:
             throw new IllegalCommandException();
         }
@@ -198,20 +202,6 @@ public class Parser {
         return (split.length == 1);
     }
 
-    /**
-     * Parses LocalDateTime into a String according to the given pattern.
-     *
-     * @param date       Date and time with LocalDateTime data type.
-     * @param dateString Date and time with String data type.
-     * @param pattern    Desired pattern to format String.
-     * @return Parsed date and time in a String.
-     */
-    public static String parseDateTime(LocalDateTime date, String dateString, DateTimeFormatter pattern) {
-        if (date != null) {
-            return date.format(pattern);
-        }
-        return dateString;
-    }
 
     /**
      * Separates a Deadline's input data into its description, and due date.
