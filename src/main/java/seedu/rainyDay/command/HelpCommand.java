@@ -8,7 +8,7 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public void execute() {
-        System.out.println("Have you tried reading the UG?");
+    public CommandResult execute() {
+        return new CommandResult("Have you tried reading the UG?");
     }
 }
