@@ -20,7 +20,7 @@ public class UserInterface {
     }
 
     public String getUserInput() {
-        return scanner.nextLine();
+        return scanner.nextLine().trim();
     }
 
     public void printDivider() {

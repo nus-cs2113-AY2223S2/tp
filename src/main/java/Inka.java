@@ -1,6 +1,6 @@
 import model.CardList;
 import model.TagList;
-import utils.Parser;
+import utils.parser.Parser;
 import utils.UserInterface;
 import utils.command.Command;
 import utils.exceptions.InkaException;
@@ -59,9 +59,8 @@ public class Inka {
 
         while (parser.getIsExecuting()) {
             String userInput = ui.getUserInput();
-            //Command command = exceptionHandler.mainExceptionHandler(parser, userInput, ui, cardList);
             try {
-                Command command = parser.parseCommand(userInput, cardList, tagList);
+                Command command = parser.parseCommand(userInput);
                 command.execute(cardList, tagList, ui, storage);
             } catch (InkaException e) {
                 ui.printException(e);
