@@ -54,8 +54,15 @@ class AddCommandTest {
     }
 
     @Test
-    void execute_invalidDeadlineDateTime_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
+    void execute_invalidDateTimeDeadline_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
         AddCommand addCommand = new AddCommand("deadline", "submit homework /by tomorrow");
+        addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
+        assertEquals(0, taskList.size());
+    }
+
+    @Test
+    void execute_overDateTimeDeadline_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
+        AddCommand addCommand = new AddCommand("deadline", "submit homework /by 2022-01-01T00:00");
         addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
         assertEquals(0, taskList.size());
     }
@@ -78,8 +85,22 @@ class AddCommandTest {
     }
 
     @Test
-    void execute_invalidEventDateTime_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
+    void execute_invalidDateTimeEvent_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
         AddCommand addCommand = new AddCommand("event", "concert /from now /to later");
+        addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
+        assertEquals(0, taskList.size());
+    }
+
+    @Test
+    void execute_overDateTimeEvent_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
+        AddCommand addCommand = new AddCommand("event", "concert /from 2022-01-01T23:59 /to 2022-02-01T00:00");
+        addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
+        assertEquals(0, taskList.size());
+    }
+
+    @Test
+    void execute_wrongOrderDateTimeEvent_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
+        AddCommand addCommand = new AddCommand("event", "concert /from 2024-12-12T23:59 /to 2024-01-01T00:00");
         addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
         assertEquals(0, taskList.size());
     }

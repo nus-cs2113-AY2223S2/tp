@@ -38,7 +38,7 @@ public class Event extends Task {
             throw new DateOrderException();
         }
 
-        if (from.isBefore(LocalDateTime.now())) {
+        if (to.isBefore(LocalDateTime.now())) {
             throw new DateOverException(getType(), description, null, from, to);
         }
     }
