@@ -1,4 +1,9 @@
-# Developer Guide
+<div align="center">
+<h2> MoneyMind Developer Guide</h2>
+<h3> "Mind your Money" </h3>
+</div>
+
+<div align="left">
 
 ## Acknowledgements
 
@@ -7,6 +12,9 @@
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+
+:smiley: You can use PlantUML to create UML diagrams like what we did in this documentation. See [Using PlantUML](https://se-education.org/guides/tutorials/plantUml.html) for more information.
+
 
 
 ## Product scope
@@ -20,10 +28,13 @@
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ... | I want to ...                                                                                          | So that I can ...                                          |
+|-----|------|--------------------------------------------------------------------------------------------------------|------------------------------------------------------------|
+| v1.0 | user | **add** an one time expense                                                                            | keep track of how much I spend                             |
+|     | user | **delete** a one time expense                                                                          | ammend the record in case I add the wrong expense          |
+|     | user | **categorize** my expenses into different categories such as food, transportation, entertainment, etc. | better understand where my money is going                  |
+| v2.0 | user | **edit** one time expenses                                                                             | change when I type wrongly |
+|     | user | **search** for specific expenses by keyword or date range                                              | easily find and review my past spending         |
 
 ## Non-Functional Requirements
 
@@ -36,3 +47,5 @@
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+</div>
