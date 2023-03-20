@@ -13,7 +13,6 @@ public abstract class newAppointment {
         this.status = false;
     }
 
-    public String toString() {
-        return "";
-    }
+    public abstract String toString();
+    
 }
