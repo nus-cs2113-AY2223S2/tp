@@ -10,12 +10,9 @@ import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCurrentCommand;
 import seedu.duke.command.ListPuCommand;
 import seedu.duke.command.ListPuModulesCommand;
-
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidPuException;
 import seedu.duke.exceptions.InvalidModuleException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Parser {
