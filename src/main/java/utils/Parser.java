@@ -111,17 +111,21 @@ public class Parser {
     }
 
     private Command prepareDeleteMeetingCommand(String description) {
-        String issue;
+        int index;
         try {
-            issue = description.trim().substring(2);
-            if (((description.trim()).isEmpty()) || (!description.contains("n/")) || (description.length() < 3)) {
-                throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
+            index = Integer.parseInt((description.trim())) - 1;
+            if ((description.trim()).isEmpty()) {
+                throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_INDEX);
             }
         } catch (DinerDirectorException e) {
             System.out.println(e);
             return new IncorrectCommand();
+        }catch (NumberFormatException e) {
+            System.out.println(Messages.ERROR_MEETING_MISSING_INDEX);
+            return new IncorrectCommand();
         }
-        return new DeleteMeetingCommand(issue);
+        assert index >= 0 : "Index of meeting should be 0 or greater.";
+        return new DeleteMeetingCommand(index);
     }
 
     private Command prepareAddStaffCommand(String userInputNoCommand) {

@@ -58,6 +58,8 @@ public class Messages {
     public static final String ERROR_MEETING_EXCESS_ADD_PARAM = "You cannot have multiple name/time for your meeting!";
     public static final String ERROR_MEETING_EXCESS_VIEW_PARAM =
             "Excess input detected! Please only type \"view_meetings\".";
+    public static final String ERROR_MEETING_MISSING_INDEX = "Delete command must be followed by an index number!";
+    public static final String ERROR_MEETING_INVALID_INDEX="Delete command must be followed by a valid index number!";
     public static final String ERROR_DISH_INVALID_INDEX = "Your index does not contain a valid dish!";
     public static final String ERROR_DISH_NOT_A_VALID_INTEGER = "Your index has to be an integer!";
     public static final String ERROR_DISH_BLANK_DISH_NAME_COMMAND = "Name of dish cannot be empty!";
