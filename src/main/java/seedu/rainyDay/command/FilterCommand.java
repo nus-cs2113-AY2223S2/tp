@@ -11,12 +11,13 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class FilterCommand extends Command implements FormatReport {
-
     private static final Logger logger = Logger.getLogger(FilterCommand.class.getName());
     private final String description;
+    private final String filterFlag;
 
-    public FilterCommand(String description) {
+    public FilterCommand(String description, String filterFlag) {
         this.description = description;
+        this.filterFlag = filterFlag;
     }
 
     @Override
@@ -37,11 +38,32 @@ public class FilterCommand extends Command implements FormatReport {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting FilterCommand.execute()");
+        ArrayList<FinancialStatement> filteredList = new ArrayList<>();
 
-        ArrayList<FinancialStatement> filteredList = (ArrayList<FinancialStatement>) financialReport
-                .getFinancialReport().stream()
-                .filter(t -> t.getDescription().contains(this.description))
-                .collect(Collectors.toList());
+
+        if (filterFlag.equalsIgnoreCase("-d")) {
+            filteredList = (ArrayList<FinancialStatement>) financialReport
+                    .getFinancialReport().stream()
+                    .filter(t -> t.getDescription().contains(this.description))
+                    .collect(Collectors.toList());
+        } else if (filterFlag.equalsIgnoreCase("-c")) {
+            filteredList = (ArrayList<FinancialStatement>) financialReport
+                    .getFinancialReport().stream()
+                    .filter(t -> t.getCategory().contains(this.description))
+                    .collect(Collectors.toList());
+        } else if (filterFlag.equalsIgnoreCase("-in")) {
+            filteredList = (ArrayList<FinancialStatement>) financialReport
+                    .getFinancialReport().stream()
+                    .filter(t -> t.getFlowDirection().equals("in"))
+                    .collect(Collectors.toList());
+        } else if (filterFlag.equalsIgnoreCase("-out")) {
+            filteredList = (ArrayList<FinancialStatement>) financialReport
+                    .getFinancialReport().stream()
+                    .filter(t -> t.getFlowDirection().equals("out"))
+                    .collect(Collectors.toList());
+        }
+
+
         String outcome = "";
 
         if (filteredList.size() == 0) {
