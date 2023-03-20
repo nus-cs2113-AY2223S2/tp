@@ -8,6 +8,8 @@ public class PrintHelpMessage {
         System.out.println("\tFILTER stands for a specific requirement you want to include in your exercise");
         System.out.println("[filters]");
         System.out.println("\tView all available filters");
+        System.out.println("[find]");
+        System.out.println("\tfinds all relevant exercises based on the keyword : find [keyword]");
         System.out.println("[bye]");
         System.out.println("\tEnd the program");
     }
