@@ -1,23 +1,19 @@
 package functionalities;
 
 
-public class Appointment {
+public abstract class Appointment {
+    protected String uid;
+    protected Animal animal;
+    protected Owner owner;
+    protected boolean status;
 
-    protected String uid; //unique identification
-    protected String type;
-    protected String animal;
-    protected String name;
-    protected String date;
-
-    public Appointment(String uid, String type, String animal, String name, String date) {
+    public Appointment(String uid, Animal animal, Owner owner) {
         this.uid = uid;
-        this.type = type;
         this.animal = animal;
-        this.name = name;
-        this.date = date;
+        this.owner = owner;
+        this.status = false;
     }
 
-    public String toString() {
-        return uid + " | " + type + " | " + animal + " | " + name + " | " + date;
-    }
+    public abstract String toString();
 }
+
