@@ -1,3 +1,4 @@
+
 package com.clanki.exceptions;
 
 /**

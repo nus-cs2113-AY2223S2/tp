@@ -1,9 +1,5 @@
 package com.clanki.objects;
 
-import com.clanki.exceptions.InvalidStorageFilePathException;
-import com.clanki.exceptions.StorageOperationException;
-import com.clanki.storage.StorageFile;
-
 import java.util.ArrayList;
 
 public class FlashcardList {
