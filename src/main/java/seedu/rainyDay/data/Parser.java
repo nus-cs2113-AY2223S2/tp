@@ -205,7 +205,7 @@ public class Parser {
     }
 
     private static void parseFilterByFlowDirection(String input) {
-        Pattern pattern = Pattern.compile("(-in|-out)\\s*");
+        Pattern pattern = Pattern.compile("(-in|-out)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             filterFlag = matcher.group(1);
