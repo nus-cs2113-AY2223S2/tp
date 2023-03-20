@@ -61,11 +61,17 @@ public class Parser {
 
     }
 
+    private static void parseMarkCommand(String task) throws SniffException{
+
+    }
+    private static void parseUnmarkCommand(String task) throws SniffException{
+
+    }
+
     private static void parseViewCommand(String task) throws SniffException {
         try {
             String uid = task.split(" ", 2)[1];
             command = new ViewCommand(uid);
-            command.executeCommand();
         } catch (ArrayIndexOutOfBoundsException emptyView) {
             logger.warning("No appointment ID provided for view command. Unable to execute view command.");
             throw new SniffException(" The view command description cannot be empty!");
