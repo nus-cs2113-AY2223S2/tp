@@ -1,6 +1,7 @@
 package seedu.duke.states;
 
 import seedu.duke.exceptions.DukeError;
+import seedu.duke.exceptions.NoOngoingExError;
 import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.storage.StorageHandler;
 import seedu.duke.userdata.UserCareerData;
@@ -46,12 +47,11 @@ public class ExerciseStateHandler {
      * Prints the current workout if it exists
      * Otherwise throws an error
      *
-     * @throws DukeError Throws an error if there is no ongoing exercise session
+     * @throws NoOngoingExError Throws an error if there is no ongoing exercise session
      */
-    public void printCurrentWorkout () throws DukeError {
+    public void printCurrentWorkout () throws NoOngoingExError {
         if (!workoutOngoing) {
-            throw new DukeError("There is no current workout session!" +
-                                        "Please start a session now");
+            throw new NoOngoingExError();
         }
         Ui ui = new Ui();
         ui.printExerciseFromList(currentSessionWorkout.getSessionExercises());

@@ -10,7 +10,6 @@ public class PrintHelpMessage {
         System.out.println("\tView all available filters");
         System.out.println("[bye]");
         System.out.println("\tEnd the program");
-        //System.out.println(ErrorMessages.ERROR_GLOBAL_INVALID_COMMAND.toString());
     }
     public static void printFiltersAvailable() {
         System.out.println("By place:\n" +
