@@ -7,6 +7,7 @@ import seedu.mealcompanion.ingredient.Ingredient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author TJW0911
 class AddCommandTest {
     @Test
     public void itemIsInListAndItemNotInList() throws MealCompanionException {
