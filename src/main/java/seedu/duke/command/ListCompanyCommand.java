@@ -1,8 +1,7 @@
 package seedu.duke.command;
 
-
-import seedu.duke.CompanyList;
-import seedu.duke.EmptyListException;
+import seedu.duke.company.CompanyList;
+import seedu.duke.exception.EmptyListException;
 
 public class ListCompanyCommand extends Command {
     public ListCompanyCommand(String commandType) {

@@ -1,14 +1,14 @@
 package seedu.duke.command;
 
 
-import seedu.duke.CompanyList;
+import seedu.duke.company.CompanyList;
 
 public class AddCommand extends Command {
     protected String companyName;
-    protected String contactNumber;
+    protected int contactNumber;
     protected String contactEmail;
 
-    public AddCommand(String commandType, String companyName, String contactNumber, String contactEmail) {
+    public AddCommand(String commandType, String companyName, int contactNumber, String contactEmail) {
         super(commandType);
         this.companyName = companyName;
         this.contactNumber = contactNumber;
@@ -17,6 +17,6 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(CompanyList companyList) {
-        companyList.add(companyName,Integer.parseInt(contactNumber),contactEmail);
+        companyList.add(companyName,contactNumber,contactEmail);
     }
 }

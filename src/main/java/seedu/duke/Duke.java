@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.exception.EmptyListException;
+
 import java.util.Scanner;
 public class Duke {
     /**

@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.CompanyList;
+import seedu.duke.company.CompanyList;
 import seedu.duke.venue.VenueList;
 
 

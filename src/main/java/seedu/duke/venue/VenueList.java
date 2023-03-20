@@ -1,6 +1,6 @@
 package seedu.duke.venue;
 
-import seedu.duke.EmptyListException;
+import seedu.duke.exception.EmptyListException;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ public class VenueList {
         this.venueList = venueList;
     }
     
-    public static void print() throws EmptyListException {
+    public static void printVenueInformation() throws EmptyListException {
         if (venueList.isEmpty()) {
             throw new EmptyListException();
         }
