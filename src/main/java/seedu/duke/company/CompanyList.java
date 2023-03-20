@@ -51,4 +51,8 @@ public class CompanyList {
         companyList.add(sampleCompany2);
         companyList.add(sampleCompany3);
     }
+
+    public void purgeSampleData(){
+        companyList.clear();
+    }
 }
