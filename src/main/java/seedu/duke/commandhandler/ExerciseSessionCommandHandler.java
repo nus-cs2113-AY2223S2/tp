@@ -1,7 +1,5 @@
 package seedu.duke.commandhandler;
 
-import seedu.duke.commands.Command;
-
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exceptions.OngoingExGenerationError;
 import seedu.duke.exceptions.OngoingExHelpError;
@@ -9,7 +7,6 @@ import seedu.duke.exceptions.OngoingExHistoryError;
 import seedu.duke.exceptions.OngoingExProgressError;
 import seedu.duke.exceptions.OngoingExWriteError;
 
-import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.states.ExerciseStateHandler;
 import seedu.duke.ui.Ui;
 import seedu.duke.userdata.UserCareerData;
@@ -20,16 +17,22 @@ public class ExerciseSessionCommandHandler implements CommandList{
     private static final boolean COMPLETED_EXERCISE = true;
     private static final boolean INCOMPLETE_EXERCISE = false;
 
-    //Workout is on going,
-    //There is no access to:
-    //generate, filter, help, start, history
+    /**
+     * This class takes in parsed user input and handles all user commands when an exercise is ongoing
+     * There will be no access to the following commands:
+     * generate, filter, help, start and history.
+     * This is due to the motive of pushing the user to focus and complete their exercise
+     *
+     * @param userCommands         This refers to the commands given by the user
+     * @param ui                   This allows us to output messages
+     * @param userCareerData       This keeps track and allows logging of all user data
+     * @param exerciseStateHandler This allows us to know whether an exercise is ongoing or not
+     */
 
-    public void handleExerciseSessionUserCommands(String[] userCommands, Ui ui, GenerateExercise exerciseGenerator,
+    public void handleExerciseSessionUserCommands(String[] userCommands, Ui ui,
                                                   UserCareerData userCareerData
                                                   , ExerciseStateHandler exerciseStateHandler
                                                   ) {
-        Command command = null;
-        boolean errorExists = false;
         try {
             switch (userCommands[0]) {
             case GENERATE_COMMAND:
@@ -65,21 +68,10 @@ public class ExerciseSessionCommandHandler implements CommandList{
                 throw new OngoingExHistoryError();
             default:
                 ui.unknownCommand();
-                errorExists = true;
                 break;
             }
         } catch (DukeError e) {
             System.out.println(e.getMessage());
-            errorExists = true;
-        }
-        if (!errorExists) {
-            try {
-                if (command != null) {
-                    command.executeCommand(ui, exerciseGenerator);
-                }
-            } catch (DukeError e) {
-                System.out.println(e.getMessage());
-            }
         }
         ui.splitLine();
     }

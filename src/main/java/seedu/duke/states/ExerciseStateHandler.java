@@ -10,6 +10,11 @@ import seedu.duke.userdata.Session;
 
 import java.util.ArrayList;
 
+
+/**
+ * This class handles the functions of the Fitness Duke
+ * when the user is doing a workout
+ */
 public class ExerciseStateHandler {
 
     private static ArrayList<ExerciseData> previousGeneratedWorkout = new ArrayList<>();

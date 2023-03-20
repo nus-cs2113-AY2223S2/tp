@@ -1,5 +1,8 @@
 package seedu.duke.commandhandler;
 
+/**
+ * Contains all the possible commands that the user can input
+ */
 public interface CommandList {
     String GENERATE_COMMAND = "generate";
     String HELP_COMMAND = "help";

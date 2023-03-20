@@ -14,6 +14,15 @@ import seedu.duke.userdata.UserCareerData;
 
 public class GeneralCommandHandler implements CommandList{
 
+    /**
+     * This class handles all user commands when not in an exercise
+     *
+     * @param userCommands         This refers to the commands given by the user
+     * @param ui                   This allows us to output messages
+     * @param exerciseGenerator    This takes in filter parameters and outputs a curated exercise list
+     * @param userCareerData       This keeps track and allows logging of all user data
+     * @param exerciseStateHandler This allows us to start workouts
+     */
     public void handleGeneralUserCommands(String[] userCommands, Ui ui, GenerateExercise exerciseGenerator,
                                           UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
                                           StorageHandler storageHandler) {
