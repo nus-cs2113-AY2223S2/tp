@@ -1,7 +1,7 @@
 package seedu.sniff;
 
 import exception.SniffException;
-import functionalities.Command;
+import functionalities.commands.Command;
 import functionalities.Ui;
 import functionalities.Parser;
 import functionalities.SniffTasks;
@@ -24,7 +24,7 @@ public class Sniff {
                 String fullCommand = UI.readUserCommand();
                 UI.showLine();
                 Command c = Parser.parse(fullCommand);
-                c.executeSniffCommands(tasks);
+                c.executeCommand(tasks);
                 isExit = c.isExit();
             } catch (SniffException e) {
                 UI.showErrorMessage();

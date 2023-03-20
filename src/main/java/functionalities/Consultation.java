@@ -1,6 +1,6 @@
 package functionalities;
 
-public class Consultation extends newAppointment {
+public class Consultation extends Appointment {
     protected String date;
     protected String time;
 
@@ -9,7 +9,7 @@ public class Consultation extends newAppointment {
         this.date = date;
         this.time = time;
     }
-    
+
     @Override
     public String toString() {
         return "";
