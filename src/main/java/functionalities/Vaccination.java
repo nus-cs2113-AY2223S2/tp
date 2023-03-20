@@ -11,4 +11,9 @@ public class Vaccination extends newAppointment{
         this.time = time;
         this.vaccine = vaccine;
     }
+
+    @Override
+    public String toString() {
+        return "";
+    }
 }

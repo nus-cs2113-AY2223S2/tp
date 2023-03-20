@@ -9,4 +9,9 @@ public class Consultation extends newAppointment {
         this.date = date;
         this.time = time;
     }
+    
+    @Override
+    public String toString() {
+        return "";
+    }
 }

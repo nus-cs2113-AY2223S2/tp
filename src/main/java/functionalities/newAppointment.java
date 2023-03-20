@@ -1,6 +1,6 @@
 package functionalities;
 
-public class newAppointment {
+public abstract class newAppointment {
     protected String uid;
     protected Animal animal;
     protected Owner owner;
@@ -13,7 +13,6 @@ public class newAppointment {
         this.status = false;
     }
 
-    public String toString() {
-        return "";
-    }
+    public abstract String toString();
+    
 }

@@ -4,6 +4,7 @@ public class Surgery extends newAppointment {
     public enum priorityLevel {
         HIGH, MEDIUM, LOW, NA
     }
+
     protected priorityLevel priority;
     protected String startDate;
     protected String startTime;
@@ -31,5 +32,10 @@ public class Surgery extends newAppointment {
         default:
             return priorityLevel.NA;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "";
     }
 }
