@@ -60,7 +60,7 @@ public class GenerateExercise {
     public ArrayList<ExerciseData> generateFilteredBodySetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
-            if (!exercise.getEquipment().equals(NULL) && exercise.getEquipment().equals(OUTPUT_BODY)) {
+            if (! exercise.getEquipment().equals(NULL) && exercise.getEquipment().equals(OUTPUT_BODY)) {
                 filteredExerciseList.add(exercise);
             }
         }
