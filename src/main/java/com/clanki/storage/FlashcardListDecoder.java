@@ -15,10 +15,10 @@ import java.util.regex.Pattern;
  * https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/AddressBookDecoder.java
  */
 public class FlashcardListDecoder {
-    public static final Pattern PERSON_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
-            Pattern.compile(" q/(?<question>[^/]+)" + " a/(?<answer>[^/]+)"
-                    + " d/ (?<dueDate>[^/]+)"
-                    + " p/ (?<currentPeriod>[^/]+)");
+    public static final Pattern FLASHCARD_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
+            Pattern.compile("q/(?<question>[^/]+)" + " a/(?<answer>[^/]+)"
+                    + " d/(?<dueDate>[^/]+)"
+                    + " p/(?<currentPeriod>[^/]+)");
 
 
     /**
@@ -42,7 +42,7 @@ public class FlashcardListDecoder {
      */
     private static Flashcard decodeFlashcardFromString(String encodedFlashcard)
             throws StorageOperationException {
-        final Matcher matcher = PERSON_DATA_ARGS_FORMAT.matcher(encodedFlashcard);
+        final Matcher matcher = FLASHCARD_ARGS_FORMAT.matcher(encodedFlashcard);
         if (!matcher.matches()) {
             throw new StorageOperationException("Encoded person in invalid format. Unable to decode.");
         }

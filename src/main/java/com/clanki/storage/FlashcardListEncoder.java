@@ -28,12 +28,12 @@ public class FlashcardListEncoder {
     private static String encodeFlashcardToString(Flashcard flashcard) {
         final StringBuilder encodedFlashcardBuilder = new StringBuilder();
 
-        encodedFlashcardBuilder.append(" q/").append(flashcard.getQuestion());
+        encodedFlashcardBuilder.append("q/").append(flashcard.getQuestion());
         encodedFlashcardBuilder.append(" a/").append(flashcard.getAnswer());
 
         encodedFlashcardBuilder.append(" d/").append(flashcard.getDueDate().toString());
 
-        encodedFlashcardBuilder.append(" t/").append(flashcard.getCurrentPeriodInDays());
+        encodedFlashcardBuilder.append(" p/").append(flashcard.getCurrentPeriodInDays());
 
         return encodedFlashcardBuilder.toString();
     }
