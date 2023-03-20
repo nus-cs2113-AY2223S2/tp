@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant "<<Class>> :Clanki" as Main
+participant ":Ui" as Ui
+participant ":Parser" as Parser
+participant ":Add Command" as AddCommand
+participant ":Flashcard List" as FlashcardList
+
+activate Main
+Main -> Ui : User input
+activate Ui
+
+Ui -> Main : userInput : String
+deactivate Ui
+
+Main -> Parser : parseInput(userInput)
+activate Parser
+
+create AddCommand
+Parser -> AddCommand : AddCommand(question, answer)
+activate AddCommand
+
+AddCommand -> Parser
+deactivate AddCommand
+
+Parser -> Main : command : AddCommand
+deactivate Parser
+
+Main -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> FlashcardList : addNewFlashcard(question, answer)
+activate FlashcardList
+
+FlashcardList -> AddCommand
+deactivate FlashcardList
+
+AddCommand -> Ui : printSuccessfulAddMessage(question, answer)
+activate Ui
+
+Main<- Ui : Display message
+Ui -> AddCommand
+deactivate Ui
+
+AddCommand -> Main
+deactivate AddCommand
+
+
+
+@enduml
