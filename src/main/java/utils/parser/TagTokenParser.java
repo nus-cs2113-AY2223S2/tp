@@ -20,7 +20,7 @@ public class TagTokenParser {
 
     public Command parseToken(List<String> tokens) throws InkaException {
         if (tokens.size() == 0) {
-            throw new InvalidSyntaxException();
+            throw InvalidSyntaxException.buildGenericMessage();
         }
 
         String action = tokens.get(0);
@@ -47,7 +47,7 @@ public class TagTokenParser {
 
     private Command handleDelete(List<String> flags) throws InkaException {
         if (flags.size() != 1) {
-            throw new InvalidSyntaxException();
+            throw InvalidSyntaxException.buildGenericMessage();
         }
 
         String tagName = flags.get(0);

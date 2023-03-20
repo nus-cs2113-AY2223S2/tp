@@ -1,19 +1,21 @@
 package utils.parser;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import model.Card;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.MissingArgumentException;
+import org.apache.commons.cli.MissingOptionException;
+import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import utils.command.AddCardCommand;
 import utils.command.AddCardToTagCommand;
 import utils.command.Command;
 import utils.command.DeleteCardCommand;
 import utils.command.ListCardCommand;
 import utils.command.ViewCardCommand;
-import utils.exceptions.AddEmptyAnswer;
-import utils.exceptions.AddEmptyQuestion;
-import utils.exceptions.AddEmptyQuestionAndAnswer;
-import utils.exceptions.AddGoneWrong;
-import utils.exceptions.DeleteMissingNumber;
 import utils.exceptions.InkaException;
 import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.UnrecognizedCommandException;
@@ -26,8 +28,37 @@ public class CardTokenParser {
     private static final String CARD_TAG_ACTION = "tag";
     private static final String CARD_VIEW_ACTION = "view";
 
-    public CardTokenParser() {
+    private DefaultParser parser;
 
+    public CardTokenParser() {
+        this.parser = new DefaultParser(false);
+    }
+
+    private static Options buildAddOptions() {
+        Options options = new Options();
+
+        Option questionOption = new Option("q", "question", true, "card question");
+        questionOption.setRequired(true);
+        questionOption.setArgs(Option.UNLIMITED_VALUES);
+        options.addOption(questionOption);
+
+        Option answerOption = new Option("a", "answer", true, "card answer");
+        answerOption.setRequired(true);
+        answerOption.setArgs(Option.UNLIMITED_VALUES);
+        options.addOption(answerOption);
+
+        return options;
+    }
+
+    private static Options buildDeleteOptions() {
+        Options options = new Options();
+
+        Option indexOption = new Option("i", "index", true, "card index");
+        indexOption.setRequired(true);
+        indexOption.setType(Number.class);
+        options.addOption(indexOption);
+
+        return options;
     }
 
     private static Options buildTagOptions() {
@@ -38,63 +69,56 @@ public class CardTokenParser {
         return options;
     }
 
+    @SuppressWarnings("unchecked") // Safe, CLI library just returns List instead of List<String>
     public Command parseTokens(List<String> tokens) throws InkaException {
         if (tokens.size() == 0) {
-            throw new InvalidSyntaxException();
+            throw InvalidSyntaxException.buildGenericMessage();
         }
 
         String action = tokens.get(0);
         List<String> flags = tokens.subList(1, tokens.size());
 
-        switch (action) {
-        case CARD_ADD_ACTION:
-            return handleAdd(flags);
-        case CARD_DELETE_ACTION:
-            return handleDelete(flags);
-        case CARD_LIST_ACTION:
-            return handleList(flags);
-        case CARD_TAG_ACTION:
-            return handleTag(flags);
-        case CARD_VIEW_ACTION:
-            return handleView(flags);
-        default:
-            throw new UnrecognizedCommandException();
+        try {
+            switch (action) {
+            case CARD_ADD_ACTION:
+                return handleAdd(flags);
+            case CARD_DELETE_ACTION:
+                return handleDelete(flags);
+            case CARD_LIST_ACTION:
+                return handleList(flags);
+            case CARD_TAG_ACTION:
+                return handleTag(flags);
+            case CARD_VIEW_ACTION:
+                return handleView(flags);
+            default:
+                throw new UnrecognizedCommandException();
+            }
+        } catch (MissingArgumentException e) {
+            String missingArgumentOption = e.getOption().getArgName();
+            throw InvalidSyntaxException.buildMissingArgumentMessage(missingArgumentOption);
+        } catch (MissingOptionException e) {
+            List<String> opts = e.getMissingOptions();
+            String missingOptions = opts.stream().map(str -> "-" + str).collect(Collectors.joining(", "));
+            throw InvalidSyntaxException.buildMissingOptionMessage(missingOptions);
+        } catch (ParseException e) {
+            throw InvalidSyntaxException.buildGenericMessage();
         }
     }
 
-    private Command handleAdd(List<String> tokens) throws InkaException {
-        if (tokens.size() != 2) {
-            throw new AddGoneWrong();
-        }
+    private Command handleAdd(List<String> tokens) throws ParseException {
+        CommandLine cmd = parser.parse(buildAddOptions(), tokens.toArray(new String[0]));
 
-        boolean emptyQuestion = tokens.get(0).isBlank();
-        boolean emptyAnswer = tokens.get(1).isBlank();
-
-        if (emptyAnswer && emptyQuestion) {
-            throw new AddEmptyQuestionAndAnswer();
-        } else if (emptyQuestion) {
-            throw new AddEmptyQuestion();
-        } else if (emptyAnswer) {
-            throw new AddEmptyAnswer();
-        }
-
-        String question = tokens.get(0).trim();
-        String answer = tokens.get(1).trim();
-
+        String question = String.join(" ", cmd.getOptionValues("q"));
+        String answer = String.join(" ", cmd.getOptionValues("a"));
         Card card = new Card(question, answer);
+
         return new AddCardCommand(card);
     }
 
-    private Command handleDelete(List<String> tokens) throws InkaException {
-        if (tokens.size() != 1) {
-            throw new DeleteMissingNumber();
-        }
+    private Command handleDelete(List<String> tokens) throws ParseException {
+        CommandLine cmd = parser.parse(buildDeleteOptions(), tokens.toArray(new String[0]));
 
-        // Check for invalid index
-        // TODO: Move OOB check elsewhere
-        // TODO: Unhandled NumberFormatException
-        int deleteIndex = Integer.parseInt(tokens.get(0));
-        assert deleteIndex >= 0 : "deleteIndex should be a number";
+        int deleteIndex = ((Number) cmd.getParsedOptionValue("i")).intValue();
 
         return new DeleteCardCommand(deleteIndex);
     }
@@ -105,7 +129,7 @@ public class CardTokenParser {
 
     private Command handleTag(List<String> tokens) throws InkaException {
         if (tokens.size() != 2) {
-            throw new InvalidSyntaxException();
+            throw InvalidSyntaxException.buildGenericMessage();
         }
 
         String cardUUID = tokens.get(0);
@@ -116,7 +140,7 @@ public class CardTokenParser {
 
     private Command handleView(List<String> tokens) throws InkaException {
         if (tokens.size() != 1) {
-            throw new InvalidSyntaxException();
+            throw InvalidSyntaxException.buildGenericMessage();
         }
 
         String cardUUID = tokens.get(0);
