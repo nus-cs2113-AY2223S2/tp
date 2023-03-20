@@ -70,7 +70,6 @@ If you would like to search for a specific ingredient that Meal Companion recogn
  Omitting the keyword will return a list of all valid ingredients.
  ![search2.png](images/search2.png)
  
- 
  ###### [Back to table of contents](#table-of-contents)
  
  ## Recipes
