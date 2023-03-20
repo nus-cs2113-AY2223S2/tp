@@ -1,7 +1,0 @@
-@startuml
-partition Storage{
-(*) --> "First Action"
--->[You can put also labels] "Second Action"
---> (*)
-}
-@enduml
