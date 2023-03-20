@@ -65,6 +65,10 @@ public class Ui {
         greetUser();
     }
 
+
+    public static void printLine() {
+        System.out.println(LINE);
+    }
     public static void printDoubleNeeded() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + MISSING_PRICE + ANSI_RESET);
@@ -355,9 +359,9 @@ public class Ui {
         System.out.println(LINE);
     }
 
-    public static void printInvalidIndex() {
+    public static void printInvalidIndex(Inventory inventory) {
         System.out.println(LINE);
-        int listSize = Inventory.getItemList().size();
+        int listSize = inventory.getItemInventory().size();
         switch (listSize) {
         case 0:
             System.out.println(ANSI_RED + INVALID_LIST + ANSI_RESET);
@@ -373,9 +377,9 @@ public class Ui {
         System.out.println(LINE);
     }
 
-    public static void printInvalidUpc() {
+    public static void printInvalidUpc(Inventory inventory) {
         System.out.println(LINE);
-        int listSize = Inventory.getItemList().size();
+        int listSize = inventory.getItemInventory().size();
         switch (listSize) {
         case 0:
             System.out.println(ANSI_RED + INVALID_LIST + ANSI_RESET);
