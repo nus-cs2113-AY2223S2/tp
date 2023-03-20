@@ -1,6 +1,7 @@
 [
   {
     "name": "Beef Burger",
+    "calorieCount": 244,
     "ingredients": [
       {
         "name": "ground beef",
@@ -38,6 +39,7 @@
   },
   {
     "name": "Cup of Water",
+    "calorieCount": 0,
     "ingredients": [
       {
         "name": "water",
@@ -50,6 +52,7 @@
   },
   {
     "name": "Chicken Burger",
+    "calorieCount": 283,
     "ingredients": [
       {
         "name": "ground chicken",
@@ -99,6 +102,7 @@
   },
   {
     "name": "Fish Burger",
+    "calorieCount": 332,
     "ingredients": [
       {
         "name": "white fish filet",
@@ -149,6 +153,7 @@
   },
   {
     "name": "Pasta (Tomato Sauce)",
+    "calorieCount": 297,
     "ingredients": [
       {
         "name": "pasta",
@@ -195,6 +200,7 @@
   },
   {
     "name": "Hainanese Chicken Rice",
+    "calorieCount": 607,
     "ingredients": [
       {
         "name": "chicken",
@@ -272,6 +278,7 @@
   },
   {
     "name": "Mee Goreng",
+    "calorieCount": 613,
     "ingredients": [
       {
         "name": "egg noodles",
