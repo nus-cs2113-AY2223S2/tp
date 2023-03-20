@@ -8,7 +8,6 @@ import seedu.duke.patient.Patient;
 
 import java.util.ArrayList;
 
-import static seedu.duke.Duke.password;
 import static seedu.duke.save.Storage.saveData;
 
 public class Parser {
@@ -50,7 +49,7 @@ public class Parser {
             Menu.displayPossibleIllness(symptoms);
             MedicineManager medicineManager = new MedicineManager();
             ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
-            Patient user = Information.getPatientInfo(password);
+            Patient user = Information.getPatientInfo(Duke.getPassword());
             for (IllnessMatch illnessMatch : possibleIllnesses) {
                 user.updatePatientDiagnosisHistory(illnessMatch.getIllness().getIllnessName());
             }
