@@ -44,11 +44,14 @@ public class CompanyList {
     }
 
     public void loadSampleCompanyInformation() throws InputMismatchException {
+        Ui ui = new Ui();
         Company sampleCompany1 = new Company("Huawei", 80060114 , "APSupport@huawei.com");
         Company sampleCompany2 = new Company("Google", 91002500, "google@google.com");
         Company sampleCompany3 = new Company("Tiktok", 91231239, "tiktok@tiktok.com");
         companyList.add(sampleCompany1);
         companyList.add(sampleCompany2);
         companyList.add(sampleCompany3);
+        ui.showSampleDataLoadedMessage();
+
     }
 }
