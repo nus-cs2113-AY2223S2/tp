@@ -52,6 +52,16 @@ public interface Parser {
         case "purge":
             PurgeCommand purgeCommand = new PurgeCommand(command);
             return purgeCommand;
+        case "choose":
+            if (inputWords.length != 3) {
+                throw new WrongFormatException();
+            }
+            if (inputWords[1].equals("venue")) {
+                int venueNum = Integer.parseInt(inputWords[2]) - 1;
+                ChooseVenueCommand chooseVenueCommand = new ChooseVenueCommand(command + " venue", venueNum);
+                return chooseVenueCommand;
+            }
+            throw new WrongFormatException();
         case "help":
             ui.showGuide();
             break;
