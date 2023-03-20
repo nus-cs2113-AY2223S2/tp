@@ -21,13 +21,13 @@ public class JsonStorageTest {
     @Test
     public void load_emptyFile() {
         Storage storage = new JsonStorage(EMPTY_FILE.toString());
-        assertThrows(StorageCorrupted.class, storage::load);
+        assertThrows(StorageCorrupted.class, storage::load, "Expected a StorageCorrupted exception");
     }
 
     @Test
     public void load_malformedFile() {
         Storage storage = new JsonStorage(MALFORMED_FILE.toString());
-        assertThrows(StorageCorrupted.class, storage::load);
+        assertThrows(StorageCorrupted.class, storage::load, "Expected a StorageCorrupted exception");
     }
 
     @Test
@@ -35,6 +35,6 @@ public class JsonStorageTest {
         Storage storage = new JsonStorage(VALID_FILE.toString());
         CardList cardList = storage.load();
 
-        assert cardList.size() == 2;
+        assert cardList.size() == 2 : "Expected 2 Cards from save file";
     }
 }
