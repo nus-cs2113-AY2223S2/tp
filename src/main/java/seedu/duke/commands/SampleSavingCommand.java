@@ -40,7 +40,7 @@ public class SampleSavingCommand extends Command {
     public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         storageHandler.writeToJson(this.userCareerData);
         System.out.println("I have written:");
-        for (var i : session.getSessionExercises()) {
+        for (ExerciseData i : session.getSessionExercises()) {
             System.out.println(i.getName());
         }
         System.out.println("To userData.json");

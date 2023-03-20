@@ -1,0 +1,48 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+left to right direction
+
+class LocalDateAdapter {
++ deserialize(JsonElement,Type,JsonDeserializationContext):LocalDateTime
++ serialize(LocalDateTime,Type,JsonSerializationContext):JsonElement
+}
+class StorageHandler {
+- userDataWriter : UserDataWriter
+- userDataLoader : UserDataLoader
+- filePath : String
++ void writeToJson(UserCareerData)
++ UserCareerData loadUserCareer()
+}
+class UserDataLoader {
+- Gson gson
++ loadFromJson(String) : UserCareerData
+}
+class UserDataWriter {
+- Gson gson
++ saveToJson(String,UserCareerData) : boolean
+}
+
+class Session{
+- sessionExercises : ArrayList<ExerciseData>
+}
+interface Storage <<interface>>{
+}
+
+class UserCareerData{
+- Sessions : ArrayList<Session>
+}
+
+UserDataLoader . UserCareerData : writes to >
+UserCareerData . UserDataWriter : gets data from <
+
+UserCareerData *-- "*" Session
+
+Storage <|.. StorageHandler
+
+StorageHandler --> "1" UserDataLoader
+StorageHandler --> "1" UserDataWriter
+
+google.gson.JsonSerializer <|.. LocalDateAdapter
+google.gson.JsonDeserializer <|.. LocalDateAdapter
+@enduml
