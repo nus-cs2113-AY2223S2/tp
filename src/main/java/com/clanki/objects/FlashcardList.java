@@ -5,8 +5,13 @@ import java.util.ArrayList;
 public class FlashcardList {
     private final ArrayList<Flashcard> flashcards;
 
+
     public FlashcardList() {
         this.flashcards = new ArrayList<>();
+    }
+
+    public FlashcardList(ArrayList<Flashcard> flashcards) {
+        this.flashcards = flashcards;
     }
 
     public void addNewFlashcard(String questionText, String answerText) {
