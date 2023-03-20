@@ -1,0 +1,27 @@
+@startuml
+hide footbox
+activate ":StorageHandler"
+create ":UserDataLoader"
+
+":StorageHandler" -> ":UserDataLoader" : <<create>>
+activate ":UserDataLoader"
+":UserDataLoader" --> ":StorageHandler"
+deactivate ":UserDataLoader"
+
+    ":StorageHandler" -> ":StorageHandler" : loadUserCareer()
+    activate ":StorageHandler"
+    ":StorageHandler" -> ":UserDataLoader": loadFromJson()
+    activate ":UserDataLoader"
+        ":UserDataLoader"-> ":UserCareerData": UserCareerData()
+        activate ":UserCareerData"
+            loop sessions in file times
+                ":UserDataLoader" -> ":UserCareerData" : addWorkoutSession()
+            end
+            ":UserCareerData" --> ":UserDataLoader" : :UserCareerData
+        ":UserDataLoader" --> ":StorageHandler" : :UserCareerData
+    deactivate ":UserDataLoader"
+    destroy ":UserDataLoader"
+    deactivate ":UserCareerData"
+    deactivate ":StorageHandler"
+
+@enduml
