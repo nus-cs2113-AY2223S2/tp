@@ -26,12 +26,12 @@ financial inflows and outflows and view them with a single command.
 
 ## Quick Start
 
-1. Ensure that you have Java 11 or above installed your computer.
+1. Ensure that you have Java 11 or above installed your computer
     1. Click [here](https://www.java.com/en/download/help/version_manual.html) for steps on how to check your Java
-       version.
-    2.
-   Click [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
-   for the guide on installing Java 11
+       version
+    2. Click
+       [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
+       for the guide on installing Java 11
 2. Download the latest version of "rainyDay"
    from [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/releases/download/v1.0/rainyDay.jar).
 3. Move the "rainyDay.jar" file to the file directory of your choice

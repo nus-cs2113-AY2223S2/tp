@@ -15,7 +15,7 @@ class ParserTest {
         try {
             FinancialReport testReport = new FinancialReport(statements);
             testReport.addStatement(new FinancialStatement("noodles", "in", 5, "Default"));
-            Parser.parseUserInput("add -in noodles $5");
+            new Parser().parseUserInput("add -in noodles $5");
             assertEquals(financialReport.getFullStatement(0),
                     testReport.getFullStatement(0));
         } catch (Exception e) {
@@ -28,7 +28,7 @@ class ParserTest {
         try {
             FinancialReport testReport = new FinancialReport(statements);
             testReport.addStatement(new FinancialStatement("noodles", "out", 5, "Default"));
-            Parser.parseUserInput("add -out noodles $5");
+            new Parser().parseUserInput("add -out noodles $5");
             assertEquals(financialReport.getFullStatement(0), testReport.getFullStatement(0));
         } catch (Exception e) {
             System.out.println("Wrong input format! Please refer to help for correct user input!");

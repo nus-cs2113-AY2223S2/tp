@@ -33,7 +33,11 @@ public class FinancialStatement implements Serializable {
         return this.description;
     }
 
-    public String getFlowDirection() {
+    public FlowDirection getFlowDirection() {
+        return this.flowDirection;
+    }
+
+    public String getFlowDirectionWord() {
         if (flowDirection == FlowDirection.INFLOW) {
             return INFLOW_WORD;
         }
@@ -53,10 +57,11 @@ public class FinancialStatement implements Serializable {
     }
 
     public String getFullStatement() {
-        return String.format("%s for %s, %s$%.2f", getFlowDirection(), getDescription(), getFlowSymbol(), getValue());
+        return String.format("%s for %s, %s$%.2f", getFlowDirectionWord(), getDescription(), getFlowSymbol(),
+                getValue());
     }
 
     public String getStatementForList() {
-        return String.format("%s %s$%.2f (%s)", getDescription(), getFlowSymbol(), getValue(), getFlowDirection());
+        return String.format("%s %s$%.2f (%s)", getDescription(), getFlowSymbol(), getValue(), getFlowDirectionWord());
     }
 }
