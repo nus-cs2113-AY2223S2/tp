@@ -13,7 +13,7 @@ public class VenueListTest {
             VenueList venueList = new VenueList(new ArrayList<>());
             venueList.printVenueInformation();
             fail();
-        } catch (EmptyListException e) {
+        } catch (EmptyListException err) {
             assert true;
         }
     }
