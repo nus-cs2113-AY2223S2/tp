@@ -16,9 +16,9 @@ public class ListCommand extends Command {
             Ui.printSuccessList();
             String table = Ui.printTable(itemInventory);
             System.out.println(table);
-            System.out.println(Ui.LINE);
+            Ui.printLine();
         } else {
-            Ui.printInvalidList();
+            Ui.printEmptyList();
         }
     }
 

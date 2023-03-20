@@ -29,7 +29,13 @@ public class Parser {
     private String commandWord;
     private String commandInfo;
 
-    public void mainParser(Inventory inventory) {
+    private Inventory inventory;
+
+    public Parser(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public void mainParser() {
         String command = in.nextLine().trim();
         String[] splitCommand = command.split(" ", 2);
         this.commandWord = splitCommand[0];
@@ -165,7 +171,6 @@ public class Parser {
             }
             Command searchCommand = new SearchCommand(inventory, rawInput);
             searchCommand.run();
-            //Inventory.search(rawInput);
         } catch (MissingParametersException e) {
             e.missingSearchItemParameters();
         }
@@ -185,7 +190,6 @@ public class Parser {
             Pattern pattern = Pattern.compile(ADD_REGEX);
             Matcher matcher = pattern.matcher(rawInput);
             if (matcher.matches()) {
-                //System.out.println(matcher.group(NAME_INDEX));
                 Item newItem = new Item(matcher.group(NAME_INDEX), matcher.group(UPC_INDEX), matcher.group(QTY_INDEX),
                         matcher.group(PRICE_INDEX));
                 Command addCommand = new AddCommand(inventory, newItem);
@@ -199,8 +203,8 @@ public class Parser {
     }
 
     public void parseList(Inventory inventory) {
-        Command addCommand = new ListCommand(inventory);
-        addCommand.run();
+        Command listCommand = new ListCommand(inventory);
+        listCommand.run();
     }
 
 

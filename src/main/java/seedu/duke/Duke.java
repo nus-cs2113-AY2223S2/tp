@@ -13,14 +13,14 @@ public class Duke {
 
     public Duke(String filePath) {
         ui = new Ui();
-        parser = new Parser();
         storage = new Storage(filePath);
         inventory = new Inventory();
+        parser = new Parser(inventory);
     }
 
     public void run() {
         while (true) {
-            parser.mainParser(inventory);
+            parser.mainParser();
         }
     }
 

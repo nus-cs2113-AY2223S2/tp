@@ -27,7 +27,7 @@ public class Ui {
 
     public static final String SUCCESS_LIST = "Here are the items in your inventory:";
 
-    public static final String INVALID_LIST = "There are no items in your inventory.";
+    public static final String EMPTY_LIST = "There are no items in your inventory.";
     public static final String CONFIRM_MESSAGE = "Are you sure you want this item to be permanently deleted?\n(Y/N)";
 
     public static final int NAME_COL_WIDTH = 15;
@@ -138,9 +138,9 @@ public class Ui {
         System.out.println(ANSI_GREEN + SUCCESS_LIST + ANSI_RESET);
     }
 
-    public static void printInvalidList() {
+    public static void printEmptyList() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_LIST + ANSI_RESET);
+        System.out.println(ANSI_RED + EMPTY_LIST + ANSI_RESET);
         System.out.println(LINE);
     }
 
