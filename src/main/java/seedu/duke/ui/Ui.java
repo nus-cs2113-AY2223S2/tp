@@ -67,8 +67,8 @@ public class Ui {
         System.out.println("Company information successfully deleted!");
     }
 
-    public void showSuccessfulAdditionMessage() {
-        System.out.println("Company information added successfully!");
+    public void showSuccessfulAdditionMessage(String company) {
+        System.out.println(company + " added successfully!");
     }
 
     public void showSuccessfulDeleteMessage() {
@@ -77,6 +77,10 @@ public class Ui {
 
     public void showSampleDataLoadedMessage() {
         System.out.println("Sample data has been loaded into the list!");
+    }
+
+    public void showVenueSelectionMessage(String venue) {
+        System.out.println(venue + " has been successfully updated!");
     }
 
 }
