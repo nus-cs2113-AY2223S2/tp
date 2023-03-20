@@ -34,7 +34,7 @@ Types of pre-defined messages:
 
 ### Storage Component
 
-API: [```StorageHandler.java```](../src/main/java/seedu/duke/storage/StorageHandler.java)
+API: [```StorageHandler.java```](https://github.com/AY2223S2-CS2113-W13-2/tp/blob/master/src/main/java/seedu/duke/storage/StorageHandler.java)
 
 The *Storage* component handles the reading and writing of user data to and from the local hard disk in the form of
 a json file.
