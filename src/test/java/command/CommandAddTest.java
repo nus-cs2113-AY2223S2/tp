@@ -20,21 +20,21 @@ class CommandAddTest {
     public ArrayList<Expense> testExpenseList = new ArrayList<>();
     public ExpenseList expenseList = new ExpenseList();
     public Parser parser = new Parser();
+    public Currency currency = new Currency();
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     @Test
     public void addExpense_successful() {
-        testExpenseList.add(new Expense(new BigDecimal("2.5"), new Time(LocalDate.parse("02-02-2012", formatter)),
-                "food", Currency.SGD));
+        testExpenseList.add(new Expense(new BigDecimal("2.5"),
+                new Time(LocalDate.parse("02-02-2012", formatter)), "food", "SGD"));
         new CommandAdd(expenseList.getExpenseList(),
-                parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food")).execute();
+                parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food"), currency).execute();
         assertEquals(testExpenseList.get(0), expenseList.getExpenseList().get(0));
-
-        testExpenseList.add(new Expense(new BigDecimal("2.5"), new Time(LocalDate.parse("02-02-2012", formatter)),
-                "food", Currency.SGD));
+        testExpenseList.add(new Expense(new BigDecimal("2.5"),
+                new Time(LocalDate.parse("02-02-2012", formatter)), "food", "SGD"));
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " +
-                        "t/02-02-2012 cur/USD cat/food")).execute();
+                        "t/02-02-2012 cur/USD cat/food"), currency).execute();
         assertNotEquals(testExpenseList.get(1), expenseList.getExpenseList().get(1));
 
         testExpenseList.clear();

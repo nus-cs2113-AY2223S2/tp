@@ -12,12 +12,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.HashMap;
 
 import static common.MessageList.SUCCESSFUL_ADD;
 
 public class CommandAdd extends Command {
     public static final String COMMAND_NAME = "add";
     protected ArrayList<Expense> expenseList;
+    protected Currency currency;
     protected String[] parsedInput;
     protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -28,23 +30,29 @@ public class CommandAdd extends Command {
      * @param expenseList The expense list to add the entry to.
      * @param parsedInput The parsed input from the parser.
      */
-    public CommandAdd(ArrayList<Expense> expenseList, String[] parsedInput) {
+    public CommandAdd(ArrayList<Expense> expenseList, String[] parsedInput, Currency currency) {
         super(COMMAND_NAME);
+        this.currency = currency;
         this.expenseList = expenseList;
         this.parsedInput = parsedInput;
     }
 
     /**
-     * Adds an entry into the ArrayList based on the parsed input provided.
+     * Adds an entry into the ArrayList based on the parsed input provided. Currently, if the currency specified does
+     * not exist, it is defaulted to SGD and a warning message is displayed.
      */
     @Override
     public CommandRes execute() {
         try {
             Time date = new Time(LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter));
-            Expense addedExpense = new Expense(roundInput((parsedInput[ParserAdd.AMOUNT_INDEX])),
+            Expense addedExpense = new Expense(currency.roundInput((parsedInput[ParserAdd.AMOUNT_INDEX])),
                     date, parsedInput[ParserAdd.CATEGORY_INDEX],
-                    Currency.checkCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]));
+                    currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]));
             expenseList.add(addedExpense);
+            if(!currency.checkCurrency(parsedInput[ParserAdd.CURRENCY_INDEX])) {
+                System.out.println("The currency specified does not exist and is defaulted to SGD, please add a new " +
+                        "currency before adding a new expense.\n");
+            }
             return new CommandRes(SUCCESSFUL_ADD, addedExpense,
                     ExpenseList.getAllMessage(expenseList));
         } catch (NumberFormatException e) {
@@ -58,13 +66,6 @@ public class CommandAdd extends Command {
         return null;
     }
 
-    /**
-     * Standardize the format of double when we add it to expenseList
-     */
-    public BigDecimal roundInput(String expenseAmountInput) {
-        BigDecimal roundedExpense = new BigDecimal(expenseAmountInput);
-        roundedExpense = roundedExpense.setScale(2, RoundingMode.HALF_UP);
-        return roundedExpense;
-    }
+
 
 }

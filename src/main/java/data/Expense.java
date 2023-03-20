@@ -8,9 +8,9 @@ public class Expense {
     protected BigDecimal expenseAmount;
     protected Time expenseTime;
     protected String description;
-    protected Currency currencyType;
+    protected String currencyType;
 
-    public Expense(BigDecimal expenseAmount, Time expenseTime, String description, Currency currencyType) {
+    public Expense(BigDecimal expenseAmount, Time expenseTime, String description, String currencyType) {
         this.expenseAmount = formatExpenseAmount(expenseAmount);
         this.expenseTime = expenseTime;
         this.description = description;
@@ -34,7 +34,7 @@ public class Expense {
         return description;
     }
 
-    public Currency getCurrencyType() {
+    public String getCurrencyType() {
         return currencyType;
     }
 
@@ -70,7 +70,7 @@ public class Expense {
      */
     @Override
     public String toString() {
-        String currencyString = Currency.returnCurrency(this.currencyType);
+        String currencyString = this.currencyType;
         String amountString = this.expenseAmount.toString();
         String descriptionString = this.description;
         String timeString = this.expenseTime.toString();
