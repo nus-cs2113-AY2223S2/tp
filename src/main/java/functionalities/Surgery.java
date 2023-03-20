@@ -1,6 +1,6 @@
 package functionalities;
 
-public class Surgery extends newAppointment {
+public class Surgery extends Appointment {
     public enum priorityLevel {
         HIGH, MEDIUM, LOW, NA
     }
