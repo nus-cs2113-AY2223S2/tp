@@ -8,22 +8,52 @@
 * Exercise Data retrieved from: [Wrkout](https://github.com/wrkout/exercises.json) (open source MIT license)
   Used to generate the data.json file containing all the exercises data used
 
+* IPPT functions retrieved from : [ninest](https://github.com/ninest/ippt-utils) (open source MIT license)
+  Used to implement the IPPT calculator feature in the program
+
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+
+### UI Component
+Represented by the Ui class, it handles the interactions between the user and the program. In addition, it also displays
+a basic overview of what the program does. 
+
+Types of pre-defined messages: 
+
+1. Information messages that describe the functionalities of the program (`Greet` , `Bye`, `PrintExercises` classes)
+2. Help messages that details the usage of the possible commands available in the program (`PrintHelpMessage` class)
+3. Error messages that trigger when a user's input is incorrect and provides an explanation to the user. (`ErrorMessages` class)
+
+Written by : Glenn Ho
+
+### Exceptions
+Accounts for the different scenarios that may trigger an error during user's interactions with the program
+
+Written by : Glenn Ho
+
+
+
+### Additional features to be added
+1. An IPPT calculator to integrate with Fitness Duke to facilitate users who want to train for their IPPT fitness assessments.
+
+Written by : Glenn Ho
+
 
 ## Product scope
 
 ### Target user profile
 
-We are targeting individuals looking for a smarter way to keep fit as well as add diversity to their workout routines.
+Fitness Duke targets individuals who are looking for a smarter way to keep fit, as well as adding a greater diversity 
+to their workout routines.
 
 ### Value proposition
 
-In the Support of Singapore's initiative [Healthier SG](https://www.healthiersg.gov.sg/) to encourage fitness activities
-as a form of preventive care, our project aims to help Singaporeans to kick-start their journey towards
-a healthier lifestyle regardless of their knowledge in exercises. We aim to help users learn new workouts and keep
-track of their fitness progress.
+With the recent emphasis of healthy lifestyles in Singapore, the Singapore Government has initiated the Healthier SG initiative 
+[Healthier SG](https://www.healthiersg.gov.sg/). To encourage more fitness activities to be carried out by Singaporeans
+as a form of preventive care, Fitness Duke aims to help Singaporeans to kick-start their journeys towards
+a healthier lifestyle, regardless of their knowledge in exercises or their individual fitness levels. 
+Through this program, it aims to not only help users learn new workouts, while also keep track of their fitness progress.
 
 ## User Stories
 
