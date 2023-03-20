@@ -1,6 +1,6 @@
 package functionalities;
 
-public class newAppointment {
+public abstract class newAppointment {
     protected String uid;
     protected Animal animal;
     protected Owner owner;
