@@ -37,11 +37,17 @@ https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/p
 
 public class Parser {
 
+    /**
+     * parse the inputs entered by user into command for execution
+     *
+     * @param userFullInput full line of user input entered by user
+     * @return Command class based on the user's input
+     */
     public static Command parseCommand(String userFullInput) {
 
         UserInput userInput = UserInput.splitUserInput(userFullInput);
 
-        switch(userInput.userCommand) {
+        switch (userInput.userCommand) {
         case AddExpenseCommand.COMMAND_WORD:
             return prepareAddExpenseCommand(userInput.commandDescription);
         case AddIncomeCommand.COMMAND_WORD:
@@ -70,6 +76,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepares the view budget command
+     *
+     * @return the prepared command
+     */
     private static Command prepareViewBudgetCommand() {
         try {
             return new ViewBudgetCommand();
@@ -78,6 +89,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses description in the context of set budget command
+     *
+     * @param description full command description string
+     * @return the prepared command
+     */
     private static Command prepareSetBudgetCommand(String description) {
         if (description.equals("")) {
             return new InvalidCommand("You did not specify your budget.",
@@ -99,6 +116,12 @@ public class Parser {
         return new SetBudgetCommand(budget);
     }
 
+    /**
+     * Parses the description in the context of delete expense command
+     *
+     * @param description full command description string
+     * @return the prepared command
+     */
     private static Command prepareDeleteExpenseCommand(String description) {
         if (description.equals("")) {
             return new InvalidCommand(MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION,
@@ -116,6 +139,12 @@ public class Parser {
         return new DeleteExpenseCommand(index);
     }
 
+    /**
+     * Parses the command description in the context for delete income command
+     *
+     * @param description full command description string
+     * @return the prepared command
+     */
     private static Command prepareDeleteIncomeCommand(String description) {
         if (description.equals("")) {
             return new InvalidCommand(MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION,
@@ -133,6 +162,12 @@ public class Parser {
         return new DeleteIncomeCommand(index);
     }
 
+    /**
+     * Parses the command description in the context for add expense command
+     *
+     * @param description full command description string
+     * @return the prepared command
+     */
     private static Command prepareAddExpenseCommand(String description) {
         // description in the form of "a/ <amount> d/ <description> t/ time"
 
@@ -155,6 +190,12 @@ public class Parser {
         return new AddExpenseCommand(amount, newDescription, time);
     }
 
+    /**
+     * Parses the command description in the context for add income command
+     *
+     * @param description full command description string
+     * @return the prepared command
+     */
     private static Command prepareAddIncomeCommand(String description) {
         // description in the form of "a/ <amount> d/ <description> t/ time"
 
@@ -177,8 +218,14 @@ public class Parser {
         return new AddIncomeCommand(amount, newDescription, time);
     }
 
-private static String[] checkAddCommandException(String description) throws BrokeManException {
-
+    /**
+     * Parses the command description in the context for the context of add command and throws exceptions if found
+     *
+     * @param description full command description string
+     * @return the split command descriptions
+     * @throws BrokeManException the custom exception for specific exception case
+     */
+    private static String[] checkAddCommandException(String description) throws BrokeManException {
         boolean containsAllFlags = description.contains("a/ ") &&
                 description.contains(" d/ ") && description.contains(" t/");
 
@@ -206,12 +253,18 @@ private static String[] checkAddCommandException(String description) throws Brok
         return splitDescriptions;
     }
 
-    private static void checkEmptyFlag(String[] splitDescriptions) throws BrokeManException {
+    /**
+     * Checks if the descriptions of the flags are empty
+     *
+     * @param splitDescriptions split command descriptions that contains the description of flags
+     * @throws ContainsEmptyFlagException custom exception to indicate flag descriptions is / are empty
+     */
+    private static void checkEmptyFlag(String[] splitDescriptions) throws ContainsEmptyFlagException {
         if (splitDescriptions.length == 3) {
             throw new ContainsEmptyFlagException();
         }
 
-        assert(splitDescriptions.length == 4) : "Invalid input\n";
+        assert (splitDescriptions.length == 4) : "Invalid input\n";
         for (String description : splitDescriptions) {
             if (description.isEmpty()) {
                 throw new ContainsEmptyFlagException();
@@ -219,6 +272,12 @@ private static String[] checkAddCommandException(String description) throws Brok
         }
     }
 
+    /**
+     * Parses the command description in the context for edit expense command
+     *
+     * @param description full command description string
+     * @return the prepared edit expense command
+     */
     private static Command prepareEditExpenseCommand(String description) {
         if (description.equals("")) {
             return new InvalidCommand(MESSAGE_ARGUMENTS_NOT_SPECIFIED,
@@ -245,6 +304,12 @@ private static String[] checkAddCommandException(String description) throws Brok
                 splitDescriptions[2], splitDescriptions[3]);
     }
 
+    /**
+     * Parses the command description in the context for edit income command
+     *
+     * @param description full command description string
+     * @return the prepared edit income command
+     */
     private static Command prepareEditIncomeCommand(String description) {
         if (description.equals("")) {
             return new InvalidCommand(MESSAGE_ARGUMENTS_NOT_SPECIFIED,
@@ -271,6 +336,15 @@ private static String[] checkAddCommandException(String description) throws Brok
                 splitDescriptions[2], splitDescriptions[3]);
     }
 
+    /**
+     * Converts the input string to double if possible
+     *
+     * @param cost input string to be converted
+     * @return converted double value
+     * @throws AmountIsNotADoubleException custom exception to indicate string input
+     *                                     cannot be converted to a double
+     * @throws NegativeAmountException     custom exception to indicate negative double value
+     */
     private static double checkDoubleException(String cost) throws AmountIsNotADoubleException,
             NegativeAmountException {
         double amount;
@@ -288,7 +362,15 @@ private static String[] checkAddCommandException(String description) throws Brok
         return amount;
     }
 
-private static String[] checkEditCommandException(String description) throws BrokeManException {
+    /**
+     * Parses the command description in the context for the context of
+     * delete command and throws exceptions if found
+     *
+     * @param description full command description string
+     * @return the split command descriptions
+     * @throws BrokeManException the custom exception that indicate the specific exception cases
+     */
+    private static String[] checkEditCommandException(String description) throws BrokeManException {
 
         boolean containsAllFlags = description.contains("i/ ") &&
                 description.contains(" t/ ") && description.contains(" n/");
@@ -313,7 +395,14 @@ private static String[] checkEditCommandException(String description) throws Bro
         return splitDescriptions;
     }
 
-    private static void checkIsIntegerIndex(String index) throws BrokeManException {
+    /**
+     * Checks if string input is an integer
+     *
+     * @param index the input string to be checked
+     * @throws IndexNotAnIntegerException custom exception to indicate that
+     *                                    input string cannot be converted to integer
+     */
+    private static void checkIsIntegerIndex(String index) throws IndexNotAnIntegerException {
         try {
             Integer.parseInt(index);
         } catch (NumberFormatException nfe) {
@@ -321,12 +410,15 @@ private static String[] checkEditCommandException(String description) throws Bro
         }
     }
 
-    private static void checkCorrectType(String type) throws BrokeManException {
+    /**
+     * Checks if the type is correct (amount, info, or time)
+     * @param type input to be checked
+     * @throws IncorrectTypeException custom exception to indicate incorrect type exception
+     */
+    private static void checkCorrectType(String type) throws IncorrectTypeException {
         if (!type.equals("amount") && !type.equals("info") &&
                 !type.equals("time")) {
             throw new IncorrectTypeException();
         }
     }
 }
-
-
