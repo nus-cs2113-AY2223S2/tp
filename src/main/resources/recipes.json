@@ -4,7 +4,7 @@
     "ingredients": [
       {
         "name": "ground beef",
-        "amount": 200
+        "amount": 450
       },
       {
         "name": "salt",
@@ -46,6 +46,291 @@
     ],
     "instructions": [
       "Pour the water into a glass"
+    ]
+  },
+  {
+    "name": "Chicken Burger",
+    "ingredients": [
+      {
+        "name": "ground chicken",
+        "amount": 450
+      },
+      {
+        "name": "breadcrumbs",
+        "amount": 1
+      },
+      {
+        "name": "egg",
+        "amount": 1
+      },
+      {
+        "name": "Worcestershire sauce",
+        "amount": 30
+      },
+      {
+        "name": "garlic powder",
+        "amount": 2
+      },
+      {
+        "name": "dried basil",
+        "amount": 2
+      },
+      {
+        "name": "salt",
+        "amount": 2
+      },
+      {
+        "name": "black pepper",
+        "amount": 1
+      },
+      {
+        "name": "hamburger buns",
+        "amount": 4
+      }
+    ],
+    "instructions": [
+      "In a large bowl, mix the ground chicken, breadcrumbs, egg, Worcestershire sauce, garlic powder, basil, salt and pepper until just combined",
+      "Divide the mixture into 4 equal portions and shape each portion into a patty about 1/2 inches thick",
+      "Heat a large non-stick pan or griddle over medium heat",
+      "Cook the chicken patties for about 6 minutes on each side, or until the internal temperature reaches 74C/165F",
+      "Toast the hamburger buns on the griddle or in the ove until golden brown",
+      "Assemble the chicken burgers with your desired toppings and serve immediately. This recipe serves two."
+    ]
+  },
+  {
+    "name": "Fish Burger",
+    "ingredients": [
+      {
+        "name": "white fish filet",
+        "amount": 450
+      },
+      {
+        "name": "breadcrumbs",
+        "amount": 1
+      },
+      {
+        "name": "egg",
+        "amount": 1
+      },
+      {
+        "name": "lemon juice",
+        "amount": 5
+      },
+      {
+        "name": "Dijon mustard",
+        "amount": 5
+      },
+      {
+        "name": "dried dill",
+        "amount": 1.5
+      },
+      {
+        "name": "salt",
+        "amount": "2"
+      },
+      {
+        "name": "black pepper",
+        "amount": 1
+      },
+      {
+        "name": "hamburger buns",
+        "amount": 4
+      }
+    ],
+    "instructions": [
+      "In a large bowl, flake the fish into small pieces",
+      "Add the breadcrumbs, egg, lemon juice, Dijon mustard, dill, salt, and pepper to the bowl and mix until just combined",
+      "Divide the mixture into 4 equal portions and shape each portion into a patty about 1/2 inches thick",
+      "Heat a large non-stick pan or griddle over medium heat",
+      "Cook the fish burgers for about 4 minutes on each side, or until they are golden brown and the internal temperature reaches 63C/145F",
+      "Toast the hamburger buns on the griddle or in the oven until golden brown",
+      "Assemble the fish burgers with your desired toppings and serve immediately"
+    ]
+  },
+  {
+    "name": "Pasta (Tomato Sauce)",
+    "ingredients": [
+      {
+        "name": "pasta",
+        "amount": 450
+      },
+      {
+        "name": "olive oil",
+        "amount": 4.5
+      },
+      {
+        "name": "onion",
+        "amount": 1
+      },
+      {
+        "name": "garlic",
+        "amount": 3
+      },
+      {
+        "name": "diced tomatoes",
+        "amount": 2
+      },
+      {
+        "name": "dried basil",
+        "amount": 0.4
+      },
+      {
+        "name": "salt",
+        "amount": 3
+      },
+      {
+        "name": "black pepper",
+        "amount": 1.5
+      }
+    ],
+    "instructions": [
+      "Cook the pasta according to the instructions on the package until it is firm",
+      "In a large saucepan, heat the olive oil over medium heat",
+      "Chop the onions and add to the pan. Cook until softened, about 5 minutes",
+      "Mince the garlic and add to the saucepan. Cook for another minute",
+      "Add the diced tomatoes (undrained), dried basil, salt and black pepper to the saucepan. Stir to combine",
+      "Bring the sauce to a boil, then reduce heat to low and let it simmer for 10 minutes",
+      "Serve the cooked pasta with the sauce on top, add grated parmesan cheese (optional)"
+    ]
+  },
+  {
+    "name": "Hainanese Chicken Rice",
+    "ingredients": [
+      {
+        "name": "chicken",
+        "amount": 4
+      },
+      {
+        "name": "ginger",
+        "amount": 3
+      },
+      {
+        "name": "spring onion",
+        "amount": 2
+      },
+      {
+        "name": "garlic",
+        "amount": 2
+      },
+      {
+        "name": "fish sauce",
+        "amount": 15
+      },
+      {
+        "name": "cilantro",
+        "amount": 1
+      },
+      {
+        "name": "rice",
+        "amount": 3
+      },
+      {
+        "name": "chicken stock",
+        "amount": 4
+      },
+      {
+        "name": "lemongrass",
+        "amount": 4
+      },
+      {
+        "name": "salt",
+        "amount": 3
+      },
+      {
+        "name": "chicken powder",
+        "amount": 3
+      },
+      {
+        "name": "butter",
+        "amount": 42
+      },
+      {
+        "name": "turmeric powder",
+        "amount": 0.5
+      },
+      {
+        "name": "ginger",
+        "amount": 1
+      },
+      {
+        "name": "cooking oil",
+        "amount": 35
+      }
+    ],
+    "instructions": [
+      "Pour 5 cups of cold water into a large stockpot and set aside",
+      "Slice 3 thick slices of ginger. Cut the spring onion in half and crush the onion heads",
+      "Place the ginger and spring onion in the water and bring it to a boil. Let this boil for 30 minutes over medium-high heat. Meanwhile prepare a bowl of ice water and set this aside",
+      "Once the water has boiled, add the meat. After 1 minute, remove the chicken and add it into the bowl of ice water. Repeat the previous steps 4-5 times for chicken wings and legs. Repeat 2-3 times for chicken breast",
+      "Continue to boil the chicken in the stock on low heat for 30 minutes. Remove the meat from the stock and place it in the ice water with 2 tablespoons of salt and 1 teaspoon of fish sauce. Leave for 40-60 minutes and slice into bite size, keeping the stock for later use.",
+      "Wash the rice 3-4 times. Add 4 cups of the stock from the previous step with butter, lemongrass, chicken powder, salt and turmeric powder.",
+      "Put this on normal settings in the rice cooker, stir halfway through cooking",
+      "For the ginger sauce, start by peeling the ginger skin. Chop finely into the desired size and add salt for taste.",
+      "Heat the oil in a small pan until it begins to smoke. Pour over the ginger and mix well. Leave to cool slightly before serving",
+      "Assemble on a plate, laying the meat on top or on the side of the rice. Garnish with cilantro and serve with chili (optional):"
+    ]
+  },
+  {
+    "name": "Mee Goreng",
+    "ingredients": [
+      {
+        "name": "egg noodles",
+        "amount": 400
+      },
+      {
+        "name": "chicken breast",
+        "amount": 140
+      },
+      {
+        "name": "fish cake",
+        "amount": 100
+      },
+      {
+        "name": "shrimp",
+        "amount": 100
+      },
+      {
+        "name": "garlic",
+        "amount": 4.2
+      },
+      {
+        "name": "egg",
+        "amount": 2
+      },
+      {
+        "name": "Chinese chives",
+        "amount": 94
+      },
+      {
+        "name": "bean sprout",
+        "amount": 200
+      },
+      {
+        "name": "sweet soy sauce",
+        "amount": 48
+      },
+      {
+        "name": "sesame oil",
+        "amount": 27
+      },
+      {
+        "name": "ketchup sauce",
+        "amount": 70
+      },
+      {
+        "name": "oyster sauce",
+        "amount": 36
+      }
+    ],
+    "instructions": [
+      "In a large pot of boiling water, blanch the noodles until just loosened (roughly 20 seconds) and strain immediately. Set aside",
+      "In a small bowl, whisk together the sweet soy sauce, sesame oil, ketchup sauce and oyster sauce. This will form your noodle sauce",
+      "In a pan set over medium heat, add the chicken breast and let it fry until fully cooked.",
+      "Add garlic, and let it saute until soft.",
+      "Add shrimp, fish cakes, and fry until the shrimps become mostly pink.",
+      "Sweep the ingredients to the side of the pan. Pour in whisked eggs and mix with the other ingredients.",
+      "Add chives and bean sprouts. Cook until the vegetables have wilted slightly.",
+      "Add the noodles and the noodle sauce. Mix thoroughly until well combined. Serve and enjoy!"
     ]
   }
 ]

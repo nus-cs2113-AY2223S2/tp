@@ -1,0 +1,2 @@
+{"metadata":{"name":"apple","units":"count"},"quantity":2.0}
+{"metadata":{"name":"egg","units":"count"},"quantity":3.0}

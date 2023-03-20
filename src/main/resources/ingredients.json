@@ -45,10 +45,180 @@
   {
     "name": "ham",
     "units": "weight",
-    "unitLabel": "g"
+    "unitLabel": "grams"
   },
   {
     "name": "apple",
     "units": "count"
+  },
+  {
+    "name": "ground chicken",
+    "units": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "dried basil",
+    "units": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "dried dill",
+    "units": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "breadcrumbs",
+    "units": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "lemon juice",
+    "units": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "Dijon mustard",
+    "units": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "pasta",
+    "units": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "olive oil",
+    "units": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "onion",
+    "unit": "count"
+  },
+  {
+    "name": "garlic",
+    "unit": "count",
+    "unitLabel": "cloves"
+  },
+  {
+    "name": "diced tomatoes",
+    "unit": "count",
+    "unitLabel": "cans"
+  },
+  {
+    "name": "chicken",
+    "unit": "count",
+    "unitLabel": "pieces"
+  },
+  {
+    "name": "ginger",
+    "unit": "count",
+    "unitLabel": "slices"
+  },
+  {
+    "name": "spring onion",
+    "unit": "count",
+    "unitLabel": "stalks"
+  },
+  {
+    "name": "fish sauce",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "cilantro",
+    "unit": "count",
+    "unitLabel": "stalks"
+  },
+  {
+    "name": "rice",
+    "unit": "count",
+    "unitLabel": "cups"
+  },
+  {
+    "name": "chicken stock",
+    "unit": "count",
+    "unitLabel": "cups"
+  },
+  {
+    "name": "lemongrass",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "chicken powder",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "butter",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "turmeric powder",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "cooking oil",
+    "unit": "volume",
+    "unitLabel": "ml"
+  },
+  {
+    "name": "egg noodles",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "chicken breast",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "fish cake",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "shrimp",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "Chinese chives",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "bean sprout",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "sweet soy sauce",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "sesame oil",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "ketchup sauce",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "oyster sauce",
+    "unit": "weight",
+    "unitLabel": "grams"
+  },
+  {
+    "name": "white fish filet",
+    "unit": "weight",
+    "unitLabel": "grams"
   }
+
 ]
