@@ -1,5 +1,6 @@
 package manager;
 
+import common.Messages;
 import entity.Meeting;
 
 import java.util.ArrayList;
@@ -19,16 +20,14 @@ public class MeetingManager {
         return meetingList;
     }
 
-    public static boolean deleteMeeting(String issue) {
-        boolean hasMeeting = false;
-        for (int i = 0; i < meetings.size(); i++) {
-            Meeting m = meetings.get(i);
-            if (m.getIssue().equals(issue)) {
-                meetings.remove(i);
-                hasMeeting = true;
-            }
+    public static void deleteMeeting(int index) {
+        if(index<meetings.size()){
+            System.out.println("Meeting "+meetings.get(index).getIssue()+" deleted!");
+            meetings.remove(index);
+        } else{
+            System.out.println(Messages.ERROR_MEETING_INVALID_INDEX);
         }
-        return hasMeeting;
+
     }
 
 }
