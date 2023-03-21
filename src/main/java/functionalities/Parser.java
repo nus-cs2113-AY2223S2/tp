@@ -88,10 +88,10 @@ public class Parser {
                 command = new FindCommand("appointment", details);
             } else {
                 logger.warning(" NULL command returned to Sniff.run");
-                throw new SniffException(" No details provided for find command. Unable to execute find command.");
+                throw new SniffException(" Invalid details provided for find command. Unable to execute find command.");
             }
         } catch (ArrayIndexOutOfBoundsException emptyFind) {
-            logger.warning(" No details provided for find command. Unable to execute find command.");
+            logger.warning(" Invalid details provided for find command. Unable to execute find command.");
             throw new SniffException(" The find command description cannot be empty!");
         } catch (NumberFormatException e) {
             logger.warning(" Invalid appointment ID format provided. Integer numbers are expected.");

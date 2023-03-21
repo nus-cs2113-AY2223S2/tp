@@ -3,6 +3,7 @@ package functionalities;
 import exception.SniffException;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class SniffTasks {
 
@@ -57,7 +58,7 @@ public class SniffTasks {
         }
     }
 
-    public void findAppointment(String uId) {
+    public void findAppointment(String uId) throws SniffException{
         int counter = 1;
         for (Appointment appointment : APPOINTMENTS) {
             assert appointment.uid != null;
@@ -65,6 +66,12 @@ public class SniffTasks {
                 Ui.formatPrintList(counter, appointment.toString());
                 counter++;
             }
+        }
+        if (uId.equals("")) {
+            throw new SniffException(" No appointment ID provided!");
+        }
+        if (!uId.matches("\\d+")) {
+            throw new SniffException(" Appointment ID must consist of integers!");
         }
         if (counter == 1) {
             Ui.showUserMessage(" There are no appointments with this ID!");
