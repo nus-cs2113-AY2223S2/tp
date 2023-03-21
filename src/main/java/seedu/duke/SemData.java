@@ -40,4 +40,7 @@ public class SemData {
                 .collect(Collectors.toList());
     }
 
+    public int getSemester() {
+        return semester;
+    }
 }

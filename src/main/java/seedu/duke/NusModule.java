@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class NusModule {
@@ -8,11 +9,11 @@ public class NusModule {
     public String faculty;
     public String moduleCredit;
     public String moduleCode;
-
-    public List<SemData> semesterData;
+    //public List<SemData> semesterData;
+    public HashMap<Integer, SemData> semesterData;
 
     public NusModule(String description, String title, String faculty, String moduleCredit,
-                     String moduleCode, List<SemData> semesterData) {
+                     String moduleCode, HashMap<Integer, SemData> semesterData) {
         this.description = description;
         this.title = title;
         this.faculty = faculty;
@@ -41,8 +42,9 @@ public class NusModule {
         return moduleCode;
     }
 
-    public List<SemData> getSemesterData() { //May change to hashmap implementation.
-        return semesterData;
+    public List<Lesson> getLesson(int Semester, String type, String classNum){
+        SemData semester = semesterData.get(Semester);
+        return semester.getLesson(type, classNum);
     }
 }
 

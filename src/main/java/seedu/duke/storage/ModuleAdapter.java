@@ -39,7 +39,7 @@ public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
         String faculty = null;
         String moduleCredit = null;
         String moduleCode = null;
-        List<SemData> semesterData = null;
+        HashMap<Integer, SemData> semesterData = new HashMap<>();
         reader.beginObject();
         while(reader.hasNext()){
             String name = reader.nextName();
@@ -71,14 +71,15 @@ public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
         return new NusModule(description, title, faculty, moduleCredit, moduleCode, semesterData);
     }
 
-    private List<SemData> readListSemData(JsonReader reader) throws IOException{
-        List<SemData> semDataList = new ArrayList<SemData>();
+    private HashMap<Integer, SemData> readListSemData(JsonReader reader) throws IOException{
+        HashMap<Integer, SemData> semDataMap = new HashMap<>();
         reader.beginArray();
         while(reader.hasNext()){
-            semDataList.add(readSemData(reader));
+            SemData semester = readSemData(reader);
+            semDataMap.put(semester.getSemester(), semester);
         }
         reader.endArray();
-        return semDataList;
+        return semDataMap;
     }
 
 
@@ -135,6 +136,7 @@ public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
         ArrayList<Integer> weeks = null;
         String venue = null;
         String lessonType = null;
+        String day = null;
         reader.beginObject();
         while(reader.hasNext()){
             String name = reader.nextName();
@@ -157,13 +159,16 @@ public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
             case "lessonType":
                 lessonType = reader.nextString();
                 break;
+            case "day":
+                day = reader.nextString();
+                break;
             default:
                 reader.skipValue();
                 break;
             }
         }
         reader.endObject();
-        return new Lesson(classNumber, startTime, endTime, weeks, venue, lessonType);
+        return new Lesson(classNumber, startTime, endTime, weeks, venue, lessonType, day);
     }
 
     private ArrayList<Integer> readWeeks(JsonReader reader) throws IOException{
