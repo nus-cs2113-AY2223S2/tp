@@ -8,7 +8,6 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
-
 ## Product scope
 ### Target user profile
 
@@ -42,6 +41,8 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 
 ## Instructions for manual testing
 
-To load sample data, run "load samples" to load some companies into company list. 
+{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
-Run "purge" to remove all company list data.
+1. To load sample company data, run "load samples" to load some companies into company list. 
+2. To purge all company list data, run "purge".
+3. To choose a venue for the event, run "choose venue (index)".
