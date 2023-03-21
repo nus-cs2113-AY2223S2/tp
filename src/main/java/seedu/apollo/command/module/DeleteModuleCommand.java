@@ -29,7 +29,7 @@ import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
  * For {@code delmod} command.
  * Delete Module Command class that finds the module using moduleCode and removes it from the ModuleList
  */
-public class DeleteModuleCommand extends Command implements LoggerInterface{
+public class DeleteModuleCommand extends Command implements LoggerInterface {
     private static Logger logger = Logger.getLogger("DeleteModuleCommand");
     protected String[] args;
 
