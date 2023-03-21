@@ -8,6 +8,7 @@ import seedu.pettracker.commands.InvalidCommand;
 import seedu.pettracker.commands.ListPetCommand;
 import seedu.pettracker.commands.RemovePetCommand;
 import seedu.pettracker.commands.RemoveStatCommand;
+import seedu.pettracker.commands.AddTaskCommand;
 import seedu.pettracker.exceptions.UnknownKeywordException;
 
 import java.util.logging.Logger;
@@ -21,6 +22,7 @@ public class CommandParser {
     final String KEYWORD_LIST_PET = "list";
     final String KEYWORD_ADD_STAT = "add-stat";
     final String KEYWORD_REMOVE_STAT = "remove-stat";
+    final String KEYWORD_ADD_TASK = "add-task";
 
     public CommandParser() {
     }
@@ -55,8 +57,7 @@ public class CommandParser {
      */
     private static String parseArgs(String commandString) throws ArrayIndexOutOfBoundsException {
         assert commandString.split(" ", 2).length > 1 : "No arguments";
-        String test =  commandString.split(" ", 2)[1];
-        return test;
+        return commandString.split(" ", 2)[1];
     }
 
     /**
@@ -73,14 +74,14 @@ public class CommandParser {
             try {
                 return new AddPetCommand(parseArgs(commandString));
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("bounds error");
+                logger.log(Level.INFO,"bounds error");
                 break;
             }
         case KEYWORD_REMOVE_PET:
             try {
                 return new RemovePetCommand(parseArgs(commandString));
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("bounds error");
+                logger.log(Level.INFO,"bounds error");
                 break;
             }
         case KEYWORD_LIST_PET:
@@ -89,14 +90,21 @@ public class CommandParser {
             try {
                 return new AddStatCommand(parseArgs(commandString));
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("bounds error");
+                logger.log(Level.INFO,"bounds error");
                 break;
             }
         case KEYWORD_REMOVE_STAT:
             try {
                 return new RemoveStatCommand(parseArgs(commandString));
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("bounds error");
+                logger.log(Level.INFO,"bounds error");
+                break;
+            }
+        case KEYWORD_ADD_TASK:
+            try {
+                return new AddTaskCommand(parseArgs(commandString));
+            } catch (ArrayIndexOutOfBoundsException e) {
+                logger.log(Level.INFO,"bounds error");
                 break;
             }
         default:
