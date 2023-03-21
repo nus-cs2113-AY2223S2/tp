@@ -21,7 +21,7 @@ import com.opencsv.CSVWriter;
 public class Storage {
     private static Logger logger = Logger.getLogger("Storage.log");
 
-
+    //@@author ChongQiRong
     public static void writeToFile(FinancialReport statements, String filePath) {
         setupLogger();
         try {
@@ -39,6 +39,7 @@ public class Storage {
         }
     }
 
+    //@@author KN-CY
     public static FinancialReport loadFromFile(String filePath)
             throws IOException, ClassNotFoundException, ClassCastException {
         FileInputStream readData = new FileInputStream(filePath);
@@ -52,6 +53,7 @@ public class Storage {
         return statements;
     }
 
+    //@@author KN-CY
     private static void fillTableBody(FinancialReport report, CSVWriter tableWriter) {
         for (int i = 0; i < report.getStatementCount(); i++) {
             FinancialStatement currStatement = report.getFinancialStatement(i);
@@ -70,6 +72,8 @@ public class Storage {
             tableWriter.writeNext(tableRow);
         }
     }
+
+    //@@author KN-CY
     public static void writeToCSV(FinancialReport report) throws IOException {
         String CSVFilePath = "report.csv";
 
