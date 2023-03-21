@@ -98,4 +98,11 @@ public class Ui {
     public void removeTaskCommandMessage(int taskNumber) {
         System.out.println("Successfully removed task " + taskNumber);
     }
+
+    /**
+     * Message that prints before listing all tasks.
+     */
+    public void listTasksCommandMessage() {
+        System.out.println("Here are your tasks:");
+    }
 }
