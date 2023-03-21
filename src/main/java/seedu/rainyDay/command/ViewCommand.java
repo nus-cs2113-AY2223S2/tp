@@ -14,12 +14,15 @@ public class ViewCommand extends Command implements FormatReport {
             "|Here is your full financial report!                                          |\n" +
             "+-----+------------------------------+------------+----------------+----------+\n" +
             "|Index|Name                          |Amount      |Category        |Date      |\n";
+
     private static final String VIEW_SUMMARY = "" +
             "+-----+------------------------------+------------+----------------+----------+\n";
 
     //@@author lil1n
     private static final Logger logger = Logger.getLogger(ViewCommand.class.getName());
+
     private double totalInflow = 0;
+
     private double totalOutflow = 0;
 
     public ViewCommand() {
@@ -39,7 +42,7 @@ public class ViewCommand extends Command implements FormatReport {
     }
 
     @Override
-    public CommandResult execute() { //todo add in print date
+    public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting ViewCommand.execute()");
 
