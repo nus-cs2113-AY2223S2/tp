@@ -28,8 +28,6 @@
 ### Target user profile
 Our target user profile is the average School of Computing student that resides on campus, regardless of Residential College (RC), Halls, Residences or Houses. There is a focus on those who regularly cook in their hostels or would like to pick up cooking.
 
-###### [Back to table of contents](#table-of-contents)
-
 ### Value proposition
 Our product targets students who would like to save money on buying or ordering food, and also to save time by preparing their meals beforehand so they can eat immediately after a class without having to queue for food or look for a seat in a crowded canteen on campus. Aside from RCs, hostels on campus do not provide meal plans, so our product addresses this by helping users pick up cooking and manage the ingredients they have in their hostel refrigerators. Even within RCs, the meal plans do not cover lunch, meaning students need to source their own lunch, which is a problem that our product also aims to alleviate.
 
