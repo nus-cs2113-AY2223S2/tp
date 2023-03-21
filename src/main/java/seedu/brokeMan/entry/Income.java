@@ -8,6 +8,6 @@ public class Income extends Entry{
     }
 
     public String toString() {
-        return String.format("$%.2f earned on %s - %s", amount, info, time);
+        return String.format("$%.2f earned on %s - %s", amount, info, super.convertTimeToString());
     }
 }
