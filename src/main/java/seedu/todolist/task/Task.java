@@ -7,8 +7,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
-//@@ jeromeongithub
 public class Task implements Serializable {
+    //@@ KedrianLoh
+    /**
+     * Compares the task1 deadline and task2 deadline, used for sorting the task list by deadline.
+     */
+    public static Comparator<Task> taskDeadlineComparator = Comparator.comparing(task -> task.deadline);
+
+    //@@ jeromeongithub
     private String description;
     private LocalDateTime deadline;
     private boolean isDone = false;
@@ -35,10 +41,4 @@ public class Task implements Serializable {
     public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
     }
-
-    //@@ KedrianLoh
-    /**
-     * Compares the task1 deadline and task2 deadline, used for sorting the task list by deadline.
-     */
-    public static Comparator<Task> taskDeadlineComparator = Comparator.comparing(task -> task.deadline);
 }

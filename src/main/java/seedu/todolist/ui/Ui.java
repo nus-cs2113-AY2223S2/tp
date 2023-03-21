@@ -2,7 +2,6 @@ package seedu.todolist.ui;
 
 import seedu.todolist.constants.Messages;
 
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Ui {
