@@ -16,6 +16,9 @@ import commands.deadline.ViewDeadlineCommand;
 
 import commands.menu.AddDishCommand;
 import commands.menu.ViewDishCommand;
+import commands.staff.AddStaffCommand;
+import commands.staff.DeleteStaffCommand;
+import commands.staff.ViewStaffCommand;
 import org.junit.jupiter.api.Test;
 import utils.Parser;
 
@@ -28,7 +31,7 @@ public class DinerDirectorTest {
         ArrayList<String> listOfCommands = new ArrayList<>();
         listOfCommands.add("add_meeting n/a t/3pm");
         listOfCommands.add("view_meetings");
-        listOfCommands.add("delete_meeting n/a");
+        listOfCommands.add("delete_meeting 1");
         listOfCommands.add("view_meeting");
 
         for (String listOfCommand : listOfCommands) {
@@ -39,7 +42,7 @@ public class DinerDirectorTest {
                 assertTrue(command instanceof ViewMeetingCommand);
             } else if (listOfCommand.equals("add_meeting n/a t/3pm")) {
                 assertTrue(command instanceof AddMeetingCommand);
-            } else if (listOfCommand.equals("delete_meeting n/a")) {
+            } else if (listOfCommand.equals("delete_meeting 1")) {
                 assertTrue(command instanceof DeleteMeetingCommand);
             }
         }
@@ -115,67 +118,96 @@ public class DinerDirectorTest {
     void runCommandLoopUntilExit_userInput_addDishCommand() {
         ArrayList<String> listOfCommands = new ArrayList<>();
 
-        final String TEST_CASE_BLANK_SPACE = " ";
-        final String TEST_CASE_DECIMAL_NUMBER = "apple pie 2nd edition" + System.lineSeparator() +
-                "3.93";
-        final String TEST_CASE_NEGATIVE_INTEGER = "apple pie 2nd edition" + System.lineSeparator() +
-                "-1";
-        final String TEST_CASE_EMPTY_INGREDIENT_LIST = "apple pie 2nd edition" + System.lineSeparator() +
-                "321" + System.lineSeparator() +
-                "";
-        final String TEST_CASE_CORRECT_INPUT = "apple pie 2nd edition" + System.lineSeparator() +
-                "321" + System.lineSeparator() +
-                "apple flour water butter";
 
+        final String TEST_CASE_CORRECT_INPUT_FULL = "add_dish n/Chicken Burger pc/1099 " +
+                "[tomatoes;chicken fillet;cheese;bread with sesame seeds]";
+        final String TEST_CASE_CORRECT_INPUT_EMPTY_INGREDIENT_LIST = "add_dish n/Chicken Burger pc/1099 []";
+        final String TEST_CASE_CORRECT_INPUT_EMPTY_INGREDIENT_LIST_WITH_SEMICOLON = "add_dish n/Chicken Burger " +
+                "pc/1099 [;;]";
+        final String TEST_CASE_CORRECT_INPUT_WITH_WHITESPACE_INGREDIENTS_IN_LIST = "add_dish n/Chicken Burger " +
+                "pc/1099 [cc;   ;cc]";
+        final String TEST_CASE_CORRECT_INPUT_TRAILING_WHITESPACE_INGREDIENTS_IN_LIST = "add_dish n/Chicken Burger " +
+                "pc/1099 [ddd  ;dc; dc  ]";
 
-        listOfCommands.add(TEST_CASE_BLANK_SPACE);
+        final String TEST_CASE_ALL_BLANK = "add_dish";
+        final String TEST_CASE_BLANK_NAME = "add_dish n/ pc/1099 " +
+                "[tomatoes;chicken fillet;cheese;bread with sesame seeds]";
+        final String TEST_CASE_NAME_STARTS_WITH_SPACE = "add_dish n/ Chicken Burger pc/1099 " +
+                "[tomatoes;chicken fillet;cheese;bread with sesame seeds]";
+        final String TEST_CASE_NAME_WITH_ONLY_SPACES = "add_dish n/  pc/1099 " +
+                "[tomatoes;chicken fillet;cheese;bread with sesame seeds]";
+        final String TEST_CASE_BLANK_PRICE = "add_dish n/Chicken Burger pc/ " +
+                "[tomatoes;chicken fillet;cheese;bread with sesame seeds]";
+        final String TEST_CASE_DECIMAL_NUMBER = "add_dish n/Chicken Burger pc/1099.00 " +
+                "[tomatoes;chicken fillet;cheese;bread with sesame seeds]";
+        final String TEST_CASE_NEGATIVE_INTEGER = "add_dish n/Chicken Burger pc/-1099 " +
+                "[tomatoes;chicken fillet;cheese;bread with sesame seeds]";
+
+        listOfCommands.add(TEST_CASE_CORRECT_INPUT_FULL);
+        listOfCommands.add(TEST_CASE_CORRECT_INPUT_EMPTY_INGREDIENT_LIST);
+        listOfCommands.add(TEST_CASE_CORRECT_INPUT_EMPTY_INGREDIENT_LIST_WITH_SEMICOLON);
+        listOfCommands.add(TEST_CASE_CORRECT_INPUT_WITH_WHITESPACE_INGREDIENTS_IN_LIST);
+        listOfCommands.add(TEST_CASE_CORRECT_INPUT_TRAILING_WHITESPACE_INGREDIENTS_IN_LIST);
+
+        listOfCommands.add(TEST_CASE_ALL_BLANK);
+        listOfCommands.add(TEST_CASE_BLANK_NAME);
+        listOfCommands.add(TEST_CASE_NAME_STARTS_WITH_SPACE);
+        listOfCommands.add(TEST_CASE_NAME_WITH_ONLY_SPACES);
+        listOfCommands.add(TEST_CASE_BLANK_PRICE);
         listOfCommands.add(TEST_CASE_DECIMAL_NUMBER);
         listOfCommands.add(TEST_CASE_NEGATIVE_INTEGER);
-        listOfCommands.add(TEST_CASE_EMPTY_INGREDIENT_LIST);
-        listOfCommands.add(TEST_CASE_CORRECT_INPUT);
 
         for (String listOfCommand : listOfCommands) {
 
             ByteArrayInputStream in = new ByteArrayInputStream(listOfCommand.getBytes());
             System.setIn(in);
-            Command addCommand = new Parser().parseCommand("add_dish");
+            Command addCommand = new Parser().parseCommand(listOfCommand);
 
-            if (listOfCommand.equals(TEST_CASE_BLANK_SPACE)) {
+            if (listOfCommand.equals(TEST_CASE_CORRECT_INPUT_FULL)) {
+                assertTrue(addCommand instanceof AddDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_CORRECT_INPUT_EMPTY_INGREDIENT_LIST)) {
+                assertTrue(addCommand instanceof AddDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_CORRECT_INPUT_EMPTY_INGREDIENT_LIST_WITH_SEMICOLON)) {
+                assertTrue(addCommand instanceof AddDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_CORRECT_INPUT_WITH_WHITESPACE_INGREDIENTS_IN_LIST)) {
+                assertTrue(addCommand instanceof AddDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_CORRECT_INPUT_TRAILING_WHITESPACE_INGREDIENTS_IN_LIST)) {
+                assertTrue(addCommand instanceof AddDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_ALL_BLANK)) {
+                assertTrue(addCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_BLANK_NAME)) {
+                assertTrue(addCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_NAME_STARTS_WITH_SPACE)) {
+                assertTrue(addCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_NAME_WITH_ONLY_SPACES)) {
+                assertTrue(addCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_BLANK_PRICE)) {
                 assertTrue(addCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_DECIMAL_NUMBER)) {
                 assertTrue(addCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_NEGATIVE_INTEGER)) {
                 assertTrue(addCommand instanceof IncorrectCommand);
-            } else if (listOfCommand.equals(TEST_CASE_EMPTY_INGREDIENT_LIST)) {
-                assertTrue(addCommand instanceof IncorrectCommand);
-            } else if (listOfCommand.equals(TEST_CASE_CORRECT_INPUT)) {
-                assertTrue(addCommand instanceof AddDishCommand);
             }
         }
     }
 
     @Test
     void runCommandLoopUntilExit_userInput_deleteDishCommand() {
-        String setup = "apple pie 2nd edition" + System.lineSeparator() +
-                "321" + System.lineSeparator() +
-                "apple flour water butter";
-
-        ByteArrayInputStream setupIn = new ByteArrayInputStream(setup.getBytes());
-        System.setIn(setupIn);
+        String dishSetup = "add_dish n/Chicken Burger pc/1099 " +
+                "[tomatoes;chicken fillet;cheese;bread with sesame seeds]";
 
         ArrayList<String> listOfCommands = new ArrayList<>();
 
-        final String SETUP_ADD_DISH = "add_dish";
-
         final String TEST_CASE_NO_INDEX = "delete_dish";
+        final String TEST_CASE_DECIMAL_INDEX = "delete_dish 1.0";
         final String TEST_CASE_NEGATIVE_INDEX = "delete_dish -1";
         final String TEST_CASE_ZERO_INDEX = "delete_dish 0";
         final String TEST_CASE_OUT_OF_BOUNDS_INDEX = "delete_dish 2";
         final String TEST_CASE_VALID_INDEX = "delete_dish 1";
 
-        Command setupCommand = new Parser().parseCommand(SETUP_ADD_DISH);
-
+        listOfCommands.add(dishSetup);
         listOfCommands.add(TEST_CASE_NO_INDEX);
+        listOfCommands.add(TEST_CASE_DECIMAL_INDEX);
         listOfCommands.add(TEST_CASE_NEGATIVE_INDEX);
         listOfCommands.add(TEST_CASE_ZERO_INDEX);
         listOfCommands.add(TEST_CASE_OUT_OF_BOUNDS_INDEX);
@@ -185,12 +217,42 @@ public class DinerDirectorTest {
             Command deleteCommand = new Parser().parseCommand(listOfCommand);
             if (listOfCommand.equals(TEST_CASE_NO_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_DECIMAL_INDEX)) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_NEGATIVE_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_ZERO_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_OUT_OF_BOUNDS_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
+            }
+        }
+    }
+
+    @Test
+    void runCommandLoopUntilExit_userInput_staffCommand() {
+        ArrayList<String> listOfCommands = new ArrayList<>();
+        listOfCommands.add("add_staff");
+        listOfCommands.add("add_staff n/John Doe");
+        listOfCommands.add("add_staff p/123-456-7890 d/1990-01-01 w/Monday");
+        listOfCommands.add("add_staff n/John Doe p/123-456-7890 w/Monday d/1990-01-01");
+        listOfCommands.add("view_staff");
+        listOfCommands.add("delete_staff n/John");
+        listOfCommands.add("delete_staff John");
+
+        for (String listOfCommand : listOfCommands) {
+            Command command = new Parser().parseCommand(listOfCommand);
+            if (listOfCommand.equals("add_staff") ||
+                    listOfCommand.equals("add_staff n/John Doe") ||
+                    listOfCommand.equals("add_staff p/123-456-7890 d/1990-01-01 w/Monday") ||
+                    listOfCommand.equals("delete_staff John")) {
+                assertTrue(command instanceof IncorrectCommand);
+            } else if (listOfCommand.equals("view_deadlines")) {
+                assertTrue(command instanceof ViewStaffCommand);
+            } else if (listOfCommand.equals("add_staff n/John Doe p/123-456-7890 w/Monday d/1990-01-01")) {
+                assertTrue(command instanceof AddStaffCommand);
+            } else if (listOfCommand.equals("delete_deadline n/John")) {
+                assertTrue(command instanceof DeleteStaffCommand);
             }
         }
     }

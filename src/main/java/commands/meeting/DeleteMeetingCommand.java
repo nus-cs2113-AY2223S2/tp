@@ -6,10 +6,10 @@ import ui.TextUi;
 
 public class DeleteMeetingCommand extends Command {
     public static final String COMMAND_WORD = "delete_meeting";
-    public static String issue;
+    private int indexToDelete;
 
-    public DeleteMeetingCommand(String issue) {
-        this.issue = issue;
+    public DeleteMeetingCommand(int index) {
+        this.indexToDelete=index;
     }
 
     @Override
@@ -19,11 +19,6 @@ public class DeleteMeetingCommand extends Command {
 
     @Override
     public void execute(TextUi ui) {
-        boolean hasDelete = MeetingManager.deleteMeeting(issue);
-        if (hasDelete) {
-            ui.printMessage(issue + " deleted");
-        } else {
-            ui.printMessage("Sorry! There's no such meeting");
-        }
+        MeetingManager.deleteMeeting(indexToDelete);
     }
 }

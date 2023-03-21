@@ -6,7 +6,7 @@ public class Staff {
     private String phoneNumber;
     private String workingDay;
 
-    public Staff(String name, String workingDay, String phoneNumber, String dateOfBirth) {
+    public Staff(String name, String workingDay, String dateOfBirth, String phoneNumber) {
         setName(name);
         setDateOfBirth(dateOfBirth);
         setWorkingDay(workingDay);
@@ -14,39 +14,39 @@ public class Staff {
     }
 
     public String toString() {
-        return name + "," + "working in " + workingDay +
-                ". Phone number: " + phoneNumber + ", Date of birth: " + dateOfBirth;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setWorkingDay(String workingDay) {
-        this.workingDay = workingDay;
+        return this.name + ", " + "working in " + this.workingDay +
+                ". Date of birth: " + this.dateOfBirth + ", phoneNumber: " + this.phoneNumber;
     }
 
     public String getName() {
         return this.name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDateOfBirth() {
         return this.dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getWorkingDay() {
         return this.workingDay;
     }
 
+    public void setWorkingDay(String workingDay) {
+        this.workingDay = workingDay;
+    }
+
     public String getPhoneNumber() {
         return this.name;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
