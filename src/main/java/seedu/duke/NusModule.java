@@ -42,8 +42,8 @@ public class NusModule {
         return moduleCode;
     }
 
-    public List<Lesson> getLesson(int Semester, String type, String classNum){
-        SemData semester = semesterData.get(Semester);
+    public List<Lesson> getLesson(int semesterNumber, String type, String classNum){
+        SemData semester = semesterData.get(semesterNumber);
         return semester.getLesson(type, classNum);
     }
 }
