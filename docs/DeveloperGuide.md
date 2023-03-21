@@ -168,9 +168,33 @@ Step 7: Update the storage :
 The storage is updated with the new ModuleList without `cs2113`
 
 ### List Modules
-(TO BE ADDED SOON)
+
+The ListModule functionality allows users to list the modules that are in the ModuleList. It is facilitated by          
+ListModuleCommand class which is an extension of the Command class. 
+
+Given below is an example usage scenario of how to list the modules in the ModuleList and how the mechanism behaves 
+at each step.
+
+Step 1. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+class.
+It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 2. Override the `execute()` method: The `execute()` method is overridden to execute the find task
+functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+`allModule`, `calendar`.
+
+Step 3. Iterate through the list of modules: The `execute` method will iterate through `ModuleList` and call 
+`printModuleList()` method in the Ui class that takes in the list of modules, `ModuleList` that the user has updated,
+as a parameter. During the iteration, the `printModuleList()` method will get the number of modular credits for each 
+module the user is taking and calculate the total modular credits in that semester. If the list is empty, a message 
+is printed to the user indicating that there are no modules in the list. 
+
+Step 4. Print the confirmation message: A confirmation message is printed to the user indicating the list of modules 
+in `ModuleList` that the user updated. The message includes the module code and name, modular credits for each module and
+total modular credits the user is taking this semester.
 
 ### Add Task
+
 The add task mechanism is facilitated by `AddCommand`. It extends `Command` with the ability to add three different 
 types of `Task`s to the TaskList, namely: `ToDo`, `Deadline`, and `Event`. 
 
