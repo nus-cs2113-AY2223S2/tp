@@ -24,6 +24,7 @@ import seedu.brokeMan.exception.IndexNotAnIntegerException;
 import seedu.brokeMan.exception.NegativeBudgetException;
 import seedu.brokeMan.exception.hasNotSetBudgetException;
 
+import java.nio.channels.IllegalChannelGroupException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
@@ -99,9 +100,16 @@ public class Parser {
                     SetBudgetCommand.MESSAGE_USAGE);
         }
 
+        String[] descriptionByWord = description.split(" d/ ");
+        if (descriptionByWord.length > 2 || descriptionByWord.length < 1) {
+            return new InvalidCommand("Invalid information entered", SetBudgetCommand.MESSAGE_USAGE);
+        }
+
         double budget;
+        String budgetInString = descriptionByWord[0];
+
         try {
-            budget = Double.parseDouble(description);
+            budget = Double.parseDouble(budgetInString);
             if (budget < 0) {
                 String errorMessage = new NegativeBudgetException().getMessage();
                 return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
@@ -110,7 +118,11 @@ public class Parser {
             String errorMessage = new BudgetNotADoubleException().getMessage();
             return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
         }
-
+        if (descriptionByWord.length == 2) {
+            descriptionByWord[1] = descriptionByWord[1].trim();
+            return (descriptionByWord[1] == "" ? new SetBudgetCommand(budget)
+                    : new SetBudgetCommand(budget, descriptionByWord[1]));
+        }
         return new SetBudgetCommand(budget);
     }
 

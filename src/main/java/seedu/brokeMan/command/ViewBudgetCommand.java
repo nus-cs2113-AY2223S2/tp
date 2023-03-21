@@ -9,7 +9,7 @@ public class ViewBudgetCommand extends Command {
             "|  Example: " + COMMAND_WORD;
 
     public ViewBudgetCommand() throws hasNotSetBudgetException {
-        if (!Budget.hasSetBudget) {
+        if (!Budget.hasSetBudgetThisMonth()) {
             throw new hasNotSetBudgetException();
         }
     }
