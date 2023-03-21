@@ -1,8 +1,9 @@
 package parser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Parser {
+public class Parser implements Serializable {
 
     public static final String WHITESPACE = " ";
     private static final int EXTRACT_INDEX_LENGTH = 2;

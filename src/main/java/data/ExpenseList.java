@@ -1,14 +1,15 @@
 package data;
 
 
+import com.sun.source.doctree.SerialDataTree;
 import parser.Parser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ExpenseList {
-    public ArrayList<Expense> expenseList = new ArrayList<>();
+public class ExpenseList implements Serializable {
+    private ArrayList<Expense> expenseList = new ArrayList<>();
     protected Parser parser = new Parser();
-
 
     public ArrayList<Expense> getExpenseList() {
         return expenseList;
