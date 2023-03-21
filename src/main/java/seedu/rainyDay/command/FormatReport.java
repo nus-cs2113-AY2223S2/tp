@@ -2,6 +2,8 @@ package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
 
+import java.time.format.DateTimeFormatter;
+
 public interface FormatReport {
     static String formatFinancialStatement(int statementIndex, FinancialStatement currentStatement) {
         String statementOutput;
@@ -9,6 +11,7 @@ public interface FormatReport {
         double statementValue = currentStatement.getValue();
         String statementCategory = currentStatement.getCategory();
         String statementDirection = currentStatement.getFlowSymbol();
+        String date = currentStatement.getDate().format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
 
         String index = String.format("00000%d", statementIndex);
         index = index.substring(index.length() - 5);
@@ -18,7 +21,7 @@ public interface FormatReport {
         name = name.substring(0, 30);
         String category = String.format("%s                ", statementCategory);
         category = category.substring(0, 16);
-        statementOutput = "|" + index + "|" + name + "|" + value + "|" + category + "|"
+        statementOutput = "|" + index + "|" + name + "|" + value + "|" + category + "|" + date + "|"
                 + System.lineSeparator();
 
         return statementOutput;
