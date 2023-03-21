@@ -84,4 +84,6 @@ public class Ui {
         return input;
     }
 
+    public void addTodoCommandMessage() {
+    }
 }

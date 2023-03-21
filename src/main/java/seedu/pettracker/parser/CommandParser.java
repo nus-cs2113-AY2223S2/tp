@@ -55,7 +55,8 @@ public class CommandParser {
      */
     private static String parseArgs(String commandString) throws ArrayIndexOutOfBoundsException {
         assert commandString.split(" ", 2).length > 1 : "No arguments";
-        return commandString.split(" ", 2)[1];
+        String test =  commandString.split(" ", 2)[1];
+        return test;
     }
 
     /**
