@@ -8,7 +8,7 @@ public class FindDeadlineCommand extends commands.Command {
     private String keyword;
 
     /**
-     * Creates a find deadline command that finds and prints all the deadline items with description containing the keyword.
+     * Creates a find deadline command that finds deadlines matching the keyword.
      *
      * @param keyword the keyword to search for.
      */
