@@ -38,7 +38,10 @@ public class Duke {
         if (in.hasNextLine()) {
             System.out.println("Hello " + in.nextLine());
         }
-        String input = in.nextLine();
+        String input = "";
+        if (in.hasNextLine()) {
+            input = in.nextLine();
+        }
         while (!input.equals("exit")) {
             switch (parser.extractCommandKeyword(input)) {
             case "add":
