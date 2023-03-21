@@ -5,7 +5,8 @@
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
 original source as well}
 
-- {to acknowledge AB3, CSV library}
+- [AB3](https://github.com/se-edu/addressbook-level3)
+- [OpenCSV](https://opencsv.sourceforge.net/)
 
 ## Design & implementation
 
@@ -63,10 +64,16 @@ Help people who are just starting out working and troubled by financial issues s
 
 ## User Stories
 
-| Version | As a ... | I want to ...             | So that I can ...                                           |
-|---------|----------|---------------------------|-------------------------------------------------------------|
-| v1.0    | new user | see usage instructions    | refer to them when I forget how to use the application      |
-| v2.0    | user     | find a to-do item by name | locate a to-do without having to go through the entire list |
+| Version | As a ...                            | I want to ...                                                | So that I can ...                                      |
+|---------|-------------------------------------|--------------------------------------------------------------|--------------------------------------------------------|
+| v1.0    | working adult                       | track my outflows by adding new entries                      | where my money is going                                |
+| v1.0    | working adult                       | track my inflows by adding new entries                       | know how much I am earning                             |
+| v1.0    | diligent user                       | view my inflow and outflow                                   | know where my money is going                           |
+| v1.0    | careless user                       | delete my entries                                            | recover after making wrong entries                     |
+| v1.0    | returning user                      | continue from my previous data                               | re-enter all the entries                               |
+| v2.0    | new user                            | see usage instructions                                       | refer to them when I forget how to use the application |
+| v2.0    | user who uses multiple applications | access the data I saved in RainyDay in my other applications | avoid having to re-enter the same data                 |
+| v2.0    | lazy user                           | use Shortcuts                                                | avoid having to type in lengthy commands               |
 
 ## Non-Functional Requirements
 
