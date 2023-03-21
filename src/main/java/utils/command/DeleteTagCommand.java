@@ -20,12 +20,11 @@ public class DeleteTagCommand extends Command {
     }
 
     /**
-     * Remoove the tagName tag from the tagList and all the cards that currently have the tagName tag.
+     * Remove the tagName tag from the tagList and all the cards that currently have the tagName tag.
      *
      * @param cardList The cardList from which to look for the cards with tagName tag.
      * @param tagList  The tagList from which to delete the tagName tag.
      * @param ui       The userInterface to print the success of removal of the tag from the cards.
-     * @throws InkaException
      */
     private void removeTagFromCards(CardList cardList, TagList tagList, UserInterface ui) throws InkaException {
         Tag tag = tagList.findTagFromName(tagName);
@@ -37,7 +36,6 @@ public class DeleteTagCommand extends Command {
         //for each card whose uuid is listed under the tag, remove the tag uuid from that card
         for (CardUUID cardUUID : tag.getCardsUUID()) {
             Card affectedCard = cardList.findCardFromUUID(cardUUID);
-            assert affectedCard != null;
             affectedCard.removeTag(tagUUID);
             ui.printRemoveTagFromCard(affectedCard.getUuid(), tagUUID);
         }

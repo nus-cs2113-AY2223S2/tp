@@ -20,7 +20,7 @@ public class UserInterface {
     }
 
     public String getUserInput() {
-        return scanner.nextLine();
+        return scanner.nextLine().trim();
     }
 
     public void printDivider() {
@@ -38,6 +38,12 @@ public class UserInterface {
         printDivider();
         System.out.println(StringArt.BYE.art);
         System.out.println("\n Bye! All the best for your exams man!!!");
+        printDivider();
+    }
+
+    public void printHelp(String helpMessage) {
+        printDivider();
+        System.out.print(helpMessage);
         printDivider();
     }
 
@@ -67,14 +73,6 @@ public class UserInterface {
 
     public void printLoadSuccess() {
         System.out.println("Deck loaded!");
-    }
-
-    public void printLoadFailure() {
-        System.out.println("Failed to load deck :(");
-    }
-
-    public void printSaveFailure() {
-        System.out.println("Failed to save deck :(");
     }
 
     public void printCard(CardList cardlist, int id) {

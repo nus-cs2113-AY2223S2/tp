@@ -28,7 +28,6 @@ public class ListCardsUnderTagCommand extends Command {
      */
     private CardList findCardsUnderTag(CardList cardList, TagList tagList) throws InkaException {
         Tag foundTag = tagList.findTagFromName(tagName);
-
         if (foundTag == null) {
             throw new TagNotFoundException();
         }
