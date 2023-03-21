@@ -14,9 +14,14 @@
 
 {Describe the target user profile}
 
+EveNtus targets career fair event managers who are looking to better manage the companies attending the career fair, as well as managing the venue and crowd size. 
+
 ### Value proposition
 
 {Describe the value proposition: what problem does it solve?}
+
+EveNtUS is a desktop application designed for career fair managers to manage career fairs, with a focus on efficient operation through the Command-Line Interface(CLI).
+
 
 ## User Stories
 
@@ -38,4 +43,5 @@
 ## Instructions for manual testing
 
 To load sample data, run "load samples" to load some companies into company list. 
+
 Run "purge" to remove all company list data.
