@@ -16,7 +16,7 @@ Done! Added: in for ang bao, +$1337.00
 Done! Added: out for noodles, -$5.00
 Done! Added: out for food, -$20.00
 +-----+------------------------------+------------+----------------+----------+
-|Here is your full financial report!                               |          |
+|Here is your full financial report!                                          |
 +-----+------------------------------+------------+----------------+----------+
 |Index|Name                          |Amount      |Category        |Date      |
 |00001|ang bao                       | +$1337.00  |Money           |no date   |
