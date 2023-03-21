@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-    public static ArrayList <Symptom> symptoms = new ArrayList<>();
+    public static ArrayList<Symptom> symptoms = new ArrayList<>();
 
     /**
      * Shows the welcome menu.
@@ -31,6 +31,7 @@ public class Menu {
 
     /**
      * Registers a new user.
+     *
      * @author Geeeetyx, JeraldChen
      */
     public static void register() {
@@ -70,6 +71,7 @@ public class Menu {
 
     /**
      * Logs in a user.
+     *
      * @author Geeeetyx, JeraldChen
      */
     public static void login() {
@@ -100,6 +102,7 @@ public class Menu {
 
     /**
      * Shows the account menu
+     *
      * @author Thunderdragon221
      */
     public static void showAccountMenu() {
@@ -140,9 +143,10 @@ public class Menu {
 
     /**
      * Checks if symptom is valid, and adds it to the list of symptoms.
-     * @author tanyizhe
+     *
      * @param scanner  takes in user input
      * @param symptoms list of symptoms
+     * @author tanyizhe
      */
     private static void addSymptomToSymptomList(Scanner scanner, ArrayList<Symptom> symptoms) {
         String symptomChoiceAlphabets;
@@ -153,86 +157,104 @@ public class Menu {
         parseSymptomInput(symptoms, symptomChoices);
     }
 
+
+    /**
+     * Adds the users' inputted symptom into the symptoms array.
+     *
+     * @param symptom  The symptom indicated by the user. Defined and passed from the case statement.
+     * @param symptoms List of symptoms
+     * @author Brennanzuz
+     */
+    private static void addSymptoms(Symptom symptom, ArrayList<Symptom> symptoms) {
+        if (!symptoms.contains(symptom)) {
+            assert symptom != null : symptom + " should not be null";
+            symptoms.add(symptom);
+        } else {
+            System.out.println("You have already entered " + symptom + "!");
+        }
+    }
+
     /**
      * Parses user's input to a Symptom enumerator.
-     * @author Jeraldchen
-     * @param symptoms      an ArrayList of symptoms.
+     *
+     * @param symptoms       an ArrayList of symptoms.
      * @param symptomChoices an array of strings containing the user's input.
+     * @author Jeraldchen
      */
-    private static void parseSymptomInput(ArrayList<Symptom> symptoms , String[] symptomChoices) {
+    private static void parseSymptomInput(ArrayList<Symptom> symptoms, String[] symptomChoices) {
         for (String symptomChoice : symptomChoices) {
             switch (symptomChoice) {
             case "A":
-                if (!symptoms.contains(Symptom.FEVER)) {
-                    assert Symptom.FEVER != null : "Fever should not be null";
-                    symptoms.add(Symptom.FEVER);
-                } else {
-                    System.out.println("You have already entered this symptom!");
-                }
+                addSymptoms(Symptom.FEVER, symptoms);
                 break;
             case "B":
-                if (!symptoms.contains(Symptom.DRY_COUGH)) {
-                    assert Symptom.DRY_COUGH != null : "Dry cough should not be null";
-                    symptoms.add(Symptom.DRY_COUGH);
-                } else {
-                    System.out.println("You have already entered this symptom!");
-                }
+                addSymptoms(Symptom.DRY_COUGH, symptoms);
                 break;
             case "C":
-                if (!symptoms.contains(Symptom.LOSS_OF_TASTE_OR_SMELL)) {
-                    assert Symptom.LOSS_OF_TASTE_OR_SMELL != null : "Loss of taste or smell should not be null";
-                    symptoms.add(Symptom.LOSS_OF_TASTE_OR_SMELL);
-                } else {
-                    System.out.println("You have already entered this symptom!");
-                }
+                addSymptoms(Symptom.COUGH_WITH_PHLEGM, symptoms);
                 break;
             case "D":
-                if (!symptoms.contains(Symptom.RUNNY_NOSE)) {
-                    assert Symptom.RUNNY_NOSE != null : "Runny Nose should not be null";
-                    symptoms.add(Symptom.RUNNY_NOSE);
-                } else {
-                    System.out.println("You have already entered this symptom!");
-                }
+                addSymptoms(Symptom.THROAT_IRRITATION, symptoms);
                 break;
             case "E":
-                if (!symptoms.contains(Symptom.HEAD_ACHE)) {
-                    assert Symptom.HEAD_ACHE != null : "Aching muscles should not be null";
-                    symptoms.add(Symptom.HEAD_ACHE);
-                } else {
-                    System.out.println("You have already entered this symptom!");
-                }
+                addSymptoms(Symptom.LOSS_OF_TASTE_OR_SMELL, symptoms);
                 break;
             case "F":
-                if (!symptoms.contains(Symptom.CHILLS)) {
-                    assert Symptom.CHILLS != null : "Sore throat should not be null";
-                    symptoms.add(Symptom.CHILLS);
-                } else {
-                    System.out.println("You have already entered this symptom!");
-                }
+                addSymptoms(Symptom.RUNNY_NOSE, symptoms);
                 break;
             case "G":
-                if (!symptoms.contains(Symptom.FATIGUE)) {
-                    assert Symptom.FATIGUE != null : "Sore throat should not be null";
-                    symptoms.add(Symptom.FATIGUE);
-                } else {
-                    System.out.println("You have already entered this symptom!");
-                }
+                addSymptoms(Symptom.HEAD_ACHE, symptoms);
                 break;
             case "H":
-                if (!symptoms.contains(Symptom.SNEEZING)) {
-                    assert Symptom.SNEEZING != null : "Sore throat should not be null";
-                    symptoms.add(Symptom.SNEEZING);
-                } else {
-                    System.out.println("You have already entered this symptom!");
-                }
+                addSymptoms(Symptom.CHILLS, symptoms);
                 break;
             case "I":
-                if (!symptoms.contains(Symptom.BLOCKED_NOSE)) {
-                    assert Symptom.BLOCKED_NOSE != null : "Sore throat should not be null";
-                    symptoms.add(Symptom.BLOCKED_NOSE);
-                } else {
-                    System.out.println("You have already entered this symptom!");
-                }
+                addSymptoms(Symptom.FATIGUE, symptoms);
+                break;
+            case "J":
+                addSymptoms(Symptom.SNEEZING, symptoms);
+                break;
+            case "K":
+                addSymptoms(Symptom.BLOCKED_NOSE, symptoms);
+                break;
+            case "L":
+                addSymptoms(Symptom.ITCHY_EYE, symptoms);
+                break;
+            case "M":
+                addSymptoms(Symptom.RED_EYES, symptoms);
+                break;
+            case "N":
+                addSymptoms(Symptom.DIARRHOEA, symptoms);
+                break;
+            case "O":
+                addSymptoms(Symptom.STOMACH_ACHE, symptoms);
+                break;
+            case "P":
+                addSymptoms(Symptom.WET_STOOL, symptoms);
+                break;
+            case "Q":
+                addSymptoms(Symptom.HARD_LUMPY_STOOL, symptoms);
+                break;
+            case "R":
+                addSymptoms(Symptom.NAUSEA, symptoms);
+                break;
+            case "S":
+                addSymptoms(Symptom.VOMITING, symptoms);
+                break;
+            case "T":
+                addSymptoms(Symptom.SLEEPLESSNESS, symptoms);
+                break;
+            case "U":
+                addSymptoms(Symptom.BLURRED_VISION, symptoms);
+                break;
+            case "V":
+                addSymptoms(Symptom.SENSITIVITY_TO_LIGHT_AND_SOUND, symptoms);
+                break;
+            case "W":
+                addSymptoms(Symptom.MUSCLE_ACHE, symptoms);
+                break;
+            case "X":
+                addSymptoms(Symptom.BACK_ACHE, symptoms);
                 break;
             default:
                 System.out.println("Invalid symptom choice!");
@@ -257,23 +279,41 @@ public class Menu {
             System.out.println(symptom);
         }
          */
+        //TODO: Put all these in a dictionary with the symptom's diplay name
+        // hashed to the actual Symptom.
         System.out.println("Here is the list of possible symptoms:");
         System.out.println("a. Fever");
         System.out.println("b. Dry Cough");
-        System.out.println("c. Red Eyes");
-        System.out.println("d. Runny nose");
-        System.out.println("e. Headache");
-        System.out.println("f. Chills");
-        System.out.println("g. Fatigue");
-        System.out.println("h. Sneezing");
-        System.out.println("i. Blocked Nose");
+        System.out.println("c. Cough with Phlegm");
+        System.out.println("d. Throat Irritation");
+        System.out.println("e. Loss of Taste or Smell");
+        System.out.println("f. Runny nose");
+        System.out.println("g. Headache");
+        System.out.println("h. Chills");
+        System.out.println("i. Fatigue");
+        System.out.println("j. Sneezing");
+        System.out.println("k. Blocked Nose");
+        System.out.println("l. Itchy eyes");
+        System.out.println("m. Red eyes");
+        System.out.println("n. Diarrhoea");
+        System.out.println("o. Stomachache");
+        System.out.println("p. Wet Stools");
+        System.out.println("q. Hard or Lumpy Stools");
+        System.out.println("r. Nausea");
+        System.out.println("s. Vomiting");
+        System.out.println("t. Sleeplessness");
+        System.out.println("u. Blurred Vision");
+        System.out.println("v. Sensitivity to Light and Sound");
+        System.out.println("w. Muscle ache");
+        System.out.println("x. Backache");
         System.out.println("\nPlease enter a symptom.");
     }
 
     /**
      * Displays the possible illnesses that the user may have based on the symptoms he/she has entered.
-     * @author tanyizhe
+     *
      * @param symptoms ArrayList of symptoms the user has entered.
+     * @author tanyizhe
      */
     public static void displayPossibleIllness(ArrayList<Symptom> symptoms) {
         ArrayList<IllnessMatch> possibleIllnesses = Diagnosis.getPossibleIllnesses(symptoms);
