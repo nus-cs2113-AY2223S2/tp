@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author BenjaminPoh
 public class Ui {
     private static final String WELCOME_MESSAGE = "" +
             "Hello from rainyDay!\n" +
@@ -26,6 +27,7 @@ public class Ui {
     private final Scanner in;
     private final PrintStream out;
 
+    //@@author lil1n
     public Ui() {
         this(System.in, System.out);
     }
@@ -35,6 +37,7 @@ public class Ui {
         this.out = out;
     }
 
+    //@@author BenjaminPoh
     public void printLogo() {
         System.out.println(WELCOME_MESSAGE);
     }
@@ -71,6 +74,7 @@ public class Ui {
         System.out.println("Bye " + username);
     }
 
+    //@@author lil1n
     public void showToUser(String message) {
         out.println(message);
     }

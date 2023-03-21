@@ -13,26 +13,36 @@ import seedu.rainyDay.command.InvalidCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
-
-    private static String direction;
-    private static String description;
-    private static String category;
-    private static String filterFlag;
-    private static double amount = -1.0;
-    private static String field;
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
-    public Command parseUserInput(String userInput) throws RainyDayException {
+    private String direction;
+
+    private String description;
+
+    private String category;
+
+    private String filterFlag;
+
+    private double amount = -1.0;
+
+    private String field;
+
+    private LocalDate date = null;
+
+    public Command parseUserInput(String userInput) {
         assert userInput != null : "Failed to read user input!";
         String[] action = userInput.split("\\s+", 2);
         if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
             logger.info("add command executing");
-            return addStatement(userInput);
+            return addStatement(action[1].trim());
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
             logger.info("delete command executing");
             return deleteStatement(userInput); //todo: fix this to reduce calls of split.();
@@ -50,94 +60,102 @@ public class Parser {
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_EXPORT)) {
             logger.info("export command executing");
             return generateExport();
-        } else { // todo add filter
+        } else {
             logger.warning("unrecognised input from user!");
-            return new InvalidCommand();
+            return new InvalidCommand(ErrorMessage.UNRECOGNIZED_INPUT.toString());
         }
     }
 
-    private Command addStatement(String userInput) throws IllegalArgumentException {
+    private Command addStatement(String addInput) { // example: add -<in/out> <description> $value -c -d
         try {
-            if (userInput.contains("-d") && userInput.contains("-c")) {
-                parseDescriptionAndCategory(userInput);
-            } else if (userInput.contains("-d")) {
-                parseDescriptionOnly(userInput);
-            } else if (userInput.contains("-c")) {
-                parseCategoryOnly(userInput);
-            } else {
-                parseOnly(userInput);
+            this.category = "miscellaneous";
+            String remainingInformation = returnRemainingInformation(addInput);
+            logger.info("obtained mandatory information");
+            if (remainingInformation.trim().isEmpty()) {
+                logger.info("returning new AddCommand object");
+                return new AddCommand(description.trim(), direction, amount, category, date);
             }
-            return new AddCommand(description, direction, amount, category);
+            if (!addInput.contains("-c ") && !addInput.contains("-date ")) {
+                logger.info("returning new InvalidCommand object");
+                return new InvalidCommand(ErrorMessage.WRONG_ADD_FORMAT.toString());
+            }
+            logger.info("checking for presence of -c");
+            if (addInput.contains("-c ")) {
+                remainingInformation = setCategory(remainingInformation);
+            }
+            logger.info("checking for presence of -date");
+            if (addInput.contains("-date ")) {
+                setDate(remainingInformation);
+            }
+            logger.info("returning new AddCommand object");
+            return new AddCommand(description.trim(), direction, amount, category, date);
         } catch (Exception e) {
-            return new InvalidCommand();
-            //logger.warning("add command given by user in the wrong format");
-            //throw new IllegalArgumentException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+            logger.warning("add command given by user in the wrong format");
+            return new InvalidCommand(ErrorMessage.WRONG_ADD_FORMAT.toString());
         }
     }
 
-    private void parseDescriptionAndCategory(String userInput) throws IllegalArgumentException {
-        if (userInput.contains("-d") && userInput.contains("-c")) {
-            Pattern pattern = Pattern.compile("-(in|out)\\s+(?:-d\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+" +
-                    "-c\\s+(\\S+(?:\\s+\\S+)*)\\s+\\$([\\d.]+)");
-            Matcher matcher = pattern.matcher(userInput);
-            Pattern pattern2 = Pattern.compile("-(in|out)\\s+(?:-c\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+" +
-                    "-d\\s+(\\S+(?:\\s+\\S+)*)\\s+\\$([\\d.]+)");
-            Matcher matcher2 = pattern2.matcher(userInput);
-            if (matcher.find()) {
-                direction = matcher.group(1);
-                description = matcher.group(2);
-                category = matcher.group(3);
-                amount = Double.parseDouble(matcher.group(4));
-            } else if (matcher2.find()) {
-                direction = matcher2.group(1);
-                category = matcher2.group(2);
-                description = matcher2.group(3);
-                amount = Double.parseDouble(matcher2.group(4));
-            } else {
-                logger.warning("add command given by user in the wrong format");
-                throw new IllegalArgumentException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+    private String returnRemainingInformation(String input) throws RainyDayException {
+        try {
+            Pattern pattern = Pattern.compile("-(in|out)\\s+(.+)\\$([\\d.]+)");
+            Matcher matcher = pattern.matcher(input);
+            if (matcher.matches()) {
+                this.direction = matcher.group(1);
+                this.description = matcher.group(2);
+                this.amount = Double.parseDouble(matcher.group(3));
+                logger.info("obtaining mandatory information");
+                return "";
             }
+            Pattern newPattern = Pattern.compile("-(in|out)\\s+(.+)\\$([\\d.]+)\\s+(.*)");
+            Matcher newMatcher = newPattern.matcher(input);
+            if (newMatcher.matches()) {
+                this.direction = newMatcher.group(1);
+                this.description = newMatcher.group(2);
+                this.amount = Double.parseDouble(newMatcher.group(3));
+                logger.info("obtaining mandatory information");
+                return newMatcher.group(4);
+            }
+        } catch (Exception e) {
+            logger.warning("add command given by user in the wrong format");
+            throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
         }
+        logger.warning("add command given by user in the wrong format");
+        throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
     }
 
-    private void parseDescriptionOnly(String userInput) throws IllegalArgumentException {
-        Pattern pattern = Pattern.compile("-(in|out)\\s+(?:-d\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+\\$([\\d.]+)");
-        Matcher matcher = pattern.matcher(userInput);
-        if (matcher.find()) {
-            direction = matcher.group(1);
-            description = matcher.group(2);
-            amount = Double.parseDouble(matcher.group(3));
-            category = "miscellaneous";
+    private String setCategory(String input) throws RainyDayException {
+        Pattern pattern = Pattern.compile("-c\\s+(\\S+)");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.matches()) {
+            this.category = matcher.group(1);
+            logger.info("obtaining category");
+            return "";
+        }
+        Pattern newPattern = Pattern.compile("-c\\s+(\\S+)\\s+(.*)");
+        Matcher newMatcher = newPattern.matcher(input);
+        if (newMatcher.matches()) {
+            this.category = newMatcher.group(1);
+            logger.info("obtaining category");
+            return newMatcher.group(2);
+        }
+        logger.warning("add command given by user in the wrong format");
+        throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+    }
+
+    private void setDate(String input) throws RainyDayException {
+        Pattern pattern = Pattern.compile("-date\\s+(\\d{2}/\\d{2}/\\d{4})");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.matches()) {
+            try {
+                this.date = LocalDate.parse(matcher.group(1).trim(), DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+                logger.info("obtaining date");
+            } catch (DateTimeParseException e) {
+                logger.warning("add command given by user in the wrong format");
+                throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+            }
         } else {
             logger.warning("add command given by user in the wrong format");
-            throw new IllegalArgumentException(ErrorMessage.WRONG_ADD_FORMAT.toString());
-        }
-    }
-
-    private void parseCategoryOnly(String userInput) throws IllegalArgumentException {
-        Pattern pattern = Pattern.compile("-(in|out)\\s+(?:-c\\s+)?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s+\\$([\\d.]+)");
-        Matcher matcher = pattern.matcher(userInput);
-        if (matcher.find()) {
-            direction = matcher.group(1);
-            description = "miscellaneous";
-            amount = Double.parseDouble(matcher.group(3));
-            category = matcher.group(2);
-        } else {
-            logger.warning("add command given by user in the wrong format");
-            throw new IllegalArgumentException(ErrorMessage.WRONG_ADD_FORMAT.toString());
-        }
-    }
-
-    private void parseOnly(String userInput) throws IllegalArgumentException {
-        Pattern pattern = Pattern.compile("-(in|out)\\s+\\$([\\d.]+)");
-        Matcher matcher = pattern.matcher(userInput);
-        if (matcher.find()) {
-            direction = matcher.group(1);
-            description = "miscellaneous";
-            amount = Double.parseDouble(matcher.group(2));
-            category = "miscellaneous";
-        } else {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+            throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
         }
     }
 
@@ -154,9 +172,8 @@ public class Parser {
             }
             return new DeleteCommand(index);
         } catch (Exception e) {
-            return new InvalidCommand();
-            //logger.warning("delete index provided incorrectly");
-            //throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
+            logger.warning("delete index provided incorrectly");
+            return new InvalidCommand(ErrorMessage.WRONG_DELETE_INDEX.toString());
         }
     }
 
@@ -168,9 +185,11 @@ public class Parser {
         return new HelpCommand();
     }
 
-    private static Command filterStatement(String input) {
+    private Command filterStatement(String input) {
         try {
-            if (input.contains("-d")) {
+            if (input.contains("-date")) {
+                parseFilterByDate(input);
+            } else if (input.contains("-d")) {
                 parseFilterByDescription(input);
             } else if (input.contains("-c")) {
                 parseFilterByCategory(input);
@@ -181,61 +200,73 @@ public class Parser {
             } else {
                 parseDefaultFilterByDescription(input);
             }
-            return new FilterCommand(field, filterFlag);
+            return new FilterCommand(this.field, this.filterFlag);
+
         } catch (Exception e) {
-            return new InvalidCommand();
-            //logger.warning("filter command given by user in the wrong format");
-            //throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+            logger.warning("filter command given by user in the wrong format");
+            return new InvalidCommand(ErrorMessage.WRONG_FILTER_FORMAT.toString());
         }
     }
 
-    private static void parseDefaultFilterByDescription(String input) {
-        field = input.trim();
-        filterFlag = "-d";
+    private void parseDefaultFilterByDescription(String input) {
+        this.field = input.trim();
+        this.filterFlag = "-d";
     }
 
-    private static void parseFilterByDescription(String input) {
+    private void parseFilterByDescription(String input) {
         Pattern pattern = Pattern.compile("^(-d)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
-            filterFlag = matcher.group(1);
-            field = matcher.group(2);
+            this.filterFlag = matcher.group(1);
+            this.field = matcher.group(2);
         } else {
             logger.warning("filter command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
         }
     }
 
-    private static void parseFilterByCategory(String input) {
+    private void parseFilterByCategory(String input) {
         Pattern pattern = Pattern.compile("^(-c)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
-            filterFlag = matcher.group(1);
-            field = matcher.group(2);
+            this.filterFlag = matcher.group(1);
+            this.field = matcher.group(2);
         } else {
             logger.warning("filter command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
         }
     }
 
-    private static void parseFilterByFlowDirection(String input) {
+    private void parseFilterByFlowDirection(String input) {
         Pattern pattern = Pattern.compile("^(-in|-out)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
-            filterFlag = matcher.group(1);
-            field = "none";
+            this.filterFlag = matcher.group(1);
+            this.field = "none";
         } else {
             logger.warning("filter command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
         }
     }
 
-    private static void parseEditByValue(String input) {
+    private void parseFilterByDate(String input) {
+        Pattern pattern = Pattern.compile("-date\\s+(\\d{2}/\\d{2}/\\d{4})");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.matches()) {
+            this.filterFlag = "-date";
+            this.field = matcher.group(1);
+        } else {
+            logger.warning("filter command given by user in the wrong format");
+            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
+    }
+
+    private void parseEditByValue(String input) {
         Pattern pattern = Pattern.compile("^(-v)\\s+\\$([0-9]+(?:\\.[0-9]{1,2})?)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
-            filterFlag = matcher.group(1);
-            field = matcher.group(2);
+            this.filterFlag = matcher.group(1);
+            this.field = matcher.group(2);
         } else {
             logger.warning("filter command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
@@ -256,17 +287,23 @@ public class Parser {
             }
 
             if (tokens[2].contains("add")) {
-                if (tokens[2].contains("-d") && tokens[2].contains("-c")) {
-                    parseDescriptionAndCategory(tokens[2]);
-                } else if (tokens[2].contains("-d")) {
-                    parseDescriptionOnly(tokens[2]);
-                } else if (tokens[2].contains("-c")) {
-                    parseCategoryOnly(tokens[2]);
-                } else {
-                    parseOnly(tokens[2]);
+                tokens[2] = tokens[2].replaceFirst("add ", "");
+                String remainingInformation = returnRemainingInformation(tokens[2]);
+                if (remainingInformation.trim().isEmpty()) {
+                    return new EditCommand(index, description, direction, amount, category);
+                }
+                if (!remainingInformation.contains("-c ") && !remainingInformation.contains("-date ")) {
+                    logger.info("returning new InvalidCommand object");
+                    return new InvalidCommand(ErrorMessage.WRONG_ADD_FORMAT.toString());
+                }
+                if (remainingInformation.contains("-c ")) {
+                    remainingInformation = setCategory(remainingInformation);
+                }
+                if (remainingInformation.contains("-date ")) {
+                    setDate(remainingInformation);
                 }
                 return new EditCommand(index, description, direction, amount, category);
-            } else if (tokens[2].contains("-d")) {
+            } else if (tokens[2].contains("-d")) { // todo add -date
                 parseFilterByDescription(tokens[2]);
                 return new EditCommand(index, "-d", field);
             } else if (tokens[2].contains("-c")) {
@@ -280,12 +317,11 @@ public class Parser {
             } else if (tokens[2].equals("-in")) {
                 return new EditCommand(index, "-in");
             } else {
-                return new InvalidCommand();
+                return new InvalidCommand(ErrorMessage.WRONG_INPUT_FORMAT.toString());
             }
         } catch (Exception e) {
-            return new InvalidCommand();
-            //logger.warning("edit index provided incorrectly");
-            //throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
+            logger.warning("edit index provided incorrectly");
+            return new InvalidCommand(ErrorMessage.WRONG_INPUT_FORMAT.toString()); // todo update
         }
     }
 

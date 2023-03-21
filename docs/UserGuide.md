@@ -5,25 +5,37 @@
 rainyDay is a desktop application for managing your finances. With a command line interface, you can keep track of your
 financial inflows and outflows and view them with a single command.
 
-<!-- TOC -->
+## Acknowledgement
 
+Thank you for using rainyDay. {todo}
+
+## How to use the user guide
+
+{todo patterns that we will be using, what does it mean, e.g. "", ` `, CAPS... etc}
+
+<!-- TOC -->
 * [User Guide](#user-guide)
-    * [Introduction](#introduction)
-    * [Quick Start](#quick-start)
-    * [Features](#features)
-        * [Adding a transaction](#adding-a-transaction)
-        * [Deleting a transaction](#deleting-a-transaction)
-        * [Viewing the financial report](#viewing-the-financial-report)
-        * [Viewing help](#viewing-help)
-        * [Saving the data](#saving-the-data)
-        * [Loading saved data](#loading-saved-data)
-        * [Exporting to CSV](#exporting-to-csv)
-        * [Exiting the application](#exiting-the-application)
-    * [FAQ](#faq)
-    * [Command Summary](#command-summary)
-    * [Glossary](#glossary)
-
+  * [Introduction](#introduction)
+  * [Acknowledgement](#acknowledgement)
+  * [How to use the user guide](#how-to-use-the-user-guide)
+  * [Quick Start](#quick-start)
+  * [Features](#features)
+    * [Adding a transaction](#adding-a-transaction)
+    * [Deleting a transaction](#deleting-a-transaction)
+    * [Viewing the financial report](#viewing-the-financial-report)
+    * [Viewing help](#viewing-help)
+    * [Filter statements](#filter-statements)
+    * [Saving the data](#saving-the-data)
+    * [Loading saved data](#loading-saved-data)
+    * [Exporting to CSV](#exporting-to-csv)
+    * [Exiting the application](#exiting-the-application)
+  * [FAQ](#faq)
+  * [Command Summary](#command-summary)
+  * [Glossary](#glossary)
 <!-- TOC -->
+
+
+
 
 ## Quick Start
 
@@ -41,9 +53,10 @@ financial inflows and outflows and view them with a single command.
     3. Go to the directory of choice
     4. Right-click in the file window
     5. Select paste
-4. Right-click on the directory with "rainyDay.jar" and select "open in terminal"
-   ![](\images\right-click-to-open-terminal-red-arrow.png)
-    - Screenshot of file directory containing rainyDay.jar, after performing a right click on an empty space in the file
+4. Right-click on the directory with "rainyDay.jar" and select "open in terminal" <br> //todo learn how to add images
+   <img alt="Screenshot toolbar with &quot;open in terminal&quot;" height="629" src="\images\right-click-to-open-terminal-red-arrow.png" title="Open in terminal" width="578"/>
+    - Screenshot of file directory containing "rainyDay.jar", after performing a right click on an empty space in the
+      file
       directory
 5. Type `java -jar rainyDay.jar` and press Enter on your keyboard to start the application
 
@@ -53,12 +66,13 @@ financial inflows and outflows and view them with a single command.
 
 Adds a new transaction to the financial report.
 
-Format: `add -DIRECTION TRANSACTION_NAME $AMOUNT`
+Format: `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY -date DD/MM/YYYY`
 
 * The `DIRECTION` to be `in` signifying an inflow type of transaction, or `out` signifying an outflow type of
   transaction
 * The `TRANSACTION_NAME` can be any keyboard input.
 * The `AMOUNT` needs to be a number.
+* {todo}
 
 Example of usage:
 
@@ -91,6 +105,14 @@ Format: `view`
 
 {todo}
 
+### Filter statements
+
+filter DESCRIPTION
+filter -d DESCRIPTION
+filter -c CATEGORY
+filter -date DD/MM/YYYY
+{todo}
+
 ### Saving the data
 
 {todo}
@@ -110,6 +132,7 @@ Format: `export`
 
 {todo: tell user where they can locate saved file}
 
+
 ### Exiting the application
 
 {todo}
@@ -120,7 +143,7 @@ Format: `export`
 
 **A**: Copy the txt file named "rainyDay" that is in the same directory as rainyDay.jar to the new device and location
 that
-rainyDay.jar is going to be stored in
+"rainyDay.jar" is going to be stored in
 
 ## Command Summary
 
@@ -130,9 +153,18 @@ rainyDay.jar is going to be stored in
 | Delete | `delete` (index) <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                               |
 | View   | `view`                                                                                                               |
 | Help   | `help`                                                                                                               |
+| filter | `filter` {todo}                                                                                                      |
 | Exit   | `bye`                                                                                                                |
 
 ## Glossary
+
+Filter
+
+- {to add definition of financial report in our scope of application}
+
+Financial Statement
+
+- {to add definition of financial report in our scope of application}
 
 Financial Report
 
