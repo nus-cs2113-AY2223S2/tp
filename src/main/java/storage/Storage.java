@@ -25,9 +25,9 @@ public class Storage {
         this.expenseList = expenseList;
     }
 
-//    public Storage(Account account) {
-//        this.account = account;
-//    }
+    public Storage(Account account) {
+        this.account = account;
+    }
 
     public Account getAccount() {
         return account;
