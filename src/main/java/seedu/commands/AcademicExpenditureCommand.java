@@ -22,7 +22,7 @@ public class AcademicExpenditureCommand extends Command {
                 academicExpenditureValue,
                 academicExpenditureDate);
         expenditures.addExpenditure(academicExpenditure);
-        return new CommandResult(String.format("Added %s expenditure %s",
+        return new CommandResult(String.format("Added %s expenditure: %s",
                 COMMAND_WORD, academicExpenditure.toString()));
     }
 }

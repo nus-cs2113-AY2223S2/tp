@@ -26,6 +26,6 @@ public class LendExpenditureCommand extends Command {
         LendExpenditure lendExpenditure = new LendExpenditure(lendExpenditureDescription,
                 lendExpenditureName, lendExpenditureValue, lendExpenditureDate, lendDeadline);
         expenditures.addExpenditure(lendExpenditure);
-        return new CommandResult(String.format("Added %s expenditure %s", COMMAND_WORD, lendExpenditure.toString()));
+        return new CommandResult(String.format("Added %s expenditure: %s", COMMAND_WORD, lendExpenditure.toString()));
     }
 }

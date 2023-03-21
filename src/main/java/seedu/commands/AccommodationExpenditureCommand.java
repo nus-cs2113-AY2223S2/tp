@@ -23,7 +23,7 @@ public class AccommodationExpenditureCommand extends Command{
                 accommodationExpenditureValue,
                 accommodationExpenditureDate);
         expenditures.addExpenditure(accommodationExpenditure);
-        return new CommandResult(String.format("Added %s expenditure %s",
+        return new CommandResult(String.format("Added %s expenditure: %s",
                 COMMAND_WORD, accommodationExpenditure.toString()));
     }
 }

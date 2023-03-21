@@ -15,7 +15,7 @@ public class AccommodationExpenditureCommandTest {
                 "sheares hall",
                 2300.7,
                 LocalDate.parse("2021-08-01"));
-        assertEquals("Added accommodation expenditure " +
+        assertEquals("Added accommodation expenditure: " +
                         "[Accommodation] || [ ] || Date: 2021-08-01 || Value: 2300.7 || Description: sheares hall",
                 testAccommodationExpenditureCommand.execute(testExpenditures).getCommandResult());
         assertEquals("1. [Accommodation] || [ ] || Date: 2021-08-01 || Value: 2300.7 || " +
@@ -32,7 +32,7 @@ public class AccommodationExpenditureCommandTest {
                 "sheares hall",
                 2300.7,
                 LocalDate.parse("2021-08-01"));
-        assertEquals("Added accommodation expenditure " +
+        assertEquals("Added accommodation expenditure: " +
                         "[Accommodation] || [ ] || Date: 2021-08-01 || Value: 2300.7 || Description: sheares hall",
                 testAccommodationExpenditureCommand.execute(testExpenditures).getCommandResult());
         assertEquals("1. [Academic] || Date: 2021-08-01 || Value: 1500.0 || Description: laptop\n" +

@@ -17,7 +17,7 @@ class OtherExpenditureCommandTest {
                 "special floor wipes",
                 2,
                 LocalDate.parse("2023-03-21"));
-        assertEquals("Added other expenditure [Other] || Date: 2023-03-21 || Value: 2.0 || " +
+        assertEquals("Added other expenditure: [Other] || Date: 2023-03-21 || Value: 2.0 || " +
                         "Description: special floor wipes",
                 testOtherExpenditureCommand.execute(testExpenditures).getCommandResult());
         assertEquals("1. [Other] || Date: 2023-03-21 || Value: 2.0 || Description: special floor wipes",
@@ -33,7 +33,7 @@ class OtherExpenditureCommandTest {
                 "special floor wipes",
                 2,
                 LocalDate.parse("2023-03-21"));
-        assertEquals("Added other expenditure [Other] || Date: 2023-03-21 || Value: 2.0 || " +
+        assertEquals("Added other expenditure: [Other] || Date: 2023-03-21 || Value: 2.0 || " +
                         "Description: special floor wipes",
                 testOtherExpenditureCommand.execute(testExpenditures).getCommandResult());
         assertEquals("1. [Academic] || Date: 2021-08-01 || Value: 1500.0 || Description: laptop\n" +

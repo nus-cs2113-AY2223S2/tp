@@ -23,7 +23,7 @@ public class TransportExpenditureCommand extends Command{
                 transportExpenditureValue,
                 transportExpenditureDate);
         expenditures.addExpenditure(transportExpenditure);
-        return new CommandResult(String.format("Added %s expenditure %s",
+        return new CommandResult(String.format("Added %s expenditure: %s",
                 COMMAND_WORD, transportExpenditure.toString()));
     }
 }

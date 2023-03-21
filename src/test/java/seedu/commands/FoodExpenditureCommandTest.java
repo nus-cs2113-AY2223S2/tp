@@ -15,7 +15,7 @@ class FoodExpenditureCommandTest {
                 "chicken rice",
                 4.5,
                 LocalDate.parse("2023-03-21"));
-        assertEquals("Added food expenditure [Food] || Date: 2023-03-21 || Value: 4.5 || " +
+        assertEquals("Added food expenditure: [Food] || Date: 2023-03-21 || Value: 4.5 || " +
                         "Description: chicken rice",
                 testFoodExpenditureCommand.execute(testExpenditures).getCommandResult());
         assertEquals("1. [Food] || Date: 2023-03-21 || Value: 4.5 || Description: chicken rice",
@@ -31,7 +31,7 @@ class FoodExpenditureCommandTest {
                 "chicken rice",
                 4.5,
                 LocalDate.parse("2023-03-21"));
-        assertEquals("Added food expenditure [Food] || Date: 2023-03-21 || Value: 4.5 || " +
+        assertEquals("Added food expenditure: [Food] || Date: 2023-03-21 || Value: 4.5 || " +
                         "Description: chicken rice",
                 testFoodExpenditureCommand.execute(testExpenditures).getCommandResult());
         assertEquals("1. [Academic] || Date: 2021-08-01 || Value: 1500.0 || Description: laptop\n" +

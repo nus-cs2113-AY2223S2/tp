@@ -1,22 +1,7 @@
 package seedu.parser;
 
+import seedu.commands.*;
 import seedu.expenditure.ExpenditureList;
-import seedu.commands.Command;
-import seedu.commands.EditCommand;
-import seedu.commands.HelpCommand;
-import seedu.commands.DeleteCommand;
-import seedu.commands.ExitCommand;
-import seedu.commands.ViewExpenditureCommand;
-import seedu.commands.AcademicExpenditureCommand;
-import seedu.commands.AccommodationExpenditureCommand;
-import seedu.commands.EntertainmentExpenditureCommand;
-import seedu.commands.FoodExpenditureCommand;
-import seedu.commands.OtherExpenditureCommand;
-import seedu.commands.TransportExpenditureCommand;
-import seedu.commands.TuitionExpenditureCommand;
-import seedu.commands.LendExpenditureCommand;
-import seedu.commands.BorrowExpenditureCommand;
-import seedu.commands.InvalidCommand;
 
 public class MainInputParser {
     public static final int LIMIT = 2;
@@ -36,6 +21,14 @@ public class MainInputParser {
                 ParseDelete prepareDelete;
                 prepareDelete = new ParseDelete(splitValues[INDEX_USERSTRING]);
                 return prepareDelete.deleteItem();
+            case MarkCommand.COMMAND_WORD:
+                ParseMark prepareMark;
+                prepareMark = new ParseMark(splitValues[INDEX_USERSTRING]);
+                return prepareMark.markExpenditure();
+            case UnmarkCommand.COMMAND_WORD:
+                ParseMark prepareUnmark;
+                prepareUnmark = new ParseMark(splitValues[INDEX_USERSTRING]);
+                return prepareUnmark.unmarkExpenditure();
             case EditCommand.COMMAND_WORD:
                 ParseEdit prepareEdit = new ParseEdit(splitValues[INDEX_USERSTRING]);
                 return prepareEdit.editItem();
@@ -55,9 +48,7 @@ public class MainInputParser {
             case BorrowExpenditureCommand.COMMAND_WORD:
                 ExpenditureList.saveList();
                 ParseLendBorrow prepareLendBorrowExpenditure;
-
                 prepareLendBorrowExpenditure = new ParseLendBorrow(splitValues[INDEX_USERSTRING]);
-
                 return prepareLendBorrowExpenditure.addItem(command);
             default:
                 // Commands that are not listed above
