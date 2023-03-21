@@ -10,11 +10,12 @@ import seedu.duke.recipe.StepList;
 import seedu.duke.ui.UI;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import static seedu.duke.ui.IntLib.*;
-import static seedu.duke.ui.StringLib.STEP_INPUT_END;
+import static seedu.duke.ui.IntLib.RECIPE_NAME_INDEX;
+import static seedu.duke.ui.IntLib.RECIPE_INGREDIENTS_INDEX;
+import static seedu.duke.ui.IntLib.RECIPE_TAG_INDEX;
+import static seedu.duke.ui.IntLib.RECIPE_SUM_OF_STEPS_INDEX;
+
 
 public class Parser {
 

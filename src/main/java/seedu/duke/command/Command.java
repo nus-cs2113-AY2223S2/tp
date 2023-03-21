@@ -13,7 +13,10 @@ import seedu.duke.ui.UI;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static seedu.duke.ui.IntLib.*;
+import static seedu.duke.ui.IntLib.RECIPE_NAME_INDEX;
+import static seedu.duke.ui.IntLib.RECIPE_INGREDIENTS_INDEX;
+import static seedu.duke.ui.IntLib.RECIPE_TAG_INDEX;
+import static seedu.duke.ui.IntLib.RECIPE_SUM_OF_STEPS_INDEX;
 
 /**
  * Represents a particular command to be carried out consisting of the
