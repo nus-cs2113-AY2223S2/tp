@@ -71,7 +71,7 @@ public class Ui {
         System.out.println(company + " added successfully!");
     }
 
-    public void showSuccessfulDeleteMessage() {
+    public void showSuccessfulPurgingMessage() {
         System.out.println("Data has been deleted successfully!");
     }
 
