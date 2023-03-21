@@ -43,5 +43,6 @@ checkstyle {
 
 run{
     standardInput = System.in
-   assert true;
+    enableAssertions = true
+    assert true;
 }
