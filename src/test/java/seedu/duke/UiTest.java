@@ -32,6 +32,15 @@ public class UiTest {
     }
 
     @Test
+    public void showWelcome_atStartup_showWelcomeMessage() {
+        Ui ui = new Ui();
+        ui.showWelcome();
+        assertEquals("____________________________________________________________" + "\r\n" +
+                "Hello! Welcome to EveNtUS!" + "\r\n" +
+                "____________________________________________________________", out.toString().trim());
+    }
+
+    @Test
     public void showSuccessfulDeletionMessage_afterDeleteCommand_showDeletionMessage() {
         Ui ui = new Ui();
         ui.showSuccessfulDeletionMessage();
