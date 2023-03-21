@@ -1,6 +1,11 @@
 package seedu.duke;
 
 
+import seedu.duke.objects.Inventory;
+import seedu.duke.utils.Storage;
+import seedu.duke.utils.Ui;
+import seedu.duke.utils.parser.Parser;
+
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -13,14 +18,14 @@ public class Duke {
 
     public Duke(String filePath) {
         ui = new Ui();
-        parser = new Parser();
         storage = new Storage(filePath);
         inventory = new Inventory();
+        parser = new Parser(inventory);
     }
 
     public void run() {
         while (true) {
-            parser.mainParser(inventory);
+            parser.mainParser();
         }
     }
 

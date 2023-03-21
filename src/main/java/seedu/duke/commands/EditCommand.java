@@ -1,12 +1,15 @@
 package seedu.duke.commands;
 
-import seedu.duke.Inventory;
-import seedu.duke.Item;
-import seedu.duke.Ui;
+import seedu.duke.objects.Inventory;
+import seedu.duke.objects.Item;
+import seedu.duke.utils.Ui;
 import seedu.duke.exceptions.EditErrorException;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the command to edit an item in the inventory.
+ */
 public class EditCommand extends Command {
 
     private String[] editInfo;
@@ -57,11 +60,10 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Executes the Edit Command that searches for the item in the ArrayList and changes the item attributes according
+     * Edit Command that searches for the item in the ArrayList and changes the item attributes according
      * to the wishes of the user.
      */
-    @Override
-    public void run() {
+    public void setEditInfo() {
         try {
             Item updatedItem = retrieveItemFromHashMap(editInfo);
             Item oldItem = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity().toString(),
@@ -91,6 +93,13 @@ public class EditCommand extends Command {
         } catch (EditErrorException eee) {
             Ui.printItemNotFound();
         }
+    }
 
+    /**
+     * Executes the Edit Command
+     */
+    @Override
+    public void run() {
+        setEditInfo();
     }
 }

@@ -1,5 +1,8 @@
-package seedu.duke;
+package seedu.duke.utils.parser;
 
+import seedu.duke.objects.Inventory;
+import seedu.duke.objects.Item;
+import seedu.duke.utils.Ui;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.EditCommand;
 import seedu.duke.commands.FilterCommand;
@@ -29,7 +32,13 @@ public class Parser {
     private String commandWord;
     private String commandInfo;
 
-    public void mainParser(Inventory inventory) {
+    private Inventory inventory;
+
+    public Parser(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public void mainParser() {
         String command = in.nextLine().trim();
         String[] splitCommand = command.split(" ", 2);
         this.commandWord = splitCommand[0];
@@ -128,7 +137,8 @@ public class Parser {
         Command filterCommand = new FilterCommand(inventory, keyword, mode);
         filterCommand.run();
     }
-//
+// TODO: MERGE THIS FUNCTION TO SEARCH AND USE IF-ELSE CONDITION
+
 //    /**
 //     * Handles the "searchUPC" command by checking the validity of search term provided before passing to
 //     * the searchUPC function
@@ -165,7 +175,6 @@ public class Parser {
             }
             Command searchCommand = new SearchCommand(inventory, rawInput);
             searchCommand.run();
-            //Inventory.search(rawInput);
         } catch (MissingParametersException e) {
             e.missingSearchItemParameters();
         }
@@ -185,7 +194,6 @@ public class Parser {
             Pattern pattern = Pattern.compile(ADD_REGEX);
             Matcher matcher = pattern.matcher(rawInput);
             if (matcher.matches()) {
-                //System.out.println(matcher.group(NAME_INDEX));
                 Item newItem = new Item(matcher.group(NAME_INDEX), matcher.group(UPC_INDEX), matcher.group(QTY_INDEX),
                         matcher.group(PRICE_INDEX));
                 Command addCommand = new AddCommand(inventory, newItem);
@@ -199,8 +207,8 @@ public class Parser {
     }
 
     public void parseList(Inventory inventory) {
-        Command addCommand = new ListCommand(inventory);
-        addCommand.run();
+        Command listCommand = new ListCommand(inventory);
+        listCommand.run();
     }
 
 

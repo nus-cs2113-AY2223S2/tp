@@ -1,11 +1,14 @@
 package seedu.duke.commands;
 
-import seedu.duke.Inventory;
-import seedu.duke.Item;
-import seedu.duke.Ui;
+import seedu.duke.objects.Inventory;
+import seedu.duke.objects.Item;
+import seedu.duke.utils.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the command to search for an item in the inventory.
+ */
 public class SearchCommand extends Command {
     private String keyword;
 

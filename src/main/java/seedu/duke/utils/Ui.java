@@ -1,12 +1,15 @@
-package seedu.duke;
+package seedu.duke.utils;
+
+import seedu.duke.objects.Inventory;
+import seedu.duke.objects.Item;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static seedu.duke.ColorCode.ANSI_BLUE;
-import static seedu.duke.ColorCode.ANSI_GREEN;
-import static seedu.duke.ColorCode.ANSI_RED;
-import static seedu.duke.ColorCode.ANSI_RESET;
+import static seedu.duke.utils.ColorCode.ANSI_BLUE;
+import static seedu.duke.utils.ColorCode.ANSI_GREEN;
+import static seedu.duke.utils.ColorCode.ANSI_RED;
+import static seedu.duke.utils.ColorCode.ANSI_RESET;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
@@ -27,7 +30,7 @@ public class Ui {
 
     public static final String SUCCESS_LIST = "Here are the items in your inventory:";
 
-    public static final String INVALID_LIST = "There are no items in your inventory.";
+    public static final String EMPTY_LIST = "There are no items in your inventory.";
     public static final String CONFIRM_MESSAGE = "Are you sure you want this item to be permanently deleted?\n(Y/N)";
 
     public static final int NAME_COL_WIDTH = 15;
@@ -82,18 +85,18 @@ public class Ui {
     }
 
     public static void printSearchUPCItem(Item item) {
-        System.out.println(Ui.LINE);
+        Ui.printLine();
         System.out.println(ANSI_GREEN + "Here is your item: ");
         ArrayList<Item> singleItem = new ArrayList<>();
         singleItem.add(item);
         System.out.println(printTable(singleItem) + ANSI_RESET);
-        System.out.println(Ui.LINE);
+        Ui.printLine();
     }
 
     public static void printSearchItems(ArrayList<Item> items) {
-        System.out.println(Ui.LINE);
+        Ui.printLine();
         System.out.println(ANSI_GREEN + printTable(items) + ANSI_RESET);
-        System.out.println(Ui.LINE);
+        Ui.printLine();
     }
 
     public static void printExitMessage() {
@@ -138,9 +141,9 @@ public class Ui {
         System.out.println(ANSI_GREEN + SUCCESS_LIST + ANSI_RESET);
     }
 
-    public static void printInvalidList() {
+    public static void printEmptyList() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_LIST + ANSI_RESET);
+        System.out.println(ANSI_RED + EMPTY_LIST + ANSI_RESET);
         System.out.println(LINE);
     }
 
@@ -364,7 +367,7 @@ public class Ui {
         int listSize = inventory.getItemInventory().size();
         switch (listSize) {
         case 0:
-            System.out.println(ANSI_RED + INVALID_LIST + ANSI_RESET);
+            System.out.println(ANSI_RED + EMPTY_LIST + ANSI_RESET);
             break;
         case 1:
             System.out.println(ANSI_RED + INVALID_INDEX + "0 to remove item successfully." + ANSI_RESET);
@@ -382,7 +385,7 @@ public class Ui {
         int listSize = inventory.getItemInventory().size();
         switch (listSize) {
         case 0:
-            System.out.println(ANSI_RED + INVALID_LIST + ANSI_RESET);
+            System.out.println(ANSI_RED + EMPTY_LIST + ANSI_RESET);
             break;
         default:
             System.out.println(ANSI_RED + "This UPC is invalid. Try again." + ANSI_RESET);
