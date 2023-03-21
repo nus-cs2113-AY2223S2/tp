@@ -35,11 +35,10 @@ public class Duke {
         System.out.println("What is your name?");
 
         Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
-        String input = "";
         if (in.hasNextLine()) {
-            input = in.nextLine();
+            System.out.println("Hello " + in.nextLine());
         }
+        String input = in.nextLine();
         while (!input.equals("exit")) {
             switch (parser.extractCommandKeyword(input)) {
             case "add":
