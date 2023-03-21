@@ -1,7 +1,6 @@
 package seedu.apollo.command.module;
 
 import seedu.apollo.calendar.Calendar;
-import seedu.apollo.command.task.ListCommand;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.command.Command;
 import seedu.apollo.module.ModuleList;
