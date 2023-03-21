@@ -1,6 +1,8 @@
 package utils.storage.json;
 
 import com.google.gson.JsonSyntaxException;
+
+import java.io.*;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import com.google.gson.Gson;
@@ -9,11 +11,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import model.Card;
@@ -29,9 +27,20 @@ import utils.storage.Storage;
 public class JsonStorage extends Storage {
     private static Logger logger = Logger.getLogger("storage.JsonStorage");
     private GsonBuilder gsonBuilder;
+    private File backupFile;
 
     public JsonStorage(String filePath) {
         super(filePath);
+
+        // Create the backup file
+        String backupFilePath = filePath.replace(".json", "_backup.json");
+        String backupFileDir = saveFile.getParent();
+        if (backupFileDir == null) {
+            backupFileDir = ".";
+        }
+        backupFilePath = backupFileDir + File.separator + "." + backupFilePath.substring(backupFilePath.lastIndexOf(File.separator) + 1);
+        backupFile = new File(backupFilePath);
+
         gsonBuilder = new GsonBuilder();
 
         //Add custom adapters
@@ -89,18 +98,28 @@ public class JsonStorage extends Storage {
         }
         exportData.add("cards", cardData);
 
-        try (FileWriter fileWriter = new FileWriter(saveFile);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+        try {
+            // Save data to the main file
+            saveDataToFile(saveFile, exportData);
 
-            Gson gson = gsonBuilder.setPrettyPrinting().create();
-            String serialized = gson.toJson(exportData);
-
-            bufferedWriter.write(serialized);
+            // Save data to the backup file
+            saveDataToFile(backupFile, exportData);
         } catch (IOException e) {
             String absolutePath = this.saveFile.getAbsolutePath();
             logger.log(Level.WARNING, "Failed to save data to savedata.json" + absolutePath, e);
 
             throw new StorageSaveFailure(absolutePath);
+        }
+    }
+
+    private void saveDataToFile(File file, JsonObject data) throws IOException {
+        try (FileWriter fileWriter = new FileWriter(file);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+
+            Gson gson = gsonBuilder.setPrettyPrinting().create();
+            String serialized = gson.toJson(data);
+
+            bufferedWriter.write(serialized);
         }
     }
 }
