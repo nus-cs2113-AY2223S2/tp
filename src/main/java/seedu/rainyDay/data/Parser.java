@@ -4,6 +4,7 @@ import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.DeleteCommand;
+import seedu.rainyDay.command.EditCommand;
 import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.command.FilterCommand;
@@ -21,18 +22,19 @@ import java.util.regex.Pattern;
 public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
-    private String direction = null;
+    private String direction;
 
-    private String description = null;
+    private String description;
 
-    private String category = "miscellaneous";
+    private String category;
 
-    private String filterFlag = null;
+    private String filterFlag;
 
     private double amount = -1.0;
 
-    private LocalDate date = null;
+    private String field;
 
+    private LocalDate date = null;
 
     public Command parseUserInput(String userInput) {
         assert userInput != null : "Failed to read user input!";
@@ -49,9 +51,11 @@ public class Parser {
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
             return displayHelp();
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
-            System.out.println(action[0]);
-            System.out.println(action[1]);
+            logger.info("filter command executing");
             return filterStatement(action[1]);
+        } else if (action[0].equalsIgnoreCase(Command.COMMAND_EDIT)) {
+            logger.info("edit command executing");
+            return editStatement(userInput);
         } else {
             logger.warning("unrecognised input from user!");
             return new InvalidCommand(ErrorMessage.UNRECOGNIZED_INPUT.toString());
@@ -60,6 +64,7 @@ public class Parser {
 
     private Command addStatement(String addInput) { // example: add -<in/out> <description> $value -c -d
         try {
+            this.category = "miscellaneous";
             String remainingInformation = returnRemainingInformation(addInput);
             logger.info("obtained mandatory information");
             if (remainingInformation.trim().isEmpty()) {
@@ -191,7 +196,8 @@ public class Parser {
             } else {
                 parseDefaultFilterByDescription(input);
             }
-            return new FilterCommand(this.description, this.filterFlag);
+            return new FilterCommand(this.field, this.filterFlag);
+
         } catch (Exception e) {
             logger.warning("filter command given by user in the wrong format");
             return new InvalidCommand(ErrorMessage.WRONG_FILTER_FORMAT.toString());
@@ -199,7 +205,7 @@ public class Parser {
     }
 
     private void parseDefaultFilterByDescription(String input) {
-        this.description = input.trim();
+        this.field = input.trim();
         this.filterFlag = "-d";
     }
 
@@ -208,7 +214,7 @@ public class Parser {
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             this.filterFlag = matcher.group(1);
-            this.description = matcher.group(2);
+            this.field = matcher.group(2);
         } else {
             logger.warning("filter command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
@@ -220,7 +226,7 @@ public class Parser {
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             this.filterFlag = matcher.group(1);
-            this.description = matcher.group(2);
+            this.field = matcher.group(2);
         } else {
             logger.warning("filter command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
@@ -232,7 +238,7 @@ public class Parser {
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             this.filterFlag = matcher.group(1);
-            this.description = "none";
+            this.field = "none";
         } else {
             logger.warning("filter command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
@@ -244,10 +250,74 @@ public class Parser {
         Matcher matcher = pattern.matcher(input);
         if (matcher.matches()) {
             this.filterFlag = "-date";
-            this.description = matcher.group(1);
+            this.field = matcher.group(1);
         } else {
             logger.warning("filter command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
+    }
+
+    private void parseEditByValue(String input) {
+        Pattern pattern = Pattern.compile("^(-v)\\s+\\$([0-9]+(?:\\.[0-9]{1,2})?)\\s*$");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            this.filterFlag = matcher.group(1);
+            this.field = matcher.group(2);
+        } else {
+            logger.warning("filter command given by user in the wrong format");
+            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
+    }
+
+    public Command editStatement(String userInput) throws IllegalArgumentException {
+        try {
+            String[] tokens = userInput.split("\\s+", 3);
+            if (tokens.length == 1) {
+                logger.warning("invalid edit index from user");
+                throw new IllegalArgumentException(ErrorMessage.NO_EDIT_INDEX.toString());
+            }
+
+            int index = Integer.parseInt(tokens[1]);
+            if (index > RainyDay.financialReport.getStatementCount()) {
+                throw new IllegalArgumentException(ErrorMessage.WRONG_EDIT_INDEX.toString());
+            }
+
+            if (tokens[2].contains("add")) {
+                tokens[2] = tokens[2].replaceFirst("add ", "");
+                String remainingInformation = returnRemainingInformation(tokens[2]);
+                if (remainingInformation.trim().isEmpty()) {
+                    return new EditCommand(index, description, direction, amount, category);
+                }
+                if (!remainingInformation.contains("-c ") && !remainingInformation.contains("-date ")) {
+                    logger.info("returning new InvalidCommand object");
+                    return new InvalidCommand(ErrorMessage.WRONG_ADD_FORMAT.toString());
+                }
+                if (remainingInformation.contains("-c ")) {
+                    remainingInformation = setCategory(remainingInformation);
+                }
+                if (remainingInformation.contains("-date ")) {
+                    setDate(remainingInformation);
+                }
+                return new EditCommand(index, description, direction, amount, category);
+            } else if (tokens[2].contains("-d")) { // todo add -date
+                parseFilterByDescription(tokens[2]);
+                return new EditCommand(index, "-d", field);
+            } else if (tokens[2].contains("-c")) {
+                parseFilterByCategory(tokens[2]);
+                return new EditCommand(index, "-c", field);
+            } else if (tokens[2].contains("-v")) {
+                parseEditByValue(tokens[2]);
+                return new EditCommand(index, "-v", Double.parseDouble(field));
+            } else if (tokens[2].equals("-out")) {
+                return new EditCommand(index, "-out");
+            } else if (tokens[2].equals("-in")) {
+                return new EditCommand(index, "-in");
+            } else {
+                return new InvalidCommand(ErrorMessage.WRONG_INPUT_FORMAT.toString());
+            }
+        } catch (Exception e) {
+            logger.warning("edit index provided incorrectly");
+            return new InvalidCommand(ErrorMessage.WRONG_INPUT_FORMAT.toString()); // todo update
         }
     }
 }

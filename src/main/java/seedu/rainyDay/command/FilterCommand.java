@@ -64,7 +64,7 @@ public class FilterCommand extends Command implements FormatReport {
             }
         } else if (filterFlag.equalsIgnoreCase("-out")) {
             for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
-                if (financialReport.getFinancialStatement(i).getFlowDirectionWord().equals("out ")) {
+                if (financialReport.getFinancialStatement(i).getFlowDirectionWord().equals("out")) {
                     filteredList.add(financialReport.getFinancialStatement(i));
                     statementIndex.add(i + 1);
                 }

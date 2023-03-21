@@ -36,6 +36,11 @@ public class FinancialReport implements Serializable {
         Storage.writeToFile(this, RainyDay.filePath);
     }
 
+    public void addStatementAtIndex(FinancialStatement statement, int index) {
+        financialReport.add(index, statement);
+        Storage.writeToFile(this, RainyDay.filePath);
+    }
+
     public void deleteStatement(int statementNumber) {
         financialReport.remove(financialReport.get(statementNumber));
         Storage.writeToFile(this, RainyDay.filePath);
