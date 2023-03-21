@@ -22,12 +22,6 @@ public class Ui {
 
     public void showWelcomeMessage() {
         showLine();
-        System.out.println("  ______         _     ___     ___ \n" +
-                           " / _____)       (_)   / __)   / __)\n" +
-                           "( (____   ____   _  _| |__  _| |__ \n" +
-                           " \\____ \\ |  _ \\ | |(_   __)(_   __)\n" +
-                           " _____) )| | | || |  | |     | |   \n" +
-                           "(______/ |_| |_||_|  |_|     |_|   \n");
         System.out.println(" Hello! I'm Sniff, your personal appointment manager.");
         System.out.println(" What can I do for you?");
         showLine();
