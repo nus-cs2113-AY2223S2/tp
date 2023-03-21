@@ -6,6 +6,7 @@ import seedu.apollo.command.Command;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
+import seedu.apollo.utils.LoggerInterface;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +25,7 @@ import static seedu.apollo.ui.Parser.COMMAND_UNMARK_WORD;
  * Mark and Delete Command class that modifies an existing Task from the TaskList.
  * Handles {@code mark}, {@code unmark}, and {@code delete} commands.
  */
-public class ModifyCommand extends Command {
+public class ModifyCommand extends Command implements LoggerInterface {
     private static Logger logger = Logger.getLogger("ModifyCommand");
 
     protected String command;
@@ -48,7 +49,6 @@ public class ModifyCommand extends Command {
         }
         this.command = command;
         this.idx = idx;
-        ModifyCommand.setUpLogger();
     }
 
     /**
@@ -56,7 +56,8 @@ public class ModifyCommand extends Command {
      *
      * @throws IOException If logger file cannot be created.
      */
-    public static void setUpLogger() {
+    @Override
+    public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
         ConsoleHandler logConsole = new ConsoleHandler();
