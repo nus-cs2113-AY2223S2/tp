@@ -1,6 +1,5 @@
 package seedu.duke.command;
 
-
 import seedu.duke.company.CompanyList;
 
 public class AddCommand extends Command {
@@ -17,6 +16,6 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(CompanyList companyList) {
-        companyList.add(companyName,contactNumber,contactEmail);
+        companyList.add(companyName, contactNumber, contactEmail);
     }
 }

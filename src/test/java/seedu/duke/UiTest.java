@@ -31,6 +31,30 @@ public class UiTest {
                     out.toString().trim());
     }
 
+    @Test
+    public void showSuccessfulDeletionMessage_afterDeleteCommand_showDeletionMessage() {
+        Ui ui = new Ui();
+        ui.showSuccessfulDeletionMessage();
+        assertEquals("Company information successfully deleted!",
+                out.toString().trim());
+    }
+
+    @Test
+    public void showSuccessfulPurgingMessage_afterPurgeCommand_showPurgeMessage() {
+        Ui ui = new Ui();
+        ui.showSuccessfulPurgingMessage();
+        assertEquals("Data has been deleted successfully!",
+                out.toString().trim());
+    }
+
+    @Test
+    public void showSampleDataLoadedMessage_afterLoadingSampleData_showDataLoadedMessage() {
+        Ui ui = new Ui();
+        ui.showSampleDataLoadedMessage();
+        assertEquals("Sample data has been loaded into the list!",
+                out.toString().trim());
+    }
+
     @AfterEach
     public void restoreInitialStreams() {
         System.setOut(originalOut);
