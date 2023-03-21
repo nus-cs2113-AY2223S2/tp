@@ -1,7 +1,6 @@
 package seedu.commands;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import seedu.expenditure.AcademicExpenditure;
 import seedu.expenditure.ExpenditureList;

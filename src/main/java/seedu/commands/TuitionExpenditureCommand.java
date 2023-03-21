@@ -21,6 +21,7 @@ public class TuitionExpenditureCommand extends Command{
         TuitionExpenditure tuitionExpenditure = new TuitionExpenditure(tuitionExpenditureDescription,
                 tuitionExpenditureValue, tuitionExpenditureDate);
         expenditures.addExpenditure(tuitionExpenditure);
-        return new CommandResult(String.format("Added %s expenditure: %s", COMMAND_WORD, tuitionExpenditure.toString()));
+        return new CommandResult(String.format("Added %s expenditure: %s", COMMAND_WORD,
+                tuitionExpenditure.toString()));
     }
 }

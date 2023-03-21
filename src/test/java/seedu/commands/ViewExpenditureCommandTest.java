@@ -6,10 +6,8 @@ import seedu.expenditure.AcademicExpenditure;
 import seedu.expenditure.ExpenditureList;
 import seedu.expenditure.FoodExpenditure;
 import seedu.expenditure.TransportExpenditure;
-
 import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ViewExpenditureCommandTest {
     ExpenditureList testExpenditures = new ExpenditureList();

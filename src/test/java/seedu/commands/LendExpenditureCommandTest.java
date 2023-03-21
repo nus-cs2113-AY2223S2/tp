@@ -3,10 +3,8 @@ package seedu.commands;
 import org.junit.jupiter.api.Test;
 import seedu.expenditure.AcademicExpenditure;
 import seedu.expenditure.ExpenditureList;
-
 import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LendExpenditureCommandTest {
     ExpenditureList testExpenditures = new ExpenditureList();
