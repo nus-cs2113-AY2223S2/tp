@@ -1,8 +1,11 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialReport;
-import seedu.rainyDay.exceptions.RainyDayException;
 
+//@@author lil1n
+/**
+ * Represents an executable command
+ */
 public abstract class Command {
 
     public static final String COMMAND_ADD = "add";
@@ -17,13 +20,28 @@ public abstract class Command {
 
     public static final String COMMAND_FILTER = "filter";
 
+    public static final String COMMAND_EDIT = "edit";
+
     protected FinancialReport financialReport;
 
+    /**
+     * Sets the attribute to reference the financial report for execution of commands
+     *
+     * @param financialReport financial report for the commands to be performed on
+     */
     public void setData(FinancialReport financialReport) {
         this.financialReport = financialReport;
     }
 
+    /**
+     * Sets up logger for logging
+     */
     protected abstract void setupLogger();
 
-    public abstract void execute() throws RainyDayException;
+    /**
+     * Executes the command and returns the result
+     *
+     * @return CommandResult with the relevant output message as its attribute
+     */
+    public abstract CommandResult execute();
 }

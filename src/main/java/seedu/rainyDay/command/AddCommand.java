@@ -1,13 +1,18 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
-import seedu.rainyDay.modules.Ui;
 
+import java.time.LocalDate;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+//@@author lil1n
+
+/**
+ * Represents a command that add statement to the financial report
+ */
 public class AddCommand extends Command {
     private static final Logger logger = Logger.getLogger(AddCommand.class.getName());
 
@@ -19,13 +24,19 @@ public class AddCommand extends Command {
 
     private final String category;
 
-    public AddCommand(String description, String flowDirection, double value, String category) {
+    private final LocalDate date;
+
+    public AddCommand(String description, String flowDirection, double value, String category, LocalDate date) {
         this.description = description;
         this.flowDirection = flowDirection;
         this.value = value;
         this.category = category;
+        this.date = date;
     }
 
+    /**
+     * Sets up logger for logging
+     */
     @Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
@@ -35,29 +46,30 @@ public class AddCommand extends Command {
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             System.out.println("unable to log AddCommand class");
-            logger.log(Level.SEVERE, "File logger not working.", e); // todo check if useless
+            logger.log(Level.SEVERE, "File logger not working.", e);
         }
     }
 
+    /**
+     * Executes the command and returns the result
+     *
+     * @return CommandResult with the relevant output message as its attribute
+     */
     @Override
-    public void execute() {
+    public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting AddCommand.execute()");
 
         int totalStatementCount = financialReport.getStatementCount();
 
-        FinancialStatement currentFinancialStatement =
-                new FinancialStatement(description, flowDirection, value, category);
-        financialReport.addStatement(currentFinancialStatement);
+        financialReport.addStatement(new FinancialStatement(description, flowDirection, value, category, date));
 
         assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";
 
-        logger.log(Level.INFO, " passed assertion");
-
-        Ui.printAddedFinancialStatement(currentFinancialStatement);
-
-        logger.log(Level.INFO, " passed Ui");
+        String output = "Done! Added: " + financialReport.getFinancialStatement(totalStatementCount).getFullStatement();
 
         logger.log(Level.INFO, " end of AddCommand.execute()");
+
+        return new CommandResult(output);
     }
 }
