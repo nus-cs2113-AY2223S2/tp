@@ -7,6 +7,12 @@
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+<br>
+### [Proposed] Duplication checker feature
+<br>
+Proposed Implementation
+<br>
+The proposed duplication checker feature is facilitated by <code>Parser</code>. 
 
 
 ## Product scope
