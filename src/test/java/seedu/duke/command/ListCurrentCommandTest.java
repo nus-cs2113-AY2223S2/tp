@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ListCurrentCommandTest {
-
+    private static final String LIST_CURRENT_MESSAGE = "List of Added modules:";
+    private static final String LINE = "____________________________________________________________";
     //@@author dfa-reused
     //Reused from https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -41,8 +42,8 @@ class ListCurrentCommandTest {
         modules.add(module2);
         ListCurrentCommand listCurrentCommand = new ListCurrentCommand(modules);
         listCurrentCommand.execute();
-        assertEquals("List of Added modules:" + System.lineSeparator()
-                + "____________________________________________________________\n" + System.lineSeparator() +
+        assertEquals(LIST_CURRENT_MESSAGE + System.lineSeparator()
+                + LINE + System.lineSeparator() +
                 "1.[AE320][Aerodynamics II][3]" + System.lineSeparator() +
                 "   maps to ----> [ME4231][Aerodynamics][4]" + System.lineSeparator() +
                 "2.[M2794.0073][Finite Element Analysis][3]" + System.lineSeparator() +

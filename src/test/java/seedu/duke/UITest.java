@@ -19,14 +19,16 @@ class UITest {
     private static final String LINE = "____________________________________________________________";
     private static final String ADD_MOD_MESSAGE = "This module has been added to the current module list!";
     private static final String DELETE_MOD_MESSAGE = "This module has been deleted from the current module list!";
+
     private static final String ADD_MOD_FAILURE_MESSAGE = "Save Module Failed";
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
     private static final String WELCOME_MESSAGE = "~Welcome to SEP Helper~";
     private static final String READ_COMMAND_INPUT = "What can I do for you?";
     private static final String HELP_MESSAGE = "\nType /help if you need help getting started :)";
     private static final String INPUT_NOT_INT_MESSAGE = "The input for the given command is not an integer";
-    private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name\n";
-    private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name\n";
+    private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name";
+    private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name";
+    private static final String CURRENT_LIST_EMPTY = "The current module list is empty";
 
     /*
         Testing below sets up an ByteArrayOutputStream where prints to System.out would go to.
@@ -57,7 +59,7 @@ class UITest {
     void printPUListMessage_correctLines_success() {
         UI ui = new UI();
         ui.printPUListMessage();
-        assertEquals(LIST_PU_MESSAGE + System.lineSeparator() + LINE.stripTrailing(),
+        assertEquals(LIST_PU_MESSAGE,
                     outContent.toString().stripTrailing());
         outContent.reset();
     }
@@ -103,7 +105,7 @@ class UITest {
     void getInvalidPuMessage_correctLines_success() {
         UI ui = new UI();
         String invalidPuMessage = ui.getInvalidPuMessage();
-        assertEquals(INVALID_PU_MESSAGE + LINE.stripTrailing(), invalidPuMessage.stripTrailing());
+        assertEquals(INVALID_PU_MESSAGE, invalidPuMessage.stripTrailing());
         outContent.reset();
     }
 
@@ -111,7 +113,7 @@ class UITest {
     void getInvalidModuleMessage_correctLines_success() {
         UI ui = new UI();
         String invalidModuleMessage = ui.getInvalidModuleMessage();
-        assertEquals(INVALID_MODULE_MESSAGE + LINE.stripTrailing(), invalidModuleMessage.stripTrailing());
+        assertEquals(INVALID_MODULE_MESSAGE, invalidModuleMessage.stripTrailing());
         outContent.reset();
     }
 
@@ -480,7 +482,7 @@ class UITest {
     void printPUList_correctLines_success() {
         UI ui = new UI();
         ui.printPUList();
-        assertEquals("____________________________________________________________\n" +
+        assertEquals("____________________________________________________________" +
                 System.lineSeparator() +
                 "1. KOREA UNIVERSITY KU" + System.lineSeparator() +
                 "2. KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY KAIST" + System.lineSeparator() +
@@ -503,7 +505,8 @@ class UITest {
         modules.add(module1);
         modules.add(module2);
         ui.printCurrentModList(modules);
-        assertEquals("____________________________________________________________\n" + System.lineSeparator() +
+        assertEquals(LIST_CURRENT_MESSAGE + System.lineSeparator()
+                        + "____________________________________________________________" + System.lineSeparator() +
                         "1.[AE320][Aerodynamics II][3]" + System.lineSeparator() +
                 "   maps to ----> [ME4231][Aerodynamics][4]" + System.lineSeparator() +
                 "2.[M2794.0073][Finite Element Analysis][3]" + System.lineSeparator() +

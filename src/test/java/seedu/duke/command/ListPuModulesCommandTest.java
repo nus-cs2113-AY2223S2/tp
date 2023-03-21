@@ -10,7 +10,7 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ListPuModulesCommandTest {
-
+    private static final String LINE = "____________________________________________________________";
     //@@author dfa-reused
     //Reused from https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -33,8 +33,7 @@ class ListPuModulesCommandTest {
         ListPuModulesCommand listPuModulesCommand = new ListPuModulesCommand(5,"YONSEI UNIVERSITY");
         listPuModulesCommand.execute();
         assertEquals("YONSEI UNIVERSITY Modules" + System.lineSeparator()
-                + "____________________________________________________________\n" +
-                System.lineSeparator() + "1. [EEE3314][INTRODUCTION ARTIFICIAL INTELLIGENCE][3]"
+                + LINE + System.lineSeparator() + "1. [EEE3314][INTRODUCTION ARTIFICIAL INTELLIGENCE][3]"
                 + System.lineSeparator() +
                 "   maps to ----> [ME3663][Technical Elective][4]" + System.lineSeparator() +
                 "2. [MEU3710][NANO MECHANICAL ENGINEERING][3]" + System.lineSeparator() +
