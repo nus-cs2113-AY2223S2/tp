@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Storage implements DatabaseInitialiser {
+public class Storage implements DatabaseInterface {
 
     private static final String SAVED_MODULES_FILE_PATH = "data/saved_modules.txt";
     private ArrayList<Module> modules;
