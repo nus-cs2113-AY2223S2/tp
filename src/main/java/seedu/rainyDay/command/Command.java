@@ -17,6 +17,8 @@ public abstract class Command {
     public static final String COMMAND_FILTER = "filter";
 
     public static final String COMMAND_EDIT = "edit";
+    public static final String COMMAND_EXPORT = "export";
+
 
     protected FinancialReport financialReport;
 

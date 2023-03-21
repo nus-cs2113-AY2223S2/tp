@@ -5,6 +5,7 @@ import seedu.rainyDay.command.Command;
 import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.DeleteCommand;
 import seedu.rainyDay.command.EditCommand;
+import seedu.rainyDay.command.ExportCommand;
 import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.command.FilterCommand;
@@ -46,6 +47,9 @@ public class Parser {
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_EDIT)) {
             logger.info("edit command executing");
             return editStatement(userInput);
+        } else if (action[0].equalsIgnoreCase(Command.COMMAND_EXPORT)) {
+            logger.info("export command executing");
+            return generateExport();
         } else { // todo add filter
             logger.warning("unrecognised input from user!");
             return new InvalidCommand();
@@ -284,4 +288,10 @@ public class Parser {
             //throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
         }
     }
+
+    public ExportCommand generateExport() {
+        return new ExportCommand();
+    }
+
+
 }

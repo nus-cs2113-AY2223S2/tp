@@ -52,36 +52,34 @@ public class Storage {
         return statements;
     }
 
-    public static void writeToCSV(FinancialReport report) {
+    public static void writeToCSV(FinancialReport report) throws IOException {
         String CSVFilePath = "report.csv";
 
-        try {
-            FileWriter outputFile = new FileWriter(CSVFilePath);
-            CSVWriter tableWriter = new CSVWriter(outputFile);
-            String[] tableHeader = {"ID", "Description", "Value", "Category"};
-            tableWriter.writeNext(tableHeader);
 
-            for (int i = 0; i < report.getStatementCount(); i++) {
-                FinancialStatement currStatement = report.getFinancialStatement(i);
+        FileWriter outputFile = new FileWriter(CSVFilePath);
+        CSVWriter tableWriter = new CSVWriter(outputFile);
+        String[] tableHeader = {"ID", "Description", "Value", "Category"};
+        tableWriter.writeNext(tableHeader);
 
-                String statementID = Integer.toString(i + 1);
-                String description = currStatement.getDescription();
-                String value;
-                if (currStatement.getFlowDirection() == FlowDirection.INFLOW) {
-                    value = Double.toString(currStatement.getValue());
-                } else {
-                    value = Double.toString(-currStatement.getValue());
-                }
-                String category = currStatement.getCategory();
+        for (int i = 0; i < report.getStatementCount(); i++) {
+            FinancialStatement currStatement = report.getFinancialStatement(i);
 
-                String[] tableRow = {statementID, description, value, category};
-                tableWriter.writeNext(tableRow);
+            String statementID = Integer.toString(i + 1);
+            String description = currStatement.getDescription();
+            String value;
+            if (currStatement.getFlowDirection() == FlowDirection.INFLOW) {
+                value = Double.toString(currStatement.getValue());
+            } else {
+                value = Double.toString(-currStatement.getValue());
             }
-            tableWriter.close();
+            String category = currStatement.getCategory();
 
-        } catch (IOException e) {
-            Ui.csvExportError();
+            String[] tableRow = {statementID, description, value, category};
+            tableWriter.writeNext(tableRow);
         }
+        tableWriter.close();
+
+
     }
 
     private static void setupLogger() {
