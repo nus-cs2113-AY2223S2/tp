@@ -4,6 +4,7 @@ import seedu.rainyDay.data.FinancialStatement;
 
 import java.time.format.DateTimeFormatter;
 
+//@@author BenjaminPoh
 public interface FormatReport {
     static String formatFinancialStatement(int statementIndex, FinancialStatement currentStatement) {
         String statementOutput;

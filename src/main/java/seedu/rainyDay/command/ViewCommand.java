@@ -8,6 +8,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class ViewCommand extends Command implements FormatReport {
+    //@@author BenjaminPoh
     private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
             "+-----+------------------------------+------------+----------------+----------+\n" +
             "|Here is your full financial report!                                          |\n" +
@@ -15,6 +16,8 @@ public class ViewCommand extends Command implements FormatReport {
             "|Index|Name                          |Amount      |Category        |Date      |\n";
     private static final String VIEW_SUMMARY = "" +
             "+-----+------------------------------+------------+----------------+----------+\n";
+
+    //@@author lil1n
     private static final Logger logger = Logger.getLogger(ViewCommand.class.getName());
     private double totalInflow = 0;
     private double totalOutflow = 0;

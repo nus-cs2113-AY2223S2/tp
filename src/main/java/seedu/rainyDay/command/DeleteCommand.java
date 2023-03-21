@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+//@@author lil1n
 public class DeleteCommand extends Command {
 
     private static final Logger logger = Logger.getLogger(DeleteCommand.class.getName());

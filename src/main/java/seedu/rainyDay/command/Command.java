@@ -2,6 +2,7 @@ package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialReport;
 
+//@@author lil1n
 public abstract class Command {
 
     public static final String COMMAND_ADD = "add";
