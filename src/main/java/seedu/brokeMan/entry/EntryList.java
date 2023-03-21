@@ -120,9 +120,11 @@ public abstract class EntryList {
      */
     protected static void sortEntriesByAmount(LinkedList<Entry> entryList) {
         entryList.sort(new EntryAmountComparator());
+        listEntry(entryList);
     }
 
     protected static void sortEntriesByDate(LinkedList<Entry> entryList) {
         entryList.sort(new EntryDateComparator());
+        listEntry(entryList);
     }
 }

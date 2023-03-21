@@ -56,10 +56,10 @@ public class IncomeList extends EntryList{
     /**
      * Sorts income using Entry comparator
      */
-    private static void sortIncomeByAmount() {
+    public static void sortIncomeByAmount() {
         sortEntriesByAmount(incomeList);
     }
-    private static void sortIncomeByDate() {
+    public static void sortIncomeByDate() {
         sortEntriesByDate(incomeList);
     }
 
