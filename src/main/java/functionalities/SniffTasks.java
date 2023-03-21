@@ -9,9 +9,10 @@ import java.util.HashMap;
 public class SniffTasks {
 
     private static final ArrayList<Appointment> APPOINTMENTS = new ArrayList<>();
-    private static final HashMap<String, Integer> UIDS = new HashMap<String, Integer>();
+    private static final HashMap<String, Integer> UIDS = new HashMap<>();
 
     private static int appointmentCount = 0;
+
     public void addConsultation(Animal animal, Owner owner,
                                 String date, String time) throws SniffException {
         try {
@@ -28,6 +29,7 @@ public class SniffTasks {
             throw new SniffException("Invalid consultation description !!");
         }
     }
+
     public void addVaccination(Animal animal, Owner owner,
                                String date, String time, String vaccine) throws SniffException {
         try {
@@ -41,10 +43,11 @@ public class SniffTasks {
             UIDS.put(uid, appointmentCount);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
-        } catch (StringIndexOutOfBoundsException e){
+        } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException("Invalid vaccination description !!");
         }
     }
+
     public void addSurgery(Animal animal, Owner owner,
                            String priority, String startDate, String startTime,
                            String endDate, String endTime) throws SniffException {
@@ -59,7 +62,7 @@ public class SniffTasks {
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
-        } catch (StringIndexOutOfBoundsException e){
+        } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException("Invalid surgery description !!");
         }
     }

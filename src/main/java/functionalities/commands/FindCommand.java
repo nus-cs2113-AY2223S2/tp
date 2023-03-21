@@ -4,14 +4,16 @@ import exception.SniffException;
 import functionalities.SniffTasks;
 
 
-public class FindCommand extends Command{
+public class FindCommand extends Command {
 
     protected String category;
     protected String details;
+
     public FindCommand(String category, String details) {
         this.category = category;
         this.details = details;
     }
+
     @Override
     public void executeCommand(SniffTasks tasks) throws SniffException {
         if (category.equals("appointment")) {
