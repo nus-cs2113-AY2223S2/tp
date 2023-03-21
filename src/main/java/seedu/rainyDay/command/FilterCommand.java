@@ -8,7 +8,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 public class FilterCommand extends Command implements FormatReport {
     private static final Logger logger = Logger.getLogger(FilterCommand.class.getName());
@@ -39,28 +38,36 @@ public class FilterCommand extends Command implements FormatReport {
         setupLogger();
         logger.log(Level.INFO, "starting FilterCommand.execute()");
         ArrayList<FinancialStatement> filteredList = new ArrayList<>();
-
+        ArrayList<Integer> statementIndex = new ArrayList<>();
 
         if (filterFlag.equalsIgnoreCase("-d")) {
-            filteredList = (ArrayList<FinancialStatement>) financialReport
-                    .getFinancialReport().stream()
-                    .filter(t -> t.getDescription().contains(this.description))
-                    .collect(Collectors.toList());
+            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
+                if (financialReport.getFinancialStatement(i).getDescription().contains(this.description)) {
+                    filteredList.add(financialReport.getFinancialStatement(i));
+                    statementIndex.add(i + 1);
+                }
+            }
         } else if (filterFlag.equalsIgnoreCase("-c")) {
-            filteredList = (ArrayList<FinancialStatement>) financialReport
-                    .getFinancialReport().stream()
-                    .filter(t -> t.getCategory().contains(this.description))
-                    .collect(Collectors.toList());
+            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
+                if (financialReport.getFinancialStatement(i).getCategory().contains(this.description)) {
+                    filteredList.add(financialReport.getFinancialStatement(i));
+                    statementIndex.add(i + 1);
+                }
+            }
         } else if (filterFlag.equalsIgnoreCase("-in")) {
-            filteredList = (ArrayList<FinancialStatement>) financialReport
-                    .getFinancialReport().stream()
-                    .filter(t -> t.getFlowDirectionWord().equals("in"))
-                    .collect(Collectors.toList());
+            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
+                if (financialReport.getFinancialStatement(i).getFlowDirectionWord().equals("in")) {
+                    filteredList.add(financialReport.getFinancialStatement(i));
+                    statementIndex.add(i + 1);
+                }
+            }
         } else if (filterFlag.equalsIgnoreCase("-out")) {
-            filteredList = (ArrayList<FinancialStatement>) financialReport
-                    .getFinancialReport().stream()
-                    .filter(t -> t.getFlowDirectionWord().equals("out"))
-                    .collect(Collectors.toList());
+            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
+                if (financialReport.getFinancialStatement(i).getFlowDirectionWord().equals("out ")) {
+                    filteredList.add(financialReport.getFinancialStatement(i));
+                    statementIndex.add(i + 1);
+                }
+            }
         }
 
 
@@ -73,7 +80,7 @@ public class FilterCommand extends Command implements FormatReport {
                 logger.log(Level.INFO, "starting statement " + i);
                 FinancialStatement currentStatement = filteredList.get(i);
 
-                outcome += FormatReport.formatFinancialStatement(i + 1, currentStatement);
+                outcome += FormatReport.formatFinancialStatement(statementIndex.get(i), currentStatement);
                 logger.log(Level.INFO, "passed statement " + i);
             }
         }
