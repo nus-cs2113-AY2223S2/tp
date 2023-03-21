@@ -11,9 +11,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.MalformedJsonException;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+
+
 import model.Card;
 import model.CardList;
 import model.CardUUID;
@@ -46,6 +49,7 @@ public class JsonStorage extends Storage {
         //Add custom adapters
         gsonBuilder.registerTypeAdapter(CardUUID.class, new CardUuidJsonAdapter());
         gsonBuilder.registerTypeAdapter(TagUUID.class, new TagUuidJsonAdapter());
+
     }
 
     @Override
@@ -56,6 +60,7 @@ public class JsonStorage extends Storage {
                 FileReader fileReader = new FileReader(saveFile);
 
              BufferedReader bufferedReader = new BufferedReader(fileReader);
+            gsonBuilder.setLenient();
             JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
             JsonObject jsonObject = jsonElement.getAsJsonObject();
             String deckName = jsonObject.get("deckName").getAsString();
@@ -74,6 +79,7 @@ public class JsonStorage extends Storage {
             String absolutePath = this.saveFile.getAbsolutePath();
             logger.log(Level.WARNING, "Corrupted save file: " + absolutePath, e);
             useBackup = true;
+            throw new StorageCorrupted(absolutePath);
         }
 
         if (useBackup == true) {
