@@ -28,10 +28,10 @@ public class StorageTest {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport financialReport = new FinancialReport(statements);
         financialReport.addStatement(
-                new FinancialStatement("noodles", "in", 5, "Default"));
+                new FinancialStatement("noodles", "in", 5, "Default", null));
         String filePath = "rainyDay.txt";
         Storage.writeToFile(financialReport, filePath);
-        FinancialReport financialReportLoaded =Storage.loadFromFile(filePath);
+        FinancialReport financialReportLoaded = Storage.loadFromFile(filePath);
         //ViewCommand viewList = new ViewCommand();
         //viewList.setData(financialReportLoaded);
         //viewList.execute();
