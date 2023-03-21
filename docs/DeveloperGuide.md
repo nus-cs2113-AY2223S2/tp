@@ -54,6 +54,7 @@ Our product targets students who would like to save money on buying or ordering 
 
 | As a ... | I want to ... | So that ... |
 | -------- | ------------- | ----------- |
+| User with allergies | add my allergens to the app | I can avoid ingredients that I am allergic to |
 | User with allergies | block recipes that include allergens | I can avoid a medical emergency because of not realizing the recipe included allergens |
 | User | add recipes to a favourite section | I can easily see recipes that I like |
 | User who wants to lose weight | see the calorie count of the recipes | I can keep track of my caloric intake |
