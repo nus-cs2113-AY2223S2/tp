@@ -22,31 +22,31 @@ Add recipe : "add n/<insert recipe name> i/<insert ingredients with ", " separat
 If you wish to view the full list of commands, simply type "help"!
 
 __________________________________________________________
-__________________________________________________________
 
 MATE! Your list is empty!
 
 __________________________________________________________
-__________________________________________________________
-DEBUG: recipeSteps start
-chop beef
-add potatoes
-DEBUG: recipeSteps end
+Please enter the description of step 1:
+
+Please enter the description of step 2:
+
+Please enter the description of step 3:
+
+Please enter the description of step 4:
+
 
 Got it. I've added this recipe:
   [Chinese] Hotpot
 Now you have 1 recipes in the list.
 
 __________________________________________________________
-__________________________________________________________
-DEBUG: recipeSteps start
-DEBUG: recipeSteps end
+Please enter the description of step 1:
+
 
 Got it. I've added this recipe:
   [Chinese] MaLaXiangGuo
 Now you have 2 recipes in the list.
 
-__________________________________________________________
 __________________________________________________________
 
 RECIPE LIST
@@ -55,34 +55,30 @@ RECIPE LIST
 2. [Chinese] MaLaXiangGuo
 
 __________________________________________________________
-__________________________________________________________
-DEBUG: recipeSteps start
-add spaghetti
-DEBUG: recipeSteps end
+Please enter the description of step 1:
+
 
 Got it. I've added this recipe:
   [Italian] Spaghetti
 Now you have 3 recipes in the list.
 
 __________________________________________________________
+
+OOPS!!! I'm sorry, but I don't know what that means
+Try typing "help" to see the valid commands you can use!
+
 __________________________________________________________
-DEBUG: recipeSteps start
-DEBUG: recipeSteps end
 
 Got it. I've added this recipe:
   [Italian] Carbonara
 Now you have 4 recipes in the list.
 
 __________________________________________________________
-__________________________________________________________
-DEBUG: recipeSteps start
-DEBUG: recipeSteps end
 
 Got it. I've added this recipe:
   [Chinese] Beijing Duck
 Now you have 5 recipes in the list.
 
-__________________________________________________________
 __________________________________________________________
 
 RECIPE LIST
@@ -94,13 +90,11 @@ RECIPE LIST
 5. [Chinese] Beijing Duck
 
 __________________________________________________________
-__________________________________________________________
 
 Noted. I've removed this recipe:
   [Chinese] Hotpot
 Now you have 4 recipes in the list.
 
-__________________________________________________________
 __________________________________________________________
 
 RECIPE LIST
@@ -110,7 +104,6 @@ RECIPE LIST
 3. [Italian] Carbonara
 4. [Chinese] Beijing Duck
 
-__________________________________________________________
 __________________________________________________________
 Here is the recipe you requested, which is a Italian flavour:
 name: Spaghetti
@@ -123,13 +116,11 @@ __________________________________________________________
 There are 1 steps in the list
 1. add spaghetti
 __________________________________________________________
-__________________________________________________________
 
 Noted. I've removed this recipe:
   [Italian] Carbonara
 Now you have 3 recipes in the list.
 
-__________________________________________________________
 __________________________________________________________
 
 RECIPE LIST
@@ -139,25 +130,27 @@ RECIPE LIST
 3. [Chinese] Beijing Duck
 
 __________________________________________________________
-__________________________________________________________
-DEBUG: recipeSteps start
-DEBUG: recipeSteps end
 
 Got it. I've added this recipe:
   [Chinese] XiaoLongBao
 Now you have 4 recipes in the list.
 
 __________________________________________________________
-__________________________________________________________
-DEBUG: recipeSteps start
-brew tea
-DEBUG: recipeSteps end
 
 Got it. I've added this recipe:
   [Chinese] Guilinggao
 Now you have 5 recipes in the list.
 
 __________________________________________________________
+
+OOPS!!! I'm sorry, but I don't know what that means
+Try typing "help" to see the valid commands you can use!
+
+__________________________________________________________
+
+OOPS!!! I'm sorry, but I don't know what that means
+Try typing "help" to see the valid commands you can use!
+
 __________________________________________________________
 
 RECIPE LIST
@@ -169,7 +162,6 @@ RECIPE LIST
 5. [Chinese] Guilinggao
 
 __________________________________________________________
-__________________________________________________________
 Here is the recipe you requested, which is a Chinese flavour:
 name: MaLaXiangGuo
 __________________________________________________________
@@ -178,31 +170,25 @@ Here are 3 ingredients in the list:
 2. Mutton
 3. Mushrooms
 __________________________________________________________
-There are 0 steps in the list
-__________________________________________________________
+There are 1 steps in the list
+1. chop beef
 __________________________________________________________
 
 All recipes have been cleared!
-__________________________________________________________
 __________________________________________________________
 
 MATE! Your list is empty!
 
 __________________________________________________________
-__________________________________________________________
-DEBUG: recipeSteps start
-DEBUG: recipeSteps end
 
 Got it. I've added this recipe:
   [Chinese] Guilinggao
 Now you have 1 recipes in the list.
 
 __________________________________________________________
-__________________________________________________________
 
 Recipe list saved!
 Guilinggao
-__________________________________________________________
 __________________________________________________________
 
 Bye. Hope to see you again soon!

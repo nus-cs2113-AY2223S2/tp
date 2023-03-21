@@ -57,9 +57,9 @@ Format: `help`
 <h2 id="adding-a-recipe-add"> Adding a recipe: <code class="language-plaintext highlighter-rouge">add</code></h2>
 
 Adds a recipe to the recipe manager.
-Format: `add n/NAME i/INGREDIENTS t/TAG`
+Format: `add n/NAME i/INGREDIENTS t/TAG s/SumOfSteps`
 Examples:
-* `add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese`
+* `add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/3`
 <p>App will prompt you to start entering the steps to the recipe
 will automatically count the steps and echo back after typing in a step
 type in the step as a full sentence.</p>
@@ -165,6 +165,7 @@ Examples:
 <strong>A:</strong> If you input the correct action name, the app will prompt you for the correct input format, otherwise the app will ignore this instruction.<br>
 
 <h2 id='command-summary'> Command Summary </h2>
+
 
 |  Action   | 	Format  | Example |
 |  ----  | ----  | ----  |

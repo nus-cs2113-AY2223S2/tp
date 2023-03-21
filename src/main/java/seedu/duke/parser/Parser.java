@@ -11,17 +11,20 @@ import seedu.duke.ui.UI;
 
 import java.util.ArrayList;
 
-import static seedu.duke.ui.StringLib.STEP_INPUT_END;
+import static seedu.duke.ui.IntLib.RECIPE_NAME_INDEX;
+import static seedu.duke.ui.IntLib.RECIPE_INGREDIENTS_INDEX;
+import static seedu.duke.ui.IntLib.RECIPE_TAG_INDEX;
+import static seedu.duke.ui.IntLib.RECIPE_SUM_OF_STEPS_INDEX;
+
 
 public class Parser {
 
-    private static final String RECIPE_MISSING_NAME_INGREDIENTS_TAG = "Recipe is missing the \"NAME\" "
+    private static final String RECIPE_MISSING_NAME_INGREDIENTS_TAG_STEP = "Recipe is missing the \"NAME\" "
             + "or \"INGREDIENTS\" or \"TAG\"!\n";
     private static final String RECIPE_MISSING_NAME = "Recipe is missing \"NAME\"!\n";
     private static final String RECIPE_MISSING_INGREDIENTS = "Recipe is missing \"INGREDIENTS\"!\n";
     private static final String RECIPE_MISSING_TAG = "Recipe is missing \"TAG\"!\n";
-
-
+    private static final String RECIPE_MISSING_STEP = "Recipe is missing \"SUM of the STEPs\"!\n";
     /**
      * Returns a <code>Command</code> type which contains the command to be
      * executed and its full description to support its execution. It takes
@@ -86,22 +89,32 @@ public class Parser {
         ArrayList<String> parsed = new ArrayList<>();
         String[] parsedName = description.split(" i/");
         String[] parsedIngredientsTag = parsedName[1].split(" t/");
+        String[] parsedTagStep = parsedIngredientsTag[1].split(" s/");
         parsed.add(parsedName[0].substring(2));
         parsed.add(parsedIngredientsTag[0]);
-        parsed.add(parsedIngredientsTag[1]);
-        if (parsed.size() < 3) {
-            throw new IncompleteInputException(RECIPE_MISSING_NAME_INGREDIENTS_TAG);
+        parsed.add(parsedTagStep[0]);
+        parsed.add(parsedTagStep[1]);
+        if (parsed.size() < 4) {
+            throw new IncompleteInputException(RECIPE_MISSING_NAME_INGREDIENTS_TAG_STEP);
         }
-        if (parsed.get(0).isEmpty()) {
+        if (parsed.get(RECIPE_NAME_INDEX).isEmpty()) {
             throw new IncompleteInputException(RECIPE_MISSING_NAME);
         }
-        if (parsed.get(1).isEmpty()) {
+        if (parsed.get(RECIPE_INGREDIENTS_INDEX).isEmpty()) {
             throw new IncompleteInputException(RECIPE_MISSING_INGREDIENTS);
         }
-        if (parsed.get(2).isEmpty()) {
+        if (parsed.get(RECIPE_TAG_INDEX).isEmpty()) {
             throw new IncompleteInputException(RECIPE_MISSING_TAG);
         }
-        return parsed;
+        if (parsed.get(RECIPE_SUM_OF_STEPS_INDEX).isEmpty()) {
+            throw new IncompleteInputException(RECIPE_MISSING_STEP);
+        }
+        try {
+            Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX));
+            return parsed;
+        } catch (NumberFormatException e) {
+            throw new IncompleteInputException("Please enter a valid number for the sum of steps!\n");
+        }
     }
 
     public static IngredientList parseIngredients(String inputIngredients) {
@@ -113,19 +126,14 @@ public class Parser {
         return new IngredientList(parsed);
     }
 
-    public static StepList parseSteps(UI ui) {
-        ArrayList<Step> parsed = new ArrayList<>();
-        String inputDescription;
-        while (true) {
-            inputDescription = ui.readCommand();
-            if (inputDescription.equals(STEP_INPUT_END)) {
-                break;
-            }
-            Step inputStep = new Step(inputDescription);
-            System.out.println(inputStep);
-            parsed.add(inputStep);
+    public static StepList parseSteps(UI ui, int sumOfSteps) {
+        ArrayList<Step> parsedStepList = new ArrayList<>();
+        String inputStep;
+        for (int i = 1; i <= sumOfSteps; i++) {
+            ui.showStepInsertMessage(i);
+            inputStep = ui.readCommand();
+            parsedStepList.add(new Step(inputStep));
         }
-        return new StepList(parsed);
+        return new StepList(parsedStepList);
     }
-
 }

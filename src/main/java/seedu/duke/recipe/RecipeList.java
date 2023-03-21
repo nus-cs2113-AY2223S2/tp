@@ -38,6 +38,7 @@ public class RecipeList {
     public static void addNewRecipe(Recipe recipe) {
         recipeList.add(recipe);
         currRecipeNumber++;
+        assert(currRecipeNumber == recipeList.size());
     }
 
     public static void removeRecipe(int index) throws RecipeListEmptyError {
@@ -46,9 +47,11 @@ public class RecipeList {
         }
         recipeList.remove(index-1);
         currRecipeNumber--;
+        assert(currRecipeNumber == recipeList.size());
     }
     public static void clearRecipeList() {
         recipeList.clear();
         currRecipeNumber = 0;
+        assert(recipeList.size() == 0);
     }
 }
