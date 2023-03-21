@@ -5,8 +5,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import seedu.duke.Module;
-import seedu.duke.UI;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -14,7 +12,6 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ListCurrentCommandTest {
-    private final UI ui = new UI();
 
     //@@author dfa-reused
     //Reused from https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println

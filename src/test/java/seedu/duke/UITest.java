@@ -39,7 +39,6 @@ class UITest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
-    private final UI ui = new UI();
     @BeforeAll
     public void setUpStream() {
         System.setOut(new PrintStream(outContent));
@@ -63,6 +62,7 @@ class UITest {
 
     @Test
     void printCurrentListMessage_correctLines_success() {
+        UI ui = new UI();
         ui.printCurrentListMessage();
         assertEquals(LIST_CURRENT_MESSAGE + System.lineSeparator(), outContent.toString());
         outContent.reset();
@@ -70,6 +70,7 @@ class UITest {
 
     @Test
     void printPUModListMessage_correctLines_success() {
+        UI ui = new UI();
         String univName = "Korea University";
         ui.printPUModListMessage(univName);
         assertEquals(univName + " Modules" + System.lineSeparator() + LINE + System.lineSeparator()
@@ -79,6 +80,7 @@ class UITest {
 
     @Test
     void printAddModMessage_correctLines_success() {
+        UI ui = new UI();
         ui.printAddModMessage();
         assertEquals(ADD_MOD_MESSAGE + System.lineSeparator() + LINE + System.lineSeparator()
                 , outContent.toString());
@@ -87,6 +89,7 @@ class UITest {
 
     @Test
     void printDeleteModMessage_correctLines_success() {
+        UI ui = new UI();
         ui.printDeleteModMessage();
         assertEquals( DELETE_MOD_MESSAGE + System.lineSeparator() + LINE + System.lineSeparator()
                 , outContent.toString());
@@ -95,6 +98,7 @@ class UITest {
 
     @Test
     void printInputNotNumMessage_correctLines_success() {
+        UI ui = new UI();
         ui.printInputNotNumMessage();
         assertEquals(INPUT_NOT_INT_MESSAGE + System.lineSeparator() + LINE + System.lineSeparator()
                 , outContent.toString());
@@ -103,6 +107,7 @@ class UITest {
 
     @Test
     void getInvalidPuMessage_correctLines_success() {
+        UI ui = new UI();
         String invalidPuMessage = ui.getInvalidPuMessage();
         assertEquals(INVALID_PU_MESSAGE + LINE, invalidPuMessage);
         outContent.reset();
@@ -110,6 +115,7 @@ class UITest {
 
     @Test
     void getInvalidModuleMessage_correctLines_success() {
+        UI ui = new UI();
         String invalidModuleMessage = ui.getInvalidModuleMessage();
         assertEquals(INVALID_MODULE_MESSAGE + LINE, invalidModuleMessage);
         outContent.reset();
@@ -117,6 +123,7 @@ class UITest {
 
     @Test
     void printGreetingMessage_correctLines_success() {
+        UI ui = new UI();
         ui.printGreetingMessage();
         assertEquals("\n" +
                         "  ____  _____ ____    _   _      _                 \n" +
@@ -133,6 +140,7 @@ class UITest {
 
     @Test
     void printPUModules_correctLines_success() {
+        UI ui = new UI();
         ui.printPUModules(1);
         assertEquals("1. [AMSE216][Introduction to biomaterials][3]" + System.lineSeparator() +
                  "   maps to ----> [ME4253][Biomaterials Engineering][4]" + System.lineSeparator() +
@@ -476,6 +484,7 @@ class UITest {
 
     @Test
     void printPUList_correctLines_success() {
+        UI ui = new UI();
         ui.printPUList();
         assertEquals("____________________________________________________________\n" +
                 System.lineSeparator() +
@@ -491,6 +500,7 @@ class UITest {
 
     @Test
     void printCurrentModList_correctLines_success() {
+        UI ui = new UI();
         ArrayList<Module> modules = new ArrayList<>();
         Module module1 = new Module(1, "AE320", "Aerodynamics II", 3,
                 "ME4231", "Aerodynamics", 4);
@@ -511,6 +521,7 @@ class UITest {
 
     @Test
     void printInvalidInputMessage_correctLines_success() {
+        UI ui = new UI();
         ui.printInvalidInputMessage();
         assertEquals("Invalid Input" + System.lineSeparator(), outContent.toString());
         outContent.reset();
@@ -561,6 +572,7 @@ class UITest {
 
     @Test
     void printExitMessage_correctLines_success() {
+        UI ui = new UI();
         ui.printExitMessage();
         assertEquals("Exiting program now" + System.lineSeparator(), outContent.toString());
         outContent.reset();
