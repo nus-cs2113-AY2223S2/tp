@@ -82,6 +82,14 @@ It has the following functions:
 - Returns whether the program should exit when this command is called.
 
 ### Manager Component (PeiHao)
+The manager component consists of four different managers, 
+in which the list of entity is initialized and the methods implementing the entity are written inside.
+- DeadlineManager: This class contains an ArrayList of deadlines and methods implementing the deadlines like addDeadline, printDeadline and deleteDeadline.
+- DishManager: This class contains an ArrayList of dishes and methods like addDish, deleteDish, viewDish and 
+stringOfDish which returns the dish information.
+- MeetingManager: This class contains an ArrayList of meetings and methods like addMeeting, printMeetings and deleteMeeting.
+- StaffManager: This class contains an ArrayList of staffs and methods like addStaff, deleteStaffByName, findStaffByName and getStaffString which print all the staffs' information.
+
 ### Ui Component (HuiQi)
 The Ui Component consists of the TextUi class that handles interactions between the app and the user.
 
@@ -114,6 +122,16 @@ How the parsing works:
 5. Each of the individual `prepareXYZCommand()` will take in the userInput without the command portion. The variable is named `userInputNoCommand`. The `prepareXYZCommand()` will check the userInput to see if all the appropriate values are added, and return `XYZCommand` class if the values are correct. `prepareXXXCommand()` will return `IncorrectCommand` class if there are some missing values or inappropriate values.
 
 ### Meeting Feature (PeiHao)
+The 'Meeting' Feature allows users to add a meeting, delete a meeting, find a meeting and print all the meetings.
+The 'Meeting' class in the entity package shows the attributes that a meeting object has: time and issue, both are of String type.
+An ArrayList of meetings is initialized in the MeetingManager. Three methods that implement the meetings are also inside.
+- addMeeting: Add a meeting to the meeting list.
+- deleteMeeting: Delete a meeting in the meeting list by its index.
+- printMeetings: Print all the meetings in the meeting list.
+
+When the user input a meeting command, the Parser will determine which command it is and return a command object.
+One of the meeting commands will be called from `AddMeetingCommand`, `DeleteMeetingCommand` and `ViewMeetingCommand`.
+Inside the command, the execute function will call the corresponding methods inside the MeetingManager and implement on the meeting list.
 ### Deadline Feature (HuiQi)
 The Deadline Feature allows user to add Deadline objects in a deadline list.
 Deadline objects consists of a description String and a dueDate String.
