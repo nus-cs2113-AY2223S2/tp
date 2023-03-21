@@ -9,6 +9,10 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+//@@author ChongQiRong
+/**
+ * Represents a command that edits a statement from the financial report
+ */
 public class EditCommand extends Command {
     private static final Logger logger = Logger.getLogger(EditCommand.class.getName());
     private int index;
@@ -46,6 +50,9 @@ public class EditCommand extends Command {
         this.flag = flag;
     }
 
+    /**
+     * Sets up logger for logging
+     */
     @Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
@@ -59,6 +66,11 @@ public class EditCommand extends Command {
         }
     }
 
+    /**
+     * Executes the edit command and returns the result
+     *
+     * @return CommandResult with the relevant success or error message
+     */
     @Override
     public CommandResult execute() { // todo add -date
         setupLogger();
