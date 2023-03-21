@@ -6,6 +6,7 @@ import seedu.apollo.ui.Ui;
 import seedu.apollo.command.Command;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
+import seedu.apollo.utils.LoggerInterface;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
 /**
  * Find Command class that shortlists Tasks that contain a given keyword.
  */
-public class FindCommand extends Command {
+public class FindCommand extends Command implements LoggerInterface {
     private static Logger logger = Logger.getLogger("FindCommand");
 
     protected String keyword;
@@ -29,7 +30,6 @@ public class FindCommand extends Command {
      */
     public FindCommand(String keyword) {
         this.keyword = keyword;
-        FindCommand.setUpLogger();
     }
 
     /**
@@ -37,7 +37,8 @@ public class FindCommand extends Command {
      *
      * @throws IOException If logger file cannot be created.
      */
-    public static void setUpLogger() {
+    @Override
+    public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
         ConsoleHandler logConsole = new ConsoleHandler();
