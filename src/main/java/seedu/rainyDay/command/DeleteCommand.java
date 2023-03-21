@@ -9,7 +9,7 @@ public class DeleteCommand extends Command {
 
     private static final Logger logger = Logger.getLogger(DeleteCommand.class.getName());
 
-    int index;
+    private int index;
 
     public DeleteCommand(int index) {
         this.index = index;
