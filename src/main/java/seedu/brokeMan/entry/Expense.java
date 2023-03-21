@@ -9,6 +9,6 @@ public class Expense extends Entry {
 
     @Override
     public String toString() {
-        return String.format("$%.2f spent on %s - %s", amount, info, time);
+        return String.format("$%.2f spent on %s - %s", amount, info, super.convertTimeToString());
     }
 }

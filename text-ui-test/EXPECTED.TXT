@@ -13,17 +13,17 @@
 |  -----------------------------------------------------------------------
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully added [$4.00 spent on lunch - 2022-09-08T12:14]
+|  Enter command: |  You have successfully added [$4.00 spent on lunch - 2022-09-08 @ 12:14]
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully added [$6.00 spent on dinner - 2023-12-12T20:01]
+|  Enter command: |  You have successfully added [$6.00 spent on dinner - 2023-12-12 @ 20:01]
 |
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Here are the expenses you have made.
-|  1. $4.00 spent on lunch - 2022-09-08T12:14
-|  2. $6.00 spent on dinner - 2023-12-12T20:01
+|  1. $4.00 spent on lunch - 2022-09-08 @ 12:14
+|  2. $6.00 spent on dinner - 2023-12-12 @ 20:01
 |  Total expenses: $10.0
 |
 |  -----------------------------------------------------------------------
@@ -45,22 +45,22 @@
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Here are the expenses you have made.
-|  1. $6.00 spent on dinner - 2023-06-10T00:10
+|  1. $6.00 spent on dinner - 2023-06-10 @ 00:10
 |  Total expenses: $6.0
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully added [$400.00 earned on salary - 2023-03-12T15:01]
+|  Enter command: |  You have successfully added [$400.00 earned on salary - 2023-03-12 @ 15:01]
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully added [$600.00 earned on stocks - 2023-03-15T15:10]
+|  Enter command: |  You have successfully added [$600.00 earned on stocks - 2023-03-15 @ 15:10]
 |
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Here are the income you have made.
-|  1. $400.00 earned on salary - 2023-03-12T15:01
-|  2. $600.00 earned on stocks - 2023-03-15T15:10
+|  1. $400.00 earned on salary - 2023-03-12 @ 15:01
+|  2. $600.00 earned on stocks - 2023-03-15 @ 15:10
 |  Total income: $1000.0
 |
 |  -----------------------------------------------------------------------
@@ -82,7 +82,7 @@
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Here are the income you have made.
-|  1. $700.00 earned on pay - 2023-03-12T15:01
+|  1. $700.00 earned on pay - 2023-03-12 @ 15:01
 |  Total income: $700.0
 |
 |  -----------------------------------------------------------------------

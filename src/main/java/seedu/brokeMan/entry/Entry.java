@@ -46,5 +46,12 @@ public abstract class Entry {
 
     public String getTime() { return this.time.toString(); }
 
+    protected String convertTimeToString() {
+        String timeAsString = this.time.toString();
+        int indexOfT = timeAsString.indexOf('T');
+        String dateString = timeAsString.substring(0, indexOfT);
+        String timeString = timeAsString.substring(indexOfT + 1);
+        return String.format("%s @ %s", dateString, timeString);
+    }
     public abstract String toString();
 }
