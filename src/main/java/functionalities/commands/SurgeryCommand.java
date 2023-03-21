@@ -32,7 +32,7 @@ public class SurgeryCommand extends Command{
 
     @Override
     public void executeCommand(SniffTasks tasks) throws SniffException {
-        tasks.addSurgery(uid, animal, owner, priority, startDate, startTime, endDate, endTime);
+        tasks.addSurgery(animal, owner, priority, startDate, startTime, endDate, endTime);
         Ui.showUserMessage(" Surgery added successfully");
     }
 }

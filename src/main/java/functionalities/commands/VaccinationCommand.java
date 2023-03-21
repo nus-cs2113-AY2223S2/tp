@@ -27,7 +27,7 @@ public class VaccinationCommand extends Command{
 
     @Override
     public void executeCommand(SniffTasks tasks) throws SniffException {
-        tasks.addConsultation(uid,animal, owner, date, time);
+        tasks.addConsultation(animal, owner, date, time);
         Ui.showUserMessage(" Surgery added successfully");
     }
 }

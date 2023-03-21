@@ -9,7 +9,6 @@ public abstract class Appointment {
     protected boolean status;
 
     public Appointment(String uid, Animal animal, Owner owner) {
-        this.uid = uid;
         this.animal = animal;
         this.owner = owner;
         this.status = false;

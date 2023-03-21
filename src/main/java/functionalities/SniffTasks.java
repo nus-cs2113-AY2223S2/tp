@@ -3,42 +3,79 @@ package functionalities;
 import exception.SniffException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class SniffTasks {
 
     private static final ArrayList<Appointment> APPOINTMENTS = new ArrayList<>();
+    private static final HashMap<String, Integer> UIDS = new HashMap<String, Integer>();
 
-    public void addConsultation(String uid, Animal animal, Owner owner,
+    private static int appointmentCount = 0;
+    public void addConsultation(Animal animal, Owner owner,
                                 String date, String time) throws SniffException {
         try {
-            APPOINTMENTS.add(new Consultation(uid, animal, owner, date, time));
-        } catch (StringIndexOutOfBoundsException e){
+            String uid = Uid.uidGenerator("C");
+            while (UIDS.containsKey(uid)) { // this loop checks for duplicate appointment ids
+                uid = Uid.uidGenerator("C");
+            }
+            UIDS.put(uid, appointmentCount);
+            Appointment newAppointment = new Consultation(uid, animal, owner, date, time);
+            APPOINTMENTS.add(newAppointment);
+            Ui.printAppointmentAddedMessage(newAppointment);
+            appointmentCount++;
+        } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException("Invalid consultation description !!");
         }
     }
-    public void addVaccination(String uid, Animal animal, Owner owner,
+    public void addVaccination(Animal animal, Owner owner,
                                String date, String time, String vaccine) throws SniffException {
         try {
-            APPOINTMENTS.add(new Vaccination(uid, animal, owner, date, time, vaccine));
+
+            String uid = Uid.uidGenerator("V");
+            while (UIDS.containsKey(uid)) { // this loop checks for duplicate appointment ids
+                uid = Uid.uidGenerator("V");
+            }
+            Appointment newAppointment = new Vaccination(uid, animal, owner, date, time, vaccine);
+            APPOINTMENTS.add(newAppointment);
+            UIDS.put(uid, appointmentCount);
+            Ui.printAppointmentAddedMessage(newAppointment);
+            appointmentCount++;
         } catch (StringIndexOutOfBoundsException e){
             throw new SniffException("Invalid vaccination description !!");
         }
     }
-    public void addSurgery(String uid, Animal animal, Owner owner,
+    public void addSurgery(Animal animal, Owner owner,
                            String priority, String startDate, String startTime,
                            String endDate, String endTime) throws SniffException {
         try {
-            APPOINTMENTS.add(new Surgery(uid, animal, owner, priority, startDate, startTime, endDate, endTime));
+            String uid = Uid.uidGenerator("S");
+            while (UIDS.containsKey(uid)) { // this loop checks for duplicate appointment ids
+                uid = Uid.uidGenerator("S");
+            }
+            UIDS.put(uid, appointmentCount);
+            Appointment newAppointment =
+                    new Surgery(uid, animal, owner, priority, startDate, startTime, endDate, endTime);
+            APPOINTMENTS.add(newAppointment);
+            Ui.printAppointmentAddedMessage(newAppointment);
+            appointmentCount++;
         } catch (StringIndexOutOfBoundsException e){
             throw new SniffException("Invalid surgery description !!");
         }
     }
 
-    public void removeAppointment(int appointmentNumber) throws SniffException {
+    public void removeAppointment(String uid) throws SniffException {
         try {
-            assert appointmentNumber != 0;
-            APPOINTMENTS.remove(appointmentNumber - 1);
+            if (!UIDS.containsKey(uid)) {
+                throw new SniffException("There are no appointments with this ID.");
+            }
+            int index = UIDS.get(uid);
+            Appointment temp = APPOINTMENTS.get(index);
+            APPOINTMENTS.remove(index);
+            UIDS.remove(uid, index);
+            Ui.printAppointmentRemovedMessage(temp);
+            appointmentCount--;
+            assert appointmentCount >= 0 : "Appointment count cannot be less than 0";
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The remove command entry is invalid!");
         }
@@ -58,7 +95,7 @@ public class SniffTasks {
         }
     }
 
-    public void findAppointment(String uId) throws SniffException{
+    public void findAppointment(String uId) throws SniffException {
         int counter = 1;
         for (Appointment appointment : APPOINTMENTS) {
             assert appointment.uid != null;
