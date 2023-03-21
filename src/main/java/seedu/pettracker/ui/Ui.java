@@ -84,4 +84,9 @@ public class Ui {
         return input;
     }
 
+    /**
+     * Message that prints when a task is added to the task list.
+     */
+    public void addTodoCommandMessage() {
+    }
 }
