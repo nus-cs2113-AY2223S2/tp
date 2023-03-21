@@ -338,13 +338,46 @@ date of the task containing `KEYWORD` if the matching task is either an event or
 (TO BE ADDED SOON)
 
 ### Find Task on Date
-(TO BE ADDED SOON)
+
+The Find Task on Date functionality allows user to search for a list of tasks (event and deadline) that are happening
+or due on a specific `date` in their Tasklist. It is facilitated by the DateCommand class which is an extension of 
+the Command class.
+
+Below is an example usage of how the Find Task on Date command can be used to search for tasks happening or due on 
+a specific date in the TaskList and how it behaves at each step.
+
+Step 1. Define the Constructor: When the user executes the command `date 2023-03-22`, the Parser class calls the    
+`DateCommand()` method of the DateCommand class. The constructor of the DateCommand class takes in the dateString 
+`2023-03-22`  as a parameter. This date is used to find the corresponding tasks happening or due on this date from 
+the TaskList.
+
+Step 2. This date is then passed into the `LocalDate`. If the date parsed is in the wrong format (date format is not
+`yyyy-MM-dd`), a `DateTimeParseException` is thrown, calling the `printInvalidDate()` method in the Ui class.
+
+Step 3. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+class.
+It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 4. Override the `execute()` method: The `execute()` method is overridden to execute the find task
+functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+`allModule`, `calendar`.
+
+Step 5. Find the list of tasks happening or due on the `date`: Using the parameter string `date` in the format 
+`yyyy-MM-dd`, the `execute()` method will iterate through the `TaskList` to look for tasks that occurs on the given
+`date`. It will then call `printDateList()` method in the Ui class that takes in the list of tasks happening on the 
+given `date` and the LocalDate `date`. If there are no tasks on the specific `date`, a message is printed to the user 
+indicating that there are no tasks on that day.
+
+Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the list of tasks in 
+`TaskList` that are occurring on the `date` input by the user. The message includes the task type, description, date
+(and time of the task if the task is either an event or a deadline task).
 
 ### Storage
 (TO BE ADDED SOON)
 
 ### Logging
 (TO BE ADDED SOON)
+
 ## Documentation, logging, testing, configuration, dev-ops
 
 ### Documentation
