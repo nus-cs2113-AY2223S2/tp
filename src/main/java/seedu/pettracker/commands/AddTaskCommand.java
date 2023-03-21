@@ -1,13 +1,13 @@
 package seedu.pettracker.commands;
 
 import seedu.pettracker.ui.Ui;
-import seedu.pettracker.data.TodoList;
+import seedu.pettracker.data.TaskList;
 
-public class AddTodoCommand extends Command{
+public class AddTaskCommand extends Command{
 
     protected String todoDescription;
 
-    public AddTodoCommand(String commandArgs) {
+    public AddTaskCommand(String commandArgs) {
         super();
         this.todoDescription = commandArgs;
     }
@@ -19,7 +19,7 @@ public class AddTodoCommand extends Command{
      */
     @Override
     public void execute(Ui ui) {
-        TodoList.addTodo(todoDescription);
+        TaskList.addTask(todoDescription);
         ui.addTodoCommandMessage();
     }
 

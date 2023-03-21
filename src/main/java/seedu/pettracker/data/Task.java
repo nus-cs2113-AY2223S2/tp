@@ -1,10 +1,10 @@
 package seedu.pettracker.data;
 
-public class Todo {
+public class Task {
     protected String description;
     protected boolean isDone;
 
-    public Todo(String description) {
+    public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
