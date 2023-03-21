@@ -1,30 +1,39 @@
 package seedu.duke.budget;
 
 public class BudgetPlanner {
+    
     public static final int MAX_BUDGET = 20000000;
-    int budget;
-    int surplus;
-    Accommodation accommodation;
-    AirplaneTicket airplaneTicket;
-    Food food;
-    Entertainment entertainment;
+    private int budget;
+    private int surplus;
+    private int accommodationTotalCost;
+    private int airplaneTicketTotalCost;
+    private int foodTotalCost;
+    private int entertainmentTotalCost;
 
+    public BudgetPlanner() {
+        budget = 0;
+        initialiseCost();
+        updateSurplus();
+    }
 
-    public BudgetPlanner(int budget) {
-        if (budget > MAX_BUDGET || budget < 0) {
-            budget = MAX_BUDGET;
-        }
+    public void setBudget(int budget) {
         this.budget = budget;
-        this.surplus = budget;
-        accommodation = new Accommodation(0);
-        airplaneTicket = new AirplaneTicket(0);
-        food = new Food(0);
-        entertainment = new Entertainment(0);
+    }
+
+    private void initialiseCost() {
+        BudgetStorage budgetStorage = new BudgetStorage();
+        budget = budgetStorage.getBudget();
+        accommodationTotalCost = budgetStorage.getAccommodationCost();
+        airplaneTicketTotalCost = budgetStorage.getAirplaneTicketCost();
+        foodTotalCost = budgetStorage.getFoodCost();
+        entertainmentTotalCost = budgetStorage.getEntertainmentCost();
+    }
+
+    private int getTotalCost() {
+        return accommodationTotalCost + airplaneTicketTotalCost + foodTotalCost + entertainmentTotalCost;
     }
 
     private void updateSurplus() {
-        surplus = budget - accommodation.getPrice() - airplaneTicket.getPrice() - food.getPrice()
-                - entertainment.getPrice();
+        surplus = budget - getTotalCost();
     }
-
 }
