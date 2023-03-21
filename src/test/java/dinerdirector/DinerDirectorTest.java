@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import commands.Command;
 import commands.IncorrectCommand;
+import commands.deadline.FindDeadlineCommand;
 import commands.meeting.AddMeetingCommand;
 import commands.meeting.DeleteMeetingCommand;
 import commands.meeting.ViewMeetingCommand;
@@ -78,6 +79,8 @@ public class DinerDirectorTest {
         listOfCommands.add("view_deadlines dsjfnskldf");
         listOfCommands.add("delete_deadline");
         listOfCommands.add("delete_deadline 1");
+        listOfCommands.add("find_deadline");
+        listOfCommands.add("find_deadline hi");
 
         for (String listOfCommand : listOfCommands) {
             Command command = new Parser().parseCommand(listOfCommand);
@@ -85,7 +88,8 @@ public class DinerDirectorTest {
                     listOfCommand.equals("add_deadline n/add command") ||
                     listOfCommand.equals("add_deadline t/when to command") ||
                     listOfCommand.equals("view_deadline dsjfnskldf") ||
-                    listOfCommand.equals("delete_deadline")) {
+                    listOfCommand.equals("delete_deadline") ||
+                    listOfCommand.equals("find_deadline")) {
                 assertTrue(command instanceof IncorrectCommand);
             } else if (listOfCommand.equals("view_deadlines")) {
                 assertTrue(command instanceof ViewDeadlineCommand);
@@ -93,6 +97,8 @@ public class DinerDirectorTest {
                 assertTrue(command instanceof AddDeadlineCommand);
             } else if (listOfCommand.equals("delete_deadline 1")) {
                 assertTrue(command instanceof DeleteDeadlineCommand);
+            } else if (listOfCommand.equals("find_deadline hi")) {
+                assertTrue(command instanceof FindDeadlineCommand);
             }
         }
     }

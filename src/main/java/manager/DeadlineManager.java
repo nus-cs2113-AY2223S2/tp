@@ -38,7 +38,7 @@ public class DeadlineManager {
     }
 
     /**
-     * Print the task list.
+     * Print the deadline list.
      *
      * @param ui manages user output.
      */
@@ -57,7 +57,7 @@ public class DeadlineManager {
     }
 
     /**
-     * Deletes a task from the task list.
+     * Deletes a deadline from the deadline list.
      *
      * @param index index of deadline to be deleted.
      * @param ui    manages user output.
@@ -73,5 +73,31 @@ public class DeadlineManager {
             return;
         }
         assert deadlines.size() == len - 1 : "Length of deadline list should decrease by 1.";
+    }
+
+    /**
+     * Prints a list of deadline that matches the keyword.
+     *
+     * @param keyword the keyword to search for.
+     * @param ui manages user output.
+     */
+    public static void findDeadline(String keyword, TextUi ui) {
+        ArrayList<Deadline> matchingDeadlines = new ArrayList<>();
+        for (Deadline x : deadlines) {
+            if (x.description.contains(keyword)){
+                matchingDeadlines.add(x);
+            }
+        }
+        try {
+            if (matchingDeadlines.isEmpty()) {
+                throw new DinerDirectorException(Messages.MESSAGE_DEADLINE_EMPTY_SEARCH_LIST);
+            }
+            System.out.println(Messages.MESSAGE_DEADLINE_VIEW_SEARCH_LIST);
+            for (int i = 1; i <= matchingDeadlines.size(); i++) {
+                ui.printMessage(i + ". " + matchingDeadlines.get(i - 1).toString());
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e);
+        }
     }
 }
