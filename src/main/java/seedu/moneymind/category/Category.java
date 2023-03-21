@@ -10,11 +10,21 @@ public class Category {
 
     private String name;
 
+    private int budget;
+
     /**
      * A constructor with name.
      */
     public Category(String name) {
         this.name = name;
+    }
+
+    /**
+     * A constructor with name and budget.
+     */
+    public Category(String name, int budget) {
+        this.name = name;
+        this.budget = budget;
     }
 
     /**
@@ -91,8 +101,9 @@ public class Category {
     public int getTotalBudget() {
         int totalBudget = 0;
         for (int i = 0; i < events.size(); i++) {
-            totalBudget += events.get(i).getBudget();
+            totalBudget += events.get(i).getBudget();    // add the budget of each event, which is 0 by default
         }
+        totalBudget += budget;    // add the budget of the category
         return totalBudget;
     }
 
