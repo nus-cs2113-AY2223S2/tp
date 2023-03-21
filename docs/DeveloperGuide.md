@@ -9,7 +9,18 @@ for some reused skeleton code and inspiration on OOP implementation.
 ## Setting up
 
 ## Design 
-### Architecture (Kristian)
+### Architecture
+![Architecture_Diagram](./uml/DinerDirectorArchitectureDiagram.png)
+The **Architecture Diagram** given above explains the high-level design of DinerDirector. 
+Given below is a quick overview of main components and how they interact with each other. 
+
+**Main components of architecture** <br/>
+`DinerDirector` entry point to the application is DinerDirector. Initially, `DinerDirector` class interact with `UI` class to 
+prompt user for inputs. Once user keys in the input text, the input will be redirected to `Parser` class. `Parser` class will manage the error 
+handling of user's input. Next, any logic will be executed by `Command` object. If there exists any interaction with `Entity`, `Command` will 
+request to `Manager` to assist the CRUD operations.  
+
+
 ### Command Component (Zheng Rong)
 ### Manager Component (PeiHao)
 ### Ui Component (HuiQi)
@@ -65,7 +76,21 @@ Then, the deadline command will be executed, and the respective method in the De
 3. printDeadlines
 
     Prints the ArrayList `deadlines` through TextUi class.
-### Staff Feature (Kristian)
+### Staff Feature 
+The `Staff` Feature allows user to create, read, update, delete (CRUD) `Staff` objects in the list of staffs. 
+`Staff` list is managed by `StaffManager` Class similar to other entity objects. Here are hot it works for each functionality: 
+
+1. add_staff <br>
+It first checks whether the parameter needed to add `Staff` is already given in the correct format. If it passes the format checking, 
+the `Parser` object will return `AddStaffCommand` to be executed by `DinerDirector`. Internally, `AddStaffCommand` redirect the requests to 
+`StaffManager` to add the `Staff` object to the list of `Staff` 
+2. delete_staff  
+It firsts find the corresponding `Staff` object to be deleted using its name in the list in `StaffManager`. 
+If it is found, it will delete the correct corresponding `Staff`. 
+
+3. view_staff  
+It prints all of `Staff` objects in `StaffManager`'s staffs. 
+
 ### Dish Feature (Zheng Rong)
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
