@@ -6,6 +6,7 @@ import seedu.apollo.command.Command;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.ui.Ui;
 import seedu.apollo.task.TaskList;
+import seedu.apollo.utils.LoggerInterface;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,23 +16,16 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-public class ListModuleCommand extends Command {
+public class ListModuleCommand extends Command implements LoggerInterface {
     private static Logger logger = Logger.getLogger("ListModuleCommand");
-
-    /**
-     * Initialise ListModuleCommand class, setUpLogger.
-     */
-    public ListModuleCommand() {
-        ListModuleCommand.setUpLogger();
-    }
-
 
     /**
      * Sets up logger for ListModuleCommand class.
      *
      * @throws IOException If logger file cannot be created.
      */
-    public static void setUpLogger() {
+    @Override
+    public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
         ConsoleHandler logConsole = new ConsoleHandler();
