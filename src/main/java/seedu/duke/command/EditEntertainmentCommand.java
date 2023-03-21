@@ -11,6 +11,6 @@ public class EditEntertainmentCommand extends EditCostCommand {
     @Override
     public void execute() {
         budgetPlanner.setEntertainmentTotalCost(cost);
-        System.out.println("Entertainment budget has been changed to: " + cost);
+        System.out.println("Entertainment budget has been changed to: " + budgetPlanner.getEntertainmentTotalCost());
     }
 }

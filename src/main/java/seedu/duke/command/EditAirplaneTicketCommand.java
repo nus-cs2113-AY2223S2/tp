@@ -11,6 +11,6 @@ public class EditAirplaneTicketCommand extends EditCostCommand {
     @Override
     public void execute() {
         budgetPlanner.setAirplaneTicketTotalCost(cost);
-        System.out.println("Entertainment budget has been changed to: " + cost);
+        System.out.println("Airplane budget has been changed to: " + budgetPlanner.getAirplaneTicketTotalCost());
     }
 }

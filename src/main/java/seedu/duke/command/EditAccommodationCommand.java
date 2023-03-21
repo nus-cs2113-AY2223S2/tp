@@ -11,6 +11,6 @@ public class EditAccommodationCommand extends EditCostCommand {
     @Override
     public void execute() {
         budgetPlanner.setAccommodationTotalCost(cost);
-        System.out.println("Accommodation Budget has been changed to: " + cost);
+        System.out.println("Accommodation Budget has been changed to: " + budgetPlanner.getAccommodationTotalCost());
     }
 }

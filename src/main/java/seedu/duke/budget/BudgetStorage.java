@@ -12,13 +12,13 @@ import java.util.ArrayList;
 public class BudgetStorage implements DatabaseInterface {
 
     private static final String SAVED_BUDGET_FILE_PATH = "data/budget.txt";
+
     private Accommodation accommodation;
     private AirplaneTicket airplaneTicket;
     private Food food;
     private Entertainment entertainment;
 
-
-    private int Budget;
+    private int budget;
 
     public BudgetStorage() {
         try {
@@ -35,6 +35,12 @@ public class BudgetStorage implements DatabaseInterface {
             File directory = new File("data");
             directory.mkdirs();
             savedModulesFile.createNewFile();
+            budget = 0;
+            accommodation = new Accommodation(0);
+            airplaneTicket = new AirplaneTicket(0);
+            food = new Food(0);
+            entertainment = new Entertainment(0);
+            updateBudgetStorage();
             return;
         }
         readBudgetData();
@@ -47,7 +53,7 @@ public class BudgetStorage implements DatabaseInterface {
             while ((line = br.readLine()) != null) {
                 costs.add(line);
             }
-            Budget = Integer.parseInt(costs.get(0));
+            budget = Integer.parseInt(costs.get(0));
             accommodation = new Accommodation(Integer.parseInt(costs.get(1)));
             airplaneTicket = new AirplaneTicket(Integer.parseInt(costs.get(2)));
             food = new Food(Integer.parseInt(costs.get(3)));
@@ -57,9 +63,18 @@ public class BudgetStorage implements DatabaseInterface {
         }
     }
 
+    private void updateBudgetStorage() {
+        try {
+            writeListToFile();
+        } catch (IOException e) {
+            System.out.println("Unable to save to database");
+        }
+    }
+
     private void writeListToFile() throws IOException {
         FileWriter fw = new FileWriter(SAVED_BUDGET_FILE_PATH);
         String stringToAdd = "";
+        stringToAdd += writeTaskPreparation(integerToString(budget));
         stringToAdd += writeTaskPreparation(integerToString(getAccommodationCost()));
         stringToAdd += writeTaskPreparation(integerToString(getAirplaneTicketCost()));
         stringToAdd += writeTaskPreparation(integerToString(getFoodCost()));
@@ -85,7 +100,32 @@ public class BudgetStorage implements DatabaseInterface {
     }
 
     public int getBudget() {
-        return Budget;
+        return budget;
+    }
+
+    public void setBudget(int budget) {
+        this.budget = budget;
+        updateBudgetStorage();
+    }
+
+    public void setAccommodationCost(int cost) {
+        accommodation.setPrice(cost);
+        updateBudgetStorage();
+    }
+
+    public void setAirplaneTicketCost(int cost) {
+        airplaneTicket.setPrice(cost);
+        updateBudgetStorage();
+    }
+
+    public void setFoodCost(int cost) {
+        food.setPrice(cost);
+        updateBudgetStorage();
+    }
+
+    public void setEntertainmentCost(int cost) {
+        entertainment.setPrice(cost);
+        updateBudgetStorage();
     }
 
     private String integerToString(int integer) {

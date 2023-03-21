@@ -12,6 +12,6 @@ public class EditBudgetCommand extends BudgetCommand {
     @Override
     public void execute() {
         budgetPlanner.setBudget(budget);
-        System.out.println("Budget has been changed to: " + budget);
+        System.out.println("Budget has been changed to: " + budgetPlanner.getBudget());
     }
 }
