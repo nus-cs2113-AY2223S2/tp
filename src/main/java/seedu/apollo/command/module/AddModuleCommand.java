@@ -64,6 +64,7 @@ public class AddModuleCommand extends Command implements LoggerInterface {
 
     }
 
+    @Override
     public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
