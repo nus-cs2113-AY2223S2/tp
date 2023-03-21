@@ -74,8 +74,8 @@ public class SniffTasks {
     public void findAnimal(String animal) {
         int counter = 1;
         for (Appointment appointment : APPOINTMENTS) {
-            assert appointment.animal != null;
-            if (animal.equalsIgnoreCase(appointment.animal.toString())) {
+            assert appointment.animal.type != null;
+            if (animal.equalsIgnoreCase(appointment.animal.type)) {
                 Ui.formatPrintList(counter, appointment.toString());
                 counter++;
             }
@@ -89,7 +89,7 @@ public class SniffTasks {
         int counter = 1;
         for (Appointment appointment : APPOINTMENTS) {
             assert appointment != null;
-            if (type.equalsIgnoreCase(appointment.toString())) {
+            if (type.equalsIgnoreCase(String.valueOf(appointment))) {
                 Ui.formatPrintList(counter, appointment.toString());
                 counter++;
             }
