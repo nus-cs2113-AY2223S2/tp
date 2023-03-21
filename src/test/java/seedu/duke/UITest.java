@@ -7,7 +7,6 @@ import org.junit.jupiter.api.TestInstance;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidModuleException;
 import seedu.duke.exceptions.InvalidPuException;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
