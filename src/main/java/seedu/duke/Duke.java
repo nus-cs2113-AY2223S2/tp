@@ -42,7 +42,6 @@ public class Duke {
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                ui.showLine();
                 Command c = Parser.parseCommands(fullCommand);
                 c.execute(recipes,ui);
                 isExit = c.isExit();

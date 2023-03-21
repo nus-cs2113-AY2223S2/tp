@@ -98,6 +98,9 @@ public class UI {
     public void showLine() {
         System.out.println(LINE);
     }
+    public void showStepInsertMessage(int stepNumber) {
+        System.out.println("Please enter the description of step " + stepNumber + ":\n");
+    }
     public void showDudeMainError(Exception e) {
         if (e instanceof IOException) {
             System.out.println(FILE_IO_ERROR + e);

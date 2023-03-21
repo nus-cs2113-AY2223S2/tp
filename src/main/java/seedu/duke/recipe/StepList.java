@@ -26,10 +26,12 @@ public class StepList {
     private void addStep(Step step) {
         stepList.add(step);
         currStepNumber++;
+        assert (currStepNumber == stepList.size());
     }
     private void removeStep(int stepIndex) {
         stepList.remove(stepIndex - 1);
         currStepNumber--;
+        assert (currStepNumber == stepList.size());
     }
     public void showStepList() {
         System.out.println("There are " + currStepNumber + " steps in the list");

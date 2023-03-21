@@ -13,6 +13,8 @@ import seedu.duke.ui.UI;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static seedu.duke.ui.IntLib.*;
+
 /**
  * Represents a particular command to be carried out consisting of the
  * command type and command description.
@@ -65,13 +67,12 @@ public class Command {
                     throw new IncompleteInputException("The description of " + type + " cannot be empty.\n");
                 }
                 ArrayList<String> parsed = Parser.parseRecipe(fullDescription);
-                String recipeName = parsed.get(0);
-                IngredientList ingredientLists = Parser.parseIngredients(parsed.get(1));
-                String recipeTag = parsed.get(2);
-                System.out.println("DEBUG: recipeSteps start");
-                //StepList recipeSteps = new StepList();
-                StepList recipeSteps = Parser.parseSteps(ui);
-                System.out.println("DEBUG: recipeSteps end");
+                String recipeName = parsed.get(RECIPE_NAME_INDEX);
+                IngredientList ingredientLists =
+                        Parser.parseIngredients(parsed.get(RECIPE_INGREDIENTS_INDEX));
+                String recipeTag = parsed.get(RECIPE_TAG_INDEX).toString();
+                int sumOfSteps = Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX));
+                StepList recipeSteps = Parser.parseSteps(ui,sumOfSteps);
                 recipeList.addNewRecipe(new Recipe(recipeName, recipeTag, ingredientLists, recipeSteps));
                 ui.showRecipeAdded(recipeList.getNewestRecipe(), recipeList.getCurrRecipeNumber());
             } catch (Exception e) {
