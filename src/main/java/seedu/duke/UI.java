@@ -7,7 +7,7 @@ public class UI {
     private static final String LIST_CURRENT_MESSAGE = "List of Added modules:";
     private static final String LINE = "____________________________________________________________\n";
     private static final String ADD_MOD_MESSAGE = "This module has been added to the current list!";
-    private static final String DELETE_MOD_MESSAGE = "This module has been deleted from the module current list!";
+    private static final String DELETE_MOD_MESSAGE = "This module has been deleted from the current module list!";
 
     private static final String ADD_MOD_FAILURE_MESSAGE = "Save Module Failed";
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
