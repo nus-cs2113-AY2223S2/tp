@@ -69,7 +69,8 @@ public class EditCommand extends Command {
 
         if (flag == "") {
             financialReport.deleteStatement(index);
-            financialReport.addStatementAtIndex(new FinancialStatement(description, flowDirection, value, category), index);
+            financialReport.addStatementAtIndex(
+                    new FinancialStatement(description, flowDirection, value, category), index);
         } else if (flag.equals("-d")) {
             financialReport.getFinancialStatement(index).setDescription(fieldToChange);
         } else if (flag.equals("-c")) {
