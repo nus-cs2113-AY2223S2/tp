@@ -60,14 +60,6 @@ class UITest {
     }
 
     @Test
-    void printCurrentListMessage_correctLines_success() {
-        UI ui = new UI();
-        ui.printCurrentListMessage();
-        assertEquals(LIST_CURRENT_MESSAGE + System.lineSeparator(), outContent.toString());
-        outContent.reset();
-    }
-
-    @Test
     void printPUModListMessage_correctLines_success() {
         UI ui = new UI();
         String univName = "Korea University";
