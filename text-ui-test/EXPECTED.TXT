@@ -217,17 +217,15 @@ You are taking 2 module(s) this semester:
 Total modular credits you have in this semester: 8
 ____________________________________________________________
 ____________________________________________________________
-Sorry, the module 2 does not exist in your Module list!
-Total modular credits you have in this semester: 8
+Got it, removed CS2113 from your Module list.
+Total modular credits you have in this semester: 4
 ____________________________________________________________
 ____________________________________________________________
 Got it, removed CS2040C from your Module list.
-Total modular credits you have in this semester: 4
+Total modular credits you have in this semester: 0
 ____________________________________________________________
 ____________________________________________________________
-You are taking 1 module(s) this semester:
-1.CS2113: Software Engineering & Object-Oriented Programming (4 MCs)
-Total modular credits you have in this semester: 4
+There are no modules in your module list!
 ____________________________________________________________
 ____________________________________________________________
 Adding lesson type: LECTURE for Module: ST2334
@@ -252,7 +250,6 @@ ______________________
 WEDNESDAY
 
 Lessons:
-1. CS2113 Tutorial: 1200-1300
 
 Tasks:
 ______________________
@@ -265,7 +262,6 @@ ______________________
 FRIDAY
 
 Lessons:
-1. CS2113 Lecture: 1600-1800
 
 Tasks:
 ______________________
