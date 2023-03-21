@@ -17,7 +17,7 @@
 
 ### Architecture
 
-<img src="images\Architecture.png" width="250" />
+<img src="images\ArchitectureDiagram.png" width="300" />
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. 
 
