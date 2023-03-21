@@ -19,8 +19,15 @@ public class Ui {
         SniffException.showError();
     }
 
+
     public void showWelcomeMessage() {
         showLine();
+        System.out.println("  ______         _     ___     ___ \n" +
+                           " / _____)       (_)   / __)   / __)\n" +
+                           "( (____   ____   _  _| |__  _| |__ \n" +
+                           " \\____ \\ |  _ \\ | |(_   __)(_   __)\n" +
+                           " _____) )| | | || |  | |     | |   \n" +
+                           "(______/ |_| |_||_|  |_|     |_|   \n");
         System.out.println(" Hello! I'm Sniff, your personal appointment manager.");
         System.out.println(" What can I do for you?");
         showLine();
@@ -33,5 +40,15 @@ public class Ui {
 
     public static void formatPrintList(int count, String description) {
         System.out.println(count + DOT_THEN_SPACE + description);
+    }
+
+    public static void printAppointmentAddedMessage(Appointment appointment) {
+        System.out.println("This appointment has been added to your appointment manager: ");
+        System.out.println(appointment);
+    }
+
+    public static void printAppointmentRemovedMessage(Appointment appointment) {
+        System.out.println("This appointment has been removed your appointment manager: ");
+        System.out.println(appointment);
     }
 }

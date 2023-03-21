@@ -13,7 +13,7 @@ public class RemoveCommand extends Command{
 
     @Override
     public void executeCommand(SniffTasks tasks) throws SniffException {
-        tasks.removeAppointment(Integer.parseInt(uid));
+        tasks.removeAppointment(uid);
         Ui.showUserMessage(" Task removed successfully");
     }
 }
