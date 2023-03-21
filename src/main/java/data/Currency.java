@@ -1,8 +1,16 @@
 package data;
 
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 
 public class Currency {
@@ -17,8 +25,8 @@ public class Currency {
     public HashMap<String, BigDecimal> getExchangeRate() {
         if(exchangeRate == null) {
             exchangeRate = new HashMap<>();
-            exchangeRate.put("SGD", new BigDecimal(1.0));
-            exchangeRate.put("USD", new BigDecimal(0.75));
+//            exchangeRate.put("SGD", new BigDecimal(1.0));
+//            exchangeRate.put("USD", new BigDecimal(0.75));
         }
         return exchangeRate;
     }
@@ -67,5 +75,48 @@ public class Currency {
         BigDecimal roundedExpense = new BigDecimal(expenseAmountInput);
         roundedExpense = roundedExpense.setScale(2, RoundingMode.HALF_UP);
         return roundedExpense;
+    }
+
+    /**
+     * Gets the exchange rate of the currency specified from the API
+     * @param date the closest previous working day of the input date.
+     * @param currency the currency to be converted to.
+     * @throws IOException
+     */
+    public static void sendHTTPGetRequest(String date, HashMap<String, BigDecimal> exchangeRate)
+            throws IOException {
+        String GET_URL = "https://eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=95932927-c8bc-" +
+                "4e7a-b484-68a66a24edfe&filters[end_of_day]=" + date + "&limit=1";
+        URL url = new URL(GET_URL);
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+        httpURLConnection.setRequestMethod("GET");
+        int responseCode = httpURLConnection.getResponseCode();
+        if(responseCode == httpURLConnection.HTTP_OK) { //successful request
+            BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            JSONObject obj = new JSONObject(response.toString());
+            JSONObject result = obj.getJSONObject("result");
+            JSONArray records = result.getJSONArray("records");
+            JSONObject data = records.getJSONObject(0);
+            System.out.println(date);
+            for(String key: data.keySet()) {
+                if(key.equals("end_of_day") || key.equals("preliminary") || key.equals("timestamp")){
+                    continue;
+                }
+                BigDecimal rate = new BigDecimal(data.getDouble(key)).setScale(5, RoundingMode.HALF_UP);;
+                exchangeRate.put(key, rate);
+                System.out.println(key + " " + rate);
+            }
+        }else{
+            System.out.println("get failed.");
+        }
+
+
     }
 }
