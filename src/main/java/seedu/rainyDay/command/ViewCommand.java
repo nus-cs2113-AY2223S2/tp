@@ -9,12 +9,12 @@ import java.util.logging.Logger;
 
 public class ViewCommand extends Command implements FormatReport {
     private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
-            "+-----+------------------------------+------------+----------------+\n" +
-            "|Here is your full financial report!                               |\n" +
-            "+-----+------------------------------+------------+----------------+\n" +
-            "|Index|Name                          |Amount      |Category        |\n";
+            "+-----+------------------------------+------------+----------------+----------+\n" +
+            "|Here is your full financial report!                                          |\n" +
+            "+-----+------------------------------+------------+----------------+----------+\n" +
+            "|Index|Name                          |Amount      |Category        |Date      |\n";
     private static final String VIEW_SUMMARY = "" +
-            "+-----+------------------------------+------------+----------------+\n";
+            "+-----+------------------------------+------------+----------------+----------+\n";
     private static final Logger logger = Logger.getLogger(ViewCommand.class.getName());
     private double totalInflow = 0;
     private double totalOutflow = 0;
@@ -36,7 +36,7 @@ public class ViewCommand extends Command implements FormatReport {
     }
 
     @Override
-    public CommandResult execute() {
+    public CommandResult execute() { //todo add in print date
         setupLogger();
         logger.log(Level.INFO, "starting ViewCommand.execute()");
 
