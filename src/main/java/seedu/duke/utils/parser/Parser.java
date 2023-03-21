@@ -137,30 +137,31 @@ public class Parser {
         Command filterCommand = new FilterCommand(inventory, keyword, mode);
         filterCommand.run();
     }
-// TODO: MERGE THIS FUNCTION TO SEARCH AND USE IF-ELSE CONDITION
 
-//    /**
-//     * Handles the "searchUPC" command by checking the validity of search term provided before passing to
-//     * the searchUPC function
-//     *
-//     * @param rawInput The user input string to be validated.
-//     */
-//    public void parseSearchUPC(String rawInput) {
-//        try {
-//            if (rawInput == null) {
-//                throw new MissingParametersException();
-//            }
-//            if (rawInput.split(" ").length > 1) {
-//                throw new SearchFilterErrorException();
-//            }
-//            Inventory.searchUPC(rawInput);
-//        } catch (MissingParametersException e) {
-//            e.missingSearchItemParameters();
-//        } catch (SearchFilterErrorException se) {
-//            Ui.printInvalidEditCommand();
-//        }
-//    }
-//
+    /*
+    TODO: MERGE THIS FUNCTION TO SEARCH AND USE IF-ELSE CONDITION
+    /**
+     * Handles the "searchUPC" command by checking the validity of search term provided before passing to
+     * the searchUPC function
+     *
+     * @param rawInput The user input string to be validated.
+     * /
+    public void parseSearchUPC(String rawInput) {
+        try {
+            if (rawInput == null) {
+                throw new MissingParametersException();
+            }
+            if (rawInput.split(" ").length > 1) {
+                throw new SearchFilterErrorException();
+            }
+            Inventory.searchUPC(rawInput);
+        } catch (MissingParametersException e) {
+            e.missingSearchItemParameters();
+        } catch (SearchFilterErrorException se) {
+            Ui.printInvalidEditCommand();
+        }
+    }
+    */
 
     /**
      * Handles the "search" command by checking the validity of search term provided before passing to
@@ -266,7 +267,8 @@ public class Parser {
         }
     }
 
-    private static void parseRemoveByIndex(final String[] commands, Inventory inventory) throws MissingParametersException {
+    private static void parseRemoveByIndex(final String[] commands, Inventory inventory)
+            throws MissingParametersException {
         if (commands.length == 1) {
             throw new MissingParametersException();
         }
@@ -280,7 +282,8 @@ public class Parser {
         removeCommand.run();
     }
 
-    private static void parseRemoveByUpc(final String[] commands, Inventory inventory) throws MissingParametersException, RemoveErrorException {
+    private static void parseRemoveByUpc(final String[] commands, Inventory inventory)
+            throws MissingParametersException, RemoveErrorException {
         String confirmation;
         Item itemToRemove;
         if (commands.length == 1 || !commands[1].startsWith("upc/")) {
