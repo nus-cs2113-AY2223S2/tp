@@ -22,6 +22,5 @@ public class UnmarkCommand extends Command {
         } catch (NoPaidFieldException e) {
             return new CommandResult(e.getMessage());
         }
-
     }
 }
