@@ -15,8 +15,9 @@ public class UI {
     private static final String READ_COMMAND_INPUT = "What can I do for you?";
     private static final String HELP_MESSAGE = "\nType /help if you need help getting started :)";
     private static final String INPUT_NOT_INT_MESSAGE = "The input for the given command is not an integer";
-    private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name\n";
-    private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name\n";
+    private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name";
+    private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name";
+    private static final String CURRENT_LIST_EMPTY = "The current module list is empty";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
@@ -25,11 +26,6 @@ public class UI {
 
     public void printPUListMessage() {
         System.out.println(LIST_PU_MESSAGE);
-        System.out.println(LINE);
-    }
-
-    public void printCurrentListMessage() {
-        System.out.println(LIST_CURRENT_MESSAGE);
     }
 
     public void printPUModListMessage(String univName) {
@@ -53,11 +49,19 @@ public class UI {
     }
 
     public String getInvalidPuMessage() {
-        return INVALID_PU_MESSAGE + LINE;
+        return INVALID_PU_MESSAGE;
     }
 
     public String getInvalidModuleMessage() {
-        return INVALID_MODULE_MESSAGE + LINE;
+        return INVALID_MODULE_MESSAGE;
+    }
+
+    public String getCommandInputError() {
+        return COMMAND_INPUT_ERROR;
+    }
+
+    public String getLine() {
+        return LINE;
     }
 
     public void printGreetingMessage() {
@@ -112,21 +116,28 @@ public class UI {
 
     public void printCurrentModList(ArrayList<Module> modules) {
         int listIndex = 0;
-        System.out.println(LINE);
-        for (Module module : modules) {
-            listIndex++;
-            String moduleCode = module.getModuleCode();
-            String moduleName = module.getModuleName();
-            int moduleMCs = module.getModuleMCs();
-            String nusModuleCode = module.getNusModuleCode();
-            String nusModuleName = module.getNusModuleName();
-            int nusModuleMCs = module.getNusModuleMCs();
-            System.out.print(listIndex + ".");
-            System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
-            System.out.print("   maps to ----> ");
-            System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
+        if (modules.size() < 1) {
+            System.out.println(CURRENT_LIST_EMPTY);
+            System.out.println(LINE);
+            System.out.println(LINE);
+        } else {
+            System.out.println(LIST_CURRENT_MESSAGE);
+            System.out.println(LINE);
+            for (Module module : modules) {
+                listIndex++;
+                String moduleCode = module.getModuleCode();
+                String moduleName = module.getModuleName();
+                int moduleMCs = module.getModuleMCs();
+                String nusModuleCode = module.getNusModuleCode();
+                String nusModuleName = module.getNusModuleName();
+                int nusModuleMCs = module.getNusModuleMCs();
+                System.out.print(listIndex + ".");
+                System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+                System.out.print("   maps to ----> ");
+                System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
+            }
+            System.out.println(LINE);
         }
-        System.out.println(LINE);
     }
 
     public void printInvalidInputMessage() {

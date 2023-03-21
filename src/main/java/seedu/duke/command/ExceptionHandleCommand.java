@@ -8,5 +8,6 @@ public class ExceptionHandleCommand extends Command {
 
     public void execute() {
         System.out.println(e.getMessage());
+        System.out.println(ui.getLine());
     }
 }

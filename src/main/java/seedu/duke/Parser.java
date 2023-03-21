@@ -10,16 +10,15 @@ import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCurrentCommand;
 import seedu.duke.command.ListPuCommand;
 import seedu.duke.command.ListPuModulesCommand;
-
+import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidPuException;
 import seedu.duke.exceptions.InvalidModuleException;
-
 import java.util.ArrayList;
 
 public class Parser {
     private static UI ui = new UI();
 
-    public Command handleUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
+    public Command parseUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
                                      ArrayList<Module> puModules, Storage storage) {
         ArrayList<String> userInputWords = parseCommand(userInput);
         String userCommandFirstKeyword = userInputWords.get(0);
@@ -27,30 +26,35 @@ public class Parser {
         if (userInputWords.size() > 1) {
             userCommandSecondKeyword = userInputWords.get(1);
         }
-        switch (userCommandFirstKeyword) {
-        case "list":
-            if (userCommandSecondKeyword.equalsIgnoreCase("pu")) {
-                return new ListPuCommand();
-            } else if (userCommandSecondKeyword.equalsIgnoreCase("current")) {
-                return new ListCurrentCommand(modules);
-            } else {  // list PU name case
-                return prepareListPuModulesCommand(userInput, universities);
+        if (userCommandFirstKeyword.equalsIgnoreCase("list")) {
+            try {
+                if (userInputWords.size() == 1) {
+                    throw new InvalidCommandException(ui.getCommandInputError());
+                }
+                if (userCommandSecondKeyword.equalsIgnoreCase("pu")) {
+                    return new ListPuCommand();
+                } else if (userCommandSecondKeyword.equalsIgnoreCase("current")) {
+                    return new ListCurrentCommand(modules);
+                } else {  // list PU name case
+                    return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
+                }
+            } catch (InvalidCommandException e) {
+                return new ExceptionHandleCommand(e);
             }
-        case "exit":
+        } else if (userCommandFirstKeyword.equalsIgnoreCase("exit")) {
             return new ExitCommand();
-        case "add":
+        } else if (userCommandFirstKeyword.equalsIgnoreCase("add")) {
             return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
-        case "remove":
+        } else if (userCommandFirstKeyword.equalsIgnoreCase("remove")) {
             int indexToRemove = stringToInt(userCommandSecondKeyword);
             return new DeleteModuleCommand(storage, indexToRemove, modules);
-        case "/help":
+        } else if (userCommandFirstKeyword.equalsIgnoreCase("/help")) {
             return new HelpCommand();
-        default:
+        } else {
             return new InvalidCommand();
         }
     }
 
-    // Todo: Throw Exception when commandWords.size() == 1
     public static ArrayList<String> parseCommand(String userInput) {
         String[] input = userInput.split((" "), 2);
         ArrayList<String> commandWords = new ArrayList<>();
@@ -63,38 +67,41 @@ public class Parser {
         return commandWords;
     }
 
-    private Command prepareListPuModulesCommand(String userInput, ArrayList<University> universities) {
-        int indexOfFirstSpace = userInput.indexOf(' ');
-        int indexOfFirstLetterOfPu = indexOfFirstSpace + 1;
-        String universityAbbName = userInput.substring(indexOfFirstLetterOfPu);
+    private Command prepareListPuModulesCommand(String univAbbNameOrIndex, ArrayList<University> universities) {
+        char digitChecker = univAbbNameOrIndex.charAt(0);
+        String universityAbbName= "";
+        int univIndex = -1;
+        if (Character.isDigit(digitChecker)) {
+            univIndex= Integer.parseInt(univAbbNameOrIndex) - 1;
+        } else {
+            universityAbbName = univAbbNameOrIndex;
+        }
         try {
-            return handleListPuModulesCommand(universities, universityAbbName);
+            return handleListPuModulesCommand(universities, universityAbbName, univIndex);
         } catch (InvalidPuException e) {
             return new ExceptionHandleCommand(e);
         }
     }
 
-    // Todo: Right now, it uses university Name only but since university object has 3 attributes:
-    // todo: handle exceptions such that the universityname inputted is incorrect
-    // 1. univId; 2. univName; 3. univAbbName; we can use this next time
-    // Note that this function, takes in the arrayList of modules of ALL MODULES
-    // THIS IS NOT THE FUNCTION THAT RETURNS USER SELECTED MODULES SPECIFIED TO A PU.
     private Command handleListPuModulesCommand(ArrayList<University> universities,
-                                               String universityAbbName) throws InvalidPuException {
-        int univId = -1;
+                                               String universityAbbName, int univIndex) throws InvalidPuException {
         String universityName = "";
-        for (int i = 0; i < universities.size(); i++) {
-            University currentUniversity = universities.get(i);
-            String currentUniversityAbbName = currentUniversity.getUnivAbbName();
-            if (universityAbbName.equals(currentUniversityAbbName)) {
-                univId = currentUniversity.getUnivId(); //Todo: change magic literal
-                universityName = currentUniversity.getUnivName(); // Todo: might be empty string
+        int univID = 0;
+        if (univIndex == -1) {
+            for (University university : universities) {
+                if (universityAbbName.equalsIgnoreCase(university.getUnivAbbName())) {
+                    univID = university.getUnivId();
+                    universityName = university.getUnivName();
+                }
             }
+        } else {
+            univID = universities.get(univIndex).getUnivId();
+            universityName = universities.get(univIndex).getUnivName();
         }
-        if (univId == -1) {
+        if (univID == 0 && universityName.equals("")) {
             throw new InvalidPuException(ui.getInvalidPuMessage());
         }
-        return new ListPuModulesCommand(univId, universityName);
+        return new ListPuModulesCommand(univID, universityName);
     }
 
     private Command prepareAddModuleCommand(Storage storage, String abbreviationAndCode, ArrayList<Module> allModules,
