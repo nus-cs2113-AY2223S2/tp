@@ -14,27 +14,28 @@ Thank you for using rainyDay. {todo}
 {todo patterns that we will be using, what does it mean, e.g. "", ` `, CAPS... etc}
 
 <!-- TOC -->
-
 * [User Guide](#user-guide)
-    * [Introduction](#introduction)
-    * [Acknowledgement](#acknowledgement)
-    * [How to use the user guide](#how-to-use-the-user-guide)
-    * [Quick Start](#quick-start)
-    * [Features](#features)
-        * [Adding a transaction](#adding-a-transaction)
-        * [Deleting a transaction](#deleting-a-transaction)
-        * [Viewing the financial report](#viewing-the-financial-report)
-        * [Viewing help](#viewing-help)
-        * [Filter statements](#filter-statements)
-        * [Saving the data](#saving-the-data)
-        * [Loading saved data](#loading-saved-data)
-        * [Exporting as .CSV](#exporting-as-csv)
-        * [Exiting the application](#exiting-the-application)
-    * [FAQ](#faq)
-    * [Command Summary](#command-summary)
-    * [Glossary](#glossary)
-
+  * [Introduction](#introduction)
+  * [Acknowledgement](#acknowledgement)
+  * [How to use the user guide](#how-to-use-the-user-guide)
+  * [Quick Start](#quick-start)
+  * [Features](#features)
+    * [Adding a transaction](#adding-a-transaction)
+    * [Deleting a transaction](#deleting-a-transaction)
+    * [Viewing the financial report](#viewing-the-financial-report)
+    * [Viewing help](#viewing-help)
+    * [Filter statements](#filter-statements)
+    * [Saving the data](#saving-the-data)
+    * [Loading saved data](#loading-saved-data)
+    * [Exporting to CSV](#exporting-to-csv)
+    * [Exiting the application](#exiting-the-application)
+  * [FAQ](#faq)
+  * [Command Summary](#command-summary)
+  * [Glossary](#glossary)
 <!-- TOC -->
+
+
+
 
 ## Quick Start
 
@@ -120,9 +121,17 @@ filter -date DD/MM/YYYY
 
 {todo}
 
-### Exporting as .CSV
+### Exporting to CSV
 
-{todo, include what is .csv}
+Exports your financial statements into a comma-separated values file.
+
+Format: `export`
+> **Background:** A CSV file allows data to be saved in a format which can be viewed as a table.
+> 
+>💡Saving your financial statements in a CSV file will allow you to view your statements in commonly use applications like *Microsoft Excel* and *Google Sheets*.
+
+{todo: tell user where they can locate saved file}
+
 
 ### Exiting the application
 
