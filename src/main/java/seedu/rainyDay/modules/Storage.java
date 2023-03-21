@@ -52,15 +52,7 @@ public class Storage {
         return statements;
     }
 
-    public static void writeToCSV(FinancialReport report) throws IOException {
-        String CSVFilePath = "report.csv";
-
-
-        FileWriter outputFile = new FileWriter(CSVFilePath);
-        CSVWriter tableWriter = new CSVWriter(outputFile);
-        String[] tableHeader = {"ID", "Description", "Value", "Category"};
-        tableWriter.writeNext(tableHeader);
-
+    private static void fillTableBody(FinancialReport report, CSVWriter tableWriter) {
         for (int i = 0; i < report.getStatementCount(); i++) {
             FinancialStatement currStatement = report.getFinancialStatement(i);
 
@@ -77,9 +69,19 @@ public class Storage {
             String[] tableRow = {statementID, description, value, category};
             tableWriter.writeNext(tableRow);
         }
+    }
+    public static void writeToCSV(FinancialReport report) throws IOException {
+        String CSVFilePath = "report.csv";
+
+
+        FileWriter outputFile = new FileWriter(CSVFilePath);
+        CSVWriter tableWriter = new CSVWriter(outputFile);
+
+        String[] tableHeader = {"ID", "Description", "Value", "Category"};
+        tableWriter.writeNext(tableHeader);
+        fillTableBody(report, tableWriter);
+
         tableWriter.close();
-
-
     }
 
     private static void setupLogger() {
