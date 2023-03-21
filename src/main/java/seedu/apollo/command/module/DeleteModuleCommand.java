@@ -68,18 +68,29 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar){
-
         try {
             if (args.length == 3) {
-                handleMultiCommand(moduleList, ui, storage);
+                handleMultiCommand(moduleList, ui);
             } else {
                 // module code is the only argument
-                String moduleCode = args[0];
-                Module toDelete = moduleList.findModule(moduleCode);
-                if (toDelete == null) {
-                    throw new ModuleNotFoundException();
+                String listParam = args[0];
+                String moduleCode;
+                if (isInteger(listParam)) {
+                    int index = Integer.parseInt(listParam);
+                    if (index > moduleList.size() || index < 1) {
+                        throw new NumberFormatException();
+                    }
+                    moduleCode = moduleList.get(index - 1).getCode();
+                    moduleList.remove(index - 1);
+                } else {
+                    moduleCode = listParam;
+                    Module toDelete = moduleList.findModule(listParam);
+                    if (toDelete == null) {
+                        throw new ModuleNotFoundException();
+                    }
+                    moduleList.remove(toDelete);
                 }
-                moduleList.remove(toDelete);
+
                 ui.printModuleDeleteMessage(moduleCode, moduleList);
             }
 
@@ -90,10 +101,34 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
             ui.printTotalModularCredits(moduleList);
         } catch (IOException | InvalidSaveFile e) {
             ui.printErrorForIO();
+        } catch (NumberFormatException e) {
+            ui.printErrorForModIdx(moduleList.size());
         }
     }
 
-    private void handleMultiCommand(ModuleList moduleList, Ui ui, Storage storage) throws ModuleNotFoundException {
+    /**
+     * Checks if the string is an integer.
+     *
+     * @param param String to be checked.
+     * @return Boolean value of whether the string is an integer.
+     */
+    private Boolean isInteger(String param) {
+        try {
+            Integer.parseInt(param);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Handles the deletion of a lesson from a module.
+     *
+     * @param moduleList ModuleList to be deleted from.
+     * @param ui Ui to print messages.
+     * @throws ModuleNotFoundException If the module is not found.
+     */
+    private void handleMultiCommand(ModuleList moduleList, Ui ui) throws ModuleNotFoundException {
         String moduleCode = args[0];
         String command = args[1];
         String lessonNumber = args[2];
@@ -115,6 +150,14 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
         }
     }
 
+    /**
+     * Deletes the lesson from the module.
+     *
+     * @param module Module to be deleted from.
+     * @param lessonType Type of lesson to be deleted.
+     * @param lessonNumber Number of lesson to be deleted.
+     * @throws ClassNotFoundException If the lesson is not found.
+     */
     private void deleteTimetable(Module module, LessonType lessonType, String lessonNumber)
             throws ClassNotFoundException {
 
@@ -139,6 +182,13 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
         }
     }
 
+    /**
+     * Returns the LessonType of the command.
+     *
+     * @param arg Command to be checked.
+     * @return LessonType of the command.
+     * @throws IllegalCommandException If the command is invalid.
+     */
     private LessonType getCommand(String arg) throws IllegalCommandException {
         switch (arg) {
         case "-lec":

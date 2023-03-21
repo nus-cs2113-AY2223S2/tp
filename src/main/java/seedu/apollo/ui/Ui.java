@@ -343,6 +343,20 @@ public class Ui {
     }
 
     /**
+     * Prints error message if the index entered does not fit the format.
+     *
+     * @param size Number of modules within the current ModuleList.
+     */
+    public void printErrorForModIdx(int size) {
+        boolean isEmptyModuleList = (size == 0);
+        if (!isEmptyModuleList) {
+            System.out.println("Please enter [idx] in the form of an integer from 1 to " + size);
+        } else {
+            System.out.println("There are no modules in your list!");
+        }
+    }
+
+    /**
      * Prints error message if reading or writing to the hard disk throws an IO error.
      */
     public void printErrorForIO() {
