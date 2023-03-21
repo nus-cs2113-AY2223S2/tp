@@ -86,10 +86,11 @@ This includes the following methods:
 
 (Insert Class Diagram)
 The Utils Component consists of the Parser class that will handle the parsing and preparing of commands within the DinerDirector application.
+
 The Parser class performs the following functions:
 
-Parse the command given the user input and extracts out the necessary information related to the command.
-Returns the appropriate Command Class based on the parsed input.
+* Parse the command given the user input and extracts out the necessary information related to the command.
+* Returns the appropriate Command Class based on the parsed input.
 
 ## Implementation
 ### Parsing Feature (Darren)
