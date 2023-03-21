@@ -54,6 +54,6 @@ class ListPuModulesCommandTest {
                 "   maps to ----> [ME3221][Sustainable Energy Conversion][4]" + System.lineSeparator() +
                 "____________________________________________________________".stripTrailing()
                 , outContent.toString().stripTrailing());
-
+        outContent.reset();
     }
 }

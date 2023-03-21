@@ -41,5 +41,6 @@ class ListPuCommandTest {
                 "5. YONSEI UNIVERSITY YU" + System.lineSeparator() +
                 "____________________________________________________________".stripTrailing()
                 , outContent.toString().stripTrailing());
+        outContent.reset();
     }
 }

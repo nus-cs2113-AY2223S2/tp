@@ -50,5 +50,6 @@ class ListCurrentCommandTest {
                 "   maps to ----> [ME4291][Finite Element Analysis][4]" + System.lineSeparator() +
                 "____________________________________________________________".stripTrailing()
                 , outContent.toString().stripTrailing());
+        outContent.reset();
     }
 }
