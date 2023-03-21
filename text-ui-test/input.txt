@@ -1,12 +1,12 @@
-add do math homework -d 20/04/2023 23:59
-add laundry -d 18/04/2023 16:30
+add do math homework -due 20/04/2023 23:59
+add laundry -due 18/04/2023 16:30
 list
 mark 1
 delete 2
 list
 abcd
-edit 3 -d 30/04/2023 08:45
-edit 1 -d 31/04/2023 08:45
-edit 1 -d 30/04/2023 08:45
+edit 3 -due 30/04/2023 08:45
+edit 1 -due 31/04/2023 08:45
+edit 1 -due 30/04/2023 08:45
 list
 exit
