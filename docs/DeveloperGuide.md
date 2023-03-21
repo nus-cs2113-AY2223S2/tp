@@ -316,17 +316,21 @@ Step 1. Define the Constructor: When the user executes the command `find read`, 
 `FindCommand()` method of the FindCommand class. The constructor of the FindCommand class takes in the keyword 
 string `read` as a parameter. This string is used to find tasks in the TaskList that contains this keyword.
 
-Step 2. Override the `execute()` method: The `execute()` method is overridden to execute the find task 
+Step 2: Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+class.
+It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the find task 
 functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`, 
 `allModule`, `calendar`.
 
-Step 3. Find the list of tasks containing the `KEYWORD`: Using the parameter string `KEYWORD`, the `execute()` method 
+Step 4. Find the list of tasks containing the `KEYWORD`: Using the parameter string `KEYWORD`, the `execute()` method 
 will iterate through `TaskList` and call `printFoundList()` method in the Ui class that takes in a list of task,
 `ArrayList<Tasks>`, containing the `KEYWORD` as a parameter. If the `KEYWORD` does not exist in any tasks 
 in `TaskList`, a message is printed to the user indicating that there are no matching tasks that contains the 
 `KEYWORD`.
 
-Step 4. Print the confirmation message: A confirmation message is printed to the user indicating the list of 
+Step 5. Print the confirmation message: A confirmation message is printed to the user indicating the list of 
 tasks in `TaskList` that matches the `KEYWORD` input by the user. The message includes the task type, description (and
 date of the task containing `KEYWORD` if the matching task is either an event or a deadline task).
 
