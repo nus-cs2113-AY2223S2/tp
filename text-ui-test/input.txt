@@ -1,7 +1,7 @@
 John
-add -in -d ang bao -c Money $1337
-add -out -d noodles $5
-add -out -c food $20
+add -in ang bao $1337 -c Money
+add -out noodles $5
+add -out food $20
 view
 delete 2
 view

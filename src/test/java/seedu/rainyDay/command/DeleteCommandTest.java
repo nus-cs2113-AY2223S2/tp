@@ -14,10 +14,12 @@ public class DeleteCommandTest {
 
     @Test
     public void execute() {
-        AddCommand addFirstCommand = new AddCommand("Ipad", "out", 120, "Default");
+        AddCommand addFirstCommand = new AddCommand("Ipad", "out", 120, "Default",
+                null);
         addFirstCommand.setData(financialReport);
         addFirstCommand.execute();
-        AddCommand addSecondCommand = new AddCommand("angpao", "in", 3000, "Default");
+        AddCommand addSecondCommand = new AddCommand("angpao", "in", 3000, "Default",
+                null);
         addSecondCommand.setData(financialReport);
         addSecondCommand.execute();
 

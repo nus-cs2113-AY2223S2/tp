@@ -7,21 +7,33 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+/**
+ * Represents a command to view the financial report
+ */
 public class ViewCommand extends Command implements FormatReport {
+    //@@author BenjaminPoh
     private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
-            "+-----+------------------------------+------------+----------------+\n" +
-            "|Here is your full financial report!                               |\n" +
-            "+-----+------------------------------+------------+----------------+\n" +
-            "|Index|Name                          |Amount      |Category        |\n";
+            "+-----+------------------------------+------------+----------------+----------+\n" +
+            "|Here is your full financial report!                                          |\n" +
+            "+-----+------------------------------+------------+----------------+----------+\n" +
+            "|Index|Name                          |Amount      |Category        |Date      |\n";
+
     private static final String VIEW_SUMMARY = "" +
-            "+-----+------------------------------+------------+----------------+\n";
+            "+-----+------------------------------+------------+----------------+----------+\n";
+
+    //@@author lil1n
     private static final Logger logger = Logger.getLogger(ViewCommand.class.getName());
+
     private double totalInflow = 0;
+
     private double totalOutflow = 0;
 
     public ViewCommand() {
     }
 
+    /**
+     * Sets up logger for logging
+     */
     @Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
@@ -35,6 +47,11 @@ public class ViewCommand extends Command implements FormatReport {
         }
     }
 
+    /**
+     * Executes the command and returns the result
+     *
+     * @return CommandResult with the relevant output message as its attribute
+     */
     @Override
     public CommandResult execute() {
         setupLogger();
@@ -60,6 +77,12 @@ public class ViewCommand extends Command implements FormatReport {
         return new CommandResult(outcome);
     }
 
+    /**
+     * Appends financial statements to the end of a string
+     *
+     * @param outcome string containing the incomplete output to be shown to user
+     * @return an incomplete output to be shown to user when provided a view command
+     */
     private String getStatementsOutput(String outcome) {
         for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
             logger.log(Level.INFO, "starting statement " + i);

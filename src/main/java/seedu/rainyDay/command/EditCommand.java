@@ -3,6 +3,7 @@ package seedu.rainyDay.command;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.FlowDirection;
 
+import java.time.LocalDate;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -18,6 +19,7 @@ public class EditCommand extends Command {
     private String flag = "";
     private String fieldToChange;
     private Double valueToChange;
+    private LocalDate date;
 
     public EditCommand(int index, String description, String flowDirection, double value, String category) {
         this.index = index;
@@ -58,7 +60,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() {
+    public CommandResult execute() { // todo add -date
         setupLogger();
         logger.log(Level.INFO, "starting EditCommand.execute()");
 
@@ -70,7 +72,7 @@ public class EditCommand extends Command {
         if (flag.isEmpty()) {
             financialReport.deleteStatement(index);
             financialReport.addStatementAtIndex(
-                    new FinancialStatement(description, flowDirection, value, category), index);
+                    new FinancialStatement(description, flowDirection, value, category, date), index);
         } else if (flag.equals("-d")) {
             financialReport.getFinancialStatement(index).setDescription(fieldToChange);
         } else if (flag.equals("-c")) {

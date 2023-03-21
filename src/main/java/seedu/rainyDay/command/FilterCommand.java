@@ -3,6 +3,8 @@ package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -32,7 +34,6 @@ public class FilterCommand extends Command implements FormatReport {
         }
     }
 
-    // todo
     @Override
     public CommandResult execute() {
         setupLogger();
@@ -68,8 +69,16 @@ public class FilterCommand extends Command implements FormatReport {
                     statementIndex.add(i + 1);
                 }
             }
+        } else if (filterFlag.equalsIgnoreCase("-date")) {
+            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
+                if (financialReport.getStatementDate(i) != null &&
+                        financialReport.getStatementDate(i).equals(
+                                LocalDate.parse(this.description, DateTimeFormatter.ofPattern("dd/MM/uuuu")))) {
+                    filteredList.add(financialReport.getFinancialStatement(i));
+                    statementIndex.add(i + 1);
+                }
+            }
         }
-
 
         String outcome = "";
         if (filteredList.size() == 0) {
