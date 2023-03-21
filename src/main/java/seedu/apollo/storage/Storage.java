@@ -18,6 +18,7 @@ import seedu.apollo.task.Event;
 import seedu.apollo.task.Task;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.task.ToDo;
+import seedu.apollo.utils.LoggerInterface;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,7 +40,7 @@ import java.util.logging.Logger;
 /**
  * Storage class that initialises the task list and updates the save file.
  */
-public class Storage implements seedu.apollo.utils.Logger {
+public class Storage implements LoggerInterface {
     // Location of save file
     protected static String filePath;
     protected static String moduleDataFilePath;

@@ -1,5 +1,5 @@
 package seedu.apollo.utils;
 
-public interface Logger {
+public interface LoggerInterface {
     public void setUpLogger();
 }

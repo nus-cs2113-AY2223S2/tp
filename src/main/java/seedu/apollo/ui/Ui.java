@@ -512,4 +512,13 @@ public class Ui {
     public void printLessonExists() {
         System.out.println("This lesson type already exists for this lesson!");
     }
+
+    public void printClassNotAdded() {
+        System.out.println("This class has not been added to your timetable!");
+    }
+
+    public void printModuleLessonDeleteMessage(String moduleCode, LessonType lessonType, String lessonNumber) {
+        System.out.println("Deleting lessons for module: " + moduleCode.toUpperCase());
+        System.out.println("Lessons Deleted: " + lessonType + " - " + lessonNumber);
+    }
 }
