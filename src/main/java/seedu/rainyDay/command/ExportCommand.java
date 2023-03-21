@@ -9,19 +9,25 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author KN-CY
+/**
+ * Represents a command that exports the financial statements into a CSV file.
+ */
 public class ExportCommand extends Command {
-
     private static final Logger logger = Logger.getLogger(ExportCommand.class.getName());
     private static final String CSV_EXPORT_ERROR = "Error exporting to CSV, please close the CSV file if you " +
             "currently have it open.";
     private static final String EMPTY_STATEMENT = "Your financial statements are empty, export to CSV will not be " +
             "performed.";
-
     private static final String CSV_EXPORT_SUCCESS = "Financial statements successfully saved into CSV.";
 
     public ExportCommand() {
     }
 
+    /**
+     * Executes the export command and returns the result
+     *
+     * @return CommandResult with the relevant success or error message
+     */
     @Override
     public CommandResult execute() {
         setupLogger();
@@ -46,6 +52,9 @@ public class ExportCommand extends Command {
         return new CommandResult(output);
     }
 
+    /**
+     * Sets up logger for logging
+     */
     @Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();

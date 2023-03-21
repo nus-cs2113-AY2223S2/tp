@@ -22,13 +22,19 @@ public class Storage {
     private static Logger logger = Logger.getLogger("Storage.log");
 
     //@@author ChongQiRong
-    public static void writeToFile(FinancialReport statements, String filePath) {
+    /**
+     * Uses serialization to save the FinancialReport object into a file.
+     *
+     * @param report The object containing the FinancialReport to save.
+     * @param filePath The file path where the FinancialReport will be saved to.
+     */
+    public static void writeToFile(FinancialReport report, String filePath) {
         setupLogger();
         try {
             FileOutputStream writeData = new FileOutputStream(filePath);
             ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
 
-            writeStream.writeObject(statements);
+            writeStream.writeObject(report);
 
             writeStream.flush();
             writeStream.close();
@@ -40,6 +46,15 @@ public class Storage {
     }
 
     //@@author KN-CY
+    /**
+     * Uses deserialization to load the FinancialReport from a serialized file.
+     *
+     * @param filePath The file path where the FinancialReport will be loaded from.
+     * @return The FinancialReport after deserialization from the file.
+     * @throws IOException If there is an error loading the TaskList object from the file.
+     * @throws ClassNotFoundException If there is an error loading the TaskList object from the file.
+     * @throws ClassCastException If the serialized object is of a different class type.
+     */
     public static FinancialReport loadFromFile(String filePath)
             throws IOException, ClassNotFoundException, ClassCastException {
         FileInputStream readData = new FileInputStream(filePath);
@@ -54,6 +69,11 @@ public class Storage {
     }
 
     //@@author KN-CY
+    /**
+     * Fills up the CSVWriter with the contents of the financial statements within the FinancialReport.
+     *
+     * @param report The FinancialReport which contains the financial statements to be saved into CSV.
+     */
     private static void fillTableBody(FinancialReport report, CSVWriter tableWriter) {
         for (int i = 0; i < report.getStatementCount(); i++) {
             FinancialStatement currStatement = report.getFinancialStatement(i);
@@ -74,6 +94,12 @@ public class Storage {
     }
 
     //@@author KN-CY
+    /**
+     * Writes to a file in .csv format.
+     *
+     * @param report The FinancialReport which contains the financial statements to be saved into a .csv file.
+     * @throws IOException When there is an error writing to the .csv file.
+     */
     public static void writeToCSV(FinancialReport report) throws IOException {
         String CSVFilePath = "report.csv";
 
@@ -87,7 +113,10 @@ public class Storage {
 
         tableWriter.close();
     }
-
+    
+    /**
+     * Sets up logger for logging
+     */
     private static void setupLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
