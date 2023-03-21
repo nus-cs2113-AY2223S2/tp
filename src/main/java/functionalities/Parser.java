@@ -1,4 +1,5 @@
 package functionalities;
+
 import exception.SniffException;
 import functionalities.commands.Command;
 import functionalities.commands.ExitCommand;
@@ -45,26 +46,28 @@ public class Parser {
             String name = task.substring(nameIndex + 2, dateIndex - 1);
             String date = task.substring(dateIndex + 2);
             //command = new Command(userCommand, uId, type, animal, name, date);
-        } catch (StringIndexOutOfBoundsException e){
+        } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException(" The add command description is invalid!");
         }
     }
 
-    private static void parseConsultationCommand(String task) throws SniffException{
-
-    }
-    private static void parseVaccinationCommand(String task) throws SniffException{
+    private static void parseConsultationCommand(String task) throws SniffException {
 
     }
 
-    private static void parseSurgeryCommand(String task) throws SniffException{
+    private static void parseVaccinationCommand(String task) throws SniffException {
 
     }
 
-    private static void parseMarkCommand(String task) throws SniffException{
+    private static void parseSurgeryCommand(String task) throws SniffException {
 
     }
-    private static void parseUnmarkCommand(String task) throws SniffException{
+
+    private static void parseMarkCommand(String task) throws SniffException {
+
+    }
+
+    private static void parseUnmarkCommand(String task) throws SniffException {
 
     }
 
@@ -77,20 +80,22 @@ public class Parser {
             if (animalIndex != -1) {
                 String details = task.substring(animalIndex + 2);
                 command = new FindCommand("animal", details);
-            }
-            else if (typeIndex != -1) {
+            } else if (typeIndex != -1) {
                 String details = task.substring(typeIndex + 2);
                 command = new FindCommand("type", details);
-            }
-            else if (aIDIndex != -1) {
+            } else if (aIDIndex != -1) {
                 String details = task.substring(aIDIndex + 4);
                 command = new FindCommand("appointment", details);
+            } else {
+                logger.warning(" NULL command returned to Sniff.run");
+                throw new SniffException(" No details provided for find command. Unable to execute find command.");
             }
-        } catch (ArrayIndexOutOfBoundsException emptyView) {
-            logger.warning("No appointment ID provided for view command. Unable to execute view command.");
-            throw new SniffException(" The view command description cannot be empty!");
-        }  catch (NumberFormatException e) {
-            logger.warning("Invalid appointment ID format provided. Integer numbers are expected.");
+
+        } catch (ArrayIndexOutOfBoundsException emptyFind) {
+            logger.warning(" No details provided for find command. Unable to execute find command.");
+            throw new SniffException(" The find command description cannot be empty!");
+        } catch (NumberFormatException e) {
+            logger.warning(" Invalid appointment ID format provided. Integer numbers are expected.");
             throw new SniffException(" The user Id to view appointment details must be a number!");
         }
     }
