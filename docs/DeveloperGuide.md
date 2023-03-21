@@ -305,7 +305,30 @@ Step 7: Update the storage: The storage is updated with the new TaskList with th
 it.
 
 ### Find Task
-(TO BE ADDED SOON)
+
+The FindTask functionality allows user to search for a task (todo, event and deadline) from the TaskList using a 
+specific keyword. The FindTask mechanism is facilitated by FindCommand which extends Command class. 
+
+Below is an example usage of how the FindTask command can be used to search for a task in the TaskList using a keyword 
+and how it behaves at each step.
+
+Step 1. Define the Constructor: When the user executes the command `find read`, the Parser class calls the 
+`FindCommand()` method of the FindCommand class. The constructor of the FindCommand class takes in the keyword 
+string `read` as a parameter. This string is used to find tasks in the TaskList that contains this keyword.
+
+Step 2. Override the `execute()` method: The `execute()` method is overridden to execute the find task 
+functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`, 
+`allModule`, `calendar`.
+
+Step 3. Find the list of tasks containing the `KEYWORD`: Using the parameter string `KEYWORD`, the `execute()` method 
+will iterate through `TaskList` and call `printFoundList()` method in the Ui class that takes in a list of task,
+`ArrayList<Tasks>`, containing the `KEYWORD` as a parameter. If the `KEYWORD` does not exist in any tasks 
+in `TaskList`, a message is printed to the user indicating that there are no matching tasks that contains the 
+`KEYWORD`.
+
+Step 4. Print the confirmation message: A confirmation message is printed to the user indicating the list of 
+tasks in `TaskList` that matches the `KEYWORD` input by the user. The message includes the task type, description (and
+date of the task containing `KEYWORD` if the matching task is either an event or a deadline task).
 
 ### List Task
 (TO BE ADDED SOON)
