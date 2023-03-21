@@ -15,9 +15,9 @@ public class CompanyList {
         this.companyList = companyList;
     }
     public boolean add(String companyName, int contactNumber, String contactEmail) {
-            Company newCompany = new Company(companyName, contactNumber, contactEmail);
-            companyList.add(newCompany);
-            return true;
+        Company newCompany = new Company(companyName, contactNumber, contactEmail);
+        companyList.add(newCompany);
+        return true;
     }
 
     public void printCompanyInformation() throws EmptyListException {

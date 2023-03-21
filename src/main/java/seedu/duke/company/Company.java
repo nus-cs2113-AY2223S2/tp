@@ -1,7 +1,5 @@
 package seedu.duke.company;
 
-import seedu.duke.exception.InputMismatchException;
-
 public class Company {
     private String companyName;
     private int contactNumber;
