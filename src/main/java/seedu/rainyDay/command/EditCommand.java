@@ -67,7 +67,7 @@ public class EditCommand extends Command {
         int previousStatementCount = financialReport.getStatementCount();
         assert (index < financialReport.getStatementCount() && index >= 0) : "invalid index provided for edit";
 
-        if (flag == "") {
+        if (flag.isEmpty()) {
             financialReport.deleteStatement(index);
             financialReport.addStatementAtIndex(
                     new FinancialStatement(description, flowDirection, value, category), index);
