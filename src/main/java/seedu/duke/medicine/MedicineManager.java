@@ -21,8 +21,8 @@ public class MedicineManager {
     private static final Medicine ROBITUSSIN = new Medicine("Robitussin", "20ml every 12 hours");
     private static final Medicine IBUPROFEN = new Medicine("Ibuprofen",  "1 or 2 pills every 4 to 6 hours");
     private static final Medicine ASPIRIN = new Medicine("Aspirin", "1 or 2 pills every 4 to 6 hours");
-
-
+    private static final Medicine MAGNESIUM = new Medicine("Magnesium", "100 to 350mg before bed");
+    private static final Medicine EYE_DROPS = new Medicine("Eye Drops", "When your eyes itch");
     public MedicineManager() {
         initialiseMedications();
         initialiseMedicineDosages();
@@ -43,11 +43,18 @@ public class MedicineManager {
                 .collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Medicine> headacheMedications = Stream.of(PARACETAMOL)
                 .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Medicine> insomniaMedications = Stream.of(MAGNESIUM)
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Medicine> conjunctivitisMedications = Stream.of(EYE_DROPS)
+                .collect(Collectors.toCollection(ArrayList::new));
+
         medicationDict.put("Covid-19", covidMedications);
         medicationDict.put("General Flu", commonFluMedications);
         medicationDict.put("Migraine", migraineMedications);
         medicationDict.put("Fever", feverMedications);
         medicationDict.put("Headache", headacheMedications);
+        medicationDict.put("Insomnia", insomniaMedications);
+        medicationDict.put("Conjunctivitis", conjunctivitisMedications);
     }
     /**
      * This Method initialises the dictionary of Medications and their dosages.
@@ -69,18 +76,29 @@ public class MedicineManager {
         for (IllnessMatch illnessMatch : possibleIllnesses) {
             System.out.println("Medication for: " + illnessMatch.getIllness().getIllnessName());
             ArrayList<Medicine> relevantMedications = getRelevantMedication(illnessMatch.getIllness().getIllnessName());
+            printMedication(relevantMedications);
+        }
+        return possibleIllnesses;
+    }
+
+    /**
+     * Prints medications if they are available over the counter. Otherwise, recommends patient to consult doctor.
+     * @author Jeraldchen
+     * @param relevantMedications ArrayList of medications suggested.
+     */
+    private static void printMedication(ArrayList<Medicine> relevantMedications) {
+        if (relevantMedications != null) {
             for (Medicine medicine : relevantMedications) {
                 System.out.println("    " + medicine.toString() + " / Dosage: " + medicine.getDosage());
             }
+        } else {
+            System.out.println("    No medication available. Please consult a doctor.");
         }
-        /*
-         * @author Geeeetyx
-         * Update to return possible illnesses
-         */
-        return possibleIllnesses;
     }
+
     /**
      * Prescribes appropriate medications to patients.
+     * @author tanyizhe
      * @param illness Name of illness diagnosed by Dr. Duke.
      * @return ArrayList of prescribed medications.
      */

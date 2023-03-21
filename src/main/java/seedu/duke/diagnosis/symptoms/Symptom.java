@@ -1,13 +1,16 @@
 package seedu.duke.diagnosis.symptoms;
 
-//@@author Brennanzuz
+/**
+ * An enumeration of all illnesses that can be identified by Dr. Duke.
+ * @author Brennanzuz
+ */
 public enum Symptom {
     DIFFICULTY_BREATHING,
     HISTORY_OF_ASTHMA,
     HYPERVENTILATION,
     HISTORY_OF_ALLERGIES,
     RUNNY_NOSE,
-    BLOCKED_NOSE,
+    FATIGUE,
     SNIFFING,
     THROAT_IRRITATION,
     DRY_COUGH,
@@ -35,7 +38,7 @@ public enum Symptom {
     FEVER,
     SUSCEPTIBILITY_TO_ILLNESS,
     CHILLS,
-    FATIGUE,
+    BLOCKED_NOSE,
     SWOLLEN_LYMPH_NODES,
     SWOLLEN_JOINTS,
     MUSCLE_ACHE,
@@ -56,9 +59,8 @@ public enum Symptom {
     PUSS,
     HISTORY_OF_ADHD,
     HISTORY_OF_DEPRESSION,
-    SLEEPLESSNESS,
+    LOSS_OF_TASTE_OR_SMELL,
     ITCHY_EYE,
     RED_EYES,
-    LOSS_OF_TASTE_OR_SMELL,
     SNEEZING
 }

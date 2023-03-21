@@ -6,9 +6,11 @@ import seedu.duke.diagnosis.symptoms.Symptom;
 import seedu.duke.medicine.MedicineManager;
 import seedu.duke.patient.Patient;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
-import static seedu.duke.Duke.password;
+
 import static seedu.duke.save.Storage.saveData;
 
 public class Parser {
@@ -38,21 +40,26 @@ public class Parser {
 
     /**
      * Parses the user input for the account menu.
-     * @author Thunderdragon221, Geeeetyx
+     * @author Thunderdragon221, Geeeetyx, tanyizhe
      *
      * @param choice Users choice of input.
     */
     public static void parseAccountCommand(String choice) {
         assert choice != null : "Choice cannot be null";
+        Patient user = Information.getPatientInfo(Duke.getPassword());
+        MedicineManager medicineManager = new MedicineManager();
+
         switch (choice) {
         case "1":
             ArrayList<Symptom> symptoms = Menu.getUserSymptoms();
             Menu.displayPossibleIllness(symptoms);
-            MedicineManager medicineManager = new MedicineManager();
             ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
-            Patient user = Information.getPatientInfo(password);
             for (IllnessMatch illnessMatch : possibleIllnesses) {
                 user.updatePatientDiagnosisHistory(illnessMatch.getIllness().getIllnessName());
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                LocalDateTime now = LocalDateTime.now();
+                user.updatePatientMedicineHistory(dtf.format(now),
+                            medicineManager.getRelevantMedication(illnessMatch.getIllness().getIllnessName()));
             }
             saveData();
             break;
@@ -63,6 +70,12 @@ public class Parser {
             Information.resetDiagnosisHistory(Duke.getPassword());
             break;
         case "4":
+            Information.resetSymptomChoice(Menu.symptoms);
+            break;
+        case "5":
+            user.printPatientMedicineHistory();
+            break;
+        case "6":
             Menu.exit();
             break;
         default:
