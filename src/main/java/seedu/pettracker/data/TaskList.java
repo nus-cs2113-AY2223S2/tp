@@ -24,4 +24,15 @@ public class TaskList {
         taskList.add(newTask);
         numberOfTasks += 1;
     }
+
+    /**
+     * Removes a task from the task list
+     *
+     * @param taskNumber Number of task to be removed
+     */
+    public static void removeTask(int taskNumber) {
+        taskList.remove(taskNumber - 1);
+        logger.log(Level.INFO, "Task removed: " + taskNumber);
+        numberOfTasks -= 1;
+    }
 }
