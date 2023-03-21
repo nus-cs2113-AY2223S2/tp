@@ -145,7 +145,7 @@ The Dish feature consists of three functions:
 
 ##### Viewing the list of dishes:
 - When the ```execute()``` command in ```ViewDishCommand``` is called, it calls the ```ViewDishCommand()``` in ```DishManager``` class that returns the formatted string of all the dishes in the arraylist. 
-- It then prints out the the formatted string to the console.
+- It then prints out the formatted string to the console.
 
 ## Product scope
 ### Target user profile

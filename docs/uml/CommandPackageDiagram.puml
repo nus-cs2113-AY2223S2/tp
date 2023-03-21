@@ -56,12 +56,12 @@ package "commands" {
 '  }
 '}
 
-[Command] --> [HelpCommand]
-[Command] --> [IncorrectCommand]
-[Command] --> [ExitCommand]
-[Command] --> [AddCommand]
-[Command] --> [DeleteCommand]
-[Command] --> [ViewCommand]
+[Command] <|-- [HelpCommand]
+[Command] <|-- [IncorrectCommand]
+[Command] <|-- [ExitCommand]
+[Command] <|-- [AddCommand]
+[Command] <|-- [DeleteCommand]
+[Command] <|-- [ViewCommand]
 
 '[Another Component] --> [Example 1]
 '[Example 1] --> [Folder 3]
