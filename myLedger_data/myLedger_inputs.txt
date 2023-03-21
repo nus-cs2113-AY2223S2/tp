@@ -1,3 +1,5 @@
-Tud/schv/9000.0t/2023-01-01p/[ ]n/Noneo/None
-Acadd/!v/900.0t/2023-02-02p/Nonen/Noneo/None
-Accomd/rcv/3000.0t/2022-01-01p/[ ]n/Noneo/None
+Acadd/penv/2.1t/2023-01-01p/Nonen/Noneo/None
+Fd/chicken ricev/4.5t/2023-03-21p/Nonen/Noneo/None
+Trd/circle linev/2.1t/2023-03-21p/Nonen/Noneo/None
+Tud/schoolv/8100.0t/2023-01-27p/[X]n/Noneo/None
+Accomd/rcv/3000.0t/2023-01-28p/[X]n/Noneo/None
