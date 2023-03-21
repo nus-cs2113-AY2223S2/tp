@@ -15,22 +15,15 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-public class ListModuleCommand extends Command {
+public class ListModuleCommand extends Command implements seedu.apollo.utils.Logger {
     private static Logger logger = Logger.getLogger("ListModuleCommand");
-
-    /**
-     * Initialise ListModuleCommand class, setUpLogger.
-     */
-    public ListModuleCommand() {
-        ListModuleCommand.setUpLogger();
-    }
 
     /**
      * Sets up logger for ListModuleCommand class.
      *
      * @throws IOException If logger file cannot be created.
      */
-    public static void setUpLogger() {
+    public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
         ConsoleHandler logConsole = new ConsoleHandler();
