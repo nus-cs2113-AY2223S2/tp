@@ -2,7 +2,6 @@ package seedu.duke.budget;
 
 public class GoodsAndServices {
     private int price;
-
     private int cheap;
     private int moderate;
     private int expensive;
@@ -15,4 +14,7 @@ public class GoodsAndServices {
         return price;
     }
 
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }
