@@ -1,7 +1,7 @@
 package seedu.duke.exceptions;
 
-import static seedu.duke.ColorCode.ANSI_RED;
-import static seedu.duke.ColorCode.ANSI_RESET;
+import static seedu.duke.utils.ColorCode.ANSI_RED;
+import static seedu.duke.utils.ColorCode.ANSI_RESET;
 
 public class MissingParametersException extends Exception {
     public void missingAddItemParameters() {

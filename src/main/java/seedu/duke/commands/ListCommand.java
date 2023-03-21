@@ -1,8 +1,11 @@
 package seedu.duke.commands;
 
-import seedu.duke.Inventory;
-import seedu.duke.Ui;
+import seedu.duke.objects.Inventory;
+import seedu.duke.utils.Ui;
 
+/**
+ * Represents the command to list all items in the inventory.
+ */
 public class ListCommand extends Command {
     public ListCommand(Inventory inventory) {
         super(inventory);
@@ -16,9 +19,9 @@ public class ListCommand extends Command {
             Ui.printSuccessList();
             String table = Ui.printTable(itemInventory);
             System.out.println(table);
-            System.out.println(Ui.LINE);
+            Ui.printLine();
         } else {
-            Ui.printInvalidList();
+            Ui.printEmptyList();
         }
     }
 

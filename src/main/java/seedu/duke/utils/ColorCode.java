@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.utils;
 
 public class ColorCode {
     public static final String ANSI_RESET = "\u001B[0m";

@@ -1,31 +1,62 @@
 package seedu.duke.commands;
 
-import seedu.duke.Inventory;
-import seedu.duke.Item;
-import seedu.duke.Ui;
+import seedu.duke.objects.Inventory;
+import seedu.duke.objects.Item;
+import seedu.duke.utils.Ui;
 
+/**
+ * Represents the command to remove an item from the inventory.
+ */
 public class RemoveCommand extends Command {
+
+    private String upcCode;
+    private String userConfirmation;
+
+    private int itemIndex;
+
+
     /**
-     * //     * Remove an item from the inventory by the index given
-     * //     *
-     * //     * @param itemIndex        item of index to be removed the inventory
-     * //     * @param inputConfirmation Y/N confirmation from user input
-     * //
+     * Constructor for RemoveCommand where item is removed from the inventory by its index
+     *
+     * @param inventory        the inventory which item is to be removed from
+     * @param itemIndex        the index of the item to be removed
+     * @param userConfirmation Y/N confirmation from user input
      */
     public RemoveCommand(Inventory inventory, int itemIndex, String userConfirmation) {
         super(inventory);
-        this.itemNameHash = inventory.getItemNameHash();
-        Item itemToRemove = itemInventory.get(itemIndex);
+        this.itemIndex = itemIndex;
+        this.userConfirmation = userConfirmation;
+
+    }
+
+    /**
+     * Constructor for RemoveCommand where item is removed from the inventory by its UPC Code
+     *
+     * @param inventory        the inventory which item is to be removed from
+     * @param upcCode          the upc code of the item to be removed
+     * @param userConfirmation Y/N confirmation from user input
+     */
+    public RemoveCommand(Inventory inventory, String upcCode, String userConfirmation) {
+        super(inventory);
+        this.upcCode = upcCode;
+        this.userConfirmation = userConfirmation;
+    }
+
+    /**
+     * Remove an item from the inventory by the upc code given
+     */
+
+    public void removeByUpcCode() {
+        Item itemToRemove = upcCodes.get(upcCode);
         switch (userConfirmation.toUpperCase()) {
         case "Y":
             String itemName = itemToRemove.getName().toLowerCase();
-            String upcCode = itemToRemove.getUpc();
-            int i = itemInventory.indexOf(itemToRemove);
-            inventory.getUpcCodes().remove(upcCode);
-            itemInventory.remove(i);
+            int indexOfItem = itemInventory.indexOf(itemToRemove);
+            upcCodes.remove(upcCode);
+            itemInventory.remove(indexOfItem);
             if (itemNameHash.get(itemName).size() == 1) {
                 itemNameHash.remove(itemName);
-                inventory.getTrie().remove(itemName);
+                itemsTrie.remove(itemName);
             } else {
                 itemNameHash.get(itemName).remove(itemToRemove);
             }
@@ -41,27 +72,20 @@ public class RemoveCommand extends Command {
     }
 
     /**
-     * Remove an item from the inventory by the upc code given
-     *
-     * @param inventory        the inventory which item is to be removed from
-     * @param upcCode          the upc code of the item to be removed
-     * @param userConfirmation Y/N confirmation from user input
+     * Remove an item from the inventory by the index given
      */
-    public RemoveCommand(Inventory inventory, String upcCode, String userConfirmation) {
-        super(inventory);
-        this.itemInventory = inventory.getItemInventory();
-        this.itemNameHash = inventory.getItemNameHash();
-        this.upcCodes = inventory.getUpcCodes();
-        Item itemToRemove = inventory.getUpcCodes().get(upcCode);
+    public void removeByIndex() {
+        Item itemToRemove = itemInventory.get(itemIndex);
         switch (userConfirmation.toUpperCase()) {
         case "Y":
             String itemName = itemToRemove.getName().toLowerCase();
-            int indexOfItem = itemInventory.indexOf(itemToRemove);
+            String upcCode = itemToRemove.getUpc();
+            int i = itemInventory.indexOf(itemToRemove);
             upcCodes.remove(upcCode);
-            itemInventory.remove(indexOfItem);
+            itemInventory.remove(i);
             if (itemNameHash.get(itemName).size() == 1) {
                 itemNameHash.remove(itemName);
-                inventory.getTrie().remove(itemName);
+                itemsTrie.remove(itemName);
             } else {
                 itemNameHash.get(itemName).remove(itemToRemove);
             }
@@ -81,13 +105,10 @@ public class RemoveCommand extends Command {
      */
     @Override
     public void run() {
-        if (!itemInventory.isEmpty()) {
-            Ui.printSuccessList();
-            String table = Ui.printTable(itemInventory);
-            System.out.println(table);
-            Ui.printLine();
+        if (upcCode != null) {
+            removeByUpcCode();
         } else {
-            Ui.printInvalidList();
+            removeByIndex();
         }
     }
 }
