@@ -144,9 +144,9 @@ public class Menu {
     /**
      * Checks if symptom is valid, and adds it to the list of symptoms.
      *
+     * @author tanyizhe
      * @param scanner  takes in user input
      * @param symptoms list of symptoms
-     * @author tanyizhe
      */
     private static void addSymptomToSymptomList(Scanner scanner, ArrayList<Symptom> symptoms) {
         String symptomChoiceAlphabets;
@@ -161,9 +161,9 @@ public class Menu {
     /**
      * Adds the users' inputted symptom into the symptoms array.
      *
+     * @author Brennanzuz
      * @param symptom  The symptom indicated by the user. Defined and passed from the case statement.
      * @param symptoms List of symptoms
-     * @author Brennanzuz
      */
     private static void addSymptoms(Symptom symptom, ArrayList<Symptom> symptoms) {
         if (!symptoms.contains(symptom)) {
@@ -177,9 +177,9 @@ public class Menu {
     /**
      * Parses user's input to a Symptom enumerator.
      *
+     * @author Jeraldchen
      * @param symptoms       an ArrayList of symptoms.
      * @param symptomChoices an array of strings containing the user's input.
-     * @author Jeraldchen
      */
     private static void parseSymptomInput(ArrayList<Symptom> symptoms, String[] symptomChoices) {
         for (String symptomChoice : symptomChoices) {
@@ -312,8 +312,8 @@ public class Menu {
     /**
      * Displays the possible illnesses that the user may have based on the symptoms he/she has entered.
      *
-     * @param symptoms ArrayList of symptoms the user has entered.
      * @author tanyizhe
+     * @param symptoms ArrayList of symptoms the user has entered.
      */
     public static void displayPossibleIllness(ArrayList<Symptom> symptoms) {
         ArrayList<IllnessMatch> possibleIllnesses = Diagnosis.getPossibleIllnesses(symptoms);
