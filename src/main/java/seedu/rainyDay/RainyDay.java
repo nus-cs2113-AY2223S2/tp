@@ -1,7 +1,6 @@
 package seedu.rainyDay;
 
 import seedu.rainyDay.command.CommandResult;
-import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 import seedu.rainyDay.command.Command;
@@ -56,9 +55,6 @@ public class RainyDay {
                 CommandResult outcome = executeCommand(specificCommand);
                 ui.showToUser(outcome.output);
                 userInput = ui.readUserCommand();
-            } catch (RainyDayException e) {
-                logger.log(Level.INFO, "RainyDayException caught");
-                System.out.println(e.getMessage());
             } catch (Exception e) {
                 logger.log(Level.WARNING, e.getMessage());
                 System.out.println(e.getMessage());
@@ -88,7 +84,7 @@ public class RainyDay {
 
         new RainyDay(filePath).run();
         Storage.writeToCSV(financialReport);
-        
+
         logger.log(Level.INFO, "Quitting RainyDay");
     }
 }
