@@ -207,9 +207,33 @@ argument is invalid, the message is printed by calling the `printInvalidCommand(
 
 
 ### List Modules
-(TO BE ADDED SOON)
+
+The ListModule functionality allows users to list the modules that are in the ModuleList. It is facilitated by          
+ListModuleCommand class which is an extension of the Command class. 
+
+Given below is an example usage scenario of how to list the modules in the ModuleList and how the mechanism behaves 
+at each step.
+
+Step 1. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+class.
+It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 2. Override the `execute()` method: The `execute()` method is overridden to execute the list module
+functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+`allModule`, `calendar`.
+
+Step 3. Iterate through the list of modules: The `execute` method will iterate through `ModuleList` and call 
+`printModuleList()` method in the Ui class that takes in the list of modules, `ModuleList` that the user has updated,
+as a parameter. During the iteration, the `printModuleList()` method will get the number of modular credits for each 
+module the user is taking and calculate the total modular credits in that semester. If the list is empty, a message 
+is printed to the user indicating that there are no modules in the list. 
+
+Step 4. Print the confirmation message: A confirmation message is printed to the user indicating the list of modules 
+in `ModuleList` that the user updated. The message includes the module code and name, modular credits for each module 
+and  total modular credits the user is taking this semester.
 
 ### Add Task
+
 The add task mechanism is facilitated by `AddCommand`. It extends `Command` with the ability to add three different 
 types of `Task`s to the TaskList, namely: `ToDo`, `Deadline`, and `Event`. 
 
@@ -344,19 +368,102 @@ Step 7: Update the storage: The storage is updated with the new TaskList with th
 it.
 
 ### Find Task
-(TO BE ADDED SOON)
+
+The FindTask functionality allows user to search for a task (todo, event and deadline) from the TaskList using a 
+specific keyword. The FindTask mechanism is facilitated by FindCommand which extends Command class. 
+
+Below is an example usage of how the FindTask command can be used to search for a task in the TaskList using a keyword 
+and how it behaves at each step.
+
+Step 1. Define the Constructor: When the user executes the command `find read`, the Parser class calls the 
+`FindCommand()` method of the FindCommand class. The constructor of the FindCommand class takes in the keyword 
+string `read` as a parameter. This string is used to find tasks in the TaskList that contains this keyword.
+
+Step 2: Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+class.
+It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the find task 
+functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`, 
+`allModule`, `calendar`.
+
+Step 4. Find the list of tasks containing the `KEYWORD`: Using the parameter string `KEYWORD`, the `execute()` method 
+will iterate through `TaskList` and call `printFoundList()` method in the Ui class that takes in a list of task,
+`ArrayList<Tasks>`, containing the `KEYWORD` as a parameter. If the `KEYWORD` does not exist in any tasks 
+in `TaskList`, a message is printed to the user indicating that there are no matching tasks that contains the 
+`KEYWORD`.
+
+Step 5. Print the confirmation message: A confirmation message is printed to the user indicating the list of 
+tasks in `TaskList` that matches the `KEYWORD` input by the user. The message includes the task type, description and
+date of the task containing `KEYWORD` if the matching task is either an event or a deadline task.
 
 ### List Task
-(TO BE ADDED SOON)
+
+The ListTask functionality allows users to list the tasks (todo, event and deadline) that are in the TaskList. It is 
+facilitated by ListCommand class which is an extension of the Command class.
+
+Given below is an example usage scenario of how to list the tasks in the TaskList and how the mechanism behaves
+at each step.
+
+Step 1. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+class.
+It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 2. Override the `execute()` method: The `execute()` method is overridden to execute the list task
+functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+`allModule`, `calendar`.
+
+Step 3. Iterate through the list of tasks: The `execute()` method will iterate through `TaskList` and call
+`printList()` method in the Ui class that takes in the list of tasks, `TaskList` that the user has updated,
+as a parameter. During the iteration, the `printList()` method will check the `taskStatus` of each task and calculate
+the total number of unmarked tasks. If the list is empty, a message is printed to the user indicating that there are 
+no tasks in the list.
+
+Step 4. Print the confirmation message: A confirmation message is printed to the user indicating the list of tasks
+in `TaskList` that the user updated and the total number of unmarked tasks. The message includes the task type, 
+description and date of all tasks if the tasks are either an event or a deadline task.
 
 ### Find Task on Date
-(TO BE ADDED SOON)
+
+The Find Task on Date functionality allows user to search for a list of tasks (event and deadline) that are happening
+or due on a specific `date` in their Tasklist. It is facilitated by the DateCommand class which is an extension of 
+the Command class.
+
+Below is an example usage of how the Find Task on Date command can be used to search for tasks happening or due on 
+a specific date in the TaskList and how it behaves at each step.
+
+Step 1. Define the Constructor: When the user executes the command `date 2023-03-22`, the Parser class calls the    
+`DateCommand()` method of the DateCommand class. The constructor of the DateCommand class takes in the dateString 
+`2023-03-22`  as a parameter. This date is used to find the corresponding tasks happening or due on this date from 
+the TaskList.
+
+Step 2. This date is then passed into the `LocalDate`. If the date parsed is in the wrong format (date format is not
+`yyyy-MM-dd`), a `DateTimeParseException` is thrown, calling the `printInvalidDate()` method in the Ui class.
+
+Step 3. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+class.
+It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 4. Override the `execute()` method: The `execute()` method is overridden to execute the find task
+functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+`allModule`, `calendar`.
+
+Step 5. Find the list of tasks happening or due on the `date`: Using the parameter string `date` in the format 
+`yyyy-MM-dd`, the `execute()` method will iterate through the `TaskList` to look for tasks that occurs on the given
+`date`. It will then call `printDateList()` method in the Ui class that takes in the list of tasks happening on the 
+given `date` and the LocalDate `date`. If there are no tasks on the specific `date`, a message is printed to the user 
+indicating that there are no tasks on that day.
+
+Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the list of tasks in 
+`TaskList` that are occurring on the `date` input by the user. The message includes the task type, description, date
+and time of the task if the task is either an event or a deadline task.
 
 ### Storage
 (TO BE ADDED SOON)
 
 ### Logging
 (TO BE ADDED SOON)
+
 ## Documentation, logging, testing, configuration, dev-ops
 
 ### Documentation
