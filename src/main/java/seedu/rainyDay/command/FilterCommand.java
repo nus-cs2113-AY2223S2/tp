@@ -8,7 +8,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 public class FilterCommand extends Command implements FormatReport {
     private static final Logger logger = Logger.getLogger(FilterCommand.class.getName());
