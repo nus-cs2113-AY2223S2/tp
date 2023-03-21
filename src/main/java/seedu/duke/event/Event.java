@@ -24,6 +24,6 @@ public class Event {
 
     @Override
     public String toString() {
-        return venue.getVenueName();
+        return venue.getVenueName() + " is your chosen location!";
     }
 }
