@@ -179,7 +179,7 @@ Step 1. Define the `setUpLogger()` method: The `setUpLogger()` method sets up th
 class.
 It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 2. Override the `execute()` method: The `execute()` method is overridden to execute the find task
+Step 2. Override the `execute()` method: The `execute()` method is overridden to execute the list module
 functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
@@ -190,8 +190,8 @@ module the user is taking and calculate the total modular credits in that semest
 is printed to the user indicating that there are no modules in the list. 
 
 Step 4. Print the confirmation message: A confirmation message is printed to the user indicating the list of modules 
-in `ModuleList` that the user updated. The message includes the module code and name, modular credits for each module and
-total modular credits the user is taking this semester.
+in `ModuleList` that the user updated. The message includes the module code and name, modular credits for each module 
+and  total modular credits the user is taking this semester.
 
 ### Add Task
 
@@ -355,11 +355,34 @@ in `TaskList`, a message is printed to the user indicating that there are no mat
 `KEYWORD`.
 
 Step 5. Print the confirmation message: A confirmation message is printed to the user indicating the list of 
-tasks in `TaskList` that matches the `KEYWORD` input by the user. The message includes the task type, description (and
-date of the task containing `KEYWORD` if the matching task is either an event or a deadline task).
+tasks in `TaskList` that matches the `KEYWORD` input by the user. The message includes the task type, description and
+date of the task containing `KEYWORD` if the matching task is either an event or a deadline task.
 
 ### List Task
-(TO BE ADDED SOON)
+
+The ListTask functionality allows users to list the tasks (todo, event and deadline) that are in the TaskList. It is 
+facilitated by ListCommand class which is an extension of the Command class.
+
+Given below is an example usage scenario of how to list the tasks in the TaskList and how the mechanism behaves
+at each step.
+
+Step 1. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+class.
+It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 2. Override the `execute()` method: The `execute()` method is overridden to execute the list task
+functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+`allModule`, `calendar`.
+
+Step 3. Iterate through the list of tasks: The `execute()` method will iterate through `TaskList` and call
+`printList()` method in the Ui class that takes in the list of tasks, `TaskList` that the user has updated,
+as a parameter. During the iteration, the `printList()` method will check the `taskStatus` of each task and calculate
+the total number of unmarked tasks. If the list is empty, a message is printed to the user indicating that there are 
+no tasks in the list.
+
+Step 4. Print the confirmation message: A confirmation message is printed to the user indicating the list of tasks
+in `TaskList` that the user updated and the total number of unmarked tasks. The message includes the task type, 
+description and date of all tasks if the tasks are either an event or a deadline task.
 
 ### Find Task on Date
 
@@ -394,7 +417,7 @@ indicating that there are no tasks on that day.
 
 Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the list of tasks in 
 `TaskList` that are occurring on the `date` input by the user. The message includes the task type, description, date
-(and time of the task if the task is either an event or a deadline task).
+and time of the task if the task is either an event or a deadline task.
 
 ### Storage
 (TO BE ADDED SOON)
