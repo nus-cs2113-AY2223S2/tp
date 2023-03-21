@@ -16,6 +16,8 @@ public abstract class Command {
 
     public static final String COMMAND_FILTER = "filter";
 
+    public static final String COMMAND_EDIT = "edit";
+
     protected FinancialReport financialReport;
 
     public void setData(FinancialReport financialReport) {

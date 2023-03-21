@@ -4,6 +4,7 @@ import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.DeleteCommand;
+import seedu.rainyDay.command.EditCommand;
 import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.command.FilterCommand;
@@ -42,6 +43,9 @@ public class Parser {
             System.out.println(action[0]);
             System.out.println(action[1]);
             return filterStatement(action[1]);
+        } else if (action[0].equalsIgnoreCase(Command.COMMAND_EDIT)) {
+            logger.info("edit command executing");
+            return editStatement(userInput);
         } else { // todo add filter
             logger.warning("unrecognised input from user!");
             return new InvalidCommand();
@@ -219,6 +223,37 @@ public class Parser {
         } else {
             logger.warning("filter command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
+    }
+
+    public Command editStatement(String userInput) throws IllegalArgumentException {
+        String[] tokens = userInput.split("\\s+", 3);
+
+        try {
+            if (tokens.length == 2) {
+                logger.warning("invalid edit index from user");
+                throw new IllegalArgumentException(ErrorMessage.NO_EDIT_INDEX.toString());
+            }
+
+            int index = Integer.parseInt(tokens[1]);
+            if (index > RainyDay.financialReport.getStatementCount()) {
+                throw new IllegalArgumentException(ErrorMessage.WRONG_EDIT_INDEX.toString());
+            }
+
+            if (userInput.contains("-d") && userInput.contains("-c")) {
+                parseDescriptionAndCategory(userInput);
+            } else if (userInput.contains("-d")) {
+                parseDescriptionOnly(userInput);
+            } else if (userInput.contains("-c")) {
+                parseCategoryOnly(userInput);
+            } else {
+                parseOnly(userInput);
+            }
+            return new EditCommand(index, description, direction, amount, category);
+        } catch (Exception e) {
+            return new InvalidCommand();
+            //logger.warning("edit index provided incorrectly");
+            //throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
         }
     }
 }
