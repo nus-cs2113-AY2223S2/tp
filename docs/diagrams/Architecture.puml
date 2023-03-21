@@ -1,0 +1,22 @@
+@startuml
+!include Style.puml
+!include <office/Users/user>
+!include <office/Concepts/documents>
+!theme cerulean
+
+package " "<<Rectangle>> {
+    class MoneyMind
+    class UI
+    class Storage
+    class Command
+    class Data
+}
+
+MoneyMind --> UI
+Storage ..> MoneyMind
+Storage --> Data
+Data --> Storage
+MoneyMind --> Command
+Command --> Data
+
+@enduml
