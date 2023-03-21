@@ -72,6 +72,7 @@ public class Storage implements LoggerInterface {
      *
      * @throws IOException If logger file cannot be created.
      */
+    @Override
     public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
