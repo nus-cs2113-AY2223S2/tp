@@ -1,7 +1,8 @@
-# User Guide
+# User Guide 
+#  ❚·══·❚ Fitz ❚·══·❚
 
-## Introduction
 
+## Introduction 
 This application will help you track your current and future workouts.
 
 ## Quick Start
@@ -15,19 +16,94 @@ This application will help you track your current and future workouts.
 
 {Give detailed description of each feature}
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+### Starting a workout: `/start`
+Starts the workout for a specific date
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `/start <DD/MM/YY>`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+* The `DATE` needs to be in the exact format.
 
 Example of usage: 
 
-`todo n/Write the rest of the User Guide d/next week`
+`/start 11/03/23`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+`/start 21/04/23`
+
+Expected output:
+```
+Started new workout.
+Use add command to add exercises to your workout!
+```
+### Adding to the workout: `/add`
+Adds to the list of workouts.
+
+Format: `/add <exercise_name> /weight <weight_used> /rps <reps_per_set>`
+
+* The `/start` needs to be inputted first to use the `/add` command.
+
+Example of usage:
+
+`/add bench press /weight 100 /rps 5 5 5 5`
+
+`/add leg press /weight 160 /rps 5 5 5 5`
+
+Expected output:
+```
+Added bench press 100 5 5 5 5
+```
+### Listing workout dates: `/list`
+Display the current workout dates
+
+Format: `/list`
+
+Example of usage:
+
+`/list`
+
+Expected output:
+```
+Here are the list of dates for your workout: 
+Tue Mar 21 00:00:00 SGT 2023
+```
+### Viewing a specific workout: `/view`
+Display the specified workout list
+
+Format: `/view <DD/MM/YY>`
+
+Example of usage:
+
+`/view 21/03/23`
+
+Expected output:
+```
+[bench press 100 5 5 5 5, bench press 100 5 5 5 5]
+```
+### Deleting a specific workout: `/view`
+Delete the specified workout
+
+Format: `/delete <DD/MM/YY>`
+
+Example of usage:
+
+`/delete 21/03/23`
+
+Expected output:
+```
+Workout deleted successfully.
+```
+### Exiting the App: `/exit`
+Delete the specified workout
+
+Format: `/exit`
+
+Example of usage:
+
+`/exit`
+
+Expected output:
+```
+Thank you and see you next time
+```
 
 ## FAQ
 
@@ -37,6 +113,8 @@ Example of usage:
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+* Start `/start <DD/MM/YY>`
+* Add   `/add <exercise_name> /weight <weight_used> /rps <reps_per_set>`
+* List `/list`
+* View `/view <DD/MM/YY>`
+* Delete `/delete <DD/MM/YY>`

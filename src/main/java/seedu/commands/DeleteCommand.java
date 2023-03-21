@@ -13,3 +13,4 @@ public class DeleteCommand extends Command {
         workoutList.removeWorkout(workoutToDeleteDate);
     }
 }
+
