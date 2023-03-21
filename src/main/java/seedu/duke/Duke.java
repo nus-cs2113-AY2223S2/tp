@@ -55,6 +55,7 @@ public class Duke {
             storage.saveExpenseList();
             input = in.nextLine();
         }
+        in.close();
     }
 
     /**
