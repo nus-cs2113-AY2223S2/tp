@@ -11,7 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ListCurrentCommandTest {
     private final UI ui = new UI();
@@ -34,7 +34,7 @@ class ListCurrentCommandTest {
 
     //Solution below adapted from https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
     @Test
-    void execute() {
+    void execute_correctLines_success() {
         ArrayList<Module> modules = new ArrayList<>();
         Module module1 = new Module(1, "AE320", "Aerodynamics II", 3,
                 "ME4231", "Aerodynamics", 4);

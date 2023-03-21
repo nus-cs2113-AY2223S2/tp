@@ -12,7 +12,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class UITest {
     private static final String LIST_PU_MESSAGE = "This is the list of PUs:";
@@ -29,6 +29,11 @@ class UITest {
     private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name\n";
     private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name\n";
 
+    /*
+        Testing below sets up an ByteArrayOutputStream where prints to System.out would go to.
+        Enable checks to be done as outContent.toString() is called and String there is compared
+        to expected String output.
+    */
     //@@author dfa-reused
     //Reused from https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -48,7 +53,7 @@ class UITest {
 
     //Solution below adapted from https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
     @Test
-    void printPUListMessage() {
+    void printPUListMessage_correctLines_success() {
         UI ui = new UI();
         ui.printPUListMessage();
         assertEquals(LIST_PU_MESSAGE + System.lineSeparator() + LINE + System.lineSeparator(),
@@ -57,14 +62,14 @@ class UITest {
     }
 
     @Test
-    void printCurrentListMessage() {
+    void printCurrentListMessage_correctLines_success() {
         ui.printCurrentListMessage();
         assertEquals(LIST_CURRENT_MESSAGE + System.lineSeparator(), outContent.toString());
         outContent.reset();
     }
 
     @Test
-    void printPUModListMessage() {
+    void printPUModListMessage_correctLines_success() {
         String univName = "Korea University";
         ui.printPUModListMessage(univName);
         assertEquals(univName + " Modules" + System.lineSeparator() + LINE + System.lineSeparator()
@@ -73,7 +78,7 @@ class UITest {
     }
 
     @Test
-    void printAddModMessage() {
+    void printAddModMessage_correctLines_success() {
         ui.printAddModMessage();
         assertEquals(ADD_MOD_MESSAGE + System.lineSeparator() + LINE + System.lineSeparator()
                 , outContent.toString());
@@ -81,7 +86,7 @@ class UITest {
     }
 
     @Test
-    void printDeleteModMessage() {
+    void printDeleteModMessage_correctLines_success() {
         ui.printDeleteModMessage();
         assertEquals( DELETE_MOD_MESSAGE + System.lineSeparator() + LINE + System.lineSeparator()
                 , outContent.toString());
@@ -89,7 +94,7 @@ class UITest {
     }
 
     @Test
-    void printInputNotNumMessage() {
+    void printInputNotNumMessage_correctLines_success() {
         ui.printInputNotNumMessage();
         assertEquals(INPUT_NOT_INT_MESSAGE + System.lineSeparator() + LINE + System.lineSeparator()
                 , outContent.toString());
@@ -97,21 +102,21 @@ class UITest {
     }
 
     @Test
-    void getInvalidPuMessage() {
+    void getInvalidPuMessage_correctLines_success() {
         String invalidPuMessage = ui.getInvalidPuMessage();
         assertEquals(INVALID_PU_MESSAGE + LINE, invalidPuMessage);
         outContent.reset();
     }
 
     @Test
-    void getInvalidModuleMessage() {
+    void getInvalidModuleMessage_correctLines_success() {
         String invalidModuleMessage = ui.getInvalidModuleMessage();
         assertEquals(INVALID_MODULE_MESSAGE + LINE, invalidModuleMessage);
         outContent.reset();
     }
 
     @Test
-    void printGreetingMessage() {
+    void printGreetingMessage_correctLines_success() {
         ui.printGreetingMessage();
         assertEquals("\n" +
                         "  ____  _____ ____    _   _      _                 \n" +
@@ -127,7 +132,7 @@ class UITest {
     }
 
     @Test
-    void printPUModules() {
+    void printPUModules_correctLines_success() {
         ui.printPUModules(1);
         assertEquals("1. [AMSE216][Introduction to biomaterials][3]" + System.lineSeparator() +
                  "   maps to ----> [ME4253][Biomaterials Engineering][4]" + System.lineSeparator() +
@@ -202,7 +207,8 @@ class UITest {
                 "   maps to ----> [ME3663][Technical Elective][4]" + System.lineSeparator() +
                 "28. [CTP445][Augmented Reality][3]" + System.lineSeparator() +
                 "   maps to ----> [ME3663][Technical Elective][4]" + System.lineSeparator() +
-                "29. [ME491][Special Topics in Mechanical Engineering<Visual Intelligence>][3]" + System.lineSeparator() +
+                "29. [ME491][Special Topics in Mechanical Engineering<Visual Intelligence>][3]"
+                        + System.lineSeparator() +
                 "   maps to ----> [ME3663][Technical Elective][4]" + System.lineSeparator() +
                 "30. [AE455][Global Positioning System][3]" + System.lineSeparator() +
                 "   maps to ----> [ME3663][Technical Elective][4]" + System.lineSeparator() +
@@ -469,7 +475,7 @@ class UITest {
     }
 
     @Test
-    void printPUList() {
+    void printPUList_correctLines_success() {
         ui.printPUList();
         assertEquals("____________________________________________________________\n" +
                 System.lineSeparator() +
@@ -484,7 +490,7 @@ class UITest {
     }
 
     @Test
-    void printCurrentModList() {
+    void printCurrentModList_correctLines_success() {
         ArrayList<Module> modules = new ArrayList<>();
         Module module1 = new Module(1, "AE320", "Aerodynamics II", 3,
                 "ME4231", "Aerodynamics", 4);
@@ -504,21 +510,21 @@ class UITest {
     }
 
     @Test
-    void printInvalidInputMessage() {
+    void printInvalidInputMessage_correctLines_success() {
         ui.printInvalidInputMessage();
         assertEquals("Invalid Input" + System.lineSeparator(), outContent.toString());
         outContent.reset();
     }
 
     @Test
-    void printAddModuleFailureMessage() {
+    void printAddModuleFailureMessage_correctLines_success() {
         UI.printAddModuleFailureMessage();
         assertEquals(ADD_MOD_FAILURE_MESSAGE + System.lineSeparator(), outContent.toString());
         outContent.reset();
     }
 
     @Test
-    void printHelpCommandMessage() {
+    void printHelpCommandMessage_correctLines_success() {
         UI.printHelpCommandMessage();
         assertEquals("Here are the list of commands: \n"
                 + "LIST PU                     : Provides the list of Partner Universities available\n"
@@ -536,7 +542,7 @@ class UITest {
     }
 
     @Test
-    void printExceptionErrorMessage() {
+    void printExceptionErrorMessage_correctLines_success() {
         InvalidCommandException testException1 = new InvalidCommandException("Test Message 1");
         UI.printExceptionErrorMessage(testException1);
         assertEquals("Test Message 1" + System.lineSeparator(), outContent.toString());
@@ -554,7 +560,7 @@ class UITest {
     }
 
     @Test
-    void printExitMessage() {
+    void printExitMessage_correctLines_success() {
         ui.printExitMessage();
         assertEquals("Exiting program now" + System.lineSeparator(), outContent.toString());
         outContent.reset();

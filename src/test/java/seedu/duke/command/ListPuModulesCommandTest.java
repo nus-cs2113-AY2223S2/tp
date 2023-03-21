@@ -9,7 +9,7 @@ import seedu.duke.UI;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ListPuModulesCommandTest {
     private final UI ui = new UI();
@@ -32,12 +32,13 @@ class ListPuModulesCommandTest {
 
     //Solution below adapted from https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
     @Test
-    void execute() {
+    void execute_correctLines_success() {
         ListPuModulesCommand listPuModulesCommand = new ListPuModulesCommand(5,"YONSEI UNIVERSITY");
         listPuModulesCommand.execute();
         assertEquals("YONSEI UNIVERSITY Modules" + System.lineSeparator()
                 + "____________________________________________________________\n" +
-                System.lineSeparator() + "1. [EEE3314][INTRODUCTION ARTIFICIAL INTELLIGENCE][3]" + System.lineSeparator() +
+                System.lineSeparator() + "1. [EEE3314][INTRODUCTION ARTIFICIAL INTELLIGENCE][3]"
+                + System.lineSeparator() +
                 "   maps to ----> [ME3663][Technical Elective][4]" + System.lineSeparator() +
                 "2. [MEU3710][NANO MECHANICAL ENGINEERING][3]" + System.lineSeparator() +
                 "   maps to ----> [ME3662][Technical Elective][4]" + System.lineSeparator() +
@@ -55,7 +56,8 @@ class ListPuModulesCommandTest {
                 "   maps to ----> [ME2135][Intermediate Fluid Mechanics][4]" + System.lineSeparator() +
                 "9. [DAA3250][CHEM ENG THERMODYNAMICS I][0]" + System.lineSeparator() +
                 "   maps to ----> [ME3221][Sustainable Energy Conversion][4]" + System.lineSeparator() +
-                "____________________________________________________________\n" + System.lineSeparator(), outContent.toString());
+                "____________________________________________________________\n" + System.lineSeparator()
+                , outContent.toString());
 
     }
 }

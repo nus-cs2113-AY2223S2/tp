@@ -9,7 +9,7 @@ import seedu.duke.UI;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ListPuCommandTest {
     private final UI ui = new UI();
@@ -32,7 +32,7 @@ class ListPuCommandTest {
 
     //Solution below adapted from https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
     @Test
-    void execute() {
+    void execute_correctLines_success() {
         ListPuCommand listPuCommand = new ListPuCommand();
         listPuCommand.execute();
         assertEquals("This is the list of PUs:" + System.lineSeparator()
