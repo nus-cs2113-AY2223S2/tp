@@ -5,7 +5,7 @@ import seedu.brokeMan.ui.Ui;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
-public class Expenses extends EntryList{
+public class ExpenseList extends EntryList {
     private static final LinkedList<Entry> expenseList = new LinkedList<>();
     //private final EntryList expenseList;
 
@@ -63,10 +63,10 @@ public class Expenses extends EntryList{
     /**
      * Sorts expenses using Entry comparator
      */
-    private static void sortExpensesByAmount() {
+    public static void sortExpensesByAmount() {
         sortEntriesByAmount(expenseList);
     }
-    private static void sortExpensesByDate() {
+    public static void sortExpensesByDate() {
         sortEntriesByDate(expenseList);
     }
 

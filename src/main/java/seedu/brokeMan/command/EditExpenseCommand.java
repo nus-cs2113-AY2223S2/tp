@@ -1,6 +1,6 @@
 package seedu.brokeMan.command;
 
-import seedu.brokeMan.entry.Expenses;
+import seedu.brokeMan.entry.ExpenseList;
 import seedu.brokeMan.parser.StringToTime;
 import seedu.brokeMan.ui.Ui;
 
@@ -35,14 +35,14 @@ public class EditExpenseCommand extends Command {
             switch (type) {
             case "cost":
                 Double newCost = Double.parseDouble(newEntry);
-                Expenses.editExpense(index, newCost);
+                ExpenseList.editExpense(index, newCost);
                 break;
             case "info":
-                Expenses.editExpense(index, newEntry);
+                ExpenseList.editExpense(index, newEntry);
                 break;
             case "time":
                 LocalDateTime newTime = StringToTime.convertStringToTime(newEntry);
-                Expenses.editExpense(index, newTime);
+                ExpenseList.editExpense(index, newTime);
                 break;
             default:
                 logger.log(Level.WARNING, "wrong type name:" + type);

@@ -14,6 +14,10 @@ import seedu.brokeMan.command.ListExpenseCommand;
 import seedu.brokeMan.command.ListIncomeCommand;
 import seedu.brokeMan.command.SetBudgetCommand;
 import seedu.brokeMan.command.ViewBudgetCommand;
+import seedu.brokeMan.command.SortIncomeByAmountCommand;
+import seedu.brokeMan.command.SortExpenseByDateCommand;
+import seedu.brokeMan.command.SortIncomeByDateCommand;
+import seedu.brokeMan.command.SortExpenseByAmountCommand;
 import seedu.brokeMan.exception.AmountIsNotADoubleException;
 import seedu.brokeMan.exception.BudgetNotADoubleException;
 import seedu.brokeMan.exception.IndexNotAnIntegerException;
@@ -67,6 +71,14 @@ public class Parser {
             return prepareViewBudgetCommand();
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+        case SortExpenseByAmountCommand.COMMAND_WORD:
+            return new SortExpenseByAmountCommand();
+        case SortExpenseByDateCommand.COMMAND_WORD:
+            return new SortExpenseByDateCommand();
+        case SortIncomeByAmountCommand.COMMAND_WORD:
+            return new SortIncomeByAmountCommand();
+        case SortIncomeByDateCommand.COMMAND_WORD:
+            return new SortIncomeByDateCommand();
         case HelpCommand.COMMAND_WORD: // fall through
         default:
             return new HelpCommand();
