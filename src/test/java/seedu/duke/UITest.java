@@ -50,12 +50,15 @@ class UITest {
     //@@ author dfa
 
     //Solution below adapted from https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
+    /*
+        In the tests below, stripTrailing is used as Git Actions automatically strips trailing spaces in their checks
+     */
     @Test
     void printPUListMessage_correctLines_success() {
         UI ui = new UI();
         ui.printPUListMessage();
-        assertEquals(LIST_PU_MESSAGE + System.lineSeparator() + LINE + System.lineSeparator(),
-                    outContent.toString());
+        assertEquals(LIST_PU_MESSAGE + System.lineSeparator() + LINE.stripTrailing(),
+                    outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -64,8 +67,8 @@ class UITest {
         UI ui = new UI();
         String univName = "Korea University";
         ui.printPUModListMessage(univName);
-        assertEquals(univName + " Modules" + System.lineSeparator() + LINE + System.lineSeparator()
-                , outContent.toString());
+        assertEquals(univName + " Modules" + System.lineSeparator() + LINE.stripTrailing()
+                , outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -73,8 +76,8 @@ class UITest {
     void printAddModMessage_correctLines_success() {
         UI ui = new UI();
         ui.printAddModMessage();
-        assertEquals(ADD_MOD_MESSAGE + System.lineSeparator() + LINE + System.lineSeparator()
-                , outContent.toString());
+        assertEquals(ADD_MOD_MESSAGE + System.lineSeparator() + LINE.stripTrailing()
+                , outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -82,8 +85,8 @@ class UITest {
     void printDeleteModMessage_correctLines_success() {
         UI ui = new UI();
         ui.printDeleteModMessage();
-        assertEquals( DELETE_MOD_MESSAGE + System.lineSeparator() + LINE + System.lineSeparator()
-                , outContent.toString());
+        assertEquals( DELETE_MOD_MESSAGE + System.lineSeparator() + LINE.stripTrailing()
+                , outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -91,8 +94,8 @@ class UITest {
     void printInputNotNumMessage_correctLines_success() {
         UI ui = new UI();
         ui.printInputNotNumMessage();
-        assertEquals(INPUT_NOT_INT_MESSAGE + System.lineSeparator() + LINE + System.lineSeparator()
-                , outContent.toString());
+        assertEquals(INPUT_NOT_INT_MESSAGE + System.lineSeparator() + LINE.stripTrailing()
+                , outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -100,7 +103,7 @@ class UITest {
     void getInvalidPuMessage_correctLines_success() {
         UI ui = new UI();
         String invalidPuMessage = ui.getInvalidPuMessage();
-        assertEquals(INVALID_PU_MESSAGE + LINE, invalidPuMessage);
+        assertEquals(INVALID_PU_MESSAGE + LINE.stripTrailing(), invalidPuMessage.stripTrailing());
         outContent.reset();
     }
 
@@ -108,7 +111,7 @@ class UITest {
     void getInvalidModuleMessage_correctLines_success() {
         UI ui = new UI();
         String invalidModuleMessage = ui.getInvalidModuleMessage();
-        assertEquals(INVALID_MODULE_MESSAGE + LINE, invalidModuleMessage);
+        assertEquals(INVALID_MODULE_MESSAGE + LINE.stripTrailing(), invalidModuleMessage.stripTrailing());
         outContent.reset();
     }
 
@@ -124,8 +127,8 @@ class UITest {
                         " |____/|_____|_|     |_| |_|\\___|_| .__/ \\___|_|   \n" +
                         "                                  |_|              \n" + System.lineSeparator() +
                 WELCOME_MESSAGE + System.lineSeparator() + READ_COMMAND_INPUT + System.lineSeparator()
-                + HELP_MESSAGE + System.lineSeparator() + LINE + System.lineSeparator()
-                , outContent.toString());
+                + HELP_MESSAGE + System.lineSeparator() + LINE.stripTrailing()
+                , outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -141,8 +144,8 @@ class UITest {
                 "   maps to ----> [ME4231][Aerodynamics][4]" + System.lineSeparator() +
                 "4. [IWC109][Engineering Design][3]" + System.lineSeparator() +
                 "   maps to ----> [ME4661][Exchange Elective][4]" + System.lineSeparator() +
-                "____________________________________________________________\n" + System.lineSeparator()
-                , outContent.toString());
+                "____________________________________________________________\n".stripTrailing()
+                , outContent.toString().stripTrailing());
         outContent.reset();
         ui.printPUModules(2);
         assertEquals("1. [HSS362][Special Lectures on Art<Korean Popular Culture and the Korean Wave>][3]"
@@ -249,8 +252,8 @@ class UITest {
                 "   maps to ----> [ME3662][Technical Elective][4]" + System.lineSeparator() +
                 "49. [CE202][STRUCTURAL MECHANICS][0]" + System.lineSeparator() +
                 "   maps to ----> [ME2112][Strength of Materials][3]" + System.lineSeparator() +
-                "____________________________________________________________\n" + System.lineSeparator()
-                , outContent.toString());
+                "____________________________________________________________".stripTrailing()
+                , outContent.toString().stripTrailing());
         outContent.reset();
         ui.printPUModules(3);
         assertEquals("1. [MECH240][Solid mechanics][3]" + System.lineSeparator() +
@@ -325,8 +328,8 @@ class UITest {
                 "   maps to ----> [ME4231][Aerodynamics and Propulsion][4]" + System.lineSeparator() +
                 "36. [ADMS568][NANO BIOMATERIALS][0]" + System.lineSeparator() +
                 "   maps to ----> [ME4253][Biomaterials Engineering][4]" + System.lineSeparator() +
-                "____________________________________________________________\n" + System.lineSeparator()
-                , outContent.toString());
+                "____________________________________________________________".stripTrailing()
+                , outContent.toString().stripTrailing());
         outContent.reset();
         ui.printPUModules(4);
         assertEquals("1. [M3228001000 001][Hypersonic Vehicle Design][3]" + System.lineSeparator() +
@@ -446,8 +449,8 @@ class UITest {
                 "   maps to ----> [ME2162][Manufacturing Processes][4]" + System.lineSeparator() +
                 "58. [M2794.012000][MECHANICAL STRENGTHS AND BEHAVIORS OF SOLIDS][0]" + System.lineSeparator() +
                 "   maps to ----> [ME4255][Material Failure][4]" + System.lineSeparator() +
-                "____________________________________________________________\n" + System.lineSeparator()
-                , outContent.toString());
+                "____________________________________________________________".stripTrailing()
+                , outContent.toString().stripTrailing());
         outContent.reset();
         ui.printPUModules(5);
         assertEquals("1. [EEE3314][INTRODUCTION ARTIFICIAL INTELLIGENCE][3]" + System.lineSeparator() +
@@ -468,8 +471,8 @@ class UITest {
                 "   maps to ----> [ME2135][Intermediate Fluid Mechanics][4]" + System.lineSeparator() +
                 "9. [DAA3250][CHEM ENG THERMODYNAMICS I][0]" + System.lineSeparator() +
                 "   maps to ----> [ME3221][Sustainable Energy Conversion][4]" + System.lineSeparator() +
-                "____________________________________________________________\n" + System.lineSeparator()
-                , outContent.toString());
+                "____________________________________________________________".stripTrailing()
+                , outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -484,8 +487,8 @@ class UITest {
                 "3. POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY POSTECH" + System.lineSeparator() +
                 "4. SEOUL NATIONAL UNIVERSITY SNU" + System.lineSeparator() +
                 "5. YONSEI UNIVERSITY YU" + System.lineSeparator() +
-                "____________________________________________________________\n" + System.lineSeparator()
-                , outContent.toString());
+                "____________________________________________________________".stripTrailing()
+                , outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -505,8 +508,8 @@ class UITest {
                 "   maps to ----> [ME4231][Aerodynamics][4]" + System.lineSeparator() +
                 "2.[M2794.0073][Finite Element Analysis][3]" + System.lineSeparator() +
                 "   maps to ----> [ME4291][Finite Element Analysis][4]" + System.lineSeparator() +
-                "____________________________________________________________\n" + System.lineSeparator()
-                , outContent.toString());
+                "____________________________________________________________".stripTrailing()
+                , outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -514,14 +517,14 @@ class UITest {
     void printInvalidInputMessage_correctLines_success() {
         UI ui = new UI();
         ui.printInvalidInputMessage();
-        assertEquals("Invalid Input" + System.lineSeparator(), outContent.toString());
+        assertEquals("Invalid Input", outContent.toString().stripTrailing());
         outContent.reset();
     }
 
     @Test
     void printAddModuleFailureMessage_correctLines_success() {
         UI.printAddModuleFailureMessage();
-        assertEquals(ADD_MOD_FAILURE_MESSAGE + System.lineSeparator(), outContent.toString());
+        assertEquals(ADD_MOD_FAILURE_MESSAGE, outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -539,7 +542,7 @@ class UITest {
                 + "EXIT                        : Exits the program\n\n"
                 + System.lineSeparator()
                 + READ_COMMAND_INPUT + System.lineSeparator()
-                + LINE + System.lineSeparator(), outContent.toString());
+                + LINE.stripTrailing(), outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -547,17 +550,17 @@ class UITest {
     void printExceptionErrorMessage_correctLines_success() {
         InvalidCommandException testException1 = new InvalidCommandException("Test Message 1");
         UI.printExceptionErrorMessage(testException1);
-        assertEquals("Test Message 1" + System.lineSeparator(), outContent.toString());
+        assertEquals("Test Message 1", outContent.toString().stripTrailing());
         outContent.reset();
 
         InvalidModuleException testException2 = new InvalidModuleException("Test Message 2");
         UI.printExceptionErrorMessage(testException2);
-        assertEquals("Test Message 2" + System.lineSeparator(), outContent.toString());
+        assertEquals("Test Message 2", outContent.toString().stripTrailing());
         outContent.reset();
 
         InvalidPuException testException3 = new InvalidPuException("Test Message 3");
         UI.printExceptionErrorMessage(testException3);
-        assertEquals("Test Message 3" + System.lineSeparator(), outContent.toString());
+        assertEquals("Test Message 3", outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -565,7 +568,7 @@ class UITest {
     void printExitMessage_correctLines_success() {
         UI ui = new UI();
         ui.printExitMessage();
-        assertEquals("Exiting program now" + System.lineSeparator(), outContent.toString());
+        assertEquals("Exiting program now", outContent.toString().stripTrailing());
         outContent.reset();
     }
 }

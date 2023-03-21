@@ -53,8 +53,8 @@ class ListPuModulesCommandTest {
                 "   maps to ----> [ME2135][Intermediate Fluid Mechanics][4]" + System.lineSeparator() +
                 "9. [DAA3250][CHEM ENG THERMODYNAMICS I][0]" + System.lineSeparator() +
                 "   maps to ----> [ME3221][Sustainable Energy Conversion][4]" + System.lineSeparator() +
-                "____________________________________________________________\n" + System.lineSeparator()
-                , outContent.toString());
+                "____________________________________________________________".stripTrailing()
+                , outContent.toString().stripTrailing());
 
     }
 }

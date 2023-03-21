@@ -47,7 +47,7 @@ class ListCurrentCommandTest {
                 "   maps to ----> [ME4231][Aerodynamics][4]" + System.lineSeparator() +
                 "2.[M2794.0073][Finite Element Analysis][3]" + System.lineSeparator() +
                 "   maps to ----> [ME4291][Finite Element Analysis][4]" + System.lineSeparator() +
-                "____________________________________________________________\n" + System.lineSeparator()
-                , outContent.toString());
+                "____________________________________________________________".stripTrailing()
+                , outContent.toString().stripTrailing());
     }
 }

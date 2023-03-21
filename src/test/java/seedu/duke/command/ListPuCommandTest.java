@@ -41,7 +41,7 @@ class ListPuCommandTest {
                 "3. POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY POSTECH" + System.lineSeparator() +
                 "4. SEOUL NATIONAL UNIVERSITY SNU" + System.lineSeparator() +
                 "5. YONSEI UNIVERSITY YU" + System.lineSeparator() +
-                "____________________________________________________________\n" + System.lineSeparator()
-                , outContent.toString());
+                "____________________________________________________________".stripTrailing()
+                , outContent.toString().stripTrailing());
     }
 }
