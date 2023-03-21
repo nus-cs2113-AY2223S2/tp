@@ -57,7 +57,7 @@ public class SniffTasks {
         }
     }
 
-    public void viewAppointment(String uId) {
+    public void findAppointment(String uId) {
         int counter = 1;
         for (Appointment appointment : APPOINTMENTS) {
             assert appointment.uid != null;
@@ -71,4 +71,31 @@ public class SniffTasks {
         }
     }
 
+    public void findAnimal(String animal) {
+        int counter = 1;
+        for (Appointment appointment : APPOINTMENTS) {
+            assert appointment.animal != null;
+            if (animal.equalsIgnoreCase(appointment.animal.toString())) {
+                Ui.formatPrintList(counter, appointment.toString());
+                counter++;
+            }
+        }
+        if (counter == 1) {
+            Ui.showUserMessage(" There are no appointments for this animal type!");
+        }
+    }
+
+    public void findType(String type) {
+        int counter = 1;
+        for (Appointment appointment : APPOINTMENTS) {
+            assert appointment != null;
+            if (type.equalsIgnoreCase(appointment.toString())) {
+                Ui.formatPrintList(counter, appointment.toString());
+                counter++;
+            }
+        }
+        if (counter == 1) {
+            Ui.showUserMessage(" There are no appointments of this type!");
+        }
+    }
 }
