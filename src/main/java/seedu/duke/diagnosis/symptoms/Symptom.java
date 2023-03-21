@@ -2,7 +2,7 @@ package seedu.duke.diagnosis.symptoms;
 
 /**
  * An enumeration of all illnesses that can be identified by Dr. Duke.
- * @author Brennanzuz
+ * @author Brennanzuz`
  */
 public enum Symptom {
     DIFFICULTY_BREATHING,
@@ -48,6 +48,7 @@ public enum Symptom {
     BLURRED_VISION,
     SENSITIVITY_TO_LIGHT_AND_SOUND,
     SPRAIN,
+    SLEEPLESSNESS,
     FRACTURE,
     BREATHLESSNESS,
     GENERAL_SWELLING,

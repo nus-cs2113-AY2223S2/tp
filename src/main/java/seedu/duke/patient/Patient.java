@@ -55,11 +55,18 @@ public class Patient {
      * @param medicines ArrayList describing medicines patient has been prescribed
      */
     public void updatePatientMedicineHistory(String date, ArrayList<Medicine> medicines) {
-        if (patientMedicineHistory.containsKey(date)) {
-            appendMedicineToSameDate(date, medicines);
-        } else {
-            patientMedicineHistory.put(date, medicines);
+        //TODO: Account for no medication being available
+        //I just placed this here to prevent a crash.
+        try {
+            if (patientMedicineHistory.containsKey(date)) {
+                appendMedicineToSameDate(date, medicines);
+            } else {
+                patientMedicineHistory.put(date, medicines);
+            }
+        } catch (NullPointerException exception) {
+            System.out.println("No medication is available.");
         }
+
     }
     /**
      * Appends medicine patient is prescribed if additional medicine is prescribed on the same day
