@@ -4,14 +4,7 @@ import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.command.factory.ExecutableCommandFactory;
 import seedu.mealcompanion.command.factory.ingredients.IngredientsListCommandFactory;
 import seedu.mealcompanion.command.factory.ingredients.IngredientsSearchCommandFactory;
-import seedu.mealcompanion.command.factory.misc.AddCommandFactory;
-import seedu.mealcompanion.command.factory.misc.ByeCommandFactory;
-import seedu.mealcompanion.command.factory.misc.HelloWorldCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RecipeAllCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RecipeDetailCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RecipePossibleCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RemoveCommandFactory;
-import seedu.mealcompanion.command.factory.misc.HelpCommandFactory;
+import seedu.mealcompanion.command.factory.misc.*;
 import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.parser.CommandArguments;
 import seedu.mealcompanion.parser.CommandTokens;
@@ -35,6 +28,7 @@ public class MealCompanionSession {
                     .route("add", new AddCommandFactory())
                     .route("help", new HelpCommandFactory())
                     .route("remove", new RemoveCommandFactory())
+                    .route("make", new MakeCommandFactory())
                     .route("recipe", new CommandRouterNode()
                             .route("possible", new RecipePossibleCommandFactory())
                             .route("all", new RecipeAllCommandFactory()))
