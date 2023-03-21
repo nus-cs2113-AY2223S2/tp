@@ -6,7 +6,12 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class InvalidCommand extends Command {
-    private static final Logger logger = Logger.getLogger(AddCommand.class.getName());
+    private static final Logger logger = Logger.getLogger(InvalidCommand.class.getName());
+    private final String output;
+
+    public InvalidCommand(String output) {
+        this.output = output;
+    }
 
     @Override
     protected void setupLogger() {
@@ -23,7 +28,8 @@ public class InvalidCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        String outcome = "Sorry! I do not understand your input!\n Please refer to the help table!";
-        return new CommandResult(outcome);
+        setupLogger();
+        logger.log(Level.INFO, "starting InvalidCommand.execute()... exiting InvalidCommand.execute()");
+        return new CommandResult(this.output);
     }
 }
