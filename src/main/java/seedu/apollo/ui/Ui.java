@@ -500,23 +500,49 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints message when lesson is added to a timetable.
+     *
+     * @param moduleCode Module code of the module whose lesson is being added.
+     * @param lessonType Type of lesson being added.
+     * @param classNumber Class number of the lesson being added.
+     */
     public void printClassAddedMessage(String moduleCode, LessonType lessonType, String classNumber) {
         System.out.println("Adding lesson type: " + lessonType + " for Module: " + moduleCode);
         System.out.println("Class Number: " + classNumber);
     }
 
+    /**
+     * Prints message when lesson is Invalid.
+     *
+     */
     public void printInvalidLessonType() {
         System.out.println("This lesson type does not exist!");
     }
 
+    /**
+     * Prints message when lesson has already been added to the timetable.
+     *
+     */
     public void printLessonExists() {
         System.out.println("This lesson type already exists for this lesson!");
     }
 
+    /**
+     * Prints message when lesson has not been added to the timetable.
+     *
+     */
     public void printClassNotAdded() {
         System.out.println("This class has not been added to your timetable!");
     }
 
+    /**
+     * Prints message when lesson is deleted from the timetable.
+     *
+     * @param moduleCode Module code of the module whose lesson is being deleted.
+     * @param lessonType Type of lesson being deleted.
+     * @param lessonNumber Class number of the lesson being deleted.
+     */
     public void printModuleLessonDeleteMessage(String moduleCode, LessonType lessonType, String lessonNumber) {
         System.out.println("Deleting lessons for module: " + moduleCode.toUpperCase());
         System.out.println("Lessons Deleted: " + lessonType + " - " + lessonNumber);
