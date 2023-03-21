@@ -1,6 +1,7 @@
 package seedu.rainyDay.data;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class FinancialStatement implements Serializable {
     private static final String INFLOW_WORD = "in";
@@ -12,8 +13,9 @@ public class FinancialStatement implements Serializable {
     public FlowDirection flowDirection;
     public double value;
     public String category;
+    public LocalDate date = null;
 
-    public FinancialStatement(String description, String flowDirection, double value, String category) {
+    public FinancialStatement(String description, String flowDirection, double value, String category, LocalDate date) {
         this.description = description;
         if (flowDirection.equals(INFLOW_WORD)) {
             this.flowDirection = FlowDirection.INFLOW;
@@ -22,6 +24,9 @@ public class FinancialStatement implements Serializable {
         }
         this.value = value;
         this.category = category;
+        if (date != null) {
+            this.date = date;
+        }
     }
 
     public String getCategory() {
@@ -54,6 +59,10 @@ public class FinancialStatement implements Serializable {
             return INFLOW_SYMBOL;
         }
         return OUTFLOW_SYMBOL;
+    }
+
+    public LocalDate getDate() {
+        return this.date;
     }
 
     public String getFullStatement() {
