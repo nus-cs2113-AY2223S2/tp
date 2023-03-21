@@ -6,6 +6,7 @@ import seedu.apollo.command.Command;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
+import seedu.apollo.utils.LoggerInterface;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,22 +19,16 @@ import java.util.logging.Logger;
 /**
  * List Command class that shows user a list of all the Tasks they have input.
  */
-public class ListCommand extends Command {
+public class ListCommand extends Command implements LoggerInterface {
     private static Logger logger = Logger.getLogger("ListCommand");
-
-    /**
-     * Initialise ListCommand class, setUpLogger.
-     */
-    public ListCommand() {
-        ListCommand.setUpLogger();
-    }
 
     /**
      * Sets up logger for ListCommand class.
      *
      * @throws IOException If logger file cannot be created.
      */
-    public static void setUpLogger() {
+    @Override
+    public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
         ConsoleHandler logConsole = new ConsoleHandler();
