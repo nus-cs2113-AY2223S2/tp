@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Storage {
+public class Storage implements DatabaseInitialiser {
 
     private static final String SAVED_MODULES_FILE_PATH = "data/saved_modules.txt";
     private ArrayList<Module> modules;
@@ -15,13 +15,13 @@ public class Storage {
     public Storage() {
         this.modules = new ArrayList<>();
         try {
-            initialiseMods();
+            initialiseDatabase();
         } catch (IOException e) {
             System.out.println("Initialise Saved Modules Failure");
         }
     }
 
-    private void initialiseMods() throws IOException {
+    public void initialiseDatabase() throws IOException {
         File savedModulesFile = new File(SAVED_MODULES_FILE_PATH);
         if (!savedModulesFile.exists()) {
             File directory = new File("data");
@@ -31,6 +31,7 @@ public class Storage {
         }
         readModData(SAVED_MODULES_FILE_PATH, modules);
     }
+
 
     private void readModData(String modulesFilePath, ArrayList<Module> modules) {
         try (BufferedReader br = new BufferedReader(new FileReader(modulesFilePath))) {
@@ -104,7 +105,7 @@ public class Storage {
      * @param modules ArrayList of modules to be written into database.
      * @throws IOException If input/output operations fail or are interrupted.
      */
-    public static void writeListToFile(ArrayList<Module> modules) throws IOException {
+    public void writeListToFile(ArrayList<Module> modules) throws IOException {
         FileWriter fw = new FileWriter(SAVED_MODULES_FILE_PATH);
         String stringToAdd = "";
         for (Module module : modules) {
@@ -123,7 +124,7 @@ public class Storage {
         return modules;
     }
 
-    private static String writeTaskPreparation(String saveString) {
-        return saveString + System.lineSeparator();
-    }
+//    private static String writeTaskPreparation(String saveString) {
+//        return saveString + System.lineSeparator();
+//    }
 }
