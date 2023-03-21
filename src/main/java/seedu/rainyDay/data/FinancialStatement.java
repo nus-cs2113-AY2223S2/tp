@@ -28,13 +28,25 @@ public class FinancialStatement implements Serializable {
         return this.category;
     }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public String getDescription() {
         assert (!this.description.isEmpty());
         return this.description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public FlowDirection getFlowDirection() {
         return this.flowDirection;
+    }
+
+    public void setFlowDirection(FlowDirection flowDirection) {
+        this.flowDirection = flowDirection;
     }
 
     public String getFlowDirectionWord() {
@@ -47,6 +59,10 @@ public class FinancialStatement implements Serializable {
     public double getValue() {
         assert (this.value > 0);
         return this.value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
     }
 
     public String getFlowSymbol() {

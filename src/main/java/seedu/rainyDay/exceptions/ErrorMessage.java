@@ -9,7 +9,7 @@ public enum ErrorMessage {
     WRONG_FILTER_FORMAT("Please refer to 'help' for correct user input!"),
     NO_STATEMENTS_MATCH_DESCRIPTION("We could not find any matches for your description in your report"),
     WRONG_EDIT_INDEX("Please ensure edit index is a number!"),
-    NO_EDIT_INDEX("Please include a  edit index!");
+    NO_EDIT_INDEX("Please include a edit index!");
 
     private final String error;
 
