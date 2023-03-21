@@ -108,7 +108,8 @@ public class Menu {
         System.out.println("2. View diagnosis history");
         System.out.println("3. Reset diagnosis history");
         System.out.println("4. Reset symptoms");
-        System.out.println("5. Exit");
+        System.out.println("5. View Medicine history");
+        System.out.println("6. Exit");
     }
 
     /**
