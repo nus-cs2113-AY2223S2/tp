@@ -34,6 +34,13 @@ public class FoodStorage extends Storage implements FileReadable {
         int id;
         int storeNumber;
         float calories;
+        float protein;
+        float totalFat;
+        float saturatedFat;
+        float dietaryFibre;
+        float carbohydrates;
+        float sugar;
+        float sodium;
         Food food;
         
         String[] foodDataList = FoodData.getFoodData();
@@ -47,14 +54,24 @@ public class FoodStorage extends Storage implements FileReadable {
             store = foodLine[3];
             storeNumber = Integer.parseInt(foodLine[4]);
             calories = Float.parseFloat(foodLine[5]);
+            protein = Float.parseFloat(foodLine[6]);
+            totalFat = Float.parseFloat(foodLine[7]);
+            saturatedFat = Float.parseFloat(foodLine[8]);
+            dietaryFibre = Float.parseFloat(foodLine[9]);
+            carbohydrates = Float.parseFloat(foodLine[10]);
+            sugar = Float.parseFloat(foodLine[11]);
+            sodium = Float.parseFloat(foodLine[12]);
             food = null;
             
             if (foodType.equals(FoodTypes.DISH.toString())) {
-                food = new Dish(id, name, store, storeNumber, calories);
+                food = new Dish(id, name, store, storeNumber, calories, protein, totalFat, saturatedFat,dietaryFibre,
+                        carbohydrates, sugar, sodium);
             } else if (foodType.equals(FoodTypes.SIDE.toString())) {
-                food = new Side(id, name, store, storeNumber, calories);
+                food = new Side(id, name, store, storeNumber, calories, protein, totalFat, saturatedFat,dietaryFibre,
+                        carbohydrates, sugar, sodium);
             } else if (foodType.equals(FoodTypes.INGREDIENT.toString())) {
-                food = new Ingredient(id, name, store, storeNumber, calories);
+                food = new Ingredient(id, name, store, storeNumber, calories, protein, totalFat, saturatedFat,
+                        dietaryFibre, carbohydrates, sugar, sodium);
             }
 
             if (food != null) {

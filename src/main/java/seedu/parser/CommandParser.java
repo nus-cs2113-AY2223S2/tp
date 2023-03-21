@@ -7,6 +7,7 @@ import seedu.commands.Command;
 import seedu.commands.DeleteMealCommand;
 import seedu.commands.ExitCommand;
 import seedu.commands.ListCommand;
+import seedu.commands.NutritionCommand;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.LifeTrackerException;
 
@@ -34,6 +35,9 @@ public class CommandParser {
             break;
         case "list":
             command = new ListCommand(commandWord, userInput);
+            break;
+        case "nutrition":
+            command = new NutritionCommand();
             break;
         default:
             throw new InvalidCommandException();
