@@ -14,7 +14,7 @@ for some reused skeleton code and inspiration on OOP implementation.
 ### Manager Component (PeiHao)
 ### Ui Component (HuiQi)
 ### Utils Component (Darren)
-(Insert UML Diagram)  
+(Insert Class Diagram)  
 The Utils Component consists of the Parser class that will handle the parsing and preparing of commands within the DinerDirector application.  
 The `Parser` class performs the following functions: 
 * Parse the command given the user input and extracts out the necessary information related to the command.
