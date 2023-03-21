@@ -16,7 +16,6 @@ import seedu.duke.exceptions.RemoveErrorException;
 import seedu.duke.exceptions.SearchFilterErrorException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -163,7 +162,6 @@ public class Parser {
 //            Ui.printInvalidEditCommand();
 //        }
 //    }
-//
 
     /**
      * Handles the "search" command by checking the validity of search term provided before passing to
