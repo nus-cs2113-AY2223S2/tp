@@ -29,7 +29,7 @@ public class EditDeadlineCommandTest {
 
     @BeforeEach
     void setUp() {
-        String sampleTask = "add something -d 02-02-2023 18:00";
+        String sampleTask = "add something -due 02-02-2023 18:00";
         testList = new TaskList();
         try {
             parser.parseCommand(sampleTask).execute(testList, ui);
