@@ -44,4 +44,15 @@ public class TaskList {
             System.out.println((i + 1) + ". " + taskList.get(i).getStatusIcon() + " " + taskList.get(i).description);
         }
     }
+
+    /**
+     * Marks a task as done or not done
+     *
+     * @param taskNumber Number of task to be marked as done
+     * @param isDone Boolean value to mark task as done or not done
+     */
+    public static void markTask(int taskNumber, boolean isDone) {
+        taskList.get(taskNumber - 1).isDone = isDone;
+        logger.log(Level.INFO, "Task marked as " + isDone + " : " + taskNumber);
+    }
 }
