@@ -10,6 +10,7 @@ import seedu.pettracker.commands.RemovePetCommand;
 import seedu.pettracker.commands.RemoveStatCommand;
 import seedu.pettracker.commands.AddTaskCommand;
 import seedu.pettracker.commands.RemoveTaskCommand;
+import seedu.pettracker.commands.ListTasksCommand;
 import seedu.pettracker.exceptions.UnknownKeywordException;
 
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ public class CommandParser {
     final String KEYWORD_REMOVE_STAT = "remove-stat";
     final String KEYWORD_ADD_TASK = "add-task";
     final String KEYWORD_REMOVE_TASK = "remove-task";
+    final String KEYWORD_LIST_TASKS = "list-tasks";
 
     public CommandParser() {
     }
@@ -116,6 +118,8 @@ public class CommandParser {
                 logger.log(Level.INFO,"bounds error");
                 break;
             }
+        case KEYWORD_LIST_TASKS:
+            return new ListTasksCommand();
         default:
             return new InvalidCommand();
         }

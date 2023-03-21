@@ -35,4 +35,13 @@ public class TaskList {
         logger.log(Level.INFO, "Task removed: " + taskNumber);
         numberOfTasks -= 1;
     }
+
+    /**
+     * Prints the list of tasks
+     */
+    public static void listTasks() {
+        for (int i = 0; i < numberOfTasks; i++) {
+            System.out.println((i + 1) + ". " + taskList.get(i).getStatusIcon() + " " + taskList.get(i).description);
+        }
+    }
 }
