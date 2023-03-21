@@ -4,6 +4,7 @@ public class Strings {
     public static final String NO_CATEGORY_MESSAGE = "Category does not exist";
     public static final String DOT = ".";
     public static final String NO_CATEGORIES_TO_VIEW = "There are no categories to view";
+    public static final String NO_SEARCH_RESULTS = "No matching search results.";
     public static final String COUNT_ASSERTION = "Count should be greater than 1";
     public static final String NULL_CATEGORY_ASSERTION = "Category name should not be null";
     public static final String NULL_CATEGORY_LIST_ASSERTION = "Category list should not be null";
@@ -44,6 +45,7 @@ public class Strings {
     public static final String DELETE = "delete";
     public static final String EVENT = "event";
     public static final String CATEGORY = "category";
+    public static final String SEARCH = "search";
     public static final String INVALID_INPUT = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
     public static final String DELETE_FORMAT = "Please following the correct format: " +
             "delete c/<category name> e/<event name>" +

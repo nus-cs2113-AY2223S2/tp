@@ -1,5 +1,6 @@
 package seedu.moneymind.command;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,6 +15,7 @@ import static seedu.moneymind.string.Strings.VIEW;
 import static seedu.moneymind.string.Strings.DELETE;
 import static seedu.moneymind.string.Strings.EVENT;
 import static seedu.moneymind.string.Strings.CATEGORY;
+import static seedu.moneymind.string.Strings.SEARCH;
 import static seedu.moneymind.string.Strings.INVALID_INPUT;
 import static seedu.moneymind.string.Strings.DELETE_FORMAT;
 import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY;
@@ -54,6 +56,8 @@ public class Parser {
             return createEventCommand(separatedKeywordAndDescription);
         case CATEGORY:
             return createCategoryCommand(separatedKeywordAndDescription);
+        case SEARCH:
+            return createSearchCommand(separatedKeywordAndDescription);
         default:
             throw new InvalidCommandException(INVALID_INPUT);
         }
@@ -145,5 +149,9 @@ public class Parser {
         } catch (IndexOutOfBoundsException error) {
             throw new InvalidCommandException(CATEGORY_EMPTY);
         }
+    }
+
+    private Command createSearchCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
+        return new SearchCommand(separatedKeywordAndDescription[1]);
     }
 }
