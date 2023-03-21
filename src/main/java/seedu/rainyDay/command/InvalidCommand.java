@@ -6,6 +6,9 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author lil1n
+/**
+ * Represents an invalid command
+ */
 public class InvalidCommand extends Command {
     private static final Logger logger = Logger.getLogger(InvalidCommand.class.getName());
     private final String output;
@@ -14,6 +17,9 @@ public class InvalidCommand extends Command {
         this.output = output;
     }
 
+    /**
+     * Sets up logger for logging
+     */
     @Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
@@ -27,6 +33,11 @@ public class InvalidCommand extends Command {
         }
     }
 
+    /**
+     * Executes the command and returns the result
+     *
+     * @return CommandResult with the relevant output message as its attribute
+     */
     @Override
     public CommandResult execute() {
         setupLogger();

@@ -9,6 +9,10 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author lil1n
+
+/**
+ * Represents a command that add statement to the financial report
+ */
 public class AddCommand extends Command {
     private static final Logger logger = Logger.getLogger(AddCommand.class.getName());
 
@@ -30,6 +34,9 @@ public class AddCommand extends Command {
         this.date = date;
     }
 
+    /**
+     * Sets up logger for logging
+     */
     @Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
@@ -43,6 +50,11 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Executes the command and returns the result
+     *
+     * @return CommandResult with the relevant output message as its attribute
+     */
     @Override
     public CommandResult execute() {
         setupLogger();
