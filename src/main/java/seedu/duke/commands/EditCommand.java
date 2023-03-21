@@ -6,6 +6,7 @@ import seedu.duke.utils.Ui;
 import seedu.duke.exceptions.EditErrorException;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Represents the command to edit an item in the inventory.
@@ -36,13 +37,29 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Based on the user input, the appropriate attribute (Price, Quantity, Name etc.) of the item will be targeted
-     * and subsequently edited to the user's respective input.
+     * Executes method to edit item attributes in the list and prints an error string if the user's edit command
+     * inputs were incorrectly written.
      *
      * @param item The target item in the ArrayList in which the user wants to edit.
      * @param data The user input which contains the information to be used to update the item attributes.
      */
     private void updateItemInfo(final Item item, final String data) {
+        try {
+            handleUserEditCommands(item, data);
+        } catch (EditErrorException invalidEdit) {
+            Ui.printInvalidEditCommand();
+        }
+    }
+
+    /**
+     * Detects specific chars in the array of individual strings, and executes the change of item attribute values
+     * (i.e, Name, Quantity, Price) based on the first few chars detected in the individual string.
+     *
+     * @param item The target item in the ArrayList in which the user wants to edit.
+     * @param data The user input which contains the information to be used to update the item attributes.
+     * @throws EditErrorException The exception that is thrown for all errors related to the "Edit" command.
+     */
+    private static void handleUserEditCommands(Item item, String data) throws EditErrorException {
         if (data.contains("n/")) {
             String newName = data.replaceFirst("n/", "");
             item.setName(newName);
@@ -55,7 +72,7 @@ public class EditCommand extends Command {
             Double newPrice = Double.valueOf(updatedPrice);
             item.setPrice(newPrice);
         } else {
-            Ui.printInvalidEditCommand();
+            throw new EditErrorException();
         }
     }
 
@@ -93,6 +110,20 @@ public class EditCommand extends Command {
         } catch (EditErrorException eee) {
             Ui.printItemNotFound();
         }
+    }
+
+    public static boolean itemIsNotUpdated(Item oldItem, Item updatedItem) {
+        int itemsChanged = 0;
+        if (!Objects.equals(oldItem.getName(), updatedItem.getName())) {
+            itemsChanged += 1;
+        }
+        if (!Objects.equals(oldItem.getQuantity(), updatedItem.getQuantity())) {
+            itemsChanged += 1;
+        }
+        if (!Objects.equals(oldItem.getPrice(), updatedItem.getPrice())) {
+            itemsChanged += 1;
+        }
+        return itemsChanged == 0;
     }
 
     /**

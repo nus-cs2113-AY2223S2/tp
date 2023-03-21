@@ -226,7 +226,6 @@ public class Parser {
                 throw new EditErrorException();
             }
             assert editInfo[0].contains("upc/") : "UPC Code is not present in user command!";
-            //Inventory.editItem(editInfo);
             Command editCommand = new EditCommand(inventory, editInfo);
             editCommand.run();
         } catch (EditErrorException eee) {

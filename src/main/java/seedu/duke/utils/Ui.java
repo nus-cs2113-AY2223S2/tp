@@ -1,5 +1,7 @@
 package seedu.duke.utils;
 
+import seedu.duke.commands.EditCommand;
+import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 
@@ -318,12 +320,35 @@ public class Ui {
     }
 
     /**
-     * Prints the updated version of the item in question in order to inform the user of the changes made by him or her.
+     * Calls a method to prints the updated version of the item in question, or else calls a method to print a string
+     * to inform the user that the item in question is not updated due to an error in his or her inputs.
      *
      * @param oldItem     The item containing the old attributes.
      * @param updatedItem The same item but with new attributes as defined by the user.
+     * @throws EditErrorException The exception used to handle all errors related to the "Edit" command.
      */
-    public static void printEditDetails(Item oldItem, Item updatedItem) {
+    public static void printEditDetails(Item oldItem, Item updatedItem) throws EditErrorException {
+        try {
+            if (EditCommand.itemIsNotUpdated(oldItem, updatedItem)) {
+                throw new EditErrorException();
+            }
+            printUpdatedItemDetails(oldItem, updatedItem);
+            assert Objects.equals(oldItem.getUpc(), updatedItem.getUpc()) : "Both items should be of same UPC Code.";
+        } catch (EditErrorException eee) {
+            printItemNotUpdatedError();
+        }
+    }
+
+
+
+    /**
+     * Prints the updated attributes of the item as specified by the user. Shows both the previous attributes
+     * and the updated attributes of the item.
+     *
+     * @param oldItem The item containing the old attributes.
+     * @param updatedItem The same item but with new attributes as defined by the user.
+     */
+    private static void printUpdatedItemDetails(Item oldItem, Item updatedItem) {
         System.out.println(LINE);
         System.out.println(ANSI_BLUE + SUCCESS_EDIT + ANSI_RESET + "\n");
         System.out.println(ANSI_RED + "Before Update: " + ANSI_RESET);
@@ -333,8 +358,17 @@ public class Ui {
         System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
                 "Quantity Available: " + updatedItem.getQuantity() + "\n" + "Item Price: " + updatedItem.getPrice());
         System.out.println(LINE);
-        assert Objects.equals(oldItem.getUpc(), updatedItem.getUpc()) : "Both items should be of same UPC Code.";
     }
+
+    /**
+     * Prints an error message to inform the user that the item is not updated.
+     */
+    private static void printItemNotUpdatedError() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + "Item Specified will not be updated." + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
 
     public static void printInvalidReply() {
         System.out.println(LINE);
