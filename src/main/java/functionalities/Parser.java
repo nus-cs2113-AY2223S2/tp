@@ -73,7 +73,7 @@ public class Parser {
 
     private static void parseFindCommand(String task) throws SniffException {
         try {
-            // find a/dog or find t/surgery or aID/123
+            // find a/dog or find t/surgery or find aID/123
             int animalIndex = task.indexOf("a/");
             int typeIndex = task.indexOf("t/");
             int aIDIndex = task.indexOf("aID/");
@@ -90,7 +90,6 @@ public class Parser {
                 logger.warning(" NULL command returned to Sniff.run");
                 throw new SniffException(" No details provided for find command. Unable to execute find command.");
             }
-
         } catch (ArrayIndexOutOfBoundsException emptyFind) {
             logger.warning(" No details provided for find command. Unable to execute find command.");
             throw new SniffException(" The find command description cannot be empty!");
