@@ -15,6 +15,22 @@
 
 :smiley: You can use PlantUML to create UML diagrams like what we did in this documentation. See [Using PlantUML](https://se-education.org/guides/tutorials/plantUml.html) for more information.
 
+### Architecture
+
+<img src="images\Architecture.png" width="250" />
+
+The ***Architecture Diagram*** given above explains the high-level design of the App. 
+
+Given below is a quick overview of how each component interact with each other.
+
+The main components in the architecture are:
+
+* `MoneyMind`: The main program of the application, 
+it initializes the other components in the correct sequence and is responsible for shut down the application.
+* `UI`: The user interface of the application.
+* `Storage`: The storage of data of the application.
+* `Data`: The data classes used in the application, including Event, Category and CategoryList.
+* `Command`: The command of the application, including AddCommand, DeleteCommand, ListCommand, etc.
 
 
 ## Product scope
