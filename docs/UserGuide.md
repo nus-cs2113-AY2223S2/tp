@@ -17,6 +17,7 @@ financial inflows and outflows and view them with a single command.
         * [Viewing help](#viewing-help)
         * [Saving the data](#saving-the-data)
         * [Loading saved data](#loading-saved-data)
+        * [Exporting to CSV](#exporting-to-csv)
         * [Exiting the application](#exiting-the-application)
     * [FAQ](#faq)
     * [Command Summary](#command-summary)
@@ -97,6 +98,17 @@ Format: `view`
 ### Loading saved data
 
 {todo}
+
+### Exporting to CSV
+
+Exports your financial statements into a comma-separated values file.
+
+Format: `export`
+> **Background:** A CSV file allows data to be saved in a format which can be viewed as a table.
+> 
+>💡Saving your financial statements in a CSV file will allow you to view your statements in commonly use applications like *Microsoft Excel* and *Google Sheets*.
+
+{todo: tell user where they can locate saved file}
 
 ### Exiting the application
 
