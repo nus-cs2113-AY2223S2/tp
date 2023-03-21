@@ -73,6 +73,7 @@ public class SniffTasks {
             UIDS.remove(uid, index);
             Ui.printAppointmentRemovedMessage(temp);
             appointmentCount--;
+            assert appointmentCount >= 0 : "Appointment count cannot be less than 0";
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The remove command entry is invalid!");
         }
@@ -93,6 +94,7 @@ public class SniffTasks {
     }
 
     public void viewAppointment(String uid) {
+        assert uid != null : "Appointment ID should not be null.";
         if (!UIDS.containsKey(uid)) {
             System.out.println("There are no appointments with this ID.");
         }
