@@ -6,6 +6,7 @@ import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.RecipeListEmptyError;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
+import seedu.duke.recipe.StepList;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -149,8 +150,12 @@ public class UI {
     public void showRecipeViewed(Recipe recipe) {
         System.out.println("Here is the recipe you requested, which is a "+ recipe.getTag() + " flavour:");
         System.out.println("name: " + recipe.getName());
+        System.out.println(LINE);
         IngredientList ingredients = recipe.getIngredientList();
         ingredients.showList();
+        System.out.println(LINE);
+        StepList steps = recipe.getStepList();
+        steps.showStepList();
     }
     public void showViewingRecipeErrorMessage(Exception e) {
         if (e instanceof IncompleteInputException) {
