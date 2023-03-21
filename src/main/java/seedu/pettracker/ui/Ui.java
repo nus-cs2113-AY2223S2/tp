@@ -105,4 +105,11 @@ public class Ui {
     public void listTasksCommandMessage() {
         System.out.println("Here are your tasks:");
     }
+
+    /**
+     * Message that prints when a task is marked as done.
+     */
+    public void markTaskCommandMessage() {
+        System.out.println("Task marked as done");
+    }
 }
