@@ -124,6 +124,10 @@ public class DinerDirectorTest {
         final String TEST_CASE_CORRECT_INPUT_EMPTY_INGREDIENT_LIST = "add_dish n/Chicken Burger pc/1099 []";
         final String TEST_CASE_CORRECT_INPUT_EMPTY_INGREDIENT_LIST_WITH_SEMICOLON = "add_dish n/Chicken Burger " +
                 "pc/1099 [;;]";
+        final String TEST_CASE_CORRECT_INPUT_WITH_WHITESPACE_INGREDIENTS_IN_LIST = "add_dish n/Chicken Burger " +
+                "pc/1099 [cc;   ;cc]";
+        final String TEST_CASE_CORRECT_INPUT_TRAILING_WHITESPACE_INGREDIENTS_IN_LIST = "add_dish n/Chicken Burger " +
+                "pc/1099 [ddd  ;dc; dc  ]";
 
         final String TEST_CASE_ALL_BLANK = "add_dish";
         final String TEST_CASE_BLANK_NAME = "add_dish n/ pc/1099 " +
@@ -142,6 +146,8 @@ public class DinerDirectorTest {
         listOfCommands.add(TEST_CASE_CORRECT_INPUT_FULL);
         listOfCommands.add(TEST_CASE_CORRECT_INPUT_EMPTY_INGREDIENT_LIST);
         listOfCommands.add(TEST_CASE_CORRECT_INPUT_EMPTY_INGREDIENT_LIST_WITH_SEMICOLON);
+        listOfCommands.add(TEST_CASE_CORRECT_INPUT_WITH_WHITESPACE_INGREDIENTS_IN_LIST);
+        listOfCommands.add(TEST_CASE_CORRECT_INPUT_TRAILING_WHITESPACE_INGREDIENTS_IN_LIST);
 
         listOfCommands.add(TEST_CASE_ALL_BLANK);
         listOfCommands.add(TEST_CASE_BLANK_NAME);
@@ -162,6 +168,10 @@ public class DinerDirectorTest {
             } else if (listOfCommand.equals(TEST_CASE_CORRECT_INPUT_EMPTY_INGREDIENT_LIST)) {
                 assertTrue(addCommand instanceof AddDishCommand);
             } else if (listOfCommand.equals(TEST_CASE_CORRECT_INPUT_EMPTY_INGREDIENT_LIST_WITH_SEMICOLON)) {
+                assertTrue(addCommand instanceof AddDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_CORRECT_INPUT_WITH_WHITESPACE_INGREDIENTS_IN_LIST)) {
+                assertTrue(addCommand instanceof AddDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_CORRECT_INPUT_TRAILING_WHITESPACE_INGREDIENTS_IN_LIST)) {
                 assertTrue(addCommand instanceof AddDishCommand);
             } else if (listOfCommand.equals(TEST_CASE_ALL_BLANK)) {
                 assertTrue(addCommand instanceof IncorrectCommand);
@@ -210,8 +220,6 @@ public class DinerDirectorTest {
             } else if (listOfCommand.equals(TEST_CASE_DECIMAL_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_NEGATIVE_INDEX)) {
-                assertTrue(deleteCommand instanceof IncorrectCommand);
-            } else if (listOfCommand.equals(TEST_CASE_ZERO_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_ZERO_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);

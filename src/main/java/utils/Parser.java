@@ -304,7 +304,7 @@ public class Parser {
         int price = 0;
         ArrayList<String> ingredients = new ArrayList<>();
 
-        String regex = " n/(?=\\S)(.*?) pc/(\\d+) \\[(.*?)\\]";
+        String regex = " n/(?=\\S)(.*?) pc/(\\d+) \\[(.*?)]";
 
         Pattern dishPattern = Pattern.compile(regex);
         Matcher parsedDishInput = dishPattern.matcher(userInputNoCommand);
@@ -314,7 +314,11 @@ public class Parser {
                 name = parsedDishInput.group(1);
                 price = Integer.parseInt(parsedDishInput.group(2));
                 String[] ingredientList = parsedDishInput.group(3).split(";");
-                Collections.addAll(ingredients, ingredientList);
+                for (String ingredient : ingredientList) {
+                    if (!ingredient.isBlank()) {
+                        ingredients.add(ingredient);
+                    }
+                }
             } else {
                 throw new DinerDirectorException(Messages.ERROR_COMMAND_INVALID);
             }
