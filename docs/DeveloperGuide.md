@@ -24,6 +24,11 @@ Otherwise, a success message is printed and the `printTable` method from the `Ui
 
 **Step 4**. The `printTable` method takes in the ArrayList `itemInventory` as a parameter and prints out a table showing the name, UPC, quantity and price of all items in `itemInventory`.
 
+### Edit
+The "edit" command is mainly handled by the `EditCommand` class, which extends the `Command` class.
+
+
+
 
 ## Product scope
 ### Target user profile
@@ -36,10 +41,25 @@ Otherwise, a success message is printed and the `printTable` method from the `Ui
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ...                 | I want to ...                                                   | So that I can ...                                             |
+|---------|--------------------------|-----------------------------------------------------------------|---------------------------------------------------------------|
+| v1.0    | small business owner     | add new items to the inventory                                  | account for the stocks I have                                 |
+| v1.0    | small business owner     | keep track of all the items we have in stock                    | have a record readily available                               |
+| v1.0    | small business owner     | delete items from the inventory if they are no longer needed    | keep the inventory clean and up-to-date                       |
+| v1.0    | small business owner     | set minimum and maximum stock levels for items in the inventory | be alerted if our stock levels fall outside of these limits   |
+| v1.0    | IT team member           | update the quantity of items in the inventory                   | ensure the inventory always reflects the current stock levels |
+| v1.0    | IT team member           | search for items in the inventory by name SKU or category       | quickly find what I need                                      |
+
+
+| Version | As a ...                 | I want to ...                                                   | So that I can ...                                             |
+|---------|--------------------------|-----------------------------------------------------------------|---------------------------------------------------------------|
+| v2.0    | small business owner     | analyze past sales from the historical records of the stocks    | make better decisions                                         |
+| v2.0    | small business owner     | see a report of items that are due to be reordered              | make sure we have enough stock to meet customer demand        |
+| v2.0    | small business owner     | set different prices for items in the inventory                 | charge different prices for different items                   |
+| v2.0    | small business owner     | categorize items in the inventory                               | quickly find items that belong to a specific category         |
+| v2.0    | IT team member           | assign unique SKUs to items in the inventory                    | easily track and manage the items                             |
+| v2.0    | convenience store owner  | store information on the large variety of products              | find them easily                                              |
+
 
 ## Non-Functional Requirements
 

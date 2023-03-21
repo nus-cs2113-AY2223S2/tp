@@ -1,12 +1,12 @@
 package seedu.duke.commands;
 
+import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
 import seedu.duke.exceptions.EditErrorException;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Represents the command to edit an item in the inventory.
@@ -42,12 +42,17 @@ public class EditCommand extends Command {
      *
      * @param item The target item in the ArrayList in which the user wants to edit.
      * @param data The user input which contains the information to be used to update the item attributes.
+     * @throws MissingParametersException Exception related to all errors due to missing parameters.
+     * @throws NumberFormatException Exception related to all invalid number formats inputted.
      */
-    private void updateItemInfo(final Item item, final String data) {
+    private void updateItemInfo(final Item item, final String data) throws MissingParametersException,
+            NumberFormatException {
         try {
             handleUserEditCommands(item, data);
-        } catch (EditErrorException invalidEdit) {
-            Ui.printInvalidEditCommand();
+        } catch (MissingParametersException mpe) {
+            throw new MissingParametersException();
+        } catch (NumberFormatException nfe) {
+            throw new NumberFormatException();
         }
     }
 
@@ -57,22 +62,32 @@ public class EditCommand extends Command {
      *
      * @param item The target item in the ArrayList in which the user wants to edit.
      * @param data The user input which contains the information to be used to update the item attributes.
-     * @throws EditErrorException The exception that is thrown for all errors related to the "Edit" command.
+     * @throws MissingParametersException Exception related to all errors due to missing parameters.
+     * @throws NumberFormatException Exception related to all invalid number formats inputted.
      */
-    private static void handleUserEditCommands(Item item, String data) throws EditErrorException {
+    private void handleUserEditCommands(Item item, String data) throws MissingParametersException,
+            NumberFormatException {
         if (data.contains("n/")) {
             String newName = data.replaceFirst("n/", "");
             item.setName(newName);
         } else if (data.contains("qty/")) {
             String updatedQuantity = data.replaceFirst("qty/", "");
-            Integer newQuantity = Integer.valueOf(updatedQuantity);
-            item.setQuantity(newQuantity);
+            try {
+                Integer newQuantity = Integer.valueOf(updatedQuantity);
+                item.setQuantity(newQuantity);
+            } catch (NumberFormatException nfe) {
+                throw new NumberFormatException();
+            }
         } else if (data.contains("p/")) {
             String updatedPrice = data.replaceFirst("p/", "");
-            Double newPrice = Double.valueOf(updatedPrice);
-            item.setPrice(newPrice);
+            try {
+                Double newPrice = Double.valueOf(updatedPrice);
+                item.setPrice(newPrice);
+            } catch (NumberFormatException nfe) {
+                throw new NumberFormatException();
+            }
         } else {
-            throw new EditErrorException();
+            throw new MissingParametersException();
         }
     }
 
@@ -88,42 +103,36 @@ public class EditCommand extends Command {
             for (int data = 1; data < editInfo.length; data += 1) {
                 updateItemInfo(updatedItem, editInfo[data]);
             }
-            String oldItemName = oldItem.getName().toLowerCase();
-            String newItemName = updatedItem.getName().toLowerCase();
-            if (!oldItemName.equals(newItemName) && itemNameHash.get(oldItemName).size() == 1) {
-                itemNameHash.remove(oldItemName);
-                itemsTrie.remove(oldItemName);
-                ArrayList<Item> newItemArrayList = new ArrayList<>();
-                newItemArrayList.add(updatedItem);
-                itemNameHash.put(newItemName, newItemArrayList);
-            } else {
-                itemNameHash.get(oldItemName).remove(oldItem);
-                if (!itemNameHash.containsKey(newItemName)) {
-                    itemNameHash.put(newItemName, new ArrayList<Item>());
-                }
-                itemNameHash.get(newItemName).add(updatedItem);
-            }
-            itemsTrie.add(newItemName);
+            handleTrie(updatedItem, oldItem);
             upcCodes.remove(oldItem.getUpc());
             upcCodes.put(updatedItem.getUpc(), updatedItem);
             Ui.printEditDetails(oldItem, updatedItem);
         } catch (EditErrorException eee) {
             Ui.printItemNotFound();
+        } catch (MissingParametersException mpe) {
+            Ui.printInvalidEditCommand();
+        } catch (NumberFormatException nfe) {
+            Ui.printInvalidPriceOrQuantityEditInput();
         }
     }
 
-    public static boolean itemIsNotUpdated(Item oldItem, Item updatedItem) {
-        int itemsChanged = 0;
-        if (!Objects.equals(oldItem.getName(), updatedItem.getName())) {
-            itemsChanged += 1;
+    private void handleTrie(Item updatedItem, Item oldItem) {
+        String oldItemName = oldItem.getName().toLowerCase();
+        String newItemName = updatedItem.getName().toLowerCase();
+        if (!oldItemName.equals(newItemName) && itemNameHash.get(oldItemName).size() == 1) {
+            itemNameHash.remove(oldItemName);
+            itemsTrie.remove(oldItemName);
+            ArrayList<Item> newItemArrayList = new ArrayList<>();
+            newItemArrayList.add(updatedItem);
+            itemNameHash.put(newItemName, newItemArrayList);
+        } else {
+            itemNameHash.get(oldItemName).remove(oldItem);
+            if (!itemNameHash.containsKey(newItemName)) {
+                itemNameHash.put(newItemName, new ArrayList<Item>());
+            }
+            itemNameHash.get(newItemName).add(updatedItem);
         }
-        if (!Objects.equals(oldItem.getQuantity(), updatedItem.getQuantity())) {
-            itemsChanged += 1;
-        }
-        if (!Objects.equals(oldItem.getPrice(), updatedItem.getPrice())) {
-            itemsChanged += 1;
-        }
-        return itemsChanged == 0;
+        itemsTrie.add(newItemName);
     }
 
     /**

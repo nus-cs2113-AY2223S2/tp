@@ -45,6 +45,9 @@ public class Ui {
     public static final String ITEM_NOT_FOUND = "Edit failed! Reason: Item not found in database. Please add item " +
             "first!";
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
+    public static final String ITEM_NOT_EDITED = "Item Specified will not be updated.";
+    public static final String WRONG_QUANTITY_INPUT = "For Quantity inputs: MUST BE a WHOLE NUMBER.";
+    public static final String WRONG_PRICE_INPUT = "For Price inputs: MUST BE a WHOLE NUMBER/DECIMAL NUMBER.";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
     public static final String MISSING_PRICE = "Please enter a number for the price!";
 
@@ -329,7 +332,7 @@ public class Ui {
      */
     public static void printEditDetails(Item oldItem, Item updatedItem) throws EditErrorException {
         try {
-            if (EditCommand.itemIsNotUpdated(oldItem, updatedItem)) {
+            if (!updatedItem.isUpdatedFrom(oldItem)) {
                 throw new EditErrorException();
             }
             printUpdatedItemDetails(oldItem, updatedItem);
@@ -365,10 +368,22 @@ public class Ui {
      */
     private static void printItemNotUpdatedError() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + "Item Specified will not be updated." + ANSI_RESET);
+        System.out.println(ANSI_RED + ITEM_NOT_EDITED + ANSI_RESET);
+        System.out.println(ANSI_RED + "REASON: Item's name/price/quantity is the same as user's input." + ANSI_RESET);
         System.out.println(LINE);
     }
 
+    /**
+     * Prints an error message to inform the user that item is not updated due to wrong quantity/price input type.
+     */
+    public static void printInvalidPriceOrQuantityEditInput() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + ITEM_NOT_EDITED + ANSI_RESET);
+        System.out.println(ANSI_RED + "REASON:" + ANSI_RESET);
+        System.out.println(ANSI_RED + WRONG_QUANTITY_INPUT + ANSI_RESET);
+        System.out.println(ANSI_RED + WRONG_PRICE_INPUT + ANSI_RESET);
+        System.out.println(LINE);
+    }
 
     public static void printInvalidReply() {
         System.out.println(LINE);
