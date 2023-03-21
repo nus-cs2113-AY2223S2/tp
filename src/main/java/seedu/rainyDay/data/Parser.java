@@ -49,6 +49,8 @@ public class Parser {
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
             return displayHelp();
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
+            System.out.println(action[0]);
+            System.out.println(action[1]);
             return filterStatement(action[1]);
         } else {
             logger.warning("unrecognised input from user!");
@@ -163,7 +165,6 @@ public class Parser {
         } catch (Exception e) {
             logger.warning("delete index provided incorrectly");
             return new InvalidCommand(ErrorMessage.WRONG_DELETE_INDEX.toString());
-            //throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
         }
     }
 
@@ -194,7 +195,6 @@ public class Parser {
         } catch (Exception e) {
             logger.warning("filter command given by user in the wrong format");
             return new InvalidCommand(ErrorMessage.WRONG_FILTER_FORMAT.toString());
-            //throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
         }
     }
 
@@ -204,7 +204,7 @@ public class Parser {
     }
 
     private void parseFilterByDescription(String input) {
-        Pattern pattern = Pattern.compile("(-d)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
+        Pattern pattern = Pattern.compile("^(-d)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             this.filterFlag = matcher.group(1);
@@ -216,7 +216,7 @@ public class Parser {
     }
 
     private void parseFilterByCategory(String input) {
-        Pattern pattern = Pattern.compile("(-c)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
+        Pattern pattern = Pattern.compile("^(-c)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             this.filterFlag = matcher.group(1);
@@ -228,7 +228,7 @@ public class Parser {
     }
 
     private void parseFilterByFlowDirection(String input) {
-        Pattern pattern = Pattern.compile("(-in|-out)\\s*$");
+        Pattern pattern = Pattern.compile("^(-in|-out)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             this.filterFlag = matcher.group(1);
