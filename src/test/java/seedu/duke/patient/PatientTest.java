@@ -2,6 +2,7 @@
 package seedu.duke.patient;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.ui.Information;
 
 import java.util.ArrayList;
 
@@ -17,10 +18,10 @@ public class PatientTest {
         diagnosisHistory.add("Flu");
         diagnosisHistory.add("COVID-19");
 
-        Patient testPatient = new Patient(name, password, diagnosisHistory);
+        Patient testPatient = new Patient(name, Information.hashPassword(password), diagnosisHistory);
 
         assertEquals(testPatient.getName(), "Akshay");
-        assertEquals(testPatient.getPassword(), "iloveCS2113");
+        assertEquals(testPatient.getPassword(), Information.hashPassword("iloveCS2113"));
         assertEquals(diagnosisHistory, testPatient.getPatientDiagnosisHistory());
     }
 }

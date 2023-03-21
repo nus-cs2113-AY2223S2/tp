@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
+    public static ArrayList <Symptom> symptoms = new ArrayList<>();
 
     /**
      * Shows the welcome menu.
@@ -33,21 +34,36 @@ public class Menu {
      * @author Geeeetyx, JeraldChen
      */
     public static void register() {
-        System.out.println("Please enter your name: ");
-        String name = new Scanner(System.in).nextLine();
-        System.out.println("Please enter your password: ");
-        String password = new Scanner(System.in).nextLine();
-        if (password.equals("") || name.equals("")) {
-            System.out.println("Registration failed! Name and/or Password cannot be empty.");
-        } else {
-            System.out.println("Please re-enter your password: ");
-            String password2 = new Scanner(System.in).nextLine();
-            if (password.equals(password2)) {
-                System.out.println("Registration successful!");
-                ArrayList<String> diagnosisHistory = new ArrayList<>();
-                Information.storePatientInfo(password, new Patient(name, password, diagnosisHistory));
+        String name = "";
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            if (name.equals("")) {
+                System.out.println("Please enter your name: ");
+                name = scanner.nextLine();
+                if (name.equals("")) {
+                    System.out.println("Registration failed! Name cannot be empty.");
+                    continue;
+                }
+            }
+            System.out.println("Please enter your password: ");
+            String password = scanner.nextLine();
+            password = password.replaceAll("\\s", "");
+            int hash = Information.hashPassword(password);
+            if (password.equals("")) {
+                System.out.println("Registration failed! Password cannot be empty.");
+            } else if (Information.checkHash(hash)) {
+                System.out.println("Password is already used. Please enter another password.");
             } else {
-                System.out.println("Registration failed!");
+                System.out.println("Please re-enter your password: ");
+                String password2 = new Scanner(System.in).nextLine();
+                if (password.equals(password2)) {
+                    System.out.println("Registration successful!");
+                    ArrayList<String> diagnosisHistory = new ArrayList<>();
+                    Information.storePatientInfo(hash, new Patient(name, hash, diagnosisHistory));
+                    break;
+                } else {
+                    System.out.println("Registration failed! Passwords do not match.");
+                }
             }
         }
     }
@@ -57,12 +73,15 @@ public class Menu {
      * @author Geeeetyx, JeraldChen
      */
     public static void login() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter your name: ");
         String name = new Scanner(System.in).nextLine();
         System.out.println("Please enter your password: ");
-        String password = new Scanner(System.in).nextLine();
-        if (Information.checkPassword(password) && Information.getPatientInfo(password).getName().equals(name)) {
-            Duke.setPassword(password);
+        String password = scanner.nextLine();
+        password = password.replaceAll("\\s", "");
+        int hash = Information.hashPassword(password);
+        if (Information.checkHash(hash) && Information.getPatientInfo(hash).getName().equals(name)) {
+            Duke.setPassword(hash);
             System.out.println("Login successful!");
             System.out.println("Welcome " + name + "!");
         } else {
@@ -88,7 +107,9 @@ public class Menu {
         System.out.println("1. Report symptoms");
         System.out.println("2. View diagnosis history");
         System.out.println("3. Reset diagnosis history");
-        System.out.println("4. Exit");
+        System.out.println("4. Reset symptoms");
+        System.out.println("5. View Medicine history");
+        System.out.println("6. Exit");
     }
 
     /**
@@ -98,7 +119,6 @@ public class Menu {
      */
     public static ArrayList<Symptom> getUserSymptoms() {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Symptom> symptoms = new ArrayList<>();
         displaySymptomList();
         addSymptomToSymptomList(scanner, symptoms);
         while (true) {
@@ -125,110 +145,99 @@ public class Menu {
      * @param symptoms list of symptoms
      */
     private static void addSymptomToSymptomList(Scanner scanner, ArrayList<Symptom> symptoms) {
-        Symptom symptomToBeAdded;
-        String symptomChoice;
-        symptomChoice = scanner.nextLine();
-        symptomToBeAdded = parseSymptomInput(symptoms, symptomChoice);
-        if (symptomToBeAdded != null) {
-            assert symptomToBeAdded != null : "symptomToBeAdded should not be null";
-            symptoms.add(symptomToBeAdded);
-        }
+        String symptomChoiceAlphabets;
+        symptomChoiceAlphabets = scanner.nextLine(); //@@author Jeraldchen
+        symptomChoiceAlphabets = symptomChoiceAlphabets.toUpperCase(); //@@author Jeraldchen
+        symptomChoiceAlphabets = symptomChoiceAlphabets.trim();  //@@author Jeraldchen
+        String[] symptomChoices = symptomChoiceAlphabets.split("(?!^)"); //@@author Jeraldchen
+        parseSymptomInput(symptoms, symptomChoices);
     }
 
     /**
      * Parses user's input to a Symptom enumerator.
-     *
+     * @author Jeraldchen
      * @param symptoms      an ArrayList of symptoms.
-     * @param symptomChoice A string that the user has typed in based on the displayed menu of symptoms.
+     * @param symptomChoices an array of strings containing the user's input.
      */
-    private static Symptom parseSymptomInput(ArrayList<Symptom> symptoms, String symptomChoice) {
-        switch (symptomChoice) {
-        case "a":
-        case "A":
-            if (!symptoms.contains(Symptom.FEVER)) {
-                assert Symptom.FEVER != null : "Fever should not be null";
-                return Symptom.FEVER;
-            } else {
-                System.out.println("You have already entered this symptom!");
-                return null;
+    private static void parseSymptomInput(ArrayList<Symptom> symptoms , String[] symptomChoices) {
+        for (String symptomChoice : symptomChoices) {
+            switch (symptomChoice) {
+            case "A":
+                if (!symptoms.contains(Symptom.FEVER)) {
+                    assert Symptom.FEVER != null : "Fever should not be null";
+                    symptoms.add(Symptom.FEVER);
+                } else {
+                    System.out.println("You have already entered this symptom!");
+                }
+                break;
+            case "B":
+                if (!symptoms.contains(Symptom.DRY_COUGH)) {
+                    assert Symptom.DRY_COUGH != null : "Dry cough should not be null";
+                    symptoms.add(Symptom.DRY_COUGH);
+                } else {
+                    System.out.println("You have already entered this symptom!");
+                }
+                break;
+            case "C":
+                if (!symptoms.contains(Symptom.LOSS_OF_TASTE_OR_SMELL)) {
+                    assert Symptom.LOSS_OF_TASTE_OR_SMELL != null : "Loss of taste or smell should not be null";
+                    symptoms.add(Symptom.LOSS_OF_TASTE_OR_SMELL);
+                } else {
+                    System.out.println("You have already entered this symptom!");
+                }
+                break;
+            case "D":
+                if (!symptoms.contains(Symptom.RUNNY_NOSE)) {
+                    assert Symptom.RUNNY_NOSE != null : "Runny Nose should not be null";
+                    symptoms.add(Symptom.RUNNY_NOSE);
+                } else {
+                    System.out.println("You have already entered this symptom!");
+                }
+                break;
+            case "E":
+                if (!symptoms.contains(Symptom.HEAD_ACHE)) {
+                    assert Symptom.HEAD_ACHE != null : "Aching muscles should not be null";
+                    symptoms.add(Symptom.HEAD_ACHE);
+                } else {
+                    System.out.println("You have already entered this symptom!");
+                }
+                break;
+            case "F":
+                if (!symptoms.contains(Symptom.CHILLS)) {
+                    assert Symptom.CHILLS != null : "Sore throat should not be null";
+                    symptoms.add(Symptom.CHILLS);
+                } else {
+                    System.out.println("You have already entered this symptom!");
+                }
+                break;
+            case "G":
+                if (!symptoms.contains(Symptom.FATIGUE)) {
+                    assert Symptom.FATIGUE != null : "Sore throat should not be null";
+                    symptoms.add(Symptom.FATIGUE);
+                } else {
+                    System.out.println("You have already entered this symptom!");
+                }
+                break;
+            case "H":
+                if (!symptoms.contains(Symptom.SNEEZING)) {
+                    assert Symptom.SNEEZING != null : "Sore throat should not be null";
+                    symptoms.add(Symptom.SNEEZING);
+                } else {
+                    System.out.println("You have already entered this symptom!");
+                }
+                break;
+            case "I":
+                if (!symptoms.contains(Symptom.BLOCKED_NOSE)) {
+                    assert Symptom.BLOCKED_NOSE != null : "Sore throat should not be null";
+                    symptoms.add(Symptom.BLOCKED_NOSE);
+                } else {
+                    System.out.println("You have already entered this symptom!");
+                }
+                break;
+            default:
+                System.out.println("Invalid symptom choice!");
             }
-        case "b":
-        case "B":
-            if (!symptoms.contains(Symptom.DRY_COUGH)) {
-                assert Symptom.DRY_COUGH != null : "Dry cough should not be null";
-                return Symptom.DRY_COUGH;
-            } else {
-                System.out.println("You have already entered this symptom!");
-                return null;
-            }
-        case "c":
-        case "C":
-            if (!symptoms.contains(Symptom.COUGH_WITH_PHLEGM)) {
-                assert Symptom.COUGH_WITH_PHLEGM != null : "Cough with phlegm should not be null";
-                return Symptom.COUGH_WITH_PHLEGM;
-            } else {
-                System.out.println("You have already entered this symptom!");
-                return null;
-            }
-        case "d":
-        case "D":
-            if (!symptoms.contains(Symptom.RUNNY_NOSE)) {
-                assert Symptom.RUNNY_NOSE != null : "Runny nose should not be null";
-                return Symptom.RUNNY_NOSE;
-            } else {
-                System.out.println("You have already entered this symptom!");
-                return null;
-            }
-        case "e":
-        case "E":
-            if (!symptoms.contains(Symptom.HEAD_ACHE)) {
-                assert Symptom.HEAD_ACHE != null : "Headache should not be null";
-                return Symptom.HEAD_ACHE;
-            } else {
-                System.out.println("You have already entered this symptom!");
-                return null;
-            }
-        case "f":
-        case "F":
-            if (!symptoms.contains(Symptom.CHILLS)) {
-                assert Symptom.CHILLS != null : "Chills should not be null";
-                return Symptom.CHILLS;
-            } else {
-                System.out.println("You have already entered this symptom!");
-                return null;
-            }
-        case "g":
-        case "G":
-            if (!symptoms.contains(Symptom.FATIGUE)) {
-                assert Symptom.FATIGUE != null : "Fatigue should not be null";
-                return Symptom.FATIGUE;
-            } else {
-                System.out.println("You have already entered this symptom!");
-                return null;
-            }
-        case "h":
-        case "H":
-            if (!symptoms.contains(Symptom.SNEEZING)) {
-                assert Symptom.SNEEZING != null : "Sore throat should not be null";
-                return Symptom.SNEEZING;
-            } else {
-                System.out.println("You have already entered this symptom!");
-                return null;
-            }
-        case "i":
-        case "I":
-            if (!symptoms.contains(Symptom.BLOCKED_NOSE)) {
-                assert Symptom.BLOCKED_NOSE != null : "Sore throat should not be null";
-                return Symptom.BLOCKED_NOSE;
-            } else {
-                System.out.println("You have already entered this symptom!");
-                return null;
-            }
-        default:
-            System.out.println("Invalid input!");
-            return null;
         }
-
     }
 
     /**
@@ -251,7 +260,7 @@ public class Menu {
         System.out.println("Here is the list of possible symptoms:");
         System.out.println("a. Fever");
         System.out.println("b. Dry Cough");
-        System.out.println("c. Cough with phlegm");
+        System.out.println("c. Red Eyes");
         System.out.println("d. Runny nose");
         System.out.println("e. Headache");
         System.out.println("f. Chills");
@@ -263,7 +272,7 @@ public class Menu {
 
     /**
      * Displays the possible illnesses that the user may have based on the symptoms he/she has entered.
-     * @author tanyizhe and Jeraldchen
+     * @author tanyizhe
      * @param symptoms ArrayList of symptoms the user has entered.
      */
     public static void displayPossibleIllness(ArrayList<Symptom> symptoms) {
@@ -271,11 +280,11 @@ public class Menu {
         if (possibleIllnesses.size() != 0) {
             System.out.println("You may have: ");
             for (IllnessMatch illnessMatch : possibleIllnesses) {
-                System.out.println(illnessMatch.getIllness().getIllnessName() + " "
+                System.out.println(illnessMatch.getIllness().getIllnessName() + "    Match: "
                         + illnessMatch.getSimilarityPercentage() * 100 + "%");
             }
         } else { // no illnesses found
-            System.out.println("Unable to diagnose illness. Please consult a Doctor instead.");
+            System.out.println("Unable to diagnose illness. Please consult a Doctor instead."); //@@author Jeraldchen
         }
     }
 

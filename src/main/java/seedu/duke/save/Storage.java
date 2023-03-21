@@ -13,6 +13,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class reads and writes information to and from the patient-data file.
@@ -26,6 +28,7 @@ public class Storage {
     /** Specifies the file path to be created */
     static final String FILE_PATH = "./data/patient-data.txt";
 
+    private static Logger logger = Logger.getLogger(Storage.class.getName());
     /**
      * Loads each patient's data into a hashmap of patients in the Information class
      * by reading from the patient-data file.
@@ -83,6 +86,7 @@ public class Storage {
 
             String name = scanner.nextLine();
             if (endOfFile(name)) {
+                logger.log(Level.WARNING, "Corrupted data file");
                 throw new CorruptedDataException();
             }
 
@@ -92,13 +96,15 @@ public class Storage {
             for (int i = 0; i < numberOfEntries; i++) {
                 String diagnosis = scanner.nextLine();
                 if (endOfFile(diagnosis)) {
+                    logger.log(Level.WARNING, "Corrupted data file");
                     throw new CorruptedDataException();
                 }
                 diagnosisHistory.add(diagnosis);
             }
 
-            Patient patient = new Patient(name, password, diagnosisHistory);
-            Information.storePatientInfo(password, patient);
+            int hash = Integer.parseInt(password);
+            Patient patient = new Patient(name, hash, diagnosisHistory);
+            Information.storePatientInfo(hash, patient);
         }
         scanner.close();
     }
@@ -109,10 +115,10 @@ public class Storage {
     public static void saveData() {
         try {
             FileWriter writer = new FileWriter(FILE_PATH);
-            for (Map.Entry<String, Patient> entry : Information.getAllPatientData().entrySet()) {
+            for (Map.Entry<Integer, Patient> entry : Information.getAllPatientData().entrySet()) {
                 Patient patient = entry.getValue();
                 String name = patient.getName();
-                String password = patient.getPassword();
+                int password = patient.getPassword();
                 ArrayList<String> diagnosisHistory = patient.getPatientDiagnosisHistory();
                 int numberOfDiagnoses = diagnosisHistory.size();
 
@@ -125,6 +131,7 @@ public class Storage {
             }
             writer.close();
         } catch (IOException e) {
+            logger.log(Level.WARNING, "Unable to save data to file");
             System.out.println("ERROR: Unable to save data to file.");
         }
     }
