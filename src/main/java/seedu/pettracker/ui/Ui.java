@@ -88,5 +88,14 @@ public class Ui {
      * Message that prints when a task is added to the task list.
      */
     public void addTodoCommandMessage() {
+        System.out.println("Added new task to list");
+    }
+
+    /**
+     * Message that prints when a task is removed from the task list.
+     * @param taskNumber Integer representing the task number of the removed task.
+     */
+    public void removeTaskCommandMessage(int taskNumber) {
+        System.out.println("Successfully removed task " + taskNumber);
     }
 }
