@@ -3,18 +3,20 @@ package seedu.sniff;
 import functionalities.Uid;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UidGeneratorTest {
 
     @Test
-    public void UidNotNullTest() {
+    public void uidNotNullTest() {
         String uid = Uid.uidGenerator("A");
         assertNotNull(uid, "Uid generated is null");
     }
 
     @Test
-    public void UidLengthTest() {
+    public void uidLengthTest() {
         String uid = Uid.uidGenerator("A");
         assertEquals(10, uid.length());
         uid = Uid.uidGenerator("");
@@ -24,7 +26,7 @@ public class UidGeneratorTest {
     }
 
     @Test
-    public void UidFirstCharTest() {
+    public void uidFirstCharTest() {
         String uid = Uid.uidGenerator("S");
         assertEquals('S', uid.charAt(0));
         uid = Uid.uidGenerator("V");
@@ -34,7 +36,7 @@ public class UidGeneratorTest {
     }
 
     @Test
-    public void UidLastCharTest() {
+    public void uidLastCharTest() {
         String uid = Uid.uidGenerator("A");
         assertTrue(('A' <= uid.charAt(9)) && (uid.charAt(9) <= 'Z'),
                 "Letter should be between A to Z");
