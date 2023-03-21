@@ -2,6 +2,7 @@ package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
 
+import java.time.LocalDate;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -18,11 +19,14 @@ public class AddCommand extends Command {
 
     private final String category;
 
-    public AddCommand(String description, String flowDirection, double value, String category) {
+    private final LocalDate date;
+
+    public AddCommand(String description, String flowDirection, double value, String category, LocalDate date) {
         this.description = description;
         this.flowDirection = flowDirection;
         this.value = value;
         this.category = category;
+        this.date = date;
     }
 
     @Override
@@ -45,7 +49,7 @@ public class AddCommand extends Command {
 
         int totalStatementCount = financialReport.getStatementCount();
 
-        financialReport.addStatement(new FinancialStatement(description, flowDirection, value, category));
+        financialReport.addStatement(new FinancialStatement(description, flowDirection, value, category, date));
 
         assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";
 
