@@ -1,7 +1,14 @@
 package functionalities.parser;
 
 import exception.SniffException;
-import functionalities.commands.*;
+import functionalities.commands.Command;
+import functionalities.commands.ConsulationCommand;
+import functionalities.commands.VaccinationCommand;
+import functionalities.commands.RemoveCommand;
+import functionalities.commands.SurgeryCommand;
+import functionalities.commands.FindCommand;
+import functionalities.commands.ListCommand;
+import functionalities.commands.ExitCommand;
 
 import java.util.logging.Logger;
 
@@ -40,7 +47,7 @@ public class Parser {
             int contactNumberIndex = task.indexOf("cn/");
             int consultationDateIndex = task.indexOf("cd/");
             int consultationTimeIndex = task.indexOf("ct/");
-            String animalType = task.substring(animalTypeIndex + 3, animalNameIndex - 1);   
+            String animalType = task.substring(animalTypeIndex + 3, animalNameIndex - 1);
             String animalName = task.substring(animalNameIndex + 3, ownerNameIndex - 1);
             String ownerName = task.substring(ownerNameIndex + 3, contactNumberIndex - 1);
             String contactNumber = task.substring(contactNumberIndex + 3, consultationDateIndex - 1);
