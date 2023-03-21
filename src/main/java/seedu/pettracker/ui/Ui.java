@@ -80,8 +80,7 @@ public class Ui {
      */
     public String getUserInput() {
         System.out.println();
-        String input = in.nextLine();
-        return input;
+        return in.nextLine();
     }
 
     /**
