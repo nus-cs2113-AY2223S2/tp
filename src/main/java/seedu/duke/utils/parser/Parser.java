@@ -15,7 +15,6 @@ import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.RemoveErrorException;
 import seedu.duke.exceptions.SearchFilterErrorException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -28,10 +27,8 @@ public class Parser {
     private static final Integer QTY_INDEX = 3;
     private static final Integer PRICE_INDEX = 4;
     public static Scanner in = new Scanner(System.in);
-    private ArrayList<String> parsedInfo = new ArrayList<>();
     private String commandWord;
     private String commandInfo;
-
     private Inventory inventory;
 
     public Parser(Inventory inventory) {
@@ -76,6 +73,8 @@ public class Parser {
             Ui.printUnknownCommand();
             break;
         }
+        commandInfo = "";
+        commandWord = "";
     }
 
     public void parseFilter(final String rawInput, Inventory inventory) {
