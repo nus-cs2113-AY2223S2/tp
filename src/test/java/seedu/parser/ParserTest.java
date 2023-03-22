@@ -2,6 +2,7 @@ package seedu.parser;
 
 import com.sun.tools.javac.Main;
 import org.junit.jupiter.api.Test;
+import seedu.commands.AcademicExpenditureCommand;
 import seedu.commands.Command;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -95,5 +96,41 @@ public class ParserTest {
         String inputString = "borrow d/2000-01-01 n/Alice a/100.0 b/2000-01-20 s/For school loans";
         Command finalCommand = MainInputParser.parseInputs(inputString);
         assertEquals(finalCommand.getClass().getName(), "seedu.commands.BorrowExpenditureCommand");
+    }
+
+    // Checking for invalid inputs
+    @Test
+    void invalidInputDueToCommand(){
+        String inputString = "bye";
+        Command finalCommand = MainInputParser.parseInputs(inputString);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
+        inputString = "navigate";
+        finalCommand = MainInputParser.parseInputs(inputString);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
+        inputString = "Exit";
+        finalCommand = MainInputParser.parseInputs(inputString);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
+    }
+
+    @Test
+    void invalidInputDueToMissingParameters() {
+        String inputMissingDescription = "academic d/2000-01-01 a/200.0";
+        Command finalCommand = MainInputParser.parseInputs(inputMissingDescription);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
+        String inputMissingDate = "academic a/200.0 s/Tuition";
+        finalCommand = MainInputParser.parseInputs(inputMissingDate);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
+        String inputMissingAmount = "academic d/2000-01-01 s/Tuition";
+        finalCommand = MainInputParser.parseInputs(inputMissingAmount);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
+    }
+    @Test
+    void invalidInputDueToWrongInputFormat() {
+        String wrongDate = "academic d/01-01-2000 a/200.0 s/Tuition";
+        String wrongAmount = "academic d/2000-01-01 a/Twenty s/Tuition";
+        Command finalCommand = MainInputParser.parseInputs(wrongDate);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
+        finalCommand = MainInputParser.parseInputs(wrongAmount);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
     }
 }
