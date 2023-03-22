@@ -77,6 +77,13 @@ Components:
   be created with the relevant information passed to it
 - rainyDay will then call Command.execute(), where the indicated transaction will be deleted from the financial report
 
+### Viewing your data
+
+- The command `view` is used to view all statements, and a ViewCommand object will be created.
+    - Any other characters after `view` are automatically ignored
+- RainyDay will then call Command.execute(), where every entry in the financial report will be printed.
+- Information will be presented in a table format to help improve clarity for users.
+
 ## Product scope
 
 ### Target user profile
