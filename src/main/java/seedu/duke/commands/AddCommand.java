@@ -28,12 +28,14 @@ public class AddCommand extends Command {
             upcCodes.put(item.getUpc(), item);
             itemInventory.add(item);
             Ui.printSuccessAdd();
-            String itemName = item.getName().toLowerCase();
-            if (!itemNameHash.containsKey(itemName)) {
-                itemNameHash.put(itemName, new ArrayList<>());
+            String[] itemNames = item.getName().toLowerCase().split(" ");
+            for(String itemName: itemNames){
+                if (!itemNameHash.containsKey(itemName)) {
+                    itemNameHash.put(itemName, new ArrayList<>());
+                }
+                itemNameHash.get(itemName).add(item);
+                itemsTrie.add(itemName);
             }
-            itemNameHash.get(itemName).add(item);
-            itemsTrie.add(itemName);
         }
     }
 
