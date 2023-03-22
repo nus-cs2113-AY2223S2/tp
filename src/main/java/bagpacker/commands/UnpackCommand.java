@@ -8,7 +8,8 @@ public class UnpackCommand extends Command {
 
     public static final String MSG_SUCCESS_UNPACK = "Item unpacked: %s";
     public static final String HELP_MSG = "unpack : Marks an item as unpacked in the packing list.\n" +
-            "\tExample: unpack toothbrush";
+            "\tExample: unpack 1 of 2\n" +
+            "\tMeaning: unpacks 1 quantity of the second item in the packing list";
 
 
     public UnpackCommand(int targetIndex) {

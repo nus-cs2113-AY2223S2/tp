@@ -39,8 +39,11 @@ public abstract class Command {
 
 
     /**
-     * Executes the command.
+     * Executes the command which requires a packingList
+     *
+     * @param packingList used to execute the command
      */
     public void execute (PackingList packingList) {
     }
+
 }
