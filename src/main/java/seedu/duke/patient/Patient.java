@@ -3,8 +3,6 @@
  */
 package seedu.duke.patient;
 
-import seedu.duke.medicine.Medicine;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -12,15 +10,17 @@ import java.util.List;
 
 public class Patient {
     protected ArrayList<String> patientDiagnosisHistory = new ArrayList<>();
-    protected Hashtable<String, ArrayList<Medicine>> patientMedicineHistory = new Hashtable<>();
+    protected Hashtable<String, ArrayList<String>> patientMedicineHistory = new Hashtable<>();
     protected String name;
     protected int hash;
 
-    public Patient(String name, int hash, ArrayList<String> patientDiagnosisHistory) {
+    public Patient(String name, int hash, ArrayList<String> patientDiagnosisHistory,
+                   Hashtable<String, ArrayList<String>> patientMedicineHistory) {
         assert patientDiagnosisHistory.size() >= 0 : "Patient diagnosis history is either empty or not empty";
         this.setName(name);
         this.setPassword(hash);
         this.setPatientDiagnosisHistory(patientDiagnosisHistory);
+        this.setPatientMedicineHistory(patientMedicineHistory);
     }
 
     public String getName() {
@@ -56,28 +56,21 @@ public class Patient {
      * @author tanyizhe, Brennanzuz
      * @param medicines ArrayList describing medicines patient has been prescribed
      */
-    public void updatePatientMedicineHistory(String date, ArrayList<Medicine> medicines) {
-        //TODO: Account for no medication being available
-        //I just placed this here to prevent a crash.
-        try {
-            if (patientMedicineHistory.containsKey(date)) {
-                appendMedicineToSameDate(date, medicines);
-            } else {
-                patientMedicineHistory.put(date, medicines);
-            }
-        } catch (NullPointerException exception) {
-            System.out.println("No medication is available.");
+    public void updatePatientMedicineHistory(String date, ArrayList<String> medicines) {
+        if (patientMedicineHistory.containsKey(date)) {
+            appendMedicineToSameDate(date, medicines);
+        } else {
+            patientMedicineHistory.put(date, medicines);
         }
-
     }
+    //@@author tanyizhe
     /**
      * Appends medicine patient is prescribed if additional medicine is prescribed on the same day
-     * @author tanyizhe
      * @param medicines ArrayList describing medicines patient has been prescribed
      * @param date String representing the date that patients were prescribed medication
      */
-    private void appendMedicineToSameDate(String date, ArrayList<Medicine> medicines) {
-        for (Medicine medicine : medicines) {
+    private void appendMedicineToSameDate(String date, ArrayList<String> medicines) {
+        for (String medicine : medicines) {
             if (!patientMedicineHistory.get(date).contains(medicine)) {
                 patientMedicineHistory.get(date).add(medicine);
             }
@@ -95,6 +88,13 @@ public class Patient {
         for (String date : dates) {
             System.out.println(date + ": " + patientMedicineHistory.get(date));
         }
+    }
+    public Hashtable<String, ArrayList<String>> getPatientMedicineHistory() {
+        return patientMedicineHistory;
+    }
+
+    public void setPatientMedicineHistory(Hashtable<String, ArrayList<String>> patientMedicineHistory) {
+        this.patientMedicineHistory = patientMedicineHistory;
     }
 }
 

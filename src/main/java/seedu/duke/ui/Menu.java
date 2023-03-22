@@ -14,6 +14,7 @@ import seedu.duke.patient.Patient;
 import seedu.duke.save.Storage;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Scanner;
 
 public class Menu {
@@ -71,7 +72,8 @@ public class Menu {
                     System.out.println("---------------------------------------------------");
                     System.out.println("Registration successful!");
                     ArrayList<String> diagnosisHistory = new ArrayList<>();
-                    Information.storePatientInfo(hash, new Patient(name, hash, diagnosisHistory));
+                    Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable<>();
+                    Information.storePatientInfo(hash, new Patient(name, hash, diagnosisHistory, medicineHistory));
                     break;
                 } else {
                     System.out.println("---------------------------------------------------");
@@ -273,10 +275,10 @@ public class Menu {
         }
     }
 
+    //@@author Brennanzuz
     /**
      * Adds the users' inputted symptom into the symptoms array.
      *
-     * @author Brennanzuz
      * @param symptom  The symptom indicated by the user. Defined and passed from the case statement.
      * @param symptoms List of symptoms
      */
@@ -306,7 +308,7 @@ public class Menu {
             System.out.println(symptom);
         }
          */
-        //TODO: Put all these in a dictionary with the symptom's display name hashed to the actual Symptom.
+        //Put all these in a dictionary with the symptom's display name hashed to the actual Symptom.
         System.out.println("---------------------------------------------------");
         System.out.println("Here is the list of possible symptoms:");
         System.out.println("a. Fever");
@@ -336,7 +338,7 @@ public class Menu {
         System.out.println("\nPlease enter a symptom.");
         System.out.println("---------------------------------------------------");
     }
-
+    //@@author tanyizhe
     /**
      * Displays the possible illnesses that the user may have based on the symptoms he/she has entered.
      *
@@ -354,7 +356,8 @@ public class Menu {
                         + illnessMatch.getSimilarityPercentage() * 100 + "%");
             }
             System.out.println("---------------------------------------------------");
-        } else { // no illnesses found
+        } else {
+            //@@ author JeraldChen
             System.out.println("------------------------------------------------------------");
             System.out.println("Unable to diagnose illness. Please consult a Doctor instead.");
             System.out.println("------------------------------------------------------------");

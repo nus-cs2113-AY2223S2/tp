@@ -1,5 +1,5 @@
 package seedu.duke.diagnosis;
-
+//@@author Brennanzuz
 import seedu.duke.diagnosis.illnesses.Illness;
 import seedu.duke.diagnosis.illnesses.allergic.Asthma;
 import seedu.duke.diagnosis.illnesses.allergic.GeneralAllergicReaction;
@@ -48,7 +48,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static java.util.stream.Collectors.toCollection;
-
 /**
  * This class conducts the diagnosis by taking in the patient's symptoms and returning the most probable illnesses based
  * on the percentage of overlapping symptoms the patient has with each suspected illness, and based on a predefined
@@ -87,6 +86,7 @@ public class Diagnosis {
                     new GeneralMuscleAche(),
                     new Osteoporosis(),
                     new GeneralHeadAche(),
+                    new Osteoporosis(),
                     new Migraine(),
                     new Fracture(),
                     new InternalBleeding(),
