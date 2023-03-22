@@ -42,9 +42,9 @@ public class Main {
         boolean isExit = false;
         while (!isExit) {
             String commandString = ui.getUserInput();
-            Command c = commandParser.parseCommand(commandString);
-            c.execute(ui);
-            isExit = c.isExit();
+            Command command = commandParser.parseCommand(commandString);
+            command.execute(ui);
+            isExit = command.isExit();
         }
         logger.log(Level.INFO,"End of processing commands");
     }
