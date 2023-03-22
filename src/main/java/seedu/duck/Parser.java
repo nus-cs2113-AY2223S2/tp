@@ -48,6 +48,9 @@ public class Parser {
             } else if (line.equals("help")) {
                 // List out all the tasks added
                 Ui.help();
+            } else if (words[0].equals("list") && (words.length == 2) && (isNumeric(words[1]))) {
+                //list out all tasks in x days in the future specified by the user
+                Ui.printUpcomingTasks(tasks, words[1]);
             } else if (words[0].equals("unmark") && (words.length == 2) && (isNumeric(words[1]))) {
                 // Mark a task as not done
                 TaskList.unmarkTask(tasks, words);
