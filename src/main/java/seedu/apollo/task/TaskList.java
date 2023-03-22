@@ -1,6 +1,5 @@
 package seedu.apollo.task;
 
-import seedu.apollo.module.Module;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
