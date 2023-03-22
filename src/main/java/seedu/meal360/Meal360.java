@@ -28,8 +28,8 @@ public class Meal360 {
         try {
             recipeList = database.loadDatabase();
             ui.printMessage("Database loaded successfully.");
-        } catch (IOException e) {
-            ui.printMessage("Error loading database, loading default database instead.");
+        } catch (IOException error) {
+            ui.printMessage(error.getMessage());
             ui.printMessage("Overwriting database with new default database...");
             recipeList = database.defaultRecipeList();
         }
@@ -65,20 +65,8 @@ public class Meal360 {
             try {
                 Recipe recipe = parser.parseViewRecipe(command, recipeList);
                 ui.printRecipe(recipe);
-            } catch (NumberFormatException e) {
-                String errorMessage = String.format(
-                        "Please enter a valid recipe number. You entered %s, " + "which is not a number.",
-                        command[1]);
-                ui.printMessage(errorMessage);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage = String.format(
-                        "Please enter a valid recipe number. You did not enter a recipe number.");
-                ui.printMessage(errorMessage);
-            } catch (IndexOutOfBoundsException e) {
-                String errorMessage = String.format(
-                        "Please enter a valid recipe number. You entered %s, " + "which is out of bounds.",
-                        command[1]);
-                ui.printMessage(errorMessage);
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
         } else if (command[0].equals("list")) {
@@ -121,30 +109,15 @@ public class Meal360 {
                 ui.printSeparator();
                 WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipeList);
 
-                if (command[1].equals("/add")) {
-                    weeklyPlan.addPlans(recipeMap);
-                    ui.printMessage("I've added the recipe to your weekly plan!");
-                } else if (command[1].equals("/delete")) {
-                    weeklyPlan.deletePlans(recipeMap);
-                    ui.printMessage("I've deleted the recipe from your weekly plan!");
-                } else if (command[1].equals("/multiadd")) {
+                if (command[1].equals("/add") || command[1].equals("/multiadd")) {
                     weeklyPlan.addPlans(recipeMap);
                     ui.printMessage("I've added the recipes to your weekly plan!");
-                } else if (command[1].equals("/multidelete")) {
+                } else if (command[1].equals("/delete") || command[1].equals("/multidelete")) {
                     weeklyPlan.deletePlans(recipeMap);
                     ui.printMessage("I've deleted the recipes from your weekly plan!");
                 }
-            } catch (NumberFormatException e) {
-                String errorMessage = String.format("Please enter a valid number as the last argument.");
-                ui.printMessage(errorMessage);
-            } catch (IllegalArgumentException e) {
-                ui.printMessage(e.getMessage());
-            } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage = String.format("Insufficient number of arguments provided.");
-                ui.printMessage(errorMessage);
-            } catch (InvalidNegativeValueException e) {
-                ui.printMessage(e.getMessage());
-            } catch (InvalidRecipeNameException e) {
+            } catch (IllegalArgumentException | InvalidNegativeValueException | InvalidRecipeNameException |
+                     ArrayIndexOutOfBoundsException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
@@ -171,7 +144,7 @@ public class Meal360 {
         try {
             database.saveDatabase(recipeList);
             ui.printMessage("Database saved successfully.");
-        } catch (Exception e) {
+        } catch (IOException error) {
             ui.printMessage("Error saving database.");
         }
 

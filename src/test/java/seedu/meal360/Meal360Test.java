@@ -11,6 +11,8 @@ import java.util.HashMap;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.meal360.exceptions.InvalidNegativeValueException;
+import seedu.meal360.exceptions.InvalidRecipeNameException;
 
 
 class Meal360Test {
@@ -68,7 +70,6 @@ class Meal360Test {
 
     @Test
     public void testViewRecipe() {
-        Parser parser = new Parser();
         Recipe recipe = parser.parseViewRecipe(new String[]{"view", "1"}, recipes);
         assertEquals("burger", recipe.getName());
         assertEquals(2, (int) recipe.getIngredients().get("buns"));
@@ -115,23 +116,22 @@ class Meal360Test {
         recipes.deleteRecipe(recipes.indexOf(testR));
         int newRecipeListSize = recipes.size();
         // check if recipe list size is 1 less than before
-        assertTrue((oldRecipeListSize - 1) == newRecipeListSize);
+        assertEquals((oldRecipeListSize - 1), newRecipeListSize);
     }
 
     @Test
-    public void testAddWeeklyPlan() {
+    public void testAddWeeklyPlan() throws InvalidRecipeNameException, InvalidNegativeValueException {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
-        WeeklyPlan recipeMap;
 
         // Testing add recipe to weekly plan
-        recipeMap = parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "1"}, recipes);
-        weeklyPlan.addPlan(recipeMap);
+        WeeklyPlan recipeMap = parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "1"}, recipes);
+        weeklyPlan.addPlans(recipeMap);
         assertTrue(weeklyPlan.containsKey("burger"));
         assertEquals(1, (int) weeklyPlan.get("burger"));
         assertFalse(weeklyPlan.containsKey("pizza"));
 
         recipeMap = parser.parseWeeklyPlan(new String[]{"weekly", "/add", "pizza", "3"}, recipes);
-        weeklyPlan.addPlan(recipeMap);
+        weeklyPlan.addPlans(recipeMap);
         assertTrue(weeklyPlan.containsKey("pizza"));
         assertEquals(3, (int) weeklyPlan.get("pizza"));
 
@@ -162,13 +162,19 @@ class Meal360Test {
 
         try {
             parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "0"}, recipes);
-        } catch (NumberFormatException e) {
+        } catch (InvalidNegativeValueException e) {
             assertTrue(true);
         }
 
         try {
             parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "-9"}, recipes);
-        } catch (NumberFormatException e) {
+        } catch (InvalidNegativeValueException e) {
+            assertTrue(true);
+        }
+
+        try {
+            parser.parseWeeklyPlan(new String[]{"weekly", "/add", "unknown", "1"}, recipes);
+        } catch (InvalidRecipeNameException e) {
             assertTrue(true);
         }
     }
@@ -182,13 +188,21 @@ class Meal360Test {
         // Testing delete recipe from weekly plan
         int oldWeeklyPlanSize = weeklyPlan.size();
         WeeklyPlan toDelete = new WeeklyPlan();
+
+        // Testing negative case
         toDelete.put("burger", 0);
-        weeklyPlan.deletePlan(toDelete);
+        try {
+            weeklyPlan.deletePlans(toDelete);
+        } catch (IllegalArgumentException e) {
+            assertTrue(true);
+        }
+
+        // Testing positive case
         int newWeeklyPlanSize = weeklyPlan.size();
         assertEquals(oldWeeklyPlanSize, newWeeklyPlanSize);
-
+        toDelete.clear();
         toDelete.put("salad", 0);
-        weeklyPlan.deletePlan(toDelete);
+        weeklyPlan.deletePlans(toDelete);
         newWeeklyPlanSize = weeklyPlan.size();
         assertEquals(oldWeeklyPlanSize - 1, newWeeklyPlanSize);
     }
@@ -241,6 +255,6 @@ class Meal360Test {
 
     @Test
     public void testLoadDatabase() {
-        assertDoesNotThrow(() -> database.loadDatabase());
+        assertDoesNotThrow(database::loadDatabase);
     }
 }
