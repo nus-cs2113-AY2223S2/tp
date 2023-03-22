@@ -349,7 +349,6 @@ public class Parser {
      * Checks if the input string to a double greater than 0
      *
      * @param cost input string to be converted
-     * @return converted double value
      * @throws AmountIsNotADoubleException custom exception to indicate string input
      *                                     cannot be converted to a double
      * @throws NegativeAmountException     custom exception to indicate negative double value
