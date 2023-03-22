@@ -11,7 +11,8 @@ import seedu.apollo.ui.Ui;
 
 import java.io.FileNotFoundException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddModuleCommandTest {
 

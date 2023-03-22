@@ -1,11 +1,10 @@
 package seedu.apollo;
 
+
 import org.junit.jupiter.api.Test;
 import seedu.apollo.command.Command;
-import seedu.apollo.exception.task.InvalidDateTime;
 import seedu.apollo.exception.task.InvalidDeadline;
 import seedu.apollo.exception.task.InvalidEvent;
-import seedu.apollo.exception.utils.IllegalCommandException;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.ui.Parser;
 import seedu.apollo.ui.Ui;
@@ -15,7 +14,6 @@ import java.rmi.UnexpectedException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 
 class ParserTest {
 
@@ -102,7 +100,6 @@ class ParserTest {
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
     }
-
 
 
     @Test
@@ -226,7 +223,7 @@ class ParserTest {
     }
 
     @Test
-    void getCommand_noDate_expectNull() throws UnexpectedException{
+    void getCommand_noDate_expectNull() throws UnexpectedException {
         String userCommand = "date";
         Ui ui = new Ui();
         int size = 1;
@@ -235,7 +232,7 @@ class ParserTest {
     }
 
     @Test
-    void getCommand_extraWordHelp() throws UnexpectedException{
+    void getCommand_extraWordHelp() throws UnexpectedException {
         String userCommand = "help me";
         Ui ui = new Ui();
         int size = 1;
@@ -244,7 +241,7 @@ class ParserTest {
     }
 
     @Test
-    void getCommand_extraWordList() throws UnexpectedException{
+    void getCommand_extraWordList() throws UnexpectedException {
         String userCommand = "list all my tasks";
         Ui ui = new Ui();
         int size = 1;
@@ -253,7 +250,7 @@ class ParserTest {
     }
 
     @Test
-    void getCommand_extraWordListMod() throws UnexpectedException{
+    void getCommand_extraWordListMod() throws UnexpectedException {
         String userCommand = "listmod all my modules";
         Ui ui = new Ui();
         int size = 1;
@@ -262,7 +259,7 @@ class ParserTest {
     }
 
     @Test
-    void getCommand_extraWordExit() throws UnexpectedException{
+    void getCommand_extraWordExit() throws UnexpectedException {
         String userCommand = "bye bye";
         Ui ui = new Ui();
         int size = 1;
