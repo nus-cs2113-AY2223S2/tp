@@ -33,7 +33,6 @@ The list feature is facilitated by the `ListCommand` class, which extends the `C
 **Step 1**. When the user executes the command `list`, the `Parser` class calls the method `parseList`. This creates a new `ListCommand` object.
 The constructor of the `ListCommand` class takes in an Inventory object as a parameter.
 
-
 **Step 2**. The `run` method in `ListCommand` is called which overrides the `run` method in `Command`. The `listItem` method is called.
 
 **Step 3**. The `listItems` method checks if the inventory is empty. If the inventory is empty, an error message is printed. 
