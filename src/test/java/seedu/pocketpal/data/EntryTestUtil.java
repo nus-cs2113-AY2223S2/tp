@@ -1,9 +1,10 @@
 package seedu.pocketpal.data;
 
+import seedu.pocketpal.backend.BackendTestUtil;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
 
-public abstract class EntryTestUtil {
+public abstract class EntryTestUtil extends BackendTestUtil {
     protected static final Entry ENTRY_1 = new Entry(
             "5 packets of dried mango",
             5.43,
