@@ -166,7 +166,7 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
 
         //searches for lesson of specified type and number
         for (Timetable timetable :copyList) {
-            String classNumber = timetable.getClassNumber();
+            String classNumber = timetable.getClassnumber();
             String type = timetable.getLessonType();
             LessonType lessonType1 = determineLessonType(type);
 

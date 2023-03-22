@@ -9,7 +9,7 @@ import java.util.Locale;
 public class Timetable {
     public static DateTimeFormatter parsePattern = DateTimeFormatter.ofPattern("HHmm", Locale.ENGLISH);
     public static DateTimeFormatter printPattern = DateTimeFormatter.ofPattern("hh:mma", Locale.ENGLISH);
-    private String classNumber;
+    private String classnumber;
     private String lessonType;
     private String day;
     private String startTime;
@@ -20,17 +20,17 @@ public class Timetable {
      *
      * @return The class number.
      */
-    public String getClassNumber() {
-        return classNumber;
+    public String getClassnumber() {
+        return classnumber;
     }
 
     /**
      * Sets the class number.
      *
-     * @param classNumber The class number to set.
+     * @param classnumber The class number to set.
      */
-    public void setClassNumber(String classNumber) {
-        this.classNumber = classNumber;
+    public void setClassnumber(String classnumber) {
+        this.classnumber = classnumber;
     }
 
     /**

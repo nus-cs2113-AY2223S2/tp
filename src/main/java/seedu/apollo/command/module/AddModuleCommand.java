@@ -190,7 +190,7 @@ public class AddModuleCommand extends Command implements LoggerInterface {
         ArrayList<Timetable> copyList = new ArrayList<>(searchModule.getModuleTimetable());
         for (Timetable timetable: copyList){
             LessonType searchLessonType = determineLessonType(timetable.getLessonType());
-            if (searchLessonType.equals(lessonType) && timetable.getClassNumber().equals(args)){
+            if (searchLessonType.equals(lessonType) && timetable.getClassnumber().equals(args)){
 
                 if (module.getModuleTimetable() == null){
                     module.createNewTimeTable();
