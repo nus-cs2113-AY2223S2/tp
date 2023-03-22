@@ -8,6 +8,18 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### Main Components of MyLedger
+`Parser:` Processes the inputs made by the user and converts into a sensible form for further processing.
+
+`Commands:` Matches the input command with the respective commands created and executes the command result.
+
+`Expenditure Type:` Expenditure information that allows the users to access their input data from the respective 
+command classes.
+
+`Storage:` Stores, reads and updates the user input into their hard disk.
+
+### Parser
+
 
 ## Product scope
 ### Target user profile
@@ -20,10 +32,23 @@
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ...        | I want to ...                        | So that I can ...                                    |
+|---------|-----------------|--------------------------------------|------------------------------------------------------|
+| v1.0    | first time user | have access to a help page           | be familarized with the features available           |
+| v1.0    | user            | add a expenditure recorded in a day  |                                                      |
+| v1.0    | user            | delete an expenditure record         | get rid of expenditure that I no longer plan to use  |
+| v1.0    | user            | edit an expenditure record           | correct previous expenditure records                 |
+| v1.0    | user            | view all current expenses            | have a good overview of my spending to date          |
+| v1.0    | user            | add a record for borrowing money     | keep track of how much money I borrowed to someone   |
+| v1.0    | user            | add a record for lending money       | keep track of how much money I lent to someone       |
+| v2.0    | user            | sort expenditures based on date      | better manage my expenditures                        |
+| v2.0    | user            | sort expenditures based on amount    | better manage my expenditures                        |
+| v2.0    | user            | add income earned                    | keep track of my current budget                      |
+| v2.0    | user            | find expenditures using description  | better manage my spending                            |
+| v2.0    | user            | duplicate a current expenditure      | update repeated purchases easily                     |
+| v2.0    | user            | indicate a specific budget to follow | track my spending and make sure I stay within budget |
+| v2.0    | user            | be able to view expenses by day      | see which day and why I am overspending              |
+| v2.0    | user            | view my total expenses by categories | see which categories I am overspending on            |
 
 ## Non-Functional Requirements
 
