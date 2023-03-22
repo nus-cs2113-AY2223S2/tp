@@ -85,17 +85,22 @@ public class RecipeDetailCommand extends ExecutableCommand {
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
+            if (this.argument == null) {
+                throw new MealCompanionException("Missing argument!");
+            }
+
             int index;
             if (!isNum(this.argument)) {
                 index = findIndex(this.argument, mealCompanionSession) - 1;
             } else {
                 index = Integer.parseInt(this.argument) - 1;
             }
-            
+
             if (index < 0 || index >= mealCompanionSession.getRecipes().size()) {
                 throw new MealCompanionException("Recipe index out of range!");
             }
             assert index >= 0 && index < mealCompanionSession.getRecipes().size();
+
             Recipe recipe = mealCompanionSession.getRecipes().getRecipe(index);
             printRecipe(mealCompanionSession.getUi(), recipe);
         } catch (MealCompanionException e) {
