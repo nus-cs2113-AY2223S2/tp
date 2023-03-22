@@ -18,8 +18,25 @@ command classes.
 
 `Storage:` Stores, reads and updates the user input into their hard disk.
 
-### Parser
+The following section describes the implementation of certain features.
 
+### Parser
+#### Processing an input
+The main parser component `MainInputParser` is called whenever the user inputs a command line that requires action from 
+the application. The command word will be read and further processed into further components depending on the type of 
+command. 
+
+The following shows the UML diagram used for the parser component implemented in MyLedger.
+
+{image}
+
+{show step by step process?} {do tmr}
+
+### Commands
+
+### Expenditure Type
+
+### Storage
 
 ## Product scope
 ### Target user profile
