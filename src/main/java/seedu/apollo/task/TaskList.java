@@ -1,7 +1,10 @@
 package seedu.apollo.task;
 
+import seedu.apollo.module.Module;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -40,6 +43,10 @@ public class TaskList extends ArrayList<Task> {
 
         ArrayList<Task> filteredTasksList = (ArrayList<Task>) filteredTasks.collect(Collectors.toList());
         return filteredTasksList;
+    }
+
+    public void clusterByType() {
+        this.sort(Comparator.comparing(Task::getType));
     }
 
 }
