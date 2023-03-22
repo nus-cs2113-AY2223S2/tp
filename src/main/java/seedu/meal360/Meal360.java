@@ -49,9 +49,9 @@ public class Meal360 {
                 ui.printMessage(deletedRecipe);
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage = String.format(
+                String errorMessage =
                         "Please enter a valid recipe number or name. You did not enter a recipe number or "
-                                + "name.");
+                                + "name.";
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
@@ -79,7 +79,7 @@ public class Meal360 {
                 ui.printMessage("I've added this new recipe:" + newRecipe.getName());
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage = String.format("Please enter a valid recipe name.");
+                String errorMessage = "Please enter a valid recipe name.";
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
@@ -95,7 +95,7 @@ public class Meal360 {
                         command[1]);
                 ui.printMessage(errorMessage);
             } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage = String.format("Please enter a valid recipe name.");
+                String errorMessage = "Please enter a valid recipe name.";
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(

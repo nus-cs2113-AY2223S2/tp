@@ -3,6 +3,7 @@ package seedu.meal360;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
@@ -135,48 +136,70 @@ class Meal360Test {
         assertTrue(weeklyPlan.containsKey("pizza"));
         assertEquals(3, (int) weeklyPlan.get("pizza"));
 
+        // Testing throwing of exceptions
+        assertThrows(IllegalArgumentException.class,
+                () -> parser.parseWeeklyPlan(new String[]{"weekly", "burger", "1"}, recipes));
+
+        assertThrows(IllegalArgumentException.class,
+                () -> parser.parseWeeklyPlan(new String[]{"weekly", "burger"}, recipes));
+
+        assertThrows(NumberFormatException.class,
+                () -> parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger"}, recipes));
+
+        assertThrows(NumberFormatException.class,
+                () -> parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "a"}, recipes));
+
+        assertThrows(InvalidNegativeValueException.class,
+                () -> parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "0"}, recipes));
+
+        assertThrows(InvalidNegativeValueException.class,
+                () -> parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "-9"}, recipes));
+
+        assertThrows(InvalidRecipeNameException.class,
+                () -> parser.parseWeeklyPlan(new String[]{"weekly", "/add", "unknown", "1"}, recipes));
+
+        // TODO: Check error messages
+    }
+
+    @Test
+    public void testAddMultiWeeklyPlan() throws InvalidRecipeNameException, InvalidNegativeValueException {
+        WeeklyPlan weeklyPlan = new WeeklyPlan();
+
+        // Testing add recipe to weekly plan
+        WeeklyPlan recipeMap = parser.parseWeeklyPlan(
+                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "1", "/r", "pizza", "/q", "5"},
+                recipes);
+        weeklyPlan.addPlans(recipeMap);
+        assertTrue(weeklyPlan.containsKey("burger"));
+        assertEquals(1, (int) weeklyPlan.get("burger"));
+        assertTrue(weeklyPlan.containsKey("pizza"));
+        assertEquals(5, (int) weeklyPlan.get("pizza"));
+        assertFalse(weeklyPlan.containsKey("salad"));
+
         // Testing exceptions
-        try {
-            parser.parseWeeklyPlan(new String[]{"weekly", "burger", "1"}, recipes);
-        } catch (IllegalArgumentException e) {
-            assertTrue(true);
-        }
+        assertThrows(InvalidRecipeNameException.class, () -> parser.parseWeeklyPlan(
+                new String[]{"weekly", "/multiadd", "/r", "burgers", "/q", "1", "/r", "pizza", "/q", "5"},
+                recipes));
 
-        try {
-            parser.parseWeeklyPlan(new String[]{"weekly", "burger"}, recipes);
-        } catch (IllegalArgumentException e) {
-            assertTrue(true);
-        }
+        assertThrows(InvalidNegativeValueException.class, () -> parser.parseWeeklyPlan(
+                new String[]{"weekly", "/multiadd", "/r", "burgers", "/q", "0", "/r", "pizza", "/q", "5"},
+                recipes));
 
-        try {
-            parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger"}, recipes);
-        } catch (NumberFormatException e) {
-            assertTrue(true);
-        }
+        assertThrows(InvalidNegativeValueException.class, () -> parser.parseWeeklyPlan(
+                new String[]{"weekly", "/multiadd", "/r", "burgers", "/q", "-1", "/r", "pizza", "/q", "5"},
+                recipes));
 
-        try {
-            parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "a"}, recipes);
-        } catch (NumberFormatException e) {
-            assertTrue(true);
-        }
+        assertThrows(NumberFormatException.class, () -> parser.parseWeeklyPlan(
+                new String[]{"weekly", "/multiadd", "/r", "burgers", "/q", "one", "/r", "pizza", "/q", "5"},
+                recipes));
 
-        try {
-            parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "0"}, recipes);
-        } catch (InvalidNegativeValueException e) {
-            assertTrue(true);
-        }
+        assertThrows(IllegalArgumentException.class, () -> parser.parseWeeklyPlan(
+                new String[]{"weekly", "/multiadd", "/r", "burgers", "/q", "1", "/r", "salad", "/r", "pizza"},
+                recipes));
 
-        try {
-            parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "-9"}, recipes);
-        } catch (InvalidNegativeValueException e) {
-            assertTrue(true);
-        }
-
-        try {
-            parser.parseWeeklyPlan(new String[]{"weekly", "/add", "unknown", "1"}, recipes);
-        } catch (InvalidRecipeNameException e) {
-            assertTrue(true);
-        }
+        assertThrows(IllegalArgumentException.class, () -> parser.parseWeeklyPlan(
+                new String[]{"weekly", "/multiadd", "/r", "burgers", "/q", "1", "/r", "salad", "/q", "/q"},
+                recipes));
     }
 
     @Test
@@ -191,11 +214,7 @@ class Meal360Test {
 
         // Testing negative case
         toDelete.put("burger", 0);
-        try {
-            weeklyPlan.deletePlans(toDelete);
-        } catch (IllegalArgumentException e) {
-            assertTrue(true);
-        }
+        assertThrows(IllegalArgumentException.class, () -> weeklyPlan.deletePlans(toDelete));
 
         // Testing positive case
         int newWeeklyPlanSize = weeklyPlan.size();
@@ -205,6 +224,34 @@ class Meal360Test {
         weeklyPlan.deletePlans(toDelete);
         newWeeklyPlanSize = weeklyPlan.size();
         assertEquals(oldWeeklyPlanSize - 1, newWeeklyPlanSize);
+    }
+
+    @Test
+    public void testDeleteMultiWeeklyPlan() throws InvalidRecipeNameException, InvalidNegativeValueException {
+        WeeklyPlan weeklyPlan = new WeeklyPlan();
+        weeklyPlan.put("salad", 1);
+        weeklyPlan.put("pizza", 3);
+        weeklyPlan.put("burger", 100);
+
+        // Testing delete recipe from weekly plan
+        WeeklyPlan recipeMap = parser.parseWeeklyPlan(
+                new String[]{"weekly", "/multidelete", "/r", "burger", "/r", "pizza"}, recipes);
+        weeklyPlan.deletePlans(recipeMap);
+        assertEquals(1, weeklyPlan.size());
+
+        // Testing exceptions
+        weeklyPlan.put("pizza", 3);
+        weeklyPlan.put("burger", 100);
+        assertThrows(InvalidRecipeNameException.class, () -> parser.parseWeeklyPlan(
+                new String[]{"weekly", "/multidelete", "/r", "burgers", "/r", "pizza"}, recipes));
+
+        assertThrows(IllegalArgumentException.class, () -> parser.parseWeeklyPlan(
+                new String[]{"weekly", "/multidelete", "burger", "pizza", "salad"},
+                recipes));
+
+        assertThrows(InvalidRecipeNameException.class, () -> parser.parseWeeklyPlan(
+                new String[]{"weekly", "/multidelete", "/r", "burger", "/q", "1", "/r", "pizza"},
+                recipes));
     }
 
     @Test
@@ -229,26 +276,26 @@ class Meal360Test {
         RecipeList recipeListToPrint;
         String[] inputs;
 
-        inputs = new String[] {"list"};
+        inputs = new String[]{"list"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(3, recipeListToPrint.size());
         assertEquals(3, recipeListToPrint.get(0).getNumOfIngredients());
         assertEquals(4, recipeListToPrint.get(1).getNumOfIngredients());
         assertEquals(3, recipeListToPrint.get(2).getNumOfIngredients());
 
-        inputs = new String[] {"list", "tomato", "sauce"};
+        inputs = new String[]{"list", "tomato", "sauce"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(1, recipeListToPrint.size());
         assertEquals(4, recipeListToPrint.get(0).getNumOfIngredients());
         assertEquals("pizza", recipeListToPrint.get(0).getName());
 
-        inputs = new String[] {"list", "salad", "&", "tomato"};
+        inputs = new String[]{"list", "salad", "&", "tomato"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(1, recipeListToPrint.size());
         assertEquals(3, recipeListToPrint.get(0).getNumOfIngredients());
         assertEquals("salad", recipeListToPrint.get(0).getName());
 
-        inputs = new String[] {"list", "salad", "&", "pizza"};
+        inputs = new String[]{"list", "salad", "&", "pizza"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(0, recipeListToPrint.size());
     }

@@ -70,7 +70,7 @@ public class Database {
 
     public RecipeList defaultRecipeList() {
         RecipeList defaultRecipeList = new RecipeList();
-        defaultRecipeList.add(new Recipe("Chicken Rice", new HashMap<String, Integer>() {
+        defaultRecipeList.add(new Recipe("Chicken Rice", new HashMap<>() {
             {
                 put("Chicken", 1);
                 put("Rice", 1);
@@ -79,7 +79,7 @@ public class Database {
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Tomato fritters", new HashMap<String, Integer>() {
+        defaultRecipeList.add(new Recipe("Tomato fritters", new HashMap<>() {
             {
                 put("Ripe mixed-colour cherry tomatoes ", 250);
                 put("Flat-leaf parsley", 15);
@@ -92,7 +92,7 @@ public class Database {
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Chicken and mushroom pie", new HashMap<String, Integer>() {
+        defaultRecipeList.add(new Recipe("Chicken and mushroom pie", new HashMap<>() {
             {
                 put("Chicken breast fillets", 2);
                 put("Mushrooms", 250);
@@ -104,7 +104,7 @@ public class Database {
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Seafood paella", new HashMap<String, Integer>() {
+        defaultRecipeList.add(new Recipe("Seafood paella", new HashMap<>() {
             {
                 put("Prawns", 500);
                 put("Mussels", 500);
@@ -119,7 +119,7 @@ public class Database {
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Avocado toast", new HashMap<String, Integer>() {
+        defaultRecipeList.add(new Recipe("Avocado toast", new HashMap<>() {
             {
                 put("Avocado", 1);
                 put("Bread", 2);
@@ -129,7 +129,7 @@ public class Database {
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Italian sausage orzo soup", new HashMap<String, Integer>() {
+        defaultRecipeList.add(new Recipe("Italian sausage orzo soup", new HashMap<>() {
             {
                 put("Italian sausage", 1);
                 put("Onion", 1);
@@ -147,7 +147,7 @@ public class Database {
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Chicken and mushroom pasta", new HashMap<String, Integer>() {
+        defaultRecipeList.add(new Recipe("Chicken and mushroom pasta", new HashMap<>() {
             {
                 put("Chicken breast fillets", 2);
                 put("Mushrooms", 250);
@@ -160,7 +160,7 @@ public class Database {
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Creamy Hummus Pasta", new HashMap<String, Integer>() {
+        defaultRecipeList.add(new Recipe("Creamy Hummus Pasta", new HashMap<>() {
             {
                 put("Pasta", 1);
                 put("Hummus", 1);
@@ -171,7 +171,7 @@ public class Database {
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Ground beef and potato casserole", new HashMap<String, Integer>() {
+        defaultRecipeList.add(new Recipe("Ground beef and potato casserole", new HashMap<>() {
             {
                 put("Ground beef", 1);
                 put("Potato", 1);
@@ -184,7 +184,7 @@ public class Database {
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Buffalo Chicken Mac 'n' Cheese", new HashMap<String, Integer>() {
+        defaultRecipeList.add(new Recipe("Buffalo Chicken Mac 'n' Cheese", new HashMap<>() {
             {
                 put("Chicken breast fillets", 2);
                 put("Macaroni", 1);

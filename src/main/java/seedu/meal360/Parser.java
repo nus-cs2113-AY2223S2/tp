@@ -269,7 +269,8 @@ public class Parser {
         }
     }
 
-    private WeeklyPlan parseAddMultiWeeklyPlan(String[] command, RecipeList recipes) {
+    private WeeklyPlan parseAddMultiWeeklyPlan(String[] command, RecipeList recipes)
+            throws InvalidNegativeValueException, InvalidRecipeNameException {
         WeeklyPlan recipesToAdd = new WeeklyPlan();
         ArrayList<Integer> quantities = new ArrayList<>();
         ArrayList<String> recipeNames = new ArrayList<>();
@@ -282,7 +283,12 @@ public class Parser {
                 startIndices.add(i);
             } else if (command[i].equals("/q")) {
                 endIndices.add(i);
-                quantities.add(Integer.parseInt(command[i + 1]));
+                int quantity = Integer.parseInt(command[i + 1]);
+                if (quantity < 1) {
+                    throw new InvalidNegativeValueException(
+                            "Please enter a positive number for the quantity.");
+                }
+                quantities.add(quantity);
             }
         }
 
@@ -299,12 +305,18 @@ public class Parser {
         }
 
         // Add each recipe to the weekly plan
-        for (int i = 0; i < recipeNames.size(); i++) {
-            if (recipes.findByName(recipeNames.get(i)) != null) {
-                recipesToAdd.put(recipeNames.get(i), quantities.get(i));
-            } else {
-                throw new IllegalArgumentException("Please indicate a valid recipe name.");
+        try {
+            for (int i = 0; i < recipeNames.size(); i++) {
+                if (recipes.findByName(recipeNames.get(i)) != null) {
+                    recipesToAdd.put(recipeNames.get(i), quantities.get(i));
+                } else {
+                    throw new InvalidRecipeNameException("Please indicate a valid recipe name.");
+                }
             }
+        } catch (NumberFormatException error) {
+            throw new NumberFormatException("Please enter a positive number for the quantity.");
+        } catch (InvalidRecipeNameException error) {
+            throw error;
         }
 
         return recipesToAdd;
@@ -332,6 +344,10 @@ public class Parser {
             if (command[i].equals("/r")) {
                 startIndices.add(i);
             }
+        }
+
+        if (startIndices.size() == 0) {
+            throw new IllegalArgumentException("Please use /r to indicate the recipe to be deleted.");
         }
 
         // Building the recipe names
