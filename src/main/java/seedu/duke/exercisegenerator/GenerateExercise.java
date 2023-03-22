@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GenerateExercise {
-
     private static final String EASY = "easy";
     private static final String MEDIUM = "medium";
     private static final String HARD = "hard";
@@ -23,9 +22,9 @@ public class GenerateExercise {
     private static final String EXPERT = "expert";
     private static final String OPEN_BRACE = "[";
     private static final String CLOSE_BRACE = "]";
+    private static ArrayList<ExerciseData> filteredExerciseList;
     private final ArrayList<ExerciseData> exerciseDataList;
 
-    private static ArrayList<ExerciseData> filteredExerciseList;
 
     public GenerateExercise() {
         ParseData parseData = new ParseData();
@@ -44,13 +43,13 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
+    //@@author Khulon
     /**
      * Returns an exercise list which is filtered according to the workout type: Gym
      * chosen by the user.
      * @param exerciseList Arraylist containing a set of workout exercises.
      * @return returns list of exercises filtered according to work out type: Gym
      */
-    //Cleon's gym set - filter by body and gym
     public ArrayList<ExerciseData> generateFilteredGymSetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
@@ -61,6 +60,7 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
+    //@@author Khulon
     /**
      * Returns an exercise list which is filtered according to the workout type: Static
      * chosen by the user.

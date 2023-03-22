@@ -6,23 +6,25 @@ import seedu.duke.storage.StorageHandler;
 import seedu.duke.userdata.UserCareerData;
 import seedu.duke.states.ExerciseStateHandler;
 import seedu.duke.ui.Ui;
-
+import seedu.duke.userplan.UserPlan;
 import java.util.Scanner;
+
 
 public class CommandHandler {
     private static final boolean COMPLETED_EXERCISE = true;
     private static final boolean INCOMPLETE_EXERCISE = false;
 
     /**
-     * @param rawUserCommands This refers to the
-     * @param ui This allows us to output messages
-     * @param exerciseGenerator This takes in filter parameters and outputs a curated exercise list
-     * @param userCareerData This keeps track and allows logging of all user data
+     * @param rawUserCommands      This refers to the
+     * @param ui                   This allows us to output messages
+     * @param exerciseGenerator    This takes in filter parameters and outputs a curated exercise list
+     * @param userCareerData       This keeps track and allows logging of all user data
      * @param exerciseStateHandler This allows us to know when we are
+     * @param planner
      */
     public void handleUserCommands (String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator,
                                     UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
-                                    StorageHandler storageHandler) {
+                                    StorageHandler storageHandler, UserPlan planner) {
         String[] userCommands = rawUserCommands.split(" ");
         Command command = null;
         boolean errorExists = false;
@@ -77,6 +79,12 @@ public class CommandHandler {
                     break;
                 case "filters":
                     ui.printFilters();
+                    break;
+                case "planner":
+                    ui.showPlan(planner);
+                    break;
+                case "plan":
+                    plannerCommandHandler(planner, ui);
                     break;
                 case "bye":
                 case "exit":
@@ -149,6 +157,39 @@ public class CommandHandler {
                 return false;
             default:
                 System.out.println("Please type in a 'y' or a 'n' to state whether you wish to exit or not");
+            }
+        }
+    }
+
+    //@@author Khulon
+    private static void plannerCommandHandler (UserPlan planner, Ui ui) {
+        System.out.println("Plan your Workouts here!! try:");
+        System.out.println("Add Monday Home_Leg_Day legs static");
+        System.out.println("Delete Monday Home_Leg_Day");
+        Scanner in = new Scanner(System.in);
+
+        while (true) {
+            String rawUserCommands = in.nextLine();
+            String[] userCommands = rawUserCommands.split(" ");
+            switch (userCommands[0]) {
+            case "help":
+                ui.printPlannerHelp();
+                break;
+            case "planner":
+                ui.showPlan(planner);
+                break;
+            case "exit":
+                System.out.println("Exited planner editor!");
+                return;
+            case "add":
+                //need to add exception for noname and filters, available filters
+                UserPlan.addPlan(userCommands);
+                break;
+            case "delete":
+                UserPlan.deletePlan(userCommands);
+                break;
+            default:
+                ui.unknownCommand();
             }
         }
     }

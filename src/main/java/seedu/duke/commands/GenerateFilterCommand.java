@@ -44,6 +44,7 @@ public class GenerateFilterCommand extends Command {
         }
     }
 
+    //@@author Khulon
     /**
      * Filters the whole list of available exercises based off the
      * input from the user.

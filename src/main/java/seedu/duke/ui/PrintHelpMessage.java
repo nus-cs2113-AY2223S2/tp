@@ -12,6 +12,21 @@ public class PrintHelpMessage {
         System.out.println("\tEnd the program");
         //System.out.println(ErrorMessages.ERROR_GLOBAL_INVALID_COMMAND.toString());
     }
+    //@@author Khulon
+    public static void showAvailablePlannerCommands() {
+        System.out.println("These are some commands available: ");
+        System.out.println("[add]");
+        System.out.println("\tCreate a new plan on a day of the week: add monday plan_name FILTER1 FILTER2 ... x");
+        System.out.println("\tFILTER stands for a specific requirement you want to include in your exercise");
+        System.out.println("[delete]");
+        System.out.println("\tdelete a plan on a day of the week: delete monday plan_name");
+        System.out.println("[planner]");
+        System.out.println("\tShow all plans");
+        System.out.println("[exit]");
+        System.out.println("\tExit planner editor");
+        //System.out.println(ErrorMessages.ERROR_GLOBAL_INVALID_COMMAND.toString());
+    }
+    //@@author Khulon
     public static void printFiltersAvailable() {
         System.out.println("By place:\n" +
                 "\t[gym] exercises that can be done with gym equipment\n" +
@@ -25,6 +40,7 @@ public class PrintHelpMessage {
                 "\t[core] exercises that trains your core\n" +
                 "\t[legs] exercises that trains your legs\n");
     }
+    //@@author Khulon
     public static void unknownCommandMessage() {
         System.out.println("Unknown command! Type [help] to see what we can do!");
     }

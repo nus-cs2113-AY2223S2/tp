@@ -70,7 +70,7 @@ public class GenerateDifficultyExerciseTest {
         exerciseData = generateExercise.generateSetAll();
         try{
             exerciseData = generateExercise.generateFilteredDifficultySetFrom(exerciseData, "medium");
-            exerciseData = generateExercise.generateFilteredBodySetFrom(exerciseData);
+            exerciseData = generateExercise.generateFilteredStaticSetFrom(exerciseData);
         } catch (DukeError e){
             System.out.println(e.getMessage());
         }
