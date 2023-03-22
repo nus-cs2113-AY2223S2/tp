@@ -41,6 +41,15 @@ public class Ui {
         System.out.println("    Now you have " + incomes.size() + " income records,");
         System.out.println("    and " + expenses.size() + " expense records in the list.");
     }
+    
+    public void showEdited(int index, Record record, boolean isExpense) {
+        if (isExpense) {
+            System.out.println("    Got it. I've updated the expense in index " + index + " to");
+        } else {
+            System.out.println("    Got it. I've updated the income in index " + index + " to");
+        }
+        System.out.println("    " + record);
+    }
 
     public void showDelete(IncomeList incomes, ExpenseList expenses, Record record) {
         System.out.println("    Noted. I've removed this record:");

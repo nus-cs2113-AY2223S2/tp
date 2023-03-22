@@ -6,7 +6,8 @@ import java.time.LocalDate;
  * Models a class for an expense entry
  */
 public class Expense extends Record {
-    private final String category;
+
+    private String category;
     /**
      * Constructor to instantiate Expense objects
      *
@@ -23,6 +24,10 @@ public class Expense extends Record {
     @Override
     public String getCategory() {
         return category;
+    }
+    
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     /**
