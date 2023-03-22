@@ -38,6 +38,8 @@ The rest of the App consists of four components.
 
 -   ```Parser```: The command executor.
 
+-   ```Storage```: Reads data from, and writes data to, the hard disk.
+
 -   ```TaskList```: Holds the data of Duck in memory.
 
 ```TaskList``` stores items that belong to 4 subclasses that draw upon a shared superclass.
@@ -51,8 +53,6 @@ The rest of the App consists of four components.
 -   ```Event```: Expands upon ```Task``` by storing ```start``` and ```end``` variable
 
 -   ```SchoolClass```: Expands upon ```Task``` by storing ```start``` and ```end``` variable, along with a ```className``` variable
-
--   ```Storage```: Reads data from, and writes data to, the hard disk.
 
 ## Design & implementation
 
