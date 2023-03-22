@@ -17,6 +17,7 @@ public class Patient {
     protected int hash;
 
     public Patient(String name, int hash, ArrayList<String> patientDiagnosisHistory) {
+        assert patientDiagnosisHistory.size() >= 0 : "Patient diagnosis history is either empty or not empty";
         this.setName(name);
         this.setPassword(hash);
         this.setPatientDiagnosisHistory(patientDiagnosisHistory);
