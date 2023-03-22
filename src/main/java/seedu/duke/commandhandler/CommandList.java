@@ -16,4 +16,5 @@ public interface CommandList {
     String FINISH_COMMAND = "finish";
     String CANCEL_COMMAND = "cancel";
     String HISTORY_COMMAND = "history";
+    String FIND_COMMAND = "find";
 }
