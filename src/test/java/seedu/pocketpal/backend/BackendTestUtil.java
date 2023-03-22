@@ -6,6 +6,7 @@ import seedu.pocketpal.communication.RequestParams;
 import seedu.pocketpal.communication.Response;
 import seedu.pocketpal.communication.ResponseStatus;
 import seedu.pocketpal.data.entry.Entry;
+import seedu.pocketpal.data.entrylog.EntryLog;
 import seedu.pocketpal.data.parsing.EntryParser;
 import seedu.pocketpal.frontend.ui.UI;
 
@@ -47,5 +48,9 @@ public abstract class BackendTestUtil {
 
     public static boolean isSameEntry(Entry entry1, Entry entry2) {
         return entry1.serialise().equals(entry2.serialise());
+    }
+
+    public static boolean isSameEntryLog(EntryLog entryLog1, EntryLog entryLog2) {
+        return entryLog1.serialise().equals(entryLog2.serialise());
     }
 }
