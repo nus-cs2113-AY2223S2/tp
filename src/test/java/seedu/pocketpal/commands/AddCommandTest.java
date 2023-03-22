@@ -3,6 +3,7 @@ package seedu.pocketpal.commands;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import seedu.pocketpal.backend.BackendTestUtil;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
 import seedu.pocketpal.frontend.commands.AddCommand;
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @DisplayName("Test add command")
-public class AddCommandTest extends CommandTest {
+public class AddCommandTest extends BackendTestUtil {
 
     private final Entry expectedEntry = new Entry("Rice", 8.50, Category.FOOD);
 

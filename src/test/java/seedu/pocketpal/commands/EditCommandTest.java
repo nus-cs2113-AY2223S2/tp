@@ -3,6 +3,7 @@ package seedu.pocketpal.commands;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import seedu.pocketpal.backend.BackendTestUtil;
 import seedu.pocketpal.frontend.commands.EditCommand;
 import seedu.pocketpal.frontend.constants.MessageConstants;
 import seedu.pocketpal.data.entry.Category;
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @DisplayName("Test edit command")
-public class EditCommandTest extends CommandTest {
+public class EditCommandTest extends BackendTestUtil {
     private final EditCommand expectedEditCommand = new EditCommand("1", "Lunch", "Food", "5");
     private final Entry originalEntry = new Entry("Dinner", 7.50, Category.FOOD);
     private final String[] proposedChanges = {"1", "Lunch", "", ""};
