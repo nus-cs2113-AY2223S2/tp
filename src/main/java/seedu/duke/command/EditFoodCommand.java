@@ -11,6 +11,6 @@ public class EditFoodCommand extends EditCostCommand {
     @Override
     public void execute() {
         budgetPlanner.setFoodTotalCost(cost);
-        System.out.println("Food budget has been changed to: " + cost);
+        System.out.println("Food budget has been changed to: " + budgetPlanner.getFoodTotalCost());
     }
 }

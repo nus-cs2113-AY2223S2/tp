@@ -1,8 +1,14 @@
 package seedu.duke;
 
+import seedu.duke.budget.BudgetPlanner;
 import seedu.duke.command.AddModuleCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.DeleteModuleCommand;
+import seedu.duke.command.EditAccommodationCommand;
+import seedu.duke.command.EditAirplaneTicketCommand;
+import seedu.duke.command.EditBudgetCommand;
+import seedu.duke.command.EditEntertainmentCommand;
+import seedu.duke.command.EditFoodCommand;
 import seedu.duke.command.ExceptionHandleCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
@@ -10,16 +16,19 @@ import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCurrentCommand;
 import seedu.duke.command.ListPuCommand;
 import seedu.duke.command.ListPuModulesCommand;
+import seedu.duke.command.ViewBudgetCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidPuException;
 import seedu.duke.exceptions.InvalidModuleException;
+
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Parser {
     private static UI ui = new UI();
 
     public Command parseUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
-                                     ArrayList<Module> puModules, Storage storage) {
+                                    ArrayList<Module> puModules, Storage storage, BudgetPlanner budgetPlanner) {
         ArrayList<String> userInputWords = parseCommand(userInput);
         String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
@@ -50,6 +59,8 @@ public class Parser {
             return new DeleteModuleCommand(storage, indexToRemove, modules);
         } else if (userCommandFirstKeyword.equalsIgnoreCase("/help")) {
             return new HelpCommand();
+        } else if (userCommandFirstKeyword.equalsIgnoreCase("/budget")) {
+            return prepareBudgetCommand(userCommandSecondKeyword, budgetPlanner);
         } else {
             return new InvalidCommand();
         }
@@ -69,10 +80,11 @@ public class Parser {
 
     private Command prepareListPuModulesCommand(String univAbbNameOrIndex, ArrayList<University> universities) {
         char digitChecker = univAbbNameOrIndex.charAt(0);
-        String universityAbbName= "";
+        String universityAbbName = "";
         int univIndex = -1;
+        // remember handle exception for numberformatexception use stringtoint instead?
         if (Character.isDigit(digitChecker)) {
-            univIndex= Integer.parseInt(univAbbNameOrIndex) - 1;
+            univIndex = Integer.parseInt(univAbbNameOrIndex) - 1;
         } else {
             universityAbbName = univAbbNameOrIndex;
         }
@@ -146,6 +158,34 @@ public class Parser {
             throw new InvalidModuleException(ui.getInvalidModuleMessage());
         }
         return new AddModuleCommand(moduleToAdd, storage);
+    }
+
+    // /budget accommodation 200
+    // /budget budget 5000
+    private Command prepareBudgetCommand(String userInput, BudgetPlanner budgetPlanner) {
+        String[] commandWords = userInput.split((" "), 2);
+        if (userInput.trim().equalsIgnoreCase("view")) {
+            return new ViewBudgetCommand(budgetPlanner);
+        }
+        if (commandWords.length != 2) {
+            return new InvalidCommand();
+        }
+        String budgetCommand = commandWords[0].toLowerCase();
+        int amount = stringToInt(commandWords[1]);
+        switch (budgetCommand) {
+        case "budget":
+            return new EditBudgetCommand(amount, budgetPlanner);
+        case "accommodation":
+            return new EditAccommodationCommand(amount, budgetPlanner);
+        case "airplane":
+            return new EditAirplaneTicketCommand(amount, budgetPlanner);
+        case "food":
+            return new EditFoodCommand(amount, budgetPlanner);
+        case "entertainment":
+            return new EditEntertainmentCommand(amount, budgetPlanner);
+        default:
+            return new InvalidCommand();
+        }
     }
 
     /**
