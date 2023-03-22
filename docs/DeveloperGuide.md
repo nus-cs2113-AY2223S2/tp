@@ -1,15 +1,34 @@
 # Developer Guide
 
-## Acknowledgements
+## Table of Contents
+1. [Design & implementation](#design-&-implementation)
+2. [Product Scope](#product-scope)
+- [Target user profile](#target-user-profile)
+- [Value proposition](#value-proposition)
+3. [User Stories](#user-stories)
+4. [Non-Functional Requirements](#non-functional-requirements)
+5. [Glossary](#glossary)
+6. [Instructions for manual testing](#instructions-for-manual-testing)
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
+
 ## Design & implementation
+### Store Notes
+The 
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+Store. hello
+List.
 
 
-## Product scope
+
+
+
+//{Describe the design and implementation of the product. 
+//Use UML diagrams and short code snippets where applicable.}
+
+
+## Product Scope
 ### Target user profile
 
 {Describe the target user profile}
