@@ -8,7 +8,7 @@ original source as well}
 - [AB3](https://github.com/se-edu/addressbook-level3)
 - [OpenCSV](https://opencsv.sourceforge.net/)
 
-## Design & implementation
+## Design
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
@@ -45,6 +45,37 @@ Components:
    the output to be shown to user
 
 ### Exceptions component
+
+## Implementation
+
+### Maintaining of Financial Report
+
+- The modelling of a financial report is achieved with the use of an ArrayList collection of the object
+  FinancialStatement.
+- FinancialStatement contains the following attributes:
+    - description: a string representing the description of a transaction
+    - flowDirection: an enum of FlowDirection, either INFLOW or OUTFLOW
+    - value: a double representing the amount tagged with the transaction
+    - category: a string representing the type of transaction
+    - date: the date to be tagged with the type of transaction
+
+### Adding an entry
+
+- When a command is given to add a statement, the command is first parsed to check whether it follows the format of an
+  add command: `add -DIRECTION DESCRIPTION $VALUE -c CATEGORY -d DESCRIPTION` with the use of regex pattern
+    - {details of how the command format should be?}
+- Commands in the correct format will then be parsed to extract the relevant information, and an AddCommand object will
+  be created with the relevant information passed to it
+- rainyDay will then call Command.execute(), where the transaction will be added into the financial report
+
+### Deleting an entry
+
+- When a command is given to delete a statement, the command is first parsed to check whether it follows the format of a
+  delete command: `delete INDEX` with the use of regex pattern
+    - {details of how the command format should be?}
+- Commands in the correct format will then be parsed to extract index, and a DeleteCommand object will
+  be created with the relevant information passed to it
+- rainyDay will then call Command.execute(), where the indicated transaction will be deleted from the financial report
 
 ## Product scope
 
