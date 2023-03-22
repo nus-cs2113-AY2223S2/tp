@@ -1,4 +1,5 @@
-[DeveloperGuide.md](DeveloperGuide.md)# Developer Guide
+[DeveloperGuide.md](DeveloperGuide.md)
+# Developer Guide
 
 ## Acknowledgements
 
@@ -20,6 +21,23 @@ Add command is used to add a quantity of item(s) to the packing list.
 
 Mechanism: ```AddCommand.execute()``` calls the ```PackingList.addItem()``` method from the ```PackingList``` class which executes the ```ArrayList.add()``` method to add the item to the ```PackingList``` ArrayList. 
 It then updates the ```quantity``` variable according to the quantity inputted by the user.
+
+
+#### Preventing duplicate items
+
+When using the `add` function, we have decided to implement a passive function that checks whether the item with the same name already exists in the packingList.
+
+This is done through the `contains()` method in class `PackingList()`, which is called during `execute` in an `AddCommand` object.
+
+Below is the UML diagram showing what occurs during `add` function.
+![img_1.png](img_1.png)
+When `execute()` is called in `a`(object of class `AddCommand`), the `addItem(item)` method is called in the object `packingList`. This method will see if method `contains()` will return `true`.
+
+The `contains()` method, which is shown as a reference on the right of the UML diagram, is a boolean method that loops through all items in the packingList, and returns `true` if any of the existing items have the same description as the item to be added in `toAdd`, and `false` otherwise.
+
+When `contains()` returns `true`, method `addItem(item)` will be interrupted and a `DuplicateItemException` will be thrown from `packingList`, which will be caught by `a`. If `contains()` returns false, the item will be added onto `packingList`.
+
+In both scenarios, `ui.printToUser` will be called to print a message to the user. In the former case, `ExistItemError` will be printed, while `AddSuccess` will be shown if the item was added with no issues.
 
 #### Delete Command
 
