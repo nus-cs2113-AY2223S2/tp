@@ -18,7 +18,7 @@ text-ui-test/EXPECTED-UNIX.TXT
 save.txt
 test.txt
 moduleData.txt
-testModuduleData.txt
+testModuleData.txt
 
 *.log
 *.lck
