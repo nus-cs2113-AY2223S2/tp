@@ -35,8 +35,7 @@ public class Currency {
      * Converts the currency to SGD if the input currency is not found in the HashMap. Else it returns the input
      * currency.
      * @param currency the input currency specified by the user.
-     * @return returns SGD as the default currency if input currency is missing or not found in HashMap, else return
-     * the input currency.
+     * @return returns currency or SGD if currency is not found in exchangeRate
      */
     public String convertCurrency(String currency) {
         // Default currency is SGD
