@@ -54,6 +54,7 @@ public class AddCommand extends Command implements LoggerInterface {
      * @throws UnexpectedException If the command word cannot be understood.
      */
     public AddCommand(String command, String param) throws InvalidDeadline, InvalidEvent, UnexpectedException {
+        setUpLogger();
         this.command = command;
         assert (command.equals(COMMAND_TODO_WORD) | command.equals(COMMAND_DEADLINE_WORD) |
                 command.equals(COMMAND_EVENT_WORD)) : "AddCommand: Invalid Add Command";

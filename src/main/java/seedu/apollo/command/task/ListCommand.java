@@ -22,6 +22,9 @@ import java.util.logging.Logger;
 public class ListCommand extends Command implements LoggerInterface {
     private static Logger logger = Logger.getLogger("ListCommand");
 
+    public ListCommand() {
+        setUpLogger();
+    }
     /**
      * Sets up logger for ListCommand class.
      *

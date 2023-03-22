@@ -19,6 +19,11 @@ import java.util.logging.Logger;
 public class ListModuleCommand extends Command implements LoggerInterface {
     private static Logger logger = Logger.getLogger("ListModuleCommand");
 
+    public ListModuleCommand() {
+        setUpLogger();
+    }
+
+
     /**
      * Sets up logger for ListModuleCommand class.
      *
