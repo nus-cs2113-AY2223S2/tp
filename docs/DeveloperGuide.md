@@ -84,6 +84,15 @@ Components:
 - RainyDay will then call Command.execute(), where every entry in the financial report will be printed.
 - Information will be presented in a table format to help improve clarity for users.
 
+### Editing an entry
+- When a command is given to edit a statement, the command is first parsed to check whether it follows the format of an
+  edit command: `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` with the use of regex.
+- If the statement contains "add", then a check will be done on the remaining fields to see if it is a valid add command.
+- Otherwise, methods specific to the flags will be used to validate the remaining fields using regex pattern
+- Commands in the correct format will then be used to create a FilterCommand object.
+- rainyDay will then call Command.execute(), where the transaction's specific field be edited or deleted then added
+  into the financial report.
+
 ### Filtering your data
 - When a command is given to filter a report by certain conditions, the command is first parsed to check whether it
   follows the format of a filter command with the use of regex pattern
