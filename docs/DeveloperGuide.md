@@ -10,7 +10,7 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 4. [Implementation](#implementation)
    - [Add and Remove Command](#add-and-remove-command)
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-6. [Appendix: Requirements](#appendix--requirements)
+6. [Appendix: Requirements](#appendix---requirements)
    - [Product scope](#product-scope)
    - [User stories](#user-stories)
    - [Use cases](#use-cases)
