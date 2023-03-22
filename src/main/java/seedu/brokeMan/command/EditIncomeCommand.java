@@ -23,26 +23,6 @@ public class EditIncomeCommand extends Command {
     }
 
     public void execute() {
-//        try {
-//            switch (type) {
-//            case "amount":
-//                Double newCost = Double.parseDouble(newEntry);
-//                IncomeList.editIncome(index, newCost);
-//                break;
-//            case "info":
-//                IncomeList.editIncome(index, newEntry);
-//                break;
-//            case "time":
-//                LocalDateTime newTime = StringToTime.convertStringToTime(newEntry);
-//                IncomeList.editIncome(index, newTime);
-//                break;
-//            default:
-//                Ui.showToUserWithLineBreak(MESSAGE_INVALID_EDIT_COMMAND);
-//
-//            }
-//        } catch (DateTimeException dte) {
-//            Ui.showToUserWithLineBreak(MESSAGE_INVALID_TIME, "");
-//        }
         if (type.equals("amount")) {
             double newIncome = Double.parseDouble(newEntry);
             IncomeList.editIncome(index, newIncome);

@@ -59,11 +59,7 @@ public abstract class EntryList {
     public static void editEntryCost(int entryIndex, double newAmount, LinkedList<Entry> entryList) {
         try {
             Entry entryBeingEdited = entryList.get(entryIndex - 1);
-//<<<<<<< HEAD
-//            entryBeingEdited.editAmount(newEntry);
-//=======
             entryBeingEdited.editAmount(newAmount);
-//>>>>>>> upstream/master
             Ui.showToUserWithLineBreak("Successfully edited expense.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
             Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
@@ -81,14 +77,6 @@ public abstract class EntryList {
     public static void editEntryDescription(int entryIndex, String newDescription, LinkedList<Entry> entryList) {
         try {
             Entry entryBeingEdited = entryList.get(entryIndex - 1);
-//<<<<<<< HEAD
-//
-//            if (type.equals("info")) {
-//                entryBeingEdited.editInfo(newEntry);
-//            } else {
-//                entryBeingEdited.editTime(newEntry);
-//            }
-//=======
             entryBeingEdited.editDescription(newDescription);
             Ui.showToUserWithLineBreak("Successfully edited expense.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
@@ -108,7 +96,6 @@ public abstract class EntryList {
         try {
             Entry entryBeingEdited = entryList.get(entryIndex - 1);
             entryBeingEdited.editTime(newTime);
-//>>>>>>> upstream/master
             Ui.showToUserWithLineBreak("Successfully edited expense.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
             Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");

@@ -192,7 +192,6 @@ public class Parser {
                     AddExpenseCommand.MESSAGE_USAGE);
         }
 
-//<<<<<<< HEAD
         String[] splitDescriptions;
         try {
             splitDescriptions = checkAddCommandException(description);
@@ -203,26 +202,6 @@ public class Parser {
         double amount = Double.parseDouble(splitDescriptions[1]);
         String newDescription = splitDescriptions[2];
         LocalDateTime time = StringToTime.convertStringToTime(splitDescriptions[3]);
-//=======
-//        String[] splitDescriptions = description.split("/ ");
-//        double amount;
-//        LocalDateTime time;
-//
-//        // handle error for the input "addExpense a/ d/ t/ time"
-//        // similarly for prepareEditExpenseCommand
-//        try {
-//            int length = splitDescriptions[1].length();
-//            amount = Double.parseDouble(splitDescriptions[1].substring(0, length - 2));
-//            time = StringToTime.convertStringToTime(splitDescriptions[3]);
-//        } catch (NumberFormatException nfe) {
-//            String errorMessage = new AmountIsNotADoubleException().getMessage();
-//            return new InvalidCommand(errorMessage);
-//        } catch (DateTimeException dte) {
-//            return new InvalidCommand(MESSAGE_INVALID_TIME);
-//        }
-//
-//        String newDescription = splitDescriptions[2].substring(0, splitDescriptions[2].length() - 2);
-//>>>>>>> upstream/master
 
         return new AddExpenseCommand(amount, newDescription, time);
     }
@@ -272,24 +251,15 @@ public class Parser {
 
         String[] splitDescriptions = description.split("/");
 
-//<<<<<<< HEAD
-        try {
-            int length = splitDescriptions[1].length();
-            int length1 = splitDescriptions[2].length();
+        int length = splitDescriptions[1].length();
+        int length1 = splitDescriptions[2].length();
 
-            splitDescriptions[1] = splitDescriptions[1].substring(0, length - 1).trim();
-            splitDescriptions[2] = splitDescriptions[2].substring(0, length1 - 1).trim();
-            checkEmptyFlag(splitDescriptions);
-            splitDescriptions[3] = splitDescriptions[3].trim();
-            Double.parseDouble(splitDescriptions[1]);
-            StringToTime.convertStringToTime(splitDescriptions[3]);
-        } catch (ContainsEmptyFlagException e) {
-            throw new ContainsEmptyFlagException();
-        } catch (NumberFormatException nfe) {
-            throw new AmountIsNotADoubleException();
-        } catch (DateTimeException dte) {
-            throw new InvalidDateTimeException();
-        }
+        splitDescriptions[1] = splitDescriptions[1].substring(0, length - 1).trim();
+        splitDescriptions[2] = splitDescriptions[2].substring(0, length1 - 1).trim();
+        checkEmptyFlag(splitDescriptions);
+        splitDescriptions[3] = splitDescriptions[3].trim();
+        checkDoubleException(splitDescriptions[1]);
+        checkTimeException(splitDescriptions[3]);
 
         return splitDescriptions;
     }
@@ -326,24 +296,13 @@ public class Parser {
         }
 
         String[] splitDescriptions;
-//        double amount = -1;
 
         try {
             splitDescriptions = checkEditCommandException(description);
-//            if (splitDescriptions[2].equals("amount")) {
-////                amount = checkDoubleException(splitDescriptions[3]);
-//                checkDoubleException(splitDescriptions[3]);
-//            } else if (splitDescriptions[2].equals("time")) {
-//                checkTimeException(splitDescriptions[3]);
-//            }
         } catch (BrokeManException bme) {
             return new InvalidCommand(bme.getMessage(), EditExpenseCommand.MESSAGE_USAGE);
         }
 
-//        if (amount != -1) {
-//            return new EditExpenseCommand(Integer.parseInt(splitDescriptions[1]),
-//                    splitDescriptions[2], amount);
-//        }
         return new EditExpenseCommand(Integer.parseInt(splitDescriptions[1]),
                 splitDescriptions[2], splitDescriptions[3]);
     }
@@ -361,29 +320,23 @@ public class Parser {
         }
 
         String[] splitDescriptions;
-//        double amount = -1;
 
         try {
             splitDescriptions = checkEditCommandException(description);
-//            if (splitDescriptions[2].equals("amount")) {
-////                amount = checkDoubleException(splitDescriptions[3]);
-//                checkDoubleException(splitDescriptions[3]);
-//            } else if (splitDescriptions[2].equals("time")) {
-//                checkTimeException(splitDescriptions[3]);
-//            }
 
         } catch (BrokeManException bme) {
             return new InvalidCommand(bme.getMessage(), EditIncomeCommand.MESSAGE_USAGE);
         }
 
-//        if (amount != -1) {
-//            return new EditIncomeCommand(Integer.parseInt(splitDescriptions[1]),
-//                    splitDescriptions[2], amount);
-//        }
         return new EditIncomeCommand(Integer.parseInt(splitDescriptions[1]),
                 splitDescriptions[2], splitDescriptions[3]);
     }
 
+    /**
+     * Checks if the input is a valid date and time
+     * @param timeToCheck the input to be checked
+     * @throws InvalidDateTimeException custom exception to indicate invalid data and time input
+     */
     private static void checkTimeException(String timeToCheck) throws InvalidDateTimeException {
         try {
             StringToTime.convertStringToTime(timeToCheck);
@@ -393,7 +346,7 @@ public class Parser {
     }
 
     /**
-     * Converts the input string to double if possible
+     * Checks if the input string to a double greater than 0
      *
      * @param cost input string to be converted
      * @return converted double value
@@ -413,12 +366,6 @@ public class Parser {
         } catch (NumberFormatException nfe) {
             throw new AmountIsNotADoubleException();
         }
-//
-//        if (amount < 0) {
-//            throw new NegativeAmountException();
-//        }
-
-//        return amount;
     }
 
     /**
@@ -436,7 +383,6 @@ public class Parser {
         if (!containsAllFlags) {
             throw new InvalidEditCommandException();
         }
-
         String[] splitDescriptions = description.split("/");
 
         int length1 = splitDescriptions[1].length();
@@ -444,7 +390,6 @@ public class Parser {
 
         splitDescriptions[1] = splitDescriptions[1].substring(0, length1 - 1).trim();
         splitDescriptions[2] = splitDescriptions[2].substring(0, length2 - 1).trim();
-
         checkEmptyFlag(splitDescriptions);
         checkIsIntegerIndex(splitDescriptions[1]);
         checkCorrectType(splitDescriptions[2]);
@@ -484,30 +429,4 @@ public class Parser {
             throw new IncorrectTypeException();
         }
     }
-//=======
-//        assert splitDescriptions.length == 4 : MESSAGE_INVALID_EDIT_COMMAND;
-//        int index;
-//        String type;
-//        String newEntry;
-//
-//        try {
-//            int length = splitDescriptions[1].length();
-//            index = Integer.parseInt(splitDescriptions[1].substring(0, length - 2));
-//            type = splitDescriptions[2].substring(0, splitDescriptions[2].length() - 2);
-//            newEntry = splitDescriptions[3];
-//
-//            if (moneyType.equals("expense")) {
-//                return new EditExpenseCommand(index, type, newEntry);
-//            }
-//            return new EditIncomeCommand(index, type, newEntry);
-//
-//        } catch (NumberFormatException nfe) {
-//            String errorMessage = new IndexNotAnIntegerException().getMessage();
-//            return new InvalidCommand(errorMessage);
-//        } catch (DateTimeException dte) {
-//            return new InvalidCommand(MESSAGE_INVALID_TIME);
-//        }
-//    }
-//
-//>>>>>>> upstream/master
 }

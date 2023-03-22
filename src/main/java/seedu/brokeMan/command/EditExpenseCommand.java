@@ -25,27 +25,6 @@ public class EditExpenseCommand extends Command {
     }
 
     public void execute() {
-//        try {
-//            switch (type) {
-//            case "amount":
-//                Double newCost = Double.parseDouble(newEntry);
-//                ExpenseList.editExpense(index, newCost);
-//                break;
-//            case "info":
-//                ExpenseList.editExpense(index, newEntry);
-//                break;
-//            case "time":
-//                LocalDateTime newTime = StringToTime.convertStringToTime(newEntry);
-//                ExpenseList.editExpense(index, newTime);
-//                break;
-//            default:
-//                logger.log(Level.WARNING, "wrong type name:" + type);
-//                Ui.showToUserWithLineBreak(MESSAGE_INVALID_EDIT_COMMAND);
-//
-//            }
-//        } catch (DateTimeException dte) {
-//            Ui.showToUserWithLineBreak(MESSAGE_INVALID_TIME, "");
-//        }
         if (type.equals("amount")) {
             double newCost = Double.parseDouble(newEntry);
             ExpenseList.editExpense(index, newCost);
