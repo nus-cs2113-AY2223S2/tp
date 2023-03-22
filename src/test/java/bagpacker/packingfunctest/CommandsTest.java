@@ -29,8 +29,8 @@ public class CommandsTest {
         Assertions.assertNotEquals("tooth", packingList.get(0).getItemName());
 
         // Expect second index item in the packing list to be toothpaste
-        Item item_two = new Item("toothpaste");
-        addCommand = new AddCommand(item_two);
+        Item itemTwo = new Item("toothpaste");
+        addCommand = new AddCommand(itemTwo);
         addCommand.execute(packingList);
 
         Assertions.assertEquals("toothpaste",packingList.get(1).getItemName());

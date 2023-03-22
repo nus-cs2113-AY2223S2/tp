@@ -3,8 +3,8 @@ package bagpacker.commands;
 import bagpacker.packingfunc.PackingList;
 
 public class ListCommand extends Command {
-    public static final String HELP_MSG = "add : Adds an item to the packing list.\n" +
-            "\tExample: add toothbrush";
+    public static final String HELP_MSG = "list : List all items in packing list.\n" +
+            "\tExample: list";
 
     @Override
     public void execute(PackingList packingList) {
