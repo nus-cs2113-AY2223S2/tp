@@ -30,6 +30,33 @@ Afterwards, the ```execute()``` method will print ```"Income deleted, here is th
 
 ### Delete Income command
 
+### [Proposed] Edit Income/Expense Command
+The proposed edit income command is facilitated by `Parser`, `EditIncomeCommand`, `IncomeList`, while the proposed edit expense command is facilitated by `Parser`, `EditExpenseCommand` and `ExpenseList`. 
+
+Note that below highlights the implementation of the edit income command, whereby edit expense command follows a similar implementation.
+
+Given below is how the edit income mechanism behaves at each step:
+1. The user launches the application. If there is a saved IncomeList of
+
+The following sequence diagram shows how the edit income command works:
+<br>![edit income sequence diagram](../images/EditIncomeCommand_sequence_diagram.png)
+
+The edit expense command works in a similar way, with its sequence diagram as shown:
+<br>![edit expense sequence diagram](../images/EditExpenseCommand_sequqnce_diagram.png)
+
+The following activity diagram summarises what happens when a user executes edit income command:
+<br>![edit income activity diagram](../images/EditIncomeCommand_activity_diagram.png)
+<br> Note that edit expense command has a similar activity diagram.
+
+### Design Considerations
+The following are the design alternatives we considered for edit income/expense command:
+
+* **Alternative 1 (current choice):** Edit only the specific fields indicated in the input arguments.
+    * Pros: Easier for the user to edit.
+    * Cons: May introduce more bugs.
+* **Alternative 2:** Edit to require user to rewrite all its fields.
+    * Pros: Easier to implement.
+    * Cons: Not any easier than having the user to just delete and add new expense/income.
 
 ## Product scope
 ### Target user profile
