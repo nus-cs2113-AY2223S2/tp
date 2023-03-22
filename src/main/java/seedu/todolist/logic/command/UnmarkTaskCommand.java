@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
-//@@author jeromeongithub
+//@@author RuiShengGit
 public class UnmarkTaskCommand extends Command{
     public static final String KEYWORD = "unmark";
     public static final HashSet<String> FLAGS = new HashSet<>(Arrays.asList(KEYWORD));
@@ -21,6 +21,7 @@ public class UnmarkTaskCommand extends Command{
         } catch (NumberFormatException e) {
             throw new InvalidIndexException();
         }
+        assert index >= 0 : "Invalid index contained in variable";
     }
 
     @Override
