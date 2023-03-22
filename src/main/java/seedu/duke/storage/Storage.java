@@ -18,9 +18,9 @@ public class Storage {
 
     private static final String fileLocation = System.getProperty("user.dir") + "/save.json";
 
-    GsonBuilder builder = new GsonBuilder().registerTypeAdapter(ArrayList.class, new EventListAdapter())
+    private final GsonBuilder builder = new GsonBuilder().registerTypeAdapter(ArrayList.class, new EventListAdapter())
             .setPrettyPrinting();
-    Gson gson = builder.create();
+    private final Gson gson = builder.create();
 
     /**
      * Saves an EventList object's Array List to a file with JSON formatting.
