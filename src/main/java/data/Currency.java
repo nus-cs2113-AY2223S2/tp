@@ -25,8 +25,8 @@ public class Currency {
     public HashMap<String, BigDecimal> getExchangeRate() {
         if(exchangeRate == null) {
             exchangeRate = new HashMap<>();
-//            exchangeRate.put("SGD", new BigDecimal(1.0));
-//            exchangeRate.put("USD", new BigDecimal(0.75));
+            //exchangeRate.put("SGD", new BigDecimal(1.0));
+            //exchangeRate.put("USD", new BigDecimal(0.75));
         }
         return exchangeRate;
     }
@@ -80,7 +80,7 @@ public class Currency {
     /**
      * Gets the exchange rate of the currency specified from the API
      * @param date the closest previous working day of the input date.
-     * @param currency the currency to be converted to.
+     * @param exchangeRate the HashMap of exchange rates
      * @throws IOException
      */
     public static void sendHTTPGetRequest(String date, HashMap<String, BigDecimal> exchangeRate)
