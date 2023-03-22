@@ -52,8 +52,7 @@ public class RainyDay {
             try {
                 specificCommand = new Parser().parseUserInput(userInput);
                 assert specificCommand != null : "Parser returned null";
-                CommandResult outcome = executeCommand(specificCommand);
-                ui.showToUser(outcome.output);
+                executeCommand(specificCommand);
                 userInput = ui.readUserCommand();
             } catch (Exception e) {
                 logger.log(Level.WARNING, e.getMessage());
@@ -62,9 +61,10 @@ public class RainyDay {
         }
     }
 
-    private CommandResult executeCommand(Command command) {
+    private void executeCommand(Command command) {
         command.setData(financialReport);
-        return command.execute();
+        CommandResult result = command.execute();
+        result.printResult();
     }
 
     private static void setupLogger() {

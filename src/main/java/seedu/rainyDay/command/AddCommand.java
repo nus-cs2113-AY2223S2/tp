@@ -51,9 +51,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Executes the command and returns the result
-     *
-     * @return CommandResult with the relevant output message as its attribute
+     * Executes the command and print the relevant output message
      */
     @Override
     public CommandResult execute() {
