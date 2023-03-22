@@ -8,6 +8,10 @@ public class PrintHelpMessage {
         System.out.println("\tFILTER stands for a specific requirement you want to include in your exercise");
         System.out.println("[filters]");
         System.out.println("\tView all available filters");
+        System.out.println("[plans]");
+        System.out.println("\tShow all plans");
+        System.out.println("[planner]");
+        System.out.println("\tEnter workout plan editor");
         System.out.println("[find]");
         System.out.println("\tfinds all relevant exercises based on the keyword : find [keyword]");
         System.out.println("[bye]");
@@ -28,6 +32,21 @@ public class PrintHelpMessage {
                 "\t[core] exercises that train your core" + newline +
                 "\t[legs] exercises that train your legs");
     }
+
+    public static void showAvailablePlannerCommands() {
+        System.out.println("These are some commands available: ");
+        System.out.println("[add]");
+        System.out.println("\tCreate a new plan on a day of the week: add monday plan_name FILTER1 FILTER2 ... x");
+        System.out.println("\tFILTER stands for a specific requirement you want to include in your exercise");
+        System.out.println("[delete]");
+        System.out.println("\tdelete a plan on a day of the week: delete monday plan_name");
+        System.out.println("[plans]");
+        System.out.println("\tShow all plans");
+        System.out.println("[exit]");
+        System.out.println("\tExit workout plan editor");
+        //System.out.println(ErrorMessages.ERROR_GLOBAL_INVALID_COMMAND.toString());
+    }
+
     public static void unknownCommandMessage() {
         System.out.println("Unknown command! Type [help] to see what we can do!");
     }

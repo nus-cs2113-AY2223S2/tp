@@ -113,17 +113,25 @@ public class TestUi {
                     "\tFILTER stands for a specific requirement you want to include in your exercise\r\n" +
                     "[filters]\r\n" +
                     "\tView all available filters\r\n" +
+                    "[plans]\r\n" +
+                    "\tShow all plans\r\n" +
+                    "[planner]\r\n" +
+                    "\tEnter workout plan editor\r\n" +
                     "[find]\r\n" +
                     "\tfinds all relevant exercises based on the keyword : find [keyword]\r\n" +
                     "[bye]\r\n" +
                     "\tEnd the program\r\n";
         } else {
             expectedOutput = "These are some commands available:\n" +
-                    "[generate]\r\n" +
+                    "[generate]\n" +
                     "\tGenerate a specific list of exercises: generate FILTER1 FILTER2 ... x\n" +
                     "\tFILTER stands for a specific requirement you want to include in your exercise\n" +
                     "[filters]\n" +
                     "\tView all available filters\n" +
+                    "[plans]\n" +
+                    "\tShow all plans\n" +
+                    "[planner]\n" +
+                    "\tEnter workout plan editor\n" +
                     "[find]\n" +
                     "\tfinds all relevant exercises based on the keyword : find [keyword]\n" +
                     "[bye]\n" +

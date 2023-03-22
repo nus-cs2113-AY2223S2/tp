@@ -6,10 +6,11 @@ import seedu.duke.storage.StorageHandler;
 import seedu.duke.userdata.UserCareerData;
 import seedu.duke.ui.Ui;
 import seedu.duke.states.ExerciseStateHandler;
-
+import seedu.duke.userplan.UserPlan;
 import java.util.Scanner;
 
 public class Duke {
+    private static UserPlan planner;
     private static final String FILEPATH = "userData.json";
     private final Ui ui;
     private final GenerateExercise exerciseGenerator;
@@ -20,6 +21,7 @@ public class Duke {
     public Duke () {
 
         ui = new Ui();
+        planner = new UserPlan();
         exerciseGenerator = new GenerateExercise();
         storageHandler = new StorageHandler(FILEPATH);
         exerciseHandler = new ExerciseStateHandler(storageHandler);
@@ -34,7 +36,7 @@ public class Duke {
         ui.greetUser();
         while (true) {
             commandHandler.handleUserCommands(in.nextLine(), ui, exerciseGenerator, userCareerData, exerciseHandler,
-                                              storageHandler);
+                                              storageHandler, planner);
         }
     }
 
