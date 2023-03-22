@@ -33,7 +33,7 @@ class CommandAddTest {
         testExpenseList.add(new Expense(new BigDecimal("2.5"),
                 new Time(LocalDate.parse("02-02-2012", formatter)), "food", "SGD"));
         new CommandAdd(expenseList.getExpenseList(),
-                parser.extractAddParameters("add amt/2.5 " +
+                parser.extractAddParameters("add amt/3.5 " +
                         "t/02-02-2012 cur/USD cat/food"), currency).execute();
         assertNotEquals(testExpenseList.get(1), expenseList.getExpenseList().get(1));
 
