@@ -1,15 +1,2 @@
-Mar 19, 2023 11:52:10 PM seedu.logger.LogFileHandler logInfo
-INFO: Dinner was consumed on 13/12/2023
-Total Calories are: 775.0
-Here are the foods you ate:
-1) Black Pepper Chicken Chop  from Western (Calories: 775.0)
-
-Mar 19, 2023 11:52:24 PM seedu.logger.LogFileHandler logInfo
-INFO: Lunch was consumed on 13/12/2023
-Total Calories are: 985.0
-Here are the foods you ate:
-1) Black Pepper Chicken Chop  from Western (Calories: 775.0)
-2) Tasty Rice from Western (Calories: 210.0)
-
-Mar 19, 2023 11:52:31 PM seedu.logger.LogFileHandler logInfo
+Mar 22, 2023 3:23:53 PM seedu.logger.LogFileHandler logInfo
 INFO: User exited the programme.
