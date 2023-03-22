@@ -50,32 +50,63 @@ Components:
 
 ### Maintaining of Financial Report
 
-- The modelling of a financial report is achieved with the use of an ArrayList collection of the object
-  FinancialStatement.
-- FinancialStatement contains the following attributes:
-    - description: a string representing the description of a transaction
-    - flowDirection: an enum of FlowDirection, either INFLOW or OUTFLOW
-    - value: a double representing the amount tagged with the transaction
-    - category: a string representing the type of transaction
-    - date: the date to be tagged with the type of transaction
+- `financialReport` is achieved with the use of an ArrayList collection of the object `FinancialStatement` to model a
+  financial report containing a list of financial statements.
+- A 'FinancialStatement` object contains the following attributes:
+    - `description`: represents the description of a transaction, stored as a string
+    - `flowDirection`: represents the direction of a transaction, stored as an enum of `FlowDirection`: `INFLOW` or
+      `OUTFLOW`
+    - `value`: represents the amount tagged with the transaction, stored as a double
+    - `category`: represents the type of transaction, stored as a string
+    - `date`: represents the date to be tagged of transaction, stored as LocalDate object
 
-### Adding an entry
+### Adding an entry `add`
 
 - When a command is given to add a statement, the command is first parsed to check whether it follows the format of an
   add command: `add -DIRECTION DESCRIPTION $VALUE -c CATEGORY -d DESCRIPTION` with the use of regex pattern
-    - {details of how the command format should be?}
-- Commands in the correct format will then be parsed to extract the relevant information, and an AddCommand object will
-  be created with the relevant information passed to it
-- rainyDay will then call Command.execute(), where the transaction will be added into the financial report
+    - `DIRECTION`: indicating the direction of the transaction, to be either `in` or `out`
+    - `DESCRIPTION`: the description of the transaction
+    - `VALUE`: the amount to be tagged with the transaction
+    - `CATEGORY`: the category of the transaction
+    - `DATE`: the date to be tagged with the transaction, to be supplied in the format of DD/MM/YYYY
+- Commands in the correct format will then be parsed to extract the relevant information, and an `AddCommand` object
+  will
+  be created with the relevant attributes
+- `RainyDay` will then call `execute` method in `Command`, where the transaction will be added into the financial report
 
-### Deleting an entry
+#### Design considerations
+
+Format of add command
+
+- Alternative 1 (current choice): usage of flags
+    - Pros: able to identify the arguments easily, as the combination of the characters are highly unlikely to be used
+      as a description or category name
+    - Cons: not that intuitive from the user's point of view
+- Alternative 2: usage of keywords
+    - Pros: easier to use from the user's point of view
+    - Cons: unable to correctly identify the keyword as the sequence of characters may be a description or category that
+      the user wants to use
+
+### Deleting an entry `delete`
 
 - When a command is given to delete a statement, the command is first parsed to check whether it follows the format of a
   delete command: `delete INDEX` with the use of regex pattern
-    - {details of how the command format should be?}
-- Commands in the correct format will then be parsed to extract index, and a DeleteCommand object will
-  be created with the relevant information passed to it
+    - `INDEX`: the index number of the statement in the financial report, stored as an int
+- Commands in the correct format will then be parsed to extract index, and a `DeleteCommand` object will
+  be created with the relevant attribute information
 - rainyDay will then call Command.execute(), where the indicated transaction will be deleted from the financial report
+
+#### Design considerations
+
+Format of delete command
+
+- Alternative 1 (current choice): usage of index to identify the statement to be deleted
+    - Pros: able to identify the correct statement to be deleted following the index assigned to the statement
+    - Cons: may not be intuitive for the user, as they have to look up the index of the statement before deletion
+- Alternative 2: usage of full statement information to identify the statement to be deleted
+    - Pros: more intuitive for the user
+    - Cons: user needs to knows the full details of the statement and needs to type the full statement information for
+      identifying the statement to be deleted
 
 ## Product scope
 
