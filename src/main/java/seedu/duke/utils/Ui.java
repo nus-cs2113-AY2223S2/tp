@@ -75,8 +75,9 @@ public class Ui {
 
     private static final String INVALID_ADD_ALERT =
             "Wrong/Incomplete Format! Please add new alerts in the following format: \n" +
-                    "\"alert add upc/[UPC] min/[integer]\" to set an alert when stock falls below a minimum \n" + "OR\n" +
-                    "\"alert add upc/[UPC] max/[integer]\" to set an alert when stock exceeds a maximum. \n" ;
+                    "\"alert add upc/[UPC] min/[integer]\" to set an alert when stock falls below a minimum \n"
+                    + "OR\n" +
+                    "\"alert add upc/[UPC] max/[integer]\" to set an alert when stock exceeds a maximum. \n";
 
 
     private static final String EXISTING_MIN_ALERT = "This item already has a minimum alert. Delete the existing one first.";

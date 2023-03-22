@@ -2,7 +2,6 @@ package seedu.duke.commands;
 
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
-import seedu.duke.objects.Alert;
 import seedu.duke.utils.trie.Trie;
 
 
@@ -17,11 +16,6 @@ public abstract class Command {
     protected HashMap<String, ArrayList<Item>> itemNameHash;
     protected HashMap<String, Item> upcCodes;
     protected Trie itemsTrie;
-
- /*   protected ArrayList<Alert> alertList;
-    protected HashMap<String, Integer> minAlertUpcs;
-    protected HashMap<String, Integer> maxAlertUpcs;*/
-
 
     public Command(Inventory inventory) {
         this.itemInventory = inventory.getItemInventory();

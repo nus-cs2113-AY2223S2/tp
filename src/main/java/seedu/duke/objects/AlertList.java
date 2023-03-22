@@ -2,8 +2,6 @@ package seedu.duke.objects;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import seedu.duke.objects.Alert;
-
 public class AlertList {
     private final ArrayList<Alert> alertList = new ArrayList<>();
     private final HashMap<String, Integer> minAlertUpcs = new HashMap<>();
