@@ -44,7 +44,7 @@ The following sequence diagram shows how the edit income command works:
 <br> ![edit income sequence diagram](../images/EditIncomeCommand_sequence_diagram.png)
 
 The edit expense command works in a similar way, with its sequence diagram as shown:
-<br> ![edit expense sequence diagram](../images/EditExpenseCommand_sequqnce_diagram.png)
+<br> ![edit expense sequence diagram](../images/EditExpenseCommand_sequence_diagram.png)
 
 The following activity diagram summarises what happens when a user executes edit income command:
 <br> ![edit income activity diagram](../images/EditIncomeCommand_activity_diagram.png)
