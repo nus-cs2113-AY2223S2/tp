@@ -2,14 +2,12 @@ package seedu.duke;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.commands.SearchCommand;
-import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.parser.Parser;
 import seedu.duke.types.Types;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 class EditTest {
 
