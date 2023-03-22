@@ -24,7 +24,36 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 
 ## Design & Implementation
 
-## Ingredient Class
+### Command Parsing
+
+The system of `Routable` classes is built to allow for a composable setup of commands and subcommands.
+
+Developers are able to build a "routing tree" by nesting `CommandRouterNode`s together, allowing for command matching
+to be done in a robust and extensible way. This architecture was chosen because our commands are designed to have common
+prefixes, such as the "recipe all" and "recipe possible" commands.
+
+Therefore, we need to standardize the way we parse
+the command in such a way that we do not have to worry about match priority or ordering, as we would if we
+were to implement this with simple if-else or switch statements.
+
+![RouterUML.png](images/RouterUML.png)
+
+- The "routing tree" is built around the concept of the `Routable` interface, with a `CommandRouterNode` at the root.
+- Classes which implement `Routable` have a `resolve` function which will map a `CommandTokens` object to an
+`ExecutableCommandFactory`.
+- Routing is done in a depth-first fashion via recursive calls to `resolve`, until an
+endpoint is reached at which point the corresponding `ExecutableCommandFactory` is returned.
+
+![RouterSnippetUML.png](images/RouterSnippetUML.png)
+
+This is an object diagram representing a portion of the routing tree for MealCompanion, supporting the "recipe all",
+"recipe possible", and "ingredient list" commands.
+
+The sequence diagram below illustrates the process for resolving the "recipe all" command.
+
+![RouterSequenceUML.png](images/RouterSequenceUML.png)
+
+### Ingredient Class
 
 Below shows the class diagram of how ingredients are being stored in our program
 
