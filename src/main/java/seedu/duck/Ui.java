@@ -27,6 +27,95 @@ public class Ui {
     }
 
     /**
+     * Prints out all currently stored tasks in the list arranged by their priority from high, medium to low
+     *
+     * @param tasks the list of tasks
+     */
+    static void printPriorityList(ArrayList<Task> tasks){
+        borderLine();
+        System.out.println("\t Here are the tasks in your list arranged by priority:");
+        borderLine();
+        printHighPriority(tasks);
+        printMediumPriority(tasks);
+        printLowPriority(tasks);
+    }
+
+    /**
+     * Goes through the task list and prints out the tasks that are high in priority
+     *
+     * @param tasks the list of tasks
+     */
+    static void printHighPriority(ArrayList<Task> tasks){
+        ArrayList<Integer> indexOfHighPriority = new ArrayList<Integer>();
+        int taskCount = Task.getTaskCount();
+        for (int i = 0; i < taskCount; i++){
+            if (tasks.get(i).returnPriority() == 3) {
+                indexOfHighPriority.add(i);
+            }
+        }
+        if (!indexOfHighPriority.isEmpty()) {
+            System.out.println("\t QUACK QUACK QUACK!!!");
+            System.out.println("\t You have " + indexOfHighPriority.size() + " tasks that are high in priority!");
+            for (int i = 0; i < indexOfHighPriority.size(); i++) {
+                System.out.println("\t" + (i + 1) + "." + tasks.get(indexOfHighPriority.get(i)));
+            }
+        } else {
+            System.out.println("\t There are no tasks that are high in priority!");
+        }
+        borderLine();
+    }
+
+    /**
+     * Goes through the task list and prints out the tasks that are medium in priority
+     *
+     * @param tasks the list of tasks
+     */
+    static void printMediumPriority(ArrayList<Task> tasks){
+        ArrayList<Integer> indexOfMediumPriority = new ArrayList<Integer>();
+        int taskCount = Task.getTaskCount();
+        for (int i = 0; i < taskCount; i++) {
+            if (tasks.get(i).returnPriority() == 3) {
+                indexOfMediumPriority.add(i);
+            }
+        }
+        if (!indexOfMediumPriority.isEmpty()) {
+            System.out.println("\t QUACK QUACK!!");
+            System.out.println("\t You have " + indexOfMediumPriority.size() + " tasks that are medium in priority!");
+            for (int i = 0; i < indexOfMediumPriority.size(); i++) {
+                System.out.println("\t" + (i + 1) + "." + tasks.get(indexOfMediumPriority.get(i)));
+            }
+        } else {
+            System.out.println("\t There are no tasks that are medium in priority!");
+        }
+        borderLine();
+    }
+
+    /**
+     * Goes through the task list and prints out the tasks that are low in priority
+     *
+     * @param tasks the list of tasks
+     */
+    static void printLowPriority(ArrayList<Task> tasks){
+        ArrayList<Integer> indexOfLowPriority = new ArrayList<Integer>();
+        int taskCount = Task.getTaskCount();
+        for (int i = 0; i < taskCount; i++){
+            if (tasks.get(i).returnPriority() == 1) {
+                indexOfLowPriority.add(i);
+            }
+        }
+        if (!indexOfLowPriority.isEmpty()) {
+            System.out.println("\t quack!");
+            System.out.println("\t You have " + indexOfLowPriority.size() + " tasks that are low in priority!");
+            for (int i = 0; i < indexOfLowPriority.size(); i++) {
+                System.out.println("\t" + (i + 1) + "." + tasks.get(indexOfLowPriority.get(i)));
+            }
+        } else {
+            System.out.println("\t There are no tasks that are low in priority!");
+        }
+        borderLine();
+    }
+
+    /**
      * Finds tasks in the list that contain keywords input by the user
      *
      * @param tasks The array list of tasks
@@ -105,6 +194,10 @@ public class Ui {
         borderLine();
         System.out.println("\t （`･v･´ ）: Here are the commands you can give me:");
         System.out.println("\t - list: I'll list out all the tasks you have recorded.");
+        System.out.println("\t - priority_list: I'll list out all the tasks you have recorded arranged by their priority.");
+        System.out.println("\t - low_priority: I'll list out all the tasks you have that are low in priority.");
+        System.out.println("\t - medium_priority: I'll list out all the tasks you have that are medium in priority.");
+        System.out.println("\t - high_priority: I'll list out all the tasks you have that are high in priority.");
         System.out.println("\t - clear: The list will be cleared. This in an irreversible process.");
         System.out.println("\t - mark <task_number>: I'll mark that task as done.");
         System.out.println("\t - unmark <task_number>: I'll mark that task as undone.");
