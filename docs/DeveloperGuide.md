@@ -14,6 +14,20 @@ For all valid commands, the mechanism of implementation are as follows:
 3. Execute command object - ```runBagPacker()``` method executes the ```.execute()``` method (overridden by child classes) of the command object 
    which runs the actual command function
 
+#### Add Command
+
+Add command is used to add a quantity of items to the packing list.
+
+Mechanism: ```AddCommand.execute()``` calls the ```PackingList.addItem()``` method from the ```PackingList``` class which executes the ```ArrayList.add()``` method to add the item to the ```PackingList``` ArrayList. 
+It then updates the ```quantity``` variable according to the quantity inputted by the user.
+
+#### Delete Command
+
+Delete command is used to delete an item from the packing list.
+
+Mechanism: ```DeleteCommand.execute()``` calls the ```PackingList.deleteItem()``` method from the ```PackingList``` class which executes the ```ArrayList.remove()``` method to remove the item from the ```PackingList``` ArrayList.
+
+
 #### Help Command
 Help command is used to exit the BagPacker application.
 
@@ -21,8 +35,8 @@ Execute: ```HelpCommand.execute()``` prints the following help message.
 
 ```
 All Commands:
-1. add : Adds an item to the packing list.
-	Example: add toothbrush
+1. add : Adds a quantity of items to the packing list.
+	Example: add 3 toothbrushes
 2. delete : Deletes an item from the packing list.
 	Example: delete 1
 3. list : List all items in packing list.
@@ -57,11 +71,12 @@ Mechanism: ```DeleteListCommand.execute()``` reassigns the existing ```packingLi
 
 ### Target user profile
 
-{Describe the target user profile}
+BagPacker is for NUS students, in particular, exchange students who travel a lot and want a simple CLI to keep track of their packing.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+BagPacker aims to help busy students simplify their packing process by allowing easy adding of items to pack and record of the items they have already packed so that they can be organised and aboard their travels with ease.
+
 
 ## User Stories
 
