@@ -10,7 +10,7 @@ import seedu.duke.userplan.UserPlan;
 import java.util.Scanner;
 
 public class Duke {
-    private static UserPlan planner = new UserPlan();
+    private static UserPlan planner;
     private static final String FILEPATH = "userData.json";
     private final Ui ui;
     private final GenerateExercise exerciseGenerator;
@@ -20,6 +20,7 @@ public class Duke {
 
     public Duke () {
         ui = new Ui();
+        planner = new UserPlan();
         exerciseGenerator = new GenerateExercise();
         storageHandler = new StorageHandler(FILEPATH);
         exerciseHandler = new ExerciseStateHandler(storageHandler);
