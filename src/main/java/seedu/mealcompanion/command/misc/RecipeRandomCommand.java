@@ -21,8 +21,8 @@ public class RecipeRandomCommand extends ExecutableCommand {
         }
 
         Random rand = new Random();
-        int index = rand.nextInt() % recipes.size();
-        assert(index >= 0 && index < recipes.size()) : "index is out of range";
+        int index = rand.nextInt(recipes.size());
+        assert(index >= 0 && index < recipes.size()) : "index is out of range!";
         return index;
     }
 
@@ -30,11 +30,8 @@ public class RecipeRandomCommand extends ExecutableCommand {
     public void execute(MealCompanionSession mealCompanionSession){
         try {
             RecipeList recipes = mealCompanionSession.getRecipes();
-            mealCompanionSession.getUi().printMessage("before getRandomIndex()");
             int index = getRandomIndex(recipes);
-            mealCompanionSession.getUi().printMessage("after getRandomIndex()");
             Recipe recipe = recipes.getRecipe(index);
-            mealCompanionSession.getUi().printMessage("index = " + index);
             mealCompanionSession.getUi().printMessage("A random recipe is chosen:");
             mealCompanionSession.getUi().printMessage("Recipe for " + recipe.getName());
             mealCompanionSession.getUi().printMessage(""); //print newline for all OS
