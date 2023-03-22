@@ -16,7 +16,7 @@ public class ExitCommandTest {
     boolean setExit = false;
 
     @Test
-    void userInput_exit_correctVariableType_success() {
+    void userInput_exit_correctVariableTypeSuccess() {
         String userInput = "exit";
         ArrayList<University> universities = new ArrayList<>();
         ArrayList<Module> modules = new ArrayList<>();

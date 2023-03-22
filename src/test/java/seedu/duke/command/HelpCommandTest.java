@@ -28,7 +28,7 @@ public class HelpCommandTest {
     //@@author dfa
 
     @Test
-    void userInput_help_correctVariableType_success() {
+    void userInput_help_correctVariableTypeSuccess() {
         String userInput = "/help";
         ArrayList<University> universities = new ArrayList<>();
         ArrayList<Module> modules = new ArrayList<>();

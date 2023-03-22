@@ -15,7 +15,7 @@ public class DeleteModuleCommandTest {
     Storage storage = new Storage();
 
     @Test
-    void userInput_remove_correctVariableType_success() {
+    void userInput_remove_correctVariableTypeSuccess() {
         String userInput = "remove 1";
         ArrayList<University> universities = new ArrayList<>();
         ArrayList<Module> modules = new ArrayList<>();
@@ -29,7 +29,7 @@ public class DeleteModuleCommandTest {
     }
 
     @Test
-    public void deleteModule_correctFormat_success() {
+    public void deleteModule_correctFormatSuccess() {
         ArrayList<Module> uniList1 = new ArrayList<>();
         Module module = new Module(1, "AE320", "Aerodynamics II", 3,
                 "ME4231", "Aerodynamics", 4);
