@@ -2,14 +2,17 @@ package seedu.commands;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
+import seedu.exceptions.InvalidDateException;
 import seedu.exceptions.InvalidIndexException;
 import seedu.exceptions.InvalidMealException;
 import seedu.exceptions.LifeTrackerException;
@@ -36,7 +39,6 @@ public class AddMealCommand extends Command {
         this.userInput = userInput;
     }
 
-
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
                 throws LifeTrackerException {
@@ -58,12 +60,18 @@ public class AddMealCommand extends Command {
         LogFileHandler.logInfo(meal.toString());
     }
 
-
-
     private void getDetails(GeneralUi ui, FoodStorage foodStorage) throws LifeTrackerException {
         boolean toContinue = true;
-
         System.out.println("Enter date of meal:");
+        try {
+            dateString = ui.readLine();
+            date = LocalDate.parse(dateString, dtf);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException(dateString);
+        }
+
+        System.out.println(System.lineSeparator() + "Enter type of meal:");
+        mealTypeString = ui.readLine();
         dateString = ui.readLine();
         date = DateParser.parse(dateString, dtf);
 
@@ -77,7 +85,6 @@ public class AddMealCommand extends Command {
             System.out.println(System.lineSeparator() + "Enter food:");
             foodName = ui.readLine();
 
-
             List<Food> filteredFoods = foodStorage.getFoodsByName(foodName);
             if (filteredFoods.size() == 0) {
                 throw new LifeTrackerException(System.lineSeparator() + "No food found with " + foodName);
@@ -86,7 +93,7 @@ public class AddMealCommand extends Command {
             System.out.println(System.lineSeparator() + "These are the food with " + foodName);
             System.out.println("Please select which food:");
             for (int i = 0; i < filteredFoods.size(); i++) {
-                System.out.printf("%d) %s" + System.lineSeparator(), i+1, filteredFoods.get(i).toString());
+                System.out.printf("%d) %s" + System.lineSeparator(), i + 1, filteredFoods.get(i).toString());
             }
 
             choice = ui.readInt();
@@ -94,16 +101,15 @@ public class AddMealCommand extends Command {
                 throw new InvalidIndexException(choice);
             }
 
-            foods.add(filteredFoods.get(choice-1));
+            foods.add(filteredFoods.get(choice - 1));
 
-            System.out.println(System.lineSeparator() +"Type 1 to add more food. Type any other number to quit");
+            System.out.println(System.lineSeparator() + "Type 1 to add more food. Type any other number to quit");
             choice = ui.readInt();
             if (choice != 1) {
                 toContinue = false;
             }
-            
-        } while (toContinue);
 
+        } while (toContinue);
     }
 
     private void parseCommand(GeneralUi ui, FoodStorage foodStorage) throws LifeTrackerException {

@@ -53,7 +53,6 @@ public class Meal implements Comparable<Meal> {
         this.identifier = identifier;
     }
 
-
     public void calculateTotalCalories() {
         for (Food food : foods) {
             this.totalCalories += food.getCalories();
