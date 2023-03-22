@@ -1,13 +1,39 @@
 # Developer Guide
 
+* Table of Contents
+{:toc}
+
 ## Acknowledgements
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
-## Design & implementation
+## Design
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### Architecture
+
+<p style="text-align:center">
+    <img src="images/ArchitectureDiagram.png" alt="Architecture Diagram">
+    <br />
+    <i>Figure 1: Sequence Diagram for Bye Command</i>
+</p>
+
+The **Architecture Diagram** given above explains the high-level design of the App. Given below is a quick overview of each component.
+
+**Main components of the architecture**
+
+[**`Main`**](https://github.com/AY2223S2-CS2113-T11-3/tp/blob/master/src/main/java/seedu/pettracker/Main.java) is responsible for,
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+The rest of the App consists of four components.
+
+* [**`Ui`**](): The UI of the App.
+* [**`Parser`**](): Parses the user input.
+* [**`Command`**](): The command executor.
+* [**`Data`**](): Holds the data of the App in memory.
+* [**`Storage`**](): Reads data from, and writes data to, the hard disk.
 
 ## Product scope
 ### Target user profile
