@@ -30,28 +30,28 @@ Afterwards, the ```execute()``` method will print ```"Income deleted, here is th
 
 ### Delete Income command
 
-### [Proposed] Edit Income/Expense Command
+### [Proposed] EditIncomeCommand/EditExpenseCommand
 The proposed edit income command is facilitated by `Parser`, `EditIncomeCommand`, `IncomeList`, while the proposed edit expense command is facilitated by `Parser`, `EditExpenseCommand` and `ExpenseList`. 
 
-Note that below highlights the implementation of the edit income command, whereby edit expense command follows a similar implementation.
+Note that below highlights the implementation of the edit income command, with edit expense command following the same implementation.
 
 Given below is how the edit income mechanism works at each step:
-1. The user types in the command for edit income with the necessary arguments given to indicate which income to edit and what fields to edit for said income record.
+1. The user types in the command for edit income with the necessary arguments given to indicate which income record to edit and what fields to edit for the chosen income record.
 2. The line inputted by the user will then be parsed by `Parser`, where it will check if the input contains a valid index with valid fields to edit. If they are valid, it will return `EditIncomeCommand`. Else it will throw a `ChChingException` indicating an error in the input from the user.
 3. `EditIncomeCommand` will then perform its `execute` method, where for each field to be edited, it will call `editIncome` method from the `ExpenseList` class. This would then update the required income record accordingly.
 
 The following sequence diagram shows how the edit income command works:
-<br>![edit income sequence diagram](../images/EditIncomeCommand_sequence_diagram.png)
+<br> ![edit income sequence diagram](../images/EditIncomeCommand_sequence_diagram.png)
 
 The edit expense command works in a similar way, with its sequence diagram as shown:
-<br>![edit expense sequence diagram](../images/EditExpenseCommand_sequqnce_diagram.png)
+<br> ![edit expense sequence diagram](../images/EditExpenseCommand_sequqnce_diagram.png)
 
 The following activity diagram summarises what happens when a user executes edit income command:
-<br>![edit income activity diagram](../images/EditIncomeCommand_activity_diagram.png)
-<br> Note that edit expense command has a similar activity diagram.
+<br> ![edit income activity diagram](../images/EditIncomeCommand_activity_diagram.png)
+<br> Note that edit expense command produces the same activity diagram.
 
-### Design Considerations
-The following are the design alternatives we considered for edit income/expense command:
+**Design Considerations**
+<br>The following are the design alternatives we considered for edit income/expense command:
 
 * **Alternative 1 (current choice):** Edit only the specific fields indicated in the input arguments.
     * Pros: Easier for the user to input an edit.
