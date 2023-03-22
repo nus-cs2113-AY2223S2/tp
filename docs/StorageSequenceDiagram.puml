@@ -3,9 +3,56 @@
 
 autonumber
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+title Step 1
+Main -> controller:ToDoListManager:ToDoListManager()
+controller -> ui:Ui:printWelcomeMessage()
+controller -> storage:Storage:isNewSave()
+controller -> storage:loadData()
+controller <-- storage:taskList
+controller -> ui:printLoadSaveMessage(taskList.size())
+Main -> controller:run()
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+newpage
+title Step 2
+controller -> ui:getUserInput()
+controller <-- ui:inputCommand
+controller -> parser:Parser:parseCommand(inputCommand)
+parser -> ListTasksCommand:ListTasksCommand()
+controller <-- parser:command
+controller -> ListTasksCommand:execute(taskList,ui)
+ListTasksCommand -> taskList:TaskList:sortByDeadline()
+ListTasksCommand -> ui:printTaskList(taskList.size(), taskList.toString())
+controller -> storage:saveData(taskList)
+controller -> ListTasksCommand:shouldExit()
+controller <-- ListTasksCommand:isRunning
+
+newpage
+title Step 3
+controller -> ui:getUserInput()
+controller <-- ui:inputCommand
+controller -> parser:Parser:parseCommand(inputCommand)
+parser -> AddTaskCommand:AddTaskCommand(getArguments(splitInput, AddTaskCommand.FLAGS))
+controller <-- parser:command
+controller -> AddTaskCommand:execute(taskList,ui)
+AddTaskCommand -> taskList:addTask(new Task(description,deadline))
+AddTaskCommand <-- taskList:taskString
+AddTaskCommand -> ui:printAddTaskMessage(taskString)
+controller -> storage:saveData(taskList)
+controller -> AddTaskCommand:shouldExit()
+controller <-- AddTaskCommand:isRunning
+
+newpage
+title Step 4
+controller -> ui:getUserInput()
+controller <-- ui:inputCommand
+controller -> parser:Parser:parseCommand(inputCommand)
+parser -> ExitCommand
+controller <-- parser:command
+controller -> ExitCommand:execute(taskList,ui)
+ExitCommand -> ui:printGoodbyeMessage()
+controller -> storage:saveData(taskList)
+controller -> ExitCommand:shouldExit()
+controller <-- ExitCommand:isRunning
+controller -> ui:close()
+Main <-- controller
 @enduml
