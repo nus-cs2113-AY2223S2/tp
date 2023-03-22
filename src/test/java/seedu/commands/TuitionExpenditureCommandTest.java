@@ -25,7 +25,7 @@ class TuitionExpenditureCommandTest {
     }
 
     @Test
-    public void test_tuitionExpenditureCommand_execute_withExpendituresAlreadyInList() {
+    public void test_tuitionExpenditureCommand_executeWithExpendituresAlreadyInList() {
         testExpenditures.addExpenditure(new AcademicExpenditure("laptop",
                 1500,
                 LocalDate.parse("2021-08-01")));

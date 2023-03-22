@@ -24,7 +24,7 @@ public class AccommodationExpenditureCommandTest {
     }
 
     @Test
-    public void test_accommodationExpenditureCommand_execute_withExpendituresAlreadyInList() {
+    public void test_accommodationExpenditureCommand_executeWithExpendituresAlreadyInList() {
         testExpenditures.addExpenditure(new AcademicExpenditure("laptop",
                 1500,
                 LocalDate.parse("2021-08-01")));

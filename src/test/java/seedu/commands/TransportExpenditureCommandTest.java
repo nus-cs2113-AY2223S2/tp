@@ -25,7 +25,7 @@ class TransportExpenditureCommandTest {
     }
 
     @Test
-    public void test_transportExpenditureCommand_execute_withExpendituresAlreadyInList() {
+    public void test_transportExpenditureCommand_executeWithExpendituresAlreadyInList() {
         testExpenditures.addExpenditure(new AcademicExpenditure("laptop",
                 1500,
                 LocalDate.parse("2021-08-01")));
@@ -40,4 +40,5 @@ class TransportExpenditureCommandTest {
                         "2. [Transport] || Date: 2023-03-21 || Value: 2.1 || Description: MRT",
                 testExpenditures.toString());
     }
+
 }

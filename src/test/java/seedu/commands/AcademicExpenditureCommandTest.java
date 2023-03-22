@@ -23,7 +23,7 @@ public class AcademicExpenditureCommandTest {
     }
 
     @Test
-    public void test_academicExpenditureCommand_execute_withExpendituresAlreadyInList() {
+    public void test_academicExpenditureCommand_executeWithExpendituresAlreadyInList() {
         testExpenditures.addExpenditure(new AcademicExpenditure("laptop",
                 1500,
                 LocalDate.parse("2021-08-01")));
