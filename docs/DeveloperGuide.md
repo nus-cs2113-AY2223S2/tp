@@ -6,7 +6,6 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 2. [Design & Implementation](#design--implementation)
     1. [Ingredient Class](#Ingredient-Class)
        1. [Add and Remove Command](#add-and-remove-command)
-       2. [Remove Command](#remove-command)
 3. [Product Scope](#product-scope)
     1. [Target User Profile](#target-user-profile)
     2. [Value Proposition](#value-proposition)
