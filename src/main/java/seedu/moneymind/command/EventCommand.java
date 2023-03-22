@@ -23,22 +23,29 @@ import static seedu.moneymind.string.Strings.BACK;
  */
 public class EventCommand implements Command {
     private String eventName;
-    private int budget;
+    private String time;
     private int expense;
 
     /**
      * Constructor for EventCommand.
      *
      * @param eventName The name of the event.
-     * @param budget The budget of the event.
      * @param expense The expense of the event.
+     * @param time The time of the event.
      */
-    public EventCommand(String eventName, int budget, int expense) {
+    public EventCommand(String eventName, int expense, String time) {
         this.eventName = eventName;
-        this.budget = budget;
         this.expense = expense;
+        this.time = time;
         assert eventName != null : NULL_EVENT_ASSERTION;
-        assert budget >= 0 : NON_NEGATIVE_BUDGET_ASSERTION;
+        assert expense >= 0 : NON_NEGATIVE_EXPENSE_ASSERTION;
+    }
+
+    public EventCommand(String eventName, int expense) {
+        this.eventName = eventName;
+        this.expense = expense;
+        this.time = "";
+        assert eventName != null : NULL_EVENT_ASSERTION;
         assert expense >= 0 : NON_NEGATIVE_EXPENSE_ASSERTION;
     }
 
@@ -62,7 +69,11 @@ public class EventCommand implements Command {
         try {
             int categoryPosition = Integer.parseInt(userInput);
             testCategoryNumber(categoryPosition);
-            addEventToCategory(categoryPosition, new Event(eventName, budget, expense));
+            if (time == "") {
+                addEventToCategory(categoryPosition, new Event(eventName, expense));
+            } else {
+                addEventToCategory(categoryPosition, new Event(eventName, expense, time));
+            }
             return true;
         } catch (NumberFormatException e) {
             System.out.println(REMINDING_MESSAGE_TO_GIVE_A_NUMBER);
@@ -88,7 +99,6 @@ public class EventCommand implements Command {
 
     @Override
     public void execute(Ui ui) {
-        Event event = new Event(eventName, budget, expense);
         System.out.println(SELECTING_CATEGORY_MESSAGE);
         String userInput;
         userInput = Moneymind.in.nextLine();

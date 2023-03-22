@@ -54,12 +54,16 @@ public class Strings {
             "inside the brackets empty!";
     public static final String EMPTY_DELETION = "☹ OOPS!!! The description of a delete cannot be empty.";
     public static final String SUBTLE_BUG_MESSAGE = "☹ OOPS!!! Something went wrong, please report to the developer.";
-    public static final String EVENT_REGEX = "(.+) b/(-?\\d+) e/(-?\\d+)";
+    public static final String EVENT_REGEX = "^(?<name>.*?) e\\/(?<expense>.*?)(?: +t\\/(?<time>.*))?$";
+    public static final String CATEGORY_REGEX = "^(?<name>.*?)(?:\\s+b\\/(?<budget>\\S+))?$";
+    public static final String EDIT_REGEX = "c\\/(.+) e\\/(.+)";
+    public static final String DELETE_REGEX = "^c/(?=\\S)(.*?)(?:\\s+e/(.*))?\\s*$";
     public static final String EVENT_FORMAT = "Please following the correct format: " +
             "event <event name> b/<budget number> e/<expense number>";
+    public static final String CATEGORY_FORMAT = "Please following the correct format: " +
+            "category <category name> b/<budget number> or category <category name>";
     public static final String EVENT_EMPTY = "☹ OOPS!!! The description of an event cannot be empty.";
     public static final String CATEGORY_EMPTY = "☹ OOPS!!! The description of a category cannot be empty.";
-    public static final String DELETE_REGEX = "^c/(?=\\S)(.*?)(?:\\s+e/(.*))?\\s*$";
     public static final String NULL_INPUT_ASSERTION = "Input cannot be null";
     public static final String NULL_DESCRIPTION = "Separated keyword and description cannot be null";
     public static final String REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER =

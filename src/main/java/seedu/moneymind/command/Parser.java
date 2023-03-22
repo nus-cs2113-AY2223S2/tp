@@ -6,28 +6,7 @@ import java.util.regex.Pattern;
 import seedu.moneymind.exceptions.InvalidCommandException;
 import seedu.moneymind.exceptions.NegativeNumberException;
 
-
-import static seedu.moneymind.string.Strings.WHITE_SPACE;
-import static seedu.moneymind.string.Strings.BYE;
-import static seedu.moneymind.string.Strings.HELP;
-import static seedu.moneymind.string.Strings.VIEW;
-import static seedu.moneymind.string.Strings.DELETE;
-import static seedu.moneymind.string.Strings.EVENT;
-import static seedu.moneymind.string.Strings.CATEGORY;
-import static seedu.moneymind.string.Strings.SEARCH;
-import static seedu.moneymind.string.Strings.INVALID_INPUT;
-import static seedu.moneymind.string.Strings.DELETE_FORMAT;
-import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY;
-import static seedu.moneymind.string.Strings.SUBTLE_BUG_MESSAGE;
-import static seedu.moneymind.string.Strings.EVENT_REGEX;
-import static seedu.moneymind.string.Strings.EVENT_FORMAT;
-import static seedu.moneymind.string.Strings.EVENT_EMPTY;
-import static seedu.moneymind.string.Strings.CATEGORY_EMPTY;
-import static seedu.moneymind.string.Strings.NULL_INPUT_ASSERTION;
-import static seedu.moneymind.string.Strings.NULL_DESCRIPTION;
-import static seedu.moneymind.string.Strings.DELETE_REGEX;
-import static seedu.moneymind.string.Strings.EMPTY_DELETION;
-import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER;
+import static seedu.moneymind.string.Strings.*;
 
 /**
  * A class to parse the user input.
@@ -57,6 +36,8 @@ public class Parser {
             return createCategoryCommand(separatedKeywordAndDescription);
         case SEARCH:
             return createSearchCommand(separatedKeywordAndDescription);
+        case "edit":
+            return createEditCommand(separatedKeywordAndDescription);
         default:
             throw new InvalidCommandException(INVALID_INPUT);
         }
@@ -98,17 +79,26 @@ public class Parser {
             throw new InvalidCommandException(EMPTY_DELETION);
         }
         Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
-        if (matcher.find()) {
-            String categoryName = matcher.group(1);
-            String eventName = matcher.group(2);
-            if (eventName == null) {
-                return new DeleteCommand(categoryName);
-            } else if (eventName.isEmpty()) {
+        try {
+            if (matcher.find()) {
+                String categoryName = matcher.group(1);
+                if (matcher.group(2) == null) {
+                    return new DeleteCommand(categoryName);
+                }
+                int eventIndex = Integer.parseInt(matcher.group(2));
+                checkNegative(eventIndex - 1);
+                return new DeleteCommand(categoryName, eventIndex - 1);
+            } else {
                 throw new InvalidCommandException(DELETE_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
             }
-            return new DeleteCommand(categoryName, eventName);
-        } else {
+        } catch (NumberFormatException error) {
+            throw new InvalidCommandException("Please give a positive integer for event index");
+        } catch (NegativeNumberException error) {
+            throw new InvalidCommandException("Please give a positive integer for event index");
+        } catch (InvalidCommandException error) {
             throw new InvalidCommandException(DELETE_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
+        } catch (Exception error) {
+            throw new InvalidCommandException(SUBTLE_BUG_MESSAGE);
         }
     }
 
@@ -118,17 +108,22 @@ public class Parser {
             Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
             if (matcher.find()) {
                 String eventName = matcher.group(1);
-                String budgetNumber = matcher.group(2);
-                String expenseNumber = matcher.group(3);
-                checkNegativeBudgetAndExpense(Integer.parseInt(budgetNumber), Integer.parseInt(expenseNumber));
-                return new EventCommand(eventName, Integer.parseInt(budgetNumber), Integer.parseInt(expenseNumber));
+                int expenseNumber = Integer.parseInt(matcher.group(2));
+                String time = matcher.group(3);
+                checkNegative(expenseNumber);
+                if (matcher.group(3) == null) {
+                    return new EventCommand(eventName, expenseNumber);
+                }
+                return new EventCommand(eventName, expenseNumber, time);
             } else {
                 throw new InvalidCommandException("");
             }
         } catch (IndexOutOfBoundsException error) {
             throw new InvalidCommandException(EVENT_EMPTY);
         }  catch (NegativeNumberException error) {
-            throw new InvalidCommandException(REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER);
+            throw new InvalidCommandException("Please give a positive integer for expense");
+        } catch (NumberFormatException error) {
+            throw new InvalidCommandException("Please give a positive integer for expense");
         } catch (InvalidCommandException error) {
             throw new InvalidCommandException(EVENT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
         } catch (Exception error) {
@@ -136,17 +131,62 @@ public class Parser {
         }
     }
 
-    private void checkNegativeBudgetAndExpense(int budget, int expense) throws NegativeNumberException {
-        if (budget < 0 || expense < 0) {
+    private Command createEditCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
+        Pattern pattern = Pattern.compile(EDIT_REGEX);
+        try {
+            Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
+            if (matcher.find()) {
+                String categoryName = matcher.group(1);
+                int eventIndex = Integer.parseInt(matcher.group(2));
+                checkNegative(eventIndex - 1);
+                return new EditCommand(categoryName, eventIndex - 1);
+            } else {
+                throw new InvalidCommandException("");
+            }
+        } catch (IndexOutOfBoundsException error) {
+            throw new InvalidCommandException("OOPS!!! The description of a edit cannot be empty.");
+        }  catch (NegativeNumberException error) {
+            throw new InvalidCommandException("Please give a positive integer for expense");
+        } catch (NumberFormatException error) {
+            throw new InvalidCommandException("Please give a positive integer for expense");
+        } catch (InvalidCommandException error) {
+            throw new InvalidCommandException("wrong format for edit" + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
+        } catch (Exception error) {
+            throw new InvalidCommandException(SUBTLE_BUG_MESSAGE);
+        }
+    }
+
+    private void checkNegative(int number) throws NegativeNumberException {
+        if (number < 0) {
             throw new NegativeNumberException();
         }
     }
 
     private Command createCategoryCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
+        Pattern pattern = Pattern.compile(CATEGORY_REGEX);
         try {
-            return new CategoryCommand(separatedKeywordAndDescription[1]);
+            Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
+            if (matcher.find()) {
+                String categoryName = matcher.group(1);
+                if (matcher.group(2) == null) {
+                    return new CategoryCommand(categoryName, 0);
+                }
+                int budget = Integer.parseInt(matcher.group(2));
+                checkNegative(budget);
+                return new CategoryCommand(categoryName, budget);
+            } else {
+                throw new InvalidCommandException("");
+            }
         } catch (IndexOutOfBoundsException error) {
             throw new InvalidCommandException(CATEGORY_EMPTY);
+        } catch (NegativeNumberException error) {
+            throw new InvalidCommandException("Please give a positive integer for budget");
+        } catch (NumberFormatException error) {
+            throw new InvalidCommandException("Please give a positive integer for budget");
+        } catch (InvalidCommandException error) {
+            throw new InvalidCommandException(CATEGORY_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
+        } catch (Exception error) {
+            throw new InvalidCommandException(SUBTLE_BUG_MESSAGE);
         }
     }
 

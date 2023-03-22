@@ -14,14 +14,16 @@ import java.util.HashMap;
 public class CategoryCommand implements Command {
     public static HashMap<String, Integer> categoryMap = new HashMap<String, Integer>();
     private final String name;
+    private int budget;
 
     /**
      * Constructs a new CategoryCommand object and adds the category.
      *
      * @param name the name of the category
      */
-    public CategoryCommand(String name) {
+    public CategoryCommand(String name, int budget) {
         this.name = name;
+        this.budget = budget;
     }
 
     /**
@@ -33,7 +35,12 @@ public class CategoryCommand implements Command {
             System.out.println(Strings.EXISTED_CATEGORY);
             return;
         }
-        Category category = new Category(name);
+        Category category;
+        if (budget == 0) {
+            category = new Category(name);
+        } else {
+            category = new Category(name, budget);
+        }
         CategoryList.categories.add(category);
         categoryMap.put(name, CategoryList.categories.size() - 1);
         System.out.println("New category added: " + name);

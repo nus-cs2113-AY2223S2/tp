@@ -15,7 +15,7 @@ public class DeleteCommand implements Command {
     public static final String NULL_CATEGORY_ASSERTION = "Category name should not be null";
     public static final String NULL_EVENT_ASSERTION = "Event name should not be null";
     private String categoryName;
-    private String eventName;
+    private int eventIndex;
     private boolean isEvent;
 
     /**
@@ -24,11 +24,10 @@ public class DeleteCommand implements Command {
      * @param categoryName the name of the category
      * @param eventName    the name of the event
      */
-    public DeleteCommand(String categoryName, String eventName) {
+    public DeleteCommand(String categoryName, int eventIndex) {
         this.categoryName = categoryName;
-        this.eventName = eventName;
+        this.eventIndex = eventIndex;
         assert categoryName != null : NULL_CATEGORY_ASSERTION;
-        assert eventName != null : NULL_EVENT_ASSERTION;
         this.isEvent = true;
     }
 
@@ -47,26 +46,19 @@ public class DeleteCommand implements Command {
      * Deletes the event.
      */
     private void deleteEvent() {
-        boolean isEventDeleted = false;
         if (CategoryCommand.categoryMap.get(categoryName) == null) {
             System.out.println(NO_CATEGORY_MESSAGE);
             return;
         }
         int categoryIndex = CategoryCommand.categoryMap.get(categoryName);
         Category category = CategoryList.categories.get(categoryIndex);
-        int eventIndex = 0;
-        while (eventIndex < category.getEvents().size()) {
-            if (category.getEvents().get(eventIndex).getDescription().equals(eventName)) {
-                category.getEvents().remove(eventIndex);
-                System.out.println(EVENT_DELETION_MESSAGE + eventName);
-                isEventDeleted = true;
-                --eventIndex;
-            }
-            ++eventIndex;
-        }
-        if (!isEventDeleted) {
+        if (eventIndex >= category.getEvents().size()) {
             System.out.println(NON_EXISTENT_EVENT);
+            return;
         }
+        String eventName = category.getEvents().get(eventIndex).getDescription();
+        category.getEvents().remove(eventIndex);
+        System.out.println(EVENT_DELETION_MESSAGE + eventName);
     }
 
     /**
