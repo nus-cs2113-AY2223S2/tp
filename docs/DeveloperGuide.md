@@ -8,6 +8,80 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### Storage component
+
+The Storage component can save the task list as TaskList objects in a .txt file format using Serialization and read it back into a TaskList object.
+
+### Storage feature
+
+#### Implementation
+
+The storage feature is facilitated by the `Storage` class.
+
+The Storage class implements the following operations:
+* `Storage#saveData(TaskList)` --- Saves the current task list.
+* `Storage#loadData()` --- Loads a task list from the previously saved file, if there is one.
+
+Given below is an example usage scenario and how the Storage mechanism behaves at each step.
+
+Step 1. The user launches the application (not for the first time). The program loads the previously saved task list 
+data as there is a saved file `'./data.txt'` that Storage can find.
+
+Step 2. The user executes `list` command to list the tasks and finds that there are tasks in the task list, as expected.
+`ToDoListManager` calls `storage#saveData(taskList)`, so the task list is saved into `'./data.txt'`.
+
+Step 3. The user executes `add cg2023 assignment -d 18/12/2023` command to add a task to the task list. 
+`ToDoListManager` calls `storage#saveData(taskList)`, so the task list is saved into `'./data.txt'`.
+
+Step 4. The user executes `exit` command and exits the program. `ToDoListManager` calls `storage#saveData(taskList)`, 
+so the task list is saved into `'./data.txt'` again before the program exits.
+
+#### Design considerations:
+* <b>Alternative 1</b>: Save task list as a self-formatted .txt file which can be printed and used as a physical task list.
+    * Pros: Can get a physical task list to use.
+    * Cons: Difficult to maintain as Storage class has to be updated whenever more fields are added to Task class. For
+          example, if we add a "tag" field to Task, the formatting for the saved .txt file has to be updated to reflect
+          that change.
+* <b>Alternative 2</b>: Append rather than overwrite when saving the task list.
+    * Pros: Will likely be able to save the task list much faster.
+    * Cons: Difficult to implement, especially when considering the current mark task operation.
+* <b>Alternative 3 (current choice)</b>: Save task list as a Serializable TaskList object in a .txt file. 
+
+    * Pros: Easy to implement and easy to maintain as Storage class does not have to be updated whenever new fields are 
+            added to Task class. Do not need to consider whether we use append or overwrite when saving task list as it is 
+            irrelevant when using this implementation.
+    * Cons: No physical task list to use as the saved .txt file is practically unreadable.
+
+* <b>Main reasons for choosing Alternative 3: It is much easier to implement and maintain than the other 2 alternatives and
+we found that the lack of a physical task list to use is not a very significant issue.</b>
+
+
+### [Proposed] History feature
+#### Proposed Implementation
+The proposed history feature is facilitated by the `Storage`, `TaskList` and `Command` classes. Internally, there will be 2 
+task lists stored - `completedTasks` and `uncompletedTasks`. There will be a rework to how marking tasks as done works, a 
+removal of the operation `TaskList#setDone()` and a new command for users to input to the CLI: `history`.
+
+There will be 2 new operations:
+* `TaskList#markTask(index i)` - Moves the task at index i of `uncompletedTasks` to `completedTasks`.  
+* `TaskList#unmarkTask(index i)` - Moves the task at index i of `completedTasks` to `uncompletedTasks`.
+
+Given below is an example usage scenario and how the history mechanism works.
+
+Step 1. The user launches the application for the first time. Both `completedTasks` and `uncompletedTasks` are empty.
+
+Step 2. The user executes `add cg2023 assignment -d 18/12/2023` command to add a task that (s)he has to complete. The
+`add` command causes the task to be added to `uncompletedTasks`.
+
+Step 3. The user executes `mark` command to mark a task that (s)he has completed. The `mark` command causes the task to
+be added to `completedTasks` and removed from `uncompletedTasks`.
+
+Step 4. The user executes `list` command to see what tasks (s)he has still not completed. The `list` command causes the 
+tasks in `uncompletedTasks` to be listed for the user to see.
+
+Step 5. The user executes `history` command to see what tasks (s)he has already completed. The `history` command causes 
+the tasks in `completedTasks` to be listed for the user to see.
+ 
 
 ## Product scope
 ### Target user profile
@@ -43,7 +117,7 @@ bring an application to keep you aware of your deadlines and not miss them.
 |v2.0|user|set a task to repeat|create 1 task to represent repeating tasks every week|
 |v2.0|user|set priority level and can sort the tasks based on the priority level|can identify high priority tasks|
 |v2.0|user|see a progress bar|able to track my progress|
-|v2.0|user|view up to 10 previously completed tasks tied with the completion date and time|
+|v2.0|user|view previously completed tasks tied with the completion date and time|
 
 
 ## Non-Functional Requirements
