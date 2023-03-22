@@ -23,6 +23,22 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+
+### Storage
+
+The Storage class handles the loading and storing of information into a single text file in the User's computer.
+During the initialisation of the Storage class, which is at the start of the program, loading of data occurs.
+From here on, querying of the Storage class is allowed, where modules saved by the user can be accessed through
+the ListCurrentCommand. There are only two commands that  will cause changes to the text file. They are the AddCommand 
+and DeleteCommand. This involves adding of new modules and deleting of old modules to the Storage. The text file will 
+be continuously updated every time an Add or Delete command is called.
+
+How module data is stored in text file:
+
+Module information is stored in one single line separated by commas
+`univID`,`moduleCode`,`moduleName`,`moduleMCs`,`nusModuleCode`,`nusModuleName`,`nusModuleMcs`
+
+
 ### Help Command
 The help command provides a list of commands and the commands' respective input format for the user.  
 
