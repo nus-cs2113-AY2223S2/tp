@@ -2,20 +2,12 @@ package seedu.duke.ui;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
-import seedu.duke.exercisegenerator.GenerateExercise;
-import seedu.duke.exersisedata.ExerciseData;
-import seedu.duke.ui.Ui;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class TestUi {
     /**
-     *
+     * Checks if the ui.splitLine() method prints the correct output.
      */
     @Test
     void testSplitLine() {
@@ -36,6 +28,9 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    /**
+     * Checks if the ui.printFilters() method prints the correct output.
+     */
     @Test
     void testPrintFiltersAvailable() {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
@@ -75,6 +70,9 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    /**
+     * Checks if the ui.unknownCommand() method prints the correct output.
+     */
     @Test
     void testUnknownCommand() {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
@@ -94,6 +92,9 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    /**
+     * Checks if the ui.printHelp() method prints the correct output.
+     */
     @Test
     void testPrintHelp() {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
@@ -131,6 +132,9 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    /**
+     * Checks if the ui.greetUser() method prints the correct output.
+     */
     @Test
     void testGreetUser() {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
@@ -162,6 +166,9 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    /**
+     * Checks if the ui.byeUser() method prints the correct output.
+     */
     @Test
     void testByeUser() {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
@@ -199,6 +206,7 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    //To be completed
     /*@Test
     void testPrintExerciseFromList() {
         String OPEN_BRACE = "[";
