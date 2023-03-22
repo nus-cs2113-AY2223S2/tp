@@ -24,7 +24,6 @@ import seedu.brokeMan.exception.IndexNotAnIntegerException;
 import seedu.brokeMan.exception.NegativeBudgetException;
 import seedu.brokeMan.exception.hasNotSetBudgetException;
 
-import java.nio.channels.IllegalChannelGroupException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
@@ -55,9 +54,9 @@ public class Parser {
         case AddIncomeCommand.COMMAND_WORD:
             return prepareAddCommand(description, "income");
         case ListExpenseCommand.COMMAND_WORD:
-            return prepareListCommand("expense");
+            return prepareListCommand("expense", description);
         case ListIncomeCommand.COMMAND_WORD:
-            return prepareListCommand("income");
+            return prepareListCommand("income", description);
         case EditExpenseCommand.COMMAND_WORD:
             return prepareEditCommand(description, "expense");
         case EditIncomeCommand.COMMAND_WORD:
@@ -69,7 +68,7 @@ public class Parser {
         case SetBudgetCommand.COMMAND_WORD:
             return prepareSetBudgetCommand(description);
         case ViewBudgetCommand.COMMAND_WORD:
-            return prepareViewBudgetCommand();
+            return prepareViewBudgetCommand(description);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case SortExpenseByAmountCommand.COMMAND_WORD:
@@ -86,11 +85,18 @@ public class Parser {
         }
     }
 
-    private static Command prepareViewBudgetCommand() {
+    private static Command prepareViewBudgetCommand(String description) {
         try {
-            return new ViewBudgetCommand();
+            if (description.equals("dummy")) {
+                return new ViewBudgetCommand();
+            }
+            if (!description.substring(0, 3).equals("t/ ")) {
+                return new InvalidCommand("Invalid date format!", ViewBudgetCommand.MESSAGE_USAGE);
+            }
+            description = description.substring(3);
+            return new ViewBudgetCommand(description);
         } catch (hasNotSetBudgetException e) {
-            return new InvalidCommand(e.getMessage(), SetBudgetCommand.MESSAGE_USAGE);
+            return new InvalidCommand(e.getMessage(), ViewBudgetCommand.MESSAGE_USAGE);
         }
     }
 
@@ -188,11 +194,17 @@ public class Parser {
         return new AddIncomeCommand(amount, newDescription, time);
     }
 
-    private static Command prepareListCommand(String type) {
-        if (type.equals("expense")) {
-            return new ListExpenseCommand();
+    private static Command prepareListCommand(String type, String description) {
+        if (!description.equals("dummy") && !description.contains("t/ ")) {
+            String messageUsage = (type.equals("expense") ? ListExpenseCommand.MESSAGE_USAGE :
+                    ListIncomeCommand.MESSAGE_USAGE);
+            return new InvalidCommand("Incorrect date format provided", messageUsage);
         }
-        return new ListIncomeCommand();
+        String date = description.substring(3);
+        if (!description.equals("dummy")) {
+            return (type.equals("expense") ? new ListExpenseCommand(date) : new ListIncomeCommand(date));
+        }
+        return (type.equals("expense") ? new ListExpenseCommand() : new ListIncomeCommand());
     }
 
     private static Command prepareEditCommand(String description, String moneyType) {

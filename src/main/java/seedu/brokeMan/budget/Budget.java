@@ -1,13 +1,18 @@
 package seedu.brokeMan.budget;
 
+import seedu.brokeMan.entry.Entry;
+import seedu.brokeMan.entry.EntryList;
+import seedu.brokeMan.parser.StringToTime;
 import seedu.brokeMan.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
-import static seedu.brokeMan.entry.ExpenseList.getTotalExpense;
+import static seedu.brokeMan.entry.ExpenseList.getExpensesMadeInMonth;
+import static seedu.brokeMan.parser.StringToTime.createDateString;
 
 public class Budget {
     private static HashMap<Integer, HashMap<Month, Double>> budgetEachMonth = new HashMap<>();
@@ -18,20 +23,24 @@ public class Budget {
         budget2022.put(Month.of(11), 1000.0);
         budget2022.put(Month.of(12), 1200.0);
         HashMap<Month, Double> budget2023 = new HashMap<>();
-        budget2022.put(Month.of(1), 1400.0);
-        budget2022.put(Month.of(2), 1600.0);
-        budget2022.put(Month.of(3), 1800.0);
+        budget2023.put(Month.of(1), 1400.0);
+        budget2023.put(Month.of(2), 1600.0);
+        budget2023.put(Month.of(3), 1800.0);
         budgetEachMonth.put(2023, budget2023);
         budgetEachMonth.put(2022, budget2022);
     }
 
-    public static void viewBudget() {
-        viewBudgetOfMonth(LocalDate.now().getYear(), LocalDate.now().getMonth());
+    public static void viewBudget(Optional<String> dateInString) {
+        int year = StringToTime.createYearFromString(dateInString);
+        Month month = StringToTime.createMonthFromString(dateInString);
+
+        viewBudgetOfMonth(year, month);
     }
 
     public static void viewBudgetOfMonth(int yearOfInterest, Month monthOfInterest) {
         try {
-            double totalExpenses = getTotalExpense();
+            List<Entry> expensesInMonth = getExpensesMadeInMonth(yearOfInterest, monthOfInterest);
+            double totalExpenses = EntryList.getEntryListSum(expensesInMonth);
             double budgetThisMonth = budgetEachMonth.get(yearOfInterest).get(monthOfInterest);
             double budgetLeft = budgetThisMonth - totalExpenses;
             Ui.showToUser(String.format("You have set your budget as %.2f for %s",
@@ -57,25 +66,19 @@ public class Budget {
     }
 
     public static void setBudget(double budgetAmount, Optional<String> dateInString) {
-        LocalDate today = LocalDate.now();
-        int year = today.getYear();
-        Month month = today.getMonth();
-
-        if (dateInString.isPresent()) {
-            String[] yearAndMonth = dateInString.get().split("/");
-            year = Integer.parseInt(yearAndMonth[0]);
-            month = Month.of(Integer.parseInt(yearAndMonth[1]));
-        }
+        int year = StringToTime.createYearFromString(dateInString);
+        Month month = StringToTime.createMonthFromString(dateInString);
 
         if (!budgetEachMonth.containsKey(year)) {
             budgetEachMonth.put(year, new HashMap<>());
         }
         budgetEachMonth.get(year).put(month, budgetAmount);
         Ui.showToUserWithLineBreak(String.format("You have successfully set %.2f as your budget for %s",
-                        budgetAmount, createDateString(year, month)), "");
+                        budgetAmount, StringToTime.createDateString(year, month)), "");
     }
 
-    private static String createDateString(int year, Month month) {
-        return Integer.toString(year) + "/" + month.toString();
-    }
+
+
+
+
 }

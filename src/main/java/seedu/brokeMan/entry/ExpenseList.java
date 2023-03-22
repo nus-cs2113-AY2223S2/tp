@@ -1,9 +1,14 @@
 package seedu.brokeMan.entry;
 
+import seedu.brokeMan.parser.StringToTime;
 import seedu.brokeMan.ui.Ui;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 
 public class ExpenseList extends EntryList {
     private static final LinkedList<Entry> expenseList = new LinkedList<>();
@@ -21,15 +26,18 @@ public class ExpenseList extends EntryList {
     /**
      * lists out expenses in the list
      */
-    public static void listExpense() {
-        Ui.showToUser("Here are the expenses you have made.");
-        listEntry(expenseList);
-        Ui.showToUser("Total expenses: $" + getTotalAmount(expenseList));
-        Ui.showToUserWithLineBreak("");
-    }
 
-    public static double getTotalExpense() {
-        return getTotalAmount(expenseList);
+    public static void listExpense(Optional<String> date) {
+        int year = StringToTime.createYearFromString(date);
+        Month month = StringToTime.createMonthFromString(date);
+
+        List<Entry> expenseOfDate = getExpensesMadeInMonth(year, month);
+        String dateInString = StringToTime.createDateString(year, month);
+
+        Ui.showToUser("Here are the expenses you have made for " + dateInString + ".");
+        listEntry(expenseOfDate);
+        Ui.showToUser("Total expenses: $" + getEntryListSum(expenseOfDate));
+        Ui.showToUserWithLineBreak("");
     }
 
     /**
@@ -70,5 +78,7 @@ public class ExpenseList extends EntryList {
         sortEntriesByDate(expenseList);
     }
 
-
+    public static List<Entry> getExpensesMadeInMonth(int year, Month month) {
+        return selectEntryForDate(year, month, expenseList);
+    }
 }
