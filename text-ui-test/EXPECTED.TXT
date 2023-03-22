@@ -1,12 +1,23 @@
-No save file was found. Creating a new list and save file 'data.txt' for you to use.
-Hello, I am Duke and I will help you remember the tasks you need to do!
-For now, you can do the following:
-Add a task using: add <description> -d <deadline>
-List all tasks using: list
-Delete a task using: delete <index>
-Mark a task as done using: mark <index>
-Mark a task as undone using: unmark <index>
-Edit a task deadline using: edit <index> -d <deadline>
-Exit the program using: exit
-
+Hello, I am your todo list and I will help you remember the tasks you need to do!
+No save data found, creating a new task list for you!
+Okay, I have added this task:
+[ ] do math homework, due: 20 Apr 2023 23:59
+Okay, I have added this task:
+[ ] laundry, due: 18 Apr 2023 16:30
+Okay, here are the tasks in your list: 2 tasks found.
+1. [ ] laundry, due: 18 Apr 2023 16:30
+2. [ ] do math homework, due: 20 Apr 2023 23:59
+Okay, I have marked this task as complete:
+[X] laundry, due: 18 Apr 2023 16:30
+Okay, I've removed this task:
+[ ] do math homework, due: 20 Apr 2023 23:59
+Okay, here are the tasks in your list: 1 task found.
+1. [X] laundry, due: 18 Apr 2023 16:30
+You need to provide a valid command.
+You need to provide a valid index number.
+You need to provide a date in a valid format, such as dd-mm-yyyy hh:mm.
+Okay, I have edited the parameters of this task:
+[X] laundry, due: 30 Apr 2023 08:45
+Okay, here are the tasks in your list: 1 task found.
+1. [X] laundry, due: 30 Apr 2023 08:45
 See you again, bye!
