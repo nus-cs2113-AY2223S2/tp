@@ -6,6 +6,8 @@
 
 ## Design & implementation
 
+This section describes how Duck is implemented and how its commands are executed.
+
 ### SchoolClass Feature
 
 **Implementation**
