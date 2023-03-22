@@ -2,6 +2,10 @@ package chching.record;
 
 import java.util.ArrayList;
 
+
+/**
+ * Models an abstract class that act as a template for ExpenseList and IncomeList.
+ */
 public abstract class RecordList {
 
     protected ArrayList<Record> recordList = new ArrayList<>();
@@ -20,12 +24,24 @@ public abstract class RecordList {
         return recordList.size();
     }
 
+    /**
+     * Gets the balance of the list
+     *
+     * return balance
+     */
+
     public double getBalance(){
         for(int i = 0; i < getRecordCount(); i++){
             balance += this.recordList.get(i).value;
         }
         return balance;
     }
+
+    /**
+     * Adds record to a list
+     *
+     * @param record A record
+     */
 
     public void addRecord(Record record) {
         recordList.add(record);

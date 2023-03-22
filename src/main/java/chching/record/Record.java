@@ -1,15 +1,25 @@
 package chching.record;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 // Abstract class that will not be initialized as an object
+/**
+ * Models an abstract class that act as a template for Expense and Income
+ */
 public abstract class Record {
     protected String description;
-    protected String date;
+    protected LocalDate date;
     protected double value;
 
-    public Record(){
-    }
-
-    public Record(String description, String date, double value) {
+    /**
+     * Constructor template for Expense and Income classes
+     *
+     * @param description       String description
+     * @param date      String of the date
+     * @param value        value of the income/expense
+     */
+    public Record(String description, LocalDate date, double value) {
         this.description = description;
         this.date = date;
         this.value = value;
@@ -24,8 +34,13 @@ public abstract class Record {
         return description;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
+    }
+
+    public String getDateString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-uuuu");
+        return date.format(formatter);
     }
 
     public double getValue() {
@@ -36,7 +51,7 @@ public abstract class Record {
         this.description = description;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

@@ -1,0 +1,65 @@
+@startuml
+
+participant ":ChChing" as ChChing
+participant "c:Parser" as Parser
+participant "c:EditExpenseCommand" as EditExpenseCommand
+participant "expenses:ExpenseList" as ExpenseList
+
+[-> ChChing : run()
+activate ChChing
+
+ChChing -> Parser : parse(line, incomes, expenses, ui)
+activate Parser
+
+create EditExpenseCommand
+Parser -> EditExpenseCommand : EditExpenseCommand(args)
+activate EditExpenseCommand
+
+EditExpenseCommand --> Parser
+deactivate EditExpenseCommand
+
+Parser --> ChChing : command
+deactivate Parser
+
+ChChing -> EditExpenseCommand : execute(incomes, expenses, ui, storage)
+activate EditExpenseCommand
+
+opt hasCategory
+    EditExpenseCommand -> ExpenseList : editExpense(index, "c", value)
+    activate ExpenseList
+
+    ExpenseList --> EditExpenseCommand
+    deactivate ExpenseList
+end
+
+opt hasDescription
+    EditExpenseCommand -> ExpenseList : editExpense(index, "de", value)
+    activate ExpenseList
+
+    ExpenseList --> EditExpenseCommand
+    deactivate ExpenseList
+end
+
+opt hasDate
+    EditExpenseCommand -> ExpenseList : editExpense(index, "da", value)
+    activate ExpenseList
+
+    ExpenseList --> EditExpenseCommand
+    deactivate ExpenseList
+end
+
+opt hasValue
+    EditExpenseCommand -> ExpenseList : editExpense(index, "v", value)
+    activate ExpenseList
+
+    ExpenseList --> EditExpenseCommand
+    deactivate ExpenseList
+end
+
+EditExpenseCommand --> ChChing
+deactivate EditExpenseCommand
+
+[<--ChChing
+deactivate ChChing
+
+@enduml

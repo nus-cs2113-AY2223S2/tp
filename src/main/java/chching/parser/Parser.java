@@ -15,11 +15,16 @@ import chching.command.DeleteExpenseCommand;
 import chching.command.BalanceCommand;
 import chching.command.ExitCommand;
 import chching.command.HelpCommand;
-import chching.record.ExpenseList;
+import chching.command.ListCommand;
+import chching.command.ListExpenseCommand;
+import chching.command.ListIncomeCommand;
+import chching.command.SetCurrencyCommand;
+import chching.command.UnsetCurrencyCommand;
+import chching.command.FindCommand;
 import chching.record.Expense;
+import chching.record.ExpenseList;
 import chching.record.Income;
 import chching.record.IncomeList;
-
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,12 +35,20 @@ public class Parser {
 
     public static final String FIELD_DEMARCATION = " /";
 
+    /**
+     * Method that parses command to the relevant classes to execute
+     *
+     * @param line       User input
+     * @param incomeList        List of incomes
+     * @param expenseList       List of expenses
+     * @param ui        User interface
+     */
+
     public static Command parse(
             String line,
             IncomeList incomeList,
             ExpenseList expenseList,
-            Ui ui
-    ) throws ChChingException {
+            Ui ui) throws ChChingException {
         List<String> lineParts = splitLine(line);
         String instruction = lineParts.get(0);
         List<String> arguments = lineParts.subList(1, lineParts.size());
@@ -72,6 +85,19 @@ public class Parser {
                 index = Expenses.getIndex(argumentsByField);
                 command = new DeleteExpenseCommand(index);
                 break;
+            case "set currency":
+                String currency = Currency.getCurrency(argumentsByField);
+                command = new SetCurrencyCommand(currency);
+                break;
+            case "unset currency":
+                currency = Currency.getCurrency(argumentsByField);
+                command = new UnsetCurrencyCommand(currency);
+                break;
+            case "find":
+                String category = getCategory(argumentsByField);
+                String keyword = getKeyword(argumentsByField);
+                command = new FindCommand(category, keyword);
+                break;
             case "balance":
                 command = new BalanceCommand();
                 break;
@@ -90,17 +116,31 @@ public class Parser {
         return command;
     }
 
+    /**
+     * Split the String of user input into relevant partitions
+     *
+     * @param line       User input
+     * @return An ArrayList of Strings
+     */
     public static ArrayList<String> splitLine(String line) {
         ArrayList<String> lineParts = new ArrayList<String>();
         lineParts.addAll(Arrays.asList(line.split(FIELD_DEMARCATION)));
         return lineParts;
     }
 
+    /**
+     * Sort the arguments
+     *
+     * @param arguments       arguments
+     * @return Hashmap of sorted arguments
+     */
+
     public static HashMap<String, String> sortArguments(List<String> arguments) throws ChChingException {
         HashMap<String, String> argumentsByField = new HashMap<String, String>();
         int argumentsCount = arguments.size();
 
-        // split each argument according to their field and their value, and add into hashmap accordingly
+        // split each argument according to their field and their value, and add into
+        // hashmap accordingly
         // Hashmap's key is its field, value is the value of the field
         for (int i = 0; i < argumentsCount; i++) {
             String argument = arguments.get(i);
@@ -115,5 +155,24 @@ public class Parser {
         }
         return argumentsByField;
     }
+    public static String getCategory(HashMap<String, String> argumentsByField) throws ChChingException {
+        String category = null;
+        try {
+            category = argumentsByField.get("c");
+        } catch (Exception e) {
+            throw new ChChingException("missing/invalid category");
+        }
+        return category;
+    }
+    public static String getKeyword(HashMap<String, String> argumentsByField) throws ChChingException {
+        String keyword = null;
+        try {
+            keyword = argumentsByField.get("k");
+        } catch (Exception e) {
+            throw new ChChingException("missing/invalid keyword");
+        }
+        return keyword;
+    }
+
 
 }
