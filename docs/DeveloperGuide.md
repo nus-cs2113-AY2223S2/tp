@@ -4,6 +4,8 @@
   - [Setup \& Prerequisites](#setup--prerequisites)
   - [Design \& implementation](#design--implementation)
     - [Recipe Manage Feature](#recipe-manage-feature)
+      - [Implementation](#implementation)
+    - [Recipe Step Manage Feature](#recipe-step-manage-feature)
     - [Recipe Search Feature](#recipe-search-feature)
     - [Recipe View Feature](#recipe-view-feature)
     - [Recipe Storage Feature](#recipe-storage-feature)
@@ -21,18 +23,45 @@
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 ## Setup & Prerequisites
-1. Ensure you have Java 11 installed.
+1. Ensure you have `Java 11` installed.
 2. Ensure your local repository is synced with the main repository at [AY2223S2-CS2113-F13-1/tp](https://github.com/AY2223S2-CS2113-F13-1/tp)
+3. Download the latest `tp.main.jar` from [here](https://github.com/AY2223S2-CS2113-F13-1/tp/releases/tag/v1.0).
+4. Copy the file to the folder you want to use as home folder for the recipe manager.
+5. Use `Win+R` to open the command prompt and type `cmd` and press Enter.
+6. Then `cd` into the folder where you copied the jar file. e.g. `cd C:\Users\Lee\Desktop\MyRecipe`
+7. Type `java -jar tp.main.jar` and press Enter to start the program.
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
 ### Recipe Manage Feature
+#### Implementation
+The recipe manage feature is facilitated by the `command`,`parser`,`recipe` package. It implements the following operations: 
 
+- `recipeList#addNewRecipe()` - Add a new recipe to the recipe list.
+- `recipeList#getRecipeList()` - Get the recipe list.
+- `recipeList#removeRecipe()` - Delete a recipe from the recipe list.
+- `recipeList#clearRecipeList()` - Clear all recipes from the recipe list.
+
+Given below is an example usage scenario and how the recipe manage mechanism behaves at each step.
+
+**Step 1.** The user launches the application for the first time. The user executes the `add n/MaLaXiangGuo i/Beef, Mutton, Mushrooms t/Chinese s/1` to add a new recipe to the recipe manager. The `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `Parser#parseSteps()` to get the steps of the recipe. 
+
+**Step 2.** The user executes the `chop beef` to add a step for the recipe. `Parser#parseSteps()` receives all the steps and returns a `StepList` object. Then we returen to the `Command#execute()` method in the `Command` class and call the `recipeList#addNewRecipe()` to add the recipe to the recipe list.
+
+**Step 3.** The user executes the `list` to list all the recipes in the recipe list. The `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `recipeList#getRecipeList()` to get the recipe list. Than we return to the `Command#execute()` method in the `Command` class and call the `Ui#showRecipeList()` to show the recipe list.
+
+**Step 4.** The user executes the `delete 1` to delete the first recipe in the recipe list. The `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `recipeList#removeRecipe()` to remove the recipe from the recipe list.
+
+**Step 5.** The user executes the `clear` to clear all the recipes in the recipe list. The `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `recipeList#clearRecipeList()` to clear all the recipes from the recipe list.
+
+> The following sequence diagram shows how the recipe manage feature works:
+![Sequence Diagram for Recipe Manage](./PlantUML/RecipeManage.png)
+### Recipe Step Manage Feature
 ### Recipe Search Feature
 
 ### Recipe View Feature
+
+
 
 ### Recipe Storage Feature
 
@@ -87,7 +116,7 @@ The user will be able to keep close tabs on their nutrition based on the recipes
 |   v3.0  | new user        | the option to mark recipes as drinks/cocktail                                                     | also use the app to find and refer to drinks recipes quickly                      |
 |   v3.0  | long-term user  | get encouragement to avoid unhealthy food                                                         | better control my diet                                                            |
 |   v3.0  | long-term user  | sort by portion size                                                                              | prep dishes catered to groups when I have friends over                            |
-|  v420.0 | long-term user  | have the app to warn me if my laptop battery life is not enough to finish the recipe              | avoid scrambling for a charger while cooking                                      |
+|   v3.0 | long-term user  | have the app to warn me if my laptop battery life is not enough to finish the recipe              | avoid scrambling for a charger while cooking                                      |
 
 ## Appendix C - Non-Functional Requirements
 
