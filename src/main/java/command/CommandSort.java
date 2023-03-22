@@ -1,7 +1,6 @@
 package command;
 
 import data.Expense;
-import data.ExpenseList;
 import data.Time;
 
 import java.util.ArrayList;
@@ -28,16 +27,15 @@ public class CommandSort extends Command {
 
     }
 
-
     /**
      * Method allows the user to sort their expenses list based on either categories or date
      */
-    public boolean run() {
+    @Override
+    public CommandRes execute() {
         Scanner input = new Scanner(System.in);
         if (expenseList.size() == 0) {
             System.out.println("Sorry, there are no expenses tracked currently.");
             System.out.println(MESSAGE_DIVIDER);
-            return false;
         } else {
             System.out.println("Please indicate you want your expenses sorted by Date/Category? ");
             System.out.println("Enter: D (represent Date); C (represent Category)");
@@ -65,18 +63,7 @@ public class CommandSort extends Command {
             }
             System.out.println(MESSAGE_DIVIDER);
         }
-        return true;
-    }
-
-    /**
-     * Execution of the list command
-     *
-     * @return printing the list of command
-     *
-     */
-    @Override
-    public CommandRes execute() {
-        //return new CommandRes(MESSAGE_DIVIDER_LIST, expenseList, ExpenseList.getAllMessage(expenseList));
+        assert false;
         return null;
     }
 
