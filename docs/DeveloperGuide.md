@@ -3,18 +3,21 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 
 ## Table of Contents
 1. [Acknowledgements](#acknowledgements)
-2. [Design & Implementation](#design--implementation)
-    1. [Ingredient Class](#ingredient-class)
-       1. [Add and Remove Command](#add-and-remove-command)
-3. [Product Scope](#product-scope)
-    1. [Target User Profile](#target-user-profile)
-    2. [Value Proposition](#value-proposition)
-4. [User Stories](#user-stories)
-    1. [v1.0](#v10)
-    2. [v2.0](#v20)
-5. [Non-Functional Requirements](#non-functional-requirements)
-6. [Glossary](#glossary)
-7. [Instructions for Manual Testing](#instructions-for-manual-testing)
+2. [Setting up, getting started](#setting-up-getting-started)
+3. [Design](#design)
+   - [Command Parsing](#command-parsing)
+   - [Ingredient Class](#ingredient-class)
+4. [Implementation](#implementation)
+   - [Add and Remove Command](#add-and-remove-command)
+5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+6. [Appendix: Requirements](#appendix--requirements)
+   - [Product scope](#product-scope)
+   - [User stories](#user-stories)
+   - [Use cases](#use-cases)
+   - [Non-Functional Requirements](#non-functional-requirements)
+   - [Glossary](#glossary)
+7. [Appendix: Instructions for manual testing](#appendix--instructions-for-manual-testing)
+
 
 ## Acknowledgements
 
@@ -22,7 +25,11 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 
 ###### [Back to table of contents](#table-of-contents)
 
-## Design & Implementation
+## Setting up, getting started
+
+Refer to the guide {insert guide here}
+
+## Design
 
 ### Command Parsing
 
@@ -61,6 +68,8 @@ Below shows the class diagram of how ingredients are being stored in our program
 
 The current `MealCompanionSession` would keep track of the `IngredientList` which is an ArrayList of `Ingredient` objects. Each `Ingredient` object has a name and its associated quantity. This association would allow us to perform the adding and removal of ingredients by the user.
 
+## Implementation
+
 ### Add and Remove Command
 
 The add and remove command is facilitated by the methods in `IngredientList` and `Ingredient`. Given below is an example usage scenario and how the add and remove command behaves.
@@ -84,18 +93,28 @@ Step 7. Since the quantity input by the user is smaller than the current quantit
 
 ###### [Back to table of contents](#table-of-contents)
 
-## Product scope
-### Target user profile
+## Documentation, logging, testing, configuration, dev-ops
+
+{insert Documentation guide link}
+{insert Testing guide link}
+{insert Logging guide link}
+{insert Configuration guide link}
+{insert DevOps guide link}
+
+## Appendix: Requirements
+
+### Product scope
+
+#### Target user profile
 Our target user profile is the average School of Computing student that resides on campus, regardless of Residential College (RC), Halls, Residences or Houses. There is a focus on those who regularly cook in their hostels or would like to pick up cooking.
 
-### Value proposition
-Our product targets students who would like to save money on buying or ordering food, and also to save time by preparing their meals beforehand so they can eat immediately after a class without having to queue for food or look for a seat in a crowded canteen on campus. Aside from RCs, hostels on campus do not provide meal plans, so our product addresses this by helping users pick up cooking and manage the ingredients they have in their hostel refrigerators. Even within RCs, the meal plans do not cover lunch, meaning students need to source their own lunch, which is a problem that our product also aims to alleviate.
+#### Value proposition: Our product targets students who would like to save money on buying or ordering food, and also to save time by preparing their meals beforehand so they can eat immediately after a class without having to queue for food or look for a seat in a crowded canteen on campus. Aside from RCs, hostels on campus do not provide meal plans, so our product addresses this by helping users pick up cooking and manage the ingredients they have in their hostel refrigerators. Even within RCs, the meal plans do not cover lunch, meaning students need to source their own lunch, which is a problem that our product also aims to alleviate.
 
 ###### [Back to table of contents](#table-of-contents)
 
-## User Stories
+### User Stories
 
-### v1.0
+#### v1.0
 
 | As a ... | I want to ... | So that ... |
 | -------- | ------------- | ----------- |
@@ -108,7 +127,7 @@ Our product targets students who would like to save money on buying or ordering 
 | New User | immediately see how to interact with the app | I can begin using the app without needing to refer to external help |
 | User with a new device | transfer the saved customized data to a new computer | I can use Meal Companion on a different computer without having to re-enter all the information |
 
-### v2.0
+#### v2.0
 
 | As a ... | I want to ... | So that ... |
 | -------- | ------------- | ----------- |
@@ -118,6 +137,12 @@ Our product targets students who would like to save money on buying or ordering 
 | User who wants to lose weight | see the calorie count of the recipes | I can keep track of my caloric intake |
 | User who gets bored of the same recipe | randomly select a recipe | I can try new recipes from the list of existing recipes |
 | User returning after a long period of not using the app | quickly clear all ingredients from the saved list | I can return to using the app without having to individually delete items that I no longer have |
+
+###### [Back to table of contents](#table-of-contents)
+
+### Use Cases
+
+{insert user stories}
 
 ###### [Back to table of contents](#table-of-contents)
 
@@ -133,7 +158,7 @@ Our product targets students who would like to save money on buying or ordering 
 
 ###### [Back to table of contents](#table-of-contents)
 
-## Instructions for manual testing
+## Appendix: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
