@@ -16,7 +16,7 @@ public class RecipeRandomCommand extends ExecutableCommand {
 
     /**
      * Get a random index of RecipeList
-     * 
+     *
      * @param recipes the RecipeList to get the random index from
      * @return random index of RecipeList
      * @throws MealCompanionException if RecipeList is empty and has no valid index
