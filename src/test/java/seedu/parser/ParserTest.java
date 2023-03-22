@@ -131,4 +131,24 @@ public class ParserTest {
         finalCommand = MainInputParser.parseInputs(wrongAmount);
         assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
     }
+
+    @Test
+    void invalidInputDueToWrongPositionInput() {
+        String posOfDate = "food a/9.90 s/Lunch d/2000-01-01";
+        String posOfAmount = "food a/9.90 d/2000-01-01 s/Lunch";
+        Command finalCommand = MainInputParser.parseInputs(posOfDate);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
+        finalCommand = MainInputParser.parseInputs(posOfAmount);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
+    }
+
+    @Test
+    void invalidInputDueToWrongBackSlashInput() {
+        String swapAWithD = "academic a/2000-01-01 d/200.0 s/Tuition";
+        String replaceDWithF = "academic d/2000-01-01 f/200.0 s/Tuition";
+        Command finalCommand = MainInputParser.parseInputs(swapAWithD);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
+        finalCommand = MainInputParser.parseInputs(replaceDWithF);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
+    }
 }
