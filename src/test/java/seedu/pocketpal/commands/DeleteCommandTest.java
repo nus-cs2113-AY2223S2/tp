@@ -3,6 +3,7 @@ package seedu.pocketpal.commands;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import seedu.pocketpal.backend.BackendTestUtil;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
 import seedu.pocketpal.frontend.commands.DeleteCommand;
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @DisplayName("Test delete command")
-public class DeleteCommandTest extends CommandTest {
+public class DeleteCommandTest extends BackendTestUtil {
     private final Entry testEntry = new Entry("Rice", 8.50, Category.FOOD);
 
     @BeforeEach
