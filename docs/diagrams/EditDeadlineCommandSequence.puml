@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+ToDoListManager -> Parser: parseCommand(inputCommand)
+Parser -> EditDeadlineCommand: new EditDeadlineCommand(getArguments(splitInput, EditDeadlineCommand.FLAGS)
+EditDeadlineCommand -> Parser: formatDateTime(args.get(Flags.DEADLINE.FLAG))
+Parser --> EditDeadlineCommand: LocalDateTime.parse(date, inputFormatter)
+ToDoListManager -> EditDeadlineCommand: execute(taskList, ui)
+EditDeadlineCommand -> TaskList: editDeadline(index, deadline)
+TaskList -> tasks:ArrayList: get(index)
+tasks -> Task: setDeadline(deadline)
+Task --> tasks: toString()
+tasks --> TaskList
+TaskList -> ui: printEditTaskMessage(taskString)
+@enduml
