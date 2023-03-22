@@ -36,6 +36,8 @@ Step 3. The user executes `add cg2023 assignment -d 18/12/2023` command to add a
 Step 4. The user executes `exit` command and exits the program. `ToDoListManager` calls `storage#saveData(taskList)`, 
 so the task list is saved into `'./data.txt'` again before the program exits.
 
+![]('./docs/images/StorageSequenceDiagram.puml.html')
+
 #### Design considerations:
 * <b>Alternative 1</b>: Save task list as a self-formatted .txt file which can be printed and used as a physical task list.
     * Pros: Can get a physical task list to use.

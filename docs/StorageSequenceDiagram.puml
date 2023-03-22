@@ -2,8 +2,6 @@
 'https://plantuml.com/sequence-diagram
 
 autonumber
-
-title Step 1
 Main -> controller:ToDoListManager:ToDoListManager()
 controller -> ui:Ui:printWelcomeMessage()
 controller -> storage:Storage:isNewSave()
@@ -13,7 +11,6 @@ controller -> ui:printLoadSaveMessage(taskList.size())
 Main -> controller:run()
 
 newpage
-title Step 2
 controller -> ui:getUserInput()
 controller <-- ui:inputCommand
 controller -> parser:Parser:parseCommand(inputCommand)
@@ -27,7 +24,6 @@ controller -> ListTasksCommand:shouldExit()
 controller <-- ListTasksCommand:isRunning
 
 newpage
-title Step 3
 controller -> ui:getUserInput()
 controller <-- ui:inputCommand
 controller -> parser:Parser:parseCommand(inputCommand)
@@ -42,7 +38,6 @@ controller -> AddTaskCommand:shouldExit()
 controller <-- AddTaskCommand:isRunning
 
 newpage
-title Step 4
 controller -> ui:getUserInput()
 controller <-- ui:inputCommand
 controller -> parser:Parser:parseCommand(inputCommand)

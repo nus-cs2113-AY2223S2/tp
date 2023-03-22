@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+title Step 3
+controller -> ui:getUserInput()
+controller <-- ui:inputCommand
+controller -> parser:Parser:parseCommand(inputCommand)
+parser -> AddTaskCommand:AddTaskCommand(getArguments(splitInput, AddTaskCommand.FLAGS))
+controller <-- parser:command
+controller -> AddTaskCommand:execute(taskList,ui)
+AddTaskCommand -> taskList:addTask(new Task(description,deadline))
+AddTaskCommand <-- taskList:taskString
+AddTaskCommand -> ui:printAddTaskMessage(taskString)
+controller -> storage:saveData(taskList)
+controller -> AddTaskCommand:shouldExit()
+controller <-- AddTaskCommand:isRunning
+@enduml

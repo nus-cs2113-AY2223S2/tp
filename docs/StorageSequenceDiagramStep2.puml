@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+title Step 2
+controller -> ui:getUserInput()
+controller <-- ui:inputCommand
+controller -> parser:Parser:parseCommand(inputCommand)
+parser -> ListTasksCommand:ListTasksCommand()
+controller <-- parser:command
+controller -> ListTasksCommand:execute(taskList,ui)
+ListTasksCommand -> taskList:TaskList:sortByDeadline()
+ListTasksCommand -> ui:printTaskList(taskList.size(), taskList.toString())
+controller -> storage:saveData(taskList)
+controller -> ListTasksCommand:shouldExit()
+controller <-- ListTasksCommand:isRunning
+
+@enduml

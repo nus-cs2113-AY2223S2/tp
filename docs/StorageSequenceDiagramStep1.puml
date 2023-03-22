@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+title Step 1
+Main -> controller:ToDoListManager:ToDoListManager()
+controller -> ui:Ui:printWelcomeMessage()
+controller -> storage:Storage:isNewSave()
+controller -> storage:loadData()
+controller <-- storage:taskList
+controller -> ui:printLoadSaveMessage(taskList.size())
+Main -> controller:run()
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+title Step 4
+controller -> ui:getUserInput()
+controller <-- ui:inputCommand
+controller -> parser:Parser:parseCommand(inputCommand)
+parser -> ExitCommand
+controller <-- parser:command
+controller -> ExitCommand:execute(taskList,ui)
+ExitCommand -> ui:printGoodbyeMessage()
+controller -> storage:saveData(taskList)
+controller -> ExitCommand:shouldExit()
+controller <-- ExitCommand:isRunning
+controller -> ui:close()
+Main <-- controller
+@enduml
