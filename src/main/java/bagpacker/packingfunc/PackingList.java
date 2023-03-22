@@ -9,7 +9,11 @@ public class PackingList {
 
 
     private static ArrayList<Item> itemList = new ArrayList<>();
+
     private static int targetIndex = -1;
+    public static void setItemList(ArrayList<Item> itemList) {
+        PackingList.itemList = itemList;
+    }
 
     /**
      * Getter for itemList

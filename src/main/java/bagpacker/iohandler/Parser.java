@@ -75,11 +75,11 @@ public class Parser {
         case "list":
             return listCommand();
         case "help":
-            return helpCommand();
+            return createHelpObj();
         case "deletelist":
-            return deleteList();
+            return createDeletelistObj();
         case "bye":
-            return callByeCmd();
+            return createByeObj();
         default:
             return new IncorrectCommand("'" + Parser.getCommand() + "' is an invalid User Command",
                     "input 'help' to receive all valid commands");
@@ -288,15 +288,15 @@ public class Parser {
         return new ListCommand();
     }
 
-    public static Command deleteList() {
+    public static Command createDeletelistObj() {
         return new DeleteListCommand();
     }
 
-    private static Command helpCommand() {
+    private static Command createHelpObj() {
         return new HelpCommand();
     }
 
-    private static Command callByeCmd() {
+    private static Command createByeObj() {
         return new ByeCommand();
     }
 }

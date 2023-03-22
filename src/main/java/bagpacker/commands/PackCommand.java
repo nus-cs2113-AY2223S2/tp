@@ -8,7 +8,8 @@ public class PackCommand extends Command {
 
     public static final String MSG_SUCCESS_PACK = "Item packed: %s";
     public static final String HELP_MSG= "pack : Marks an item as packed in the packing list.\n" +
-            "\tExample: pack toothbrush";
+            "\tExample: pack 2 of 3\n" +
+            "\tMeaning: packs 2 quantities of the third item in the packing list";
 
 
     public PackCommand(int targetIndex) {
