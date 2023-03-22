@@ -1,6 +1,9 @@
-package seedu.brokeMan.entry;
+package seedu.brokeMan.entry.expense;
 
+import seedu.brokeMan.entry.Entry;
+import seedu.brokeMan.entry.EntryList;
 import seedu.brokeMan.parser.StringToTime;
+import seedu.brokeMan.save.SaveExpense;
 import seedu.brokeMan.ui.Ui;
 
 import java.time.LocalDateTime;
@@ -20,6 +23,7 @@ public class ExpenseList extends EntryList {
      */
     public static void addExpense(Expense newExpense) {
         addEntry(newExpense, expenseList);
+        SaveExpense.writeFile(expenseList);
     }
 
     /**
@@ -53,6 +57,7 @@ public class ExpenseList extends EntryList {
      */
     public static void deleteExpense(int expenseIndex) {
         deleteEntry(expenseIndex, expenseList);
+        SaveExpense.writeFile(expenseList);
     }
 
 
@@ -64,14 +69,17 @@ public class ExpenseList extends EntryList {
      */
     public static void editExpense(int expenseIndex, String newEntry) {
         editEntryDescription(expenseIndex, newEntry, expenseList);
+        SaveExpense.writeFile(expenseList);
     }
 
     public static void editExpense(int expenseIndex, Double newEntry) {
         editEntryCost(expenseIndex, newEntry, expenseList);
+        SaveExpense.writeFile(expenseList);
     }
 
     public static void editExpense(int expenseIndex, LocalDateTime newEntry) {
         editEntryTime(expenseIndex, newEntry, expenseList);
+        SaveExpense.writeFile(expenseList);
     }
 
     /**

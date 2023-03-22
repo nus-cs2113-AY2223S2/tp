@@ -46,7 +46,9 @@ public abstract class Entry {
     }
 
     public String getTime() { return this.time.toString(); }
-
+    public String getInfo() {
+        return this.info;
+    }
     protected String convertTimeToString() {
         String timeAsString = this.time.toString();
         int indexOfT = timeAsString.indexOf('T');
@@ -60,4 +62,6 @@ public abstract class Entry {
     }
 
     public abstract String toString();
+
+
 }
