@@ -140,28 +140,29 @@ public class Parser {
         filterCommand.run();
     }
 
+    /*
+    /**
+     * Handles the "searchUPC" command by checking the validity of search term provided before passing to
+     * the searchUPC function
+     *
+     * @param rawInput The user input string to be validated.
+     */
 
-//    /**
-//     * Handles the "searchUPC" command by checking the validity of search term provided before passing to
-//     * the searchUPC function
-//     *
-//     * @param rawInput The user input string to be validated.
-//     */
-//    public void parseSearchUPC(String rawInput) {
-//        try {
-//            if (rawInput == null) {
-//                throw new MissingParametersException();
-//            }
-//            if (rawInput.split(" ").length > 1) {
-//                throw new SearchFilterErrorException();
-//            }
-//            Inventory.searchUPC(rawInput);
-//        } catch (MissingParametersException e) {
-//            e.missingSearchItemParameters();
-//        } catch (SearchFilterErrorException se) {
-//            Ui.printInvalidEditCommand();
-//        }
-//    }
+    /* public void parseSearchUPC(String rawInput) {
+        try {
+            if (rawInput == null) {
+                throw new MissingParametersException();
+            }
+            if (rawInput.split(" ").length > 1) {
+                throw new SearchFilterErrorException();
+            }
+            Inventory.searchUPC(rawInput);
+        } catch (MissingParametersException e) {
+            e.missingSearchItemParameters();
+        } catch (SearchFilterErrorException se) {
+            Ui.printInvalidEditCommand();
+        }
+       }*/
 
     /**
      * Handles the "search" command by checking the validity of search term provided before passing to

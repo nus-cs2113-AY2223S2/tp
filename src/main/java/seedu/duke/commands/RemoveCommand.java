@@ -105,10 +105,15 @@ public class RemoveCommand extends Command {
      */
     @Override
     public void run() {
-        if (upcCode != null) {
-            removeByUpcCode();
-        } else {
-            removeByIndex();
+        try {
+            if (upcCode != null) {
+                removeByUpcCode();
+            } else {
+                removeByIndex();
+            }
+        } catch (NullPointerException | NumberFormatException e) {
+            System.out.println("NULL");
         }
+
     }
 }
