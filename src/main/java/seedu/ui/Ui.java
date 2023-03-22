@@ -6,8 +6,7 @@ public class Ui {
             "/ \\/ \\ )  / / (_/\\ ) _)  ) D (( (_ \\ ) _)  )   / \n" +
             "\\_)(_/(__/  \\____/(____)(____/ \\___/(____)(__\\_)\n";
     public static final String HORIZONTAL_LINE = "----------------------------------------------" + 
-    "--------------------------------------------------------------------";
-
+        "--------------------------------------------------------------------";
     public static final String WELCOME_MESSAGE = "Hello there, Welcome to\n";
     public static final String INSTRUCTIONS = "\nHere are the list possible commands: "
             + "add, delete, edit, list, borrow, lend, exit\n";
