@@ -23,6 +23,10 @@ public class ListIncomeCommand extends Command {
     }
 
     public void execute() {
-        IncomeList.listIncome(date);
+        if (date.isEmpty()) {
+            IncomeList.listIncome();
+        } else if (date.isPresent()) {
+            IncomeList.listIncome(date);
+        }
     }
 }

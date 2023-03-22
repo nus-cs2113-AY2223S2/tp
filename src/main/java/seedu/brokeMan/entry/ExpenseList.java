@@ -40,6 +40,13 @@ public class ExpenseList extends EntryList {
         Ui.showToUserWithLineBreak("");
     }
 
+    public static void listExpense() {
+        Ui.showToUser("Here are the expenses you have made.");
+        listEntry(expenseList);
+        Ui.showToUser("Total expenses: $" + getEntryListSum(expenseList));
+        Ui.showToUserWithLineBreak("");
+    }
+
     /**
      * deletes specific expense in the list
      *

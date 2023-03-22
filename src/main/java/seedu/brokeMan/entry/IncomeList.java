@@ -45,6 +45,13 @@ public class IncomeList extends EntryList{
         Ui.showToUserWithLineBreak("");
     }
 
+    public static void listIncome() {
+        Ui.showToUser("Here are the income you have made.");
+        listEntry(incomeList);
+        Ui.showToUser("Total income: $" + getEntryListSum(incomeList));
+        Ui.showToUserWithLineBreak("");
+    }
+
     /**
      * Edits a specific income entry in the list
      * @param index index of the expense in the list

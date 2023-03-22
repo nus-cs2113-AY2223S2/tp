@@ -21,6 +21,10 @@ public class ListExpenseCommand extends Command {
         this.date = Optional.of(date);
     }
     public void execute() {
-        ExpenseList.listExpense(date);
+        if (date.isEmpty()) {
+            ExpenseList.listExpense();
+        } else if (date.isPresent()) {
+            ExpenseList.listExpense(date);
+        }
     }
 }
