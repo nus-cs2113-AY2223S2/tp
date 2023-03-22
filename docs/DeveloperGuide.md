@@ -7,6 +7,14 @@
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+<br>
+### [Proposed] Duplication checker feature
+#### Proposed Implementation
+The proposed <code>duplicationChecker</code> is facilitated by <code>Parser</code>. It will check against the existing
+<code>CompanyList</code> to check if the company has already been added. If the same company already exists in the
+<code>CompanyList</code>, it will inform the user by displaying a message to the user. Otherwise, it will proceed to 
+format the data that was entered by the user so that the parameters that are passed into <code>addCommand</code> are
+standardized to remove any potential duplicated addition issues.
 
 
 ## Product scope
