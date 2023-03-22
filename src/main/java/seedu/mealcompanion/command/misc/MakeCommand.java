@@ -104,6 +104,10 @@ public class MakeCommand extends ExecutableCommand {
         assert fridgeQuantity >= quantity: "fridgeQuantity should be more than quantity to be removed";
         double newQuantity = fridgeQuantity - quantity;
         mealCompanionSession.getIngredients().get(indexOfExistingIngredient).setQuantity(newQuantity);
+        if (newQuantity == 0) {
+            mealCompanionSession.getIngredients().remove(indexOfExistingIngredient);
+            mealCompanionSession.getUi().printMessage(String.format("All %s has been removed", name));
+        }
         mealCompanionSession.getIngredientStorage().writeIngredientsToFile(mealCompanionSession.getIngredients());
     }
 
@@ -122,6 +126,12 @@ public class MakeCommand extends ExecutableCommand {
         }
         mealCompanionSession.getUi().printMessage("Success! The ingredients needed were removed from inventory");
     }
+
+    /**
+     * Executes the "make" command
+     *
+     * @param mealCompanionSession the MealCompanionSession containing the list of ingredients and recipes
+     */
 
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
