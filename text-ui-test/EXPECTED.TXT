@@ -11,17 +11,18 @@ Enter "help" to see a list of commands.
 ____________________________________________________________
 ____________________________________________________________
 
-Enter "list" to see all tasks
+ Enter "list" to see all tasks
  Enter "listmod" to see your module list
  Enter "todo [task]" to add a task
  Enter "deadline [task] /by [date]" to add a deadline
  Enter "event [task] /from [date] /to [date]" to add an event
  Enter "addmod [MODULE_CODE]" to add a Module to the Module list
- Enter "addmod [MODULE_CODE] -[LESSON_TYPE]" to add a lesson
+ Enter "addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a lesson
  Enter "mark [idx]" to mark task as done
  Enter "unmark [idx]" to mark task as not done
  Enter "delete [idx]" to remove task from list
  Enter "delmod [MODULE_CODE]" to remove a Module you previously added
+ Enter "week" to see your schedule for the week
  Enter "find [keyword]" to see all tasks containing [keyword]
  Enter "date [yyyy-MM-dd]" to see all tasks occurring on that date
  Enter "bye" to exit the program
@@ -30,7 +31,7 @@ Enter "list" to see all tasks
  Please enter all [date]s in the format: "yyyy-MM-ddThh:mm"
  eg. "2023-10-30T23:59" represents Oct 20 2023, 11:59PM
 
-There are various lessons options per module:
+There are -FLAGS for the various lessons options per module:
 -lec			LECTURE
 -plec			PACKAGED LECTURE
 -st 			SECTIONAL TEACHING
@@ -62,6 +63,10 @@ ____________________________________________________________
 Please enter deadline as "deadline [task] /by [date]".
 ____________________________________________________________
 ____________________________________________________________
+Please enter [date]s in the format of yyyy-MM-ddThh:mm.
+eg. "2023-10-30T23:59" for Oct 20 2023, 11:59PM
+____________________________________________________________
+____________________________________________________________
 Oops, your deadline: submit tutorial (by: Mar 03 2023, 11:59PM) occurs before today!
 ____________________________________________________________
 ____________________________________________________________
@@ -76,6 +81,13 @@ Please enter event as "event [task] /from [date] /to [date]".
 ____________________________________________________________
 ____________________________________________________________
 Oops, the start date for your event occurs after the end date!
+____________________________________________________________
+____________________________________________________________
+Please enter [date]s in the format of yyyy-MM-ddThh:mm.
+eg. "2023-10-30T23:59" for Oct 20 2023, 11:59PM
+____________________________________________________________
+____________________________________________________________
+Oops, your event: lecture (from: May 03 2022, 09:00AM to: May 03 2022, 11:00AM) occurs before today!
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this event:
@@ -172,22 +184,31 @@ ____________________________________________________________
 Got it. I've added this module:
   CS2113: Software Engineering & Object-Oriented Programming
 Total modular credits you have in this semester: 4
+Enter "addmod CS2113 -[FLAG] [LESSON NUMBER]" to add lessons for this module.
 Here are the lesson types for this module:
-LECTURE
-TUTORIAL
-To see how to add lessons, enter 'help'.
+Lecture (-lec)
+Tutorial (-tut)
 ____________________________________________________________
 ____________________________________________________________
 Module already added in Module List!
+Enter "addmod CS2113 -[FLAG] [LESSON NUMBER]" to add lessons for this module.
+____________________________________________________________
+____________________________________________________________
+Adding lesson type: LECTURE for Module: CS2113
+Class Number: 1
+____________________________________________________________
+____________________________________________________________
+Adding lesson type: TUTORIAL for Module: CS2113
+Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this module:
   CS2040C: Data Structures and Algorithms
 Total modular credits you have in this semester: 8
+Enter "addmod CS2040C -[FLAG] [LESSON NUMBER]" to add lessons for this module.
 Here are the lesson types for this module:
-LABORATORY
-LECTURE
-To see how to add lessons, enter 'help'.
+Laboratory (-lab)
+Lecture (-lec)
 ____________________________________________________________
 ____________________________________________________________
 You are taking 2 module(s) this semester:
@@ -196,17 +217,65 @@ You are taking 2 module(s) this semester:
 Total modular credits you have in this semester: 8
 ____________________________________________________________
 ____________________________________________________________
-Sorry, the module 2 does not exist in your Module list!
-Total modular credits you have in this semester: 8
+Got it, removed CS2113 from your Module list.
+Total modular credits you have in this semester: 4
 ____________________________________________________________
 ____________________________________________________________
 Got it, removed CS2040C from your Module list.
-Total modular credits you have in this semester: 4
+Total modular credits you have in this semester: 0
 ____________________________________________________________
 ____________________________________________________________
-You are taking 1 module(s) this semester:
-1.CS2113: Software Engineering & Object-Oriented Programming (4 MCs)
-Total modular credits you have in this semester: 4
+There are no modules in your module list!
+____________________________________________________________
+____________________________________________________________
+Adding lesson type: LECTURE for Module: ST2334
+Class Number: 1
+____________________________________________________________
+____________________________________________________________
+Here's your week from 2023-03-20 to 2023-03-26:
+______________________
+MONDAY
+
+Lessons:
+
+Tasks:
+______________________
+TUESDAY
+
+Lessons:
+1. ST2334 Lecture: 0800-1000
+
+Tasks:
+______________________
+WEDNESDAY
+
+Lessons:
+
+Tasks:
+______________________
+THURSDAY
+
+Lessons:
+
+Tasks:
+______________________
+FRIDAY
+
+Lessons:
+
+Tasks:
+______________________
+SATURDAY
+
+Lessons:
+
+Tasks:
+______________________
+SUNDAY
+
+Lessons:
+
+Tasks:
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(
