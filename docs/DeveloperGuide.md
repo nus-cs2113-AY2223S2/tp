@@ -4,7 +4,7 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 ## Table of Contents
 1. [Acknowledgements](#acknowledgements)
 2. [Design & Implementation](#design--implementation)
-    1. [Ingredient Class](#Ingredient-Class)
+    1. [Ingredient Class](#ingredient-class)
        1. [Add and Remove Command](#add-and-remove-command)
 3. [Product Scope](#product-scope)
     1. [Target User Profile](#target-user-profile)
