@@ -72,21 +72,24 @@ The ```TaskList#purge()``` command will be implemented to facilitate the removal
 
 Step 1. The user launches the application for the first time. The ```TaskList``` will be initialized with the data from a given pre-existing datafile if it exists, and the ```Task``` items will be inserted into the ```TaskList```.![](https://lh5.googleusercontent.com/XcnArNZc5ZqHhxXZ1iRuq0aRxNKkcD_snVgDv-dlpMVYFQFQjyGXdtHWvFGzG-k2UW5SXkjQbthIRtkrol_SYsNgmsmKw1kKEkME0vSQ0tfRfUIWj3jZTTVrerHbESuA-AlTpPEkj8JrKl-mMlu-3yM)
 
-Step 2. The ```TaskList#purge()``` command will be executed. The user will see an output in the following format:
+Step 2. The ```TaskList#purge()``` command will be executed. The process is illustrated through two steps:
+
+Identifying all expired ```Task``` items in ```TaskList```.
 
 ![](https://lh3.googleusercontent.com/Kbz7j3EmMGJGrIX1aQ8DCkHG8Y3gaIx3Ohf-zmYvr-S-LrxRqt8P1wlTMWUnlnna2tnR0i72yUJWB72Z2mWwGuwXiD_RnlIpYEk-MY6k9zMaLqTk_VkyHaRwIuzxi1trXHX1ySdZWBqZFDaCZ6K-QrY)
 
+Removing all expired ```Task``` items in ```TaskList```.
 ![](https://lh4.googleusercontent.com/kVOcvIKAF1nlLSHXQsRPDuG6RwiyaqRXf9CYTLrv2WUezegCNx05GIC1KPYME6Eojid1hRbqUIzHUjKWRpYjUG7zCYE8586kLzbIrVdjZVnC5j_1ke1WBdFZSHoar_MuXKBA9eMARxCOgcja5qjP2_A)
 
 The user will see this on his terminal after the ```purge``` command has executed.
 
 ```
-----------------------------------------------------------------------\
-Quack! <expiredCount> Tasks have expired! Purge proceeding..\
-2\. [X if <isDone>, " " if !<isDone>] <Deadline_1>\
-4\. [X if <isDone>, " " if !<isDone>] <Event_1>
+----------------------------------------------------------------------
+Quack! <expiredCount> Tasks have expired! Purge proceeding...
+2. [X if <isDone>, " " if !<isDone>] <Deadline_1>
+4. [X if <isDone>, " " if !<isDone>] <Event_1>
 
-Purge Completed! Now we are one quack closer to finishing all tasks!\
+Purge Completed! Now we are one quack closer to finishing all tasks!
 ----------------------------------------------------------------------
 ```
 
