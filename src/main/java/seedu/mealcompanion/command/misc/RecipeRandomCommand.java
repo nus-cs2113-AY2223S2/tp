@@ -21,8 +21,8 @@ public class RecipeRandomCommand extends ExecutableCommand {
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
         RecipeList recipes = mealCompanionSession.getRecipes();
-        Recipe recipe = recipes.getRecipe(getRandomInt());
-        mealCompanionSession.getUi().printMessage("A random recipe is chosen.");
+        Recipe recipe = recipes.getRecipe(getRandomInt() % recipes.size());
+        mealCompanionSession.getUi().printMessage("A random recipe is chosen:");
         mealCompanionSession.getUi().printMessage("Recipe for " + recipe.getName());
         mealCompanionSession.getUi().printMessage(""); //print newline for all OS
         mealCompanionSession.getUi().printMessage("Calories: " + recipe.getCalorieCount());

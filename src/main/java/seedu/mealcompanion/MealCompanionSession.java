@@ -10,6 +10,7 @@ import seedu.mealcompanion.command.factory.misc.HelloWorldCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeAllCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeDetailCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipePossibleCommandFactory;
+import seedu.mealcompanion.command.factory.misc.RecipeRandomCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RemoveCommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelpCommandFactory;
 import seedu.mealcompanion.ingredient.IngredientList;
@@ -37,7 +38,8 @@ public class MealCompanionSession {
                     .route("remove", new RemoveCommandFactory())
                     .route("recipe", new CommandRouterNode()
                             .route("possible", new RecipePossibleCommandFactory())
-                            .route("all", new RecipeAllCommandFactory()))
+                            .route("all", new RecipeAllCommandFactory())
+                            .route("random", new RecipeRandomCommandFactory()))
                     .route("recipe", new RecipeDetailCommandFactory())
                     .route("ingredients", new CommandRouterNode()
                             .route("list", new IngredientsListCommandFactory())
