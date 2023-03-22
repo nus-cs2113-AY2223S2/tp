@@ -59,7 +59,6 @@ public class NutritionCommand extends Command {
 			if (choice != 1) {
 				toContinue = false;
 			}
-
 		} while (toContinue);
 	}
 }

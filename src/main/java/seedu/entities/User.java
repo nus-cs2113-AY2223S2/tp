@@ -2,7 +2,7 @@ package seedu.entities;
 
 import java.util.Objects;
 import java.util.logging.Logger;
-import java.util.logging.Level;
+
 public class User {
     private static Logger logger = Logger.getLogger(Logger.class.getName());
     private String name;
