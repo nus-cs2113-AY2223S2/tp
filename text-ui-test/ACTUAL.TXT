@@ -7,9 +7,12 @@ Added Cable Flys 30kg 10 10 10
 Invalid date format. Please enter the date in the format dd/mm/yy.
 Incorrect command given!
 Great job completing your workout!
-Here are the list of dates for your workout: 
-Sat Nov 11 00:00:00 CST 2023
-Start a workout first!
+Started new workout.
+Use add command to add exercises to your workout!
+Here are the list of dates for your workout:
+11-11-23
+11-10-23
+Added tricep extensions 25kg 8 7 6
 Great job completing your workout!
 Started new workout.
 Use add command to add exercises to your workout!
@@ -18,5 +21,6 @@ Great job completing your workout!
 Workout deleted successfully.
 No workout found with the specified date.
 Here are the list of dates for your workout: 
-Sun Nov 12 00:00:00 CST 2023
+11-10-23
+12-11-23
 Thank you and see you next time

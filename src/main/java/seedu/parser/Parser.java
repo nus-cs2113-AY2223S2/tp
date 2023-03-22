@@ -1,14 +1,15 @@
 package seedu.parser;
 
 
-import seedu.commands.AddCommand;
 import seedu.commands.Command;
-import seedu.commands.DeleteCommand;
-import seedu.commands.EndCommand;
-import seedu.commands.ExitCommand;
-import seedu.commands.IncorrectCommand;
 import seedu.commands.ListCommand;
 import seedu.commands.StartCommand;
+import seedu.commands.AddCommand;
+import seedu.commands.DeleteCommand;
+import seedu.commands.ExitCommand;
+import seedu.commands.EndCommand;
+import seedu.commands.IncorrectCommand;
+
 import seedu.workout.Exercise;
 
 import java.text.DateFormat;
@@ -42,7 +43,12 @@ public class Parser {
         case "/delete":
             return processDelete(arguments);
         case "/list":
+            if (arguments != null && !arguments.trim().isEmpty()) {
+                // If there are arguments after the "/list" command, return an IncorrectCommand instance
+                return new IncorrectCommand();
+            }
             return new ListCommand();
+
         case "/end":
             return new EndCommand();
         case "/exit":
@@ -79,6 +85,7 @@ public class Parser {
         }
         return new AddCommand(toAdd);
     }
+
     private Command processDelete(String arguments) {
         Date date;
         try {
