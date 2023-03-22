@@ -51,7 +51,7 @@ public class Parser {
             logger.info("view command executing");
             return generateReport();
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
-            return displayHelp();
+            return displayHelp(action[1].trim());
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
             logger.info("filter command executing");
             return filterStatement(action[1]);
@@ -186,8 +186,9 @@ public class Parser {
         return new ViewCommand();
     }
 
-    public HelpCommand displayHelp() {
-        return new HelpCommand();
+    //@@author BenjaminPoh
+    public HelpCommand displayHelp(String input) {
+        return new HelpCommand(input.trim());
     }
 
     //@@author ChongQiRong
