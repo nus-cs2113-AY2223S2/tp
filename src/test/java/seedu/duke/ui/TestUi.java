@@ -3,12 +3,20 @@ package seedu.duke.ui;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import seedu.duke.exercisegenerator.GenerateExercise;
+import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.ui.Ui;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class TestUi {
+    /**
+     *
+     */
     @Test
     void testSplitLine() {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
@@ -190,4 +198,63 @@ public class TestUi {
         }
         assertEquals(expectedOutput, actualOutput.toString());
     }
+
+    /*@Test
+    void testPrintExerciseFromList() {
+        String OPEN_BRACE = "[";
+        String CLOSE_BRACE = "]";
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        ArrayList<ExerciseData> exerciseData;
+        List<String>myList = new ArrayList<>();
+        myList.add("core");
+
+        ExerciseData dummy1 = new ExerciseData();
+        dummy1.setName("3/4 Sit-Up");
+        dummy1.setWorkoutType(myList);
+        dummy1.setLevel("beginner");
+        dummy1.getId() = "1";
+
+        Ui ui = new Ui();
+        ui.printExerciseFromList(exerciseData);
+        if (os.contains("Windows")) {
+            for (ExerciseData exercise : exerciseData) {
+                String getWorkoutType = exercise.getWorkoutType().toString();
+                String getInstructions = exercise.getInstructions().toString();
+                int start = getWorkoutType.indexOf(OPEN_BRACE);
+                int end = getWorkoutType.indexOf(CLOSE_BRACE);
+                int startInstructions = getInstructions.indexOf(OPEN_BRACE);
+                int endInstructions = getInstructions.indexOf(CLOSE_BRACE);
+                String getWorkoutTypeFinal = getWorkoutType.substring(start + 1, end);
+                String getInstructionsFinal = getInstructions.substring(startInstructions + 1, endInstructions);
+                expectedOutput = "Exercise ID: " + exercise.getId() + ". \r\n" +
+                        "Name: " + exercise.getName() + "\r\n" +
+                        "Difficulty Level: " + exercise.getLevel() + "\r\n" +
+                        "Workout Type: " + getWorkoutTypeFinal + "\r\n" +
+                        getInstructionsFinal + "\r\n";
+                assertEquals(expectedOutput, actualOutput.toString());
+            }
+        } else {
+            for (ExerciseData exercise : exerciseData) {
+                String getWorkoutType = exercise.getWorkoutType().toString();
+                String getInstructions = exercise.getInstructions().toString();
+                int start = getWorkoutType.indexOf(OPEN_BRACE);
+                int end = getWorkoutType.indexOf(CLOSE_BRACE);
+                int startInstructions = getInstructions.indexOf(OPEN_BRACE);
+                int endInstructions = getInstructions.indexOf(CLOSE_BRACE);
+                String getWorkoutTypeFinal = getWorkoutType.substring(start + 1, end);
+                String getInstructionsFinal = getInstructions.substring(startInstructions + 1, endInstructions);
+                expectedOutput = "Exercise ID: " + exercise.getId() + ". \n" +
+                        "Name: " + exercise.getName() + "\n" +
+                        "Difficulty Level: " + exercise.getLevel() + "\n" +
+                        "Workout Type: " + getWorkoutTypeFinal + "\n" +
+                        getInstructionsFinal + "\n";
+                assertEquals(expectedOutput, actualOutput.toString());
+            }
+        }
+    }*/
 }
