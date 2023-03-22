@@ -13,6 +13,8 @@ public class UnpackCommand extends Command {
 
     public UnpackCommand(int targetIndex) {
         super(targetIndex);
+        assert (targetIndex >= 1 & targetIndex <= PackingList.getItemList().size()):
+                "Unpack Command Target index is out of bounds";
     }
 
     @Override

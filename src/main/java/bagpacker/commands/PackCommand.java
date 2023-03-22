@@ -11,10 +11,9 @@ public class PackCommand extends Command {
             "\tExample: pack toothbrush";
 
 
-
     public PackCommand(int targetIndex) {
         super(targetIndex);
-        assert (targetIndex >= 1 & targetIndex <= PackingList.getItemList().size()) :
+        assert (targetIndex >= 1 & targetIndex <= PackingList.getItemList().size()):
                 "Pack Command Target index is out of bounds";
     }
 
