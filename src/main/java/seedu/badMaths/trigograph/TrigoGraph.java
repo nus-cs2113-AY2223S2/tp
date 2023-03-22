@@ -21,7 +21,6 @@ public class TrigoGraph {
             Ui.printFrequency(frequency);
             Ui.printPhase(phase);
             Ui.printVerticalShift(verticalShift);
-            System.out.println("Trigo is: " + trig);
 
             TrigoGraphVisualiser visualiser = new TrigoGraphVisualiser(amplitude,phase,frequency,verticalShift,trig);
             visualiser.startVisualiser();
