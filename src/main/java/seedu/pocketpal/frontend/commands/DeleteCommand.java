@@ -42,7 +42,6 @@ public class DeleteCommand extends Command {
         Arrays.sort(entryIds, Collections.reverseOrder());
         Integer[] uniqueEntryIds = Arrays.stream(entryIds).distinct().toArray(Integer[]::new);
         for(int entryId: uniqueEntryIds){
-            System.out.println(entryId);
             Request requestGet = new Request(RequestMethod.GET, String.valueOf(entryId));
             Response responseGet = backend.requestEndpointEntry(requestGet);
             if (responseGet.getResponseStatus() == ResponseStatus.NOT_FOUND) {
@@ -51,7 +50,6 @@ public class DeleteCommand extends Command {
             }
         }
         for(int entryId: uniqueEntryIds){
-            System.out.println(entryId);
             Request requestDelete = new Request(RequestMethod.DELETE, String.valueOf(entryId));
             Response responseDelete = backend.requestEndpointEntry(requestDelete);
             if (responseDelete.getResponseStatus() == ResponseStatus.NOT_FOUND) {
