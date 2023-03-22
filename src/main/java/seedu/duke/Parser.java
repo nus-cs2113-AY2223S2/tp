@@ -6,7 +6,6 @@ import seedu.duke.command.DeleteModuleCommand;
 import seedu.duke.command.ExceptionHandleCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
-import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCurrentCommand;
 import seedu.duke.command.ListPuCommand;
 import seedu.duke.command.ListPuModulesCommand;
