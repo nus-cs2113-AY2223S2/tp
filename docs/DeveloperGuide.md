@@ -4,6 +4,8 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 ## Table of Contents
 1. [Acknowledgements](#acknowledgements)
 2. [Design & Implementation](#design--implementation)
+    1. [Add Command](#add-command)
+    2. [Remove Command](#remove-command)
 3. [Product Scope](#product-scope)
     1. [Target User Profile](#target-user-profile)
     2. [Value Proposition](#value-proposition)
@@ -21,6 +23,15 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 ###### [Back to table of contents](#table-of-contents)
 
 ## Design & Implementation
+
+### Add Command
+
+The add command is implemented with the following steps
+
+### Remove Command
+
+The remove command is implemented with the following steps
+
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
