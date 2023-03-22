@@ -1,6 +1,11 @@
 package seedu.duck;
 
-import seedu.duck.exception.*;
+import seedu.duck.exception.expiredDateException;
+import seedu.duck.exception.IllegalSchoolClassException;
+import seedu.duck.exception.IllegalEventException;
+import seedu.duck.exception.IllegalDeadlineException;
+import seedu.duck.exception.IllegalTodoException;
+import seedu.duck.exception.startAfterEndException;
 import seedu.duck.task.Deadline;
 import seedu.duck.task.Event;
 import seedu.duck.task.SchoolClass;
