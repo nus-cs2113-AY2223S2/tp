@@ -27,18 +27,22 @@ class CurrencyTest {
 
     @Test
     public void getExchangeRate_success() {
-        BigDecimal rate = currency.getExchangeRate(LocalDate.parse(inputDate, formatter).with(Temporals.previousWorkingDay()).toString(), "USD");
+        BigDecimal rate = currency.getExchangeRate(LocalDate.parse(inputDate, formatter)
+                .with(Temporals.previousWorkingDay()).toString(), "USD");
         assertEquals(new BigDecimal(1.3241)
                 .setScale(5, RoundingMode.HALF_UP), rate.setScale(5, RoundingMode.HALF_UP));
-        BigDecimal newrate1 = currency.getExchangeRate(LocalDate.parse(inputDate, formatter).with(Temporals.previousWorkingDay()).toString(), "HKD");
+        BigDecimal newrate1 = currency.getExchangeRate(LocalDate.parse(inputDate, formatter)
+                .with(Temporals.previousWorkingDay()).toString(), "HKD");
         assertNotEquals(rate.setScale(5, RoundingMode.HALF_UP),
                 newrate1.setScale(5, RoundingMode.HALF_UP));
         assertEquals(newrate1.setScale(5, RoundingMode.HALF_UP),
                 new BigDecimal(0.16870).
                         setScale(5, RoundingMode.HALF_UP));
-        BigDecimal newrate2 = currency.getExchangeRate(LocalDate.parse("02-02-2012", formatter).with(Temporals.previousWorkingDay()).toString(),
+        BigDecimal newrate2 = currency.getExchangeRate(LocalDate.parse("02-02-2012", formatter)
+                        .with(Temporals.previousWorkingDay()).toString(),
                 "hkd");
-        assertEquals(newrate2.setScale(5, RoundingMode.HALF_UP), new BigDecimal(0.16199999999999999289457264239899814128875732421875
+        assertEquals(newrate2.setScale(5, RoundingMode.HALF_UP),
+                new BigDecimal(0.16199999999999999289457264239899814128875732421875
         ).setScale(5, RoundingMode.HALF_UP));
     }
 
