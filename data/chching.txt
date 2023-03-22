@@ -1,0 +1,4 @@
+I | tuition | 2023-12-12 | 500.00
+I | test | 2022-11-11 | 300.00
+E | expense | transport | 2023-12-12 | 500.00
+E | tuition | test | 2023-12-24 | 350.50

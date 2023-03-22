@@ -3,6 +3,8 @@ package chching.parser;
 import chching.ChChingException;
 import chching.record.Expense;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 
 public class Expenses {
@@ -11,11 +13,14 @@ public class Expenses {
         try {
             String expenseCategory = argumentsByField.get("c");
             String expenseDescription = argumentsByField.get("de");
-            String expenseDate = argumentsByField.get("da");
+            LocalDate expenseDate = LocalDate.parse(argumentsByField.get("da"));
             float expenseValue = Float.parseFloat(argumentsByField.get("v"));
             assert expenseValue > 0 : "Expense value should be greater than zero";
             exp = new Expense(expenseCategory, expenseDescription, expenseDate, expenseValue);
-        } catch (Exception e) {
+        } catch (DateTimeParseException e) {
+            throw new ChChingException("Date format should be: yyyy-mm-dd");
+        }
+        catch (Exception e) {
             throw new ChChingException("Trouble adding expense value");
         }
         return exp;

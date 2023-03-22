@@ -29,7 +29,7 @@ public abstract class Record {
     }
 
     public String getDateString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM uuuu");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-uuuu");
         return date.format(formatter);
     }
 

@@ -3,6 +3,8 @@ package chching.parser;
 import chching.ChChingException;
 import chching.record.Income;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 
 public class Incomes {
@@ -10,12 +12,15 @@ public class Incomes {
         Income inc = null;
         try {
             String incomeDescription = argumentsByField.get("de");
-            String incomeDate = argumentsByField.get("da");
+            LocalDate incomeDate = LocalDate.parse(argumentsByField.get("da"));
             float incomeValue = Float.parseFloat(argumentsByField.get("v"));
             inc = new Income(incomeDescription, incomeDate, incomeValue);
             assert incomeValue > 0 : "incomeValue has to be more than 0";
             inc = new Income(incomeDescription, incomeDate, incomeValue);
-        } catch (Exception e) {
+        }  catch (DateTimeParseException e) {
+            throw new ChChingException("Date format should be: dd MM uuuu");
+        }
+        catch (Exception e) {
             throw new ChChingException("Trouble adding income value");
         }
         return inc;
