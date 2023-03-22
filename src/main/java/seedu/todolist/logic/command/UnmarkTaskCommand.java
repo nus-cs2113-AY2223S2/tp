@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
-//@@author jeromeongithub
+//@@ RuiShengGit
 public class UnmarkTaskCommand extends Command{
     public static final String KEYWORD = "unmark";
     public static final HashSet<String> FLAGS = new HashSet<>(Arrays.asList(KEYWORD));
