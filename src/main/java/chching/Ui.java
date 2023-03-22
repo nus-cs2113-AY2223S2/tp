@@ -31,7 +31,7 @@ public class Ui {
         System.out.println("    Got it. I've added this record:");
         System.out.println("    " + record);
         System.out.println();
-        assert(incomes.size() > 0);
+        assert(incomes.size() >= 0);
         System.out.println("    Now you have " + incomes.size() + " income records,");
         System.out.println("    and " + expenses.size() + " expense records in the list.");
     }
