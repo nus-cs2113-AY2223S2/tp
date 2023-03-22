@@ -7,6 +7,8 @@ import functionalities.appointments.Surgery;
 import functionalities.appointments.Vaccination;
 import functionalities.ui.Ui;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,7 +20,7 @@ public class SniffTasks {
     private static int appointmentCount = 0;
 
     public void addConsultation(Animal animal, Owner owner,
-                                String date, String time) throws SniffException {
+                                LocalDate date, LocalTime time) throws SniffException {
         try {
             String uid = Uid.uidGenerator("C");
             while (UIDS.containsKey(uid)) { // this loop checks for duplicate appointment ids
@@ -35,7 +37,7 @@ public class SniffTasks {
     }
 
     public void addVaccination(Animal animal, Owner owner,
-                               String date, String time, String vaccine) throws SniffException {
+                               LocalDate date, LocalTime time, String vaccine) throws SniffException {
         try {
             String uid = Uid.uidGenerator("V");
             while (UIDS.containsKey(uid)) { // this loop checks for duplicate appointment ids
@@ -52,8 +54,8 @@ public class SniffTasks {
     }
 
     public void addSurgery(Animal animal, Owner owner,
-                           String priority, String startDate, String startTime,
-                           String endDate, String endTime) throws SniffException {
+                           String priority, LocalDate startDate, LocalTime startTime,
+                           LocalDate endDate, LocalTime endTime) throws SniffException {
         try {
             String uid = Uid.uidGenerator("S");
             while (UIDS.containsKey(uid)) { // this loop checks for duplicate appointment ids
