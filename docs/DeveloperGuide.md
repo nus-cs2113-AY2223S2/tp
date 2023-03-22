@@ -16,7 +16,7 @@ For all valid commands, the mechanism of implementation are as follows:
 
 #### Add Command
 
-Add command is used to add a quantity of items to the packing list.
+Add command is used to add a quantity of item(s) to the packing list.
 
 Mechanism: ```AddCommand.execute()``` calls the ```PackingList.addItem()``` method from the ```PackingList``` class which executes the ```ArrayList.add()``` method to add the item to the ```PackingList``` ArrayList. 
 It then updates the ```quantity``` variable according to the quantity inputted by the user.
