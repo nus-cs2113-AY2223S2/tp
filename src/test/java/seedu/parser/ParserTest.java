@@ -1,8 +1,6 @@
 package seedu.parser;
 
-import com.sun.tools.javac.Main;
 import org.junit.jupiter.api.Test;
-import seedu.commands.AcademicExpenditureCommand;
 import seedu.commands.Command;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
