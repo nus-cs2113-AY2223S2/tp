@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RecipeList extends ArrayList<Recipe> {
+    private HashMap<String, ArrayList<Recipe>> tags = new HashMap<String, ArrayList<Recipe>>();
 
     public Recipe findByName(String name) {
         for (Recipe recipe : this) {
@@ -28,10 +29,32 @@ public class RecipeList extends ArrayList<Recipe> {
         return recipeToDelete;
     }
 
-    public RecipeList listRecipes(String[] filters) {
+    public void addRecipeToTag(String tag, Recipe recipe) {
+        if (tags.containsKey(tag)) {
+            tags.get(tag).add(recipe);
+        } else {
+            assert !tags.containsKey(tags);
+            ArrayList<Recipe> tagRecipes = new ArrayList<Recipe>();
+            tagRecipes.add(recipe);
+            tags.put(tag, tagRecipes);
+            assert tags.size() > 0 : "tag's size is still 0.";
+        }
+    }
+
+    public RecipeList listRecipes(String[] filters, boolean isTag) {
         RecipeList filteredRecipeList = new RecipeList();
         if (filters == null) {
             return this;
+        }
+        if (isTag) {
+            for (String filter : filters) {
+                filter = filter.trim();
+                ArrayList<Recipe> tagRecipes = this.tags.get(filter);
+                if (tagRecipes != null) {
+                    filteredRecipeList.addAll(this.tags.get(filter));
+                }
+            }
+            return filteredRecipeList;
         }
         for (Recipe recipe : this) {
             filteredRecipeList.add(recipe);

@@ -165,18 +165,56 @@ public class Parser {
         }
     }
 
+    public String parseTagRecipe(String[] inputs, RecipeList recipeList) {
+        String tag;
+        if (inputs.length == 1) {
+            throw new IllegalArgumentException("Please indicate at least a tag and a recipe.");
+        } else {
+            StringBuilder commandString = new StringBuilder(inputs[1]);
+            for (int i = 2; i < inputs.length; i++) {
+                commandString.append(" ").append(inputs[i]);
+            }
+            String[] args = commandString.toString().trim().split("<<");
+            if (commandString.indexOf("<<") == -1) {
+                throw new IllegalArgumentException("Please enter the command in the correct format.");
+            } else if (args.length < 2) {
+                throw new IllegalArgumentException("Please enter the command in the correct format.");
+            }
+            tag = args[0].trim();
+            String[] recipesToTag = args[1].split(",");
+            for (String recipeName : recipesToTag) {
+                recipeName = recipeName.trim();
+                Recipe recipe = recipeList.findByName(recipeName);
+                if (recipe == null) {
+                    throw new IndexOutOfBoundsException("Unable to find the recipe.");
+                }
+                recipeList.addRecipeToTag(tag, recipe);
+            }
+        }
+        return tag;
+    }
+
     public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList) {
         String[] filters;
+        boolean isTag = false;
         if (inputs.length == 1) {
             filters = null;
         } else {
-            StringBuilder filterString = new StringBuilder(inputs[1]);
-            for (int i = 2; i < inputs.length; i++) {
+            int firstArgsIndex = 1;
+            if (inputs[1].equals("/t")){
+                if (inputs.length == 2) {
+                    throw new IllegalArgumentException("argument is missing.");
+                }
+                firstArgsIndex = 2;
+                isTag = true;
+            }
+            StringBuilder filterString = new StringBuilder(inputs[firstArgsIndex]);
+            for (int i = firstArgsIndex + 1; i < inputs.length; i++) {
                 filterString.append(" ").append(inputs[i]);
             }
             filters = filterString.toString().split("&");
         }
-        return recipeList.listRecipes(filters);
+        return recipeList.listRecipes(filters, isTag);
     }
 
     public Recipe parseViewRecipe(String[] command, RecipeList recipes) {
