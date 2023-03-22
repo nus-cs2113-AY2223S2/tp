@@ -18,7 +18,7 @@ public class Incomes {
             assert incomeValue > 0 : "incomeValue has to be more than 0";
             inc = new Income(incomeDescription, incomeDate, incomeValue);
         }  catch (DateTimeParseException e) {
-            throw new ChChingException("Date format should be: dd MM uuuu");
+            throw new ChChingException("Date format should be: yyyy-mm-dd");
         }
         catch (Exception e) {
             throw new ChChingException("Trouble adding income value");

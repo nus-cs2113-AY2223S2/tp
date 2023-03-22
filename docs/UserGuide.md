@@ -37,8 +37,8 @@ Use case:
 * VALUE will be stored as a positive float.
 
 Example of usage:
-<br>`add expense /c meal /de breakfast @Technoedge /da 01/02/23 /v 3.50`
-<br>`add income /c salary /de salary /da 01/01/23 /v 500`
+<br>`add expense /c meal /de breakfast @Technoedge /da 2023-03-22 /v 3.50`
+<br>`add income /c salary /de salary /da 2023-03-22 /v 500`
 
 ### Listing all expenses and incomes: `list`
 Shows a full list of both the expenses and incomes created by the user. Includes the index number, category, description, and value.
