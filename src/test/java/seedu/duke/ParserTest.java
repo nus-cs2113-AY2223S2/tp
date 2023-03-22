@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.objects.Inventory;
 import seedu.duke.utils.parser.Parser;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class ParserTest {
     @Test

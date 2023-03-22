@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AddCommandTest {
     Inventory inventory;

@@ -27,18 +27,22 @@ public class SearchCommand extends Command {
     // TODO: Split the search feature into 2 here, if-else within run() to determine
     //  if search should be by UPC or keyword correspondingly
 
-//    /**
-//     * Search for an item in the inventory by its unique UPC number and returns search query
-//     *
-//     * @param upc numeric UPC number which user provides for querying
-//     */
-//    private void searchUPC(final String upc) {
-//        if (!upcCodes.containsKey(upc)) {
-//            Ui.printEmptySearch();
-//            return;
-//        }
-//        Ui.printSearchUPCItem(upcCodes.get(upc));
-//    }
+    /*
+    /**
+     * Search for an item in the inventory by its unique UPC number and returns search query
+     *
+     * @param upc numeric UPC number which user provides for querying
+     */
+
+
+    /*
+    private void searchUPC(final String upc) {
+        if (!upcCodes.containsKey(upc)) {
+            Ui.printEmptySearch();
+            return;
+        }
+        Ui.printSearchUPCItem(upcCodes.get(upc));
+    }*/
 
     /**
      * Search for an item in the inventory by its keyword and returns search query

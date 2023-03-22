@@ -1,6 +1,6 @@
 package seedu.duke.utils;
 
-import seedu.duke.commands.EditCommand;
+//import seedu.duke.commands.EditCommand;
 import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
