@@ -1,7 +1,5 @@
 package seedu.duke.medicine;
-/**
- * @author tanyizhe
- */
+//@@author tanyizhe
 public class Medicine {
     private String name;
     private String dosage;

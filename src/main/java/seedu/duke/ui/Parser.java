@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 
 import static seedu.duke.save.Storage.saveData;
 
+//@@author JeraldChen
 public class Parser {
 
     /**
@@ -37,7 +38,6 @@ public class Parser {
             break;
         }
     }
-
     /**
      * Parses the user input for the account menu.
      * @author Thunderdragon221, Geeeetyx, tanyizhe
@@ -51,6 +51,7 @@ public class Parser {
 
         switch (choice) {
         case "1":
+            //@@author tanyizhe
             ArrayList<Symptom> symptoms = Menu.getUserSymptoms();
             Menu.displayPossibleIllness(symptoms);
             ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
@@ -58,11 +59,15 @@ public class Parser {
                 user.updatePatientDiagnosisHistory(illnessMatch.getIllness().getIllnessName());
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
                 LocalDateTime now = LocalDateTime.now();
-                user.updatePatientMedicineHistory(dtf.format(now),
-                            medicineManager.getRelevantMedication(illnessMatch.getIllness().getIllnessName()));
+                ArrayList<String> medicineArrayList = medicineManager
+                            .getRelevantMedicationInString(illnessMatch.getIllness().getIllnessName());
+                if (!(medicineArrayList == null)) {
+                    user.updatePatientMedicineHistory(dtf.format(now), medicineArrayList);
+                }
             }
             saveData();
             break;
+        //@@author Thunderdragon221
         case "2":
             Information.printDiagnosisHistory(Duke.getPassword());
             break;
@@ -72,6 +77,7 @@ public class Parser {
         case "4":
             Information.resetSymptomChoice(Menu.symptoms);
             break;
+        //@@author Geeeetyx
         case "5":
             user.printPatientMedicineHistory();
             break;

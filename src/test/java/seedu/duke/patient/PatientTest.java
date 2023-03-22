@@ -5,22 +5,26 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.ui.Information;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PatientTest {
     @Test
     public void createNewPatientTest() {
-        String name = "Akshay";
+        String name = "Tom";
         String password = "iloveCS2113";
 
         ArrayList<String> diagnosisHistory = new ArrayList<>();
         diagnosisHistory.add("Flu");
         diagnosisHistory.add("COVID-19");
 
-        Patient testPatient = new Patient(name, Information.hashPassword(password), diagnosisHistory);
+        Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable<>();
 
-        assertEquals(testPatient.getName(), "Akshay");
+
+        Patient testPatient = new Patient(name, Information.hashPassword(password), diagnosisHistory, medicineHistory);
+
+        assertEquals(testPatient.getName(), "Tom");
         assertEquals(testPatient.getPassword(), Information.hashPassword("iloveCS2113"));
         assertEquals(diagnosisHistory, testPatient.getPatientDiagnosisHistory());
     }
