@@ -78,6 +78,15 @@ public class AddCommand extends Command {
     }
 
     /**
+     * Constructs AddCommand object using entry to be added
+     *
+     * @param entry Entry to be added into the Entry Log
+     */
+    public AddCommand(Entry entry) {
+        this.entryObj = new Entry(entry.getDescription(), entry.getAmount(), entry.getCategory());
+    }
+
+    /**
      * Adds Entry object to entry log
      * @param ui UI to output action result
      * @param backend  Backend to process requests
