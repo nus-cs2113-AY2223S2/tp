@@ -30,6 +30,15 @@ public class Parser {
 
     public static final String FIELD_DEMARCATION = " /";
 
+    /**
+     * Method that parses command to the relevant classes to execute
+     *
+     * @param line       User input
+     * @param incomeList        List of incomes
+     * @param expenseList       List of expenses
+     * @param ui        User interface
+     */
+
     public static Command parse(
             String line,
             IncomeList incomeList,
@@ -94,11 +103,24 @@ public class Parser {
         return command;
     }
 
+    /**
+     * Split the String of user input into relevant partitions
+     *
+     * @param line       User input
+     * @return An ArrayList of Strings
+     */
     public static ArrayList<String> splitLine(String line) {
         ArrayList<String> lineParts = new ArrayList<String>();
         lineParts.addAll(Arrays.asList(line.split(FIELD_DEMARCATION)));
         return lineParts;
     }
+
+    /**
+     * Sort the arguments
+     *
+     * @param arguments       arguments
+     * @return Hashmap of sorted arguments
+     */
 
     public static HashMap<String, String> sortArguments(List<String> arguments) throws ChChingException {
         HashMap<String, String> argumentsByField = new HashMap<String, String>();

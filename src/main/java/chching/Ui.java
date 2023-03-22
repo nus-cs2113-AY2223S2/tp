@@ -9,6 +9,9 @@ import chching.record.RecordList;
 
 import java.util.Scanner;
 
+/**
+ * Models a class for user interface of the program
+ */
 public class Ui {
     public String readCommand() {
         Scanner input = new Scanner((System.in));
