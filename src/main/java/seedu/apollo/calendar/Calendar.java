@@ -69,7 +69,7 @@ public class Calendar extends ArrayList<ArrayList<CalendarModule>> {
      *
      * @param day The array list containing lessons for the day.
      */
-    private void sortDayByTime(ArrayList<CalendarModule> day) {
+    private void sortDayByTime(ArrayList<CalendarModule> day){
         day.sort((CalendarModule lesson1, CalendarModule lesson2) -> {
             SimpleDateFormat format = new SimpleDateFormat("HHmm");
             try {
@@ -81,7 +81,7 @@ public class Calendar extends ArrayList<ArrayList<CalendarModule>> {
 
                 return this.determineSort(startTime1, endTime1, startTime2, endTime2);
             } catch (ParseException e) {
-                throw new RuntimeException(e);
+                return 0;
             }
         });
     }
