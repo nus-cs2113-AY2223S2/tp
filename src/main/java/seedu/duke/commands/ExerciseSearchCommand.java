@@ -21,11 +21,9 @@ public class ExerciseSearchCommand extends Command{
             for (int i = 1; i < userCommands.length; i++) {
                 keyword = keyword + userCommands[i] + " ";
             }
-        }
-        else if (userCommands.length == 2){
+        } else if (userCommands.length == 2){
             keyword = userCommands[1];
-        }
-        else {
+        } else {
             throw new EmptyKeywordError();
         }
     }

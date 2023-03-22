@@ -8,6 +8,10 @@ public class PrintHelpMessage {
         System.out.println("\tFILTER stands for a specific requirement you want to include in your exercise");
         System.out.println("[filters]");
         System.out.println("\tView all available filters");
+        System.out.println("[plan]");
+        System.out.println("\tShow all plans");
+        System.out.println("[planner]");
+        System.out.println("\tEnter workout plan editor");
         System.out.println("[find]");
         System.out.println("\tfinds all relevant exercises based on the keyword : find [keyword]");
         System.out.println("[bye]");
@@ -21,10 +25,10 @@ public class PrintHelpMessage {
         System.out.println("\tFILTER stands for a specific requirement you want to include in your exercise");
         System.out.println("[delete]");
         System.out.println("\tdelete a plan on a day of the week: delete monday plan_name");
-        System.out.println("[planner]");
+        System.out.println("[plan]");
         System.out.println("\tShow all plans");
         System.out.println("[exit]");
-        System.out.println("\tExit planner editor");
+        System.out.println("\tExit workout plan editor");
         //System.out.println(ErrorMessages.ERROR_GLOBAL_INVALID_COMMAND.toString());
     }
     //@@author Khulon
@@ -37,7 +41,7 @@ public class PrintHelpMessage {
                 "\t[medium] exercises of medium intensity\n" +
                 "\t[hard] exercises of hard intensity\n" +
                 "By Body part:\n" +
-                "\t[arms] exercises that trains your arms\n" +
+                "\t[upper] exercises that trains your arms\n" +
                 "\t[core] exercises that trains your core\n" +
                 "\t[legs] exercises that trains your legs\n");
     }

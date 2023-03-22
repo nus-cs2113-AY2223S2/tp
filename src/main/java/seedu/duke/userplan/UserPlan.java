@@ -21,6 +21,18 @@ public class UserPlan {
     public static ArrayList<Plan>[] getPlan() {
         return plan;
     }
+
+    public static ArrayList<String> getExercisePlan(String planName){
+        for(int day = 0; day < DAYSINAWEEK; day++) {
+            for(int exercisePlan = 0; exercisePlan < plan[day].size(); exercisePlan++){
+                if (plan[day].get(exercisePlan).getPlanName().equals(planName)) {
+                    return plan[day].get(exercisePlan).getExercisePlans();
+                }
+            }
+        }
+        return null;
+    }
+
     public static void addPlan(String[] userCommands){
         ArrayList<String> exerciseFilters = new ArrayList<>();
         if (userCommands.length < 4) {

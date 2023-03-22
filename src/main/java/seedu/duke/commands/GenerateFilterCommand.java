@@ -89,6 +89,8 @@ public class GenerateFilterCommand extends Command {
         ui.printExerciseFromList(exercises);
     }
 
+
+
     public ArrayList<ExerciseData> provideExerciseList() {
         return exerciseListGenerated;
     }
