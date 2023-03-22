@@ -27,7 +27,7 @@ public class PrintExercises {
             System.out.println("Name: " + exercise.getName());
             System.out.println("Difficulty Level: " + exercise.getLevel());
             System.out.println("Workout Type: " + getWorkoutTypeFinal);
-            System.out.println(getInstructionsFinal + "\n");
+            System.out.println(getInstructionsFinal + System.lineSeparator());
         }
     }
 

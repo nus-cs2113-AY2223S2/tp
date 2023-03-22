@@ -105,6 +105,7 @@ public class GenerateExercise {
     public ArrayList<ExerciseData> generateFilteredWorkoutTypeFrom(ArrayList<ExerciseData> exerciseList,
                                                                    String workoutType) throws DukeError {
         assert exerciseList != null : "exerciseList should not be null.";
+        assert workoutType != null : "workout type should not be null.";
         String exerciseDataWorkoutType;
         String getWorkoutType;
         String getWorkoutTypeFinal;
