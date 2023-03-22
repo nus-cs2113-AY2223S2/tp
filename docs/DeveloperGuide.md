@@ -1,10 +1,26 @@
 # Developer Guide
+- [Developer Guide](#developer-guide)
+  - [Acknowledgements](#acknowledgements)
+  - [Setup \& Prerequisites](#setup--prerequisites)
+  - [Design \& implementation](#design--implementation)
+    - [Recipe Manage Feature](#recipe-manage-feature)
+    - [Recipe Search Feature](#recipe-search-feature)
+    - [Recipe View Feature](#recipe-view-feature)
+    - [Recipe Storage Feature](#recipe-storage-feature)
+    - [Help Feature](#help-feature)
+  - [Appendix A - Product scope](#appendix-a---product-scope)
+    - [Target user profile](#target-user-profile)
+    - [Value proposition](#value-proposition)
+  - [Appendix B - User Stories](#appendix-b---user-stories)
+  - [Appendix C - Non-Functional Requirements](#appendix-c---non-functional-requirements)
+  - [Appendix D Glossary](#appendix-d-glossary)
+  - [Appendix E - Instructions for manual testing](#appendix-e---instructions-for-manual-testing)
 
 ## Acknowledgements
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
-## Setup/Prerequisites
+## Setup & Prerequisites
 1. Ensure you have Java 11 installed.
 2. Ensure your local repository is synced with the main repository at [AY2223S2-CS2113-F13-1/tp](https://github.com/AY2223S2-CS2113-F13-1/tp)
 
@@ -12,8 +28,18 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### Recipe Manage Feature
 
-## Product scope
+### Recipe Search Feature
+
+### Recipe View Feature
+
+### Recipe Storage Feature
+
+### Help Feature
+
+
+## Appendix A - Product scope
 ### Target user profile
 
 Product is geared towards users who are familiar with CLI (e.g. Computing professionals, university students).
@@ -26,7 +52,7 @@ attributes such as calorie count and required ingredients.<br>
 It will also allow them to follow recipes in a step-by-step fashion with additional assistance functions such as timers.<br>
 The user will be able to keep close tabs on their nutrition based on the recipes that they decide to cook and add to their meal plans.
 
-## User Stories
+## Appendix B - User Stories
 
 | Version |     As a ...    |                                      I want to be able to ...                                     |                                  So that I can...                                 |
 |:-------:|:---------------:|:-------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|
@@ -63,18 +89,18 @@ The user will be able to keep close tabs on their nutrition based on the recipes
 |   v3.0  | long-term user  | sort by portion size                                                                              | prep dishes catered to groups when I have friends over                            |
 |  v420.0 | long-term user  | have the app to warn me if my laptop battery life is not enough to finish the recipe              | avoid scrambling for a charger while cooking                                      |
 
-## Non-Functional Requirements
+## Appendix C - Non-Functional Requirements
 
-* Users should be able to run on any common operating system (Windows, Mac, Linux)
-* Users should not need to manipulate any files in the directory manually
-* Users should be able to run all functions of the program on the CLI only (i.e. keyboard inputs only)
-## Glossary
+* Users should be able to run on **any common operating system (Windows, Mac, Linux).**
+* Users should not need to manipulate any files in the directory **manually**.
+* Users should be able to run all functions of the program **on the CLI only (i.e. keyboard inputs only)**.
+## Appendix D Glossary
 
 * *Recipe* - A set of instructions for preparing a food item. In our implementation it should contain the dish's name,
 ingredients required and steps to make the dish
 * *Cuisine* - A category of food originating from a given country or religion
 
-## Instructions for manual testing
+## Appendix E - Instructions for manual testing
 
 Sample inputs should be placed into the input.txt file, and an expected output in the EXPECTED.txt file.
 Run `./runtest.bat` to automatically get a result of whether the actual output follows the expected.
