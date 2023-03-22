@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/class-diagram
+scale 2
+class Parser {
+    +parseUserInput(userInput: String) : Command
+    -parseXCommand(arguments: String) : Command
+    -parseXArguments(arguments: String) : String[]
+}
+note left: parseXArguments() is invoked\nwithin corresponding parseXCommand().\nE.g. parseAddCommand() invokes\nparseAddArguments().
+class Command
+
+Parser -[dotted]-> Command : Returns
+
+
+
+
+
+@enduml

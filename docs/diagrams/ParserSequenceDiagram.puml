@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ":Parser" as Parser
+participant "c:AddCommand" as AddCommand
+
+-> Parser ++: parseUserInput("/add McDonalds -c Food -p 10.50")
+Parser -> Parser ++: parseAddCommand("McDonalds -c Food -p 10.50")
+Parser -> Parser ++: parseAddArguments("McDonalds -c Food -p 10.50")
+return arguments[]
+Parser -> AddCommand ** : create
+AddCommand --> Parser : c
+return c
+return c
+
+@enduml
