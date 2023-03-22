@@ -50,31 +50,62 @@ Components:
 
 ### Maintaining of Financial Report
 
-- The modelling of a financial report is achieved with the use of an ArrayList collection of the object
-  FinancialStatement.
-- FinancialStatement contains the following attributes:
-    - description: a string representing the description of a transaction
-    - flowDirection: an enum of FlowDirection, either INFLOW or OUTFLOW
-    - value: a double representing the amount tagged with the transaction
-    - category: a string representing the type of transaction
-    - date: the date to be tagged with the type of transaction
+- `financialReport` is achieved with the use of an ArrayList collection of the object `FinancialStatement` to model a
+  financial report containing a list of financial statements.
+- A 'FinancialStatement` object contains the following attributes:
+    - `description`: represents the description of a transaction, stored as a string
+    - `flowDirection`: represents the direction of a transaction, stored as an enum of `FlowDirection`: `INFLOW` or
+      `OUTFLOW`
+    - `value`: represents the amount tagged with the transaction, stored as a double
+    - `category`: represents the type of transaction, stored as a string
+    - `date`: represents the date to be tagged of transaction, stored as LocalDate object
 
-### Adding an entry
+### Adding an entry `add`
 
 - When a command is given to add a statement, the command is first parsed to check whether it follows the format of an
-  add command: `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY -date DD/MM/YYYY` with the use of regex pattern.
+  add command: `add -DIRECTION DESCRIPTION $VALUE -c CATEGORY -date DD/MM/YYYY` with the use of regex pattern
+    - Details on implementation for parsing and command fields are documented below
+- Commands in the correct format will then be parsed to extract the relevant information, and an `AddCommand` object
+  will be created with the relevant attributes
+- `RainyDay` will then call `execute` method in `Command`, where the transaction will be added into the financial report
 - Commands in the correct format will then be parsed to extract the relevant information, and an AddCommand object will
   be created with the relevant information passed to it
-- rainyDay will then call Command.execute(), where the transaction will be added into the financial report
+- `RainyDay` will then call `execute` method in `Command`, where the transaction will be added into the financial report
 
-### Deleting an entry
+#### Design considerations
+
+Format of add command
+
+- Alternative 1 (current choice): usage of flags
+    - Pros: able to identify the arguments easily, as the combination of the characters are highly unlikely to be used
+      as a description or category name
+    - Cons: not that intuitive from the user's point of view
+- Alternative 2: usage of keywords
+    - Pros: easier to use from the user's point of view
+    - Cons: unable to correctly identify the keyword as the sequence of characters may be a description or category that
+      the user wants to use
+
+### Deleting an entry `delete`
 
 - When a command is given to delete a statement, the command is first parsed to check whether it follows the format of a
   delete command: `delete INDEX` with the use of regex pattern
-- Commands in the correct format will then be parsed to extract index, and a DeleteCommand object will
-  be created with the relevant information passed to it
-- rainyDay will then call Command.execute(), where the indicated transaction will be deleted from the financial report
+    - `INDEX`: the index number of the statement in the financial report, stored as an int
+- Commands in the correct format will then be parsed to extract index, and a `DeleteCommand` object will
+  be created with the relevant attribute information
+- `RainyDay` will then call `execute` method in `Command`, where the indicated transaction will be deleted from the
+  financial report
 
+#### Design considerations
+
+Format of delete command
+
+- Alternative 1 (current choice): usage of index to identify the statement to be deleted
+    - Pros: able to identify the correct statement to be deleted following the index assigned to the statement
+    - Cons: may not be intuitive for the user, as they have to look up the index of the statement before deletion
+- Alternative 2: usage of full statement information to identify the statement to be deleted
+    - Pros: more intuitive for the user
+    - Cons: user needs to know the full details of the statement and needs to type the full statement information for
+      identifying the statement to be deleted
 
 ### Implementation of regex and parser
 
@@ -111,14 +142,16 @@ down the instructions.
    optional -c and -d commands. This is done through the following:
 
     - `-(in|out)\s+(.+)\$([\d.]+)` checks for the corresponding structure: `[-in/out] [whitepsace]
-      [description] [$amount] `. This will match when the optional flags are not included. An empty string will then be returned.
+      [description] [$amount] `. This will match when the optional flags are not included. An empty string will then be
+      returned.
     - `-(in|out)\s+(.+)\$([\d.]+)\s+(.*)` checks for the corresponding structure `[-in/out] [whitepsace]
       [description] [$amount] [remaining input]`. This will match when at least one of the optional flags are included,
       and a string corresponding to `[remaining input]` will be returned.
 
 
 2. If an empty string is returned, an addCommand object will be returned from function addStatement. Otherwise,
-   a variable `String remainingInformation` will correspond to `[remaining input]` above. `remainingInformation` will then
+   a variable `String remainingInformation` will correspond to `[remaining input]` above. `remainingInformation` will
+   then
    be checked for if it contains `-c` or `-date` flags.
 
 
@@ -128,9 +161,11 @@ down the instructions.
     - `-c\\s+(\\S+)` checks for the corresponding structure `[-c] [whitespace] [1-word category]`.
     - `-c\\s+(\\S+)\\s+(.*)` checks for the same thing except category can be multiple words
 
-4. The last field to check is the `-date` field. If present, the setDate function will be called on `remainingInformation`.
+4. The last field to check is the `-date` field. If present, the setDate function will be called
+   on `remainingInformation`.
    The setDate function will then use the following regex to match.
-    - `-date\\s+(\\d{2}/\\d{2}/\\d{4})` matches the corresponding structure`[-date] [whitespace] [date in DD/MM/YYYY format]`
+    - `-date\\s+(\\d{2}/\\d{2}/\\d{4})` matches the corresponding
+      structure`[-date] [whitespace] [date in DD/MM/YYYY format]`
 
 These steps will ultimately parse the user's input and extract the necessary information. If any pattern does not match,
 our parser will throw a `RainDayException` indicating the wrong input format.
@@ -140,7 +175,7 @@ our parser will throw a `RainDayException` indicating the wrong input format.
 We have tried using the .split() function of strings to extract information. However, as we introduced more features and
 the commands grew more complex, the .split() function became very messy and inconvenient. Using this will also result in
 us needing to do more exceptions and error handling, which just made the entire process very complicated. Thus, we opted
-to use regular expressions, which is a more tidy and logical way to parse the inputs. 
+to use regular expressions, which is a more tidy and logical way to parse the inputs.
 
 ### Viewing your data
 
@@ -150,15 +185,18 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 - Information will be presented in a table format to help improve clarity for users.
 
 ### Editing an entry
+
 - When a command is given to edit a statement, the command is first parsed to check whether it follows the format of an
   edit command: `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` with the use of regex.
-- If the statement contains "add", then a check will be done on the remaining fields to see if it is a valid add command.
+- If the statement contains "add", then a check will be done on the remaining fields to see if it is a valid add
+  command.
 - Otherwise, methods specific to the flags will be used to validate the remaining fields using regex pattern
 - Commands in the correct format will then be used to create a FilterCommand object.
 - rainyDay will then call Command.execute(), where the transaction's specific field be edited or deleted then added
   into the financial report.
 
 ### Filtering your data
+
 - When a command is given to filter a report by certain conditions, the command is first parsed to check whether it
   follows the format of a filter command with the use of regex pattern
     - Valid patterns are `filter -in`, `filter -out` , `filter -c <category>`,
@@ -169,6 +207,7 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 - Information will be presented in a table format to help improve clarity for users.
 
 {TODO: Mention file path after implementing issue #137}
+
 ### Saving Data
 
 - Whenever a change is made in the `FinancialReport` the updated `FinancialReport` will automatically be saved to
@@ -255,7 +294,6 @@ to use regular expressions, which is a more tidy and logical way to parse the in
     - Cons:
         - Exporting to .csv might be costly operation when dealing with a large financial statement. An unnecessary
           operation may be performed if user is uninterested in the export to .csv feature.
-
 
 ## Product scope
 
