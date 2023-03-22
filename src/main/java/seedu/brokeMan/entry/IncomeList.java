@@ -48,7 +48,7 @@ public class IncomeList extends EntryList{
     public static void listIncome() {
         Ui.showToUser("Here are the income you have made.");
         listEntry(incomeList);
-        Ui.showToUser("Total income: $" + getEntryListSum(incomeList));
+        Ui.showToUser(String.format("Total income: $%.2f", getEntryListSum(incomeList)));
         Ui.showToUserWithLineBreak("");
     }
 

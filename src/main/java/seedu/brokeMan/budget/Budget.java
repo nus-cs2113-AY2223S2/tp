@@ -43,12 +43,14 @@ public class Budget {
             double totalExpenses = EntryList.getEntryListSum(expensesInMonth);
             double budgetThisMonth = budgetEachMonth.get(yearOfInterest).get(monthOfInterest);
             double budgetLeft = budgetThisMonth - totalExpenses;
-            Ui.showToUser(String.format("You have set your budget as %.2f for %s",
+            Ui.showToUser(String.format("You have set your budget as $%.2f for %s.",
                     budgetThisMonth, createDateString(yearOfInterest, monthOfInterest)));
             if (budgetLeft >= 0) {
-                Ui.showToUserWithLineBreak("The amount of budget left is $" + budgetLeft, "");
+                Ui.showToUserWithLineBreak(
+                        String.format("The amount of budget left is $%.2f", budgetLeft), "");
             } else if (budgetLeft < 0){
-                Ui.showToUserWithLineBreak("You have overspent your expenses by $" + budgetLeft, "");
+                Ui.showToUserWithLineBreak(String.format(
+                        "You have overspent your expenses by $%.2f", budgetLeft), "");
             }
         } catch (NullPointerException npe) {
             Ui.showToUserWithLineBreak("Budget information for the given month does not exist!", "");
@@ -73,7 +75,7 @@ public class Budget {
             budgetEachMonth.put(year, new HashMap<>());
         }
         budgetEachMonth.get(year).put(month, budgetAmount);
-        Ui.showToUserWithLineBreak(String.format("You have successfully set %.2f as your budget for %s",
+        Ui.showToUserWithLineBreak(String.format("You have successfully set $%.2f as your budget for %s.",
                         budgetAmount, StringToTime.createDateString(year, month)), "");
     }
 
