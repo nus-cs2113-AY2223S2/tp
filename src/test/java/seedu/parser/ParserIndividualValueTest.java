@@ -3,6 +3,9 @@ package seedu.parser;
 import org.junit.jupiter.api.Test;
 import seedu.exceptions.EmptyStringException;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -50,5 +53,30 @@ public class ParserIndividualValueTest {
         String amount = ParseIndividualValue.parseIndividualValue(exampleString,"", "");
         assertThrows(NumberFormatException.class,
                 () -> Double.parseDouble(amount));
+    }
+
+    @Test
+    void validOutputsForLendBorrow() throws StringIndexOutOfBoundsException, EmptyStringException{
+        // Format: category d/date, n/name, a/amount, b/deadline, s/description
+        String exampleString = "d/2022-09-01 n/Shark a/1000 b/2023-01-01 s/Feeling rich";
+        String date = ParseIndividualValue.parseIndividualValue(exampleString,"d/","n/");
+        assertEquals(date,"2022-09-01");
+        String name = ParseIndividualValue.parseIndividualValue(exampleString,"n/","a/");
+        assertEquals(name,"Shark");
+        String amount = ParseIndividualValue.parseIndividualValue(exampleString,"a/", "b/");
+        assertEquals(amount, "1000");
+        String returnDate = ParseIndividualValue.parseIndividualValue(exampleString,"b/", "s/");
+        assertEquals(returnDate, "2023-01-01");
+        String description = ParseIndividualValue.parseIndividualValue(exampleString, "s/", "");
+        assertEquals(description, "Feeling rich");
+    }
+    @Test
+    void invalidDateTime() throws StringIndexOutOfBoundsException{
+        // Format: category d/date, n/name, a/amount, b/deadline, s/description
+        String exampleString = "d/2022-09-010 n/Shark a/1000 b/01-01-2023 s/Feeling rich";
+        assertThrows(DateTimeException.class,
+                () -> LocalDate.parse(ParseIndividualValue.parseIndividualValue(exampleString,"d/", "n/")));
+        assertThrows(DateTimeException.class,
+                () -> LocalDate.parse(ParseIndividualValue.parseIndividualValue(exampleString,"b/", "s/")));
     }
 }
