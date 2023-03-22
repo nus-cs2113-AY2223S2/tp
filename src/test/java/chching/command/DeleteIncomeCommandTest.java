@@ -2,6 +2,8 @@ package chching.command;
 
 import chching.Storage;
 import chching.Ui;
+import chching.currency.Converter;
+import chching.currency.Selector;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
 import chching.record.Income;
@@ -12,7 +14,6 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-
 
 class DeleteIncomeCommandTest {
 
@@ -34,12 +35,16 @@ class DeleteIncomeCommandTest {
     private Income bonus;
     private ExpenseList emptyExpenseList;
     private IncomeList defaultIncomeList;
-    
+    private Selector selector;
+    private Converter converter;
+
     @BeforeEach
     void setup() {
-        salary = new Income(SALARY_DESCRIPTION, SALARY_DATE,SALARY_INCOME_VALUE);
+        salary = new Income(SALARY_DESCRIPTION, SALARY_DATE, SALARY_INCOME_VALUE);
         bonus = new Income(BONUS_DESCRIPTION, BONUS_DATE, BONUS_INCOME_VALUE);
-        
+        selector = new Selector();
+        converter = new Converter();
+
         ArrayList<Income> incomeList = new ArrayList<Income>();
         incomeList.add(salary);
         incomeList.add(bonus);
@@ -51,7 +56,7 @@ class DeleteIncomeCommandTest {
         int defaultIncomeListSize = defaultIncomeList.size();
         Command command = new DeleteIncomeCommand(CORRECT_INDEX);
         try {
-            command.execute(defaultIncomeList, emptyExpenseList, ui, storage);
+            command.execute(defaultIncomeList, emptyExpenseList, ui, storage, selector, converter);
             assertEquals(defaultIncomeListSize - OFFSET, defaultIncomeList.size(), "Delete income working");
         } catch (Exception e) {
             fail(); // test should not reach here
@@ -63,7 +68,7 @@ class DeleteIncomeCommandTest {
         String expectedOutput = "The number is too big";
         Command command = new DeleteIncomeCommand(TOO_LARGE_INDEX);
         try {
-            command.execute(defaultIncomeList, emptyExpenseList, ui, storage);
+            command.execute(defaultIncomeList, emptyExpenseList, ui, storage, selector, converter);
             fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage(), "Delete income with integer outside size is not captured");
@@ -75,7 +80,7 @@ class DeleteIncomeCommandTest {
         String expectedOutput = "Negative/Zero index";
         Command command = new DeleteIncomeCommand(NEGATIVE_INDEX);
         try {
-            command.execute(defaultIncomeList, emptyExpenseList, ui, storage);
+            command.execute(defaultIncomeList, emptyExpenseList, ui, storage, selector, converter);
             fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage(), "Delete income with negative integer is not captured");

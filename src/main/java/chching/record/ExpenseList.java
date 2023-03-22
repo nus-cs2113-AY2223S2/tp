@@ -2,15 +2,18 @@ package chching.record;
 
 import java.util.ArrayList;
 
-public class ExpenseList extends RecordList{
+import chching.currency.Converter;
+import chching.currency.Selector;
+
+public class ExpenseList extends RecordList {
 
     protected ArrayList<Expense> expenseList;
 
-    public ExpenseList(ArrayList<Expense> expenseList){
+    public ExpenseList(ArrayList<Expense> expenseList) {
         this.expenseList = expenseList;
     }
 
-    public ExpenseList(){
+    public ExpenseList() {
         expenseList = new ArrayList<>();
     }
 
@@ -22,7 +25,7 @@ public class ExpenseList extends RecordList{
         expenseList.add(expense);
     }
 
-    public void deleteExpense(int i) throws IndexOutOfBoundsException{
+    public void deleteExpense(int i) throws IndexOutOfBoundsException {
         try {
             expenseList.remove(i - 1);
         } catch (IndexOutOfBoundsException e) {
@@ -30,10 +33,11 @@ public class ExpenseList extends RecordList{
         }
     }
 
-    public void printExpenseList() {
+    public void printExpenseList(Selector selector, Converter converter) {
         for (int i = 1; i <= expenseList.size(); i++) {
             Record record = expenseList.get(i - 1);
-            System.out.println("    " + i + ". " + record.toString());
+            String convertedCurrencies = converter.printConverter(record.value, selector);
+            System.out.println("    " + i + ". " + record.toString() + convertedCurrencies);
         }
     }
 

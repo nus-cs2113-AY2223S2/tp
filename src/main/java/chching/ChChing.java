@@ -2,6 +2,8 @@ package chching;
 
 import chching.parser.Parser;
 import chching.command.Command;
+import chching.currency.Converter;
+import chching.currency.Selector;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
 
@@ -9,6 +11,8 @@ public class ChChing {
     private Storage storage;
     private IncomeList incomes;
     private ExpenseList expenses;
+    private Selector selector;
+    private Converter converter;
     private Ui ui;
 
     public ChChing(String filePath) {
@@ -18,6 +22,8 @@ public class ChChing {
         try {
             this.incomes = new IncomeList(storage.loadIncomes());
             this.expenses = new ExpenseList(storage.loadExpenses());
+            this.selector = new Selector();
+            this.converter = new Converter();
         } catch (Exception e) {
             ui.showError(e.getMessage());
             this.incomes = new IncomeList();
@@ -33,7 +39,7 @@ public class ChChing {
                 String fullCommand = ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand, incomes, expenses, ui);
-                c.execute(incomes, expenses, ui, storage);
+                c.execute(incomes, expenses, ui, storage, selector, converter);
                 isExit = c.isExit();
             } catch (ChChingException e) {
                 ui.showError(e.getMessage());
@@ -44,6 +50,7 @@ public class ChChing {
     }
 
     public static void main(String[] args) {
+        // assert false : "Assertions should be enabled";
         new ChChing("data/chching.txt").run();
     }
 }
