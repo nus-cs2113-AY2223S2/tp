@@ -1,6 +1,10 @@
 package seedu.rainyDay.data;
 
+import seedu.rainyDay.RainyDay;
+import seedu.rainyDay.modules.Storage;
+
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class FinancialReport implements Serializable {
@@ -20,6 +24,7 @@ public class FinancialReport implements Serializable {
 
     public void setReportOwner(String name) {
         this.reportOwner = name;
+        Storage.writeToFile(this, RainyDay.filePath);
     }
 
     public int getStatementCount() {
@@ -28,10 +33,17 @@ public class FinancialReport implements Serializable {
 
     public void addStatement(FinancialStatement statement) {
         financialReport.add(statement);
+        Storage.writeToFile(this, RainyDay.filePath);
+    }
+
+    public void addStatementAtIndex(FinancialStatement statement, int index) {
+        financialReport.add(index, statement);
+        Storage.writeToFile(this, RainyDay.filePath);
     }
 
     public void deleteStatement(int statementNumber) {
         financialReport.remove(financialReport.get(statementNumber));
+        Storage.writeToFile(this, RainyDay.filePath);
     }
 
     public String getFullStatement(int statementNumber) {
@@ -39,10 +51,10 @@ public class FinancialReport implements Serializable {
     }
 
     public String getStatementDirection(int statementNumber) {
-        return financialReport.get(statementNumber).getFlowDirection();
+        return financialReport.get(statementNumber).getFlowDirectionWord();
     }
 
-    public int getStatementValue(int statementNumber) {
+    public double getStatementValue(int statementNumber) {
         return financialReport.get(statementNumber).getValue();
     }
 
@@ -62,5 +74,11 @@ public class FinancialReport implements Serializable {
         return financialReport.get(statementNumber);
     }
 
+    public ArrayList<FinancialStatement> getFinancialReport() {
+        return this.financialReport;
+    }
 
+    public LocalDate getStatementDate(int statementNumber) {
+        return financialReport.get(statementNumber).getDate();
+    }
 }
