@@ -1,6 +1,8 @@
 package seedu.duck;
 
 import seedu.duck.task.Deadline;
+import seedu.duck.task.Event;
+import seedu.duck.task.SchoolClass;
 import seedu.duck.task.Task;
 
 import java.text.ParseException;
@@ -100,10 +102,52 @@ public class Ui {
                     e.printStackTrace();
                 }
                 long diff = d.getTime() - n.getTime();
-                String di = TimeDiff(diff);
+                String di = getTimeDiff(diff);
                 String description = tasks.get(i).getDescription().replace("deadline ", "");
                 System.out.println("\t " + (count + 1) + "." + description+" ("+di+"before the deadline)");
                 count++;
+            }
+        }
+        borderLine();
+    }
+
+    /**
+     * Prints the list of tasks in x days in the future
+     *
+     * @param tasks the array list of all the tasks
+     * @param days the required the number of days x from now onwards
+     */
+    static void printUpcomingTasks(ArrayList<Task> tasks, String days) {
+        borderLine();
+        System.out.println("\t Here are your tasks in " + days + " days:");
+        int count = 0;
+        Date d = null;
+        Date n = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+        for (int i = 0; i < tasks.size(); i ++) {
+            String timeUntilTask = null;
+            if (tasks.get(i) instanceof Deadline) {
+                timeUntilTask = ((Deadline) tasks.get(i)).getDeadline();
+            } else if (tasks.get(i) instanceof Event) {
+                timeUntilTask = ((Event) tasks.get(i)).getStart();
+            } else if (tasks.get(i) instanceof SchoolClass) {
+                timeUntilTask = ((SchoolClass) tasks.get(i)).getStart();
+            }
+            if (timeUntilTask != null) {
+                try {
+                    d = format.parse(timeUntilTask);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long diff = d.getTime() - n.getTime();
+                String di = getTimeDiff(diff);
+                String[] diffSplit = di.split(" ");
+                if (diffSplit.length >= 2 && ((diffSplit[1].contains("day") && Integer.parseInt(diffSplit[0])
+                        <= Integer.parseInt(days)) || diffSplit[1].contains("hour")
+                        || diffSplit[1].contains("minute"))) {
+                    count++;
+                    System.out.println("\t " + count + "." + tasks.get(i).toString());
+                }
             }
         }
         borderLine();
@@ -114,7 +158,7 @@ public class Ui {
      * @param timeDifferenceMilliseconds time difference between now and deadline
      * @return time difference in structured format
      */
-    static String TimeDiff(long timeDifferenceMilliseconds) {
+    static String getTimeDiff(long timeDifferenceMilliseconds) {
         long diffMinutes = timeDifferenceMilliseconds / (60 * 1000) % 60;
         long diffHours = timeDifferenceMilliseconds / (60 * 60 * 1000) % 60;
         long diffDays = timeDifferenceMilliseconds / (60 * 60 * 1000 * 24) % 24;
@@ -195,6 +239,7 @@ public class Ui {
         borderLine();
         System.out.println("\t （`･v･´ ）: Here are the commands you can give me:");
         System.out.println("\t - list: I'll list out all the tasks you have recorded.");
+        System.out.println("\t - list <number_of_days>: I'll list out all the tasks in that number of days.");
         System.out.println("\t - clear: The list will be cleared. This in an irreversible process.");
         System.out.println("\t - mark <task_number>: I'll mark that task as done.");
         System.out.println("\t - unmark <task_number>: I'll mark that task as undone.");
@@ -208,7 +253,8 @@ public class Ui {
         System.out.println("\t            (eg. Eat bread /by 2023-03-15 2015)");
         System.out.println("\t    Events: <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>");
         System.out.println("\t            (eg. Meeting /from 2023-03-15 2015 /to 2023-03-15 2215)");
-        System.out.println("\t   Classes: <description> /class <class_name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>");
+        System.out.println("\t   Classes: <description> /class <class_name> /from <yyyy-MM-dd HHmm> " +
+                "/to <yyyy-MM-dd HHmm>");
         System.out.println("\t            (eg. Bring laptop /class CS2113 /from 2023-03-15 1100 /to 2023-03-15 1200)");
         System.out.println("\t      Todo: <description>");
         System.out.println("\t            (eg. Water the plants) \n");

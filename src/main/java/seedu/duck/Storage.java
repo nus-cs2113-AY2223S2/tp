@@ -1,8 +1,6 @@
 package seedu.duck;
 
-import seedu.duck.exception.IllegalSchoolClassException;
-import seedu.duck.exception.expiredDateException;
-import seedu.duck.exception.startAfterEndException;
+
 import seedu.duck.task.Deadline;
 import seedu.duck.task.Event;
 import seedu.duck.task.SchoolClass;
@@ -13,8 +11,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 

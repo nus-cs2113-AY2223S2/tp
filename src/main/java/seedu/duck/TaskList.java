@@ -1,6 +1,11 @@
 package seedu.duck;
 
-import seedu.duck.exception.*;
+import seedu.duck.exception.expiredDateException;
+import seedu.duck.exception.IllegalSchoolClassException;
+import seedu.duck.exception.IllegalEventException;
+import seedu.duck.exception.IllegalDeadlineException;
+import seedu.duck.exception.IllegalTodoException;
+import seedu.duck.exception.startAfterEndException;
 import seedu.duck.task.Deadline;
 import seedu.duck.task.Event;
 import seedu.duck.task.SchoolClass;
@@ -133,8 +138,8 @@ public class TaskList {
      * @param line The line of input from the user
      * @param tasks The array list of tasks
      */
-    static void addSchoolClass(String line, ArrayList<Task> tasks) throws IllegalSchoolClassException, startAfterEndException,
-            expiredDateException {
+    static void addSchoolClass(String line, ArrayList<Task> tasks) throws IllegalSchoolClassException,
+            startAfterEndException, expiredDateException {
         String description = line.substring(0, line.indexOf("/class")).trim();
         String className = line.substring(line.indexOf("/class") + 6, line.indexOf("/from")).trim();
         String startString = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
