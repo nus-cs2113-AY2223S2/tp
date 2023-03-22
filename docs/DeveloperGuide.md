@@ -77,6 +77,15 @@ Components:
   be created with the relevant information passed to it
 - rainyDay will then call Command.execute(), where the indicated transaction will be deleted from the financial report
 
+### Editing an entry
+- When a command is given to edit a statement, the command is first parsed to check whether it follows the format of an
+  edit command: `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` with the use of regex.
+- Commands in the correct format will then be used to create a FilterCommand object.
+- rainyDay will then call Command.execute(), where the transaction's specific field be edited or deleted then added 
+  into the financial report.
+
+### Filtering an entry
+
 ## Product scope
 
 ### Target user profile
