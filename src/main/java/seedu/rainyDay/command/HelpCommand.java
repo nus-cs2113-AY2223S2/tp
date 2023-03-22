@@ -79,13 +79,13 @@ public class HelpCommand extends Command {
 
     private final String description;
 
+    public HelpCommand (String description) {
+        this.description = description;
+    }
+
     @Override
     protected void setupLogger() {
 
-    }
-
-    public HelpCommand (String description) {
-        this.description = description;
     }
 
     @Override
