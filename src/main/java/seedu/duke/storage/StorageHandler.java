@@ -13,21 +13,25 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+import seedu.duke.userplan.UserPlan;
 
 public class StorageHandler implements Storage {
     private static final Logger logger = Logger.getLogger("Storage");
+    protected final String userFilePath;
+    protected final String plansFilePath;
     private final UserDataWriter userDataWriter;
     private final UserDataLoader userDataLoader;
-    private final String filePath;
+    protected Gson gson;
 
-    public StorageHandler (String filePath) {
-        Gson gson = new GsonBuilder()
+    public StorageHandler (String userFilePath, String plansFilePath) {
+        this.gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateAdapter())
                 .setPrettyPrinting()
                 .create();
         this.userDataWriter = new UserDataWriter(gson);
         this.userDataLoader = new UserDataLoader(gson);
-        this.filePath = filePath;
+        this.userFilePath = userFilePath;
+        this.plansFilePath = plansFilePath;
         initLogger();
     }
 
@@ -51,16 +55,23 @@ public class StorageHandler implements Storage {
     }
 
     public void writeToJson (UserCareerData userCareerData) throws DukeError {
-        boolean writeStatus = this.userDataWriter.saveToJson(filePath, userCareerData);
+        boolean writeStatus = this.userDataWriter.saveToJson(userFilePath, userCareerData);
         assert writeStatus : "An exception should be thrown, this part of code should not be run";
         logger.log(Level.INFO, "User Data has been written to file");
 
     }
 
-    public UserCareerData loadUserCareer () {
+    public void writeToJson (UserPlan userPlan) throws DukeError {
+        boolean writeStatus = this.userDataWriter.saveToJson(plansFilePath, userPlan);
+        assert writeStatus : "An exception should be thrown, this part of code should not be run";
+        logger.log(Level.INFO, "User Plan has been written to file");
+
+    }
+
+    public UserCareerData loadUserData () {
         UserCareerData userCareerData;
         try {
-            userCareerData = userDataLoader.loadFromJson(filePath);
+            userCareerData = userDataLoader.loadFromJson(userFilePath);
             logger.log(Level.INFO, "Data has been restored from previous session!");
         } catch (DukeError e) {
             userCareerData = new UserCareerData();
@@ -75,6 +86,19 @@ public class StorageHandler implements Storage {
             }
         }
         return userCareerData;
+    }
+
+    public UserPlan loadUserPlans () {
+        UserPlan userPlan = new UserPlan();
+        try {
+            userPlan = userDataLoader.loadPlanFromJson(plansFilePath);
+            logger.log(Level.INFO, "Plans Data has been restored from the previous session!");
+            return userPlan;
+        } catch (Exception e) {
+            logger.log(Level.WARNING, "Plans data file has been corrupted or missing, we will create a new file for " +
+                    "you, all your plans will be lost.");
+            return userPlan;
+        }
     }
 
 }

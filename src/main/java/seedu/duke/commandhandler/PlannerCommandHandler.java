@@ -1,13 +1,17 @@
 package seedu.duke.commandhandler;
 
+import java.io.IOException;
+import seedu.duke.exceptions.DukeError;
+//import seedu.duke.storage.UserPlanStorage;
+import seedu.duke.storage.StorageHandler;
 import seedu.duke.ui.Ui;
 import seedu.duke.userplan.UserPlan;
 
 import java.util.Scanner;
 
 //@@author Khulon
-public class PlannerCommandHandler implements CommandList{
-    public static void plannerCommandHandler (Ui ui, UserPlan planner) {
+public class PlannerCommandHandler implements CommandList {
+    public static void plannerCommandHandler (Ui ui, UserPlan planner, StorageHandler storageHandler) throws DukeError {
         System.out.println("Welcome to planner editor, type exit to exit");
         System.out.println("Plan your Workouts here!! try:");
         System.out.println("Add Monday Home_Leg_Day legs static");
@@ -37,6 +41,8 @@ public class PlannerCommandHandler implements CommandList{
             default:
                 ui.unknownCommand();
             }
+            storageHandler.writeToJson(planner);
+
         }
     }
 

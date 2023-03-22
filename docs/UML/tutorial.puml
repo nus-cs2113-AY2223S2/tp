@@ -1,0 +1,7 @@
+@startuml
+hide footbox
+activate ":sample"
+activate ":Quote"
+deactivate ":Quote"
+deactivate ":sample"
+@enduml
