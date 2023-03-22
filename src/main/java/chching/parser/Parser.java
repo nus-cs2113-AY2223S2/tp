@@ -15,9 +15,6 @@ import chching.command.DeleteExpenseCommand;
 import chching.command.BalanceCommand;
 import chching.command.ExitCommand;
 import chching.command.HelpCommand;
-import chching.command.ListCommand;
-import chching.command.ListExpenseCommand;
-import chching.command.ListIncomeCommand;
 import chching.command.SetCurrencyCommand;
 import chching.command.UnsetCurrencyCommand;
 import chching.command.FindCommand;
@@ -25,7 +22,6 @@ import chching.record.Expense;
 import chching.record.ExpenseList;
 import chching.record.Income;
 import chching.record.IncomeList;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;

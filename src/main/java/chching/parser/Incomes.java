@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public class Incomes {
-    private static LocalDate parseDate(String incomeDateString) throws ChChingException {
+    public static LocalDate parseDate(String incomeDateString) throws ChChingException {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             LocalDate incomeDate = LocalDate.parse(incomeDateString, formatter);

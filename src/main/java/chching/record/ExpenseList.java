@@ -2,9 +2,12 @@ package chching.record;
 
 import chching.ChChingException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import chching.currency.Converter;
 import chching.currency.Selector;
+
+import static chching.parser.Expenses.parseDate;
 
 /**
  * Models a class that act as list of expenses. Inherited from RecordList Class
@@ -52,7 +55,8 @@ public class ExpenseList extends RecordList {
             expense.setDescription(value);
             break;
         case "da":
-            expense.setDate(value);
+            LocalDate date = parseDate(value);
+            expense.setDate(date);
             break;
         case "v":
             try {

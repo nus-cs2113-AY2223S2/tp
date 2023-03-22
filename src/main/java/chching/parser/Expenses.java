@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class Expenses {
 
-    private static LocalDate parseDate(String expenseDateString) throws ChChingException {
+    public static LocalDate parseDate(String expenseDateString) throws ChChingException {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             LocalDate expenseDate = LocalDate.parse(expenseDateString, formatter);

@@ -3,6 +3,8 @@ package chching.command;
 import chching.ChChingException;
 import chching.Storage;
 import chching.Ui;
+import chching.currency.Converter;
+import chching.currency.Selector;
 import chching.parser.Expenses;
 import chching.record.Expense;
 import chching.record.ExpenseList;
@@ -30,7 +32,8 @@ public class EditExpenseCommand extends Command {
     }
     
     @Override
-    public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage) throws ChChingException {
+    public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
+                        Converter converter) throws ChChingException {
         // check if the index is valid
         if (index <= 0) {
             throw new ChChingException("Negative/Zero index");
