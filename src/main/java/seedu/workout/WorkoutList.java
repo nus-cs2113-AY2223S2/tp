@@ -1,5 +1,7 @@
 package seedu.workout;
 
+import seedu.ui.Ui;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,6 +10,7 @@ public class WorkoutList {
     public static final int NO_CURRENT_WORKOUT = -1;
     public ArrayList<Workout> workoutList;
     public int currentWorkoutIndex;
+    private Ui ui;
 
     public WorkoutList() {
         workoutList = new ArrayList<>();
@@ -28,6 +31,7 @@ public class WorkoutList {
             if (workout.getDate().equals(date)) {
                 workoutList.remove(workout);
                 System.out.println("Workout deleted successfully.");
+                Ui.showseperator();
                 return;
             }
         }
@@ -41,6 +45,7 @@ public class WorkoutList {
                 for (Workout workout : workoutList) {
                     System.out.println(workout.getDate());
                 }
+                Ui.showseperator();
             } else {
                 System.out.println("Haven't start your workout, please enter your workout");
             }
@@ -53,6 +58,7 @@ public class WorkoutList {
         for (Workout workout : workoutList) {
             if (workout.getDate().equals(date)) {
                 System.out.println(workout.getExercises());
+                Ui.showseperator();
                 return;
             }
         }

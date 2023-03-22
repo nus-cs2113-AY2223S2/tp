@@ -12,9 +12,10 @@ public class Ui {
             "|  |     |  |     |  |      /  /----.\n" +
             "|__|     |__|     |__|     /________|";
     private static final String ENDING_MESSAGE = "Thank you, hope you had a great workout!!!";
-
     private static final String LINE = "=======================================";
+    private static final String LINE_SEPERATOR = "----------------------------------";
     private final Scanner in = new Scanner(System.in);
+
 
     public static void showGreeting() {
         System.out.println(WELCOME_MESSAGE);
@@ -28,6 +29,9 @@ public class Ui {
     }
     public static void showLine(){
         System.out.println(LINE);
+    }
+    public static void  showseperator(){
+        System.out.println(LINE_SEPERATOR);
     }
 
     public String getUserInput() {

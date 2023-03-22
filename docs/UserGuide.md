@@ -15,6 +15,7 @@ planning future exercises.
   - [Add exercise: /add](#add-exercise--add)
   - [End current workout: /end](#end-current-workout--end)
   - [Display workout list: /list](#display-workout-list--list)
+  - [Display a workout: /view](#display-workout-view--list)
   - [Delete a workout: /delete](#delete-a-workout--delete)
   - [Exit app: /exit](#exit-app--exit)
 - [FAQ](#faq)
