@@ -21,7 +21,7 @@ public class GenerateBodyExerciseTest {
         GenerateExercise generateExercise = new GenerateExercise();
 
         exerciseData = generateExercise.generateSetAll();
-        exerciseData = generateExercise.generateFilteredBodySetFrom(exerciseData);
+        exerciseData = generateExercise.generateFilteredStaticSetFrom(exerciseData);
 
         for (int i = 0; i < exerciseData.size(); i++){
             assertNotEquals(exerciseData.get(i).getEquipment(), null);

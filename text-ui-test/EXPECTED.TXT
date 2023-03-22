@@ -11,6 +11,10 @@ These are some commands available:
 	FILTER stands for a specific requirement you want to include in your exercise
 [filters]
 	View all available filters
+[plans]
+	Show all plans
+[planner]
+	Enter workout plan editor
 [find]
 	finds all relevant exercises based on the keyword : find [keyword]
 [bye]

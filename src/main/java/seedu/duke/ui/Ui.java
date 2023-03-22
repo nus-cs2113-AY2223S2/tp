@@ -1,6 +1,7 @@
 package seedu.duke.ui;
 
 import seedu.duke.exersisedata.ExerciseData;
+import seedu.duke.userplan.UserPlan;
 
 import java.util.ArrayList;
 
@@ -22,9 +23,14 @@ public class Ui {
     public void unknownCommand() {
         PrintHelpMessage.unknownCommandMessage();
     }
-
+    public void showPlan(UserPlan planner) {
+        PrintPlanner.printPlanner( planner );
+    }
     public void printHelp() {
         PrintHelpMessage.showAvailableCommands();
+    }
+    public void printPlannerHelp() {
+        PrintHelpMessage.showAvailablePlannerCommands();
     }
     public void splitLine() {
         System.out.println(SEPARATOR);
