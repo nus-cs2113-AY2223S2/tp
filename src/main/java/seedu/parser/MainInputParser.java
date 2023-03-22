@@ -53,7 +53,6 @@ public class MainInputParser {
                 return prepareAddExpenditure.addItem(command);
             case LendExpenditureCommand.COMMAND_WORD:
             case BorrowExpenditureCommand.COMMAND_WORD:
-                ExpenditureList.saveList();
                 ParseLendBorrow prepareLendBorrowExpenditure;
 
                 prepareLendBorrowExpenditure = new ParseLendBorrow(splitValues[INDEX_USERSTRING]);
