@@ -1,9 +1,9 @@
 package seedu.duke.exceptions;
 
+import seedu.duke.ui.ErrorMessages;
+
 public class OngoingExHistoryError extends DukeError{
     public OngoingExHistoryError(){
-        super("Finish your exercise!" +
-                "You can look and feel good about your previous workout sessions " +
-                "later!");
+        super(ErrorMessages.ERROR_ONGOING_EXERCISE_HISTORY_COMMAND.toString());
     }
 }

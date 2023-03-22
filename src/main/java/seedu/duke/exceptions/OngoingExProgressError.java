@@ -1,7 +1,9 @@
 package seedu.duke.exceptions;
 
+import seedu.duke.ui.ErrorMessages;
+
 public class OngoingExProgressError extends DukeError{
     public OngoingExProgressError(){
-        super("Exercise already in progress!");
+        super(ErrorMessages.ERROR_ONGOING_EXERCISE_START_COMMAND.toString());
     }
 }

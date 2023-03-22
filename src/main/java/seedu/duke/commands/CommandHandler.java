@@ -110,6 +110,9 @@ public class CommandHandler {
                 case "history":
                     userCareerData.printAllFinishedWorkoutSessions();
                     break;
+                case "find":
+                    command = new ExerciseSearchCommand(userCommands);
+                    break;
                 default:
                     ui.unknownCommand();
                     errorExists = true;

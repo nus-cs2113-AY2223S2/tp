@@ -5,14 +5,12 @@ Hello from
  / __/ / / /_/ / / /  __(__  |__  )  / /_/ / /_/ / ,< /  __/
 /_/   /_/\__/_/ /_/\___/____/____/  /_____/\__,_/_/|_|\___/ 
 Start your fitness journey! Type [help] to see the things you can do!
-These are some commands available:
+These are some commands available: 
 [generate]
 	Generate a specific list of exercises: generate FILTER1 FILTER2 ... x
 	FILTER stands for a specific requirement you want to include in your exercise
 [filters]
 	View all available filters
-[find]
-	finds all relevant exercises based on the keyword : find [keyword]
 [bye]
 	End the program
 ________________________________________

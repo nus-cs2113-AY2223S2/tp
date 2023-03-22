@@ -4,9 +4,26 @@ package seedu.duke.ui;
  * Provides enum variables for storing custom program error messages.
  */
 public enum ErrorMessages {
-    ERROR_GLOBAL_INVALID_COMMAND("Invalid command, please enter <help> for the command guide."),
-    ERROR_EDIT_UNCHANGED("Your tags inputted does not edit the transaction.");
+    ERROR_FILE_READ("Unable to read the data file from hard disk. We will generate a new file for you."),
+    ERROR_EXCESSIVE_FILTERS("You have a too specific filter, no such exercises " +
+                                   "exists! Try generating with less filters or less number " +
+                                   "of exercises"),
 
+    ERROR_DIFFICULTY_INPUT("Incorrect difficulty level input, " +
+            "please input one of the following levels : (easy/medium/hard)"),
+    ERROR_EXERCISE_NUM_INPUT_STRING("Invalid input! " +
+            "Please enter the number of exercises you want at the end of your generate command!"),
+    ERROR_BODY_WORKOUT_TYPE_INPUT("Incorrect body workout type input"),
+    ERROR_NO_ONGOING_EXERCISE("There is no current workout session!" +
+            "Please start a session with the \"start\" command!"),
+    ERROR_ONGOING_EXERCISE_GENERATE_COMMAND("Finish your exercise! Cannot generate new exercise"),
+    ERROR_ONGOING_EXERCISE_HELP_COMMAND("Finish your exercise! Cannot print help messages!"),
+    ERROR_ONGOING_EXERCISE_HISTORY_COMMAND("Finish your exercise!" +
+            "You can look and feel good about your previous workout sessions " +
+            "later!"),
+    ERROR_ONGOING_EXERCISE_START_COMMAND("Exercise already in progress! Unable to start another exercise!"),
+    ERROR_ONGOING_EXERCISE_TEST_SAMPLE("Finish your exercise! Testing of our features can come after that :)"),
+    ERROR_FILTER_INPUT("Unknown filter input!");
     public final String message;
     /**
      * Instantiates a new error message when user initialises a new instance of this enum.
