@@ -5,20 +5,28 @@ import chching.record.Income;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public class Incomes {
+    private static LocalDate parseDate(String incomeDateString) throws ChChingException {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate incomeDate = LocalDate.parse(incomeDateString, formatter);
+            return incomeDate;
+        } catch (DateTimeParseException e) {
+            throw new ChChingException("Date format should be: dd-MM-yyyy");
+        }
+    }
     public static Income parseIncome(HashMap<String, String> argumentsByField) throws ChChingException {
         Income inc = null;
         try {
             String incomeDescription = argumentsByField.get("de");
-            LocalDate incomeDate = LocalDate.parse(argumentsByField.get("da"));
+            String incomeDateString = argumentsByField.get("da");
+            LocalDate incomeDate = parseDate(incomeDateString);
             float incomeValue = Float.parseFloat(argumentsByField.get("v"));
-            inc = new Income(incomeDescription, incomeDate, incomeValue);
             assert incomeValue > 0 : "incomeValue has to be more than 0";
             inc = new Income(incomeDescription, incomeDate, incomeValue);
-        }  catch (DateTimeParseException e) {
-            throw new ChChingException("Date format should be: yyyy-mm-dd");
         }
         catch (Exception e) {
             throw new ChChingException("Trouble adding income value");
