@@ -6,9 +6,28 @@ Adapted from AddressBook Level 3 Developer Guide (https://se-education.org/addre
 
 ## Design
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+{Describe the design of the product. Use UML diagrams and short code snippets where applicable.}
 
 ## Implementation
+
+### Delete Task feature
+The DeleteTaskCommand extends NUS To-do List with a delete feature for the removal of tasks from the task list.  is facilitated by ToDoListManager, Parser, exception, TaskList and Storage classes. It implements the following operations:
+
+TaskList#deleteTask()
+
+Given below is an example usage scenario and how the DeleteTaskCommand mechanism behaves at each step.
+
+Step 1: The user launches the program for the first time. The ToDoListManager will be initialised. This in turn will then initialise the Parser, TaskList and Storage. Take it as there are no existing tasks read/stored by the program.
+
+Step 2: The user executes add survey -d 20/03/2023 23:59 command to add a task for the To-do List. The add command calls TaskList#addTask(), which causes a new Task to be added to the existing TaskList.
+
+Step 3: The user now then decides that adding this task was a mistake, and decides to remove the task from the To-do List. The user does this by inputting the command “delete 1” into the terminal to delete a task in the task list. The command will then call the TaskList#deleteTask(), which removes the task at index 1 of the TaskList.
+
+The following sequence diagram shows how the delete task operation works:
+![DeleteTaskCommandSequence](images/DeleteTaskCommandSequence.png)
+
+Step 4: The user then decides to execute the command list. This command does not modify the TaskList. Thus, the TaskList will return to its initial state where there are no tasks stored in the TaskList.
+
 ### Edit Deadline feature
 #### Implementation
 The edit deadline function extends NUS To-do List with an edit feature for the deadlines assigned to tasks. It is facilitated
@@ -64,6 +83,7 @@ bring an application to keep you aware of your deadlines and not miss them.
 | v2.0    | user     | set priority level and can sort the tasks based on the priority level                                            | identify high priority tasks                                              |
 | v2.0    | user     | see a progress bar                                                                                               | track my progress of unfinished tasks                                     |
 | v2.0    | user     | view up to 10 previously completed tasks tied with the completion date and time                                  | track my progress of finished tasks                                       |
+
 
 
 ## Non-Functional Requirements
