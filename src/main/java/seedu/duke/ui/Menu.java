@@ -108,8 +108,7 @@ public class Menu {
     }
 
     /**
-     * @author Geeeetyx, JeraldChen
-     * Exits the program.
+     * @author JeraldChen, Geeeetyx
      */
     public static void exit() {
         System.out.println("---------------------------------------------------");

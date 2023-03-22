@@ -31,9 +31,7 @@ public class Information {
     }
 
     /**
-     *
      * @author JeraldChen, Geeeetyx
-     *
      */
     public static void printDiagnosisHistory(int hash) {
         logger.log(Level.INFO, "Printing diagnosis history");
