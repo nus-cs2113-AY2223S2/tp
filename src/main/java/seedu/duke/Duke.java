@@ -18,7 +18,10 @@ public class Duke {
     private void run() {
         ui = new Ui();
         workoutList = new WorkoutList();
-        ui.showGreeting();
+        Ui.showLine();
+        Ui.showLogo();
+        Ui.showLine();
+        Ui.showGreeting();
 
         executeCommandUntilExit();
         Ui.showExit();

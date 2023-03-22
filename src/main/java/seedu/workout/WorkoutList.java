@@ -49,6 +49,14 @@ public class WorkoutList {
             System.out.println("Haven't start your workout, please enter your workout");
         }
     }
+    public void displayWorkout(Date date) {
+        for (Workout workout : workoutList) {
+            if (workout.getDate().equals(date)) {
+                System.out.println(workout.getExercises());
+                return;
+            }
+        }
+    }
 
     public int getLastIndex() {
         return workoutList.size() - 1;

@@ -9,6 +9,7 @@ import seedu.commands.ExitCommand;
 import seedu.commands.IncorrectCommand;
 import seedu.commands.ListCommand;
 import seedu.commands.StartCommand;
+import seedu.commands.ViewCommand;
 import seedu.workout.Exercise;
 
 import java.text.DateFormat;
@@ -43,6 +44,8 @@ public class Parser {
             return processDelete(arguments);
         case "/list":
             return new ListCommand();
+        case "/view":
+            return processView(arguments);
         case "/end":
             return new EndCommand();
         case "/exit":
@@ -91,5 +94,17 @@ public class Parser {
 
         return new DeleteCommand(date);
     }
-
+    private Command processView(String arguments) {
+        Date date;
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+            date = dateFormat.parse(arguments);
+        } catch (ParseException e) {
+            System.out.println("Invalid date format. Please enter the date in the format dd/mm/yy.");
+            return new IncorrectCommand();
+        }
+        return new ViewCommand(date);
+    }
 }
+
+
