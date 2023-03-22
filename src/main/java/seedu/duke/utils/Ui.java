@@ -1,17 +1,14 @@
 package seedu.duke.utils;
 
-//import seedu.duke.commands.EditCommand;
 import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
-import static seedu.duke.utils.ColorCode.ANSI_BLUE;
-import static seedu.duke.utils.ColorCode.ANSI_GREEN;
-import static seedu.duke.utils.ColorCode.ANSI_RED;
-import static seedu.duke.utils.ColorCode.ANSI_RESET;
+import static seedu.duke.utils.ColorCode.*;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
@@ -40,6 +37,8 @@ public class Ui {
     public static final int QTY_COL_WIDTH = 8;
 
     public static final int PRICE_COL_WIDTH = 8;
+    public static final int COMMAND_COL_WIDTH = 15;
+    public static final int FORMAT_COL_WIDTH = 25;
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
             "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
     public static final String ITEM_NOT_FOUND = "Edit failed! Reason: Item not found in database. Please add item " +
@@ -55,6 +54,8 @@ public class Ui {
     private static final String UPC_HEADING = "UPC";
     private static final String QTY_HEADING = "Quantity";
     private static final String PRICE_HEADING = "Price";
+    private static final String COMMAND_HEADING = "Command";
+    private static final String FORMAT_HEADING = "Command Format";
 
     private static final String TABLE_CORNER = "+";
     private static final String TABLE_ROW = "-";
@@ -152,6 +153,21 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public static String printTable() {
+        HashMap<String, String> commandsHashMap = new HashMap<>();
+        CommandFormat commandFormat = new CommandFormat(commandsHashMap);
+        int[] columnWidths = {COMMAND_COL_WIDTH, FORMAT_COL_WIDTH};
+
+        StringBuilder table = new StringBuilder();
+
+        table.append(printTableSeparator(columnWidths));
+        table.append(printHeadings(columnWidths));
+        table.append(printTableSeparator(columnWidths));
+        commandsHashMap.forEach((format, description)
+                -> table.append((printRow(description, format, columnWidths))));
+        return table.toString();
+    }
+
     public static String printTable(ArrayList<Item> items) {
         int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH};
 
@@ -173,7 +189,12 @@ public class Ui {
     }
 
     private static String printHeadings(int[] columnWidths) {
-        String[] headings = {NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
+        String[] headings;
+        if (columnWidths.length == 4) {
+            headings = new String[]{NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
+        } else {
+            headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
+        }
         StringBuilder allHeadings = new StringBuilder();
 
         for (int i = 0; i < headings.length; i += 1) {
@@ -202,6 +223,27 @@ public class Ui {
         return tableSeparator.toString();
     }
 
+    private static String printRow(String description, String format, int[] columnWidths) {
+        String[] descriptionLines = wrapText(description, COMMAND_COL_WIDTH);
+        String[] formatLines = wrapText(format, FORMAT_COL_WIDTH);
+        StringBuilder row = new StringBuilder();
+
+        int rowHeight = findRowHeight(descriptionLines, formatLines);
+
+        for (int i = 0; i < rowHeight; i += 1) {
+            row.append(TABLE_LEFT);
+            row.append(printAttribute(descriptionLines, COMMAND_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(formatLines, FORMAT_COL_WIDTH, i));
+            row.append(TABLE_RIGHT);
+            row.append(System.lineSeparator());
+
+            if (i == rowHeight - 1) {
+                row.append(printTableSeparator(columnWidths));
+            }
+        }
+        return row.toString();
+    }
     private static String printRow(String name, String upc, String qty, String price,
                                    int[] columnWidths) {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
@@ -272,7 +314,7 @@ public class Ui {
                                                     int current, int width) {
         line.append(words[current]);
 
-        if (words[current].length() < width) {
+        if (line.length() < width) {
             line.append(" ");
         }
 
