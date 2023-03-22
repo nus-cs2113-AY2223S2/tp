@@ -50,15 +50,17 @@ public class RemoveCommand extends Command {
         Item itemToRemove = upcCodes.get(upcCode);
         switch (userConfirmation.toUpperCase()) {
         case "Y":
-            String itemName = itemToRemove.getName().toLowerCase();
             int indexOfItem = itemInventory.indexOf(itemToRemove);
             upcCodes.remove(upcCode);
             itemInventory.remove(indexOfItem);
-            if (itemNameHash.get(itemName).size() == 1) {
-                itemNameHash.remove(itemName);
-                itemsTrie.remove(itemName);
-            } else {
-                itemNameHash.get(itemName).remove(itemToRemove);
+            String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
+            for(String itemName: itemNames){
+                if (itemNameHash.get(itemName).size() == 1) {
+                    itemNameHash.remove(itemName);
+                    itemsTrie.remove(itemName);
+                } else {
+                    itemNameHash.get(itemName).remove(itemToRemove);
+                }
             }
             Ui.printSuccessRemove(itemToRemove);
             break;

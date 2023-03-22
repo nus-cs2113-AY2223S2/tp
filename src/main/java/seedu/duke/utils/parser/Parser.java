@@ -15,8 +15,8 @@ import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.RemoveErrorException;
 import seedu.duke.exceptions.SearchFilterErrorException;
+import seedu.duke.types.Types;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -29,9 +29,6 @@ public class Parser {
     private static final Integer QTY_INDEX = 3;
     private static final Integer PRICE_INDEX = 4;
     public static Scanner in = new Scanner(System.in);
-    private ArrayList<String> parsedInfo = new ArrayList<>();
-    private String commandWord;
-    private String commandInfo;
 
     private Inventory inventory;
 
@@ -42,11 +39,12 @@ public class Parser {
     public void mainParser() {
         String command = in.nextLine().trim();
         String[] splitCommand = command.split(" ", 2);
-        this.commandWord = splitCommand[0];
+        String commandWord = splitCommand[0];
+        String commandInfo;
         if (splitCommand.length > 1) {
-            this.commandInfo = splitCommand[1];
+            commandInfo = splitCommand[1];
         } else {
-            this.commandInfo = "";
+            commandInfo = "";
         }
         switch (commandWord) {
         case "bye":
@@ -64,10 +62,10 @@ public class Parser {
             parseList(inventory);
             break;
         case "search":
-            parseSearch(commandInfo, inventory);
+            parseSearch(commandInfo, inventory, Types.SearchType.KEYWORD);
             break;
         case "searchupc":
-            //parseSearchUPC(commandInfo);
+            parseSearchUPC(commandInfo, inventory, Types.SearchType.UPC);
             break;
         case "filter":
             parseFilter(commandInfo, inventory);
@@ -139,12 +137,12 @@ public class Parser {
             keyword += commands[i];
             keyword += ' ';
         }
-        keyword.trim();
+        keyword = keyword.trim();
         Command filterCommand = new FilterCommand(inventory, keyword, mode);
         filterCommand.run();
     }
 
-    /*
+
     /**
      * Handles the "searchUPC" command by checking the validity of search term provided before passing to
      * the searchUPC function
@@ -152,7 +150,7 @@ public class Parser {
      * @param rawInput The user input string to be validated.
      */
 
-    /* public void parseSearchUPC(String rawInput) {
+    public void parseSearchUPC(String rawInput, Inventory inventory, Types.SearchType searchType) {
         try {
             if (rawInput == null) {
                 throw new MissingParametersException();
@@ -160,13 +158,14 @@ public class Parser {
             if (rawInput.split(" ").length > 1) {
                 throw new SearchFilterErrorException();
             }
-            Inventory.searchUPC(rawInput);
+            Command searchCommand = new SearchCommand(inventory, rawInput, searchType);
+            searchCommand.run();
         } catch (MissingParametersException e) {
             e.missingSearchItemParameters();
         } catch (SearchFilterErrorException se) {
             Ui.printInvalidEditCommand();
         }
-       }*/
+    }
 
     /**
      * Handles the "search" command by checking the validity of search term provided before passing to
@@ -174,12 +173,12 @@ public class Parser {
      *
      * @param rawInput The user input string to be validated.
      */
-    public void parseSearch(String rawInput, Inventory inventory) {
+    public void parseSearch(String rawInput, Inventory inventory, Types.SearchType searchType) {
         try {
             if (rawInput == null) {
                 throw new MissingParametersException();
             }
-            Command searchCommand = new SearchCommand(inventory, rawInput);
+            Command searchCommand = new SearchCommand(inventory, rawInput, searchType);
             searchCommand.run();
         } catch (MissingParametersException e) {
             e.missingSearchItemParameters();
