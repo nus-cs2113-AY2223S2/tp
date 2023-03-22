@@ -36,9 +36,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Executes the command and returns the result
-     *
-     * @return CommandResult with the relevant output message as its attribute
+     * Executes the command and print the relevant output message
      */
     @Override
     public CommandResult execute() {
@@ -59,6 +57,8 @@ public class DeleteCommand extends Command {
 
         logger.log(Level.INFO, "deleted from financial report");
 
-        return new CommandResult(output);
+        CommandResult result = new CommandResult(output);
+        result.printResult();
+        return result;
     }
 }

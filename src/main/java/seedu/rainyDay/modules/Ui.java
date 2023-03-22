@@ -25,16 +25,14 @@ public class Ui {
     private static Logger UILogger = Logger.getLogger("UILogger.log");
 
     private final Scanner in;
-    private final PrintStream out;
 
     //@@author lil1n
     public Ui() {
-        this(System.in, System.out);
+        this(System.in);
     }
 
-    public Ui(InputStream in, PrintStream out) {
+    public Ui(InputStream in) {
         this.in = new Scanner(in);
-        this.out = out;
     }
 
     //@@author BenjaminPoh
@@ -54,7 +52,6 @@ public class Ui {
         System.out.println(NO_FILE_DETECTED);
     }
 
-
     public static void emptyFinancialReport() {
         System.out.println(FINANCIAL_REPORT_EMPTY);
     }
@@ -72,10 +69,5 @@ public class Ui {
 
     public void sayFarewellToUser(String username) {
         System.out.println("Bye " + username);
-    }
-
-    //@@author lil1n
-    public void showToUser(String message) {
-        out.println(message);
     }
 }

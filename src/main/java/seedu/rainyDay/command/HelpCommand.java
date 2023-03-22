@@ -9,6 +9,8 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        return new CommandResult("Have you tried reading the UG?");
+        CommandResult result = new CommandResult("Have you tried reading the UG?");
+        result.printResult();
+        return result;
     }
 }

@@ -1,6 +1,5 @@
 package seedu.rainyDay.command;
 
-
 import seedu.rainyDay.data.FinancialStatement;
 
 import java.time.LocalDate;
@@ -11,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-public class FilterCommand extends Command implements FormatReport {
+public class FilterCommand extends Command{
     private static final Logger logger = Logger.getLogger(FilterCommand.class.getName());
     private final String description;
     private final String filterFlag;
@@ -80,22 +79,17 @@ public class FilterCommand extends Command implements FormatReport {
             }
         }
 
-        String outcome = "";
+        String output;
         if (filteredList.size() == 0) {
-            outcome = "We could not find any matches for your description in your report";
-        } else {
-            outcome = ""; // todo
-            for (int i = 0; i < filteredList.size(); i += 1) {
-                logger.log(Level.INFO, "starting statement " + i);
-                FinancialStatement currentStatement = filteredList.get(i);
-
-                outcome += FormatReport.formatFinancialStatement(statementIndex.get(i), currentStatement);
-                logger.log(Level.INFO, "passed statement " + i);
-            }
+            output = "We could not find any matches for your description in your report";
+            CommandResult result = new CommandResult(output);
+            result.printResult();
+            return result;
         }
-
-        logger.log(Level.INFO, " end of FilterCommand.execute()");
-
-        return new CommandResult(outcome);
+        output = "Here are the list of matching items!"; // todo
+        CommandResult result = new CommandResult(output);
+        result.printResult();
+        ViewResult.printItemsInList(statementIndex);
+        return result;
     }
 }
