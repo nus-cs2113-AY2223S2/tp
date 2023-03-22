@@ -9,7 +9,8 @@ import java.util.Scanner;
 public class GeneralUi {
     public static Scanner sc = new Scanner(System.in);
     private static String endingMessage = "Bye! Hope to see you again soon!";
-    private static String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!\n";
+    private static String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!" 
+            + System.lineSeparator();
 
     /**
      * Reads user input
@@ -51,12 +52,12 @@ public class GeneralUi {
 
     private void printLogo() {
         System.out.println(
-                " _      _  __  _______             _              \n"
-                        + "| |    (_)/ _||__   __|           | |            \n"
-                        + "| |     _| |_ ___| |_ __ __ _  ___| | _____ _ __ \n"
-                        + "| |    | |  _/ _ \\ | '__/ _` |/ __| |/ / _ \\ '__|\n"
-                        + "| |____| | ||  __/ | | | (_| | (__|   <  __/ |   \n"
-                        + "|______|_|_| \\___|_|_|  \\__,_|\\___|_|\\_\\___|_|   \n"
+                " _      _  __  _______             _              " + System.lineSeparator()
+                        + "| |    (_)/ _||__   __|           | |            " + System.lineSeparator()
+                        + "| |     _| |_ ___| |_ __ __ _  ___| | _____ _ __ " + System.lineSeparator()
+                        + "| |    | |  _/ _ \\ | '__/ _` |/ __| |/ / _ \\ '__|" + System.lineSeparator()
+                        + "| |____| | ||  __/ | | | (_| | (__|   <  __/ |   " + System.lineSeparator()
+                        + "|______|_|_| \\___|_|_|  \\__,_|\\___|_|\\_\\___|_|   " + System.lineSeparator()
         );
     }
     /**

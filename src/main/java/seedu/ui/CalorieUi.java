@@ -1,8 +1,5 @@
 package seedu.ui;
 
-
-import java.util.logging.Logger;
-
 public class CalorieUi extends GeneralUi {
 
     public void requestCalorieLimit() {
