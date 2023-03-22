@@ -2,6 +2,9 @@ package chching.record;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -9,7 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class IncomeTest {
     static final String DESCRIPTION = "salary";
-    static final String DATE = "1st apr 2023";
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final LocalDate DATE = LocalDate.parse("01-04-2023", FORMATTER);
     static final float INCOME_VALUE = (float) 1000000;
 
     /**
@@ -27,9 +31,9 @@ class IncomeTest {
      */
     @Test
     void getIncomeDate_expected() {
-        String test = "1st apr 2023";
+        String test = "01-Apr-2023";
         Income income0 = new Income(DESCRIPTION, DATE, INCOME_VALUE);
-        assertEquals("1st apr 2023", income0.getDate());
+        assertEquals("01-Apr-2023", income0.getDateString());
     }
 
     /**
@@ -48,7 +52,7 @@ class IncomeTest {
     @Test
     void getValue_expected() {
         Income income0 = new Income(DESCRIPTION, DATE, INCOME_VALUE);
-        String expected = "Description - salary | Date - 1st apr 2023 | Value - 1000000.00";
+        String expected = "Description - salary | Date - 01-Apr-2023 | Value - 1000000.00";
         assertEquals(expected, income0.toString());
     }
 

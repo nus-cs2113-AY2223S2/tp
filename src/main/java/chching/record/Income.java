@@ -1,11 +1,10 @@
 package chching.record;
 
-
+import java.time.LocalDate;
 /**
  * Models a class for an income entry
  */
 public class Income extends Record {
-
     /**
      * Constructor to instantiate Income objects
      *
@@ -13,7 +12,7 @@ public class Income extends Record {
      * @param date      Date of income
      * @param value     Value of income
      */
-    public Income(String description, String date, double value) {
+    public Income(String description, LocalDate date, double value) {
         super(description, date, value);
     }
 
@@ -22,8 +21,8 @@ public class Income extends Record {
      */
     @Override
     public String toString() {
-        return "Description - " + getDescription() +
-                " | Date - " + getDate() +
+        return  "Description - " + getDescription() +
+                " | Date - " + getDateString() +
                 " | Value - " + String.format("%.02f", getValue());
     }
 }

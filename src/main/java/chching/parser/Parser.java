@@ -3,19 +3,20 @@ package chching.parser;
 import chching.ChChingException;
 import chching.Ui;
 import chching.command.Command;
-import chching.command.AddExpenseCommand;
-import chching.command.AddIncomeCommand;
+import chching.command.InvalidCommand;
 import chching.command.DeleteExpenseCommand;
 import chching.command.DeleteIncomeCommand;
-import chching.command.InvalidCommand;
+import chching.command.AddExpenseCommand;
+import chching.command.AddIncomeCommand;
+import chching.command.BalanceCommand;
+import chching.command.ExitCommand;
+import chching.command.HelpCommand;
 import chching.command.ListCommand;
 import chching.command.ListExpenseCommand;
 import chching.command.ListIncomeCommand;
 import chching.command.SetCurrencyCommand;
 import chching.command.UnsetCurrencyCommand;
-import chching.command.BalanceCommand;
-import chching.command.ExitCommand;
-import chching.command.HelpCommand;
+import chching.command.FindCommand;
 import chching.record.Expense;
 import chching.record.ExpenseList;
 import chching.record.Income;
@@ -85,6 +86,11 @@ public class Parser {
                 currency = Currency.getCurrency(argumentsByField);
                 command = new UnsetCurrencyCommand(currency);
                 break;
+            case "find":
+                String category = getCategory(argumentsByField);
+                String keyword = getKeyword(argumentsByField);
+                command = new FindCommand(category, keyword);
+                break;
             case "balance":
                 command = new BalanceCommand();
                 break;
@@ -142,5 +148,24 @@ public class Parser {
         }
         return argumentsByField;
     }
+    public static String getCategory(HashMap<String, String> argumentsByField) throws ChChingException {
+        String category = null;
+        try {
+            category = argumentsByField.get("c");
+        } catch (Exception e) {
+            throw new ChChingException("missing/invalid category");
+        }
+        return category;
+    }
+    public static String getKeyword(HashMap<String, String> argumentsByField) throws ChChingException {
+        String keyword = null;
+        try {
+            keyword = argumentsByField.get("k");
+        } catch (Exception e) {
+            throw new ChChingException("missing/invalid keyword");
+        }
+        return keyword;
+    }
+
 
 }

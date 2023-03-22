@@ -10,6 +10,9 @@ import chching.currency.Selector;
 import chching.currency.Converter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,14 +20,12 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class BalanceCommandTest {
     static final String INCOME_DESCRIPTION = "salary";
-
-    static final String INCOME_DATE = "1st apr 2023";
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final LocalDate INCOME_DATE = LocalDate.parse("01-04-2023", FORMATTER);
     static final float INCOME_VALUE = (float) 5000;
-
     static final String EXPENSE_CATEGORY = "grocery";
     static final String EXPENSE_DESCRIPTION = "too much groceries";
-
-    static final String EXPENSE_DATE = "1st apr 2023";
+    static final LocalDate EXPENSE_DATE = LocalDate.parse("01-04-2023", FORMATTER);
     static final float EXPENSE_VALUE = (float) 500;
 
     private Ui ui;

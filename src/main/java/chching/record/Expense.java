@@ -1,12 +1,12 @@
 package chching.record;
 
+import java.time.LocalDate;
+
 /**
  * Models a class for an expense entry
  */
 public class Expense extends Record {
     private final String category;
-
-
     /**
      * Constructor to instantiate Expense objects
      *
@@ -15,7 +15,7 @@ public class Expense extends Record {
      * @param date      Date of expense
      * @param value     Value of expense
      */
-    public Expense(String category, String description, String date, double value) {
+    public Expense(String category, String description, LocalDate date, double value) {
         super(description, date, value);
         this.category = category;
     }
@@ -32,7 +32,7 @@ public class Expense extends Record {
     public String toString() {
         return "Category - " + getCategory() +
                 " | Description - " + getDescription() +
-                " | Date - " + getDate() +
+                " | Date - " + getDateString() +
                 " | Value - " + String.format("%.02f", getValue());
     }
 
