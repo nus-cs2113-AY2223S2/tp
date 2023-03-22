@@ -49,7 +49,7 @@ class UITest {
     public void restoreStream() {
         System.setOut(originalOut);
     }
-    //@@ author dfa
+    //@@author
 
     //Solution below adapted from https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
     /*
@@ -534,10 +534,13 @@ class UITest {
     @Test
     void printHelpCommandMessage_correctLines_success() {
         UI.printHelpCommandMessage();
-        assertEquals("Here are the list of commands: \n"
+        assertEquals("Here are the list of commands:\n"
                 + "LIST PU                     : Provides the list of Partner Universities available\n"
                 + "LIST [PU ABBRV]             : Provides the list of all modules available " +
                 "in the specified Partner University\n"
+                + "LIST [PU INDEX]             : Provides the list of all modules available " +
+                "in the specified Partner University\n"
+                + "                              by index of LIST PU\n"
                 + "LIST CURRENT                : Provides the list of modules that the user has added to his/her " +
                 "list of interest\n"
                 + "ADD [PU ABBRV]/[MODULE CODE]: Adds the specified module into user's current list of modules\n"
