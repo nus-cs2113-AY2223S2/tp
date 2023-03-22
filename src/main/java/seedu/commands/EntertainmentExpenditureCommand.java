@@ -23,8 +23,8 @@ public class EntertainmentExpenditureCommand extends Command {
                 entertainmentExpenditureValue,
                 entertainmentExpenditureDate);
         expenditures.addExpenditure(entertainmentExpenditure);
-        return new CommandResult(String.format("Added %s expenditure %s",
-                COMMAND_WORD, entertainmentExpenditureDate.toString()));
+        return new CommandResult(String.format("Added %s expenditure: %s",
+                COMMAND_WORD, entertainmentExpenditure.toString()));
     }
 
 }

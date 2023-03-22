@@ -21,6 +21,6 @@ public class OtherExpenditureCommand extends Command {
         OtherExpenditure otherExpenditure = new OtherExpenditure(otherExpenditureDescription,
                 otherExpenditureValue, otherExpenditureDate);
         expenditures.addExpenditure(otherExpenditure);
-        return new CommandResult(String.format("Added %s expenditure %s", COMMAND_WORD, otherExpenditure.toString()));
+        return new CommandResult(String.format("Added %s expenditure: %s", COMMAND_WORD, otherExpenditure.toString()));
     }
 }
