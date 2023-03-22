@@ -1,0 +1,92 @@
+@startuml RecipeManage 
+box Manager #White
+Actor User 
+participant ":Duke" as Duke
+participant ":Parser" as Parser
+participant ":Command" as Command1
+participant ":Command" as Command2
+participant ":Command" as Command3
+participant ":Command" as Command4
+participant ":RecipeList" as RecipeList
+participant ":UI" as UI
+end box 
+
+activate Duke
+
+User -> Duke : "add n/MaLaXiangGuo\n i/Beef, Mutton, Mushrooms t/Chinese s/1"
+Duke -> Parser : "parseComand()"
+activate Parser
+Parser --> Duke 
+deactivate Parser
+Duke -> Command1 : "execute()"
+activate Command1
+Command1 -> Parser : "parseRecipe()"
+activate Parser
+Parser --> Command1
+deactivate Parser
+Command1 -> Parser : "parseIngredient()"
+activate Parser
+Parser --> Command1
+deactivate Parser
+Command1 -> Parser : "parseSteps()"
+activate Parser
+Parser --> Command1
+deactivate Parser
+Command1 -> RecipeList : "addRecipe()"
+activate RecipeList
+RecipeList --> Command1
+deactivate RecipeList
+Command1 --> Duke
+deactivate Command1
+Duke -> Command1 : delete
+destroy Command1
+User -> Duke : "list"
+Duke -> Parser : "parseCommand()"
+activate Parser
+Parser --> Duke
+deactivate Parser
+Duke -> Command2 : "execute()"
+activate Command2
+Command2 -> RecipeList : "getRecipeList()"
+activate RecipeList
+RecipeList --> Command2
+deactivate RecipeList
+Command2 -> UI : "showRecipeList()"
+activate UI
+UI --> Command2
+deactivate UI
+Command2 --> Duke
+deactivate Command2
+Duke -> Command2 : delete
+destroy Command2
+User -> Duke : "delete 1"
+Duke -> Parser : "parseComand()"
+activate Parser
+Parser --> Duke
+deactivate Parser
+Duke -> Command3 : "execute()"
+activate Command3
+Command3 -> RecipeList : "removeRecipe()"
+activate RecipeList
+RecipeList --> Command3
+deactivate RecipeList
+Command3 --> Duke
+deactivate Command3
+Duke -> Command3 : delete
+destroy Command3
+User -> Duke : "clear"
+Duke -> Parser : "parseComand()"
+activate Parser
+Parser --> Duke
+deactivate Parser
+Duke -> Command4 : "execute()"
+activate Command4
+Command4 -> RecipeList : "clearRecipeList()"
+activate RecipeList
+RecipeList --> Command4
+deactivate RecipeList
+Command4 --> Duke
+deactivate Command4
+Duke -> Command4 : delete
+destroy Command4
+@enduml
