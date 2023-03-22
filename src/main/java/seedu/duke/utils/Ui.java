@@ -80,9 +80,11 @@ public class Ui {
                     "\"alert add upc/[UPC] max/[integer]\" to set an alert when stock exceeds a maximum. \n";
 
 
-    private static final String EXISTING_MIN_ALERT = "This item already has a minimum alert. Delete the existing one first.";
+    private static final String EXISTING_MIN_ALERT = "This item already has a minimum alert." +
+            "Delete the existing one first.";
 
-    private static final String EXISTING_MAX_ALERT = "This item already has a maximum alert. Delete the existing one first.";
+    private static final String EXISTING_MAX_ALERT = "This item already has a maximum alert." +
+            "Delete the existing one first.";
     public Ui() {
         greetUser();
     }
