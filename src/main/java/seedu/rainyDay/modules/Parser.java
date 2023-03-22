@@ -46,7 +46,7 @@ public class Parser {
             return addStatement(action[1].trim());
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
             logger.info("delete command executing");
-            return parseDeleteStatement(userInput); //todo: fix this to reduce calls of split.();
+            return parseDeleteStatement(userInput);
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
             logger.info("view command executing");
             return generateReport();
