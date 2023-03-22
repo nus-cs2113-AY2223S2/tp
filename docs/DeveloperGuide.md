@@ -77,6 +77,95 @@ Components:
   be created with the relevant information passed to it
 - rainyDay will then call Command.execute(), where the indicated transaction will be deleted from the financial report
 
+{TODO: Mention file path after implementing issue #137}
+
+### Saving Data
+
+- Whenever a change is made in the `FinancialReport` the updated `FinancialReport` will automatically be saved to
+  reflect the changes.
+- Saving is done by serializing the `FinancialReport` and writing it into a file.
+
+#### Design considerations
+
+#### How we should implement the feature of saving data
+
+- Alternative 1 (current choice): Save the entire `FinancialReport` automatically whenever there is a change to its
+  data.
+    - Pros:
+        - User will never forget to save data.
+        - Process is done automatically and invisible to the user.
+        - Save should already be performed even when application crashes or exits abnormally. At worst, only the latest
+          entry will be lost.
+    - Cons:
+        - May have performance issue in terms of speed. Since a save is done with every change rather than after all
+          changes are already done.
+        - Less flexibility if a user wants to perform changes without saving.
+- Alternative 2: Perform save automatically on normal exit, such as after `bye` command.
+    - Pros:
+        - Save will only be performed once user is done with all changes and ready to exit. Better performance than
+          alternative 1.
+        - Process is done automatically and invisible to the user.
+    - Cons:
+        - `FinancialReport` may not be saved if application crashes or abnormal exit is performed.
+- Alternative 3: Perform save only when user states explicitly, such as with a command to save.
+    - Pros:
+        - More flexibility to the user to decide when to save or to discard changes.
+        - Save only performed when explicitly needed. Performance benefit.
+    - Cons:
+        - User may forget to save.
+        - `FinancialReport` may not be saved if application crashes or abnormal exit is performed.
+
+#### Type of file to save data into
+
+- Alternative 1 (current choice): Make use of serialization in Java to serialize `FinancialReport` object before writing
+  to file.
+    - Pros:
+        - Easier to implement. Minimal changes to the code required as new attributes are added to `FinancialReport` as
+          we develop the app incrementally.
+        - Less prone to bugs as data does not need to be manually parsed to save/load.
+    - Cons:
+        - Saved data is in a byte stream format. Will not be readable by user and is not viewable in other
+          applications.
+- Alternative 2: Make use of plaintext to save the relevant data in the `FinancialReport` object.
+    - Pros:
+        - Data will be readable and user can get information about the FinancialReport by viewing the `.txt` file.
+    - Cons:
+        - Difficult to implement, changes in implementation will be necessary when new attributes are added
+          to `FinancialReport` as we develop the app incrementally.
+        - Prone to bugs as data must be parsed manually to save/load
+
+### Loading Data
+
+- Serialized data will be read from file automatically upon startup of the application.
+- Data from file will be deserialized and a FinancialReport object will be created based on the save file.
+
+#### Design Considerations
+
+#### Type of file to load data into
+
+[Same design considerations as saving.](#type-of-file-to-save-data-into)
+
+### Exporting to .csv
+
+- When the `export` command is given, the `FinancialStatement` data will be written to a .csv file.
+
+#### Design considerations
+
+#### How we should implement the feature of exporting to .csv
+
+- Alternative 1 (current choice): Perform export only when user states explicitly, with `export` command.
+    - Pros:
+        - More flexibility to the user to decide when to export to .csv.
+        - Avoids unnecessarily creating .csv file. Performance benefit.
+    - Cons:
+        - User might find it inconvenient to export .csv file manually if it's a commonly used feature.
+- Alternative 2: Perform export to .csv file upon exit.
+    - Pros:
+        - Automatically generates .csv file for users without requiring an explicit command.
+    - Cons:
+        - Exporting to .csv might be costly operation when dealing with a large financial statement. An unnecessary
+          operation may be performed if user is uninterested in the export to .csv feature.
+
 ## Product scope
 
 ### Target user profile
