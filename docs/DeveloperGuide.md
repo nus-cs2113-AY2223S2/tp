@@ -62,8 +62,7 @@ Components:
 ### Adding an entry
 
 - When a command is given to add a statement, the command is first parsed to check whether it follows the format of an
-  add command: `add -DIRECTION DESCRIPTION $VALUE -c CATEGORY -d DESCRIPTION` with the use of regex pattern
-    - {details of how the command format should be?}
+  add command: `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY -date DD/MM/YYYY` with the use of regex pattern.
 - Commands in the correct format will then be parsed to extract the relevant information, and an AddCommand object will
   be created with the relevant information passed to it
 - rainyDay will then call Command.execute(), where the transaction will be added into the financial report
@@ -72,10 +71,76 @@ Components:
 
 - When a command is given to delete a statement, the command is first parsed to check whether it follows the format of a
   delete command: `delete INDEX` with the use of regex pattern
-    - {details of how the command format should be?}
 - Commands in the correct format will then be parsed to extract index, and a DeleteCommand object will
   be created with the relevant information passed to it
 - rainyDay will then call Command.execute(), where the indicated transaction will be deleted from the financial report
+
+
+### Implementation of regex and parser
+
+The parser class is used to extract the necessary information from the user's input. Our aim is to make the parser as
+user-friendly and flexible as possible, and at the same time also reducing the margin for error and bugs. Thus, we
+decided to implement using regex and use the features provided by the libraries java.util.regex.Matcher and
+java.util.regex.Pattern.
+
+The first word of the user's input is checked and will be matched to one of the functions in the following list:
+
+- addStatement(String userInput): Parses an 'add' instruction from a user
+- parseDeleteStatement(String userInput): Parses a 'delete' instruction from a user
+
+#### addStatement(String userInput)
+
+This makes up the bulk of the class, as there are many fields for the add instruction, thus resulting in many
+variations of inputs. The following shows the format of input we expect from a user:
+
+Adds a new transaction to the financial report.
+
+Format: `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY -date DD/MM/YYYY`
+
+* The `DIRECTION` to be `in` signifying an inflow type of transaction, or `out` signifying an outflow type of
+  transaction. This is a required field
+* `DESCRIPTION` is a required field.
+* The `$AMOUNT` takes in a number, is also a required field.
+* `-c CATEGORY` is an optional field that takes in a user-defined category of the product
+* `-date DD/MM/YYYY` is an optional field that takes in the date of a transaction
+
+As this is quite a long command to parse, we will use regular expressions in the following steps to match and break
+down the instructions.
+
+1. function addStatement will call function returnRemainingInformation which will check whether the input contains the
+   optional -c and -d commands. This is done through the following:
+
+    - `-(in|out)\s+(.+)\$([\d.]+)` checks for the corresponding structure: `[-in/out] [whitepsace]
+      [description] [$amount] `. This will match when the optional flags are not included. An empty string will then be returned.
+    - `-(in|out)\s+(.+)\$([\d.]+)\s+(.*)` checks for the corresponding structure `[-in/out] [whitepsace]
+      [description] [$amount] [remaining input]`. This will match when at least one of the optional flags are included,
+      and a string corresponding to `[remaining input]` will be returned.
+
+
+2. If an empty string is returned, an addCommand object will be returned from function addStatement. Otherwise,
+   a variable `String remainingInformation` will correspond to `[remaining input]` above. `remainingInformation` will then
+   be checked for if it contains `-c` or `-date` flags.
+
+
+3. if `remainingInformation` contains a `-c` flag, it means that the user has provided a category for the item.
+   Thus, it will be passed into the function setCategory. setCategory will then use the following regex to match
+   `remainingInformation`:
+    - `-c\\s+(\\S+)` checks for the corresponding structure `[-c] [whitespace] [1-word category]`.
+    - `-c\\s+(\\S+)\\s+(.*)` checks for the same thing except category can be multiple words
+
+4. The last field to check is the `-date` field. If present, the setDate function will be called on `remainingInformation`.
+   The setDate function will then use the following regex to match.
+    - `-date\\s+(\\d{2}/\\d{2}/\\d{4})` matches the corresponding structure`[-date] [whitespace] [date in DD/MM/YYYY format]`
+
+These steps will ultimately parse the user's input and extract the necessary information. If any pattern does not match,
+our parser will throw a `RainDayException` indicating the wrong input format.
+
+#### Alternatives considered
+
+We have tried using the .split() function of strings to extract information. However, as we introduced more features and
+the commands grew more complex, the .split() function became very messy and inconvenient. Using this will also result in
+us needing to do more exceptions and error handling, which just made the entire process very complicated. Thus, we opted
+to use regular expressions, which is a more tidy and logical way to parse the inputs. 
 
 ### Viewing your data
 
@@ -190,6 +255,7 @@ Components:
     - Cons:
         - Exporting to .csv might be costly operation when dealing with a large financial statement. An unnecessary
           operation may be performed if user is uninterested in the export to .csv feature.
+
 
 ## Product scope
 
