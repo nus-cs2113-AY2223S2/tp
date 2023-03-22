@@ -20,7 +20,6 @@ prompt user for inputs. Once user keys in the input text, the input will be redi
 handling of user's input. Next, any logic will be executed by `Command` object. If there exists any interaction with `Entity`, `Command` will 
 request to `Manager` to assist the CRUD operations.  
 
-
 ### Command Component (Zheng Rong)
 
 ##### The command component consists of the following:
@@ -142,7 +141,6 @@ The `Staff` Feature allows user to create, read, update, delete (CRUD) `Staff` o
 ### Dish Feature (Zheng Rong)
 
 The Dish feature consists of three functions:
-
 
 ##### Adding dish to list:
 - When the ```AddDishCommand()``` constructor is called, it stores the dish name, price and the list of ingredients in an entity called Dish.
