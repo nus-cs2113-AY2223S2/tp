@@ -8,7 +8,7 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
-## Implmentation
+## Implementation
 
 ### Record and RecordList  
 
@@ -28,8 +28,16 @@ Afterwards, the ```execute()``` method will print ```"Income deleted, here is th
 
 ![Record Class](/images/Sequence_diagram.png)
 
-### Delete Income command
+### ListExpenseCommand
+The listExpenseCommand is facilitated by ```System```, ```Parser``` and ```ExpenseList```.
 
+1. The user inputs the command top list expense. This input is handled by```Parser``` which returns the
+```listExpenseCommand``` if successful. 
+2. ```ListExpenseCommand``` will then call its ```execute``` method
+which makes use of ```System``` to print a new line ```"Expenses:"```. 
+3. The ```expenseList``` method ```printExpenseList```
+is called, which iterates through the expenseList, ```expenses``` and prints the index as well as a completed string of 
+expenses in ```expenses```.
 
 ## Product scope
 ### Target user profile
