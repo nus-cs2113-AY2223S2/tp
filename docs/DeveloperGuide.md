@@ -32,11 +32,12 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 
 ## User Stories
 
-| Version | As a ... | I want to ... | So that I can ...|
-|---------|----------|---------------|------------------|
-| v1.0    |new user|see usage instructions|refer to them when I forget how to use the application|
-| v2.0    |user|find a to-do item by name|locate a to-do without having to go through the entire list|
-| v2.0    |basic user|purge the sample data|so that I can start to input my data|
+| Version | As a ...   | I want to ...                         | So that I can ...                                            |
+|---------|------------|---------------------------------------|--------------------------------------------------------------|
+| v1.0    | new user   | see usage instructions                | refer to them when I forget how to use the application       |
+| v1.0    | basic user | be able to delete company information | keep track of only the companies who are attending the event |
+| v2.0    | user       | find a to-do item by name             | locate a to-do without having to go through the entire list  |
+| v2.0    | basic user | purge the sample data                 | so that I can start to input my data                         |
 
 
 ## Non-Functional Requirements
@@ -54,3 +55,4 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 1. To load sample company data, run "load samples" to load some companies into company list. 
 2. To purge all company list data, run "purge".
 3. To choose a venue for the event, run "choose venue (index)".
+4. To delete company information, run "delete (index)".
