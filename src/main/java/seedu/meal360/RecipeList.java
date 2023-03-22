@@ -41,6 +41,20 @@ public class RecipeList extends ArrayList<Recipe> {
         }
     }
 
+    public void removeRecipeFromTag(String tag, Recipe recipe) {
+        if (!tags.containsKey(tag)) {
+            throw new IndexOutOfBoundsException("Invalid tag");
+        } else {
+            ArrayList<Recipe> tagRecipeList = tags.get(tag);
+            for (int i = 0; i < tagRecipeList.size(); i++) {
+                Recipe recipeInTag = tagRecipeList.get(i);
+                if (recipe.getName().equals(recipeInTag.getName())) {
+                    tagRecipeList.remove(i);
+                }
+            }
+        }
+    }
+
     public RecipeList listRecipes(String[] filters, boolean isTag) {
         RecipeList filteredRecipeList = new RecipeList();
         if (filters == null) {

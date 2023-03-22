@@ -115,7 +115,7 @@ public class Meal360 {
             try {
                 ui.printSeparator();
                 String tag = parser.parseTagRecipe(command, recipeList);
-                ui.printMessage("You have added the recipe(s) to this \"" + tag + "\" tag.");
+                ui.printMessage("You have modified the recipe(s) in this \"" + tag + "\" tag.");
             } catch (IllegalArgumentException e) {
                 String errorMessage = "Please enter the command in the correct format.";
                 ui.printMessage(errorMessage);

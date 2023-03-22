@@ -174,22 +174,55 @@ public class Parser {
             for (int i = 2; i < inputs.length; i++) {
                 commandString.append(" ").append(inputs[i]);
             }
-            String[] args = commandString.toString().trim().split("<<");
-            if (commandString.indexOf("<<") == -1) {
+            boolean isAddTag = commandString.indexOf("<<") != -1 && commandString.indexOf(">>") == -1;
+            boolean isRemoveTag = commandString.indexOf("<<") == -1 && commandString.indexOf(">>") != -1;
+            if (!(isAddTag || isRemoveTag)) {
                 throw new IllegalArgumentException("Please enter the command in the correct format.");
-            } else if (args.length < 2) {
-                throw new IllegalArgumentException("Please enter the command in the correct format.");
+            } else if (isAddTag) {
+                tag = parseAddRecipeTag(commandString.toString(), recipeList);
+            } else if (isRemoveTag) {
+                tag = parseRemoveRecipeTag(commandString.toString(), recipeList);
+            } else {
+                throw new IllegalArgumentException("Invalid command.");
             }
-            tag = args[0].trim();
-            String[] recipesToTag = args[1].split(",");
-            for (String recipeName : recipesToTag) {
-                recipeName = recipeName.trim();
-                Recipe recipe = recipeList.findByName(recipeName);
-                if (recipe == null) {
-                    throw new IndexOutOfBoundsException("Unable to find the recipe.");
-                }
-                recipeList.addRecipeToTag(tag, recipe);
+        }
+        return tag;
+    }
+
+    public String parseAddRecipeTag(String command, RecipeList recipeList) {
+        String tag;
+        String[] args = command.trim().split("<<");
+        if (args.length < 2) {
+            throw new IllegalArgumentException("Please enter the command in the correct format.");
+        }
+        tag = args[0].trim();
+        String[] recipesToTag = args[1].split(",");
+        for (String recipeName : recipesToTag) {
+            recipeName = recipeName.trim();
+            Recipe recipe = recipeList.findByName(recipeName);
+            if (recipe == null) {
+                throw new IndexOutOfBoundsException("Unable to find the recipe.");
             }
+            recipeList.addRecipeToTag(tag, recipe);
+        }
+        return tag;
+    }
+
+    public String parseRemoveRecipeTag(String command, RecipeList recipeList) {
+        String tag;
+        String[] args = command.trim().split(">>");
+        if (args.length < 2) {
+            throw new IllegalArgumentException("Please enter the command in the correct format.");
+        }
+        tag = args[0].trim();
+        String[] recipesToTag = args[1].split(",");
+        for (String recipeName : recipesToTag) {
+            recipeName = recipeName.trim();
+            Recipe recipe = recipeList.findByName(recipeName);
+            if (recipe == null) {
+                throw new IndexOutOfBoundsException("Unable to find the recipe.");
+            }
+            recipeList.removeRecipeFromTag(tag, recipe);
         }
         return tag;
     }
