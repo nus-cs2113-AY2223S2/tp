@@ -63,11 +63,11 @@ public class Currency {
      * @throws IOException
      */
     public static void getCurrencyAvailable(HashMap<String, String> currencies) {
-        String GET_URL = "https://eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=95932927-c8bc-" +
+        String getUrl = "https://eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=95932927-c8bc-" +
                 "4e7a-b484-68a66a24edfe&filters[end_of_day]=" +
                 LocalDate.now().with(Temporals.previousWorkingDay()).toString() + "&limit=1";
         try {
-            URL url = new URL(GET_URL);
+            URL url = new URL(getUrl);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");
             int responseCode = httpURLConnection.getResponseCode();
