@@ -268,7 +268,8 @@ public class Parser {
         }
     }
 
-    private static void parseRemoveByIndex(final String[] commands, Inventory inventory) throws MissingParametersException {
+    private static void parseRemoveByIndex(final String[] commands, Inventory inventory)
+            throws MissingParametersException {
         if (commands.length == 1) {
             throw new MissingParametersException();
         }
@@ -282,7 +283,8 @@ public class Parser {
         removeCommand.run();
     }
 
-    private static void parseRemoveByUpc(final String[] commands, Inventory inventory) throws MissingParametersException, RemoveErrorException {
+    private static void parseRemoveByUpc(final String[] commands, Inventory inventory)
+            throws MissingParametersException, RemoveErrorException {
         String confirmation;
         Item itemToRemove;
         if (commands.length == 1 || !commands[1].startsWith("upc/")) {
