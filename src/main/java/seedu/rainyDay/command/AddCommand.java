@@ -2,11 +2,17 @@ package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
 
+import java.time.LocalDate;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+//@@author lil1n
+
+/**
+ * Represents a command that add statement to the financial report
+ */
 public class AddCommand extends Command {
     private static final Logger logger = Logger.getLogger(AddCommand.class.getName());
 
@@ -18,13 +24,19 @@ public class AddCommand extends Command {
 
     private final String category;
 
-    public AddCommand(String description, String flowDirection, double value, String category) {
+    private final LocalDate date;
+
+    public AddCommand(String description, String flowDirection, double value, String category, LocalDate date) {
         this.description = description;
         this.flowDirection = flowDirection;
         this.value = value;
         this.category = category;
+        this.date = date;
     }
 
+    /**
+     * Sets up logger for logging
+     */
     @Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
@@ -38,6 +50,9 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Executes the command and print the relevant output message
+     */
     @Override
     public CommandResult execute() {
         setupLogger();
@@ -45,7 +60,7 @@ public class AddCommand extends Command {
 
         int totalStatementCount = financialReport.getStatementCount();
 
-        financialReport.addStatement(new FinancialStatement(description, flowDirection, value, category));
+        financialReport.addStatement(new FinancialStatement(description, flowDirection, value, category, date));
 
         assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";
 

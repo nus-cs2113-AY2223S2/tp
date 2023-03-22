@@ -5,16 +5,23 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+//@@author lil1n
+/**
+ * Represents a command that delete statement from the financial report
+ */
 public class DeleteCommand extends Command {
 
     private static final Logger logger = Logger.getLogger(DeleteCommand.class.getName());
 
-    int index;
+    private int index;
 
     public DeleteCommand(int index) {
         this.index = index;
     }
 
+    /**
+     * Sets up logger for logging
+     */
     @Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
@@ -28,6 +35,9 @@ public class DeleteCommand extends Command {
         }
     }
 
+    /**
+     * Executes the command and print the relevant output message
+     */
     @Override
     public CommandResult execute() {
         setupLogger();

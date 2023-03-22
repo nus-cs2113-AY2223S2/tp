@@ -5,9 +5,21 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+//@@author lil1n
+/**
+ * Represents an invalid command
+ */
 public class InvalidCommand extends Command {
-    private static final Logger logger = Logger.getLogger(AddCommand.class.getName());
+    private static final Logger logger = Logger.getLogger(InvalidCommand.class.getName());
+    private final String output;
 
+    public InvalidCommand(String output) {
+        this.output = output;
+    }
+
+    /**
+     * Sets up logger for logging
+     */
     @Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
@@ -21,9 +33,13 @@ public class InvalidCommand extends Command {
         }
     }
 
+    /**
+     * Executes the command and print the relevant output message
+     */
     @Override
     public CommandResult execute() {
-        String outcome = "Sorry! I do not understand your input!\n Please refer to the help table!";
-        return new CommandResult(outcome);
+        setupLogger();
+        logger.log(Level.INFO, "starting InvalidCommand.execute()... exiting InvalidCommand.execute()");
+        return new CommandResult(output);
     }
 }

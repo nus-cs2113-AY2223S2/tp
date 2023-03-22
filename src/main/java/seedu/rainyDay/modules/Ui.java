@@ -1,11 +1,11 @@
 package seedu.rainyDay.modules;
 
 import java.io.InputStream;
-import java.io.PrintStream;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author BenjaminPoh
 public class Ui {
     private static final String WELCOME_MESSAGE = "" +
             "Hello from rainyDay!\n" +
@@ -20,22 +20,21 @@ public class Ui {
             "           |\n" +
             "         `='";
     private static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
-    private static final String CSV_EXPORT_ERROR = "Error exporting to CSV";
     private static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
     private static Logger UILogger = Logger.getLogger("UILogger.log");
 
     private final Scanner in;
-    private final PrintStream out;
 
+    //@@author lil1n
     public Ui() {
-        this(System.in, System.out);
+        this(System.in);
     }
 
-    public Ui(InputStream in, PrintStream out) {
+    public Ui(InputStream in) {
         this.in = new Scanner(in);
-        this.out = out;
     }
 
+    //@@author BenjaminPoh
     public void printLogo() {
         System.out.println(WELCOME_MESSAGE);
     }
@@ -50,10 +49,6 @@ public class Ui {
 
     public void noFileExist() {
         System.out.println(NO_FILE_DETECTED);
-    }
-
-    public static void csvExportError() {
-        System.out.println(CSV_EXPORT_ERROR);
     }
 
     public static void emptyFinancialReport() {
@@ -73,9 +68,5 @@ public class Ui {
 
     public void sayFarewellToUser(String username) {
         System.out.println("Bye " + username);
-    }
-
-    public void showToUser(String message) {
-        out.println(message);
     }
 }

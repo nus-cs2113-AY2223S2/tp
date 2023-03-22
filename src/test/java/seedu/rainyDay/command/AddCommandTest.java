@@ -14,25 +14,27 @@ public class AddCommandTest {
 
     @Test
     public void execute_singleStatement_statementInformation() {
-        AddCommand addCommand = new AddCommand("Ipad", "out", 120.50, "Default");
+        AddCommand addCommand = new AddCommand("Ipad", "out", 120.50, "Default",
+                null);
         addCommand.setData(financialReport);
         addCommand.execute();
         FinancialStatement expectedStatement =
-                new FinancialStatement("Ipad", "out", 120.5, "Default");
+                new FinancialStatement("Ipad", "out", 120.5, "Default", null);
         assertEquals(expectedStatement.getFullStatement(),
                 financialReport.getFinancialStatement(0).getFullStatement());
     }
 
     @Test
     public void execute_multipleStatements_statementsInformation() {
-        AddCommand addCommand = new AddCommand("angpao", "in", 3000.00, "Default");
+        AddCommand addCommand = new AddCommand("angpao", "in", 3000.00, "Default",
+                null);
         addCommand.setData(financialReport);
         addCommand.execute();
         FinancialStatement expectedStatement =
-                new FinancialStatement("angpao", "in", 3000.00, "Default");
+                new FinancialStatement("angpao", "in", 3000.00, "Default", null);
         assertEquals(expectedStatement.getFullStatement(),
                 financialReport.getFinancialStatement(0).getFullStatement());
-        addCommand = new AddCommand("textbook", "out", 50.00, "Default");
+        addCommand = new AddCommand("textbook", "out", 50.00, "Default", null);
         addCommand.setData(financialReport);
         addCommand.execute();
         assertEquals(2, financialReport.getStatementCount());

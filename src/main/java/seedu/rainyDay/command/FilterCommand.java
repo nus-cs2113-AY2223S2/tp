@@ -1,16 +1,20 @@
 package seedu.rainyDay.command;
 
-
 import seedu.rainyDay.data.FinancialStatement;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
-public class FilterCommand extends Command implements FormatReport {
+//@@author ChongQiRong
+/**
+ * Represents a command that filters from the financial report
+ */
+public class FilterCommand extends Command {
     private static final Logger logger = Logger.getLogger(FilterCommand.class.getName());
     private final String description;
     private final String filterFlag;
@@ -20,6 +24,9 @@ public class FilterCommand extends Command implements FormatReport {
         this.filterFlag = filterFlag;
     }
 
+    /**
+     * Sets up logger for logging
+     */
     @Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
@@ -33,54 +40,65 @@ public class FilterCommand extends Command implements FormatReport {
         }
     }
 
-    // todo
+    /**
+     * Executes the filter command and returns the result
+     *
+     * @return CommandResult with the relevant success or error message
+     */
     @Override
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting FilterCommand.execute()");
         ArrayList<FinancialStatement> filteredList = new ArrayList<>();
-
+        ArrayList<Integer> statementIndex = new ArrayList<>();
 
         if (filterFlag.equalsIgnoreCase("-d")) {
-            filteredList = (ArrayList<FinancialStatement>) financialReport
-                    .getFinancialReport().stream()
-                    .filter(t -> t.getDescription().contains(this.description))
-                    .collect(Collectors.toList());
+            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
+                if (financialReport.getFinancialStatement(i).getDescription().contains(this.description)) {
+                    filteredList.add(financialReport.getFinancialStatement(i));
+                    statementIndex.add(i + 1);
+                }
+            }
         } else if (filterFlag.equalsIgnoreCase("-c")) {
-            filteredList = (ArrayList<FinancialStatement>) financialReport
-                    .getFinancialReport().stream()
-                    .filter(t -> t.getCategory().contains(this.description))
-                    .collect(Collectors.toList());
+            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
+                if (financialReport.getFinancialStatement(i).getCategory().contains(this.description)) {
+                    filteredList.add(financialReport.getFinancialStatement(i));
+                    statementIndex.add(i + 1);
+                }
+            }
         } else if (filterFlag.equalsIgnoreCase("-in")) {
-            filteredList = (ArrayList<FinancialStatement>) financialReport
-                    .getFinancialReport().stream()
-                    .filter(t -> t.getFlowDirection().equals("in"))
-                    .collect(Collectors.toList());
+            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
+                if (financialReport.getFinancialStatement(i).getFlowDirectionWord().equals("in")) {
+                    filteredList.add(financialReport.getFinancialStatement(i));
+                    statementIndex.add(i + 1);
+                }
+            }
         } else if (filterFlag.equalsIgnoreCase("-out")) {
-            filteredList = (ArrayList<FinancialStatement>) financialReport
-                    .getFinancialReport().stream()
-                    .filter(t -> t.getFlowDirection().equals("out"))
-                    .collect(Collectors.toList());
-        }
-
-
-        String outcome = "";
-
-        if (filteredList.size() == 0) {
-            outcome = "We could not find any matches for your description in your report";
-        } else {
-            outcome = ""; // todo
-            for (int i = 0; i < filteredList.size(); i += 1) {
-                logger.log(Level.INFO, "starting statement " + i);
-                FinancialStatement currentStatement = filteredList.get(i);
-
-                outcome += FormatReport.formatFinancialStatement(i + 1, currentStatement);
-                logger.log(Level.INFO, "passed statement " + i);
+            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
+                if (financialReport.getFinancialStatement(i).getFlowDirectionWord().equals("out")) {
+                    filteredList.add(financialReport.getFinancialStatement(i));
+                    statementIndex.add(i + 1);
+                }
+            }
+        } else if (filterFlag.equalsIgnoreCase("-date")) {
+            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
+                if (financialReport.getStatementDate(i) != null &&
+                        financialReport.getStatementDate(i).equals(
+                                LocalDate.parse(this.description, DateTimeFormatter.ofPattern("dd/MM/uuuu")))) {
+                    filteredList.add(financialReport.getFinancialStatement(i));
+                    statementIndex.add(i + 1);
+                }
             }
         }
 
-        logger.log(Level.INFO, " end of FilterCommand.execute()");
-
-        return new CommandResult(outcome);
+        String output;
+        if (filteredList.size() == 0) {
+            output = "We could not find any matches for your description in your report";
+            return new CommandResult(output);
+        }
+        output = "Here are the list of matching items!"; // todo
+        CommandResult result = new CommandResult(output);
+        ViewResult.printItemsInList(statementIndex);
+        return result;
     }
 }

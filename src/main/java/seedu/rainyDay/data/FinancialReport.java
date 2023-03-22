@@ -4,6 +4,7 @@ import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.modules.Storage;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class FinancialReport implements Serializable {
@@ -32,6 +33,11 @@ public class FinancialReport implements Serializable {
 
     public void addStatement(FinancialStatement statement) {
         financialReport.add(statement);
+        Storage.writeToFile(this, RainyDay.filePath);
+    }
+
+    public void addStatementAtIndex(FinancialStatement statement, int index) {
+        financialReport.add(index, statement);
         Storage.writeToFile(this, RainyDay.filePath);
     }
 
@@ -72,4 +78,7 @@ public class FinancialReport implements Serializable {
         return this.financialReport;
     }
 
+    public LocalDate getStatementDate(int statementNumber) {
+        return financialReport.get(statementNumber).getDate();
+    }
 }
