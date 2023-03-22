@@ -10,13 +10,26 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Calendar class that stores the modules user is taking in a 2D ArrayList.
+ */
+
 public class Calendar extends ArrayList<ArrayList<CalendarModule>> {
+    /**
+     *  Constructor for Calendar.
+     */
     public Calendar() {
         super(7);
         for (int i = 0; i < 7; i++) {
             this.add(new ArrayList<>());
         }
     }
+    /**
+     * Adds a module to the calendar.
+     *
+     * @param module The module to be added.
+     * @throws InvalidSaveFile If the module timetable is invalid.
+     */
 
     public void addModule(Module module) throws InvalidSaveFile {
 
@@ -42,7 +55,7 @@ public class Calendar extends ArrayList<ArrayList<CalendarModule>> {
     }
 
     /**
-     * Creates an empty calendar.
+     * Creates an empty calendar
      */
     public void clearCalendar() {
         for (int i = 0; i < 7; i++) {
