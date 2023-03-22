@@ -117,9 +117,11 @@ public class AddCommand extends Command implements LoggerInterface {
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar)
             throws UnexpectedException {
+
         int initialSize = taskList.size();
         try {
             addTask(taskList);
+
         } catch (DateTimeParseException e) {
             ui.printInvalidDateTime();
             return;

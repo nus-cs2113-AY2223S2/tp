@@ -59,7 +59,9 @@ public class ListCommand extends Command implements LoggerInterface {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar) {
+        taskList.clusterByType();
         ui.printList(taskList);
+
     }
 
 }
