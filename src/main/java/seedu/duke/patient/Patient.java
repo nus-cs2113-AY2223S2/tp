@@ -17,6 +17,7 @@ public class Patient {
     protected int hash;
 
     public Patient(String name, int hash, ArrayList<String> patientDiagnosisHistory) {
+        assert patientDiagnosisHistory.size() >= 0 : "Patient diagnosis history is either empty or not empty";
         this.setName(name);
         this.setPassword(hash);
         this.setPatientDiagnosisHistory(patientDiagnosisHistory);
@@ -49,9 +50,10 @@ public class Patient {
     public void updatePatientDiagnosisHistory(String diagnosis) {
         patientDiagnosisHistory.add(diagnosis);
     }
+
     /**
      * Updates patient's medicine history.
-     * @author tanyizhe
+     * @author tanyizhe, Brennanzuz
      * @param medicines ArrayList describing medicines patient has been prescribed
      */
     public void updatePatientMedicineHistory(String date, ArrayList<Medicine> medicines) {
@@ -86,6 +88,7 @@ public class Patient {
      * Prints the medication history of patient.
      */
     public void printPatientMedicineHistory() {
+        System.out.println("---------------------------------------------------");
         System.out.println("Medication History:");
         List<String> dates = Collections.list(patientMedicineHistory.keys());
         Collections.sort(dates);

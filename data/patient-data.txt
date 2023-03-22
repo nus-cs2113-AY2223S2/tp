@@ -1,35 +1,8 @@
 49
 Demo
-29
-Bronchitis
+2
+Sore Throat
 Fever
-Headache
-Insomnia
-COVID-19
-Dengue Fever
-General Cold
-General Flu
-Fever
-Headache
-Fever
-Fever
-General Flu
-Fever
-Fever
-Fever
-Fever
-Fever
-Fever
-Headache
-Fever
-Fever
-Fever
-Fever
-Fever
-Fever
-Fever
-Fever
-Headache
 1569
 Bob
 0
@@ -44,6 +17,27 @@ Stomach Ache
 Bronchitis
 Diarrhoea
 Stomach Ache
+51
+Demo
+0
+2092548941
+kwnfksvlksmv
+1
+Fever
+94746189
+demo
+11
+Fever
+Fever
+Back Ache
+Headache
+COVID-19
+Dengue Fever
+Fever
+Back Ache
+Headache
+COVID-19
+Dengue Fever
 2987074
 kl
 2
