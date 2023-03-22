@@ -3,6 +3,7 @@ package seedu.rainyDay.data;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import seedu.rainyDay.modules.Parser;
 
 import java.util.ArrayList;
 
