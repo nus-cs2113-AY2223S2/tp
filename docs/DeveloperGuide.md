@@ -142,7 +142,6 @@ Our target user profile is the average School of Computing student that resides 
 
 ### Use Cases
 
-{insert user stories}
 
 ###### [Back to table of contents](#table-of-contents)
 
