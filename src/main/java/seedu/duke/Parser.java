@@ -6,28 +6,30 @@ import seedu.duke.command.DeleteModuleCommand;
 import seedu.duke.command.ExceptionHandleCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
-import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCurrentCommand;
 import seedu.duke.command.ListPuCommand;
 import seedu.duke.command.ListPuModulesCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidPuException;
 import seedu.duke.exceptions.InvalidModuleException;
+
 import java.util.ArrayList;
 
 public class Parser {
     private static UI ui = new UI();
 
     public Command parseUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
-                                     ArrayList<Module> puModules, Storage storage) {
+                                    ArrayList<Module> puModules, Storage storage) {
         ArrayList<String> userInputWords = parseCommand(userInput);
         String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
         if (userInputWords.size() > 1) {
             userCommandSecondKeyword = userInputWords.get(1);
         }
-        if (userCommandFirstKeyword.equalsIgnoreCase("list")) {
-            try {
+        String inputIgnoringCase = userCommandFirstKeyword.toLowerCase();
+        try {
+            switch (inputIgnoringCase) {
+            case "list":
                 if (userInputWords.size() == 1) {
                     throw new InvalidCommandException(ui.getCommandInputError());
                 }
@@ -38,20 +40,20 @@ public class Parser {
                 } else {  // list PU name case
                     return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
                 }
-            } catch (InvalidCommandException e) {
-                return new ExceptionHandleCommand(e);
+            case "exit":
+                return new ExitCommand();
+            case "add":
+                return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
+            case "remove":
+                int indexToRemove = stringToInt(userCommandSecondKeyword);
+                return new DeleteModuleCommand(storage, indexToRemove, modules);
+            case "/help":
+                return new HelpCommand();
+            default:
+                throw new InvalidCommandException(ui.getCommandInputError());
             }
-        } else if (userCommandFirstKeyword.equalsIgnoreCase("exit")) {
-            return new ExitCommand();
-        } else if (userCommandFirstKeyword.equalsIgnoreCase("add")) {
-            return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
-        } else if (userCommandFirstKeyword.equalsIgnoreCase("remove")) {
-            int indexToRemove = stringToInt(userCommandSecondKeyword);
-            return new DeleteModuleCommand(storage, indexToRemove, modules);
-        } else if (userCommandFirstKeyword.equalsIgnoreCase("/help")) {
-            return new HelpCommand();
-        } else {
-            return new InvalidCommand();
+        } catch (InvalidCommandException e) {
+            return new ExceptionHandleCommand(e);
         }
     }
 
@@ -69,10 +71,10 @@ public class Parser {
 
     private Command prepareListPuModulesCommand(String univAbbNameOrIndex, ArrayList<University> universities) {
         char digitChecker = univAbbNameOrIndex.charAt(0);
-        String universityAbbName= "";
+        String universityAbbName = "";
         int univIndex = -1;
         if (Character.isDigit(digitChecker)) {
-            univIndex= Integer.parseInt(univAbbNameOrIndex) - 1;
+            univIndex = Integer.parseInt(univAbbNameOrIndex) - 1;
         } else {
             universityAbbName = univAbbNameOrIndex;
         }
@@ -112,16 +114,18 @@ public class Parser {
             return new ExceptionHandleCommand(e);
         } catch (InvalidModuleException e) {
             return new ExceptionHandleCommand(e);
+        } catch (InvalidCommandException e) {
+            return new ExceptionHandleCommand(e);
         }
     }
 
     // The add comment currently works in the format of PartnerAbb/ModuleCode
     private Command handleAddModuleCommand(Storage storage, String abbreviationAndCode, ArrayList<Module> allModules,
                                            ArrayList<University> universities)
-            throws InvalidPuException, InvalidModuleException {
+            throws InvalidCommandException, InvalidPuException, InvalidModuleException {
         String[] stringSplit = abbreviationAndCode.split("/");
         if (stringSplit.length != 2) {
-            return new InvalidCommand();
+            throw new InvalidCommandException(ui.getCommandInputError());
         }
         String abbreviation = stringSplit[0];
         String moduleCode = stringSplit[1];

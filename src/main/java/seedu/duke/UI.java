@@ -149,10 +149,13 @@ public class UI {
     }
 
     public static void printHelpCommandMessage() {
-        System.out.println("Here are the list of commands: \n"
+        System.out.println("Here are the list of commands:\n"
                 + "LIST PU                     : Provides the list of Partner Universities available\n"
                 + "LIST [PU ABBRV]             : Provides the list of all modules available " +
                 "in the specified Partner University\n"
+                + "LIST [PU INDEX]             : Provides the list of all modules available " +
+                "in the specified Partner University\n"
+                + "                              by index of LIST PU\n"
                 + "LIST CURRENT                : Provides the list of modules that the user has added to his/her " +
                 "list of interest\n"
                 + "ADD [PU ABBRV]/[MODULE CODE]: Adds the specified module into user's current list of modules\n"
