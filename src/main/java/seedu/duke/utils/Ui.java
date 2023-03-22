@@ -44,7 +44,7 @@ public class Ui {
     public static final int FORMAT_COL_WIDTH = 25;
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
             "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
-    public static final String ITEM_NOT_FOUND = "Edit failed! Reason: Item not found in database. Please add item " +
+    public static final String ITEM_NOT_FOUND = "Command failed! Reason: Item not found in database. Please add item " +
             "first!";
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
     public static final String ITEM_NOT_EDITED = "Item Specified will not be updated.";
