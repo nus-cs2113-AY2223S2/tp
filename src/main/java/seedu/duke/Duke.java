@@ -18,6 +18,7 @@ public class Duke {
     private final StorageHandler storageHandler;
 
     public Duke () {
+
         ui = new Ui();
         exerciseGenerator = new GenerateExercise();
         storageHandler = new StorageHandler(FILEPATH);

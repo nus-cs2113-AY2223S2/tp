@@ -73,6 +73,8 @@ public class ExerciseStateHandler {
         workoutOngoing = false;
         if (workoutCompleted) {
             saveWorkoutSession(currentSessionWorkout, userCareerData);
+        } else {
+            printCancelWorkoutSessionMessage();
         }
         currentSessionWorkout = null;
     }
@@ -89,6 +91,10 @@ public class ExerciseStateHandler {
         userCareerData.addWorkoutSession(completedWorkout);
         storageHandler.writeToJson(userCareerData);
         //complete workout
+    }
+
+    private static void printCancelWorkoutSessionMessage(){
+        System.out.println("Workout cancelled, you can complete it next time!");
     }
 
 }

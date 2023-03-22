@@ -30,7 +30,6 @@ public class CommandHandler {
             generalCommandHandler.handleGeneralUserCommands(userCommands, ui, exerciseGenerator,
                     userCareerData, exerciseStateHandler, storageHandler);
         }
-        ui.splitLine();
     }
 
 

@@ -73,7 +73,6 @@ public class ExerciseSessionCommandHandler implements CommandList{
         } catch (DukeError e) {
             System.out.println(e.getMessage());
         }
-        ui.splitLine();
     }
 
     /**
