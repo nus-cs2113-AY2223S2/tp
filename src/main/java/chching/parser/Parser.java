@@ -2,7 +2,21 @@ package chching.parser;
 
 import chching.ChChingException;
 import chching.Ui;
-import chching.command.*;
+import chching.command.Command;
+import chching.command.InvalidCommand;
+import chching.command.DeleteExpenseCommand;
+import chching.command.DeleteIncomeCommand;
+import chching.command.AddExpenseCommand;
+import chching.command.AddIncomeCommand;
+import chching.command.BalanceCommand;
+import chching.command.ExitCommand;
+import chching.command.HelpCommand;
+import chching.command.ListCommand;
+import chching.command.ListExpenseCommand;
+import chching.command.ListIncomeCommand;
+import chching.command.SetCurrencyCommand;
+import chching.command.UnsetCurrencyCommand;
+import chching.command.FindCommand;
 import chching.record.Expense;
 import chching.record.ExpenseList;
 import chching.record.Income;
@@ -67,6 +81,7 @@ public class Parser {
                 String category = getCategory(argumentsByField);
                 String keyword = getKeyword(argumentsByField);
                 command = new FindCommand(category, keyword);
+                break;
             case "balance":
                 command = new BalanceCommand();
                 break;

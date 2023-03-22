@@ -20,12 +20,12 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class BalanceCommandTest {
     static final String INCOME_DESCRIPTION = "salary";
-    static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    static final LocalDate INCOME_DATE = LocalDate.parse("01-04-2023", formatter);
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final LocalDate INCOME_DATE = LocalDate.parse("01-04-2023", FORMATTER);
     static final float INCOME_VALUE = (float) 5000;
     static final String EXPENSE_CATEGORY = "grocery";
     static final String EXPENSE_DESCRIPTION = "too much groceries";
-    static final LocalDate EXPENSE_DATE = LocalDate.parse("01-04-2023", formatter);
+    static final LocalDate EXPENSE_DATE = LocalDate.parse("01-04-2023", FORMATTER);
     static final float EXPENSE_VALUE = (float) 500;
 
     private Ui ui;

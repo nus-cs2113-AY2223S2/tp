@@ -24,11 +24,11 @@ class DeleteIncomeCommandTest {
     static final int TOO_LARGE_INDEX = 5;
     static final int NEGATIVE_INDEX = -1;
     static final String SALARY_DESCRIPTION = "salary";
-    static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    static final LocalDate SALARY_DATE = LocalDate.parse("01-04-2023", formatter);
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final LocalDate SALARY_DATE = LocalDate.parse("01-04-2023", FORMATTER);
     static final float SALARY_INCOME_VALUE = (float) 5000;
     static final String BONUS_DESCRIPTION = "salary";
-    static final LocalDate BONUS_DATE = LocalDate.parse("05-02-2023", formatter);
+    static final LocalDate BONUS_DATE = LocalDate.parse("05-02-2023", FORMATTER);
     static final float BONUS_INCOME_VALUE = (float) 3000;
     private Ui ui;
     private Storage storage;

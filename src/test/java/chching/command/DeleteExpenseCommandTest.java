@@ -26,13 +26,13 @@ class DeleteExpenseCommandTest {
 
     static final String SPENDING_CATEGORY = "entertainment";
     static final String SPENDING_DESCRIPTION = "movie";
-    static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    static final LocalDate SPENDING_DATE = LocalDate.parse("02-10-2023", formatter);
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final LocalDate SPENDING_DATE = LocalDate.parse("02-10-2023", FORMATTER);
     static final float SPENDING_EXPENSE_VALUE = (float) 10.50;
 
     static final String GROCERIES_CATEGORY = "entertainment";
     static final String GROCERIES_DESCRIPTION = "movie";
-    static final LocalDate GROCERIES_DATE = LocalDate.parse("02-10-2023", formatter);
+    static final LocalDate GROCERIES_DATE = LocalDate.parse("02-10-2023", FORMATTER);
     static final float GROCERIES_EXPENSE_VALUE = (float) 500;
     private Ui ui;
     private Storage storage;

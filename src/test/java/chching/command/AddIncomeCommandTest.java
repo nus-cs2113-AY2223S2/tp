@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class AddIncomeCommandTest {
 
     static final String DESCRIPTION = "salary";
-    static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    static final LocalDate DATE = LocalDate.parse("01-04-2023", formatter);
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final LocalDate DATE = LocalDate.parse("01-04-2023", FORMATTER);
     static final float INCOME_VALUE = (float) 500;
     static final float ZERO_INCOME_VALUE = (float) 0;
     static final float NEGATIVE_INCOME_VALUE = (float) -500;
