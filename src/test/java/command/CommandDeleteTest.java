@@ -30,11 +30,11 @@ public class CommandDeleteTest {
         BigDecimal twoPointFive = new BigDecimal("2.5");
         BigDecimal three = new BigDecimal("3");
         testExpenseList.add(new Expense(twoPointFive, new Time(LocalDate.parse("02-02-2012", formatter)),
-                "food", "SGD"));
+                "food", "SGD", new BigDecimal(1)));
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food"), currency).execute();
         testExpenseList.add(new Expense(three, new Time(LocalDate.parse("05-02-2012", formatter)),
-                "food", "SGD"));
+                "food", "SGD", new BigDecimal(1)));
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/3.0 " + "t/05-02-2012 cat/food"), currency).execute();
         testExpenseList.remove(0);

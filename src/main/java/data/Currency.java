@@ -3,6 +3,7 @@ package data;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.threeten.extra.Temporals;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,111 +12,133 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.HashMap;
+
 
 public class Currency {
 
-    protected HashMap<String, BigDecimal> exchangeRate = null;
-
-    /**
-     * Gets the HashMap of exchange rates. Instantiates the HashMap if it has not been instantiated.
-     * @return returns the HashMap exchangeRate with the input exchange rates. (Singleton Pattern)
-     */
-
-    public HashMap<String, BigDecimal> getExchangeRate() {
-        if(exchangeRate == null) {
-            exchangeRate = new HashMap<>();
-            //exchangeRate.put("SGD", new BigDecimal(1.0));
-            //exchangeRate.put("USD", new BigDecimal(0.75));
-        }
-        return exchangeRate;
+    protected static HashMap<String, String> currencies =  new HashMap<>();
+    public Currency() {
+        getCurrencyAvailable(currencies);
+    }
+    public static HashMap<String, String> getCurrencies() {
+        return currencies;
     }
 
     /**
      * Converts the currency to SGD if the input currency is not found in the HashMap. Else it returns the input
      * currency.
+     *
      * @param currency the input currency specified by the user.
      * @return returns currency or SGD if currency is not found in exchangeRate
      */
-    public String convertCurrency(String currency) {
+    public static String convertCurrency(String currency) {
         // Default currency is SGD
-        exchangeRate = getExchangeRate();
-        if (currency == null || !exchangeRate.containsKey(currency)) {
+        currencies = getCurrencies();
+        if (currency == null) {
             return "SGD";
         }
-        return currency;
-    }
-
-    /**
-     * Checks if the input currency is found in the HashMap of exchange rates.
-     * @param currency the input currency specified by the user.
-     * @return returns true if the input currency is found in the HashMap, false otherwise.
-     */
-    public boolean checkCurrency(String currency) {
-        if(exchangeRate.containsKey(currency)) {
-            return true;
+        for (String key : currencies.keySet()) {
+            if (key.equals(currency.toUpperCase())) {
+                return key;
+            }
         }
-        return false;
-    }
-
-    /**
-     * Updates the input currency with a new exchange rate or adds it into the HashMap if it is not found
-     * @param currency the input currency specified by the user.
-     * @param rate the new exchange rate of the currency with respect to SGD.
-     */
-    public void updateCurrency(String currency, BigDecimal rate) {
-        exchangeRate.put(currency, rate);
+        return "SGD";
     }
 
     /**
      * Standardize the format of double when we add it to expenseList
      */
-    public BigDecimal roundInput(String expenseAmountInput) {
+    public static BigDecimal roundInput(String expenseAmountInput) {
         BigDecimal roundedExpense = new BigDecimal(expenseAmountInput);
         roundedExpense = roundedExpense.setScale(2, RoundingMode.HALF_UP);
         return roundedExpense;
     }
 
     /**
-     * Gets the exchange rate of the currency specified from the API
-     * @param date the closest previous working day of the input date.
-     * @param exchangeRate the HashMap of exchange rates
+     * Gets the types of currency available in the API and stores them in a HashMap
+     *
+     * @param currencies the HashMap of currencies available stored by ISO4217 and JSON key respectively
      * @throws IOException
      */
-    public static void sendHTTPGetRequest(String date, HashMap<String, BigDecimal> exchangeRate)
-            throws IOException {
+    public static void getCurrencyAvailable(HashMap<String, String> currencies) {
         String GET_URL = "https://eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=95932927-c8bc-" +
-                "4e7a-b484-68a66a24edfe&filters[end_of_day]=" + date + "&limit=1";
-        URL url = new URL(GET_URL);
-        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-        httpURLConnection.setRequestMethod("GET");
-        int responseCode = httpURLConnection.getResponseCode();
-        if(responseCode == httpURLConnection.HTTP_OK) { //successful request
-            BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
+                "4e7a-b484-68a66a24edfe&filters[end_of_day]=" +
+                LocalDate.now().with(Temporals.previousWorkingDay()).toString() + "&limit=1";
+        try {
+            URL url = new URL(GET_URL);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            int responseCode = httpURLConnection.getResponseCode();
+            if (responseCode == httpURLConnection.HTTP_OK) { //successful request
+                BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
 
-            while((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-            JSONObject obj = new JSONObject(response.toString());
-            JSONObject result = obj.getJSONObject("result");
-            JSONArray records = result.getJSONArray("records");
-            JSONObject data = records.getJSONObject(0);
-            System.out.println(date);
-            for(String key: data.keySet()) {
-                if(key.equals("end_of_day") || key.equals("preliminary") || key.equals("timestamp")){
-                    continue;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
                 }
-                BigDecimal rate = new BigDecimal(data.getDouble(key)).setScale(5, RoundingMode.HALF_UP);;
-                exchangeRate.put(key, rate);
-                System.out.println(key + " " + rate);
+                in.close();
+                JSONObject obj = new JSONObject(response.toString());
+                JSONObject result = obj.getJSONObject("result");
+                JSONArray records = result.getJSONArray("records");
+                JSONObject data = records.getJSONObject(0);
+                for (String key : data.keySet()) {
+                    if (key.equals("end_of_day") || key.equals("preliminary") || key.equals("timestamp")) {
+                        continue;
+                    }
+                    //stores the ISO4217 and JSON key as a key value pair
+                    currencies.put(key.substring(0, 3).toUpperCase(), key);
+                }
             }
-        }else{
+        } catch (IOException e) {
+            System.out.println("get failed");
+        }
+    }
+
+    /**
+     * Gets the exchange rate of the currency relative to SGD from the previous working day from the specified date.
+     * Returns an exchange rate of 1 if specified currency cannot be found.
+     * @param date the date specified in the user input.
+     * @param currency the currency specified in the user input.
+     * @return returns the exchange rate of that particular currency for the previous working day from the date.
+     */
+    public static BigDecimal getExchangeRate(String date, String currency){
+        String currencyKey = convertCurrency(currency);
+        if(currencyKey.equals("SGD")) {
+            return new BigDecimal(1);
+        }
+        try {
+            String GET_URL = "https://eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=95932927-c8bc-" +
+                    "4e7a-b484-68a66a24edfe&filters[end_of_day]=" + date + "&limit=1";
+            URL url = new URL(GET_URL);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            int responseCode = httpURLConnection.getResponseCode();
+            if (responseCode == httpURLConnection.HTTP_OK) { //successful request
+                BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                JSONObject obj = new JSONObject(response.toString());
+                JSONObject result = obj.getJSONObject("result");
+                JSONArray records = result.getJSONArray("records");
+                JSONObject data = records.getJSONObject(0);
+                BigDecimal rate = new BigDecimal(data.getDouble(currencies.get(currencyKey)));
+                        //.setScale(5, RoundingMode.HALF_UP);
+                if (currencies.get(currencyKey).contains("100")) {
+                    return rate.divide(new BigDecimal(100));
+                }
+                return rate;
+            }
+        }catch (IOException e){
             System.out.println("get failed.");
         }
-
-
+        return new BigDecimal(0);
     }
 }

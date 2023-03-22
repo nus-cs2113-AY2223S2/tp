@@ -9,12 +9,14 @@ public class Expense {
     protected Time expenseTime;
     protected String description;
     protected String currencyType;
+    protected BigDecimal rate;
 
-    public Expense(BigDecimal expenseAmount, Time expenseTime, String description, String currencyType) {
+    public Expense(BigDecimal expenseAmount, Time expenseTime, String description, String currencyType, BigDecimal rate) {
         this.expenseAmount = formatExpenseAmount(expenseAmount);
         this.expenseTime = expenseTime;
         this.description = description;
         this.currencyType = currencyType;
+        this.rate = rate;
     }
 
     private BigDecimal formatExpenseAmount(BigDecimal originalExpenseAmount) {
@@ -36,6 +38,10 @@ public class Expense {
 
     public String getCurrencyType() {
         return currencyType;
+    }
+
+    public BigDecimal getRate() {
+        return this.rate;
     }
 
     // The setter method will be used if the User want to change some information in their previous expense
@@ -62,7 +68,8 @@ public class Expense {
         return Objects.equals(this.getDescription(), ((Expense) obj).getDescription())
                 && this.getExpenseAmount().equals(((Expense) obj).getExpenseAmount())
                 && Objects.equals(this.getExpenseTime(), ((Expense) obj).getExpenseTime())
-                && Objects.equals(this.getCurrencyType(), ((Expense) obj).getCurrencyType());
+                && Objects.equals(this.getCurrencyType(), ((Expense) obj).getCurrencyType())
+                && Objects.equals(this.getRate(), ((Expense) obj).getRate());
     }
 
     /**

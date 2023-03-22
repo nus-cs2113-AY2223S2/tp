@@ -3,6 +3,7 @@ package seedu.duke;
 import command.CommandAdd;
 import command.CommandDelete;
 import command.CommandList;
+import command.CommandTotal;
 import data.ExpenseList;
 import data.Currency;
 import parser.Parser;
@@ -36,7 +37,7 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
         String input = in.nextLine();
-        while (!input.equals("exit")) {
+        while (!input.equals("bye")) {
             switch (parser.extractCommandKeyword(input)) {
             case "add":
                 new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input), currency).execute();
@@ -46,6 +47,9 @@ public class Duke {
                 break;
             case "list":
                 new CommandList(expenseList.getExpenseList()).run();
+                break;
+            case "total":
+                new CommandTotal(expenseList.getExpenseList()).execute();
                 break;
             default:
                 System.out.println("Unknown command.");

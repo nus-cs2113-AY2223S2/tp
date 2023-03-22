@@ -46,7 +46,7 @@ class ExpenseListTest {
         outContent = new ByteArrayOutputStream();
         expected = "Here are the tasks in your list:\n\n"
                 + MESSAGE_DIVIDER_LIST + "\n"
-                + "1.SGD2.50 cat:food date:02/02/2012\n"
+                + "1.USD2.50 cat:food date:02/02/2012\n"
                 + "2.SGD5.50 cat:food date:02/02/2014\n"
                 + "Now you have 2 expenses in the list.\n"
                 + MESSAGE_DIVIDER + "\n";
@@ -74,7 +74,7 @@ class ExpenseListTest {
 
         String expected = "Here are the tasks in your list:\n\n"
                 + MESSAGE_DIVIDER_LIST + "\n"
-                + "1.SGD2.57 cat:food date:02/02/2012\n"
+                + "1.USD2.57 cat:food date:02/02/2012\n"
                 + "2.SGD5.00 cat:food date:02/02/2014\n"
                 + "Now you have 2 expenses in the list.\n"
                 + MESSAGE_DIVIDER + "\n";

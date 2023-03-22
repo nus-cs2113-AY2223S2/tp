@@ -4,6 +4,7 @@ import data.Currency;
 import data.Expense;
 import data.ExpenseList;
 import data.Time;
+import org.threeten.extra.Temporals;
 import parser.ParserAdd;
 
 import java.time.DateTimeException;
@@ -37,20 +38,19 @@ public class CommandAdd extends Command {
 
     /**
      * Adds an entry into the ArrayList based on the parsed input provided. Currently, if the currency specified does
-     * not exist, it is defaulted to SGD and a warning message is displayed.
+     * not exist, it is defaulted to SGD.
      */
     @Override
     public CommandRes execute() {
         try {
             Time date = new Time(LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter));
+            String exchangeRateDate = LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter)
+                    .with(Temporals.previousWorkingDay()).toString();
             Expense addedExpense = new Expense(currency.roundInput((parsedInput[ParserAdd.AMOUNT_INDEX])),
                     date, parsedInput[ParserAdd.CATEGORY_INDEX],
-                    currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]));
+                    Currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]),
+                    Currency.getExchangeRate(exchangeRateDate, currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX])));
             expenseList.add(addedExpense);
-            if(!currency.checkCurrency(parsedInput[ParserAdd.CURRENCY_INDEX])) {
-                System.out.println("The currency specified does not exist and is defaulted to SGD, please add a new " +
-                        "currency before adding a new expense.\n");
-            }
             return new CommandRes(SUCCESSFUL_ADD, addedExpense,
                     ExpenseList.getAllMessage(expenseList));
         } catch (NumberFormatException e) {
