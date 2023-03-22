@@ -45,7 +45,7 @@ public class Parser {
             return addStatement(action[1].trim());
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
             logger.info("delete command executing");
-            return deleteStatement(userInput); //todo: fix this to reduce calls of split.();
+            return parseDeleteStatement(userInput); //todo: fix this to reduce calls of split.();
         } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
             logger.info("view command executing");
             return generateReport();
@@ -159,15 +159,18 @@ public class Parser {
         }
     }
 
-    public Command deleteStatement(String userInput) throws IllegalArgumentException {
+    public Command parseDeleteStatement(String userInput) {
         String[] tokens = userInput.split("\\s+");
         if (tokens.length != 2) {
             logger.warning("invalid delete index from user");
-            throw new IllegalArgumentException(ErrorMessage.NO_DELETE_INDEX.toString());
+            return new InvalidCommand(ErrorMessage.NO_DELETE_INDEX.toString());
         }
         try {
             int index = Integer.parseInt(tokens[1]);
             if (index > RainyDay.financialReport.getStatementCount()) {
+                throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
+            }
+            if (index <= 0) {
                 throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
             }
             return new DeleteCommand(index);
