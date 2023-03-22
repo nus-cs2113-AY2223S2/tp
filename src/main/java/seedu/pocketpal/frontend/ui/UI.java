@@ -78,26 +78,31 @@ public class UI {
      * @param category Category selected by the user
      */
     public void printEntriesToBeViewed(EntryLog entries, Category category) {
+        double totalPrice = 0;
         assert entries != null;
         if (entries.getSize() == 0) {
             print(MessageConstants.MESSAGE_NO_ENTRIES);
             printLine();
             return;
         }
-
+        for (int index = 1; index <= entries.getSize(); index++) {
+            totalPrice += entries.getEntry(index).getAmount();
+        }
         StringBuilder finalString = new StringBuilder();
         finalString.append("These are the latest ")
-                   .append(entries.getSize())
-                   .append(" entries")
-                   .append(category != null
-                           ? " from the " + category + " category."
-                           : ".")
-                   .append(System.lineSeparator());
+                .append(entries.getSize())
+                .append(" entries")
+                .append(category != null
+                        ? " from the " + category + " category."
+                        : ".")
+                .append(System.lineSeparator());
+
+        finalString.append("Total expenditure: $" + totalPrice).append(System.lineSeparator());
 
         for (int index = 1; index <= entries.getSize(); index++) {
             String formattedEntry = formatViewEntries(entries.getEntry(index), index);
             finalString.append(formattedEntry)
-                       .append(System.lineSeparator());
+                    .append(System.lineSeparator());
         }
         print(finalString.toString());
         printLine();
