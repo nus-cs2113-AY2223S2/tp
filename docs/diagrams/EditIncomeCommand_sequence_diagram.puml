@@ -1,0 +1,57 @@
+@startuml
+
+participant ":ChChing" as ChChing
+participant "c:Parser" as Parser
+participant "c:EditIncomeCommand" as EditIncomeCommand
+participant "incomes:IncomeList" as IncomeList
+
+[-> ChChing : run()
+activate ChChing
+
+ChChing -> Parser : parse(line, incomes, expenses, ui)
+activate Parser
+
+create EditIncomeCommand
+Parser -> EditIncomeCommand : EditIncomeCommand(args)
+activate EditIncomeCommand
+
+EditIncomeCommand --> Parser
+deactivate EditIncomeCommand
+
+Parser --> ChChing : command
+deactivate Parser
+
+ChChing -> EditIncomeCommand : execute(incomes, expenses, ui, storage)
+activate EditIncomeCommand
+
+opt hasDescription
+    EditIncomeCommand -> IncomeList : editIncome(index, "de", value)
+    activate IncomeList
+
+    IncomeList --> EditIncomeCommand
+    deactivate IncomeList
+end
+
+opt hasDate
+    EditIncomeCommand -> IncomeList : editIncome(index, "da", value)
+    activate IncomeList
+
+    IncomeList --> EditIncomeCommand
+    deactivate IncomeList
+end
+
+opt hasValue
+    EditIncomeCommand -> IncomeList : editIncome(index, "v", value)
+    activate IncomeList
+
+    IncomeList --> EditIncomeCommand
+    deactivate IncomeList
+end
+
+EditIncomeCommand --> ChChing
+deactivate EditIncomeCommand
+
+[<--ChChing
+deactivate ChChing
+
+@enduml
