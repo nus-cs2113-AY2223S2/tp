@@ -10,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class GenerateDifficultyExerciseTest {
+    private static final String EASY = "beginner";
+    private static final String MEDIUM = "intermediate";
+    private static final String HARD = "expert";
 
     @Test
     void testBeginnerDifficultyLevel() {
@@ -24,7 +27,7 @@ public class GenerateDifficultyExerciseTest {
         }
 
         for (int i = 0; i < exerciseData.size(); i++){
-            assertEquals(exerciseData.get(i).getLevel(), "beginner");
+            assertEquals(exerciseData.get(i).getLevel(), EASY);
         }
     }
 
@@ -41,7 +44,7 @@ public class GenerateDifficultyExerciseTest {
         }
 
         for (int i = 0; i < exerciseData.size(); i++){
-            assertEquals(exerciseData.get(i).getLevel(), "intermediate");
+            assertEquals(exerciseData.get(i).getLevel(), MEDIUM);
         }
     }
 
@@ -58,7 +61,7 @@ public class GenerateDifficultyExerciseTest {
         }
 
         for (int i = 0; i < exerciseData.size(); i++){
-            assertEquals(exerciseData.get(i).getLevel(), "expert");
+            assertEquals(exerciseData.get(i).getLevel(), HARD);
         }
     }
 

@@ -1,6 +1,7 @@
 package seedu.duke.states;
 
 import seedu.duke.exceptions.DukeError;
+import seedu.duke.exceptions.NoOngoingExError;
 import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.storage.StorageHandler;
 import seedu.duke.userdata.UserCareerData;
@@ -9,6 +10,11 @@ import seedu.duke.userdata.Session;
 
 import java.util.ArrayList;
 
+
+/**
+ * This class handles the functions of the Fitness Duke
+ * when the user is doing a workout
+ */
 public class ExerciseStateHandler {
 
     private static ArrayList<ExerciseData> previousGeneratedWorkout = new ArrayList<>();
@@ -46,12 +52,11 @@ public class ExerciseStateHandler {
      * Prints the current workout if it exists
      * Otherwise throws an error
      *
-     * @throws DukeError Throws an error if there is no ongoing exercise session
+     * @throws NoOngoingExError Throws an error if there is no ongoing exercise session
      */
-    public void printCurrentWorkout () throws DukeError {
+    public void printCurrentWorkout () throws NoOngoingExError {
         if (!workoutOngoing) {
-            throw new DukeError("There is no current workout session!" +
-                                        "Please start a session now");
+            throw new NoOngoingExError();
         }
         Ui ui = new Ui();
         ui.printExerciseFromList(currentSessionWorkout.getSessionExercises());
@@ -68,6 +73,8 @@ public class ExerciseStateHandler {
         workoutOngoing = false;
         if (workoutCompleted) {
             saveWorkoutSession(currentSessionWorkout, userCareerData);
+        } else {
+            printCancelWorkoutSessionMessage();
         }
         currentSessionWorkout = null;
     }
@@ -84,6 +91,10 @@ public class ExerciseStateHandler {
         userCareerData.addWorkoutSession(completedWorkout);
         storageHandler.writeToJson(userCareerData);
         //complete workout
+    }
+
+    private static void printCancelWorkoutSessionMessage(){
+        System.out.println("Workout cancelled, you can complete it next time!");
     }
 
 }

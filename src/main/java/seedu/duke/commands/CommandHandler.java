@@ -1,6 +1,11 @@
 package seedu.duke.commands;
 
 import seedu.duke.exceptions.DukeError;
+import seedu.duke.exceptions.OngoingExGenerationError;
+import seedu.duke.exceptions.OngoingExHelpError;
+import seedu.duke.exceptions.OngoingExProgressError;
+import seedu.duke.exceptions.OngoingExWriteError;
+import seedu.duke.exceptions.OngoingExHistoryError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.storage.StorageHandler;
 import seedu.duke.userdata.UserCareerData;
@@ -25,6 +30,7 @@ public class CommandHandler {
     public void handleUserCommands (String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator,
                                     UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
                                     StorageHandler storageHandler, UserPlan planner) {
+
         String[] userCommands = rawUserCommands.split(" ");
         Command command = null;
         boolean errorExists = false;
@@ -35,10 +41,10 @@ public class CommandHandler {
                 //generate, filter, help, start, history
                 switch (userCommands[0]) {
                 case "generate":
-                    throw new DukeError("Finish your exercise! Cannot generate new exercise");
+                    throw new OngoingExGenerationError();
                 case "help":
                 case "filters":
-                    throw new DukeError("Finish your exercise! Cannot print help messages!");
+                    throw new OngoingExHelpError();
                 case "bye":
                 case "exit":
                     boolean exit = confirmExitDuringWorkout();
@@ -51,9 +57,9 @@ public class CommandHandler {
                     break;
                 case "readSample":
                 case "writeSample":
-                    throw new DukeError("Finish your exercise! Testing of our features can come after that :)");
+                    throw new OngoingExWriteError();
                 case "start":
-                    throw new DukeError("Exercise already in progress!");
+                    throw new OngoingExProgressError();
                 case "current":
                     exerciseStateHandler.printCurrentWorkout();
                     break;
@@ -64,9 +70,7 @@ public class CommandHandler {
                     exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData);
                     break;
                 case "history":
-                    throw new DukeError("Finish your exercise!" +
-                                                "You can look and feel good about your previous workout sessions " +
-                                                "later!");
+                    throw new OngoingExHistoryError();
                 default:
                     ui.unknownCommand();
                     errorExists = true;
@@ -114,6 +118,9 @@ public class CommandHandler {
                     break;
                 case "history":
                     userCareerData.printAllFinishedWorkoutSessions();
+                    break;
+                case "find":
+                    command = new ExerciseSearchCommand(userCommands);
                     break;
                 default:
                     ui.unknownCommand();
