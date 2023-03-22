@@ -1,0 +1,23 @@
+package functionalities.commands;
+
+import exception.SniffException;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class VaccinationCommandTest {
+
+    @Test
+    void VaccinationCommandNotNull() {
+        String animalName = "";
+        String animalType = "";
+        String ownerName = "";
+        String contactNumber = "";
+        String vaccine = "";
+        String date = "";
+        String time = "";
+        VaccinationCommand c = new VaccinationCommand(animalType, animalName, ownerName,
+                contactNumber, vaccine, date, time);
+        assertNotNull(c);
+    }
+}
