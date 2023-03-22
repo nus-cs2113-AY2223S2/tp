@@ -20,8 +20,8 @@ public class Storage {
     private boolean isNewSave;
     private File file;
 
-    public Storage() {
-        file = new File(DEFAULT_SAVE_PATH);
+    public Storage(String filepath) {
+        file = new File(filepath);
         isNewSave = !file.exists();
     }
 
