@@ -5,6 +5,7 @@ Hello from
  / __/ / / /_/ / / /  __(__  |__  )  / /_/ / /_/ / ,< /  __/
 /_/   /_/\__/_/ /_/\___/____/____/  /_____/\__,_/_/|_|\___/ 
 Start your fitness journey! Type [help] to see the things you can do!
+DFFD
 These are some commands available: 
 [generate]
 	Generate a specific list of exercises: generate FILTER1 FILTER2 ... x
@@ -14,6 +15,7 @@ These are some commands available:
 [bye]
 	End the program
 ________________________________________
+DFFD
     ____             __
    / __ )__  _____  / /
   / __  / / / / _ \/ / 
