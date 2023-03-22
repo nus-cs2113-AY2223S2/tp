@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+box Delete
+
+participant ":Duke" as Duke
+participant ":CommandDelete" as CommandDelete
+participant "expenseList:ExpenseList" as ExpenseList
+participant "parser:Parser" as Parser
+
+
+create CommandDelete
+Duke -> CommandDelete : execute()
+activate CommandDelete
+
+CommandDelete -> ExpenseList: getExpenseList()
+activate ExpenseList
+ExpenseList --> CommandDelete : ExpenseList
+deactivate ExpenseList
+
+CommandDelete -> Parser : extractIndex()
+activate Parser
+Parser --> CommandDelete : Integer
+deactivate Parser
+
+
+
+@enduml
