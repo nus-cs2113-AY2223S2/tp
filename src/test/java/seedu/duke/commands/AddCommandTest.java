@@ -20,6 +20,8 @@ class AddCommandTest {
         assertEquals(1, inventory.getItemInventory().size());
         assertEquals(newItem, inventory.getItemInventory().get(0));
         assertTrue(inventory.getUpcCodes().containsKey(newItem.getUpc()));
-        assertTrue(inventory.getItemNameHash().containsKey(newItem.getName().toLowerCase()));
+        for(String itemName: newItem.getName().toLowerCase().split(" ")){
+            assertTrue(inventory.getItemNameHash().containsKey(itemName));
+        }
     }
 }
