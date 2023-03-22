@@ -54,6 +54,12 @@ the command via `ui.getUserInput()` and parses it through `commandParser.parseCo
 
 11. The program will now exit.
 
+<p align="center">
+    <img src="images/ExitCommandSequenceDiagram.png">
+    <br />
+    <i>Figure 1: Sequence Diagram for Bye Command</i>
+</p>
+
 ## User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
