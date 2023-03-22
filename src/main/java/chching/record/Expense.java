@@ -1,9 +1,11 @@
 package chching.record;
 
+import java.time.LocalDate;
+
 public class Expense extends Record {
     private final String category;
 
-    public Expense(String category, String description, String date, double value) {
+    public Expense(String category, String description, LocalDate date, double value) {
         super(description, date, value);
         this.category = category;
     }
@@ -17,7 +19,7 @@ public class Expense extends Record {
     public String toString() {
         return "Category - " + getCategory() +
                 " | Description - " + getDescription() +
-                " | Date - " + getDate() +
+                " | Date - " + getDateString() +
                 " | Value - " + String.format("%.02f", getValue());
     }
 

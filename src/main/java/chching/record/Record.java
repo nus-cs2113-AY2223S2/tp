@@ -1,15 +1,15 @@
 package chching.record;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 // Abstract class that will not be initialized as an object
 public abstract class Record {
     protected String description;
-    protected String date;
+    protected LocalDate date;
     protected double value;
 
-    public Record(){
-    }
-
-    public Record(String description, String date, double value) {
+    public Record(String description, LocalDate date, double value) {
         this.description = description;
         this.date = date;
         this.value = value;
@@ -24,8 +24,13 @@ public abstract class Record {
         return description;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
+    }
+
+    public String getDateString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM uuuu");
+        return date.format(formatter);
     }
 
     public double getValue() {
@@ -36,7 +41,7 @@ public abstract class Record {
         this.description = description;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
