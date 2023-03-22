@@ -64,10 +64,10 @@ public class MainInputParser {
                 case BorrowExpenditureCommand.COMMAND_WORD:
                     ParseLendBorrow prepareLendBorrowExpenditure;
                     prepareLendBorrowExpenditure = new ParseLendBorrow(splitValues[INDEX_USERSTRING]);
-                    return prepareLendBorrowExpenditure.addItem(command);
-                default:
-                    // Commands that are not listed above
-                    return new InvalidCommand("Command not recognised. Please try again");
+                return prepareLendBorrowExpenditure.addItem(command);
+            default:
+                // Commands that are not listed above
+                return new InvalidCommand("Command not recognised. Please try again");
             }
         } catch (IndexOutOfBoundsException e) {
             return new InvalidCommand("Input command does not have required parameters! Please try again");

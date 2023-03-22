@@ -5,7 +5,8 @@ public class Ui {
             + "( \\/ )( \\/ )(  )  (  __)(    \\ / __)(  __)(  _ \\\n" +
             "/ \\/ \\ )  / / (_/\\ ) _)  ) D (( (_ \\ ) _)  )   / \n" +
             "\\_)(_/(__/  \\____/(____)(____/ \\___/(____)(__\\_)\n";
-    public static final String HORIZONTAL_LINE = "------------------------------------------------------------------------------------------------------------------";
+    public static final String HORIZONTAL_LINE = "----------------------------------------------" + 
+    "--------------------------------------------------------------------";
 
     public static final String WELCOME_MESSAGE = "Hello there, Welcome to\n";
     public static final String INSTRUCTIONS = "\nHere are the list possible commands: "
@@ -22,7 +23,7 @@ public class Ui {
             "\n2.delete: Deletes the specified expenditure from the record\n" +
             "Format: delete INDEX\n" +
             HORIZONTAL_LINE +
-            "\n3.edit: Edits an existing expenditure in the record, please note that editing cannot change the expenditure type\n"
+            "\n3.edit: Edits an existing expenditure in the record, edit cannot change an expenditure type\n"
             +
             "Format: edit INDEX d/DATE a/AMOUNT s/DESCRIPTION\n" +
             "        edit INDEX d/DATE n/(LEND/BORROW)_NAME a/AMOUNT b/DEADLINE s/DESCRIPTION\n" +
