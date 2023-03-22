@@ -34,10 +34,18 @@ public class Duke {
         String input = in.nextLine();
         while (!input.equals("exit")) {
             switch (parser.extractCommandKeyword(input)) {
-            case "add" -> new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input)).execute();
-            case "delete" -> new CommandDelete(expenseList.getExpenseList(), parser.extractIndex(input)).execute();
-            case "list" -> new CommandList(expenseList.getExpenseList()).run();
-            default -> System.out.println("Unknown command.");
+            case "add":
+                new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input)).execute();
+                break;
+            case "delete":
+                new CommandDelete(expenseList.getExpenseList(), parser.extractIndex(input)).execute();
+                break;
+            case "list":
+                new CommandList(expenseList.getExpenseList()).run();
+                break;
+            default:
+                System.out.println("Unknown command.");
+                break;
             }
             input = in.nextLine();
         }
