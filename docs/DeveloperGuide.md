@@ -77,8 +77,24 @@ Components:
   be created with the relevant information passed to it
 - rainyDay will then call Command.execute(), where the indicated transaction will be deleted from the financial report
 
-{TODO: Mention file path after implementing issue #137}
+### Viewing your data
 
+- The command `view` is used to view all statements, and a ViewCommand object will be created.
+    - Any other characters after `view` are automatically ignored
+- RainyDay will then call Command.execute(), where every entry in the financial report will be printed.
+- Information will be presented in a table format to help improve clarity for users.
+
+### Filtering your data
+- When a command is given to filter a report by certain conditions, the command is first parsed to check whether it
+  follows the format of a filter command with the use of regex pattern
+    - Valid patterns are `filter -in`, `filter -out` , `filter -c <category>`,
+      `filter -d <description>` and `filter -date <DD/MM/YYYY>`
+- Commands in the correct format will then be parsed to create a FilterCommand object.
+- RainyDay will then call Command,execute(), where every entry in the financial report with the matching
+  conditions will be printed.
+- Information will be presented in a table format to help improve clarity for users.
+
+{TODO: Mention file path after implementing issue #137}
 ### Saving Data
 
 - Whenever a change is made in the `FinancialReport` the updated `FinancialReport` will automatically be saved to
