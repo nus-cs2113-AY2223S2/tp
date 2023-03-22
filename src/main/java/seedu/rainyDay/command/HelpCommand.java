@@ -9,7 +9,7 @@ public class HelpCommand extends Command {
             "+-----+--------------+--------+--------------------------------------------------------------------------+\n" +
             "|Add Statement       |add     |[-in/-out] [description] $[value] {-c category} {-date date}              |\n" +
             "|Delete statement    |delete  |[index]                                                                   |\n" +
-            "|View all statements |view    |Behold the barren lands                                                   |\n" +
+            "|View all statements |view    |                                                                          |\n" +
             "|Filter statements   |filter  |{-in} {-out} {-d description} {-c category} {-date DD/MM/YYYY}            |\n" +
             "|Edit a statement    |edit    |[index] {-in/-out} {-d description} {$value} {-c category} {-date date}   |\n" +
             "|Display a guide     |help    |{command}                                                                 |\n" +
@@ -23,14 +23,16 @@ public class HelpCommand extends Command {
             "+========================================================================================================+\n" +
             "| Add command                 | Used to add a new entry to RainyDay                                      |\n" +
             "+========================================================================================================+\n" +
-            "| Flags      | Requirement    | Description                                                              |\n" +
-            "+------------+----------------+--------------------------------------------------------------------------+\n" +
-            "| -in / -out | Mandatory      | Used to denote if the entry is an inflow or an outflow                   |\n" +
-            "| -c         | Optional       | Used to denote the category of the entry. Set to Default if omitted      |\n" +
-            "| -date      | Optional       | Used to denote the date of the entry. Set to present date if omitted     |\n" +
+            "| Details       | Requirement | Description                                                              |\n" +
+            "+---------------+-------------+--------------------------------------------------------------------------+\n" +
+            "| -in / -out    | Mandatory   | Used to denote if the entry is an inflow or an outflow                   |\n" +
+            "| <description> | Optional    | Used to describe the entry. Description will be left blank if omitted    |\n" +
+            "| $<value>      | Mandatory   | Used to set the value of the entry.                                      |\n" +
+            "| -c <category> | Optional    | Used to denote the category of the entry. Set to Default if omitted      |\n" +
+            "| -date <date>  | Optional    | Used to denote the date of the entry. Set to present date if omitted     |\n" +
             "+========================================================================================================+\n" +
             "| Example Usage               | Description                                                              |\n" +
-            "+------------+----------------+--------------------------------------------------------------------------+\n" +
+            "+-----------------------------+--------------------------------------------------------------------------+\n" +
             "| add -in Salary $2113.09     | Adds entry with description: Salary and value: $2113.09 as inflow        |\n" +
             "|                             |                                                                          |\n" +
             "| add -out Noodles $5         | Adds entry with description: Noodles and value: $5 as outflow            |\n" +
@@ -45,8 +47,31 @@ public class HelpCommand extends Command {
             "|                             | category set to Bills                                                    |\n" +
             "+========================================================================================================+\n";
 
-    private static final String HELP_DELETE_COMMAND = "WIP. Go Read the UG";
-    private static final String HELP_VIEW_COMMAND = "WIP. Go Read the UG";
+    private static final String HELP_DELETE_COMMAND = "" +
+            "+========================================================================================================+\n" +
+            "| Delete command              | Used to delete an existing entry from RainyDay                           |\n" +
+            "+========================================================================================================+\n" +
+            "| Details    | Requirement    | Description                                                              |\n" +
+            "+------------+----------------+--------------------------------------------------------------------------+\n" +
+            "| index      | Mandatory      | Used to delete an entry, as denoted by the given index                   |\n" +
+            "+========================================================================================================+\n" +
+            "| Example Usage               | Description                                                              |\n" +
+            "+-----------------------------+--------------------------------------------------------------------------+\n" +
+            "| delete 7                    | Deletes the 7th entry from the list                                      |\n" +
+            "+========================================================================================================+\n";
+
+    private static final String HELP_VIEW_COMMAND = "" +
+            "+========================================================================================================+\n" +
+            "| View command                | Views all entries in RainyDay                                            |\n" +
+            "+========================================================================================================+\n" +
+            "| Details    | Requirement    | Description                                                              |\n" +
+            "+------------+----------------+--------------------------------------------------------------------------+\n" +
+            "| Behold the barren lands, that will be this way till sorting is implemented                             |\n" +
+            "+========================================================================================================+\n" +
+            "| Example Usage               | Description                                                              |\n" +
+            "+-----------------------------+--------------------------------------------------------------------------+\n" +
+            "| WIP                         | WIP                                                                      |\n" +
+            "+========================================================================================================+\n";
     private static final String HELP_FILTER_COMMAND = "WIP. Go Read the UG";
     private static final String HELP_EDIT_COMMAND = "WIP. Go Read the UG";
     private static final String HELP_HELP_COMMAND = "Very funny";
