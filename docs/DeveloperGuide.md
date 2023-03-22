@@ -1,4 +1,21 @@
 # Developer Guide
+## Contents
+- [Acknowledgements](#acknowledgements)
+- [Design & Implementation](#design--implementation)
+- [Implementation](#implementation)
+  - [List](#list)
+  - [Add](#add)
+  - [Edit](#edit)
+  - [Remove](#remove)
+  - [Search](#search)
+  - [Filter](#filter)
+- [Product Scope](#product-scope)
+  - [Target User Profile](#target-user-profile)
+  - [Value Proposition](#value-proposition)
+- [User Stories](#user-stories)
+- [Non-Functional Requirements](#non-functional-requirements)
+- [Glossary](#glossary)
+- [Instructions for Manual Testing](#instructions-for-manual-testing)
 
 ## Acknowledgements
 
@@ -24,10 +41,20 @@ Otherwise, a success message is printed and the `printTable` method from the `Ui
 
 **Step 4**. The `printTable` method takes in the ArrayList `itemInventory` as a parameter and prints out a table showing the name, UPC, quantity and price of all items in `itemInventory`.
 
+### Add
+The add command is mainly handled by the `AddCommand` class, which extends the `Command` class.
+
 ### Edit
 The "edit" command is mainly handled by the `EditCommand` class, which extends the `Command` class.
 
+### Remove
+The remove command is mainly handled by the `RemoveCommand` class, which extends the `Command` class.
 
+### Search
+The search command is mainly handled by the `SearchCommand` class, which extends the `Command` class.
+
+### Filter
+The filter command is mainly handled by the `FilterCommand` class, which extends the `Command` class.
 
 
 ## Product scope
