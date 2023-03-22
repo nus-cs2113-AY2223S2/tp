@@ -64,14 +64,9 @@ Components:
 
 - When a command is given to add a statement, the command is first parsed to check whether it follows the format of an
   add command: `add -DIRECTION DESCRIPTION $VALUE -c CATEGORY -d DESCRIPTION` with the use of regex pattern
-    - `DIRECTION`: indicating the direction of the transaction, to be either `in` or `out`
-    - `DESCRIPTION`: the description of the transaction
-    - `VALUE`: the amount to be tagged with the transaction
-    - `CATEGORY`: the category of the transaction
-    - `DATE`: the date to be tagged with the transaction, to be supplied in the format of DD/MM/YYYY
+    - Details on implementation for parsing and command fields are documented below
 - Commands in the correct format will then be parsed to extract the relevant information, and an `AddCommand` object
   will be created with the relevant attributes
-    - Details on implementation for parsing is documented below
 - `RainyDay` will then call `execute` method in `Command`, where the transaction will be added into the financial report
 
 #### Design considerations
@@ -94,7 +89,6 @@ Format of add command
     - `INDEX`: the index number of the statement in the financial report, stored as an int
 - Commands in the correct format will then be parsed to extract index, and a `DeleteCommand` object will
   be created with the relevant attribute information
-    - Details on implementation for parsing is documented below
 - rainyDay will then call Command.execute(), where the indicated transaction will be deleted from the financial report
 
 #### Design considerations
