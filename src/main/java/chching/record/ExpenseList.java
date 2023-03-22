@@ -1,5 +1,7 @@
 package chching.record;
 
+import chching.ChChingException;
+
 import java.util.ArrayList;
 
 public class ExpenseList extends RecordList{
@@ -21,7 +23,38 @@ public class ExpenseList extends RecordList{
     public void addExpense(Expense expense) {
         expenseList.add(expense);
     }
-
+    
+    public void editExpense(int index, String field, String value) throws ChChingException {
+    
+        // change from 1-based indexing to 0-based indexing
+        int indexZeroBased = index - 1;
+        Expense expense = expenseList.get(indexZeroBased);
+        
+        // edit the according field
+        switch(field) {
+        case "c":
+            expense.setCategory(value);
+            break;
+        case "de":
+            expense.setDescription(value);
+            break;
+        case "da":
+            expense.setDate(value);
+            break;
+        case "v":
+            try {
+                double amount = Float.parseFloat(value);
+                expense.setValue(amount);
+            } catch (Exception e) {
+                throw new ChChingException("Trouble adding expense value");
+            }
+            break;
+        default:
+            assert false : "No such field to enter here";
+            throw new ChChingException("No such field in expense");
+        }
+    }
+    
     public void deleteExpense(int i) throws IndexOutOfBoundsException{
         try {
             expenseList.remove(i - 1);

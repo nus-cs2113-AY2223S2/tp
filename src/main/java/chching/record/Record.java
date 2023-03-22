@@ -40,10 +40,9 @@ public abstract class Record {
         this.date = date;
     }
 
-    public void setValue(float value) {
+    public void setValue(double value) {
         this.value = value;
     }
-    
     public String toString() {
         return "";
     }

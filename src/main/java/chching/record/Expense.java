@@ -1,7 +1,7 @@
 package chching.record;
 
 public class Expense extends Record {
-    private final String category;
+    private String category;
 
     public Expense(String category, String description, String date, double value) {
         super(description, date, value);
@@ -11,6 +11,10 @@ public class Expense extends Record {
     @Override
     public String getCategory() {
         return category;
+    }
+    
+    public void setCategory(String category) {
+        this.category = category;
     }
     
     @Override
