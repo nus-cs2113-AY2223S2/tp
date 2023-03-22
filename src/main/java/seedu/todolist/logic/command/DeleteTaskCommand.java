@@ -21,6 +21,7 @@ public class DeleteTaskCommand extends Command {
         } catch (NumberFormatException e) {
             throw new InvalidIndexException();
         }
+        assert index >= 0: "Invalid index contained in variable";
     }
 
     @Override
