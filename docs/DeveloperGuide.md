@@ -29,7 +29,7 @@ TaskList#EditDeadline(), which updates the value of deadline for the Task item s
 
 The following sequence diagram shows how the edit operations works:
 
-![](images/EditDeadlineCommandSequence.svg)
+![](images/EditDeadlineCommandSequence.png)
 
 
 ## Product scope
