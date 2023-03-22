@@ -2,9 +2,10 @@ package seedu.brokeMan.entry;
 
 import seedu.brokeMan.ui.Ui;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 
-public class Expenses extends EntryList{
+public class ExpenseList extends EntryList {
     private static final LinkedList<Entry> expenseList = new LinkedList<>();
     //private final EntryList expenseList;
 
@@ -40,38 +41,47 @@ public class Expenses extends EntryList{
         deleteEntry(expenseIndex, expenseList);
     }
 
+
     /**
-     * Edits a specific index in the list
+     * Edits the description of the expense specified by the index in the list
      *
-     * @param type entry type of the expense to be changed
      * @param expenseIndex index of the expense in the list
-     * @param newEntry new entry that will replace current entry
+     * @param newEntry new description that will replace current description
      */
-    public static void editExpenseCost(String type, int expenseIndex, double newEntry) {
-        editEntry(type, expenseIndex, newEntry, expenseList);
+    public static void editExpense(int expenseIndex, String newEntry) {
+        editEntryDescription(expenseIndex, newEntry, expenseList);
     }
 
     /**
-     * Edits a specific index in the list
-     *
-     * @param type entry type of the expense to be changed
+     * Edits the amount of expense specified by the index in the list
      * @param expenseIndex index of the expense in the list
-     * @param newEntry new entry that will replace current entry
+     * @param newEntry new amount that will replace the current amount
      */
-    public static void editExpense(String type, int expenseIndex, String newEntry) {
-        editEntry(type, expenseIndex, newEntry, expenseList);
+    public static void editExpense(int expenseIndex, Double newEntry) {
+        editEntryCost(expenseIndex, newEntry, expenseList);
     }
 
+    /**
+     * Edits the time of expense specified by the index in the list
+     *
+     * @param expenseIndex index of the expense in the list
+     * @param newEntry new time that will replace the current amount
+     */
+    public static void editExpense(int expenseIndex, LocalDateTime newEntry) {
+        editEntryTime(expenseIndex, newEntry, expenseList);
+    }
 
     /**
-     * Sorts expenses using Entry comparator
+     * Sorts expenses by amount, from largest to smallest
      */
-    private static void sortExpensesByAmount() {
+    public static void sortExpensesByAmount() {
         sortEntriesByAmount(expenseList);
     }
-    private static void sortExpensesByDate() {
+
+    /**
+     * Sorts expenses by date, from latest to oldest
+     */
+    public static void sortExpensesByDate() {
         sortEntriesByDate(expenseList);
     }
-
-
 }
