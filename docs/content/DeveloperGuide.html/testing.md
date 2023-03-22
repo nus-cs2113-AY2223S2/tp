@@ -44,3 +44,44 @@ Exceptions are thrown for a couple of cases where files are being read. If you w
 4. Not enough columns: If a row has insufficient columns compared to what is needed, the Entry cannot be created.
     Example row: Apple Juice,5.50 - In this case, there are only two categories which is not allowed.
 
+# Feature Testing
+
+The following section provides instructions and code snippets for the manual testing of all currently supported features in PocketPal.
+
+## Add expense: /add
+**Usage:** `/add <DESCRIPTION> <-c | -category CATEGORY> <-p | -price PRICE>`
+
+Test Case: 
+
+**Prerequisites:** None
+
+
+{{< code lang="Java" >}} /add McDonalds -c Food -p 10.50 {{< /code >}}
+
+Expected output:
+{{<code lang="Text">}}________________________________________________
+The following expenditure has been added:
+Description: McDonalds
+Price: $10.50
+Category: Food
+________________________________________________
+Enter a command or /help to see the list of commands available.
+{{</code>}}
+
+## View expense: /view
+**Usage:** `/view [COUNT] [-c | -category CATEGORY]`
+
+Test case (No expenses exist):
+
+**Prerequisites:** None.
+
+{{<code lang="Java">}}
+{{</code>}}
+
+
+## Delete expense: /delete
+**Prerequisites:** Multiple expenses pre-added into the program. View list of expenses with `/view` 
+## Edit expense: /edit
+
+## Help: /help
+## Bye: /bye
