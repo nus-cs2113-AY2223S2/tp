@@ -41,7 +41,6 @@ public class EditCommandTest extends BackendTestUtil {
     @Test
     @DisplayName("Test execute method in editCommand")
     void testExecuteMethod() {
-        System.out.println(getNumEntries());
         EditCommand editCommand = new EditCommand(proposedChanges[0], proposedChanges[1], proposedChanges[2]
                 , proposedChanges[3]);
         addEntry(originalEntry);

@@ -34,10 +34,10 @@ public class AddCommandTest extends BackendTestUtil {
     @Test
     @DisplayName("Test execute method in AddCommand")
     void testExecute() {
-        AddCommand testCommand = assertDoesNotThrow(() -> new AddCommand("Rice", 8.50, "Food"));
+        Entry testEntry = new Entry("Rice", 8.50, Category.FOOD);
+        AddCommand testCommand = assertDoesNotThrow(() -> new AddCommand(testEntry));
         testCommand.execute(TEST_UI, TEST_BACKEND);
-        Entry expectedEntry = new Entry("Rice", 8.50, Category.FOOD);
-        Entry addedEntry = getEntryById(getNumEntries());
-        assertTrue(isSameEntry(expectedEntry, addedEntry));
+        Entry expectedEntry = getEntryById(getNumEntries());
+        assertTrue(isSameEntry(expectedEntry, testEntry));
     }
 }
