@@ -54,7 +54,7 @@ public class Ui {
     private static final String UPC_HEADING = "UPC";
     private static final String QTY_HEADING = "Quantity";
     private static final String PRICE_HEADING = "Price";
-    private static final String COMMAND_HEADING = "Command Description";
+    private static final String COMMAND_HEADING = "Command";
     private static final String FORMAT_HEADING = "Command Format";
 
     private static final String TABLE_CORNER = "+";
@@ -314,7 +314,7 @@ public class Ui {
                                                     int current, int width) {
         line.append(words[current]);
 
-        if (words[current].length() < width) {
+        if (line.length() < width) {
             line.append(" ");
         }
 

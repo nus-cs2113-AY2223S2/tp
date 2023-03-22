@@ -15,24 +15,20 @@ public class CommandFormat {
     public static final String CATEGORY_FORMAT = "cat n/[Name] c/[Category]";
     public static final String TAG_FORMAT = "tag a/[Add/Remove] n/[Name] [Tag]";
 
-    public static final String ADD_DESCRIPTION = "add:\nadds an item to the inventory list.";
-    public static final String EDIT_DESCRIPTION = "edit:\nedits relevant information of an item.";
-    public static final String REMOVE_DESCRIPTION = "remove:\nremoves an item from the inventory list.";
-    public static final String HELP_DESCRIPTION = "help:\nshows you this list of commands.";
-    public static final String LIST_DESCRIPTION = "list:\nshows you the inventory list of items.";
-    public static final String SEARCH_KEYWORD_DESCRIPTION = "search:\n search existing items by keywords.";
-    public static final String SEARCH_UPC_DESCRIPTION = "searchupc:\nsearch existing items by UPC.";
-    public static final String FILTER_DESCRIPTION = "filter:\nfilters items by category or price or tag.";
-    public static final String ALERT_ADD_DESCRIPTION = "alertadd:\nadds new alert for an item to track its stock count.";
-    public static final String CATEGORY_DESCRIPTION = "cat:\nputs an item into the specified category.";
-    public static final String TAG_DESCRIPTION = "tag:\nadds or removes a tag of an existing item.";
+    public static final String ADD_DESCRIPTION = "add:\nadds an item to the inventory list";
+    public static final String EDIT_DESCRIPTION = "edit:\nedits relevant information of an item";
+    public static final String REMOVE_DESCRIPTION = "remove:\nremoves an item from the inventory list";
+    public static final String HELP_DESCRIPTION = "help:\nshows you this list of commands";
+    public static final String LIST_DESCRIPTION = "list:\nshows you the inventory list of items";
+    public static final String SEARCH_KEYWORD_DESCRIPTION = "search:\n search existing items by keywords";
+    public static final String SEARCH_UPC_DESCRIPTION = "searchupc:\nsearch existing items by UPC";
+    public static final String FILTER_DESCRIPTION = "filter:\nfilters items by category or price or tag";
+    public static final String ALERT_ADD_DESCRIPTION = "alertadd:\nadds new alert for an item to track its stock count";
+    public static final String CATEGORY_DESCRIPTION = "cat:\nputs an item into the specified category";
+    public static final String TAG_DESCRIPTION = "tag:\nadds or removes a tag of an existing item";
 
-//    protected ArrayList<String> commandFormats;
-//    protected ArrayList<String> commandDescriptions;
     protected HashMap<String, String> commandsHashMap;
-    public CommandFormat(HashMap<String, String> commandsHashMap) {//ArrayList<String> commandFormats, ArrayList<String> commandDescriptions) {
-//        this.commandFormats = getCommandFormats();
-//        this.commandDescriptions = getCommandDescriptions();
+    public CommandFormat(HashMap<String, String> commandsHashMap) {
         this.commandsHashMap = getCommandsHashMap(commandsHashMap);
     }
 
@@ -50,34 +46,4 @@ public class CommandFormat {
         commands.put(HELP_FORMAT, HELP_DESCRIPTION);
         return commands;
     }
-
-    //    public ArrayList<String> getCommandFormats() {
-//        commandFormats.add(ADD_FORMAT);
-//        commandFormats.add(REMOVE_FORMAT);
-//        commandFormats.add(EDIT_FORMAT);
-//        commandFormats.add(HELP_FORMAT);
-//        commandFormats.add(LIST_FORMAT);
-//        commandFormats.add(SEARCH_KEYWORD_FORMAT);
-//        commandFormats.add(SEARCH_UPC_FORMAT);
-//        commandFormats.add(FILTER_FORMAT);
-//        commandFormats.add(CATEGORY_FORMAT);
-//        commandFormats.add(TAG_FORMAT);
-//        commandFormats.add(ALERT_ADD_FORMAT);
-//        return commandFormats;
-//    }
-//
-//    public ArrayList<String> getCommandDescriptions() {
-//        commandDescriptions.add(ADD_DESCRIPTION);
-//        commandDescriptions.add(REMOVE_DESCRIPTION);
-//        commandDescriptions.add(EDIT_DESCRIPTION);
-//        commandDescriptions.add(HELP_DESCRIPTION);
-//        commandDescriptions.add(LIST_DESCRIPTION);
-//        commandDescriptions.add(SEARCH_KEYWORD_DESCRIPTION);
-//        commandDescriptions.add(SEARCH_UPC_DESCRIPTION);
-//        commandDescriptions.add(FILTER_DESCRIPTION);
-//        commandDescriptions.add(CATEGORY_DESCRIPTION);
-//        commandDescriptions.add(TAG_DESCRIPTION);
-//        commandDescriptions.add(ALERT_ADD_DESCRIPTION);
-//        return commandFormats;
-//    }
 }
