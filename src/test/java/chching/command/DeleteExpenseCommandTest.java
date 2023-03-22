@@ -2,9 +2,12 @@ package chching.command;
 
 import chching.Storage;
 import chching.Ui;
+import chching.currency.Converter;
+import chching.currency.Selector;
 import chching.record.Expense;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
 
 /**
  * Junit Test for DeleteExpenseCommand
@@ -39,14 +43,17 @@ class DeleteExpenseCommandTest {
     private Expense groceries;
     private ExpenseList defaultExpenseList;
     private IncomeList emptyIncomeList;
-    
+    private Selector selector;
+    private Converter converter;
+
     @BeforeEach
     void setup() {
         ui = new Ui();
-        spending = new Expense(SPENDING_CATEGORY, SPENDING_DESCRIPTION , SPENDING_DATE, SPENDING_EXPENSE_VALUE);
-        groceries = new Expense(GROCERIES_CATEGORY,GROCERIES_DESCRIPTION,GROCERIES_DATE,GROCERIES_EXPENSE_VALUE);
-        
-        
+        spending = new Expense(SPENDING_CATEGORY, SPENDING_DESCRIPTION, SPENDING_DATE, SPENDING_EXPENSE_VALUE);
+        groceries = new Expense(GROCERIES_CATEGORY, GROCERIES_DESCRIPTION, GROCERIES_DATE, GROCERIES_EXPENSE_VALUE);
+        selector = new Selector();
+        converter = new Converter();
+
         ArrayList<Expense> expenseList = new ArrayList<Expense>();
         expenseList.add(spending);
         expenseList.add(groceries);
@@ -57,11 +64,11 @@ class DeleteExpenseCommandTest {
      * Junit Test when deleting an entry of index within the size of the ExpenseList
      */
     @Test
-    void execute_positiveIntegerWithinSize_success(){
+    void execute_positiveIntegerWithinSize_success() {
         int defaultExpenseListSize = defaultExpenseList.size();
         Command command = new DeleteExpenseCommand(CORRECT_INDEX);
         try {
-            command.execute(emptyIncomeList, defaultExpenseList, ui, storage);
+            command.execute(emptyIncomeList, defaultExpenseList, ui, storage, selector, converter);
             assertEquals(defaultExpenseListSize - OFFSET, defaultExpenseList.size(), "Delete expense working");
         } catch (Exception e) {
             fail(); // test should not reach this line
@@ -76,7 +83,7 @@ class DeleteExpenseCommandTest {
         String expectedOutput = "The number is too big";
         Command command = new DeleteExpenseCommand(TOO_LARGE_INDEX);
         try {
-            command.execute(emptyIncomeList, defaultExpenseList, ui, storage);
+            command.execute(emptyIncomeList, defaultExpenseList, ui, storage, selector, converter);
             fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage(), "Delete expense with integer outside size is not captured");
@@ -91,7 +98,7 @@ class DeleteExpenseCommandTest {
         String expectedOutput = "Negative/Zero index";
         Command command = new DeleteExpenseCommand(NEGATIVE_INDEX);
         try {
-            command.execute(emptyIncomeList, defaultExpenseList, ui, storage);
+            command.execute(emptyIncomeList, defaultExpenseList, ui, storage, selector, converter);
             fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage(), "Delete expense with negative integer is not captured");

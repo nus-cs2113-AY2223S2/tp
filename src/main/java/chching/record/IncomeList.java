@@ -1,11 +1,13 @@
 package chching.record;
 
 import java.util.ArrayList;
+import chching.currency.Converter;
+import chching.currency.Selector;
 
 /**
  * Models a class that act as list of incomes. Inherited from RecordList Class
  */
-public class IncomeList extends RecordList{
+public class IncomeList extends RecordList {
     protected ArrayList<Income> incomeList;
 
     /**
@@ -13,15 +15,14 @@ public class IncomeList extends RecordList{
      *
      * @param incomeList ArrayList of incomes
      */
-
-    public IncomeList(ArrayList<Income> incomeList){
+    public IncomeList(ArrayList<Income> incomeList) {
         this.incomeList = incomeList;
     }
-
+    
     /**
      * Default constructor to instantiate IncomeList objects
      */
-    public IncomeList(){
+    public IncomeList() {
         incomeList = new ArrayList<>();
 
     }
@@ -35,12 +36,13 @@ public class IncomeList extends RecordList{
 
     }
 
+
     /**
      * Deletes income from an IncomeList
      *
      * @param i     index of the income entry
      */
-    public void deleteIncome(int i) throws IndexOutOfBoundsException{
+    public void deleteIncome(int i) throws IndexOutOfBoundsException {
         try {
             incomeList.remove(i - 1);
         } catch (IndexOutOfBoundsException e) {
@@ -48,10 +50,11 @@ public class IncomeList extends RecordList{
         }
     }
 
-    public void printIncomeList() {
+    public void printIncomeList(Selector selector, Converter converter) {
         for (int i = 1; i <= incomeList.size(); i++) {
             Record record = incomeList.get(i - 1);
-            System.out.println("    " + i + ". " + record.toString());
+            String convertedCurrencies = converter.printConverter(record.value, selector);
+            System.out.println("    " + i + ". " + record.toString() + convertedCurrencies);
         }
     }
 

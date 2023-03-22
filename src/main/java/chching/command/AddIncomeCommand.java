@@ -3,6 +3,8 @@ package chching.command;
 import chching.ChChingException;
 import chching.Storage;
 import chching.Ui;
+import chching.currency.Converter;
+import chching.currency.Selector;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
 import chching.record.Income;
@@ -25,7 +27,7 @@ public class AddIncomeCommand extends Command {
             throw new ChChingException("Missing description field");
         } else if (income.getDate() == null) {
             throw new ChChingException("Missing date field");
-        } else if(income.getValue() <= 0) {
+        } else if (income.getValue() <= 0) {
             throw new ChChingException("Invalid/Missing income value");
         }
         this.income = income;
@@ -40,7 +42,8 @@ public class AddIncomeCommand extends Command {
      * @param storage       Storage of data
      */
     @Override
-    public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage) {
+    public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
+            Converter converter) throws ChChingException {
         assert income.getValue() > 0 : "Income value must be positive";
         incomes.addIncome(income);
         ui.showAdded(incomes, expenses, income);

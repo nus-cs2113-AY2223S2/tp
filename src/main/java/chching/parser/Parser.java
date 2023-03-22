@@ -3,22 +3,23 @@ package chching.parser;
 import chching.ChChingException;
 import chching.Ui;
 import chching.command.Command;
-import chching.command.InvalidCommand;
-import chching.command.DeleteExpenseCommand;
-import chching.command.DeleteIncomeCommand;
 import chching.command.AddExpenseCommand;
 import chching.command.AddIncomeCommand;
-import chching.command.BalanceCommand;
-import chching.command.ExitCommand;
-import chching.command.HelpCommand;
+import chching.command.DeleteExpenseCommand;
+import chching.command.DeleteIncomeCommand;
+import chching.command.InvalidCommand;
 import chching.command.ListCommand;
 import chching.command.ListExpenseCommand;
 import chching.command.ListIncomeCommand;
-import chching.record.ExpenseList;
+import chching.command.SetCurrencyCommand;
+import chching.command.UnsetCurrencyCommand;
+import chching.command.BalanceCommand;
+import chching.command.ExitCommand;
+import chching.command.HelpCommand;
 import chching.record.Expense;
+import chching.record.ExpenseList;
 import chching.record.Income;
 import chching.record.IncomeList;
-
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,8 +43,7 @@ public class Parser {
             String line,
             IncomeList incomeList,
             ExpenseList expenseList,
-            Ui ui
-    ) throws ChChingException {
+            Ui ui) throws ChChingException {
         List<String> lineParts = splitLine(line);
         String instruction = lineParts.get(0);
         List<String> arguments = lineParts.subList(1, lineParts.size());
@@ -76,6 +76,14 @@ public class Parser {
             case "delete expense":
                 index = Expenses.getIndex(argumentsByField);
                 command = new DeleteExpenseCommand(index);
+                break;
+            case "set currency":
+                String currency = Currency.getCurrency(argumentsByField);
+                command = new SetCurrencyCommand(currency);
+                break;
+            case "unset currency":
+                currency = Currency.getCurrency(argumentsByField);
+                command = new UnsetCurrencyCommand(currency);
                 break;
             case "balance":
                 command = new BalanceCommand();
@@ -118,7 +126,8 @@ public class Parser {
         HashMap<String, String> argumentsByField = new HashMap<String, String>();
         int argumentsCount = arguments.size();
 
-        // split each argument according to their field and their value, and add into hashmap accordingly
+        // split each argument according to their field and their value, and add into
+        // hashmap accordingly
         // Hashmap's key is its field, value is the value of the field
         for (int i = 0; i < argumentsCount; i++) {
             String argument = arguments.get(i);

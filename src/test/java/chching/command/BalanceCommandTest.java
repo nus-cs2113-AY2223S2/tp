@@ -6,6 +6,8 @@ import chching.record.Expense;
 import chching.record.ExpenseList;
 import chching.record.Income;
 import chching.record.IncomeList;
+import chching.currency.Selector;
+import chching.currency.Converter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -31,6 +33,8 @@ class BalanceCommandTest {
     private Expense groceries;
     private IncomeList defaultIncomeList;
     private ExpenseList defaultExpenseList;
+    private Selector selector;
+    private Converter converter;
     
     @BeforeEach
     void setup() {
@@ -38,6 +42,9 @@ class BalanceCommandTest {
         
         salary = new Income(INCOME_DESCRIPTION, INCOME_DATE, INCOME_VALUE);
         groceries = new Expense(EXPENSE_CATEGORY, EXPENSE_DESCRIPTION, EXPENSE_DATE, EXPENSE_VALUE);
+        selector = new Selector();
+        converter = new Converter();
+
         
         ArrayList<Income> incomeList = new ArrayList<Income>();
         incomeList.add(salary);
@@ -52,7 +59,7 @@ class BalanceCommandTest {
         String expectedOutput = "4500.00";
         Command command = new BalanceCommand();
         try {
-            command.execute(defaultIncomeList, defaultExpenseList, ui, storage);
+            command.execute(defaultIncomeList, defaultExpenseList, ui, storage, selector, converter);
             assertEquals(expectedOutput, ((BalanceCommand) command).showBalance(), "Balance calculation is right");
         } catch (Exception e) {
             fail(); // test should not reach this line
