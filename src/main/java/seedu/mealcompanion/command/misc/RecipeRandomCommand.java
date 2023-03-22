@@ -14,6 +14,13 @@ import java.util.Random;
 
 public class RecipeRandomCommand extends ExecutableCommand {
 
+    /**
+     * Get a random index of RecipeList
+     * 
+     * @param recipes the RecipeList to get the random index from
+     * @return random index of RecipeList
+     * @throws MealCompanionException if RecipeList is empty and has no valid index
+     */
     private int getRandomIndex(RecipeList recipes) throws MealCompanionException {
         // throw exception if there is no existing recipe
         if (recipes.size() == 0) {
@@ -26,6 +33,11 @@ public class RecipeRandomCommand extends ExecutableCommand {
         return index;
     }
 
+    /**
+     * Executes the recipe random command
+     *
+     * @param mealCompanionSession the MealCompanionSession containing the list of ingredients
+     */
     @Override
     public void execute(MealCompanionSession mealCompanionSession){
         try {

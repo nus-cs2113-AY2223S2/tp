@@ -6,6 +6,9 @@ import seedu.mealcompanion.command.factory.ExecutableCommandFactory;
 import seedu.mealcompanion.command.misc.RecipeRandomCommand;
 import seedu.mealcompanion.parser.CommandArguments;
 
+/**
+ * Represents a factory for the "recipe random" command.
+ */
 public class RecipeRandomCommandFactory extends ExecutableCommandFactory {
     @Override
     public ExecutableCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
