@@ -1,2 +1,18 @@
+
 Mar 18, 2023 8:58:06 PM seedu.logger.LogFileHandler logWarning
 WARNING: Meal Storage was not found!
+Mar 19, 2023 11:52:10 PM seedu.logger.LogFileHandler logInfo
+INFO: Dinner was consumed on 13/12/2023
+Total Calories are: 775.0
+Here are the foods you ate:
+1) Black Pepper Chicken Chop  from Western (Calories: 775.0)
+
+Mar 19, 2023 11:52:24 PM seedu.logger.LogFileHandler logInfo
+INFO: Lunch was consumed on 13/12/2023
+Total Calories are: 985.0
+Here are the foods you ate:
+1) Black Pepper Chicken Chop  from Western (Calories: 775.0)
+2) Tasty Rice from Western (Calories: 210.0)
+
+Mar 19, 2023 11:52:31 PM seedu.logger.LogFileHandler logInfo
+INFO: User exited the programme.

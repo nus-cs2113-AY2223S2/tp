@@ -2,7 +2,6 @@ package seedu.commands;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +13,12 @@ import seedu.entities.Food;
 import seedu.entities.Meal;
 import seedu.exceptions.InvalidDateException;
 import seedu.exceptions.InvalidIndexException;
+import seedu.exceptions.InvalidMealException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.exceptions.MissingArgumentsException;
 import seedu.logger.LogFileHandler;
-import seedu.ui.GeneralUi;
 import seedu.parser.DateParser;
+import seedu.ui.GeneralUi;
 
 public class AddMealCommand extends Command {
     String commandWord;
@@ -37,12 +37,12 @@ public class AddMealCommand extends Command {
         this.commandWord = commandWord;
         this.userInput = userInput;
     }
-
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
             throws LifeTrackerException {
         foods = new ArrayList<Food>();
         dtf = mealStorage.getDateTimeFormatter();
+
 
         if (commandWord.length() == userInput.length()) {
             getDetails(ui, foodStorage);
@@ -59,15 +59,14 @@ public class AddMealCommand extends Command {
     private void getDetails(GeneralUi ui, FoodStorage foodStorage) throws LifeTrackerException {
         boolean toContinue = true;
         System.out.println("Enter date of meal:");
-        try {
-            dateString = ui.readLine();
-            date = LocalDate.parse(dateString, dtf);
-        } catch (DateTimeParseException e) {
-            throw new InvalidDateException(dateString);
-        }
+        dateString = ui.readLine();
+        date = DateParser.parse(dateString, dtf);
 
         System.out.println(System.lineSeparator() + "Enter type of meal:");
         mealTypeString = ui.readLine();
+        if ((mealType = MealTypes.fromString(mealTypeString)) == null) {
+            throw new InvalidMealException(mealTypeString);
+        }
 
         do {
             System.out.println(System.lineSeparator() + "Enter food:");
