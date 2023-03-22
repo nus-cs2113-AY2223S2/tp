@@ -24,6 +24,7 @@ class AddModuleCommandTest {
         ModuleList allModules = storage.loadModuleData();
         assertThrows(IllegalCommandException.class, () -> new AddModuleCommand("addmod modules", allModules));
     }
+
     @Test
     void testAddModuleCommand_validParams_expectsNoException() throws
             FileNotFoundException, IllegalCommandException, InvalidModule {
@@ -33,7 +34,7 @@ class AddModuleCommandTest {
         TaskList taskList = new TaskList();
         Ui ui = new Ui();
         Calendar calendar = new Calendar();
-        AddModuleCommand newCommand  = new AddModuleCommand("CS2113", allModules);
+        AddModuleCommand newCommand = new AddModuleCommand("CS2113", allModules);
         newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
         assertDoesNotThrow(() -> new AddModuleCommand("CS2113", allModules));
     }
