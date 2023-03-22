@@ -50,11 +50,14 @@ Saves all expenses under any change
         try {
             String filePath = "./data/ExpenseData.txt";
             ArrayList<String> expenseEntries = new ArrayList<>();
-            expenseEntries = (ArrayList<String>) Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8);
+            expenseEntries = (ArrayList<String>) Files.readAllLines(Paths.get(filePath),
+                    StandardCharsets.UTF_8);
             for (String expenseEntry : expenseEntries) {
                 String[] strExpense = expenseEntry.split("/");
                 try {
-                    Expense expense = new Expense(Double.parseDouble(strExpense[0]), strExpense[1], LocalDateTime.parse(strExpense[2]));
+                    Expense expense = new Expense(Double.parseDouble(strExpense[0]),
+                            strExpense[1],
+                            LocalDateTime.parse(strExpense[2]));
                     ExpenseList.addExpense(expense);
                 } catch (IndexOutOfBoundsException iobe) {
                     System.out.println("Incorrectly Saved Expense");

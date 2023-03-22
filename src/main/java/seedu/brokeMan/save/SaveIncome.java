@@ -49,11 +49,14 @@ public class SaveIncome {
         try {
             String filePath = "./data/IncomeData.txt";
             ArrayList<String> incomeEntries = new ArrayList<>();
-            incomeEntries = (ArrayList<String>) Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8);
+            incomeEntries = (ArrayList<String>) Files.readAllLines(Paths.get(filePath),
+                    StandardCharsets.UTF_8);
             for (String incomeEntry : incomeEntries) {
                 String[] strIncome = incomeEntry.split("/");
                 try {
-                    Income income = new Income(Double.parseDouble(strIncome[0]), strIncome[1], LocalDateTime.parse(strIncome[2]));
+                    Income income = new Income(Double.parseDouble(strIncome[0]),
+                            strIncome[1],
+                            LocalDateTime.parse(strIncome[2]));
                     IncomeList.addIncome(income);
                 } catch (IndexOutOfBoundsException iobe) {
                     System.out.println("Incorrectly Saved Income");
