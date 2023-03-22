@@ -33,7 +33,7 @@ public class RecipeList extends ArrayList<Recipe> {
         if (filters == null) {
             return this;
         }
-        for (Recipe recipe: this) {
+        for (Recipe recipe : this) {
             filteredRecipeList.add(recipe);
             for (String filter : filters) {
                 filter = filter.trim();

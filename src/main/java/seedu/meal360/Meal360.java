@@ -29,12 +29,24 @@ public class Meal360 {
         String[] command = input.trim().split(" ");
         if (input.equalsIgnoreCase("bye")) {
             canExit = true;
-            // delete a recipe in list
         } else if (command[0].equals("delete")) {
-            Recipe deletedRecipe = parser.parseDeleteRecipe(command, recipeList);
-            ui.printMessage("Noted. I've removed this recipe:");
-            ui.printMessage(deletedRecipe.toString());
-            ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
+            ui.printSeparator();
+            try {
+                String deletedRecipe = parser.parseDeleteRecipe(command, recipeList);
+                ui.printMessage("Noted. I've removed this recipe:");
+                ui.printMessage(deletedRecipe);
+                ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                String errorMessage = String.format(
+                        "Please enter a valid recipe number or name. You did not enter a recipe number or name.");
+                ui.printMessage(errorMessage);
+            } catch (IndexOutOfBoundsException e) {
+                String errorMessage = String.format(
+                        "Please enter a valid recipe number or name. You entered %s, " + "which is in invalid.",
+                        command[1]);
+                ui.printMessage(errorMessage);
+            }
+            ui.printSeparator();
         } else if (command[0].equals("view")) {
             ui.printSeparator();
             try {
@@ -61,14 +73,36 @@ public class Meal360 {
             ui.listRecipe(recipeListToPrint);
         } else if (command[0].equals("add")) {
             ui.printSeparator();
-            Recipe newRecipe = parser.parseAddRecipe(command, recipeList);
-            ui.printMessage("I've added this new recipe:" + newRecipe.getName());
-            ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
+            try {
+                Recipe newRecipe = parser.parseAddRecipe(command, recipeList);
+                ui.printMessage("I've added this new recipe:" + newRecipe.getName());
+                ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                String errorMessage = String.format("Please enter a valid recipe name.");
+                ui.printMessage(errorMessage);
+            }
             ui.printSeparator();
         } else if (command[0].equals("edit")) {
             ui.printSeparator();
-            Recipe newRecipe = parser.parseEditRecipe(command, recipeList);
-            ui.printMessage("I've edited this recipe:" + newRecipe.getName());
+            try {
+                Recipe recipeToEdit = parser.parseEditRecipe(command, recipeList);
+                ui.printSeparator();
+                ui.printMessage("I've edited this recipe:" + recipeToEdit.getName());
+            } catch (NumberFormatException e) {
+                String errorMessage = String.format(
+                        "Please enter a valid recipe number. You entered %s, " + "which is not a number.",
+                        command[1]);
+                ui.printMessage(errorMessage);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                String errorMessage = String.format(
+                        "Please enter a valid recipe name.");
+                ui.printMessage(errorMessage);
+            } catch (IndexOutOfBoundsException e) {
+                String errorMessage = String.format(
+                        "Please enter a valid recipe number. You entered %s, " + "which is out of bounds.",
+                        command[1]);
+                ui.printMessage(errorMessage);
+            }
             ui.printSeparator();
         } else if (command[0].equals("weekly")) {
             try {
