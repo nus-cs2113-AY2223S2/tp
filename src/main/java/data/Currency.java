@@ -110,8 +110,8 @@ public class Currency {
             return new BigDecimal(1);
         }
         try {
-            String GET_URL = "https://eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=95932927-c8bc-" +
-                    "4e7a-b484-68a66a24edfe&filters[end_of_day]=" + date + "&limit=1";
+            String GET_URL = "https://eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=95932927-c8b" +
+                    "c-4e7a-b484-68a66a24edfe&filters[end_of_day]=" + date + "&limit=1";
             URL url = new URL(GET_URL);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");
@@ -130,7 +130,6 @@ public class Currency {
                 JSONArray records = result.getJSONArray("records");
                 JSONObject data = records.getJSONObject(0);
                 BigDecimal rate = new BigDecimal(data.getDouble(currencies.get(currencyKey)));
-                        //.setScale(5, RoundingMode.HALF_UP);
                 if (currencies.get(currencyKey).contains("100")) {
                     return rate.divide(new BigDecimal(100));
                 }

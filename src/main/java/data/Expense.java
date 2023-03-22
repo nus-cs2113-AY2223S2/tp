@@ -11,7 +11,8 @@ public class Expense {
     protected String currencyType;
     protected BigDecimal rate;
 
-    public Expense(BigDecimal expenseAmount, Time expenseTime, String description, String currencyType, BigDecimal rate) {
+    public Expense(BigDecimal expenseAmount, Time expenseTime, String description, String currencyType
+            , BigDecimal rate) {
         this.expenseAmount = formatExpenseAmount(expenseAmount);
         this.expenseTime = expenseTime;
         this.description = description;
