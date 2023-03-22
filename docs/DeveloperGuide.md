@@ -18,7 +18,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 ```Duck``` is responsible for:
 
--   At app launch: 
+**At app launch:** 
 
 -   Executes the ```Ui#greetingMessage()``` operation.
 
@@ -70,15 +70,15 @@ The ```TaskList#purge()``` command will be implemented to facilitate the removal
 
 **Given below is an example usage scenario for ```purge()```**
 
-Step 1. The user launches the application for the first time. The ```TaskList``` will be initialized with the data from a given pre-existing datafile if it exists, and the ```Task``` items will be inserted into the ```TaskList```.![](https://lh5.googleusercontent.com/XcnArNZc5ZqHhxXZ1iRuq0aRxNKkcD_snVgDv-dlpMVYFQFQjyGXdtHWvFGzG-k2UW5SXkjQbthIRtkrol_SYsNgmsmKw1kKEkME0vSQ0tfRfUIWj3jZTTVrerHbESuA-AlTpPEkj8JrKl-mMlu-3yM)
+**Step 1.** The user launches the application for the first time. The ```TaskList``` will be initialized with the data from a given pre-existing datafile if it exists, and the ```Task``` items will be inserted into the ```TaskList```.![](https://lh5.googleusercontent.com/XcnArNZc5ZqHhxXZ1iRuq0aRxNKkcD_snVgDv-dlpMVYFQFQjyGXdtHWvFGzG-k2UW5SXkjQbthIRtkrol_SYsNgmsmKw1kKEkME0vSQ0tfRfUIWj3jZTTVrerHbESuA-AlTpPEkj8JrKl-mMlu-3yM)
 
-Step 2. The ```TaskList#purge()``` command will be executed. The process is illustrated through two steps:
+**Step 2.** The ```TaskList#purge()``` command will be executed. The process is illustrated through two steps:
 
-Identifying all expired ```Task``` items in ```TaskList```.
+**Identifying all expired ```Task``` items in ```TaskList```.**
 
 ![](https://lh3.googleusercontent.com/Kbz7j3EmMGJGrIX1aQ8DCkHG8Y3gaIx3Ohf-zmYvr-S-LrxRqt8P1wlTMWUnlnna2tnR0i72yUJWB72Z2mWwGuwXiD_RnlIpYEk-MY6k9zMaLqTk_VkyHaRwIuzxi1trXHX1ySdZWBqZFDaCZ6K-QrY)
 
-Removing all expired ```Task``` items in ```TaskList```.
+**Removing all expired ```Task``` items in ```TaskList```.**
 ![](https://lh4.googleusercontent.com/kVOcvIKAF1nlLSHXQsRPDuG6RwiyaqRXf9CYTLrv2WUezegCNx05GIC1KPYME6Eojid1hRbqUIzHUjKWRpYjUG7zCYE8586kLzbIrVdjZVnC5j_1ke1WBdFZSHoar_MuXKBA9eMARxCOgcja5qjP2_A)
 
 The user will see this on his terminal after the ```purge``` command has executed.
@@ -94,7 +94,7 @@ Purge Completed! Now we are one quack closer to finishing all tasks!
 ```
 
 
-Step 3. The ```Duck``` will continue to run as per usual. The user can choose to manually input the keyword purge into the CLI to repeat Step 2 above at any given time.
+**Step 3.** The ```Duck``` will continue to run as per usual. The user can choose to manually input the keyword purge into the CLI to repeat Step 2 above at any given time.
 
 <br />
 
@@ -120,15 +120,15 @@ The ```Storage#clear()``` command was implemented to facilitate the removal of a
 
 Given below is an example usage scenario for ```Storage#clear()```
 
-Step 1. The user launches the application for the first time. The ```TaskList``` will be initialised with the data from a given pre-existing datafile if it exists, and the ```Task``` items will be inserted into the ```TaskList```.![](https://lh5.googleusercontent.com/XcnArNZc5ZqHhxXZ1iRuq0aRxNKkcD_snVgDv-dlpMVYFQFQjyGXdtHWvFGzG-k2UW5SXkjQbthIRtkrol_SYsNgmsmKw1kKEkME0vSQ0tfRfUIWj3jZTTVrerHbESuA-AlTpPEkj8JrKl-mMlu-3yM)
+**Step 1.** The user launches the application for the first time. The ```TaskList``` will be initialised with the data from a given pre-existing datafile if it exists, and the ```Task``` items will be inserted into the ```TaskList```.![](https://lh5.googleusercontent.com/XcnArNZc5ZqHhxXZ1iRuq0aRxNKkcD_snVgDv-dlpMVYFQFQjyGXdtHWvFGzG-k2UW5SXkjQbthIRtkrol_SYsNgmsmKw1kKEkME0vSQ0tfRfUIWj3jZTTVrerHbESuA-AlTpPEkj8JrKl-mMlu-3yM)
 
-Step 2. The user wants to start afresh. The ```Storage#clear()```  command is then executed. The user will see an output in the following format:
+**Step 2.** The user wants to start afresh. The ```Storage#clear()```  command is then executed. The user will see an output in the following format:
 
 ```
 THIS IS AN IRREVERSIBLE PROCESS. ARE YOU SURE? Y/N
 ```
 
-Step 3.1. The user decides against clearing the ```TaskList```, and inputs a ```N```. The ```TaskList``` has no changes. ```Duck``` resumes after the output in the following format has been displayed:
+**Step 3.1.** The user decides against clearing the ```TaskList```, and inputs a ```N```. The ```TaskList``` has no changes. ```Duck``` resumes after the output in the following format has been displayed:
 
 ```
 
@@ -136,7 +136,7 @@ Process cancelled.
 
 ```
 
-Step 3.2. The user decides upon clearing the ```TaskList```, and inputs a ```Y```. The ```TaskList``` has been cleared.
+**Step 3.2.** The user decides upon clearing the ```TaskList```, and inputs a ```Y```. The ```TaskList``` has been cleared.
 
 ![](https://lh4.googleusercontent.com/G4PalSoaVQxExSGKCDefJuO4TlyCJwrCfZDT4BsTrrSHMJ8aQSPsaxGoFJYb9YIO1yo3_3nV0Jar3Haqfac90v7G_yfZdx8-OwxSKEART5zLqMZ73k3YW0ssPbIE3kOhkbeusR3jVMdD6kTSkG7rK4s)
 
@@ -166,7 +166,7 @@ The following are the new operations implemented.
 
 **Given below is an example usage scenario for  TaskList#addSchoolClass().**
 
-Step 1. The user inputs a command following the proper formatting for adding a ```SchoolClass```. The Duck class will call ```Parser#processCommand()```, instantiating a ```Parser``` class, which will then call ```TaskList#addTask()```, instantiating a ```TaskList``` Class. From there, ```TaskList#addSchoolClass()``` is called and a new ```SchoolClass``` Task is instantiated, which calls ```Ui#addedTaskMessage()``` and instantiating a ```Ui``` Class. This ```SchoolClass``` Task will thus be added to the ArrayList<Task> tasks that was instantiated in the ```Duck``` class.
+**Step 1.** The user inputs a command following the proper formatting for adding a ```SchoolClass```. The Duck class will call ```Parser#processCommand()```, instantiating a ```Parser``` class, which will then call ```TaskList#addTask()```, instantiating a ```TaskList``` Class. From there, ```TaskList#addSchoolClass()``` is called and a new ```SchoolClass``` Task is instantiated, which calls ```Ui#addedTaskMessage()``` and instantiating a ```Ui``` Class. This ```SchoolClass``` Task will thus be added to the ArrayList<Task> tasks that was instantiated in the ```Duck``` class.
 
 ![](https://lh4.googleusercontent.com/u4zVr8TYxFw3rMvnqdwCYlJmq0JxUgEtC_cFmOY7rPqCM9nvzcQL1t-GcTmgbedeVEHi2L6MG6xG3QaJ7XaOPs8nYvHz1Uf4wGK9bMsHDHwxZVNdS2zR79TtHL_Ub2Za0_jm6bUsnY_RQWX6QmFqCl4)
 
@@ -176,7 +176,7 @@ Step 1. The user inputs a command following the proper formatting for adding a `
 
 **Given below is an example usage scenario for  Storage#loadSchoolClass.**
 
-Step 1. The user launches the application. The task list will be initialised with the data from a given pre-existing datafile if it exists, and the ```SchoolClass``` items will be inserted into the task list if they exist using ```Storage#loadSchoolClass()```.
+**Step 1.** The user launches the application. The task list will be initialised with the data from a given pre-existing datafile if it exists, and the ```SchoolClass``` items will be inserted into the task list if they exist using ```Storage#loadSchoolClass()```.
 
 <br />
 
