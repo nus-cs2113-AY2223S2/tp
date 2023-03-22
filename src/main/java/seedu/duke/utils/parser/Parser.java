@@ -24,10 +24,10 @@ public class Parser {
     private static final Integer QTY_INDEX = 3;
     private static final Integer PRICE_INDEX = 4;
 
-    private static final String ALERT_REGEX = "(add|remove)\\s+upc/(\\d+)\\s+(min/|max/)([1-9]\\d*)";
+    private static final String ALERT_REGEX = "(add|remove)\\s+upc/(\\d+)\\s+(min|max)(/)([1-9]\\d*)";
     private static final Integer ALERT_COMMAND_INDEX = 1;
     private static final Integer MINMAX_INDEX = 3;
-    private static final Integer STOCK_INDEX = 4;
+    private static final Integer STOCK_INDEX = /*4*/ 5;
     public static Scanner in = new Scanner(System.in);
     private ArrayList<String> parsedInfo = new ArrayList<>();
     private String commandWord;
@@ -309,7 +309,6 @@ public class Parser {
     }
 
     public void parseAlert(String rawInput, Inventory inventory) {
-        System.out.println("entered parseAlert");
         try {
             if (rawInput == null) {
                 throw new MissingParametersException();
@@ -325,9 +324,8 @@ public class Parser {
                 Command addAlertCommand = new AddAlertCommand(inventory, newAlert, alertList);
                 addAlertCommand.run();
 
-                System.out.println("Matched");
             } else {
-                Ui.printInvalidAddCommand();
+                Ui.printInvalidAddAlertCommand();
             }
         } catch (MissingParametersException e) {
                 e.missingAddItemParameters();
