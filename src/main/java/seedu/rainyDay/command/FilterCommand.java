@@ -10,7 +10,11 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-public class FilterCommand extends Command{
+//@@author ChongQiRong
+/**
+ * Represents a command that filters from the financial report
+ */
+public class FilterCommand extends Command {
     private static final Logger logger = Logger.getLogger(FilterCommand.class.getName());
     private final String description;
     private final String filterFlag;
@@ -20,6 +24,9 @@ public class FilterCommand extends Command{
         this.filterFlag = filterFlag;
     }
 
+    /**
+     * Sets up logger for logging
+     */
     @Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
@@ -33,6 +40,11 @@ public class FilterCommand extends Command{
         }
     }
 
+    /**
+     * Executes the filter command and returns the result
+     *
+     * @return CommandResult with the relevant success or error message
+     */
     @Override
     public CommandResult execute() {
         setupLogger();

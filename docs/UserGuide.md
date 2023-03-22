@@ -107,11 +107,50 @@ Format: `view`
 
 ### Filter statements
 
-filter DESCRIPTION
-filter -d DESCRIPTION
-filter -c CATEGORY
-filter -date DD/MM/YYYY
-{todo}
+View a filtered list of statements in the financial report
+
+Format : `filter DESCRIPTION` or `filter FLAG FIELD`
+
+* Default filter without `FLAG` filters by description
+* The `FLAG` must be one of the following:
+  * `-d` to filter by description
+  * `-c` to filter by category
+  * `-in` to filter by inflows
+  * `-out` to filter by outflows
+  * `-date` to filter by date
+* date must be in the form DD/MM/YYYY
+
+Example of usage:
+
+`filter school`
+
+`filter -d school`
+
+`filter -date 22/03/2023`
+
+
+### Edit statements
+
+Edit a statement already in financial report
+
+Format : `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG`
+
+* The `FLAG` must be one of the following:
+    * `-d` to edit the description
+    * `-c` to edit the category
+    * `-v` to edit the date
+    * `-in` to change direction to inflow
+    * `-out` to change direction to outflow
+    * {todo}
+* No `NEWFIELD` required for changing direction
+
+Example of usage:
+
+`edit 1 -add -in -d Beef noodles -c Food $15`
+
+`edit 2 -d school`
+
+`edit 3 -in`
 
 ### Saving the data
 
@@ -147,14 +186,15 @@ that
 
 ## Command Summary
 
-| Action | Format <br> Example input                                                                                            |
-|--------|----------------------------------------------------------------------------------------------------------------------|
-| Add    | `add -`(in/out) (description) `$`(value) <br><br> **Example:** <br> `add -out Ipad $120` <br> `add -in angpao $3000` |
-| Delete | `delete` (index) <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                               |
-| View   | `view`                                                                                                               |
-| Help   | `help`                                                                                                               |
-| filter | `filter` {todo}                                                                                                      |
-| Exit   | `bye`                                                                                                                |
+| Action | Format <br> Example input                                                                                                                                                                 |
+|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add    | `add -`(in/out) (description) `$`(value) <br><br> **Example:** <br> `add -out Ipad $120` <br> `add -in angpao $3000`                                                                      |
+| Delete | `delete` (index) <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                                                                                                    |
+| View   | `view`                                                                                                                                                                                    |
+| Help   | `help`                                                                                                                                                                                    |
+| Filter | `filter DESCRIPTION` or `filter FLAG FIELD` <br><br> **Example:** <br> `filter school` <br> `filter -d school` <br>`filter -date 22/03/2023`                                              |
+| Edit   | `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -add -in -d Beef noodles -c Food $15` <br> `edit -d school` <br> `edit -in` |
+| Exit   | `bye`                                                                                                                                                                                     |
 
 ## Glossary
 
