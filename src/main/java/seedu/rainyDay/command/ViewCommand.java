@@ -40,17 +40,14 @@ public class ViewCommand extends Command{
         setupLogger();
         logger.log(Level.INFO, "starting ViewCommand.execute()");
 
-        String output;
+        String output = "";
         if (financialReport.getStatementCount() == 0) {
             assert financialReport.getStatementCount() == 0 : "statement count mismatch";
             logger.log(Level.INFO, "empty financial report");
             output = "Your financial report is empty";
-            CommandResult result = new CommandResult(output);
-            result.printResult();
-            return result;
+            return new CommandResult(output);
         }
         assert financialReport.getStatementCount() != 0 : "statement count mismatch";
-        output = "Your financial report is not empty";
         CommandResult result = new CommandResult(output);
         ViewResult.printFullReport();
         return result;

@@ -37,9 +37,7 @@ public class ExportCommand extends Command {
         if (financialReport.getStatementCount() == 0) {
             logger.log(Level.INFO, "empty financial report, export aborted.");
             output = EMPTY_STATEMENT;
-            CommandResult result = new CommandResult(output);
-            result.printResult();
-            return result;
+            return new CommandResult(output);
         }
         assert financialReport.getStatementCount() > 0 : "Should have at least 1 financial statement to export";
 
@@ -51,9 +49,7 @@ public class ExportCommand extends Command {
             output = CSV_EXPORT_ERROR;
             logger.log(Level.INFO, "Error when exporting to CSV");
         }
-        CommandResult result = new CommandResult(output);
-        result.printResult();
-        return result;
+        return new CommandResult(output);
     }
 
     /**

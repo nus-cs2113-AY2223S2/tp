@@ -68,8 +68,6 @@ public class AddCommand extends Command {
 
         logger.log(Level.INFO, " end of AddCommand.execute()");
 
-        CommandResult result = new CommandResult(output);
-        result.printResult();
-        return result;
+        return new CommandResult(output);
     }
 }

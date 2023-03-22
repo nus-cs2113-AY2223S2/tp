@@ -40,8 +40,6 @@ public class InvalidCommand extends Command {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting InvalidCommand.execute()... exiting InvalidCommand.execute()");
-        CommandResult result = new CommandResult(output);
-        result.printResult();
-        return result;
+        return new CommandResult(output);
     }
 }

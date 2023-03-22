@@ -82,13 +82,10 @@ public class FilterCommand extends Command{
         String output;
         if (filteredList.size() == 0) {
             output = "We could not find any matches for your description in your report";
-            CommandResult result = new CommandResult(output);
-            result.printResult();
-            return result;
+            return new CommandResult(output);
         }
         output = "Here are the list of matching items!"; // todo
         CommandResult result = new CommandResult(output);
-        result.printResult();
         ViewResult.printItemsInList(statementIndex);
         return result;
     }

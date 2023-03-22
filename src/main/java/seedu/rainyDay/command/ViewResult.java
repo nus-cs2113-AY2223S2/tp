@@ -118,7 +118,7 @@ public class ViewResult {
             logger.log(Level.INFO, "passed statement " + i);
         }
         System.out.print(TABLE_BORDER);
-        System.out.println(formatSummary(totalInflow, totalOutflow));
+        System.out.print(formatSummary(totalInflow, totalOutflow));
     }
 }
 

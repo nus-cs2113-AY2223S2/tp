@@ -1,5 +1,6 @@
 package seedu.rainyDay;
 
+import seedu.rainyDay.command.CommandResult;
 import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 import seedu.rainyDay.command.Command;
@@ -62,7 +63,8 @@ public class RainyDay {
 
     private void executeCommand(Command command) {
         command.setData(financialReport);
-        command.execute();
+        CommandResult result = command.execute();
+        result.printResult();
     }
 
     private static void setupLogger() {

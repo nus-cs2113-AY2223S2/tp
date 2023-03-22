@@ -92,8 +92,6 @@ public class EditCommand extends Command {
 
         logger.log(Level.INFO, "deleted from financial report");
 
-        CommandResult result = new CommandResult(output);
-        result.printResult();
-        return result;
+        return new CommandResult(output);
     }
 }
