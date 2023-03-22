@@ -75,24 +75,15 @@ public class User {
     }
 
     public static double calculateCaloricNeeds (float weight, float height, int age, String gender) {
-        logger.log(Level.INFO, "going to start processing");
         double caloricNeeds;
         switch(gender.toLowerCase()) {
         case "male":
             caloricNeeds = 66 + (13.7 * weight) + (5 * height) - (4.7 * age);
             assert caloricNeeds > 0: "Caloric Needs should be more than O";
-            if (caloricNeeds < 0) {
-                logger.log(Level.WARNING, "Input error");
-            }
-            logger.log(Level.INFO, "end of processing");
             return caloricNeeds;
         case "female":
             caloricNeeds = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
             assert caloricNeeds > 0: "Caloric Needs should be more than O";
-            if (caloricNeeds < 0) {
-                logger.log(Level.WARNING, "Input error");
-            }
-            logger.log(Level.INFO, "end of processing");
             return caloricNeeds;
         default:
             System.out.println("Gender not provided, cannot calculate caloric needs accurately");

@@ -2,6 +2,7 @@ package seedu.commands;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,12 +63,12 @@ public class AddMealCommand extends Command {
     private void getDetails(GeneralUi ui, FoodStorage foodStorage) throws LifeTrackerException {
         boolean toContinue = true;
         System.out.println("Enter date of meal:");
-//        try {
+        try {
             dateString = ui.readLine();
             date = LocalDate.parse(dateString, dtf);
-//        } catch (DateTimeParseException e) {
-//            throw new InvalidDateException(dateString);
-//        }
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException(dateString);
+        }
 
         System.out.println(System.lineSeparator() + "Enter type of meal:");
         mealTypeString = ui.readLine();
