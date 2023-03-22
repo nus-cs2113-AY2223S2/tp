@@ -18,7 +18,7 @@ public class Database {
         RecipeList database;
         Gson gson = new Gson();
 
-        // Check if the JSON file exists and create one if it does not
+        // Check if the JSON file exists
         File file = new File(recipesDatabaseFilepath);
         if (!file.exists()) {
             try {

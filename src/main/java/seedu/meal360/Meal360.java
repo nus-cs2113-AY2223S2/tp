@@ -1,9 +1,6 @@
 package seedu.meal360;
 
-import java.io.IOException;
 import java.util.Scanner;
-import seedu.meal360.exceptions.InvalidNegativeValueException;
-import seedu.meal360.exceptions.InvalidRecipeNameException;
 
 public class Meal360 {
 
@@ -28,7 +25,7 @@ public class Meal360 {
         try {
             recipeList = database.loadDatabase();
             ui.printMessage("Database loaded successfully.");
-        } catch (IOException e) {
+        } catch (Exception e) {
             ui.printMessage("Error loading database, loading default database instead.");
             ui.printMessage("Overwriting database with new default database...");
             recipeList = database.defaultRecipeList();
@@ -122,17 +119,11 @@ public class Meal360 {
                 WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipeList);
 
                 if (command[1].equals("/add")) {
-                    weeklyPlan.addPlans(recipeMap);
                     ui.printMessage("I've added the recipe to your weekly plan!");
+                    weeklyPlan.addPlan(recipeMap);
                 } else if (command[1].equals("/delete")) {
-                    weeklyPlan.deletePlans(recipeMap);
                     ui.printMessage("I've deleted the recipe from your weekly plan!");
-                } else if (command[1].equals("/multiadd")) {
-                    weeklyPlan.addPlans(recipeMap);
-                    ui.printMessage("I've added the recipes to your weekly plan!");
-                } else if (command[1].equals("/multidelete")) {
-                    weeklyPlan.deletePlans(recipeMap);
-                    ui.printMessage("I've deleted the recipes from your weekly plan!");
+                    weeklyPlan.deletePlan(recipeMap);
                 }
             } catch (NumberFormatException e) {
                 String errorMessage = String.format("Please enter a valid number as the last argument.");
@@ -142,10 +133,6 @@ public class Meal360 {
             } catch (ArrayIndexOutOfBoundsException e) {
                 String errorMessage = String.format("Insufficient number of arguments provided.");
                 ui.printMessage(errorMessage);
-            } catch (InvalidNegativeValueException e) {
-                ui.printMessage(e.getMessage());
-            } catch (InvalidRecipeNameException e) {
-                ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
         } else if (command[0].equals("weeklyplan")) {
