@@ -95,6 +95,7 @@ Then, the deadline command will be executed, and the respective method in the De
 
 The Dish feature consists of three functions:
 
+
 ##### Adding dish to list:
 - When the ```AddDishCommand()``` constructor is called, it stores the dish name, price and the list of ingredients in an entity called Dish.
 - When the ```execute()``` command in ```AddDishCommand``` is called, it calls the ```addDishCommand()``` in ```DishManager``` class that adds the Dish into an arraylist of Dishes.
@@ -117,6 +118,7 @@ The Dish feature consists of three functions:
 ### Value proposition
 
 {Describe the value proposition: what problem does it solve?}
+
 
 ## User Stories
 
