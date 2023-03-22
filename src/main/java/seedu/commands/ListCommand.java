@@ -13,14 +13,12 @@ public class ListCommand extends Command {
 
     public ListCommand(String commandWord, String userInput) throws LifeTrackerException {
         if (commandWord.length() == userInput.length() || userInput.split(" ").length < 2) {
-            throw new MissingArgumentsException(commandWord, "[foods/meals]");
             throw new MissingArgumentsException(commandWord, "[meals/foods]");
         }
 
         this.argument = userInput.split(" ")[1];
 
         if (!this.argument.equals("meals") && !this.argument.equals("foods")) {
-            throw new MissingArgumentsException(commandWord, "[foods/meals]");
             throw new InvalidArgumentsException(commandWord, "[meals/foods]");
         }
     }
