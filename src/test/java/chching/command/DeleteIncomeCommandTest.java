@@ -8,6 +8,8 @@ import chching.record.Income;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,12 +23,11 @@ class DeleteIncomeCommandTest {
     static final int TOO_LARGE_INDEX = 5;
     static final int NEGATIVE_INDEX = -1;
     static final String SALARY_DESCRIPTION = "salary";
-
-    static final String SALARY_DATE = "1st apr 2023";
+    static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final LocalDate SALARY_DATE = LocalDate.parse("01-04-2023", formatter);
     static final float SALARY_INCOME_VALUE = (float) 5000;
     static final String BONUS_DESCRIPTION = "salary";
-
-    static final String BONUS_DATE = "5/2/23";
+    static final LocalDate BONUS_DATE = LocalDate.parse("05-02-2023", formatter);
     static final float BONUS_INCOME_VALUE = (float) 3000;
     private Ui ui;
     private Storage storage;

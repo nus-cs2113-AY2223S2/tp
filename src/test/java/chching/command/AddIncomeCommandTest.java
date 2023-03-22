@@ -3,14 +3,17 @@ package chching.command;
 import chching.record.Income;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class AddIncomeCommandTest {
 
     static final String DESCRIPTION = "salary";
-
-    static final String DATE = "1st apr 2023";
+    static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final LocalDate DATE = LocalDate.parse("01-04-2023", formatter);
     static final float INCOME_VALUE = (float) 500;
     static final float ZERO_INCOME_VALUE = (float) 0;
     static final float NEGATIVE_INCOME_VALUE = (float) -500;
