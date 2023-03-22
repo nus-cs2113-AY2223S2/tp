@@ -1,6 +1,5 @@
 package seedu.brokeMan.command;
 
-import seedu.brokeMan.entry.ExpenseList;
 import seedu.brokeMan.entry.IncomeList;
 
 import java.util.Optional;
