@@ -46,21 +46,32 @@ public class FoodStorage extends Storage implements FileReadable {
         String[] foodDataList = FoodData.getFoodData();
         
         for (int i = 1; i < foodDataList.length; i++) {
+
             line = foodDataList[i];
             foodLine = line.split(csvDelimiter); // use comma as separator
+            double[] individualFoodData = new double[13];
+
             id = Integer.parseInt(foodLine[0]);
             foodType = foodLine[1];
             name = foodLine[2];
             store = foodLine[3];
             storeNumber = Integer.parseInt(foodLine[4]);
-            calories = Float.parseFloat(foodLine[5]);
-            protein = Float.parseFloat(foodLine[6]);
-            totalFat = Float.parseFloat(foodLine[7]);
-            saturatedFat = Float.parseFloat(foodLine[8]);
-            dietaryFibre = Float.parseFloat(foodLine[9]);
-            carbohydrates = Float.parseFloat(foodLine[10]);
-            sugar = Float.parseFloat(foodLine[11]);
-            sodium = Float.parseFloat(foodLine[12]);
+
+            for (int j = 4; j < 13; j++) {
+                String valueStr = (j < foodLine.length) ? foodLine[j] : null;
+                float value = (valueStr != null && !valueStr.isEmpty()) ? Float.parseFloat(valueStr) : 0;
+                individualFoodData[j] = value;
+            }
+
+            calories = (float) individualFoodData[5];
+            protein = (float) individualFoodData[6];
+            totalFat = (float) individualFoodData[7];
+            saturatedFat = (float) individualFoodData[8];
+            dietaryFibre = (float) individualFoodData[9];
+            carbohydrates = (float) individualFoodData[10];
+            sugar = (float) individualFoodData[11];
+            sodium = (float) individualFoodData[12];
+
             food = null;
             
             if (foodType.equals(FoodTypes.DISH.toString())) {
