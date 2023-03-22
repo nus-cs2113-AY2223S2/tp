@@ -13,10 +13,4 @@ public class Greet {
         System.out.println("Start your fitness journey! Type [help] to see the things you can do!");
     }
 
-    /*public static String greet() {
-        String greeting = "Hello from" + System.lineSeparator()
-                + LOGO + System.lineSeparator()
-                + "Start your fitness journey! Type [help] to see the things you can do!";
-        return greeting;
-    }*/
 }
