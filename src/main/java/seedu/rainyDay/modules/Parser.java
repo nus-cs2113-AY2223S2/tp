@@ -1,4 +1,4 @@
-package seedu.rainyDay.data;
+package seedu.rainyDay.modules;
 
 import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.command.Command;

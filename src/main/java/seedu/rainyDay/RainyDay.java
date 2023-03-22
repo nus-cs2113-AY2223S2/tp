@@ -5,7 +5,7 @@ import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
-import seedu.rainyDay.data.Parser;
+import seedu.rainyDay.modules.Parser;
 
 import java.io.IOException;
 import java.util.ArrayList;
