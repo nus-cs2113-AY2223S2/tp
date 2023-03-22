@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+
+/**
+ * Junit Test for DeleteIncomeCommand
+ */
 class DeleteIncomeCommandTest {
 
     static final int OFFSET = 1;
@@ -52,6 +56,9 @@ class DeleteIncomeCommandTest {
         defaultIncomeList = new IncomeList(incomeList);
     }
 
+    /**
+     * Junit Test when deleting an entry of index within the size of the IncomeList
+     */
     @Test
     void execute_positiveIntegerWithinSize_success() {
         int defaultIncomeListSize = defaultIncomeList.size();
@@ -64,6 +71,9 @@ class DeleteIncomeCommandTest {
         }
     }
 
+    /**
+     * Junit Test when deleting an entry of index outside the size of the IncomeList
+     */
     @Test
     void execute_positiveIntegerOutsideSize_exceptionThrown() {
         String expectedOutput = "The number is too big";
@@ -76,6 +86,9 @@ class DeleteIncomeCommandTest {
         }
     }
 
+    /**
+     * Junit Test when deleting a negative index of the IncomeList
+     */
     @Test
     void execute_negativeInteger_exceptionThrown() {
         String expectedOutput = "Negative/Zero index";

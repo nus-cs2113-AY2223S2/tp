@@ -8,6 +8,10 @@ import java.time.format.DateTimeParseException;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
+/**
+ * Models a class to parse expenses.
+ */
+
 public class Expenses {
 
     private static LocalDate parseDate(String expenseDateString) throws ChChingException {
@@ -19,6 +23,11 @@ public class Expenses {
             throw new ChChingException("Date format should be: dd-MM-yyyy");
         }
     }
+    /**
+     * Parses an expense into the expenseList
+     *
+     * @param argumentsByField       Input from users
+     */
     public static Expense parseExpense(HashMap<String, String> argumentsByField) throws ChChingException{
         Expense exp = null;
         try {
@@ -34,7 +43,12 @@ public class Expenses {
         }
         return exp;
     }
-    
+
+    /**
+     * Gets the index of the entry
+     *
+     * @param argumentsByField       ArrayList of income.
+     */
     public static int getIndex(HashMap<String, String> argumentsByField) throws ChChingException {
         int index = -1;
         try {

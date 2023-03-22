@@ -18,6 +18,12 @@ public class Incomes {
             throw new ChChingException("Date format should be: dd-MM-yyyy");
         }
     }
+
+    /**
+     * Parses an income into the incomeList
+     *
+     * @param argumentsByField       Input from users
+     */
     public static Income parseIncome(HashMap<String, String> argumentsByField) throws ChChingException {
         Income inc = null;
         try {
@@ -32,7 +38,12 @@ public class Incomes {
         }
         return inc;
     }
-    
+
+    /**
+     * Gets the index of the entry
+     *
+     * @param argumentsByField       ArrayList of income.
+     */
     public static int getIndex(HashMap<String, String> argumentsByField) throws ChChingException {
         int index = -1;
         try {

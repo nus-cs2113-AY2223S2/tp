@@ -4,11 +4,21 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 // Abstract class that will not be initialized as an object
+/**
+ * Models an abstract class that act as a template for Expense and Income
+ */
 public abstract class Record {
     protected String description;
     protected LocalDate date;
     protected double value;
 
+    /**
+     * Constructor template for Expense and Income classes
+     *
+     * @param description       String description
+     * @param date      String of the date
+     * @param value        value of the income/expense
+     */
     public Record(String description, LocalDate date, double value) {
         this.description = description;
         this.date = date;

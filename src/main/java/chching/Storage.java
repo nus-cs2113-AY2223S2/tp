@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Model a class to handle storage for the program.
+ * Models a class to handle storage for the program.
  */
 public class Storage {
     private final File file;

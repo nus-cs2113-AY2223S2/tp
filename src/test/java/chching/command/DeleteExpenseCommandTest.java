@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+
+/**
+ * Junit Test for DeleteExpenseCommand
+ */
 class DeleteExpenseCommandTest {
     static final int OFFSET = 1;
     static final int CORRECT_INDEX = 1;
@@ -57,6 +61,9 @@ class DeleteExpenseCommandTest {
         defaultExpenseList = new ExpenseList(expenseList);
     }
 
+    /**
+     * Junit Test when deleting an entry of index within the size of the ExpenseList
+     */
     @Test
     void execute_positiveIntegerWithinSize_success() {
         int defaultExpenseListSize = defaultExpenseList.size();
@@ -69,6 +76,9 @@ class DeleteExpenseCommandTest {
         }
     }
 
+    /**
+     * Junit Test when deleting an entry of index outside the size of the ExpenseList
+     */
     @Test
     void execute_positiveIntegerOutsideSize_exceptionThrown() {
         String expectedOutput = "The number is too big";
@@ -81,6 +91,9 @@ class DeleteExpenseCommandTest {
         }
     }
 
+    /**
+     * Junit Test when deleting a negative index of the ExpenseList
+     */
     @Test
     void execute_negativeInteger_exceptionThrown() {
         String expectedOutput = "Negative/Zero index";

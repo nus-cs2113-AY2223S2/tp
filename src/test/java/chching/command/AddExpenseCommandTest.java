@@ -8,7 +8,9 @@ import java.time.format.DateTimeFormatter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-
+/**
+ * Junit Test for AddExpenseCommand
+ */
 public class AddExpenseCommandTest {
 
     static final String CATEGORY = "transport";
@@ -21,7 +23,9 @@ public class AddExpenseCommandTest {
 
 
 
-
+    /**
+     * Junit Test when there is null field for the expense input
+     */
     @Test
     void execute_nullExpense_exceptionThrown() {
         String expectedOutput = "No fields found";
@@ -32,7 +36,10 @@ public class AddExpenseCommandTest {
             assertEquals(expectedOutput, e.getMessage());
         }
     }
-    
+
+    /**
+     * Junit Test when there is missing category for the expense input
+     */
     @Test
     void execute_missingCategoryField_exceptionThrown() {
         String expectedOutput = "Missing category field";
@@ -44,7 +51,10 @@ public class AddExpenseCommandTest {
             assertEquals(expectedOutput, e.getMessage());
         }
     }
-    
+
+    /**
+     * Junit Test when there is missing description for the expense input
+     */
     @Test
     void execute_missingDescriptionField_exceptionThrown() {
         String expectedOutput = "Missing description field";
@@ -56,7 +66,10 @@ public class AddExpenseCommandTest {
             assertEquals(expectedOutput, e.getMessage());
         }
     }
-    
+
+    /**
+     * Junit Test when there is missing date for the expense input
+     */
     @Test
     void execute_missingDateField_exceptionThrown() {
         String expectedOutput = "Missing date field";
@@ -68,7 +81,10 @@ public class AddExpenseCommandTest {
             assertEquals(expectedOutput, e.getMessage());
         }
     }
-    
+
+    /**
+     * Junit Test when there is a zeroValue field
+     */
     @Test
     void execute_zeroValueField_exceptionThrown() {
         String expectedOutput = "Invalid/Missing expense value";
@@ -80,7 +96,10 @@ public class AddExpenseCommandTest {
             assertEquals(expectedOutput, e.getMessage());
         }
     }
-    
+
+    /**
+     * Junit Test when there is a negative value field
+     */
     @Test
     void execute_negativeValueField_exceptionThrown() {
         String expectedOutput = "Invalid/Missing expense value";
