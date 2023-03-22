@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.objects.Item;
 import seedu.duke.objects.Inventory;
 import seedu.duke.utils.parser.Parser;
+import seedu.duke.objects.AlertList;
 import seedu.duke.types.Types;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,7 +15,8 @@ import java.util.ArrayList;
 
 public class SearchCommandTest {
     Inventory inventory = new Inventory();
-    Parser testParser = new Parser(inventory);
+    AlertList alertList = new AlertList();
+    Parser testParser = new Parser(inventory, alertList);
     @Test
     public void searchByKeywordTest(){
         testParser.parseAdd("n/orange upc/1 qty/5 p/5",inventory);

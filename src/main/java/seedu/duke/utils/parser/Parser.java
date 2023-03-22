@@ -1,9 +1,14 @@
 package seedu.duke.utils.parser;
 
+
+import seedu.duke.objects.Alert;
+import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
+
 import seedu.duke.commands.AddCommand;
+import seedu.duke.commands.AddAlertCommand;
 import seedu.duke.commands.EditCommand;
 import seedu.duke.commands.FilterCommand;
 import seedu.duke.commands.ListCommand;
@@ -11,12 +16,14 @@ import seedu.duke.commands.RemoveCommand;
 import seedu.duke.commands.SearchCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.Command;
+
 import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.RemoveErrorException;
 import seedu.duke.exceptions.SearchFilterErrorException;
 import seedu.duke.types.Types;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -28,12 +35,22 @@ public class Parser {
     private static final Integer UPC_INDEX = 2;
     private static final Integer QTY_INDEX = 3;
     private static final Integer PRICE_INDEX = 4;
+
+    private static final String ALERT_REGEX = "(add|remove)\\s+upc/(\\d+)\\s+(min|max)(/)([1-9]\\d*)";
+    private static final Integer ALERT_COMMAND_INDEX = 1;
+    private static final Integer MINMAX_INDEX = 3;
+    private static final Integer STOCK_INDEX = /*4*/ 5;
     public static Scanner in = new Scanner(System.in);
+    private ArrayList<String> parsedInfo = new ArrayList<>();
+    private String commandWord;
+    private String commandInfo;
 
     private Inventory inventory;
+    private AlertList alertList;
 
-    public Parser(Inventory inventory) {
+    public Parser(Inventory inventory, AlertList alertList) {
         this.inventory = inventory;
+        this.alertList = alertList;
     }
 
     public void mainParser() {
@@ -72,6 +89,9 @@ public class Parser {
             break;
         case "remove":
             parseRemove(commandInfo, inventory);
+            break;
+        case "alert":
+            parseAlert(commandInfo, inventory);
             break;
         case "help":
             parseHelp();
@@ -216,11 +236,11 @@ public class Parser {
         listCommand.run();
     }
 
+
     public void parseHelp() {
         HelpCommand helpCommand = new HelpCommand();
         helpCommand.run();
     }
-
 
     /**
      * Handles the "edit" command by making sure that formatting is correct, before passing the user inputs
@@ -309,5 +329,30 @@ public class Parser {
         confirmation = in.nextLine();
         Command removeCommand = new RemoveCommand(inventory, upcCode, confirmation);
         removeCommand.run();
+    }
+
+    public void parseAlert(String rawInput, Inventory inventory) {
+        try {
+            if (rawInput == null) {
+                throw new MissingParametersException();
+            }
+
+            Pattern pattern = Pattern.compile(ALERT_REGEX);
+            Matcher matcher = pattern.matcher(rawInput);
+
+            if (matcher.matches()) {
+                Alert newAlert = new Alert(matcher.group(UPC_INDEX), matcher.group(MINMAX_INDEX),
+                        matcher.group(STOCK_INDEX));
+
+                Command addAlertCommand = new AddAlertCommand(inventory, newAlert, alertList);
+                addAlertCommand.run();
+
+            } else {
+                Ui.printInvalidAddAlertCommand();
+            }
+        } catch (MissingParametersException e) {
+            e.missingAddItemParameters();
+        }
+
     }
 }
