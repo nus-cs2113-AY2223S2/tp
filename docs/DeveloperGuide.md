@@ -32,6 +32,18 @@ it initializes the other components in the correct sequence and is responsible f
 * `Data`: The data classes used in the application, including Event, Category and CategoryList.
 * `Command`: The command of the application, including AddCommand, DeleteCommand, ListCommand, etc.
 
+The following sections will explain the architecture in more detail.
+
+## Storage component
+
+**API**: `Storage.java`
+
+{UML class diagram}
+
+The `Storage` component,
+* can save category and event data in txt format, and read it back. (txt format is chosen because it is human readable)
+* depends on `CategoryList.java` and `CategoryCommand.java` to save and load data from ArrayList and HashMap.
+
 
 ## Product scope
 ### Target user profile
