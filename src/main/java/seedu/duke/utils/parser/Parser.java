@@ -1,9 +1,16 @@
 package seedu.duke.utils.parser;
 
-import seedu.duke.commands.*;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
+import seedu.duke.commands.AddCommand;
+import seedu.duke.commands.EditCommand;
+import seedu.duke.commands.FilterCommand;
+import seedu.duke.commands.ListCommand;
+import seedu.duke.commands.RemoveCommand;
+import seedu.duke.commands.SearchCommand;
+import seedu.duke.commands.HelpCommand;
+import seedu.duke.commands.Command;
 import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.RemoveErrorException;
