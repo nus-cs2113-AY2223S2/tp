@@ -5,7 +5,7 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 1. [Acknowledgements](#acknowledgements)
 2. [Design & Implementation](#design--implementation)
     1. [Ingredient Class](#Ingredient-Class)
-       1. [Add Command](#add-command)
+       1. [Add and Remove Command](#add-and-remove-command)
        2. [Remove Command](#remove-command)
 3. [Product Scope](#product-scope)
     1. [Target User Profile](#target-user-profile)
@@ -31,13 +31,25 @@ Below shows the class diagram of how ingredients are being stored in our program
 
 ![IngredientUML.png](images/IngredientUML.png)
 
-### Add Command
+The current `MealCompanionSession` would keep track of the `IngredientList` which is an ArrayList of `Ingredient` objects. Each `Ingredient` object has a name and its associated quantity. This association would allow us to perform the adding and removal of ingredients by the user.
 
-The add command is implemented with the following steps
+### Add and Remove Command
 
-### Remove Command
+The add and remove command is facilitated by the methods in `IngredientList` and `Ingredient`. Given below is an example usage scenario and how the add and remove command behaves.
 
-The remove command is implemented with the following steps
+Step 1. The user inputs his command eg. `add egg /qty 5`, the name of the ingredient 'egg' would be crosschecked with our database of known ingredients
+
+Step 2. Since 'egg' is a known ingredient in our database, `IngredientList` would be called to check if egg is already stored inside the list
+
+Step 3. Suppose egg is not currently stored in `IngredientList`, a new `Ingredient` object would be created with the quantity, 5, and name, egg, specified by the user and added to `IngredientList` with the `add()` method.
+
+Step 4. Now the user decides to remove 2 eggs and inputs his command eg. `remove egg /qty 2`, the `IngredientList` would be searched through to see if egg is in the list
+
+Step 5. Since egg is in the list, its corresponding index in the list would be generated. 
+
+Step 6. The current quantity of egg in the list would be obtained by calling `getQuantity()` and checked to see if it is greater or equals to '2' the quantity input by the user
+
+Step 7. Since the quantity input by the user is smaller than the current quantity of egg, which is 3, in the `IngredientList`, the new quantity would be calculated to be 3 and updated by calling `setQuantity(3)` 
 
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
