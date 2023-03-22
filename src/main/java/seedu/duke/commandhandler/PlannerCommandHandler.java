@@ -5,9 +5,10 @@ import seedu.duke.userplan.UserPlan;
 
 import java.util.Scanner;
 
-public class PlannerCommandHandler {
-    //@@author Khulon
+//@@author Khulon
+public class PlannerCommandHandler implements CommandList{
     public static void plannerCommandHandler (Ui ui, UserPlan planner) {
+        System.out.println("Welcome to planner editor, type exit to exit");
         System.out.println("Plan your Workouts here!! try:");
         System.out.println("Add Monday Home_Leg_Day legs static");
         System.out.println("Delete Monday Home_Leg_Day");
@@ -17,20 +18,20 @@ public class PlannerCommandHandler {
             String rawUserCommands = in.nextLine();
             String[] userCommands = rawUserCommands.split(" ");
             switch (userCommands[0]) {
-            case "help":
+            case HELP_COMMAND:
                 ui.printPlannerHelp();
                 break;
-            case "plan":
+            case VIEW_PLAN_COMMAND:
                 ui.showPlan(planner);
                 break;
-            case "exit":
+            case EXIT_COMMAND:
                 System.out.println("Exited planner editor!");
                 return;
-            case "add":
+            case ADD_PLAN_COMMAND:
                 //need to add exception for noname and filters, available filters
                 UserPlan.addPlan(userCommands);
                 break;
-            case "delete":
+            case DELETE_PLAN_COMMAND:
                 UserPlan.deletePlan(userCommands);
                 break;
             default:

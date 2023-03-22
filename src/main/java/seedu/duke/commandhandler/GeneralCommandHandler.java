@@ -61,13 +61,13 @@ public class GeneralCommandHandler implements CommandList{
                         exerciseGenerator.generateRandomSetFrom(
                                 exerciseGenerator.generateSetAll(), 3), storageHandler);
                 break;
-            case "planner":
+            case PLANNER_EDITOR_COMMAND:
                 PlannerCommandHandler.plannerCommandHandler(ui, planner);
                 break;
-            case "plan":
+            case VIEW_PLAN_COMMAND:
                 ui.showPlan(planner);
                 break;
-            case "quick":
+            case QUICK_START_COMMAND:
                 command = new QuickStartCommand(userCommands, ui, exerciseGenerator);
                 break;
             case START_COMMAND:
