@@ -2,7 +2,10 @@ package seedu.badMaths.trigograph;
 
 import seedu.badMaths.ui.Ui;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
