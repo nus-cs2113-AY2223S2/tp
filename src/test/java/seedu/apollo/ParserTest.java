@@ -1,5 +1,6 @@
 package seedu.apollo;
 
+
 import org.junit.jupiter.api.Test;
 import seedu.apollo.command.Command;
 import seedu.apollo.exception.task.InvalidDeadline;
@@ -13,7 +14,6 @@ import java.rmi.UnexpectedException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 
 class ParserTest {
 
@@ -58,23 +58,23 @@ class ParserTest {
 
     @Test
     void parseEvent_normalEvent_expectDescriptionAndFromAndTo() throws InvalidEvent {
-        String param = "test /from today /to tomorrow";
+        String param = "test /from 2023-10-29T23:59 /to 2023-10-30T23:59";
         String[] descriptionAndFromAndTo = Parser.parseEvent(param);
         assertEquals("test", descriptionAndFromAndTo[0]);
-        assertEquals("today", descriptionAndFromAndTo[1]);
-        assertEquals("tomorrow", descriptionAndFromAndTo[2]);
+        assertEquals("2023-10-29T23:59", descriptionAndFromAndTo[1]);
+        assertEquals("2023-10-30T23:59", descriptionAndFromAndTo[2]);
     }
 
     @Test
     void parseEvent_noDescription_expectException() {
-        String param = "  /from today /to tomorrow";
+        String param = "  /from 2023-10-29T23:59 /to 2023-10-30T23:59";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
     }
 
     @Test
     void parseEvent_emptyFrom_expectException() {
-        String param = "test /from /to tomorrow";
+        String param = "test /from /to 2023-10-30T23:59";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
 
@@ -82,7 +82,7 @@ class ParserTest {
 
     @Test
     void parseEvent_emptyTo_expectException() {
-        String param = "test /from today /to ";
+        String param = "test /from 2023-10-29T23:59 today /to ";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
     }
@@ -101,9 +101,10 @@ class ParserTest {
                 () -> Parser.parseEvent(param));
     }
 
+
     @Test
     void parseEvent_noFrom_expectException() {
-        String param = "test /to tomorrow";
+        String param = "test /to 2023-10-30T23:59";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
     }
@@ -215,6 +216,51 @@ class ParserTest {
     @Test
     void getCommand_noDeadlineDescription_expectNull() throws UnexpectedException {
         String userCommand = "deadline";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_noDate_expectNull() throws UnexpectedException {
+        String userCommand = "date";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_extraWordHelp() throws UnexpectedException {
+        String userCommand = "help me";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_extraWordList() throws UnexpectedException {
+        String userCommand = "list all my tasks";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_extraWordListMod() throws UnexpectedException {
+        String userCommand = "listmod all my modules";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void getCommand_extraWordExit() throws UnexpectedException {
+        String userCommand = "bye bye";
         Ui ui = new Ui();
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);

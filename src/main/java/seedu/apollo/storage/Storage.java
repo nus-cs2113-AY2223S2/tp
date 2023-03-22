@@ -168,6 +168,12 @@ public class Storage implements LoggerInterface {
         overwrite.close();
     }
 
+    /**
+     * Reads all lines in the moduleData file, initialises them as an ModuleList of Modules.
+     * @param overwrite
+     * @param module
+     * @throws IOException
+     */
     private void writeModules(FileWriter overwrite, Module module) throws IOException {
         ArrayList<Timetable> timetableList = module.getModuleTimetable();
         if (timetableList != null) {
@@ -277,6 +283,7 @@ public class Storage implements LoggerInterface {
         }
         return newModuleList;
     }
+
 
     private static void addLessons(Module module, Module searchModule, String[] moduleInfo) {
         module.createNewTimeTable();
