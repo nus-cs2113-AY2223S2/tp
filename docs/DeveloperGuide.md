@@ -40,9 +40,9 @@ The rest of the App consists of four components.
 
 -   ```TaskList```: Holds the data of Duck in memory.
 
--   This stores 4 subsequent subclasses that draw upon a shared superclass.
+```TaskList``` stores items that belong to 4 subclasses that draw upon a shared superclass.
 
--   ```Task```: The skeleton superclass of all Tasks. 
+```Task```: The skeleton superclass of all Tasks. 
 
 -   ```ToDo```: Basic form of ```Task```
 
