@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AddCommandTest {
     Inventory inventory;
@@ -19,6 +20,8 @@ class AddCommandTest {
         assertEquals(1, inventory.getItemInventory().size());
         assertEquals(newItem, inventory.getItemInventory().get(0));
         assertTrue(inventory.getUpcCodes().containsKey(newItem.getUpc()));
-        assertTrue(inventory.getItemNameHash().containsKey(newItem.getName().toLowerCase()));
+        for(String itemName: newItem.getName().toLowerCase().split(" ")){
+            assertTrue(inventory.getItemNameHash().containsKey(itemName));
+        }
     }
 }

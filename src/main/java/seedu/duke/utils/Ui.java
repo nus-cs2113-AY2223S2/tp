@@ -1,9 +1,11 @@
 package seedu.duke.utils;
 
+import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 import static seedu.duke.utils.ColorCode.ANSI_BLUE;
@@ -38,11 +40,16 @@ public class Ui {
     public static final int QTY_COL_WIDTH = 8;
 
     public static final int PRICE_COL_WIDTH = 8;
+    public static final int COMMAND_COL_WIDTH = 15;
+    public static final int FORMAT_COL_WIDTH = 25;
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
             "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
-    public static final String ITEM_NOT_FOUND = "Edit failed! Reason: Item not found in database. Please add item " +
+    public static final String ITEM_NOT_FOUND = "Command failed! Reason: Item not found in database. Please add item " +
             "first!";
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
+    public static final String ITEM_NOT_EDITED = "Item Specified will not be updated.";
+    public static final String WRONG_QUANTITY_INPUT = "For Quantity inputs: MUST BE a WHOLE NUMBER.";
+    public static final String WRONG_PRICE_INPUT = "For Price inputs: MUST BE a WHOLE NUMBER/DECIMAL NUMBER.";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
     public static final String MISSING_PRICE = "Please enter a number for the price!";
 
@@ -50,6 +57,8 @@ public class Ui {
     private static final String UPC_HEADING = "UPC";
     private static final String QTY_HEADING = "Quantity";
     private static final String PRICE_HEADING = "Price";
+    private static final String COMMAND_HEADING = "Command";
+    private static final String FORMAT_HEADING = "Command Format";
 
     private static final String TABLE_CORNER = "+";
     private static final String TABLE_ROW = "-";
@@ -147,6 +156,21 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public static String printTable() {
+        HashMap<String, String> commandsHashMap = new HashMap<>();
+        CommandFormat commandFormat = new CommandFormat(commandsHashMap);
+        int[] columnWidths = {COMMAND_COL_WIDTH, FORMAT_COL_WIDTH};
+
+        StringBuilder table = new StringBuilder();
+
+        table.append(printTableSeparator(columnWidths));
+        table.append(printHeadings(columnWidths));
+        table.append(printTableSeparator(columnWidths));
+        commandsHashMap.forEach((format, description)
+                -> table.append((printRow(description, format, columnWidths))));
+        return table.toString();
+    }
+
     public static String printTable(ArrayList<Item> items) {
         int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH};
 
@@ -168,7 +192,12 @@ public class Ui {
     }
 
     private static String printHeadings(int[] columnWidths) {
-        String[] headings = {NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
+        String[] headings;
+        if (columnWidths.length == 4) {
+            headings = new String[]{NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
+        } else {
+            headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
+        }
         StringBuilder allHeadings = new StringBuilder();
 
         for (int i = 0; i < headings.length; i += 1) {
@@ -197,6 +226,27 @@ public class Ui {
         return tableSeparator.toString();
     }
 
+    private static String printRow(String description, String format, int[] columnWidths) {
+        String[] descriptionLines = wrapText(description, COMMAND_COL_WIDTH);
+        String[] formatLines = wrapText(format, FORMAT_COL_WIDTH);
+        StringBuilder row = new StringBuilder();
+
+        int rowHeight = findRowHeight(descriptionLines, formatLines);
+
+        for (int i = 0; i < rowHeight; i += 1) {
+            row.append(TABLE_LEFT);
+            row.append(printAttribute(descriptionLines, COMMAND_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(formatLines, FORMAT_COL_WIDTH, i));
+            row.append(TABLE_RIGHT);
+            row.append(System.lineSeparator());
+
+            if (i == rowHeight - 1) {
+                row.append(printTableSeparator(columnWidths));
+            }
+        }
+        return row.toString();
+    }
     private static String printRow(String name, String upc, String qty, String price,
                                    int[] columnWidths) {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
@@ -267,7 +317,7 @@ public class Ui {
                                                     int current, int width) {
         line.append(words[current]);
 
-        if (words[current].length() < width) {
+        if (line.length() < width) {
             line.append(" ");
         }
 
@@ -318,12 +368,35 @@ public class Ui {
     }
 
     /**
-     * Prints the updated version of the item in question in order to inform the user of the changes made by him or her.
+     * Calls a method to prints the updated version of the item in question, or else calls a method to print a string
+     * to inform the user that the item in question is not updated due to an error in his or her inputs.
      *
      * @param oldItem     The item containing the old attributes.
      * @param updatedItem The same item but with new attributes as defined by the user.
+     * @throws EditErrorException The exception used to handle all errors related to the "Edit" command.
      */
-    public static void printEditDetails(Item oldItem, Item updatedItem) {
+    public static void printEditDetails(Item oldItem, Item updatedItem) throws EditErrorException {
+        try {
+            if (!updatedItem.isUpdatedFrom(oldItem)) {
+                throw new EditErrorException();
+            }
+            printUpdatedItemDetails(oldItem, updatedItem);
+            assert Objects.equals(oldItem.getUpc(), updatedItem.getUpc()) : "Both items should be of same UPC Code.";
+        } catch (EditErrorException eee) {
+            printItemNotUpdatedError();
+        }
+    }
+
+
+
+    /**
+     * Prints the updated attributes of the item as specified by the user. Shows both the previous attributes
+     * and the updated attributes of the item.
+     *
+     * @param oldItem The item containing the old attributes.
+     * @param updatedItem The same item but with new attributes as defined by the user.
+     */
+    private static void printUpdatedItemDetails(Item oldItem, Item updatedItem) {
         System.out.println(LINE);
         System.out.println(ANSI_BLUE + SUCCESS_EDIT + ANSI_RESET + "\n");
         System.out.println(ANSI_RED + "Before Update: " + ANSI_RESET);
@@ -333,7 +406,28 @@ public class Ui {
         System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
                 "Quantity Available: " + updatedItem.getQuantity() + "\n" + "Item Price: " + updatedItem.getPrice());
         System.out.println(LINE);
-        assert Objects.equals(oldItem.getUpc(), updatedItem.getUpc()) : "Both items should be of same UPC Code.";
+    }
+
+    /**
+     * Prints an error message to inform the user that the item is not updated.
+     */
+    private static void printItemNotUpdatedError() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + ITEM_NOT_EDITED + ANSI_RESET);
+        System.out.println(ANSI_RED + "REASON: Item's name/price/quantity is the same as user's input." + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    /**
+     * Prints an error message to inform the user that item is not updated due to wrong quantity/price input type.
+     */
+    public static void printInvalidPriceOrQuantityEditInput() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + ITEM_NOT_EDITED + ANSI_RESET);
+        System.out.println(ANSI_RED + "REASON:" + ANSI_RESET);
+        System.out.println(ANSI_RED + WRONG_QUANTITY_INPUT + ANSI_RESET);
+        System.out.println(ANSI_RED + WRONG_PRICE_INPUT + ANSI_RESET);
+        System.out.println(LINE);
     }
 
     public static void printInvalidReply() {
