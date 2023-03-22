@@ -2,7 +2,6 @@ package seedu.commands;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +13,11 @@ import seedu.entities.Food;
 import seedu.entities.Meal;
 import seedu.exceptions.InvalidDateException;
 import seedu.exceptions.InvalidIndexException;
+import seedu.exceptions.InvalidMealException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.exceptions.MissingArgumentsException;
 import seedu.logger.LogFileHandler;
+import seedu.parser.DateParser;
 import seedu.ui.GeneralUi;
 import seedu.parser.DateParser;
 
@@ -32,6 +33,17 @@ public class AddMealCommand extends Command {
     Meal meal;
     ArrayList<Food> foods;
     DateTimeFormatter dtf;
+    private String commandWord;
+    private String userInput;
+    private String dateString;
+    private LocalDate date;
+    private String mealTypeString;
+    private MealTypes mealType;
+    private String foodName;
+    private int choice;
+    private Meal meal;
+    private ArrayList<Food> foods;
+    private DateTimeFormatter dtf;
 
     public AddMealCommand(String commandWord, String userInput) {
         this.commandWord = commandWord;
@@ -43,6 +55,33 @@ public class AddMealCommand extends Command {
             throws LifeTrackerException {
         foods = new ArrayList<Food>();
         dtf = mealStorage.getDateTimeFormatter();
+
+
+    @Override
+    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
+                throws LifeTrackerException {
+        foods = new ArrayList<Food>();
+        dtf = mealStorage.getDateTimeFormatter();
+        dateString = "";
+        mealTypeString = "";
+        mealType = null;
+
+        if (commandWord.length() == userInput.length()) {
+            getDetails(ui, foodStorage);
+        } else {
+            parseCommand(ui, foodStorage);
+        }
+        
+        meal = new Meal(foods, date, mealType);
+        mealStorage.saveMeal(meal);
+        ui.printNewMealAdded(meal);
+        LogFileHandler.logInfo(meal.toString());
+    }
+
+
+
+    private void getDetails(GeneralUi ui, FoodStorage foodStorage) throws LifeTrackerException {
+        boolean toContinue = true;
 
         if (commandWord.length() == userInput.length()) {
             getDetails(ui, foodStorage);
@@ -68,6 +107,14 @@ public class AddMealCommand extends Command {
 
         System.out.println(System.lineSeparator() + "Enter type of meal:");
         mealTypeString = ui.readLine();
+        dateString = ui.readLine();
+        date = DateParser.parse(dateString, dtf);
+
+        System.out.println(System.lineSeparator() + "Enter type of meal:");
+        mealTypeString = ui.readLine();
+        if ((mealType = MealTypes.fromString(mealTypeString)) == null) {
+            throw new InvalidMealException(mealTypeString);
+        }
 
         do {
             System.out.println(System.lineSeparator() + "Enter food:");
