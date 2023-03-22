@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class ConsulationCommandTest {
 
     @Test
-    void ConsultationCommandNotNull() {
+    void consultationCommandNotNull() {
         String animalName = "";
         String animalType = "";
         String ownerName = "";

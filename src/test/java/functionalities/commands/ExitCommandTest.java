@@ -10,12 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ExitCommandTest {
 
     @Test
-    void ExitCommandNotNullTest() {
+    void exitCommandNotNullTest() {
         Command c = new ExitCommand();
         assertNotNull(c);
     }
     @Test
-    void RemoveCommandTest() throws SniffException {
+    void exitCommandTest() throws SniffException {
         SniffTasks tasks = new SniffTasks();
         Command c = new ExitCommand();
         c.executeCommand(tasks);
