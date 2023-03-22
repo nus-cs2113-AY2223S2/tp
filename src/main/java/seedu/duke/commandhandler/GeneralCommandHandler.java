@@ -1,6 +1,16 @@
 package seedu.duke.commandhandler;
 
-import seedu.duke.commands.*;
+
+
+
+import seedu.duke.commands.ExerciseSearchCommand;
+import seedu.duke.commands.SampleSavingCommand;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.GenerateFilterCommand;
+import seedu.duke.commands.HelpCommand;
+import seedu.duke.commands.SampleReadCommand;
+import seedu.duke.commands.QuickStartCommand;
+
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.states.ExerciseStateHandler;
