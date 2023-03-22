@@ -18,31 +18,51 @@ public class BudgetPlanner {
     }
 
     public void setBudget(int budget) {
-        budget = handleInvalidBudget(budget);
+        boolean isInvalidAmount = checkInvalidAmount(budget);
+        if (isInvalidAmount) {
+            return;
+        }
+        budget = checkExceedMaxAmount(budget);
         this.budget = budget;
         budgetStorage.setBudget(budget);
     }
 
     public void setAccommodationTotalCost(int accommodationTotalCost) {
-        accommodationTotalCost = handleInvalidBudget(accommodationTotalCost);
+        boolean isInvalidAmount = checkInvalidAmount(accommodationTotalCost);
+        if (isInvalidAmount) {
+            return;
+        }
+        accommodationTotalCost = checkExceedMaxAmount(accommodationTotalCost);
         this.accommodationTotalCost = accommodationTotalCost;
         budgetStorage.setAccommodationCost(accommodationTotalCost);
     }
 
     public void setAirplaneTicketTotalCost(int airplaneTicketTotalCost) {
-        airplaneTicketTotalCost = handleInvalidBudget(airplaneTicketTotalCost);
+        boolean isInvalidAmount = checkInvalidAmount(airplaneTicketTotalCost);
+        if (isInvalidAmount) {
+            return;
+        }
+        airplaneTicketTotalCost = checkExceedMaxAmount(airplaneTicketTotalCost);
         this.airplaneTicketTotalCost = airplaneTicketTotalCost;
         budgetStorage.setAirplaneTicketCost(airplaneTicketTotalCost);
     }
 
     public void setFoodTotalCost(int foodTotalCost) {
-        foodTotalCost = handleInvalidBudget(foodTotalCost);
+        boolean isInvalidAmount = checkInvalidAmount(foodTotalCost);
+        if (isInvalidAmount) {
+            return;
+        }
+        foodTotalCost = checkExceedMaxAmount(foodTotalCost);
         this.foodTotalCost = foodTotalCost;
         budgetStorage.setFoodCost(foodTotalCost);
     }
 
     public void setEntertainmentTotalCost(int entertainmentTotalCost) {
-        entertainmentTotalCost = handleInvalidBudget(entertainmentTotalCost);
+        boolean isInvalidAmount = checkInvalidAmount(entertainmentTotalCost);
+        if (isInvalidAmount) {
+            return;
+        }
+        entertainmentTotalCost = checkExceedMaxAmount(entertainmentTotalCost);
         this.entertainmentTotalCost = entertainmentTotalCost;
         budgetStorage.setEntertainmentCost(entertainmentTotalCost);
     }
@@ -64,14 +84,16 @@ public class BudgetPlanner {
         surplus = budget - getTotalCost();
     }
 
-    private int handleInvalidBudget(int amount) {
+    private boolean checkInvalidAmount(int amount) {
         if (amount < 0) {
-            amount = 0;
+            return true;
         }
-        if (amount > MAX_BUDGET) {
-            amount = MAX_BUDGET;
-        }
-        return amount;
+        return false;
+    }
+
+    private int checkExceedMaxAmount(int amount) {
+        System.out.println("Maximum budget of " + MAX_BUDGET + " allowed");
+        return Math.min(amount, MAX_BUDGET);
     }
 
     public int getBudget() {
