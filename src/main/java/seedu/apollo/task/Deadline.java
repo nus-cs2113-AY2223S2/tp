@@ -52,6 +52,9 @@ public class Deadline extends Task {
         return "deadline";
     }
 
+    public LocalDateTime getDateTime() {
+        return by;
+    }
     /**
      * {@inheritDoc}
      */

@@ -44,8 +44,13 @@ public class TaskList extends ArrayList<Task> {
         return filteredTasksList;
     }
 
+    /**
+     * Sorts the TaskList by type.
+     */
     public void clusterByType() {
         this.sort(Comparator.comparing(Task::getType));
     }
+
+
 
 }
