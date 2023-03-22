@@ -21,6 +21,20 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 ## Design & implementation
+[Architecture.puml](diagrams%2FArchitecture.puml)
+
+The above _**Architecture**_ diagram gives a high-level overall of the program. 
+
+**Main Components of system**
+1. Duke
+2. Parser : Processes and Executes User Commands
+3. UI : Prints out messages to user
+4. Storage : Processes and stores 
+5. DataReader
+
+**1. Duke**
+Duke is the 
+
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 

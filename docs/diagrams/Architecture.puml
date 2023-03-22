@@ -1,0 +1,20 @@
+@startuml
+skinparam componentStyle rectangle
+
+actor user
+user --> [DUKE] : Provides input
+[DUKE] --> [Parser] : Pass input
+
+[Parser] -> [UI] : pass input
+[UI] -up-> [DUKE] : Print out
+[Parser] ..> [Storage] : Access
+[Parser] ..> [Data Reader] : Access
+
+file SaveModuleFile
+file UniversityListFile
+file ModuleListFile
+
+[Storage] ..> SaveModuleFile : Reads and Writes Data
+[Data Reader] ..> UniversityListFile : Reads
+[Data Reader] ..> ModuleListFile : Reads
+@enduml
