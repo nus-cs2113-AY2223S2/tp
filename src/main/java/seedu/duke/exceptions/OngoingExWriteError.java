@@ -1,7 +1,9 @@
 package seedu.duke.exceptions;
 
+import seedu.duke.ui.ErrorMessages;
+
 public class OngoingExWriteError extends DukeError{
     public OngoingExWriteError(){
-        super("Finish your exercise! Testing of our features can come after that :)");
+        super(ErrorMessages.ERROR_ONGOING_EXERCISE_TEST_SAMPLE.toString());
     }
 }

@@ -1,7 +1,9 @@
 package seedu.duke.exceptions;
 
+import seedu.duke.ui.ErrorMessages;
+
 public class OngoingExHelpError extends DukeError{
     public OngoingExHelpError(){
-        super("Finish your exercise! Cannot print help messages!");
+        super(ErrorMessages.ERROR_ONGOING_EXERCISE_HELP_COMMAND.toString());
     }
 }

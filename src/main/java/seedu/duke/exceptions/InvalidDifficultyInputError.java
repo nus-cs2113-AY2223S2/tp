@@ -1,7 +1,9 @@
 package seedu.duke.exceptions;
 
+import seedu.duke.ui.ErrorMessages;
+
 public class InvalidDifficultyInputError extends DukeError{
     public InvalidDifficultyInputError(){
-        super("Incorrect difficulty level input");
+        super(ErrorMessages.ERROR_DIFFICULTY_INPUT.toString());
     }
 }

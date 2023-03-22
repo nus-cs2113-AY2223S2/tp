@@ -1,6 +1,6 @@
 package seedu.duke;
 
-import seedu.duke.commands.CommandHandler;
+import seedu.duke.commandhandler.CommandHandler;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.storage.StorageHandler;
 import seedu.duke.userdata.UserCareerData;
@@ -18,6 +18,7 @@ public class Duke {
     private final StorageHandler storageHandler;
 
     public Duke () {
+
         ui = new Ui();
         exerciseGenerator = new GenerateExercise();
         storageHandler = new StorageHandler(FILEPATH);
