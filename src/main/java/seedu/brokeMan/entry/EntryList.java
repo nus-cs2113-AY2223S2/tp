@@ -5,7 +5,6 @@ import seedu.brokeMan.ui.Ui;
 import java.util.LinkedList;
 
 public abstract class EntryList {
-    //static final LinkedList<Entry> entryList = new LinkedList<>();
 
     /**
      * Adds new expense/income to the list
@@ -58,20 +57,6 @@ public abstract class EntryList {
      *
      */
     public static void editEntry(String type, int entryIndex, double newEntry, LinkedList<Entry> entryList) {
-//        try {
-//            Entry entryBeingEdited = entryList.get(entryIndex - 1);
-////            if (type.equals("cost") || type.equals("income")) {
-//            if (type.equals("amount") || type.equals("income")) {
-//
-//                entryBeingEdited.editAmount(newEntry);
-//            } else {
-//                // throw a custom exception here
-//                Ui.showToUserWithLineBreak("Invalid type Parameter!", "");
-//            }
-//            Ui.showToUserWithLineBreak("Successfully edited expense.", "");
-//        } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
-//            Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
-//        }
         try {
             Entry entryBeingEdited = entryList.get(entryIndex - 1);
             entryBeingEdited.editAmount(newEntry);
@@ -93,16 +78,7 @@ public abstract class EntryList {
     public static void editEntry(String type, int entryIndex, String newEntry, LinkedList<Entry> entryList) {
         try {
             Entry entryBeingEdited = entryList.get(entryIndex - 1);
-//            switch (type) {
-//            case "info":
-//                entryBeingEdited.editInfo(newEntry);
-//                break;
-//            case "time":
-//                entryBeingEdited.editTime(newEntry);
-//                break;
-//            default:
-//                Ui.showToUserWithLineBreak("test type parameter!", "");
-//            }
+
             if (type.equals("info")) {
                 entryBeingEdited.editInfo(newEntry);
             } else {
