@@ -7,7 +7,49 @@ original source as well}
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+### Command Mechanisms:
+For all valid commands, the mechanism of implementation are as follows:
+1. Read input - ```runBagPacker()``` method in ```BagPacker``` calls the ```Parser``` class to read user input command
+2. Create command object - The ```Parser``` class creates a corresponding command object of the relevant command
+3. Execute command object - ```runBagPacker()``` method executes the ```.execute()``` method (overridden by child classes) of the command object 
+   which runs the actual command function
+
+#### Help Command
+Help command is used to exit the BagPacker application.
+
+Execute: ```HelpCommand.execute()``` prints the following help message.
+
+```
+All Commands:
+1. add : Adds an item to the packing list.
+	Example: add toothbrush
+2. delete : Deletes an item from the packing list.
+	Example: delete 1
+3. list : List all items in packing list.
+	Example: list
+4. pack : Marks an item as packed in the packing list.
+	Example: pack 2 of 3
+	Meaning: packs 2 quantities of the third item in the packing list
+5. unpack : Marks an item as unpacked in the packing list.
+	Example: unpack 1 of 2
+	Meaning: unpacks 1 quantity of the second item in the packing list
+6. bye : Stops the BagPacker Application
+	Example: bye
+____________________________________________________________
+
+```
+
+#### Bye Command
+```ByeCommand``` is used to exit the BagPacker application.
+
+Mechanism: ```ByeCommand.execute()``` updates the static boolean ```isBagPackerRunning``` to be false. 
+The ```runBagPacker()``` method will continually parse and execute relevant commands (refer to Command Mechanisms in DG) until
+```isBagPackerRunning == false``` which occurs upon the execution of the ```byeCommand```.
+
+#### DeleteList Command
+```DeleteListCommand``` is used to delete a whole packing list in the BagPacker application.
+
+Mechanism: ```DeleteListCommand.execute()``` reassigns the existing ```packingList``` to a new empty ArrayList of Items, thus deleting the ```packingList```.
 
 
 
