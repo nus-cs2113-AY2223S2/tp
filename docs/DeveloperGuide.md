@@ -16,6 +16,15 @@ The proposed <code>duplicationChecker</code> is facilitated by <code>Parser</cod
 format the data that was entered by the user so that the parameters that are passed into <code>addCommand</code> are
 standardized to remove any potential duplicated addition issues.
 
+### [Proposed] Storage feature
+#### Proposed Implementation
+The proposed Storage feature will allow the user to save the information of companies to disk. A text file will be 
+created to store all the company information the user wishes to save. This text file will be overwritten everytime the 
+user makes changes to the stored information. When relaunching EventUS, the program will check if there is a text file 
+which contains the information of previously saved companies. If the text file exists, the information of the companies 
+stored will be copied over to a local ArrayList. If there is no text file, a text file will be created as soon as the 
+user tries to add company information.
+
 ## Product scope
 ### Target user profile
 
