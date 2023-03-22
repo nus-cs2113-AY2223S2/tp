@@ -214,6 +214,46 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    /**
+     * Checks if the ui.printPlannerHelp() method prints the correct output.
+     */
+    @Test
+    void testPrintPlannerHelp() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printPlannerHelp();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "These are some commands available: \r\n" +
+                    "[add]\r\n" +
+                    "\tCreate a new plan on a day of the week: add monday plan_name FILTER1 FILTER2 ... x\r\n" +
+                    "\tFILTER stands for a specific requirement you want to include in your exercise\r\n" +
+                    "[delete]\r\n" +
+                    "\tdelete a plan on a day of the week: delete monday plan_name\r\n" +
+                    "[plans]\r\n" +
+                    "\tShow all plans\r\n" +
+                    "[exit]\r\n" +
+                    "\tExit workout plan editor\r\n";
+        } else {
+            expectedOutput = "These are some commands available: \n" +
+                    "[add]\n" +
+                    "\tCreate a new plan on a day of the week: add monday plan_name FILTER1 FILTER2 ... x\n" +
+                    "\tFILTER stands for a specific requirement you want to include in your exercise\n" +
+                    "[delete]\n" +
+                    "\tdelete a plan on a day of the week: delete monday plan_name\n" +
+                    "[plans]\n" +
+                    "\tShow all plans\n" +
+                    "[exit]\n" +
+                    "\tExit workout plan editor\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
     //To be completed
     /*@Test
     void testPrintExerciseFromList() {
