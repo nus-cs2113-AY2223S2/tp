@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * Junit Test for AddIncomeCommand
+ */
 public class AddIncomeCommandTest {
 
     static final String DESCRIPTION = "salary";
@@ -14,6 +17,10 @@ public class AddIncomeCommandTest {
     static final float INCOME_VALUE = (float) 500;
     static final float ZERO_INCOME_VALUE = (float) 0;
     static final float NEGATIVE_INCOME_VALUE = (float) -500;
+
+    /**
+     * Junit Test when there is a null entry in the income input
+     */
     @Test
     void addIncomeCommand_nullExpense_exceptionThrown() {
         String expectedOutput = "No fields found";
@@ -24,7 +31,10 @@ public class AddIncomeCommandTest {
             assertEquals(expectedOutput, e.getMessage());
         }
     }
-    
+
+    /**
+     * Junit Test when there is a missing description in the income input
+     */
     @Test
     void addIncomeCommand_missingDescriptionField_exceptionThrown() {
         String expectedOutput = "Missing description field";
@@ -36,7 +46,10 @@ public class AddIncomeCommandTest {
             assertEquals(expectedOutput, e.getMessage());
         }
     }
-    
+
+    /**
+     * Junit Test when there is a missing date in the income input
+     */
     @Test
     void addIncomeCommand_missingDateField_exceptionThrown() {
         String expectedOutput = "Missing date field";
@@ -48,7 +61,10 @@ public class AddIncomeCommandTest {
             assertEquals(expectedOutput, e.getMessage());
         }
     }
-    
+
+    /**
+     * Junit Test when there is a zeroValue field
+     */
     @Test
     void addIncomeCommand_zeroValueField_exceptionThrown() {
         String expectedOutput = "Invalid/Missing income value";
@@ -60,7 +76,10 @@ public class AddIncomeCommandTest {
             assertEquals(expectedOutput, e.getMessage());
         }
     }
-    
+
+    /**
+     * Junit Test when there is a negative value field
+     */
     @Test
     void addIncomeCommand_negativeValueField_exceptionThrown() {
         String expectedOutput = "Invalid/Missing income value";

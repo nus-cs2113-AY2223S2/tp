@@ -2,13 +2,25 @@ package chching.record;
 
 import java.util.ArrayList;
 
+/**
+ * Models a class that act as list of incomes. Inherited from RecordList Class
+ */
 public class IncomeList extends RecordList{
     protected ArrayList<Income> incomeList;
+
+    /**
+     * Constructor to instantiate IncomeList objects
+     *
+     * @param incomeList ArrayList of incomes
+     */
 
     public IncomeList(ArrayList<Income> incomeList){
         this.incomeList = incomeList;
     }
 
+    /**
+     * Default constructor to instantiate IncomeList objects
+     */
     public IncomeList(){
         incomeList = new ArrayList<>();
 
@@ -22,6 +34,12 @@ public class IncomeList extends RecordList{
         incomeList.add(income);
 
     }
+
+    /**
+     * Deletes income from an IncomeList
+     *
+     * @param i     index of the income entry
+     */
     public void deleteIncome(int i) throws IndexOutOfBoundsException{
         try {
             incomeList.remove(i - 1);

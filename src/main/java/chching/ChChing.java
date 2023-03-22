@@ -11,6 +11,9 @@ public class ChChing {
     private ExpenseList expenses;
     private Ui ui;
 
+    /**
+     * Loads memory of the program
+     */
     public ChChing(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -25,6 +28,9 @@ public class ChChing {
         }
     }
 
+    /**
+     * Runs the program
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

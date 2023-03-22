@@ -1,8 +1,20 @@
 package chching.record;
 
+/**
+ * Models a class for an expense entry
+ */
 public class Expense extends Record {
     private final String category;
 
+
+    /**
+     * Constructor to instantiate Expense objects
+     *
+     * @param category      Category of expense
+     * @param description       Description of expense
+     * @param date      Date of expense
+     * @param value     Value of expense
+     */
     public Expense(String category, String description, String date, double value) {
         super(description, date, value);
         this.category = category;
@@ -12,7 +24,10 @@ public class Expense extends Record {
     public String getCategory() {
         return category;
     }
-    
+
+    /**
+     * Changes String format
+     */
     @Override
     public String toString() {
         return "Category - " + getCategory() +
