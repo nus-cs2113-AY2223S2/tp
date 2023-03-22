@@ -11,6 +11,7 @@ import seedu.duke.states.ExerciseStateHandler;
 import seedu.duke.storage.StorageHandler;
 import seedu.duke.ui.Ui;
 import seedu.duke.userdata.UserCareerData;
+import seedu.duke.commands.ExerciseSearchCommand;
 
 public class GeneralCommandHandler implements CommandList{
 
@@ -65,6 +66,9 @@ public class GeneralCommandHandler implements CommandList{
                 break;
             case HISTORY_COMMAND:
                 userCareerData.printAllFinishedWorkoutSessions();
+                break;
+            case "find":
+                command = new ExerciseSearchCommand(userCommands);
                 break;
             default:
                 ui.unknownCommand();

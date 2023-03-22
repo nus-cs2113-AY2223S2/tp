@@ -39,6 +39,7 @@ public class ExerciseSessionCommandHandler implements CommandList{
                 throw new OngoingExGenerationError();
             case HELP_COMMAND:
             case FILTERS_COMMAND:
+            case FIND_COMMAND:
                 throw new OngoingExHelpError();
             case BYE_COMMAND:
             case EXIT_COMMAND:
