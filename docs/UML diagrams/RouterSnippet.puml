@@ -1,0 +1,31 @@
+@startuml
+!include Style.puml
+object "__root:CommandRouterNode__" as root
+object "__:RouteDescription__" as recipeDesc
+object "__:CommandRouterNode__" as recipe
+object "__:RouteDescription__" as ingredientsDesc
+object "__:CommandRouterNode__" as ingredients
+object "__:RouteDescription__" as recipeAllDesc
+object "__:RecipeAllCommandFactory__" as recipeAll
+object "__:RouteDescription__" as recipePossibleDesc
+object "__:RecipePossibleCommandFactory__" as recipePossible
+object "__:RouteDescription__" as ingredientsListDesc
+object "__:IngredientsListCommandFactory__" as ingredientsList
+
+recipeDesc : name = "recipe"
+ingredientsDesc : name = "ingredients"
+recipeAllDesc : name = "all"
+recipePossibleDesc : name = "possible"
+ingredientsListDesc : name = "list"
+
+root --> recipeDesc
+recipeDesc --> recipe
+root --> ingredientsDesc
+ingredientsDesc --> ingredients
+recipe --> recipeAllDesc
+recipeAllDesc --> recipeAll
+recipe --> recipePossibleDesc
+recipePossibleDesc --> recipePossible
+ingredients --> ingredientsListDesc
+ingredientsListDesc --> ingredientsList
+@enduml
