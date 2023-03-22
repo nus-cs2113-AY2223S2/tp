@@ -19,20 +19,8 @@ import seedu.exceptions.MissingArgumentsException;
 import seedu.logger.LogFileHandler;
 import seedu.parser.DateParser;
 import seedu.ui.GeneralUi;
-import seedu.parser.DateParser;
 
 public class AddMealCommand extends Command {
-    String commandWord;
-    String userInput;
-    String dateString = "";
-    LocalDate date = null;
-    String mealTypeString = "";
-    MealTypes mealType = null;
-    String foodName;
-    int choice;
-    Meal meal;
-    ArrayList<Food> foods;
-    DateTimeFormatter dtf;
     private String commandWord;
     private String userInput;
     private String dateString;
@@ -49,13 +37,6 @@ public class AddMealCommand extends Command {
         this.commandWord = commandWord;
         this.userInput = userInput;
     }
-
-    @Override
-    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
-            throws LifeTrackerException {
-        foods = new ArrayList<Food>();
-        dtf = mealStorage.getDateTimeFormatter();
-
 
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
@@ -78,32 +59,15 @@ public class AddMealCommand extends Command {
         LogFileHandler.logInfo(meal.toString());
     }
 
-
-
-    private void getDetails(GeneralUi ui, FoodStorage foodStorage) throws LifeTrackerException {
-        boolean toContinue = true;
-
-        if (commandWord.length() == userInput.length()) {
-            getDetails(ui, foodStorage);
-        } else {
-            parseCommand(ui, foodStorage);
-        }
-
-        meal = new Meal(foods, date, mealType);
-        mealStorage.saveMeal(meal);
-        ui.printNewMealAdded(meal);
-        LogFileHandler.logInfo("User added this meal" + System.lineSeparator() + meal.toString());
-    }
-
     private void getDetails(GeneralUi ui, FoodStorage foodStorage) throws LifeTrackerException {
         boolean toContinue = true;
         System.out.println("Enter date of meal:");
-        try {
+//        try {
             dateString = ui.readLine();
             date = LocalDate.parse(dateString, dtf);
-        } catch (DateTimeParseException e) {
-            throw new InvalidDateException(dateString);
-        }
+//        } catch (DateTimeParseException e) {
+//            throw new InvalidDateException(dateString);
+//        }
 
         System.out.println(System.lineSeparator() + "Enter type of meal:");
         mealTypeString = ui.readLine();
