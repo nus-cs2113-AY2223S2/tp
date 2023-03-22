@@ -11,7 +11,7 @@ These are some commands available:
 	FILTER stands for a specific requirement you want to include in your exercise
 [filters]
 	View all available filters
-[plan]
+[plans]
 	Show all plans
 [planner]
 	Enter workout plan editor
