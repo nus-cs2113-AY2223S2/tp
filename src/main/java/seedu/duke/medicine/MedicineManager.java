@@ -23,6 +23,8 @@ public class MedicineManager {
     private static final Medicine ASPIRIN = new Medicine("Aspirin", "1 or 2 pills every 4 to 6 hours");
     private static final Medicine MAGNESIUM = new Medicine("Magnesium", "100 to 350mg before bed");
     private static final Medicine EYE_DROPS = new Medicine("Eye Drops", "When your eyes itch");
+    private static final Medicine ULTRACARBON = new Medicine("Ultracarbon", "1 250mg Tablet");
+    private static final Medicine DULCOLAX = new Medicine("Dulcolax", "1 tablet every day");
     public MedicineManager() {
         initialiseMedications();
         initialiseMedicineDosages();
@@ -47,6 +49,11 @@ public class MedicineManager {
                 .collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Medicine> conjunctivitisMedications = Stream.of(EYE_DROPS)
                 .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Medicine> diarrhoeaMedications = Stream.of(ULTRACARBON)
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Medicine> constipationMedications = Stream.of(DULCOLAX)
+                .collect(Collectors.toCollection(ArrayList::new));
+
 
         medicationDict.put("Covid-19", covidMedications);
         medicationDict.put("General Flu", commonFluMedications);
@@ -55,6 +62,8 @@ public class MedicineManager {
         medicationDict.put("Headache", headacheMedications);
         medicationDict.put("Insomnia", insomniaMedications);
         medicationDict.put("Conjunctivitis", conjunctivitisMedications);
+        medicationDict.put("Ultracarbon", diarrhoeaMedications);
+        medicationDict.put("Dulcolax", constipationMedications);
     }
     /**
      * This Method initialises the dictionary of Medications and their dosages.
@@ -66,6 +75,11 @@ public class MedicineManager {
         medicineDosages.put(LOZENGE.toString(), LOZENGE.getDosage());
         medicineDosages.put(ASPIRIN.toString(), ASPIRIN.getDosage());
         medicineDosages.put(IBUPROFEN.toString(), IBUPROFEN.getDosage());
+        medicineDosages.put(MAGNESIUM.toString(), MAGNESIUM.getDosage());
+        medicineDosages.put(EYE_DROPS.toString(), EYE_DROPS.getDosage());
+        medicineDosages.put(ULTRACARBON.toString(), ULTRACARBON.getDosage());
+        medicineDosages.put(DULCOLAX.toString(), DULCOLAX.getDosage());
+
     }
 
     /**
