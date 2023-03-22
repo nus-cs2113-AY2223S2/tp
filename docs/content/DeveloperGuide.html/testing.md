@@ -130,17 +130,17 @@ Enter a command or /help to see the list of commands available.
 Expected output:
 {{<code lang="Text">}}________________________________________________
 These are the latest 3 entries.
-<1>: McDonalds (Food) - $10.50
-<2>: Air Jordan 1 (Clothing) - $200.00
-<3>: Birthday Dinner (Food) - $150.00
+Total expenditure: $168.0
+<1>: Lunch (Food) - $7.50 <<22 Mar 2023, 22:29:35>>
+<2>: McDonalds (Food) - $10.50 <<22 Mar 2023, 22:30:11>>
+<3>: Birthday Dinner (Food) - $150.00 <<22 Mar 2023, 22:30:24>>
 ________________________________________________
-
 Enter a command or /help to see the list of commands available.
 {{</code>}}
 
 ## Delete expense: /delete
 
-**Usage:** `/delete <EXPENSE_ID>`
+**Usage:** `/delete <EXPENSE_ID> [ADDITIONAL_EXPENSE_ID]`
 
 {{< alert style="info">}} You may view the list of existing expenses along with their corresponding indexes with
 `/view`.
@@ -238,13 +238,13 @@ Add - Adds an expense to your current expenditure.
 Usage: /add <DESCRIPTION> <-c CATEGORY> <-p PRICE>
 
 Delete - Deletes a specified expense from your expenditure.
-Usage: /delete <EXPENSE_ID>
+Usage: /delete <EXPENSE_ID> [ADDITIONAL_EXPENSE_ID...]
 
 Edit - Edits a specified expense in your current expenditure.
 Usage: /edit <EXPENSE_ID> [FLAG...]
 
 View - Displays a list of your current expenditure.
-Usage: /view [COUNT]
+Usage: /view [COUNT] [-c | -category CATEGORY]
 
 Help - Displays the help menu.
 Usage: /help
