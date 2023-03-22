@@ -20,10 +20,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CommandTest {
     Category food = new Category("food");
     Category book = new Category("book");
-    Event salad = new Event("salad", 100, 50);
-    Event pizza = new Event("pizza", 200, 100);
-    Event harryPotter = new Event("Harry Potter", 70, 50);
-    Event lordOfTheRings = new Event("Lord of the Rings", 90, 20);
+    Event salad = new Event("salad", 100);
+    Event pizza = new Event("pizza", 200);
+    Event harryPotter = new Event("Harry Potter", 70);
+    Event lordOfTheRings = new Event("Lord of the Rings", 90);
 
     private void setup() {
         food.addEvent(salad);
@@ -49,17 +49,27 @@ public class CommandTest {
     @Test
     void addEvent_oneFoodEvent_expectThreeEventsInFoodCategory() {
         setup();
-        String input = "event banana b/20 e/10";
+        String input = "event banana e/20";
         String categoryIndex = "1" + Strings.NEW_LINE; // replace with the correct input string
         Moneymind.in = new Scanner(categoryIndex);
         executeInput(input);
         Moneymind.in = new Scanner(System.in);
-        assertEquals("banana", food.events.get(2).getDescription(), 
+        assertEquals("banana", food.events.get(2).getDescription(),
                 "expected: banana, actual: " + food.events.get(2).getDescription());
-        assertEquals(20, food.events.get(2).getBudget(), 
-                "expected: 20, actual: " + food.events.get(2).getBudget());
-        assertEquals(10, food.events.get(2).getExpense(), 
-                "expected: 10, actual: " + food.events.get(2).getExpense());
+        assertEquals(20, food.events.get(2).getExpense(),
+                "expected: 20, actual: " + food.events.get(2).getExpense());
+        clear();
+    }
+
+    @Test
+    void EditEvent_oneEvent_expectEventEdited() {
+        setup();
+        String input = "edit c/food e/1";
+        String newExpense = "12" + Strings.NEW_LINE;
+        Moneymind.in = new Scanner(newExpense);
+        executeInput(input);
+        Moneymind.in = new Scanner(System.in);
+        assertEquals(12, food.events.get(0).getExpense());
         clear();
     }
 
@@ -76,7 +86,7 @@ public class CommandTest {
     @Test
     void deleteEvent_oneBookEvent_expectOneEventInBookCategory() {
         setup();
-        String input = "delete c/book e/Harry Potter";
+        String input = "delete c/book e/1";
         executeInput(input);
         assertEquals(1, book.events.size());
         assertEquals("Lord of the Rings", book.events.get(0).getDescription());
@@ -100,12 +110,12 @@ public class CommandTest {
         }
 
         String actual = outputStream.toString();
-        String expected = "1.food" + System.lineSeparator()
-                + "salad [budget]100 [expense]50" + System.lineSeparator()
-                + "pizza [budget]200 [expense]100" + System.lineSeparator()
-                + "2.book" + System.lineSeparator()
-                + "Harry Potter [budget]70 [expense]50" + System.lineSeparator()
-                + "Lord of the Rings [budget]90 [expense]20" + System.lineSeparator();
+        String expected = "1.food (budget: 0)" + System.lineSeparator()
+                + "salad [expense]100" + System.lineSeparator()
+                + "pizza [expense]200" + System.lineSeparator()
+                + "2.book (budget: 0)" + System.lineSeparator()
+                + "Harry Potter [expense]70" + System.lineSeparator()
+                + "Lord of the Rings [expense]90" + System.lineSeparator();
         assertEquals(expected, actual);
         clear();
     }
@@ -127,8 +137,8 @@ public class CommandTest {
         }
 
         String actual = outputStream.toString();
-        String expected = "1. salad [budget]100 [expense]50" + System.lineSeparator()
-                + "2. pizza [budget]200 [expense]100" + System.lineSeparator();
+        String expected = "1. salad [expense]100" + System.lineSeparator()
+                + "2. pizza [expense]200" + System.lineSeparator();
         assertEquals(expected, actual);
         clear();
     }
