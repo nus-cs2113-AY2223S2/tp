@@ -108,7 +108,7 @@ public class TaskList implements Serializable {
         return tasks.get(index).toString();
     }
 
-    //@@ KedrianLoh
+    //@@author KedrianLoh
     /**
      * Sorts the ArrayList tasks, by the corresponding Task deadlines
      */

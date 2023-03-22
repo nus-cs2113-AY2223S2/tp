@@ -8,13 +8,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 public class Task implements Serializable {
-    //@@ KedrianLoh
+    //@@author KedrianLoh
     /**
      * Compares the task1 deadline and task2 deadline, used for sorting the task list by deadline.
      */
     public static Comparator<Task> taskDeadlineComparator = Comparator.comparing(task -> task.deadline);
 
-    //@@ jeromeongithub
+    //@@author jeromeongithub
     private String description;
     private LocalDateTime deadline;
     private boolean isDone = false;

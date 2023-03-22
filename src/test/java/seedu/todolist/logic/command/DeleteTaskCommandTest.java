@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 
-//@@ RuiShengGit
+//@@author RuiShengGit
 public class DeleteTaskCommandTest {
     private Parser parser = new Parser();
     private TaskList testList;

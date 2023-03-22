@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
-//@@ jeromeongithub
+//@@author jeromeongithub
 public class AddTaskCommand extends Command {
     public static final String KEYWORD = "add";
     public static final HashSet<String> FLAGS = new HashSet<>(Arrays.asList(KEYWORD, Flags.DEADLINE.FLAG));

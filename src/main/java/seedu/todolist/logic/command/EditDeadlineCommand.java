@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
-//@@ clement559
+//@@author clement559
 public class EditDeadlineCommand extends Command  {
     public static final String KEYWORD = "edit";
     public static final HashSet<String> FLAGS = new HashSet<>(Arrays.asList(KEYWORD, Flags.DEADLINE.FLAG));

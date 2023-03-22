@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
-//@@ RuiShengGit
+//@@author RuiShengGit
 public class DeleteTaskCommand extends Command {
     public static final String KEYWORD = "delete";
     public static final HashSet<String> FLAGS = new HashSet<>(Arrays.asList(KEYWORD));

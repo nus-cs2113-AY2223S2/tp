@@ -9,7 +9,7 @@ import seedu.todolist.task.TaskList;
 public class ListTasksCommand extends Command {
     public static final String KEYWORD = "list";
 
-    //@@ KedrianLoh
+    //@@author KedrianLoh
     /**
      * Displays the current task list.
      */
