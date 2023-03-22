@@ -21,7 +21,8 @@ and will return a list of exercises done on that specified date.
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+We aim to help fellow gym enthusiasts and new gym members to help keep
+track of their future and present training.
 
 ### Value proposition
 

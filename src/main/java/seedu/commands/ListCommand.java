@@ -13,3 +13,4 @@ public class ListCommand extends Command {
         workoutList.showWorkoutList();
     }
 }
+

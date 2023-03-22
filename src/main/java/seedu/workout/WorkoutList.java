@@ -10,7 +10,6 @@ public class WorkoutList {
     public static final int NO_CURRENT_WORKOUT = -1;
     public ArrayList<Workout> workoutList;
     public int currentWorkoutIndex;
-    private Ui ui;
 
     public WorkoutList() {
         workoutList = new ArrayList<>();
@@ -37,7 +36,6 @@ public class WorkoutList {
         }
         System.out.println("No workout found with the specified date.");
     }
-
     public void showWorkoutList() {
         try {
             if (!workoutList.isEmpty()) {
@@ -63,7 +61,6 @@ public class WorkoutList {
             }
         }
     }
-
     public int getLastIndex() {
         return workoutList.size() - 1;
     }
