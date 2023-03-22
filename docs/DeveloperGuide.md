@@ -6,7 +6,32 @@
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+### Graph 
+The Graph feature allows users to analyse basic Trigonometry signals by calling `startGraphAnalysis()` which 
+creates a new instance of `TrigoGraphAnalyser` named `analyser`.
+
+Below is an example usage scenario and how the `Graph` feature behaves at each step.
+
+When user enters an input: 
+```
+Graph. 2*sin(2*x+5)-1
+```
+#### Parser class, Command class:
+Step 1. Parser class will split the input into `Graph.` and `2*sin(2*x+5)-1`, which are `command` and `toDo` respectively. 
+The command class creates a new instance of `TrigoGraph` and pass in `toDo` as a parameter for the constructor. It 
+then executes `trigoGraph.startGraphAnalysis()`based on `command` using switch-case statements. 
+
+#### TrigoGraph class:
+Step 2. Constructor for the TrigoGraph class takes in `2*sin(2*x+5)-1` and assigns it to `trigoEqn` of type String. When `startGraphAnalysis()`
+is called from the command class, a new instance of `TrigoGraphAnalyser` called `analyser` is created in TrigoGraph, which accepts `trigoEqn`
+as the parameter.
+
+Step 3. When `analyser.canStartAnalyser()` is true, it will print out the amplitude, frequency, phase and vertical shift
+to the user using the Ui class. Each of the method calls to the Ui class requires a input of type double which can 
+be achieved by calling `analyser.getAmplitude()`, `analyser.getFreq()` and so on.
+
+#### TrigoGraphAnalyser class:
+
 
 
 ## Product scope
