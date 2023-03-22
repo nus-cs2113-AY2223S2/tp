@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SurgeryCommandTest {
 
     @Test
-    void SurgeryCommandNotNull() throws SniffException {
+    void SurgeryCommandNotNull() {
         String animalName = "";
         String animalType = "";
         String ownerName = "";
