@@ -105,6 +105,8 @@ Help people who are just starting out working and troubled by financial issues s
 | v2.0    | new user                            | see usage instructions                                       | refer to them when I forget how to use the application |
 | v2.0    | user who uses multiple applications | access the data I saved in RainyDay in my other applications | avoid having to re-enter the same data                 |
 | v2.0    | lazy user                           | use shortcuts                                                | avoid having to type in lengthy commands               |
+| v2.0    | diligent user                       | filter my data                                               | view my past expense with ease                         |
+| v2.0    | lazy user                           | edit my entries                                              | amend my wrong entries                                 |
 
 ## Non-Functional Requirements
 

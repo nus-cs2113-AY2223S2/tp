@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//@@author azriellee
 public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
@@ -189,6 +190,7 @@ public class Parser {
         return new HelpCommand();
     }
 
+    //@@author ChongQiRong
     private Command filterStatement(String input) {
         try {
             if (input.contains("-date")) {
@@ -329,6 +331,7 @@ public class Parser {
         }
     }
 
+    //@@author KN-CY
     public ExportCommand generateExport() {
         return new ExportCommand();
     }
