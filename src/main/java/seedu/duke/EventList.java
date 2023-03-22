@@ -124,16 +124,16 @@ public class EventList {
                          String endDay) throws NPExceptions {
         int index = searchTaskIndex(description);
         if(index == -1){
-            throw new NPExceptions("Event index out of bound!");
+            throw new NPExceptions("Event cannot be found!");
         }
-        reviseTimeInfo(index, description, startTime, startDay, endTime);
+        reviseTimeInfo(index, startTime, startDay, endTime, endDay);
     }
 
     //need handle exceptions when index = -1
     public void reviseTimeInfo(String description, String startTime, String startDay) throws NPExceptions {
         int index = searchTaskIndex(description);
         if(index == -1){
-            throw new NPExceptions("Event index out of bound!");
+            throw new NPExceptions("Event cannot be found!");
         }
         reviseTimeInfo(index, startTime, startDay);
     }
@@ -145,7 +145,7 @@ public class EventList {
     public int searchTaskIndex(String description) {
         int index = 0;
         for(Event cur: taskList) {
-            if(cur.getDescription().indexOf(description) != -1) {
+            if(cur.getDescription().trim().equals(description.trim())) {
                 return index;
             }
             index++;
