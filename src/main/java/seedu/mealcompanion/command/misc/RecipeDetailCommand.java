@@ -49,6 +49,11 @@ public class RecipeDetailCommand extends ExecutableCommand {
         throw new MealCompanionException("Recipe not found!");
     }
 
+    /**
+     * Print the list of ingredients.
+     * @param ui the UI used for printing
+     * @param ingredients the list of ingredients to be printed
+     */
     private void printIngredients(MealCompanionUI ui, IngredientList ingredients) {
         ui.printMessage("Ingredients:");
         for (int i = 0; i < ingredients.size(); i++) {
@@ -62,6 +67,11 @@ public class RecipeDetailCommand extends ExecutableCommand {
         }
     }
 
+    /**
+     * Print the list of instructions.
+     * @param ui the UI used for printing
+     * @param instructions the list of instructions to be printed
+     */
     private void printInstructions(MealCompanionUI ui, InstructionList instructions) {
         ui.printMessage("Instructions:");
         for (int i = 0; i < instructions.size(); i++) {
@@ -70,6 +80,11 @@ public class RecipeDetailCommand extends ExecutableCommand {
         }
     }
 
+    /**
+     * Print the recipe.
+     * @param ui the UI used for printing
+     * @param recipe the recipe to be printed
+     */
     private void printRecipe(MealCompanionUI ui, Recipe recipe) {
         ui.printMessage("Recipe for " + recipe.getName());
         ui.printMessage(""); //print newline for all OS
