@@ -3,6 +3,8 @@ package chching.command;
 import chching.ChChingException;
 import chching.Storage;
 import chching.Ui;
+import chching.currency.Converter;
+import chching.currency.Selector;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
 import chching.record.Expense;
@@ -24,8 +26,10 @@ public class AddExpenseCommand extends Command {
         }
         this.expense = expense;
     }
+
     @Override
-    public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage) {
+    public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
+            Converter converter) throws ChChingException {
         assert expense.getValue() > 0 : "Expense value should be greater than 0";
         expenses.addExpense(expense);
         ui.showAdded(incomes, expenses, expense);

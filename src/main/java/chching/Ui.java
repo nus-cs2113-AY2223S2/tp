@@ -1,5 +1,7 @@
 package chching;
 
+import chching.currency.Selector;
+import chching.currency.Converter;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
 import chching.record.Record;
@@ -40,30 +42,29 @@ public class Ui {
         System.out.println("    Noted. I've removed this record:");
         System.out.println("    " + record);
         System.out.println();
-        assert(expenses.size() >= 0);
+        assert (expenses.size() >= 0);
         System.out.println("    Now you have " + incomes.size() + " income records,");
         System.out.println("    and " + expenses.size() + " expense records in the list.");
     }
 
-    public void showAllRecords(IncomeList incomes, ExpenseList expenses) {
+    public void showAllRecords(IncomeList incomes, ExpenseList expenses, Selector selector, Converter converter) {
         System.out.println("    Here are the incomes in your list:");
-        incomes.printIncomeList();
-        
+        incomes.printIncomeList(selector, converter);
+
         System.out.println();
-        
+
         System.out.println("    Here are the expense in your list:");
-        expenses.printExpenseList();
+        expenses.printExpenseList(selector, converter);
     }
 
-    public void showBalance(double totalExpense, double totalIncome, double balance) {
-        assert(totalExpense >= 0);
+    public void showBalance(double totalExpense, double totalIncome, double balance, String convertedBalance) {
+        assert (totalExpense >= 0);
         System.out.println("    Total Expense: " + String.format("%.02f", totalExpense));
         System.out.println("    Total Income: " + String.format("%.02f", totalIncome));
         System.out.println();
         System.out.println("    Current balance:");
-        System.out.println("    SGD " + String.format("%.02f", balance));
+        System.out.println("    SGD " + String.format("%.02f", balance) + convertedBalance);
     }
-
 
     public static void showHelp() {
         System.out.println("    ADD RECORDS:");
@@ -79,6 +80,10 @@ public class Ui {
         System.out.println();
         System.out.println("    SHOW BALANCE:");
         System.out.println("    balance");
+        System.out.println();
+        System.out.println("    CONVERT CURRENCY:");
+        System.out.println("    convert /cr <currency>");
+        System.out.println("    Currencies available: HKD, PHP, IDR, MYR, VND");
         System.out.println();
         System.out.println("    SHOW HELP:");
         System.out.println("    help");
