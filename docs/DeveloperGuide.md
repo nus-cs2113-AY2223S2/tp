@@ -63,7 +63,7 @@ Components:
 ### Adding an entry `add`
 
 - When a command is given to add a statement, the command is first parsed to check whether it follows the format of an
-  add command: `add -DIRECTION DESCRIPTION $VALUE -c CATEGORY -d DESCRIPTION` with the use of regex pattern
+  add command: `add -DIRECTION DESCRIPTION $VALUE -c CATEGORY -date DD/MM/YYYY` with the use of regex pattern
     - Details on implementation for parsing and command fields are documented below
 - Commands in the correct format will then be parsed to extract the relevant information, and an `AddCommand` object
   will be created with the relevant attributes
