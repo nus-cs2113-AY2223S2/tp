@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.brokeMan.entry.EntryList.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.brokeMan.entry.EntryList.deleteEntry;
+import static seedu.brokeMan.entry.EntryList.getTotalAmount;
 import static seedu.brokeMan.parser.StringToTime.convertStringToTime;
 
 
@@ -18,7 +20,7 @@ public class EntryListTest {
     LinkedList<Entry> expenseList;
 
     @BeforeEach
-    public void SetUp() throws Exception {
+    public void setUp() throws Exception {
         entry1 = new Expense(4, "lunch", convertStringToTime("2022 09 08 12 14"));
         entry2 = new Expense(6, "dinner",  convertStringToTime("2023 12 12 20 01"));
         expenseList = new LinkedList<Entry>(Arrays.asList(entry1, entry2));
@@ -27,8 +29,8 @@ public class EntryListTest {
 
     @Test
     public void deleteEntry_inBoundIndex_success() {
-            deleteEntry(2, expenseList);
-            assertEquals(expenseList, new LinkedList<>(Arrays.asList(entry1)));
+        deleteEntry(2, expenseList);
+        assertEquals(expenseList, new LinkedList<>(Arrays.asList(entry1)));
     }
 
     @Test
