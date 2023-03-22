@@ -1,6 +1,7 @@
 package seedu.duke.objects;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Item {
     private String upc;
@@ -70,6 +71,20 @@ public class Item {
      */
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public boolean isUpdatedFrom(Item oldItem) {
+        int itemsChanged = 0;
+        if (!Objects.equals(oldItem.getName(), this.getName())) {
+            itemsChanged += 1;
+        }
+        if (!Objects.equals(oldItem.getQuantity(), this.getQuantity())) {
+            itemsChanged += 1;
+        }
+        if (!Objects.equals(oldItem.getPrice(), this.getPrice())) {
+            itemsChanged += 1;
+        }
+        return itemsChanged != 0;
     }
 
     @Override

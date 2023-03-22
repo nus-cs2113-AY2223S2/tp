@@ -1,5 +1,7 @@
 package seedu.duke.utils;
 
+import seedu.duke.commands.EditCommand;
+import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 
@@ -43,6 +45,9 @@ public class Ui {
     public static final String ITEM_NOT_FOUND = "Edit failed! Reason: Item not found in database. Please add item " +
             "first!";
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
+    public static final String ITEM_NOT_EDITED = "Item Specified will not be updated.";
+    public static final String WRONG_QUANTITY_INPUT = "For Quantity inputs: MUST BE a WHOLE NUMBER.";
+    public static final String WRONG_PRICE_INPUT = "For Price inputs: MUST BE a WHOLE NUMBER/DECIMAL NUMBER.";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
     public static final String MISSING_PRICE = "Please enter a number for the price!";
 
@@ -318,12 +323,35 @@ public class Ui {
     }
 
     /**
-     * Prints the updated version of the item in question in order to inform the user of the changes made by him or her.
+     * Calls a method to prints the updated version of the item in question, or else calls a method to print a string
+     * to inform the user that the item in question is not updated due to an error in his or her inputs.
      *
      * @param oldItem     The item containing the old attributes.
      * @param updatedItem The same item but with new attributes as defined by the user.
+     * @throws EditErrorException The exception used to handle all errors related to the "Edit" command.
      */
-    public static void printEditDetails(Item oldItem, Item updatedItem) {
+    public static void printEditDetails(Item oldItem, Item updatedItem) throws EditErrorException {
+        try {
+            if (!updatedItem.isUpdatedFrom(oldItem)) {
+                throw new EditErrorException();
+            }
+            printUpdatedItemDetails(oldItem, updatedItem);
+            assert Objects.equals(oldItem.getUpc(), updatedItem.getUpc()) : "Both items should be of same UPC Code.";
+        } catch (EditErrorException eee) {
+            printItemNotUpdatedError();
+        }
+    }
+
+
+
+    /**
+     * Prints the updated attributes of the item as specified by the user. Shows both the previous attributes
+     * and the updated attributes of the item.
+     *
+     * @param oldItem The item containing the old attributes.
+     * @param updatedItem The same item but with new attributes as defined by the user.
+     */
+    private static void printUpdatedItemDetails(Item oldItem, Item updatedItem) {
         System.out.println(LINE);
         System.out.println(ANSI_BLUE + SUCCESS_EDIT + ANSI_RESET + "\n");
         System.out.println(ANSI_RED + "Before Update: " + ANSI_RESET);
@@ -333,7 +361,28 @@ public class Ui {
         System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
                 "Quantity Available: " + updatedItem.getQuantity() + "\n" + "Item Price: " + updatedItem.getPrice());
         System.out.println(LINE);
-        assert Objects.equals(oldItem.getUpc(), updatedItem.getUpc()) : "Both items should be of same UPC Code.";
+    }
+
+    /**
+     * Prints an error message to inform the user that the item is not updated.
+     */
+    private static void printItemNotUpdatedError() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + ITEM_NOT_EDITED + ANSI_RESET);
+        System.out.println(ANSI_RED + "REASON: Item's name/price/quantity is the same as user's input." + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    /**
+     * Prints an error message to inform the user that item is not updated due to wrong quantity/price input type.
+     */
+    public static void printInvalidPriceOrQuantityEditInput() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + ITEM_NOT_EDITED + ANSI_RESET);
+        System.out.println(ANSI_RED + "REASON:" + ANSI_RESET);
+        System.out.println(ANSI_RED + WRONG_QUANTITY_INPUT + ANSI_RESET);
+        System.out.println(ANSI_RED + WRONG_PRICE_INPUT + ANSI_RESET);
+        System.out.println(LINE);
     }
 
     public static void printInvalidReply() {

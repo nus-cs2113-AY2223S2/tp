@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
@@ -36,26 +37,57 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Based on the user input, the appropriate attribute (Price, Quantity, Name etc.) of the item will be targeted
-     * and subsequently edited to the user's respective input.
+     * Executes method to edit item attributes in the list and prints an error string if the user's edit command
+     * inputs were incorrectly written.
      *
      * @param item The target item in the ArrayList in which the user wants to edit.
      * @param data The user input which contains the information to be used to update the item attributes.
+     * @throws MissingParametersException Exception related to all errors due to missing parameters.
+     * @throws NumberFormatException Exception related to all invalid number formats inputted.
      */
-    private void updateItemInfo(final Item item, final String data) {
+    private void updateItemInfo(final Item item, final String data) throws MissingParametersException,
+            NumberFormatException {
+        try {
+            handleUserEditCommands(item, data);
+        } catch (MissingParametersException mpe) {
+            throw new MissingParametersException();
+        } catch (NumberFormatException nfe) {
+            throw new NumberFormatException();
+        }
+    }
+
+    /**
+     * Detects specific chars in the array of individual strings, and executes the change of item attribute values
+     * (i.e, Name, Quantity, Price) based on the first few chars detected in the individual string.
+     *
+     * @param item The target item in the ArrayList in which the user wants to edit.
+     * @param data The user input which contains the information to be used to update the item attributes.
+     * @throws MissingParametersException Exception related to all errors due to missing parameters.
+     * @throws NumberFormatException Exception related to all invalid number formats inputted.
+     */
+    private void handleUserEditCommands(Item item, String data) throws MissingParametersException,
+            NumberFormatException {
         if (data.contains("n/")) {
             String newName = data.replaceFirst("n/", "");
             item.setName(newName);
         } else if (data.contains("qty/")) {
             String updatedQuantity = data.replaceFirst("qty/", "");
-            Integer newQuantity = Integer.valueOf(updatedQuantity);
-            item.setQuantity(newQuantity);
+            try {
+                Integer newQuantity = Integer.valueOf(updatedQuantity);
+                item.setQuantity(newQuantity);
+            } catch (NumberFormatException nfe) {
+                throw new NumberFormatException();
+            }
         } else if (data.contains("p/")) {
             String updatedPrice = data.replaceFirst("p/", "");
-            Double newPrice = Double.valueOf(updatedPrice);
-            item.setPrice(newPrice);
+            try {
+                Double newPrice = Double.valueOf(updatedPrice);
+                item.setPrice(newPrice);
+            } catch (NumberFormatException nfe) {
+                throw new NumberFormatException();
+            }
         } else {
-            Ui.printInvalidEditCommand();
+            throw new MissingParametersException();
         }
     }
 
@@ -71,28 +103,36 @@ public class EditCommand extends Command {
             for (int data = 1; data < editInfo.length; data += 1) {
                 updateItemInfo(updatedItem, editInfo[data]);
             }
-            String oldItemName = oldItem.getName().toLowerCase();
-            String newItemName = updatedItem.getName().toLowerCase();
-            if (!oldItemName.equals(newItemName) && itemNameHash.get(oldItemName).size() == 1) {
-                itemNameHash.remove(oldItemName);
-                itemsTrie.remove(oldItemName);
-                ArrayList<Item> newItemArrayList = new ArrayList<>();
-                newItemArrayList.add(updatedItem);
-                itemNameHash.put(newItemName, newItemArrayList);
-            } else {
-                itemNameHash.get(oldItemName).remove(oldItem);
-                if (!itemNameHash.containsKey(newItemName)) {
-                    itemNameHash.put(newItemName, new ArrayList<Item>());
-                }
-                itemNameHash.get(newItemName).add(updatedItem);
-            }
-            itemsTrie.add(newItemName);
+            handleTrie(updatedItem, oldItem);
             upcCodes.remove(oldItem.getUpc());
             upcCodes.put(updatedItem.getUpc(), updatedItem);
             Ui.printEditDetails(oldItem, updatedItem);
         } catch (EditErrorException eee) {
             Ui.printItemNotFound();
+        } catch (MissingParametersException mpe) {
+            Ui.printInvalidEditCommand();
+        } catch (NumberFormatException nfe) {
+            Ui.printInvalidPriceOrQuantityEditInput();
         }
+    }
+
+    private void handleTrie(Item updatedItem, Item oldItem) {
+        String oldItemName = oldItem.getName().toLowerCase();
+        String newItemName = updatedItem.getName().toLowerCase();
+        if (!oldItemName.equals(newItemName) && itemNameHash.get(oldItemName).size() == 1) {
+            itemNameHash.remove(oldItemName);
+            itemsTrie.remove(oldItemName);
+            ArrayList<Item> newItemArrayList = new ArrayList<>();
+            newItemArrayList.add(updatedItem);
+            itemNameHash.put(newItemName, newItemArrayList);
+        } else {
+            itemNameHash.get(oldItemName).remove(oldItem);
+            if (!itemNameHash.containsKey(newItemName)) {
+                itemNameHash.put(newItemName, new ArrayList<Item>());
+            }
+            itemNameHash.get(newItemName).add(updatedItem);
+        }
+        itemsTrie.add(newItemName);
     }
 
     /**

@@ -44,6 +44,8 @@ public class Parser {
         this.commandWord = splitCommand[0];
         if (splitCommand.length > 1) {
             this.commandInfo = splitCommand[1];
+        } else {
+            this.commandInfo = "";
         }
         switch (commandWord) {
         case "bye":
@@ -138,30 +140,28 @@ public class Parser {
         filterCommand.run();
     }
 
-    /*
-    TODO: MERGE THIS FUNCTION TO SEARCH AND USE IF-ELSE CONDITION
-    /**
-     * Handles the "searchUPC" command by checking the validity of search term provided before passing to
-     * the searchUPC function
-     *
-     * @param rawInput The user input string to be validated.
-     * /
-    public void parseSearchUPC(String rawInput) {
-        try {
-            if (rawInput == null) {
-                throw new MissingParametersException();
-            }
-            if (rawInput.split(" ").length > 1) {
-                throw new SearchFilterErrorException();
-            }
-            Inventory.searchUPC(rawInput);
-        } catch (MissingParametersException e) {
-            e.missingSearchItemParameters();
-        } catch (SearchFilterErrorException se) {
-            Ui.printInvalidEditCommand();
-        }
-    }
-    */
+
+//    /**
+//     * Handles the "searchUPC" command by checking the validity of search term provided before passing to
+//     * the searchUPC function
+//     *
+//     * @param rawInput The user input string to be validated.
+//     */
+//    public void parseSearchUPC(String rawInput) {
+//        try {
+//            if (rawInput == null) {
+//                throw new MissingParametersException();
+//            }
+//            if (rawInput.split(" ").length > 1) {
+//                throw new SearchFilterErrorException();
+//            }
+//            Inventory.searchUPC(rawInput);
+//        } catch (MissingParametersException e) {
+//            e.missingSearchItemParameters();
+//        } catch (SearchFilterErrorException se) {
+//            Ui.printInvalidEditCommand();
+//        }
+//    }
 
     /**
      * Handles the "search" command by checking the validity of search term provided before passing to
@@ -222,12 +222,13 @@ public class Parser {
      */
     public void parseEdit(String editingInstructions, Inventory inventory) {
         String[] editInfo = editingInstructions.split(" ");
+        //System.out.println(editingInstructions);
+        //System.out.println(Arrays.toString(editInfo));
         try {
             if (!editInfo[0].contains("upc/") || editInfo.length == 1) {
                 throw new EditErrorException();
             }
             assert editInfo[0].contains("upc/") : "UPC Code is not present in user command!";
-            //Inventory.editItem(editInfo);
             Command editCommand = new EditCommand(inventory, editInfo);
             editCommand.run();
         } catch (EditErrorException eee) {
