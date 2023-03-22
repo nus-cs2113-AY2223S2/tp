@@ -2,15 +2,16 @@ package seedu.duke.ui;
 
 public class PrintHelpMessage {
     public static void showAvailableCommands() {
-        System.out.println("These are some commands available: ");
+        System.out.println("These are some commands available:");
         System.out.println("[generate]");
         System.out.println("\tGenerate a specific list of exercises: generate FILTER1 FILTER2 ... x");
         System.out.println("\tFILTER stands for a specific requirement you want to include in your exercise");
         System.out.println("[filters]");
         System.out.println("\tView all available filters");
+        System.out.println("[find]");
+        System.out.println("\tfinds all relevant exercises based on the keyword : find [keyword]");
         System.out.println("[bye]");
         System.out.println("\tEnd the program");
-        //System.out.println(ErrorMessages.ERROR_GLOBAL_INVALID_COMMAND.toString());
     }
     //@@author Khulon
     public static void showAvailablePlannerCommands() {

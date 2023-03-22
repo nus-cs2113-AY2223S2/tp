@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class GenerateBodyExerciseTest {
-    private static String BODY = "body only";
+    private static final String BODY = "body only";
 
     /**
      * Checks if program accurately filters body weight exercises from

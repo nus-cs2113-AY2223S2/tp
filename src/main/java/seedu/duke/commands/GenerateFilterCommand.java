@@ -2,7 +2,9 @@
 package seedu.duke.commands;
 
 import seedu.duke.exceptions.DukeError;
-import seedu.duke.exceptions.FilterTooManyError;
+import seedu.duke.exceptions.ExerciseNumberInputAsStringError;
+import seedu.duke.exceptions.UnknownFilterInputError;
+import seedu.duke.exceptions.TooManyFiltersError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.ui.Ui;
@@ -30,8 +32,9 @@ public class GenerateFilterCommand extends Command {
     /**
      * Parses the user input into data required
      * for generating an exercise
-     * @param userCommands commands that user inputs
-     * @throws DukeError duke error
+     * @param userCommands The parameters that the user wishes their exercises to have
+     *                     and includes the number of exercises to have.
+     * @throws DukeError
      */
     public GenerateFilterCommand(String[] userCommands) throws DukeError {
         this.filterArguments = userCommands.length - 1;
@@ -40,7 +43,7 @@ public class GenerateFilterCommand extends Command {
         try {
             this.numberOfExercisesToGenerate = Integer.parseInt(userGenerateCount);
         } catch (NumberFormatException error) {
-            throw new DukeError("Invalid input! Please enter the number of exercises you want!");
+            throw new ExerciseNumberInputAsStringError();
         }
     }
 
@@ -75,11 +78,11 @@ public class GenerateFilterCommand extends Command {
                 exercises = exerciseGenerator.generateFilteredWorkoutTypeFrom(exercises, userCommands[i]);
                 break;
             default:
-                throw new DukeError("Unknown filter input!");
+                throw new UnknownFilterInputError();
             }
         }
         if (numberOfExercisesToGenerate > exercises.size()) {
-            throw new FilterTooManyError();
+            throw new TooManyFiltersError();
         }
         exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
         exerciseListGenerated = exercises;

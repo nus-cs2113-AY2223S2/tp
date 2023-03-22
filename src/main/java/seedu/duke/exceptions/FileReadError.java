@@ -1,8 +1,10 @@
 package seedu.duke.exceptions;
 
+import seedu.duke.ui.ErrorMessages;
+
 public class FileReadError extends DukeError {
     public FileReadError () {
-        super("Unable to read the data file from hard disk. We will generate a new file for you.");
+        super(ErrorMessages.ERROR_FILE_READ.toString());
     }
 
 }
