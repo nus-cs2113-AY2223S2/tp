@@ -62,7 +62,7 @@ public class CommandTest {
     }
 
     @Test
-    void EditEvent_oneEvent_expectEventEdited() {
+    void editEvent_oneEvent_expectEventEdited() {
         setup();
         String input = "edit c/food e/1";
         String newExpense = "12" + Strings.NEW_LINE;

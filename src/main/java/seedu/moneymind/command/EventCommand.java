@@ -7,7 +7,6 @@ import seedu.moneymind.event.Event;
 import seedu.moneymind.exceptions.InvalidCategoryNumberException;
 import seedu.moneymind.ui.Ui;
 import static seedu.moneymind.string.Strings.NULL_EVENT_ASSERTION;
-import static seedu.moneymind.string.Strings.NON_NEGATIVE_BUDGET_ASSERTION;
 import static seedu.moneymind.string.Strings.NON_NEGATIVE_EXPENSE_ASSERTION;
 import static seedu.moneymind.string.Strings.NON_NEGATIVE_POSITION_ASSERTION;
 import static seedu.moneymind.string.Strings.EVENT_ADDED_MESSAGE;
@@ -41,6 +40,12 @@ public class EventCommand implements Command {
         assert expense >= 0 : NON_NEGATIVE_EXPENSE_ASSERTION;
     }
 
+    /**
+     * Constructor for EventCommand.
+     *
+     * @param eventName The name of the event.
+     * @param expense The expense of the event.
+     */
     public EventCommand(String eventName, int expense) {
         this.eventName = eventName;
         this.expense = expense;

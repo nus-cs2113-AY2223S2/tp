@@ -67,45 +67,6 @@ public class Category {
         }
     }
 
-//    /**
-//     * to edit the parameters of the event.
-//     *
-//     * @param index the index of the event in the list
-//     * @param description the description of the event
-//     * @param budget the budget of the event
-//     */
-//    public void editEvent(int index, String description, int budget) {
-//        events.get(index).setDescription(description);
-//        events.get(index).setBudget(budget);
-//    }
-//
-//    /**
-//     * to edit the parameters of the event.
-//     *
-//     * @param index the index of the event in the list
-//     * @param description the description of the event
-//     * @param budget the budget of the event
-//     * @param expense the expense of the event
-//     */
-//    public void editEvent(int index, String description, int budget, int expense) {
-//        events.get(index).setDescription(description);
-//        events.get(index).setBudget(budget);
-//        events.get(index).setExpense(expense);
-//    }
-//
-//    /**
-//     * Gets the total expense of the category.
-//     *
-//     * @return the total expense of the category
-//     */
-//    public int getTotalBudget() {
-//        int totalBudget = 0;
-//        for (int i = 0; i < events.size(); i++) {
-//            totalBudget += events.get(i).getBudget();    // add the budget of each event, which is 0 by default
-//        }
-//        totalBudget += budget;    // add the budget of the category
-//        return totalBudget;
-//    }
 
     public int getBudget() {
         return budget;
@@ -123,12 +84,5 @@ public class Category {
         return totalExpense;
     }
 
-//    /**
-//     * Gets the remaining budget of the category.
-//     *
-//     * @return the remaining budget of the category
-//     */
-//    public int getRemainingBudget() {
-//        return getTotalBudget() - getTotalExpense();
-//    }
+
 }

@@ -33,15 +33,6 @@ public class Event {
         return description;
     }
 
-//    /**
-//     * Gets the budget of the event.
-//     *
-//     * @return the budget of the event
-//     */
-//    public int getBudget() {
-//        return budget;
-//    }
-
     /**
      * Gets the expense of the event.
      *
@@ -51,23 +42,6 @@ public class Event {
         return expense;
     }
 
-    /**
-     * Sets the description of the event.
-     *
-     * @param description the description of the event
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-//    /**
-//     * Sets the budget of the event.
-//     *
-//     * @param budget the budget of the event
-//     */
-//    public void setBudget(int budget) {
-//        this.budget = budget;
-//    }
 
     /**
      * Sets the expense of the event.
@@ -77,24 +51,6 @@ public class Event {
     public void setExpense(int expense) {
         this.expense = expense;
     }
-
-//    /**
-//     * Checks if the event is over budget.
-//     *
-//     * @return true if the event is over budget, false otherwise
-//     */
-//    public boolean isOverBudget() {
-//        return expense > budget;
-//    }
-
-//    /**
-//     * Gets the remaining budget of the event.
-//     *
-//     * @return the remaining budget of the event
-//     */
-//    public int remainingBudget() {
-//        return budget - expense;
-//    }
 
     public String toString() {
         if (time == null) {

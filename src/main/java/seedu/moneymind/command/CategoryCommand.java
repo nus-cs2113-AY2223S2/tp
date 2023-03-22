@@ -12,7 +12,7 @@ import java.util.HashMap;
  */
 
 public class CategoryCommand implements Command {
-    public static HashMap<String, Integer> categoryMap = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> categoryMap = new HashMap<>();
     private final String name;
     private int budget;
 

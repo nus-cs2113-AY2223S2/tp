@@ -13,7 +13,6 @@ public class DeleteCommand implements Command {
     public static final String CATEGORY_DELETION_MESSAGE = "Category deleted: ";
     public static final String NON_EXISTENT_EVENT = "Event does not exist";
     public static final String NULL_CATEGORY_ASSERTION = "Category name should not be null";
-    public static final String NULL_EVENT_ASSERTION = "Event name should not be null";
     private String categoryName;
     private int eventIndex;
     private boolean isEvent;
@@ -22,7 +21,7 @@ public class DeleteCommand implements Command {
      * Constructs a new DeleteCommand object and deletes the event.
      *
      * @param categoryName the name of the category
-     * @param eventName    the name of the event
+     * @param eventIndex the index of the event
      */
     public DeleteCommand(String categoryName, int eventIndex) {
         this.categoryName = categoryName;

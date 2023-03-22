@@ -7,8 +7,11 @@ import seedu.moneymind.exceptions.NegativeNumberException;
 import seedu.moneymind.ui.Ui;
 
 import static seedu.moneymind.command.DeleteCommand.NON_EXISTENT_EVENT;
-import static seedu.moneymind.string.Strings.*;
 import static seedu.moneymind.string.Strings.SUBTLE_BUG_MESSAGE;
+import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_TO_GIVE_A_NUMBER;
+import static seedu.moneymind.string.Strings.NO_CATEGORY_MESSAGE;
+import static seedu.moneymind.string.Strings.GO_BACK_MESSAGE;
+import static seedu.moneymind.string.Strings.BACK;
 
 public class EditCommand implements Command {
     private String categoryName;
@@ -57,7 +60,7 @@ public class EditCommand implements Command {
         } catch (NumberFormatException error) {
             System.out.println(REMINDING_MESSAGE_TO_GIVE_A_NUMBER);
         } catch (NegativeNumberException error) {
-            System.out.println("Please enter a non-negative number");
+            System.out.println();
         } catch (Exception error) {
             System.out.println(SUBTLE_BUG_MESSAGE);
         }
@@ -78,7 +81,8 @@ public class EditCommand implements Command {
                 }
             }
             System.out.println("Ok, the new expense is now changed to: " + userInput);
-            CategoryList.categories.get(categoryIndex).getEvents().get(eventIndex).setExpense(Integer.parseInt(userInput));
+            CategoryList.categories.get(categoryIndex).getEvents().
+                    get(eventIndex).setExpense(Integer.parseInt(userInput));
         }
 
     }

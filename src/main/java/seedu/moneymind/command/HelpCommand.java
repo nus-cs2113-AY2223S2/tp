@@ -9,6 +9,7 @@ import static seedu.moneymind.string.Strings.EVENT_INSTRUCTION;
 import static seedu.moneymind.string.Strings.VIEW_INSTRUCTION;
 import static seedu.moneymind.string.Strings.DELETE_INSTRUCTION;
 import static seedu.moneymind.string.Strings.BYE_INSTRUCTION;
+import static seedu.moneymind.string.Strings.EDIT_INSTRUCTION;
 
 /**
  * Represents the help command.
@@ -22,6 +23,7 @@ public class HelpCommand implements Command {
         System.out.println(CATEGORY_INSTRUCTION);
         System.out.println(EVENT_INSTRUCTION);
         System.out.println(VIEW_INSTRUCTION);
+        System.out.println(EDIT_INSTRUCTION);
         System.out.println(DELETE_INSTRUCTION);
         System.out.println(BYE_INSTRUCTION);
     }

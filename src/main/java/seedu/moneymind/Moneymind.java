@@ -12,13 +12,13 @@ import seedu.moneymind.ui.Ui;
 public class Moneymind {
     public static Scanner in;
     private Parser parser;
-//    private Storage storage;
+    // private Storage storage;
     private Ui ui;
     private String userInput;
 
     public Moneymind() {
         this.parser = new Parser();
-//        this.storage = new Storage();
+        // this.storage = new Storage();
         this.ui = new Ui();
         this.in = new Scanner(System.in);
     }
@@ -26,7 +26,7 @@ public class Moneymind {
     public void run() {
         ui.greet();
         boolean isExit = false;
-//        storage.load();
+        // storage.load();
         while (!isExit) {
             try {
                 getInput();
@@ -45,7 +45,7 @@ public class Moneymind {
                 ui.error(e);
             }
         }
-//        storage.save();
+        //storage.save();
     }
 
     private void getInput() {

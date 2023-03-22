@@ -13,19 +13,21 @@ public class Strings {
     public static final String HELP_INSTRUCTION = "1. help - show instructions on how to use the app\n"
             + "Format: help\n" + "Example: help\n";
     public static final String CATEGORY_INSTRUCTION = "2. category - add a category to your list\n" +
-            "Format: category <category name>\n" + "Example: category food\n";
+            "Format: category NAME [(optional) b/<budget number>]\n" + "Example: category food b/2000\n";
     public static final String EVENT_INSTRUCTION = "3. event - add an event to a category\n" +
-            "Format: event <event name> b/<budget number> e/<expense number>\n" +
-            "Example: event lunch b/10 e/5\n";
+            "Format: event NAME e/<expense number> [(optional) t/<time>]" +
+            "Example: event lunch e/10 t/August\n";
     public static final String VIEW_INSTRUCTION =
             "4. view - view all the events in a category or all the categories\n" +
             "You can view all the categories by entering view without any category name\n" +
             "Format: view <category name>\n" + "Example: view food\n";
-    public static final String DELETE_INSTRUCTION = "5. delete - delete an event or a category\n" +
-            "Format: delete c/<category name> e/<event name>\n" +
-            "You can delete a category by entering delete c/<category name> without e/<event name>\n" +
-            "Example: delete c/food e/lunch\n" + "Example: delete c/food\n";
-    public static final String BYE_INSTRUCTION = "6. bye - exit the app\n" + "Format: bye\n" + "Example: bye\n";
+    public static final String EDIT_INSTRUCTION = "5. edit - edit the expense for an event\n" +
+            "edit c/<category name> e/<event index>\n" +
+            "Example: edit c/food e/1\n";
+    public static final String DELETE_INSTRUCTION = "6. delete - delete an event or a category\n" +
+            "delete c/<category name> [(optional) e/<event index>]\n" +
+            "Example: delete c/food e/1\n" + "Example: delete c/food\n";
+    public static final String BYE_INSTRUCTION = "7. bye - exit the app\n" + "Format: bye\n" + "Example: bye\n";
     public static final String SELECTING_CATEGORY_MESSAGE = "Please select the category you want to add the event to: ";
     public static final String GO_BACK_MESSAGE = "Please enter back to go back to the main program";
     public static final String BACK = "back";
@@ -48,8 +50,7 @@ public class Strings {
     public static final String SEARCH = "search";
     public static final String INVALID_INPUT = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
     public static final String DELETE_FORMAT = "Please following the correct format: " +
-            "delete c/<category name> e/<event name>" +
-            " or delete c/<category name>";
+            "delete c/<category name> [(optional) e/<event name>]";
     public static final String REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY = "Remember do not leave any things " +
             "inside the brackets empty!";
     public static final String EMPTY_DELETION = "☹ OOPS!!! The description of a delete cannot be empty.";
@@ -59,15 +60,15 @@ public class Strings {
     public static final String EDIT_REGEX = "c\\/(.+) e\\/(.+)";
     public static final String DELETE_REGEX = "^c/(?=\\S)(.*?)(?:\\s+e/(.*))?\\s*$";
     public static final String EVENT_FORMAT = "Please following the correct format: " +
-            "event <event name> b/<budget number> e/<expense number>";
+            "event NAME e/<expense number> [(optional) t/<time>]";
     public static final String CATEGORY_FORMAT = "Please following the correct format: " +
-            "category <category name> b/<budget number> or category <category name>";
+            "category NAME [(optional) b/<budget number>]";
+    public static final String EDIT_FORMAT = "Please following the correct format: " +
+            "edit c/<category name> e/<event index>";
     public static final String EVENT_EMPTY = "☹ OOPS!!! The description of an event cannot be empty.";
     public static final String CATEGORY_EMPTY = "☹ OOPS!!! The description of a category cannot be empty.";
     public static final String NULL_INPUT_ASSERTION = "Input cannot be null";
     public static final String NULL_DESCRIPTION = "Separated keyword and description cannot be null";
-    public static final String REMINDING_MESSAGE_ABOUT_GIVING_POSITIVE_NUMBER =
-            "Please enter a positive number for budget and expense";
     public static final String STORAGE_NEXT_VARIABLE = "&&next_detail&&";
     public static final String NEW_LINE = System.lineSeparator();
     public static final String STORAGE_CATEGORY_NAME = "&&new_category&&";
@@ -75,4 +76,13 @@ public class Strings {
     public static final String EXISTED_CATEGORY = "Category already exists";
     public static final String EXTRA_SPACE_REGEX_FORMAT = "\\s+";
     public static final String HELP = "help";
+
+    public static final String NO_DESCRIPTION_FOR_BYE = "Bye command should not have any description";
+    public static final String NO_DESCRIPTION_FOR_HELP = "Help command should not have any description";
+    public static final String POSITIVE_INTEGER_FOR_EVENT_INDEX = "Please give a positive integer for event index";
+    public static final String POSITIVE_INTEGER_FOR_EXPENSE = "Please give a positive integer for expense";
+    public static final String EMPTY_DESCRIPTION_FOR_EDIT = "OOPS!!! The description of a edit cannot be empty.";
+    public static final String EMPTY_STRING = "";
+    public static final String POSITIVE_INTEGER_FOR_BUDGET = "Please give a positive integer for budget";
+    public static final String EDIT = "edit";
 }
