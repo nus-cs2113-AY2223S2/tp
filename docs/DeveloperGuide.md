@@ -70,8 +70,8 @@ Components:
     - `CATEGORY`: the category of the transaction
     - `DATE`: the date to be tagged with the transaction, to be supplied in the format of DD/MM/YYYY
 - Commands in the correct format will then be parsed to extract the relevant information, and an `AddCommand` object
-  will
-  be created with the relevant attributes
+  will be created with the relevant attributes
+    - Details on implementation for parsing is documented below
 - `RainyDay` will then call `execute` method in `Command`, where the transaction will be added into the financial report
 
 #### Design considerations
@@ -94,6 +94,7 @@ Format of add command
     - `INDEX`: the index number of the statement in the financial report, stored as an int
 - Commands in the correct format will then be parsed to extract index, and a `DeleteCommand` object will
   be created with the relevant attribute information
+    - Details on implementation for parsing is documented below
 - rainyDay will then call Command.execute(), where the indicated transaction will be deleted from the financial report
 
 #### Design considerations
