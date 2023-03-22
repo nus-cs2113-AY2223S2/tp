@@ -2,6 +2,7 @@ package seedu.meal360;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Parser {
 
@@ -224,6 +225,15 @@ public class Parser {
         } else {
             throw new IllegalArgumentException("Please indicate a valid recipe name.");
         }
+    }
+
+    // parser to read dd/mm/yyyy format as local date
+    public LocalDate parseDate(String input) {
+        String[] date = input.split("/");
+        int day = Integer.parseInt(date[0]);
+        int month = Integer.parseInt(date[1]);
+        int year = Integer.parseInt(date[2]);
+        return LocalDate.of(year, month, day);
     }
 
     public RecipeList parseLoadDatabase(String input) {
