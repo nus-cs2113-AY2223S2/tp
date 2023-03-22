@@ -18,7 +18,6 @@ import seedu.commands.BorrowExpenditureCommand;
 import seedu.commands.InvalidCommand;
 import seedu.commands.UnmarkCommand;
 import seedu.commands.MarkCommand;
-import seedu.expenditure.ExpenditureList;
 
 public class MainInputParser {
     public static final int LIMIT = 2;
