@@ -23,7 +23,7 @@ public class ParserIndividualValueTest {
     }
 
     @Test
-    void ExceedsBoundForAddAndEdit() throws StringIndexOutOfBoundsException {
+    void exceedsBoundForAddAndEdit() throws StringIndexOutOfBoundsException {
         String exampleString = "d/2020-10-20 a/1.90 s/Coffee";
         // Out of index
         assertThrows(StringIndexOutOfBoundsException.class,
@@ -33,7 +33,8 @@ public class ParserIndividualValueTest {
     }
 
     @Test
-    void AmountNotValueForAddAndEdit() throws NumberFormatException, StringIndexOutOfBoundsException, EmptyStringException{
+    void amountNotValueForAddAndEdit() throws NumberFormatException, StringIndexOutOfBoundsException
+            , EmptyStringException{
         String exampleString = "d/2020-10-20 a/TWO DOLLARS s/Coffee";
         // Checks if input amount is a valid amount
         String amount = ParseIndividualValue.parseIndividualValue(exampleString,"a/", "s/");
@@ -48,7 +49,7 @@ public class ParserIndividualValueTest {
         assertEquals(position,"1");
     }
     @Test
-    void AmountNotValueForDeleteAndMark() throws EmptyStringException {
+    void amountNotValueForDeleteAndMark() throws EmptyStringException {
         String exampleString = "ONE";
         String amount = ParseIndividualValue.parseIndividualValue(exampleString,"", "");
         assertThrows(NumberFormatException.class,
