@@ -14,6 +14,10 @@ public class TuitionExpenditure extends Expenditure {
         isPaid = true;
     }
 
+    public void resetPaid() {
+        isPaid = false;
+    }
+
     public String getPaidIcon() {
         return (isPaid) ? "[X]" : "[ ]";
     }

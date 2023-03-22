@@ -1,7 +1,7 @@
 package seedu.expenditure;
 
+import seedu.exceptions.NoPaidFieldException;
 import seedu.txtdata.TxtFileStatus;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -20,6 +20,28 @@ public class ExpenditureList {
     public void deleteExpenditure(int index) {
         expenditures.remove(index);
         expenditures.trimToSize();
+    }
+
+    public void markExpenditure(int index) throws NoPaidFieldException {
+        Expenditure expenditure = expenditures.get(index);
+        if (expenditure instanceof TuitionExpenditure) {
+            ((TuitionExpenditure) expenditure).setPaid();
+        } else if (expenditure instanceof AccommodationExpenditure) {
+            ((AccommodationExpenditure) expenditure).setPaid();
+        } else {
+            throw new NoPaidFieldException();
+        }
+    }
+
+    public void unmarkExpenditure(int index) throws NoPaidFieldException {
+        Expenditure expenditure = expenditures.get(index);
+        if (expenditure instanceof TuitionExpenditure) {
+            ((TuitionExpenditure) expenditure).resetPaid();
+        } else if (expenditure instanceof AccommodationExpenditure) {
+            ((AccommodationExpenditure) expenditure).resetPaid();
+        } else {
+            throw new NoPaidFieldException();
+        }
     }
 
     public int getSize() {

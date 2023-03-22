@@ -14,6 +14,10 @@ public class AccommodationExpenditure extends Expenditure {
         isPaid = true;
     }
 
+    public void resetPaid() {
+        isPaid = false;
+    }
+
     public String getStatusIcon() {
         return (isPaid) ? "[X]" : "[ ]";
     }

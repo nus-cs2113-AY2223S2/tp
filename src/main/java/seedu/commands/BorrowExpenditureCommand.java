@@ -26,6 +26,6 @@ public class BorrowExpenditureCommand extends Command {
         BorrowExpenditure borrowExpenditure = new BorrowExpenditure(borrowExpenditureDescription,
                 borrowExpenditureName, borrowExpenditureValue, borrowExpenditureDate, borrowDeadline);
         expenditures.addExpenditure(borrowExpenditure);
-        return new CommandResult(String.format("Added %s expenditure %s", COMMAND_WORD, borrowExpenditure.toString()));
+        return new CommandResult(String.format("Added %s expenditure: %s", COMMAND_WORD, borrowExpenditure.toString()));
     }
 }

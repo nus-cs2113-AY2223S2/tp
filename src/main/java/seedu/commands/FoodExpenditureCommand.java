@@ -23,7 +23,7 @@ public class FoodExpenditureCommand extends Command {
                 foodExpenditureValue,
                 foodExpenditureDate);
         expenditures.addExpenditure(foodExpenditure);
-        return new CommandResult(String.format("Added %s expenditure %s",
+        return new CommandResult(String.format("Added %s expenditure: %s",
                 COMMAND_WORD, foodExpenditure.toString()));
     }
 }
