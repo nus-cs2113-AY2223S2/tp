@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.exceptions.RemoveErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
@@ -47,18 +48,28 @@ public class RemoveCommand extends Command {
      */
 
     public void removeByUpcCode() {
+        try{
+            if(!upcCodes.containsKey(upcCode)){
+                throw new RemoveErrorException();
+            }
+        }catch(RemoveErrorException e){
+            Ui.printItemNotFound();
+            return;
+        }
         Item itemToRemove = upcCodes.get(upcCode);
         switch (userConfirmation.toUpperCase()) {
         case "Y":
-            String itemName = itemToRemove.getName().toLowerCase();
             int indexOfItem = itemInventory.indexOf(itemToRemove);
             upcCodes.remove(upcCode);
             itemInventory.remove(indexOfItem);
-            if (itemNameHash.get(itemName).size() == 1) {
-                itemNameHash.remove(itemName);
-                itemsTrie.remove(itemName);
-            } else {
-                itemNameHash.get(itemName).remove(itemToRemove);
+            String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
+            for (String itemName : itemNames) {
+                if (itemNameHash.get(itemName).size() == 1) {
+                    itemNameHash.remove(itemName);
+                    itemsTrie.remove(itemName);
+                } else {
+                    itemNameHash.get(itemName).remove(itemToRemove);
+                }
             }
             Ui.printSuccessRemove(itemToRemove);
             break;
@@ -75,7 +86,13 @@ public class RemoveCommand extends Command {
      * Remove an item from the inventory by the index given
      */
     public void removeByIndex() {
-        Item itemToRemove = itemInventory.get(itemIndex);
+        Item itemToRemove;
+        try{
+            itemToRemove = itemInventory.get(itemIndex);
+        }catch(ArrayIndexOutOfBoundsException e){
+            Ui.printItemNotFound();
+            return;
+        }
         switch (userConfirmation.toUpperCase()) {
         case "Y":
             String itemName = itemToRemove.getName().toLowerCase();

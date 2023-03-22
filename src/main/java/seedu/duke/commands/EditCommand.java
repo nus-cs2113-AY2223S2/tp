@@ -117,22 +117,23 @@ public class EditCommand extends Command {
     }
 
     private void handleTrie(Item updatedItem, Item oldItem) {
-        String oldItemName = oldItem.getName().toLowerCase();
-        String newItemName = updatedItem.getName().toLowerCase();
-        if (!oldItemName.equals(newItemName) && itemNameHash.get(oldItemName).size() == 1) {
-            itemNameHash.remove(oldItemName);
-            itemsTrie.remove(oldItemName);
-            ArrayList<Item> newItemArrayList = new ArrayList<>();
-            newItemArrayList.add(updatedItem);
-            itemNameHash.put(newItemName, newItemArrayList);
-        } else {
-            itemNameHash.get(oldItemName).remove(oldItem);
-            if (!itemNameHash.containsKey(newItemName)) {
+        String[] oldItemNames = oldItem.getName().toLowerCase().split(" ");
+        String newItemNamesFull = updatedItem.getName().toLowerCase();
+        for(String oldItemName: oldItemNames) {
+            if (newItemNamesFull.contains(oldItemName) && itemNameHash.get(oldItemName).size() == 1) {
+                itemNameHash.remove(oldItemName);
+                itemsTrie.remove(oldItemName);
+            } else {
+                itemNameHash.get(oldItemName).remove(oldItem);
+            }
+        }
+        String[] newItemNames = newItemNamesFull.split(" ");
+        for(String newItemName: newItemNames){
+            if(!itemNameHash.containsKey(newItemName)){
                 itemNameHash.put(newItemName, new ArrayList<Item>());
             }
             itemNameHash.get(newItemName).add(updatedItem);
         }
-        itemsTrie.add(newItemName);
     }
 
     /**
