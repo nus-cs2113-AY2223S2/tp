@@ -27,8 +27,7 @@ public class Incomes {
             float incomeValue = Float.parseFloat(argumentsByField.get("v"));
             assert incomeValue > 0 : "incomeValue has to be more than 0";
             inc = new Income(incomeDescription, incomeDate, incomeValue);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new ChChingException("Trouble adding income value");
         }
         return inc;
