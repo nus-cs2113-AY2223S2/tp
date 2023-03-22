@@ -4,7 +4,7 @@
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
-##Architecture
+## Architecture
 
 ![](https://lh3.googleusercontent.com/FwYOJJpyhNrHNAUjWo1grnsWCDHdKMosDWaJaI_3kqtVbfD8108yk0MeJaybK3ac0MOAL3EVKYYCUjSiAbBrwAT8wRBkPTj2UDfw3AdhPT0fB8twOxfRDfh3BGAawOUOUlt-rxSACvVOhvqRnFamqWM)
 
@@ -80,8 +80,7 @@ Step 2. The ```TaskList#purge()``` command will be executed. The user will see a
 
 The user will see this on his terminal after the ```purge``` command has executed.
 
-|
-
+```
 ----------------------------------------------------------------------\
 Quack! <expiredCount> Tasks have expired! Purge proceeding..\
 2\. [X if <isDone>, " " if !<isDone>] <Deadline_1>\
@@ -89,8 +88,8 @@ Quack! <expiredCount> Tasks have expired! Purge proceeding..\
 
 Purge Completed! Now we are one quack closer to finishing all tasks!\
 ----------------------------------------------------------------------
+```
 
- |
 
 Step 3. The ```Duck``` will continue to run as per usual. The user can choose to manually input the keyword purge into the CLI to repeat Step 2 above at any given time.
 
@@ -122,19 +121,17 @@ Step 1. The user launches the application for the first time. The ```TaskList```
 
 Step 2. The user wants to start afresh. The ```Storage#clear()```  command is then executed. The user will see an output in the following format:
 
-|
-
+```
 THIS IS AN IRREVERSIBLE PROCESS. ARE YOU SURE? Y/N
-
- |
+```
 
 Step 3.1. The user decides against clearing the ```TaskList```, and inputs a ```N```. The ```TaskList``` has no changes. ```Duck``` resumes after the output in the following format has been displayed:
 
-|
+```
 
 Process cancelled.
 
- |
+```
 
 Step 3.2. The user decides upon clearing the ```TaskList```, and inputs a ```Y```. The ```TaskList``` has been cleared.
 
@@ -142,11 +139,11 @@ Step 3.2. The user decides upon clearing the ```TaskList```, and inputs a ```Y``
 
 ```Duck``` resumes after the output in the following format has been displayed:
 
-|
+```
 
 Got it, all tasks have been cleared.
 
- |
+ ```
 
 ### SchoolClass Feature
 
