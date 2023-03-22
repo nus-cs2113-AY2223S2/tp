@@ -7,8 +7,12 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 3. [Design](#design)
    - [Command Parsing](#command-parsing)
    - [Ingredient Class](#ingredient-class)
+   - [Recipe Class](#recipe-class)
 4. [Implementation](#implementation)
    - [Add and Remove Command](#add-and-remove-command)
+   - [Recipe Detail Command](#recipe-detail-command)
+   - [Recipe Possible Command](#recipe-possible-command)
+   - [Recipe All Command](#recipe-all-command)
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 6. [Appendix: Requirements](#appendix-requirements)
    - [Product scope](#product-scope)
@@ -67,6 +71,14 @@ Below shows the class diagram of how ingredients are being stored in our program
 ![IngredientUML.png](images/IngredientUML.png)
 
 The current `MealCompanionSession` would keep track of the `IngredientList` which is an ArrayList of `Ingredient` objects. Each `Ingredient` object has a name and its associated quantity. This association would allow us to perform the adding and removal of ingredients by the user.
+
+### Recipe Class
+
+Below shows the class diagram of how recipes are being stored in our program
+
+![RecipeUML.png](images%2FRecipeUML.png)
+
+The current `MealCompanionSession` would keep track of the `RecipeList` which is an ArrayList of `Recipe` objects.
 
 ## Implementation
 
