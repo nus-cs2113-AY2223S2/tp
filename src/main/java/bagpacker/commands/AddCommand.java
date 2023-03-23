@@ -11,8 +11,8 @@ public class AddCommand extends Command {
 
     private final Item item;
 
-    public AddCommand(int quantity, String description) {
-        this.item = new Item(quantity, description);
+    public AddCommand(Item item) {
+        this.item = item;
     }
 
     @Override
