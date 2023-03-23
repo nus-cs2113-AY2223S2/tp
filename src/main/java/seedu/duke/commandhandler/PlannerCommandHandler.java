@@ -1,6 +1,6 @@
 package seedu.duke.commandhandler;
 
-import seedu.duke.exceptions.*;
+import seedu.duke.exceptions.DukeError;
 import seedu.duke.ui.Ui;
 import seedu.duke.userplan.UserPlan;
 import seedu.duke.util.StringSplitter;
@@ -10,7 +10,7 @@ import java.util.Scanner;
 //@@author Khulon
 public class PlannerCommandHandler implements CommandList{
     public static void plannerCommandHandler (Ui ui, UserPlan planner) throws
-            InvalidAddPlanError, InvalidDateInputError, InvalidFilterInputError, InvalidDeletePlanError, InvalidPlanError {
+            DukeError{
         ui.printPlannerGreeting();
         Scanner in = new Scanner(System.in);
 

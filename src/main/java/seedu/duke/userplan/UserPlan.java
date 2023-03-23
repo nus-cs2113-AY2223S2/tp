@@ -57,7 +57,7 @@ public class UserPlan {
      *
      * @param userCommands the commands input by user
      */
-    public static void addPlan(String[] userCommands) throws InvalidAddPlanError, InvalidDateInputError, InvalidFilterInputError {
+    public static void addPlan(String[] userCommands) throws DukeError{
         ArrayList<String> exerciseFilters = new ArrayList<>();
         if (userCommands.length < 4) {
             throw new InvalidAddPlanError();
@@ -83,7 +83,7 @@ public class UserPlan {
      *
      * @param userCommands the commands input by user
      */
-    public static void deletePlan(String[] userCommands) throws InvalidDeletePlanError, InvalidDateInputError, InvalidPlanError {
+    public static void deletePlan(String[] userCommands) throws DukeError{
         if (userCommands.length != 3){
             throw new InvalidDeletePlanError();
         }
