@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.MESSAGE_DIVIDER_LIST;
 import java.util.Scanner;
-import java.io.InputStream;
 
 public class CommandSort extends Command {
     public static final String COMMAND_NAME = "sort";
