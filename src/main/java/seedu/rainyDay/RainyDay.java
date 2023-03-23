@@ -5,7 +5,7 @@ import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
-import seedu.rainyDay.data.Parser;
+import seedu.rainyDay.modules.Parser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,8 +52,7 @@ public class RainyDay {
             try {
                 specificCommand = new Parser().parseUserInput(userInput);
                 assert specificCommand != null : "Parser returned null";
-                CommandResult outcome = executeCommand(specificCommand);
-                ui.showToUser(outcome.output);
+                executeCommand(specificCommand);
                 userInput = ui.readUserCommand();
             } catch (Exception e) {
                 logger.log(Level.WARNING, e.getMessage());
@@ -62,9 +61,10 @@ public class RainyDay {
         }
     }
 
-    private CommandResult executeCommand(Command command) {
+    private void executeCommand(Command command) {
         command.setData(financialReport);
-        return command.execute();
+        CommandResult result = command.execute();
+        result.printResult();
     }
 
     private static void setupLogger() {
@@ -81,10 +81,7 @@ public class RainyDay {
     public static void main(String[] args) {
         setupLogger();
         logger.log(Level.INFO, "Starting RainyDay");
-
         new RainyDay(filePath).run();
-        Storage.writeToCSV(financialReport);
-
         logger.log(Level.INFO, "Quitting RainyDay");
     }
 }

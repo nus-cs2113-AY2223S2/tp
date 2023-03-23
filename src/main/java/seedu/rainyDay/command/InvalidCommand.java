@@ -34,14 +34,12 @@ public class InvalidCommand extends Command {
     }
 
     /**
-     * Executes the command and returns the result
-     *
-     * @return CommandResult with the relevant output message as its attribute
+     * Executes the command and print the relevant output message
      */
     @Override
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting InvalidCommand.execute()... exiting InvalidCommand.execute()");
-        return new CommandResult(this.output);
+        return new CommandResult(output);
     }
 }

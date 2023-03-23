@@ -1,10 +1,11 @@
-package seedu.rainyDay.data;
+package seedu.rainyDay.modules;
 
 import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.DeleteCommand;
 import seedu.rainyDay.command.EditCommand;
+import seedu.rainyDay.command.ExportCommand;
 import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.command.FilterCommand;
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//@@author azriellee
 public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
@@ -37,27 +39,35 @@ public class Parser {
     private LocalDate date = null;
 
     public Command parseUserInput(String userInput) {
-        assert userInput != null : "Failed to read user input!";
-        String[] action = userInput.split("\\s+", 2);
-        if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
-            logger.info("add command executing");
-            return addStatement(action[1].trim());
-        } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
-            logger.info("delete command executing");
-            return deleteStatement(userInput); //todo: fix this to reduce calls of split.();
-        } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
-            logger.info("view command executing");
-            return generateReport();
-        } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
-            return displayHelp();
-        } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
-            logger.info("filter command executing");
-            return filterStatement(action[1]);
-        } else if (action[0].equalsIgnoreCase(Command.COMMAND_EDIT)) {
-            logger.info("edit command executing");
-            return editStatement(userInput);
-        } else {
-            logger.warning("unrecognised input from user!");
+        try {
+            assert userInput != null : "Failed to read user input!";
+            String[] action = userInput.split("\\s+", 2);
+            if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
+                logger.info("add command executing");
+                return addStatement(action[1].trim());
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
+                logger.info("delete command executing");
+                return parseDeleteStatement(userInput); //todo: fix this to reduce calls of split.();
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
+                logger.info("view command executing");
+                return generateReport();
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
+                return displayHelp(action[1].trim());
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
+                logger.info("filter command executing");
+                return filterStatement(action[1]);
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_EDIT)) {
+                logger.info("edit command executing");
+                return editStatement(userInput);
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_EXPORT)) {
+                logger.info("export command executing");
+                return generateExport();
+            } else {
+                logger.warning("unrecognised input from user!");
+                return new InvalidCommand(ErrorMessage.UNRECOGNIZED_INPUT.toString());
+            }
+        } catch (IndexOutOfBoundsException e) {
+            logger.warning("filter or add command missing details");
             return new InvalidCommand(ErrorMessage.UNRECOGNIZED_INPUT.toString());
         }
     }
@@ -155,21 +165,25 @@ public class Parser {
         }
     }
 
-    public Command deleteStatement(String userInput) throws IllegalArgumentException {
+    public Command parseDeleteStatement(String userInput) {
         String[] tokens = userInput.split("\\s+");
         if (tokens.length != 2) {
             logger.warning("invalid delete index from user");
-            throw new IllegalArgumentException(ErrorMessage.NO_DELETE_INDEX.toString());
+            return new InvalidCommand(ErrorMessage.NO_DELETE_INDEX.toString());
         }
         try {
             int index = Integer.parseInt(tokens[1]);
             if (index > RainyDay.financialReport.getStatementCount()) {
                 throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
             }
+            if (index <= 0) {
+                throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
+            }
             return new DeleteCommand(index);
         } catch (Exception e) {
             logger.warning("delete index provided incorrectly");
-            return new InvalidCommand(ErrorMessage.WRONG_DELETE_INDEX.toString());
+            return new InvalidCommand(ErrorMessage.WRONG_DELETE_INDEX.toString()
+                    + RainyDay.financialReport.getStatementCount() + "!");
         }
     }
 
@@ -177,10 +191,12 @@ public class Parser {
         return new ViewCommand();
     }
 
-    public HelpCommand displayHelp() {
-        return new HelpCommand();
+    //@@author BenjaminPoh
+    public HelpCommand displayHelp(String input) {
+        return new HelpCommand(input.trim());
     }
 
+    //@@author ChongQiRong
     private Command filterStatement(String input) {
         try {
             if (input.contains("-date")) {
@@ -197,7 +213,6 @@ public class Parser {
                 parseDefaultFilterByDescription(input);
             }
             return new FilterCommand(this.field, this.filterFlag);
-
         } catch (Exception e) {
             logger.warning("filter command given by user in the wrong format");
             return new InvalidCommand(ErrorMessage.WRONG_FILTER_FORMAT.toString());
@@ -272,7 +287,7 @@ public class Parser {
     public Command editStatement(String userInput) throws IllegalArgumentException {
         try {
             String[] tokens = userInput.split("\\s+", 3);
-            if (tokens.length == 1) {
+            if (tokens.length == 1) {  // todo change to if second value not int or less than equals 1
                 logger.warning("invalid edit index from user");
                 throw new IllegalArgumentException(ErrorMessage.NO_EDIT_INDEX.toString());
             }
@@ -319,5 +334,10 @@ public class Parser {
             logger.warning("edit index provided incorrectly");
             return new InvalidCommand(ErrorMessage.WRONG_INPUT_FORMAT.toString()); // todo update
         }
+    }
+
+    //@@author KN-CY
+    public ExportCommand generateExport() {
+        return new ExportCommand();
     }
 }

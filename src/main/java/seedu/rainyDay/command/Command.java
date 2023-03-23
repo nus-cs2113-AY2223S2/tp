@@ -9,18 +9,13 @@ import seedu.rainyDay.data.FinancialReport;
 public abstract class Command {
 
     public static final String COMMAND_ADD = "add";
-
     public static final String COMMAND_DELETE = "delete";
-
     public static final String COMMAND_VIEW = "view";
-
     public static final String COMMAND_HELP = "help";
-
     public static final String COMMAND_EXIT = "bye";
-
     public static final String COMMAND_FILTER = "filter";
-
     public static final String COMMAND_EDIT = "edit";
+    public static final String COMMAND_EXPORT = "export";
 
     protected FinancialReport financialReport;
 
@@ -39,9 +34,7 @@ public abstract class Command {
     protected abstract void setupLogger();
 
     /**
-     * Executes the command and returns the result
-     *
-     * @return CommandResult with the relevant output message as its attribute
+     * Executes the command and print the relevant output message
      */
     public abstract CommandResult execute();
 }

@@ -14,27 +14,28 @@ Thank you for using rainyDay. {todo}
 {todo patterns that we will be using, what does it mean, e.g. "", ` `, CAPS... etc}
 
 <!-- TOC -->
-
 * [User Guide](#user-guide)
-    * [Introduction](#introduction)
-    * [Acknowledgement](#acknowledgement)
-    * [How to use the user guide](#how-to-use-the-user-guide)
-    * [Quick Start](#quick-start)
-    * [Features](#features)
-        * [Adding a transaction](#adding-a-transaction)
-        * [Deleting a transaction](#deleting-a-transaction)
-        * [Viewing the financial report](#viewing-the-financial-report)
-        * [Viewing help](#viewing-help)
-        * [Filter statements](#filter-statements)
-        * [Saving the data](#saving-the-data)
-        * [Loading saved data](#loading-saved-data)
-        * [Exporting as .CSV](#exporting-as-csv)
-        * [Exiting the application](#exiting-the-application)
-    * [FAQ](#faq)
-    * [Command Summary](#command-summary)
-    * [Glossary](#glossary)
-
+  * [Introduction](#introduction)
+  * [Acknowledgement](#acknowledgement)
+  * [How to use the user guide](#how-to-use-the-user-guide)
+  * [Quick Start](#quick-start)
+  * [Features](#features)
+    * [Adding a transaction](#adding-a-transaction)
+    * [Deleting a transaction](#deleting-a-transaction)
+    * [Viewing the financial report](#viewing-the-financial-report)
+    * [Viewing help](#viewing-help)
+    * [Filter statements](#filter-statements)
+    * [Saving the data](#saving-the-data)
+    * [Loading saved data](#loading-saved-data)
+    * [Exporting to CSV](#exporting-to-csv)
+    * [Exiting the application](#exiting-the-application)
+  * [FAQ](#faq)
+  * [Command Summary](#command-summary)
+  * [Glossary](#glossary)
 <!-- TOC -->
+
+
+
 
 ## Quick Start
 
@@ -106,11 +107,50 @@ Format: `view`
 
 ### Filter statements
 
-filter DESCRIPTION
-filter -d DESCRIPTION
-filter -c CATEGORY
-filter -date DD/MM/YYYY
-{todo}
+View a filtered list of statements in the financial report
+
+Format : `filter DESCRIPTION` or `filter FLAG FIELD`
+
+* Default filter without `FLAG` filters by description
+* The `FLAG` must be one of the following:
+  * `-d` to filter by description
+  * `-c` to filter by category
+  * `-in` to filter by inflows
+  * `-out` to filter by outflows
+  * `-date` to filter by date
+* date must be in the form DD/MM/YYYY
+
+Example of usage:
+
+`filter school`
+
+`filter -d school`
+
+`filter -date 22/03/2023`
+
+
+### Edit statements
+
+Edit a statement already in financial report
+
+Format : `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG`
+
+* The `FLAG` must be one of the following:
+    * `-d` to edit the description
+    * `-c` to edit the category
+    * `-v` to edit the date
+    * `-in` to change direction to inflow
+    * `-out` to change direction to outflow
+    * {todo}
+* No `NEWFIELD` required for changing direction
+
+Example of usage:
+
+`edit 1 -add -in -d Beef noodles -c Food $15`
+
+`edit 2 -d school`
+
+`edit 3 -in`
 
 ### Saving the data
 
@@ -120,9 +160,17 @@ filter -date DD/MM/YYYY
 
 {todo}
 
-### Exporting as .CSV
+### Exporting to CSV
 
-{todo, include what is .csv}
+Exports your financial statements into a comma-separated values file.
+
+Format: `export`
+> **Background:** A CSV file allows data to be saved in a format which can be viewed as a table.
+> 
+>💡Saving your financial statements in a CSV file will allow you to view your statements in commonly use applications like *Microsoft Excel* and *Google Sheets*.
+
+{todo: tell user where they can locate saved file}
+
 
 ### Exiting the application
 
@@ -138,14 +186,15 @@ that
 
 ## Command Summary
 
-| Action | Format <br> Example input                                                                                            |
-|--------|----------------------------------------------------------------------------------------------------------------------|
-| Add    | `add -`(in/out) (description) `$`(value) <br><br> **Example:** <br> `add -out Ipad $120` <br> `add -in angpao $3000` |
-| Delete | `delete` (index) <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                               |
-| View   | `view`                                                                                                               |
-| Help   | `help`                                                                                                               |
-| filter | `filter` {todo}                                                                                                      |
-| Exit   | `bye`                                                                                                                |
+| Action | Format <br> Example input                                                                                                                                                                 |
+|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add    | `add -`(in/out) (description) `$`(value) <br><br> **Example:** <br> `add -out Ipad $120` <br> `add -in angpao $3000`                                                                      |
+| Delete | `delete` (index) <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                                                                                                    |
+| View   | `view`                                                                                                                                                                                    |
+| Help   | `help`                                                                                                                                                                                    |
+| Filter | `filter DESCRIPTION` or `filter FLAG FIELD` <br><br> **Example:** <br> `filter school` <br> `filter -d school` <br>`filter -date 22/03/2023`                                              |
+| Edit   | `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -add -in -d Beef noodles -c Food $15` <br> `edit -d school` <br> `edit -in` |
+| Exit   | `bye`                                                                                                                                                                                     |
 
 ## Glossary
 
