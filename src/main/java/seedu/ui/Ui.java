@@ -3,7 +3,7 @@ package seedu.ui;
 import java.util.Scanner;
 
 public class Ui {
-    private static final String WELCOME_MESSAGE = "Welcome to Fitness checker, Let's get moving!\n" + "\"/start <DD/MM/YY>\" to begin " +
+    private static final String WELCOME_MESSAGE = "Let's get moving!\n" + "\"/start <DD/MM/YY>\" to begin " +
             "your workout";
     private static final String LOGO_MESSAGE = " _______  __  .___________.________  \n" +
             "|   ____||  | |           |       /  \n" +

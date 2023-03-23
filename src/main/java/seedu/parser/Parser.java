@@ -37,28 +37,28 @@ public class Parser {
         String arguments = matcher.group("arguments");
 
         switch (commandName) {
-            case "/start":
-                return processStart(arguments);
-            case "/add":
-                return processAdd(arguments);
-            case "/delete":
-                return processDelete(arguments);
-            case "/list":
-                if (arguments != null && !arguments.trim().isEmpty()) {
-                    // If there are arguments after the "/list" command, return an IncorrectCommand instance
-                    return new IncorrectCommand();
-                }
-                return new ListCommand();
-            case "/view":
-                return processView(arguments);
-            case "/end":
-                return new EndCommand();
-            case "/exit":
-                return new ExitCommand();
-            case "/help":
-                return new HelpCommand();
-            default:
+        case "/start":
+            return processStart(arguments);
+        case "/add":
+            return processAdd(arguments);
+        case "/delete":
+            return processDelete(arguments);
+        case "/list":
+            if (arguments != null && !arguments.trim().isEmpty()) {
+                // If there are arguments after the "/list" command, return an IncorrectCommand instance
                 return new IncorrectCommand();
+            }
+            return new ListCommand();
+        case "/view":
+            return processView(arguments);
+        case "/end":
+            return new EndCommand();
+        case "/exit":
+            return new ExitCommand();
+        case "/help":
+            return new HelpCommand();
+        default:
+            return new IncorrectCommand();
         }
     }
 
