@@ -125,6 +125,7 @@ public class AddModuleCommand extends Command implements LoggerInterface {
                     moduleList.sortModules();
                     Module referenceModule = allModules.findModule(module.getCode());
                     ui.printAddModuleMessage(module, moduleList, getLessonTypes(referenceModule));
+
                 }
             }
 
@@ -167,9 +168,9 @@ public class AddModuleCommand extends Command implements LoggerInterface {
             }
         }
 
-        if (this.isAdded(moduleList, module)){
+        if (this.isAdded(moduleList, module)) {
             int index = 0;
-            for (Module module: moduleList){
+            for (Module module: moduleList) {
                 if (module.getCode().equals(this.module.getCode())){
                     this.module.setTimetable(module.getModuleTimetable());
                     break;
