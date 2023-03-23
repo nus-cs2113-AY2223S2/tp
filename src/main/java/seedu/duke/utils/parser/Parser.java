@@ -5,6 +5,7 @@ import seedu.duke.objects.Alert;
 import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
+import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 
 import seedu.duke.commands.AddCommand;
@@ -41,12 +42,18 @@ public class Parser {
     private static final Integer MINMAX_INDEX = 3;
     private static final Integer STOCK_INDEX = /*4*/ 5;
     public static Scanner in = new Scanner(System.in);
-    private ArrayList<String> parsedInfo = new ArrayList<>();
-    private String commandWord;
-    private String commandInfo;
-
     private Inventory inventory;
-    private AlertList alertList;
+    private SessionManager session;
+
+    public Parser(Inventory inventory, SessionManager currentSession) {
+        this.inventory = inventory;
+        this.session = currentSession;
+        private ArrayList<String> parsedInfo = new ArrayList<>();
+        private String commandWord;
+        private String commandInfo;
+
+        private Inventory inventory;
+        private AlertList alertList;
 
     public Parser(Inventory inventory, AlertList alertList) {
         this.inventory = inventory;
@@ -96,10 +103,15 @@ public class Parser {
         case "help":
             parseHelp();
             break;
+        case "write":
+            session.writeSession(inventory);
+            break;
         default:
             Ui.printUnknownCommand();
             break;
         }
+        commandInfo = "";
+        commandWord = "";
     }
 
     public void parseFilter(final String rawInput, Inventory inventory) {
@@ -219,8 +231,8 @@ public class Parser {
             Pattern pattern = Pattern.compile(ADD_REGEX);
             Matcher matcher = pattern.matcher(rawInput);
             if (matcher.matches()) {
-                Item newItem = new Item(matcher.group(NAME_INDEX), matcher.group(UPC_INDEX), matcher.group(QTY_INDEX),
-                        matcher.group(PRICE_INDEX));
+                Item newItem = new Item(matcher.group(NAME_INDEX), matcher.group(UPC_INDEX),
+                        Integer.parseInt(matcher.group(QTY_INDEX)), Double.parseDouble(matcher.group(PRICE_INDEX)));
                 Command addCommand = new AddCommand(inventory, newItem);
                 addCommand.run();
             } else {

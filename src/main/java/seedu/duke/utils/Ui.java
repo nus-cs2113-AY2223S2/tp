@@ -8,10 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static seedu.duke.utils.ColorCode.ANSI_BLUE;
-import static seedu.duke.utils.ColorCode.ANSI_GREEN;
-import static seedu.duke.utils.ColorCode.ANSI_RED;
-import static seedu.duke.utils.ColorCode.ANSI_RESET;
+import static seedu.duke.utils.ColorCode.*;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
@@ -35,6 +32,11 @@ public class Ui {
     public static final String EMPTY_LIST = "There are no items in your inventory.";
     public static final String CONFIRM_MESSAGE = "Are you sure you want this item to be permanently deleted?\n(Y/N)";
 
+    public static final String INVALID_SESSION_FILE = "INFO: A Session Inventory file was found but it is corrupted. " +
+            "Please delete the corrupt .csv file";
+    public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered. The inventory has been " +
+            "updated.";
+    public static final String EMPTY_SESSION_FILE = "INFO: Empty/No Session Inventory file found.";
     public static final int NAME_COL_WIDTH = 15;
     public static final int UPC_COL_WIDTH = 12;
     public static final int QTY_COL_WIDTH = 8;
@@ -142,6 +144,19 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public static void printInvalidSessionFile() {
+        System.out.println(ANSI_YELLOW + INVALID_SESSION_FILE + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printRecoveredSessionFile() {
+        System.out.println(ANSI_GREEN + RECOVERED_SESSION_FILE + ANSI_RESET);
+        System.out.println(LINE);
+    }
+    public static void printEmptySessionFile() {
+        System.out.println(ANSI_YELLOW + EMPTY_SESSION_FILE + ANSI_RESET);
+        System.out.println(LINE);
+    }
     public static void printUnknownCommand() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + UNKNOWN_COMMAND + ANSI_RESET);
