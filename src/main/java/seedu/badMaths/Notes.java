@@ -5,8 +5,8 @@ import seedu.badMaths.ui.Ui;
 import java.util.ArrayList;
 
 public class Notes {
-    private String toDo;
     private static final String filePath = "data/notes.txt";
+    private String toDo;
     private ArrayList<String> cache = new ArrayList<>(Storage.loadFile(filePath));
     public Notes(String toDo) {
         this.toDo = toDo;
