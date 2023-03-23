@@ -44,4 +44,8 @@ public class RecipeList {
     public Recipe getRecipe(int index) {
         return recipes.get(index);
     }
+
+    public int size() {
+        return recipes.size();
+    }
 }
