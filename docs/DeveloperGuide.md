@@ -1,4 +1,5 @@
 # Developer Guide
+This developer guide will help you to get started with our product, badMaths!
 
 ## Table of Contents
 1. [Design & implementation](#design-&-implementation)
@@ -14,12 +15,25 @@
 
 
 ## Design & implementation
-### Store Notes
-The 
+### Store and Display Notes
+The Store and Display Notes functionality allows users to input notes 
+which will be stored in a list, and to display a list of all notes
+stored by users. This functionality is achieved through the `Store.` and `List.` commands.
 
-Store. hello
-List.
+The syntax for the commands of this functionality is as follows:
+1. `Store. <item>` For storing of notes into the list, where `<item>` represents the note that 
+users would like to store. 
 
+   Example: `Store. addition`
+2. `List.` For displaying of a list of all notes stored by users.
+
+   Example: `List.`
+
+Below is an illustration of how the `Store.` and `List.` are used to allow
+users to input notes to a list and to display a list of all notes that are
+stored inside the list.
+1. This is step 1.
+2. This is step 2.
 
 
 
