@@ -152,7 +152,8 @@ public class DiagnosisTest {
                 ));
         ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
         assertTrue(testIllnesses.stream()
-                .anyMatch(illnessMatch -> illnessMatch.getIllness().getIllnessName().equals("Hypertension (High Blood Pressure)")
+                .anyMatch(illnessMatch ->
+                        illnessMatch.getIllness().getIllnessName().equals("Hypertension (High Blood Pressure)")
                 ));
     }
 
