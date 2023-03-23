@@ -28,8 +28,8 @@ public class Meal360 {
         try {
             recipeList = database.loadDatabase();
             ui.printMessage("Database loaded successfully.");
-        } catch (IOException error) {
-            ui.printMessage(error.getMessage());
+        } catch (Exception e) {
+            ui.printMessage("Error loading database, loading default database instead.");
             ui.printMessage("Overwriting database with new default database...");
             recipeList = database.defaultRecipeList();
         }
@@ -70,8 +70,15 @@ public class Meal360 {
             }
             ui.printSeparator();
         } else if (command[0].equals("list")) {
-            RecipeList recipeListToPrint = parser.parseListRecipe(command, recipeList);
-            ui.listRecipe(recipeListToPrint);
+            try {
+                ui.printSeparator();
+                RecipeList recipeListToPrint = parser.parseListRecipe(command, recipeList);
+                ui.listRecipe(recipeListToPrint);
+            } catch (IllegalArgumentException e) {
+                String errorMessage = "Please enter the command in the valid format. Some arguments might be missing.";
+                ui.printMessage(errorMessage);
+            }
+            ui.printSeparator();
         } else if (command[0].equals("add")) {
             ui.printSeparator();
             try {
@@ -104,11 +111,23 @@ public class Meal360 {
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
+        } else if (command[0].equals("tag")) {
+            try {
+                ui.printSeparator();
+                String tag = parser.parseTagRecipe(command, recipeList);
+                ui.printMessage("You have modified the recipe(s) in this \"" + tag + "\" tag.");
+            } catch (IllegalArgumentException e) {
+                String errorMessage = "Please enter the command in the correct format.";
+                ui.printMessage(errorMessage);
+            } catch (IndexOutOfBoundsException e) {
+                String errorMessage = "Sorry, I am unable to find the recipes you entered.";
+                ui.printMessage(errorMessage);
+            }
+            ui.printSeparator();
         } else if (command[0].equals("weekly")) {
             try {
                 ui.printSeparator();
                 WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipeList);
-
                 if (command[1].equals("/add") || command[1].equals("/multiadd")) {
                     weeklyPlan.addPlans(recipeMap);
                     ui.printMessage("I've added the recipes to your weekly plan!");

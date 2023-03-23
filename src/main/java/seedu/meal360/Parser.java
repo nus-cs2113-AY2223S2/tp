@@ -51,7 +51,7 @@ public class Parser {
             recipeToEdit = recipeList.findByName(recipeName);
         }
         System.out.println("Do you want to edit recipe fully or partially?");
-        System.out.println("Press 1 for full edit | Press 2 for partial edit");
+        System.out.println("Press 1 for full edit | Press 2 for partial edit | Press 3 to add ingredients");
 
         Scanner getInput = new Scanner(System.in);
         int index = getInput.nextInt();
@@ -97,6 +97,26 @@ public class Parser {
             recipeToEdit.getIngredients().remove(ingredientToRemove);
             recipeToEdit.getIngredients()
                     .put(newIngredientName, Integer.parseInt(command[command.length - 1]));
+            recipeList.editRecipe(recipeToEdit, recipeToEdit.getIngredients());
+        } else if (index == 3) {
+            System.out.println("These are the current ingredients:");
+            ui.printSeparator();
+            Recipe recipe = parseViewRecipe(recipeName, recipeList);
+            ui.printRecipe(recipe);
+            ui.printSeparator();
+            System.out.println("Please Enter Additional Ingredients & Quantity (Enter done when complete): ");
+            while (true) {
+                String line = userInput.nextLine();
+                if (line.equals("done")) {
+                    ui.printSeparator();
+                    break;
+                } else {
+                    String[] command = line.trim().split(" ");
+                    String ingredientName = combineWords(command, 0);
+                    recipeToEdit.getIngredients()
+                            .put(ingredientName, Integer.parseInt(command[command.length - 1]));
+                }
+            }
             recipeList.editRecipe(recipeToEdit, recipeToEdit.getIngredients());
         }
 
@@ -151,18 +171,89 @@ public class Parser {
         }
     }
 
+    public String parseTagRecipe(String[] inputs, RecipeList recipeList) {
+        String tag;
+        if (inputs.length == 1) {
+            throw new IllegalArgumentException("Please indicate at least a tag and a recipe.");
+        } else {
+            StringBuilder commandString = new StringBuilder(inputs[1]);
+            for (int i = 2; i < inputs.length; i++) {
+                commandString.append(" ").append(inputs[i]);
+            }
+            boolean isAddTag = commandString.indexOf("<<") != -1 && commandString.indexOf(">>") == -1;
+            boolean isRemoveTag = commandString.indexOf("<<") == -1 && commandString.indexOf(">>") != -1;
+            if (!(isAddTag || isRemoveTag)) {
+                throw new IllegalArgumentException("Please enter the command in the correct format.");
+            } else if (isAddTag) {
+                tag = parseAddRecipeTag(commandString.toString(), recipeList);
+            } else if (isRemoveTag) {
+                tag = parseRemoveRecipeTag(commandString.toString(), recipeList);
+            } else {
+                throw new IllegalArgumentException("Invalid command.");
+            }
+        }
+        return tag;
+    }
+
+    public String parseAddRecipeTag(String command, RecipeList recipeList) {
+        String tag;
+        String[] args = command.trim().split("<<");
+        if (args.length < 2) {
+            throw new IllegalArgumentException("Please enter the command in the correct format.");
+        }
+        tag = args[0].trim();
+        String[] recipesToTag = args[1].split(",");
+        for (String recipeName : recipesToTag) {
+            recipeName = recipeName.trim();
+            Recipe recipe = recipeList.findByName(recipeName);
+            if (recipe == null) {
+                throw new IndexOutOfBoundsException("Unable to find the recipe.");
+            }
+            recipeList.addRecipeToTag(tag, recipe);
+        }
+        return tag;
+    }
+
+    public String parseRemoveRecipeTag(String command, RecipeList recipeList) {
+        String tag;
+        String[] args = command.trim().split(">>");
+        if (args.length < 2) {
+            throw new IllegalArgumentException("Please enter the command in the correct format.");
+        }
+        tag = args[0].trim();
+        String[] recipesToTag = args[1].split(",");
+        for (String recipeName : recipesToTag) {
+            recipeName = recipeName.trim();
+            Recipe recipe = recipeList.findByName(recipeName);
+            if (recipe == null) {
+                throw new IndexOutOfBoundsException("Unable to find the recipe.");
+            }
+            recipeList.removeRecipeFromTag(tag, recipe);
+        }
+        return tag;
+    }
+
     public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList) {
         String[] filters;
+        boolean isTag = false;
         if (inputs.length == 1) {
             filters = null;
         } else {
-            StringBuilder filterString = new StringBuilder(inputs[1]);
-            for (int i = 2; i < inputs.length; i++) {
+            int firstArgsIndex = 1;
+            if (inputs[1].equals("/t")) {
+                if (inputs.length == 2) {
+                    throw new IllegalArgumentException("argument is missing.");
+                }
+                firstArgsIndex = 2;
+                isTag = true;
+            }
+            StringBuilder filterString = new StringBuilder(inputs[firstArgsIndex]);
+            for (int i = firstArgsIndex + 1; i < inputs.length; i++) {
                 filterString.append(" ").append(inputs[i]);
             }
             filters = filterString.toString().split("&");
         }
-        return recipeList.listRecipes(filters);
+        return recipeList.listRecipes(filters, isTag);
     }
 
     public Recipe parseViewRecipe(String[] command, RecipeList recipes) {
@@ -222,12 +313,13 @@ public class Parser {
                         "Please indicate if you would want to add or delete the recipe from your weekly "
                                 + "plan.");
             }
+
+            return updatedWeeklyPlan;
         } catch (ArrayIndexOutOfBoundsException error) {
             throw new ArrayIndexOutOfBoundsException("Insufficient number of arguments provided.");
         } catch (NumberFormatException error) {
             throw new NumberFormatException("Please enter a valid number as the last argument.");
         }
-        return updatedWeeklyPlan;
     }
 
     private WeeklyPlan parseAddSingleWeeklyPlan(String[] command, RecipeList recipes)
@@ -237,11 +329,11 @@ public class Parser {
             throw new InvalidNegativeValueException("Number of days needs to be at least 1.");
         }
 
-        int nameLastIndex = command.length - 1;
+        int nameLastIndex = (command[1].equals("/add")) ? command.length - 1 : command.length;
         WeeklyPlan thisWeekPlan = new WeeklyPlan();
         StringBuilder recipeName = new StringBuilder(command[2]);
         for (int i = 3; i < nameLastIndex; i++) {
-            recipeName.append(" ").append(command[i].toLowerCase().trim());
+            recipeName.append(" ").append(command[i]);
         }
 
         if (recipes.findByName(recipeName.toString().trim()) != null) {

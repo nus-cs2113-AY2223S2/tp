@@ -54,12 +54,10 @@ public class Ui {
     }
 
     public void listRecipe(RecipeList recipeListToPrint) {
-        printSeparator();
         int numberOfRecipes = recipeListToPrint.size();
         int order = 0;
         if (numberOfRecipes == 0) {
             printMessage("There is nothing to list.");
-            printSeparator();
             return;
         }
         printMessage("These are the recipes you have (" + numberOfRecipes + " recipes):");
@@ -68,7 +66,6 @@ public class Ui {
             printMessage(order + ". " + recipe.getName() + "   (" + recipe.getNumOfIngredients()
                     + " ingredients)");
         }
-        printSeparator();
     }
 
     public void printHelp() {
