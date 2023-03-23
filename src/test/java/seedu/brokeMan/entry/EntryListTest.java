@@ -8,8 +8,7 @@ import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.brokeMan.entry.EntryList.deleteEntry;
-import static seedu.brokeMan.entry.EntryList.getTotalAmount;
+import static seedu.brokeMan.entry.EntryList.*;
 import static seedu.brokeMan.parser.StringToTime.convertStringToTime;
 
 
@@ -45,7 +44,7 @@ public class EntryListTest {
 
     @Test
     public void getTotalAmount_inputList_success() {
-        assertEquals(10, getTotalAmount(expenseList));
+        assertEquals(10, getEntryListSum(expenseList));
     }
 
 

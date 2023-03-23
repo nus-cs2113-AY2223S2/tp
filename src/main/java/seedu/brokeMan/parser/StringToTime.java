@@ -1,9 +1,8 @@
 package seedu.brokeMan.parser;
 
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
 import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_TIME;
@@ -59,5 +58,10 @@ public class StringToTime {
             month = Month.of(Integer.parseInt(yearAndMonth[1]));
         }
         return month;
+    }
+
+    public static void checkIfValidDateString(String date) throws DateTimeParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM");
+        YearMonth yearMonth = YearMonth.parse(date, formatter);
     }
 }

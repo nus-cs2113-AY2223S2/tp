@@ -75,9 +75,13 @@ public class IncomeList extends EntryList{
      */
     public static void sortIncomeByAmount() {
         sortEntriesByAmount(incomeList);
+        Ui.showToUser(String.format("Total income: $%.2f", getEntryListSum(incomeList)));
+        Ui.showToUserWithLineBreak("");
     }
     public static void sortIncomeByDate() {
         sortEntriesByDate(incomeList);
+        Ui.showToUser(String.format("Total income: $%.2f", getEntryListSum(incomeList)));
+        Ui.showToUserWithLineBreak("");
     }
 
     public static List<Entry> getIncomesMadeInMonth(int year, Month month) {

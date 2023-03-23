@@ -90,6 +90,8 @@ public class ExpenseList extends EntryList {
      */
     public static void sortExpensesByAmount() {
         sortEntriesByAmount(expenseList);
+        Ui.showToUser("Total expenses: $" + getEntryListSum(expenseList));
+        Ui.showToUserWithLineBreak("");
     }
 
     /**
@@ -97,7 +99,10 @@ public class ExpenseList extends EntryList {
      */
     public static void sortExpensesByDate() {
         sortEntriesByDate(expenseList);
+        Ui.showToUser("Total expenses: $" + getEntryListSum(expenseList));
+        Ui.showToUserWithLineBreak("");
     }
+
     public static List<Entry> getExpensesMadeInMonth(int year, Month month) {
         return selectEntryForDate(year, month, expenseList);
     }
