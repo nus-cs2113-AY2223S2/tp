@@ -83,7 +83,16 @@ The ```runBagPacker()``` method will continually parse and execute relevant comm
 
 Mechanism: ```DeleteListCommand.execute()``` reassigns the existing ```packingList``` to a new empty ArrayList of Items, thus deleting the ```packingList```.
 
+#### Pack Command
+```PackCommand``` is used to mark an item in the list as packed.
 
+Mechanism: ```PackCommand.execute()``` calls the ```PackingList.packItem()``` method from the ```PackingList``` class. 
+This will execute the ```setPacked()``` method to set the value of the boolean ```isPacked``` to be ```true```, and mark the item as packed in the ```PackingList``` ArrayList.
+
+#### Unpack Command
+```Unpack Command``` is used to mark an item in the list as unpacked.
+Mechanism: ```UnpackCommand.execute()``` calls the ```PackingList.unpackItem()``` method from the ```PackingList``` class.
+This will execute the ```setPacked``` method to set the value of the boolean ```isPacked``` to be ```false```, and mark the item as unpacked in the ```PackingList``` ArrayList.
 
 ## Product scope
 
