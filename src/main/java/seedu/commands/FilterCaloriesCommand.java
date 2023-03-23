@@ -4,7 +4,6 @@ import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
 import seedu.entities.Food;
-import seedu.exceptions.InvalidIndexException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.ui.GeneralUi;
 import java.util.List;
