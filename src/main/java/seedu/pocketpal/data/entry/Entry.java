@@ -1,7 +1,7 @@
 package seedu.pocketpal.data.entry;
 
-import com.google.gson.Gson;
 import seedu.pocketpal.communication.Serialisable;
+import seedu.pocketpal.data.parsing.EntryParser;
 import seedu.pocketpal.frontend.constants.EntryConstants;
 
 import java.time.LocalDateTime;
@@ -88,6 +88,6 @@ public class Entry implements Serialisable {
 
     @Override
     public String serialise() {
-        return new Gson().toJson(this);
+        return EntryParser.serialise(this);
     }
 }
