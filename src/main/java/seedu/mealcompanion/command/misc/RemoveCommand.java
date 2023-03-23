@@ -29,7 +29,7 @@ public class RemoveCommand extends ExecutableCommand {
      */
     public static int findIndex(MealCompanionSession mealCompanionSession, String name) {
         for (int i = 0; i < mealCompanionSession.getIngredients().size(); i += 1) {
-            if (mealCompanionSession.getIngredients().get(i).getMetadata().getName().equals(name)) {
+            if (mealCompanionSession.getIngredients().get(i).getMetadata().getName().equalsIgnoreCase(name)) {
                 return i;
             }
         }

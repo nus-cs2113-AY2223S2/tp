@@ -67,7 +67,7 @@ public class AddCommand extends ExecutableCommand {
 
     public int findIndex(MealCompanionSession mealCompanionSession, String name) {
         for (int i = 0; i < mealCompanionSession.getIngredients().size(); i += 1) {
-            if (mealCompanionSession.getIngredients().get(i).getMetadata().getName().equals(name)) {
+            if (mealCompanionSession.getIngredients().get(i).getMetadata().getName().equalsIgnoreCase(name)) {
                 return i;
             }
         }
@@ -95,6 +95,11 @@ public class AddCommand extends ExecutableCommand {
             } else {
                 addToExistingIngredients(mealCompanionSession, quantity, indexOfExistingIngredient);
             }
+        } catch (NumberFormatException e) {
+            mealCompanionSession.getUi().printMessage("OOPS, please input a number for quantity");
+        } catch (NullPointerException e) {
+            mealCompanionSession.getUi().printMessage("OOPS, Certain fields are empty");
+            mealCompanionSession.getUi().printMessage("please follow the format: add <ingredient> /qty <quantity>");
         } catch (Exception e) {
             mealCompanionSession.getUi().printMessage(String.valueOf(e));
         }
