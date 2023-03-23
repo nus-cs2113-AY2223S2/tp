@@ -2,11 +2,14 @@ package seedu.meal360;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
 
 public class Parser {
 
     Ui ui = new Ui();
+    Exceptions exceptions = new Exceptions();
 
     public String combineWords(String[] input, int startIndex) {
         StringBuilder word = new StringBuilder(input[startIndex]);
@@ -227,13 +230,14 @@ public class Parser {
         }
     }
 
-    // parser to read dd/mm/yyyy format as local date
+    // parser to read dd/mm/yyyy format as local date catching invalid date format
     public LocalDate parseDate(String input) {
-        String[] date = input.split("/");
-        int day = Integer.parseInt(date[0]);
-        int month = Integer.parseInt(date[1]);
-        int year = Integer.parseInt(date[2]);
-        return LocalDate.of(year, month, day);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        try {
+            return LocalDate.parse(input, formatter);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Please enter a valid date in the format dd/mm/yyyy");
+        }
     }
 
     public RecipeList parseLoadDatabase(String input) {

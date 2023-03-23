@@ -1,28 +1,19 @@
 package seedu.meal360;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.time.LocalDate;
 
-public class IngredientList extends ArrayList<Ingredient> {
+public class IngredientList extends HashMap<String, Ingredient> {
     private static final Parser parser = new Parser();
 
-    // private exception for ingredient not found
-    private class IngredientNotFoundException extends Exception {
-        public IngredientNotFoundException() {
-            System.out.println("Ingredient not found");
-        }
-    }
-
     // public method to find count of ingredient
-    public Integer findCount(String ingredientName) {
+    public Integer findIngredientCount(String ingredientName) {
         try {
-            for (Ingredient ingredient : this) {
-                if (ingredient.ingredientName.equalsIgnoreCase(ingredientName)) {
-                    return ingredient.ingredientCount;
-                }
+            if (this.containsKey(ingredientName)) {
+                return this.get(ingredientName).ingredientCount;
             }
-            throw new IngredientNotFoundException();
-        } catch (IngredientNotFoundException e) {
+            throw new Exceptions.IngredientNotFoundException();
+        } catch (Exceptions.IngredientNotFoundException e) {
             return null;
         }
     }
@@ -30,43 +21,56 @@ public class IngredientList extends ArrayList<Ingredient> {
     // public method to find expiry date of ingredient
     public LocalDate findExpiryDate(String ingredientName) {
         try {
-            for (Ingredient ingredient : this) {
-                if (ingredient.ingredientName.equalsIgnoreCase(ingredientName)) {
-                    return ingredient.expiryDate;
-                }
+            if (this.containsKey(ingredientName)) {
+                return this.get(ingredientName).expiryDate;
             }
-            throw new IngredientNotFoundException();
-        } catch (IngredientNotFoundException e) {
+            throw new Exceptions.IngredientNotFoundException();
+        } catch (Exceptions.IngredientNotFoundException e) {
             return null;
         }
     }
 
     public void addIngredient(Ingredient ingredient) {
-        super.add(ingredient);
+        super.put(ingredient.ingredientName, ingredient);
     }
 
     public void editIngredient(Ingredient ingredient, Integer ingredientCount, String expiryDate) {
-        ingredient.ingredientCount = ingredientCount;
-        ingredient.expiryDate = parser.parseDate(expiryDate);
+        try {
+            if (this.containsKey(ingredient.ingredientName)) {
+                ingredient.ingredientCount = ingredientCount;
+                ingredient.expiryDate = parser.parseDate(expiryDate);
+                ingredient.expired = ingredient.expiryDate.isBefore(LocalDate.now());
+                super.put(ingredient.ingredientName, ingredient);
+            }
+            throw new Exceptions.IngredientNotFoundException();
+        } catch (Exceptions.IngredientNotFoundException e) {
+            System.out.println("Ingredient not found");
+        }
     }
 
-    public void deleteIngredient(int ingredientNum) {
-        Ingredient ingredientToDelete = super.get(ingredientNum);
-        super.remove(ingredientToDelete);
+    public void deleteIngredient(String ingredient) {
+        try {
+            if (this.containsKey(ingredient)) {
+                this.remove(ingredient);
+            }
+            throw new Exceptions.IngredientNotFoundException();
+        } catch (Exceptions.IngredientNotFoundException e) {
+            System.out.println("Ingredient not found");
+        }
     }
 
     // private indexed list of ingredients, count and expiry date
     private String listIngredients() {
         String ingredientList = "";
-        for (int i = 0; i < this.size(); i++) {
-            ingredientList += (i + 1) + ". " + this.get(i).ingredientName + " ("
-                    + this.get(i).ingredientCount + " left, expires on "
-                    + this.get(i).expiryDate + ")\n";
+        int index = 1;
+        for (Ingredient ingredient : this.values()) {
+            ingredientList += String.format("%d. %s (count: %d, expires on %s)", index,
+                    ingredient.ingredientName, ingredient.ingredientCount, ingredient.expiryDate);
         }
         return ingredientList;
     }
 
-    // public method to print ingredients in list
+    // public method to print ingredients in list with indexing
     public void printIngredients() {
         System.out.println(listIngredients());
     }
@@ -75,10 +79,11 @@ public class IngredientList extends ArrayList<Ingredient> {
     // if no expired ingredients, print "No expired ingredients"
     public void printExpiredIngredients() {
         String expiredIngredients = "";
-        for (Ingredient ingredient : this) {
+        int index = 1;
+        for (Ingredient ingredient : this.values()) {
             if (ingredient.expired) {
-                expiredIngredients += ingredient.ingredientName + " (expires on "
-                        + ingredient.expiryDate + ")\n";
+                expiredIngredients += String.format("%d. %s (expires on %s)", index,
+                        ingredient.ingredientName, ingredient.expiryDate);
             }
         }
         if (expiredIngredients.equals("")) {
@@ -95,11 +100,10 @@ public class IngredientList extends ArrayList<Ingredient> {
 
     // public method to clear expired ingredients
     public void clearExpiredIngredients() {
-        for (int i = 0; i < this.size(); i++) {
-            if (this.get(i).expired) {
-                this.remove(i);
+        for (Ingredient ingredient : this.values()) {
+            if (ingredient.expired) {
+                this.remove(ingredient.ingredientName);
             }
         }
     }
-
 }
