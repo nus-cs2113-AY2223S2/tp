@@ -64,5 +64,5 @@ Recipe --> "1" StepList : contains >
 IngredientList --> Ingredient : stores >
 StepList --> Step : stores >
 RecipeList ..> RecipeListEmptyError : throws
-RecipeListEmptyError ..> Exceptions : extends
+RecipeListEmptyError --|> Exceptions : extends
 @enduml
