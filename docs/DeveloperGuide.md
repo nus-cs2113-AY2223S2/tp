@@ -3,8 +3,8 @@
   - [Acknowledgements](#acknowledgements)
   - [Setup \& Prerequisites](#setup--prerequisites)
   - [Design \& implementation](#design--implementation)
+    - [Architecture](#architecture)
     - [Recipe Manage Feature](#recipe-manage-feature)
-      - [Implementation](#implementation)
     - [Recipe Search Feature](#recipe-search-feature)
     - [Recipe View Feature](#recipe-view-feature)
     - [Recipe Storage Feature](#recipe-storage-feature)
@@ -32,8 +32,11 @@
 
 ## Design & implementation
 
+### Architecture
+
+**Main components of the architecture**
+
 ### Recipe Manage Feature
-#### Implementation
 The recipe manage feature is facilitated by the `command`,`parser`,`recipe` package. It implements the following operations: 
 
 - `recipeList#addNewRecipe()` - Add a new recipe to the recipe list.
