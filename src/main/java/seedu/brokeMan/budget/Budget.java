@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-import static seedu.brokeMan.entry.ExpenseList.getExpensesMadeInMonth;
+import static seedu.brokeMan.entry.expense.ExpenseList.getExpensesMadeInMonth;
 import static seedu.brokeMan.parser.StringToTime.createDateString;
 
 public class Budget {
