@@ -1,6 +1,13 @@
 package seedu.duke.userplan;
 
 
+import seedu.duke.exceptions.DukeError;
+import seedu.duke.exceptions.InvalidAddPlanError;
+import seedu.duke.exceptions.InvalidDateInputError;
+import seedu.duke.exceptions.InvalidFilterInputError;
+import seedu.duke.exceptions.InvalidDeletePlanError;
+import seedu.duke.exceptions.InvalidPlanError;
+
 import java.util.ArrayList;
 
 
@@ -55,25 +62,19 @@ public class UserPlan {
      *
      * @param userCommands the commands input by user
      */
-    public static void addPlan(String[] userCommands){
+    public static void addPlan(String[] userCommands) throws DukeError{
         ArrayList<String> exerciseFilters = new ArrayList<>();
         if (userCommands.length < 4) {
-            System.out.println("invalid add command");
-            //throw new InvalidAddPlanCommand();
-            return;
+            throw new InvalidAddPlanError();
         }
         int intDay = dayToInt(userCommands[1]);
         if (intDay == -1){
-            System.out.println("invalid date");
-            //throw new InvalidDate();
-            return;
+            throw new InvalidDateInputError();
         }
         String name = userCommands[2];
         for (int i = 3; i < userCommands.length; i ++){
             if (!isAValidFilter(userCommands[i])){
-                System.out.println("invalid filter");
-                //throw new InvalidFilter();
-                return;
+                throw new InvalidFilterInputError();
             }
             exerciseFilters.add(userCommands[i]);
         }
@@ -87,17 +88,13 @@ public class UserPlan {
      *
      * @param userCommands the commands input by user
      */
-    public static void deletePlan(String[] userCommands) {
+    public static void deletePlan(String[] userCommands) throws DukeError{
         if (userCommands.length != 3){
-            System.out.println("invalid delete command");
-            //throw new InvalidDeleteCommand();
-            return;
+            throw new InvalidDeletePlanError();
         }
         int intDay = dayToInt(userCommands[1]);
         if (intDay == -1){
-            System.out.println("invalid date");
-            //throw new InvalidDate();
-            return;
+            throw new InvalidDateInputError();
         }
         String name = userCommands[2];
         for (int i = 0; i < plan[intDay].size(); i++){
@@ -107,8 +104,7 @@ public class UserPlan {
                 return;
             }
         }
-        System.out.println("no such plan found");
-        //throw new InvalidPlan
+        throw new InvalidPlanError();
     }
 
 

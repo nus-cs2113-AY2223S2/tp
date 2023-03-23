@@ -1,5 +1,6 @@
 package seedu.duke.commandhandler;
 
+import seedu.duke.exceptions.DukeError;
 import seedu.duke.ui.Ui;
 import seedu.duke.userplan.UserPlan;
 import seedu.duke.util.StringSplitter;
@@ -8,7 +9,8 @@ import java.util.Scanner;
 
 //@@author Khulon
 public class PlannerCommandHandler implements CommandList{
-    public static void plannerCommandHandler (Ui ui, UserPlan planner) {
+    public static void plannerCommandHandler (Ui ui, UserPlan planner) throws
+            DukeError{
         ui.printPlannerGreeting();
         Scanner in = new Scanner(System.in);
 
@@ -27,7 +29,6 @@ public class PlannerCommandHandler implements CommandList{
                 System.out.println("Exited planner editor!");
                 return;
             case ADD_PLAN_COMMAND:
-                //need to add exception for noname and filters, available filters
                 UserPlan.addPlan(userCommands);
                 break;
             case FILTERS_COMMAND:

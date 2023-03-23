@@ -51,7 +51,7 @@ Example command: ```bye```,```exit```
 **A**: This is a very intuitive feature, but we have not implemented it yet.
 
 ## Command Summary
-
+* Finding specific workouts based on keyword(s): ```find```
 * Viewing help: ```help```
 * Quick Start Workout: ```quick```
 * Generate specific Workout set: ```generate```
