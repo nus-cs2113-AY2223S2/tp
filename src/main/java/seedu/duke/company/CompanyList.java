@@ -18,6 +18,8 @@ public class CompanyList {
     public boolean add(String companyName, int contactNumber, String contactEmail) {
         try {
             Ui ui = new Ui();
+            companyName = companyName.strip();
+            contactEmail = contactEmail.strip();
             Company newCompany = new Company(companyName, contactNumber, contactEmail);
             for (int i = 0; i < companyList.size(); i++) {
                 String companyAlreadyAdded = companyList.get(i).getCompanyName();
