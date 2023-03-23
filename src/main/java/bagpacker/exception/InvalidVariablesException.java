@@ -1,4 +1,6 @@
 package bagpacker.exception;
 
-public class InvalidVariablesException extends Exception {
+
+
+public class InvalidVariablesException extends Exception{
 }

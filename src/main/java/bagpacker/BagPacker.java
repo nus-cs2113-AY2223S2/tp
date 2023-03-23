@@ -8,7 +8,6 @@ import bagpacker.packingfunc.PackingList;
 
 public class BagPacker {
     private static PackingList packingList;
-
     /**
      * Main entry-point for the java.BagPacker application.
      */
