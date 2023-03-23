@@ -5,9 +5,13 @@ import chching.currency.Converter;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
 import chching.record.Record;
+import chching.record.RecordList;
 
 import java.util.Scanner;
 
+/**
+ * Models a class for user interface of the program
+ */
 public class Ui {
     public String readCommand() {
         Scanner input = new Scanner((System.in));
@@ -37,6 +41,15 @@ public class Ui {
         System.out.println("    Now you have " + incomes.size() + " income records,");
         System.out.println("    and " + expenses.size() + " expense records in the list.");
     }
+    
+    public void showEdited(int index, Record record, boolean isExpense) {
+        if (isExpense) {
+            System.out.println("    Got it. I've updated the expense in index " + index + " to");
+        } else {
+            System.out.println("    Got it. I've updated the income in index " + index + " to");
+        }
+        System.out.println("    " + record);
+    }
 
     public void showDelete(IncomeList incomes, ExpenseList expenses, Record record) {
         System.out.println("    Noted. I've removed this record:");
@@ -64,6 +77,19 @@ public class Ui {
         System.out.println();
         System.out.println("    Current balance:");
         System.out.println("    SGD " + String.format("%.02f", balance) + convertedBalance);
+    }
+
+    public void showMatchedRecord(RecordList records) {
+        if (records.getRecordCount() > 0) {
+            System.out.println("    Here are the matching records in your list:");
+
+            for (int i = 0; i < records.getRecordCount(); i++) {
+                System.out.println("    " + (i+1) + ". "  + records.get(i));
+            }
+        } else {
+            System.out.println("    No mathcing records for those keyword");
+        }
+
     }
 
     public static void showHelp() {

@@ -9,11 +9,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Model a class to handle storage for the program.
+ * Models a class to handle storage for the program.
  */
 public class Storage {
     private final File file;
@@ -38,11 +39,11 @@ public class Storage {
                 String line = reader.nextLine();
                 String[] extract = line.split("\\|");
                 String symbol = extract[0].trim();
-                String description = extract[1].trim();
-                String date = extract[2].trim();
-                String value = extract[3].trim();
 
                 if (symbol.equals("I")) {
+                    String description = extract[1].trim();
+                    LocalDate date = LocalDate.parse(extract[2].trim());
+                    String value = extract[3].trim();
                     Income income = new Income(description, date, Double.parseDouble(value));
                     incomes.add(income);
                 }
@@ -69,9 +70,8 @@ public class Storage {
                 if (symbol.equals("E")) {
                     String category = extract[1].trim();
                     String description = extract[2].trim();
-                    String date = extract[3].trim();
+                    LocalDate date = LocalDate.parse(extract[3].trim());
                     String value = extract[4].trim();
-
                     Expense expense = new Expense(category, description, date, Double.parseDouble(value));
                     expenses.add(expense);
                 }

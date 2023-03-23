@@ -1,14 +1,25 @@
 package chching.record;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Junit Test for ExpenseList
+ */
 class ExpenseListTest {
     static final int EXPECTED_SIZE = 1;
     static final String CATEGORY = "entertainment";
     static final String DESCRIPTION = "beach party";
-    static final String DATE = "23 may 2023";
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final LocalDate DATE = LocalDate.parse("23-05-2023", FORMATTER);
     static final float EXPENSE_VALUE = (float) 50;
 
+    /**
+     * Junit Test to test method that returns the size of ExpenseList
+     */
     @Test
     void getExpenseCount_one_expectOne() {
 

@@ -8,6 +8,10 @@ import chching.currency.Selector;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
 
+/**
+ * Models a class to handle the DeleteExpense command. Inherited from Command class.
+ */
+
 public class DeleteExpenseCommand extends Command {
     private final int index;
 
@@ -15,6 +19,15 @@ public class DeleteExpenseCommand extends Command {
         this.index = index;
     }
 
+
+    /**
+     * Executes deletion of expense from list of expenses
+     *
+     * @param incomes       ArrayList of income.
+     * @param expenses      ArrayList of income.
+     * @param ui        User interface
+     * @param storage       Storage of data
+     */
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
             Converter converter) throws ChChingException {

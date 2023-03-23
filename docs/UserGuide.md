@@ -35,10 +35,11 @@ Format:
 Use case:
 * Re-prompts user if any field is not provided properly.
 * VALUE will be stored as a positive float.
+* Format for DATE will be dd-MM-yyyy.
 
 Example of usage:
-<br>`add expense /c meal /de breakfast @Technoedge /da 01/02/23 /v 3.50`
-<br>`add income /c salary /de salary /da 01/01/23 /v 500`
+<br>`add expense /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50`
+<br>`add income /c salary /de salary /da 22-03-2023 /v 500`
 
 ### Listing all expenses and incomes: `list`
 Shows a full list of both the expenses and incomes created by the user. Includes the index number, category, description, and value.

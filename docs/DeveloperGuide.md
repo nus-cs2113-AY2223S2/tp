@@ -8,7 +8,7 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
-## Implmentation
+## Implementation
 
 ### Record and RecordList  
 
@@ -27,8 +27,6 @@ Or else, the command will continue to delete the entry at the particular index.
 Afterwards, the ```execute()``` method will print ```"Income deleted, here is the updated list:"``` and prints the entries in the income list.
 
 ![Record Class](../images/DeleteIncomeCommand_sequence_diagram.png)
-
-### Delete Income command
 
 ### [Proposed] EditIncomeCommand/EditExpenseCommand
 The proposed edit income command is facilitated by `Parser`, `EditIncomeCommand`, `IncomeList`, while the proposed edit expense command is facilitated by `Parser`, `EditExpenseCommand` and `ExpenseList`. 
@@ -59,6 +57,17 @@ The following activity diagram summarises what happens when a user executes edit
 * **Alternative 2:** Edit to require user to rewrite all its fields.
     * Pros: Easier to implement.
     * Cons: Not any easier than having the user to just delete and add new expense/income.
+
+### ListExpenseCommand
+The listExpenseCommand is facilitated by ```System```, ```Parser``` and ```ExpenseList```.
+
+1. The user inputs the command top list expense. This input is handled by```Parser``` which returns the
+   ```listExpenseCommand``` if successful.
+2. ```ListExpenseCommand``` will then call its ```execute``` method
+   which makes use of ```System``` to print a new line ```"Expenses:"```.
+3. The ```expenseList``` method ```printExpenseList```
+   is called, which iterates through the expenseList, ```expenses``` and prints the index as well as a completed string of
+   expenses in ```expenses```.
 
 ## Product scope
 ### Target user profile
