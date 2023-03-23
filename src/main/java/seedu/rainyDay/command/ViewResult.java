@@ -13,14 +13,14 @@ import static seedu.rainyDay.RainyDay.financialReport;
 
 public class ViewResult {
     private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
-            "|Here is your full financial report!                                          |\n";
+            "|Here is your full financial report!                                                              |\n";
     private static final String ACKNOWLEDGE_FILTER_COMMAND = "" +
-            "|Here is your filtered financial report!                                      |\n";
+            "|Here is your filtered financial report!                                                          |\n";
     private static final String TABLE_FORMAT = "" +
-            "+-----+------------------------------+------------+----------------+----------+\n" +
-            "|Index|Name                          |Amount      |Category        |Date      |\n";
+            "+-----+---------------------------------------------+------------+---------------------+----------+\n" +
+            "|Index|Description                                  |Amount      |Category             |Date      |\n";
     private static final String TABLE_BORDER = "" +
-            "+-----+------------------------------+------------+----------------+----------+\n";
+            "+-----+---------------------------------------------+------------+---------------------+----------+\n";
 
     private static final Logger logger = Logger.getLogger(ViewResult.class.getName());
 
@@ -58,10 +58,10 @@ public class ViewResult {
         index = index.substring(index.length() - 5);
         String value = String.format(" %s$%.2f            ", statementDirection, statementValue);
         value = value.substring(0, 12);
-        String name = String.format("%s                              ", statementName);
-        name = name.substring(0, 30);
-        String category = String.format("%s                ", statementCategory);
-        category = category.substring(0, 16);
+        String name = String.format("%s                                             ", statementName);
+        name = name.substring(0, 45);
+        String category = String.format("%s                     ", statementCategory);
+        category = category.substring(0, 21);
         statementOutput = "|" + index + "|" + name + "|" + value + "|" + category + "|" + date + "|"
                 + System.lineSeparator();
         return statementOutput;
