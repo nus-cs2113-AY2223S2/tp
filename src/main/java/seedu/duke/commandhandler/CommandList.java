@@ -22,4 +22,5 @@ public interface CommandList {
     String QUICK_START_COMMAND = "quick";
     String DELETE_PLAN_COMMAND = "delete";
     String ADD_PLAN_COMMAND = "add";
+    String EXERCISE_DATA_COMMAND = "data";
 }
