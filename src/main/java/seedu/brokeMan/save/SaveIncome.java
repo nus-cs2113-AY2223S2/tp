@@ -24,7 +24,6 @@ public class SaveIncome {
         try {
             FileWriter myWriter = new FileWriter("./data/IncomeData.txt");
             myWriter.flush();
-            String strTask = "";
             String message = "";
             for (Entry incomeLog : incomes) {
                 message = incomeLog.getAmount() + "/" + incomeLog.getInfo() + "/" + incomeLog.getTime();
@@ -35,11 +34,12 @@ public class SaveIncome {
             try {
                 Files.createDirectories(Path.of("./data"));
                 File myObj = new File("./data/IncomeData.txt");
-                boolean fileCreated = false;
-                if (myObj.createNewFile()) {
+                //boolean fileCreated = false;
+                myObj.createNewFile();
+                //if (myObj.createNewFile()) {
                     //System.out.println("File created: " + myObj.getName());
-                    fileCreated = true;
-                }
+                    //fileCreated = true;
+                //}
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
@@ -48,7 +48,7 @@ public class SaveIncome {
     public static void readIncomeFile() {
         try {
             String filePath = "./data/IncomeData.txt";
-            ArrayList<String> incomeEntries = new ArrayList<>();
+            ArrayList<String> incomeEntries;
             incomeEntries = (ArrayList<String>) Files.readAllLines(Paths.get(filePath),
                     StandardCharsets.UTF_8);
             for (String incomeEntry : incomeEntries) {
@@ -66,11 +66,12 @@ public class SaveIncome {
             try {
                 Files.createDirectories(Path.of("./data"));
                 File myObj = new File("./data/IncomeData.txt");
-                boolean fileCreated = false;
-                if (myObj.createNewFile()) {
+                //boolean fileCreated = false;
+                myObj.createNewFile();
+                //if (myObj.createNewFile()) {
                     //System.out.println("File created: " + myObj.getName()); -
-                    fileCreated = true;
-                }
+                    //fileCreated = true;
+                //}
             } catch (IOException fcIoe) {
                 ioe.printStackTrace();
             }

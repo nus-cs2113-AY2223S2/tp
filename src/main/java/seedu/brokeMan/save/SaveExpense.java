@@ -23,8 +23,6 @@ Saves all expenses under any change
         try {
             FileWriter myWriter = new FileWriter("./data/ExpenseData.txt");
             myWriter.flush();
-            String strTask = "";
-
             String message = "";
             for (Entry expense : expenses) {
                 message = expense.getAmount() + "/" + expense.getInfo() + "/" + expense.getTime();
@@ -36,10 +34,10 @@ Saves all expenses under any change
             try {
                 Files.createDirectories(Path.of("./data"));
                 File myObj = new File("./data/ExpenseData.txt");
-
-                if (myObj.createNewFile()) {
+                boolean newFile = myObj.createNewFile();
+                //if (myObj.createNewFile()) {
                     //System.out.println("File created: " + myObj.getName());
-                }
+                //}
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
@@ -49,7 +47,7 @@ Saves all expenses under any change
     public static void readExpenseFile() {
         try {
             String filePath = "./data/ExpenseData.txt";
-            ArrayList<String> expenseEntries = new ArrayList<>();
+            ArrayList<String> expenseEntries;
             expenseEntries = (ArrayList<String>) Files.readAllLines(Paths.get(filePath),
                     StandardCharsets.UTF_8);
             for (String expenseEntry : expenseEntries) {
@@ -67,11 +65,11 @@ Saves all expenses under any change
             try {
                 Files.createDirectories(Path.of("./data"));
                 File myObj = new File("./data/ExpenseData.txt");
-                boolean fileCreated = false;
-                if (myObj.createNewFile()) {
+                boolean newFile = myObj.createNewFile();
+                //if (myObj.createNewFile()) {
                     //System.out.println("File created: " + myObj.getName());
-                    fileCreated = true;
-                }
+                    //fileCreated = true;
+                //}
             } catch (IOException fcIoe) {
                 ioe.printStackTrace();
             }
