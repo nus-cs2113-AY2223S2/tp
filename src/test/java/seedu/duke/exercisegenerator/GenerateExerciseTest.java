@@ -3,14 +3,19 @@ package seedu.duke.exercisegenerator;
 import org.junit.jupiter.api.Test;
 import seedu.duke.commands.GenerateFilterCommand;
 import seedu.duke.exceptions.DukeError;
+import seedu.duke.exceptions.ExerciseNumberInputAsStringError;
+import seedu.duke.exceptions.TooManyFiltersError;
+import seedu.duke.exceptions.UnknownFilterInputError;
 import seedu.duke.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
+import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class GenerateExerciseTest {
     private final long RANDOM_SEED = 2787311;
@@ -55,7 +60,8 @@ public class GenerateExerciseTest {
     }
 
     /**
-     *
+     * Tests an extensive usage of the application by generating a large number of sets for the user with given filters.
+     * The number of sets generated should be sufficient and should not throw any exceptions
      */
     @Test
     void testGenerateCommand () throws DukeError {
@@ -63,8 +69,52 @@ public class GenerateExerciseTest {
         GenerateFilterCommand generateFilterCommand = new GenerateFilterCommand(sampleUserCommand.split(" "));
         Ui ui = new Ui();
         GenerateExercise generateExercise = new GenerateExercise(RANDOM_SEED);
-        assertDoesNotThrow(generateFilterCommand.executeCommand(ui, generateExercise));
+        assertDoesNotThrow(() -> generateFilterCommand.executeCommand(ui, generateExercise), "GenerateFilterCommand " +
+            "throws an error");
         generateFilterCommand.executeCommand(ui, generateExercise);
+    }
+
+    /**
+     * Tests an edge limit of generating a very large number of test. This acts as a stress test to ensure code does
+     * not break given a large input.
+     *
+     * @throws DukeError Occurs when there is a file read error from data.json.
+     */
+    @Test
+    void testGenerateCommandLargeSet () throws DukeError {
+        String sampleUserCommand = "medium legs 9999999";
+        GenerateFilterCommand generateFilterCommand = new GenerateFilterCommand(sampleUserCommand.split(" "));
+        Ui ui = new Ui();
+        GenerateExercise generateExercise = new GenerateExercise(RANDOM_SEED);
+        assertThrows(TooManyFiltersError.class, () -> generateFilterCommand.executeCommand(ui, generateExercise));
+    }
+
+    /**
+     * Tests another edge limit of having multiple filters that are mutually exclusive in criterion such that there are
+     * no exercises which simultaneously have the same criterion and should throw an appropriate error, in this case
+     * a TooManyFiltersError.
+     *
+     * @throws DukeError Occurs when there is a file read error from data.json.
+     */
+    @Test
+    void testGenerateCommandManyFilter () throws DukeError {
+        String sampleUserCommand = "medium legs core upper 100";
+        GenerateFilterCommand generateFilterCommand = new GenerateFilterCommand(sampleUserCommand.split(" "));
+        Ui ui = new Ui();
+        GenerateExercise generateExercise = new GenerateExercise(RANDOM_SEED);
+        assertThrows(TooManyFiltersError.class, () -> generateFilterCommand.executeCommand(ui, generateExercise));
+    }
+
+    /**
+     * Tests a stress limit of an input larger than maximum size of an int which should throw a different error from
+     * testGenerateCommandLargeSet.
+     */
+    @Test
+    void testInvalidInput () {
+        String sampleUserCommand = "easy core 9999999999999999999999999";
+        assertThrows(ExerciseNumberInputAsStringError.class,
+                     () -> new GenerateFilterCommand(sampleUserCommand.split(" ")));
+
     }
 
 }
