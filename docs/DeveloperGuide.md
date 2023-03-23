@@ -40,6 +40,21 @@ parseLendBorrow. The only difference is the condition, with the loop happening o
 ### Expenditure Type
 
 ### Storage
+The class `TxtFileStatus` and `ExpenditureList` are involved in storing the expenditure list.
+After every user input is completed, saveExpenditureList is called, and the text file will be
+updated with all the current expenditures in the expenditure array list.
+
+![](team/images/saveList.png)
+
+The following shows the sequence diagram of detailing the process for saveExpenditureList.
+
+Likewise when MyLedger first runs, it instantiates ExpenditureList and stores a reference to it.
+MyLedger then checks if the text file exists, else it gets created. Recorded expenditure stored 
+as a string in the text file is then added to the array list in ExpenditureList by iterating through
+the strings in the text file, instantiating an expenditure using the string received, and adding
+the expenditure into the array list.
+
+![](team/images/initializeList.png)
 
 ## Product scope
 ### Target user profile

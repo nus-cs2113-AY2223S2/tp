@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TxtFileStatus {
+public abstract class TxtFileStatus {
     private static final String directoryPath = "myLedger_data";
     private static final String filePath = "myLedger_data/myLedger_inputs.txt";
 
