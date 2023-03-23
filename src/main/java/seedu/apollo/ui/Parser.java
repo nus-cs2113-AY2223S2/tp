@@ -1,6 +1,7 @@
 package seedu.apollo.ui;
 
 import seedu.apollo.command.WeekCommand;
+import seedu.apollo.command.module.ShowModuleCommand;
 import seedu.apollo.command.task.AddCommand;
 import seedu.apollo.command.module.AddModuleCommand;
 import seedu.apollo.command.Command;
@@ -14,6 +15,7 @@ import seedu.apollo.command.module.ListModuleCommand;
 import seedu.apollo.command.task.ModifyCommand;
 import seedu.apollo.exception.module.EmptyAddModException;
 import seedu.apollo.exception.module.EmptyDelModException;
+import seedu.apollo.exception.module.EmptyShowModException;
 import seedu.apollo.exception.utils.EmptyKeywordException;
 import seedu.apollo.exception.task.EmptyTaskDescException;
 import seedu.apollo.exception.utils.IllegalCommandException;
@@ -48,6 +50,7 @@ public class Parser {
     public static final String COMMAND_ADD_MODULE_WORD = "addmod";
     public static final String COMMAND_LIST_MODULE_WORD = "listmod";
     public static final String COMMAND_DELETE_MODULE_WORD = "delmod";
+    public static final String COMMAND_SHOW_MODULE_DETAILS_WORD = "showmod";
 
     /**
      * Returns the corresponding Command to the user input.
@@ -83,6 +86,8 @@ public class Parser {
             ui.printInvalidDate();
         } catch (InvalidModule e) {
             ui.printInvalidModule();
+        } catch (EmptyShowModException e) {
+            ui.printEmptyShowModCode();
         }
         return null;
     }
@@ -105,9 +110,14 @@ public class Parser {
     private static Command parseCommand(String[] split, int size, ModuleList moduleData)
             throws InvalidDateTime, EmptyKeywordException, EmptyTaskDescException, InvalidDeadline, InvalidEvent,
             IllegalCommandException, NumberFormatException, UnexpectedException, InvalidModule,
-            EmptyAddModException, EmptyDelModException {
+            EmptyAddModException, EmptyDelModException, EmptyShowModException {
         String command = split[0];
         switch (command) {
+        case COMMAND_SHOW_MODULE_DETAILS_WORD:
+            if (isEmptyParam(split)) {
+                throw new EmptyShowModException();
+            }
+            return new ShowModuleCommand(split[1], moduleData);
 
         case COMMAND_LIST_MODULE_WORD:
             if (!isOneWord(split)) {
