@@ -4,7 +4,11 @@
   - [Setup \& Prerequisites](#setup--prerequisites)
   - [Design \& implementation](#design--implementation)
     - [Architecture](#architecture)
-    - [UI component](#ui-component)
+      - [UI component](#ui-component)
+      - [Parser component](#parser-component)
+      - [Command component](#command-component)
+      - [RecipeList component](#recipelist-component)
+      - [Storage component](#storage-component)
     - [Recipe Manage Feature](#recipe-manage-feature)
     - [Recipe Search Feature](#recipe-search-feature)
     - [Recipe View Feature](#recipe-view-feature)
@@ -57,7 +61,16 @@ The rest of the App consists of five components.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 
-### UI component
+#### UI component
+The **API** of this component is specified in [`UI.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/ui/UI.java)
+
+#### Parser component
+
+#### Command component
+
+#### RecipeList component
+
+#### Storage component
 
 ### Recipe Manage Feature
 The recipe manage feature is facilitated by the `command`,`parser`,`recipe` package. It implements the following operations: 
