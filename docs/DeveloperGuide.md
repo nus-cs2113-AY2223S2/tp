@@ -28,9 +28,12 @@ command.
 
 The following shows the UML diagram used for the parser component implemented in MyLedger.
 
-{image}
+![](team/images/parserOverview.png)
 
-{show step by step process?} {do tmr}
+It must be noted that not all the existing parser commands are included in this sequence diagram for parsing, namely
+the mark, unmark and edit commands. This is because they have a similar sequence diagram as the functions parseAdd and 
+parseLendBorrow. The only difference is the condition, with the loop happening one, one and four time(s) respectively. 
+
 
 ### Commands
 
