@@ -1,0 +1,13 @@
+abstract class Command{}
+class SearchController{}
+class SearchCommand{}
+class BorrowableItem{}
+class Inventory{}
+class Book{}
+
+SearchController -> Inventory
+SearchController --> Book
+Command <|- SearchCommand
+SearchCommand --> SearchController
+SearchCommand -> BorrowableItem
+SearchCommand --> Book
