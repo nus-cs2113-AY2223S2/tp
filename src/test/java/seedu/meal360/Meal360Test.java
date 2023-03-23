@@ -206,13 +206,18 @@ class Meal360Test {
 
     @Test
     public void testViewIngredients() {
+
+        HashMap<String, Integer> pastaIngredients = new HashMap<>();
+        pastaIngredients.put("penne", 1);
+        Recipe salad = new Recipe("pasta", pastaIngredients);
+
         WeeklyPlan weeklyPlan = new WeeklyPlan();
-        weeklyPlan.put("salad", 1);
+        weeklyPlan.put("pasta", 1);
 
         ui.printWeeklyIngredients(weeklyPlan, recipes);
         assertEquals(
                 ui.formatMessage("Here are your weekly ingredients:") + System.lineSeparator() + ui.formatMessage(
-                        "cucumber (1) tomato (1) lettuce (1)"), outContent.toString().trim());
+                        "penne (1)"), outContent.toString().trim());
     }
 
     @Test
