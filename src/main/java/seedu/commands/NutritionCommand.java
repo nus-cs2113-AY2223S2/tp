@@ -40,19 +40,19 @@ public class NutritionCommand extends Command {
 
             Food foodToBeAnalysed = (filteredFoods.get(choice - 1));
             float protein = foodToBeAnalysed.getProtein();
-            System.out.println("Protein: " + protein);
+            System.out.println("Protein(g): " + protein);
             float totalFat = foodToBeAnalysed.getTotalFat();
-            System.out.println("Total Fat: " + totalFat);
+            System.out.println("Total Fat(g): " + totalFat);
             float saturatedFat = foodToBeAnalysed.getSaturatedFat();
-            System.out.println("Saturated Fat: " + saturatedFat);
+            System.out.println("Saturated Fat(g): " + saturatedFat);
             float dietaryFibre = foodToBeAnalysed.getDietaryFibre();
-            System.out.println("Dietary Fibre: " + dietaryFibre);
+            System.out.println("Dietary Fibre(g): " + dietaryFibre);
             float carbohydrates = foodToBeAnalysed.getCarbohydrates();
-            System.out.println("Carbohydrates: " + carbohydrates);
+            System.out.println("Carbohydrates(g): " + carbohydrates);
             float sugar = foodToBeAnalysed.getSugar();
-            System.out.println("Sugar: " + sugar);
+            System.out.println("Sugar(g): " + sugar);
             float sodium = foodToBeAnalysed.getSodium();
-            System.out.println("Sodium: " + sodium);
+            System.out.println("Sodium(g): " + sodium);
 
             System.out.println(System.lineSeparator() + "Type 1 to add more food. Type any other number to quit");
             choice = ui.readInt();
