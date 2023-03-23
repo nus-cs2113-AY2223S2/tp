@@ -19,7 +19,21 @@ import seedu.brokeMan.command.SortIncomeByAmountCommand;
 import seedu.brokeMan.command.SortIncomeByDateCommand;
 import seedu.brokeMan.command.ViewBudgetCommand;
 import seedu.brokeMan.entry.Category;
-import seedu.brokeMan.exception.*;
+import seedu.brokeMan.exception.CategoryNotCorrectException;
+import seedu.brokeMan.exception.InvalidEditCommandException;
+import seedu.brokeMan.exception.BudgetNotADoubleException;
+import seedu.brokeMan.exception.ContainsEmptyFlagException;
+import seedu.brokeMan.exception.AmountIsNotADoubleException;
+import seedu.brokeMan.exception.hasNotSetBudgetException;
+import seedu.brokeMan.exception.IncorrectTypeException;
+import seedu.brokeMan.exception.IndexNotAnIntegerException;
+import seedu.brokeMan.exception.InvalidAddCommandException;
+import seedu.brokeMan.exception.InvalidDateTimeException;
+import seedu.brokeMan.exception.InvalidMonthTimeException;
+import seedu.brokeMan.exception.InvalidOptionalTimeFlagException;
+import seedu.brokeMan.exception.NegativeAmountException;
+import seedu.brokeMan.exception.WrongFlagOrderException;
+import seedu.brokeMan.exception.BrokeManException;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
@@ -236,7 +250,7 @@ public class Parser {
         double amount = Double.parseDouble(splitDescriptions[1]);
         String newDescription = splitDescriptions[2];
         LocalDateTime time = StringToTime.convertStringToTime(splitDescriptions[3]);
-        Category category = null;
+        Category category;
         try {
             category = StringToCategory.convertStringToCategory(splitDescriptions[4]);
         } catch (CategoryNotCorrectException e) {
