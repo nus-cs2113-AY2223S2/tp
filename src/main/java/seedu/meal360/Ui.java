@@ -11,17 +11,13 @@ public class Ui {
     }
 
     public void printWelcomeMessage() {
-        printSeparator();
         String logo = " __  __          _ ____  __  __\n" + "|  \\/  |___ __ _| |__ / / / /  \\\n"
                 + "| |\\/| / -_) _` | ||_ \\/ _ \\ () |\n" + "|_|  |_\\___\\__,_|_|___/\\___/\\__/\n";
         System.out.println("Welcome to Meal360, your ultimate Recipe Manager!\n" + logo);
-        printSeparator();
     }
 
     public void printGoodbyeMessage() {
-        printSeparator();
         System.out.println(formatMessage("Bye. Hope to see you again soon!"));
-        printSeparator();
     }
 
     public String formatMessage(String message) {
