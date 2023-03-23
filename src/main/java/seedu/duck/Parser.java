@@ -66,6 +66,9 @@ public class Parser {
             } else if (words[0].equals("find") && (words.length > 1)) {
                 // Find tasks that contain a keyword
                 Ui.find(tasks, words);
+            } else if (words[0].equals("purge")){
+                // Find tasks that contain a keyword
+                TaskList.purge(tasks);
             } else if (words[0].equals("priority") && (words.length == 3)) {
                 // Find tasks that contain a keyword
                 TaskList.setPriority(tasks,words);
@@ -81,7 +84,7 @@ public class Parser {
                     Storage.clearTask();
                 } else {
                     Ui.borderLine();
-                    System.out.println("\t Process cancelled.");
+                    System.out.println("\t Quack! Process cancelled.");
                     Ui.borderLine();
                 }
             } else {
