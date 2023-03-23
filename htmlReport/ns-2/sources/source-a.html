@@ -1,0 +1,132 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > UnpackCommand</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">bagpacker.commands</a>
+</div>
+
+<h1>Coverage Summary for Class: UnpackCommand (bagpacker.commands)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UnpackCommand</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package bagpacker.commands;
+&nbsp;
+&nbsp;import bagpacker.iohandler.Ui;
+&nbsp;import bagpacker.packingfunc.Item;
+&nbsp;import bagpacker.packingfunc.PackingList;
+&nbsp;
+<b class="nc">&nbsp;public class UnpackCommand extends Command {</b>
+&nbsp;
+&nbsp;    public static final String MSG_SUCCESS_UNPACK = &quot;Item unpacked: %s&quot;;
+&nbsp;    public static final String HELP_MSG = &quot;unpack : Marks an item as unpacked in the packing list.\n&quot; +
+&nbsp;            &quot;\tExample: unpack 1 of 2\n&quot; +
+&nbsp;            &quot;\tMeaning: unpacks 1 quantity of the second item in the packing list&quot;;
+&nbsp;
+&nbsp;
+&nbsp;    public UnpackCommand(int targetIndex) {
+<b class="nc">&nbsp;        super(targetIndex);</b>
+<b class="nc">&nbsp;        assert (targetIndex &gt;= 1 &amp; targetIndex &lt;= PackingList.getItemList().size()):</b>
+&nbsp;                &quot;Unpack Command Target index is out of bounds&quot;;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void execute(PackingList packingList) {
+<b class="nc">&nbsp;        this.packingList = packingList;</b>
+<b class="nc">&nbsp;        final Item item = getTargetItem();</b>
+<b class="nc">&nbsp;        packingList.unpackItem(item);</b>
+<b class="nc">&nbsp;        Ui.printToUser(String.format(MSG_SUCCESS_UNPACK, item));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-23 18:27</div>
+</div>
+</body>
+</html>

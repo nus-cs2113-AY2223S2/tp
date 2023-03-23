@@ -33,6 +33,13 @@ public class Parser {
     }
 
     /**
+     * Returns the user input in String format
+     */
+    public static String getFullInput() {
+        return fullInput;
+    }
+
+    /**
      * Returns the user input as in array format
      */
     public static ArrayList<String> getInputStringArray() {
@@ -43,27 +50,20 @@ public class Parser {
         Parser.inputStringArray = new ArrayList<>(Arrays.asList(inputStringArray));
     }
 
-    /**
-     * Returns the user input in String format
-     */
-    public static String getFullInput() {
-        return fullInput;
-    }
-
     public static Command parse() {
         String inputLine = "";
         while (inputLine.isEmpty()) {
             try {
-                inputLine = readLine();
+                inputLine = readLine().trim();
             } catch (EmptyInputException e) {
                 Ui.errorMessage("Empty input received",
                         "try to input a command, to view all commands input 'help'");
             }
         }
         setFullInput(inputLine);
-        String[] inputStringList = inputLine.trim().split(" ");
+        String[] inputStringList = inputLine.split(" ");
         setInputStringArray(inputStringList);
-        switch (inputStringList[0]) {
+        switch (getCommand()) {
         case "add":
             return createAddObj();
         case "delete":
@@ -73,7 +73,7 @@ public class Parser {
         case "unpack":
             return createUnpackObj();
         case "list":
-            return listCommand();
+            return createListObj();
         case "help":
             return createHelpObj();
         case "deletelist":
@@ -92,7 +92,7 @@ public class Parser {
      * @return inputLine the String input of the user
      * @throws EmptyInputException when user input empty line
      */
-    private static String readLine() throws EmptyInputException {
+    public static String readLine() throws EmptyInputException {
         String inputLine;
         Scanner in = new Scanner(System.in);
         inputLine = in.nextLine().trim();
@@ -284,7 +284,7 @@ public class Parser {
         }
     }
 
-    public static Command listCommand() {
+    public static Command createListObj() {
         return new ListCommand();
     }
 

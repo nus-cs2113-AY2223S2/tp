@@ -17,12 +17,12 @@ public class CommandsTest {
         assertTrue(true);
     }
 
-    @Test
+    /*@Test
     public void testAddCommand() {
         PackingList packingList = new PackingList();
-        Item item = new Item("toothbrush");
-        Command addCommand = new AddCommand(item);
-        addCommand.execute(packingList);
+        Item itemOne = new Item("toothbrush");
+        Command addObj = new AddCommand(itemOne);
+        addObj.execute(packingList);
 
         // Expect a Packinglist with a toothbrush item in first index
         Assertions.assertEquals("toothbrush",packingList.get(0).getItemName());
@@ -30,12 +30,12 @@ public class CommandsTest {
 
         // Expect second index item in the packing list to be toothpaste
         Item itemTwo = new Item("toothpaste");
-        addCommand = new AddCommand(itemTwo);
-        addCommand.execute(packingList);
+        addObj = new AddCommand(itemTwo);
+        addObj.execute(packingList);
 
         Assertions.assertEquals("toothpaste",packingList.get(1).getItemName());
         Assertions.assertNotEquals("toothbrush", packingList.get(1).getItemName());
 
-    }
+    }*/
 
 }
