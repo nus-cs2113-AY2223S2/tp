@@ -58,6 +58,10 @@ public class IncomeList extends RecordList {
         }
     }
 
+    public void clearIncomeList(){
+        incomeList.clear();
+    }
+
     @Override
     public Income get(int i) {
         return incomeList.get(i);

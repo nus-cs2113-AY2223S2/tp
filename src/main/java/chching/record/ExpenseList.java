@@ -93,6 +93,12 @@ public class ExpenseList extends RecordList {
         }
     }
 
+    public void clearExpenseList(){
+        expenseList.clear();
+    }
+
+
+
     @Override
     public Expense get(int i) {
         return expenseList.get(i);
