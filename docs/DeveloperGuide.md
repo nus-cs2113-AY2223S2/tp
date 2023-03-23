@@ -7,8 +7,12 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 3. [Design](#design)
    - [Command Parsing](#command-parsing)
    - [Ingredient Class](#ingredient-class)
+   - [Recipe Class](#recipe-class)
 4. [Implementation](#implementation)
    - [Add and Remove Command](#add-and-remove-command)
+   - [Recipe Detail Command](#recipe-detail-command)
+   - [Recipe Possible Command](#recipe-possible-command)
+   - [Recipe All Command](#recipe-all-command)
    - [Storage Feature](#storage-feature)
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 6. [Appendix: Requirements](#appendix-requirements)
@@ -69,6 +73,14 @@ Below shows the class diagram of how ingredients are being stored in our program
 
 The current `MealCompanionSession` would keep track of the `IngredientList` which is an ArrayList of `Ingredient` objects. Each `Ingredient` object has a name and its associated quantity. This association would allow us to perform the adding and removal of ingredients by the user.
 
+### Recipe Class
+
+Below shows the class diagram of how recipes are being stored in our program
+
+![RecipeUML.png](images%2FRecipeUML.png)
+
+The current `MealCompanionSession` would keep track of the `RecipeList` which is an ArrayList of `Recipe` objects.
+
 ## Implementation
 
 ### Add and Remove Command
@@ -104,6 +116,64 @@ This features saves ingredient list data in json format and reads them back into
 The following sequence diagram shows how data storage works:
 
 ![StorageSequenceUML.png](images/StorageSequenceUML.png)
+
+###### [Back to table of contents](#table-of-contents)
+
+### Recipe Detail Command
+
+The recipe command is facilitated by `RecipeDetailCommand`. 
+
+It requires `RecipeList` of `MealCompanionSession`. 
+
+The recipe commands takes in either a recipe index or a recipe name as parameter. The latter is resolved into the recipe's corresponding index number.
+
+The `Recipe` is retrieved from `RecipeList` and its details are outputted.
+
+The following sequence diagram shows how the Recipe Detail Command works:
+
+![RecipeDetailCommandSequence.png](images%2FRecipeDetailCommandSequence.png)
+
+###### [Back to table of contents](#table-of-contents)
+
+### Recipe Possible Command
+
+The recipe possible command is facilitated by `RecipePossibleCommand`. 
+
+It requires `RecipeList` and `IngredientList` of `MealCompanionSession`.
+
+Given below is the only example usage scenario and how the recipe possible command behaves at each step.
+
+Step 1: User wants to get a list of recipes that can be made with the current list of ingredients. User calls `recipe possible`.
+
+Step 2: `RecipePossibleCommand` executes by retrieving the `RecipeList` and `IngredientList` of `MealCompanionSession`.
+
+Step 3: Every `Recipe` in `RecipeList` is checked against all `Ingredient` in `IngredientList` to see if it can be made.
+
+Step 4: `Recipe` that can be made are outputted.
+
+The following sequence diagram shows how the Recipe Possible Command works:
+
+![RecipePossibleCommandSequence.png](images%2FRecipePossibleCommandSequence.png)
+
+###### [Back to table of contents](#table-of-contents)
+
+### Recipe All Command
+
+The recipe possible command is facilitated by `RecipeAllCommand`.
+
+It requires `RecipeList` of `MealCompanionSession`.
+
+Given below is the only example usage scenario and how the recipe possible command behaves at each step.
+
+Step 1: User wants to get the full list of recipes stored in the program. User calls `recipe all`.
+
+Step 2: `RecipeAllCommand` executes by retrieving the `RecipeList` of `MealCompanionSession`.
+
+Step 3: Every `Recipe` in `RecipeList` is outputted.
+
+The following sequence diagram shows how the Recipe All Command works:
+
+![RecipeAllCommandSequence.png](images%2FRecipeAllCommandSequence.png)
 
 ###### [Back to table of contents](#table-of-contents)
 

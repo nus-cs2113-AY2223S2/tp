@@ -1,0 +1,31 @@
+@startuml
+!include Style.puml
+participant ":RecipePossibleCommand" as RecipePossibleCommand
+participant "mealCompanionSession:MealCompanionSession" as mealCompanionSession
+participant "recipe:Recipe" as recipe
+
+-> RecipePossibleCommand: execute(mealCompanionSession)
+activate RecipePossibleCommand
+RecipePossibleCommand -> mealCompanionSession: getIngredients()
+activate mealCompanionSession
+RecipePossibleCommand <-- mealCompanionSession: ingredients
+deactivate mealCompanionSession
+RecipePossibleCommand -> mealCompanionSession: getRecipes()
+activate mealCompanionSession
+RecipePossibleCommand <-- mealCompanionSession: recipes
+deactivate mealCompanionSession
+loop for each recipe
+RecipePossibleCommand -> RecipePossibleCommand: canMakeRecipe(recipe, ingredients)
+activate RecipePossibleCommand
+RecipePossibleCommand -> RecipePossibleCommand: canMakeRecipe
+deactivate RecipePossibleCommand
+opt canMakeRecipe == true
+RecipePossibleCommand -> recipe: getName()
+activate recipe
+RecipePossibleCommand <-- recipe: recipe name
+deactivate recipe
+end
+end
+deactivate RecipePossibleCommand
+
+@enduml
