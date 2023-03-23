@@ -20,10 +20,6 @@ public class Recipe {
         return stepList;
     }
 
-    public StepList getSteps() {
-        return stepList;
-    }
-
     public String getName() {
         return name;
     }

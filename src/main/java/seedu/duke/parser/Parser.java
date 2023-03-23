@@ -17,7 +17,6 @@ import static seedu.duke.ui.IntLib.RECIPE_INGREDIENTS_INDEX;
 import static seedu.duke.ui.IntLib.RECIPE_TAG_INDEX;
 import static seedu.duke.ui.IntLib.RECIPE_SUM_OF_STEPS_INDEX;
 
-
 public class Parser {
 
     private static final String RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP = "Recipe is missing the \"NAME\" "
