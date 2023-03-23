@@ -123,16 +123,18 @@ public class Ui {
      */
     static void find(ArrayList<Task> tasks, String[] words) {
         ArrayList<Task> matchingResults = new ArrayList<>();
+        ArrayList<Integer> matchingResultsIndex = new ArrayList<>();
         int matchCount = 0;
         String keyword = Parser.processKeywords(words);
 
-        for (Task task : tasks) {
-            if (task.getDescription().contains(keyword)) {
-                matchingResults.add(task);
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getDescription().contains(keyword)) {
+                matchingResults.add(tasks.get(i));
+                matchingResultsIndex.add(i+1);
                 matchCount++;
             }
         }
-        printFindResults(matchingResults, matchCount);
+        printFindResults(matchingResults, matchCount, matchingResultsIndex);
     }
 
 
@@ -142,11 +144,11 @@ public class Ui {
      * @param matchingResults The array list of tasks that contain the keywords
      * @param matchCount The number of tasks in the list that contain the keywords
      */
-    private static void printFindResults(ArrayList<Task> matchingResults, int matchCount) {
+    private static void printFindResults(ArrayList<Task> matchingResults, int matchCount, ArrayList<Integer> matchingResultsIndex) {
         if (matchingResults.isEmpty()) {
             noMatchMessage();
         } else {
-            printMatchingList(matchingResults, matchCount);
+            printMatchingList(matchingResults, matchCount, matchingResultsIndex);
         }
     }
 
@@ -156,11 +158,11 @@ public class Ui {
      * @param matchingResults The array list of tasks that contain the keywords
      * @param matchCount The number of tasks in the list that contain the keywords
      */
-    static void printMatchingList(ArrayList<Task> matchingResults, int matchCount) {
+    static void printMatchingList(ArrayList<Task> matchingResults, int matchCount, ArrayList<Integer> matchingResultsIndex) {
         borderLine();
         System.out.println("\t Here are the matching tasks in your list:");
         for (int i = 0; i < matchCount; i++) {
-            System.out.println("\t " + (i + 1) + "." + matchingResults.get(i));
+            System.out.println("\t " + (i + 1) + "." + matchingResults.get(i) + "   || The index of this item is " + matchingResultsIndex.get(i));
         }
         borderLine();
     }
