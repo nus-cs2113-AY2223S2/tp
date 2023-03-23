@@ -92,8 +92,11 @@ public class BudgetPlanner {
     }
 
     private int checkExceedMaxAmount(int amount) {
-        System.out.println("Maximum budget of " + MAX_BUDGET + " allowed");
-        return Math.min(amount, MAX_BUDGET);
+        int newBudget = Math.min(amount, MAX_BUDGET);
+        if (newBudget < amount) {
+            System.out.println("Maximum budget of " + MAX_BUDGET + " allowed");
+        }
+        return newBudget;
     }
 
     public int getBudget() {

@@ -10,7 +10,12 @@ public class EditAccommodationCommand extends EditCostCommand {
 
     @Override
     public void execute() {
+        int initialCost = budgetPlanner.getAccommodationTotalCost();
         budgetPlanner.setAccommodationTotalCost(cost);
-        System.out.println("Accommodation Budget has been changed to: " + budgetPlanner.getAccommodationTotalCost());
+        if (initialCost == budgetPlanner.getAccommodationTotalCost()) {
+            System.out.println("Budget has not been changed");
+        } else {
+            System.out.println("Accommodation Budget has been changed to: " + budgetPlanner.getAccommodationTotalCost());
+        }
     }
 }

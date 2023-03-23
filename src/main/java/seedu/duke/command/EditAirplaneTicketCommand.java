@@ -10,7 +10,12 @@ public class EditAirplaneTicketCommand extends EditCostCommand {
 
     @Override
     public void execute() {
+        int initialCost = budgetPlanner.getAirplaneTicketTotalCost();
         budgetPlanner.setAirplaneTicketTotalCost(cost);
-        System.out.println("Airplane budget has been changed to: " + budgetPlanner.getAirplaneTicketTotalCost());
+        if (initialCost == budgetPlanner.getAirplaneTicketTotalCost()) {
+            System.out.println("Budget has not been changed");
+        } else {
+            System.out.println("Airplane budget has been changed to: " + budgetPlanner.getAirplaneTicketTotalCost());
+        }
     }
 }

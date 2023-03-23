@@ -10,7 +10,12 @@ public class EditEntertainmentCommand extends EditCostCommand {
 
     @Override
     public void execute() {
+        int initialCost = budgetPlanner.getEntertainmentTotalCost();
         budgetPlanner.setEntertainmentTotalCost(cost);
-        System.out.println("Entertainment budget has been changed to: " + budgetPlanner.getEntertainmentTotalCost());
+        if (initialCost == budgetPlanner.getEntertainmentTotalCost()) {
+            System.out.println("Budget has not been changed");
+        } else {
+            System.out.println("Entertainment budget has been changed to: " + budgetPlanner.getEntertainmentTotalCost());
+        }
     }
 }

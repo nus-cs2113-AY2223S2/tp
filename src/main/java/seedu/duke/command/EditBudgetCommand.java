@@ -13,7 +13,12 @@ public class EditBudgetCommand extends BudgetCommand {
 
     @Override
     public void execute() {
+        int initialBudget = budgetPlanner.getBudget();
         budgetPlanner.setBudget(budget);
-        System.out.println("Budget has been changed to: " + budgetPlanner.getBudget());
+        if (initialBudget == budgetPlanner.getBudget()) {
+            System.out.println("Budget has not been changed");
+        } else {
+            System.out.println("Budget has been changed to: " + budgetPlanner.getBudget());
+        }
     }
 }
