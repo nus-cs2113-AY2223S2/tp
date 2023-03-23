@@ -14,6 +14,7 @@ public class Ui {
     public void greetUser() {
         Greet.greet();
     }
+
     public void byeUser() {
         Bye.bye();
     }
