@@ -3,6 +3,7 @@ package seedu.brokeMan.command;
 import seedu.brokeMan.entry.ExpenseList;
 import seedu.brokeMan.parser.StringToTime;
 import seedu.brokeMan.ui.Ui;
+import seedu.brokeMan.entry.Category;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
@@ -18,7 +19,7 @@ public class EditExpenseCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": edit the expense from the list.\n" +
             "|  Parameter: i/ <index> t/ <type> n/ <newEntry>\n" +
-            "|  There are 3 type that can be changed, cost, info, time\n" +
+            "|  There are 4 types that can be changed, cost, info, time, category\n" +
             "|  Example: " + COMMAND_WORD + " i/ 1 t/ cost n/ 5";
     private final int index;
     private final String type;
@@ -44,6 +45,8 @@ public class EditExpenseCommand extends Command {
                 LocalDateTime newTime = StringToTime.convertStringToTime(newEntry);
                 ExpenseList.editExpense(index, newTime);
                 break;
+            case "category":
+                Category newCategory;
             default:
                 logger.log(Level.WARNING, "wrong type name:" + type);
                 Ui.showToUserWithLineBreak(MESSAGE_INVALID_EDIT_COMMAND);

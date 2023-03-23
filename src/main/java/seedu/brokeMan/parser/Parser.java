@@ -18,6 +18,7 @@ import seedu.brokeMan.command.SortIncomeByAmountCommand;
 import seedu.brokeMan.command.SortExpenseByDateCommand;
 import seedu.brokeMan.command.SortIncomeByDateCommand;
 import seedu.brokeMan.command.SortExpenseByAmountCommand;
+import seedu.brokeMan.entry.Category;
 import seedu.brokeMan.exception.AmountIsNotADoubleException;
 import seedu.brokeMan.exception.BudgetNotADoubleException;
 import seedu.brokeMan.exception.IndexNotAnIntegerException;
@@ -27,10 +28,7 @@ import seedu.brokeMan.exception.hasNotSetBudgetException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
-import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_TIME;
-import static seedu.brokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
-import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_ADD_COMMAND;
-import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
+import static seedu.brokeMan.common.Messages.*;
 
 
 /*
@@ -140,10 +138,10 @@ public class Parser {
     }
 
     private static Command prepareAddCommand(String description, String type) {
-        // description in the form of "a/ <amount> d/ <description> t/ time"
+        // description in the form of "a/ <amount> d/ <description> t/ time c/ category"
 
         if (!description.contains("a/ ") || !description.contains(" d/ ") ||
-                !description.contains(" t/ ")) {
+                !description.contains(" t/ ") || !description.contains(" c/ ")) {
             if (type.equals("expense")) {
                 return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND, AddExpenseCommand.MESSAGE_USAGE);
             }
@@ -153,27 +151,32 @@ public class Parser {
         String[] splitDescriptions = description.split("/ ");
         double amount;
         LocalDateTime time;
+        Category category;
 
-        // handle error for the input "addExpense a/ d/ t/ time"
+        // handle error for the input "addExpense a/ d/ t/ time c/ category"2
         // similarly for prepareEditExpenseCommand
         try {
             int length = splitDescriptions[1].length();
             amount = Double.parseDouble(splitDescriptions[1].substring(0, length - 2));
-            time = StringToTime.convertStringToTime(splitDescriptions[3]);
+            //addExpense a/ 4.00 d/ lunch t/ 2022 09 08 12 14 c/ FOOD
+            time = StringToTime.convertStringToTime(splitDescriptions[3].substring(0, 16));
+            category = StringToCategory.convertStringToCategory((splitDescriptions[4]));
         } catch (NumberFormatException nfe) {
             String errorMessage = new AmountIsNotADoubleException().getMessage();
             return new InvalidCommand(errorMessage);
         } catch (DateTimeException dte) {
             return new InvalidCommand(MESSAGE_INVALID_TIME);
+        } catch (IndexOutOfBoundsException ibe) {
+            return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
         }
 
         String newDescription = splitDescriptions[2].substring(0, splitDescriptions[2].length() - 2);
 
         if (type.equals("expense")) {
-            return new AddExpenseCommand(amount, newDescription, time);
+            return new AddExpenseCommand(amount, newDescription, time, category);
         }
         assert type.equals("income") : "Type should be income";
-        return new AddIncomeCommand(amount, newDescription, time);
+        return new AddIncomeCommand(amount, newDescription, time, category);
     }
 
     private static Command prepareListCommand(String type) {
@@ -184,7 +187,7 @@ public class Parser {
     }
 
     private static Command prepareEditCommand(String description, String moneyType) {
-        if (!description.contains("i/ ") || !description.contains(" t/ ") || !description.contains(" n/ ")) {
+        if (!description.contains("i/ ") || !description.contains(" t/ ") || !description.contains(" n/ ") || !description.contains(" c/ ")) {
             if (moneyType.equals("expense")) {
                 return new InvalidCommand(MESSAGE_INVALID_EDIT_COMMAND, EditExpenseCommand.MESSAGE_USAGE);
             }

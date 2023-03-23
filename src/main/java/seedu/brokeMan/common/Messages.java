@@ -28,4 +28,9 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_TIME = "Invalid time information. " +
             "Please present your time as 'YYYY MM DD HH mm'";
+
+    public static final String MESSAGE_INVALID_CATEGORY = "Invalid category tag. You can add category tags: " +
+            "FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, " +
+            "SALARY, INVESTMENT," +
+            "OTHERS";
 }

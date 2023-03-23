@@ -70,5 +70,8 @@ public class ExpenseList extends EntryList {
         sortEntriesByDate(expenseList);
     }
 
+    public static void findExpenseByCategory(Category category) {
+        findEntriesByCategory(category, expenseList);
+    }
 
 }
