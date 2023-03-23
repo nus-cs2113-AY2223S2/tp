@@ -7,12 +7,13 @@ import seedu.mealcompanion.command.factory.ingredients.IngredientsSearchCommandF
 import seedu.mealcompanion.command.factory.misc.AddCommandFactory;
 import seedu.mealcompanion.command.factory.misc.ByeCommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelloWorldCommandFactory;
+import seedu.mealcompanion.command.factory.misc.HelpCommandFactory;
+import seedu.mealcompanion.command.factory.misc.RemoveCommandFactory;
+import seedu.mealcompanion.command.factory.misc.MakeCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeAllCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeDetailCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipePossibleCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeRandomCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RemoveCommandFactory;
-import seedu.mealcompanion.command.factory.misc.HelpCommandFactory;
 import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.parser.CommandArguments;
 import seedu.mealcompanion.parser.CommandTokens;
@@ -36,6 +37,7 @@ public class MealCompanionSession {
                     .route("add", new AddCommandFactory())
                     .route("help", new HelpCommandFactory())
                     .route("remove", new RemoveCommandFactory())
+                    .route("make", new MakeCommandFactory())
                     .route("recipe", new CommandRouterNode()
                             .route("possible", new RecipePossibleCommandFactory())
                             .route("all", new RecipeAllCommandFactory())

@@ -61,6 +61,10 @@ public class RecipeDetailCommand extends ExecutableCommand {
         mealCompanionSession.getUi().printMessage(""); //print newline for all OS
         mealCompanionSession.getUi().printMessage("Calories: " + recipe.getCalorieCount());
         mealCompanionSession.getUi().printMessage(""); //print newline for all OS
+        mealCompanionSession.getUi().printMessage("Prep Time: " + recipe.getPrepTime());
+        mealCompanionSession.getUi().printMessage(""); //print newline for all OS
+        mealCompanionSession.getUi().printMessage("Cook Time: " + recipe.getCookTime());
+        mealCompanionSession.getUi().printMessage(""); //print newline for all OS
         mealCompanionSession.getUi().printMessage("Ingredients:");
         IngredientList ingredients = recipe.getIngredients();
         for (int i = 0; i < ingredients.size(); i++) {

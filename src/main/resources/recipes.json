@@ -2,6 +2,8 @@
   {
     "name": "Beef Burger",
     "calorieCount": 244,
+    "prepTime": 30,
+    "cookTime": 10,
     "ingredients": [
       {
         "name": "ground beef",
@@ -40,6 +42,8 @@
   {
     "name": "Cup of Water",
     "calorieCount": 0,
+    "prepTime": 1,
+    "cookTime": 0,
     "ingredients": [
       {
         "name": "water",
@@ -53,6 +57,8 @@
   {
     "name": "Chicken Burger",
     "calorieCount": 283,
+    "prepTime": 30,
+    "cookTime": 10,
     "ingredients": [
       {
         "name": "ground chicken",
@@ -103,6 +109,8 @@
   {
     "name": "Fish Burger",
     "calorieCount": 332,
+    "prepTime": 30,
+    "cookTime": 10,
     "ingredients": [
       {
         "name": "white fish filet",
@@ -154,6 +162,8 @@
   {
     "name": "Pasta (Tomato Sauce)",
     "calorieCount": 297,
+    "prepTime": 20,
+    "cookTime": 20,
     "ingredients": [
       {
         "name": "pasta",
@@ -201,6 +211,8 @@
   {
     "name": "Hainanese Chicken Rice",
     "calorieCount": 607,
+    "prepTime": 30,
+    "cookTime": 50,
     "ingredients": [
       {
         "name": "chicken",
@@ -279,6 +291,8 @@
   {
     "name": "Mee Goreng",
     "calorieCount": 613,
+    "prepTime": 30,
+    "cookTime": 15,
     "ingredients": [
       {
         "name": "egg noodles",
