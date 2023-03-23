@@ -8,9 +8,15 @@
     - [Setting up the project on your computer](#setting-up-the-project-on-your-computer)
   - [Design](#design)
     - [Architecture](#architecture)
+    - [ToDoListManager](#manager-component)
+    - [UI](#ui-component)
+    - [Logic](#logic-component)
+    - [TaskList](#tasklist-component)
+    - [Storage](#storage-component)
   - [Implementation](#implementation)
     - [Delete task feature](#delete-task-feature)
     - [Edit task deadline feature](#edit-task-deadline-feature)
+    - [Storage feature](#storage-feature)
   - [Appendix: Requirements](#appendix--requirements)
     - [Product Scope](#product-scope)
     - [User Stories](#user-stories)
@@ -36,18 +42,57 @@ If you plan to use Intellij IDEA (highly recommended):
 
 ## Design
 
+> **Tip:** The `.puml` files used to create the diagrams in this guide can be found in the [diagrams](diagrams) folder.
+
 ### Architecture
 
+![ArchitectureDiagram](images/ArchitectureDiagram.png)
 
+The above diagram provides a high-level overview of the program's design, which consists of 5 main components.
+
+- [`ToDoListManager`](#manager-component): Initializes the other components and connects them together
+- [`UI`](#ui-component): Handles all input and output between the user and the program
+- [`Logic`](#logic-component): Parses user input to commands and executes them
+- [`TaskList`](#tasklist-component): Holds the program's data in memory
+- [`Storage`](#storage-component): Saves data to the hard disk and loads it during the program's startup
+
+### Manager Component
+
+The code for this component is found in [`ToDoListManager.java`](../src/main/java/seedu/todolist/ToDoListManager.java).
+
+![ManagerClassDiagram](images/ManagerClassDiagram.png)
+
+The `ToDoListManager` component contains the `Ui`, `Logic`, `TaskList`, and `Storage` components, and depends
+on the `Command` class, which is returned by the `Parser` class and executed by the `ToDoListManager`.
+
+The `ToDoListManager` component,
+- initializes all the other components that it operates on (`Ui`, `Parser`, `TaskList`, `Storage`).
+- passes user input from the `Ui` component to the `Logic` component, which returns a `Command` object.
+- executes the returned `Command` object on the `TaskList` component, using the `Logic` component.
+- calls on the `Storage` component to save the data of the `TaskList` component to the hard disk.
+
+### Ui component
+
+The code for this component is found in [`Ui.java`](../src/main/java/seedu/todolist/ui/Ui.java).
+
+### Logic component
+
+The main code for this component is found in [`Parser.java`](../src/main/java/seedu/todolist/logic/Parser.java).
+
+### TaskList component
+
+The code for this component is found in [`TaskList.java`](../src/main/java/seedu/todolist/task/TaskList.java).
 
 ### Storage component
+
+The code for this component is found in [`Storage.java`](../src/main/java/seedu/todolist/storage/Storage.java).
 
 The Storage component can save the task list as TaskList objects in a .txt file format using Serialization and read it 
 back into a TaskList object.
 
-
-
 ## Implementation
+
+> **Note:** The lifeline of the sequence diagrams in this section should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 ### Delete task feature
 
@@ -68,6 +113,7 @@ To-do List. The user does this by inputting the command `delete 1` into the term
 The command will then call the `TaskList#deleteTask()`, which removes the task at index 1 of the TaskList.
 
 The following sequence diagram shows how the delete task operation works:
+
 ![DeleteTaskCommandSequence](images/DeleteTaskCommandSequence.png)
 
 Step 4: The user then decides to execute the command list. This command does not modify the TaskList.
@@ -89,6 +135,7 @@ For the unmark command, the user can instead input the command `unmark 1` to set
 The command also calls `TaskList#setDone` which sets the task at index 1 to be not done.
 
 The following sequence diagram shows how the mark/unmark task operation works:
+
 ![MarkOrUnmarkTaskCommandSequence](images/MarkorUnmarkTaskCommandSequence.png)
 
 ### Edit task deadline feature
@@ -118,15 +165,15 @@ The following sequence diagram shows how the edit operations works:
 The storage feature is facilitated by the `Storage` class.
 
 The Storage class implements the following operations:
-* `Storage#saveData(TaskList)` --- Saves the current task list.
-* `Storage#loadData()` --- Loads a task list from the previously saved file, if there is one.
+- `Storage#saveData(TaskList)` --- Saves the current task list.
+- `Storage#loadData()` --- Loads a task list from the previously saved file, if there is one.
 
 Given below is an example usage scenario and how the Storage mechanism behaves at each step.
 
 Step 1. The user launches the application (not for the first time). The program loads the previously saved task list 
 data as there is a saved file `'./data.txt'` that Storage can find.
 
-![Step 1](images/StorageSequenceDiagramStep1-Step_1.png)
+![Step 1](images/StorageSequenceDiagramStep1.png)
 
 Step 2. The user executes `list` command. The `list` command calls `Ui#printTaskList()` which lists all tasks in the 
 task list. `ToDoListManager` calls `storage#saveData()`, so the task list is saved into `'./data.txt'`.
@@ -146,24 +193,22 @@ list is saved into `'./data.txt'` again before the program exits.
 ![Step4](images/StorageSequenceDiagramStep4-Step_4.png)
 
 #### Design considerations:
-* <b>Alternative 1</b>: Save task list as a self-formatted .txt file which can be printed and used as a physical task list.
-    * Pros: Can get a physical task list to use.
-    * Cons: Difficult to maintain as Storage class has to be updated whenever more fields are added to Task class. For
+- **Option 1**: Save task list as a self-formatted .txt file which can be printed and used as a physical task list.
+    - Pros: Can get a physical task list to use.
+    - Cons: Difficult to maintain as Storage class has to be updated whenever more fields are added to Task class. For
           example, if we add a "tag" field to Task, the formatting for the saved .txt file has to be updated to reflect
           that change.
-* <b>Alternative 2</b>: Append rather than overwrite when saving the task list.
-    * Pros: Will likely be able to save the task list much faster.
-    * Cons: Difficult to implement, especially when considering the current mark task operation.
-* <b>Alternative 3 (current choice)</b>: Save task list as a Serializable TaskList object in a .txt file. 
+- **Option 2**: Append rather than overwrite when saving the task list.
+    - Pros: Will likely be able to save the task list much faster.
+    - Cons: Difficult to implement, especially when considering the current mark task operation.
+- **Option 3 (current choice)**: Save task list as a Serializable TaskList object in a .txt file.
+    - Pros: Easy to implement and easy to maintain as Storage class does not have to be updated whenever new fields are 
+            added to Task class. Do not need to consider whether we use append or overwrite when saving task list as
+            it is irrelevant when using this implementation.
+    - Cons: No physical task list to use as the saved .txt file is practically unreadable.
 
-    * Pros: Easy to implement and easy to maintain as Storage class does not have to be updated whenever new fields are 
-            added to Task class. Do not need to consider whether we use append or overwrite when saving task list as it is 
-            irrelevant when using this implementation.
-    * Cons: No physical task list to use as the saved .txt file is practically unreadable.
-
-* <b>Main reasons for choosing Alternative 3: It is much easier to implement and maintain than the other 2 alternatives
-and we found that the lack of a physical task list to use is not a very significant issue.</b>
-
+Main reasons for choosing Alternative 3: It is much easier to implement and maintain than the other 2 alternatives,
+and we found that the lack of a physical task list to use is not a very significant issue.
 
 ### [Proposed] History feature
 
@@ -190,7 +235,6 @@ tasks in `uncompletedTasks` to be listed for the user to see.
 
 Step 5. The user executes `history` command to see what tasks (s)he has already completed. The `history` command causes 
 the tasks in `completedTasks` to be listed for the user to see.
- 
 
 ## Appendix: Requirements
 

@@ -1,0 +1,20 @@
+@startuml
+!include Style.puml
+
+class ToDoListManager COLOR_MAIN
+class Ui COLOR_UI
+package Logic <<Rectangle>> {
+class Parser COLOR_LOGIC
+class "{abstract}\nCommand" as Command COLOR_LOGIC
+}
+class TaskList COLOR_TASK_LIST
+class Storage COLOR_STORAGE
+
+ToDoListManager -d-> "\t\t1" Ui
+ToDoListManager -d-> "\t1" Parser
+ToDoListManager -d-> "\t\t1" TaskList
+ToDoListManager -d-> "\t1" Storage
+ToDoListManager .d.> Command
+Parser .r.> Command
+Storage .r> TaskList
+@enduml

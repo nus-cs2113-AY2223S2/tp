@@ -15,13 +15,13 @@ Package " " <<Rectangle>>{
 Class "User" as User COLOR_USER
 Class "Save file" as File #E1AF87
 
-User ..[#pink]> UI
+User -[#pink]> UI
 UI <-[#green]> ToDoListManager
 ToDoListManager -[#grey]-> Parser
 Parser -[#blue]-> Command
 ToDoListManager -[#grey]-> Command
 Command -[#blue]-> TaskList
-ToDoListManager -[#grey]-> Storage
-Storage -l[COLOR_STORAGE].> TaskList
-Storage .r[COLOR_STORAGE].>File
+ToDoListManager -[#grey]> Storage
+Storage -l[COLOR_STORAGE]> TaskList
+Storage -r[COLOR_STORAGE]> File
 @enduml

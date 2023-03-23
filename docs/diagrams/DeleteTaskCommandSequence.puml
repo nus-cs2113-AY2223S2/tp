@@ -1,8 +1,6 @@
 @startuml
 !include Style.puml
 
-title Sequence Diagram for DeleteTaskCommand
-
 actor User
 
 box Manager COLOR_MAIN_LIGHT
