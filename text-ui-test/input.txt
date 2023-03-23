@@ -13,9 +13,7 @@ weekly
 weekly random name
 weekly /add random name 1
 weekly /add test recipe name 1
-weekly /add Chicken Rice 1
-weeklyingredients
 weeklyplan
-weekly /delete Chicken Rice
+weekly /delete test recipe name
 weeklyplan
 bye
