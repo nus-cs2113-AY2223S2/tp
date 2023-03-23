@@ -1,7 +1,5 @@
 # Developer Guide
 
----
-
 ## Table of Contents
 
 1. [Acknowledgements](#acknowledgements)
@@ -31,13 +29,40 @@ original source as well}
 
 ### Architecture
 
-### UI component
+![Architecture Diagram](images/ArchitectureDiagram.png)
+
+The ***architecture diagram*** given above is explains the high level design of the program.
+
+Given below is a quick overview of the main components and how they interact with each other.
+
+**Main components of architecture**
+
+`BrokeMan` has one class [`Main`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/BrokeMan.java), which is responsible for:
+- At program launch: Initialises the components in the correct sequence, and connect them up with each other
+- At program termination: Shuts down the components and invokes cleanup methods where necessary.
+
+[`Common`](#common-class) represents a collection of messages used by multiple other components.
+
+The rest of the program consists of mainly 5 main components.
+- [`Ui`](#ui-component): The Ui of the program.
+- [`Parser`](#parser-component): The user input parser.
+- [`Command`](#command-component): The command executor.
+- [`Storage`](#storage-component): Reads data from, and writes data to hard disk.
+- [`EntryList`](#entrylist-component): Stores the list of entries when program is running.
+
+### Ui component
 
 ### Parser component
 
+### Command component
+
 ### Storage component
 
-### Common classes
+### EntryList component
+
+### Common class
+
+Messages used by multiple components are in the `seedu.brokeMan.commmon` package.
 
 ---
 
