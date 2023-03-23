@@ -87,7 +87,7 @@ public class Ui {
                 System.out.println("    " + (i+1) + ". "  + records.get(i));
             }
         } else {
-            System.out.println("    No mathcing records for those keyword");
+            System.out.println("    No matching records for those keyword");
         }
 
     }
@@ -124,5 +124,13 @@ public class Ui {
 
     public void showInvalidMessage() {
         System.out.println("    Command is invalid, use help for valid commands");
+    }
+
+    public void showTargetAdded() {
+
+        System.out.println("    Target added");
+    }
+    public void showListCleared(){
+        System.out.println("    List/s cleared");
     }
 }

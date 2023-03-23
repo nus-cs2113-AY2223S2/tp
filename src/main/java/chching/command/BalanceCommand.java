@@ -7,6 +7,9 @@ import chching.currency.Converter;
 import chching.currency.Selector;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
+import chching.record.TargetStorage;
+
+import java.sql.SQLOutput;
 
 /**
  * Models a class to show the balance. Inherited from Command class.
@@ -28,10 +31,12 @@ public class BalanceCommand extends Command {
      * @param expenses      ArrayList of income.
      * @param ui        User interface
      * @param storage       Storage of data
+     * @param converter     Convert value
+     * @param targetStorage store target
      */
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
-            Converter converter) throws ChChingException {
+            Converter converter, TargetStorage targetStorage) throws ChChingException {
         double totalIncome = 0;
         double totalExpense = 0;
         for (int i = 0; i < incomes.size(); i++) {
@@ -41,8 +46,19 @@ public class BalanceCommand extends Command {
             totalExpense += expenses.get(i).getValue();
         }
         balance = totalIncome - totalExpense;
+        double currentTarget = targetStorage.getTarget().getValue();
         assert balance <= totalIncome : "Wrong calculations";
         String convertedBalance = converter.printConverter(balance, selector);
         ui.showBalance(totalExpense, totalIncome, balance, convertedBalance);
+        System.out.println("    Current target:" + currentTarget);
+        System.out.println();
+        System.out.println("    SGD " + String.format("%.02f", currentTarget));
+
+        if(balance >= currentTarget){
+            System.out.println("Great work! You have met your target goal.");
+        }
+        else{
+            System.out.println("Balance has not reached your target goal. Keep on pushing!");
+        }
     }
 }

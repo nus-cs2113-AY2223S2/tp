@@ -8,6 +8,7 @@ import chching.record.Income;
 import chching.record.IncomeList;
 import chching.record.Expense;
 import chching.record.ExpenseList;
+import chching.record.TargetStorage;
 
 /**
  * model a class to handle the find command. inherit from Command class.
@@ -21,9 +22,19 @@ public class FindCommand extends Command {
         this.keyword = keyword;
     }
 
+    /**
+     * Executes the find command
+     *
+     * @param incomes       ArrayList of income.
+     * @param expenses      ArrayList of income.
+     * @param ui        User interface
+     * @param storage       Storage of data
+     * @param converter     Convert value
+     * @param targetStorage store target
+     */
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
-                              Converter converter) {
+                              Converter converter, TargetStorage targetStorage) {
 
         IncomeList incomesMatched = new IncomeList();
         ExpenseList expensesMatched = new ExpenseList();
