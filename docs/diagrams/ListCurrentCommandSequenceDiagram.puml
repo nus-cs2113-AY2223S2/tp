@@ -1,0 +1,57 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+activate ":ListCurrentCommand"
+
+":ListCurrentCommand" -> "<<class>>\nui:UI" : printCurrentModList(modules)
+activate "<<class>>\nui:UI"
+
+alt modules.size() < 1
+    "<<class>>\nui:UI" -> UserConsole : Print Current List Empty Message
+    "<<class>>\nui:UI" <-- UserConsole
+else modules.size() >= 1
+
+
+    loop for each Module in modules
+
+    "<<class>>\nui:UI" -> "modules: ArrayList<Module>"
+     activate "modules: ArrayList<Module>"
+     create ":Module"
+     "modules: ArrayList<Module>" -> ":Module"
+     activate ":Module"
+     "modules: ArrayList<Module>" <-- ":Module"
+     deactivate ":Module"
+     "<<class>>\nui:UI" <-- "modules: ArrayList<Module>"
+     deactivate "modules: ArrayList<Module>"
+
+
+
+    "<<class>>\nui:UI" -> ":Module" : "getModuleCode()"
+    "<<class>>\nui:UI" <-- ":Module" : moduleCode
+
+
+    "<<class>>\nui:UI" -> ":Module" : "getModuleName()"
+    "<<class>>\nui:UI" <-- ":Module" : moduleName
+
+    "<<class>>\nui:UI" -> ":Module" : "getModuleMCs()"
+    "<<class>>\nui:UI" <-- ":Module" : moduleMCs
+
+    "<<class>>\nui:UI" -> ":Module" : "getNusModuleCode()"
+    "<<class>>\nui:UI" <-- ":Module" : NusModuleCode
+
+    "<<class>>\nui:UI" -> ":Module" : "getNusModuleName()"
+    "<<class>>\nui:UI" <-- ":Module" : NusModuleName
+
+    "<<class>>\nui:UI" -> ":Module" : "getNusModuleMCs()"
+    "<<class>>\nui:UI" <-- ":Module" : NusModuleMCs
+
+    "<<class>>\nui:UI" -> UserConsole : Print out Modules details
+    "<<class>>\nui:UI" <-- UserConsole
+    end
+end
+
+"<<class>>\nui:UI" --> ":ListCurrentCommand" : return control
+deactivate "<<class>>\nui:UI"
+
+@enduml
