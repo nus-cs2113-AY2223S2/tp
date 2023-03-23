@@ -30,6 +30,22 @@ public class Parser implements Serializable {
         }
     }
 
+    /**
+     * Extracts the indicator of "Category" and "Date" to decide the user want to sort the expenses list based on what.
+     *
+     * @param userInput User Input as a String.
+     * @return The indicator string
+     */
+    public String extractSortBy(String userInput) {
+        try {
+            String[] input = userInput.split(WHITESPACE, EXTRACT_INDEX_LENGTH);
+            System.out.println(1);
+            return input[1].trim();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
+    }
+
     public String extractCommandParameters(String parameterType, String userInput) {
         int parameterTypeLength = parameterType.length();
         String[] words = userInput.split(WHITESPACE);
@@ -45,4 +61,6 @@ public class Parser implements Serializable {
     public String[] extractAddParameters(String userInput) {
         return parserAdd.parseInput(userInput);
     }
+
+
 }
