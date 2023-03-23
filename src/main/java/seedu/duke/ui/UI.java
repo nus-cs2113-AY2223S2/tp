@@ -173,4 +173,7 @@ public class UI {
     public void showSave() {
         System.out.println(StringLib.RECIPE_SAVED);
     }
+    public void showLoad() {
+        System.out.println(StringLib.RECIPE_LOADED);
+    }
 }

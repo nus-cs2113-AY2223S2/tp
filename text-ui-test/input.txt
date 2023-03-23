@@ -26,6 +26,5 @@ list
 view 1
 clear
 list
-add n/Guilinggao i/Tea, Milk, Sugar t/Chinese s/0
-save
+load
 exit
