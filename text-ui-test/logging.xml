@@ -78,3 +78,31 @@
   <message>Data has been restored from previous session!</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T19:37:56.690791Z</date>
+  <millis>1679600276690</millis>
+  <nanos>791000</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserData</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+<record>
+  <date>2023-03-23T19:37:56.704692Z</date>
+  <millis>1679600276704</millis>
+  <nanos>692000</nanos>
+  <sequence>1</sequence>
+  <logger>Storage</logger>
+  <level>WARNING</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserPlans</method>
+  <thread>1</thread>
+  <message>Plans data file has been corrupted or missing, we will create a new file for you, all your plans will be lost.</message>
+</record>
+</log>
