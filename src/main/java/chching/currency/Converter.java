@@ -2,6 +2,9 @@ package chching.currency;
 
 import java.util.HashMap;
 
+/**
+ * Models a class that converts to relevant currency
+ */
 public class Converter {
     protected HashMap<String, Double> currencyMap;
 

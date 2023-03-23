@@ -4,6 +4,10 @@ import chching.ChChingException;
 import chching.Ui;
 import chching.command.AddExpenseCommand;
 import chching.command.AddIncomeCommand;
+import chching.command.AddTargetCommand;
+import chching.command.ClearAllCommand;
+import chching.command.ClearExpenseCommand;
+import chching.command.ClearIncomeCommand;
 import chching.command.Command;
 import chching.command.InvalidCommand;
 import chching.command.ListIncomeCommand;
@@ -16,12 +20,15 @@ import chching.command.BalanceCommand;
 import chching.command.ExitCommand;
 import chching.command.HelpCommand;
 import chching.command.SetCurrencyCommand;
+import chching.command.ShowTargetCommand;
 import chching.command.UnsetCurrencyCommand;
 import chching.command.FindCommand;
 import chching.record.Expense;
 import chching.record.ExpenseList;
 import chching.record.Income;
 import chching.record.IncomeList;
+import chching.record.Target;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -102,6 +109,26 @@ public class Parser {
                 break;
             case "help":
                 command = new HelpCommand();
+                break;
+            case "clear income":
+                command = new ClearIncomeCommand();
+                ui.showListCleared();
+                break;
+            case "clear expense":
+                command = new ClearExpenseCommand();
+                ui.showListCleared();
+                break;
+            case "clear all":
+                command = new ClearAllCommand();
+                ui.showListCleared();
+                break;
+            case "add target":
+                Target target = TargetParser.parseTarget(argumentsByField);
+                command = new AddTargetCommand(target);
+                ui.showTargetAdded();
+                break;
+            case "show target":
+                command = new ShowTargetCommand();
                 break;
             default:
                 command = new InvalidCommand();

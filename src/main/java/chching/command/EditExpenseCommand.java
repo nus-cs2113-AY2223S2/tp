@@ -9,9 +9,13 @@ import chching.parser.Expenses;
 import chching.record.Expense;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
+import chching.record.TargetStorage;
 
 import java.util.HashMap;
 
+/**
+ * Models a class to handle the EditExpense command. Inherited from Command class.
+ */
 public class EditExpenseCommand extends Command {
     private int index;
     private HashMap<String, String> argumentsByField;
@@ -19,8 +23,8 @@ public class EditExpenseCommand extends Command {
     private boolean hasDescription;
     private boolean hasDate;
     private boolean hasValue;
-    
-    
+
+
     public EditExpenseCommand(HashMap<String, String> argumentsByField) throws ChChingException {
         this.argumentsByField = argumentsByField;
     
@@ -30,10 +34,20 @@ public class EditExpenseCommand extends Command {
         hasDate = argumentsByField.containsKey("da");
         hasValue = argumentsByField.containsKey("v");
     }
-    
+
+    /**
+     * Executes edit of ExpenseList
+     *
+     * @param incomes       ArrayList of income.
+     * @param expenses      ArrayList of income.
+     * @param ui        User interface
+     * @param storage       Storage of data
+     * @param converter     Convert value
+     * @param targetStorage store target
+     */
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
-                        Converter converter) throws ChChingException {
+                        Converter converter, TargetStorage targetStorage) throws ChChingException {
         // check if the index is valid
         if (index <= 0) {
             throw new ChChingException("Negative/Zero index");

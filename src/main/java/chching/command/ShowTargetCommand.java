@@ -10,12 +10,12 @@ import chching.record.IncomeList;
 import chching.record.TargetStorage;
 
 /**
- * Models a class to list the entries in the expenseList. Inherited from Command class.
+ * Models a class that shows the user's target. Inherited from Command class.
  */
-public class ListExpenseCommand extends Command {
+public class ShowTargetCommand extends Command{
 
     /**
-     * Executes listing of expenses from expenseList
+     * Executes showing of user's target
      *
      * @param incomes       ArrayList of income.
      * @param expenses      ArrayList of income.
@@ -24,10 +24,8 @@ public class ListExpenseCommand extends Command {
      * @param converter     Convert value
      * @param targetStorage store target
      */
-    @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
-            Converter converter, TargetStorage targetStorage) throws ChChingException {
-        System.out.println("    Expenses:");
-        expenses.printExpenseList(selector, converter);
+                        Converter converter, TargetStorage targetStorage) throws ChChingException {
+        System.out.println("     Current target: " + targetStorage.getTarget().getValue() + " SGD");
     }
 }

@@ -93,10 +93,14 @@ The value proposition of ChChing is its ability to track income and expenses on 
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ... | I want to ...                  | So that I can ...                                      |
+|---------|----------|--------------------------------|--------------------------------------------------------|
+| v1.0    |new user| see usage instructions         | refer to them when I forget how to use the application |
+| v1.0    |user| add new expense to the records | record all my expenses                                 |
+| v1.0    |user| add new income to the records  | record all my incomes                                  |
+| v1.0    |user| view all the records           | refer to them when I forgot my expenses and incomes    |
+| v1.0    |user| edit the records               | modify/fix if the records is changed/wrong             |
+| v1.0    |user| know current balance           | aware how much money do I have left                    |
 
 ## Non-Functional Requirements
 

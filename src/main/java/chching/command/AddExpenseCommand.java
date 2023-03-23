@@ -8,7 +8,11 @@ import chching.currency.Selector;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
 import chching.record.Expense;
+import chching.record.TargetStorage;
 
+/**
+ * Models a class that adds to expenseList. Inherited from Command class.
+ */
 public class AddExpenseCommand extends Command {
     private final Expense expense;
 
@@ -40,10 +44,12 @@ public class AddExpenseCommand extends Command {
      * @param expenses      ArrayList of income.
      * @param ui        User interface
      * @param storage       Storage of data
+     * @param converter     Convert value
+     * @param targetStorage store target
      */
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
-            Converter converter) throws ChChingException {
+            Converter converter, TargetStorage targetStorage) throws ChChingException {
         assert expense.getValue() > 0 : "Expense value should be greater than 0";
         expenses.addExpense(expense);
         ui.showAdded(incomes, expenses, expense);
