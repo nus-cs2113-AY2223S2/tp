@@ -25,6 +25,14 @@ The rest of the Application consists of three components:
 - `Storage`: Stores information of the user and meals eaten
 
 ---
+### UI Component
+The UI is made up of three classes, `GeneralUi`, `CalorieUi` and `WeightUi`, and together,
+they improve on the accessibility of the application.
+
+The `UI` component,
+- Displays what are the possible inputs at any one time
+- Allows the user to check that a value added is correct
+- Informs the user whenever there is an invalid input
 
 # Implementation
 This section describes some noteworthy details on how certain features are implemented.  
@@ -132,7 +140,8 @@ For individuals trying to lose weight, managing their daily caloric intake is cr
 hard to track and manage their calories. _LifeTracker_ allows users to easily automate the tracking of their calories
 and keep a record of their daily caloric intake. 
 
-_LifeTracker_ can also keep track of the exercises that users have done and factor it in to their daily calories lost.
+_LifeTracker_ can also keep track of the exercises that users have done and factor it in to their daily calories lost. This allows
+the user to keep track of their net calorie gain on a daily basis.
 
 ### User Stories
 | Version | As a ... | I want to ...                                            | So that I can ...                                           |
@@ -142,6 +151,7 @@ _LifeTracker_ can also keep track of the exercises that users have done and fact
 | v1.0    | user     | view my previous meals                                   | track the calories of each meal                             |
 | v1.0    | user     | key in my weight on a daily basis                        | keep track of my weight loss/gain                           |
 | v2.0    | user     | find a to-do item by name                                | locate a to-do without having to go through the entire list |
+| v2.0    | user     | search for meals within a specific calorie range         | decide which meal to consume                                |
 
 ## Non-Functional Requirements
 
