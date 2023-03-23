@@ -3,6 +3,7 @@ package seedu.duke;
 import org.junit.jupiter.api.Test;
 import seedu.duke.commands.SearchCommand;
 import seedu.duke.objects.Inventory;
+import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.parser.Parser;
 import seedu.duke.types.Types;
@@ -12,7 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class EditTest {
 
     Inventory inventory = new Inventory();
-    Parser testParser = new Parser(inventory);
+    AlertList alertList = new AlertList();
+    Parser testParser = new Parser(inventory, alertList);
 
     @Test
     public void sampleTest() {

@@ -7,6 +7,7 @@ import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Storage;
 import seedu.duke.utils.Ui;
 import seedu.duke.utils.parser.Parser;
+import seedu.duke.objects.AlertList;
 
 public class Duke {
     /**
@@ -17,6 +18,7 @@ public class Duke {
     private Parser parser;
     private Inventory inventory;
     private SessionManager currentSession;
+    private AlertList alertList;
 
 
     public Duke(String filePath) {
@@ -26,7 +28,8 @@ public class Duke {
         currentSession = SessionManager.getInstance();
         inventory = currentSession.getSession();
         parser = new Parser(inventory, currentSession);
-        ;
+        alertList = new AlertList();
+        parser = new Parser(inventory, alertList);
     }
 
     public void run() {

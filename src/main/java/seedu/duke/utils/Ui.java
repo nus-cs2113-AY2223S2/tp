@@ -75,6 +75,27 @@ public class Ui {
             "Please try again :(";
     private static final String INVALID_INDEX = "This index is invalid.\nPlease enter a number ";
 
+    private static final String INVALID_ADD_ALERT =
+            "Wrong/Incomplete Format! Please add new alerts in the following format: \n" +
+                    "\"alert add upc/[UPC] min/[integer]\" to set an alert when stock falls below a minimum \n"
+                    + "OR\n" +
+                    "\"alert add upc/[UPC] max/[integer]\" to set an alert when stock exceeds a maximum. \n";
+
+
+    private static final String EXISTING_MIN_ALERT = "This item already has a minimum alert. " +
+            "Delete the existing one first.";
+
+    private static final String EXISTING_MAX_ALERT = "This item already has a maximum alert. " +
+            "Delete the existing one first.";
+
+    private static final String INVALID_MIN_ALERT = "Minimum value to set an alert must be less than existing " + "" +
+            "maximum alert value of this item.";
+
+    private static final String INVALID_MAX_ALERT = "Maximum value to set an alert must be more than existing " + "" +
+            "mimimum alert value of this item.";
+
+    private static final String SUCCESS_ADD_ALERT = "Successfully added a new alert";
+
     public Ui() {
         greetUser();
     }
@@ -501,6 +522,37 @@ public class Ui {
             break;
         }
         System.out.println(LINE);
+    }
+
+    public static void printExistingMinAlert() {
+        System.out.println(ANSI_RED + EXISTING_MIN_ALERT + ANSI_RESET);
+    }
+
+    public static void printExistingMaxAlert() {
+        System.out.println(ANSI_RED + EXISTING_MAX_ALERT + ANSI_RESET);
+    }
+
+    public static void printInvalidAddAlertCommand() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_ADD_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidMinAlert() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_MIN_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidMaxAlert() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_MAX_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printSuccessAddAlert() {
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + SUCCESS_ADD_ALERT + ANSI_RESET);
     }
 }
 
