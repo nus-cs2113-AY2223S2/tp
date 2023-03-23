@@ -14,7 +14,7 @@ end box
 activate Duke
 
 User -> Duke : "add n/MaLaXiangGuo\n i/Beef, Mutton, Mushrooms t/Chinese s/1"
-Duke -> Parser : "parseComand()"
+Duke -> Parser : "parseCommand()"
 activate Parser
 Parser --> Duke 
 deactivate Parser

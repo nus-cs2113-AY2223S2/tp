@@ -61,12 +61,25 @@ Given below is an example usage scenario and how the recipe manage mechanism beh
 
 ### Recipe View Feature
 
-
-
 ### Recipe Storage Feature
 
 ### Help Feature
+The help feature's main functionality is to show users the full list of commands they can use on TOM. 
+It is facilitated by the `command`,`parser`,`ui` package. It implements the following operations:
 
+- `Ui#showHelp()` - Prints the help message.
+- `Parser#parseCommands()` - Parse user input into a Command object containing commandType and fullDescription.
+- `Command#excecute()` - Carry out respective tasks based on commandType given.
+
+Given below is an example usage scenario and how the help mechanism behaves at each step.
+
+**Step 1.** The user launches the application for the first time, then inputs `help` to see all possible commands that
+can be executed. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will 
+return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, 
+which will call the `Ui#showHelp()` method to show all possible commands of the recipe.
+
+> The following sequence diagram shows how the help feature works:
+![Sequence Diagram for Help](./PlantUML/Help.png)
 
 ## Appendix A - Product scope
 ### Target user profile
