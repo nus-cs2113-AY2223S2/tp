@@ -4,6 +4,9 @@ import chching.ChChingException;
 import chching.Ui;
 import chching.command.AddExpenseCommand;
 import chching.command.AddIncomeCommand;
+import chching.command.ClearAllCommand;
+import chching.command.ClearExpenseCommand;
+import chching.command.ClearIncomeCommand;
 import chching.command.Command;
 import chching.command.InvalidCommand;
 import chching.command.ListIncomeCommand;
@@ -103,6 +106,12 @@ public class Parser {
             case "help":
                 command = new HelpCommand();
                 break;
+            case "clear income":
+                command = new ClearIncomeCommand();
+            case "clear expense":
+                command = new ClearExpenseCommand();
+            case "clear all":
+                command = new ClearAllCommand();
             default:
                 command = new InvalidCommand();
             }
