@@ -16,8 +16,9 @@ bin/
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
 
-rainyDay.txt
 AddCommandExecute.log
 *.log
 *.log.lck
 MANIFEST.MF
+data/rainyDay.ser
+data/report.csv
