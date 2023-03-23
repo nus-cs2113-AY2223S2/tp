@@ -9,9 +9,6 @@ import seedu.duke.utils.Ui;
 
 
 public class AddAlertCommand extends Command  {
-
-    private static final String MIN_KEYWORD = "min";
-    private static final String MAX_KEYWORD = "max";
     private final Alert alert;
     private AlertList alertList;
 
@@ -23,7 +20,7 @@ public class AddAlertCommand extends Command  {
         this.alertList = alertList;
     }
 
-    private void checkAlertUpc() {
+    private void checkAddAlertUpc() {
 
         if (upcCodes.containsKey(alert.getUpc())) {
             addAlertCommand();
@@ -71,11 +68,6 @@ public class AddAlertCommand extends Command  {
 
     }
 
-    /*
-     TODO:
-     Check if minimum alert is set to be more than an existing max alert/
-     check if maximum alert is set to be less than an existing min alert
-    */
     private boolean isMinValueValid(int minStock, String upc, HashMap<String, Integer> maxUpcMap) {
         if (maxUpcMap.containsKey(upc) && maxUpcMap.get(upc) <= minStock) {
             return false;
@@ -93,6 +85,6 @@ public class AddAlertCommand extends Command  {
 
     @Override
     public void run() {
-        checkAlertUpc();
+        checkAddAlertUpc();
     }
 }
