@@ -20,7 +20,7 @@ public class ParserTest {
 
     @Test
     public void consultationTest() {
-        String consultationCommand = "consultation at/dog an/Pluto on/John cn/91234567 cd/2022-12-25 ct/14";
+        String consultationCommand = "consultation at/cat an/lulu on/jon cn/91919191 cd/2023-12-12 ct/19:00";
         Command consultationParsedCommand = null;
         try {
             consultationParsedCommand = Parser.parse(consultationCommand);
@@ -33,7 +33,7 @@ public class ParserTest {
 
     @Test
     public void vaccinationTest() {
-        String vaccinationCommand = "vaccination at/cat an/Snowy on/Alice cn/98765432 v/Rabies vd/2023-05-01 vt/10";
+        String vaccinationCommand = "vaccination at/cat an/lulu on/jon cn/91919191 v/covid vd/2023-12-12 vt/19:00";
         Command vaccinationParsedCommand = null;
         try {
             vaccinationParsedCommand = Parser.parse(vaccinationCommand);
@@ -46,7 +46,8 @@ public class ParserTest {
 
     @Test
     public void surgeryTest() {
-        String surgeryCommand = "surgery at/bird an/DJ on/Pete cn/81923456 sd/2024-01-01 st/08 ed/2024-01-02 et/12 p/H";
+        String surgeryCommand = "surgery at/cat an/lulu on/jon cn/91919191 " +
+                "sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H";
         Command surgeryParsedCommand = null;
         try {
             surgeryParsedCommand = Parser.parse(surgeryCommand);
