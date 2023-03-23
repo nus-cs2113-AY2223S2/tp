@@ -85,6 +85,10 @@ public class ExpenseList extends EntryList {
         editEntryTime(expenseIndex, newEntry, expenseList);
     }
 
+    public static void editExpense(int expenseIndex, Category newEntry) {
+        editEntryCategory(expenseIndex, newEntry, expenseList);
+    }
+
     /**
      * Sorts expenses by amount, from largest to smallest
      */

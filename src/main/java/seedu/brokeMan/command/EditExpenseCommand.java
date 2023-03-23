@@ -1,8 +1,9 @@
 package seedu.brokeMan.command;
 
 import seedu.brokeMan.entry.ExpenseList;
+import seedu.brokeMan.exception.CategoryNotCorrectException;
+import seedu.brokeMan.parser.StringToCategory;
 import seedu.brokeMan.parser.StringToTime;
-import seedu.brokeMan.ui.Ui;
 import seedu.brokeMan.entry.Category;
 
 import java.time.LocalDateTime;
@@ -35,11 +36,18 @@ public class EditExpenseCommand extends Command {
             ExpenseList.editExpense(index, newCost);
         } else if (type.equals("info")) {
             ExpenseList.editExpense(index, newEntry);
-        } else if (type.equals("time")){
+        } else if (type.equals("time")) {
             LocalDateTime newTime = StringToTime.convertStringToTime(newEntry);
             ExpenseList.editExpense(index, newTime);
         } else if (type.equals("category")) {
-            Category newCategory;
+            Category newCategory = null;
+            try {
+                newCategory = StringToCategory.convertStringToCategory(newEntry);
+            } catch (CategoryNotCorrectException e) {
+                throw new RuntimeException(e);
+            }
+            ExpenseList.editExpense(index, newCategory);
         }
 
+    }
 }

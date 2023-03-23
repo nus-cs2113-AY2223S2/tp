@@ -1,6 +1,10 @@
 package seedu.brokeMan.command;
 
+import seedu.brokeMan.entry.Category;
+import seedu.brokeMan.entry.ExpenseList;
 import seedu.brokeMan.entry.IncomeList;
+import seedu.brokeMan.exception.CategoryNotCorrectException;
+import seedu.brokeMan.parser.StringToCategory;
 import seedu.brokeMan.parser.StringToTime;
 
 import java.time.LocalDateTime;
@@ -28,9 +32,17 @@ public class EditIncomeCommand extends Command {
             IncomeList.editIncome(index, newIncome);
         } else if (type.equals("info")) {
             IncomeList.editIncome(index, newEntry);
-        } else {
+        } else if (type.equals("time")) {
             LocalDateTime newTime = StringToTime.convertStringToTime(newEntry);
             IncomeList.editIncome(index, newTime);
+        } else if (type.equals("category")) {
+            Category newCategory = null;
+            try {
+                newCategory = StringToCategory.convertStringToCategory(newEntry);
+            } catch (CategoryNotCorrectException e) {
+                throw new RuntimeException(e);
+            }
+            IncomeList.editIncome(index, newCategory);
         }
     }
 }
