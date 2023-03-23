@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:user executes add entry command;
+    if () then ([valid format])
+      :Create new entry;
+      :Insert new entry at the end of the EntryLog;
+      :Show success message;
+
+    else ([invalid format])
+      :Show error message;
+    endif
+
+stop
+
+@enduml

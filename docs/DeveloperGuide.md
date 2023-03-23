@@ -45,6 +45,25 @@ command: `/add McDonalds -c Food -p 10.50`
 
 ![ParserSequenceDiagram](../../ParserSequenceDiagram.png)
 
+## Add Command
+The add entry mechanism is facilitated by `EntryLog`. Every instance of AddCommand is created with an Entry instance.
+
+The following sequence diagram shows how the add command work:
+![AddCommandSequenceDiagram](./static/AddCommandSequenceDiagram.png)
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The EntryLog will be initialized and contains no entry.
+
+Step 2. The user executes `/add Lunch at McDonalds -category Food -price 19.9` command to add an entry to the task list. The addT command calls Model#addTask(), causing the task to be added to the task list.
+
+_***Note.*** The add command will fail its execution if its format is incorrect, and no entry will be added to the entry log. An error message will be displayed informing the user._
+
+The following activity diagram summarizes what happens when a user executes an add command:
+
+![AddCommandActivityDiagram](./static/AddCommandActivityDiagram.png)
+
+
 ## Product scope
 
 ### Target user profile

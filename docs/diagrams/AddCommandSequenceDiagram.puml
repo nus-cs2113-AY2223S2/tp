@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ":Parser" as Parser
+participant "c:AddCommand" as AddCommand
+participant "entryObj:Entry" as Entry
+participant "r:Request" as Request
+participant "q:Response" as Response
+participant "UI" as UI
+
+Parser -> AddCommand ** : AddCommand("Lunch at McDonalds", 19.9, "Food")
+activate AddCommand
+AddCommand -> Entry ** :Entry("Lunch at McDonalds", 19.9, FOOD)
+activate Entry
+return entryObj
+return c
+
+-> AddCommand :execute()
+activate AddCommand
+AddCommand -> Request **
+Request --> AddCommand : r
+AddCommand -> Response **
+Response --> AddCommand : q
+AddCommand -> UI : printExpenditureAdded(entryObj)
+UI --> AddCommand
+deactivate AddCommand
+
+
+
+
+
+'Alice -> Bob: Authentication Request
+'Bob --> Alice: Authentication Response
+'
+'Alice -> Bob: Another authentication Request
+'Alice <-- Bob: another authentication Response
+
+
+@enduml
