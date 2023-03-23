@@ -69,6 +69,19 @@ The listExpenseCommand is facilitated by ```System```, ```Parser``` and ```Expen
    is called, which iterates through the expenseList, ```expenses``` and prints the index as well as a completed string of
    expenses in ```expenses```.
 
+### SetCurrencyCommand
+The setCurrencyCommand is facilitated by ```System```, ```Selector```,  ```UI``` and ```ExpenseList```.
+The command receives the instruction from ```UI``` and will call the ```execute``` method.
+The ```execute()``` method in setCurrencyCommand will then call the ```containsCurrency(currency)``` method from ```Selector```.
+If the method returns false, which indicates that the currency is not available, the command will throw a new ChChingException and print ```"Currency not available"```.
+If the method returns true, the command will continue to set the currency in the selector hashmap to true.
+Afterwards, the ```execute()``` method will call the ```printSelector()``` method from ```Selector```.
+The ```printSelector()``` method will print all the available currencies in the selector hashmap.
+The selected currencies will be marked with a ```[X]``` and the unselected currencies will be marked with a ```[ ]```.
+
+<br> ![Set Currency Sequence Diagram](../images/SetCurrencyCommand_sequence_diagram.png)
+
+
 ## Product scope
 ### Target user profile
 
