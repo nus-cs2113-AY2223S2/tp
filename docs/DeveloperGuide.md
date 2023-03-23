@@ -91,6 +91,7 @@ This will execute the ```setPacked()``` method to set the value of the boolean `
 
 #### Unpack Command
 ```Unpack Command``` is used to mark an item in the list as unpacked.
+
 Mechanism: ```UnpackCommand.execute()``` calls the ```PackingList.unpackItem()``` method from the ```PackingList``` class.
 This will execute the ```setPacked``` method to set the value of the boolean ```isPacked``` to be ```false```, and mark the item as unpacked in the ```PackingList``` ArrayList.
 

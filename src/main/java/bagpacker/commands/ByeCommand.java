@@ -9,7 +9,8 @@ public class ByeCommand extends Command {
     public static boolean isBagPackerRunning = true;
     public static final String HELP_MSG = "bye : Stops the BagPacker Application\n" +
             "\tExample: bye";
-    public void execute (PackingList packingList) {
+
+    public void execute(PackingList packingList) {
         this.isBagPackerRunning = false;
     }
 }
