@@ -79,8 +79,15 @@ public class Meal360 {
             }
             ui.printSeparator();
         } else if (command[0].equals("list")) {
-            RecipeList recipeListToPrint = parser.parseListRecipe(command, recipeList);
-            ui.listRecipe(recipeListToPrint);
+            try {
+                ui.printSeparator();
+                RecipeList recipeListToPrint = parser.parseListRecipe(command, recipeList);
+                ui.listRecipe(recipeListToPrint);
+            } catch (IllegalArgumentException e) {
+                String errorMessage = "Please enter the command in the valid format. Some arguments might be missing.";
+                ui.printMessage(errorMessage);
+            }
+            ui.printSeparator();
         } else if (command[0].equals("add")) {
             ui.printSeparator();
             try {
@@ -110,6 +117,19 @@ public class Meal360 {
                 String errorMessage = String.format(
                         "Please enter a valid recipe number. You entered %s, " + "which is out of bounds.",
                         command[1]);
+                ui.printMessage(errorMessage);
+            }
+            ui.printSeparator();
+        } else if (command[0].equals("tag")) {
+            try {
+                ui.printSeparator();
+                String tag = parser.parseTagRecipe(command, recipeList);
+                ui.printMessage("You have modified the recipe(s) in this \"" + tag + "\" tag.");
+            } catch (IllegalArgumentException e) {
+                String errorMessage = "Please enter the command in the correct format.";
+                ui.printMessage(errorMessage);
+            } catch (IndexOutOfBoundsException e) {
+                String errorMessage = "Sorry, I am unable to find the recipes you entered.";
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
