@@ -2,8 +2,8 @@ package seedu.duke.commands;
 import org.junit.jupiter.api.Test;
 import seedu.duke.objects.Item;
 import seedu.duke.objects.Inventory;
-import seedu.duke.utils.parser.Parser;
-import seedu.duke.objects.AlertList;
+import seedu.duke.utils.parsers.AddParser;
+import seedu.duke.utils.parsers.EditParser;
 import seedu.duke.types.Types;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,16 +15,17 @@ import java.util.ArrayList;
 
 public class SearchCommandTest {
     Inventory inventory = new Inventory();
-    AlertList alertList = new AlertList();
-    Parser testParser = new Parser(inventory, alertList);
     @Test
     public void searchByKeywordTest(){
-        testParser.parseAdd("n/orange upc/1 qty/5 p/5",inventory);
-        testParser.parseAdd("n/orange upc/2 qty/5 p/5",inventory);
+        AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
+        addParser.run();
+        addParser = new AddParser("n/orange upc/2 qty/5 p/5",inventory);
+        addParser.run();
         SearchCommand searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
         ArrayList<Item> searchResults = searchCommand.searchKeyword();
         assertEquals(searchResults.size(),2);
-        testParser.parseEdit("upc/2 n/laptops", inventory);
+        EditParser editParser = new EditParser("upc/2 n/laptops", inventory);
+        editParser.run();
         searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
         searchResults = searchCommand.searchKeyword();
         assertEquals(searchResults.size(),1);
@@ -35,8 +36,10 @@ public class SearchCommandTest {
         searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
         searchResults = searchCommand.searchKeyword();
         assertEquals(searchResults,null);
-        testParser.parseAdd("n/orange upc/1 qty/5 p/5",inventory);
-        testParser.parseAdd("n/orange upc/2 qty/5 p/5",inventory);
+        addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
+        addParser.run();
+        addParser = new AddParser("n/orange upc/2 qty/5 p/5",inventory);
+        addParser.run();
         removeCommand = new RemoveCommand(inventory, "2", "Y");
         removeCommand.run();
         searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
@@ -44,18 +47,22 @@ public class SearchCommandTest {
         assertEquals(searchResults.size(),1);
         removeCommand = new RemoveCommand(inventory, "1", "Y");
         removeCommand.run();
-        testParser.parseAdd("n/small orange upc/1 qty/5 p/5",inventory);
-        testParser.parseAdd("n/large orange upc/2 qty/5 p/5",inventory);
+        addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
+        addParser.run();
+        addParser = new AddParser("n/orange upc/2 qty/5 p/5",inventory);
+        addParser.run();
         searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
         searchResults = searchCommand.searchKeyword();
         assertEquals(searchResults.size(),2);
-        testParser.parseEdit("upc/2 n/laptop", inventory);
+        editParser = new EditParser("upc/2 n/laptops", inventory);
+        editParser.run();
         searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
         searchResults = searchCommand.searchKeyword();
         assertEquals(searchResults.size(),1);
         removeCommand = new RemoveCommand(inventory, "2", "Y");
         removeCommand.run();
-        testParser.parseAdd("n/large orange upc/2 qty/5 p/5",inventory);
+        addParser = new AddParser("n/orange upc/2 qty/5 p/5",inventory);
+        addParser.run();
         removeCommand = new RemoveCommand(inventory, "2", "Y");
         removeCommand.run();
         searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
@@ -65,8 +72,10 @@ public class SearchCommandTest {
 
     @Test
     public void searchByUPCTest(){
-        testParser.parseAdd("n/orange upc/1 qty/5 p/5",inventory);
-        testParser.parseAdd("n/orange upc/2 qty/5 p/5",inventory);
+        AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
+        addParser.run();
+        addParser = new AddParser("n/orange upc/2 qty/5 p/5",inventory);
+        addParser.run();
         SearchCommand searchCommand = new SearchCommand(inventory, "2", Types.SearchType.UPC);
         Item searchResult = searchCommand.searchUPC();
         assertFalse(searchResult==null);
@@ -78,7 +87,8 @@ public class SearchCommandTest {
         searchCommand = new SearchCommand(inventory, "2", Types.SearchType.UPC);
         searchResult = searchCommand.searchUPC();
         assertTrue(searchResult==null);
-        testParser.parseEdit("upc/1 n/laptops", inventory);
+        EditParser editParser = new EditParser("upc/1 n/laptops", inventory);
+        editParser.run();
         searchCommand = new SearchCommand(inventory, "1", Types.SearchType.UPC);
         searchResult = searchCommand.searchUPC();
         assertFalse(searchResult==null);

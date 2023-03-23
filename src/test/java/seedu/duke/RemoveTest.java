@@ -14,9 +14,9 @@ class RemoveTest {
     @Test
     void removeItemAtIndex() {
         Inventory inventory = new Inventory();
-        Item item1 = new Item("appleA", "123", "000", "0.0");
-        Item item2 = new Item("apples", "012345678", "5000", "12.0");
-        Item item3 = new Item("oranges", "876543210", "3000", "0.32");
+        Item item1 = new Item("appleA", "123", 000, 0.0);
+        Item item2 = new Item("apples", "012345678", 5000, 12.0);
+        Item item3 = new Item("oranges", "876543210", 3000, 0.32);
         Command addCommand = new AddCommand(inventory, item1);
         addCommand.run();
         Command addCommand1 = new AddCommand(inventory, item2);
@@ -33,9 +33,9 @@ class RemoveTest {
     @Test
     void removeByUpc() {
         Inventory inventory = new Inventory();
-        Item item1 = new Item("appleA", "123", "100", "0.0");
-        Item item2 = new Item("apples", "012345678", "5000", "12.0");
-        Item item3 = new Item("oranges", "876543210", "3000", "0.32");
+        Item item1 = new Item("appleA", "123", 100, 0.0);
+        Item item2 = new Item("apples", "012345678", 5000, 12.0);
+        Item item3 = new Item("oranges", "876543210", 3000, 0.32);
 
         Command addCommand = new AddCommand(inventory, item1);
         addCommand.run();
