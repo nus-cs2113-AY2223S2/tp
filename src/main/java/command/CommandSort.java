@@ -77,11 +77,11 @@ public class CommandSort extends Command {
             Expense tempExpense = new Expense(expenseListDate.get(i).getExpenseAmount(),
                     Time.toTime(expenseListDate.get(i).getExpenseTime()),
                     expenseListDate.get(i).getDescription(),
-                    expenseListDate.get(i).getCurrencyType());
+                    expenseListDate.get(i).getCurrencyType(), expenseListDate.get(i).getRate());
             Expense minIndexExpense = new Expense(expenseListDate.get(minIndex).getExpenseAmount(),
                     Time.toTime(expenseListDate.get(minIndex).getExpenseTime()),
                     expenseListDate.get(minIndex).getDescription(),
-                    expenseListDate.get(minIndex).getCurrencyType());
+                    expenseListDate.get(minIndex).getCurrencyType(), expenseListDate.get(i).getRate());
 
             expenseListDate.set(i, minIndexExpense);
             expenseListDate.set(minIndex, tempExpense);
@@ -102,11 +102,11 @@ public class CommandSort extends Command {
             Expense tempExpense = new Expense(expenseListCategory.get(i).getExpenseAmount(),
                     Time.toTime(expenseListCategory.get(i).getExpenseTime()),
                     expenseListCategory.get(i).getDescription(),
-                    expenseListCategory.get(i).getCurrencyType());
+                    expenseListCategory.get(i).getCurrencyType(), expenseListDate.get(i).getRate());
             Expense minIndexExpense = new Expense(expenseListCategory.get(minIndex).getExpenseAmount(),
                     Time.toTime(expenseListCategory.get(minIndex).getExpenseTime()),
                     expenseListCategory.get(minIndex).getDescription(),
-                    expenseListCategory.get(minIndex).getCurrencyType());
+                    expenseListCategory.get(minIndex).getCurrencyType(), expenseListDate.get(i).getRate());
 
             expenseListCategory.set(i, minIndexExpense);
             expenseListCategory.set(minIndex, tempExpense);

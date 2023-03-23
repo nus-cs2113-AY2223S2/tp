@@ -4,6 +4,7 @@ import command.CommandAdd;
 import command.CommandList;
 import data.Expense;
 import data.ExpenseList;
+import data.Currency;
 import org.junit.jupiter.api.Test;
 import parser.Parser;
 
@@ -22,6 +23,7 @@ class ExpenseListTest {
     public ArrayList<Expense> testExpenseList = new ArrayList<>();
     public ExpenseList expenseList = new ExpenseList();
     public Parser parser = new Parser();
+    public Currency currency = new Currency();
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     @Test
@@ -37,9 +39,9 @@ class ExpenseListTest {
         assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
 
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/2.5 " +
-                "t/02-02-2012 cur/USD cat/food")).execute();
+                "t/02-02-2012 cur/USD cat/food"), currency).execute();
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/5.5 " +
-                "t/02-02-2014 cur/SGD cat/food")).execute();
+                "t/02-02-2014 cur/SGD cat/food"), currency).execute();
 
         outContent = new ByteArrayOutputStream();
         expected = "Here are the tasks in your list:\n\n"
@@ -63,9 +65,9 @@ class ExpenseListTest {
     void expenseAmountStandardization_successful() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/2.5658 " +
-                "t/02-02-2012 cur/USD cat/food")).execute();
+                "t/02-02-2012 cur/USD cat/food"), currency).execute();
         new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters("add amt/5 " +
-                "t/02-02-2014 cur/SGD cat/food")).execute();
+                "t/02-02-2014 cur/SGD cat/food"), currency).execute();
 
         System.setOut(new PrintStream(outContent));
         new CommandList(expenseList.getExpenseList()).run();

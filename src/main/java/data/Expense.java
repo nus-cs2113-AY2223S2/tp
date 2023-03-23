@@ -9,13 +9,16 @@ public class Expense implements Serializable {
     protected BigDecimal expenseAmount;
     protected Time expenseTime;
     protected String description;
-    protected Currency currencyType;
+    protected String currencyType;
+    protected BigDecimal rate;
 
-    public Expense(BigDecimal expenseAmount, Time expenseTime, String description, Currency currencyType) {
+    public Expense(BigDecimal expenseAmount, Time expenseTime, String description, String currencyType
+            , BigDecimal rate) {
         this.expenseAmount = formatExpenseAmount(expenseAmount);
         this.expenseTime = expenseTime;
         this.description = description;
         this.currencyType = currencyType;
+        this.rate = rate;
     }
 
     private BigDecimal formatExpenseAmount(BigDecimal originalExpenseAmount) {
@@ -35,8 +38,12 @@ public class Expense implements Serializable {
         return description;
     }
 
-    public Currency getCurrencyType() {
+    public String getCurrencyType() {
         return currencyType;
+    }
+
+    public BigDecimal getRate() {
+        return this.rate;
     }
 
     // The setter method will be used if the User want to change some information in their previous expense
@@ -63,7 +70,8 @@ public class Expense implements Serializable {
         return Objects.equals(this.getDescription(), ((Expense) obj).getDescription())
                 && this.getExpenseAmount().equals(((Expense) obj).getExpenseAmount())
                 && Objects.equals(this.getExpenseTime(), ((Expense) obj).getExpenseTime())
-                && Objects.equals(this.getCurrencyType(), ((Expense) obj).getCurrencyType());
+                && Objects.equals(this.getCurrencyType(), ((Expense) obj).getCurrencyType())
+                && Objects.equals(this.getRate(), ((Expense) obj).getRate());
     }
 
     /**
@@ -71,7 +79,7 @@ public class Expense implements Serializable {
      */
     @Override
     public String toString() {
-        String currencyString = Currency.returnCurrency(this.currencyType);
+        String currencyString = this.currencyType;
         String amountString = this.expenseAmount.toString();
         String descriptionString = this.description;
         String timeString = this.expenseTime.toString();

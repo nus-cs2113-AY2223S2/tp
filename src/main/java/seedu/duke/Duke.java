@@ -3,8 +3,10 @@ package seedu.duke;
 import command.CommandAdd;
 import command.CommandDelete;
 import command.CommandList;
+import command.CommandTotal;
 import command.CommandSort;
 import data.ExpenseList;
+import data.Currency;
 import parser.Parser;
 import storage.Storage;
 
@@ -14,6 +16,7 @@ public class Duke {
 
     protected Parser parser;
     protected ExpenseList expenseList;
+    protected Currency currency;
     protected Storage storage;
 
     /**
@@ -22,6 +25,7 @@ public class Duke {
     public Duke() {
         parser = new Parser();
         expenseList = new ExpenseList();
+        currency = new Currency();
         storage = new Storage(expenseList);
         expenseList = storage.initialiseExpenseList();
     }
@@ -46,13 +50,16 @@ public class Duke {
         while (!input.equals("exit")) {
             switch (parser.extractCommandKeyword(input)) {
             case "add":
-                new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input)).execute();
+                new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input), currency).execute();
                 break;
             case "delete":
                 new CommandDelete(expenseList.getExpenseList(), parser.extractIndex(input)).execute();
                 break;
             case "list":
                 new CommandList(expenseList.getExpenseList()).run();
+                break;
+            case "total":
+                new CommandTotal(expenseList.getExpenseList()).execute();
                 break;
             case "sort":
                 new CommandSort(expenseList.getExpenseList(), parser.extractSortBy(input)).execute();
