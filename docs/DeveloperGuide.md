@@ -146,6 +146,10 @@ Given below is an example usage scenario and how the recipe manage mechanism beh
 > The following sequence diagram shows how the recipe manage feature works:
 ![Sequence Diagram for Recipe Manage](./PlantUML/RecipeManage.png)
 ### Recipe Search Feature
+#### Implementation
+To-be-released in future versions.
+#### Example Usage
+To-be-released in future versions.
 
 ### Recipe View Feature
 #### Implementation
@@ -183,6 +187,10 @@ and then `StepList#showStepList()`.
 ![Sequence Diagram for Recipe View](./PlantUML/Recipe_View.png)
 
 ### Recipe Storage Feature
+#### Implementation
+To-be-released in future versions.
+#### Example Usage
+To-be-released in future versions.
 
 ### Help Feature
 #### Implementation
