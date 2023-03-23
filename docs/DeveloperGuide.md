@@ -10,10 +10,12 @@
       - [RecipeList component](#recipelist-component)
       - [Storage component](#storage-component)
     - [Recipe Manage Feature](#recipe-manage-feature)
-    - [Recipe Search Feature](#recipe-search-feature)
-    - [Recipe View Feature](#recipe-view-feature)
       - [Implementation](#implementation)
       - [Example Usage](#example-usage)
+    - [Recipe Search Feature](#recipe-search-feature)
+    - [Recipe View Feature](#recipe-view-feature)
+      - [Implementation](#implementation-1)
+      - [Example Usage](#example-usage-1)
     - [Recipe Storage Feature](#recipe-storage-feature)
     - [Help Feature](#help-feature)
   - [Appendix A - Product scope](#appendix-a---product-scope)
@@ -63,6 +65,7 @@ The rest of the App consists of five components.
 
 #### UI component
 The **API** of this component is specified in [`UI.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/ui/UI.java)
+![image](./PlantUML/UIcomponent.png)
 
 #### Parser component
 
@@ -73,13 +76,14 @@ The **API** of this component is specified in [`UI.java`](https://github.com/AY2
 #### Storage component
 
 ### Recipe Manage Feature
+#### Implementation
 The recipe manage feature is facilitated by the `command`,`parser`,`recipe` package. It implements the following operations: 
 
 - `RecipeList#addNewRecipe()` - Add a new recipe to the recipe list.
 - `RecipeList#getRecipeList()` - Get the recipe list.
 - `RecipeList#removeRecipe()` - Delete a recipe from the recipe list.
 - `RecipeList#clearRecipeList()` - Clear all recipes from the recipe list.
-
+#### Example Usage
 Given below is an example usage scenario and how the recipe manage mechanism behaves at each step.
 
 **Step 1.** The user launches the application for the first time, then inputs `add n/MaLaXiangGuo i/Beef, Mutton, Mushrooms t/Chinese s/1` to add a new recipe to the recipe manager. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `Parser#parseSteps()` method to get the steps of the recipe. 
