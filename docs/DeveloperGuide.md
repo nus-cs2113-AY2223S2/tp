@@ -89,7 +89,7 @@ How the `WeeklyPlan` component works:
 
 The sequence diagram below shows how the `WeeklyPlan` component works when the user
 inputs `weekly /add burger 1`:
-![](//docs/UML/WeeklyPlan/AddWeeklyPlanUML.png)
+![](../docs/UML/WeeklyPlan/AddWeeklyPlanUML.png)
 
 ### Database Component
 
@@ -102,7 +102,20 @@ The `Database` component:
 * saves automatically upon exit of program
 * comes with a default database of 10 recipes for new users
 
+How the `Database` component works at start up:
 
+1. Upon starting up the program, the `Database` component will check for the existence of a
+   database file in the local directory.
+2. If the database file exists, the `Database` component will load the recipes from the database
+   file into a `RecipeList` and return this `RecipeList`.
+3. If the database file does not exist, the `Database` component will check if the parent directory,
+   and create any missing directories and files as necessary.
+4. If the database file does not exist or if the file was empty, the `Database` component will
+   create a new `RecipeList`
+   with 10 default recipes and return this `RecipeList`.
+
+The activity diagram below shows how the `Database` component works at start up:
+![](../docs/UML/Database/DatabaseStartupUML.png)
 ---
 
 ## Appendix: Requirements
