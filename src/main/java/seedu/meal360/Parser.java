@@ -7,9 +7,9 @@ public class Parser {
 
     Ui ui = new Ui();
 
-    public String combineWords(String[] input, int startIndex){
+    public String combineWords(String[] input, int startIndex) {
         StringBuilder word = new StringBuilder(input[startIndex]);
-        for(int i = startIndex+1; i< input.length-1; i++) {
+        for (int i = startIndex + 1; i < input.length - 1; i++) {
             word.append(" ").append(input[i]);
         }
 
@@ -48,11 +48,11 @@ public class Parser {
             recipeToEdit = recipeList.findByName(recipeName);
         }
         System.out.println("Do you want to edit recipe fully or partially?");
-        System.out.println("Press 1 for full edit | Press 2 for partial edit");
+        System.out.println("Press 1 for full edit | Press 2 for partial edit | Press 3 to add ingredients");
 
         Scanner getInput = new Scanner(System.in);
         int index = getInput.nextInt();
-        if(index == 1){
+        if (index == 1) {
             System.out.println("Please Enter New Ingredients & Quantity: ");
             while (true) {
                 String line = userInput.nextLine();
@@ -63,7 +63,7 @@ public class Parser {
                 ingredients.put(command[0], Integer.parseInt(command[1]));
                 recipeList.editRecipe(recipeToEdit, ingredients);
             }
-        } else if(index == 2){
+        } else if (index == 2) {
             System.out.println("These are the ingredients for the recipe:");
             ui.printSeparator();
             Recipe recipe = parseViewRecipe(recipeName, recipeList);
@@ -75,7 +75,7 @@ public class Parser {
             int count = 0;
             String ingredientToRemove = null;
             for (String ingredient : recipeToEdit.getIngredients().keySet()) {
-                if(ingredientIndex == count){
+                if (ingredientIndex == count) {
                     ingredientToRemove = ingredient;
                     System.out.println("Ingredient to be changed:");
                     ui.printSeparator();
@@ -91,42 +91,163 @@ public class Parser {
             String[] command = line.trim().split(" ");
             String newIngredientName = combineWords(command, 0);
             recipeToEdit.getIngredients().remove(ingredientToRemove);
-            recipeToEdit.getIngredients().put(newIngredientName, Integer.parseInt(command[command.length-1]));
+            recipeToEdit.getIngredients().put(newIngredientName, Integer.parseInt(command[command.length - 1]));
+            recipeList.editRecipe(recipeToEdit, recipeToEdit.getIngredients());
+        } else if (index == 3) {
+            System.out.println("These are the current ingredients:");
+            ui.printSeparator();
+            Recipe recipe = parseViewRecipe(recipeName, recipeList);
+            ui.printRecipe(recipe);
+            ui.printSeparator();
+            System.out.println("Please Enter Additional Ingredients & Quantity (Enter done when complete): ");
+            while (true) {
+                String line = userInput.nextLine();
+                if (line.equals("done")) {
+                    ui.printSeparator();
+                    break;
+                } else {
+                    String[] command = line.trim().split(" ");
+                    String ingredientName = combineWords(command, 0);
+                    recipeToEdit.getIngredients().put(ingredientName, Integer.parseInt(command[command.length - 1]));
+                }
+            }
             recipeList.editRecipe(recipeToEdit, recipeToEdit.getIngredients());
         }
 
         return recipeToEdit;
     }
 
-    public Recipe parseDeleteRecipe(String[] input, RecipeList recipeList) {
+    public String parseDeleteRecipe(String[] input, RecipeList recipeList) {
         // user inputted recipe name
         if (input[1].contains("r/")) {
             // skip over /r in recipe name
-            String recipeName = input[1].substring(2);
-            int recipeIndex = 1;
-            for (Recipe recipe : recipeList) {
-                // find index of recipe we want to delete
-                if (recipe.getName().equals(recipeName)) {
-                    break;
+            String recipeToDelete = input[1].substring(2);
+            if (recipeToDelete.equals("all")) {
+                String allRecipes = "";
+                System.out.println("recipeList size: " + recipeList.size());
+                int index = 0;
+                while (recipeList.size() != 0) {
+                    allRecipes += recipeList.deleteRecipe(index).getName() + ", ";
                 }
-                recipeIndex++;
+                allRecipes = allRecipes.substring(0, allRecipes.length() - 2);
+                return allRecipes;
+            } else {
+                int recipeIndex = 0;
+                for (Recipe recipe : recipeList) {
+                    // find index of recipe we want to delete
+                    if (recipe.getName().equals(recipeToDelete)) {
+                        break;
+                    }
+                    recipeIndex++;
+                }
+                return recipeList.deleteRecipe(recipeIndex).getName();
             }
-            return recipeList.deleteRecipe(recipeIndex);
             // user inputted index of recipe in list
         } else {
-            int recipeIndex = Integer.parseInt(input[1]);
-            return recipeList.deleteRecipe(recipeIndex);
+            // deleting a range of recipes
+            if (input[1].length() >= 3) {
+                String rangeRecipes = "";
+                int startIndex = Integer.parseInt(input[1].charAt(0) + "");
+                int endIndex = Integer.parseInt(input[1].charAt(2) + "");
+                startIndex -= 1;
+                endIndex -= 1;
+                int newSize = recipeList.size() - ((endIndex - startIndex) + 1);
+                while (recipeList.size() != newSize) {
+                    rangeRecipes += recipeList.deleteRecipe(startIndex).getName() + ", ";
+                }
+                rangeRecipes = rangeRecipes.substring(0, rangeRecipes.length() - 2);
+                return rangeRecipes;
+            } else {
+                int recipeIndex = Integer.parseInt(input[1]);
+                // need to subtract 1 since list is 1-based
+                return recipeList.deleteRecipe(recipeIndex - 1).getName();
+            }
         }
+    }
+
+    public String parseTagRecipe(String[] inputs, RecipeList recipeList) {
+        String tag;
+        if (inputs.length == 1) {
+            throw new IllegalArgumentException("Please indicate at least a tag and a recipe.");
+        } else {
+            StringBuilder commandString = new StringBuilder(inputs[1]);
+            for (int i = 2; i < inputs.length; i++) {
+                commandString.append(" ").append(inputs[i]);
+            }
+            boolean isAddTag = commandString.indexOf("<<") != -1 && commandString.indexOf(">>") == -1;
+            boolean isRemoveTag = commandString.indexOf("<<") == -1 && commandString.indexOf(">>") != -1;
+            if (!(isAddTag || isRemoveTag)) {
+                throw new IllegalArgumentException("Please enter the command in the correct format.");
+            } else if (isAddTag) {
+                tag = parseAddRecipeTag(commandString.toString(), recipeList);
+            } else if (isRemoveTag) {
+                tag = parseRemoveRecipeTag(commandString.toString(), recipeList);
+            } else {
+                throw new IllegalArgumentException("Invalid command.");
+            }
+        }
+        return tag;
+    }
+
+    public String parseAddRecipeTag(String command, RecipeList recipeList) {
+        String tag;
+        String[] args = command.trim().split("<<");
+        if (args.length < 2) {
+            throw new IllegalArgumentException("Please enter the command in the correct format.");
+        }
+        tag = args[0].trim();
+        String[] recipesToTag = args[1].split(",");
+        for (String recipeName : recipesToTag) {
+            recipeName = recipeName.trim();
+            Recipe recipe = recipeList.findByName(recipeName);
+            if (recipe == null) {
+                throw new IndexOutOfBoundsException("Unable to find the recipe.");
+            }
+            recipeList.addRecipeToTag(tag, recipe);
+        }
+        return tag;
+    }
+
+    public String parseRemoveRecipeTag(String command, RecipeList recipeList) {
+        String tag;
+        String[] args = command.trim().split(">>");
+        if (args.length < 2) {
+            throw new IllegalArgumentException("Please enter the command in the correct format.");
+        }
+        tag = args[0].trim();
+        String[] recipesToTag = args[1].split(",");
+        for (String recipeName : recipesToTag) {
+            recipeName = recipeName.trim();
+            Recipe recipe = recipeList.findByName(recipeName);
+            if (recipe == null) {
+                throw new IndexOutOfBoundsException("Unable to find the recipe.");
+            }
+            recipeList.removeRecipeFromTag(tag, recipe);
+        }
+        return tag;
     }
 
     public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList) {
         String[] filters;
+        boolean isTag = false;
         if (inputs.length == 1) {
             filters = null;
         } else {
-            filters = inputs[1].split("&");
+            int firstArgsIndex = 1;
+            if (inputs[1].equals("/t")){
+                if (inputs.length == 2) {
+                    throw new IllegalArgumentException("argument is missing.");
+                }
+                firstArgsIndex = 2;
+                isTag = true;
+            }
+            StringBuilder filterString = new StringBuilder(inputs[firstArgsIndex]);
+            for (int i = firstArgsIndex + 1; i < inputs.length; i++) {
+                filterString.append(" ").append(inputs[i]);
+            }
+            filters = filterString.toString().split("&");
         }
-        return recipeList.listRecipes(filters);
+        return recipeList.listRecipes(filters, isTag);
     }
 
     public Recipe parseViewRecipe(String[] command, RecipeList recipes) {
@@ -134,7 +255,8 @@ public class Parser {
         int recipeIndex = Integer.parseInt(command[1]) - 1;
         return recipes.get(recipeIndex);
     }
-    public Recipe parseViewRecipe(String recipeName, RecipeList recipes){
+
+    public Recipe parseViewRecipe(String recipeName, RecipeList recipes) {
         int recipeIndex = 1;
         for (Recipe recipe : recipes) {
             if (recipe.getName().equals(recipeName)) {
@@ -142,7 +264,7 @@ public class Parser {
             }
             recipeIndex++;
         }
-        return recipes.get(recipeIndex-1);
+        return recipes.get(recipeIndex - 1);
     }
 
     public WeeklyPlan parseWeeklyPlan(String[] command, RecipeList recipes) {
