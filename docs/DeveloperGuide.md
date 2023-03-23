@@ -80,8 +80,20 @@ UI class implements the StringLib interface for some output strings. It is respo
 * Prints the error messages for some exceptions.
 
 #### Parser component
+The **API** of this component is specified in ['Parser.java'](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/parser/Parser.java)
+![image](./PlantUML/ParserComponent.png)
+
+Parser class implements the StringLib interface for some output strings. It is responsible for the following tasks:
+* Executes the particular command received from the user input.
+* Determines if the program termination command has been sent.
 
 #### Command component
+The **API** of this component is specified in ['Command.java'](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/command/Command.java)
+![image](./PlantUML/CommandComponent.png) 
+
+Command class the StringLib interface for some output strings. It also inherits CommandType Enums for determining the 
+correct tasks to be executed. It is responsible for the following tasks
+
 
 #### RecipeList component
 
@@ -150,7 +162,25 @@ and then `StepList#showStepList()`.
 ### Recipe Storage Feature
 
 ### Help Feature
+#### Implementation
+The help feature's main functionality is to show users the full list of commands they can use on TOM. 
+It is facilitated by the `command`,`parser`,`ui` package. It implements the following operations:
 
+- `Ui#showHelp()` - Prints the help message.
+- `Parser#parseCommands()` - Parse user input into a Command object containing commandType and fullDescription.
+- `Command#excecute()` - Carry out respective tasks based on commandType given.
+
+#### Example Usage
+
+Given below is an example usage scenario and how the help mechanism behaves at each step.
+
+**Step 1.** The user launches the application for the first time, then inputs `help` to see all possible commands that
+can be executed. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will 
+return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, 
+which will call the `Ui#showHelp()` method to show all possible commands of the recipe.
+
+> The following sequence diagram shows how the help feature works:
+![Sequence Diagram for Help](./PlantUML/Help.png)
 
 ## Appendix A - Product scope
 ### Target user profile
