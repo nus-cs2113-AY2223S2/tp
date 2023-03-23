@@ -44,8 +44,9 @@ Key Aspects:
 * Handles the serialization and deserialization of user data into a json file using
   the [Gson Library](https://github.com/google/gson)
 * Handles the creation of user data file when previous one is missing or corrupted
+* Handles the loading of user data and plans upon start of the program
 
-The class diagram as shown in *Figure X.1* illustrates the structre of the different classes in Storage.
+The class diagram as shown in *Figure X.1* illustrates the structure of the different classes in Storage.
 <div align="center">
 <img src="UML/Images/StorageHandlerClass.png" />
 <p>
@@ -54,7 +55,8 @@ Figure X.1
 </div>
 
 The StorageHandler interacts with the other classes as shown in the *Sequence Diagram*
-where it shows how the StorageHandler loads the local user data json file upon the resumption of the program.
+where it shows how the StorageHandler loads the local user data json file as well as the user plans json file upon the 
+resumption of the program.
 <div align="center">
 <img src="UML/Images/LoadingUserCareerData.png" />
 <p>
@@ -93,20 +95,22 @@ progress.
 | Version | As a ...                                                                                       | I want to ...                                                                                                                   | So that I can ...                                                              |
 |---------|------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
 | v1.0    | - User who wants to start working out<br/>- User who wants to train a specific part of my body | - Select a specific intensity workout<br/>- Request a workout that comprises exercises that thoroughly exercises that body part | - Exercise according to selected intensity<br/> - Work on my target body part. |
-| V1.1    | - User who likes to see my progress                                                            | - Take note my history of workouts                                                                                              | - track my progress of my fitness so far                                       |
+| V1.0    | - User                                                                                         | - be able to filter my exercises by body part                                                                                   | - train a specific part of my body                                             |
 
 ## Non-Functional Requirements
 
 | Categories  | Requirement                                                                                          |
 |-------------|------------------------------------------------------------------------------------------------------|
 | Performance | - The program should be able to generate a list of exercises within 5 seconds                        |
-| Technical   | - The program should be able to run on any PC (i.e. different OS)                                    |       
+| Technical   | - The program should be able to run on any PC (i.e. different OS) <br/> - Be able to handle cases such as user data file corruption
 | Others      | - The program is not required to ensure the workouts are carried out safely and properly by the user |
 
 ## Glossary
 
 * *FitnessDuke* - The name of our application
 * *OS* - Operating Systems - Linux, MacOS, Windows
+* *CLI* - Command Line Interface - The terminal in the PC OS
+* *ExerciseData* - Individual Exercise data from the ```data.json``` file
 
 ## Instructions for manual testing
 
