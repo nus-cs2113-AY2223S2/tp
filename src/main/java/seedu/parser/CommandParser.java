@@ -1,6 +1,15 @@
 package seedu.parser;
 
-import seedu.commands.*;
+import seedu.commands.AddMealCommand;
+import seedu.commands.Command;
+import seedu.commands.DeleteMealCommand;
+import seedu.commands.ExitCommand;
+import seedu.commands.UpdateUserCommand;
+import seedu.commands.ViewUserCommand;
+import seedu.commands.ListCommand;
+import seedu.commands.NutritionCommand;
+import seedu.commands.ExerciseCommand;
+import seedu.commands.FilterCaloriesCommand;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.LifeTrackerException;
 
@@ -34,6 +43,9 @@ public class CommandParser {
             break;
         case "nutrition":
             command = new NutritionCommand();
+            break;
+        case "exercise":
+            command = new ExerciseCommand();
             break;
         default:
             throw new InvalidCommandException();

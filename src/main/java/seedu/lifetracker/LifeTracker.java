@@ -1,6 +1,7 @@
 package seedu.lifetracker;
 
 import seedu.commands.Command;
+import seedu.database.ExerciseStorage;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
@@ -12,15 +13,19 @@ public class LifeTracker {
     private static final String PATH_HOME = System.getProperty("user.dir");
     private static final String MEAL_FILE_PATH = Paths.get(PATH_HOME, "data", "mealData.csv").toString();
     private static final String USER_FILE_PATH = Paths.get(PATH_HOME, "data", "userData.csv").toString();
+    private static final String EXERCISE_FILE_PATH = Paths.get(PATH_HOME, "data", "exerciseData.csv").toString();
+
     private FoodStorage foodStorage;
     private MealStorage mealStorage;
     private UserStorage userStorage;
+    private ExerciseStorage exerciseStorage;
     private GeneralUi ui;
 
-    public LifeTracker(String mealFilePath, String userFilePath) {
+    public LifeTracker(String mealFilePath, String userFilePath, String exerciseFilePath) {
         foodStorage = new FoodStorage();
         mealStorage = new MealStorage(mealFilePath, foodStorage);
         userStorage = new UserStorage(userFilePath);
+        exerciseStorage = new ExerciseStorage(exerciseFilePath);
         ui = new GeneralUi();
     }
 
@@ -43,6 +48,6 @@ public class LifeTracker {
     }
 
     public static void main(String[] args) {
-        new LifeTracker(MEAL_FILE_PATH, USER_FILE_PATH).run();
+        new LifeTracker(MEAL_FILE_PATH, USER_FILE_PATH, EXERCISE_FILE_PATH).run();
     }
 }
