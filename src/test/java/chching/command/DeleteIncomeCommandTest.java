@@ -7,6 +7,7 @@ import chching.currency.Selector;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
 import chching.record.Income;
+import chching.record.TargetStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -42,6 +43,7 @@ class DeleteIncomeCommandTest {
     private IncomeList defaultIncomeList;
     private Selector selector;
     private Converter converter;
+    private TargetStorage targetStorage;
 
     @BeforeEach
     void setup() {
@@ -64,7 +66,7 @@ class DeleteIncomeCommandTest {
         int defaultIncomeListSize = defaultIncomeList.size();
         Command command = new DeleteIncomeCommand(CORRECT_INDEX);
         try {
-            command.execute(defaultIncomeList, emptyExpenseList, ui, storage, selector, converter);
+            command.execute(defaultIncomeList, emptyExpenseList, ui, storage, selector, converter, targetStorage);
             assertEquals(defaultIncomeListSize - OFFSET, defaultIncomeList.size(), "Delete income working");
         } catch (Exception e) {
             fail(); // test should not reach here
@@ -79,7 +81,7 @@ class DeleteIncomeCommandTest {
         String expectedOutput = "The number is too big";
         Command command = new DeleteIncomeCommand(TOO_LARGE_INDEX);
         try {
-            command.execute(defaultIncomeList, emptyExpenseList, ui, storage, selector, converter);
+            command.execute(defaultIncomeList, emptyExpenseList, ui, storage, selector, converter, targetStorage);
             fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage(), "Delete income with integer outside size is not captured");
@@ -94,7 +96,7 @@ class DeleteIncomeCommandTest {
         String expectedOutput = "Negative/Zero index";
         Command command = new DeleteIncomeCommand(NEGATIVE_INDEX);
         try {
-            command.execute(defaultIncomeList, emptyExpenseList, ui, storage, selector, converter);
+            command.execute(defaultIncomeList, emptyExpenseList, ui, storage, selector, converter, targetStorage);
             fail(); // test should not reach this line
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage(), "Delete income with negative integer is not captured");
