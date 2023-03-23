@@ -4,9 +4,12 @@
   - [Setup \& Prerequisites](#setup--prerequisites)
   - [Design \& implementation](#design--implementation)
     - [Architecture](#architecture)
+    - [UI component](#ui-component)
     - [Recipe Manage Feature](#recipe-manage-feature)
     - [Recipe Search Feature](#recipe-search-feature)
     - [Recipe View Feature](#recipe-view-feature)
+      - [Implementation](#implementation)
+      - [Example Usage](#example-usage)
     - [Recipe Storage Feature](#recipe-storage-feature)
     - [Help Feature](#help-feature)
   - [Appendix A - Product scope](#appendix-a---product-scope)
@@ -36,31 +39,81 @@
 
 **Main components of the architecture**
 
+![image](./PlantUML/MainArchitecture.png)
+
+The ***Architecture Diagram*** given above explains the high-level design of the App.
+
+Given below is a quick overview of Duke(main) components and how they interact with each other.
+It is responsible for,
+* At app launch: Initializes all other components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+The rest of the App consists of five components.
+
+* [**`UI`**](#ui-component): The UI of the App.
+* [**`Parser`**](#parser-component): Parses user input.
+* [**`Command`**](#command-component): The command executor.
+* [**`RecipeList`**](#recipelist-component): Holds the recipe data in the recipe manager by an ArrayList. 
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+
+
+### UI component
+
 ### Recipe Manage Feature
 The recipe manage feature is facilitated by the `command`,`parser`,`recipe` package. It implements the following operations: 
 
-- `recipeList#addNewRecipe()` - Add a new recipe to the recipe list.
-- `recipeList#getRecipeList()` - Get the recipe list.
-- `recipeList#removeRecipe()` - Delete a recipe from the recipe list.
-- `recipeList#clearRecipeList()` - Clear all recipes from the recipe list.
+- `RecipeList#addNewRecipe()` - Add a new recipe to the recipe list.
+- `RecipeList#getRecipeList()` - Get the recipe list.
+- `RecipeList#removeRecipe()` - Delete a recipe from the recipe list.
+- `RecipeList#clearRecipeList()` - Clear all recipes from the recipe list.
 
 Given below is an example usage scenario and how the recipe manage mechanism behaves at each step.
 
 **Step 1.** The user launches the application for the first time, then inputs `add n/MaLaXiangGuo i/Beef, Mutton, Mushrooms t/Chinese s/1` to add a new recipe to the recipe manager. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `Parser#parseSteps()` method to get the steps of the recipe. 
 
-**Step 2.** The user inputs `chop beef` to add a step for the recipe. `Parser#parseSteps()` receives all the steps and returns a `StepList` object. Then we return to the `Command#execute()` method in the `Command` class and call the `recipeList#addNewRecipe()` to add the recipe to the recipe list.
+**Step 2.** The user inputs `chop beef` to add a step for the recipe. `Parser#parseSteps()` receives all the steps and returns a `StepList` object. Then we return to the `Command#execute()` method in the `Command` class and call the `RecipeList#addNewRecipe()` to add the recipe to the recipe list.
 
-**Step 3.** The user inputs `list` to list all the recipes in the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `recipeList#getRecipeList()` to get the recipe list. Then we return to the `Command#execute()` method in the `Command` class and call the `Ui#showRecipeList()` to show the recipe list.
+**Step 3.** The user inputs `list` to list all the recipes in the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `RecipeList#getRecipeList()` to get the recipe list. Then we return to the `Command#execute()` method in the `Command` class and call the `Ui#showRecipeList()` to show the recipe list.
 
-**Step 4.** The user inputs `delete 1` to delete the first recipe in the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `recipeList#removeRecipe()` to remove the recipe from the recipe list.
+**Step 4.** The user inputs `delete 1` to delete the first recipe in the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `RecipeList#removeRecipe()` to remove the recipe from the recipe list.
 
-**Step 5.** The user executes the `clear` to clear all the recipes in the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `recipeList#clearRecipeList()` to clear all the recipes from the recipe list.
+**Step 5.** The user executes the `clear` to clear all the recipes in the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the RecipeList#clearRecipeList()` to clear all the recipes from the recipe list.
 
 > The following sequence diagram shows how the recipe manage feature works:
 ![Sequence Diagram for Recipe Manage](./PlantUML/RecipeManage.png)
 ### Recipe Search Feature
 
 ### Recipe View Feature
+#### Implementation
+
+Viewing recipes is handled by the `command`, `recipe` and `ui` classes
+The following operations are implemented:
+* `RecipeList#getRecipeFromList()` - Retrieves a Recipe from the RecipeList
+* `Recipe#getIngredientList()` - Retrieves the IngredientList for the Recipe
+* `Recipe#getStepList()` - Retrieves the StepList for the Recipe
+* `UI#showRecipeViewed()`- Prints the IngredientList and StepList for the recipe
+
+#### Example Usage
+The example usage is based on the assumption that there currently exists at least
+one Recipe stored in the RecipeList.
+
+**Step 1.** In the command line, the user inputs `view 1` to view the first `Recipe` object
+in the `RecipeList`. `Duke` calls the `parseCommands()` method in the `Parser` class to
+parse the user input, which returns a `Command` object of type `VIEW`. Under
+`Command#execute()`, this object will be executed.
+
+**Step 2** Under the `VIEW` case, the second part of the user's input `1` is parsed to an `int` to obtain the item
+number in the list. 
+
+**Step 3.** The method `RecipeList#getRecipeFromList()` is called to retrieve the desired recipe
+to be viewed. This method then converts the 1-based item number to the 0-based indexing of `RecipeList`,
+then returns the `Recipe` object stored at that index using `recipeList.get()`
+
+**Step 4.** The `Command#execute()` method under case `VIEW` then calls `UI#ShowRecipeViewed` with the retrieved
+`Recipe` object as an input parameter. This method calls `Recipe#getIngredientList()` to obtain the
+`IngredientList` object for the Recipe, then calls `IngredientList#showList()` to print out the ingredients
+for the recipe. The method then follows a similar approach for the steps in the recipe, calling `Recipe#getStepList`
+and then `StepList#showStepList()`.
 
 
 

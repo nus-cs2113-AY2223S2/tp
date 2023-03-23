@@ -1,4 +1,4 @@
-@startuml MainArchitecture 
+@startuml MainArchitecture
 
 archimate #Technology "User" as User <<technology-device>>
 archimate #Technology "Data" as Data <<application-data-object>>
@@ -10,11 +10,13 @@ rectangle RM {
     rectangle Parser 
     rectangle Storage 
     rectangle RecipeList
-    User -down-> UI
-    Storage -> Data
+    rectangle Command
+    User -down.> UI
+    Storage .> Data
     Duke -up-> UI
-    Duke -> Storage
+    Duke -> Command
+    Command -> RecipeList
+    Duke -up-> Parser
     Storage -up-> RecipeList
-    Duke -> RecipeList
 }
 @enduml
