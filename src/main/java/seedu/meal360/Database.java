@@ -11,8 +11,10 @@ import java.util.HashMap;
 
 public class Database {
 
-    private static final Ui ui = new Ui();
-    private static final String recipesDatabaseFilepath = "./src/main/resources/recipesDatabase.json";
+    private static final String recipesDatabaseFilepath =
+            "." + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "main"
+                    + System.getProperty("file.separator") + "resources" + System.getProperty(
+                    "file.separator") + "recipesDatabase.json";
 
     public RecipeList loadDatabase() throws IOException {
         RecipeList database;
@@ -25,10 +27,8 @@ public class Database {
                 // Create the parent directory if it does not exist
                 File parentDir = file.getParentFile();
                 if (!parentDir.exists()) {
-                    ui.printMessage("Database directory does not exist, creating one now...");
                     parentDir.mkdirs();
                 }
-                ui.printMessage("Database file does not exist, creating one now...");
                 file.createNewFile();
             } catch (IOException e) {
                 throw new IOException("Error creating database file.");
@@ -52,7 +52,6 @@ public class Database {
 
         // Ensure non empty recipeList is returned
         if (database == null) {
-            ui.printMessage("Database file is empty, loading default database");
             return defaultRecipeList();
         } else {
             return database;
