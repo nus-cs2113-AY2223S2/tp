@@ -67,17 +67,9 @@ public class Parser {
         case AddIncomeCommand.COMMAND_WORD:
             return prepareAddIncomeCommand(userInput.commandDescription);
         case ListExpenseCommand.COMMAND_WORD:
-//<<<<<<< HEAD
-//            return new ListExpenseCommand();
-//        case ListIncomeCommand.COMMAND_WORD:
-//            return new ListIncomeCommand();
-//=======
             return prepareListExpenseCommand(userInput.commandDescription);
-//        return prepareListCommand("expense", userInput.commandDescription);
         case ListIncomeCommand.COMMAND_WORD:
-//            return prepareListCommand("income", userInput.commandDescription);
             return prepareListIncomeCommand(userInput.commandDescription);
-//>>>>>>> upstream/master
         case EditExpenseCommand.COMMAND_WORD:
             return prepareEditExpenseCommand(userInput.commandDescription);
         case EditIncomeCommand.COMMAND_WORD:
@@ -106,29 +98,11 @@ public class Parser {
         }
     }
 
-//<<<<<<< HEAD
     /**
      * Prepares the view budget command
      *
      * @return the prepared command
      */
-//    private static Command prepareViewBudgetCommand() {
-//=======
-//    private static Command prepareViewBudgetCommand(String description) {
-//>>>>>>> upstream/master
-//        try {
-//            if (description.equals("dummy")) {
-//                return new ViewBudgetCommand();
-//            }
-//            if (!description.substring(0, 3).equals("t/ ")) {
-//                return new InvalidCommand("Invalid date format!", ViewBudgetCommand.MESSAGE_USAGE);
-//            }
-//            description = description.substring(3);
-//            return new ViewBudgetCommand(description);
-//        } catch (hasNotSetBudgetException e) {
-//            return new InvalidCommand(e.getMessage(), ViewBudgetCommand.MESSAGE_USAGE);
-//        }
-//    }
     private static Command prepareViewBudgetCommand(String description) {
         String newDescription;
         try {
@@ -144,6 +118,13 @@ public class Parser {
         }
     }
 
+    /**
+     * checks if the input string has a valid time flag and description
+     * @param description the input string to be checked
+     * @return the time string
+     * @throws InvalidOptionalTimeFlagException custom exception to indicate invalid time flag
+     * @throws InvalidMonthTimeException custom exception to indicate invalid time description
+     */
     private static String checkValidOptionalTimeFlagException(String description) throws InvalidOptionalTimeFlagException,
             InvalidMonthTimeException {
         if (description.length() < 3 || !description.substring(0, 3).equals("t/ ")) {
@@ -171,7 +152,7 @@ public class Parser {
                     SetBudgetCommand.MESSAGE_USAGE);
         }
 
-        String[] descriptionByWord = description.split(" d/ ");
+        String[] descriptionByWord = description.split(" t/ ");
         if (descriptionByWord.length > 2 || descriptionByWord.length < 1) {
             return new InvalidCommand("Invalid information entered", SetBudgetCommand.MESSAGE_USAGE);
         }
@@ -299,7 +280,6 @@ public class Parser {
         return new AddIncomeCommand(amount, newDescription, time);
     }
 
-//<<<<<<< HEAD
     /**
      * Parses the command description in the context for the context of add command and throws exceptions if found
      *
@@ -334,7 +314,6 @@ public class Parser {
 
         return splitDescriptions;
     }
-//=======
     private static Command prepareListCommand(String type, String description) {
         if (!description.equals("dummy") && !description.contains("t/ ")) {
             String messageUsage = (type.equals("expense") ? ListExpenseCommand.MESSAGE_USAGE :
@@ -346,7 +325,6 @@ public class Parser {
             return (type.equals("expense") ? new ListExpenseCommand(date) : new ListIncomeCommand(date));
         }
         return (type.equals("expense") ? new ListExpenseCommand() : new ListIncomeCommand());
-//>>>>>>> upstream/master
     }
     private static Command prepareListExpenseCommand(String description) {
         if (description.equals("")) {
@@ -497,10 +475,8 @@ public class Parser {
             throw new WrongFlagOrderException();
         }
         String[] splitDescriptions = description.split("/");
-
         int length1 = splitDescriptions[1].length();
         int length2 = splitDescriptions[2].length();
-
         splitDescriptions[1] = splitDescriptions[1].substring(0, length1 - 1).trim();
         splitDescriptions[2] = splitDescriptions[2].substring(0, length2 - 1).trim();
         checkEmptyFlag(splitDescriptions);
