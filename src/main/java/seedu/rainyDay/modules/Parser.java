@@ -25,17 +25,11 @@ public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
     private String direction;
-
     private String description;
-
     private String category;
-
     private String filterFlag;
-
     private double amount = -1.0;
-
     private String field;
-
     private LocalDate date = null;
 
     public Command parseUserInput(String userInput) {
@@ -52,6 +46,7 @@ public class Parser {
                 logger.info("view command executing");
                 return generateReport();
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
+                logger.info("help command executing");
                 return displayHelp();
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
                 logger.info("filter command executing");
