@@ -10,8 +10,11 @@ public class Exercise {
         this.caloriesBurnt = caloriesBurnt;
     }
 
-
     public String[] toWriteFormat(String csvDelimiter) {
-
+        String[] output = new String[3];
+        output[0] = exerciseName;
+        output[1] = exerciseDescription;
+        output[2] = Float.toString(caloriesBurnt);
+        return output;
     }
 }

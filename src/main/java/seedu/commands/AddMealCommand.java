@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.database.ExerciseStorage;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
@@ -40,7 +41,8 @@ public class AddMealCommand extends Command {
     }
 
     @Override
-    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
+    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
+                        ExerciseStorage exerciseStorage)
                 throws LifeTrackerException {
         foods = new ArrayList<Food>();
         dtf = mealStorage.getDateTimeFormatter();
