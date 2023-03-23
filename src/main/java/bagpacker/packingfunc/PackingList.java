@@ -7,10 +7,8 @@ import java.util.ArrayList;
  */
 public class PackingList {
 
-
     private static ArrayList<Item> itemList = new ArrayList<>();
 
-    private static int targetIndex = -1;
     public static void setItemList(ArrayList<Item> itemList) {
         PackingList.itemList = itemList;
     }
@@ -23,6 +21,7 @@ public class PackingList {
     public static ArrayList<Item> getItemList() {
         return itemList;
     }
+
     /**
      * Adds an item to the list.
      */
@@ -58,9 +57,8 @@ public class PackingList {
     /**
      * Returns size of packing list
      */
-    public int size(){
+    public int size() {
         return itemList.size();
     }
-
 
 }

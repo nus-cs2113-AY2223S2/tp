@@ -5,7 +5,6 @@ import bagpacker.commands.ByeCommand;
 import bagpacker.commands.DeleteCommand;
 import bagpacker.commands.ListCommand;
 import bagpacker.commands.PackCommand;
-//import bagpacker.commands.UnpackCommand;
 
 /**
  * Ui class contains methods to print messages to user interface on Command Line Interface
@@ -66,7 +65,6 @@ public class Ui {
         System.out.println("2. " + DeleteCommand.HELP_MSG);
         System.out.println("3. " + ListCommand.HELP_MSG);
         System.out.println("4. " + PackCommand.HELP_MSG);
-//        System.out.println("5. " + UnpackCommand.HELP_MSG);
         System.out.println("5. " + ByeCommand.HELP_MSG);
         printLine();
     }

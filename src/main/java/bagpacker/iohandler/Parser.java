@@ -1,6 +1,5 @@
 package bagpacker.iohandler;
 
-
 import bagpacker.commands.AddCommand;
 import bagpacker.commands.ByeCommand;
 import bagpacker.commands.Command;
@@ -10,46 +9,23 @@ import bagpacker.commands.HelpCommand;
 import bagpacker.commands.IncorrectCommand;
 import bagpacker.commands.ListCommand;
 import bagpacker.commands.PackCommand;
-//import bagpacker.commands.UnpackCommand;
 import bagpacker.exception.EmptyInputException;
 import bagpacker.exception.InvalidIndexException;
 import bagpacker.exception.InvalidVariablesException;
-//import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
 
-//import java.util.ArrayList;
-//import java.util.Arrays;
 import java.util.Scanner;
 
 /**
  * Parser class contains methods to manipulate user input
  */
 public class Parser {
-//    private static ArrayList<String> inputStringArray;
     private static String[] arguments;
     private static String fullInput;
 
     public static void setFullInput(String fullInput) {
         Parser.fullInput = fullInput;
     }
-
-//    /**
-//     * Returns the user input as in array format
-//     */
-//    public static ArrayList<String> getInputStringArray() {
-//        return inputStringArray;
-//    }
-
-//    public static void setInputStringArray(String[] inputStringArray) {
-//        Parser.inputStringArray = new ArrayList<>(Arrays.asList(inputStringArray));
-//    }
-
-//    /**
-//     * Returns the user input in String format
-//     */
-//    public static String getFullInput() {
-//        return fullInput;
-//    }
 
     public static Command parse() {
         arguments = new String[2];
@@ -108,36 +84,6 @@ public class Parser {
         return inputLine;
     }
 
-//    /**
-//     * Returns the user command in lower case
-//     *
-//     * @return command from user
-//     */
-//    public static String getCommand() {
-//        String command = getInputStringArray().get(0).toLowerCase();
-//        return command;
-//    }
-
-//    /**
-//     * Returns a string which represents the name of the item from the user input
-//     *
-//     * @return inputVariables which is the name of the item
-//     * @throws InvalidVariablesException when the item name cannot be found
-//     */
-//    public static String getItemName() throws InvalidVariablesException {
-//        String itemName;
-//        if (inputStringArray.size() <= 1) {
-//            throw new InvalidVariablesException();
-//        }
-//        try {
-//            int itemIndStart = fullInput.indexOf(" ") + 1;
-//            itemName = fullInput.substring(itemIndStart);
-//        } catch (IndexOutOfBoundsException e) {
-//            throw new InvalidVariablesException();
-//        }
-//        return itemName;
-//    }
-
     /**
      * Returns a string which represents the index of the item from the user input
      *
@@ -174,11 +120,7 @@ public class Parser {
     public static String getVariable() throws InvalidIndexException {
         String itemVariable;
         try {
-//            if (command.equals("add")) {
-//                itemVariable = getItemName();
-//            } else {
-                itemVariable = getItemIndex();
-//            }
+            itemVariable = getItemIndex();
         } catch (InvalidIndexException e) {
             throw new InvalidIndexException();
         }
@@ -193,18 +135,10 @@ public class Parser {
     }
 
     public static Command createAddObj() {
-//        try {
-            String[] quantityAndDescription = getQuantityAndDescription();
-            int itemQuantity = Integer.parseInt((quantityAndDescription[0]).trim());
-            String itemDescription = quantityAndDescription[1].trim();
-            return new AddCommand(itemQuantity, itemDescription);
-//        } catch (InvalidVariablesException e) {
-//            return new IncorrectCommand("Invalid Item Name",
-//                    "try to input a name (word(s)) to be added into the list");
-//        } catch (InvalidIndexException e) {
-//            return new IncorrectCommand("Invalid Item Index",
-//                    "try to input an integer number between 1 and " + PackingList.getItemList().size());
-//        }
+        String[] quantityAndDescription = getQuantityAndDescription();
+        int itemQuantity = Integer.parseInt((quantityAndDescription[0]).trim());
+        String itemDescription = quantityAndDescription[1].trim();
+        return new AddCommand(itemQuantity, itemDescription);
     }
 
     /**
@@ -230,7 +164,6 @@ public class Parser {
 
     public static int[] getQuantityAndIndex() throws InvalidVariablesException, InvalidIndexException {
         int[] itemQuantityAndIndex = new int[2];
-        // quantity is itemQuantityAndIndex[0], index is itemQuantityAndIndex[1]
         try {
             itemQuantityAndIndex[0] = Integer.parseInt(arguments[0].trim());
             itemQuantityAndIndex[1] = Integer.parseInt(arguments[1].trim());

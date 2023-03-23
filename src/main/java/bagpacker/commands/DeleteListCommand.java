@@ -8,13 +8,11 @@ import java.util.ArrayList;
 
 public class DeleteListCommand extends Command {
     public static final String MSG_SUCCESS_DELETE_LIST = "list deleted";
+
     @Override
     public void execute(PackingList packingList) {
-        ArrayList< Item > emptyList = new ArrayList<>();
+        ArrayList<Item> emptyList = new ArrayList<>();
         packingList.setItemList(emptyList);
         Ui.printToUser(String.format(MSG_SUCCESS_DELETE_LIST));
     }
-
-
-
 }

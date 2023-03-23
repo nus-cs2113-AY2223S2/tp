@@ -17,6 +17,8 @@ public class Storage {
 
     public static ArrayList<Item> packingList = new ArrayList<>();
     private static final String FILE_PATH = "packingList.txt";
+
+// to be edited by @coregano
 //    public static void load() throws FileNotFoundException {
 //        Scanner reader = new Scanner(new File(FILE_PATH));
 //        String line;
