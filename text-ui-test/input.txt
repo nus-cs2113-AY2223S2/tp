@@ -1,4 +1,10 @@
 list
+tag tag#1 << avocado toast
+list /t tag#1
+list /t
+list apple
+tag tag#1 >> avocado toast
+list /t tag#1
 view
 view 1
 view -2
@@ -6,8 +12,8 @@ view abc
 weekly
 weekly random name
 weekly /add random name 1
-weekly /add Chicken Rice
+weekly /add test recipe name 1
 weeklyplan
-weekly /delete Chicken Rice
+weekly /delete test recipe name
 weeklyplan
 bye

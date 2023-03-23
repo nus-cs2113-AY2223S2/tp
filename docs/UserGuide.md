@@ -125,13 +125,25 @@ Format: `weekly /delete RECIPE NAME`
 
 Example of usage:
 
-* `weekly /remove pizza` removes pizza from this week's plan.
+* `weekly /delete pizza` removes pizza from this week's plan.
+
+### Clearing this week's plan: `weekly /clear`
+
+Clears this week's plan by removing all recipes listed in weekly plan.
+
+Format: `weekly /clear`
 
 ### View this week's plan: `weeklyplan`
 
 View this week's plan.
 
 Format: `weeklyplan`
+
+### View this week's ingredients: `weeklyingredients`
+
+View this week's ingredients.
+
+Format: `weeklyingredients`
 
 ### Exit the program: `bye`
 
