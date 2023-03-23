@@ -2,7 +2,8 @@ package seedu.duke.storage;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
-import seedu.duke.Event;
+// import seedu.duke.Event;
+import seedu.duke.Schedule;
 import seedu.duke.EventList;
 import seedu.duke.Ui;
 
@@ -51,9 +52,10 @@ public class Storage {
      * @return ArrayList of Event class containing information of previous load state
      */
     @SuppressWarnings("unchecked")
-    public ArrayList<Event> loadEvents() {
+    //I revised the type here temporaliy to avoid failed building
+    public ArrayList<Schedule> loadEvents() {                     
         File saveFile = new File(fileLocation);
-        ArrayList<Event> savedList = new ArrayList<>();
+        ArrayList<Schedule> savedList = new ArrayList<>();
         if (!saveFile.exists()) {
             return savedList;
         }
