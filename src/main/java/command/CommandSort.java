@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.MESSAGE_DIVIDER_LIST;
 import java.util.Scanner;
+import java.io.InputStream;
 
 public class CommandSort extends Command {
     public static final String COMMAND_NAME = "sort";
@@ -15,7 +16,6 @@ public class CommandSort extends Command {
 
     private ArrayList<Expense> expenseListDate = new ArrayList<>();
     private ArrayList<Expense> expenseListCategory = new ArrayList<>();
-
 
     public CommandSort(ArrayList<Expense> expenseList) {
         super(COMMAND_NAME);
@@ -41,7 +41,7 @@ public class CommandSort extends Command {
             System.out.println("Enter: D (represent Date); C (represent Category)");
             String sortBy = input.nextLine();
 
-            while (sortBy.equals("C") && sortBy.equals("D")) {
+            while (!sortBy.equals("C") && !sortBy.equals("D")) {
                 System.out.println(MESSAGE_DIVIDER_LIST);
                 System.out.println("Please indicate the right sorted criteria.");
                 System.out.println("Enter: D (represent Date); C (represent Category)");
@@ -116,5 +116,6 @@ public class CommandSort extends Command {
             expenseListCategory.set(minIndex, tempExpense);
         }
     }
+
 
 }
