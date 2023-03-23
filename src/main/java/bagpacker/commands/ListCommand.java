@@ -19,14 +19,8 @@ public class ListCommand extends Command {
         System.out.println("____________________________________________________________");
         System.out.println("Here are the items in your list");
         for (int i = 0; i < packingList.size(); i++) {
-            String isItemPacked;
-            if (packingList.get(i).getIsPacked()) {
-                isItemPacked = "X";
-            } else {
-                isItemPacked = " ";
-            }
-            String itemName = packingList.get(i).getItemName();
-            System.out.println((i + 1) + ". [" + isItemPacked + "] " + itemName);
+            System.out.print((i + 1) + ". ");
+            System.out.println(PackingList.get(i));
         }
         System.out.println("____________________________________________________________");
     }
