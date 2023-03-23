@@ -109,4 +109,11 @@ public class FoodStorage extends Storage implements FileReadable {
                 .collect(Collectors.toList());
         return filteredFoods;
     }
+
+    public List<Food> getFoodsByCalories(float caloriesLowerLimit, float caloriesUpperLimit) {
+        List<Food> caloriesFilteredFoods = foods.stream()
+                .filter(f -> f.getCalories() >= caloriesLowerLimit && f.getCalories() <= caloriesUpperLimit)
+                .collect(Collectors.toList());
+        return caloriesFilteredFoods;
+    }
 }
