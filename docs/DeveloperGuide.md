@@ -44,11 +44,14 @@ parseLendBorrow. The only difference is the condition, with the loop happening o
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+- University students studying locally or on exchange 
+- has a need to monitor their budget and expenses
+- prefer desktop CLI over other available types of expense tracking applications 
+- prefers typing to mouse interactions
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+Manage finances more efficiently than a typical mouse/GUI driven app
 
 ## User Stories
 
