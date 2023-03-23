@@ -71,7 +71,8 @@ public class DiagnosisTest {
                 ));
         ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
         assertTrue(testIllnesses.stream()
-                .anyMatch(illnessMatch -> illnessMatch.getIllness().getIllnessName().equals("General Bacterial Infection")
+                .anyMatch(illnessMatch ->
+                        illnessMatch.getIllness().getIllnessName().equals("General Bacterial Infection")
                 ));
     }
 
