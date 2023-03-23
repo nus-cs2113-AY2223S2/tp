@@ -13,6 +13,7 @@ public class HelpCommand extends Command {
             "|View all entries |view    |                                                                         |\n" +
             "|Filter entries   |filter  |{-in} {-out} {-d description} {-c category} {-date date}                 |\n" +
             "|Edit an entry    |edit    |[index] {-in/-out} {-d description} {$value} {-c category} {-date date}  |\n" +
+            "|Export to .csv   |export  |                                                                         |\n" +
             "|Display a guide  |help    |{command}                                                                |\n" +
             "+=====+==============================================================================================+\n" +
             "|[] :  Denotes compulsory fields. Relevant details / flags must be included.                         |\n" +
@@ -75,6 +76,7 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n";
     private static final String HELP_FILTER_COMMAND = "WIP. Go Read the UG";
     private static final String HELP_EDIT_COMMAND = "WIP. Go Read the UG";
+    private static final String HELP_EXPORT_COMMAND = "WIP. Go Read the UG";
     private static final String HELP_HELP_COMMAND = "Very funny";
 
     private final String description;
@@ -107,6 +109,9 @@ public class HelpCommand extends Command {
         }
         if(description.equals("help")) {
             return new CommandResult(HELP_HELP_COMMAND);
+        }
+        if(description.equals("export")) {
+            return new CommandResult(HELP_EXPORT_COMMAND);
         }
         return new CommandResult(HELP_COMMAND);
     }
