@@ -23,6 +23,9 @@ class ParserTest {
         Command parsedCommand = Parser.parseCommand("add /q Question /a Answer");
         Command expectedCommand = new AddCommand("Question", "Answer");
         assertEquals(expectedCommand.toString(), parsedCommand.toString());
+        Command parsedCommandNonCap = Parser.parseCommand("add /q question /a answer");
+        Command expectedCommandCap = new AddCommand("Question", "Answer");
+        assertEquals(expectedCommandCap.toString(), parsedCommandNonCap.toString());
     }
 
     @Test

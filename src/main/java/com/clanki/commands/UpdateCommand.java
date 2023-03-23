@@ -30,8 +30,8 @@ public class UpdateCommand extends Command {
     public void findFlashcard(ArrayList<Flashcard> flashcards, String query) {
         for (int i = 0; i < flashcards.size(); i++) {
             Flashcard currentFlashcard = flashcards.get(i);
-            if (currentFlashcard.getQuestion().contains(query)
-                    || currentFlashcard.getAnswer().contains(query)) {
+            if (currentFlashcard.getQuestion().toLowerCase().contains(query.toLowerCase())
+                    || currentFlashcard.getAnswer().toLowerCase().contains(query.toLowerCase())) {
                 matchingFlashcards.add(currentFlashcard);
             }
         }
@@ -43,10 +43,12 @@ public class UpdateCommand extends Command {
         Flashcard flashcardToChange = matchingFlashcards.get(indexInMatchList);
         int index = flashcards.indexOf(flashcardToChange);
         if (userTexts[1].contains("q")) {
-            flashcards.get(index).setQuestion(userTexts[2]);
+            flashcards.get(index).setQuestion(userTexts[2].substring(0, 1).toUpperCase()
+                    + userTexts[2].substring(1));
         }
         if (userTexts[1].contains("a")) {
-            flashcards.get(index).setAnswer(userTexts[2]);
+            flashcards.get(index).setAnswer(userTexts[2].substring(0, 1).toUpperCase()
+                    + userTexts[2].substring(1));
         }
         return index;
     }
