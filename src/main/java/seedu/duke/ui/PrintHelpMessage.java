@@ -28,7 +28,7 @@ public class PrintHelpMessage {
                 "\t[medium] exercises of medium intensity" + newline +
                 "\t[hard] exercises of hard intensity" + newline +
                 "By Body part:" + newline +
-                "\t[arms] exercises that train your arms" + newline +
+                "\t[upper] exercises that train your upper body" + newline +
                 "\t[core] exercises that train your core" + newline +
                 "\t[legs] exercises that train your legs");
     }

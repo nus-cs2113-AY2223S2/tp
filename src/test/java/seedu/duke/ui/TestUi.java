@@ -51,7 +51,7 @@ public class TestUi {
                     "\t[medium] exercises of medium intensity\r\n" +
                     "\t[hard] exercises of hard intensity\r\n" +
                     "By Body part:\r\n" +
-                    "\t[arms] exercises that train your arms\r\n" +
+                    "\t[upper] exercises that train your upper body\r\n" +
                     "\t[core] exercises that train your core\r\n" +
                     "\t[legs] exercises that train your legs\r\n";
         } else {
@@ -63,7 +63,7 @@ public class TestUi {
                     "\t[medium] exercises of medium intensity\n" +
                     "\t[hard] exercises of hard intensity\n" +
                     "By Body part:\n" +
-                    "\t[arms] exercises that train your arms\n" +
+                    "\t[upper] exercises that train your upper body\n" +
                     "\t[core] exercises that train your core\n" +
                     "\t[legs] exercises that train your legs\n";
         }
