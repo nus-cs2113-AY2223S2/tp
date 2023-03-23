@@ -1,0 +1,56 @@
+@startuml
+class functionalities.commands.FindCommand {
+# String category
+# String details
++ void executeCommand(SniffTasks)
+}
+class functionalities.commands.VaccinationCommand {
+- Animal animal
+- Owner owner
+- String vaccine
+- String date
+- String time
++ void executeCommand(SniffTasks)
+}
+abstract class functionalities.commands.Command {
++ boolean isExit
++ boolean isExit()
++ void executeCommand(SniffTasks)
+}
+class functionalities.commands.SurgeryCommand {
+- Animal animal
+- Owner owner
+- String priority
+- String startDate
+- String startTime
+- String endDate
+- String endTime
++ void executeCommand(SniffTasks)
+}
+class functionalities.commands.RemoveCommand {
++ String uid
++ void executeCommand(SniffTasks)
+}
+class functionalities.commands.ListCommand {
++ void executeCommand(SniffTasks)
+}
+class functionalities.commands.ExitCommand {
++ void executeCommand(SniffTasks)
+}
+class functionalities.commands.ConsulationCommand {
+- Animal animal
+- Owner owner
+- String date
+- String time
++ void executeCommand(SniffTasks)
+}
+
+
+functionalities.commands.Command <|-- functionalities.commands.FindCommand
+functionalities.commands.Command <|-- functionalities.commands.VaccinationCommand
+functionalities.commands.Command <|-- functionalities.commands.SurgeryCommand
+functionalities.commands.Command <|-- functionalities.commands.RemoveCommand
+functionalities.commands.Command <|-- functionalities.commands.ListCommand
+functionalities.commands.Command <|-- functionalities.commands.ExitCommand
+functionalities.commands.Command <|-- functionalities.commands.ConsulationCommand
+@enduml
