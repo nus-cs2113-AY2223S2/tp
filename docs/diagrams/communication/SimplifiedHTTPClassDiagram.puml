@@ -1,0 +1,67 @@
+@startuml
+title Simplified HTTP Model Class Diagram
+
+interface Requestable
+class Request
+enum RequestMethod
+enum RequestParams
+class Response
+enum ResponseStatus
+
+Requestable ..> Request
+Requestable ..> Response
+Request *-- "1" RequestMethod
+Request o-- "0..." RequestParams
+Response *-- "1" ResponseStatus
+
+interface Requestable {
+    handleRequest(request : Request) : Response
+}
+
+class Request {
+- body : String
+- params: EnumMap<RequestParams, String>
+
++ Request(requestMethod : RequestMethod)
++ Request(requestMethod : RequestMethod, body : String)
++ addParam(paramKey : RequestParams, paramValue : String) : void
++ getBody() : String
++ getRequestMethod() : RequestMethod
++ hasParam(paramKey : RequestParams) : boolean
++ getParam(paramKey : RequestParams) : String
+}
+
+enum RequestMethod {
+DELETE
+GET
+PATCH
+POST
+}
+
+enum RequestParams {
+GET_SIZE
+NUM_ENTRIES
+EDIT_AMOUNT
+EDIT_CATEGORY
+EDIT_DESCRIPTION
+FILTER_BY_AMOUNT_START
+FILTER_BY_AMOUNT_END
+FILTER_BY_CATEGORY
+FILTER_BY_QUERY
+}
+
+class Response {
+- data : String
+
++ Response (responseStatus : ResponseStatus, data : String)
++ getResponseStatus() : ResponseStatus
++ getData() : String
+}
+
+enum ResponseStatus {
+OK
+CREATED
+NOT_FOUND
+UNPROCESSABLE_CONTENT
+}
+@enduml

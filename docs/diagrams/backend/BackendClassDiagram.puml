@@ -1,0 +1,21 @@
+@startuml
+title Backend Class Diagram
+
+class Backend
+class Response
+class Request
+Backend ..> Request
+Backend ..> Response
+
+class Backend {
+- {static} logger : Logger
+- {static} storage : Storage
+
++ Backend()
++ Backend(isTest : boolean)
++ requestEndpointEntry(request : Request) : Response
++ requestEndpointEntries(request : Request) : Response
++ clearData() : void
+- save() : void
+}
+@enduml

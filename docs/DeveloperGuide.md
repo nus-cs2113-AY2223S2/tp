@@ -4,9 +4,9 @@
 
 ### Documentation
 
-This page is generated [Hugo](https://gohugo.io/) using the [ace-documentation](https://github.com/vantagedesign/ace-documentation) theme.
-
-[Github REST API documentation](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28)
+- [Github REST API documentation](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28)
+- [Diagrams.net](https://app.diagrams.net/)
+- PlantUML
 
 ### Storage
 
@@ -17,15 +17,26 @@ This page is generated [Hugo](https://gohugo.io/) using the [ace-documentation](
 ### Unit Tests
 
 - [Assert Exceptions Thrown - Baeldung](https://www.baeldung.com/junit-assert-exception)
+- [Arrange, Act, Assert](https://java-design-patterns.com/patterns/arrange-act-assert)
 
 
 ## Design & implementation
-
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### Architecture
+![PocketPal Architecture](./static/PocketPalArchitecture.png)
+![Backend Overview](./static/backend/BackendOverviewClassDiagram.png)
+
+### Communication
+This project uses a simplified HTTP model, where the frontend sends a `Request` to the backend to perform data-related operations. The backend returns a `Response`, which is then processed by the frontend
+
+![Simplified HTTP Model](static/communication/SimplifiedHTTPClassDiagram.png)
+
 ### Backend
-The backend uses a simplified RESTful API approach. This allows us to decouple code using the proven industry
-practices.
+
+The backend uses a simplified RESTful API approach. This allows us to decouple code using the proven industry practices.
+
+![Backend](./static/backend/BackendClassDiagram.png)
 
 To find out more, visit the following sections:
 - [API](#api)
@@ -35,7 +46,9 @@ To find out more, visit the following sections:
 ### API
 #### Endpoints
 
-There are 2 endpoints currently available:
+![Endpoints](./static/backend/EndpointClassDiagram.png)
+
+Each endpoint is an child class `Endpoint`. Currently there are 2 endpoints available:
 
 | Endpoint   | Method to call          |
 | ---------- | ----------------------- |
@@ -204,6 +217,47 @@ __Responses__
 | `404`       | Not Found             | -                                                                    |
 | `422`       | Unprocessable Content | -                                                                    |  |
 
+
+### Automated Testing
+
+We adopt the Arrange, Act, Assert pattern for unit tests in this project. 
+This allows us to achieve a structured unit tests while balancing code readability and maintainability, and allowing a clear separation of the setup, operations and results. 
+For backend testing, we use utility classes such as `EntryTestUtil` and `BackendTestUtil` to reduce code repetition and to simplify the testing process.
+
+__Example:__
+  ```java
+  @DisplayName("Test /entries [GET]")
+  class TestEntriesGet extends EntryTestUtil {
+      private static final EntryLog expectedEntryLog = new EntryLog();
+
+      @BeforeEach
+      void init() {
+          TEST_BACKEND.clearData();
+          expectedEntryLog.clearAllEntries();
+      }
+
+      @Test
+      void entriesEndpointGET_recentEntries_correctEntries() {
+          // Arrange
+          addEntry(ENTRY_1);
+          addEntry(ENTRY_2);
+          addEntry(ENTRY_3);
+          addEntry(ENTRY_4);
+          expectedEntryLog.addEntry(ENTRY_3);
+          expectedEntryLog.addEntry(ENTRY_4);
+
+          // Act
+          Request request = new Request(RequestMethod.GET); // recent 2 entries
+          request.addParam(RequestParams.NUM_ENTRIES, "2");
+          Response response = TEST_BACKEND.requestEndpointEntries(request);
+          EntryLog returnedEntryLog = EntryLogParser.deserialise(response.getData());
+
+          // Assert
+          assertEquals(response.getResponseStatus(), ResponseStatus.OK);
+          assertTrue(isSameEntryLog(expectedEntryLog, returnedEntryLog));
+      }
+  }
+  ```
 
 ## Product scope
 ### Target user profile
