@@ -24,7 +24,7 @@ public class Uid {
      */
     public static String uidGenerator(String appointmentType) throws SniffException {
         if (!appointmentType.equals("C") && !appointmentType.equals("V") && !appointmentType.equals("S")) {
-           throw new SniffException("Invalid appointment type for uid generation.");
+            throw new SniffException("Invalid appointment type for uid generation.");
         }
         StringBuilder uidBuilder = new StringBuilder("");
         StringBuilder eightDigitNumber = new StringBuilder("");
