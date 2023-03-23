@@ -1,0 +1,27 @@
+@startuml
+!include Style.puml
+
+Package " " <<Rectangle>>{
+    Class UI COLOR_UI
+    Package "Logic\t\t" <<Rectangle>>{
+    Class Parser COLOR_LOGIC
+        Class Command COLOR_LOGIC
+    }
+    Class Storage COLOR_STORAGE
+    Class TaskList COLOR_TASK_LIST
+    Class ToDoListManager COLOR_MAIN
+}
+
+Class "User" as User COLOR_USER
+Class "Save file" as File #E1AF87
+
+User ..[#pink]> UI
+UI <-[#green]> ToDoListManager
+ToDoListManager -[#grey]-> Parser
+Parser -[#blue]-> Command
+ToDoListManager -[#grey]-> Command
+Command -[#blue]-> TaskList
+ToDoListManager -[#grey]-> Storage
+Storage -l[COLOR_STORAGE].> TaskList
+Storage .r[COLOR_STORAGE].>File
+@enduml

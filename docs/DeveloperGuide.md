@@ -7,6 +7,7 @@
   - [Setup](#setup)
     - [Setting up the project on your computer](#setting-up-the-project-on-your-computer)
   - [Design](#design)
+    - [Architecture](#architecture)
   - [Implementation](#implementation)
     - [Delete task feature](#delete-task-feature)
     - [Edit task deadline feature](#edit-task-deadline-feature)
@@ -35,7 +36,9 @@ If you plan to use Intellij IDEA (highly recommended):
 
 ## Design
 
-{Describe the design of the product. Use UML diagrams and short code snippets where applicable.}
+### Architecture
+
+
 
 ## Implementation
 
