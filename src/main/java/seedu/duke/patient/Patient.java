@@ -1,6 +1,4 @@
-/**
- * @author Geeeetyx
- */
+//@@Geeeetyx
 package seedu.duke.patient;
 
 import java.util.ArrayList;
@@ -63,7 +61,9 @@ public class Patient {
             patientMedicineHistory.put(date, medicines);
         }
     }
+
     //@@author tanyizhe
+
     /**
      * Appends medicine patient is prescribed if additional medicine is prescribed on the same day
      * @param medicines ArrayList describing medicines patient has been prescribed
@@ -81,7 +81,9 @@ public class Patient {
      * Prints the medication history of patient.
      */
     public void printPatientMedicineHistory() {
+        //@@Geeeetyx
         System.out.println("---------------------------------------------------");
+        //@@tanyizhe
         System.out.println("Medication History:");
         List<String> dates = Collections.list(patientMedicineHistory.keys());
         Collections.sort(dates);
