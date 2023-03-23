@@ -100,6 +100,15 @@ are not limited in how many `Ingredient` and `Step` objects they can store respe
 
 
 #### Storage component
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/storage/Storage.java)
+![image](./PlantUML/StorageComponent.png)
+
+Storage class is responsible for the following tasks:
+* Creating the directory for storing save files.
+* Setting the file path for save files.
+* Creating and writing save files based on the recipe list.
+* Scanning the save file directory for saves from previous instances of the programme.
+* Loading valid save files found in the directory.
 
 ### Recipe Manage Feature
 #### Implementation
