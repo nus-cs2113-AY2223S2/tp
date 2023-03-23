@@ -37,9 +37,11 @@ public class Ui {
     public void splitLine() {
         System.out.println(SEPARATOR);
     }
-
     public void printUserExerciseHistory(HashMap<String, Integer> userExerciseHistory) {
         PrintUserExerciseData.printUserExerciseHistory(userExerciseHistory);
     }
+    public void printPlannerGreeting() {
+        PrintPlanner.printPlannerGreeting(); }
 
 }
+

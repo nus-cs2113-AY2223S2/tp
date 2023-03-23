@@ -42,6 +42,8 @@ public class PrintHelpMessage {
         System.out.println("\tdelete a plan on a day of the week: delete monday plan_name");
         System.out.println("[plans]");
         System.out.println("\tShow all plans");
+        System.out.println("[filters]");
+        System.out.println("\tView all available filters");
         System.out.println("[exit]");
         System.out.println("\tExit workout plan editor");
         //System.out.println(ErrorMessages.ERROR_GLOBAL_INVALID_COMMAND.toString());
