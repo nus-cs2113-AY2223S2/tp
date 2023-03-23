@@ -82,7 +82,21 @@ UI class implements the StringLib interface for some output strings. It is respo
 
 #### Command component
 
-#### RecipeList component
+#### RecipeList component 
+The **API** for this component is specified in [`RecipeList.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/recipe/RecipeList.java)
+
+![RecipeList Component](./PlantUML/RecipeListComponent.png)
+
+The class contains the list of `Recipe` objects stored in an `ArrayList`by the program. 
+It provides methods for the addition, retrieval and removal of `Recipe` objects from the list.
+A `clearRecipeList` method also exists to allow for quick deletion of all `Recipe` objects.
+
+Each `Recipe` object stores the name of the dish, as well as lists storing `Ingredient` and `Step`
+objects, to keep track of the ingredients and steps to create the dish respectively.
+
+While each `Recipe` object will have only one `IngredientList` and `StepList`, each of the lists 
+are not limited in how many `Ingredient` and `Step` objects they can store respectively.
+
 
 #### Storage component
 
@@ -149,7 +163,6 @@ and then `StepList#showStepList()`.
 ### Recipe Storage Feature
 
 ### Help Feature
-
 
 ## Appendix A - Product scope
 ### Target user profile
