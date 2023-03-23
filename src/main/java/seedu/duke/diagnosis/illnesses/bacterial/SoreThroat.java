@@ -6,7 +6,9 @@ import seedu.duke.diagnosis.symptoms.Symptom;
 import java.util.ArrayList;
 import java.util.List;
 
-//@@author Brennanzuz
+/**
+ * @author Brennanzuz
+ */
 public class SoreThroat extends Illness {
     public SoreThroat() {
         super("Sore Throat", 1, true, new ArrayList<>(

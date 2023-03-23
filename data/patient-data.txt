@@ -1,19 +1,9 @@
 49
 Demo
-5
-Fever
-Insomnia
-COVID-19
-General Cold
-General Flu
-1569
-Bob
-0
-97
-BITCH
-0
-2987074
-kl
-2
-Fever
-Headache
+3
+Diarrhoea
+Food Poisoning
+Stomach Ache
+1
+2023/03/23 Ultracarbon 
+
