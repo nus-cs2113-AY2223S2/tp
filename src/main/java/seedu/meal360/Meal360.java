@@ -86,7 +86,8 @@ public class Meal360 {
                 RecipeList recipeListToPrint = parser.parseListRecipe(command, recipeList);
                 ui.listRecipe(recipeListToPrint);
             } catch (IllegalArgumentException e) {
-                String errorMessage = "Please enter the command in the valid format. Some arguments might be missing.";
+                String errorMessage =
+                        "Please enter the command in the valid format. Some arguments might " + "be missing.";
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
@@ -99,7 +100,7 @@ public class Meal360 {
             } catch (ArrayIndexOutOfBoundsException e) {
                 String errorMessage = String.format("Please enter a valid recipe name.");
                 ui.printMessage(errorMessage);
-            } catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 String errorMessage = String.format("Recipe already exists. Add a new recipe.");
                 ui.printMessage(errorMessage);
             }
@@ -123,7 +124,7 @@ public class Meal360 {
                         "Please enter a valid recipe number. You entered %s, " + "which is out of bounds.",
                         command[1]);
                 ui.printMessage(errorMessage);
-            } catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 String errorMessage = String.format("Recipe doesn't exist for editing.");
                 ui.printMessage(errorMessage);
             }
@@ -195,7 +196,6 @@ public class Meal360 {
     }
 
     public static void main(String[] args) {
-        
         startApp();
 
         String line;
