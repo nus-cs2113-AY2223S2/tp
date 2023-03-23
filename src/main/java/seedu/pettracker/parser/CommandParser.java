@@ -13,7 +13,7 @@ import seedu.pettracker.commands.RemoveTaskCommand;
 import seedu.pettracker.commands.ListTasksCommand;
 import seedu.pettracker.commands.MarkTaskCommand;
 import seedu.pettracker.commands.UnMarkTaskCommand;
-import seedu.pettracker.exceptions.UnknownKeywordException;
+//import seedu.pettracker.exceptions.UnknownKeywordException;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -36,13 +36,8 @@ public class CommandParser {
     }
 
     public Command parseCommand(String commandString) {
-        try {
-            logger.log(Level.INFO, "Parser received: " + commandString + "\n");
-            return newCommand(commandString);
-        } catch (UnknownKeywordException e) {
-            System.out.println("Unknown Keyword");
-            return null;
-        }
+        logger.log(Level.INFO, "Parser received: " + commandString + "\n");
+        return newCommand(commandString);
     }
 
     /**
@@ -74,7 +69,7 @@ public class CommandParser {
      * @param commandString Initial String that the user typed in
      * @return new Command object
      */
-    public Command newCommand(String commandString) throws UnknownKeywordException {
+    public Command newCommand(String commandString) {
         switch (parseKeyword(commandString)) {
         case KEYWORD_EXIT:
             return new ExitCommand();
