@@ -2,11 +2,7 @@ package seedu.apollo.command.module;
 
 import seedu.apollo.calendar.Calendar;
 import seedu.apollo.command.Command;
-import seedu.apollo.exception.module.DuplicateModuleException;
 import seedu.apollo.exception.module.InvalidModule;
-import seedu.apollo.exception.module.LessonAddedException;
-import seedu.apollo.exception.utils.IllegalCommandException;
-import seedu.apollo.exception.utils.InvalidSaveFile;
 import seedu.apollo.module.LessonType;
 import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
