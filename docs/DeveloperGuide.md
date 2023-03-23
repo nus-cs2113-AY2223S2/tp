@@ -80,6 +80,14 @@ UI class implements the StringLib interface for some output strings. It is respo
 * Prints the error messages for some exceptions.
 
 #### Parser component
+The **API** of this component is specified in ['Parser.java'](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/parser/Parser.java)
+![image](./PlantUML/ParserComponent.png)
+
+Parser class implements the StringLib interface for some output strings. It is responsible for the following tasks:
+* Parses the user input into commandType and the fullDescription of the command (if any).
+* Parses a particular Recipe into its name, ingredients and tag.
+* Parses ingredients input by user into an ingredientsList.
+* Parses the steps input by user and compiles it into the full stepsList.
 
 #### Command component
 
@@ -150,12 +158,15 @@ and then `StepList#showStepList()`.
 ### Recipe Storage Feature
 
 ### Help Feature
+#### Implementation
 The help feature's main functionality is to show users the full list of commands they can use on TOM. 
 It is facilitated by the `command`,`parser`,`ui` package. It implements the following operations:
 
 - `Ui#showHelp()` - Prints the help message.
 - `Parser#parseCommands()` - Parse user input into a Command object containing commandType and fullDescription.
 - `Command#excecute()` - Carry out respective tasks based on commandType given.
+
+#### Example Usage
 
 Given below is an example usage scenario and how the help mechanism behaves at each step.
 
