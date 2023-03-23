@@ -12,10 +12,18 @@ public class TrigoGraph {
         TrigoGraphAnalyser analyser = new TrigoGraphAnalyser(trigoEqn);
         if(analyser.canStartAnalyser()){
             assert analyser.canStartAnalyser() == true;
-            Ui.printAmplitude(analyser.getAmplitude());
-            Ui.printFrequency(analyser.getFreq());
-            Ui.printPhase(analyser.getPhase());
-            Ui.printVerticalShift(analyser.getVerticalShift());
+            double amplitude = analyser.getAmplitude();
+            double frequency = analyser.getFreq();
+            double phase = analyser.getPhase();
+            double verticalShift = analyser.getVerticalShift();
+            String trig = analyser.getTrigonometry();
+            Ui.printAmplitude(amplitude);
+            Ui.printFrequency(frequency);
+            Ui.printPhase(phase);
+            Ui.printVerticalShift(verticalShift);
+
+            TrigoGraphVisualiser visualiser = new TrigoGraphVisualiser(amplitude,phase,frequency,verticalShift,trig);
+            visualiser.startVisualiser();
         }
         assert analyser.canStartAnalyser() == false;
 

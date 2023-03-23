@@ -50,11 +50,11 @@ public class Tensor2D extends Tensor {
         int column = shape.column;
 
         StringBuilder str = new StringBuilder("");
-        str.append("\t1. shape : ").append(row).append(" x ").append(column).append("\n");
-        str.append("\t2. value : \n");
+        str.append("    1. shape : ").append(row).append(" x ").append(column).append("\n");
+        str.append("    2. value : \n");
 
         for(int i=0; i<row; i++){
-            str.append("\t\t").append(i).append(") ");
+            str.append("        ").append(i).append(") ");
             for(int j=0; j<column; j++){
                 str.append(tensor[i][j]).append(" ");
             }

@@ -2,8 +2,9 @@ package seedu.badMaths;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.FileInputStream;
+//import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.io.BufferedReader;
 
 
@@ -15,7 +16,7 @@ import java.util.logging.Level;
 
 
 public class HelpManual {
-    protected static String filePath = "docs/HelpManual.txt";
+    protected static String filePath = "/HelpManual.txt"; // file path relative to the classpath
     protected static String logFilePath = "Help";
     private static final Logger logger = Logger.getLogger(logFilePath);
 
@@ -32,39 +33,33 @@ public class HelpManual {
     }
 
     /**
-     * This method reads the content from docs/HelpManual.txt file.
+     * This method reads the content from HelpManual.txt file.
      */
     public static void readHelpManual() {
         setUpLogger();
         try {
             logger.log(Level.INFO, "going to start processing");
-            File file = new File(filePath);
+            InputStream inputStream = HelpManual.class.getResourceAsStream(filePath);
 
-            // assert that the file exists and is a regular file
-            assert file.exists() && file.isFile() : "Invalid file: " + filePath;
+            // assert that the input stream is not null
+            assert inputStream != null : "Invalid file: " + filePath;
 
-            if (file.isFile() && file.exists()) {
-                logger.log(Level.INFO, "Help manual file found at: " + file.getAbsolutePath());
-                InputStreamReader read = new InputStreamReader(new FileInputStream(file), "UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(read);
+            InputStreamReader read = new InputStreamReader(inputStream, "UTF-8");
+            BufferedReader bufferedReader = new BufferedReader(read);
 
-                String lineTxt;
-                StringBuilder content = new StringBuilder();
+            String lineTxt;
+            StringBuilder content = new StringBuilder();
 
-                while ((lineTxt = bufferedReader.readLine()) != null) {
-                    content.append(lineTxt).append("\n");
-                    System.out.println(lineTxt);
-                }
-                bufferedReader.close();
-                read.close();
-                
-                // Log successful read to console and log file
-                logger.log(Level.INFO, "Successfully read Help Manual file.");
-
-            } else {
-                System.out.println("Cannot find Help Manual. Please try again.");
-                logger.log(Level.WARNING, "Cannot find Help Manual. Please try again.");
+            while ((lineTxt = bufferedReader.readLine()) != null) {
+                content.append(lineTxt).append("\n");
+                System.out.println(lineTxt);
             }
+            bufferedReader.close();
+            read.close();
+
+            // Log successful read to console and log file
+            logger.log(Level.INFO, "Successfully read Help Manual file.");
+
         } catch (Exception e) {
             System.out.println("Error while loading files. Please try again.");
             logger.severe("Error while loading Help Manual. Please try again.");

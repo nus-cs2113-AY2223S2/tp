@@ -61,7 +61,7 @@ public class Command {
             HelpManual.readHelpManual();
             break;
         case "Matrix":
-            calculator.run();
+            calculator.run(toDo);
             break;
         default:
             break;

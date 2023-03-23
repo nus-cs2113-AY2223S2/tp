@@ -48,3 +48,13 @@ run{
 run {
     enableAssertions = true
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'seedu.badMaths.BadMaths'
+    }
+    from sourceSets.main.output
+    from(sourceSets.main.resources) {
+        include '**/*.txt'
+    }
+}

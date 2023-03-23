@@ -1,5 +1,7 @@
 package seedu.badMaths.ui;
 
+import java.util.ArrayList;
+
 public class Ui {
     public static void printIncorrectFormatEntered(){
         System.out.println("Please enter the format as required.");
@@ -20,5 +22,18 @@ public class Ui {
     }
     public static void printFrequency(Double freq){
         System.out.println("This is the freq (Hz): "+ freq);
+    }
+
+    public static void printNotes(ArrayList<String> notes) {
+        if (notes.size() == 0) {
+            System.out.println("You have no note yet. :(");
+        }
+        else {
+            System.out.println("Here are the notes you have stored:");
+            for (int i = 0; i < notes.size(); i++) {
+                System.out.println((i + 1) + ". " + notes.get(i));
+            }
+            System.out.println("Now you have " + notes.size() + " tasks in the list.");
+        }
     }
 }
