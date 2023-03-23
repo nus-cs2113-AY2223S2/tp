@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!include Style.puml
+class Storage {
+- {static} DIR_PATH : String
+- {static} FILE_PATH : String
+- {static} logger : Logger
++ {static} loadData() : void
++ {static} saveData() : void
+- {static} createDirectory() : void
+- {static} createFile() : void
+- {static} readFile() : void
+- {static} endOfFile(data: String) : boolean
+- {static} readMedicineHistoryFromFile(scanner: Scanner) : Hashtable<String, ArrayList<String>>
+- {static} writeMedicineHistory(writer: FileWriter, Hashtable<String, ArrayList<String>> medicineHistory) : void
+}
+
+exception CorruptedDataException {}
+exception Exception {}
+exception FileNotFoundException {}
+exception IOException {}
+
+Exception <|-- CorruptedDataException
+Storage ..> IOException
+Storage ..> FileNotFoundException
+Storage ..> CorruptedDataException
+@enduml

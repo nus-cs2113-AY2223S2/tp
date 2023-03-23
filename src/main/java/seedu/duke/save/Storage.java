@@ -19,17 +19,17 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author Thunderdragon221
 /**
  * This class reads and writes information to and from the patient-data file.
- * @author Thunderdragon221
  */
 public class Storage {
 
     /** Specifies the directory path to be created */
-    static final String DIR_PATH = "./data/";
+    private static final String DIR_PATH = "./data/";
 
     /** Specifies the file path to be created */
-    static final String FILE_PATH = "./data/patient-data.txt";
+    private static final String FILE_PATH = "./data/patient-data.txt";
 
     private static Logger logger = Logger.getLogger(Storage.class.getName());
     /**
@@ -55,7 +55,7 @@ public class Storage {
      *
      * @throws IOException if createDirectories() is unsuccessful.
      */
-    public static void createDirectory() throws IOException {
+    private static void createDirectory() throws IOException {
         Path path = Paths.get(DIR_PATH);
         Files.createDirectories(path);
     }
@@ -65,7 +65,7 @@ public class Storage {
      *
      * @throws IOException if createNewFile() is unsuccessful.
      */
-    public static void createFile() throws IOException {
+    private static void createFile() throws IOException {
         File file = new File(FILE_PATH);
         file.createNewFile();
     }
@@ -77,7 +77,7 @@ public class Storage {
      * @throws FileNotFoundException if data file does not exist.
      * @throws CorruptedDataException if data file is corrupted.
      */
-    public static void readFile() throws FileNotFoundException, CorruptedDataException {
+    private static void readFile() throws FileNotFoundException, CorruptedDataException {
         File file = new File(FILE_PATH);
         Scanner scanner = new Scanner(file);
 
@@ -197,7 +197,7 @@ public class Storage {
      * @param data Current line being read from the patient-data file.
      * @return true if the line is empty, and false otherwise.
      */
-    public static boolean endOfFile(String data) {
+    private static boolean endOfFile(String data) {
         return data.matches("^ *$");
     }
 }
