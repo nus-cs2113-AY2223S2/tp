@@ -140,47 +140,47 @@ ID,Type,Name,Store,Store Number,Energy (Kcal),Protein (g),Total Fat (g),Saturate
 138,Ingredient,Mala Sauce (Very Spicy Base),Mala,4,257,0.6,27.7,4.8,1,2,0.5,2
 139,Ingredient,Mala Sauce (Spicy Base),Mala,4,191,0.6,20.2,3.5,1,2,0.5,2
 140,Ingredient,Mala Sauce (Slightly Spicy Base),Mala,4,95,0.3,10.1,1.7,0.5,1,0.2,1
-141,Dish,White Chicken Rice,Chicken Rice,12,533,19.5,17.3,5.7,1.6,74.6,6,4991
-142,Dish,Char Siew Rice,Chicken Rice,12,697,21.9,29.6,11.2,1.6,86.1,16.7,3748
-143,Dish,Roasted Pork Rice,Chicken Rice,12,680,22,29.6,11.1,3.1,80.3,5.6,4497
-144,Dish,Roasted Chicken Noodles (Egg Noodles) - Regular,Chicken Rice,12,320,17.1,7.7,2,2.9,43.3,2.3,1600
-145,Dish,Roasted Chicken Noodles (Egg Noodles) - Large,Chicken Rice,12,388,25.3,11.5,3.2,3,43.6,2.3,1724
-146,Dish,Roasted Chicken Noodles (Hor Fun) - Regular,Chicken Rice,12,341,12.8,6.9,2.5,1.5,56.7,1.7,1613
-147,Dish,Roasted Chicken Noodles (Hor Fun) - Large,Chicken Rice,12,21,10.7,3.7,1.7,57,1.7,1738,
-148,Dish,White Chicken Noodles (Egg Noodles) - Regular,Chicken Rice,12,307,15.2,7.5,2.2,2.7,42.4,1.7,2583
-149,Dish,White Chicken Noodles (Egg Noodles) - Large,Chicken Rice,12,365,21.3,11.1,3.6,2.7,42.4,1.7,2633
-150,Dish,White Chicken Noodles (Hor Fun) - Regular,Chicken Rice,12,328,10.9,6.7,2.7,1.4,55.8,1,2596
-151,Dish,White Chicken Noodles (Hor Fun) - Large,Chicken Rice,12,386,17,10.4,4.1,1.4,55.8,1,2646
-152,Dish,Char Siew Noodles (Egg Noodles) - Regular,Chicken Rice,12,410,16.4,13.6,5,2.7,53.5,12.4,1254
-153,Dish,Char Siew Noodles (Egg Noodles) - Large,Chicken Rice,12,529,23.7,23.4,9.1,2.7,53.8,12.4,1390
-154,Dish,Char Siew Noodles (Hor Fun) - Regular,Chicken Rice,12,431,12.1,12.9,5.5,1.4,66.9,11.7,1268
-155,Dish,Char Siew Noodles (Hor Fun) - Large,Chicken Rice,12,550,19.4,22.7,9.6,1.4,67.2,11.7,1404
-156,Dish,Roasted Pork Noodles (Egg Noodles) - Regular,Chicken Rice,12,395,16.6,13.9,5,4.2,47.8,1.4,2006
-157,Dish,Roasted Pork Noodles (Egg Noodles) - Large,Chicken Rice,12,511,23.7,23.4,9.1,4.2,48.1,1.4,2139
-158,Dish,Roasted Pork Noodles (Hor Fun) - Regular,Chicken Rice,12,416,12.3,13.1,5.5,2.8,61.2,0.7,2020
-159,Dish,Roasted Pork Noodles (Hor Fun) - Large,Chicken Rice,12,533,19.4,22.7,9.6,2.8,61.4,0.7,2153
-160,Dish,Roasted Chicken Rice + Veg + Half Egg Set Meal,Chicken Rice,12,604,28.1,21.2,5.7,2.4,75.4,6.1,4243
-161,Dish,White Chicken Rice + Veg + Half Egg Set Meal,Chicken Rice,12,582,24.1,20.9,6.1,2.1,74.2,5.5,5151
-162,Dish,Char Siew Rice + Veg + Half Egg Set Meal,Chicken Rice,12,746,26.5,33.2,11.6,2.1,85.6,16.2,3909
-163,Dish,Roasted Pork Rice + Veg + Half Egg Set Meal,Chicken Rice,12,728,26.5,33.2,11.6,3.6,79.9,5.1,4658
-164,Dish,Curry Chicken Bee Hoon,Chicken Rice,12,744,15.8,34.7,26.9,4.9,90.9,30,6334
-165,Dish,Curry Chicken Noodles,Chicken Rice,12,777,21.7,37.8,27.6,6,85.8,28.7,6274
-166,Dish,Chicken Shredded Porridge,Chicken Rice,12,8.3,3.8,1.4,0.2,20.6,0.9,2158,
-167,Dish,Roasted Pork Rice Soup,Chicken Rice,12,9.7,10.2,4.2,1.7,26,0.6,1582,
-168,Side,Roasted Chicken,Chicken Rice,12,8.2,3.9,1.2,0.2,1.2,1,695,
-169,Side,White Chicken,Chicken Rice,12,6.3,3.7,1.4,0,0.3,0.3,1678,
-170,Side,Char Siew,Chicken Rice,12,7.5,9.8,4.2,0,11.4,11,350,
-171,Side,Roasted Pork,Chicken Rice,12,264,14.9,19.6,8.2,1.5,6,0,1235
-172,Side,Veg 1 (Cai Xin),Chicken Rice,12,0.8,0.1,0,0.7,0.4,0.5,258,
-173,Side,Veg 2 (Nonya Chap Chye),Chicken Rice,12,2.1,1.1,0.2,0.6,1.3,0.7,247,
-174,Side,Braised Egg,Chicken Rice,12,8,7,0.9,0,0.6,0.6,296,
-175,Side,Sausage,Chicken Rice,12,6.2,9.6,3.8,0.4,2.4,0.5,322,
-176,Side,Liver + Gizzards,Chicken Rice,12,17.5,2.6,0.8,0,0.3,0,34,
-177,Side,Roasted Chicken (1 Pax),Chicken Rice,12,16.4,7.7,2.4,0.3,1.5,1,820,
-178,Side,Roasted Chicken (2 Pax),Chicken Rice,12,32.8,15.4,4.7,0.7,3,2.1,1679,
-179,Side,Roasted Chicken (3 Pax),Chicken Rice,12,49.3,23.1,7.1,1,4.5,3.1,2518,
-180,Side,White Chicken (1 Pax),Chicken Rice,12,12.5,7.4,2.8,0,0.3,0.3,1729,
-181,Side,White Chicken (2 Pax),Chicken Rice,12,24.9,14.7,5.6,0,0.6,0.7,3445,
-182,Side,White Chicken (3 Pax),Chicken Rice,12,37.4,22.1,8.4,0,0.8,1,5167,
-183,Side,Plain Chicken Rice,Chicken Rice,12,411,6.9,10,2.9,1.4,73.4,4.7,3258
+141,Dish,White Chicken Rice,Chicken Rice,12,533,19.5,17.3,5.7,1.6,74.6,6,5.0
+142,Dish,Char Siew Rice,Chicken Rice,12,697,21.9,29.6,11.2,1.6,86.1,16.7,3.7
+143,Dish,Roasted Pork Rice,Chicken Rice,12,680,22,29.6,11.1,3.1,80.3,5.6,4.5
+144,Dish,Roasted Chicken Noodles (Egg Noodles) - Regular,Chicken Rice,12,320,17.1,7.7,2,2.9,43.3,2.3,1.6
+145,Dish,Roasted Chicken Noodles (Egg Noodles) - Large,Chicken Rice,12,388,25.3,11.5,3.2,3,43.6,2.3,1.7
+146,Dish,Roasted Chicken Noodles (Hor Fun) - Regular,Chicken Rice,12,341,12.8,6.9,2.5,1.5,56.7,1.7,1.6
+147,Dish,Roasted Chicken Noodles (Hor Fun) - Large,Chicken Rice,12,21,10.7,3.7,1.7,57,1.7,1.7,
+148,Dish,White Chicken Noodles (Egg Noodles) - Regular,Chicken Rice,12,307,15.2,7.5,2.2,2.7,42.4,1.7,2.6
+149,Dish,White Chicken Noodles (Egg Noodles) - Large,Chicken Rice,12,365,21.3,11.1,3.6,2.7,42.4,1.7,2.6
+150,Dish,White Chicken Noodles (Hor Fun) - Regular,Chicken Rice,12,328,10.9,6.7,2.7,1.4,55.8,1,2.6
+151,Dish,White Chicken Noodles (Hor Fun) - Large,Chicken Rice,12,386,17,10.4,4.1,1.4,55.8,1,2.7
+152,Dish,Char Siew Noodles (Egg Noodles) - Regular,Chicken Rice,12,410,16.4,13.6,5,2.7,53.5,12.4,1.3
+153,Dish,Char Siew Noodles (Egg Noodles) - Large,Chicken Rice,12,529,23.7,23.4,9.1,2.7,53.8,12.4,1.4
+154,Dish,Char Siew Noodles (Hor Fun) - Regular,Chicken Rice,12,431,12.1,12.9,5.5,1.4,66.9,11.7,1.3
+155,Dish,Char Siew Noodles (Hor Fun) - Large,Chicken Rice,12,550,19.4,22.7,9.6,1.4,67.2,11.7,1.4
+156,Dish,Roasted Pork Noodles (Egg Noodles) - Regular,Chicken Rice,12,395,16.6,13.9,5,4.2,47.8,1.4,2.0
+157,Dish,Roasted Pork Noodles (Egg Noodles) - Large,Chicken Rice,12,511,23.7,23.4,9.1,4.2,48.1,1.4,2.1
+158,Dish,Roasted Pork Noodles (Hor Fun) - Regular,Chicken Rice,12,416,12.3,13.1,5.5,2.8,61.2,0.7,2.0
+159,Dish,Roasted Pork Noodles (Hor Fun) - Large,Chicken Rice,12,533,19.4,22.7,9.6,2.8,61.4,0.7,2.2
+160,Dish,Roasted Chicken Rice + Veg + Half Egg Set Meal,Chicken Rice,12,604,28.1,21.2,5.7,2.4,75.4,6.1,4.2
+161,Dish,White Chicken Rice + Veg + Half Egg Set Meal,Chicken Rice,12,582,24.1,20.9,6.1,2.1,74.2,5.5,5.2
+162,Dish,Char Siew Rice + Veg + Half Egg Set Meal,Chicken Rice,12,746,26.5,33.2,11.6,2.1,85.6,16.2,3.9
+163,Dish,Roasted Pork Rice + Veg + Half Egg Set Meal,Chicken Rice,12,728,26.5,33.2,11.6,3.6,79.9,5.1,4.7
+164,Dish,Curry Chicken Bee Hoon,Chicken Rice,12,744,15.8,34.7,26.9,4.9,90.9,30,6.3
+165,Dish,Curry Chicken Noodles,Chicken Rice,12,777,21.7,37.8,27.6,6,85.8,28.7,6.3
+166,Dish,Chicken Shredded Porridge,Chicken Rice,12,8.3,3.8,1.4,0.2,20.6,0.9,2.2,
+167,Dish,Roasted Pork Rice Soup,Chicken Rice,12,9.7,10.2,4.2,1.7,26,0.6,1.6,
+168,Side,Roasted Chicken,Chicken Rice,12,8.2,3.9,1.2,0.2,1.2,1,0.7,
+169,Side,White Chicken,Chicken Rice,12,6.3,3.7,1.4,0,0.3,0.3,1.7,
+170,Side,Char Siew,Chicken Rice,12,7.5,9.8,4.2,0,11.4,11,0.4,
+171,Side,Roasted Pork,Chicken Rice,12,264,14.9,19.6,8.2,1.5,6,0,1.3
+172,Side,Veg 1 (Cai Xin),Chicken Rice,12,0.8,0.1,0,0.7,0.4,0.5,0.3,
+173,Side,Veg 2 (Nonya Chap Chye),Chicken Rice,12,2.1,1.1,0.2,0.6,1.3,0.7,0.2,
+174,Side,Braised Egg,Chicken Rice,12,8,7,0.9,0,0.6,0.6,0.3,
+175,Side,Sausage,Chicken Rice,12,6.2,9.6,3.8,0.4,2.4,0.5,0.3,
+176,Side,Liver + Gizzards,Chicken Rice,12,17.5,2.6,0.8,0,0.3,0,0.1,
+177,Side,Roasted Chicken (1 Pax),Chicken Rice,12,16.4,7.7,2.4,0.3,1.5,1,0.8,
+178,Side,Roasted Chicken (2 Pax),Chicken Rice,12,32.8,15.4,4.7,0.7,3,2.1,1.7,
+179,Side,Roasted Chicken (3 Pax),Chicken Rice,12,49.3,23.1,7.1,1,4.5,3.1,2.5,
+180,Side,White Chicken (1 Pax),Chicken Rice,12,12.5,7.4,2.8,0,0.3,0.3,1.7,
+181,Side,White Chicken (2 Pax),Chicken Rice,12,24.9,14.7,5.6,0,0.6,0.7,3.4,
+182,Side,White Chicken (3 Pax),Chicken Rice,12,37.4,22.1,8.4,0,0.8,1,5.2,
+183,Side,Plain Chicken Rice,Chicken Rice,12,411,6.9,10,2.9,1.4,73.4,4.7,3.3
 184,Side,White Rice,Chicken Rice,12,5.9,1.1,0.2,0.8,65.8,0.2,11,
