@@ -7,6 +7,7 @@ import seedu.duke.userdata.UserCareerData;
 
 public class UserExerciseData {
     public static HashMap<String,Integer> addUserExerciseHistory(UserCareerData userCareerData) {
+        assert userCareerData != null: "User career data should not be null!";
         HashMap<String,Integer> userExerciseDataMap = new HashMap<>();
         //Get the names of all exercises from each of the sessions, then
         // get their individual frequencies
