@@ -1,5 +1,6 @@
 package command;
 
+import data.Currency;
 import data.ExpenseList;
 import org.junit.jupiter.api.Test;
 import parser.Parser;
@@ -15,16 +16,18 @@ public class CommandSortTest {
     public ExpenseList expenseList = new ExpenseList();
     public Parser parser = new Parser();
 
+    public Currency currency = new Currency();
+
     @Test
     public void sortExpense_successful() {
         new CommandAdd(expenseList.getExpenseList(),
-                parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food")).execute();
+                parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food"), currency).execute();
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " +
-                        "t/02-02-2012 cur/USD cat/food")).execute();
+                        "t/02-02-2012 cur/USD cat/food"), currency).execute();
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " +
-                        "t/02-02-2013 cur/USD cat/eat")).execute();
+                        "t/02-02-2013 cur/USD cat/eat"), currency).execute();
 
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
