@@ -27,8 +27,8 @@ public class RecipeList {
         return currRecipeNumber;
     }
 
-    public static Recipe getRecipeFromList(int index) {
-        return recipeList.get(index - 1);
+    public static Recipe getRecipeFromList(int itemNum) {
+        return recipeList.get(itemNum- 1);
     }
 
     public static Recipe getNewestRecipe() {
