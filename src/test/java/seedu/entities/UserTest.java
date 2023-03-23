@@ -1,7 +1,6 @@
-package seedu.Entities;
+package seedu.entities;
 
 import org.junit.jupiter.api.Test;
-import seedu.entities.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
