@@ -3,13 +3,10 @@ package seedu.commands;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
-import seedu.definitions.MealTypes;
 import seedu.entities.Food;
+import seedu.exceptions.InvalidIndexException;
 import seedu.exceptions.LifeTrackerException;
-import seedu.exceptions.MissingArgumentsException;
-import seedu.parser.DateParser;
 import seedu.ui.GeneralUi;
-
 import java.util.List;
 
 public class FilterCaloriesCommand extends Command {
@@ -18,13 +15,9 @@ public class FilterCaloriesCommand extends Command {
 
     private float caloriesUpperLimit;
 
-    public FilterCaloriesCommand(float caloriesLowerLimit, float caloriesUpperLimit) {
-        this.caloriesLowerLimit = caloriesLowerLimit;
-        this.caloriesUpperLimit = caloriesUpperLimit;
-    }
+    int choice;
 
-    private void showCaloriesFilteredFoods(FoodStorage foodStorage) throws LifeTrackerException {
-        List<Food> caloriesFilteredFoods = foodStorage.getFoodsByCalories(caloriesLowerLimit, caloriesUpperLimit);
+    private void showCaloriesFilteredFoods(FoodStorage foodStorage, List<Food> caloriesFilteredFoods) throws LifeTrackerException {
 
         if (caloriesFilteredFoods.size() == 0) {
             throw new LifeTrackerException(System.lineSeparator() + "No food found within calorie range");
@@ -39,5 +32,36 @@ public class FilterCaloriesCommand extends Command {
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage) throws LifeTrackerException {
 
+        System.out.println("Please key in the lower limit (float):");
+        String lower = ui.readLine();
+        try {
+            caloriesLowerLimit = Float.parseFloat(lower);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input, input is not a float value");
+        }
+        System.out.println("Please key in the upper limit (float):");
+        String upper = ui.readLine();
+        try {
+            caloriesUpperLimit = Float.parseFloat(upper);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input, input is not a float value");
+        }
+
+        List<Food> caloriesFilteredFoods = foodStorage.getFoodsByCalories(caloriesLowerLimit, caloriesUpperLimit);
+        showCaloriesFilteredFoods(foodStorage, caloriesFilteredFoods);
+
+        boolean toContinue = true;
+
+        do {
+            int choice= ui.readInt();
+            if (choice <= 0 || choice > caloriesFilteredFoods.size()) {
+                throw new InvalidIndexException(choice);
+            }
+            System.out.println(System.lineSeparator() + "Type 1 to add more food. Type any other number to quit");
+            choice = ui.readInt();
+            if (choice != 1) {
+                toContinue = false;
+            }
+        } while (toContinue);
     }
 }
