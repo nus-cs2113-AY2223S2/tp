@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor User
+participant "controller:ToDoListManager" as ToDoListManager
+participant "parser:Parser" as Parser
+participant ":AddTaskCommand" as AddTaskCommand
+participant "ui:Ui" as Ui
+participant "storage:Storage" as Storage
+participant "taskList:TaskList" as TaskList
+
+title Step 3
+activate Storage
+activate ToDoListManager
+activate Parser
+activate TaskList
+activate Ui
+User -> ToDoListManager:input("add cg2023 assignment -due 18-12-2023")
+ToDoListManager -> Parser:parseCommand("add cg2023 assignment -due 18-12-2023")
+
+Parser -> AddTaskCommand
+activate AddTaskCommand
+AddTaskCommand -> Parser:formatDateTime(args.get(Flags.DEADLINE.FLAG))
+Parser <-- AddTaskCommand
+ToDoListManager <-- Parser:command
+ToDoListManager -> AddTaskCommand:execute(taskList,ui)
+AddTaskCommand -> TaskList:addTask(new Task(description, deadline))
+AddTaskCommand <-- TaskList:taskString
+AddTaskCommand -> Ui:printAddTaskMessage(taskString)
+Ui --> User:Notify user that task has been added
+ToDoListManager <-- AddTaskCommand
+
+ToDoListManager -> Storage:saveData(taskList)
+ToDoListManager -> AddTaskCommand:shouldExit()
+ToDoListManager <-- AddTaskCommand:isRunning
+destroy AddTaskCommand
+
+@enduml

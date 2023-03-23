@@ -40,6 +40,13 @@ If you plan to use Intellij IDEA (highly recommended):
 
 
 
+### Storage component
+
+The Storage component can save the task list as TaskList objects in a .txt file format using Serialization and read it 
+back into a TaskList object.
+
+
+
 ## Implementation
 
 ### Delete task feature
@@ -90,6 +97,7 @@ The edit deadline function extends NUS To-do List with an edit feature for the d
 It is facilitated by the TaskList and Command classes. It implements the `TaskList#editDeadline()` operation,
 which edits deadline of task at assigned index.
 
+
 Given below is an example usage scenario and how the edit deadline mechanism will behave at each step.
 
 Step 1. The user launches the application for the first time. There are no existing tasks read by the program.
@@ -104,6 +112,85 @@ which updates the value of deadline for the Task item saved at index 1 to the ne
 The following sequence diagram shows how the edit operations works:
 
 ![EditDeadlineCommandSequence](images/EditDeadlineCommandSequence.png)
+
+### Storage feature
+
+The storage feature is facilitated by the `Storage` class.
+
+The Storage class implements the following operations:
+* `Storage#saveData(TaskList)` --- Saves the current task list.
+* `Storage#loadData()` --- Loads a task list from the previously saved file, if there is one.
+
+Given below is an example usage scenario and how the Storage mechanism behaves at each step.
+
+Step 1. The user launches the application (not for the first time). The program loads the previously saved task list 
+data as there is a saved file `'./data.txt'` that Storage can find.
+
+![Step 1](images/StorageSequenceDiagramStep1-Step_1.png)
+
+Step 2. The user executes `list` command. The `list` command calls `Ui#printTaskList()` which lists all tasks in the 
+task list. `ToDoListManager` calls `storage#saveData()`, so the task list is saved into `'./data.txt'`.
+
+![Step2](images/StorageSequenceDiagramStep2-Step_2.png)
+
+Step 3. The user executes `add cg2023 assignment -d 18/12/2023` command. The `add` command calls `TaskList#addTask()`, 
+which adds a new Task to the existing task list. `ToDoListManager` calls `storage#saveData()`, so the task list is saved
+into `'./data.txt'`.
+
+![Step3](images/StorageSequenceDiagramStep3-Step_3.png)
+
+Step 4. The user executes `exit` command and exits the program. The `exit` command calls `Ui#printGoodByeMessage` to 
+notify the user that (s)he is exiting the program. `ToDoListManager` calls `storage#saveData(taskList)`, so the task 
+list is saved into `'./data.txt'` again before the program exits.
+
+![Step4](images/StorageSequenceDiagramStep4-Step_4.png)
+
+#### Design considerations:
+* <b>Alternative 1</b>: Save task list as a self-formatted .txt file which can be printed and used as a physical task list.
+    * Pros: Can get a physical task list to use.
+    * Cons: Difficult to maintain as Storage class has to be updated whenever more fields are added to Task class. For
+          example, if we add a "tag" field to Task, the formatting for the saved .txt file has to be updated to reflect
+          that change.
+* <b>Alternative 2</b>: Append rather than overwrite when saving the task list.
+    * Pros: Will likely be able to save the task list much faster.
+    * Cons: Difficult to implement, especially when considering the current mark task operation.
+* <b>Alternative 3 (current choice)</b>: Save task list as a Serializable TaskList object in a .txt file. 
+
+    * Pros: Easy to implement and easy to maintain as Storage class does not have to be updated whenever new fields are 
+            added to Task class. Do not need to consider whether we use append or overwrite when saving task list as it is 
+            irrelevant when using this implementation.
+    * Cons: No physical task list to use as the saved .txt file is practically unreadable.
+
+* <b>Main reasons for choosing Alternative 3: It is much easier to implement and maintain than the other 2 alternatives
+and we found that the lack of a physical task list to use is not a very significant issue.</b>
+
+
+### [Proposed] History feature
+
+The proposed history feature is facilitated by the `Storage`, `TaskList` and `Command` classes. Internally, there will 
+be 2 task lists stored - `completedTasks` and `uncompletedTasks`. There will be a rework to how marking tasks as done 
+works, a removal of the operation `TaskList#setDone()` and a new command for users to input to the CLI: `history`.
+
+There will be 2 new operations:
+* `TaskList#markTask(index i)` - Moves the task at index i of `uncompletedTasks` to `completedTasks`.  
+* `TaskList#unmarkTask(index i)` - Moves the task at index i of `completedTasks` to `uncompletedTasks`.
+
+Given below is an example usage scenario and how the history mechanism works.
+
+Step 1. The user launches the application for the first time. Both `completedTasks` and `uncompletedTasks` are empty.
+
+Step 2. The user executes `add cg2023 assignment -d 18/12/2023` command to add a task that (s)he has to complete. The
+`add` command causes the task to be added to `uncompletedTasks`.
+
+Step 3. The user executes `mark` command to mark a task that (s)he has completed. The `mark` command causes the task to
+be added to `completedTasks` and removed from `uncompletedTasks`.
+
+Step 4. The user executes `list` command to see what tasks (s)he has still not completed. The `list` command causes the 
+tasks in `uncompletedTasks` to be listed for the user to see.
+
+Step 5. The user executes `history` command to see what tasks (s)he has already completed. The `history` command causes 
+the tasks in `completedTasks` to be listed for the user to see.
+ 
 
 ## Appendix: Requirements
 
