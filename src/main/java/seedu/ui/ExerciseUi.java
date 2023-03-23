@@ -1,6 +1,4 @@
 package seedu.ui;
 
-public class ExerciseUi {
-
-
+public class ExerciseUi extends GeneralUi{
 }
