@@ -9,6 +9,7 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
    - [Ingredient Class](#ingredient-class)
 4. [Implementation](#implementation)
    - [Add and Remove Command](#add-and-remove-command)
+   - [Storage Feature](#storage-feature)
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 6. [Appendix: Requirements](#appendix-requirements)
    - [Product scope](#product-scope)
@@ -74,13 +75,13 @@ The current `MealCompanionSession` would keep track of the `IngredientList` whic
 
 The add and remove command is facilitated by the methods in `IngredientList` and `Ingredient`. Given below is an example usage scenario and how the add and remove command behaves.
 
-Step 1. The user inputs his command eg. `add egg /qty 5`, the name of the ingredient 'egg' would be crosschecked with our database of known ingredients
+Step 1. The user inputs his command e.g. `add egg /qty 5`, the name of the ingredient 'egg' would be crosschecked with our database of known ingredients
 
 Step 2. Since 'egg' is a known ingredient in our database, `IngredientList` would be called to check if egg is already stored inside the list
 
 Step 3. Suppose egg is not currently stored in `IngredientList`, a new `Ingredient` object would be created with the quantity, 5, and name, egg, specified by the user and added to `IngredientList` with the `add()` method.
 
-Step 4. Now the user decides to remove 2 eggs and inputs his command eg. `remove egg /qty 2`, the `IngredientList` would be searched through to see if egg is in the list
+Step 4. Now the user decides to remove 2 eggs and inputs his command e.g. `remove egg /qty 2`, the `IngredientList` would be searched through to see if egg is in the list
 
 Step 5. Since egg is in the list, its corresponding index in the list would be generated. 
 
@@ -90,6 +91,19 @@ Step 7. Since the quantity input by the user is smaller than the current quantit
 
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+
+
+### Storage Feature
+
+The proposed storage mechanism of ingredients is facilitated by `IngredientStorage`. 
+
+It requires `IngredientList` of `MealCompanionSession`.
+
+This features saves ingredient list data in json format and reads them back into ingredient objects.
+
+The following sequence diagram shows how data storage works:
+
+![StorageSequenceUML.png](images/StorageSequenceUML.png)
 
 ###### [Back to table of contents](#table-of-contents)
 
@@ -108,7 +122,8 @@ Step 7. Since the quantity input by the user is smaller than the current quantit
 #### Target user profile
 Our target user profile is the average School of Computing student that resides on campus, regardless of Residential College (RC), Halls, Residences or Houses. There is a focus on those who regularly cook in their hostels or would like to pick up cooking.
 
-#### Value proposition: Our product targets students who would like to save money on buying or ordering food, and also to save time by preparing their meals beforehand so they can eat immediately after a class without having to queue for food or look for a seat in a crowded canteen on campus. Aside from RCs, hostels on campus do not provide meal plans, so our product addresses this by helping users pick up cooking and manage the ingredients they have in their hostel refrigerators. Even within RCs, the meal plans do not cover lunch, meaning students need to source their own lunch, which is a problem that our product also aims to alleviate.
+#### Value proposition
+Our product targets students who would like to save money on buying or ordering food, and also to save time by preparing their meals beforehand, so they can eat immediately after a class without having to queue for food or look for a seat in a crowded canteen on campus. Aside from RCs, hostels on campus do not provide meal plans, so our product addresses this by helping users pick up cooking and manage the ingredients they have in their hostel refrigerators. Even within RCs, the meal plans do not cover lunch, meaning students need to source their own lunch, which is a problem that our product also aims to alleviate.
 
 ###### [Back to table of contents](#table-of-contents)
 
