@@ -7,18 +7,19 @@ import java.util.ArrayList;
 
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.MESSAGE_DIVIDER_LIST;
-import java.util.Scanner;
 
 public class CommandSort extends Command {
     public static final String COMMAND_NAME = "sort";
     protected ArrayList<Expense> expenseList;
+    protected String sortBy;
 
     private ArrayList<Expense> expenseListDate = new ArrayList<>();
     private ArrayList<Expense> expenseListCategory = new ArrayList<>();
 
-    public CommandSort(ArrayList<Expense> expenseList) {
+    public CommandSort(ArrayList<Expense> expenseList, String sortBy) {
         super(COMMAND_NAME);
         this.expenseList = expenseList;
+        this.sortBy = sortBy;
         for (int i = 0; i < expenseList.size(); i++) {
             this.expenseListDate.add(expenseList.get(i));
             this.expenseListCategory.add(expenseList.get(i));
@@ -31,21 +32,17 @@ public class CommandSort extends Command {
      */
     @Override
     public CommandRes execute() {
-        Scanner input = new Scanner(System.in);
         if (expenseList.size() == 0) {
             System.out.println("Sorry, there are no expenses tracked currently.");
             System.out.println(MESSAGE_DIVIDER);
         } else {
-            System.out.println("Please indicate you want your expenses sorted by Date/Category? ");
-            System.out.println("Enter: D (represent Date); C (represent Category)");
-            String sortBy = input.nextLine();
-
-            while (!sortBy.equals("C") && !sortBy.equals("D")) {
-                System.out.println(MESSAGE_DIVIDER_LIST);
-                System.out.println("Please indicate the right sorted criteria.");
+            if (!sortBy.equals("C") && !sortBy.equals("D")) {
+                System.out.println("Please indicate you want your expenses sorted by Date/Category? ");
                 System.out.println("Enter: D (represent Date); C (represent Category)");
-                sortBy = input.nextLine();
+                assert false;
+                return null;
             }
+
             System.out.println(MESSAGE_DIVIDER_LIST);
             if (sortBy.equals("C")) {
                 sortByCategory();

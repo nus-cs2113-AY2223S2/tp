@@ -23,9 +23,8 @@ public class CommandSortTest {
                 parser.extractAddParameters("add amt/2.5 " +
                         "t/02-02-2013 cur/USD cat/eat")).execute();
         String input = "C";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        Scanner scanner = new Scanner(in);
-
+        
+        // new CommandSort(expenseList.getExpenseList()).execute();
 
 
     }

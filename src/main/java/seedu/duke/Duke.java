@@ -46,7 +46,7 @@ public class Duke {
                 new CommandList(expenseList.getExpenseList()).run();
                 break;
             case "sort":
-                new CommandSort(expenseList.getExpenseList()).execute();
+                new CommandSort(expenseList.getExpenseList(), parser.extractSortBy(input)).execute();
                 break;
             default:
                 System.out.println("Unknown command.");
