@@ -172,7 +172,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.MalformedJsonException;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -246,7 +245,7 @@ public class JsonStorage extends Storage {
         if (useBackup == true) {
             logger.log(Level.INFO, "Trying to load backup file");
             try{  FileReader fileReader = new FileReader(backupFile);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
                 JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
                 JsonObject jsonObject = jsonElement.getAsJsonObject();
                 String deckName = jsonObject.get("deckName").getAsString();
@@ -295,7 +294,6 @@ public class JsonStorage extends Storage {
         } catch (IOException e) {
             String absolutePath = this.saveFile.getAbsolutePath();
             logger.log(Level.WARNING, "Failed to save data to savedata.json" + absolutePath, e);
-
             throw new StorageSaveFailure(absolutePath);
         }
     }
