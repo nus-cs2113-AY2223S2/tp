@@ -17,9 +17,9 @@ public class AddCommand extends Command {
 
     public AddCommand(String questionText, String answerText) {
         assert !questionText.isEmpty() : "question text should not be empty";
-        this.questionText = questionText;
+        this.questionText = questionText.substring(0, 1).toUpperCase() + questionText.substring(1);
         assert !answerText.isEmpty() : "answer text should not be empty";
-        this.answerText = answerText;
+        this.answerText = answerText.substring(0, 1).toUpperCase() + answerText.substring(1);
     }
 
     /**
