@@ -31,7 +31,7 @@ participant ":ParseDelete" as ParseDelete
 MainInputParser->ParseDelete** : ParseDelete(splitValues[INDEX_USERSTRING])
 activate ParseDelete
 
-participant ":ParseIndividualValue" as ParseIndividualValue
+participant ":ParseIndividualValue" as ParseIndividualValue <<abstract>>
 ParseDelete->ParseIndividualValue : parseIndividualValue(userInput,BLANK,BLANK)
 activate ParseIndividualValue
 return details:String
