@@ -1,6 +1,9 @@
 package seedu.meal360;
 
+import java.io.IOException;
 import java.util.Scanner;
+import seedu.meal360.exceptions.InvalidNegativeValueException;
+import seedu.meal360.exceptions.InvalidRecipeNameException;
 
 public class Meal360 {
 
@@ -48,9 +51,9 @@ public class Meal360 {
                 ui.printMessage(deletedRecipe);
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage = String.format(
+                String errorMessage =
                         "Please enter a valid recipe number or name. You did not enter a recipe number or "
-                                + "name.");
+                                + "name.";
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
@@ -64,20 +67,8 @@ public class Meal360 {
             try {
                 Recipe recipe = parser.parseViewRecipe(command, recipeList);
                 ui.printRecipe(recipe);
-            } catch (NumberFormatException e) {
-                String errorMessage = String.format(
-                        "Please enter a valid recipe number. You entered %s, " + "which is not a number.",
-                        command[1]);
-                ui.printMessage(errorMessage);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage = String.format(
-                        "Please enter a valid recipe number. You did not enter a recipe number.");
-                ui.printMessage(errorMessage);
-            } catch (IndexOutOfBoundsException e) {
-                String errorMessage = String.format(
-                        "Please enter a valid recipe number. You entered %s, " + "which is out of bounds.",
-                        command[1]);
-                ui.printMessage(errorMessage);
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
         } else if (command[0].equals("list")) {
@@ -86,7 +77,8 @@ public class Meal360 {
                 RecipeList recipeListToPrint = parser.parseListRecipe(command, recipeList);
                 ui.listRecipe(recipeListToPrint);
             } catch (IllegalArgumentException e) {
-                String errorMessage = "Please enter the command in the valid format. Some arguments might be missing.";
+                String errorMessage =
+                        "Please enter the command in the valid format. Some arguments might " + "be missing.";
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
@@ -97,10 +89,10 @@ public class Meal360 {
                 ui.printMessage("I've added this new recipe:" + newRecipe.getName());
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage = String.format("Please enter a valid recipe name.");
+                String errorMessage = "Please enter a valid recipe name.";
                 ui.printMessage(errorMessage);
-            } catch (NullPointerException e){
-                String errorMessage = String.format("Recipe already exists. Add a new recipe.");
+            } catch (NullPointerException e) {
+                String errorMessage = "Recipe already exists. Add a new recipe.";
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
@@ -116,15 +108,15 @@ public class Meal360 {
                         command[1]);
                 ui.printMessage(errorMessage);
             } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage = String.format("Please enter a valid recipe name.");
+                String errorMessage = "Please enter a valid recipe name.";
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
                         "Please enter a valid recipe number. You entered %s, " + "which is out of bounds.",
                         command[1]);
                 ui.printMessage(errorMessage);
-            } catch (NullPointerException e){
-                String errorMessage = String.format("Recipe doesn't exist for editing.");
+            } catch (NullPointerException e) {
+                String errorMessage = "Recipe doesn't exist for editing.";
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
@@ -146,27 +138,31 @@ public class Meal360 {
                 ui.printSeparator();
                 WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipeList);
 
-                if (command[1].equals("/add")) {
-                    ui.printMessage("I've added the recipe to your weekly plan!");
-                    weeklyPlan.addPlan(recipeMap);
-                } else if (command[1].equals("/delete")) {
-                    ui.printMessage("I've deleted the recipe from your weekly plan!");
-                    weeklyPlan.deletePlan(recipeMap);
-                } else if (command[1].equals("/clear")) {
+                switch (command[1]) {
+                case "/add":
+                case "/multiadd":
+                    weeklyPlan.addPlans(recipeMap);
+                    ui.printMessage("I've added the recipes to your weekly plan!");
+                    break;
+                case "/delete":
+                case "/multidelete":
+                    weeklyPlan.deletePlans(recipeMap);
+                    ui.printMessage("I've deleted the recipes from your weekly plan!");
+                    break;
+                case "/clear":
                     weeklyPlan.clearPlan();
                     ui.printMessage("I've cleared your entire weekly plan!");
+                    break;
+                default:
+                    ui.printMessage("Please enter a valid command.");
+                    break;
                 }
-            } catch (NumberFormatException e) {
-                String errorMessage = String.format("Please enter a valid number as the last argument.");
-                ui.printMessage(errorMessage);
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | InvalidNegativeValueException | InvalidRecipeNameException |
+                     ArrayIndexOutOfBoundsException e) {
                 ui.printMessage(e.getMessage());
-            } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage = String.format("Insufficient number of arguments provided.");
-                ui.printMessage(errorMessage);
             }
             ui.printSeparator();
-        } else if (command[0].equals("weeklyingredients"))  {
+        } else if (command[0].equals("weeklyingredients")) {
             ui.printSeparator();
             ui.printWeeklyIngredients(weeklyPlan, recipeList);
             ui.printSeparator();
@@ -193,7 +189,7 @@ public class Meal360 {
         try {
             database.saveDatabase(recipeList);
             ui.printMessage("Database saved successfully.");
-        } catch (Exception e) {
+        } catch (IOException error) {
             ui.printMessage("Error saving database.");
         }
 
@@ -202,7 +198,7 @@ public class Meal360 {
     }
 
     public static void main(String[] args) {
-        
+
         startApp();
 
         String line;
