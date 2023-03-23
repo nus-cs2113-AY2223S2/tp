@@ -6,6 +6,7 @@ import java.util.Map;
 public class PrintUserExerciseData {
 
     public static void printUserExerciseHistory(HashMap<String, Integer> userExerciseHistory) {
+        assert userExerciseHistory != null : "user exercise history should not be null!";
         String message = "Here is a list of all the exercises you have completed:" +
                 System.lineSeparator();
         System.out.println(message);
