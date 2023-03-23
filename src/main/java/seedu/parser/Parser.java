@@ -44,6 +44,10 @@ public class Parser {
             case "/delete":
                 return processDelete(arguments);
             case "/list":
+                if (arguments != null && !arguments.trim().isEmpty()) {
+                    // If there are arguments after the "/list" command, return an IncorrectCommand instance
+                    return new IncorrectCommand();
+                }
                 return new ListCommand();
             case "/view":
                 return processView(arguments);

@@ -4,6 +4,7 @@ import seedu.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 
 public class WorkoutList {
@@ -36,21 +37,30 @@ public class WorkoutList {
         }
         System.out.println("No workout found with the specified date.");
     }
+    /**
+     * This method will loop the workout list and print out the date in this list
+     *
+     */
+    //@@ author ZIZI-czh
     public void showWorkoutList() {
         try {
             if (!workoutList.isEmpty()) {
                 System.out.println("Here are the list of dates for your workout: ");
                 for (Workout workout : workoutList) {
-                    System.out.println(workout.getDate());
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+                    String formattedDate = dateFormat.format(workout.getDate());
+                    System.out.println(formattedDate);
                 }
                 Ui.showseperator();
             } else {
+                //if there is no workout have been done
                 System.out.println("Haven't start your workout, please enter your workout");
             }
 
         } catch (NullPointerException e) {
             System.out.println("Haven't start your workout, please enter your workout");
         }
+
     }
     public void displayWorkout(Date date) {
         for (Workout workout : workoutList) {
