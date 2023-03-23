@@ -21,7 +21,6 @@ import seedu.duke.exceptions.InvalidPuException;
 import seedu.duke.exceptions.InvalidModuleException;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class Parser {
     private static UI ui = new UI();

@@ -15,7 +15,8 @@ public class EditAccommodationCommand extends EditCostCommand {
         if (initialCost == budgetPlanner.getAccommodationTotalCost()) {
             System.out.println("Budget has not been changed");
         } else {
-            System.out.println("Accommodation Budget has been changed to: " + budgetPlanner.getAccommodationTotalCost());
+            System.out.println("Accommodation Budget has been changed to: " +
+                    budgetPlanner.getAccommodationTotalCost());
         }
     }
 }

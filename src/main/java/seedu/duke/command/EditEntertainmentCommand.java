@@ -15,7 +15,8 @@ public class EditEntertainmentCommand extends EditCostCommand {
         if (initialCost == budgetPlanner.getEntertainmentTotalCost()) {
             System.out.println("Budget has not been changed");
         } else {
-            System.out.println("Entertainment budget has been changed to: " + budgetPlanner.getEntertainmentTotalCost());
+            System.out.println("Entertainment budget has been changed to: "
+                    + budgetPlanner.getEntertainmentTotalCost());
         }
     }
 }
