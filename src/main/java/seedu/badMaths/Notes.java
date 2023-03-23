@@ -10,8 +10,8 @@ import java.io.File;
 
 public class Notes {
     private static final String filePath = "data/notes.txt";
-    protected static String logFilePath = "Notes";
     private static Logger logr = Logger.getLogger("Notes");
+    protected static String logFilePath = "Notes";
     private String toDo;
     private ArrayList<String> cache;
 
