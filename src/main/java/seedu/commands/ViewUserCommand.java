@@ -1,5 +1,6 @@
 package seedu.commands;
 
+import seedu.database.ExerciseStorage;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
@@ -13,7 +14,8 @@ import seedu.ui.CalorieUi;
 public class ViewUserCommand extends Command {
 
     @Override
-    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
+    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
+                        ExerciseStorage exerciseStorage)
             throws LifeTrackerException {
         User user = userStorage.getUser();
         CalorieUi calorieUi = new CalorieUi();

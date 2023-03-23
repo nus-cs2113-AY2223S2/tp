@@ -1,5 +1,6 @@
 package seedu.commands;
 
+import seedu.database.ExerciseStorage;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
@@ -25,7 +26,8 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage,
-                        MealStorage mealStorage, UserStorage userStorage) throws LifeTrackerException {
+                        MealStorage mealStorage, UserStorage userStorage, ExerciseStorage exerciseStorage)
+            throws LifeTrackerException {
         if (argument.equals("meals")) {
             ui.printAllMeals(mealStorage);
         } else {

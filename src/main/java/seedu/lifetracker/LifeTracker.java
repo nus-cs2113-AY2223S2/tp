@@ -37,7 +37,7 @@ public class LifeTracker {
                 String userInput = ui.readLine();
                 ui.printLine();
                 Command command = CommandParser.parse(userInput);
-                command.execute(ui, foodStorage, mealStorage, userStorage);
+                command.execute(ui, foodStorage, mealStorage, userStorage, exerciseStorage);
                 isExit = command.isExit();
             } catch (Exception e) {
                 System.out.println(e.getMessage());

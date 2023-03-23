@@ -1,5 +1,6 @@
 package seedu.commands;
 
+import seedu.database.ExerciseStorage;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
@@ -16,7 +17,8 @@ public class FilterCaloriesCommand extends Command {
 
     int choice;
 
-    private void showCaloriesFilteredFoods(FoodStorage foodStorage, List<Food> caloriesFilteredFoods) throws LifeTrackerException {
+    private void showCaloriesFilteredFoods(FoodStorage foodStorage, List<Food> caloriesFilteredFoods)
+            throws LifeTrackerException {
 
         if (caloriesFilteredFoods.size() == 0) {
             throw new LifeTrackerException(System.lineSeparator() + "No food found within calorie range");
@@ -29,7 +31,9 @@ public class FilterCaloriesCommand extends Command {
 
 
     @Override
-    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage) throws LifeTrackerException {
+    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
+                        ExerciseStorage exerciseStorage)
+            throws LifeTrackerException {
 
         System.out.println("Please key in the lower limit (float):");
         String lower = ui.readLine();

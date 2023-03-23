@@ -2,6 +2,7 @@ package seedu.commands;
 
 import java.io.IOException;
 
+import seedu.database.ExerciseStorage;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
@@ -11,7 +12,8 @@ import seedu.ui.GeneralUi;
 
 public class ExitCommand extends Command{
     @Override
-    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
+    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
+                        ExerciseStorage exerciseStorage)
             throws LifeTrackerException {
         setIsExit(true);
         ui.printGoodbye();
