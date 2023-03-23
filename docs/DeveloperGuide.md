@@ -53,16 +53,30 @@ The following sequence diagram shows how the add command work:
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The EntryLog will be initialized and contains no entry.
+Step 1. The user launches the application for the first time. The `EntryLog` will be initialized and contains no entry.
 
-Step 2. The user executes `/add Lunch at McDonalds -category Food -price 19.9` command to add an entry to the task list. The addT command calls Model#addTask(), causing the task to be added to the task list.
+Step 2. The user executes `/add Lunch at McDonalds -category Food -price 19.9` command to add an `Entry` to the `EntryLog`.
 
-_***Note.*** The add command will fail its execution if its format is incorrect, and no entry will be added to the entry log. An error message will be displayed informing the user._
+_***Note.*** The command will fail its execution if its format is incorrect, and no `Entry` will be added to the `Entrylog`. An error message will be displayed informing the user._
+
+Step 3. The command will be resolved by `Parser`, which would create an `AddCommmand` object.
+
+Step 4. The `AddCommand` constructor creates and returns an `Entry` object containing the description, price and category to be added.
+
+Step 5. When `execute()` method is called, a `Request` object is created.
+
+Step 6. From there, the `Request` is ready to be handled, which will add the new `Entry` to the `EntryLog`.
+
+Step7. A success message is after the new `Entry`
 
 The following activity diagram summarizes what happens when a user executes an add command:
 
 ![AddCommandActivityDiagram](./static/AddCommandActivityDiagram.png)
 
+## Delete Command
+The delete entry mechanism is facilitated by `EntryLog`.
+
+Every instance of DeleteCommand is created with an Entry instance.
 
 ## Product scope
 
