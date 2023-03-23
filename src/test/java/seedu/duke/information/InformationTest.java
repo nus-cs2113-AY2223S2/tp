@@ -1,4 +1,4 @@
-//@@Jeraldchen
+//@@author Jeraldchen
 package seedu.duke.information;
 
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InformationTest {
-    //@@Jeraldchen
+    //@@author Jeraldchen
     @Test
     public void resetDiagosisHistory() {
         ArrayList<String> diagnosisHistory = new ArrayList<>();
@@ -19,7 +19,7 @@ public class InformationTest {
         assertEquals(diagnosisHistory.size(), 0);
     }
 
-    //@@Jeraldchen
+    //@@author Jeraldchen
     @Test
     public void checkPassword() {
         HashMap<String, String> personalInfo = new HashMap<>();
@@ -30,7 +30,7 @@ public class InformationTest {
 
     }
 
-    //@@Jeraldchen
+    //@@author Jeraldchen
     @Test
     public void resetSymptoms() {
         ArrayList<String> symptoms = new ArrayList<>();
