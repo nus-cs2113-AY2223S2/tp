@@ -201,6 +201,7 @@ public class Menu {
      */
     //@@author Jeraldchen
     private static void parseSymptomInput(ArrayList<Symptom> symptoms, String[] symptomChoices) {
+        //@@author tanyizhe
         for (String symptomChoice : symptomChoices) {
             switch (symptomChoice) {
             case "A":
@@ -252,6 +253,7 @@ public class Menu {
                     System.out.println("Invalid command! Please enter a valid symptom.");
                 }
                 break;
+            //@@author JeraldChen
             case "H":
                 try {
                     addSymptoms(Symptom.CHILLS, symptoms);

@@ -78,7 +78,7 @@ public class MedicineManager {
         medicineDosages.put(EYE_DROPS.toString(), EYE_DROPS.getDosage());
         medicineDosages.put(ULTRACARBON.toString(), ULTRACARBON.getDosage());
         medicineDosages.put(DULCOLAX.toString(), DULCOLAX.getDosage());
-
+        assert medicineDosages.isEmpty() == false : "Medicine dosage hashtable must not be empty";
     }
 
     /**
@@ -96,7 +96,6 @@ public class MedicineManager {
 
     /**
      * Prints medications if they are available over the counter. Otherwise, recommends patient to consult doctor.
-     * @author Jeraldchen
      * @param relevantMedications ArrayList of medications suggested.
      */
     private static void printMedication(ArrayList<Medicine> relevantMedications) {
@@ -126,6 +125,7 @@ public class MedicineManager {
             }
             return medicineList;
         } else {
+            assert medicineList.size() == 0 : "No medicines available";
             return null;
         }
 

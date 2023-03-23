@@ -48,10 +48,9 @@ public class Patient {
     public void updatePatientDiagnosisHistory(String diagnosis) {
         patientDiagnosisHistory.add(diagnosis);
     }
-
+    //@@author tanyizhe
     /**
      * Updates patient's medicine history.
-     * @author tanyizhe, Brennanzuz
      * @param medicines ArrayList describing medicines patient has been prescribed
      */
     public void updatePatientMedicineHistory(String date, ArrayList<String> medicines) {
@@ -61,8 +60,6 @@ public class Patient {
             patientMedicineHistory.put(date, medicines);
         }
     }
-
-    //@@author tanyizhe
 
     /**
      * Appends medicine patient is prescribed if additional medicine is prescribed on the same day

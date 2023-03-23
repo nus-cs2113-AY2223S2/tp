@@ -117,8 +117,6 @@ public class Information {
             System.out.println("You have not entered any symptoms. No symptoms to reset.");
         }
     }
-
-
     //@@author JeraldChen
     /**
      * Prints the symptom history of the patient.
