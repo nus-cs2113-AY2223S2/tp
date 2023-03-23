@@ -30,6 +30,7 @@ deactivate IngredientList
 UI -> StepList : "getStepList()"
 activate StepList
 deactivate StepList
+deactivate UI
 deactivate Command
 
 
