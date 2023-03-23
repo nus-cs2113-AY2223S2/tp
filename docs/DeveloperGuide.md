@@ -70,8 +70,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 #### UI component
 The **API** of this component is specified in [`UI.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/ui/UI.java)
-![image](./PlantUML/UIcomponent.png)
 
+![image](./PlantUML/UIcomponent.png)
 
 UI class implements the StringLib interface for some output strings. It is responsible for the following tasks:
 * Prints the welcome and goodbye messages.
@@ -81,6 +81,7 @@ UI class implements the StringLib interface for some output strings. It is respo
 
 #### Parser component
 The **API** of this component is specified in [`Parser.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/parser/Parser.java)
+
 ![image](./PlantUML/ParserComponent.png)
 
 Parser class implements the StringLib interface for some output strings. It is responsible for the following tasks:
@@ -89,6 +90,7 @@ Parser class implements the StringLib interface for some output strings. It is r
 
 #### Command component
 The **API** of this component is specified in [`Command.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/command/Command.java)
+
 ![image](./PlantUML/CommandComponent.png) 
 
 Command class the StringLib interface for some output strings. It also inherits CommandType Enums for determining the 
@@ -113,6 +115,7 @@ are not limited in how many `Ingredient` and `Step` objects they can store respe
 
 #### Storage component
 The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/storage/Storage.java)
+
 ![image](./PlantUML/StorageComponent.png)
 
 Storage class is responsible for the following tasks:
