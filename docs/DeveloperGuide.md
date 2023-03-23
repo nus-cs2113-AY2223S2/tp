@@ -95,11 +95,17 @@ The command to list all pets currently available is `list`. When called, the pro
 This is how the ListPetCommand works:
 
 1. The `main()` method calls `ui.getUserInput()` from `ui`. The user's command is parsed through `commandParser.parseCommand()`.
+
 2. Within `commandParser.parseCommand()`, `newCommand()` will identify the command received (`list`).
+
 3. `ListPetCommand()` calls the `list()` method from the `PetList` class.
+
 4. `PetList.list()` then iterates through all pets in `petList`, calling `pet.getPetName()`, `pet.getPetType()`, `pet.getAge()` and `pet.getWeight()` each iteration, then prints the number of pets.
+
 5. The loop is now broken to return `ListPetCommand` to `parseCommand()`.
+
 6. `ListPetCommand` is returned to `main()`.
+
 7. The program is now ready to receive another command.
 
 <p align="center">
