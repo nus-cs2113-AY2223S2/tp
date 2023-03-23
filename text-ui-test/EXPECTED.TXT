@@ -3,6 +3,8 @@ Directory for file saving created.
 
 __________________________________________________________
 
+Saved recipes loaded!
+
 HELLO there! I am
  _____         _         _____  __  ___  ___                _         _______ ________  ____
 |_   _|       | |       |  _  |/ _| |  \/  |               ( )       / /_   _|  _  |  \/  \ \
@@ -232,7 +234,9 @@ MATE! Your list is empty!
 
 __________________________________________________________
 
-Saved recipes loaded!
+OOPS!!! I'm sorry, but I don't know what that means
+Try typing "help" to see the valid commands you can use!
+
 __________________________________________________________
 
 Bye. Hope to see you again soon!

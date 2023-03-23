@@ -69,9 +69,6 @@ public class Parser {
         case "exit":
             type = CommandType.EXIT;
             break;
-        case "load":
-            type = CommandType.LOAD;
-            break;
         default:
             type = CommandType.UNKNOWN;
         }

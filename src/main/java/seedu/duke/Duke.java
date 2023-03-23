@@ -6,6 +6,8 @@ import seedu.duke.recipe.RecipeList;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.UI;
 
+import java.io.FileNotFoundException;
+
 /**
  * Represents the Recipe Manager programme. A <code>Duke</code> object corresponds to
  * a Recipe Manager.
@@ -36,6 +38,12 @@ public class Duke {
      * it is terminated by the user.
      */
     public void run() {
+        try {
+            Storage.loadSaveFiles();
+            ui.showLoad();
+        } catch (FileNotFoundException e) {
+            ui.showLoadingErrorMessage(e);
+        }
         ui.showWelcome();
         ui.showLine();
         boolean isExit = false;

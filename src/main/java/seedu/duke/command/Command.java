@@ -138,10 +138,6 @@ public class Command {
         case HELP:
             ui.showHelp();
             break;
-        case LOAD:
-            ui.showLoad();
-            Storage.loadSaveFiles();
-            break;
         case EXIT:
             ui.showExit();
             break;
