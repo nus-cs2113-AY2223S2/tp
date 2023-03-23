@@ -16,7 +16,7 @@ public class CommandHandler {
      * @param exerciseGenerator    This takes in filter parameters and outputs a curated exercise list
      * @param userCareerData       This keeps track and allows logging of all user data
      * @param exerciseStateHandler This allows us to know whether an exercise is ongoing or not
-     * @param planner
+     * @param planner This keeps track of the workout plans
      */
     public void handleUserCommands(String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator,
                                    UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,

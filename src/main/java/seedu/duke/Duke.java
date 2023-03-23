@@ -7,6 +7,8 @@ import seedu.duke.userdata.UserCareerData;
 import seedu.duke.ui.Ui;
 import seedu.duke.states.ExerciseStateHandler;
 import seedu.duke.userplan.UserPlan;
+
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Duke {
@@ -16,7 +18,8 @@ public class Duke {
     private final GenerateExercise exerciseGenerator;
     private final ExerciseStateHandler exerciseHandler;
     private final StorageHandler storageHandler;
-    private final UserCareerData userCareerData;
+    private UserCareerData userCareerData;
+    private HashMap<String, Integer> userExerciseHistory;
     private UserPlan planner;
 
     public Duke () {

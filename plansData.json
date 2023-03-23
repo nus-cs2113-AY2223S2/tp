@@ -1,0 +1,20 @@
+{
+  "UserPlans": [
+    [
+      {
+        "exercisePlans": [
+          "legs",
+          "static"
+        ],
+        "planName": "home",
+        "noOfExercise": 0
+      }
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+  ]
+}
