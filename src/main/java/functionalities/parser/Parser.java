@@ -118,10 +118,19 @@ public class Parser {
             String endTime = task.substring(endTimeIndex + 3, priorityIndex - 1);
             LocalTime parsedEndTime = LocalTime.parse(endTime);
             String priority = task.substring(priorityIndex + 2);
+            if (parsedStartDate.isAfter(parsedEndDate)) {
+                throw new SniffException(" The start date must be before the end date!");
+            } else if (parsedStartDate.equals(parsedEndDate) && parsedStartTime.isAfter(parsedEndTime)) {
+                throw new SniffException(" The start time must be before the end time!");
+            } else if (parsedStartDate.equals(parsedEndDate) && parsedStartTime.equals(parsedEndTime)) {
+                throw new SniffException(" The start time cannot be the same as the end time!");
+            }
             command = new SurgeryCommand(animalType, animalName, ownerName, contactNumber,
                     parsedStartDate, parsedStartTime, parsedEndDate, parsedEndTime, priority);
         } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException(" The surgery description is invalid!");
+        } catch (DateTimeParseException e) {
+            throw new SniffException(" The date/time description is invalid!");
         }
     }
 
