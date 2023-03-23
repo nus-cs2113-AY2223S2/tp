@@ -25,11 +25,11 @@ activate Parser
 create DeleteTaskCommand
 Parser -> DeleteTaskCommand
 activate DeleteTaskCommand
-DeleteTaskCommand -> Parser : HashMap
+DeleteTaskCommand --> Parser : HashMap
 deactivate DeleteTaskCommand
 Parser -> DeleteTaskCommand : parse("<index>")
 activate DeleteTaskCommand
-alt  index <= 0 || index > TaskList.size()
+opt  index <= 0 || index > TaskList.size()
    DeleteTaskCommand --> exception : throw InvalidIndexException
    activate exception
    deactivate exception
@@ -50,11 +50,12 @@ activate Ui
 Ui --> DeleteTaskCommand
 deactivate Ui
 DeleteTaskCommand --> ToDoListManager : result
+ToDoListManager --> User : Notify user task has been deleted
 deactivate DeleteTaskCommand
 destroy DeleteTaskCommand
 ToDoListManager ->Storage : saveData(taskList)
 activate Storage
-alt  fail to save updated task list
+opt  fail to save updated task list
    Storage --> exception : throw FailedSaveException
    activate exception
    deactivate exception
@@ -63,6 +64,5 @@ destroy exception
 Storage -> Storage : updates data
 Storage --> ToDoListManager
 deactivate Storage
-ToDoListManager --> User : Notify user task has been deleted
 
 @enduml

@@ -28,6 +28,18 @@ The following sequence diagram shows how the delete task operation works:
 
 Step 4: The user then decides to execute the command list. This command does not modify the TaskList. Thus, the TaskList will return to its initial state where there are no tasks stored in the TaskList.
 
+### Mark or Unmark task feature
+Step 1: The user launches the program for the first time. The ToDoListManager will be initialised. This in turn will then initialise the Parser, TaskList and Storage. Take it as there are no existing tasks read/stored by the program.
+
+Step 2: The user executes add survey -d 20/03/2023 23:59 command to add a task for the To-do List. The add command calls TaskList#addTask(), which causes a new Task to be added to the existing TaskList.
+
+Step 3: The user wants to mark the task as completed by inputting the command “mark 1” into the terminal to mark the task as done.The command will then call the TaskList#setDone, which marks the task at index 1 of the TaskList to be marked.
+
+For the unmark command, the user can instead input the command “unmark 1” to set the task as not completed. The command also calls TaskList#setDone which sets the task at index 1 to be not marketed.
+
+The following sequence diagram shows how the mark/unmark task operation works:
+![MarkorUnmarkTaskCommandSequence](images/MarkorUnmarkTaskCommandSequence.png)
+
 ### Edit Deadline feature
 #### Implementation
 The edit deadline function extends NUS To-do List with an edit feature for the deadlines assigned to tasks. It is facilitated
