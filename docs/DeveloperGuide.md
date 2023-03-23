@@ -65,7 +65,8 @@ list is saved into `'./data.txt'` again before the program exits.
             irrelevant when using this implementation.
     * Cons: No physical task list to use as the saved .txt file is practically unreadable.
 
-* <b>Main reasons for choosing Alternative 3: It is much easier to implement and maintain than the other 2 alternatives and we found that the lack of a physical task list to use is not a very significant issue.</b>
+* <b>Main reasons for choosing Alternative 3: It is much easier to implement and maintain than the other 2 alternatives
+and we found that the lack of a physical task list to use is not a very significant issue.</b>
 
 
 ### [Proposed] History feature

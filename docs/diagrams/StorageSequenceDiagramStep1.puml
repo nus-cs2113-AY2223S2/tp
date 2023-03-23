@@ -2,13 +2,25 @@
 'https://plantuml.com/sequence-diagram
 
 autonumber
+participant "controller:ToDoListManager" as ToDoListManager
+participant "ui:Ui" as Ui
+participant "storage:Storage" as Storage
+participant "taskList:TaskList" as TaskList
+
 title Step 1
-Main -> controller:ToDoListManager:ToDoListManager()
-controller -> ui:Ui:printWelcomeMessage()
-controller -> storage:Storage:isNewSave()
-controller -> storage:loadData()
-controller <-- storage:taskList
-controller -> ui:printLoadSaveMessage(taskList.size())
-Main -> controller:run()
+activate ToDoListManager
+activate Ui
+activate Storage
+activate TaskList
+
+ToDoListManager -> Ui:printWelcomeMessage()
+ToDoListManager -> Storage:isNewSave()
+alt storage.isNewSave()
+    ToDoListManager -> Ui:printNewSaveMessage()
+else
+    ToDoListManager -> Storage:loadData()
+    ToDoListManager <-- Storage:taskList
+    ToDoListManager -> Ui:printLoadSaveMessage()
+end
 
 @enduml

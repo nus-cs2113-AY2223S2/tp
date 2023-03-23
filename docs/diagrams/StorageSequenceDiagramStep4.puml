@@ -2,17 +2,35 @@
 'https://plantuml.com/sequence-diagram
 
 autonumber
+actor User
+participant "controller:ToDoListManager" as ToDoListManager
+participant "parser:Parser" as Parser
+participant ":ExitCommand" as ExitCommand
+participant "ui:Ui" as Ui
+participant "storage:Storage" as Storage
+participant "taskList:TaskList" as TaskList
+
 title Step 4
-controller -> ui:getUserInput()
-controller <-- ui:inputCommand
-controller -> parser:Parser:parseCommand(inputCommand)
-parser -> ExitCommand
-controller <-- parser:command
-controller -> ExitCommand:execute(taskList,ui)
-ExitCommand -> ui:printGoodbyeMessage()
-controller -> storage:saveData(taskList)
-controller -> ExitCommand:shouldExit()
-controller <-- ExitCommand:isRunning
-controller -> ui:close()
-Main <-- controller
+activate Storage
+activate ToDoListManager
+activate Parser
+activate TaskList
+activate Ui
+User -> ToDoListManager:input("exit")
+ToDoListManager -> Parser:parseCommand("exit")
+
+Parser -> ExitCommand
+activate ExitCommand
+Parser <-- ExitCommand
+ToDoListManager <-- Parser:command
+ToDoListManager -> ExitCommand:execute(taskList,ui)
+ExitCommand -> Ui:printGoodbyeMessage()
+Ui --> User:Notify user that program is exiting soon
+ToDoListManager <-- ExitCommand
+
+ToDoListManager -> Storage:saveData(taskList)
+ToDoListManager -> ExitCommand:shouldExit()
+ToDoListManager <-- ExitCommand:isRunning
+destroy ExitCommand
+
 @enduml
