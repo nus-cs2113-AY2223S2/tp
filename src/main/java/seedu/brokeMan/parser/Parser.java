@@ -27,11 +27,17 @@ import seedu.brokeMan.exception.IndexNotAnIntegerException;
 import seedu.brokeMan.exception.InvalidAddCommandException;
 import seedu.brokeMan.exception.InvalidDateTimeException;
 import seedu.brokeMan.exception.InvalidEditCommandException;
+import seedu.brokeMan.exception.InvalidMonthTimeException;
+import seedu.brokeMan.exception.InvalidOptionalTimeFlagException;
 import seedu.brokeMan.exception.NegativeAmountException;
+import seedu.brokeMan.exception.WrongFlagOrderException;
 import seedu.brokeMan.exception.hasNotSetBudgetException;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import static seedu.brokeMan.common.Messages.MESSAGE_ARGUMENTS_NOT_SPECIFIED;
 import static seedu.brokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
@@ -61,9 +67,17 @@ public class Parser {
         case AddIncomeCommand.COMMAND_WORD:
             return prepareAddIncomeCommand(userInput.commandDescription);
         case ListExpenseCommand.COMMAND_WORD:
-            return new ListExpenseCommand();
+//<<<<<<< HEAD
+//            return new ListExpenseCommand();
+//        case ListIncomeCommand.COMMAND_WORD:
+//            return new ListIncomeCommand();
+//=======
+            return prepareListExpenseCommand(userInput.commandDescription);
+//        return prepareListCommand("expense", userInput.commandDescription);
         case ListIncomeCommand.COMMAND_WORD:
-            return new ListIncomeCommand();
+//            return prepareListCommand("income", userInput.commandDescription);
+            return prepareListIncomeCommand(userInput.commandDescription);
+//>>>>>>> upstream/master
         case EditExpenseCommand.COMMAND_WORD:
             return prepareEditExpenseCommand(userInput.commandDescription);
         case EditIncomeCommand.COMMAND_WORD:
@@ -75,7 +89,7 @@ public class Parser {
         case SetBudgetCommand.COMMAND_WORD:
             return prepareSetBudgetCommand(userInput.commandDescription);
         case ViewBudgetCommand.COMMAND_WORD:
-            return prepareViewBudgetCommand();
+            return prepareViewBudgetCommand(userInput.commandDescription);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case SortExpenseByAmountCommand.COMMAND_WORD:
@@ -92,17 +106,57 @@ public class Parser {
         }
     }
 
+//<<<<<<< HEAD
     /**
      * Prepares the view budget command
      *
      * @return the prepared command
      */
-    private static Command prepareViewBudgetCommand() {
+//    private static Command prepareViewBudgetCommand() {
+//=======
+//    private static Command prepareViewBudgetCommand(String description) {
+//>>>>>>> upstream/master
+//        try {
+//            if (description.equals("dummy")) {
+//                return new ViewBudgetCommand();
+//            }
+//            if (!description.substring(0, 3).equals("t/ ")) {
+//                return new InvalidCommand("Invalid date format!", ViewBudgetCommand.MESSAGE_USAGE);
+//            }
+//            description = description.substring(3);
+//            return new ViewBudgetCommand(description);
+//        } catch (hasNotSetBudgetException e) {
+//            return new InvalidCommand(e.getMessage(), ViewBudgetCommand.MESSAGE_USAGE);
+//        }
+//    }
+    private static Command prepareViewBudgetCommand(String description) {
+        String newDescription;
         try {
-            return new ViewBudgetCommand();
+            if (description.equals("")) {
+                return new ViewBudgetCommand();
+            }
+            newDescription = checkValidOptionalTimeFlagException(description);
+            return new ViewBudgetCommand(newDescription);
         } catch (hasNotSetBudgetException e) {
             return new InvalidCommand(e.getMessage(), SetBudgetCommand.MESSAGE_USAGE);
+        } catch (InvalidOptionalTimeFlagException | InvalidMonthTimeException ex) {
+            return new InvalidCommand(ex.getMessage(), ViewBudgetCommand.MESSAGE_USAGE);
         }
+    }
+
+    private static String checkValidOptionalTimeFlagException(String description) throws InvalidOptionalTimeFlagException,
+            InvalidMonthTimeException {
+        if (description.length() < 3 || !description.substring(0, 3).equals("t/ ")) {
+            throw new InvalidOptionalTimeFlagException();
+        }
+        String newDescription = description.substring(3).trim();
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu/MM");
+            YearMonth date = YearMonth.parse(newDescription, formatter);
+        } catch (DateTimeParseException dtpe) {
+            throw new InvalidMonthTimeException();
+        }
+        return newDescription;
     }
 
     /**
@@ -117,9 +171,16 @@ public class Parser {
                     SetBudgetCommand.MESSAGE_USAGE);
         }
 
+        String[] descriptionByWord = description.split(" d/ ");
+        if (descriptionByWord.length > 2 || descriptionByWord.length < 1) {
+            return new InvalidCommand("Invalid information entered", SetBudgetCommand.MESSAGE_USAGE);
+        }
+
         double budget;
+        String budgetInString = descriptionByWord[0];
+
         try {
-            budget = Double.parseDouble(description);
+            budget = Double.parseDouble(budgetInString);
             if (budget < 0) {
                 String errorMessage = new NegativeAmountException().getMessage();
                 return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
@@ -128,7 +189,11 @@ public class Parser {
             String errorMessage = new BudgetNotADoubleException().getMessage();
             return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
         }
-
+        if (descriptionByWord.length == 2) {
+            descriptionByWord[1] = descriptionByWord[1].trim();
+            return (descriptionByWord[1] == "" ? new SetBudgetCommand(budget)
+                    : new SetBudgetCommand(budget, descriptionByWord[1]));
+        }
         return new SetBudgetCommand(budget);
     }
 
@@ -234,6 +299,7 @@ public class Parser {
         return new AddIncomeCommand(amount, newDescription, time);
     }
 
+//<<<<<<< HEAD
     /**
      * Parses the command description in the context for the context of add command and throws exceptions if found
      *
@@ -247,6 +313,11 @@ public class Parser {
 
         if (!containsAllFlags) {
             throw new InvalidAddCommandException();
+        }
+        boolean isFlagInCorrectOrder = description.indexOf("a/") < description.indexOf("d/") &&
+                description.indexOf("d/") < description.indexOf("t/");
+        if (!isFlagInCorrectOrder) {
+            throw new WrongFlagOrderException();
         }
 
         String[] splitDescriptions = description.split("/");
@@ -262,6 +333,45 @@ public class Parser {
         checkTimeException(splitDescriptions[3]);
 
         return splitDescriptions;
+    }
+//=======
+    private static Command prepareListCommand(String type, String description) {
+        if (!description.equals("dummy") && !description.contains("t/ ")) {
+            String messageUsage = (type.equals("expense") ? ListExpenseCommand.MESSAGE_USAGE :
+                    ListIncomeCommand.MESSAGE_USAGE);
+            return new InvalidCommand("Incorrect date format provided", messageUsage);
+        }
+        String date = description.substring(3);
+        if (!description.equals("dummy")) {
+            return (type.equals("expense") ? new ListExpenseCommand(date) : new ListIncomeCommand(date));
+        }
+        return (type.equals("expense") ? new ListExpenseCommand() : new ListIncomeCommand());
+//>>>>>>> upstream/master
+    }
+    private static Command prepareListExpenseCommand(String description) {
+        if (description.equals("")) {
+            return new ListExpenseCommand();
+        }
+        String newDescription;
+        try {
+            newDescription = checkValidOptionalTimeFlagException(description);
+        } catch (InvalidOptionalTimeFlagException | InvalidMonthTimeException e) {
+            return new InvalidCommand(e.getMessage(), ListExpenseCommand.MESSAGE_USAGE);
+        }
+        return new ListExpenseCommand(newDescription);
+    }
+
+    private static Command prepareListIncomeCommand(String description) {
+        if (description.equals("")) {
+            return new ListIncomeCommand();
+        }
+        String newDescription;
+        try {
+            newDescription = checkValidOptionalTimeFlagException(description);
+        } catch (InvalidOptionalTimeFlagException | InvalidMonthTimeException e) {
+            return new InvalidCommand(e.getMessage(), ListIncomeCommand.MESSAGE_USAGE);
+        }
+        return new ListIncomeCommand(newDescription);
     }
 
     /**
@@ -378,9 +488,13 @@ public class Parser {
     private static String[] checkEditCommandException(String description) throws BrokeManException {
         boolean containsAllFlags = description.contains("i/ ") &&
                 description.contains(" t/ ") && description.contains(" n/");
-
         if (!containsAllFlags) {
             throw new InvalidEditCommandException();
+        }
+        boolean isFlagInOrder = description.indexOf("i/") < description.indexOf("t/") &&
+                description.indexOf("t/") < description.indexOf("n/");
+        if (!isFlagInOrder) {
+            throw new WrongFlagOrderException();
         }
         String[] splitDescriptions = description.split("/");
 

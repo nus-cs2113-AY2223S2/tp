@@ -30,4 +30,8 @@ public class Messages {
     public static final String MESSAGE_ARGUMENTS_NOT_SPECIFIED = "Arguments not specified.";
     public static final String MESSAGE_INVALID_TIME = "Invalid time information. " +
             "Please present your time as 'YYYY MM DD HH mm'";
+    public static final String MESSAGE_INVALID_MONTH = "Invalid time information. " +
+            "Please present your time as [YYYY/MM]";
+    public static final String MESSAGE_INVALID_OPTIONAL_TIME_FLAG = "Invalid optional time flag format.";
+    public static final String MESSAGE_WRONG_FLAG_ORDER = "Wrong flags order.";
 }
