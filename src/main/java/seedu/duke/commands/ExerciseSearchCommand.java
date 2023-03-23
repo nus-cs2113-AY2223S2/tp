@@ -8,6 +8,7 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 
 public class ExerciseSearchCommand extends Command{
+    //@@author ghzr0
     private static String keyword = "";
     /**
      * Parses the user input into data required
@@ -27,7 +28,7 @@ public class ExerciseSearchCommand extends Command{
             throw new EmptyKeywordError();
         }
     }
-
+    //@@author ghzr0
     /**
      * Filters the whole list of available exercises based off the
      * input from the user.
