@@ -256,7 +256,7 @@ public class TaskList {
         System.out.println();
         if (tasks.size() > 0) {
             int expiredCount = 0;
-            ArrayList<Task> expiredTasks = new ArrayList<Task>();
+            ArrayList<Task> expiredTasks = new ArrayList<>();
             for (Task task : tasks) {
                 if (task instanceof Deadline) {
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
@@ -292,8 +292,24 @@ public class TaskList {
                         System.out.println(task);
                         expiredTasks.add(task);
                     }
+                } else if (task instanceof SchoolClass) {
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+                    String end = ((SchoolClass) task).getEnd();
+                    Date d = null;
+                    Date n = new Date();
+                    try {
+                        d = format.parse(end);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    assert d != null;
+                    long diff = d.getTime() - n.getTime();
+                    if (diff < 0) {
+                        expiredCount++;
+                        System.out.println(task);
+                        expiredTasks.add(task);
+                    }
                 }
-
             }
             if (expiredCount > 0) {
                 Ui.borderLine();
