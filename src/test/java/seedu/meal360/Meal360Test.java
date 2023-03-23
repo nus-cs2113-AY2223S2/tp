@@ -209,16 +209,10 @@ class Meal360Test {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
         weeklyPlan.put("salad", 1);
 
-
-        HashMap<String, Integer> testIngredients = new HashMap<>();
-        testIngredients.put("lettuce", 1);
-        // create a fake recipe
-        Recipe testR = new Recipe("salad", testIngredients);
-        recipes.addRecipe(testR);
         ui.printWeeklyIngredients(weeklyPlan, recipes);
         assertEquals(
                 ui.formatMessage("Here are your weekly ingredients:") + System.lineSeparator() + ui.formatMessage(
-                        "salad (1)"), outContent.toString().trim());
+                        "cucumber (1) tomato (1) lettuce (1)"), outContent.toString().trim());
     }
 
     @Test
