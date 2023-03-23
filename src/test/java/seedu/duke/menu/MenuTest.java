@@ -1,13 +1,15 @@
-//@@author Jeraldchen
+//@@Jeraldchen
 package seedu.duke.menu;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MenuTest {
+    //@@Jeraldchen
     @Test
     public void registerPatient() {
         String name = "Akshay";
@@ -20,6 +22,18 @@ public class MenuTest {
         }
 
         assertEquals(personalInfo.get(name), password1);
+    }
+
+    //@@Jeraldchen
+    @Test
+    public void addSymptomsToSymptomsList() {
+        String symptom = "Fever";
+        String symptom2 = "Cough";
+        ArrayList<String> symptomsList = new ArrayList<>();
+        symptomsList.add(symptom);
+        symptomsList.add(symptom2);
+        assertEquals(symptomsList.get(0), symptom);
+        assertEquals(symptomsList.get(1), symptom2);
     }
 
 }
