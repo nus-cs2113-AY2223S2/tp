@@ -63,6 +63,22 @@ track of their future and present training.
 
 ### Add component
 
+The add mechanism is facilitated by `AddCommand`. 
+It extends `Command` and modifies the execute function to add an exercise.
+
+<img src="images/AddExerciseDiagram.png" width="450" />
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user enters the add command with the necessary arguments.
+
+Step 2. The input is processed by the `Parser` to separate out the arguments and creates the exercise to be added, 
+`toAdd`.
+
+Step 3. The `AddCommand` calls `execute()` which calls `WorkList#getCurrentWorkout()` to return `currentWorkout`.
+
+Step 4. Finally, `addExercise()` is called and `toAdd` is added to `currentWorkout`.
+
 ###### [Back to table of contents](#table-of-contents)
 
 ### List component
@@ -70,9 +86,10 @@ track of their future and present training.
 ###### [Back to table of contents](#table-of-contents)
 
 ### View component
-The View component is facilitated by `Parser`,`Ui`,`WorkoutList`,`Command` and `ViewCommand`, where the user will enter a specific workout date and the nuber of exercises on that date will be displayed
+The View component is facilitated by `Parser`,`Ui`,`WorkoutList`,`Command` and `ViewCommand`, where the user will 
+enter a specific workout date and the number of exercises on that date will be displayed
 
-Below are the specific steps on how to use the view fucntion and how the mechanism will flow:
+Below are the specific steps on how to use the view function and how the mechanism will flow:
 
 * Step 1: We will assume that the user has started a workout on two specific dates, `11/02/22` which was added with the following command `/start 11/02/22`
   and `12/02/22`, which was added with the following command `/start 12/02/22`.
@@ -97,6 +114,7 @@ Step 3: The execute method in the DeleteCommand class that is overrides will be 
 
 ###### [Back to table of contents](#table-of-contents)
 
+
 ## User Stories
 ### V1.0
 
@@ -112,12 +130,12 @@ Step 3: The execute method in the DeleteCommand class that is overrides will be 
 
 ### V2.0
 
-| As a | I want to ...                                              | So that I can ...                          |
-|------|------------------------------------------------------------|--------------------------------------------|
-| user | know the the amount of calories l consume for each workout | control the calories intake                |
-| user | know the workout l have done in last month                 | make a exercise plan for next month        |
-| user | know the frequency l do exercise for one month             | inspire myself                             |
-| user | know the amount of calories l have consumed for one month  | have better insights of my calories intake |
+| As a | I want to ...                                             | So that I can ...                          |
+|------|-----------------------------------------------------------|--------------------------------------------|
+| user | know the amount of calories I consume each day            | control the calories intake                |
+| user | know the workout l have done in last month                | make a exercise plan for next month        |
+| user | know the frequency l do exercise for one month            | inspire myself                             |
+| user | know the amount of calories I have consumed for one month | have better insights of my calories intake |
 
 
 ###### [Back to table of contents](#table-of-contents)
