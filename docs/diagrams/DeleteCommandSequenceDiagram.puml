@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ":Parser" as Parser
+participant "c:DeleteCommand" as DeleteCommand
+participant "r:Request" as Request
+participant "q:Response" as Response
+participant "deletedEntry:Entry" as Entry
+participant "UI" as UI
+
+Parser -> DeleteCommand ** : DeleteCommand(1)
+activate DeleteCommand
+return c
+
+-> DeleteCommand :execute()
+activate DeleteCommand
+DeleteCommand -> Request **
+Request --> DeleteCommand : r
+DeleteCommand -> Response **
+Response --> DeleteCommand : q
+DeleteCommand -> Entry **
+Entry --> DeleteCommand
+DeleteCommand -> UI:printExpenditureDeleted(deletedEntry)
+deactivate DeleteCommand
+@enduml

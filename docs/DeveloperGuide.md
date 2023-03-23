@@ -46,7 +46,7 @@ command: `/add McDonalds -c Food -p 10.50`
 ![ParserSequenceDiagram](../../ParserSequenceDiagram.png)
 
 ## Add Command
-The add entry mechanism is facilitated by `EntryLog`. Every instance of AddCommand is created with an Entry instance.
+The add entry mechanism is facilitated by `EntryLog`. Every instance of `AddCommand` is created with an `Entry` instance.
 
 The following sequence diagram shows how the add command work:
 ![AddCommandSequenceDiagram](./static/AddCommandSequenceDiagram.png)
@@ -65,9 +65,9 @@ Step 4. The `AddCommand` constructor creates and returns an `Entry` object conta
 
 Step 5. When `execute()` method is called, a `Request` object is created.
 
-Step 6. From there, the `Request` is ready to be handled, which will add the new `Entry` to the `EntryLog`.
+Step 6. From there, the `Request` is ready to be handled. `addEntry()` method is called and the new `Entry` is added to the `EntryLog`.
 
-Step7. A success message is after the new `Entry`
+Step 7. A success message is after the new `Entry` is added to the `EntryLog`.
 
 The following activity diagram summarizes what happens when a user executes an add command:
 
@@ -76,7 +76,29 @@ The following activity diagram summarizes what happens when a user executes an a
 ## Delete Command
 The delete entry mechanism is facilitated by `EntryLog`.
 
-Every instance of DeleteCommand is created with an Entry instance.
+Every instance of `DeleteCommand` is created with an Integer, which is the ID of the `Entry` to be deleted.
+
+The following sequence diagram shows how the delete command work:
+
+![DeleteCommandSequenceDiagram](./static/DeleteCommandSequenceDiagram.png)
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user decides to remove an `Entry` from the `EntryLog` and executes `/delete 1` command.
+
+_**Note:** The command will fail its execution if the index provided is invalid, and no `Entry` will be removed from the `EntryLog`. An error message will be displayed informing the user._
+
+Step 2. The command will be resolved by `Parser`, which would create an `DeleteCommmand` object containing the index of the `Entry` to be deleted.
+
+Step 3. When `execute()` method is called, a `Request` object is created.
+
+Step 4. From there, the `Request` is ready to be handled. `deleteEntry()` method is called and the `Entry` is removed from `EntryLog`.
+
+Step 5. A success message is after the `Entry` is removed from `EntryLog`.
+
+The following activity diagram summarizes what happens when a user executes a delete   command:
+
+![DeleteCommandActivityDiagram](./static/DeleteCommandActivityDiagram.png)
 
 ## Product scope
 

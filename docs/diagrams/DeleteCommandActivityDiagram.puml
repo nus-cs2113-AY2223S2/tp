@@ -2,11 +2,10 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-:user executes add entry command;
+:user executes delete entry command;
     if () then ([valid format])
-      :Create new AddCommand object;
-      :Create new entry;
-      :Insert new entry at the end of the EntryLog;
+      :Create new DeleteCommand object;
+      :Remove entry from the EntryLog;
       :Show success message;
 
     else ([invalid format])

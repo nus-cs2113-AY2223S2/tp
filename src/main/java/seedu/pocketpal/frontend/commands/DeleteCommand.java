@@ -38,7 +38,6 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(UI ui, Backend backend) throws InvalidEntryIdException {
-        // delete request
         Arrays.sort(entryIds, Collections.reverseOrder());
         Integer[] uniqueEntryIds = Arrays.stream(entryIds).distinct().toArray(Integer[]::new);
         for(int entryId: uniqueEntryIds){
