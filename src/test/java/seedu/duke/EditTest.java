@@ -3,9 +3,9 @@ package seedu.duke;
 import org.junit.jupiter.api.Test;
 import seedu.duke.commands.SearchCommand;
 import seedu.duke.objects.Inventory;
-import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Item;
-import seedu.duke.utils.parser.Parser;
+import seedu.duke.utils.parsers.AddParser;
+import seedu.duke.utils.parsers.EditParser;
 import seedu.duke.types.Types;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,13 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class EditTest {
 
     Inventory inventory = new Inventory();
-    AlertList alertList = new AlertList();
-    Parser testParser = new Parser(inventory, alertList);
 
     @Test
     public void sampleTest() {
-        testParser.parseAdd("n/orange upc/123 qty/5 p/5",inventory);
-        testParser.parseEdit("upc/123 n/apple",inventory);
+        AddParser addParser = new AddParser("n/orange upc/123 qty/5 p/5",inventory);
+        addParser.run();
+        EditParser editParser = new EditParser("upc/123 n/apple", inventory);
+        editParser.run();
         String[] data = {"upc/123"};
         Item updatedItem = null;
         SearchCommand searchCommand = new SearchCommand(inventory, "123", Types.SearchType.UPC);

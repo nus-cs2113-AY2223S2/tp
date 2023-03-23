@@ -98,8 +98,8 @@ public class EditCommand extends Command {
     public void setEditInfo() {
         try {
             Item updatedItem = retrieveItemFromHashMap(editInfo);
-            Item oldItem = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity().toString(),
-                    updatedItem.getPrice().toString());
+            Item oldItem = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
+                    updatedItem.getPrice());
             for (int data = 1; data < editInfo.length; data += 1) {
                 updateItemInfo(updatedItem, editInfo[data]);
             }
