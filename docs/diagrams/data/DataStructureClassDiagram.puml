@@ -1,0 +1,82 @@
+@startuml
+title Data Structure Class Diagram
+
+class Entry
+class EntryLog
+class EntryParser
+class EntryLogParser
+enum Category
+interface Serialisable
+
+Entry ...|> Serialisable
+Entry ---> "1" Category
+Entry "0..." -o EntryLog
+Entry ...> EntryParser
+EntryLog ...|> Serialisable
+EntryLog ...> Category
+EntryLog ...> EntryLogParser
+
+
+class Entry {
+- description : String
+- amount : double
+- dateTime : String
+
++ Entry(description : String, amount : double, category : Category)
++ getAmount() : double
++ getCategory() : Category
++ getDateTime() : String
++ getCategoryString() : String
++ getDescription() : String
++ setAmount(amount : double) : void
++ setCategory(category : Category) : void
++ setDescription(description : String) : void
++ serialise() : String
+}
+
+class EntryLog {
+- {static} logger : Logger
+
++ EntryLog()
++ EntryLog(entries : List<Entry>)
++ addEntry(entry : Entry) void
++ clearAllEntries() : void
++ deleteEntry(entryId : int) : Entry
++ filterByAmount(minAmount : double, maxAmount : double) : EntryLog
++ filterByQuery(query : String) : EntryLog
++ filterByCategory(category : Category)
++ getEntry(entryId : int) : Entry
++ getEntriesList() : List<Entry>
++ getLatestEntries(numEntries : int) : EntryLog
++ getSize() : int
++ serialise() : String
+}
+
+enum Category {
+CLOTHING
+ENTERTAINMENT
+FOOD
+INCOME
+MEDICAL
+OTHERS
+PERSONAL
+TRANSPORTATION
+UTILITIES
+}
+
+interface Serialisable {
+serialise() : String
+}
+
+class EntryParser {
+- {static} gson : Gson
++ serialise(entry : Entry) : String
++ deserialise(json : String) : Entry
+}
+
+class EntryLogParser {
+- {static} gson : Gson
++ serialise(entryLog: EntryLog) : String
++ deserialise(json : String) : EntryLog
+}
+@enduml

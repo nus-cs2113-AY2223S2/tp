@@ -21,7 +21,6 @@
 
 
 ## Design & implementation
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 ### Architecture
 ![PocketPal Architecture](./static/PocketPalArchitecture.png)
@@ -31,6 +30,11 @@
 This project uses a simplified HTTP model, where the frontend sends a `Request` to the backend to perform data-related operations. The backend returns a `Response`, which is then processed by the frontend
 
 ![Simplified HTTP Model](static/communication/SimplifiedHTTPClassDiagram.png)
+
+### Data
+We use the `EntryLog` data structure to keep track of the entries entered by the user.
+
+![Data Structure Class Diagram](./static/data/DataStructureClassDiagram.png)
 
 ### Backend
 
