@@ -6,8 +6,8 @@ import seedu.duke.types.Types;
 import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Storage;
 import seedu.duke.utils.Ui;
-import seedu.duke.utils.parser.Parser;
 import seedu.duke.objects.AlertList;
+import seedu.duke.utils.ParserHandler;
 
 public class Duke {
     /**
@@ -15,7 +15,7 @@ public class Duke {
      */
     private Storage storage;
     private Ui ui;
-    private Parser parser;
+    private ParserHandler parserHandler;
     private Inventory inventory;
     private SessionManager currentSession;
     private AlertList alertList;
@@ -27,14 +27,13 @@ public class Duke {
         inventory = new Inventory();
         currentSession = SessionManager.getInstance();
         inventory = currentSession.getSession();
-        parser = new Parser(inventory, currentSession);
         alertList = new AlertList();
-        parser = new Parser(inventory, alertList);
+        parserHandler = new ParserHandler(inventory, currentSession, alertList);
     }
 
     public void run() {
         while (true) {
-            parser.mainParser();
+            parserHandler.run();
         }
     }
 

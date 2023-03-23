@@ -2,15 +2,20 @@ package seedu.duke.utils;
 
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
-import seedu.duke.types.Types;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Storage {
     private static String filePath;
     private static Inventory inventory = new Inventory();
-
+    public Storage(String filePath) {
+        Storage.filePath = filePath;
+    }
     public static Inventory readCSV() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -59,9 +64,5 @@ public class Storage {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public Storage(String filePath) {
-        Storage.filePath = filePath;
     }
 }

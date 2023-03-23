@@ -16,8 +16,8 @@ class ListCommandTest {
     @Test
     public void printWithoutWrapping() {
         inventory = new Inventory();
-        Item item1 = new Item("apples", "012345678", "5000", "12.0");
-        Item item2 = new Item("oranges", "876543210", "3000", "0.32");
+        Item item1 = new Item("apples", "012345678", 5000, 12.0);
+        Item item2 = new Item("oranges", "876543210", 3000, 0.32);
 
         inventory.getItemInventory().add(item1);
         inventory.getItemInventory().add(item2);
@@ -54,7 +54,7 @@ class ListCommandTest {
     @Test
     public void printWithWrapping() {
         inventory = new Inventory();
-        Item item1 = new Item("applesorangesgreenbeansredbeans", "012345678", "5000", "12.0");
+        Item item1 = new Item("applesorangesgreenbeansredbeans", "012345678", 5000, 12.0);
 
         inventory.getItemInventory().add(item1);
         inventory.getUpcCodes().put(item1.getUpc(), item1);
@@ -85,7 +85,7 @@ class ListCommandTest {
     @Test
     public void printSpacesWithWrapping() {
         inventory = new Inventory();
-        Item item1 = new Item("red orange yellow green blue violet", "012345678", "5000", "12.0");
+        Item item1 = new Item("red orange yellow green blue violet", "012345678", 5000, 12.0);
 
         inventory.getItemInventory().add(item1);
         inventory.getUpcCodes().put(item1.getUpc(), item1);

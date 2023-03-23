@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static seedu.duke.utils.ColorCode.*;
+import static seedu.duke.utils.ColorCode.ANSI_BLUE;
+import static seedu.duke.utils.ColorCode.ANSI_GREEN;
+import static seedu.duke.utils.ColorCode.ANSI_RED;
+import static seedu.duke.utils.ColorCode.ANSI_RESET;
+import static seedu.duke.utils.ColorCode.ANSI_YELLOW;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
@@ -34,8 +38,8 @@ public class Ui {
 
     public static final String INVALID_SESSION_FILE = "INFO: A Session Inventory file was found but it is corrupted. " +
             "Please delete the corrupt .csv file";
-    public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered. The inventory has been " +
-            "updated.";
+    public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered." +
+            " The inventory has been updated.";
     public static final String EMPTY_SESSION_FILE = "INFO: Empty/No Session Inventory file found.";
     public static final int NAME_COL_WIDTH = 15;
     public static final int UPC_COL_WIDTH = 12;
