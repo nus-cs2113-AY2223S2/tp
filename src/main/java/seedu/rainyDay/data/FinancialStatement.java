@@ -13,6 +13,9 @@ public class FinancialStatement implements Serializable {
     public FlowDirection flowDirection;
     public double value;
     public String category;
+
+
+
     public LocalDate date = null;
 
     public FinancialStatement(String description, String flowDirection, double value, String category, LocalDate date) {
@@ -79,6 +82,10 @@ public class FinancialStatement implements Serializable {
 
     public LocalDate getDate() {
         return this.date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public String getFullStatement() {
