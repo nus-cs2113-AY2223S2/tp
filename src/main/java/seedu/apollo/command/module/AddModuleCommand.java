@@ -64,6 +64,11 @@ public class AddModuleCommand extends Command implements LoggerInterface {
 
     }
 
+    /**
+     * Sets up logger for AddModuleCommand class.
+     *
+     * @throws IOException If logger file cannot be created.
+     */
     @Override
     public void setUpLogger() {
         LogManager.getLogManager().reset();
