@@ -4,6 +4,7 @@ package seedu.brokeMan.entry.income;
 import seedu.brokeMan.entry.Entry;
 import seedu.brokeMan.entry.EntryList;
 import seedu.brokeMan.parser.StringToTime;
+import seedu.brokeMan.save.SaveExpense;
 import seedu.brokeMan.save.SaveIncome;
 import seedu.brokeMan.ui.Ui;
 
@@ -83,9 +84,11 @@ public class IncomeList extends EntryList {
      */
     public static void sortIncomeByAmount() {
         sortEntriesByAmount(incomeList);
+        SaveIncome.writeFile(incomeList);
     }
     public static void sortIncomeByDate() {
         sortEntriesByDate(incomeList);
+        SaveIncome.writeFile(incomeList);
     }
 
     public static List<Entry> getIncomesMadeInMonth(int year, Month month) {

@@ -98,6 +98,7 @@ public class ExpenseList extends EntryList {
      */
     public static void sortExpensesByAmount() {
         sortEntriesByAmount(expenseList);
+        SaveExpense.writeFile(expenseList);
     }
 
     /**
@@ -105,6 +106,7 @@ public class ExpenseList extends EntryList {
      */
     public static void sortExpensesByDate() {
         sortEntriesByDate(expenseList);
+        SaveExpense.writeFile(expenseList);
     }
     public static List<Entry> getExpensesMadeInMonth(int year, Month month) {
         return selectEntryForDate(year, month, expenseList);
