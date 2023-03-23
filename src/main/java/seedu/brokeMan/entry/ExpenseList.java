@@ -98,11 +98,7 @@ public class ExpenseList extends EntryList {
     public static void sortExpensesByDate() {
         sortEntriesByDate(expenseList);
     }
-//<<<<<<< HEAD
-//=======
-//
     public static List<Entry> getExpensesMadeInMonth(int year, Month month) {
         return selectEntryForDate(year, month, expenseList);
     }
-//>>>>>>> upstream/master
 }

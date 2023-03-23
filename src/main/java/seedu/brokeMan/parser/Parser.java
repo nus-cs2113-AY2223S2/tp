@@ -125,8 +125,8 @@ public class Parser {
      * @throws InvalidOptionalTimeFlagException custom exception to indicate invalid time flag
      * @throws InvalidMonthTimeException custom exception to indicate invalid time description
      */
-    private static String checkValidOptionalTimeFlagException(String description) throws InvalidOptionalTimeFlagException,
-            InvalidMonthTimeException {
+    private static String checkValidOptionalTimeFlagException(String description)
+            throws InvalidOptionalTimeFlagException, InvalidMonthTimeException {
         if (description.length() < 3 || !description.substring(0, 3).equals("t/ ")) {
             throw new InvalidOptionalTimeFlagException();
         }
@@ -314,18 +314,7 @@ public class Parser {
 
         return splitDescriptions;
     }
-    private static Command prepareListCommand(String type, String description) {
-        if (!description.equals("dummy") && !description.contains("t/ ")) {
-            String messageUsage = (type.equals("expense") ? ListExpenseCommand.MESSAGE_USAGE :
-                    ListIncomeCommand.MESSAGE_USAGE);
-            return new InvalidCommand("Incorrect date format provided", messageUsage);
-        }
-        String date = description.substring(3);
-        if (!description.equals("dummy")) {
-            return (type.equals("expense") ? new ListExpenseCommand(date) : new ListIncomeCommand(date));
-        }
-        return (type.equals("expense") ? new ListExpenseCommand() : new ListIncomeCommand());
-    }
+
     private static Command prepareListExpenseCommand(String description) {
         if (description.equals("")) {
             return new ListExpenseCommand();
