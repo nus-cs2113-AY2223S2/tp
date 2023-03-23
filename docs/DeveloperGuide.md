@@ -20,6 +20,22 @@ This developer guide will help you to get started with our product, badMaths!
 
 
 ## Design & implementation
+### Solving Quadratic Equations
+The Quadratic equation solver allows user to find the value of `x` in a simple quadratic equation. \
+The function is started when `QuadraticSolver` is called.
+Below is an  example of how it would be called.
+```
+Quadratic. 2x^2+3x+1
+```
+Step 1. Parser class would split the user input into 2 parts, command and toDo. Command would be `Quadratic.`, 
+thus `executeCommand` would trigger `QuadraticSolver`. toDo would be `2x^2+3x+1`.
+
+Step 2. The general formula of quadratic equations is `Ax^2 + Bx + C`, thus `findA`, `findB`, `findC`
+would identify A, B and C from toDo. 
+
+Step 3. to solve the quadratic equation, A, B and C are put into the formula `x = (-B±√(B^2-4AC))/2A`.
+
+
 ### Store and Display Notes
 The Store and Display Notes functionality allows users to input notes 
 which will be stored in a list, and to display a list of all notes
