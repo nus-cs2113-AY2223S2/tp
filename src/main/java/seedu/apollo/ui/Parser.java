@@ -106,6 +106,10 @@ public class Parser {
      * @throws InvalidEvent            If the input format for adding an event is wrong.
      * @throws IllegalCommandException If an unknown command is input by the user.
      * @throws UnexpectedException     If some unexpected error occurs.
+     * @throws InvalidModule           If the module does not exist
+     * @throws EmptyDelModException    If there is no input for module code
+     * @throws EmptyAddModException    If there is no input for module code
+     * @throws EmptyShowModException   If there is no input for module code
      */
     private static Command parseCommand(String[] split, int size, ModuleList moduleData)
             throws InvalidDateTime, EmptyKeywordException, EmptyTaskDescException, InvalidDeadline, InvalidEvent,
