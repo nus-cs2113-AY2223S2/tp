@@ -18,7 +18,8 @@ public class Calculator {
         command = ui.readCommand();
         result = p.parse(command);
 
-        if(result != null)
+        if(result != null) {
             ui.printResult(result);
+        }
     }
 }
