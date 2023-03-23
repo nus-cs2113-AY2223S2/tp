@@ -1,8 +1,9 @@
 package data;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Time implements Comparable<Time> {
+public class Time implements Serializable, Comparable<Time> {
     // This class is used to deal with the initialization, access, and change of DateTime
     protected LocalDate date;
 
