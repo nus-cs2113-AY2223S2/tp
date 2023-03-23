@@ -99,11 +99,11 @@ progress.
 
 ## Non-Functional Requirements
 
-| Categories  | Requirement                                                                                          |
-|-------------|------------------------------------------------------------------------------------------------------|
-| Performance | - The program should be able to generate a list of exercises within 5 seconds                        |
-| Technical   | - The program should be able to run on any PC (i.e. different OS) <br/> - Be able to handle cases such as user data file corruption
-| Others      | - The program is not required to ensure the workouts are carried out safely and properly by the user |
+| Categories  | Requirement                                                                                                                         |
+|-------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| Performance | - The program should be able to generate a list of exercises within 5 seconds                                                       |
+| Technical   | - The program should be able to run on any PC (i.e. different OS) <br/> - Be able to handle cases such as user data file corruption |
+| Others      | - The program is not required to ensure the workouts are carried out safely and properly by the user                                |
 
 ## Glossary
 
