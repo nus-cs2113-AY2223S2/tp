@@ -121,8 +121,8 @@ public class Command {
                 if (fullDescription.isEmpty()) {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
-                recipeListIndex = Integer.parseInt(fullDescription);
-                Recipe recipeToBeViewed = recipeList.getRecipeFromList(recipeListIndex);
+                int recipeListNum = Integer.parseInt(fullDescription);
+                Recipe recipeToBeViewed = recipeList.getRecipeFromList(recipeListNum);
                 ui.showRecipeViewed(recipeToBeViewed);
             } catch (Exception e) {
                 ui.showViewingRecipeErrorMessage(e);
