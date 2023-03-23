@@ -1,3 +1,4 @@
+//@@JeraldChen
 package seedu.duke.ui;
 
 import seedu.duke.diagnosis.symptoms.Symptom;
@@ -19,7 +20,6 @@ public class Information {
 
     private static final Logger logger = Logger.getLogger(Information.class.getName());
 
-    //storePatientInfo(personalInfo(name), patient)
     public static void storePatientInfo(int hash, Patient patient) {
         logger.log(Level.INFO, "Storing patient information");
         patientsList.put(hash, patient);
@@ -30,9 +30,7 @@ public class Information {
         return patientsList.get(hash);
     }
 
-    /**
-     * @author JeraldChen, Geeeetyx
-     */
+    //@@Geeeetyx
     public static void printDiagnosisHistory(int hash) {
         logger.log(Level.INFO, "Printing diagnosis history");
 
@@ -50,6 +48,7 @@ public class Information {
         }
     }
 
+    //@@JeraldChen
     /**
      * Resets the diagnosis history of the patient.
      *
@@ -66,9 +65,9 @@ public class Information {
         saveData();
     }
 
+    //@@Thunderdragon221
     /**
      * Checks the existence of a password in Dr Duke.
-     * @author Thunderdragon221
      *
      * @param hash hashedPassword to check.
      * @return true if hashedPassword exists in Dr Duke, and false otherwise.
@@ -88,9 +87,9 @@ public class Information {
         return patientsList;
     }
 
+    //@@Geeeetyx
     /**
      * Resets the symptom choice of the patient.
-     * @author Jeraldchen, Geeeetyx
      * @param symptoms The symptom choice of the patient.
      */
     public static void resetSymptomChoice(ArrayList<Symptom> symptoms) {
@@ -104,10 +103,9 @@ public class Information {
         }
     }
 
+    //@@Thunderdragon221
     /**
      * Hashes the password keyed in by the user.
-     * @author Thunderdragon221
-     *
      * @param password password to hash.
      * @return hash of password.
      */
