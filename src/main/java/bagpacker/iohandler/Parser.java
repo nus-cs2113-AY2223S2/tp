@@ -181,17 +181,6 @@ public class Parser {
         return itemVariable;
     }
 
-
-    /**
-     * Returns the user item description
-     */
-    public static String getItemDescrip() {
-        //String[] itemArray = Arrays.copyOfRange(getInputStringArray(),1,getInputStringArray().length);
-        int indexItemName = getFullInput().indexOf("i/") + 2;
-        return getFullInput().substring(indexItemName).trim();
-    }
-
-
     /**
      * Attempts to create AddCommand object to be executed where it is called from
      *
