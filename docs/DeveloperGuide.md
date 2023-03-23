@@ -84,12 +84,16 @@ The **API** of this component is specified in ['Parser.java'](https://github.com
 ![image](./PlantUML/ParserComponent.png)
 
 Parser class implements the StringLib interface for some output strings. It is responsible for the following tasks:
-* Parses the user input into commandType and the fullDescription of the command (if any).
-* Parses a particular Recipe into its name, ingredients and tag.
-* Parses ingredients input by user into an ingredientsList.
-* Parses the steps input by user and compiles it into the full stepsList.
+* Executes the particular command received from the user input.
+* Determines if the program termination command has been sent.
 
 #### Command component
+The **API** of this component is specified in ['Command.java'](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/command/Command.java)
+![image](./PlantUML/CommandComponent.png) 
+
+Command class the StringLib interface for some output strings. It also inherits CommandType Enums for determining the 
+correct tasks to be executed. It is responsible for the following tasks
+
 
 #### RecipeList component
 

@@ -18,6 +18,6 @@ class Exceptions {
 }
 
 IncompleteInputException --|> Exceptions : extends
-Parser ..> IncompleteInputException : throws
+Parser ..> IncompleteInputException : uses
 
 @enduml
