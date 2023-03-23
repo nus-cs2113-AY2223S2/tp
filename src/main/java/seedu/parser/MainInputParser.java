@@ -1,23 +1,6 @@
 package seedu.parser;
 
-import seedu.commands.Command;
-import seedu.commands.EditCommand;
-import seedu.commands.HelpCommand;
-import seedu.commands.DeleteCommand;
-import seedu.commands.ExitCommand;
-import seedu.commands.ViewExpenditureCommand;
-import seedu.commands.AcademicExpenditureCommand;
-import seedu.commands.AccommodationExpenditureCommand;
-import seedu.commands.EntertainmentExpenditureCommand;
-import seedu.commands.FoodExpenditureCommand;
-import seedu.commands.OtherExpenditureCommand;
-import seedu.commands.TransportExpenditureCommand;
-import seedu.commands.TuitionExpenditureCommand;
-import seedu.commands.LendExpenditureCommand;
-import seedu.commands.BorrowExpenditureCommand;
-import seedu.commands.InvalidCommand;
-import seedu.commands.UnmarkCommand;
-import seedu.commands.MarkCommand;
+import seedu.commands.*;
 
 public class MainInputParser {
     public static final int LIMIT = 2;
@@ -48,6 +31,10 @@ public class MainInputParser {
             case EditCommand.COMMAND_WORD:
                 ParseEdit prepareEdit = new ParseEdit(splitValues[INDEX_USERSTRING]);
                 return prepareEdit.editItem();
+            case SortCommand.COMMAND_WORD:
+                ParseSort prepareSort;
+                prepareSort = new ParseSort(splitValues[INDEX_USERSTRING]);
+                return prepareSort.sortExpenditures();
             case ViewExpenditureCommand.COMMAND_WORD:
                 return new ViewExpenditureCommand();
             case AcademicExpenditureCommand.COMMAND_WORD:
