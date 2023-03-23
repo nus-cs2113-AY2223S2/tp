@@ -50,10 +50,42 @@ input as a string of words `parsedInput[]`.
 Step 4. `CommandAdd#execute` instantiates a new `Expense` object with the returned `parsedInput[]` and adds it to
 `expenseList`.
 
+### "Delete" feature
+
+This mechanism is facilitated by `CommandDelete`, which extends `Command`. It makes use of the output from `Parser`, 
+which takes in the user input as string and returns the index of the expense to be deleted, and the `CommandDelete` 
+proceeds to remove the respective expense from the list of expenses stored in `expenseList`.
+
+`CommandDelete` implements the following operation:
+- `CommandDelete#execute()` -- Removes expense based on the index specified by user.
+
+`Parser` implements the following operation:
+- `Parser#extractIndex(userInput)` -- Extracts the index of the expense to be deleted, as specified by the user.
+
+The `CommandDelete#execute()` operation is exposed in the main `Duke` class. The `Parser#extractIndex(userInput)` 
+is exposed in the `parser` class.
+
+Given below is an example usage scenario and how the 'delete' mechanism behaves at each step.
+
+Step 1. The user executes `delete 1` command to delete the 1st expense in the expense list. `Duke#run()` calls 
+`Parser#extractCommandKeyword(userInput)` to parse the input and determine that the `delete` command is called.
+
+Step 2. `Duke` instantiates a new `CommandDelete` and calls `CommandDelete#execute()`, which then calls 
+`expenseList.getExpenseList()` and `parser.extractIndex(input)`.
+
+Step 3. `CommandDelete#execute()` removes the expense at index specified by the user.
+
+### Data Storage
+This mechanism is facilitated by `Storage`. It implements the `Serializable` interface. 
+
 ## Product scope
 ### Target user profile
+- has a need to manage daily expenses in different currencies
+- prefer desktop apps over other types 
+- can type fast 
+- prefers typing to mouse interactions 
+- is reasonably comfortable using CLI apps
 
-{Describe the target user profile}
 
 ### Value proposition
 
