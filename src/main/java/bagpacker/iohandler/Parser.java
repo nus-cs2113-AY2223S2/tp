@@ -27,20 +27,40 @@ public class Parser {
         Parser.fullInput = fullInput;
     }
 
+
+    /**
+     * Returns the user input in String format
+     */
+    public static String getFullInput() {
+        return fullInput;
+    }
+
+    /**
+     * Returns the user input as in array format
+     */
+    public static ArrayList<String> getInputStringArray() {
+        return inputStringArray;
+    }
+
+    public static void setInputStringArray(String[] inputStringArray) {
+        Parser.inputStringArray = new ArrayList<>(Arrays.asList(inputStringArray));
+    }
+
     public static Command parse() {
         arguments = new String[2];
         String inputLine = "";
         while (inputLine.isEmpty()) {
             try {
-                inputLine = readLine();
+                inputLine = readLine().trim();
             } catch (EmptyInputException e) {
                 Ui.errorMessage("Empty input received",
                         "try to input a command, to view all commands input 'help'");
             }
         }
         setFullInput(inputLine);
-        String[] inputStringList = inputLine.trim().split(" ", 2);
-        switch (inputStringList[0]) {
+        String[] inputStringList = inputLine.split(" ");
+        setInputStringArray(inputStringList);
+        switch (getCommand()) {
         case "add":
             arguments = inputStringList[1].trim().split("/of");
             return createAddObj();
@@ -54,7 +74,7 @@ public class Parser {
             arguments = inputStringList[1].trim().split("/of");
             return createUnpackObj();
         case "list":
-            return listCommand();
+            return createListObj();
         case "help":
             return createHelpObj();
         case "deletelist":
@@ -74,7 +94,7 @@ public class Parser {
      * @return inputLine the String input of the user
      * @throws EmptyInputException when user input empty line
      */
-    private static String readLine() throws EmptyInputException {
+    public static String readLine() throws EmptyInputException {
         String inputLine;
         Scanner in = new Scanner(System.in);
         inputLine = in.nextLine().trim();
@@ -228,7 +248,7 @@ public class Parser {
         }
     }
 
-    public static Command listCommand() {
+    public static Command createListObj() {
         return new ListCommand();
     }
 
