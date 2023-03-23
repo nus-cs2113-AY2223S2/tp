@@ -1,8 +1,6 @@
 package seedu.duke.commandhandler;
 
-import java.io.IOException;
 import seedu.duke.exceptions.DukeError;
-//import seedu.duke.storage.UserPlanStorage;
 import seedu.duke.storage.StorageHandler;
 import seedu.duke.ui.Ui;
 import seedu.duke.userplan.UserPlan;

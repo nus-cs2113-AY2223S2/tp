@@ -19,15 +19,15 @@ public class StorageHandler implements Storage {
     private static final Logger logger = Logger.getLogger("Storage");
     protected final String userFilePath;
     protected final String plansFilePath;
+    protected Gson gson;
     private final UserDataWriter userDataWriter;
     private final UserDataLoader userDataLoader;
-    protected Gson gson;
 
     public StorageHandler (String userFilePath, String plansFilePath) {
         this.gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDateTime.class, new LocalDateAdapter())
-                .setPrettyPrinting()
-                .create();
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateAdapter())
+            .setPrettyPrinting()
+            .create();
         this.userDataWriter = new UserDataWriter(gson);
         this.userDataLoader = new UserDataLoader(gson);
         this.userFilePath = userFilePath;
@@ -79,7 +79,7 @@ public class StorageHandler implements Storage {
                 writeToJson(userCareerData);
                 logger.log(Level.WARNING,
                            "Data file has been corrupted or missing, we will create a new file and reset " +
-                                   "your progress.");
+                               "your progress.");
             } catch (DukeError error) {
                 System.out.println(error.getMessage());
                 logger.log(Level.SEVERE, "Unable to write new user data file to hard disk!");
@@ -96,7 +96,7 @@ public class StorageHandler implements Storage {
             return userPlan;
         } catch (Exception e) {
             logger.log(Level.WARNING, "Plans data file has been corrupted or missing, we will create a new file for " +
-                    "you, all your plans will be lost.");
+                "you, all your plans will be lost.");
             return userPlan;
         }
     }

@@ -1,6 +1,5 @@
 package seedu.duke.userplan;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static seedu.duke.exersisedata.ExerciseFilter.isAValidFilter;

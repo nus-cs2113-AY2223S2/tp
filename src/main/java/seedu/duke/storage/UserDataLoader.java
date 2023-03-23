@@ -45,7 +45,7 @@ public class UserDataLoader {
             }
             assert jsonArray.size() == userCareerData.getTotalUserCareerSessions()
                                                      .size() : "All elements from json must be written" +
-                    "into arrayList";
+                "into arrayList";
             reader.close();
         } catch (Exception e) {
             throw new FileReadError();

@@ -23,6 +23,7 @@ class LocalDateAdapter implements JsonSerializer<LocalDateTime>, JsonDeserialize
      * @param jsonElement The json element to deserialize.
      * @param jsonDeserializationContext Context for deserialization.
      * @return The LocalDateTime parsed from json element.
+     *
      * @throws JsonParseException Occurs when invalid json format is given.
      */
     @Override
@@ -42,7 +43,7 @@ class LocalDateAdapter implements JsonSerializer<LocalDateTime>, JsonDeserialize
     public JsonElement serialize (LocalDateTime localDateTime, Type type,
                                   JsonSerializationContext jsonSerializationContext) {
         return new JsonPrimitive(
-                localDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            localDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
         );
     }
 
