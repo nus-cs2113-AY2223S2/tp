@@ -19,6 +19,8 @@ public class ExceptionChecker {
                 throw new ShapeMismatchException();
             }
             break;
+        default:
+            break;
         }
     }
 
