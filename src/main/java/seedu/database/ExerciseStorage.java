@@ -1,9 +1,7 @@
 package seedu.database;
 
 import com.opencsv.CSVWriter;
-import seedu.constants.DateConstants;
 import seedu.entities.Exercise;
-import seedu.entities.Meal;
 import seedu.logger.LogFileHandler;
 
 import java.io.BufferedReader;
@@ -11,8 +9,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-
 
 public class ExerciseStorage extends Storage implements FileReadable, FileWritable{
     private static final String CSV_DELIMITER = ",";

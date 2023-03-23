@@ -1,5 +1,6 @@
 package seedu.commands;
 
+import seedu.database.ExerciseStorage;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
@@ -21,7 +22,7 @@ public abstract class Command {
         return this.isExit;
     }
 
-    public abstract void execute(GeneralUi ui ,FoodStorage foodStorage,
-                                 MealStorage mealStorage, UserStorage userStorage)
+    public abstract void execute(GeneralUi ui , FoodStorage foodStorage,
+                                 MealStorage mealStorage, UserStorage userStorage, ExerciseStorage exerciseStorage)
             throws LifeTrackerException;
 }
