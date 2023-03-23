@@ -66,5 +66,175 @@
 * *glossary item* - Definition
 
 ## Instructions for manual testing
+Given below are the instructions to test Sniff manually
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+### Launch
+1. Ensure you have Java 11 or above installed.
+2. Download the latest copy of `Sniff.jar` [here](https://github.com/AY2223S2-CS2113-W12-1/tp/releases)
+3. Move the jar file to a folder where you want to run Sniff
+4. Open the command terminal and change the directory to the address of the folder containing Sniff.jar
+5. Use the following command in the command terminal to run Sniff:
+   `java -jar sniff.jar`
+6. If Sniff runs successfully, you will see the following welcome message:
+
+```
+______________________________________________________________________
+ Hello! I'm Sniff, your personal appointment manager.
+ What can I do for you?
+______________________________________________________________________
+```
+### Sample test cases
+
+#### Adding appointments
+
+1. Test case: `consultation at/Cat an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`<br>
+   Expected output: A consultation appointment has been added successfully, details shown in the status message.
+   Example:
+```
+______________________________________________________________________
+ This appointment has been added to your appointment manager: 
+ UID: C84120821A
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: Lulu | Animal Type: Cat
+ Owner Name: Jon | Contact Number: 91919191
+ Consultation added successfully!
+______________________________________________________________________
+```
+
+2. Test case: `consultation at/an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`<br>
+   Expected output: A consultation appointment is not added due to invalid description.
+   Example:
+```
+______________________________________________________________________
+ Sorry, an error was encountered! Here is the error description:
+ The consultation description is invalid!
+______________________________________________________________________
+```
+
+3. Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00`
+   Expected output: A vaccination appointment has been added successfully, details show in the status message.
+   Example:
+```
+______________________________________________________________________
+ This appointment has been added to your appointment manager: 
+ UID: V12400172X | vaccine: Covid
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: Russ | Animal Type: Dog
+ Owner Name: Abel | Contact Number: 92929292
+ Vaccination added successfully!
+______________________________________________________________________
+```
+
+4. Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/12-12-2023 vt/19:00`
+   Expected output: A vaccination appointment is not added due to invalid date description.
+   Example: 
+```
+______________________________________________________________________
+ Sorry, an error was encountered! Here is the error description:
+ The date/time description is invalid.
+______________________________________________________________________
+```
+
+5. Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H`
+   Expected output: A surgery appointment has been added successfully, details shown in the status message.
+   Example:
+```
+______________________________________________________________________
+ This appointment has been added to your appointment manager: 
+ UID: S14837641R | Priority: HIGH
+ Animal Name: Polly | Animal Type: Hamster
+ Owner Name: Sam | Contact Number: 93939393
+ Start Date: 2023-12-12 | Start Time: 19:00
+ End Date: 2023-12-12 | End Time: 20:00
+ Surgery added successfully!
+______________________________________________________________________
+```
+
+6. Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/19:00 p/H`
+   Expected output: A surgery appointment is not added due to invalid date description.
+   Example:
+```
+______________________________________________________________________
+ Sorry, an error was encountered! Here is the error description:
+ The start time cannot be the same as the end time!
+______________________________________________________________________
+```
+
+#### Listing appointments
+
+1. Prerequisites: Add an appointment using any of the add commands. At least one appointment in the list.
+2. Test case: `list`<br>
+   Expected output: A list of all previously added appointments.
+   Example:
+```
+______________________________________________________________________
+1.  UID: C84120821A
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: Lulu | Animal Type: Cat
+ Owner Name: Jon | Contact Number: 91919191
+2.  UID: V12400172X | vaccine: Covid
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: Russ | Animal Type: Dog
+ Owner Name: Abel | Contact Number: 92929292
+3.  UID: S14837641R | Priority: HIGH
+ Animal Name: Polly | Animal Type: Hamster
+ Owner Name: Sam | Contact Number: 93939393
+ Start Date: 2023-12-12 | Start Time: 19:00
+ End Date: 2023-12-12 | End Time: 20:00
+______________________________________________________________________
+```
+
+#### Finding appointments
+
+1. Prerequisites: Add an appointment using any of the add commands. At least one appointment in the list.
+2. Test case: `find a/Dog`
+   Expected output: A list of all previously added appointments with the animal type.
+   Example:
+```
+______________________________________________________________________
+1.  UID: V12400172X | vaccine: Covid
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: Russ | Animal Type: Dog
+ Owner Name: Abel | Contact Number: 92929292
+______________________________________________________________________
+```
+
+3. Test case: `find t/consultation`
+   Expected output: A list of all previously added appointments with the appointment type.
+   Example:
+```
+______________________________________________________________________
+1.  UID: C84422868K
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: Lulu | Animal Type: 
+ Owner Name: Jon | Contact Number: 91919191
+______________________________________________________________________
+```
+
+#### Removing appointments
+
+1. Prerequisites: The UID of the appointment you want to remove. Use `list` or `find` to help you get the specific UID.
+2. Test case: `remove C84120821A`<br>
+   Expected output: The appointment with the specified UID is removed, details shown in the status message.
+   Example:
+```
+______________________________________________________________________
+ This appointment has been removed your appointment manager: 
+ UID: C84120821A
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: Lulu | Animal Type: Cat
+ Owner Name: Jon | Contact Number: 91919191
+ Task removed successfully!
+______________________________________________________________________
+```
+
+#### Mark/Unmark appointments
+
+1. Prerequisites: The UID of the appointment you want to remove. Use `list` or `find` to help you get the specific UID.
+2. Test case: `mark V12400172X`<br>
+   Expected output: The appointment with the specified UID is marked as done, details shown in the status message.
+   Example:
+3. Test case: `unmark V12400172X`<br>
+   Expected output: The appointment with the specified UID is unmarked as done, details shown in the status message.
+   Example:
+
