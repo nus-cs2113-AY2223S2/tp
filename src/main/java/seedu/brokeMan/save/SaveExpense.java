@@ -36,7 +36,7 @@ Saves all expenses under any change
                 File myObj = new File("./data/ExpenseData.txt");
                 boolean newFile = myObj.createNewFile();
                 //if (myObj.createNewFile()) {
-                    //System.out.println("File created: " + myObj.getName());
+                //System.out.println("File created: " + myObj.getName());
                 //}
             } catch (IOException ioe) {
                 ioe.printStackTrace();
@@ -67,8 +67,8 @@ Saves all expenses under any change
                 File myObj = new File("./data/ExpenseData.txt");
                 boolean newFile = myObj.createNewFile();
                 //if (myObj.createNewFile()) {
-                    //System.out.println("File created: " + myObj.getName());
-                    //fileCreated = true;
+                //System.out.println("File created: " + myObj.getName());
+                //fileCreated = true;
                 //}
             } catch (IOException fcIoe) {
                 ioe.printStackTrace();

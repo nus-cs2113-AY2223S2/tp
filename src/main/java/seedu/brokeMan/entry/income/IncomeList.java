@@ -4,7 +4,6 @@ package seedu.brokeMan.entry.income;
 import seedu.brokeMan.entry.Entry;
 import seedu.brokeMan.entry.EntryList;
 import seedu.brokeMan.parser.StringToTime;
-import seedu.brokeMan.save.SaveExpense;
 import seedu.brokeMan.save.SaveIncome;
 import seedu.brokeMan.ui.Ui;
 
@@ -19,6 +18,7 @@ public class IncomeList extends EntryList {
 
     /**
      * Adds new income to the list.
+     *
      * @param newIncome the new income to be added
      */
     public static void addIncome(Income newIncome) {
@@ -28,6 +28,7 @@ public class IncomeList extends EntryList {
 
     /**
      * delete specific income in the list
+     *
      * @param index index of the income in the list
      */
     public static void deleteIncome(int index) {
@@ -60,7 +61,8 @@ public class IncomeList extends EntryList {
 
     /**
      * Edits a specific income entry in the list
-     * @param index index of the expense in the list
+     *
+     * @param index    index of the expense in the list
      * @param newEntry new entry that will replace current entry
      */
     public static void editIncome(int index, String newEntry) {
@@ -86,6 +88,7 @@ public class IncomeList extends EntryList {
         sortEntriesByAmount(incomeList);
         SaveIncome.writeFile(incomeList);
     }
+
     public static void sortIncomeByDate() {
         sortEntriesByDate(incomeList);
         SaveIncome.writeFile(incomeList);
