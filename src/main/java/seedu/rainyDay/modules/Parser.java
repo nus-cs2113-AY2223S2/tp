@@ -36,7 +36,7 @@ public class Parser {
 
     private String field;
 
-    private LocalDate date = null;
+    private LocalDate date = LocalDate.now();
 
     public Command parseUserInput(String userInput) {
         try {
@@ -47,12 +47,12 @@ public class Parser {
                 return addStatement(action[1].trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
                 logger.info("delete command executing");
-                return parseDeleteStatement(userInput); //todo: fix this to reduce calls of split.();
+                return parseDeleteStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
                 logger.info("view command executing");
-                return generateReport();
+                return generateReport(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
-                return displayHelp(action[1].trim());
+                return displayHelp(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
                 logger.info("filter command executing");
                 return filterStatement(action[1]);
@@ -187,12 +187,53 @@ public class Parser {
         }
     }
 
-    public ViewCommand generateReport() {
-        return new ViewCommand();
+    //@@author BenjaminPoh
+    public Command generateReport(String input) {
+        input = input.substring(4).trim();
+        LocalDate startDate = LocalDate.now();
+        if(input.equals("")) {
+            startDate = startDate.minusMonths(1);
+            return new ViewCommand(startDate, false);
+        }
+        Pattern pattern = Pattern.compile("^(\\d{1,2})(d|w|m|y)\\s*(?:((-sort)?))\\s*$");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.matches()) {
+            try {
+                logger.info("obtaining relevant data");
+                int minusAmount = Integer.parseInt(matcher.group(1));
+                String dateType = matcher.group(2);
+                boolean sortRequired = matcher.group(3).equals("-sort");
+                if (dateType.equals("d") && minusAmount < 31) {
+                    startDate = startDate.minusDays(minusAmount);
+                    return new ViewCommand(startDate, sortRequired);
+                }
+                if (dateType.equals("w") && minusAmount < 5) {
+                    startDate = startDate.minusWeeks(minusAmount);
+                    return new ViewCommand(startDate, sortRequired);
+                }
+                if (dateType.equals("m") && minusAmount < 13) {
+                    startDate = startDate.minusMonths(minusAmount);
+                    return new ViewCommand(startDate, sortRequired);
+                }
+                if (dateType.equals("y") && minusAmount < 11) {
+                    startDate = startDate.minusYears(minusAmount);
+                    return new ViewCommand(startDate, sortRequired);
+                }
+                logger.warning("view command given by user in the wrong format");
+                return new InvalidCommand(ErrorMessage.WRONG_VIEW_FORMAT.toString());
+            } catch (Exception e) {
+                logger.warning("view command given by user in the wrong format");
+                return new InvalidCommand(ErrorMessage.WRONG_VIEW_FORMAT.toString());
+            }
+        } else {
+            logger.warning("view command given by user in the wrong format");
+            return new InvalidCommand(ErrorMessage.WRONG_VIEW_FORMAT.toString());
+        }
     }
 
     //@@author BenjaminPoh
     public HelpCommand displayHelp(String input) {
+        input = input.substring(4);
         return new HelpCommand(input.trim());
     }
 
