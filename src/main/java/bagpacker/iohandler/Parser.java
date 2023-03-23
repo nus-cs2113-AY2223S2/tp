@@ -12,6 +12,7 @@ import bagpacker.commands.PackCommand;
 import bagpacker.exception.EmptyInputException;
 import bagpacker.exception.InvalidIndexException;
 import bagpacker.exception.InvalidVariablesException;
+import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
 
 import java.util.Scanner;
@@ -26,7 +27,6 @@ public class Parser {
     public static void setFullInput(String fullInput) {
         Parser.fullInput = fullInput;
     }
-
 
     /**
      * Returns the user input in String format
@@ -45,7 +45,11 @@ public class Parser {
     public static void setInputStringArray(String[] inputStringArray) {
         Parser.inputStringArray = new ArrayList<>(Arrays.asList(inputStringArray));
     }
-
+    
+    /**
+     * parses user input into relevant subclasses of Command for execution.
+     * @return command based on user input
+     */
     public static Command parse() {
         arguments = new String[2];
         String inputLine = "";
@@ -158,7 +162,7 @@ public class Parser {
         String[] quantityAndDescription = getQuantityAndDescription();
         int itemQuantity = Integer.parseInt((quantityAndDescription[0]).trim());
         String itemDescription = quantityAndDescription[1].trim();
-        return new AddCommand(itemQuantity, itemDescription);
+        return new AddCommand(new Item(itemQuantity, itemDescription));
     }
 
     /**
@@ -220,7 +224,6 @@ public class Parser {
             }
         }
     }
-
 
     /**
      * Attempts to create UnpackCommand object to be executed where it is called from
