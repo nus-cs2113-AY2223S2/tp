@@ -16,9 +16,8 @@ public class PrintPlanner {
             System.out.println("_________");
             System.out.println(Day.intToDay(day));
             for (int j = 0; j < plan[day].size(); j++) {
-                ArrayList<String> exercisePlan = plan[day].get(j).getPlan();
-                String planName = j+1 + ". [";
-                planName += plan[day].get(j).getStatus() + "] ";
+                ArrayList<String> exercisePlan = plan[day].get(j).getExercisePlans();
+                String planName = j+1 + ". ";
                 planName += plan[day].get(j).getPlanName();
                 System.out.println(planName);
                 String planFilters = "Filters:";
@@ -28,5 +27,12 @@ public class PrintPlanner {
                 System.out.println(planFilters);
             }
         }
+    }
+
+    public static void printPlannerGreeting() {
+        System.out.println("Welcome to planner editor, type exit to exit");
+        System.out.println("Plan your Workouts here!! try:");
+        System.out.println("add monday Home_Leg_Day legs static");
+        System.out.println("delete monday Home_Leg_Day");
     }
 }

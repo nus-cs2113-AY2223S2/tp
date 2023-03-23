@@ -36,5 +36,9 @@ public class Ui {
         System.out.println(SEPARATOR);
     }
 
+    public void printPlannerGreeting() {
+        PrintPlanner.printPlannerGreeting(); }
+
 
 }
+

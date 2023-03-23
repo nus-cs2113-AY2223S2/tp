@@ -7,6 +7,7 @@ import seedu.duke.userplan.UserPlan;
 
 import java.util.ArrayList;
 
+//@author Khulon
 public class QuickStartCommand extends Command {
     public QuickStartCommand(String[] userCommands, Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         if (userCommands.length != 3){
@@ -19,6 +20,7 @@ public class QuickStartCommand extends Command {
         ArrayList<String> exercisePlans = UserPlan.getExercisePlan(planName);
         if (exercisePlans == null) {
             System.out.println("no such plan");
+            return;
         }
 
         String[] generateExerciseCommand = new String[2+exercisePlans.size()];
