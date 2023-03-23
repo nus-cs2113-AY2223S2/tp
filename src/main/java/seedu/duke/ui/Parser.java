@@ -18,7 +18,6 @@ public class Parser {
 
     /**
      * Parses the user input for the main menu.
-     * @author Jeraldchen
      * @param choice Users choice of input.
      */
     public static void parseWelcome(String choice) {
@@ -44,28 +43,32 @@ public class Parser {
      *
      * @param choice Users choice of input.
     */
-    public static void parseAccountCommand(String choice) {
+    public static void parseAccountCommand(String choice){
         assert choice != null : "Choice cannot be null";
         Patient user = Information.getPatientInfo(Duke.getPassword());
         MedicineManager medicineManager = new MedicineManager();
 
         switch (choice) {
         case "1":
-            //@@author tanyizhe
-            ArrayList<Symptom> symptoms = Menu.getUserSymptoms();
-            Menu.displayPossibleIllness(symptoms);
-            ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
-            for (IllnessMatch illnessMatch : possibleIllnesses) {
-                user.updatePatientDiagnosisHistory(illnessMatch.getIllness().getIllnessName());
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-                LocalDateTime now = LocalDateTime.now();
-                ArrayList<String> medicineArrayList = medicineManager
+            try {
+                //@@author tanyizhe
+                ArrayList<Symptom> symptoms = Menu.getUserSymptoms();
+                Menu.displayPossibleIllness(symptoms);
+                ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
+                for (IllnessMatch illnessMatch : possibleIllnesses) {
+                    user.updatePatientDiagnosisHistory(illnessMatch.getIllness().getIllnessName());
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                    LocalDateTime now = LocalDateTime.now();
+                    ArrayList<String> medicineArrayList = medicineManager
                             .getRelevantMedicationInString(illnessMatch.getIllness().getIllnessName());
-                if (!(medicineArrayList == null)) {
-                    user.updatePatientMedicineHistory(dtf.format(now), medicineArrayList);
+                    if (!(medicineArrayList == null)) {
+                        user.updatePatientMedicineHistory(dtf.format(now), medicineArrayList);
+                    }
                 }
+                saveData();
+            } catch (Exception e) {
+                System.out.println("Invalid input!");
             }
-            saveData();
             break;
         //@@author Thunderdragon221
         case "2":
@@ -74,14 +77,19 @@ public class Parser {
         case "3":
             Information.resetDiagnosisHistory(Duke.getPassword());
             break;
+        //@@author Jeraldchen
         case "4":
+            Information.viewSymptomHistory(Menu.symptoms);
+            break;
+        case "5":
             Information.resetSymptomChoice(Menu.symptoms);
             break;
-        //@@author Geeeetyx
-        case "5":
+        //@@author tanyizhe
+        case "6":
             user.printPatientMedicineHistory();
             break;
-        case "6":
+        //@@author Geeeetyx
+        case "7":
             Menu.exit();
             break;
         default:

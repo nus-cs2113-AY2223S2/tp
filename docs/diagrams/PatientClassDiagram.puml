@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class Patient{
+#patientDiagnosisHistory: ArrayList<String>
+#patientMedicineHistory:  HashTable<String, ArrayList<String>>
+#name: String
+#hash: int
+
++Patient(name: String, hash: int, patientDiagnosisHistory: ArrayList<String>,
+         patientDiagnosisHistory: HashTable<String, ArrayList<String>>)
+
++getName()
++getPassword()
++setName(name: String)
++setPassword(hash: int)
+
++setPatientDiagnosisHistory(diagnosisHistory: ArrayList<String>)
++getPatientDiagnosisHistory()
++updatePatientDiagnosisHistory(diagnosis: String)
+
++getPatientMedicineHistory()
++setPatientMedicineHistory(patientMedicineHistory: Hashtable<String, ArrayList<String>>)
++updatePatientMedicineHistory(date: String, medicines: ArrayList<String>)
+-appendMedicineToSameDate(date: String, medicines: ArrayList<String>)
++printPatientMedicineHistory()
+}
+
+@enduml
