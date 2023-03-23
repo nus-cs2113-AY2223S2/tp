@@ -111,6 +111,7 @@ public class EntryEndpoint extends Endpoint {
         Entry entry = EntryParser.deserialise(json);
         entries.addEntry(entry);
         logger.info("/entry [POST]: CREATED");
+        // TODO: validate request parameters
         return new Response(ResponseStatus.CREATED, "");
     }
 }
