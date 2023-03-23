@@ -49,13 +49,10 @@ public class RemoveParser extends Parser{
         Command removeCommand = new RemoveCommand(inventory, upcCode, confirmation);
         removeCommand.run();
     }
-    @Override
     /**
      * Handles the "remove" command by making sure that formatting is correct, before passing the user inputs
-     *
-     * @param rawInput  The string containing the user input.
-     * @param inventory The inventory where item will be removed.
      */
+    @Override
     public void run(){
         try {
             if (rawInput == null) {

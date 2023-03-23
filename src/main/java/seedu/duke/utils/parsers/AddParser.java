@@ -15,10 +15,10 @@ public class AddParser extends Parser{
     public AddParser(String rawInput, Inventory inventory){
         super(rawInput, inventory);
     }
-    @Override
     /**
      * Handles the "add" command by parsing the user's input into separate input parameters using regex
      */
+    @Override
     public void run(){
         try {
             if (rawInput == null) {

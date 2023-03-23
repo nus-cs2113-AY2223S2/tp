@@ -3,17 +3,22 @@ package seedu.duke.utils;
 import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.types.Types;
-import seedu.duke.utils.SessionManager;
-import seedu.duke.utils.Ui;
-import seedu.duke.utils.parsers.*;
+import seedu.duke.utils.parsers.AddParser;
+import seedu.duke.utils.parsers.AlertParser;
+import seedu.duke.utils.parsers.EditParser;
+import seedu.duke.utils.parsers.FilterParser;
+import seedu.duke.utils.parsers.HelpParser;
+import seedu.duke.utils.parsers.ListParser;
+import seedu.duke.utils.parsers.RemoveParser;
+import seedu.duke.utils.parsers.SearchParser;
 
 import java.util.Scanner;
 
 public class ParserHandler {
+    private static Scanner in = new Scanner(System.in);
     private Inventory inventory;
     private SessionManager session;
     private AlertList alertList;
-    private static Scanner in = new Scanner(System.in);
     public ParserHandler(Inventory inventory, SessionManager session, AlertList alertList) {
         this.inventory = inventory;
         this.session = session;
