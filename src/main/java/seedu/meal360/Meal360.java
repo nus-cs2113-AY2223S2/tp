@@ -12,7 +12,7 @@ public class Meal360 {
     private static final Ui ui = new Ui();
     private static final Parser parser = new Parser();
     private static final Database database = new Database();
-    private static RecipeList recipeList;
+    private static RecipeList recipeList = new RecipeList();
     private static final WeeklyPlan weeklyPlan = new WeeklyPlan();
 
     public static void startApp() {
@@ -35,7 +35,9 @@ public class Meal360 {
     }
 
     public static void receiveInput(String input) {
+        input = input.replaceAll("\\s+", " ");
         String[] command = input.trim().split(" ");
+
         if (input.equalsIgnoreCase("bye")) {
             canExit = true;
         } else if (command[0].equals("delete")) {
@@ -97,6 +99,9 @@ public class Meal360 {
             } catch (ArrayIndexOutOfBoundsException e) {
                 String errorMessage = String.format("Please enter a valid recipe name.");
                 ui.printMessage(errorMessage);
+            } catch (NullPointerException e){
+                String errorMessage = String.format("Recipe already exists. Add a new recipe.");
+                ui.printMessage(errorMessage);
             }
             ui.printSeparator();
         } else if (command[0].equals("edit")) {
@@ -117,6 +122,9 @@ public class Meal360 {
                 String errorMessage = String.format(
                         "Please enter a valid recipe number. You entered %s, " + "which is out of bounds.",
                         command[1]);
+                ui.printMessage(errorMessage);
+            } catch (NullPointerException e){
+                String errorMessage = String.format("Recipe doesn't exist for editing.");
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
@@ -194,6 +202,7 @@ public class Meal360 {
     }
 
     public static void main(String[] args) {
+        
         startApp();
 
         String line;
