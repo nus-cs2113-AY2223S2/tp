@@ -15,11 +15,13 @@ import seedu.apollo.utils.LoggerInterface;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
@@ -83,7 +85,13 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
                         Calendar calendar) {
         if (module != null) {
             Module referenceModule = allModules.findModule(module.getCode());
-            ui.printShowModuleMessage(module, getLessonTypes(referenceModule));
+            ArrayList<Timetable> copyList = new ArrayList<>(referenceModule.getModuleTimetable());
+            Comparator<Timetable> compareByLessonType = Comparator.comparing(Timetable::getLessonType);
+            Comparator<Timetable> compareByClassNumber = Comparator.comparing(Timetable::getClassnumber);
+            Comparator<Timetable> compareAll = compareByLessonType.thenComparing(compareByClassNumber);
+            ArrayList<Timetable> parseList =
+                    copyList.stream().sorted(compareAll).collect(Collectors.toCollection(ArrayList::new));
+            ui.printShowModuleMessage(module, getLessonTypes(referenceModule), parseList);
         }
     }
 

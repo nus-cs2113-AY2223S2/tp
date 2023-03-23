@@ -1,12 +1,13 @@
 package seedu.apollo.ui;
 
 import seedu.apollo.calendar.Calendar;
+import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.module.CalendarModule;
 import seedu.apollo.module.LessonType;
-import seedu.apollo.exception.task.DateOverException;
-import seedu.apollo.module.ModuleList;
-import seedu.apollo.task.Task;
 import seedu.apollo.module.Module;
+import seedu.apollo.module.ModuleList;
+import seedu.apollo.module.Timetable;
+import seedu.apollo.task.Task;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.utils.LessonTypeUtil;
 
@@ -74,6 +75,7 @@ public class Ui {
                 " Enter \"event [task] /from [date] /to [date]\" to add an event\n" +
                 " Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n" +
                 " Enter \"addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a lesson\n" +
+                " Enter \"showmod [MODULE_CODE]\" to see more information about the module\n" +
                 " Enter \"mark [idx]\" to mark task as done\n" +
                 " Enter \"unmark [idx]\" to mark task as not done\n" +
                 " Enter \"delete [idx]\" to remove task from list\n" +
@@ -242,9 +244,15 @@ public class Ui {
      *
      * @param newModule  Module that needs to show information
      */
-    public void printShowModuleMessage(Module newModule, ArrayList<LessonType> lessonTypes) {
+    public void printShowModuleMessage(Module newModule, ArrayList<LessonType> lessonTypes,
+                                       ArrayList<Timetable> timetableList) {
+        System.out.println(newModule.getCode() +'\n' +
+                "Number of MC: " + newModule.getModuleCredits());
         printLessonTypeMessage(lessonTypes);
-        System.out.println("Number of MC: " + newModule.getModuleCredits());
+        for (Timetable timetable: timetableList){
+            System.out.println(timetable.getLessonType() + " " + timetable.getClassnumber() + '\n' +
+                    "   " + timetable.getDay() + " " + timetable.getStartTime() + " - " + timetable.getEndTime());
+        }
     }
 
     /**
