@@ -2,6 +2,7 @@ package seedu.commands;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,44 +22,57 @@ import seedu.parser.DateParser;
 import seedu.ui.GeneralUi;
 
 public class AddMealCommand extends Command {
-    String commandWord;
-    String userInput;
-    String dateString = "";
-    LocalDate date = null;
-    String mealTypeString = "";
-    MealTypes mealType = null;
-    String foodName;
-    int choice;
-    Meal meal;
-    ArrayList<Food> foods;
-    DateTimeFormatter dtf;
+
+    private String commandWord;
+    private String userInput;
+    private String dateString;
+    private LocalDate date;
+    private String mealTypeString;
+    private MealTypes mealType;
+    private String foodName;
+    private int choice;
+    private Meal meal;
+    private ArrayList<Food> foods;
+    private DateTimeFormatter dtf;
 
     public AddMealCommand(String commandWord, String userInput) {
         this.commandWord = commandWord;
         this.userInput = userInput;
     }
+
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage)
-            throws LifeTrackerException {
+                throws LifeTrackerException {
         foods = new ArrayList<Food>();
         dtf = mealStorage.getDateTimeFormatter();
-
-
+        dateString = "";
+        mealTypeString = "";
+        mealType = null;
         if (commandWord.length() == userInput.length()) {
             getDetails(ui, foodStorage);
         } else {
             parseCommand(ui, foodStorage);
         }
 
+        
         meal = new Meal(foods, date, mealType);
         mealStorage.saveMeal(meal);
         ui.printNewMealAdded(meal);
-        LogFileHandler.logInfo("User added this meal" + System.lineSeparator() + meal.toString());
+        LogFileHandler.logInfo(meal.toString());
     }
 
     private void getDetails(GeneralUi ui, FoodStorage foodStorage) throws LifeTrackerException {
         boolean toContinue = true;
         System.out.println("Enter date of meal:");
+        try {
+            dateString = ui.readLine();
+            date = LocalDate.parse(dateString, dtf);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException(dateString);
+        }
+
+        System.out.println(System.lineSeparator() + "Enter type of meal:");
+        mealTypeString = ui.readLine();
         dateString = ui.readLine();
         date = DateParser.parse(dateString, dtf);
 
