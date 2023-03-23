@@ -89,6 +89,8 @@ public class Parser {
                     vaccine, parsedDate, parsedTime);
         } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException(" The vaccination description is invalid!");
+        } catch (DateTimeParseException e) {
+            throw new SniffException(" The date/time description is invalid.");
         }
     }
 
