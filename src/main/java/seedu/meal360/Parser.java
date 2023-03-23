@@ -7,17 +7,65 @@ public class Parser {
 
     Ui ui = new Ui();
 
-    public String combineWords(String[] input, int startIndex) {
+    public String combineWords(String[] input, int startIndex, int length) {
         StringBuilder word = new StringBuilder(input[startIndex]);
-        for (int i = startIndex + 1; i < input.length - 1; i++) {
+        for (int i = startIndex + 1; i < length; i++) {
             word.append(" ").append(input[i]);
         }
 
         return word.toString();
     }
 
+    public HashMap<String, Integer> parseIngredientName(String[] command){
+        HashMap<String, Integer> ingredients = new HashMap<>();
+        int flag = 0;
+        String add = null;
+        String ingredientName = null;
+        int ingredientQuantity;
+        int indexOfEqual;
+
+        for (String s : command) {
+            try{
+                indexOfEqual = s.indexOf("=");
+                if (indexOfEqual == -1) {
+                    if (add != null) {
+                        add = add + " " + s;
+                    } else {
+                        add = s;
+                    }
+                    flag++;
+
+                } else {
+                    if (flag > 0) {
+                        indexOfEqual = s.indexOf("=");
+                        ingredientName = (s.substring(0, indexOfEqual));
+                        ingredientName = add + " " + ingredientName;
+                        ingredientQuantity = Integer.parseInt(s.substring(indexOfEqual + 1));
+                        flag = 0;
+                        add = null;
+                    } else {
+                        ingredientName = s.substring(0, indexOfEqual);
+                        ingredientQuantity = Integer.parseInt(s.substring(indexOfEqual + 1));
+                    }
+
+                    ingredients.put(ingredientName, ingredientQuantity);
+
+                }
+            } catch (NumberFormatException e) {
+                ui.printSeparator();
+                String errorMessage = String.format("Please enter ingredients properly![eg: chicken=100]");
+                ui.printMessage(errorMessage);
+                ui.printSeparator();
+            }
+        }
+        return ingredients;
+    }
+
     public Recipe parseAddRecipe(String[] input, RecipeList recipeList) {
-        String recipeName = combineWords(input, 2);
+        String recipeName = combineWords(input, 2, input.length);
+        if(recipeList.findByName(recipeName)!=null){
+            return null;
+        }
         HashMap<String, Integer> ingredients = new HashMap<>();
         Scanner userInput = new Scanner(System.in);
         System.out.println("Please Enter The Ingredients & Quantity: ");
@@ -28,8 +76,7 @@ public class Parser {
                 break;
             } else {
                 String[] command = line.trim().split(" ");
-                String ingredientName = combineWords(command, 0);
-                ingredients.put(ingredientName, Integer.parseInt(command[command.length - 1]));
+                ingredients = parseIngredientName(command);
             }
         }
         Recipe newRecipe = new Recipe(recipeName, ingredients);
@@ -38,15 +85,14 @@ public class Parser {
     }
 
     public Recipe parseEditRecipe(String[] input, RecipeList recipeList) {
-        String recipeName = combineWords(input, 2);
+        String recipeName = combineWords(input, 2, input.length);
         Recipe recipeToEdit;
-        HashMap<String, Integer> ingredients = new HashMap<>();
+        HashMap<String, Integer> ingredients = null;
         Scanner userInput = new Scanner(System.in);
         if (recipeList.findByName(recipeName) == null) {
             return null;
-        } else {
-            recipeToEdit = recipeList.findByName(recipeName);
         }
+        recipeToEdit = recipeList.findByName(recipeName);
         System.out.println("Do you want to edit recipe fully or partially?");
         System.out.println("Press 1 for full edit | Press 2 for partial edit | Press 3 to add ingredients");
 
@@ -60,7 +106,7 @@ public class Parser {
                     break;
                 }
                 String[] command = line.trim().split(" ");
-                ingredients.put(command[0], Integer.parseInt(command[1]));
+                ingredients = parseIngredientName(command);
                 recipeList.editRecipe(recipeToEdit, ingredients);
             }
         } else if (index == 2) {
@@ -88,12 +134,15 @@ public class Parser {
             }
             System.out.println("Please enter the new ingredient:");
             String line = userInput.nextLine();
-            String[] command = line.trim().split(" ");
-            String newIngredientName = combineWords(command, 0);
+            String command = line.replaceAll("\\s+", " ");
+            int indexOfEqual = command.indexOf("=");
+            String newIngredientName = command.substring(0,indexOfEqual);
+            int newIngredientQuantity = Integer.parseInt(command.substring(indexOfEqual+1));
             recipeToEdit.getIngredients().remove(ingredientToRemove);
-            recipeToEdit.getIngredients().put(newIngredientName, Integer.parseInt(command[command.length - 1]));
+            recipeToEdit.getIngredients().put(newIngredientName, newIngredientQuantity);
             recipeList.editRecipe(recipeToEdit, recipeToEdit.getIngredients());
         } else if (index == 3) {
+            HashMap<String, Integer> newIngredientList = recipeToEdit.getIngredients();
             System.out.println("These are the current ingredients:");
             ui.printSeparator();
             Recipe recipe = parseViewRecipe(recipeName, recipeList);
@@ -107,11 +156,11 @@ public class Parser {
                     break;
                 } else {
                     String[] command = line.trim().split(" ");
-                    String ingredientName = combineWords(command, 0);
-                    recipeToEdit.getIngredients().put(ingredientName, Integer.parseInt(command[command.length - 1]));
+                    ingredients = parseIngredientName(command);
+                    newIngredientList.putAll(ingredients);
                 }
             }
-            recipeList.editRecipe(recipeToEdit, recipeToEdit.getIngredients());
+            recipeList.editRecipe(recipeToEdit, newIngredientList);
         }
 
         return recipeToEdit;
