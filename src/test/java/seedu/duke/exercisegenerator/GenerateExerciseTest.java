@@ -5,11 +5,9 @@ import seedu.duke.commands.GenerateFilterCommand;
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exceptions.ExerciseNumberInputAsStringError;
 import seedu.duke.exceptions.TooManyFiltersError;
-import seedu.duke.exceptions.UnknownFilterInputError;
 import seedu.duke.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
-import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -18,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class GenerateExerciseTest {
-    private final long RANDOM_SEED = 2787311;
+    private static final long RANDOM_SEED = 2787311;
 
     /**
      * Checks if able to generate exercise list of size equal to count
