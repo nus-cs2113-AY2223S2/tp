@@ -60,6 +60,36 @@ Given below is an example usage scenario and how the recipe manage mechanism beh
 ### Recipe Search Feature
 
 ### Recipe View Feature
+#### Implementation
+
+Viewing recipes is handled by the `command`, `recipe` and `ui` classes
+The following operations are implemented:
+* `RecipeList#getRecipeFromList()` - Retrieves a Recipe from the RecipeList
+* `Recipe#getIngredientList()` - Retrieves the IngredientList for the Recipe
+* `Recipe#getStepList()` - Retrieves the StepList for the Recipe
+* `UI#showRecipeViewed()`- Prints the IngredientList and StepList for the recipe
+
+#### Example Usage
+The example usage is based on the assumption that there currently exists at least
+one Recipe stored in the RecipeList.
+
+**Step 1.** In the command line, the user inputs `view 1` to view the first `Recipe` object
+in the `RecipeList`. `Duke` calls the `parseCommands()` method in the `Parser` class to
+parse the user input, which returns a `Command` object of type `VIEW`. Under
+`Command#execute()`, this object will be executed.
+
+**Step 2** Under the `VIEW` case, the second part of the user's input `1` is parsed to an `int` to obtain the item
+number in the list. 
+
+**Step 3.** The method `RecipeList#getRecipeFromList()` is called to retrieve the desired recipe
+to be viewed. This method then converts the 1-based item number to the 0-based indexing of `RecipeList`,
+then returns the `Recipe` object stored at that index using `recipeList.get()`
+
+**Step 4.** The `Command#execute()` method under case `VIEW` then calls `UI#ShowRecipeViewed` with the retrieved
+`Recipe` object as an input parameter. This method calls `Recipe#getIngredientList()` to obtain the
+`IngredientList` object for the Recipe, then calls `IngredientList#showList()` to print out the ingredients
+for the recipe. The method then follows a similar approach for the steps in the recipe, calling `Recipe#getStepList`
+and then `StepList#showStepList()`.
 
 
 
