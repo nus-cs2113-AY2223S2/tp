@@ -1,12 +1,9 @@
 package seedu.brokeMan.parser;
 
-import seedu.brokeMan.command.InvalidCommand;
-import seedu.brokeMan.command.SetBudgetCommand;
+
 import seedu.brokeMan.entry.Category;
-import seedu.brokeMan.exception.BudgetNotADoubleException;
 import seedu.brokeMan.exception.CategoryNotCorrectException;
 
-import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_CATEGORY;
 
 public class StringToCategory {
     public static Category convertStringToCategory(String categoryString) throws CategoryNotCorrectException {

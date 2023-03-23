@@ -27,7 +27,8 @@ public class SaveExpense {
             myWriter.flush();
             String message = "";
             for (Entry expense : expenses) {
-                message = expense.getAmount() + "/" + expense.getInfo() + "/" + expense.getTime() + "/" + expense.getCategory();
+                message = expense.getAmount() + "/" + expense.getInfo() + "/" + expense.getTime()
+                        + "/" + expense.getCategory();
             }
             myWriter.write(message);
 

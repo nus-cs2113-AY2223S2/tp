@@ -28,7 +28,8 @@ public class SaveIncome {
             myWriter.flush();
             String message = "";
             for (Entry incomeLog : incomes) {
-                message = incomeLog.getAmount() + "/" + incomeLog.getInfo() + "/" + incomeLog.getTime() + "/" + incomeLog.getCategory();
+                message = incomeLog.getAmount() + "/" + incomeLog.getInfo() + "/"
+                        + incomeLog.getTime() + "/" + incomeLog.getCategory();
             }
             myWriter.write(message);
             myWriter.close();
