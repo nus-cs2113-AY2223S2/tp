@@ -1,5 +1,6 @@
 package seedu.pocketpal.data.entrylog;
 
+import seedu.pocketpal.data.EntryTestUtil;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
 
@@ -16,39 +17,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class EntryLogTest {
-    private static final Entry entry1 = new Entry(
-            "5 packets of dried mango",
-            5.43,
-            Category.FOOD);
-    private static final Entry entry2 = new Entry(
-            "Grab ride to mango farm at 2am",
-            16.40,
-            Category.TRANSPORTATION);
-    private static final Entry entry3 = new Entry(
-            "Food poisoning",
-            99.99,
-            Category.MEDICAL);
-    private static final Entry entry4 = new Entry(
-            "Mango juice",
-            3.50,
-            Category.FOOD);
-    private static final Entry entry5 = new Entry(
-            "Bus ride home",
-            1.45,
-            Category.TRANSPORTATION);
-    private static final Entry entry6 = new Entry(
-            "Ambulance bill",
-            399,
-            Category.MEDICAL);
+public class EntryLogTest extends EntryTestUtil {
     private EntryLog entryLog;
 
     @BeforeEach
     void init() {
         entryLog = new EntryLog();
-        entryLog.addEntry(entry1);
-        entryLog.addEntry(entry2);
-        entryLog.addEntry(entry3);
+        entryLog.addEntry(ENTRY_1);
+        entryLog.addEntry(ENTRY_2);
+        entryLog.addEntry(ENTRY_3);
     }
 
     @Nested
@@ -57,9 +34,9 @@ public class EntryLogTest {
         @Test
         void getEntries() {
             List<Entry> expectedList = new ArrayList<>();
-            expectedList.add(entry1);
-            expectedList.add(entry2);
-            expectedList.add(entry3);
+            expectedList.add(ENTRY_1);
+            expectedList.add(ENTRY_2);
+            expectedList.add(ENTRY_3);
             assertEquals(expectedList, entryLog.getEntriesList());
         }
 
@@ -75,9 +52,9 @@ public class EntryLogTest {
         @Test
         void add_entry_noExceptionThrown() {
             assertDoesNotThrow(() -> {
-                entryLog.addEntry(entry4);
+                entryLog.addEntry(ENTRY_4);
                 Entry addedEntry = entryLog.getEntry(entryLog.getSize());
-                assertEquals(addedEntry, entry4);
+                assertEquals(addedEntry, ENTRY_4);
             });
         }
 
@@ -96,7 +73,7 @@ public class EntryLogTest {
             assertDoesNotThrow(() -> {
                 Entry deletedEntry = entryLog.deleteEntry(0);
                 assertEquals(entryLog.getSize(), 2);
-                assertEquals(deletedEntry, entry1);
+                assertEquals(deletedEntry, ENTRY_1);
             });
         }
 
@@ -118,18 +95,18 @@ public class EntryLogTest {
     class EntryLogFilterTest {
         @BeforeEach
         void init() {
-            entryLog.addEntry(entry4);
-            entryLog.addEntry(entry5);
-            entryLog.addEntry(entry6);
+            entryLog.addEntry(ENTRY_4);
+            entryLog.addEntry(ENTRY_5);
+            entryLog.addEntry(ENTRY_6);
         }
 
         @Test
         void filterAmount_withinRange() {
             List<Entry> expectedEntries = new ArrayList<>();
-            expectedEntries.add(entry1);
-            expectedEntries.add(entry2);
-            expectedEntries.add(entry4);
-            expectedEntries.add(entry5);
+            expectedEntries.add(ENTRY_1);
+            expectedEntries.add(ENTRY_2);
+            expectedEntries.add(ENTRY_4);
+            expectedEntries.add(ENTRY_5);
             EntryLog filteredEntries = entryLog.filterByAmount(0, 90);
             assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
@@ -137,8 +114,8 @@ public class EntryLogTest {
         @Test
         void filterAmount_minAmount() {
             List<Entry> expectedEntries = new ArrayList<>();
-            expectedEntries.add(entry3);
-            expectedEntries.add(entry6);
+            expectedEntries.add(ENTRY_3);
+            expectedEntries.add(ENTRY_6);
             EntryLog filteredEntries = entryLog.filterByAmount(90, Double.MAX_VALUE);
             assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
@@ -146,9 +123,9 @@ public class EntryLogTest {
         @Test
         void filterAmount_maxAmount() {
             List<Entry> expectedEntries = new ArrayList<>();
-            expectedEntries.add(entry1);
-            expectedEntries.add(entry4);
-            expectedEntries.add(entry5);
+            expectedEntries.add(ENTRY_1);
+            expectedEntries.add(ENTRY_4);
+            expectedEntries.add(ENTRY_5);
             EntryLog filteredEntries = entryLog.filterByAmount(Double.MIN_VALUE, 10);
             assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
@@ -156,9 +133,9 @@ public class EntryLogTest {
         @Test
         void filterByQuery_queryCaseInsensitive() {
             List<Entry> expectedEntries = new ArrayList<>();
-            expectedEntries.add(entry1);
-            expectedEntries.add(entry2);
-            expectedEntries.add(entry4);
+            expectedEntries.add(ENTRY_1);
+            expectedEntries.add(ENTRY_2);
+            expectedEntries.add(ENTRY_4);
             EntryLog filteredEntries = entryLog.filterByQuery("MANGO");
             assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
@@ -166,9 +143,9 @@ public class EntryLogTest {
         @Test
         void filterByQuery_queryWithoutSpaces() {
             List<Entry> expectedEntries = new ArrayList<>();
-            expectedEntries.add(entry1);
-            expectedEntries.add(entry2);
-            expectedEntries.add(entry4);
+            expectedEntries.add(ENTRY_1);
+            expectedEntries.add(ENTRY_2);
+            expectedEntries.add(ENTRY_4);
             EntryLog filteredEntries = entryLog.filterByQuery("mango");
             assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
@@ -176,7 +153,7 @@ public class EntryLogTest {
         @Test
         void filterByQuery_queryWithSpaces() {
             List<Entry> expectedEntries = new ArrayList<>();
-            expectedEntries.add(entry2);
+            expectedEntries.add(ENTRY_2);
             EntryLog filteredEntries = entryLog.filterByQuery("mango farm");
             assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
@@ -184,8 +161,8 @@ public class EntryLogTest {
         @Test
         void filterByQuery_queryRegex() {
             List<Entry> expectedEntries = new ArrayList<>();
-            expectedEntries.add(entry1);
-            expectedEntries.add(entry2);
+            expectedEntries.add(ENTRY_1);
+            expectedEntries.add(ENTRY_2);
             EntryLog filteredEntries = entryLog.filterByQuery("\\d+");
             assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
@@ -193,8 +170,8 @@ public class EntryLogTest {
         @Test
         void filterCategory() {
             List<Entry> expectedEntries = new ArrayList<>();
-            expectedEntries.add(entry1);
-            expectedEntries.add(entry4);
+            expectedEntries.add(ENTRY_1);
+            expectedEntries.add(ENTRY_4);
             EntryLog filteredEntries = entryLog.filterByCategory(Category.FOOD);
             assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
