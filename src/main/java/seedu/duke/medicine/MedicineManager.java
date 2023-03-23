@@ -4,18 +4,17 @@ import seedu.duke.diagnosis.Diagnosis;
 import seedu.duke.diagnosis.IllnessMatch;
 import seedu.duke.diagnosis.symptoms.Symptom;
 
-import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+//@@author tanyizhe
 /**
- * @author tanyizhe
- *     This class manages Medicines that will be prescribed to patients.
+ * This class manages Medicines that will be prescribed to patients.
  */
 public class MedicineManager {
-    private static final Dictionary<String, ArrayList<Medicine>> medicationDict = new Hashtable<>();
-    private static final Dictionary<String, String> medicineDosages = new Hashtable<>();
+    private static final Hashtable<String, ArrayList<Medicine>> medicationDict = new Hashtable<>();
+    private static final Hashtable<String, String> medicineDosages = new Hashtable<>();
     private static final Medicine PARACETAMOL = new Medicine("Paracetamol", "1 or 2 pills up to 3 times a day");
     private static final Medicine LOZENGE = new Medicine("Lozenges","When you feel pain from sore throat");
     private static final Medicine ROBITUSSIN = new Medicine("Robitussin", "20ml every 12 hours");
@@ -23,6 +22,8 @@ public class MedicineManager {
     private static final Medicine ASPIRIN = new Medicine("Aspirin", "1 or 2 pills every 4 to 6 hours");
     private static final Medicine MAGNESIUM = new Medicine("Magnesium", "100 to 350mg before bed");
     private static final Medicine EYE_DROPS = new Medicine("Eye Drops", "When your eyes itch");
+    private static final Medicine ULTRACARBON = new Medicine("Ultracarbon", "1 250mg Tablet");
+    private static final Medicine DULCOLAX = new Medicine("Dulcolax", "1 tablet every day");
     public MedicineManager() {
         initialiseMedications();
         initialiseMedicineDosages();
@@ -47,6 +48,11 @@ public class MedicineManager {
                 .collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Medicine> conjunctivitisMedications = Stream.of(EYE_DROPS)
                 .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Medicine> diarrhoeaMedications = Stream.of(ULTRACARBON)
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Medicine> constipationMedications = Stream.of(DULCOLAX)
+                .collect(Collectors.toCollection(ArrayList::new));
+
 
         medicationDict.put("Covid-19", covidMedications);
         medicationDict.put("General Flu", commonFluMedications);
@@ -55,6 +61,8 @@ public class MedicineManager {
         medicationDict.put("Headache", headacheMedications);
         medicationDict.put("Insomnia", insomniaMedications);
         medicationDict.put("Conjunctivitis", conjunctivitisMedications);
+        medicationDict.put("Diarrhoea", diarrhoeaMedications);
+        medicationDict.put("Constipation", constipationMedications);
     }
     /**
      * This Method initialises the dictionary of Medications and their dosages.
@@ -66,6 +74,11 @@ public class MedicineManager {
         medicineDosages.put(LOZENGE.toString(), LOZENGE.getDosage());
         medicineDosages.put(ASPIRIN.toString(), ASPIRIN.getDosage());
         medicineDosages.put(IBUPROFEN.toString(), IBUPROFEN.getDosage());
+        medicineDosages.put(MAGNESIUM.toString(), MAGNESIUM.getDosage());
+        medicineDosages.put(EYE_DROPS.toString(), EYE_DROPS.getDosage());
+        medicineDosages.put(ULTRACARBON.toString(), ULTRACARBON.getDosage());
+        medicineDosages.put(DULCOLAX.toString(), DULCOLAX.getDosage());
+
     }
 
     /**
@@ -89,21 +102,33 @@ public class MedicineManager {
     private static void printMedication(ArrayList<Medicine> relevantMedications) {
         if (relevantMedications != null) {
             for (Medicine medicine : relevantMedications) {
-                System.out.println("    " + medicine.toString() + " / Dosage: " + medicine.getDosage());
+                System.out.println("    " + medicine.toString() + " - Dosage: " + medicine.getDosage());
             }
         } else {
             System.out.println("    No medication available. Please consult a doctor.");
         }
     }
-
+    //@@author tanyizhe
     /**
      * Prescribes appropriate medications to patients.
-     * @author tanyizhe
      * @param illness Name of illness diagnosed by Dr. Duke.
      * @return ArrayList of prescribed medications.
      */
     public ArrayList<Medicine> getRelevantMedication (String illness) {
         return medicationDict.get(illness);
+    }
+    public ArrayList<String> getRelevantMedicationInString (String illness) {
+        ArrayList<String> medicineList = new ArrayList<>();
+        if (medicationDict.containsKey(illness)) {
+            ArrayList<Medicine> medicineArrayList = medicationDict.get(illness);
+            for(Medicine medicine : medicineArrayList) {
+                medicineList.add(medicine.toString());
+            }
+            return medicineList;
+        } else {
+            return null;
+        }
+
     }
     /**
      * Gets dosage for medicine.
