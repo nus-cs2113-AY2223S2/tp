@@ -39,6 +39,9 @@ Got it. I've added this recipe:
   [Chinese] Hotpot
 Now you have 1 recipes in the list.
 
+
+Recipe list saved!
+Hotpot
 __________________________________________________________
 Please enter the description of step 1:
 
@@ -47,6 +50,10 @@ Got it. I've added this recipe:
   [Chinese] MaLaXiangGuo
 Now you have 2 recipes in the list.
 
+
+Recipe list saved!
+Hotpot
+MaLaXiangGuo
 __________________________________________________________
 
 RECIPE LIST
@@ -62,6 +69,11 @@ Got it. I've added this recipe:
   [Italian] Spaghetti
 Now you have 3 recipes in the list.
 
+
+Recipe list saved!
+Hotpot
+MaLaXiangGuo
+Spaghetti
 __________________________________________________________
 
 OOPS!!! I'm sorry, but I don't know what that means
@@ -73,12 +85,25 @@ Got it. I've added this recipe:
   [Italian] Carbonara
 Now you have 4 recipes in the list.
 
+
+Recipe list saved!
+Hotpot
+MaLaXiangGuo
+Spaghetti
+Carbonara
 __________________________________________________________
 
 Got it. I've added this recipe:
   [Chinese] Beijing Duck
 Now you have 5 recipes in the list.
 
+
+Recipe list saved!
+Hotpot
+MaLaXiangGuo
+Spaghetti
+Carbonara
+Beijing Duck
 __________________________________________________________
 
 RECIPE LIST
@@ -95,6 +120,12 @@ Noted. I've removed this recipe:
   [Chinese] Hotpot
 Now you have 4 recipes in the list.
 
+
+Recipe list saved!
+MaLaXiangGuo
+Spaghetti
+Carbonara
+Beijing Duck
 __________________________________________________________
 
 RECIPE LIST
@@ -121,6 +152,11 @@ Noted. I've removed this recipe:
   [Italian] Carbonara
 Now you have 3 recipes in the list.
 
+
+Recipe list saved!
+MaLaXiangGuo
+Spaghetti
+Beijing Duck
 __________________________________________________________
 
 RECIPE LIST
@@ -135,12 +171,25 @@ Got it. I've added this recipe:
   [Chinese] XiaoLongBao
 Now you have 4 recipes in the list.
 
+
+Recipe list saved!
+MaLaXiangGuo
+Spaghetti
+Beijing Duck
+XiaoLongBao
 __________________________________________________________
 
 Got it. I've added this recipe:
   [Chinese] Guilinggao
 Now you have 5 recipes in the list.
 
+
+Recipe list saved!
+MaLaXiangGuo
+Spaghetti
+Beijing Duck
+XiaoLongBao
+Guilinggao
 __________________________________________________________
 
 OOPS!!! I'm sorry, but I don't know what that means
@@ -175,20 +224,15 @@ There are 1 steps in the list
 __________________________________________________________
 
 All recipes have been cleared!
+
+Recipe list saved!
 __________________________________________________________
 
 MATE! Your list is empty!
 
 __________________________________________________________
 
-Got it. I've added this recipe:
-  [Chinese] Guilinggao
-Now you have 1 recipes in the list.
-
-__________________________________________________________
-
-Recipe list saved!
-Guilinggao
+Saved recipes loaded!
 __________________________________________________________
 
 Bye. Hope to see you again soon!
