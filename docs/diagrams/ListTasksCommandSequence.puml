@@ -1,0 +1,46 @@
+@startuml
+autonumber
+hide footbox
+title Sequence Diagram for Listing all tasks
+
+actor User
+
+box Logic
+participant ":ToDoListManager" as ToDoListManager
+participant ":Parser" as Parser
+participant ":ListTasksCommand" as ListTasksCommand
+end box
+box Model
+participant ":exception" as exception
+participant ":TaskList" as TaskList
+participant ":Ui" as Ui
+participant ":Storage" as Storage
+end box
+
+User -> ToDoListManager: input("list")
+activate ToDoListManager
+ToDoListManager -> Parser : parseCommand("list")
+activate Parser
+create ListTasksCommand
+Parser -> ListTasksCommand
+activate ListTasksCommand
+ListTasksCommand -> ListTasksCommand : execute(TaskList, ui)
+activate ListTasksCommand
+ListTasksCommand -> TaskList : sortByDeadline()
+activate TaskList
+TaskList -> ListTasksCommand
+deactivate TaskList
+ListTasksCommand -> Ui : printTaskList(taskList.size(), taskList.toString())
+activate Ui
+Ui -> ListTasksCommand
+deactivate Ui
+ListTasksCommand -> ListTasksCommand
+deactivate ListTasksCommand
+ListTasksCommand -> Parser
+deactivate ListTasksCommand
+Parser -> ToDoListManager : command
+deactivate Parser
+deactivate ListTasksCommand
+ToDoListManager -> User : list of tasks
+deactivate ToDoListManager
+@enduml
