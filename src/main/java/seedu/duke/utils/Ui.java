@@ -79,10 +79,12 @@ public class Ui {
             "Please try again :(";
     private static final String INVALID_INDEX = "This index is invalid.\nPlease enter a number ";
 
+    private static final String INVALID_ALERT_KEYWORD = "Keyword after alert can only be \"add\", \"remove\" " +
+            "\"or list\".";
     private static final String INVALID_ADD_ALERT =
             "Wrong/Incomplete Format! Please add new alerts in the following format: \n" +
-                    "\"alert add upc/[UPC] min/[integer]\" to set an alert when stock falls below a minimum \n"
-                    + "OR\n" +
+                    "\"alert add upc/[UPC] min/[integer]\" to set an alert when stock falls below a minimum \n" +
+                    " OR\n" +
                     "\"alert add upc/[UPC] max/[integer]\" to set an alert when stock exceeds a maximum. \n";
 
 
@@ -100,9 +102,14 @@ public class Ui {
 
     private static final String SUCCESS_ADD_ALERT = "Successfully added a new alert.";
 
+    private static final String INVALID_REMOVE_ALERT =
+            "Wrong/Incomplete Format! Please remove new alerts in the " + "following format: \n" +
+                    "\"alert remove upc/[UPC] level/min\" to remove an alert for minimum stock level \n" +
+                    " OR\n" +
+                    "\"alert remove upc/[UPC] level/max\" to remove an alert for maximum stock level. \n";
     private static final String SUCCESS_REMOVE_ALERT = "Successfully removed the alert.";
 
-    public static final String INVALID_REMOVE_ALERT = "The alert that you are attempting to remove does not exist.";
+    public static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove does not exist.";
 
     public Ui() {
         greetUser();
@@ -564,15 +571,27 @@ public class Ui {
         System.out.println(LINE);
     }
 
-    public static void printSuccessRemoveAlertCommand() {
+    public static void printInvalidAlertKeyword() {
         System.out.println(LINE);
-        System.out.println(ANSI_GREEN + SUCCESS_REMOVE_ALERT + ANSI_RESET);
+        System.out.println(ANSI_RED + INVALID_ALERT_KEYWORD + ANSI_RESET);
         System.out.println(LINE);
     }
 
     public static void printInvalidRemoveAlertCommand() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + INVALID_REMOVE_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printSuccessRemoveAlertCommand() {
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + SUCCESS_REMOVE_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printNonExistentRemoveAlert() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + NONEXISTENT_REMOVE_ALERT + ANSI_RESET);
         System.out.println(LINE);
     }
 }

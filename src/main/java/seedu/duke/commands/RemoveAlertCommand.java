@@ -1,6 +1,5 @@
 package seedu.duke.commands;
 
-import seedu.duke.objects.Alert;
 import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.utils.Ui;
@@ -37,7 +36,7 @@ public class RemoveAlertCommand extends Command {
             alertList.getMaxAlertUpcs().remove(upc);
             Ui.printSuccessRemoveAlertCommand();
         } else {
-            Ui.printInvalidRemoveAlertCommand();
+            Ui.printNonExistentRemoveAlert();
         }
     }
 

@@ -68,11 +68,6 @@ public class AddAlertCommand extends Command  {
 
     }
 
-    /*
-     TODO:
-     Check if minimum alert is set to be more than an existing max alert/
-     check if maximum alert is set to be less than an existing min alert
-    */
     private boolean isMinValueValid(int minStock, String upc, HashMap<String, Integer> maxUpcMap) {
         if (maxUpcMap.containsKey(upc) && maxUpcMap.get(upc) <= minStock) {
             return false;

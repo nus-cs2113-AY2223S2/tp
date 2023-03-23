@@ -20,8 +20,8 @@ public class AlertParser extends Parser {
         this.alertList = alertList;
     }
 
-    //TODO: trim trailing whitespace from input string? whitespace at the end of the string
-    //currently results in valid input
+    //TODO: trim trailing whitespace from input string?
+    //whitespace at the end of the string currently results in successful alert removal
     private void parseAddAlert(String rawInput, Inventory inventory) {
         Pattern pattern = Pattern.compile(ALERT_ADD_REGEX);
         Matcher matcher = pattern.matcher(rawInput);
@@ -48,7 +48,7 @@ public class AlertParser extends Parser {
                     matcher.group(REMOVE_MINMAX_INDEX));
             removeAlertCommand.run();
         } else {
-            System.out.println("INVALID REMOVE FORMAT");
+            Ui.printInvalidRemoveAlertCommand();
         }
 
     }
@@ -75,24 +75,10 @@ public class AlertParser extends Parser {
                     //parseListAlert
                     break;
                 default:
-                    System.out.println("Keyword after alert can only be 'add', 'remove' or 'list'");
+                   Ui.printInvalidAlertKeyword();
 
                 }
             }
-
-
-
-
-           /* if (matcher.matches()) {
-                Alert newAlert = new Alert(matcher.group(UPC_INDEX), matcher.group(MINMAX_INDEX),
-                        matcher.group(STOCK_INDEX));
-
-                Command addAlertCommand = new AddAlertCommand(inventory, newAlert, alertList);
-                addAlertCommand.run();
-
-            } else {
-                Ui.printInvalidAddAlertCommand();
-            }*/
         } catch (MissingParametersException e) {
             e.missingAddItemParameters();
         }
