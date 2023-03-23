@@ -1,28 +1,24 @@
 package seedu.commands;
 
-import java.io.IOException;
-
 import seedu.database.ExerciseStorage;
 import seedu.database.FoodStorage;
 import seedu.database.MealStorage;
 import seedu.database.UserStorage;
+import seedu.entities.User;
 import seedu.exceptions.LifeTrackerException;
-import seedu.logger.LogFileHandler;
+import seedu.ui.CalorieUi;
+import seedu.ui.ExerciseUi;
 import seedu.ui.GeneralUi;
 
-public class ExitCommand extends Command{
+public class ExerciseCommand extends Command {
+
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
                         ExerciseStorage exerciseStorage)
             throws LifeTrackerException {
-        setIsExit(true);
-        ui.printGoodbye();
-        LogFileHandler.logInfo("User exited the programme.");
-        try {
-            mealStorage.write();
-            userStorage.write();
-        } catch (IOException e) {
-            throw new LifeTrackerException("Error saving databases!");
-        }
+        boolean toContinue = true;
+        User user = userStorage.getUser();
+        CalorieUi calorieUi = new CalorieUi();
+        ExerciseUi exerciseUi = new ExerciseUi();
     }
 }

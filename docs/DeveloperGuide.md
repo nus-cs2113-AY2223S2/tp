@@ -29,9 +29,15 @@ ___
 
 ## Product scope
 
+
 ### Target user profile:
-_LifeTracker_ is a product made for users who are health conscious and wish to keep track of their calories
-to maintain or lose weight.
+
+- Is an NUS student
+- Looking to lose/maintain their weight
+- Looking to make healthier choices in terms of food
+- Can type fast
+- Prefers typing to mouse interactions
+- Is reasonably comfortable using CLI apps
 
 ### Value proposition:
 For individuals trying to lose weight, managing their daily caloric intake is crucial. However, many may find it 
