@@ -49,13 +49,25 @@ public class Storage {
      * @throws IOException if an I/O error has occurred.
      */
     public static void createDirectory() throws IOException {
-        File directory = new File("data");
+        File directory = new File(filePath);
         if (directory.mkdir()) {
             System.out.println(DIRECTORY_CREATED + "\n");
         } else {
             System.out.println(DIRECTORY_EXISTS + "\n");
         }
     }
+
+    /**
+     * Writes save file in data folder.
+     * Format:
+     * DishName
+     * Tag
+     * "Ingredient list"
+     * list ingredients
+     * "Step list"
+     * list steps
+     * @throws IOException
+     */
     public static void writeSavedFile() throws IOException {
         File saveFile;
         FileWriter saveWriter;
@@ -87,7 +99,13 @@ public class Storage {
         }
         return validSaveFiles;
     }
-    public static ArrayList<Recipe> readSaveFiles() throws FileNotFoundException {
+
+    /**
+     * Loads all saved recipes into recipe list.
+     *
+     * @throws FileNotFoundException
+     */
+    public static void loadSaveFiles() throws FileNotFoundException {
         ArrayList<File> validSaves = findValidSaveFiles();
         ArrayList<Recipe> recipeList = new ArrayList<>();
         for (File saveFile : validSaves) {
@@ -118,6 +136,8 @@ public class Storage {
                     new IngredientList(ingredientList),
                     new StepList(stepList)));
         }
-        return recipeList;
+        for (Recipe item : recipeList) {
+            RecipeList.addNewRecipe(item);
+        }
     }
 }
