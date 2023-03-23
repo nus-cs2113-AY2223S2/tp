@@ -38,8 +38,8 @@ public class Ui {
 
     public static final String INVALID_SESSION_FILE = "INFO: A Session Inventory file was found but it is corrupted. " +
             "Please delete the corrupt .csv file";
-    public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered. The inventory has been " +
-            "updated.";
+    public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered." +
+            " The inventory has been updated.";
     public static final String EMPTY_SESSION_FILE = "INFO: Empty/No Session Inventory file found.";
     public static final int NAME_COL_WIDTH = 15;
     public static final int UPC_COL_WIDTH = 12;
