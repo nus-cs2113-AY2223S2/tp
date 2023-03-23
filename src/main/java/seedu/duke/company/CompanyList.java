@@ -23,6 +23,7 @@ public class CompanyList {
                 String companyAlreadyAdded = companyList.get(i).getCompanyName();
                 if (companyAlreadyAdded.contains(companyName)) {
                     System.out.println("Company already exists in the list!");
+                    System.out.println(companyList.get(i));
                     return false;
                 }
             }
