@@ -40,6 +40,7 @@ If you plan to use Intellij IDEA (highly recommended):
 ## Implementation
 
 ### Delete task feature
+
 The DeleteTaskCommand extends NUS To-do List with a delete feature for the removal of tasks from the task list.
 It is facilitated by ToDoListManager, Parser, exception, TaskList and Storage classes.
 It implements the `TaskList#deleteTask()` operation.
@@ -49,12 +50,12 @@ Given below is an example usage scenario and how the DeleteTaskCommand mechanism
 Step 1: The user launches the program for the first time. The ToDoListManager will be initialised. This in turn will
 then initialise the Parser, TaskList and Storage. Take it as there are no existing tasks read/stored by the program.
 
-Step 2: The user executes add survey -d 20/03/2023 23:59 command to add a task for the To-do List.
-The add command calls TaskList#addTask(), which causes a new Task to be added to the existing TaskList.
+Step 2: The user executes `add survey -d 20/03/2023 23:59` command to add a task for the To-do List.
+The add command calls `TaskList#addTask()`, which causes a new Task to be added to the existing TaskList.
 
 Step 3: The user now then decides that adding this task was a mistake, and decides to remove the task from the
-To-do List. The user does this by inputting the command “delete 1” into the terminal to delete a task in the task list.
-The command will then call the TaskList#deleteTask(), which removes the task at index 1 of the TaskList.
+To-do List. The user does this by inputting the command `delete 1` into the terminal to delete a task in the task list.
+The command will then call the `TaskList#deleteTask()`, which removes the task at index 1 of the TaskList.
 
 The following sequence diagram shows how the delete task operation works:
 ![DeleteTaskCommandSequence](images/DeleteTaskCommandSequence.png)
@@ -62,10 +63,29 @@ The following sequence diagram shows how the delete task operation works:
 Step 4: The user then decides to execute the command list. This command does not modify the TaskList.
 Thus, the TaskList will return to its initial state where there are no tasks stored in the TaskList.
 
+### Mark/unmark task feature
+
+Step 1: The user launches the program for the first time. The ToDoListManager will be initialised. This in turn will
+then initialise the Parser, TaskList and Storage. Take it as there are no existing tasks read/stored by the program.
+
+Step 2: The user executes `add survey -d 20/03/2023 23:59` command to add a task for the To-do List.
+The add command calls `TaskList#addTask()`, which causes a new Task to be added to the existing TaskList.
+
+Step 3: The user wants to mark the task as completed by inputting the command `mark 1` into the terminal
+to mark the task as done. The command will then call the `TaskList#setDone`, which marks the task at index 1
+of the TaskList as done.
+
+For the unmark command, the user can instead input the command `unmark 1` to set the task as incomplete.
+The command also calls `TaskList#setDone` which sets the task at index 1 to be not done.
+
+The following sequence diagram shows how the mark/unmark task operation works:
+![MarkOrUnmarkTaskCommandSequence](images/MarkorUnmarkTaskCommandSequence.png)
+
 ### Edit task deadline feature
+
 The edit deadline function extends NUS To-do List with an edit feature for the deadlines assigned to tasks.
 It is facilitated by the TaskList and Command classes. It implements the `TaskList#editDeadline()` operation,
-which edits deadline of task at assigned index
+which edits deadline of task at assigned index.
 
 Given below is an example usage scenario and how the edit deadline mechanism will behave at each step.
 
