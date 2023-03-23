@@ -1,3 +1,4 @@
+Creating file...
 Welcome to Moneymind
 [LOGO_PLACEHOLDER]
 How may I help you?

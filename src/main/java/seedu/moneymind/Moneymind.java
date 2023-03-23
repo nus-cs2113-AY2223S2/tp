@@ -2,8 +2,11 @@ package seedu.moneymind;
 
 import java.util.Scanner;
 
+import seedu.moneymind.category.CategoryList;
+import seedu.moneymind.command.CategoryCommand;
 import seedu.moneymind.command.Command;
 import seedu.moneymind.exceptions.InvalidCommandException;
+import seedu.moneymind.storage.Storage;
 import seedu.moneymind.command.Parser;
 //import seedu.moneymind.storage.Storage;
 import seedu.moneymind.string.Strings;
@@ -12,13 +15,13 @@ import seedu.moneymind.ui.Ui;
 public class Moneymind {
     public static Scanner in;
     private Parser parser;
-    // private Storage storage;
+    private Storage storage;
     private Ui ui;
     private String userInput;
 
     public Moneymind() {
         this.parser = new Parser();
-        // this.storage = new Storage();
+        this.storage = new Storage("EventList.txt");
         this.ui = new Ui();
         this.in = new Scanner(System.in);
     }
@@ -26,7 +29,13 @@ public class Moneymind {
     public void run() {
         ui.greet();
         boolean isExit = false;
-        // storage.load();
+        try {
+            storage.load();
+            CategoryList.categories = storage.getSavedCategories();
+            CategoryCommand.categoryMap = storage.getSavedCategoryHashMap();
+        } catch (Exception e) {
+            ui.error(e);
+        }
         while (!isExit) {
             try {
                 getInput();
@@ -45,7 +54,7 @@ public class Moneymind {
                 ui.error(e);
             }
         }
-        //storage.save();
+        storage.save(CategoryList.categories);
     }
 
     private void getInput() {

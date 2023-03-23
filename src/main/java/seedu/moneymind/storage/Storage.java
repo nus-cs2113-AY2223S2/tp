@@ -6,19 +6,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import seedu.moneymind.event.Event;
+import seedu.moneymind.category.Category;
 
-import static seedu.moneymind.string.Strings.STORAGE_CATEGORY_MAP;
 import static seedu.moneymind.storage.CategoriesToString.categoriesToString;
-import static seedu.moneymind.storage.CategoryHashMapToString.categoryHashMapToString;
+import static seedu.moneymind.storage.GenerateCategoryHashMap.generateCategoryHashMap;
 import static seedu.moneymind.storage.ReadFromFile.readFromFile;
 import static seedu.moneymind.storage.StringToCategories.stringToCategories;
-import static seedu.moneymind.storage.StringToCategoryHashMap.stringToCategoryHashMap;
 
+/**
+ * Represents the storage of the data.
+ */
 public class Storage {
     
     private File textFile;
-    private ArrayList<Event> savedCategories;
+    private ArrayList<Category> savedCategories;
     private HashMap<String, Integer> savedCategoryHashMap;
     
     /**
@@ -38,14 +39,12 @@ public class Storage {
     }
     
     /**
-     * Saves the tasks to the file.
+     * Saves the events to the file.
      *
-     * @param categories The ArrayList of tasks to be saved.
-     * @param categoryHashMap The HashMap of categories to be saved.
+     * @param categories The ArrayList of events to be saved.
      */
-    public void save(ArrayList<Event> categories, HashMap<String, Integer> categoryHashMap) {
+    public void save(ArrayList<Category> categories) {
         String textToWrite = categoriesToString(categories);
-        textToWrite += categoryHashMapToString(categoryHashMap);
         
         moneymindWrite(textToWrite);
     }
@@ -66,19 +65,14 @@ public class Storage {
     }
     
     /**
-     * Loads the tasks from the file.
+     * Loads the events from the file.
      *
      * @throws Exception If there is an error loading the file.
      */
     public void load() throws Exception {
         String savedDataString = readFromFile(textFile);
-        String[] savedDataArray = savedDataString.split(STORAGE_CATEGORY_MAP);
-        if (savedDataArray.length == 2) {
-            savedCategories = stringToCategories(savedDataArray[0]);
-            savedCategoryHashMap = stringToCategoryHashMap(savedDataArray[1]);
-        } else {
-            throw new Exception("Saved data is empty");
-        }
+        savedCategories = stringToCategories(savedDataString);
+        savedCategoryHashMap = generateCategoryHashMap(savedCategories);
     }
     
     /**
@@ -86,7 +80,7 @@ public class Storage {
      * 
      * @return The ArrayList created from the saved data.
      */
-    public ArrayList<Event> getSavedCategories() {
+    public ArrayList<Category> getSavedCategories() {
         return savedCategories;
     }
     
