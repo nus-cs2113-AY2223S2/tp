@@ -72,6 +72,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 The **API** of this component is specified in [`UI.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/ui/UI.java)
 ![image](./PlantUML/UIcomponent.png)
 
+
 UI class implements the StringLib interface for some output strings. It is responsible for the following tasks:
 * Prints the welcome and goodbye messages.
 * Prints the help message, which lists all the commands available and their examples.
@@ -234,6 +235,14 @@ Now you have 1 recipes in the list.
 ```
 2. test case: 
 `add i/Beef, Potatoes, Carrots t/Chinese s/0`
+Expected: No recipe is added. Error details shown in the result display.
+```
+Error in description of inputs!
+Exception occurred: Recipe is missing the "NAME" or "INGREDIENTS" or "TAG" or "SUM of the STEPs
+ or there is more than one "NAME" or "INGREDIENTS" or "TAG" or "SUM of the STEPs"!
+```
+3. Other incorrect add commands to try: `add`, `add x` (where x does not follow the correct format), `add n/` (where name is empty).
+Expected: Similar to previous.
 
 ### Appendix E.2 - Deleting a recipe
 Deleting a person by using the `delete` command and the index of the recipe to be deleted.
@@ -244,13 +253,13 @@ Noted. I've removed this recipe:
 [TAG] NAME 
 you have XX recipes in the list.
 ```
-1. test case: `delete 0`
+2. test case: `delete 0`
 Expected: No recipe is deleted. Error details shown in the result display.
 ```
 Error in finding index!
 Exception occurred: Your list is either EMPTY or does not contain recipes up to the index you inputted yet,
 so you cannot use the DELETE command yet! Try filling up the list first!
 ```
-1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete x` (where x is a negative integer or zero), `delete XX`(where XX is not a number).
+3. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete x` (where x is a negative integer or zero), `delete XX`(where XX is not a number).
 Expected: Similar to previous.
 
