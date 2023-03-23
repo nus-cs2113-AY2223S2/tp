@@ -26,4 +26,18 @@ public class MissingParametersException extends Exception {
                 ANSI_RESET);
         System.out.println(LINE);
     }
+
+    public void missingAddAlertParameters() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + "Add alert parameters incomplete! Please follow the format provided in the user "
+                + "guide!" + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public void missingRemoveAlertParameters() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + "Remove alert parameters incomplete! Please follow the format provided in the " +
+                "user guide!" + ANSI_RESET);
+        System.out.println(LINE);
+    }
 }

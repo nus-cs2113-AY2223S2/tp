@@ -23,7 +23,7 @@ public class AddAlertCommand extends Command  {
         this.alertList = alertList;
     }
 
-    private void checkAlertUpc() {
+    private void checkAddAlertUpc() {
 
         if (upcCodes.containsKey(alert.getUpc())) {
             addAlertCommand();
@@ -93,6 +93,6 @@ public class AddAlertCommand extends Command  {
 
     @Override
     public void run() {
-        checkAlertUpc();
+        checkAddAlertUpc();
     }
 }
