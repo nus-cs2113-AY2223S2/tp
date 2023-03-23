@@ -236,6 +236,11 @@ public class Ui {
         printLessonTypeMessage(lessonTypes);
     }
 
+    public void printShowModuleMessage(Module newModule, ArrayList<LessonType> lessonTypes) {
+        printLessonTypeMessage(lessonTypes);
+        System.out.println("Number of MC: " + newModule.getModuleCredits());
+    }
+
     /**
      * For {@code addmod, delmod, listmod} commands.
      * Prints out total modular credits of all modules in the ModuleList.
@@ -427,6 +432,13 @@ public class Ui {
      */
     public void printEmptyKeyword() {
         System.out.println("Please specify a keyword to do the search with!");
+    }
+
+    /**
+     * Prints error message if the user does not specify the module code for module information.
+     */
+    public void printEmptyShowModCode() {
+        System.out.println("Please enter a module code!");
     }
 
     /**
