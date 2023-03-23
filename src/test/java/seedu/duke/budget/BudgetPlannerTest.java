@@ -11,6 +11,7 @@ class BudgetPlannerTest {
 
     private static final String BUDGET_PATH = "data/budget.txt";
     File f = new File(BUDGET_PATH);
+
     @Test
     @Order(1)
     void firstInitialiseBudgetPlanner_oneInstanceAllBudgetsSetToZero_success() {

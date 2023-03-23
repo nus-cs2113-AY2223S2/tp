@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class BudgetStorage implements DatabaseInterface {
 
     private static final String SAVED_BUDGET_FILE_PATH = "data/budget.txt";
-
     private Accommodation accommodation;
     private AirplaneTicket airplaneTicket;
     private Food food;
