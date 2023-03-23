@@ -57,7 +57,7 @@ public class Duke {
      * The main method that runs the entire programme.
      */
     public static void main(String[] args) {
-        new Duke("data/recipeList.txt").run();
+        new Duke("data").run();
         System.exit(0);
     }
 }

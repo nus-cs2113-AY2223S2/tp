@@ -7,6 +7,7 @@ import seedu.duke.recipe.Ingredient;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Step;
 import seedu.duke.recipe.StepList;
+import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
 import java.util.ArrayList;
@@ -68,8 +69,8 @@ public class Parser {
         case "exit":
             type = CommandType.EXIT;
             break;
-        case "save":
-            type = CommandType.SAVE;
+        case "load":
+            type = CommandType.LOAD;
             break;
         default:
             type = CommandType.UNKNOWN;
@@ -113,7 +114,7 @@ public class Parser {
             Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX));
             return parsed;
         } catch (NumberFormatException e) {
-            throw new IncompleteInputException("Please enter a valid number for the sum of steps!\n");
+            throw new IncompleteInputException(StringLib.MISSING_NUM);
         }
     }
 

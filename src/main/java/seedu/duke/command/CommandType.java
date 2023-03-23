@@ -50,7 +50,7 @@ public enum CommandType {
      */
     UNKNOWN,
     /**
-     * Saves the recipes
+     * Read saves
      */
-    SAVE
+    LOAD
 }
