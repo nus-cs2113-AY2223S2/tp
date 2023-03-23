@@ -9,7 +9,7 @@ original source as well}
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
-[comment]: <> (//@@Jeraldchen)
+[comment]: <> (//@@author Jeraldchen)
 
 ### User Interface
 ![UIClass.png](diagrams%2FUIClass.png)
@@ -55,7 +55,7 @@ menu and the symptom list. It is also responsible for parsing the user input fro
 `parseWelcome()` is used to parse the user input from the welcome menu.
 `parseAccountCommand()` is used to parse the user command and then execute the command based on the choice number.
 
-[comment]: <> (//@@Brennanzuz)
+[comment]: <> (//@@author Brennanzuz)
 ### Diagnosis
 
 ![DiagnosisClassDiagram.png](diagrams%2FDiagnosisClassDiagram.png)

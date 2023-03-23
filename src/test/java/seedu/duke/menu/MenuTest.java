@@ -1,4 +1,4 @@
-//@@Jeraldchen
+//@@author Jeraldchen
 package seedu.duke.menu;
 
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MenuTest {
-    //@@Jeraldchen
+    //@@author Jeraldchen
     @Test
     public void registerPatient() {
         String name = "Akshay";
@@ -24,7 +24,7 @@ public class MenuTest {
         assertEquals(personalInfo.get(name), password1);
     }
 
-    //@@Jeraldchen
+    //@@author Jeraldchen
     @Test
     public void addSymptomsToSymptomsList() {
         String symptom = "Fever";
