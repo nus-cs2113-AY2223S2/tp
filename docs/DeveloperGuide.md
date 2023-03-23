@@ -66,7 +66,8 @@ track of their future and present training.
 The add mechanism is facilitated by `AddCommand`. 
 It extends `Command` and modifies the execute function to add an exercise.
 
-![AddExercise.png](diagrams%2FAddExercise.png)
+<img src="images/AddExerciseDiagram.png" width="450" />
+
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
 Step 1. The user enters the add command with the necessary arguments.
@@ -98,7 +99,15 @@ Below are the specific steps on how to use the view function and how the mechani
 ###### [Back to table of contents](#table-of-contents)
 
 ### Delete component
+The deletion mechanism is facilitated by 'Parser', 'DeleteCommand', 'Workout', 'WorkoutList' and 'UI', where a Workout object will be deleted according to the command inputted by the user and removed from the workout list.
 
+Below is an example usage scenario and how the deletion mechanism behaves at each step:
+
+Step 1: Assume that the user has already added a workout on 21/03/23 into the WorkoutList using the following command, /start 21/03/23
+
+Step 2: The user input of /delete 21/03/23 will be taken in for the parser and an object of class DeleteCommand will be returned.
+
+Step 3: The execute method in the DeleteCommand class that is overrides will be called with parameter date and will iterate through workoutList looking for a workout that matches. It will then remove the workout from the workoutList.
 ###### [Back to table of contents](#table-of-contents)
 
 ### Exit component
