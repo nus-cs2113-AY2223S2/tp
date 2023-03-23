@@ -45,6 +45,24 @@ command: `/add McDonalds -c Food -p 10.50`
 
 ![ParserSequenceDiagram](static/ParserSequenceDiagram.png)
 
+### Storage
+
+The `Storage` class is responsible for the serialization of `Entry` data into a csv-like syntax, as well as the deserialization of that data back into `Entry` objects.
+
+The main callable functions to be used are:
+
+- `readFromDatabase()` - Deserializes data stored in text form back into `Entry` objects. Executed when PocketPal is instantiated
+- `writeToDatabase()` - Serializes `Entry` objects in `EntryLog` into text form.
+- `reset()` - Clears whatever is in the stored text file, without affecting what is in the current `EntryLog`.
+
+The structure of the Storage class is as follows:
+
+![StorageClassDiagram](./static/StorageClassDiagram.png)
+
+The Sequence Diagram below illustrates the interactions within the `Parser` component upon initialization of PocketPal, as well as whenever data is being saved.
+
+![StorageSequenceDiagram](./static/StorageSequenceDiagram.png)
+
 ## Product scope
 
 ### Target user profile
