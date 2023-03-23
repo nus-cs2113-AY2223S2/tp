@@ -29,7 +29,7 @@ public class StringToCategories {
                 categories.add(loadCategory(savedLine));
             } else if (savedLine.startsWith(STORAGE_NEXT_VARIABLE)) {
                 categories.get(categories.size() - 1).addEvent(loadEvent(savedLine));
-            } else {
+            } else if (!savedLine.equals("")) {
                 throw new IllegalArgumentException("Invalid format found in storage file.");
             }
         }

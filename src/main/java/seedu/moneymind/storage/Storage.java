@@ -13,6 +13,9 @@ import static seedu.moneymind.storage.GenerateCategoryHashMap.generateCategoryHa
 import static seedu.moneymind.storage.ReadFromFile.readFromFile;
 import static seedu.moneymind.storage.StringToCategories.stringToCategories;
 
+/**
+ * Represents the storage of the data.
+ */
 public class Storage {
     
     private File textFile;
