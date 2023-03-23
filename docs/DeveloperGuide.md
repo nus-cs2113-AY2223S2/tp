@@ -67,6 +67,12 @@ The rest of the App consists of five components.
 The **API** of this component is specified in [`UI.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/ui/UI.java)
 ![image](./PlantUML/UIcomponent.png)
 
+UI class implements the StringLib interface for some output strings. It is responsible for the following tasks:
+* Prints the welcome and goodbye messages.
+* Prints the help message, which lists all the commands available and their examples.
+* Prints the log messages for some managing operations.
+* Prints the error messages for some exceptions.
+
 #### Parser component
 
 #### Command component
