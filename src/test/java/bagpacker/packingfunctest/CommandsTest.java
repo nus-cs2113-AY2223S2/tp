@@ -1,11 +1,10 @@
 package bagpacker.packingfunctest;
-/*
+
 import bagpacker.commands.AddCommand;
 import bagpacker.commands.Command;
-//import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
-import org.junit.jupiter.api.Assertions;*/
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -18,10 +17,11 @@ public class CommandsTest {
         assertTrue(true);
     }
 
-    /*@Test
+    @Test
     public void testAddCommand() {
         PackingList packingList = new PackingList();
-        Command addCommand = new AddCommand(new Item(1, "toothbrush"));
+        Item item = new Item("toothbrush");
+        Command addCommand = new AddCommand(item);
         addCommand.execute(packingList);
 
         // Expect a Packinglist with a toothbrush item in first index
@@ -29,13 +29,13 @@ public class CommandsTest {
         Assertions.assertNotEquals("tooth", packingList.get(0).getItemName());
 
         // Expect second index item in the packing list to be toothpaste
-
-        addObj = new AddCommand(1, "toothpaste");
-        addObj.execute(packingList);
+        Item itemTwo = new Item("toothpaste");
+        addCommand = new AddCommand(itemTwo);
+        addCommand.execute(packingList);
 
         Assertions.assertEquals("toothpaste",packingList.get(1).getItemName());
         Assertions.assertNotEquals("toothbrush", packingList.get(1).getItemName());
 
-    }*/
+    }
 
 }
