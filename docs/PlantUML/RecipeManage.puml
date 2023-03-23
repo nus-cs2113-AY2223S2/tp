@@ -1,6 +1,7 @@
 @startuml RecipeManage 
 box Manager #White
 Actor User 
+participant ":UI" as UI
 participant ":Duke" as Duke
 participant ":Parser" as Parser
 participant ":Command" as Command1
@@ -8,13 +9,15 @@ participant ":Command" as Command2
 participant ":Command" as Command3
 participant ":Command" as Command4
 participant ":RecipeList" as RecipeList
-participant ":UI" as UI
 end box 
 
 activate Duke
-
-User -> Duke : "add n/MaLaXiangGuo\n i/Beef, Mutton, Mushrooms t/Chinese s/1"
-Duke -> Parser : "parseComand()"
+Duke -> UI : "readCommand()"
+activate UI
+User -> UI : "add n/MaLaXiangGuo\n i/Beef, Mutton, Mushrooms t/Chinese s/1"
+UI --> Duke
+deactivate UI
+Duke -> Parser : "parseCommand()"
 activate Parser
 Parser --> Duke 
 deactivate Parser
@@ -30,7 +33,13 @@ Parser --> Command1
 deactivate Parser
 Command1 -> Parser : "parseSteps()"
 activate Parser
+loop sum of steps times  
+Parser -> UI : "readCommand()"
+activate UI
+UI --> Parser
+deactivate UI
 Parser --> Command1
+end loop
 deactivate Parser
 Command1 -> RecipeList : "addRecipe()"
 activate RecipeList
@@ -40,7 +49,11 @@ Command1 --> Duke
 deactivate Command1
 Duke -> Command1 : delete
 destroy Command1
-User -> Duke : "list"
+Duke -> UI : readCommand()
+activate UI
+User -> UI : "list"
+UI --> Duke
+deactivate UI
 Duke -> Parser : "parseCommand()"
 activate Parser
 Parser --> Duke
@@ -59,7 +72,11 @@ Command2 --> Duke
 deactivate Command2
 Duke -> Command2 : delete
 destroy Command2
-User -> Duke : "delete 1"
+Duke -> UI : "readCommand()"
+activate UI
+User -> UI : "delete 1"
+UI --> Duke
+deactivate UI
 Duke -> Parser : "parseComand()"
 activate Parser
 Parser --> Duke
@@ -74,7 +91,11 @@ Command3 --> Duke
 deactivate Command3
 Duke -> Command3 : delete
 destroy Command3
-User -> Duke : "clear"
+Duke -> UI : "readCommand()"
+activate UI
+User -> UI : "clear"
+UI --> Duke
+deactivate UI
 Duke -> Parser : "parseComand()"
 activate Parser
 Parser --> Duke
