@@ -94,7 +94,7 @@ public class Ui {
      * Prints list of events
      * @param eventList Array List containing events to be printed to user
      */
-    public static void listTask(ArrayList<Event> eventList) {
+    public static void listTask(ArrayList<Schedule> eventList) {
         printDash();
         if (eventList.size() == 0) {
             System.out.println("There are no events!");
