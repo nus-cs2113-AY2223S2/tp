@@ -75,7 +75,7 @@ public class AlertParser extends Parser {
                     //parseListAlert
                     break;
                 default:
-                   Ui.printInvalidAlertKeyword();
+                    Ui.printInvalidAlertKeyword();
 
                 }
             }

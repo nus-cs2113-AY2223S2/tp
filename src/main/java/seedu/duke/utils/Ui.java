@@ -109,7 +109,8 @@ public class Ui {
                     "\"alert remove upc/[UPC] level/max\" to remove an alert for maximum stock level. \n";
     private static final String SUCCESS_REMOVE_ALERT = "Successfully removed the alert.";
 
-    public static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove does not exist.";
+    private static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove " +
+            "does not exist.";
 
     public Ui() {
         greetUser();
