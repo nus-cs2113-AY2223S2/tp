@@ -8,6 +8,6 @@ weekly random name
 weekly /add random name 1
 weekly /add test recipe name 1
 weeklyplan
-weekly /delete test recipe name
+weekly /delete Chicken Rice
 weeklyplan
 bye
