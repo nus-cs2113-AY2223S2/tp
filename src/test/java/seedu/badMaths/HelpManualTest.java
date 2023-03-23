@@ -38,7 +38,7 @@ class HelpManualTest {
         assertNotNull(outContent.toString());
 
         // Check if the output matches the expected output
-        String expectedOutput = new String(Files.readAllBytes(Paths.get("docs/HelpManual.txt")));
+        String expectedOutput = new String(Files.readAllBytes(Paths.get("src/main/resources/HelpManual.txt")));
         assertEquals(expectedOutput, outContent.toString());
     }
 }
