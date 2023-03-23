@@ -1,13 +1,14 @@
+[comment]: <> (//@@Geeeetyx)
 # User Guide
 
-# Introduction
+## Introduction
 
 Doctor Duke is a desktop app for diagnosing patients who have **_mild_** illnesses, 
 optimised for use via a Command Line Interface (CLI). 
 
 Doctor Duke can diagnose illnesses and suggest medicine accordingly faster than visiting a General Practitioner.
 
-# Start Guide
+## Start Guide
 
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of **Doctor Duke** from [this GitHub repo](https://github.com/AY2223S2-CS2113-W13-1/tp/releases/tag/v1.0).
@@ -20,7 +21,7 @@ Doctor Duke can diagnose illnesses and suggest medicine accordingly faster than 
    java -jar "C:\Users\Albert\Desktop\Tp.main.jar"
    ~~~
 
-# User Guide
+# Features Guide
 Upon starting Doctor Duke, you will be greeted with a welcome message, 
 
 A menu with options for registering and/or logging in will be shown.
@@ -42,7 +43,7 @@ What would you like to do? Please enter the number:
 ---------------------------------------------------
 ~~~
 
-# Register, Log In, Exiting
+## Register, Log In, Exiting
 
 ### 1. Registering
 A new patient can register him/herself into Doctor Duke, by keying in his/her name and a password.
@@ -119,7 +120,7 @@ Thank you for using
 ---------------------------------------------------
 ~~~
 
-# After Registering and/or Logging in
+## After Registering and/or Logging in
 
 Upon registering and/or logging in, the following menu will be shown.
 
