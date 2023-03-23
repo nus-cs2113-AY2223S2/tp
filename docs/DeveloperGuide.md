@@ -10,6 +10,7 @@
   - [Implementation](#implementation)
     - [Delete task feature](#delete-task-feature)
     - [Edit task deadline feature](#edit-task-deadline-feature)
+    - [List tasks sorted by deadline feature](#list-tasks-sorted-by-deadline-feature)
   - [Appendix: Requirements](#appendix--requirements)
     - [Product Scope](#product-scope)
     - [User Stories](#user-stories)
@@ -109,6 +110,30 @@ which updates the value of deadline for the Task item saved at index 1 to the ne
 The following sequence diagram shows how the edit operations works:
 
 ![EditDeadlineCommandSequence](images/EditDeadlineCommandSequence.png)
+
+### List tasks sorted by deadline feature
+
+This ListTasksCommand extends NUS To-do List with an automatic sorting feature that sorts all tasks in an ascending
+deadline order and displays the To-do List to users. It is facilitated by the TaskList, Command class, and ui class.
+It implements the `TaskList#sortByDeadline()` and  `ui#printTaskList()`operation.
+
+Given below is an example usage scenario and how the ListTasksCommand mechanism will behave at each step.
+
+Step 1. The user launches the application for the first time. There are no existing tasks read by the program.
+
+Step 2. The user executes `add survey -d 20/03/2023 12:00` and `add survey -d 21/03/2023 12:00` command to add 2 task
+to the To-do List. The `add` command calls `TaskList#addTask()` once for each task, which causes 2 new Tasks to
+be added to the existing TaskList.
+
+Step 3. The user wants to view the entire list of deadlines that he/she has added. The user can do this by using the
+command `list` into the terminal. By doing so,`TaskList#sortByDeadline()` will be executed, which will sort the list
+in an ascending deadline order, where the deadline that is closest to date will be at the top and the deadline furthest
+to date will be at the bottom. Next, `ui#printTaskList()` will be executed, which will display the list of deadlines to
+the user in the terminal.
+
+The following sequence diagram shows how the list operation works:
+
+![ListTasksCommandSequence](images/ListTasksCommandSequence.png)
 
 ### Storage feature
 
