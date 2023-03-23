@@ -5,6 +5,11 @@ import java.util.Map;
 
 public class PrintUserExerciseData {
 
+    /**
+     * Prints the contents of the HashMap containing unique exercises
+     * completed by user as key and frequencies of those exercises as value.
+     * @param userExerciseHistory HashMap with exercise name as key and frequency of exercise as value.
+     */
     public static void printUserExerciseHistory(HashMap<String, Integer> userExerciseHistory) {
         assert userExerciseHistory != null : "user exercise history should not be null!";
         String message = "Here is a list of all the exercises you have completed:" +
