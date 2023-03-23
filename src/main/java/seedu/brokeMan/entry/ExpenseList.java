@@ -57,10 +57,10 @@ public class ExpenseList extends EntryList {
 
 
     /**
-     * Edits the description of the expense specified by the index in the list
+     * Edits a specific index in the list
      *
      * @param expenseIndex index of the expense in the list
-     * @param newEntry new description that will replace current description
+     * @param newEntry new entry that will replace current entry
      */
     public static void editExpense(int expenseIndex, String newEntry) {
         editEntryDescription(expenseIndex, newEntry, expenseList);
@@ -85,6 +85,10 @@ public class ExpenseList extends EntryList {
         editEntryTime(expenseIndex, newEntry, expenseList);
     }
 
+    public static void editExpense(int expenseIndex, Category newEntry) {
+        editEntryCategory(expenseIndex, newEntry, expenseList);
+    }
+
     /**
      * Sorts expenses by amount, from largest to smallest
      */
@@ -98,6 +102,11 @@ public class ExpenseList extends EntryList {
     public static void sortExpensesByDate() {
         sortEntriesByDate(expenseList);
     }
+
+    public static void findExpenseByCategory(Category category) {
+        findEntriesByCategory(category, expenseList);
+    }
+
     public static List<Entry> getExpensesMadeInMonth(int year, Month month) {
         return selectEntryForDate(year, month, expenseList);
     }

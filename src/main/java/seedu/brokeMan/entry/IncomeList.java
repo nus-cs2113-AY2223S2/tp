@@ -69,6 +69,8 @@ public class IncomeList extends EntryList{
         editEntryTime(index, newEntry, incomeList);
     }
 
+    public static void editIncome(int index, Category newEntry) { editEntryCategory(index, newEntry, incomeList);}
+
 
     /**
      * Sorts income using Entry comparator
@@ -78,6 +80,10 @@ public class IncomeList extends EntryList{
     }
     public static void sortIncomeByDate() {
         sortEntriesByDate(incomeList);
+    }
+
+    public static void findIncomeByCategory(Category category) {
+        findEntriesByCategory(category, incomeList);
     }
 
     public static List<Entry> getIncomesMadeInMonth(int year, Month month) {

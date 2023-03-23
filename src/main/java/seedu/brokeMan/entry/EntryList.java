@@ -45,7 +45,7 @@ public abstract class EntryList {
     public static void deleteEntry(int entryIndex, LinkedList<Entry> entryList) {
         try {
             entryList.remove(entryIndex - 1);
-            Ui.showToUserWithLineBreak("Successfully deleted expense.", "");
+            Ui.showToUserWithLineBreak("Successfully deleted.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
             Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
         }
@@ -63,7 +63,7 @@ public abstract class EntryList {
         try {
             Entry entryBeingEdited = entryList.get(entryIndex - 1);
             entryBeingEdited.editAmount(newAmount);
-            Ui.showToUserWithLineBreak("Successfully edited expense.", "");
+            Ui.showToUserWithLineBreak("Successfully edited amount.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
             Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
         }
@@ -81,7 +81,7 @@ public abstract class EntryList {
         try {
             Entry entryBeingEdited = entryList.get(entryIndex - 1);
             entryBeingEdited.editDescription(newDescription);
-            Ui.showToUserWithLineBreak("Successfully edited expense.", "");
+            Ui.showToUserWithLineBreak("Successfully edited description.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
             Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
         }
@@ -99,7 +99,17 @@ public abstract class EntryList {
         try {
             Entry entryBeingEdited = entryList.get(entryIndex - 1);
             entryBeingEdited.editTime(newTime);
-            Ui.showToUserWithLineBreak("Successfully edited expense.", "");
+            Ui.showToUserWithLineBreak("Successfully edited time.", "");
+        } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
+            Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
+        }
+    }
+
+    public static void editEntryCategory(int entryIndex, Category newCategory, LinkedList<Entry> entryList) {
+        try {
+            Entry entryBeingEdited = entryList.get(entryIndex - 1);
+            entryBeingEdited.editCategory(newCategory);
+            Ui.showToUserWithLineBreak("Successfully edited category.", "");
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
             Ui.showToUserWithLineBreak("Invalid index! Please try again.", "");
         }
@@ -128,6 +138,23 @@ public abstract class EntryList {
     protected static void sortEntriesByDate(LinkedList<Entry> entryList) {
         entryList.sort(new EntryDateComparator());
         listEntry(entryList);
+    }
+
+    protected static void findEntriesByCategory(Category category, LinkedList<Entry> entryList) {
+        LinkedList<Entry> entriesByCategory = new LinkedList<Entry>();
+        if (entryList.size() > 0) {
+            for (Entry entryLog : entryList) {
+                if (entryLog.getCategory() == category) {
+                    entriesByCategory.add(entryLog);
+                }
+            }
+        }
+        if (entriesByCategory.size() > 0) {
+            listEntry(entriesByCategory);
+            Ui.showToUser("Total in this category: $" + getTotalAmount(entriesByCategory));
+        } else {
+            Ui.showToUser("No entries found under this category. ");
+        }
     }
 
     protected static List<Entry> selectEntryForDate(int year, Month month, LinkedList<Entry> entryList) {

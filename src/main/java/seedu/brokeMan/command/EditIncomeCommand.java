@@ -1,6 +1,10 @@
 package seedu.brokeMan.command;
 
+import seedu.brokeMan.entry.Category;
+import seedu.brokeMan.entry.ExpenseList;
 import seedu.brokeMan.entry.IncomeList;
+import seedu.brokeMan.exception.CategoryNotCorrectException;
+import seedu.brokeMan.parser.StringToCategory;
 import seedu.brokeMan.parser.StringToTime;
 
 import java.time.LocalDateTime;
@@ -10,7 +14,7 @@ public class EditIncomeCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": edits the income from the list.\n" +
             "|  Parameter: i/ <index> t/ <type> n/ <newEntry>\n" +
-            "|  There are 3 type that can be changed, amount, info, time\n" +
+            "|  There are 4 types that can be changed, amount, info, time, category\n" +
             "|  Example: " + COMMAND_WORD + " i/ 1 t/ info n/ stocks";
     private int index;
     private String type;
@@ -28,9 +32,17 @@ public class EditIncomeCommand extends Command {
             IncomeList.editIncome(index, newIncome);
         } else if (type.equals("info")) {
             IncomeList.editIncome(index, newEntry);
-        } else {
+        } else if (type.equals("time")) {
             LocalDateTime newTime = StringToTime.convertStringToTime(newEntry);
             IncomeList.editIncome(index, newTime);
+        } else if (type.equals("category")) {
+            Category newCategory = null;
+            try {
+                newCategory = StringToCategory.convertStringToCategory(newEntry);
+            } catch (CategoryNotCorrectException e) {
+                throw new RuntimeException(e);
+            }
+            IncomeList.editIncome(index, newCategory);
         }
     }
 }

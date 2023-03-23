@@ -1,10 +1,16 @@
 package seedu.brokeMan.command;
 
 import seedu.brokeMan.entry.ExpenseList;
+import seedu.brokeMan.exception.CategoryNotCorrectException;
+import seedu.brokeMan.parser.StringToCategory;
 import seedu.brokeMan.parser.StringToTime;
+import seedu.brokeMan.entry.Category;
 
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
+
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_TIME;
 
 public class EditExpenseCommand extends Command {
     public static final String COMMAND_WORD = "editExpense";
@@ -12,7 +18,7 @@ public class EditExpenseCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": edits the expense from the list.\n" +
             "|  Parameter: i/ <index> t/ <type> n/ <newEntry>\n" +
-            "|  There are 3 type that can be changed, amount, info, time\n" +
+            "|  There are 4 types that can be changed, cost, info, time, category\n" +
             "|  Example: " + COMMAND_WORD + " i/ 1 t/ cost n/ 5";
     private final int index;
     private final String type;
@@ -30,9 +36,18 @@ public class EditExpenseCommand extends Command {
             ExpenseList.editExpense(index, newCost);
         } else if (type.equals("info")) {
             ExpenseList.editExpense(index, newEntry);
-        } else {
+        } else if (type.equals("time")) {
             LocalDateTime newTime = StringToTime.convertStringToTime(newEntry);
             ExpenseList.editExpense(index, newTime);
+        } else if (type.equals("category")) {
+            Category newCategory = null;
+            try {
+                newCategory = StringToCategory.convertStringToCategory(newEntry);
+            } catch (CategoryNotCorrectException e) {
+                throw new RuntimeException(e);
+            }
+            ExpenseList.editExpense(index, newCategory);
         }
+
     }
 }
