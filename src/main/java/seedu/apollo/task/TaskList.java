@@ -1,12 +1,9 @@
 package seedu.apollo.task;
 
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -44,80 +41,100 @@ public class TaskList extends ArrayList<Task> {
         Stream<Task> filteredTasks = this.stream()
                 .filter(task -> task.getDescription().toLowerCase().contains(lowerKeyword));
 
-        ArrayList<Task> filteredTasksList = (ArrayList<Task>) filteredTasks.collect(Collectors.toList());
-        return filteredTasksList;
+        return (ArrayList<Task>) filteredTasks.collect(Collectors.toList());
     }
 
     /**
-     * Sorts the TaskList by type.
+     * Groups tasks with the same type within the TaskList
      */
     public void clusterByType() {
         this.sort(Comparator.comparing(Task::getType));
     }
 
-    //first sort by type, then sort by date
-    //takes in a parameter of taskList
-
-
-    private int deterministicSortForEvent(Date startDay1, Date endDay1, Date startDay2, Date endDay2) {
+    /**
+     * Determines the order of the events based on their respective from and to dates.
+     * Sorts events in natural time order.
+     *
+     * @param startDay1 The start day of the first event.
+     * @param endDay1   The end day of the first event.
+     * @param startDay2 The start day of the second event.
+     * @param endDay2   The end day of the second event.
+     * @return The order of the events.
+     */
+    private int deterministicSortForEvent(LocalDateTime startDay1, LocalDateTime endDay1, LocalDateTime startDay2,
+                                          LocalDateTime endDay2) {
         //both events have same start time
         if (startDay1.equals(startDay2)) {
             //if event2 ends first
-            if (endDay2.after(endDay1)){
+            if (endDay2.isAfter(endDay1)) {
                 return 1;
                 //event1 ends first
-            } else if (endDay1.before(endDay2)) {
+            } else if (endDay1.isBefore(endDay2)) {
                 return -1;
                 //both events end at the same time
             } else {
                 return 0;
             }
 
-        } else if (startDay1.after(startDay2)){
+        } else if (startDay1.isAfter(startDay2)) {
             return 1;
         } else {
             return -1;
         }
     }
-    private void sortTaskByDay(TaskList allTasks) {
+
+    /**
+     * Sorts the TaskList by date.
+     *
+     * @param allTasks The TaskList containing different task types to be sorted.
+     */
+    public void sortTaskByDay(TaskList allTasks) {
         allTasks.clusterByType();
+        //do nothing for todo type tasks
+        for (int i = 0; i < allTasks.size(); i++) {
+            if (allTasks.get(i).getType().equals("deadline")) {
+                allTasks.sort((Task task1, Task task2) -> {
 
-        for (Task task : allTasks){
-            if (task.getType().equals("deadline")){
-                allTasks.sort((Deadline deadline1, Deadline deadline2)-> {
-                    SimpleDateFormat format = new SimpleDateFormat("MMM dd yyyy, hh:mma");
-                    try{
-                        Date deadline1Date = format.parse(deadline1.getBy(format));
-                        Date deadline2Date = format.parse(deadline2.getBy(format));
+                    if (task1 instanceof Deadline && task2 instanceof Deadline) {
+
+                        LocalDateTime deadline1Date = ((Deadline) task1).getDateTime();
+                        LocalDateTime deadline2Date = ((Deadline) task2).getDateTime();
                         return deterministicSortForDeadline(deadline1Date, deadline2Date);
-                    } catch (ParseException e){
-                        return 0;
-                    }
-                });
-            }
-            else if (task.getType().equals("event")) {
-                // Insert code here for sorting events
-                allTasks.sort((Event event1, Event event2)-> {
-                    SimpleDateFormat format = new SimpleDateFormat("MMM dd yyyy, hh:mma");
-                    try{
-                        Date startDay1 = format.parse(event1.getFromDate(format));
-                        Date endDay1 = format.parse(event1.getTo(format));
-                        Date startDay2 = format.parse(event2.getFrom(format));
-                        Date endDay2 = format.parse(event2.getTo(format));
-                        return deterministicSortForEvent(startDay1, endDay1, startDay2, endDay2);
-                    } catch (ParseException e){
-                        return 0;
-                    }
-                });
 
+                    } else {
+                        return 0;
+                    }
+
+                });
+            } else if (allTasks.get(i).getType().equals("event")) {
+                allTasks.sort((Task task1, Task task2) -> {
+                    if (task1 instanceof Event && task2 instanceof Event) {
+
+                        LocalDateTime startDay1 = ((Event) task1).getFromDate();
+                        LocalDateTime endDay1 = ((Event) task1).getToDate();
+                        LocalDateTime startDay2 = ((Event) task2).getFromDate();
+                        LocalDateTime endDay2 = ((Event) task2).getToDate();
+                        return deterministicSortForEvent(startDay1, endDay1, startDay2, endDay2);
+
+                    } else {
+                        return 0;
+                    }
+                });
             }
         }
     }
 
-    private int deterministicSortForDeadline(Date deadline1, Date deadline2) {
-        if (deadline1.after(deadline2)) {
+    /**
+     * Determines the order of the deadlines based on their respective due dates. Sorts deadlines in natural time order.
+     *
+     * @param deadline1 The deadline of the first deadline task.
+     * @param deadline2 The deadline of the second deadline task.
+     * @return The order of the deadlines.
+     */
+    private int deterministicSortForDeadline(LocalDateTime deadline1, LocalDateTime deadline2) {
+        if (deadline1.isAfter(deadline2)) {
             return 1;
-        } else if (deadline1.before(deadline2)) {
+        } else if (deadline1.isBefore(deadline2)) {
             return -1;
         } else {
             return 0;
