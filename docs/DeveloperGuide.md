@@ -12,18 +12,22 @@
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+BrokeMan is suitable for students who have to work with tight budgets, students who want to use their money efficiently, and students who want to minimize their spending.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+The program will offer visualization of the user's incomes, expenses and budget, allowing them to recap and be mindful about their financial status. The project will allow division of budget into multiple subcategories of expenses. In essence, the program sets students up for a better financial future.
 
 ## User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|user|add, delete, edit, and list my income|manage my income|
+|v1.0|user|add, delete, edit, and list my expenses|manage my expenses|
+|v1.0|user|set and view my budget|set expectation of how much money I should use|
+|v1.0|user|view how much of the budget I spend|manage and change my spending habit as necessary|
+|v1.0|user|view all comments that I can enter|get help on the features if necessary|
+|v2.0|user|list monthly expenses, income, and budget|refer to financial status in previous months|
 
 ## Non-Functional Requirements
 
