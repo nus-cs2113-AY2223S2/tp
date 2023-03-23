@@ -10,12 +10,12 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class ParseData {
+public class LoadExerciseJson {
 
-    public ArrayList<ExerciseData> getExercises() {
+    public ArrayList<ExerciseData> getExercises () {
         ArrayList<ExerciseData> exerciseData = new ArrayList<>();
         try (Reader reader = new InputStreamReader(Objects.requireNonNull(this.getClass()
-                .getResourceAsStream("/data.json")))) {
+                                                                              .getResourceAsStream("/data.json")))) {
             ExerciseDataList result = new Gson().fromJson(reader, ExerciseDataList.class);
             exerciseData = result.exercises;
             assert exerciseData != null : "exercise data must contain data if resource file is present";

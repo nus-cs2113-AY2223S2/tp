@@ -1,11 +1,9 @@
 package seedu.duke.commandhandler;
 
 import seedu.duke.commands.ExerciseSearchCommand;
-import seedu.duke.commands.SampleSavingCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.GenerateFilterCommand;
 import seedu.duke.commands.HelpCommand;
-import seedu.duke.commands.SampleReadCommand;
 import seedu.duke.commands.QuickStartCommand;
 
 import seedu.duke.exceptions.DukeError;
@@ -45,22 +43,12 @@ public class GeneralCommandHandler implements CommandList {
             case FILTERS_COMMAND:
                 ui.printFilters();
                 break;
-            case BYE_COMMAND:
             case EXIT_COMMAND:
                 ui.byeUser();
                 System.exit(0);
                 break;
             case HELP_COMMAND:
                 command = new HelpCommand();
-                break;
-            case READ_SAMPLE_COMMAND:
-                command = new SampleReadCommand(userCareerData);
-                break;
-            case WRITE_SAMPLE_COMMAND:
-                // sample data
-                command = new SampleSavingCommand(userCareerData,
-                                                  exerciseGenerator.generateRandomSetFrom(
-                                                      exerciseGenerator.generateSetAll(), 3), storageHandler);
                 break;
             case PLANNER_EDITOR_COMMAND:
                 PlannerCommandHandler.plannerCommandHandler(ui, planner, storageHandler);
