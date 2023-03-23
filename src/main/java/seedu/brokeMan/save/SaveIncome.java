@@ -3,6 +3,8 @@ package seedu.brokeMan.save;
 import seedu.brokeMan.entry.Entry;
 import seedu.brokeMan.entry.income.Income;
 import seedu.brokeMan.entry.income.IncomeList;
+import seedu.brokeMan.exception.CategoryNotCorrectException;
+import seedu.brokeMan.parser.StringToCategory;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -26,7 +28,7 @@ public class SaveIncome {
             myWriter.flush();
             String message = "";
             for (Entry incomeLog : incomes) {
-                message = incomeLog.getAmount() + "/" + incomeLog.getInfo() + "/" + incomeLog.getTime();
+                message = incomeLog.getAmount() + "/" + incomeLog.getInfo() + "/" + incomeLog.getTime() + "/" + incomeLog.getCategory();
             }
             myWriter.write(message);
             myWriter.close();
@@ -52,10 +54,13 @@ public class SaveIncome {
                 try {
                     Income income = new Income(Double.parseDouble(strIncome[0]),
                             strIncome[1],
-                            LocalDateTime.parse(strIncome[2]));
+                            LocalDateTime.parse(strIncome[2]),
+                            StringToCategory.convertStringToCategory(strIncome[3]));
                     IncomeList.addIncome(income);
                 } catch (IndexOutOfBoundsException iobe) {
                     System.out.println("Incorrectly Saved Income");
+                } catch (CategoryNotCorrectException e) {
+                    throw new RuntimeException(e);
                 }
             }
         } catch (IOException ioe) {

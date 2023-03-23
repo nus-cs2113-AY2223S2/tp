@@ -12,7 +12,7 @@ addIncome a/ 600 d/ stocks t/ 2023 03 15 15 10 c/ INVESTMENT
 listIncome
 editIncome i/ 1 t/ amount n/ 700
 editIncome i/ 1 t/ info n/ pay
-editIncome i/ 2 t/ time n/ 2023
+editIncome i/ 2 t/ time n/ 2023 06 10 00 10
 editIncome i/ 2 t/ category n/ OTHERS
 deleteIncome 2
 listIncome
