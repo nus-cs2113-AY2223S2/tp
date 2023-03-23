@@ -40,7 +40,8 @@ public class Storage {
     /**
      * Saves the tasks to the file.
      *
-     * @param tasks The list of tasks to be saved.
+     * @param categories The ArrayList of tasks to be saved.
+     * @param categoryHashMap The HashMap of categories to be saved.
      */
     public void save(ArrayList<Event> categories, HashMap<String, Integer> categoryHashMap) {
         String textToWrite = categoriesToString(categories);

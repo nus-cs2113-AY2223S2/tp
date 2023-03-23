@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import static seedu.moneymind.string.Strings.NEW_LINE;;
+import static seedu.moneymind.string.Strings.NEW_LINE;
 
 /**
  * Reads from a file.
