@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
 
+//@@JeraldChen
 public class Menu {
     public static ArrayList<Symptom> symptoms = new ArrayList<>();
 
@@ -178,10 +179,10 @@ public class Menu {
         return symptoms;
     }
 
+    //@@Jeraldchen
     /**
      * Checks if symptom is valid, and adds it to the list of symptoms.
      *
-     * @author tanyizhe, JeraldChen
      * @param scanner  takes in user input
      * @param symptoms list of symptoms
      */
@@ -197,10 +198,10 @@ public class Menu {
     /**
      * Parses user's input to a Symptom enumerator.
      *
-     * @author Jeraldchen, Geeeetyx
      * @param symptoms       an ArrayList of symptoms.
      * @param symptomChoices an array of strings containing the user's input.
      */
+    //@@Jeraldchen
     private static void parseSymptomInput(ArrayList<Symptom> symptoms, String[] symptomChoices) {
         for (String symptomChoice : symptomChoices) {
             switch (symptomChoice) {
@@ -306,19 +307,6 @@ public class Menu {
      * Displays a list of symptoms for users to pick out their symptoms from.
      */
     private static void displaySymptomList() {
-        /*
-        change to use this method instead of hardcoding when
-        we have better sorting (alphabetical order on enums)
-        can display symptoms and (is it possible to .toString enums?)
-        have more relevant symptoms (e.g. for ADHD you don't go to clinic)
-
-        int count = 1;
-        System.out.println("Please enter a symptom.");
-        for (Symptom symptom : Symptom.values()) {
-            System.out.println(count + ". ");
-            System.out.println(symptom);
-        }
-         */
         //Put all these in a dictionary with the symptom's display name hashed to the actual Symptom.
         System.out.println("---------------------------------------------------");
         System.out.println("Here is the list of possible symptoms:");
