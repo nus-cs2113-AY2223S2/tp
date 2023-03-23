@@ -50,6 +50,9 @@ Besides, this fitness app also help them to calculate the calories consumption f
 
 ###### [Back to table of contents](#table-of-contents)
 
+We aim to help fellow gym enthusiasts and new gym members to help keep
+track of their future and present training.
+=======
 ### UI component
 
 ###### [Back to table of contents](#table-of-contents)
@@ -67,6 +70,14 @@ Besides, this fitness app also help them to calculate the calories consumption f
 ###### [Back to table of contents](#table-of-contents)
 
 ### View component
+The View component is facilitated by `Parser`,`Ui`,`WorkoutList`,`Command` and `ViewCommand`, where the user will enter a specific workout date and the nuber of exercises on that date will be displayed
+
+Below are the specific steps on how to use the view fucntion and how the mechanism will flow:
+
+* Step 1: We will assume that the user has started a workout on two specific dates, `11/02/22` which was added with the following command `/start 11/02/22`
+  and `12/02/22`, which was added with the following command `/start 12/02/22`.
+* Step 2: The user will then use the following command `/view 11/02/22` will be taken into the parser
+  and will return a list of exercises done on that specified date.
 
 ###### [Back to table of contents](#table-of-contents)
 

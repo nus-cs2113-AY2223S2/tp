@@ -1,6 +1,7 @@
-# User Guide
+# User Guide 
+#  ❚·══·❚ Fitz ❚·══·❚
 
-## Introduction
+
 
 Fitness Tracker is for users who are active and trying to keep fit or hit a fitness goal. This app will be 
 displayed and used in CLI format. It is targeted toward those who prefer to use CLI over GUI.
@@ -15,51 +16,63 @@ planning future exercises.
   - [Add exercise: /add](#add-exercise--add)
   - [End current workout: /end](#end-current-workout--end)
   - [Display workout list: /list](#display-workout-list--list)
+  - [Display a workout: /view](#display-workout-view--list)
   - [Delete a workout: /delete](#delete-a-workout--delete)
   - [Exit app: /exit](#exit-app--exit)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
+
+## Introduction 
+This application will help you track your current and future workouts.
 
 ## Quick Start
 
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Fitness Tracker` from [here](https://github.com/AY2223S2-CS2113-T14-1).
+2. Down the latest version of `Fitness Tracker` from [here](https://github.com/AY2223S2-CS2113-T14-1).
+
+
 
 ## Features
 
-### Start a Workout: `/start`
-Starts a new workout on a specific date.
+### Starting a workout: `/start`
+Starts the workout for a specific date
 
 Format: `/start <DD/MM/YY>`
 
-* The date, `DD/MM/YY`, should be entered in the correct format 
+* The `DATE` needs to be in the exact format.
 
 Example of usage: 
 
-`/start 21/03/23`
+`/start 11/03/23`
 
-### Add exercise: `/add`
-Adds an exercise to the current workout. This records the weight used and the number of reps per set
+`/start 21/04/23`
 
-Format: `/add <EXERCISE_NAME> /weight <WEIGHT_USED> /rps <REPS_PER_SET>`
+Expected output:
+```
+Started new workout.
+Use add command to add exercises to your workout!
+```
+### Adding to the workout: `/add`
+Adds to the list of workouts.
+
+Format: `/add <exercise_name> /weight <weight_used> /rps <reps_per_set>`
+
+* The `/start` needs to be inputted first to use the `/add` command.
 
 Example of usage:
 
-`/add Bench Press /weight 100kg /rps 5 5 4 3 3`
+`/add bench press /weight 100 /rps 5 5 5 5`
 
-### End current Workout: `/end`
-Ends the current workout
+`/add leg press /weight 160 /rps 5 5 5 5`
 
-Format: `/end`
-
-Example of usage:
-
-`/start 21/03/23`
-
-### Display workout list: `/list`
-List out all the dates of completed workouts.
+Expected output:
+```
+Added bench press 100 5 5 5 5
+```
+### Listing workout dates: `/list`
+Display the current workout dates
 
 Format: `/list`
 
@@ -67,25 +80,49 @@ Example of usage:
 
 `/list`
 
-### Delete a workout: `/delete`
-Delete a new workout completed on a specific date.
+```
+Here are the list of dates for your workout: 
+Tue Mar 21 00:00:00 SGT 2023
+```
+### Viewing a specific workout: `/view`
+Display the specified workout list
+
+Format: `/view <DD/MM/YY>`
+
+Example of usage:
+
+`/view 21/03/23`
+
+Expected output:
+```
+[bench press 100 5 5 5 5, bench press 100 5 5 5 5]
+```
+### Deleting a specific workout: `/delete`
+Delete the specified workout
 
 Format: `/delete <DD/MM/YY>`
-
-* The date, `DD/MM/YY`, should be entered in the correct format
 
 Example of usage:
 
 `/delete 21/03/23`
 
-### Exit app: `/exit`
-List out all the dates of completed workouts.
+Expected output:
+```
+Workout deleted successfully.
+```
+### Exit the App: `/exit`
+Delete the specified workout
 
 Format: `/exit`
 
 Example of usage:
 
 `/exit`
+
+Expected output:
+```
+Thank you and see you next time
+```
 
 ## FAQ
 
@@ -101,4 +138,3 @@ Example of usage:
 * Display workout list `/list`
 * Delete a workout `/delete <DD/MM/YY>`
 * Exit app `/exit`
-* 

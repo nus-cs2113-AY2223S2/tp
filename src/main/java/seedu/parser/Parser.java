@@ -1,15 +1,16 @@
 package seedu.parser;
 
 
+import seedu.commands.AddCommand;
 import seedu.commands.Command;
+import seedu.commands.DeleteCommand;
+import seedu.commands.EndCommand;
+import seedu.commands.ExitCommand;
+import seedu.commands.HelpCommand;
+import seedu.commands.IncorrectCommand;
 import seedu.commands.ListCommand;
 import seedu.commands.StartCommand;
-import seedu.commands.AddCommand;
-import seedu.commands.DeleteCommand;
-import seedu.commands.ExitCommand;
-import seedu.commands.EndCommand;
-import seedu.commands.IncorrectCommand;
-
+import seedu.commands.ViewCommand;
 import seedu.workout.Exercise;
 
 import java.text.DateFormat;
@@ -48,11 +49,14 @@ public class Parser {
                 return new IncorrectCommand();
             }
             return new ListCommand();
-
+        case "/view":
+            return processView(arguments);
         case "/end":
             return new EndCommand();
         case "/exit":
             return new ExitCommand();
+        case "/help":
+            return new HelpCommand();
         default:
             return new IncorrectCommand();
         }
@@ -99,4 +103,18 @@ public class Parser {
         return new DeleteCommand(date);
     }
 
+    private Command processView(String arguments) {
+        Date date;
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+            date = dateFormat.parse(arguments);
+            System.out.println("Here are the list of exercises on" + date + ":");
+        } catch (ParseException e) {
+            System.out.println("Invalid date format. Please enter the date in the format dd/mm/yy.");
+            return new IncorrectCommand();
+        }
+        return new ViewCommand(date);
+    }
 }
+
+
