@@ -128,10 +128,7 @@ public abstract class Food {
 
     @Override
     public String toString() {
-        return this.name + " from " + this.storeName + " (Calories: " + this.calories + ")" +
-                "(Total Fat: " + this.totalFat + ")" + "(Saturated Fat: " + this.saturatedFat + ")"
-                + "(Dietary Fibre: " + this.dietaryFibre + ")" + "(Carbohydrates: " + this.carbohydrates + ")"
-                + "(Sugar: " + this.sugar + ")" + "(Sodium: " + this.sodium + ")";
+        return this.name + " from " + this.storeName;
     }
     
 }
