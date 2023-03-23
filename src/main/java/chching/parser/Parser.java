@@ -108,10 +108,13 @@ public class Parser {
                 break;
             case "clear income":
                 command = new ClearIncomeCommand();
+                break;
             case "clear expense":
                 command = new ClearExpenseCommand();
+                break;
             case "clear all":
                 command = new ClearAllCommand();
+                break;
             default:
                 command = new InvalidCommand();
             }
