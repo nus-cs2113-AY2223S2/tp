@@ -35,7 +35,6 @@ public class CommandAdd extends Command {
         this.expenseList = expenseList;
         this.parsedInput = parsedInput;
     }
-
     /**
      * Adds an entry into the ArrayList based on the parsed input provided. Currently, if the currency specified does
      * not exist, it is defaulted to SGD.
@@ -43,25 +42,31 @@ public class CommandAdd extends Command {
     @Override
     public CommandRes execute() {
         try {
-            Time date = new Time(LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter));
-            String exchangeRateDate = LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter)
-                    .with(Temporals.previousWorkingDay()).toString();
-            Expense addedExpense = new Expense(currency.roundInput((parsedInput[ParserAdd.AMOUNT_INDEX])),
-                    date, parsedInput[ParserAdd.CATEGORY_INDEX],
-                    Currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]),
-                    Currency.getExchangeRate(exchangeRateDate,
-                            currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX])));
-            expenseList.add(addedExpense);
-            return new CommandRes(SUCCESSFUL_ADD, addedExpense,
-                    ExpenseList.getAllMessage(expenseList));
+            if(LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter).isAfter(LocalDate.now())) {
+                throw new Exception();
+            }else {
+                Time date = new Time(LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter));
+                String exchangeRateDate = LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter)
+                        .with(Temporals.previousWorkingDay()).toString();
+                Expense addedExpense = new Expense(currency.roundInput((parsedInput[ParserAdd.AMOUNT_INDEX])),
+                        date, parsedInput[ParserAdd.CATEGORY_INDEX],
+                        Currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]),
+                        Currency.getExchangeRate(exchangeRateDate,
+                                currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX])));
+                expenseList.add(addedExpense);
+                return new CommandRes(SUCCESSFUL_ADD, addedExpense,
+                        ExpenseList.getAllMessage(expenseList));
+            }
         } catch (NumberFormatException e) {
             System.out.println("Please input a valid amount.");
         } catch (NullPointerException e) {
             System.out.println("Please input both the amount and date with amt/ and t/ respectively.");
         } catch (DateTimeException e) {
             System.out.println("Invalid date. Please input the date in dd-MM-yyyy format.");
+        } catch (Exception e) {
+            System.out.println("Invalid date. Please input a date before today's date.\nToday's date is: " +
+                    LocalDate.now());
         }
-        assert false;
         return null;
     }
 
