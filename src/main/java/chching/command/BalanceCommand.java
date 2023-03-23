@@ -9,7 +9,6 @@ import chching.record.ExpenseList;
 import chching.record.IncomeList;
 import chching.record.TargetStorage;
 
-import java.sql.SQLOutput;
 
 /**
  * Models a class to show the balance. Inherited from Command class.

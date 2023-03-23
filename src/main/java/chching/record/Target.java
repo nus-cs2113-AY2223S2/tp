@@ -1,6 +1,5 @@
 package chching.record;
 
-import java.util.ArrayList;
 
 /**
  * Models a class for a target

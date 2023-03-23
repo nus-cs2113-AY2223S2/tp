@@ -1,7 +1,6 @@
 package chching.parser;
 
 import chching.ChChingException;
-import chching.record.Expense;
 import chching.record.Target;
 
 import java.util.HashMap;
