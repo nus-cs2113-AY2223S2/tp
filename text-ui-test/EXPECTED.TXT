@@ -1,3 +1,4 @@
+
 Hello from
  ____        _
 |  _ \ _   _| | _____
@@ -6,40 +7,4 @@ Hello from
 |____/ \__,_|_|\_\___|
 
 What is your name?
-Hello Akshay Narayan
-Sorry, there are no expenses tracked currently.
-____________________________________________________________
-The currency specified does not exist and is defaulted to SGD, please add a new currency before adding a new expense.
-
-____________________________________________________________
-The following expense is successfully added:
-    SGD2.50 cat:food date:02/02/2012
-Now you have 1 expense in the list.
-____________________________________________________________
-The currency specified does not exist and is defaulted to SGD, please add a new currency before adding a new expense.
-
-____________________________________________________________
-The following expense is successfully added:
-    SGD5.60 cat:food date:02/02/2014
-Now you have 2 expenses in the list.
-____________________________________________________________
-Here are the tasks in your list:
-
-____________________________LIST____________________________
-1.SGD2.50 cat:food date:02/02/2012
-2.SGD5.60 cat:food date:02/02/2014
-Now you have 2 expenses in the list.
-____________________________________________________________
-____________________________________________________________
-The following expense is successfully deleted:
-    SGD2.50 cat:food date:02/02/2012
-Now you have 1 expense in the list.
-____________________________________________________________
-Invalid expense index. Please try again.
-____________________________________________________________
-The following expense is successfully deleted:
-    SGD5.60 cat:food date:02/02/2014
-Now you have 0 expenses in the list.
-____________________________________________________________
-Sorry, there are no expenses tracked currently.
-____________________________________________________________
+Hello James Gosling
