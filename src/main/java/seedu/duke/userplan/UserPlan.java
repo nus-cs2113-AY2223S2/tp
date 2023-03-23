@@ -1,7 +1,12 @@
 package seedu.duke.userplan;
 
 
-import seedu.duke.exceptions.*;
+import seedu.duke.exceptions.DukeError;
+import seedu.duke.exceptions.InvalidAddPlanError;
+import seedu.duke.exceptions.InvalidDateInputError;
+import seedu.duke.exceptions.InvalidFilterInputError;
+import seedu.duke.exceptions.InvalidDeletePlanError;
+import seedu.duke.exceptions.InvalidPlanError;
 
 import java.util.ArrayList;
 
