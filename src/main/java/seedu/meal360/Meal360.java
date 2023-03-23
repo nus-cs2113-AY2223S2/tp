@@ -152,6 +152,9 @@ public class Meal360 {
                 } else if (command[1].equals("/delete")) {
                     ui.printMessage("I've deleted the recipe from your weekly plan!");
                     weeklyPlan.deletePlan(recipeMap);
+                } else if (command[1].equals("/clear")) {
+                    weeklyPlan.clearPlan();
+                    ui.printMessage("I've cleared your entire weekly plan!");
                 }
             } catch (NumberFormatException e) {
                 String errorMessage = String.format("Please enter a valid number as the last argument.");
@@ -162,6 +165,10 @@ public class Meal360 {
                 String errorMessage = String.format("Insufficient number of arguments provided.");
                 ui.printMessage(errorMessage);
             }
+            ui.printSeparator();
+        } else if (command[0].equals("weeklyingredients"))  {
+            ui.printSeparator();
+            ui.printWeeklyIngredients(weeklyPlan, recipeList);
             ui.printSeparator();
         } else if (command[0].equals("weeklyplan")) {
             ui.printSeparator();

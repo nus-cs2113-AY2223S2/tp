@@ -2,10 +2,14 @@ package seedu.meal360;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.LocalDate;
 
 public class Parser {
 
     Ui ui = new Ui();
+    Exceptions exceptions = new Exceptions();
 
     public String combineWords(String[] input, int startIndex, int length) {
         StringBuilder word = new StringBuilder(input[startIndex]);
@@ -167,6 +171,7 @@ public class Parser {
     }
 
     public String parseDeleteRecipe(String[] input, RecipeList recipeList) {
+        assert input[0].equals("delete");
         // user inputted recipe name
         if (input[1].contains("r/")) {
             // skip over /r in recipe name
@@ -317,7 +322,7 @@ public class Parser {
     }
 
     public WeeklyPlan parseWeeklyPlan(String[] command, RecipeList recipes) {
-        if (!command[1].equals("/add") && !command[1].equals("/delete")) {
+        if (!command[1].equals("/add") && !command[1].equals("/delete") && !command[1].equals("/clear")) {
             throw new IllegalArgumentException(
                     "Please indicate if you would want to add or delete the recipe from your weekly "
                             + "plan.");
@@ -343,6 +348,16 @@ public class Parser {
             return thisWeekPlan;
         } else {
             throw new IllegalArgumentException("Please indicate a valid recipe name.");
+        }
+    }
+
+    // parser to read dd/mm/yyyy format as local date catching invalid date format
+    public LocalDate parseDate(String input) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        try {
+            return LocalDate.parse(input, formatter);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Please enter a valid date in the format dd/mm/yyyy");
         }
     }
 
