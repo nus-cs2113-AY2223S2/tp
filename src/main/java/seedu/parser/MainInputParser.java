@@ -1,6 +1,24 @@
 package seedu.parser;
 
-import seedu.commands.*;
+import seedu.commands.Command;
+import seedu.commands.EditCommand;
+import seedu.commands.HelpCommand;
+import seedu.commands.DeleteCommand;
+import seedu.commands.ExitCommand;
+import seedu.commands.ViewExpenditureCommand;
+import seedu.commands.AcademicExpenditureCommand;
+import seedu.commands.AccommodationExpenditureCommand;
+import seedu.commands.EntertainmentExpenditureCommand;
+import seedu.commands.FoodExpenditureCommand;
+import seedu.commands.OtherExpenditureCommand;
+import seedu.commands.TransportExpenditureCommand;
+import seedu.commands.TuitionExpenditureCommand;
+import seedu.commands.LendExpenditureCommand;
+import seedu.commands.BorrowExpenditureCommand;
+import seedu.commands.InvalidCommand;
+import seedu.commands.UnmarkCommand;
+import seedu.commands.MarkCommand;
+import seedu.commands.SortCommand;
 
 public class MainInputParser {
     public static final int LIMIT = 2;
