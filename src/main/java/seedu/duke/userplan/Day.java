@@ -2,6 +2,12 @@ package seedu.duke.userplan;
 
 //@@author Khulon
 public class Day {
+    /**
+     * Method to convert integer to string according to the day of the week
+     *
+     * @param day the day that the event starts from
+     * @return the string that was converted from an integer
+     */
     public static String intToDay(int day) {
         switch (day) {
         case 0:
@@ -23,6 +29,12 @@ public class Day {
         }
     }
 
+    /**
+     * Method to convert string to integer according to the day of the week
+     *
+     * @param day the day that the event starts from
+     * @return the integer that was converted from a string
+     */
     public static int dayToInt(String day) {
         switch (day) {
         case "monday":

@@ -12,19 +12,36 @@ import static seedu.duke.userplan.Day.intToDay;
 public class UserPlan {
     private static final Integer DAYSINAWEEK = 7;
     private static ArrayList<Plan>[] plan;
+    /**
+     * initialize new UserPlan
+     */
     public UserPlan() {
         this.plan = new ArrayList[DAYSINAWEEK];
         for (int i = 0; i < DAYSINAWEEK; i++) {
             plan[i] = new ArrayList<>();
         }
     }
+
+    /**
+     * get the Plan
+     *
+     * @return the plan
+     */
     public static ArrayList<Plan>[] getPlan() {
         return plan;
     }
 
+    /**
+     * get the exercise plan that of the plan that matches name input by user
+     *
+     * @param planName the name of the plan
+     * @return the exercise plan or null if not found
+     */
     public static ArrayList<String> getExercisePlan(String planName){
+        System.out.println("1:"+planName);
         for(int day = 0; day < DAYSINAWEEK; day++) {
             for(int exercisePlan = 0; exercisePlan < plan[day].size(); exercisePlan++){
+                System.out.println("2:"+plan[day].get(exercisePlan).getPlanName());
                 if (plan[day].get(exercisePlan).getPlanName().equals(planName)) {
                     return plan[day].get(exercisePlan).getExercisePlans();
                 }
@@ -33,6 +50,11 @@ public class UserPlan {
         return null;
     }
 
+    /**
+     * add a plan
+     *
+     * @param userCommands the commands input by user
+     */
     public static void addPlan(String[] userCommands){
         ArrayList<String> exerciseFilters = new ArrayList<>();
         if (userCommands.length < 4) {
@@ -60,6 +82,11 @@ public class UserPlan {
         System.out.println("[" + name + "] added to " + intToDay(intDay));
     }
 
+    /**
+     * delete a plan
+     *
+     * @param userCommands the commands input by user
+     */
     public static void deletePlan(String[] userCommands) {
         if (userCommands.length != 3){
             System.out.println("invalid delete command");
