@@ -10,12 +10,12 @@ import functionalities.ui.Ui;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 
 public class SniffTasks {
 
     private static final ArrayList<Appointment> APPOINTMENTS = new ArrayList<>();
-    private static final HashMap<String, Integer> UIDS = new HashMap<>();
+    private static final HashSet<String> UIDS = new HashSet<>();
 
     private static int appointmentCount = 0;
 
@@ -23,10 +23,10 @@ public class SniffTasks {
                                 LocalDate date, LocalTime time) throws SniffException {
         try {
             String uid = Uid.uidGenerator("C");
-            while (UIDS.containsKey(uid)) { // this loop checks for duplicate appointment ids
+            while (UIDS.contains(uid)) { // this loop checks for duplicate appointment ids
                 uid = Uid.uidGenerator("C");
             }
-            UIDS.put(uid, appointmentCount);
+            UIDS.add(uid);
             Appointment newAppointment = new Consultation(uid, animal, owner, date, time);
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
@@ -40,12 +40,12 @@ public class SniffTasks {
                                LocalDate date, LocalTime time, String vaccine) throws SniffException {
         try {
             String uid = Uid.uidGenerator("V");
-            while (UIDS.containsKey(uid)) { // this loop checks for duplicate appointment ids
-                uid = Uid.uidGenerator("V");
+            while (UIDS.contains(uid)) { // this loop checks for duplicate appointment ids
+                uid = Uid.uidGenerator("C");
             }
+            UIDS.add(uid);
             Appointment newAppointment = new Vaccination(uid, animal, owner, date, time, vaccine);
             APPOINTMENTS.add(newAppointment);
-            UIDS.put(uid, appointmentCount);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
         } catch (StringIndexOutOfBoundsException e) {
@@ -58,10 +58,10 @@ public class SniffTasks {
                            LocalDate endDate, LocalTime endTime) throws SniffException {
         try {
             String uid = Uid.uidGenerator("S");
-            while (UIDS.containsKey(uid)) { // this loop checks for duplicate appointment ids
-                uid = Uid.uidGenerator("S");
+            while (UIDS.contains(uid)) { // this loop checks for duplicate appointment ids
+                uid = Uid.uidGenerator("C");
             }
-            UIDS.put(uid, appointmentCount);
+            UIDS.add(uid);
             Appointment newAppointment =
                     new Surgery(uid, animal, owner, priority, startDate, startTime, endDate, endTime);
             APPOINTMENTS.add(newAppointment);
@@ -74,13 +74,19 @@ public class SniffTasks {
 
     public void removeAppointment(String uid) throws SniffException {
         try {
-            if (!UIDS.containsKey(uid)) {
+            if (!UIDS.contains(uid)) {
                 throw new SniffException(" There are no appointments with this ID.");
             }
-            int index = UIDS.get(uid);
+            int index = 0;
+            for (int i = 0; i < appointmentCount; i++) {
+                if (uid.equals(APPOINTMENTS.get(i).uid)) {
+                    index = i;
+                    break;
+                }
+            }
             Appointment temp = APPOINTMENTS.get(index);
             APPOINTMENTS.remove(index);
-            UIDS.remove(uid, index);
+            UIDS.remove(uid);
             Ui.printAppointmentRemovedMessage(temp);
             appointmentCount--;
             assert appointmentCount >= 0 : "Appointment count cannot be less than 0";

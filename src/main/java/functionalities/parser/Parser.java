@@ -42,7 +42,7 @@ public class Parser {
         return command;
     }
 
-    public static void parseConsultationCommand(String task) throws SniffException {
+    private static void parseConsultationCommand(String task) throws SniffException {
         try {
             int animalTypeIndex = task.indexOf("at/");
             int animalNameIndex = task.indexOf("an/");
@@ -66,7 +66,7 @@ public class Parser {
         }
     }
 
-    public static void parseVaccinationCommand(String task) throws SniffException {
+    private static void parseVaccinationCommand(String task) throws SniffException {
         try {
             int animalTypeIndex = task.indexOf("at/");
             int animalNameIndex = task.indexOf("an/");
@@ -93,7 +93,7 @@ public class Parser {
         }
     }
 
-    public static void parseSurgeryCommand(String task) throws SniffException {
+    private static void parseSurgeryCommand(String task) throws SniffException {
         try {
             int animalTypeIndex = task.indexOf("at/");
             int animalNameIndex = task.indexOf("an/");

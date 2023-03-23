@@ -7,7 +7,7 @@ import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class ConsulationCommandTest {
+class ConsultationCommandTest {
 
     @Test
     void consultationCommandNotNull() {
@@ -22,3 +22,5 @@ class ConsulationCommandTest {
         assertNotNull(c);
     }
 }
+
+
