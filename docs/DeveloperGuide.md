@@ -38,9 +38,9 @@ The `UI` component,
 This section describes some noteworthy details on how certain features are implemented.  
 <p>&nbsp;</p>
 
-### [Proposed] View feature
+## [Proposed] View feature
 
-#### Proposed Implementation
+### Proposed Implementation
 
 The proposed view mechanism is facilitated by `ViewUserCommand`. It extends `Command` and overrides the 
 `execute` method in the `Command` class. 
@@ -54,7 +54,7 @@ Step 1. The user launches the application and calls the `view` command. The `Vie
 with the current user and meal storage state. `user` and `meals` will point to the user storage and meal state 
 respectively.
 
-> Insert Image of the UML diagram
+<img src="uml/ViewUserCommandSD1.png" alt="Sequence Diagram 1" width="500">
 
 
 The user will then be presented with a menu showing the different user details he can view as seen in the code
@@ -76,7 +76,7 @@ Step 2. The user chooses to view his weight by inputting the number `2` to choos
 This calls the getter method `getWeight()` in the entity `User` to return the current weight of the user
 and initializes the variable `weight` with that value. 
 
-> Insert UML diagram showing how getWeight is accessed.
+<img src="uml/ViewUserCommandSD2.png" alt="Sequence Diagram 2" width="500">
 
 It then prints to screen the weight of the user like in the code snippet below.
 
@@ -91,7 +91,7 @@ Step 3. The user chooses to continue viewing by inputting the number `1` and cho
 by inputting the number `6`. This calls the getter method `getCaloricLimit()` in the entity `User` to return the
 current daily caloric limit of the user and initializes the variable `caloricLimit` with that value. 
 
-> Insert UML diagram showing how getWeight is accessed.
+<img src="uml/ViewUserCommandSD3.png" alt="Sequence Diagram 2" width="500">
 
 It then prints to screen the daily caloric limit of the user like in the code snippet below.
 
