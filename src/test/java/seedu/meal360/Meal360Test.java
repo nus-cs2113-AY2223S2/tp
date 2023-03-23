@@ -78,30 +78,17 @@ class Meal360Test {
         assertEquals(3, (int) recipe.getIngredients().get("lettuce"));
 
         // Testing exceptions
-        try {
-            parser.parseViewRecipe(new String[]{"view"}, recipes);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            assertTrue(true);
-        }
+        assertThrows(ArrayIndexOutOfBoundsException.class,
+                () -> parser.parseViewRecipe(new String[]{"view"}, recipes));
 
-        try {
-            parser.parseViewRecipe(new String[]{"view", "a"}, recipes);
-        } catch (NumberFormatException e) {
-            assertTrue(true);
-        }
+        assertThrows(NumberFormatException.class,
+                () -> parser.parseViewRecipe(new String[]{"view", "a"}, recipes));
 
-        try {
-            parser.parseViewRecipe(new String[]{"view", "5"}, recipes);
-        } catch (IndexOutOfBoundsException e) {
-            assertTrue(true);
-        }
+        assertThrows(IndexOutOfBoundsException.class,
+                () -> parser.parseViewRecipe(new String[]{"view", "5"}, recipes));
 
-        try {
-            parser.parseViewRecipe(new String[]{"view", "0"}, recipes);
-        } catch (IndexOutOfBoundsException e) {
-            assertTrue(true);
-        }
-
+        assertThrows(IndexOutOfBoundsException.class,
+                () -> parser.parseViewRecipe(new String[]{"view", "0"}, recipes));
     }
 
     @Test
@@ -246,12 +233,37 @@ class Meal360Test {
                 new String[]{"weekly", "/multidelete", "/r", "burgers", "/r", "pizza"}, recipes));
 
         assertThrows(IllegalArgumentException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multidelete", "burger", "pizza", "salad"},
-                recipes));
+                new String[]{"weekly", "/multidelete", "burger", "pizza", "salad"}, recipes));
 
         assertThrows(InvalidRecipeNameException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multidelete", "/r", "burger", "/q", "1", "/r", "pizza"},
-                recipes));
+                new String[]{"weekly", "/multidelete", "/r", "burger", "/q", "1", "/r", "pizza"}, recipes));
+    }
+
+    @Test
+    public void testClearWeeklyPlan() {
+        WeeklyPlan weeklyPlan = new WeeklyPlan();
+        weeklyPlan.put("salad", 1);
+        weeklyPlan.put("pizza", 3);
+
+        // Testing clearing weekly plan
+        weeklyPlan.clearPlan();
+        assertEquals(weeklyPlan.size(), 0);
+    }
+
+    @Test
+    public void testViewIngredients() {
+
+        HashMap<String, Integer> pastaIngredients = new HashMap<>();
+        pastaIngredients.put("penne", 1);
+        Recipe pasta = new Recipe("pasta", pastaIngredients);
+        recipes.add(pasta);
+
+        WeeklyPlan weeklyPlan = new WeeklyPlan();
+        weeklyPlan.put("pasta", 1);
+
+        ui.printWeeklyIngredients(weeklyPlan, recipes);
+        assertEquals(ui.formatMessage("Here are your weekly ingredients:") + System.lineSeparator()
+                + ui.formatMessage("penne (1)"), outContent.toString().trim());
     }
 
     @Test

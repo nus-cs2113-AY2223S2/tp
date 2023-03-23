@@ -23,4 +23,9 @@ public class WeeklyPlan extends HashMap<String, Integer> {
             }
         });
     }
+
+    public void clearPlan() {
+        this.clear();
+    }
+
 }

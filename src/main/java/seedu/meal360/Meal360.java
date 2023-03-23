@@ -15,7 +15,7 @@ public class Meal360 {
     private static final Ui ui = new Ui();
     private static final Parser parser = new Parser();
     private static final Database database = new Database();
-    private static RecipeList recipeList;
+    private static RecipeList recipeList = new RecipeList();
     private static final WeeklyPlan weeklyPlan = new WeeklyPlan();
 
     public static void startApp() {
@@ -38,7 +38,9 @@ public class Meal360 {
     }
 
     public static void receiveInput(String input) {
+        input = input.replaceAll("\\s+", " ");
         String[] command = input.trim().split(" ");
+
         if (input.equalsIgnoreCase("bye")) {
             canExit = true;
         } else if (command[0].equals("delete")) {
@@ -75,7 +77,8 @@ public class Meal360 {
                 RecipeList recipeListToPrint = parser.parseListRecipe(command, recipeList);
                 ui.listRecipe(recipeListToPrint);
             } catch (IllegalArgumentException e) {
-                String errorMessage = "Please enter the command in the valid format. Some arguments might be missing.";
+                String errorMessage =
+                        "Please enter the command in the valid format. Some arguments might " + "be missing.";
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
@@ -87,6 +90,9 @@ public class Meal360 {
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
                 String errorMessage = "Please enter a valid recipe name.";
+                ui.printMessage(errorMessage);
+            } catch (NullPointerException e) {
+                String errorMessage = "Recipe already exists. Add a new recipe.";
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
@@ -109,6 +115,9 @@ public class Meal360 {
                         "Please enter a valid recipe number. You entered %s, " + "which is out of bounds.",
                         command[1]);
                 ui.printMessage(errorMessage);
+            } catch (NullPointerException e) {
+                String errorMessage = "Recipe doesn't exist for editing.";
+                ui.printMessage(errorMessage);
             }
             ui.printSeparator();
         } else if (command[0].equals("tag")) {
@@ -128,17 +137,34 @@ public class Meal360 {
             try {
                 ui.printSeparator();
                 WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipeList);
-                if (command[1].equals("/add") || command[1].equals("/multiadd")) {
+
+                switch (command[1]) {
+                case "/add":
+                case "/multiadd":
                     weeklyPlan.addPlans(recipeMap);
                     ui.printMessage("I've added the recipes to your weekly plan!");
-                } else if (command[1].equals("/delete") || command[1].equals("/multidelete")) {
+                    break;
+                case "/delete":
+                case "/multidelete":
                     weeklyPlan.deletePlans(recipeMap);
                     ui.printMessage("I've deleted the recipes from your weekly plan!");
+                    break;
+                case "/clear":
+                    weeklyPlan.clearPlan();
+                    ui.printMessage("I've cleared your entire weekly plan!");
+                    break;
+                default:
+                    ui.printMessage("Please enter a valid command.");
+                    break;
                 }
             } catch (IllegalArgumentException | InvalidNegativeValueException | InvalidRecipeNameException |
                      ArrayIndexOutOfBoundsException e) {
                 ui.printMessage(e.getMessage());
             }
+            ui.printSeparator();
+        } else if (command[0].equals("weeklyingredients")) {
+            ui.printSeparator();
+            ui.printWeeklyIngredients(weeklyPlan, recipeList);
             ui.printSeparator();
         } else if (command[0].equals("weeklyplan")) {
             ui.printSeparator();
@@ -172,6 +198,7 @@ public class Meal360 {
     }
 
     public static void main(String[] args) {
+
         startApp();
 
         String line;
