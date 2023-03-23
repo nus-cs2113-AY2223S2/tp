@@ -1,9 +1,9 @@
 package seedu.pocketpal.data.entrylog;
 
-import com.google.gson.Gson;
 import seedu.pocketpal.communication.Serialisable;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
+import seedu.pocketpal.data.parsing.EntryLogParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -157,6 +157,6 @@ public class EntryLog implements Serialisable {
 
     @Override
     public String serialise() {
-        return new Gson().toJson(entries);
+        return EntryLogParser.serialise(this);
     }
 }

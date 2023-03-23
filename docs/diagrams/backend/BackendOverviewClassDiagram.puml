@@ -1,0 +1,23 @@
+@startuml
+title Backend Overview
+
+class Backend
+interface Requestable
+class Request
+class Response
+abstract class Endpoint
+class EntryEndpoint
+class EntriesEndpoint
+class Storage
+
+Endpoint <|.. Requestable
+EntryEndpoint <|-- Endpoint
+EntriesEndpoint <|-- Endpoint
+
+Backend --> Storage
+Backend --> EntryEndpoint
+Backend --> EntriesEndpoint
+Backend ..> Request
+Backend ..> Response
+
+@enduml
