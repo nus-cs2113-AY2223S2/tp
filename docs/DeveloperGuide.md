@@ -144,7 +144,8 @@ then returns the `Recipe` object stored at that index using `recipeList.get()`
 for the recipe. The method then follows a similar approach for the steps in the recipe, calling `Recipe#getStepList`
 and then `StepList#showStepList()`.
 
-
+> The following sequence diagram shows how the recipe view feature works:
+![Sequence Diagram for Recipe View](./PlantUML/Recipe_View.png)
 
 ### Recipe Storage Feature
 
