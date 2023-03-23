@@ -3,6 +3,7 @@ package seedu.duke;
 import command.CommandAdd;
 import command.CommandDelete;
 import command.CommandList;
+import command.CommandSort;
 import data.ExpenseList;
 import parser.Parser;
 
@@ -43,6 +44,9 @@ public class Duke {
                 break;
             case "list":
                 new CommandList(expenseList.getExpenseList()).run();
+                break;
+            case "sort":
+                new CommandSort(expenseList.getExpenseList(), parser.extractSortBy(input)).execute();
                 break;
             default:
                 System.out.println("Unknown command.");
