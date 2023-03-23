@@ -11,6 +11,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -101,14 +104,43 @@ public class Storage {
                 }
                 diagnosisHistory.add(diagnosis);
             }
+            Hashtable<String, ArrayList<String>> medicineHistory = readMedicineHistoryFromFile(scanner);
 
             int hash = Integer.parseInt(password);
-            Patient patient = new Patient(name, hash, diagnosisHistory);
+            Patient patient = new Patient(name, hash, diagnosisHistory, medicineHistory);
             Information.storePatientInfo(hash, patient);
         }
         scanner.close();
     }
+    //@@author tanyizhe
+    /**
+     * Reads medicine history data from data storage file.
+     * @param scanner Scanner that scans user input.
+     * @return Hashtable with key String and value ArrayList of Strings recording Medicine History of patient.
+     * @throws CorruptedDataException Exception occurs when file has records more medicines than expected.
+     */
+    private static Hashtable<String, ArrayList<String>> readMedicineHistoryFromFile(Scanner scanner)
+            throws CorruptedDataException {
 
+        int numberOfMedicineEntries = Integer.parseInt(scanner.nextLine());
+        Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable();
+
+        for (int entry = 0; entry < numberOfMedicineEntries; entry++) {
+            String dateMedicineString = scanner.nextLine();
+            if (endOfFile(dateMedicineString)) {
+                logger.log(Level.WARNING, "Corrupted data file");
+                throw new CorruptedDataException();
+            }
+            String[] splitDateMedicineStrings = dateMedicineString.split(" ");
+            ArrayList<String> medicines = new ArrayList<>();
+            for (int medStringCount = 1; medStringCount < splitDateMedicineStrings.length; medStringCount++) {
+                medicines.add(splitDateMedicineStrings[medStringCount]);
+            }
+            medicineHistory.put(splitDateMedicineStrings[0], medicines);
+        }
+        return medicineHistory;
+    }
+    //@@author Thunderdragon221
     /**
      * Writes to the patient-data file to save all patients' data DoctorDuke currently has.
      */
@@ -121,6 +153,8 @@ public class Storage {
                 int password = patient.getPassword();
                 ArrayList<String> diagnosisHistory = patient.getPatientDiagnosisHistory();
                 int numberOfDiagnoses = diagnosisHistory.size();
+                Hashtable<String, ArrayList<String>> medicineHistory = patient.getPatientMedicineHistory();
+                int numberOfMedicines = medicineHistory.size();
 
                 writer.write(password + "\n");
                 writer.write(name + "\n");
@@ -128,6 +162,8 @@ public class Storage {
                 for (String diagnosis : diagnosisHistory) {
                     writer.write(diagnosis + "\n");
                 }
+                writer.write(numberOfMedicines + "\n");
+                writeMedicineHistory(writer, medicineHistory);
             }
             writer.close();
         } catch (IOException e) {
@@ -135,7 +171,26 @@ public class Storage {
             System.out.println("ERROR: Unable to save data to file.");
         }
     }
-
+    //@@author tanyizhe
+    /**
+     * Writes medicine history of patient to data file for storage.
+     * @param writer Writer that writes onto a file.
+     * @param medicineHistory Hashtable with key String with value of patient's medicine History
+     * @throws IOException Exception thrown when file cannot be written on or found.
+     */
+    private static void writeMedicineHistory(FileWriter writer, Hashtable<String,
+                ArrayList<String>> medicineHistory) throws IOException {
+        List<String> dates = Collections.list(medicineHistory.keys());
+        Collections.sort(dates);
+        for (String date : dates) {
+            writer.write(date + " ");
+            for (String medString : medicineHistory.get(date)) {
+                writer.write(medString + " ");
+            }
+        }
+        writer.write("\n");
+    }
+    //@@author Thunderdragon221
     /**
      * Checks whether the end of the file has been reached.
      *

@@ -1,27 +1,32 @@
 # User Guide
 
-## Introduction
+# Introduction
 
-Doctor Duke is a desktop app for diagnosing patients who have mild illnesses, 
-optimised for use via a Command Line Interface (CLI). Doctor Duke can diagnose illnesses and dispense medicine accordingly faster 
-than visiting a General Practitioner.
+Doctor Duke is a desktop app for diagnosing patients who have **_mild_** illnesses, 
+optimised for use via a Command Line Interface (CLI). 
 
-## Quick Start
+Doctor Duke can diagnose illnesses and suggest medicine accordingly faster than visiting a General Practitioner.
 
+# Start Guide
 
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of `Duke` from [here](http://link.to/duke).
-3. Download the jar file from the latest release.
-4. Copy the file to the folder you want to use as the home folder for your Duke.
-5. Run the jar file using the command `java -jar {filename}.jar` in the terminal. Make sure you are in the same directory as the jar file.
+2. Down the latest version of **Doctor Duke** from [this GitHub repo](https://github.com/AY2223S2-CS2113-W13-1/tp/releases/tag/v1.0).
+3. Download the jar file from the latest release, labelled as **Tp.main.jar**.
+4. Place the file in the folder you want to use as the home folder for your Duke.
+5. Run the jar file via double-clicking on the JAR file, or by copying the file path and entering the following
+   command into your terminal:
 
-## Features (Before Registering and Logging in) 
+   ~~~
+   java -jar "C:\Users\Albert\Desktop\Tp.main.jar"
+   ~~~
 
-### Register, Login and Exit: `1, 2, 3`
-Dr Duke's welcome message will be displayed. You can register, login or exit the program.
+# User Guide
+Upon starting Doctor Duke, you will be greeted with a welcome message, 
 
-Welcome Message: 
-```
+A menu with options for registering and/or logging in will be shown.
+
+Expected outcome:
+~~~
 Hello I am
  ____         ____        _        
 |  _ \  ___  |  _ \ _  _ | | _____ 
@@ -29,137 +34,362 @@ Hello I am
 | |_| | |    | |_| | |_| |   <  __/
 |____/|_|    |____/ \__,_|_|\_\___|
 
+---------------------------------------------------
 What would you like to do? Please enter the number:
 1. Register
 2. Login
 3. Exit
-```
+---------------------------------------------------
+~~~
 
-Format: Press `1` or `2` or `3` to register, login or exit the program.
+# Register, Log In, Exiting
 
-Example of usage: 
-`1`
+### 1. Registering
+A new patient can register him/herself into Doctor Duke, by keying in his/her name and a password.
 
-Expected outcome: 
-```
-Please enter your name: {Patient to key in name}
+Format: Enter ``1`` to register.
 
-Please enter your password: {Patient to key in password}
-
-PLease re-enter your password: {Patient to key in password again}
-
-Registration successful!
-```
-
-Example of usage: `2`
-
-Expected outcome: 
-```
+Expected Outcome: 
+~~~
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1. Register
+2. Login
+3. Exit
+---------------------------------------------------
+1
+---------------------------------------------------
 Please enter your name: 
 Demo
+---------------------------------------------------
 Please enter your password: 
-1
+3
+-------------------------------
+Please re-enter your password: 
+3
+---------------------------------------------------
+Registration successful!
+---------------------------------------------------
+~~~
+
+### Logging In
+Format: Press ``2`` to register.
+
+Expected outcome: 
+~~~
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1. Register
+2. Login
+3. Exit
+---------------------------------------------------
+2
+---------------------------------------------------
+Please enter your name: 
+Demo
+---------------------------------------------------
+Please enter your password: 
+3
+---------------------------------------------------
 Login successful!
 Welcome Demo!
+---------------------------------------------------
+~~~
+
+### Exiting
+
+Format: Press ``3`` to exit.
+
+Expected Outcome:
+~~~
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1. Register
+2. Login
+3. Exit
+---------------------------------------------------
+3
+---------------------------------------------------
+Thank you for using
+ ____         ____        _        
+|  _ \  ___  |  _ \ _  _ | | _____ 
+| | | |/ _ \ | | | | | | | |/ / _ \
+| |_| | |    | |_| | |_| |   <  __/
+|____/|_|    |____/ \__,_|_|\_\___|
+---------------------------------------------------
+~~~
+
+# After Registering and/or Logging in
+
+Upon registering and/or logging in, the following menu will be shown.
+
+~~~
+---------------------------------------------------
+Login successful!
+Welcome Demo!
+---------------------------------------------------
 What would you like to do? Please enter the number:
 1. Report symptoms
 2. View diagnosis history
 3. Reset diagnosis history
-4. Exit
-```
+4. Reset symptoms
+5. View Medicine history
+6. Exit
+---------------------------------------------------
+~~~
 
-Example of usage: `3`
-
-```
-Thank you for using Dr Duke!
-```
-
-## Features (After Registering and Logging in)
-
-### Report Symptoms: `1`
-Patient can report their symptoms and Dr Duke will diagnose the patient's illness and dispense medicine accordingly.
+### 1. Report Symptoms
+The patient can choose what symptoms they have for Doctor Duke to diagnose.\
 
 Format: `1`
 
-Example of usage: `1`
+A list of symptoms will then be displayed to the user. \
 
-Expected outcome: 
-```
+~~~
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1. Report symptoms
+2. View diagnosis history
+3. Reset diagnosis history
+4. Reset symptoms
+5. View Medicine history
+6. Exit
+---------------------------------------------------
+1
+---------------------------------------------------
 Here is the list of possible symptoms:
 a. Fever
 b. Dry Cough
-c. Cough with phlegm
-d. Runny nose
-e. Headache
-f. Chills
-g. Fatigue
-h. Sneezing
-i. Blocked Nose
-Please enter a symptom.
-f
-Do you have any other symptoms? [Y/N]
-y
-Here is the list of possible symptoms:
-a. Fever
-b. Dry Cough
-c. Cough with phlegm
-d. Runny nose
-e. Headache
-f. Chills
-g. Fatigue
-h. Sneezing
-i. Blocked Nose
+c. Cough with Phlegm
+d. Throat Irritation
+e. Loss of Taste or Smell
+f. Runny nose
+g. Headache
+h. Chills
+i. Fatigue
+j. Sneezing
+k. Blocked Nose
+l. Itchy eyes
+m. Red eyes
+n. Diarrhoea
+o. Stomachache
+p. Wet Stools
+q. Hard or Lumpy Stools
+r. Nausea
+s. Vomiting
+t. Sleeplessness
+u. Blurred Vision
+v. Sensitivity to Light and Sound
+w. Muscle ache
+x. Backache
 
 Please enter a symptom.
-g
-Do you have any other symptoms? [Y/N]
-y
-Here is the list of possible symptoms:
-a. Fever
-b. Dry Cough
-c. Cough with phlegm
-d. Runny nose
-e. Headache
-f. Chills
-g. Fatigue
-h. Sneezing
-i. Blocked Nose
+---------------------------------------------------
 
+~~~
+The patient will then key in his/her symptoms accordingly, by keying in 'a' for fever, 'b' for Dry cough, 
+so on and so forth, in one string or with spaces.
+
+Both forms yield the same expected result.
+
+Expected outcome:
+~~~
 Please enter a symptom.
-h
+---------------------------------------------------
+abc
 Do you have any other symptoms? [Y/N]
 n
 Your entered symptoms are: 
-[CHILLS, FATIGUE, SNEEZING]
+[FEVER, DRY_COUGH, COUGH_WITH_PHLEGM]
+~~~
+~~~
+Please enter a symptom.
+---------------------------------------------------
+a b c
+Do you have any other symptoms? [Y/N]
+n
+Your entered symptoms are: 
+[FEVER, DRY_COUGH, COUGH_WITH_PHLEGM]
+~~~
+
+The patient may key in ``Y`` or ``y`` to continue reporting symptoms.
+
+After reporting their symptoms, Doctor Duke will then diagnose the patient, by:
+1. showing what illness the patient might have,
+2. and then displaying what medicine the patient should consume.
+
+Expected Outcome:
+~~~
+Please enter a symptom.
+---------------------------------------------------
+a b c
+Do you have any other symptoms? [Y/N]
+n
+Your entered symptoms are: 
+[FEVER, DRY_COUGH, COUGH_WITH_PHLEGM]
+---------------------------------------------------
 You may have: 
-General Flu 66.66666666666666%
-Medication for: General Flu
-    Ibuprofen / Dosage: 1 or 2 pills every 4 to 6 hours
-    Aspirin / Dosage: 1 or 2 pills every 4 to 6 hours
-    Robitussin / Dosage: 20ml every 12 hours
-```
+Sore Throat    Match: 66.66666666666666%
+Fever    Match: 100.0%
+---------------------------------------------------
+Medication for: Sore Throat
+    Lozenges / Dosage: When you feel pain from sore throat
+Medication for: Fever
+    Paracetamol / Dosage: 1 or 2 pills up to 3 times a day
+---------------------------------------------------
+~~~
 
-### View Diagnosis History: `2`
-Patient can view their diagnosis history.
+### 2. View Diagnosis History
+The patient can view his/her diagnosis history.
 
-Format: `2`
-
-Example of usage: `2`
+Format: Press `2` to view diagnosis history.
 
 Expected outcome: 
 ```
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1. Report symptoms
+2. View diagnosis history
+3. Reset diagnosis history
+4. Reset symptoms
+5. View Medicine history
+6. Exit
+---------------------------------------------------
+2
+---------------------------------------------------
 Your diagnosis history is: 
-General Flu
+---------------------------------------------------
+Sore Throat
+Fever
+---------------------------------------------------
 ```
 
-### Reset Diagnosis History: `3`
-Patient can reset their diagnosis history.
+### 3. Reset Diagnosis History
+The patient can choose to reset his/her diagnosis history.
 
-Format: `3`
+Format: Enter `3` to reset diagnosis history.
 
-Example of usage: `3`
+To test if the diagnosis history has been reset, enter `2` afterwards to check the diagnosis history.
 
 Expected outcome: 
 ```
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1. Report symptoms
+2. View diagnosis history
+3. Reset diagnosis history
+4. Reset symptoms
+5. View Medicine history
+6. Exit
+---------------------------------------------------
+3
+---------------------------------------------------
 Your diagnosis history has been reset.
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1. Report symptoms
+2. View diagnosis history
+3. Reset diagnosis history
+4. Reset symptoms
+5. View Medicine history
+6. Exit
+---------------------------------------------------
+2
+---------------------------------------------------
+You have no past diagnoses
+---------------------------------------------------
 ```
+
+### 4. Reset Symptoms
+The patient can choose to reset his/her entered symptoms.
+
+Format: Enter `4` to reset entered symptoms.
+
+If the patient has not entered any symptoms prior to this, Doctor Duke will prompt the patient.\
+We assume this occurs after the patient first logs in and attempts to reset the non-existent symptoms.
+
+Expected outcome (if no symptoms were entered prior):
+~~~
+---------------------------------------------------
+Login successful!
+Welcome Demo!
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1. Report symptoms
+2. View diagnosis history
+3. Reset diagnosis history
+4. Reset symptoms
+5. View Medicine history
+6. Exit
+---------------------------------------------------
+4
+--------------------------------------------------------
+You have not entered any symptoms. No symptoms to reset.
+~~~
+
+Else, expected outcome after entering some symptoms:
+~~~
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1. Report symptoms
+2. View diagnosis history
+3. Reset diagnosis history
+4. Reset symptoms
+5. View Medicine history
+6. Exit
+---------------------------------------------------
+4
+---------------------------------------------------
+Your symptom choice has been reset.
+---------------------------------------------------
+~~~
+
+### 5. Viewing Medicine History
+The patient can choose to view his/her medicine history.
+
+Format: Enter `5` to view past medicine history.
+
+Expected outcome:
+~~~
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1. Report symptoms
+2. View diagnosis history
+3. Reset diagnosis history
+4. Reset symptoms
+5. View Medicine history
+6. Exit
+---------------------------------------------------
+5
+---------------------------------------------------
+Medication History:
+2023/03/22: [Paracetamol]
+---------------------------------------------------
+~~~
+
+### 6. Exiting Doctor Duke
+Once the patient is done with the program, he/she can exit the program.
+
+Format: Enter `6` to exit Doctor Duke.
+
+Expected outcome:
+~~~
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1. Report symptoms
+2. View diagnosis history
+3. Reset diagnosis history
+4. Reset symptoms
+5. View Medicine history
+6. Exit
+---------------------------------------------------
+6
+---------------------------------------------------
+Thank you for using
+ ____         ____        _        
+|  _ \  ___  |  _ \ _  _ | | _____ 
+| | | |/ _ \ | | | | | | | |/ / _ \
+| |_| | |    | |_| | |_| |   <  __/
+|____/|_|    |____/ \__,_|_|\_\___|
+---------------------------------------------------
+~~~

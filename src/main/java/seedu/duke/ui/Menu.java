@@ -14,6 +14,7 @@ import seedu.duke.patient.Patient;
 import seedu.duke.save.Storage;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Scanner;
 
 public class Menu {
@@ -23,10 +24,12 @@ public class Menu {
      * Shows the welcome menu.
      */
     public static void showWelcomeMenu() {
+        System.out.println("---------------------------------------------------");
         System.out.println("What would you like to do? Please enter the number:");
         System.out.println("1. Register");
         System.out.println("2. Login");
         System.out.println("3. Exit");
+        System.out.println("---------------------------------------------------");
     }
 
     /**
@@ -39,30 +42,41 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             if (name.equals("")) {
+                System.out.println("---------------------------------------------------");
                 System.out.println("Please enter your name: ");
                 name = scanner.nextLine();
                 if (name.equals("")) {
+                    System.out.println("---------------------------------------------------");
                     System.out.println("Registration failed! Name cannot be empty.");
                     continue;
                 }
             }
+            System.out.println("---------------------------------------------------");
             System.out.println("Please enter your password: ");
             String password = scanner.nextLine();
+
             password = password.replaceAll("\\s", "");
             int hash = Information.hashPassword(password);
+
             if (password.equals("")) {
+                System.out.println("---------------------------------------------------");
                 System.out.println("Registration failed! Password cannot be empty.");
             } else if (Information.checkHash(hash)) {
+                System.out.println("--------------------------------------------------------");
                 System.out.println("Password is already used. Please enter another password.");
             } else {
+                System.out.println("---------------------------------------------------");
                 System.out.println("Please re-enter your password: ");
                 String password2 = new Scanner(System.in).nextLine();
                 if (password.equals(password2)) {
+                    System.out.println("---------------------------------------------------");
                     System.out.println("Registration successful!");
                     ArrayList<String> diagnosisHistory = new ArrayList<>();
-                    Information.storePatientInfo(hash, new Patient(name, hash, diagnosisHistory));
+                    Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable<>();
+                    Information.storePatientInfo(hash, new Patient(name, hash, diagnosisHistory, medicineHistory));
                     break;
                 } else {
+                    System.out.println("---------------------------------------------------");
                     System.out.println("Registration failed! Passwords do not match.");
                 }
             }
@@ -76,26 +90,38 @@ public class Menu {
      */
     public static void login() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("---------------------------------------------------");
         System.out.println("Please enter your name: ");
         String name = new Scanner(System.in).nextLine();
+        System.out.println("---------------------------------------------------");
         System.out.println("Please enter your password: ");
         String password = scanner.nextLine();
         password = password.replaceAll("\\s", "");
         int hash = Information.hashPassword(password);
         if (Information.checkHash(hash) && Information.getPatientInfo(hash).getName().equals(name)) {
             Duke.setPassword(hash);
+            System.out.println("---------------------------------------------------");
             System.out.println("Login successful!");
             System.out.println("Welcome " + name + "!");
         } else {
+            System.out.println("----------------------------------------------------------------------");
             System.out.println("Login failed! Please register first or key in the correct information.");
         }
     }
 
     /**
-     * Exits the program.
+     * @author JeraldChen, Geeeetyx
      */
     public static void exit() {
-        System.out.println("Thank you for using Dr Duke!");
+        System.out.println("---------------------------------------------------");
+        System.out.println("Thank you for using");
+        String logo = " ____         ____        _        \n"
+                + "|  _ \\  ___  |  _ \\ _  _ | | _____ \n"
+                + "| | | |/ _ \\ | | | | | | | |/ / _ \\\n"
+                + "| |_| | |    | |_| | |_| |   <  __/\n"
+                + "|____/|_|    |____/ \\__,_|_|\\_\\___|\n";
+        System.out.print(logo);
+        System.out.println("---------------------------------------------------");
         Storage.saveData();
         System.exit(0);
     }
@@ -103,9 +129,10 @@ public class Menu {
     /**
      * Shows the account menu
      *
-     * @author Thunderdragon221
+     * @author Thunderdragon221, Geeeetyx
      */
     public static void showAccountMenu() {
+        System.out.println("---------------------------------------------------");
         System.out.println("What would you like to do? Please enter the number:");
         System.out.println("1. Report symptoms");
         System.out.println("2. View diagnosis history");
@@ -113,6 +140,7 @@ public class Menu {
         System.out.println("4. Reset symptoms");
         System.out.println("5. View Medicine history");
         System.out.println("6. Exit");
+        System.out.println("---------------------------------------------------");
     }
 
     /**
@@ -144,40 +172,23 @@ public class Menu {
     /**
      * Checks if symptom is valid, and adds it to the list of symptoms.
      *
-     * @author tanyizhe
+     * @author tanyizhe, JeraldChen
      * @param scanner  takes in user input
      * @param symptoms list of symptoms
      */
     private static void addSymptomToSymptomList(Scanner scanner, ArrayList<Symptom> symptoms) {
         String symptomChoiceAlphabets;
-        symptomChoiceAlphabets = scanner.nextLine(); //@@author Jeraldchen
-        symptomChoiceAlphabets = symptomChoiceAlphabets.toUpperCase(); //@@author Jeraldchen
-        symptomChoiceAlphabets = symptomChoiceAlphabets.trim();  //@@author Jeraldchen
-        String[] symptomChoices = symptomChoiceAlphabets.split("(?!^)"); //@@author Jeraldchen
+        symptomChoiceAlphabets = scanner.nextLine();
+        symptomChoiceAlphabets = symptomChoiceAlphabets.toUpperCase();
+        symptomChoiceAlphabets = symptomChoiceAlphabets.trim();
+        String[] symptomChoices = symptomChoiceAlphabets.split("(?!^)");
         parseSymptomInput(symptoms, symptomChoices);
-    }
-
-
-    /**
-     * Adds the users' inputted symptom into the symptoms array.
-     *
-     * @author Brennanzuz
-     * @param symptom  The symptom indicated by the user. Defined and passed from the case statement.
-     * @param symptoms List of symptoms
-     */
-    private static void addSymptoms(Symptom symptom, ArrayList<Symptom> symptoms) {
-        if (!symptoms.contains(symptom)) {
-            assert symptom != null : symptom + " should not be null";
-            symptoms.add(symptom);
-        } else {
-            System.out.println("You have already entered " + symptom + "!");
-        }
     }
 
     /**
      * Parses user's input to a Symptom enumerator.
      *
-     * @author Jeraldchen
+     * @author Jeraldchen, Geeeetyx
      * @param symptoms       an ArrayList of symptoms.
      * @param symptomChoices an array of strings containing the user's input.
      */
@@ -256,9 +267,27 @@ public class Menu {
             case "X":
                 addSymptoms(Symptom.BACK_ACHE, symptoms);
                 break;
+            case " ":
+                break;
             default:
                 System.out.println("Invalid symptom choice!");
             }
+        }
+    }
+
+    //@@author Brennanzuz
+    /**
+     * Adds the users' inputted symptom into the symptoms array.
+     *
+     * @param symptom  The symptom indicated by the user. Defined and passed from the case statement.
+     * @param symptoms List of symptoms
+     */
+    private static void addSymptoms(Symptom symptom, ArrayList<Symptom> symptoms) {
+        if (!symptoms.contains(symptom)) {
+            assert symptom != null : symptom + " should not be null";
+            symptoms.add(symptom);
+        } else {
+            System.out.println("You have already entered " + symptom + "!");
         }
     }
 
@@ -279,8 +308,8 @@ public class Menu {
             System.out.println(symptom);
         }
          */
-        //TODO: Put all these in a dictionary with the symptom's diplay name
-        // hashed to the actual Symptom.
+        //Put all these in a dictionary with the symptom's display name hashed to the actual Symptom.
+        System.out.println("---------------------------------------------------");
         System.out.println("Here is the list of possible symptoms:");
         System.out.println("a. Fever");
         System.out.println("b. Dry Cough");
@@ -307,24 +336,31 @@ public class Menu {
         System.out.println("w. Muscle ache");
         System.out.println("x. Backache");
         System.out.println("\nPlease enter a symptom.");
+        System.out.println("---------------------------------------------------");
     }
-
+    //@@author tanyizhe
     /**
      * Displays the possible illnesses that the user may have based on the symptoms he/she has entered.
      *
-     * @author tanyizhe
+     * @author tanyizhe, Jeraldchen, Geeeetyx
      * @param symptoms ArrayList of symptoms the user has entered.
      */
     public static void displayPossibleIllness(ArrayList<Symptom> symptoms) {
         ArrayList<IllnessMatch> possibleIllnesses = Diagnosis.getPossibleIllnesses(symptoms);
-        if (possibleIllnesses.size() != 0) {
+
+        if (!possibleIllnesses.isEmpty()) {
+            System.out.println("---------------------------------------------------");
             System.out.println("You may have: ");
             for (IllnessMatch illnessMatch : possibleIllnesses) {
                 System.out.println(illnessMatch.getIllness().getIllnessName() + "    Match: "
                         + illnessMatch.getSimilarityPercentage() * 100 + "%");
             }
-        } else { // no illnesses found
-            System.out.println("Unable to diagnose illness. Please consult a Doctor instead."); //@@author Jeraldchen
+            System.out.println("---------------------------------------------------");
+        } else {
+            //@@ author JeraldChen
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Unable to diagnose illness. Please consult a Doctor instead.");
+            System.out.println("------------------------------------------------------------");
         }
     }
 
