@@ -18,11 +18,11 @@ The Storage component:
 
 The class diagram below illustrates the structure of the storage package
 
-![Storage Class Diagram](https://github.com/AY2223S2-CS2113-F13-3/tp/tree/master/docs/UML/Images/StorageClass.png)
+![Storage Class Diagram](/UML/Images/StorageClass.png)
 
 #### How the feature is implemented:
 
-![Storage Class Diagram](https://github.com/AY2223S2-CS2113-F13-3/tp/tree/master/docs/UML/Images/StorageSequenceDiagram.png)
+![Storage Class Diagram](/UML/Images/StorageSequenceDiagram.png)
 
 When the application starts up, the storage loadEvents() function will be called to load contents in the save file. 
 Similarly, the state of the user's event list is saved when the user exits the application by calling saveToFile().
