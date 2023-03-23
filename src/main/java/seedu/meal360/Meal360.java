@@ -135,6 +135,8 @@ public class Meal360 {
 
     public static void main(String[] args) {
 
+        assert false : "dummy assertion set to fail";
+
         startApp();
         String line;
         Scanner userInput = new Scanner(System.in);
