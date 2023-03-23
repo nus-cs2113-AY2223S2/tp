@@ -45,10 +45,10 @@ public class SchoolClass extends Task{
     @Override
     public String toString() {
         if (getDescription().isBlank()) {
-            return "[C]" + "[" + getStatusIcon() + "] " + className + " (from: " + start
+            return "\t [C]" + "[" + getStatusIcon() + "] " + className + " (from: " + start
                     + " to: " + end + ")" + " (" + getPriority() + ")";
         }
-        return "[C]" + "[" + getStatusIcon() + "] " + className + ": " + getDescription() +
+        return "\t [C]" + "[" + getStatusIcon() + "] " + className + ": " + getDescription() +
                 " (from: " + start + " to: " + end + ")" + " (" + getPriority() + ")";
     }
 }

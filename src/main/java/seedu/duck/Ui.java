@@ -275,7 +275,7 @@ public class Ui {
         System.out.println("\t （`･v･´ ）: Here are the commands you can give me:");
         System.out.println("\t - list: I'll list out all the tasks you have recorded.");
         System.out.println("\t - list <number_of_days>: I'll list out all the tasks in that number of days.");
-        System.out.println("\t - clear: The list will be cleared. This in an irreversible process.");
+        System.out.println("\t - clear: The list will be cleared. This is an IRREVERSIBLE process.");
         System.out.println("\t - mark <task_number>: I'll mark that task as done.");
         System.out.println("\t - unmark <task_number>: I'll mark that task as undone.");
         System.out.println("\t - delete <task_number>: I'll delete that task from your list.");
