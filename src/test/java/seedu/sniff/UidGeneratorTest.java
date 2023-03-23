@@ -2,7 +2,6 @@ package seedu.sniff;
 
 import exception.SniffException;
 import functionalities.Uid;
-import functionalities.ui.Ui;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
