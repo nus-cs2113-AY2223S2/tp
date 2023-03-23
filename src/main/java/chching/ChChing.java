@@ -6,6 +6,7 @@ import chching.currency.Converter;
 import chching.currency.Selector;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
+import chching.record.TargetStorage;
 
 public class ChChing {
     private Storage storage;
@@ -13,6 +14,7 @@ public class ChChing {
     private ExpenseList expenses;
     private Selector selector;
     private Converter converter;
+    private TargetStorage targetStorage;
     private Ui ui;
 
     /**
@@ -27,6 +29,7 @@ public class ChChing {
             this.expenses = new ExpenseList(storage.loadExpenses());
             this.selector = new Selector();
             this.converter = new Converter();
+            this.targetStorage = new TargetStorage();
         } catch (Exception e) {
             ui.showError(e.getMessage());
             this.incomes = new IncomeList();
@@ -45,7 +48,7 @@ public class ChChing {
                 String fullCommand = ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand, incomes, expenses, ui);
-                c.execute(incomes, expenses, ui, storage, selector, converter);
+                c.execute(incomes, expenses, ui, storage, selector, converter, targetStorage);
                 isExit = c.isExit();
             } catch (ChChingException e) {
                 ui.showError(e.getMessage());

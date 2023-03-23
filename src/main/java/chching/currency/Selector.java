@@ -2,6 +2,9 @@ package chching.currency;
 
 import java.util.HashMap;
 
+/**
+ * Models a class that selects the relevant currency. Inherited from Command class.
+ */
 public class Selector {
     protected HashMap<String, Boolean> selectedCurrencies;
 

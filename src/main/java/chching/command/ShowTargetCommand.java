@@ -1,5 +1,6 @@
 package chching.command;
 
+import chching.ChChingException;
 import chching.Storage;
 import chching.Ui;
 import chching.currency.Converter;
@@ -9,12 +10,12 @@ import chching.record.IncomeList;
 import chching.record.TargetStorage;
 
 /**
- * Models a class that clears the entire incomeList and expenseList. Inherited from Command class.
+ * Models a class that shows the user's target. Inherited from Command class.
  */
-public class ClearAllCommand extends Command{
+public class ShowTargetCommand extends Command{
 
     /**
-     * Executes clearing of both incomeList and expenseList
+     * Executes showing of user's target
      *
      * @param incomes       ArrayList of income.
      * @param expenses      ArrayList of income.
@@ -23,10 +24,8 @@ public class ClearAllCommand extends Command{
      * @param converter     Convert value
      * @param targetStorage store target
      */
-    @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
-                        Converter converter, TargetStorage targetStorage) {
-        incomes.clearIncomeList();
-        expenses.clearExpenseList();
+                        Converter converter, TargetStorage targetStorage) throws ChChingException {
+        System.out.println("     Current target: " + targetStorage.getTarget().getValue() + " SGD");
     }
 }

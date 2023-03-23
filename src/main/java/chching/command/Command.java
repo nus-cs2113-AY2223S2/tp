@@ -7,6 +7,7 @@ import chching.record.ExpenseList;
 import chching.record.IncomeList;
 import chching.currency.Selector;
 import chching.currency.Converter;
+import chching.record.TargetStorage;
 
 /**
  * Abstract Command class that acts as a template for other command classes.
@@ -22,9 +23,11 @@ public abstract class Command {
      * @param expenses      ArrayList of income.
      * @param ui        User interface
      * @param storage       Storage of data
+     * @param converter     Convert value
+     * @param targetStorage store target
      */
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
-            Converter converter) throws ChChingException {
+                        Converter converter, TargetStorage targetStorage) throws ChChingException {
     }
 
     /**
