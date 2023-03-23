@@ -24,7 +24,95 @@ The rest of the Application consists of three components:
 - `Command`: Handles execution of user inputs
 - `Storage`: Stores information of the user and meals eaten
 
-___
+---
+
+# Implementation
+This section describes some noteworthy details on how certain features are implemented.  
+<p>&nbsp;</p>
+
+### [Proposed] View feature
+
+#### Proposed Implementation
+
+The proposed view mechanism is facilitated by `ViewUserCommand`. It extends `Command` and overrides the 
+`execute` method in the `Command` class. 
+
+It stores the user's data internally as `user` and the meals consumed by the user as `meals`. It also 
+initializes the UI for calories as `calorieUI`.
+
+Given below is an example usage scenario and how the view feature behaves at each step.
+
+Step 1. The user launches the application and calls the `view` command. The `ViewUserCommand` will be initialized
+with the current user and meal storage state. `user` and `meals` will point to the user storage and meal state 
+respectively.
+
+> Insert Image of the UML diagram
+
+
+The user will then be presented with a menu showing the different user details he can view as seen in the code
+snippet below.  
+
+````
+View user settings
+1. View Name
+2. View Weight
+3. View Height
+4. View Age      
+5. View Gender
+6. View Daily Caloric limit
+7. View Calories left today
+8. Back
+````
+
+Step 2. The user chooses to view his weight by inputting the number `2` to choose `View Weight`.
+This calls the getter method `getWeight()` in the entity `User` to return the current weight of the user
+and initializes the variable `weight` with that value. 
+
+> Insert UML diagram showing how getWeight is accessed.
+
+It then prints to screen the weight of the user like in the code snippet below.
+
+````
+Weight: {weight} kg
+
+Continue viewing?
+1. Yes
+2. No
+````
+Step 3. The user chooses to continue viewing by inputting the number `1` and chooses `View Daily Caloric Limit` next
+by inputting the number `6`. This calls the getter method `getCaloricLimit()` in the entity `User` to return the
+current daily caloric limit of the user and initializes the variable `caloricLimit` with that value. 
+
+> Insert UML diagram showing how getWeight is accessed.
+
+It then prints to screen the daily caloric limit of the user like in the code snippet below.
+
+````
+This is your daily caloric limit: 
+{caloricLimit} Kcal
+
+Continue viewing?
+1. Yes
+2. No
+````
+
+Step 4. The user executes the command `update` to update his user details. The user is presented with a menu showing the
+different user details he can update as seen in the code snippet below.
+
+````
+Update user settings
+1. Update Name
+2. Update Weight
+3. Update Height
+4. Update Age
+5. Update Gender
+````
+The user chooses to update his weight by inputting the number `2`. This causes the state of the user's details to be 
+modified and the user's weight as well as his caloric limit will be updated in accordance to the new weight entered.
+
+> Insert UML diagram showing the update process
+
+Step 5. The user then executes the command `view` to view his updated weight and daily caloric limits.
 # Appendix: Requirements
 
 ## Product scope
