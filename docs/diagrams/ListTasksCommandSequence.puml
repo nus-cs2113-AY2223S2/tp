@@ -28,19 +28,19 @@ ListTasksCommand -> ListTasksCommand : execute(TaskList, ui)
 activate ListTasksCommand
 ListTasksCommand -> TaskList : sortByDeadline()
 activate TaskList
-TaskList -> ListTasksCommand
+TaskList --> ListTasksCommand
 deactivate TaskList
 ListTasksCommand -> Ui : printTaskList(taskList.size(), taskList.toString())
 activate Ui
-Ui -> ListTasksCommand
+Ui --> ListTasksCommand
 deactivate Ui
-ListTasksCommand -> ListTasksCommand
+ListTasksCommand --> ListTasksCommand
 deactivate ListTasksCommand
-ListTasksCommand -> Parser
+ListTasksCommand --> Parser
 deactivate ListTasksCommand
-Parser -> ToDoListManager : command
+Parser --> ToDoListManager : command
 deactivate Parser
 deactivate ListTasksCommand
-ToDoListManager -> User : list of tasks
+ToDoListManager --> User : list of tasks
 deactivate ToDoListManager
 @enduml
