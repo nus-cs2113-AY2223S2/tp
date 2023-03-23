@@ -142,6 +142,7 @@ _LifeTracker_ can also keep track of the exercises that users have done and fact
 | v1.0    | user     | view my previous meals                                   | track the calories of each meal                             |
 | v1.0    | user     | key in my weight on a daily basis                        | keep track of my weight loss/gain                           |
 | v2.0    | user     | find a to-do item by name                                | locate a to-do without having to go through the entire list |
+| v2.0    | user     | search for meals within a specific calorie range         | decide which meal to consume                                |
 
 ## Non-Functional Requirements
 
