@@ -3,7 +3,7 @@ package seedu.duke.ui;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PrintUserExerciseHistory {
+public class PrintUserExerciseData {
 
     public static void printUserExerciseHistory(HashMap<String, Integer> userExerciseHistory) {
         String message = "Here is a list of all the exercises you have completed:" +

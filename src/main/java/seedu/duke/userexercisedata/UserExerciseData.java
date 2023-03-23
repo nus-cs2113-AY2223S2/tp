@@ -1,4 +1,4 @@
-package seedu.duke.userexercisehistory;
+package seedu.duke.userexercisedata;
 
 import java.util.HashMap;
 

@@ -15,11 +15,12 @@ import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.states.ExerciseStateHandler;
 import seedu.duke.storage.StorageHandler;
-import seedu.duke.ui.PrintUserExerciseHistory;
 import seedu.duke.ui.Ui;
 import seedu.duke.userdata.UserCareerData;
-import seedu.duke.userexercisehistory.UserExerciseHistory;
+import seedu.duke.userexercisedata.UserExerciseData;
 import seedu.duke.userplan.UserPlan;
+
+import java.util.HashMap;
 
 public class GeneralCommandHandler implements CommandList{
 
@@ -32,6 +33,8 @@ public class GeneralCommandHandler implements CommandList{
      * @param userCareerData       This keeps track and allows logging of all user data
      * @param exerciseStateHandler This allows us to start workouts
      */
+
+    //addition of user exercise history
     public void handleGeneralUserCommands(String[] userCommands, Ui ui, GenerateExercise exerciseGenerator,
                                           UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
                                           StorageHandler storageHandler, UserPlan planner) {
@@ -88,7 +91,8 @@ public class GeneralCommandHandler implements CommandList{
                 command = new ExerciseSearchCommand(userCommands);
                 break;
             case EXERCISE_DATA_COMMAND:
-                PrintUserExerciseHistory.printUserExerciseHistory(UserExerciseHistory.addUserExerciseHistory(userCareerData));
+                HashMap<String, Integer> userExerciseDataMap = UserExerciseData.addUserExerciseHistory(userCareerData);
+                ui.printUserExerciseHistory(userExerciseDataMap);
                 break;
             default:
                 ui.unknownCommand();

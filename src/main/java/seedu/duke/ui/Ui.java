@@ -39,7 +39,7 @@ public class Ui {
     }
 
     public void printUserExerciseHistory(HashMap<String, Integer> userExerciseHistory) {
-        PrintUserExerciseHistory.printUserExerciseHistory(userExerciseHistory);
+        PrintUserExerciseData.printUserExerciseHistory(userExerciseHistory);
     }
 
 }
