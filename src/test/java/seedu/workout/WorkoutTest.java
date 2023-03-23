@@ -20,4 +20,6 @@ public class WorkoutTest {
         workout.setDate(newDate);
         assertEquals(newDate, workout.getDate());
     }
+
+
 }
