@@ -3,6 +3,9 @@ package functionalities.appointments;
 import functionalities.Animal;
 import functionalities.Owner;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Surgery extends Appointment {
 
     public enum priorityLevel {
@@ -10,15 +13,15 @@ public class Surgery extends Appointment {
     }
 
     protected priorityLevel priority;
-    protected String startDate;
-    protected String startTime;
-    protected String endDate;
-    protected String endTime;
+    protected LocalDate startDate;
+    protected LocalTime startTime;
+    protected LocalDate endDate;
+    protected LocalTime endTime;
 
     protected String description = "surgery";
 
     public Surgery(String uid, Animal animal, Owner owner, String priority,
-                   String startDate, String startTime, String endDate, String endTime) {
+                   LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime) {
         super(uid, animal, owner);
         this.uid = uid;
         this.animal = animal;
