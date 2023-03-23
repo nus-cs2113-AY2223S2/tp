@@ -5,5 +5,5 @@ public class Types {
         KEYWORD,
         UPC
     }
-    public static final String SESSIONFILEPATH = "./data/sample.csv";
+    public static final String SESSIONFILEPATH = "./data/InventoryData.csv";
 }

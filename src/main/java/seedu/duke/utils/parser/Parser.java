@@ -80,7 +80,6 @@ public class Parser {
             parseHelp();
             break;
         case "write":
-            System.out.println("Writing to file...");
             session.writeSession(inventory);
             break;
         default:
