@@ -24,7 +24,12 @@ The rest of the Application consists of three components:
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+- Is an NUS student
+- Looking to lose/maintain their weight
+- Looking to make healthier choices in terms of food
+- Can type fast
+- Prefers typing to mouse interactions
+- Is reasonably comfortable using CLI apps
 
 ### Value proposition
 
