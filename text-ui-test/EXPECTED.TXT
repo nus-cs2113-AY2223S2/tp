@@ -11,6 +11,6 @@ What can I do for you?
 
 Type /help if you need help getting started :)
 ____________________________________________________________
-Invalid Input
+Please type in the correct command input
 ____________________________________________________________
 Exiting program now

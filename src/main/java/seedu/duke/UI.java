@@ -17,6 +17,7 @@ public class UI {
     private static final String INPUT_NOT_INT_MESSAGE = "The input for the given command is not an integer";
     private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name";
     private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name";
+    private static final String INVALID_BUDGET_MESSAGE = "Please type in the correct budget command";
     private static final String CURRENT_LIST_EMPTY = "The current module list is empty";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
@@ -60,6 +61,9 @@ public class UI {
         return COMMAND_INPUT_ERROR;
     }
 
+    public String getInvalidBudgetMessage() {
+        return INVALID_BUDGET_MESSAGE;
+    }
     public String getLine() {
         return LINE;
     }
@@ -149,10 +153,13 @@ public class UI {
     }
 
     public static void printHelpCommandMessage() {
-        System.out.println("Here are the list of commands: \n"
+        System.out.println("Here are the list of commands:\n"
                 + "LIST PU                     : Provides the list of Partner Universities available\n"
                 + "LIST [PU ABBRV]             : Provides the list of all modules available " +
                 "in the specified Partner University\n"
+                + "LIST [PU INDEX]             : Provides the list of all modules available " +
+                "in the specified Partner University\n"
+                + "                              by index of LIST PU\n"
                 + "LIST CURRENT                : Provides the list of modules that the user has added to his/her " +
                 "list of interest\n"
                 + "ADD [PU ABBRV]/[MODULE CODE]: Adds the specified module into user's current list of modules\n"

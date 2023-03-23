@@ -12,7 +12,6 @@ import seedu.duke.command.EditFoodCommand;
 import seedu.duke.command.ExceptionHandleCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
-import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCurrentCommand;
 import seedu.duke.command.ListPuCommand;
 import seedu.duke.command.ListPuModulesCommand;
@@ -29,14 +28,17 @@ public class Parser {
 
     public Command parseUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
                                     ArrayList<Module> puModules, Storage storage, BudgetPlanner budgetPlanner) {
+
         ArrayList<String> userInputWords = parseCommand(userInput);
         String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
         if (userInputWords.size() > 1) {
             userCommandSecondKeyword = userInputWords.get(1);
         }
-        if (userCommandFirstKeyword.equalsIgnoreCase("list")) {
-            try {
+        String inputIgnoringCase = userCommandFirstKeyword.toLowerCase();
+        try {
+            switch (inputIgnoringCase) {
+            case "list":
                 if (userInputWords.size() == 1) {
                     throw new InvalidCommandException(ui.getCommandInputError());
                 }
@@ -47,22 +49,22 @@ public class Parser {
                 } else {  // list PU name case
                     return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
                 }
-            } catch (InvalidCommandException e) {
-                return new ExceptionHandleCommand(e);
+            case "exit":
+                return new ExitCommand();
+            case "add":
+                return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
+            case "remove":
+                int indexToRemove = stringToInt(userCommandSecondKeyword);
+                return new DeleteModuleCommand(storage, indexToRemove, modules);
+            case "/help":
+                return new HelpCommand();
+            case "/budget":
+                return prepareBudgetCommand(userCommandSecondKeyword,budgetPlanner);
+            default:
+                throw new InvalidCommandException(ui.getCommandInputError());
             }
-        } else if (userCommandFirstKeyword.equalsIgnoreCase("exit")) {
-            return new ExitCommand();
-        } else if (userCommandFirstKeyword.equalsIgnoreCase("add")) {
-            return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
-        } else if (userCommandFirstKeyword.equalsIgnoreCase("remove")) {
-            int indexToRemove = stringToInt(userCommandSecondKeyword);
-            return new DeleteModuleCommand(storage, indexToRemove, modules);
-        } else if (userCommandFirstKeyword.equalsIgnoreCase("/help")) {
-            return new HelpCommand();
-        } else if (userCommandFirstKeyword.equalsIgnoreCase("/budget")) {
-            return prepareBudgetCommand(userCommandSecondKeyword, budgetPlanner);
-        } else {
-            return new InvalidCommand();
+        } catch (InvalidCommandException e) {
+            return new ExceptionHandleCommand(e);
         }
     }
 
@@ -124,16 +126,18 @@ public class Parser {
             return new ExceptionHandleCommand(e);
         } catch (InvalidModuleException e) {
             return new ExceptionHandleCommand(e);
+        } catch (InvalidCommandException e) {
+            return new ExceptionHandleCommand(e);
         }
     }
 
     // The add comment currently works in the format of PartnerAbb/ModuleCode
     private Command handleAddModuleCommand(Storage storage, String abbreviationAndCode, ArrayList<Module> allModules,
                                            ArrayList<University> universities)
-            throws InvalidPuException, InvalidModuleException {
+            throws InvalidCommandException, InvalidPuException, InvalidModuleException {
         String[] stringSplit = abbreviationAndCode.split("/");
         if (stringSplit.length != 2) {
-            return new InvalidCommand();
+            throw new InvalidCommandException(ui.getCommandInputError());
         }
         String abbreviation = stringSplit[0];
         String moduleCode = stringSplit[1];
@@ -162,13 +166,13 @@ public class Parser {
 
     // /budget accommodation 200
     // /budget budget 5000
-    private Command prepareBudgetCommand(String userInput, BudgetPlanner budgetPlanner) {
+    private Command prepareBudgetCommand(String userInput, BudgetPlanner budgetPlanner) throws InvalidCommandException {
         String[] commandWords = userInput.split((" "), 2);
         if (userInput.trim().equalsIgnoreCase("view")) {
             return new ViewBudgetCommand(budgetPlanner);
         }
         if (commandWords.length != 2) {
-            return new InvalidCommand();
+            throw new InvalidCommandException(ui.getInvalidBudgetMessage());
         }
         String budgetCommand = commandWords[0].toLowerCase();
         int amount = stringToInt(commandWords[1]);
@@ -184,7 +188,7 @@ public class Parser {
         case "entertainment":
             return new EditEntertainmentCommand(amount, budgetPlanner);
         default:
-            return new InvalidCommand();
+            throw new InvalidCommandException(ui.getInvalidBudgetMessage());
         }
     }
 
