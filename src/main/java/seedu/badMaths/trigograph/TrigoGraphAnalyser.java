@@ -20,8 +20,12 @@ public class TrigoGraphAnalyser {
     private static final int INDEX_FOR_POS_FREQ = 0;
     private static final int INDEX_FOR_POS_PHASE = 1;
     private static final int INDEX_FOR_NEG_FREQ = 1;
+    private static final int START_POS_OF_TRIG = 0;
+    private static final int END_POS_OF_TRIG = 3;
+    private static final int CORRECT_POS_OF_PHASE = 4;
     private static Logger logger = Logger.getLogger(TrigoGraphAnalyser.class.getName());
     private String trigoEqn;
+    private String trigonometry;
     private double phase;
     private double amplitude;
     private double verticalShift;
@@ -121,7 +125,9 @@ public class TrigoGraphAnalyser {
     public double getFreq() {
         return freq;
     }
-
+    public String getTrigonometry() {
+        return trigonometry;
+    }
     private boolean isAmplitudeEqualsToOne(String input) {
         if (input.startsWith("cos") || input.startsWith("sin") || input.startsWith("tan")) {
             return true;
@@ -149,9 +155,15 @@ public class TrigoGraphAnalyser {
         }
     }
 
-    public void splitTrigoIntoPhasors(String trigo) {
+    public void splitTrigoIntoPhasors(String trigo) throws IllegalArgumentException {
         int startPosOfPhase = trigo.indexOf("(") + 1;
         int endPosOfPhase = trigo.length();
+        if (startPosOfPhase == CORRECT_POS_OF_PHASE){
+            trigonometry = trigo.substring(START_POS_OF_TRIG,END_POS_OF_TRIG);
+        } else {
+            throw new IllegalArgumentException();
+        }
+
         String phase = trigo.substring(startPosOfPhase, endPosOfPhase);
         splitPhasorsIntoFreq(phase);
     }
