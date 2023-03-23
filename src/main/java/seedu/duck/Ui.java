@@ -94,18 +94,18 @@ public class Ui {
             if (tasks.get(i) instanceof Deadline) {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
                 String deadline = ((Deadline) tasks.get(i)).getDeadline();
-                Date d = null;
+                Date d;
                 Date n = new Date();
                 try {
                     d = format.parse(deadline);
+                    long diff = d.getTime() - n.getTime();
+                    String di = getTimeDiff(diff);
+                    String description = tasks.get(i).getDescription().replace("deadline ", "");
+                    System.out.println("\t " + (count + 1) + "." + description + " (" + di + "before the deadline)");
+                    count++;
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                long diff = d.getTime() - n.getTime();
-                String di = getTimeDiff(diff);
-                String description = tasks.get(i).getDescription().replace("deadline ", "");
-                System.out.println("\t " + (count + 1) + "." + description+" ("+di+"before the deadline)");
-                count++;
             }
         }
         borderLine();
@@ -115,16 +115,16 @@ public class Ui {
      * Prints the list of tasks in x days in the future
      *
      * @param tasks the array list of all the tasks
-     * @param days the required the number of days x from now onwards
+     * @param days  the required the number of days x from now onwards
      */
     static void printUpcomingTasks(ArrayList<Task> tasks, String days) {
         borderLine();
         System.out.println("\t Here are your tasks in " + days + " days:");
         int count = 0;
-        Date d = null;
+        Date d;
         Date n = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
-        for (int i = 0; i < tasks.size(); i ++) {
+        for (int i = 0; i < tasks.size(); i++) {
             String timeUntilTask = null;
             if (tasks.get(i) instanceof Deadline) {
                 timeUntilTask = ((Deadline) tasks.get(i)).getDeadline();
@@ -136,17 +136,17 @@ public class Ui {
             if (timeUntilTask != null) {
                 try {
                     d = format.parse(timeUntilTask);
+                    long diff = d.getTime() - n.getTime();
+                    String di = getTimeDiff(diff);
+                    String[] diffSplit = di.split(" ");
+                    if (diffSplit.length >= 2 && ((diffSplit[1].contains("day") && Integer.parseInt(diffSplit[0])
+                            <= Integer.parseInt(days)) || diffSplit[1].contains("hour")
+                            || diffSplit[1].contains("minute"))) {
+                        count++;
+                        System.out.println("\t " + count + "." + tasks.get(i).toString());
+                    }
                 } catch (ParseException e) {
                     e.printStackTrace();
-                }
-                long diff = d.getTime() - n.getTime();
-                String di = getTimeDiff(diff);
-                String[] diffSplit = di.split(" ");
-                if (diffSplit.length >= 2 && ((diffSplit[1].contains("day") && Integer.parseInt(diffSplit[0])
-                        <= Integer.parseInt(days)) || diffSplit[1].contains("hour")
-                        || diffSplit[1].contains("minute"))) {
-                    count++;
-                    System.out.println("\t " + count + "." + tasks.get(i).toString());
                 }
             }
         }
@@ -155,6 +155,7 @@ public class Ui {
 
     /**
      * Function help for calculating time difference
+     *
      * @param timeDifferenceMilliseconds time difference between now and deadline
      * @return time difference in structured format
      */
@@ -206,6 +207,40 @@ public class Ui {
             result += " ";
         }
         return result;
+    }
+
+    /**
+     * Display Next Upcoming Class
+     *
+     * @param tasks the array list of all the tasks
+     */
+    static void displayNextUpcomingClass(ArrayList<Task> tasks) {
+        borderLine();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+        Date compare = null;
+        int index = -1;
+        System.out.println("\t Here are your next upcoming class: ");
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i) instanceof SchoolClass) {
+                Date d;
+                try {
+                    d = format.parse(((SchoolClass) tasks.get(i)).getStart());
+                    if (compare == null || d.before(compare)) {
+                        compare = d;
+                        index = i;
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (index != -1) {
+            String re = tasks.get(index).toString().replace("[C][ ]", "");
+            System.out.println("\t " + re);
+        } else {
+            System.out.println("\t No upcoming class");
+        }
+        borderLine();
     }
 
     /**
