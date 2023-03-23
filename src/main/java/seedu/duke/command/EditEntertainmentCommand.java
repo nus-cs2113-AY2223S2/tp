@@ -5,7 +5,7 @@ import seedu.duke.budget.BudgetPlanner;
 public class EditEntertainmentCommand extends EditCostCommand {
 
     public EditEntertainmentCommand(int cost, BudgetPlanner budgetPlanner) {
-        super(cost,budgetPlanner);
+        super(cost, budgetPlanner);
     }
 
     @Override
