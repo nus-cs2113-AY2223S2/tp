@@ -1,6 +1,7 @@
 package seedu.ui;
 
 public class CalorieUi extends GeneralUi {
+
     public void requestCalorieLimit() {
         System.out.println("What do you wish to set as the limit of your daily calorie intake (kcal)?");
         System.out.println("Please enter it in below: ");
