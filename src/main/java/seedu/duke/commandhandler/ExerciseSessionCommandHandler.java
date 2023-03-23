@@ -10,7 +10,9 @@ import seedu.duke.exceptions.OngoingExWriteError;
 import seedu.duke.states.ExerciseStateHandler;
 import seedu.duke.ui.Ui;
 import seedu.duke.userdata.UserCareerData;
+import seedu.duke.userexercisedata.UserExerciseData;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class ExerciseSessionCommandHandler implements CommandList{
@@ -39,6 +41,7 @@ public class ExerciseSessionCommandHandler implements CommandList{
                 throw new OngoingExGenerationError();
             case HELP_COMMAND:
             case FILTERS_COMMAND:
+            case FIND_COMMAND:
                 throw new OngoingExHelpError();
             case BYE_COMMAND:
             case EXIT_COMMAND:
@@ -66,6 +69,10 @@ public class ExerciseSessionCommandHandler implements CommandList{
                 break;
             case HISTORY_COMMAND:
                 throw new OngoingExHistoryError();
+            case EXERCISE_DATA_COMMAND:
+                HashMap<String, Integer> userExerciseDataMap = UserExerciseData.addUserExerciseHistory(userCareerData);
+                ui.printUserExerciseHistory(userExerciseDataMap);
+                break;
             default:
                 ui.unknownCommand();
                 break;
@@ -73,7 +80,6 @@ public class ExerciseSessionCommandHandler implements CommandList{
         } catch (DukeError e) {
             System.out.println(e.getMessage());
         }
-        ui.splitLine();
     }
 
     /**

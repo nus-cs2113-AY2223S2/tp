@@ -16,4 +16,11 @@ public interface CommandList {
     String FINISH_COMMAND = "finish";
     String CANCEL_COMMAND = "cancel";
     String HISTORY_COMMAND = "history";
+    String FIND_COMMAND = "find";
+    String PLANNER_EDITOR_COMMAND = "planner";
+    String VIEW_PLAN_COMMAND = "plans";
+    String QUICK_START_COMMAND = "quick";
+    String DELETE_PLAN_COMMAND = "delete";
+    String ADD_PLAN_COMMAND = "add";
+    String EXERCISE_DATA_COMMAND = "data";
 }

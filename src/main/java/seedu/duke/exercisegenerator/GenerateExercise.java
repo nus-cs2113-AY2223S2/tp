@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GenerateExercise {
-
     private static final String EASY = "easy";
     private static final String MEDIUM = "medium";
     private static final String HARD = "hard";
@@ -25,9 +24,9 @@ public class GenerateExercise {
     private static final String EXPERT = "expert";
     private static final String OPEN_BRACE = "[";
     private static final String CLOSE_BRACE = "]";
+    private static ArrayList<ExerciseData> filteredExerciseList;
     private final ArrayList<ExerciseData> exerciseDataList;
 
-    private ArrayList<ExerciseData> filteredExerciseList;
 
     public GenerateExercise() {
         ParseData parseData = new ParseData();
@@ -46,7 +45,13 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
-    //Cleon's gym set - filter by body and gym
+    //@@author Khulon
+    /**
+     * Returns an exercise list which is filtered according to the workout type: Gym
+     * chosen by the user.
+     * @param exerciseList Arraylist containing a set of workout exercises.
+     * @return returns list of exercises filtered according to work out type: Gym
+     */
     public ArrayList<ExerciseData> generateFilteredGymSetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
@@ -57,10 +62,17 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
-    public ArrayList<ExerciseData> generateFilteredBodySetFrom(ArrayList<ExerciseData> exerciseList) {
+    //@@author Khulon
+    /**
+     * Returns an exercise list which is filtered according to the workout type: Static
+     * chosen by the user.
+     * @param exerciseList Arraylist containing a set of workout exercises.
+     * @return returns list of exercises filtered according to work out type: Static
+     */
+    public ArrayList<ExerciseData> generateFilteredStaticSetFrom(ArrayList<ExerciseData> exerciseList) {
         ArrayList<ExerciseData> filteredExerciseList = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
-            if (! exercise.getEquipment().equals(NULL) && exercise.getEquipment().equals(OUTPUT_BODY)) {
+            if (!exercise.getEquipment().equals(NULL) && exercise.getEquipment().equals(OUTPUT_BODY)) {
                 filteredExerciseList.add(exercise);
             }
         }
@@ -93,6 +105,7 @@ public class GenerateExercise {
     public ArrayList<ExerciseData> generateFilteredWorkoutTypeFrom(ArrayList<ExerciseData> exerciseList,
                                                                    String workoutType) throws DukeError {
         assert exerciseList != null : "exerciseList should not be null.";
+        assert workoutType != null : "workout type should not be null.";
         String exerciseDataWorkoutType;
         String getWorkoutType;
         String getWorkoutTypeFinal;

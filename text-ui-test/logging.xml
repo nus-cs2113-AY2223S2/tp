@@ -2,9 +2,73 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-03-19T10:24:45.969552Z</date>
-  <millis>1679221485969</millis>
-  <nanos>552000</nanos>
+  <date>2023-03-20T06:36:23.300151Z</date>
+  <millis>1679294183300</millis>
+  <nanos>151000</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T10:58:27.784008Z</date>
+  <millis>1679482707784</millis>
+  <nanos>8000</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T10:59:26.550271Z</date>
+  <millis>1679482766550</millis>
+  <nanos>271000</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T11:15:57.690519Z</date>
+  <millis>1679483757690</millis>
+  <nanos>519000</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T11:16:12.868018Z</date>
+  <millis>1679483772868</millis>
+  <nanos>18000</nanos>
   <sequence>0</sequence>
   <logger>Storage</logger>
   <level>INFO</level>

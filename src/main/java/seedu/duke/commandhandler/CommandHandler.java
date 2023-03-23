@@ -5,6 +5,7 @@ import seedu.duke.storage.StorageHandler;
 import seedu.duke.userdata.UserCareerData;
 import seedu.duke.states.ExerciseStateHandler;
 import seedu.duke.ui.Ui;
+import seedu.duke.userplan.UserPlan;
 import seedu.duke.util.StringSplitter;
 
 public class CommandHandler {
@@ -15,10 +16,11 @@ public class CommandHandler {
      * @param exerciseGenerator    This takes in filter parameters and outputs a curated exercise list
      * @param userCareerData       This keeps track and allows logging of all user data
      * @param exerciseStateHandler This allows us to know whether an exercise is ongoing or not
+     * @param planner This keeps track of the workout plans
      */
     public void handleUserCommands(String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator,
                                    UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
-                                   StorageHandler storageHandler) {
+                                   StorageHandler storageHandler, UserPlan planner) {
         StringSplitter stringSplitter = new StringSplitter();
         String[] userCommands = stringSplitter.splitString(rawUserCommands);
         if (exerciseStateHandler.workoutOngoing) {
@@ -28,9 +30,8 @@ public class CommandHandler {
         } else {
             GeneralCommandHandler generalCommandHandler = new GeneralCommandHandler();
             generalCommandHandler.handleGeneralUserCommands(userCommands, ui, exerciseGenerator,
-                    userCareerData, exerciseStateHandler, storageHandler);
+                    userCareerData, exerciseStateHandler, storageHandler, planner);
         }
-        ui.splitLine();
     }
 
 

@@ -47,12 +47,13 @@ public class GenerateFilterCommand extends Command {
         }
     }
 
+    //@@author Khulon
     /**
      * Filters the whole list of available exercises based off the
      * input from the user.
      * @param ui Prints out the respective exercises for a given input
      * @param exerciseGenerator Generates Exercises
-     * @throws DukeError
+     * @throws DukeError duke error
      */
     public void executeCommand(Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
@@ -64,7 +65,7 @@ public class GenerateFilterCommand extends Command {
                 exercises = exerciseGenerator.generateFilteredGymSetFrom(exercises);
                 break;
             case STATIC:
-                exercises = exerciseGenerator.generateFilteredBodySetFrom(exercises);
+                exercises = exerciseGenerator.generateFilteredStaticSetFrom(exercises);
                 break;
             case EASY:
             case MEDIUM:
@@ -87,6 +88,8 @@ public class GenerateFilterCommand extends Command {
         exerciseListGenerated = exercises;
         ui.printExerciseFromList(exercises);
     }
+
+
 
     public ArrayList<ExerciseData> provideExerciseList() {
         return exerciseListGenerated;

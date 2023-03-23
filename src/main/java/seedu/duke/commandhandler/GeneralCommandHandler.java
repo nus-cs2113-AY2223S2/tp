@@ -1,16 +1,26 @@
 package seedu.duke.commandhandler;
 
+
+
+
+import seedu.duke.commands.ExerciseSearchCommand;
+import seedu.duke.commands.SampleSavingCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.GenerateFilterCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.SampleReadCommand;
-import seedu.duke.commands.SampleSavingCommand;
+import seedu.duke.commands.QuickStartCommand;
+
 import seedu.duke.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.states.ExerciseStateHandler;
 import seedu.duke.storage.StorageHandler;
 import seedu.duke.ui.Ui;
 import seedu.duke.userdata.UserCareerData;
+import seedu.duke.userexercisedata.UserExerciseData;
+import seedu.duke.userplan.UserPlan;
+
+import java.util.HashMap;
 
 public class GeneralCommandHandler implements CommandList{
 
@@ -23,9 +33,11 @@ public class GeneralCommandHandler implements CommandList{
      * @param userCareerData       This keeps track and allows logging of all user data
      * @param exerciseStateHandler This allows us to start workouts
      */
+
+    //addition of user exercise history
     public void handleGeneralUserCommands(String[] userCommands, Ui ui, GenerateExercise exerciseGenerator,
                                           UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
-                                          StorageHandler storageHandler) {
+                                          StorageHandler storageHandler, UserPlan planner) {
         Command command = null;
         boolean errorExists = false;
         try {
@@ -54,6 +66,15 @@ public class GeneralCommandHandler implements CommandList{
                         exerciseGenerator.generateRandomSetFrom(
                                 exerciseGenerator.generateSetAll(), 3), storageHandler);
                 break;
+            case PLANNER_EDITOR_COMMAND:
+                PlannerCommandHandler.plannerCommandHandler(ui, planner);
+                break;
+            case VIEW_PLAN_COMMAND:
+                ui.showPlan(planner);
+                break;
+            case QUICK_START_COMMAND:
+                command = new QuickStartCommand(userCommands, ui, exerciseGenerator);
+                break;
             case START_COMMAND:
                 exerciseStateHandler.startWorkout();
                 break;
@@ -65,6 +86,13 @@ public class GeneralCommandHandler implements CommandList{
                 break;
             case HISTORY_COMMAND:
                 userCareerData.printAllFinishedWorkoutSessions();
+                break;
+            case FIND_COMMAND:
+                command = new ExerciseSearchCommand(userCommands);
+                break;
+            case EXERCISE_DATA_COMMAND:
+                HashMap<String, Integer> userExerciseDataMap = UserExerciseData.addUserExerciseHistory(userCareerData);
+                ui.printUserExerciseHistory(userExerciseDataMap);
                 break;
             default:
                 ui.unknownCommand();
