@@ -74,7 +74,7 @@ public class ParserTest {
     }
 
     @Test
-    public void PackCommandTest() {
+    public void packCommandTest() {
         String userInput1 = "  add this item  ";
         String userInput2 = "  pack 1 ";
         InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
@@ -87,7 +87,7 @@ public class ParserTest {
     }
 
     @Test
-    public void UnpackCommandTest() {
+    public void unpackCommandTest() {
         String userInput1 = "  add this item  ";
         String userInput2 = "  pack 1 ";
         String userInput3 = "  Unpack 1 ";

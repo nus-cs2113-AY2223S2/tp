@@ -1,10 +1,10 @@
 package bagpacker.packingfunctest;
-
+/*
 import bagpacker.commands.AddCommand;
 import bagpacker.commands.Command;
 import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assertions;*/
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
