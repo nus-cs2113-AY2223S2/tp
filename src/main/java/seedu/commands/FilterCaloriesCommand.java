@@ -49,19 +49,5 @@ public class FilterCaloriesCommand extends Command {
 
         List<Food> caloriesFilteredFoods = foodStorage.getFoodsByCalories(caloriesLowerLimit, caloriesUpperLimit);
         showCaloriesFilteredFoods(foodStorage, caloriesFilteredFoods);
-
-        boolean toContinue = true;
-
-        do {
-            int choice= ui.readInt();
-            if (choice <= 0 || choice > caloriesFilteredFoods.size()) {
-                throw new InvalidIndexException(choice);
-            }
-            System.out.println(System.lineSeparator() + "Type 1 to add more food. Type any other number to quit");
-            choice = ui.readInt();
-            if (choice != 1) {
-                toContinue = false;
-            }
-        } while (toContinue);
     }
 }
