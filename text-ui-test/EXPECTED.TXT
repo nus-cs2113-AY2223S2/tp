@@ -82,3 +82,4 @@ Welcome to Meal360, your ultimate Recipe Manager!
 | Database saved successfully.                                                                     |
 | Bye. Hope to see you again soon!                                                                 |
 ----------------------------------------------------------------------------------------------------
+
