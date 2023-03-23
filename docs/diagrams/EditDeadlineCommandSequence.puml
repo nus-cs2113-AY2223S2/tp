@@ -16,6 +16,7 @@ participant ":TaskList" as TaskList
 participant ":Task" as Task
 participant ":Ui" as Ui
 
+User -> ToDoListManager: input("edit <index> -due <deadline>")
 ToDoListManager -> Parser: parseCommand(inputCommand)
 Parser -> EditDeadlineCommand: new EditDeadlineCommand(getArguments(splitInput, EditDeadlineCommand.FLAGS)
 EditDeadlineCommand -> Parser: formatDateTime(args.get(Flags.DEADLINE.FLAG))
