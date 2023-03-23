@@ -26,7 +26,7 @@ expenses, and categorize them for better organization.
 ### Add an Event: `event`
 Add an event which is to be recorded by Moneymind.
 
-Format: `event NAME e/<expense number> [(opetional) t/<time>]`
+Format: `event NAME e/<expense number> [(optional) t/<time>]`
 
 * `NAME` is the name of the event.
 * `<expense number>` is the expense number of the event.
@@ -64,37 +64,37 @@ Example of usage:
 
 Delete an event or category from Moneymind.
 
-Format: `delete c/<category name> [(optional) e/<event name>]`
+Format: `delete c/<category name> [(optional) e/<event index>]`
 
 * `<category name>` is the name of the category.
-* `<event name>` is the name of the event.
+* `<event index>` is the position of the event (1 based).
 * The `e/` parameter is optional so that the user can choose between deleting a single event or the whole category.
 
 Example of usage:
 
 `delete c/electricity bill`
 
-`delete c/food e/bubble tea`
+`delete c/food e/1`
 
 ### Edit an event: `edit`
 
 Edit the details of an event on Moneymind.
 
-Format: `edit [(optional) c/<category name>] e/<event name> `
+Format: `edit c/<category name> e/<event index> `
 
 * `<category name>` is the name of the category.
-* `<event name>` is the name of the event that the user want to edit.
+* `<event index>` is the position of the event that the user want to edit (1 based).
 * The user will be prompted to enter the new details of the event.
 
 Example of usage:
 
-`edit e/overseas travel`
+`edit c/overseas travel e/1`
 
-Ok, the current expense for overseas travel is:  200 sgd;
+Ok, the current expense for book hotel is: 200;
 
 Your new expense would be:
 
-`100 sgd`
+`100`
 
 Ok, the new expense is now changed to: 100 sgd
 
