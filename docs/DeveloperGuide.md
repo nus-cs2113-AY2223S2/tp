@@ -38,6 +38,17 @@ How module data is stored in text file:
 Module information is stored in one single line separated by commas
 `univID`,`moduleCode`,`moduleName`,`moduleMCs`,`nusModuleCode`,`nusModuleName`,`nusModuleMcs`
 
+### Parser
+
+The parser class is responsible for parsing the user's input commands and returning the appropriate command object. 
+The commands that the parser class will initialise are ListPuCommand(), ListCurrentCommand(modules), 
+prepareListPuModulesCommand(userCommandSecondKeyword, universities), ExitCommand(),
+prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities),
+DeleteModuleCommand(storage, indexToRemove, modules), and HelpCommand(). The parser class will handle error checking by
+throwing InvalidCommandException if the user's input command does not match the specified format.
+
+The following class diagrams illustrates the relationship between the Parser class and the Command classes.
+
 
 ### Help Command
 The help command provides a list of commands and the commands' respective input format for the user.  
