@@ -26,6 +26,7 @@ If you can type fast, Apollo can get your timetable management done faster than 
     + [`delmod` - Deleting a module](#delmod---deleting-a-module)
       + [`delmod` flags](#delmod-flags)
     + [`listmod` - Listing all modules](#listmod---listing-all-modules)
+    + [`showmod` - Show information of a module](#showmod---show-information-of-a-module)
     + [`week` - Viewing weekly schedule](#week---viewing-weekly-schedule)
     + [`bye` - Exiting the program](#bye---exiting-the-program)
     + [Loading and saving of data](#loading-and-saving-of-data)
@@ -311,6 +312,18 @@ You are taking 3 module(s) this semester:
 1.CDE2000: Creating Narratives
 2.CG2023: Signals and Systems
 3.CS2040C: Data Structures and Algorithms
+```
+### `showmod` - Show information of a module
+
+Shows the information of a module.
+Format: `showmod`
+
+```
+>> showmod cs1231
+Here are the lesson types for this module:
+Sectional Teaching (-st)
+Tutorial (-tut)
+Number of MC: 4
 ```
 
 ### `week` - Viewing weekly schedule
