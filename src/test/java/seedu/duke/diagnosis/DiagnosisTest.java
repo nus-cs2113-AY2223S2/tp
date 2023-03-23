@@ -28,7 +28,7 @@ public class DiagnosisTest {
                 ));
     }
 
-    //@@JeraldChen
+    //@@author JeraldChen
     @Test
     public void diagnoseAsthma() {
         ArrayList<Symptom> testSymptoms = new ArrayList<>(List.of(Symptom.HYPERVENTILATION,
@@ -40,7 +40,7 @@ public class DiagnosisTest {
                 ));
     }
 
-    //@@JeraldChen
+    //@@author JeraldChen
     @Test
     public void diagnoseGeneralAllergicReaction() {
         ArrayList<Symptom> testSymptoms = new ArrayList<>(List.of(Symptom.HISTORY_OF_ALLERGIES));
@@ -50,7 +50,7 @@ public class DiagnosisTest {
                 ));
     }
 
-    //@@JeraldChen
+    //@@author JeraldChen
     @Test
     public void diagnoseBronchitis() {
         ArrayList<Symptom> testSymptoms = new ArrayList<>(List.of(Symptom.THROAT_IRRITATION,
@@ -63,7 +63,7 @@ public class DiagnosisTest {
                 ));
     }
 
-    //@@JeraldChen
+    //@@author JeraldChen
     @Test
     public void diagnoseGeneralBacterialInfection() {
         ArrayList<Symptom> testSymptoms = new ArrayList<>(List.of(Symptom.PUSS,
@@ -76,7 +76,7 @@ public class DiagnosisTest {
                 ));
     }
 
-    //@@JeraldChen
+    //@@author JeraldChen
     @Test
     public void diagnosePneumonia() {
         ArrayList<Symptom> testSymptoms = new ArrayList<>(List.of(Symptom.CHEST_PAIN,
@@ -95,7 +95,7 @@ public class DiagnosisTest {
 
     }
 
-    //@@JeraldChen
+    //@@author JeraldChen
     @Test
     public void diagnoseSoreThroat() {
         ArrayList<Symptom> testSymptoms = new ArrayList<>(
@@ -109,7 +109,7 @@ public class DiagnosisTest {
                 ));
     }
 
-    //@@JeraldChen
+    //@@author JeraldChen
     @Test
     public void diagnoseTuberculosis() {
         ArrayList<Symptom> testSymptoms = new ArrayList<>(
@@ -124,7 +124,7 @@ public class DiagnosisTest {
                 ));
     }
 
-    //@@JeraldChen
+    //@@author JeraldChen
     @Test
     public void diagnoseCoronaryHeartDisease() {
         ArrayList<Symptom> testSymptoms = new ArrayList<>(
@@ -140,7 +140,7 @@ public class DiagnosisTest {
                 ));
     }
 
-    //@@JeraldChen
+    //@@author JeraldChen
     @Test
     public void diagnoseHypertension() {
         ArrayList<Symptom> testSymptoms = new ArrayList<>(

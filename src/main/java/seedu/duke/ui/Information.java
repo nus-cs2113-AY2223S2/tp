@@ -1,4 +1,4 @@
-//@@JeraldChen
+//@@author JeraldChen
 package seedu.duke.ui;
 
 import seedu.duke.diagnosis.symptoms.Symptom;
@@ -15,7 +15,7 @@ import static seedu.duke.save.Storage.saveData;
  * This class stores information on all patients registered by DoctorDuke.
  */
 
-//JeraldChen
+//@@author JeraldChen
 public class Information {
     private static final HashMap<Integer, Patient> patientsList = new HashMap<>();
 
@@ -49,7 +49,7 @@ public class Information {
         }
     }
 
-    //@@JeraldChen
+    //@@author JeraldChen
     /**
      * Resets the diagnosis history of the patient.
      *
@@ -88,22 +88,6 @@ public class Information {
         return patientsList;
     }
 
-    //@@Geeeetyx
-    /**
-     * Resets the symptom choice of the patient.
-     * @param symptoms The symptom choice of the patient.
-     */
-    public static void resetSymptomChoice(ArrayList<Symptom> symptoms) {
-        if (symptoms.size() != 0) {
-            symptoms.clear();
-            System.out.println("---------------------------------------------------");
-            System.out.println("Your symptom choice has been reset.");
-        } else {
-            System.out.println("---------------------------------------------------");
-            System.out.println("You have not entered any symptoms. No symptoms to reset.");
-        }
-    }
-
     //@@Thunderdragon221
     /**
      * Hashes the password keyed in by the user.
@@ -112,5 +96,41 @@ public class Information {
      */
     public static int hashPassword(String password) {
         return password.hashCode();
+    }
+
+    //@@Jeraldchen
+    /**
+     * Resets the symptom choice of the patient.
+     * @param symptoms The symptom choice of the patient.
+     */
+    public static void resetSymptomChoice(ArrayList<Symptom> symptoms) {
+        if (symptoms.size() != 0) {
+            symptoms.clear();
+            //@@Geeetyx
+            System.out.println("---------------------------------------------------");
+            //@@JeraldChen
+            System.out.println("Your symptom choice has been reset.");
+        } else {
+            //@@Geeetyx
+            System.out.println("---------------------------------------------------");
+            //@@JeraldChen
+            System.out.println("You have not entered any symptoms. No symptoms to reset.");
+        }
+    }
+
+
+    //@@author JeraldChen
+    /**
+     * Prints the symptom history of the patient.
+     * @param symptoms
+     */
+    public static void viewSymptomHistory(ArrayList<Symptom> symptoms) {
+        if (symptoms.size() == 0) {
+            System.out.println("You have not entered any symptoms.");
+        } else {
+            for (int i = 0; i < symptoms.size(); i++) {
+                System.out.println(symptoms.get(i));
+            }
+        }
     }
 }

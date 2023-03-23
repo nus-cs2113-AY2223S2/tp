@@ -1,8 +1,21 @@
 49
 Demo
-3
-Diarrhoea
-Food Poisoning
-Stomach Ache
+11
+Bronchitis
+Muscle Ache
+Headache
+COVID-19
+Dengue Fever
+General Cold
+General Flu
+Insomnia
+Sore Throat
+Fever
+Insomnia
 1
-2023/03/23 Ultracarbon 
+2023/03/23 Ultracarbon Paracetamol Ibuprofen Aspirin Robitussin Magnesium 
+50
+sjfnsdkl
+0
+0
+
