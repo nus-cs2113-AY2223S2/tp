@@ -2,7 +2,7 @@ package bagpacker.packingfunctest;
 
 import bagpacker.commands.AddCommand;
 import bagpacker.commands.Command;
-import bagpacker.packingfunc.Item;
+//import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ public class CommandsTest {
         Assertions.assertNotEquals("tooth", packingList.get(0).getItemName());
 
         // Expect second index item in the packing list to be toothpaste
-//        Item itemTwo = new Item("toothpaste");
+        //        Item itemTwo = new Item("toothpaste");
         addCommand = new AddCommand(1, "toothpaste");
         addCommand.execute(packingList);
 

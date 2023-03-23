@@ -41,29 +41,29 @@ public class Parser {
         setFullInput(inputLine);
         String[] inputStringList = inputLine.trim().split(" ", 2);
         switch (inputStringList[0]) {
-            case "add":
-                arguments = inputStringList[1].trim().split("/of");
-                return createAddObj();
-            case "delete":
-                arguments[0] = inputStringList[1].trim();
-                return createDeleteObj();
-            case "pack":
-                arguments = inputStringList[1].trim().split("/of");
-                return createPackObj();
-            case "unpack":
-                arguments = inputStringList[1].trim().split("/of");
-                return createUnpackObj();
-            case "list":
-                return listCommand();
-            case "help":
-                return createHelpObj();
-            case "deletelist":
-                return createDeletelistObj();
-            case "bye":
-                return createByeObj();
-            default:
-                return new IncorrectCommand("'" + inputStringList[0] + "' is an invalid User Command",
-                        "input 'help' to receive all valid commands");
+        case "add":
+            arguments = inputStringList[1].trim().split("/of");
+            return createAddObj();
+        case "delete":
+            arguments[0] = inputStringList[1].trim();
+            return createDeleteObj();
+        case "pack":
+            arguments = inputStringList[1].trim().split("/of");
+            return createPackObj();
+        case "unpack":
+            arguments = inputStringList[1].trim().split("/of");
+            return createUnpackObj();
+        case "list":
+            return listCommand();
+        case "help":
+            return createHelpObj();
+        case "deletelist":
+            return createDeletelistObj();
+        case "bye":
+            return createByeObj();
+        default:
+            return new IncorrectCommand("'" + inputStringList[0] + "' is an invalid User Command",
+                    "input 'help' to receive all valid commands");
         }
     }
 
@@ -145,7 +145,7 @@ public class Parser {
      * Attempts to create DeleteCommand object to be executed where it is called from
      *
      * @return DeleteCommand the command to be executed to delete an item to the packing list, else
-     * an IncorrectCommand is created to be executed
+     *      an IncorrectCommand is created to be executed
      */
     public static Command createDeleteObj() {
         try {
@@ -179,7 +179,7 @@ public class Parser {
      * Attempts to create PackCommand object to be executed where it is called from
      *
      * @return PackCommand the command to be executed to Pack an item in the packing list, else
-     * an IncorrectCommand is created to be executed
+     *      an IncorrectCommand is created to be executed
      */
     public static Command createPackObj() {
         try {
@@ -206,7 +206,7 @@ public class Parser {
      * Attempts to create UnpackCommand object to be executed where it is called from
      *
      * @return UnpackCommand the command to be executed to unpack an item in the packing list, else
-     * an IncorrectCommand is created to be executed
+     *      an IncorrectCommand is created to be executed
      */
     public static Command createUnpackObj() {
         try {
