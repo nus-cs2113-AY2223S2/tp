@@ -2,7 +2,7 @@
 
 * [Acknowledgements](#acknowledgements)
 * [Setting up, getting started](#setting-up-getting-started)
-* [Design & implementation](#design--implementation)
+* [Design](#design)
     * [Architecture](#architecture)
     * [UI Component](#ui-component)
     * [Parser Component](#parser-component)
@@ -10,6 +10,9 @@
     * [RecipeList Component](#recipelist-component)
     * [WeeklyPlan Component](#weeklyplan-component)
     * [Database Component](#database-component)
+* [Implementation](#implementation)
+    * [Categorise/Tag Recipes Feature](#categorisetag-recipes-feature)
+    * [List Recipes Feature](#list-recipes-feature)
 
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -32,7 +35,7 @@ include links to the original source as well}
 
 ---
 
-## Design & implementation
+## Design
 
 * [Architecture](#architecture)
 * [UI Component](#ui-component)
@@ -44,15 +47,25 @@ include links to the original source as well}
 
 ### Architecture
 
+
 ### UI Component
+API: `Ui.java`
 
 ### Parser Component
+API: `Parser.java`
 
 ### Recipe Component
+API: `Recipe.java`
+
+The `Recipe` component:
+
+* contains `name` and `ingredients` attribute
+* store the ingredients details the user has added in `ingredients`
 
 ### RecipeList Component
 
 API: `RecipeList.java`
+
 The `RecipeList` component:
 
 * extends from `ArrayList<Recipe>`
@@ -118,6 +131,56 @@ The activity diagram below shows how the `Database` component works at start up:
 ![](../docs/UML/Database/DatabaseStartupUML.png)
 ---
 
+## Implementation
+* [Categorise/Tag Recipes Feature](#categorisetag-recipes-feature)
+* [List Recipes Feature](#list-recipes-feature)
+
+### Categorise/Tag Recipes Feature
+
+The current implementation:
+* add recipes into a tag
+* remove recipes from a tag
+
+It is implemented through the following step:
+1. When the user enters an input with the first word being `tag`, the input is passed to
+   the `Parser` component.
+2. In `Parser`, `parseTagRecipe()` is executed to identify whether user want to add recipes 
+   to a tag (`<<`), or remove recipes from a tag(`>>`). Then,
+   * If user want to add recipes to a tag, `parseAddRecipeTag()` will be executed to extract 
+     the all the recipes to be added, separated by `,`. and pass those recipes to `RecipeList` 
+     component.
+   * If user want to remove recipes from a tag, `parseRemoveRecipeTag()` will be executed to 
+     extract the all the recipes to be removed, separated by `,`. and pass those recipes to 
+     `RecipeList` component.
+3. In `RecipeList`,
+   * If user want to add recipes to a tag, `addRecipeToTag()` is executed to add recipes in 
+     to the tag.
+   * If user want to remove recipes to a tag, `removeRecipeFromTag()` is executed to add recipes 
+     in to the tag.
+
+The sequence diagram below shows how this feature works:
+{UML will be added here.}
+
+### List Recipes Feature
+
+The current implementation:
+* list all recipes
+* list recipe with filters (name, ingredients, tags)
+
+It is implemented through the following step:
+1. When the user enters an input with the first word being `list`, the input is passed to
+   the `Parser` component.
+2. In `Parser`, `parseListRecipe()` is executed to identify whether user want to filter 
+   by tag (`/t`), otherwise the list is filtered by name and ingredients, and whether 
+   there are many filters (`&`). All the filters is extracted out and passed to `RecipeList`
+   component.
+3. In `RecipeList`, `listRecipes()` is executed to filter all recipes that match the filters,
+   and return the `recipeList`containing all relevant recipes to `ParserRecipe()`.
+
+The sequence diagram below shows how this feature works:
+{UML will be added here.}
+
+---
 ## Appendix: Requirements
 
 ### Product scope
@@ -133,15 +196,25 @@ The activity diagram below shows how the `Database` component works at start up:
 
 ### Value proposition
 
-Allows management of recipes, ingredients and weekly meal plan faster than a typical mosue/GUI
+Allows management of recipes, ingredients and weekly meal plan faster than a typical mouse/GUI
 driven app.
 
 ### User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ... | I want to ...                                     | So that I can ...                                                 |
+|---------|----------|---------------------------------------------------|-------------------------------------------------------------------|
+| v1.0    | user     | add my own recipes to the list                    | refer to them when next time                                      |
+| v1.0    | user     | edit the existing recipe                          |                                                                   |
+| v1.0    | user     | delete a recipe from the list                     | clear the unused recipes                                          |
+| v1.0    | user     | view ingredients of the recipe                    | know what is needed to be prepared                                |
+| v1.0    | user     | list all recipes I have                           | know what I have some idea of what to cook                        |
+| v1.0    | user     | find the recipe that contain specific ingredients | find specific recipe without having to go through the entire list |
+| v1.0    | user     | exit from the program                             |                                                                   |
+| v2.0    | new user | list all the command that can be used             | know what command I can use                                       |
+| v2.0    | user     | add meals I plan to make for the week             | refer to the weekly meals plan next time                          |
+| v2.0    | user     | delete meals I plan to make for the week          | remove some meals from the weekly plan if I change my mind        |
+| v2.0    | user     | categorise recipes using tags                     | group recipes with similar theme together                         |
+| v2.0    | user     | list the recipes by tag                           | list recipes that are under the specific category                 |
 
 ### Non-Functional Requirements
 
