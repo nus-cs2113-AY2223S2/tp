@@ -83,7 +83,9 @@ The following shows the UML diagram used for the Expenditure Categories componen
 
 ![](team/images/UMLClassDiagramExpenditure.png)
 
+In the diagram, the aforementioned expenditure categories inherit from the `Expenditure` class. The `ExpenditureList` class is a composition of expenditures of `Expenditure` type. 
 
+`Expenditure` has a multiplicity of `*` to `ExpenditureList` as an empty expenditure list is instantiated at the beginning of the program, and any number of expenditures can be added to the expenditure list. Thus, it is also observed that the `ExpenditureList` class is an *composition* of `Expenditure`.
 
 ### Storage
 
