@@ -24,6 +24,36 @@ The
 Store. hello
 List.
 
+### Help
+The Help feature allows users to view possible options by calling `Help.` which reads the content stored in the HelpManual.txt.
+
+The feature implemented involves reading the content from HelpManual.txt file and logging the result of read operation using the Java Logging API.
+
+#### HelpManual text:
+`HelpManual.txt` is a text file that contains the help manual for the application. It is located in the `src/main/resources` directory of the project.
+The purpose of this file is to provide users with helpful information on how to use the application.
+
+#### HelpManual class:
+Step 1. Define the HelpManual class: The HelpManual class is defined as a public class with two static fields: filePath and logFilePath. 
+These fields contain the file path of the HelpManual.txt file and the name of the log file, respectively.
+
+Step 2. Setting up the Logger: The Logger is set up in the HelpManual class using the Java Logging API. 
+The `setUpLogger()` method resets the LogManager, sets the logger's level to ALL, and creates a log file if it does not already exist. 
+This method is called before the `readHelpManual()` method to ensure that the logger is properly configured.
+
+Step 3. Reading the file:
+The `readHelpManual()` method is implemented to read the content from the HelpManual.txt file.
+It first calls the setUpLogger() method to configure the logger. Then it obtains an InputStream object that reads the content from the 
+file using the `getResourceAsStream()` method. Before reading the file, the `readHelpManual()` method asserts that the input stream is not null to ensure that the file exists and is readable.
+The file is then read line by line using a BufferedReader object, and each line is appended to a StringBuilder object. Otherwise,
+the `getResourceAsStream()` method will return a null value, and an `AssertionError` will be thrown.
+
+Step 4. Logging the result: After reading the file, the `readHelpManual()` method closes the BufferedReader and InputStream 
+objects and logs the success or failure of the read operation using the logger. If the read operation is successful, a message
+is logged to the console and log file indicating that the HelpManual file was successfully read. If an exception occurs during
+the read operation, an error message is logged to the console and log file.
+
+
 ### Graph
 The Graph feature allows users to analyse basic Trigonometry signals by calling `startGraphAnalysis()` which
 creates a new instance of `TrigoGraphAnalyser` named `analyser`.
