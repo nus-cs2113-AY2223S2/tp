@@ -9,7 +9,8 @@ import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.brokeMan.entry.EntryList.*;
+import static seedu.brokeMan.entry.EntryList.deleteEntry;
+import static seedu.brokeMan.entry.EntryList.getEntryListSum;
 import static seedu.brokeMan.parser.StringToTime.convertStringToTime;
 
 
