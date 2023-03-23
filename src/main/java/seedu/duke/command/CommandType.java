@@ -48,9 +48,5 @@ public enum CommandType {
     /**
      * Command not recognized.
      */
-    UNKNOWN,
-    /**
-     * Saves the recipes
-     */
-    SAVE
+    UNKNOWN
 }
