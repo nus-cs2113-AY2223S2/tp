@@ -3,10 +3,12 @@ package seedu.brokeMan.entry;
 import seedu.brokeMan.ui.Ui;
 
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class EntryList {
-    //static final LinkedList<Entry> entryList = new LinkedList<>();
 
     /**
      * Adds new expense/income to the list
@@ -23,7 +25,7 @@ public abstract class EntryList {
      *
      * @param entryList LinkedList that contains the entries
      */
-    public static void listEntry(LinkedList<Entry> entryList) {
+    public static void listEntry(List<Entry> entryList) {
         int counter = 1;
         for (Entry entryLog : entryList) {
             String message = String.format("%d. %s", counter, entryLog.toString());
@@ -153,5 +155,17 @@ public abstract class EntryList {
         } else {
             Ui.showToUser("No entries found under this category. ");
         }
+    }
+
+    protected static List<Entry> selectEntryForDate(int year, Month month, LinkedList<Entry> entryList) {
+        return entryList.stream().filter(x -> x.isSameMonth(year, month)).collect(Collectors.toList());
+    }
+
+    public static double getEntryListSum(List<Entry> entryList) {
+        double sum = 0;
+        for (Entry entry : entryList) {
+            sum += entry.getAmount();
+        }
+        return sum;
     }
 }
