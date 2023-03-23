@@ -40,6 +40,7 @@ public class ModifyCommand extends Command implements LoggerInterface {
      * @throws NumberFormatException If idx cannot be parsed, or is outside the current range of tasks.
      */
     public ModifyCommand(String command, String param, int size) throws NumberFormatException {
+        setUpLogger();
         assert (command.equals(COMMAND_MARK_WORD) | command.equals(COMMAND_UNMARK_WORD) |
                 command.equals(COMMAND_DELETE_WORD)) : "ModifyCommand: Invalid Modify Command";
         assert param != null : "ModifyCommand: param cannot be null!";

@@ -18,6 +18,7 @@ ____________________________________________________________
  Enter "event [task] /from [date] /to [date]" to add an event
  Enter "addmod [MODULE_CODE]" to add a Module to the Module list
  Enter "addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a lesson
+ Enter "showmod [MODULE_CODE]" to see more information about the module
  Enter "mark [idx]" to mark task as done
  Enter "unmark [idx]" to mark task as not done
  Enter "delete [idx]" to remove task from list
@@ -176,6 +177,64 @@ ____________________________________________________________
 Here are the tasks happening on May 03 2023:
 1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
 2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+____________________________________________________________
+____________________________________________________________
+CS1231
+Number of MC: 4
+Here are the lesson types for this module:
+Sectional Teaching (-st)
+Tutorial (-tut)
+Sectional Teaching 1
+   Friday 1200 - 1300
+Sectional Teaching 1
+   Wednesday 1200 - 1400
+Tutorial 02
+   Monday 1000 - 1200
+Tutorial 04
+   Monday 1400 - 1600
+Tutorial 05
+   Monday 1600 - 1800
+Tutorial 07
+   Tuesday 1000 - 1200
+Tutorial 08
+   Tuesday 1200 - 1400
+Tutorial 09
+   Tuesday 1400 - 1600
+Tutorial 10
+   Tuesday 1600 - 1800
+Tutorial 12
+   Wednesday 1600 - 1800
+Tutorial 17
+   Friday 1400 - 1600
+Tutorial 18
+   Friday 1600 - 1800
+____________________________________________________________
+____________________________________________________________
+CG2023
+Number of MC: 4
+Here are the lesson types for this module:
+Laboratory (-lab)
+Lecture (-lec)
+Laboratory 01
+   Monday 1400 - 1700
+Laboratory 02
+   Monday 1400 - 1700
+Laboratory 03
+   Tuesday 0900 - 1200
+Laboratory 04
+   Tuesday 0900 - 1200
+Laboratory 05
+   Friday 0900 - 1200
+Laboratory 06
+   Friday 0900 - 1200
+Lecture 01
+   Thursday 1600 - 1800
+Lecture 01
+   Tuesday 1600 - 1800
+Lecture 02
+   Thursday 1600 - 1800
+Lecture 02
+   Tuesday 1600 - 1800
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(
