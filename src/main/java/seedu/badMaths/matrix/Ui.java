@@ -1,7 +1,5 @@
 package seedu.badMaths.matrix;
 
-import java.util.Scanner;
-
 public class Ui {
     public void printInfo(){
         System.out.println("");
