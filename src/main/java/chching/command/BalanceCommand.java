@@ -28,14 +28,14 @@ public class BalanceCommand extends Command {
      *
      * @param incomes       ArrayList of income.
      * @param expenses      ArrayList of income.
-     * @param ui        User interface
+     * @param ui            User interface
      * @param storage       Storage of data
      * @param converter     Convert value
      * @param targetStorage store target
      */
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
-            Converter converter, TargetStorage targetStorage) throws ChChingException {
+                        Converter converter, TargetStorage targetStorage) throws ChChingException {
         double totalIncome = 0;
         double totalExpense = 0;
         for (int i = 0; i < incomes.size(); i++) {
@@ -53,10 +53,9 @@ public class BalanceCommand extends Command {
         System.out.println();
         System.out.println("    SGD " + String.format("%.02f", currentTarget));
 
-        if(balance >= currentTarget){
+        if (balance >= currentTarget) {
             System.out.println("Great work! You have met your target goal.");
-        }
-        else{
+        } else {
             System.out.println("Balance has not reached your target goal. Keep on pushing!");
         }
     }
