@@ -59,11 +59,16 @@
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+2. Should be able to hold up to 1000 appointments without a noticeable change in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+   be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ## Glossary
 
-* *glossary item* - Definition
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Main Command**: The first WORD that a user types in. `e.g. consultation, list` etc
+* **Argument**: A word that is a parameter is prefixed by `/`. `e.g. at/, cd/`
 
 ## Instructions for manual testing
 Given below are the instructions to test Sniff manually
@@ -87,7 +92,18 @@ ______________________________________________________________________
 
 #### Adding appointments
 
-1. Test case: `consultation at/Cat an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`<br>
+1. Definitions:
+   1. 3 types of appointments: `consultation`, `vaccination`, `surgery`.
+   2. Animal type: `at/`.
+   3. Animal name: `an/`.
+   4. Owner name: `on/`.
+   5. Contact number: `cn/`.
+   6. Dates: `cd`, `vd`, `sd`, `ed`, in the format of **YYYY-MM-DD**.
+   7. Times: `ct`, `vt`, `st`, `et`, in the format of **HH:MM**.
+   8. Vaccine: `v/`.
+   9. Priority: `p/`, in the format of `H`, `M`, `L`.
+   
+2. Test case: `consultation at/Cat an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`<br>
    Expected output: A consultation appointment has been added successfully, details shown in the status message.
    Example:
 ```
@@ -101,7 +117,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-2. Test case: `consultation at/an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`<br>
+3. Test case: `consultation at/an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`<br>
    Expected output: A consultation appointment is not added due to invalid description.
    Example:
 ```
@@ -111,7 +127,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-3. Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00`
+4. Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00`
    Expected output: A vaccination appointment has been added successfully, details show in the status message.
    Example:
 ```
@@ -125,7 +141,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-4. Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/12-12-2023 vt/19:00`
+5. Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/12-12-2023 vt/19:00`
    Expected output: A vaccination appointment is not added due to invalid date description.
    Example: 
 ```
@@ -135,7 +151,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-5. Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H`
+6. Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H`
    Expected output: A surgery appointment has been added successfully, details shown in the status message.
    Example:
 ```
@@ -150,7 +166,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-6. Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/19:00 p/H`
+7. Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/19:00 p/H`
    Expected output: A surgery appointment is not added due to invalid date description.
    Example:
 ```
