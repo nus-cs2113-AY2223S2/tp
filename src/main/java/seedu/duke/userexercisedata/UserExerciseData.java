@@ -1,13 +1,11 @@
 package seedu.duke.userexercisehistory;
-import seedu.duke.exersisedata.ExerciseData;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import seedu.duke.ui.PrintExercises;
+
 import seedu.duke.userdata.UserCareerData;
 
 
-public class UserExerciseHistory {
+public class UserExerciseData {
     public static HashMap<String,Integer> addUserExerciseHistory(UserCareerData userCareerData) {
         HashMap<String,Integer> userExerciseDataMap = new HashMap<>();
         //Get the names of all exercises from each of the sessions, then

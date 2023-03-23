@@ -1,7 +1,5 @@
 package seedu.duke.ui;
 
-import seedu.duke.userexercisehistory.UserExerciseHistory;
-
 import java.util.HashMap;
 import java.util.Map;
 
