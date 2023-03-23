@@ -209,7 +209,8 @@ class Meal360Test {
 
         HashMap<String, Integer> pastaIngredients = new HashMap<>();
         pastaIngredients.put("penne", 1);
-        Recipe salad = new Recipe("pasta", pastaIngredients);
+        Recipe pasta = new Recipe("pasta", pastaIngredients);
+        recipes.add(pasta);
 
         WeeklyPlan weeklyPlan = new WeeklyPlan();
         weeklyPlan.put("pasta", 1);
