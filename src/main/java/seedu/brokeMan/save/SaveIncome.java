@@ -15,11 +15,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-/*
-Saves all incomes under any change
- */
-public class SaveIncome {
 
+public class SaveIncome {
+    /*
+     * saves all incomes under any change
+     */
     public static void writeFile(LinkedList<Entry> incomes) {
         try {
             FileWriter myWriter = new FileWriter("./data/IncomeData.txt");
@@ -34,17 +34,13 @@ public class SaveIncome {
             try {
                 Files.createDirectories(Path.of("./data"));
                 File myObj = new File("./data/IncomeData.txt");
-                //boolean fileCreated = false;
-                myObj.createNewFile();
-                //if (myObj.createNewFile()) {
-                    //System.out.println("File created: " + myObj.getName());
-                    //fileCreated = true;
-                //}
+                boolean newFile = myObj.createNewFile();
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
         }
     }
+
     public static void readIncomeFile() {
         try {
             String filePath = "./data/IncomeData.txt";
@@ -66,12 +62,7 @@ public class SaveIncome {
             try {
                 Files.createDirectories(Path.of("./data"));
                 File myObj = new File("./data/IncomeData.txt");
-                //boolean fileCreated = false;
-                myObj.createNewFile();
-                //if (myObj.createNewFile()) {
-                    //System.out.println("File created: " + myObj.getName()); -
-                    //fileCreated = true;
-                //}
+                boolean newFile = myObj.createNewFile();
             } catch (IOException fcIoe) {
                 ioe.printStackTrace();
             }

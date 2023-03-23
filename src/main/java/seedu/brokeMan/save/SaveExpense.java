@@ -17,8 +17,8 @@ import java.util.LinkedList;
 
 public class SaveExpense {
     /*
-Saves all expenses under any change
- */
+     * saves all expenses under any change
+     */
     public static void writeFile(LinkedList<Entry> expenses) {
         try {
             FileWriter myWriter = new FileWriter("./data/ExpenseData.txt");
@@ -35,9 +35,6 @@ Saves all expenses under any change
                 Files.createDirectories(Path.of("./data"));
                 File myObj = new File("./data/ExpenseData.txt");
                 boolean newFile = myObj.createNewFile();
-                //if (myObj.createNewFile()) {
-                //System.out.println("File created: " + myObj.getName());
-                //}
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
@@ -66,10 +63,6 @@ Saves all expenses under any change
                 Files.createDirectories(Path.of("./data"));
                 File myObj = new File("./data/ExpenseData.txt");
                 boolean newFile = myObj.createNewFile();
-                //if (myObj.createNewFile()) {
-                //System.out.println("File created: " + myObj.getName());
-                //fileCreated = true;
-                //}
             } catch (IOException fcIoe) {
                 ioe.printStackTrace();
             }
