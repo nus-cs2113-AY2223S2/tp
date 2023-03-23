@@ -104,8 +104,8 @@ public class GenerateExercise {
      */
     public ArrayList<ExerciseData> generateFilteredWorkoutTypeFrom(ArrayList<ExerciseData> exerciseList,
                                                                    String workoutType) throws DukeError {
-        assert exerciseList != null : "exerciseList should not be null.";
-        assert workoutType != null : "workout type should not be null.";
+        assert exerciseList != null : "Exercise List should not be null.";
+        assert workoutType != null : "Workout Type should not be null.";
         String exerciseDataWorkoutType;
         String getWorkoutType;
         String getWorkoutTypeFinal;
@@ -151,7 +151,7 @@ public class GenerateExercise {
      * @throws DukeError if the workout type input provided by the user is invalid
      */
     private static String parseWorkoutType(String workoutBodyType) throws DukeError {
-        assert workoutBodyType != null : "workout type should not be null.";
+        assert workoutBodyType != null : "Workout Type should not be null.";
         switch (workoutBodyType) {
         case UPPER:
             return UPPER_BODY;
