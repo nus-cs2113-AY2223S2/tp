@@ -8,6 +8,7 @@ import org.threeten.extra.Temporals;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.HttpURLConnection;
@@ -16,7 +17,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 
 
-public class Currency {
+public class Currency implements Serializable {
 
     protected static HashMap<String, String> currencies =  new HashMap<>();
     public Currency() {

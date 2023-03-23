@@ -60,6 +60,7 @@ public class Duke {
                 break;
             case "total":
                 new CommandTotal(expenseList.getExpenseList()).execute();
+                break;
             case "sort":
                 new CommandSort(expenseList.getExpenseList(), parser.extractSortBy(input)).execute();
                 break;
