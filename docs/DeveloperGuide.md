@@ -25,6 +25,8 @@
   - [Appendix C - Non-Functional Requirements](#appendix-c---non-functional-requirements)
   - [Appendix D - Glossary](#appendix-d---glossary)
   - [Appendix E - Instructions for manual testing](#appendix-e---instructions-for-manual-testing)
+    - [Appendix E.1 - Adding a recipe](#appendix-e1---adding-a-recipe)
+    - [Appendix E.2 - Deleting a recipe](#appendix-e2---deleting-a-recipe)
 
 ## Acknowledgements
 
@@ -214,10 +216,40 @@ ingredients required and steps to make the dish
 Sample inputs should be placed into the input.txt file, and an expected output in the EXPECTED.txt file.
 Run `./runtest.bat` to automatically get a result of whether the actual output follows the expected.
 The resultant output can be found under ACTUAL.txt
-<br> <br>
-Manual test cases should include scenarios of the following
-1. correct input parameters
-2. missing input parameters
-3. wrong format input parameters (i.e. substituting an expected number for a word)
 
+### Appendix E.1 - Adding a recipe
+Adding a person by using the `add` command and the recipe to be added.
+1. test case: 
+`add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/4`
+`chop beef`
+`add potatoes`
+`add carrots`
+`cook 5 minutes`
+Expected: Recipe is added to the list and the message is shown in the result display.
+```
+Got it. I've added this recipe:
+  [Chinese] Hotpot
+Now you have 1 recipes in the list.
+```
+2. test case: 
+`add i/Beef, Potatoes, Carrots t/Chinese s/0`
+
+### Appendix E.2 - Deleting a recipe
+Deleting a person by using the `delete` command and the index of the recipe to be deleted.
+1. test case: `delete 1`
+Expected: First contact is deleted from the list and the message is shown in the result display.
+```
+Noted. I've removed this recipe:
+[TAG] NAME 
+you have XX recipes in the list.
+```
+1. test case: `delete 0`
+Expected: No recipe is deleted. Error details shown in the result display.
+```
+Error in finding index!
+Exception occurred: Your list is either EMPTY or does not contain recipes up to the index you inputted yet,
+so you cannot use the DELETE command yet! Try filling up the list first!
+```
+1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete x` (where x is a negative integer or zero), `delete XX`(where XX is not a number).
+Expected: Similar to previous.
 
