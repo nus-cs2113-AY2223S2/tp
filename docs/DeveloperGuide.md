@@ -23,7 +23,7 @@
     - [Value proposition](#value-proposition)
   - [Appendix B - User Stories](#appendix-b---user-stories)
   - [Appendix C - Non-Functional Requirements](#appendix-c---non-functional-requirements)
-  - [Appendix D Glossary](#appendix-d-glossary)
+  - [Appendix D - Glossary](#appendix-d---glossary)
   - [Appendix E - Instructions for manual testing](#appendix-e---instructions-for-manual-testing)
 
 ## Acknowledgements
@@ -62,6 +62,9 @@ The rest of the App consists of five components.
 * [**`RecipeList`**](#recipelist-component): Holds the recipe data in the recipe manager by an ArrayList. 
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+**How the architecture components interact with each other**
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+![image](./PlantUML/ArchitectureInteract.png)
 
 #### UI component
 The **API** of this component is specified in [`UI.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/ui/UI.java)
@@ -200,7 +203,7 @@ The user will be able to keep close tabs on their nutrition based on the recipes
 * Users should be able to run on **any common operating system (Windows, Mac, Linux).**
 * Users should not need to manipulate any files in the directory **manually**.
 * Users should be able to run all functions of the program **on the CLI only (i.e. keyboard inputs only)**.
-## Appendix D Glossary
+## Appendix D - Glossary
 
 * *Recipe* - A set of instructions for preparing a food item. In our implementation it should contain the dish's name,
 ingredients required and steps to make the dish
