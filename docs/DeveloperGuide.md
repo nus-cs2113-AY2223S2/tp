@@ -60,6 +60,13 @@ This section describes how Duck is implemented and how its commands are executed
 
 ### Purge feature
 
+**Sequence Diagram**
+
+![image](https://user-images.githubusercontent.com/1620654/227128864-cfc9cac7-bc68-4962-ac45-77e1ae067db0.png)
+
+The ```TaskList#purge()``` command will be implemented following the sequence diagram as shown above.
+
+
 **Implementation**
 
 The ```TaskList#purge()``` command will be implemented to facilitate the removal of expired ```Task``` items from the ```TaskList```. This will be executed once upon Duck's startup, and can be further executed by inputting the term ```purge``` into the CLI when Duck is running. The following is the new operation to be implemented.
