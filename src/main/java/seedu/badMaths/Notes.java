@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.io.File;
 
 public class Notes {
+    protected static String logFilePath = "Notes";
     private static final String filePath = "data/notes.txt";
     private static Logger logr = Logger.getLogger("Notes");
-    protected static String logFilePath = "Notes";
     private String toDo;
     private ArrayList<String> cache;
 
