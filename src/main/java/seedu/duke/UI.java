@@ -81,20 +81,20 @@ public class UI {
 
     public void printPUModules(int univID) {
         ArrayList<Module> puModulesToPrint = new ArrayList<>();
-        for (Module module : puModules) {
-            if (module.getUnivId() == univID) {
-                puModulesToPrint.add(module);
+        for (Module puModule : puModules) {
+            if (puModule.getUnivId() == univID) {
+                puModulesToPrint.add(puModule);
             }
         }
         int puModulesIndex = 0;
-        for (Module module : puModulesToPrint) {
+        for (Module puModuleToPrint : puModulesToPrint) {
             puModulesIndex++;
-            String moduleCode = module.getModuleCode();
-            String moduleName = module.getModuleName();
-            int moduleMCs = module.getModuleMCs();
-            String nusModuleCode = module.getNusModuleCode();
-            String nusModuleName = module.getNusModuleName();
-            int nusModuleMCs = module.getNusModuleMCs();
+            String moduleCode = puModuleToPrint.getModuleCode();
+            String moduleName = puModuleToPrint.getModuleName();
+            int moduleMCs = puModuleToPrint.getModuleMCs();
+            String nusModuleCode = puModuleToPrint.getNusModuleCode();
+            String nusModuleName = puModuleToPrint.getNusModuleName();
+            int nusModuleMCs = puModuleToPrint.getNusModuleMCs();
             System.out.print(puModulesIndex + ". ");
             System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
             System.out.print("   maps to ----> ");
