@@ -7,6 +7,7 @@ import seedu.duke.recipe.Ingredient;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Step;
 import seedu.duke.recipe.StepList;
+import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
 import java.util.ArrayList;
@@ -19,8 +20,9 @@ import static seedu.duke.ui.IntLib.RECIPE_SUM_OF_STEPS_INDEX;
 
 public class Parser {
 
-    private static final String RECIPE_MISSING_NAME_INGREDIENTS_TAG_STEP = "Recipe is missing the \"NAME\" "
-            + "or \"INGREDIENTS\" or \"TAG\"!\n";
+    private static final String RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP = "Recipe is missing the \"NAME\" "
+            + "or \"INGREDIENTS\" or \"TAG\" or \"SUM of the STEPs" +
+            "\n or there is more than one \"NAME\" or \"INGREDIENTS\" or \"TAG\" or \"SUM of the STEPs\"!\n";
     private static final String RECIPE_MISSING_NAME = "Recipe is missing \"NAME\"!\n";
     private static final String RECIPE_MISSING_INGREDIENTS = "Recipe is missing \"INGREDIENTS\"!\n";
     private static final String RECIPE_MISSING_TAG = "Recipe is missing \"TAG\"!\n";
@@ -68,15 +70,23 @@ public class Parser {
         case "exit":
             type = CommandType.EXIT;
             break;
-        case "save":
-            type = CommandType.SAVE;
-            break;
         default:
             type = CommandType.UNKNOWN;
         }
         return new Command(type, fullDescription);
     }
 
+
+    private static boolean matchString(String input, String regex) {
+        String matcher = input;
+        int count = 0;
+        while (matcher.contains(regex)){
+            matcher=matcher.substring(matcher.indexOf(regex)+1);
+            ++count;
+        }
+        boolean isMatch = (count==1);
+        return isMatch;
+    }
     /**
      * Returns an Array of Strings containing the parsed full description
      * of a <code>Recipe</code> into its name, ingredients and tag.
@@ -87,15 +97,24 @@ public class Parser {
      */
     public static ArrayList<String> parseRecipe(String description) throws IncompleteInputException {
         ArrayList<String> parsed = new ArrayList<>();
+        if(!matchString(description,"n/") || !matchString(description,"i/")
+                || !matchString(description,"t/") || !matchString(description,"s/")){
+            throw new IncompleteInputException(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP);
+        }
         String[] parsedName = description.split(" i/");
         String[] parsedIngredientsTag = parsedName[1].split(" t/");
         String[] parsedTagStep = parsedIngredientsTag[1].split(" s/");
-        parsed.add(parsedName[0].substring(2));
-        parsed.add(parsedIngredientsTag[0]);
-        parsed.add(parsedTagStep[0]);
-        parsed.add(parsedTagStep[1]);
+        parsed.add(parsedName[0].substring(2).trim());
+        parsed.add(parsedIngredientsTag[0].trim());
+        parsed.add(parsedTagStep[0].trim());
+        try {
+            parsed.add(parsedTagStep[1].trim());
+        }catch (Exception e){
+            throw new IncompleteInputException(RECIPE_MISSING_STEP);
+        }
+
         if (parsed.size() < 4) {
-            throw new IncompleteInputException(RECIPE_MISSING_NAME_INGREDIENTS_TAG_STEP);
+            throw new IncompleteInputException(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP);
         }
         if (parsed.get(RECIPE_NAME_INDEX).isEmpty()) {
             throw new IncompleteInputException(RECIPE_MISSING_NAME);
@@ -111,9 +130,12 @@ public class Parser {
         }
         try {
             Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX));
+            if(Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX))<0){
+                throw new IncompleteInputException(StringLib.MISSING_NUM);
+            }
             return parsed;
         } catch (NumberFormatException e) {
-            throw new IncompleteInputException("Please enter a valid number for the sum of steps!\n");
+            throw new IncompleteInputException(StringLib.MISSING_NUM);
         }
     }
 

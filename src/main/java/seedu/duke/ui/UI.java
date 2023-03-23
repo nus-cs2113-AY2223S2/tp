@@ -103,9 +103,9 @@ public class UI {
     }
     public void showDudeMainError(Exception e) {
         if (e instanceof IOException) {
-            System.out.println(FILE_IO_ERROR + e);
+            System.out.println(FILE_IO_ERROR + e.getMessage());
         } else {
-            System.out.println(DUDE_MAIN_ERROR + e);
+            System.out.println(DUDE_MAIN_ERROR + e.getMessage());
         }
     }
     public void showUnrecognizableErrorMessage() {
@@ -117,37 +117,37 @@ public class UI {
 
     public void showLoadingErrorMessage(Exception e) {
         if (e instanceof FileNotFoundException) {
-            System.out.println(FILE_NOT_FOUND_ERROR + e + CREATING_NEW_FILE_AND_DIRECTORY);
+            System.out.println(FILE_NOT_FOUND_ERROR + e.getMessage() + CREATING_NEW_FILE_AND_DIRECTORY);
         } else if (e instanceof FileParseReadingException) {
-            System.out.println(FILE_PARSE_READING_ERROR + e);
+            System.out.println(FILE_PARSE_READING_ERROR + e.getMessage());
         } else {
-            System.out.println(FILE_LOADING_DEFAULT_ERROR + e);
+            System.out.println(FILE_LOADING_DEFAULT_ERROR + e.getMessage());
         }
     }
     public void showAddingRecipeErrorMessage(Exception e) {
         if (e instanceof IncompleteInputException) {
-            System.out.println(MISSING_DESCRIPTION_ERROR + e);
+            System.out.println(MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof StringIndexOutOfBoundsException) {
-            System.out.println(PARSING_STRING_ERROR + e);
+            System.out.println(PARSING_STRING_ERROR + e.getMessage());
         } else {
-            System.out.println(RECIPE_ADDING_DEFAULT_ERROR + e);
+            System.out.println(RECIPE_ADDING_DEFAULT_ERROR + e.getMessage());
         }
     }
     public void showDeletingTaskErrorMessage(Exception e, CommandType type) {
         if (e instanceof IncompleteInputException) {
-            System.out.println(MISSING_DESCRIPTION_ERROR + e);
+            System.out.println(MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof IndexOutOfBoundsException || e instanceof NullPointerException ||
                    e instanceof RecipeListEmptyError) {
             System.out.println(PREFIX_EMPTY_LIMIT_LIST_ERROR + type + SUFFIX_EMPTY_LIMIT_LIST_ERROR);
         } else {
-            System.out.println(RECIPE_DELETING_DEFAULT_ERROR + e);
+            System.out.println(RECIPE_DELETING_DEFAULT_ERROR + e.getMessage());
         }
     }
     public void showFindingTaskErrorMessage(Exception e) {
         if (e instanceof IncompleteInputException) {
-            System.out.println(MISSING_INPUTS_ERROR + e);
+            System.out.println(MISSING_INPUTS_ERROR + e.getMessage());
         } else {
-            System.out.println(RECIPE_FINDING_DEFAULT_ERROR + e);
+            System.out.println(RECIPE_FINDING_DEFAULT_ERROR + e.getMessage());
         }
     }
     public void showRecipeViewed(Recipe recipe) {
@@ -162,15 +162,18 @@ public class UI {
     }
     public void showViewingRecipeErrorMessage(Exception e) {
         if (e instanceof IncompleteInputException) {
-            System.out.println(MISSING_DESCRIPTION_ERROR + e);
+            System.out.println(MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof IndexOutOfBoundsException || e instanceof NullPointerException ||
                 e instanceof RecipeListEmptyError) {
             System.out.println(PREFIX_EMPTY_LIMIT_LIST_ERROR + CommandType.VIEW + SUFFIX_EMPTY_LIMIT_LIST_ERROR);
         } else {
-            System.out.println(RECIPE_VIEWING_DEFAULT_ERROR + e);
+            System.out.println(RECIPE_VIEWING_DEFAULT_ERROR + e.getMessage());
         }
     }
     public void showSave() {
         System.out.println(StringLib.RECIPE_SAVED);
+    }
+    public void showLoad() {
+        System.out.println(StringLib.RECIPE_LOADED);
     }
 }

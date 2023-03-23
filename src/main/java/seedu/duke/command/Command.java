@@ -8,6 +8,7 @@ import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 import seedu.duke.recipe.StepList;
 import seedu.duke.storage.Storage;
+import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
 import java.io.IOException;
@@ -81,6 +82,8 @@ public class Command {
             } catch (Exception e) {
                 ui.showAddingRecipeErrorMessage(e);
             }
+            ui.showSave();
+            Storage.writeSavedFile();
             break;
         case DELETE:
             try {
@@ -94,13 +97,15 @@ public class Command {
             } catch (Exception e) {
                 ui.showDeletingTaskErrorMessage(e, type);
             }
+            ui.showSave();
+            Storage.writeSavedFile();
             break;
         case FIND:
             try {
                 ArrayList<Recipe> findRecipeResults = new ArrayList<>();
                 String keywords = fullDescription;
                 if (keywords.isEmpty()) {
-                    throw new IncompleteInputException("Find is missing KEYWORDS!");
+                    throw new IncompleteInputException(StringLib.MISSING_KEYWORD);
                 }
                 for (Recipe recipe : recipeList.getRecipeList()) {
                     if (recipe.getName().contains(keywords)) {
@@ -115,14 +120,16 @@ public class Command {
         case CLEAR:
             recipeList.clearRecipeList();
             ui.showRecipeListCleared();
+            ui.showSave();
+            Storage.writeSavedFile();
             break;
         case VIEW:
             try {
                 if (fullDescription.isEmpty()) {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
-                recipeListIndex = Integer.parseInt(fullDescription);
-                Recipe recipeToBeViewed = recipeList.getRecipeFromList(recipeListIndex);
+                int recipeListNum = Integer.parseInt(fullDescription);
+                Recipe recipeToBeViewed = recipeList.getRecipeFromList(recipeListNum);
                 ui.showRecipeViewed(recipeToBeViewed);
             } catch (Exception e) {
                 ui.showViewingRecipeErrorMessage(e);
@@ -130,10 +137,6 @@ public class Command {
             break;
         case HELP:
             ui.showHelp();
-            break;
-        case SAVE:
-            ui.showSave();
-            Storage.writeSavedFile();
             break;
         case EXIT:
             ui.showExit();
