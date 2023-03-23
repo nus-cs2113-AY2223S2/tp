@@ -3,15 +3,14 @@ package seedu.duke.utils;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class SessionManager {
     private static SessionManager sessionManager = null;
 
     private static Inventory inventory = new Inventory();
+
     private SessionManager() {
     }
 
@@ -45,11 +44,29 @@ public class SessionManager {
         return inventory;
     }
 
+    public void writeCSV(String fileName, Inventory currentInventory) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            for (int i = 0; i < currentInventory.getItemInventory().size(); i++) {
+                Item item = currentInventory.getItemInventory().get(i);
+                writer.write(i + "," + item.getName() + "," + item.getUpc() + "," + item.getQuantity() + "," +
+                        item.getPrice() + "," + item.getCategory() + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static SessionManager getInstance(Inventory inventory) {
         if (sessionManager == null) {
             sessionManager = new SessionManager();
         }
         return sessionManager;
+    }
+
+    public static void writeSession(Inventory inventory) {
+        sessionManager.writeCSV("./data/sample.csv", inventory);
     }
 
     public static Inventory getSession() {

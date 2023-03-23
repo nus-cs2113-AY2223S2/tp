@@ -2,6 +2,7 @@ package seedu.duke.utils.parser;
 
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
+import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.EditCommand;
@@ -30,9 +31,12 @@ public class Parser {
     private static final Integer PRICE_INDEX = 4;
     public static Scanner in = new Scanner(System.in);
     private Inventory inventory;
+    private SessionManager session;
 
-    public Parser(Inventory inventory) {
+
+    public Parser(Inventory inventory, SessionManager currentSession) {
         this.inventory = inventory;
+        this.session = currentSession;
     }
 
     public void mainParser() {
@@ -74,6 +78,9 @@ public class Parser {
             break;
         case "help":
             parseHelp();
+            break;
+        case "write":
+            session.writeCSV("./data/sample.csv",inventory);
             break;
         default:
             Ui.printUnknownCommand();

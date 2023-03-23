@@ -24,7 +24,8 @@ public class Duke {
         inventory = new Inventory();
         currentSession = SessionManager.getInstance(inventory);
         inventory = currentSession.getSession();
-        parser = new Parser(inventory);
+        parser = new Parser(inventory, currentSession);
+        ;
     }
 
     public void run() {
