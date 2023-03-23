@@ -5,7 +5,6 @@
   - [Design \& implementation](#design--implementation)
     - [Recipe Manage Feature](#recipe-manage-feature)
       - [Implementation](#implementation)
-    - [Recipe Step Manage Feature](#recipe-step-manage-feature)
     - [Recipe Search Feature](#recipe-search-feature)
     - [Recipe View Feature](#recipe-view-feature)
     - [Recipe Storage Feature](#recipe-storage-feature)
@@ -56,7 +55,6 @@ Given below is an example usage scenario and how the recipe manage mechanism beh
 
 > The following sequence diagram shows how the recipe manage feature works:
 ![Sequence Diagram for Recipe Manage](./PlantUML/RecipeManage.png)
-### Recipe Step Manage Feature
 ### Recipe Search Feature
 
 ### Recipe View Feature
