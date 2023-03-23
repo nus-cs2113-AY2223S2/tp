@@ -53,6 +53,9 @@ public abstract class Entry {
 
     public Category getCategory() { return this.category; }
 
+    public String getInfo() {
+        return this.info;
+    }
     protected String convertTimeToString() {
         String timeAsString = this.time.toString();
         int indexOfT = timeAsString.indexOf('T');
@@ -66,4 +69,6 @@ public abstract class Entry {
     }
 
     public abstract String toString();
+
+
 }

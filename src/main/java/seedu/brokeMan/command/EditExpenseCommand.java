@@ -1,16 +1,14 @@
 package seedu.brokeMan.command;
 
-import seedu.brokeMan.entry.ExpenseList;
+import seedu.brokeMan.entry.expense.ExpenseList;
 import seedu.brokeMan.exception.CategoryNotCorrectException;
 import seedu.brokeMan.parser.StringToCategory;
+import seedu.brokeMan.entry.expense.ExpenseList;
 import seedu.brokeMan.parser.StringToTime;
 import seedu.brokeMan.entry.Category;
 
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
-
-import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_EDIT_COMMAND;
-import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_TIME;
 
 public class EditExpenseCommand extends Command {
     public static final String COMMAND_WORD = "editExpense";

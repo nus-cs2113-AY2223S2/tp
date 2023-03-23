@@ -1,5 +1,7 @@
-package seedu.brokeMan.entry;
+package seedu.brokeMan.entry.income;
 
+import seedu.brokeMan.entry.Entry;
+import seedu.brokeMan.entry.Category;
 import java.time.LocalDateTime;
 
 public class Income extends Entry{
