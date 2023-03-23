@@ -237,6 +237,8 @@ public class TestUi {
                     "\tdelete a plan on a day of the week: delete monday plan_name\r\n" +
                     "[plans]\r\n" +
                     "\tShow all plans\r\n" +
+                    "[filters]\r\n" +
+                    "\tView all available filters\r\n" +
                     "[exit]\r\n" +
                     "\tExit workout plan editor\r\n";
         } else {
@@ -248,6 +250,8 @@ public class TestUi {
                     "\tdelete a plan on a day of the week: delete monday plan_name\n" +
                     "[plans]\n" +
                     "\tShow all plans\n" +
+                    "[filters]\n" +
+                    "\tView all available filters\n" +
                     "[exit]\n" +
                     "\tExit workout plan editor\n";
         }
