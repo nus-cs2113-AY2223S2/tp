@@ -7,6 +7,7 @@ This developer guide will help you to get started with our product, badMaths!
 2. [Design & implementation](#design--implementation)
    - [Store Notes](#store-notes) 
    - [Graph](#graph)
+   - [Matrix](#matrix)
 2. [Product Scope](#product-scope)
    - [Target user profile](#target-user-profile)
    - [Value proposition](#value-proposition)
@@ -169,6 +170,58 @@ eventually forms the sine graph.
 
 //{Describe the design and implementation of the product. 
 //Use UML diagrams and short code snippets where applicable.}
+
+### Matrix
+
+The Matrix feature supports various basic matrix calculations below:
+* Matrix multiplication
+* Matrix element wise product
+* Matrix addition
+* Matrix subtraction
+
+With calling `calculator.run()`, BadMaths parses the user's input and conducts the given command.
+
+Below is an example usage scenario and how the `Matrix` feature behaves at each step.
+
+When user enters an input:
+```
+Matrix. [1,2;3,4] .* [5,6;7,8]
+```
+#### Calculator class
+
+step 1. `run()` function in `Calculator.class` firstly get `toDo` as the argument which is `[1,2;3,4] .* [5,6;7,8]` in the above example.
+This `run()` function sequentially parses this string, executes the command and shows the result matrix to users.
+
+#### Parser class
+
+step 2. Firstly, `run()` function pass the `toDo` string to `parse()` function defined in `Parser.class`. 
+This `parse()` function firstly identifies the type of the operator of this command with referring `toDo` string. 
+And then, it divides the cases with this identified type with using `switch` statement.
+
+#### Execute class
+
+step 3. According to each case divided by operator types in the previous step, 
+`parse()` function calls corresponding function defined in `Execute.class` for conducting calculation. 
+In the case of the above example, `parse()` function calls `executeMul()` defined in `Execute.class` since the type of the 
+operator is matrix multiplication. Finally, it passes the `toDo` string to `executeMul()` function as the argument.
+
+step4. `executeMul()` function firstly extracts two operands from `toDo` string. And pass these two operands to `executeTranspose()` 
+in `Execute.class` respectively. 
+
+step 5. In this `executeTranspose()` function, function checks whether there is transpose mark in the given operand, and parses this
+operand which is string type into `Tensor2D` type so that this operand could be internally calculated. In this parsing phase, 
+`parseMatrix()` function defined in `Parser.class` is used. This function finally outputs this `Tensor2D` type operand to 
+`executeMatrix()` function.
+
+step 6. Regarding these two operands with `Tensor2D` type, `executeMul` function calls `mul()` function defined in `calculate.class`.
+
+#### Calculate class
+
+step 7. `mul()` function defined in `Calculate.class` internally conducts matrix multiplication with nested for-loop 
+and outputs the result which is `Tensor2D` type.
+
+step 8. This result is sequentially returned to `executeMul()`, `parse()` and `run()` function. Finally in the `run()` function,
+the result is printed in terminal.
 
 
 ## Product Scope
