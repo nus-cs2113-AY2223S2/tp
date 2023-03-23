@@ -23,6 +23,7 @@ import seedu.parser.DateParser;
 import seedu.ui.GeneralUi;
 
 public class AddMealCommand extends Command {
+
     private String commandWord;
     private String userInput;
     private String dateString;
@@ -49,12 +50,12 @@ public class AddMealCommand extends Command {
         dateString = "";
         mealTypeString = "";
         mealType = null;
-
         if (commandWord.length() == userInput.length()) {
             getDetails(ui, foodStorage);
         } else {
             parseCommand(ui, foodStorage);
         }
+
         
         meal = new Meal(foods, date, mealType);
         mealStorage.saveMeal(meal);

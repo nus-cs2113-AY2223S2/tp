@@ -23,8 +23,8 @@ import com.opencsv.CSVWriter;
 public class MealStorage extends Storage implements FileReadable, FileWritable {
     private static final String CSV_DELIMITER = ",";
     private static final String FOODS_DELIMITER = "-";
-    private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern(
-            DateConstants.DATABASE_FORMAT, Locale.ENGLISH);
+    private static final DateTimeFormatter DTF = 
+            DateTimeFormatter.ofPattern(DateConstants.DATABASE_FORMAT, Locale.ENGLISH);
     private ArrayList<Meal> meals;
     private FoodStorage foodStorage;
     private BufferedReader br;
