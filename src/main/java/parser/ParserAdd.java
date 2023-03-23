@@ -1,6 +1,8 @@
 package parser;
 
-public class ParserAdd {
+import java.io.Serializable;
+
+public class ParserAdd implements Serializable {
 
     public static final int AMOUNT_INDEX = 0;
     public static final int TIME_INDEX = 1;
