@@ -16,6 +16,7 @@ public class CommandSort extends Command {
     private ArrayList<Expense> expenseListDate = new ArrayList<>();
     private ArrayList<Expense> expenseListCategory = new ArrayList<>();
 
+
     public CommandSort(ArrayList<Expense> expenseList, String sortBy) {
         super(COMMAND_NAME);
         this.expenseList = expenseList;
@@ -59,7 +60,6 @@ public class CommandSort extends Command {
             }
             System.out.println(MESSAGE_DIVIDER);
         }
-        assert false;
         return null;
     }
 
