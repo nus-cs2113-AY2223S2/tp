@@ -29,5 +29,4 @@ class ParserTest {
         }
         assertEquals("Invalid todo", output);
     }
-
 }
