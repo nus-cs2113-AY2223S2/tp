@@ -13,7 +13,6 @@ public class Bronchitis extends Illness {
                 List.of(Symptom.THROAT_IRRITATION,
                         Symptom.HEAD_ACHE,
                         Symptom.RUNNY_NOSE,
-                        Symptom.FATIGUE,
                         Symptom.FATIGUE
                 ))
         );

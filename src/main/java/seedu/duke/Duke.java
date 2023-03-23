@@ -1,14 +1,4 @@
 package seedu.duke;
-
-/*
-import seedu.duke.diagnosis.Diagnosis;
-import seedu.duke.diagnosis.IllnessMatch;
-import seedu.duke.diagnosis.symptoms.Symptom;
-
-import java.util.ArrayList;
-import java.util.List;
- */
-
 import seedu.duke.save.Storage;
 import seedu.duke.ui.Menu;
 import seedu.duke.ui.Parser;
@@ -21,8 +11,8 @@ public class Duke {
 
     /**
      * Main entry-point for the java.duke.Duke application.
-     * @author Jeraldchen
      */
+    //@@author JeraldChen
     public static void main(String[] args) {
         String logo = " ____         ____        _        \n"
                 + "|  _ \\  ___  |  _ \\ _  _ | | _____ \n"

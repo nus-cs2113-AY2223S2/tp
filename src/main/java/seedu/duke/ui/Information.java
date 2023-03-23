@@ -1,3 +1,4 @@
+//@@author JeraldChen
 package seedu.duke.ui;
 
 import seedu.duke.diagnosis.symptoms.Symptom;
@@ -12,14 +13,14 @@ import static seedu.duke.save.Storage.saveData;
 
 /**
  * This class stores information on all patients registered by DoctorDuke.
- * @author Jeraldchen
  */
+
+//@@author JeraldChen
 public class Information {
     private static final HashMap<Integer, Patient> patientsList = new HashMap<>();
 
     private static final Logger logger = Logger.getLogger(Information.class.getName());
 
-    //storePatientInfo(personalInfo(name), patient)
     public static void storePatientInfo(int hash, Patient patient) {
         logger.log(Level.INFO, "Storing patient information");
         patientsList.put(hash, patient);
@@ -30,9 +31,7 @@ public class Information {
         return patientsList.get(hash);
     }
 
-    /**
-     * @author JeraldChen, Geeeetyx
-     */
+    //@@Geeeetyx
     public static void printDiagnosisHistory(int hash) {
         logger.log(Level.INFO, "Printing diagnosis history");
 
@@ -50,6 +49,7 @@ public class Information {
         }
     }
 
+    //@@author JeraldChen
     /**
      * Resets the diagnosis history of the patient.
      *
@@ -66,9 +66,9 @@ public class Information {
         saveData();
     }
 
+    //@@Thunderdragon221
     /**
      * Checks the existence of a password in Dr Duke.
-     * @author Thunderdragon221
      *
      * @param hash hashedPassword to check.
      * @return true if hashedPassword exists in Dr Duke, and false otherwise.
@@ -88,30 +88,47 @@ public class Information {
         return patientsList;
     }
 
-    /**
-     * Resets the symptom choice of the patient.
-     * @author Jeraldchen, Geeeetyx
-     * @param symptoms The symptom choice of the patient.
-     */
-    public static void resetSymptomChoice(ArrayList<Symptom> symptoms) {
-        if (symptoms.size() != 0) {
-            symptoms.clear();
-            System.out.println("---------------------------------------------------");
-            System.out.println("Your symptom choice has been reset.");
-        } else {
-            System.out.println("---------------------------------------------------");
-            System.out.println("You have not entered any symptoms. No symptoms to reset.");
-        }
-    }
-
+    //@@Thunderdragon221
     /**
      * Hashes the password keyed in by the user.
-     * @author Thunderdragon221
-     *
      * @param password password to hash.
      * @return hash of password.
      */
     public static int hashPassword(String password) {
         return password.hashCode();
+    }
+
+    //@@Jeraldchen
+    /**
+     * Resets the symptom choice of the patient.
+     * @param symptoms The symptom choice of the patient.
+     */
+    public static void resetSymptomChoice(ArrayList<Symptom> symptoms) {
+        if (symptoms.size() != 0) {
+            symptoms.clear();
+            //@@Geeetyx
+            System.out.println("---------------------------------------------------");
+            //@@JeraldChen
+            System.out.println("Your symptom choice has been reset.");
+        } else {
+            //@@Geeetyx
+            System.out.println("---------------------------------------------------");
+            //@@JeraldChen
+            System.out.println("You have not entered any symptoms. No symptoms to reset.");
+        }
+    }
+    //@@author JeraldChen
+    /**
+     * Prints the symptom history of the patient.
+     * @param symptoms
+     */
+    public static void viewSymptomHistory(ArrayList<Symptom> symptoms) {
+        if (symptoms.size() == 0) {
+            System.out.println("You have not entered any symptoms.");
+        } else {
+            for (int i = 0; i < symptoms.size(); i++) {
+                System.out.println(symptoms.get(i));
+            }
+        }
     }
 }

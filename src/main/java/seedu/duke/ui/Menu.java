@@ -1,11 +1,6 @@
-/**
- * @author JeraldChen
- */
+//@@author JeraldChen
 
 package seedu.duke.ui;
-
-// import java.util.HashMap;
-
 import seedu.duke.Duke;
 import seedu.duke.diagnosis.Diagnosis;
 import seedu.duke.diagnosis.IllnessMatch;
@@ -17,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
 
+//@@author JeraldChen
 public class Menu {
     public static ArrayList<Symptom> symptoms = new ArrayList<>();
 
@@ -32,26 +28,28 @@ public class Menu {
         System.out.println("---------------------------------------------------");
     }
 
-    /**
-     * Registers a new user.
-     *
-     * @author Geeeetyx, JeraldChen
-     */
+    //@@author JeraldChen
     public static void register() {
         String name = "";
         Scanner scanner = new Scanner(System.in);
         while (true) {
             if (name.equals("")) {
+                //@@Geeeetxyx
                 System.out.println("---------------------------------------------------");
+                //@@JeraldChen
                 System.out.println("Please enter your name: ");
                 name = scanner.nextLine();
                 if (name.equals("")) {
+                    //@@Geeeetxyx
                     System.out.println("---------------------------------------------------");
+                    //@@JeraldChen
                     System.out.println("Registration failed! Name cannot be empty.");
                     continue;
                 }
             }
+            //@@Geeeetxyx
             System.out.println("---------------------------------------------------");
+            //@@author eraldChen
             System.out.println("Please enter your password: ");
             String password = scanner.nextLine();
 
@@ -59,23 +57,32 @@ public class Menu {
             int hash = Information.hashPassword(password);
 
             if (password.equals("")) {
+                //@@Geeeetxyx
                 System.out.println("---------------------------------------------------");
+                //@@JeraldChen
                 System.out.println("Registration failed! Password cannot be empty.");
             } else if (Information.checkHash(hash)) {
+                //@@Geeeetxyx
                 System.out.println("--------------------------------------------------------");
+                //@@JeraldChen
                 System.out.println("Password is already used. Please enter another password.");
             } else {
+                //@@Geeeetxyx
                 System.out.println("---------------------------------------------------");
+                //@@JeraldChen
                 System.out.println("Please re-enter your password: ");
                 String password2 = new Scanner(System.in).nextLine();
                 if (password.equals(password2)) {
+                    //@@Geeeetxyx
                     System.out.println("---------------------------------------------------");
+                    //@@JeraldChen
                     System.out.println("Registration successful!");
                     ArrayList<String> diagnosisHistory = new ArrayList<>();
                     Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable<>();
                     Information.storePatientInfo(hash, new Patient(name, hash, diagnosisHistory, medicineHistory));
                     break;
                 } else {
+                    //@@Geeeetxyx
                     System.out.println("---------------------------------------------------");
                     System.out.println("Registration failed! Passwords do not match.");
                 }
@@ -83,23 +90,25 @@ public class Menu {
         }
     }
 
-    /**
-     * Logs in a user.
-     *
-     * @author Geeeetyx, JeraldChen
-     */
+    //@@author JeraldChen
     public static void login() {
         Scanner scanner = new Scanner(System.in);
+        //@@Geeeetxyx
         System.out.println("---------------------------------------------------");
+        //@@JeraldChen
         System.out.println("Please enter your name: ");
         String name = new Scanner(System.in).nextLine();
+
+        //@@Geeeetxyx
         System.out.println("---------------------------------------------------");
+        //@@author JeraldChen
         System.out.println("Please enter your password: ");
         String password = scanner.nextLine();
         password = password.replaceAll("\\s", "");
         int hash = Information.hashPassword(password);
         if (Information.checkHash(hash) && Information.getPatientInfo(hash).getName().equals(name)) {
             Duke.setPassword(hash);
+            //@@Geeeetxyx
             System.out.println("---------------------------------------------------");
             System.out.println("Login successful!");
             System.out.println("Welcome " + name + "!");
@@ -109,9 +118,7 @@ public class Menu {
         }
     }
 
-    /**
-     * @author JeraldChen, Geeeetyx
-     */
+    //@@Geeeetxyx
     public static void exit() {
         System.out.println("---------------------------------------------------");
         System.out.println("Thank you for using");
@@ -126,23 +133,24 @@ public class Menu {
         System.exit(0);
     }
 
-    /**
-     * Shows the account menu
-     *
-     * @author Thunderdragon221, Geeeetyx
-     */
+    //@@Thunderdragon221
     public static void showAccountMenu() {
+        //@@Geeeetxyx
         System.out.println("---------------------------------------------------");
+        //@@Thunderdragon221
         System.out.println("What would you like to do? Please enter the number:");
         System.out.println("1. Report symptoms");
         System.out.println("2. View diagnosis history");
         System.out.println("3. Reset diagnosis history");
-        System.out.println("4. Reset symptoms");
-        System.out.println("5. View Medicine history");
-        System.out.println("6. Exit");
+        System.out.println("4. View symptoms History");
+        System.out.println("5. Reset symptoms");
+        System.out.println("6. View Medicine history");
+        System.out.println("7. Exit");
+        //@@Geeeetxyx
         System.out.println("---------------------------------------------------");
     }
 
+    //@@Thunderdragon221
     /**
      * Reads in a list of symptoms the user experiences.
      *
@@ -169,10 +177,10 @@ public class Menu {
         return symptoms;
     }
 
+    //@@author Jeraldchen
     /**
      * Checks if symptom is valid, and adds it to the list of symptoms.
      *
-     * @author tanyizhe, JeraldChen
      * @param scanner  takes in user input
      * @param symptoms list of symptoms
      */
@@ -188,89 +196,189 @@ public class Menu {
     /**
      * Parses user's input to a Symptom enumerator.
      *
-     * @author Jeraldchen, Geeeetyx
      * @param symptoms       an ArrayList of symptoms.
      * @param symptomChoices an array of strings containing the user's input.
      */
+    //@@author Jeraldchen
     private static void parseSymptomInput(ArrayList<Symptom> symptoms, String[] symptomChoices) {
+        //@@author tanyizhe
         for (String symptomChoice : symptomChoices) {
             switch (symptomChoice) {
             case "A":
-                addSymptoms(Symptom.FEVER, symptoms);
+                try {
+                    addSymptoms(Symptom.FEVER, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "B":
-                addSymptoms(Symptom.DRY_COUGH, symptoms);
+                try {
+                    addSymptoms(Symptom.DRY_COUGH, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "C":
-                addSymptoms(Symptom.COUGH_WITH_PHLEGM, symptoms);
+                try {
+                    addSymptoms(Symptom.COUGH_WITH_PHLEGM, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "D":
-                addSymptoms(Symptom.THROAT_IRRITATION, symptoms);
+                try {
+                    addSymptoms(Symptom.THROAT_IRRITATION, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "E":
-                addSymptoms(Symptom.LOSS_OF_TASTE_OR_SMELL, symptoms);
+                try {
+                    addSymptoms(Symptom.LOSS_OF_TASTE_OR_SMELL, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "F":
-                addSymptoms(Symptom.RUNNY_NOSE, symptoms);
+                try {
+                    addSymptoms(Symptom.RUNNY_NOSE, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "G":
-                addSymptoms(Symptom.HEAD_ACHE, symptoms);
+                try {
+                    addSymptoms(Symptom.HEAD_ACHE, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
+            //@@author JeraldChen
             case "H":
-                addSymptoms(Symptom.CHILLS, symptoms);
+                try {
+                    addSymptoms(Symptom.CHILLS, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "I":
-                addSymptoms(Symptom.FATIGUE, symptoms);
+                try {
+                    addSymptoms(Symptom.FATIGUE, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "J":
-                addSymptoms(Symptom.SNEEZING, symptoms);
+                try {
+                    addSymptoms(Symptom.SNEEZING, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "K":
-                addSymptoms(Symptom.BLOCKED_NOSE, symptoms);
+                try {
+                    addSymptoms(Symptom.BLOCKED_NOSE, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "L":
-                addSymptoms(Symptom.ITCHY_EYE, symptoms);
+                try {
+                    addSymptoms(Symptom.ITCHY_EYE, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "M":
-                addSymptoms(Symptom.RED_EYES, symptoms);
+                try {
+                    addSymptoms(Symptom.RED_EYES, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "N":
-                addSymptoms(Symptom.DIARRHOEA, symptoms);
+                try {
+                    addSymptoms(Symptom.DIARRHOEA, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "O":
-                addSymptoms(Symptom.STOMACH_ACHE, symptoms);
+                try {
+                    addSymptoms(Symptom.STOMACH_ACHE, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "P":
-                addSymptoms(Symptom.WET_STOOL, symptoms);
+                try {
+                    addSymptoms(Symptom.WET_STOOL, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "Q":
-                addSymptoms(Symptom.HARD_LUMPY_STOOL, symptoms);
+                try {
+                    addSymptoms(Symptom.HARD_LUMPY_STOOL, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "R":
-                addSymptoms(Symptom.NAUSEA, symptoms);
+                try {
+                    addSymptoms(Symptom.NAUSEA, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "S":
-                addSymptoms(Symptom.VOMITING, symptoms);
+                try {
+                    addSymptoms(Symptom.VOMITING, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "T":
-                addSymptoms(Symptom.SLEEPLESSNESS, symptoms);
+                try {
+                    addSymptoms(Symptom.SLEEPLESSNESS, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "U":
-                addSymptoms(Symptom.BLURRED_VISION, symptoms);
+                try {
+                    addSymptoms(Symptom.BLURRED_VISION, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "V":
-                addSymptoms(Symptom.SENSITIVITY_TO_LIGHT_AND_SOUND, symptoms);
+                try {
+                    addSymptoms(Symptom.SENSITIVITY_TO_LIGHT_AND_SOUND, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "W":
-                addSymptoms(Symptom.MUSCLE_ACHE, symptoms);
+                try {
+                    addSymptoms(Symptom.MUSCLE_ACHE, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
             case "X":
-                addSymptoms(Symptom.BACK_ACHE, symptoms);
+                try {
+                    addSymptoms(Symptom.BACK_ACHE, symptoms);
+                } catch (Exception e) {
+                    System.out.println("Invalid command! Please enter a valid symptom.");
+                }
                 break;
+            //@@Geeeetyx
             case " ":
                 break;
+            //@@Thunderdragon221
             default:
-                System.out.println("Invalid symptom choice!");
+                System.out.println("Invalid command! Please enter a valid symptom.");
             }
         }
     }
@@ -295,19 +403,6 @@ public class Menu {
      * Displays a list of symptoms for users to pick out their symptoms from.
      */
     private static void displaySymptomList() {
-        /*
-        change to use this method instead of hardcoding when
-        we have better sorting (alphabetical order on enums)
-        can display symptoms and (is it possible to .toString enums?)
-        have more relevant symptoms (e.g. for ADHD you don't go to clinic)
-
-        int count = 1;
-        System.out.println("Please enter a symptom.");
-        for (Symptom symptom : Symptom.values()) {
-            System.out.println(count + ". ");
-            System.out.println(symptom);
-        }
-         */
         //Put all these in a dictionary with the symptom's display name hashed to the actual Symptom.
         System.out.println("---------------------------------------------------");
         System.out.println("Here is the list of possible symptoms:");
@@ -338,6 +433,7 @@ public class Menu {
         System.out.println("\nPlease enter a symptom.");
         System.out.println("---------------------------------------------------");
     }
+
     //@@author tanyizhe
     /**
      * Displays the possible illnesses that the user may have based on the symptoms he/she has entered.
@@ -357,7 +453,7 @@ public class Menu {
             }
             System.out.println("---------------------------------------------------");
         } else {
-            //@@ author JeraldChen
+            //@@author JeraldChen
             System.out.println("------------------------------------------------------------");
             System.out.println("Unable to diagnose illness. Please consult a Doctor instead.");
             System.out.println("------------------------------------------------------------");
