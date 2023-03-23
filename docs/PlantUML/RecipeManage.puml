@@ -45,6 +45,11 @@ Command1 -> RecipeList : "addRecipe()"
 activate RecipeList
 RecipeList --> Command1
 deactivate RecipeList
+Command1 -> UI : showmessage
+activate UI
+UI -> User : successful message
+UI --> Command1
+deactivate UI
 Command1 --> Duke
 deactivate Command1
 Duke -> Command1 : delete
@@ -66,6 +71,7 @@ RecipeList --> Command2
 deactivate RecipeList
 Command2 -> UI : "showRecipeList()"
 activate UI
+UI -> User : the list of recipes
 UI --> Command2
 deactivate UI
 Command2 --> Duke
@@ -87,6 +93,11 @@ Command3 -> RecipeList : "removeRecipe()"
 activate RecipeList
 RecipeList --> Command3
 deactivate RecipeList
+Command3 -> UI : showmessage
+activate UI
+UI -> User : successful message
+UI --> Command3
+deactivate UI
 Command3 --> Duke
 deactivate Command3
 Duke -> Command3 : delete
@@ -106,6 +117,11 @@ Command4 -> RecipeList : "clearRecipeList()"
 activate RecipeList
 RecipeList --> Command4
 deactivate RecipeList
+Command4 -> UI : showmessage
+activate UI
+UI -> User : successful message
+UI --> Command4
+deactivate UI
 Command4 --> Duke
 deactivate Command4
 Duke -> Command4 : delete
