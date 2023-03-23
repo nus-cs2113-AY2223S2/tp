@@ -57,23 +57,24 @@ ____________________________________________________________
 
 ## Command Summary
 
-|     Action      |              Format              |
-|:---------------:|:--------------------------------:|
-|      Help       |              `help`              |
-|   List Tasks    |              `list`              |
-|      Todo       |           `todo TASK`            |
-|    Deadline     |     `deadline TASK /by DATE`     |
-|      Event      | `event TASK /from DATE /to DATE` |
-|      Mark       |            `mark IDX`            |
-|     Unmark      |           `unmark IDX`           |
-|   Delete Task   |           `delete IDX`           |
-|      Find       |          `find KEYWORD`          |
-|      Date       |           `date DATE`            |
-|       Bye       |              `bye`               |
-|   Add Module    |       `addmod MODULE_CODE`       |
-|  Delete Module  |           `delmod IDX`           |
-|  List Modules   |            `listmod`             |
- | Weekly Schedule |              `week`              |
+|         Action          |              Format              |
+|:-----------------------:|:--------------------------------:|
+|          Help           |              `help`              |
+|       List Tasks        |              `list`              |
+|          Todo           |           `todo TASK`            |
+|        Deadline         |     `deadline TASK /by DATE`     |
+|          Event          | `event TASK /from DATE /to DATE` |
+|          Mark           |            `mark IDX`            |
+|         Unmark          |           `unmark IDX`           |
+|       Delete Task       |           `delete IDX`           |
+|          Find           |          `find KEYWORD`          |
+|          Date           |           `date DATE`            |
+|           Bye           |              `bye`               |
+|       Add Module        |       `addmod MODULE_CODE`       |
+|      Delete Module      |           `delmod IDX`           |
+|      List Modules       |            `listmod`             |
+| Show Module Information |            `showmod`             |
+ |     Weekly Schedule     |              `week`              |
 
 > Notes about the command format:
 > + Words in `UPPER_CASE` are the parameters to be supplied by the user.
