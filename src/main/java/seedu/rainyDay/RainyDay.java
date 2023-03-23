@@ -15,7 +15,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class RainyDay {
-    public static String filePath = "rainyDay.txt";
+    public static String filePath = "./data/rainyDay.ser";
     public static FinancialReport financialReport = new FinancialReport(new ArrayList<>());
     private static Logger logger = Logger.getLogger(RainyDay.class.getName());
     private final Ui ui;

@@ -23,6 +23,7 @@ public class EditCommand extends Command {
     private String flag = "";
     private String fieldToChange;
     private Double valueToChange;
+    private LocalDate dateToChange;
     private LocalDate date;
 
     public EditCommand(int index, String description, String flowDirection, double value, String category) {
@@ -43,6 +44,12 @@ public class EditCommand extends Command {
         this.index = index;
         this.flag = flag;
         this.valueToChange = field;
+    }
+
+    public EditCommand(int index, String flag, LocalDate dateToChange) {
+        this.index = index;
+        this.flag = flag;
+        this.dateToChange = dateToChange;
     }
 
     public EditCommand(int index, String flag) {
@@ -95,6 +102,8 @@ public class EditCommand extends Command {
             financialReport.getFinancialStatement(index).setFlowDirection(FlowDirection.OUTFLOW);
         } else if (flag.equals("-in")) {
             financialReport.getFinancialStatement(index).setFlowDirection(FlowDirection.INFLOW);
+        } else if (flag.equals("-date")) {
+            financialReport.getFinancialStatement(index).setDate(dateToChange);
         }
 
         String output = "Done, edited entry " + (index + 1)

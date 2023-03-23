@@ -138,7 +138,7 @@ Format : `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FL
 * The `FLAG` must be one of the following:
     * `-d` to edit the description
     * `-c` to edit the category
-    * `-v` to edit the date
+    * `-v` to edit the value
     * `-in` to change direction to inflow
     * `-out` to change direction to outflow
     * {todo}
