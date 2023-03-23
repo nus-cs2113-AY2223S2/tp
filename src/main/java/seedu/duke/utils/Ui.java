@@ -98,7 +98,11 @@ public class Ui {
     private static final String INVALID_MAX_ALERT = "Maximum value to set an alert must be more than existing " + "" +
             "mimimum alert value of this item.";
 
-    private static final String SUCCESS_ADD_ALERT = "Successfully added a new alert";
+    private static final String SUCCESS_ADD_ALERT = "Successfully added a new alert.";
+
+    private static final String SUCCESS_REMOVE_ALERT = "Successfully removed the alert.";
+
+    public static final String INVALID_REMOVE_ALERT = "The alert that you are attempting to remove does not exist.";
 
     public Ui() {
         greetUser();
@@ -557,6 +561,19 @@ public class Ui {
     public static void printSuccessAddAlert() {
         System.out.println(LINE);
         System.out.println(ANSI_GREEN + SUCCESS_ADD_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printSuccessRemoveAlertCommand() {
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + SUCCESS_REMOVE_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidRemoveAlertCommand() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_REMOVE_ALERT + ANSI_RESET);
+        System.out.println(LINE);
     }
 }
 

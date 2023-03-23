@@ -9,9 +9,6 @@ import seedu.duke.utils.Ui;
 
 
 public class AddAlertCommand extends Command  {
-
-    private static final String MIN_KEYWORD = "min";
-    private static final String MAX_KEYWORD = "max";
     private final Alert alert;
     private AlertList alertList;
 
