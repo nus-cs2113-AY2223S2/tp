@@ -37,7 +37,7 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
         String input = in.nextLine();
-        while (!input.equals("bye")) {
+        while (!input.equals("exit")) {
             switch (parser.extractCommandKeyword(input)) {
             case "add":
                 new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input), currency).execute();
