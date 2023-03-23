@@ -80,7 +80,7 @@ UI class implements the StringLib interface for some output strings. It is respo
 * Prints the error messages for some exceptions.
 
 #### Parser component
-The **API** of this component is specified in ['Parser.java'](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/parser/Parser.java)
+The **API** of this component is specified in [`Parser.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/parser/Parser.java)
 ![image](./PlantUML/ParserComponent.png)
 
 Parser class implements the StringLib interface for some output strings. It is responsible for the following tasks:
@@ -88,7 +88,7 @@ Parser class implements the StringLib interface for some output strings. It is r
 * Determines if the program termination command has been sent.
 
 #### Command component
-The **API** of this component is specified in ['Command.java'](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/command/Command.java)
+The **API** of this component is specified in [`Command.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/command/Command.java)
 ![image](./PlantUML/CommandComponent.png) 
 
 Command class the StringLib interface for some output strings. It also inherits CommandType Enums for determining the 
