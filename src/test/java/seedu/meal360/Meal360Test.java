@@ -194,6 +194,31 @@ class Meal360Test {
     }
 
     @Test
+    public void testClearWeeklyPlan() {
+        WeeklyPlan weeklyPlan = new WeeklyPlan();
+        weeklyPlan.put("salad", 1);
+        weeklyPlan.put("pizza", 3);
+
+        // Testing clearing weekly plan
+        weeklyPlan.clearPlan();
+        assertEquals(weeklyPlan.size(), 0);
+    }
+
+    @Test
+    public void testViewIngredients() {
+        WeeklyPlan weeklyPlan = new WeeklyPlan();
+        HashMap<String, Integer> testIngredients = new HashMap<>();
+        testIngredients.put("test ingredient", 100);
+        // create a fake recipe
+        Recipe testR = new Recipe("test recipe name", testIngredients);
+        recipes.addRecipe(testR);
+        ui.printWeeklyIngredients(weeklyPlan, recipes);
+        assertEquals(
+                ui.formatMessage("Here are your weekly ingredients:") + System.lineSeparator() + ui.formatMessage(
+                        "test ingredient (100)"), outContent.toString().trim());
+    }
+
+    @Test
     public void testViewEmptyWeeklyPlan() {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
         ui.printWeeklyPlan(weeklyPlan);

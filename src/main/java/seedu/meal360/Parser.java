@@ -118,6 +118,7 @@ public class Parser {
     }
 
     public String parseDeleteRecipe(String[] input, RecipeList recipeList) {
+        assert input[0].equals("delete");
         // user inputted recipe name
         if (input[1].contains("r/")) {
             // skip over /r in recipe name
@@ -268,7 +269,7 @@ public class Parser {
     }
 
     public WeeklyPlan parseWeeklyPlan(String[] command, RecipeList recipes) {
-        if (!command[1].equals("/add") && !command[1].equals("/delete")) {
+        if (!command[1].equals("/add") && !command[1].equals("/delete") && !command[1].equals("/clear")) {
             throw new IllegalArgumentException(
                     "Please indicate if you would want to add or delete the recipe from your weekly "
                             + "plan.");

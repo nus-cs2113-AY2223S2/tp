@@ -15,4 +15,9 @@ public class WeeklyPlan extends HashMap<String, Integer> {
             this.remove(recipe);
         });
     }
+
+    public void clearPlan() {
+        this.clear();
+    }
+
 }
