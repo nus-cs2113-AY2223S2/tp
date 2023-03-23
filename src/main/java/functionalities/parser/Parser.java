@@ -9,7 +9,6 @@ import functionalities.commands.SurgeryCommand;
 import functionalities.commands.FindCommand;
 import functionalities.commands.ListCommand;
 import functionalities.commands.ExitCommand;
-import seedu.sniff.Sniff;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

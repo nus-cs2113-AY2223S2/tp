@@ -14,21 +14,21 @@ public class ParserTest {
 
     @Test
     public void consultationTest() throws SniffException {
-        String task = "consultation at/cat an/snowy on/John cn/81799907 cd/27-08-2023 ct/5pm";
+        String task = "consultation at/cat an/lulu on/jon cn/91919191 cd/2023-12-12 ct/19:00";
         parseConsultationCommand(task);
         assertTrue(true);
     }
 
     @Test
     public void vaccinationTest() throws SniffException {
-        String task = "vaccination at/cat an/pinky on/Daisy cn/81520366 v/Moderna vd/27-11-2022 vt/3pm";
+        String task = "vaccination at/cat an/lulu on/jon cn/91919191 v/covid vd/2023-12-12 vt/19:00";
         parseVaccinationCommand(task);
         assertTrue(true);
     }
 
     @Test
     public void surgeryTest() throws SniffException {
-        String task = "surgery at/cat an/snowy on/John cn/81799907 sd/27-03-2023 st/2pm ed/27-03-2023 et/5pm p/H";
+        String task = "surgery at/cat an/lulu on/jon cn/91919191 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H";
         parseSurgeryCommand(task);
         assertTrue(true);
     }
