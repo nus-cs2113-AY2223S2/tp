@@ -21,8 +21,8 @@ public class Duke {
 
     /**
      * Main entry-point for the java.duke.Duke application.
-     * @author Jeraldchen
      */
+    //@@JeraldChen
     public static void main(String[] args) {
         String logo = " ____         ____        _        \n"
                 + "|  _ \\  ___  |  _ \\ _  _ | | _____ \n"

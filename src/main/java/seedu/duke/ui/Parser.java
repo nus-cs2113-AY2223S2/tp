@@ -13,12 +13,11 @@ import java.time.LocalDateTime;
 
 import static seedu.duke.save.Storage.saveData;
 
-//@@author JeraldChen
+//@@JeraldChen
 public class Parser {
 
     /**
      * Parses the user input for the main menu.
-     * @author Jeraldchen
      * @param choice Users choice of input.
      */
     public static void parseWelcome(String choice) {

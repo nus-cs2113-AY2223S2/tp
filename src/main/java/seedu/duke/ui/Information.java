@@ -13,8 +13,9 @@ import static seedu.duke.save.Storage.saveData;
 
 /**
  * This class stores information on all patients registered by DoctorDuke.
- * @author Jeraldchen
  */
+
+//JeraldChen
 public class Information {
     private static final HashMap<Integer, Patient> patientsList = new HashMap<>();
 
