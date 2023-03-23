@@ -11,11 +11,11 @@ public class Item {
     private String category = "Uncategorized";
     private ArrayList<String> tags = new ArrayList<>();
 
-    public Item(String name, String upc, String qty, String price) {
+    public Item(String name, String upc, Integer qty, Double price) {
         this.name = name;
         this.upc = upc;
-        this.price = Double.parseDouble(price);
-        this.quantity = Integer.parseInt(qty);
+        this.price = price;
+        this.quantity = qty;
     }
 
     public ArrayList<String> getTags() {

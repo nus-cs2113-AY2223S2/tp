@@ -36,6 +36,7 @@ public class Ui {
             "Please delete the corrupt .csv file";
     public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered. The inventory has been " +
             "updated.";
+    public static final String EMPTY_SESSION_FILE = "INFO: Empty/No Session Inventory file found.";
     public static final int NAME_COL_WIDTH = 15;
     public static final int UPC_COL_WIDTH = 12;
     public static final int QTY_COL_WIDTH = 8;
@@ -122,13 +123,17 @@ public class Ui {
         System.out.println(LINE);
     }
 
-    public static void invalidSessionFile() {
+    public static void printInvalidSessionFile() {
         System.out.println(ANSI_YELLOW + INVALID_SESSION_FILE + ANSI_RESET);
         System.out.println(LINE);
     }
 
-    public static void recoveredSessionFile() {
+    public static void printRecoveredSessionFile() {
         System.out.println(ANSI_GREEN + RECOVERED_SESSION_FILE + ANSI_RESET);
+        System.out.println(LINE);
+    }
+    public static void printEmptySessionFile() {
+        System.out.println(ANSI_YELLOW + EMPTY_SESSION_FILE + ANSI_RESET);
         System.out.println(LINE);
     }
     public static void printUnknownCommand() {

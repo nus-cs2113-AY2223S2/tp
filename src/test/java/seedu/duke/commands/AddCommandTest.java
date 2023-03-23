@@ -14,7 +14,7 @@ class AddCommandTest {
     @Test
     void addItemToInventory() {
         inventory = new Inventory();
-        newItem = new Item("Item 1", "72527273070", "2", "123");
+        newItem = new Item("Item 1", "7252727320", 2, 123.0);
         Command command = new AddCommand(inventory, newItem);
         command.run();
         assertEquals(1, inventory.getItemInventory().size());

@@ -2,6 +2,7 @@ package seedu.duke;
 
 
 import seedu.duke.objects.Inventory;
+import seedu.duke.types.Types;
 import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Storage;
 import seedu.duke.utils.Ui;
@@ -22,7 +23,7 @@ public class Duke {
         ui = new Ui();
         storage = new Storage(filePath);
         inventory = new Inventory();
-        currentSession = SessionManager.getInstance(inventory);
+        currentSession = SessionManager.getInstance();
         inventory = currentSession.getSession();
         parser = new Parser(inventory, currentSession);
         ;
@@ -35,6 +36,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("data/saved.txt").run();
+        new Duke(Types.SESSIONFILEPATH).run();
     }
 }
