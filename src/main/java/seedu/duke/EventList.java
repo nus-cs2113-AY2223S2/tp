@@ -8,15 +8,15 @@ public class EventList {
     private static final String DTINIT = "2000/01/01 01:01";
     private static DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 
-    protected ArrayList<Event> taskList;
+    protected ArrayList<Schedule> taskList;
     protected int listSize;
 
     public EventList() {
-        this.taskList = new ArrayList<Event>();
+        this.taskList = new ArrayList<Schedule>();
         this.listSize = 0;
     }
 
-    public EventList(ArrayList<Event> events) {
+    public EventList(ArrayList<Schedule> events) {
         this.taskList = events;
         this.listSize = events.size();
     }
@@ -138,13 +138,13 @@ public class EventList {
         reviseTimeInfo(index, startTime, startDay);
     }
 
-    public ArrayList<Event> getFullList() {
+    public ArrayList<Schedule> getFullList() {
         return this.taskList;
     }
 
     public int searchTaskIndex(String description) {
         int index = 0;
-        for(Event cur: taskList) {
+        for(Schedule cur: taskList) {
             if(cur.getDescription().trim().equals(description.trim())) {
                 return index;
             }
@@ -158,7 +158,7 @@ public class EventList {
     }
 
     public void deleteAll() {
-        this.taskList = new ArrayList<Event>();
+        this.taskList = new ArrayList<Schedule>();
         this.listSize = 0;
     }
 }
