@@ -31,13 +31,20 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
     private static Logger logger = Logger.getLogger("ShowModuleCommand");
     private Module module;
 
+    /**
+     * Constructor for ShowModuleCommand.
+     *
+     * @param moduleCode The module code of the module to be checked.
+     * @param allModules The list of all modules.
+     * @throws InvalidModule If the module code is invalid.
+     */
+
     public ShowModuleCommand(String moduleCode, ModuleList allModules) throws InvalidModule {
 
         setUpLogger();
         assert (moduleCode != null) : "ShowModuleCommand: ModuleCode should not be null!";
         assert (allModules != null) : "ShowModuleCommand: Module list should not be null!";
 
-        // check if module exists
         Module checkMod = allModules.findModule(moduleCode);
         if (checkMod == null) {
             throw new InvalidModule();

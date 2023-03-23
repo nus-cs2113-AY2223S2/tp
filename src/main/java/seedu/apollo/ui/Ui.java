@@ -236,6 +236,12 @@ public class Ui {
         printLessonTypeMessage(lessonTypes);
     }
 
+    /**
+     * For {@code showmod} command
+     * Prints out message existing Module information
+     *
+     * @param newModule  Module that needs to show information
+     */
     public void printShowModuleMessage(Module newModule, ArrayList<LessonType> lessonTypes) {
         printLessonTypeMessage(lessonTypes);
         System.out.println("Number of MC: " + newModule.getModuleCredits());
