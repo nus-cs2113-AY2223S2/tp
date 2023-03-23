@@ -9,7 +9,7 @@ public class WeightUi extends GeneralUi {
 
     @Override
     public void showLatestWeight(int weight) {
-        System.out.println("This is the latest weight you have entered in: " + weight + " kg");
+        System.out.println("This is the latest weight you have entered in: " + weight + "kg");
     }
 
     //@Override
@@ -19,6 +19,6 @@ public class WeightUi extends GeneralUi {
 
     //@Override
     public void showWeightAdded(int weight) {
-        System.out.println("This is your updated weight: " + weight + " kg");
+        System.out.println("This is your updated weight: " + weight + "kg");
     }
 }
