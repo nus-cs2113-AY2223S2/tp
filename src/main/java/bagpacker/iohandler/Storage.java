@@ -17,17 +17,17 @@ public class Storage {
 
     public static ArrayList<Item> packingList = new ArrayList<>();
     private static final String FILE_PATH = "packingList.txt";
-    public static void load() throws FileNotFoundException {
-        Scanner reader = new Scanner(new File(FILE_PATH));
-        String line;
-        while (reader.hasNext()) {
-            line = reader.nextLine();
-            boolean isPacked = line.charAt(1) == 'X';
-            String itemDesc = line.substring(4);
-            Item item = new Item(itemDesc, isPacked);
-            PackingList.getItemList().add(item);
-        }
-    }
+//    public static void load() throws FileNotFoundException {
+//        Scanner reader = new Scanner(new File(FILE_PATH));
+//        String line;
+//        while (reader.hasNext()) {
+//            line = reader.nextLine();
+//            boolean isPacked = line.charAt(1) == 'X';
+//            String itemDesc = line.substring(4);
+//            Item item = new Item(itemDesc, isPacked);
+//            PackingList.getItemList().add(item);
+//        }
+//    }
 
     public static void save() {
         try {

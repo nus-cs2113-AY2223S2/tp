@@ -38,17 +38,17 @@ public class PackingList {
     }
 
     /**
-     * Marks an item as packed in the list.
+     * Adds quantity to quantity already packed
      */
-    public void packItem(Item toPack) {
-        toPack.setPacked(true);
+    public void packItem(Item toPack, int quantity) {
+        toPack.setPacked(quantity);
     }
 
     /**
-     * Marks an item as unpacked in the list.
+     * Subtracts quantity from quantity already packed
      */
-    public void unpackItem(Item toPack) {
-        toPack.setPacked(false);
+    public void unpackItem(Item toPack, int quantity) {
+        toPack.setPacked(quantity);
     }
 
     public static Item get(int targetIndex) {

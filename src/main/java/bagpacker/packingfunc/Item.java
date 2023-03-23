@@ -5,37 +5,38 @@ package bagpacker.packingfunc;
  */
 public class Item {
     private String itemName;
-    private boolean isPacked;
+    private int packedQuantity;
+    private int totalQuantity;
     private String packIcon = " ";
-    public Item(String description) {
+    public Item(int quantity, String description) {
         this.itemName = description;
-        isPacked = false;
+        packedQuantity = 0;
+        totalQuantity = quantity;
     }
-    public Item(String description, boolean isPacked) {
-        this.itemName = description;
-        this.isPacked = isPacked;
-    }
-    public void setPackIcon() {
-        if (this.isPacked) {
-            this.packIcon = "X";
-        } else {
-            this.packIcon = " ";
-        }
-    }
+//    public Item(String description, boolean isPacked) {
+//        this.itemName = description;
+//        this.isPacked = isPacked;
+//    }
+//    public void setPackIcon() {
+//        if (this.isPacked) {
+//            this.packIcon = "X";
+//        } else {
+//            this.packIcon = " ";
+//        }
+//    }
 
     public String getItemName() {
         return itemName;
     }
 
-    public boolean getIsPacked() {
-        return isPacked;
-    }
-    public void setPacked(boolean packed) {
-        isPacked = packed;
-        setPackIcon();
+//    public boolean getIsPacked() {
+//        return isPacked;
+//    }
+    public void setPacked(int quantity) {
+        this.packedQuantity += quantity;
     }
 
     public String toString() {
-        return "[" + this.packIcon + "] " + this.getItemName();
+        return "[" + packedQuantity + "/" + totalQuantity + "] " + this.getItemName();
     }
 }
