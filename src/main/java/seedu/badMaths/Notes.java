@@ -15,6 +15,10 @@ public class Notes {
     private String toDo;
     private ArrayList<String> cache;
 
+    public Notes(String toDo) {
+        this.toDo = toDo;
+    }
+
     public static void implementLogger() {
         LogManager.getLogManager().reset();
         logr.setLevel(Level.INFO);
@@ -28,9 +32,6 @@ public class Notes {
         }
     }
 
-    public Notes(String toDo) {
-        this.toDo = toDo;
-    }
     public void setToDo(String toDo) {
         this.toDo = toDo;
     }
