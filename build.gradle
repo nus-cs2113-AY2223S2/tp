@@ -53,6 +53,7 @@ jar {
     manifest {
         attributes 'Main-Class': 'seedu.badMaths.BadMaths'
     }
+    duplicatesStrategy = 'exclude' // or 'fail', 'warn', 'preserve'
     from sourceSets.main.output
     from(sourceSets.main.resources) {
         include '**/*.txt'
