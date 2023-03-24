@@ -542,6 +542,8 @@ class UITest {
                 + "                              by index of LIST PU\n"
                 + "LIST CURRENT                : Provides the list of modules that the user has added to his/her " +
                 "list of interest\n"
+                + "LIST CURRENT [PU ABBRV]     : Provides the list of modules that user has added to his list of " +
+                "list of interest for the specified PU\n"
                 + "ADD [PU ABBRV]/[MODULE CODE]: Adds the specified module into user's current list of modules\n"
                 + "REMOVE [INDEX]              : Removes the specified module by index from user's current list\n"
                 + "EXIT                        : Exits the program\n\n"

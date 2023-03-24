@@ -1,9 +1,13 @@
 package seedu.duke;
 
+import seedu.duke.exceptions.InvalidCommandException;
+
 import java.util.ArrayList;
 
 public class UI {
     private static final String LIST_PU_MESSAGE = "This is the list of PUs:";
+    private static final String LIST_CURRENT_PU_MESSAGE = "List of Added Modules for: ";
+    private static final String CURRENT_LIST_PU_EMPTY = "The current module list is empty for: ";
     private static final String LIST_CURRENT_MESSAGE = "List of Added modules:";
     private static final String LINE = "____________________________________________________________";
     private static final String ADD_MOD_MESSAGE = "This module has been added to the current module list!";
@@ -144,6 +148,39 @@ public class UI {
         }
     }
 
+    public void printCurrentPuModList(ArrayList<Module> modules, int uniID) {
+        String universityName = "";
+        for (int i = 0; i < universities.size(); i++) {
+            University currentUniversity = universities.get(i);
+            if (currentUniversity.getUnivId() == uniID) {
+                universityName = currentUniversity.getUnivName();
+            }
+        }
+        int listIndex = 0;
+        if (modules.size() < 1) {
+            System.out.println(CURRENT_LIST_PU_EMPTY + universityName);
+            System.out.println(LINE);
+            System.out.println(LINE);
+        } else {
+            System.out.println(LIST_CURRENT_PU_MESSAGE + universityName);
+            System.out.println(LINE);
+            for (Module module : modules) {
+                listIndex++;
+                String moduleCode = module.getModuleCode();
+                String moduleName = module.getModuleName();
+                int moduleMCs = module.getModuleMCs();
+                String nusModuleCode = module.getNusModuleCode();
+                String nusModuleName = module.getNusModuleName();
+                int nusModuleMCs = module.getNusModuleMCs();
+                System.out.print(listIndex + ".");
+                System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+                System.out.print("   maps to ----> ");
+                System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
+            }
+            System.out.println(LINE);
+        }
+    }
+
     public void printInvalidInputMessage() {
         System.out.println("Invalid Input");
     }
@@ -162,6 +199,8 @@ public class UI {
                 + "                              by index of LIST PU\n"
                 + "LIST CURRENT                : Provides the list of modules that the user has added to his/her " +
                 "list of interest\n"
+                + "LIST CURRENT [PU ABBRV]     : Provides the list of modules that user has added to his list of " +
+                "list of interest for the specified PU\n"
                 + "ADD [PU ABBRV]/[MODULE CODE]: Adds the specified module into user's current list of modules\n"
                 + "REMOVE [INDEX]              : Removes the specified module by index from user's current list\n"
                 + "EXIT                        : Exits the program\n\n");

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class ListCurrentPuCommand extends Command {
     private ArrayList<Module> modules;
+    private int univId;
 
     public ListCurrentPuCommand(ArrayList<Module> modules, int univId) {
         ArrayList<Module> puModulesToPrint = new ArrayList<>();
@@ -21,10 +22,11 @@ public class ListCurrentPuCommand extends Command {
 
         }
         this.modules = puModulesToPrint;
+        this.univId = univId;
     }
 
     @Override
     public void execute() {
-        ui.printCurrentModList(modules);
+        ui.printCurrentPuModList(modules, univId);
     }
 }
