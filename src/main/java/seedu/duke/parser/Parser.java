@@ -86,7 +86,11 @@ public interface Parser {
             if(inputWords[1].equals("industry")){
                 String targetIndustry = input.replace("find", "").trim();
                 targetIndustry = targetIndustry.replace("industry", "").trim();
-                return new FindIndustryCommand(command, targetIndustry.toUpperCase());
+                return new FindIndustryCommand("find industry", targetIndustry.toUpperCase());
+            } else if(inputWords[1].equals("company")){
+                String targetCompany = input.replace("find", "").trim();
+                targetCompany = targetCompany.replace("company", "").trim();
+                return new FindCompanyCommand("find company", targetCompany);
             }
             break;
         case "help":
