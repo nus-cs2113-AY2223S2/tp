@@ -27,11 +27,11 @@ public class Ui {
     public static final String LOGO4 = "▓▓  ▓▓  ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓    ▓▓      ▓▓      ▓▓    ▓▓    ▓▓    ▓▓ ▓▓      ▓▓  ▓▓  \n";
     public static final String LOGO5 = "██      ██ ██   ██  ██████   ██████  ███████ ███████    ██     ██████   ██████ ██   ██ \n";
 
-//"░░░    ░░░  ░░░░░   ░░░░░░  ░░    ░░ ░░░░░░░ ░░░░░░░ ░░░░░░░░  ░░░░░░   ░░░░░░ ░░   ░░
-//        ▒▒▒▒  ▒▒▒▒ ▒▒   ▒▒ ▒▒       ▒▒    ▒▒ ▒▒      ▒▒         ▒▒    ▒▒    ▒▒ ▒▒      ▒▒  ▒▒
-//        ▒▒ ▒▒▒▒ ▒▒ ▒▒▒▒▒▒▒ ▒▒   ▒▒▒ ▒▒    ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒    ▒▒    ▒▒    ▒▒ ▒▒      ▒▒▒▒▒
-//        ▓▓  ▓▓  ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓    ▓▓      ▓▓      ▓▓    ▓▓    ▓▓    ▓▓ ▓▓      ▓▓  ▓▓
-//        ██      ██ ██   ██  ██████   ██████  ███████ ███████    ██     ██████   ██████ ██   ██
+    public static final String INVENTORYLOGO = "░░ ░░░    ░░ ░░    ░░ ░░░░░░░ ░░░    ░░ ░░░░░░░░  ░░░░░░  ░░░░░░  ░░    ░░ \n" +
+            "▒▒ ▒▒▒▒   ▒▒ ▒▒    ▒▒ ▒▒      ▒▒▒▒   ▒▒    ▒▒    ▒▒    ▒▒ ▒▒   ▒▒  ▒▒  ▒▒  \n" +
+            "▒▒ ▒▒ ▒▒  ▒▒ ▒▒    ▒▒ ▒▒▒▒▒   ▒▒ ▒▒  ▒▒    ▒▒    ▒▒    ▒▒ ▒▒▒▒▒▒    ▒▒▒▒   \n" +
+            "▓▓ ▓▓  ▓▓ ▓▓  ▓▓  ▓▓  ▓▓      ▓▓  ▓▓ ▓▓    ▓▓    ▓▓    ▓▓ ▓▓   ▓▓    ▓▓    \n" +
+            "██ ██   ████   ████   ███████ ██   ████    ██     ██████  ██   ██    ██    \n";
 
 
     public static final String GREET_MESSAGE = "Welcome to MagusStock. How may I assist you today?";
@@ -240,6 +240,7 @@ public class Ui {
 
     public static void printSuccessList() {
         System.out.println(LINE);
+        System.out.println(ANSI_CYAN + INVENTORYLOGO + ANSI_CYAN);
         System.out.println(ANSI_GREEN + SUCCESS_LIST + ANSI_RESET);
     }
 
@@ -638,13 +639,20 @@ public class Ui {
     }
 
     public static void printDashboard(Inventory inventory, AlertList alertList) {
+        ;
+        Item mostQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithMostQuantity());
+        Item leastQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithLeastQuantity());
         System.out.println(LINE);
         System.out.println(ANSI_YELLOW + DASHBOARDLOGO + ANSI_RESET);
+        System.out.println("Overview:");
         System.out.println(LINE);
-        System.out.println(ANSI_CYAN + "Total number of items: " + inventory.getItemInventory().size() + ANSI_RESET);
-        System.out.println(ANSI_CYAN + "Total number of active alerts: " + alertList.getAlertList().size() + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Total number of items: " + ANSI_WHITE + inventory.getItemInventory().size() + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Total number of active alerts: " + ANSI_WHITE + alertList.getAlertList().size() + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Total value of inventory: " + ANSI_WHITE + "$" + inventory.getTotalValue() + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Item with most quantity: " + ANSI_GREEN + mostQuantityItem.getName() + " (" + mostQuantityItem.getQuantity() + ") " + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Item with least quantity: " + ANSI_RED + leastQuantityItem.getName() + " (" + leastQuantityItem.getQuantity() + ") " + ANSI_RESET);
         System.out.println(LINE);
-        System.out.println(ANSI_GREEN + "List of active alerts: ....." + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "List of active alerts: #TODO: IMPLEMENT ACTIVE ALERT VIEW AND ETC" + ANSI_RESET);
     }
 }
 
