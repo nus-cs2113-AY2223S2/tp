@@ -15,21 +15,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Eventus {
-
     private Storage storage;
     private CompanyList companyList;
     private VenueList venueList;
-
     private Event event;
     private Ui ui;
 
     public Eventus() {
         storage = new Storage();
-        ArrayList<Company> companyArrayList = new ArrayList<>();
-        companyList = new CompanyList(companyArrayList);
-        event = new Event(companyList);
-        venueList = new VenueList(VenueListStorage.venueListInit());
         ui = new Ui();
+        companyList = new CompanyList(new ArrayList<>(), ui);
+        event = new Event(companyList);
+        venueList = new VenueList(VenueListStorage.venueListInit(), ui);
         run();
     }
 
@@ -45,6 +42,7 @@ public class Eventus {
                     c.execute(venueList);
                 } else if (c.getCommandType().equals("choose venue")){
                     c.execute(event, venueList);
+                    ui.showVenueSelectionMessage("Venue");
                     System.out.println(event); //prints event venue name
                 } else {
                     c.execute(companyList);

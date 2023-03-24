@@ -10,12 +10,13 @@ import java.util.ArrayList;
 public class CompanyList {
 
     private static ArrayList<Company> companyList;
+    private static Ui ui;
 
-    public CompanyList(ArrayList<Company> companyList) {
+    public CompanyList(ArrayList<Company> companyList, Ui ui) {
         this.companyList = companyList;
+        this.ui = ui;
     }
     public void add(String companyName, int contactNumber, String contactEmail) {
-        Ui ui = new Ui();
         Company newCompany = new Company(companyName, contactNumber, contactEmail);
         companyList.add(newCompany);
         ui.showSuccessfulAdditionMessage(companyName);
@@ -35,13 +36,11 @@ public class CompanyList {
         if (index < 0 | index >= companyList.size()) {
             throw new InvalidIndexException();
         }
-        Ui ui = new Ui();
         companyList.remove(index);
         ui.showSuccessfulDeletionMessage();
     }
 
     public void loadSampleCompanyInformation() throws InputMismatchException {
-        Ui ui = new Ui();
         Company sampleCompany1 = new Company("Huawei", 80060114 , "APSupport@huawei.com");
         Company sampleCompany2 = new Company("Google", 91002500, "google@google.com");
         Company sampleCompany3 = new Company("Tiktok", 91231239, "tiktok@tiktok.com");

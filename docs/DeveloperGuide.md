@@ -33,6 +33,10 @@ String contactEmail</code>. Using this information, <code>CompanyList.add</code>
 at the end of the company list. After successfully executing the command, it will show successful addition message using
 the related method in the <code>Ui</code>.
 
+### [Proposed] Load Samples feature
+#### Proposed Implementation
+...
+
 ## Product scope
 ### Target user profile
 
