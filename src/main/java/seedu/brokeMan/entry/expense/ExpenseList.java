@@ -3,7 +3,6 @@ package seedu.brokeMan.entry.expense;
 import seedu.brokeMan.entry.Entry;
 import seedu.brokeMan.entry.EntryList;
 import seedu.brokeMan.parser.StringToTime;
-import seedu.brokeMan.save.SaveExpense;
 import seedu.brokeMan.ui.Ui;
 import seedu.brokeMan.entry.Category;
 
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ExpenseList extends EntryList {
-    private static final LinkedList<Entry> expenseList = new LinkedList<>();
+    public static final LinkedList<Entry> expenseList = new LinkedList<>();
     //private final EntryList expenseList;
 
     /**
@@ -24,7 +23,6 @@ public class ExpenseList extends EntryList {
      */
     public static void addExpense(Expense newExpense) {
         addEntry(newExpense, expenseList);
-        SaveExpense.writeFile(expenseList);
     }
 
     /**
@@ -58,7 +56,6 @@ public class ExpenseList extends EntryList {
      */
     public static void deleteExpense(int expenseIndex) {
         deleteEntry(expenseIndex, expenseList);
-        SaveExpense.writeFile(expenseList);
     }
 
 
@@ -70,7 +67,6 @@ public class ExpenseList extends EntryList {
      */
     public static void editExpense(int expenseIndex, String newEntry) {
         editEntryDescription(expenseIndex, newEntry, expenseList);
-        SaveExpense.writeFile(expenseList);
     }
 
     /**
@@ -80,7 +76,6 @@ public class ExpenseList extends EntryList {
      */
     public static void editExpense(int expenseIndex, Double newEntry) {
         editEntryCost(expenseIndex, newEntry, expenseList);
-        SaveExpense.writeFile(expenseList);
     }
 
     /**
@@ -91,7 +86,6 @@ public class ExpenseList extends EntryList {
      */
     public static void editExpense(int expenseIndex, LocalDateTime newEntry) {
         editEntryTime(expenseIndex, newEntry, expenseList);
-        SaveExpense.writeFile(expenseList);
     }
 
     public static void editExpense(int expenseIndex, Category newEntry) {
@@ -105,7 +99,6 @@ public class ExpenseList extends EntryList {
         sortEntriesByAmount(expenseList);
         Ui.showToUser("Total expenses: $" + getEntryListSum(expenseList));
         Ui.showToUserWithLineBreak("");
-        SaveExpense.writeFile(expenseList);
     }
 
     /**
@@ -115,7 +108,6 @@ public class ExpenseList extends EntryList {
         sortEntriesByDate(expenseList);
         Ui.showToUser("Total expenses: $" + getEntryListSum(expenseList));
         Ui.showToUserWithLineBreak("");
-        SaveExpense.writeFile(expenseList);
     }
 
 

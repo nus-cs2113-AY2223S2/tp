@@ -27,11 +27,13 @@ public class SaveExpense {
             myWriter.flush();
             String message = "";
             for (Entry expense : expenses) {
-                message = expense.getAmount() + "/" + expense.getInfo() + "/" + expense.getTime()
-                        + "/" + expense.getCategory();
+                message = expense.getAmount() +
+                        "/" + expense.getInfo() +
+                        "/" + expense.getTime() +
+                        "/" + expense.getCategory() +
+                        "\n";
+                myWriter.write(message);
             }
-            myWriter.write(message);
-
             myWriter.close();
         } catch (IOException foe) {
             try {
@@ -57,7 +59,8 @@ public class SaveExpense {
                             strExpense[1],
                             LocalDateTime.parse(strExpense[2]),
                             StringToCategory.convertStringToCategory((strExpense[3])));
-                    ExpenseList.addExpense(expense);
+                    ExpenseList.expenseList.add(expense);
+
                 } catch (IndexOutOfBoundsException iobe) {
                     System.out.println("Incorrectly Saved Expense");
                 } catch (CategoryNotCorrectException e) {

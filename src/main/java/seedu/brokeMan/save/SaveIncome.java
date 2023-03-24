@@ -28,10 +28,13 @@ public class SaveIncome {
             myWriter.flush();
             String message = "";
             for (Entry incomeLog : incomes) {
-                message = incomeLog.getAmount() + "/" + incomeLog.getInfo() + "/"
-                        + incomeLog.getTime() + "/" + incomeLog.getCategory();
+                message = incomeLog.getAmount() +
+                        "/" + incomeLog.getInfo() +
+                        "/" + incomeLog.getTime() +
+                        "/" + incomeLog.getCategory() +
+                        "\n";
+                myWriter.write(message);
             }
-            myWriter.write(message);
             myWriter.close();
         } catch (IOException FileNotFoundException) {
             try {
@@ -57,7 +60,7 @@ public class SaveIncome {
                             strIncome[1],
                             LocalDateTime.parse(strIncome[2]),
                             StringToCategory.convertStringToCategory(strIncome[3]));
-                    IncomeList.addIncome(income);
+                    IncomeList.incomeList.add(income);
                 } catch (IndexOutOfBoundsException iobe) {
                     System.out.println("Incorrectly Saved Income");
                 } catch (CategoryNotCorrectException e) {
