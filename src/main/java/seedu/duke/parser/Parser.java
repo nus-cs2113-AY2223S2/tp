@@ -22,6 +22,7 @@ public class Parser {
     private static final String RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP = "Recipe is missing the \"NAME\" "
             + "or \"INGREDIENTS\" or \"TAG\" or \"SUM of the STEPs" +
             "\n or there is more than one \"NAME\" or \"INGREDIENTS\" or \"TAG\" or \"SUM of the STEPs\"!\n";
+    private static final String RECIPE_WRONG_LEADING_STRING = "Recipe contains the leading string!\n";
     private static final String RECIPE_MISSING_NAME = "Recipe is missing \"NAME\"!\n";
     private static final String RECIPE_MISSING_INGREDIENTS = "Recipe is missing \"INGREDIENTS\"!\n";
     private static final String RECIPE_MISSING_TAG = "Recipe is missing \"TAG\"!\n";
@@ -41,7 +42,7 @@ public class Parser {
             for (int i = 2; i < lineSpaced.length; i++) {
                 lineSpaced[1] = lineSpaced[1].concat(" " + lineSpaced[i]);
             }
-            fullDescription = lineSpaced[1];
+            fullDescription = lineSpaced[1].trim();
         }
         CommandType type;
         switch (lineSpaced[0]) {
@@ -99,6 +100,9 @@ public class Parser {
         if(!matchString(description,"n/") || !matchString(description,"i/")
                 || !matchString(description,"t/") || !matchString(description,"s/")){
             throw new IncompleteInputException(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP);
+        }
+        if(!description.substring(0,2).equals("n/")){
+            throw new IncompleteInputException(RECIPE_WRONG_LEADING_STRING);
         }
         String[] parsedName = description.split(" i/");
         String[] parsedIngredientsTag = parsedName[1].split(" t/");
