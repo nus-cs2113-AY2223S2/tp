@@ -1,6 +1,14 @@
-abstract class Command{}
+
+abstract class Command{
+    + abstract void execute()
+    + void setData()
+}
 class SearchController{}
-class SearchCommand{}
+class SearchCommand{
+    - String command
+    - String action
+    + void execute()
+}
 class BorrowableItem{}
 class Inventory{}
 class Book{}

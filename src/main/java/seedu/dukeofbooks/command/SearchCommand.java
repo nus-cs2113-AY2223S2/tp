@@ -14,8 +14,8 @@ public class SearchCommand extends Command {
     public static final String COMBINED_SEARCH = "combined";
     public static final String RESULT_STRING = "Results: %s";
 
-    String item;
-    String action;
+    private String item;
+    private String action;
 
     public SearchCommand(String item, String action) {
         this.item = item;
