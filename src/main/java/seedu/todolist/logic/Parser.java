@@ -12,6 +12,7 @@ import seedu.todolist.logic.command.EditDeadlineCommand;
 import seedu.todolist.logic.command.ExitCommand;
 import seedu.todolist.logic.command.ListTasksCommand;
 import seedu.todolist.logic.command.MarkTaskCommand;
+import seedu.todolist.logic.command.ProgressBarCommand;
 import seedu.todolist.logic.command.UnmarkTaskCommand;
 
 import java.time.LocalDateTime;
@@ -98,6 +99,8 @@ public class Parser {
             return new DeleteTaskCommand(getArguments(splitInput, DeleteTaskCommand.FLAGS));
         case ExitCommand.KEYWORD:
             return new ExitCommand();
+        case ProgressBarCommand.KEYWORD:
+            return new ProgressBarCommand();
         default:
             throw new InvalidCommandException();
         }

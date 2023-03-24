@@ -3,6 +3,7 @@ package seedu.todolist.task;
 import seedu.todolist.constants.Formats;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
@@ -40,5 +41,9 @@ public class Task implements Serializable {
     //@@ clement559
     public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
+    }
+
+    public LocalDateTime getDeadline() { // might remove later
+        return this.deadline;
     }
 }
