@@ -218,7 +218,7 @@ public class Parser {
 
         if (matcher.find()) {
             for (int i = 1; i <= 7; i += 1) {
-                if (matcher.group(i) != null){
+                if (matcher.group(i) != null) {
                     filterFlagAndField.add(matcher.group(i));
                 }
             }
