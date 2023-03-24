@@ -13,7 +13,7 @@ import static seedu.rainyDay.RainyDay.financialReport;
 
 public class ViewResult {
     private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
-            "|Here is your full financial report!                                                              |\n";
+            "|Here is your financial report!                                                                   |\n";
     private static final String ACKNOWLEDGE_FILTER_COMMAND = "" +
             "|Here is your filtered financial report!                                                          |\n";
     private static final String TABLE_FORMAT = "" +
@@ -87,8 +87,8 @@ public class ViewResult {
         for (int index : indexArray) {
             logger.log(Level.INFO, "starting statement " + index);
             FinancialStatement currentStatement = financialReport.getFinancialStatement(index - 1);
-
             output = formatFinancialStatement(index, currentStatement);
+
             System.out.print(output);
             logger.log(Level.INFO, "passed statement " + index);
         }
@@ -98,24 +98,24 @@ public class ViewResult {
     /**
      * Appends financial statements to the end of a string
      */
-    public static void printFullReport() {
+    public static void printReport(ArrayList<Integer> validIndexes) {
         double totalInflow = 0;
         double totalOutflow = 0;
 
         System.out.print(TABLE_BORDER);
         System.out.print(ACKNOWLEDGE_VIEW_COMMAND);
         System.out.print(TABLE_FORMAT);
-        for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
-            logger.log(Level.INFO, "starting statement " + i);
-            FinancialStatement currentStatement = financialReport.getFinancialStatement(i);
+        for (Integer index: validIndexes) {
+            logger.log(Level.INFO, "starting statement " + index);
+            FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
             if (currentStatement.getFlowDirectionWord().equals("in")) {
                 totalInflow += currentStatement.getValue();
             } else {
                 totalOutflow += currentStatement.getValue();
             }
-            String formattedOutput = formatFinancialStatement(i + 1, currentStatement);
+            String formattedOutput = formatFinancialStatement(index + 1, currentStatement);
             System.out.print(formattedOutput);
-            logger.log(Level.INFO, "passed statement " + i);
+            logger.log(Level.INFO, "passed statement " + index);
         }
         System.out.print(TABLE_BORDER);
         System.out.print(formatSummary(totalInflow, totalOutflow));
