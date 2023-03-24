@@ -9,6 +9,14 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * JUnit test class for AddCommand.
+ * Conducts the following test cases:
+ * 1. Add item to inventory
+ * 2. Add multiple items to inventory
+ * 3. Add duplicate item with same UPC and name
+ * 4. Add duplicate item with same UPC but different name
+ */
 class AddCommandTest {
     Inventory inventory;
 

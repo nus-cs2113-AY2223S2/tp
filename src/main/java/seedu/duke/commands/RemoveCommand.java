@@ -3,6 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.exceptions.RemoveErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
+import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 
 /**
@@ -48,11 +49,11 @@ public class RemoveCommand extends Command {
      */
 
     public void removeByUpcCode() {
-        try{
-            if(!upcCodes.containsKey(upcCode)){
+        try {
+            if (!upcCodes.containsKey(upcCode)) {
                 throw new RemoveErrorException();
             }
-        }catch(RemoveErrorException e){
+        } catch (RemoveErrorException e) {
             Ui.printItemNotFound();
             return;
         }
@@ -87,9 +88,9 @@ public class RemoveCommand extends Command {
      */
     public void removeByIndex() {
         Item itemToRemove;
-        try{
+        try {
             itemToRemove = itemInventory.get(itemIndex);
-        }catch(ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printItemNotFound();
             return;
         }
@@ -127,6 +128,9 @@ public class RemoveCommand extends Command {
                 removeByUpcCode();
             } else {
                 removeByIndex();
+            }
+            if (SessionManager.getAutoSave()) {
+                SessionManager.writeSession(inventory);
             }
         } catch (NullPointerException | NumberFormatException e) {
             System.out.println("NULL");

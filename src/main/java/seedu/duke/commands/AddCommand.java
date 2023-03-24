@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
+import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 
 import java.util.ArrayList;
@@ -41,6 +42,9 @@ public class AddCommand extends Command {
                 }
                 itemNameHash.get(itemName).add(item);
                 itemsTrie.add(itemName);
+            }
+            if (SessionManager.getAutoSave()) {
+                SessionManager.writeSession(inventory);
             }
         }
     }

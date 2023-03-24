@@ -10,10 +10,11 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
+ * JUnit test class for AddParser
  * Conducts the following test cases:
- * 1. Add item with empty parameters
- * 2. Add item with missing parameters
- * 3. Add item with all parameters
+ * 1. Add item with all parameters
+ * 2. Add item with missing parameter(s)
+ * 3. Add item with invalid parameter(s)
  */
 class AddParserTest {
 
@@ -109,6 +110,7 @@ class AddParserTest {
                 "valid range";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
+
     @Test
     void addItemWithWrongQtyType() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();

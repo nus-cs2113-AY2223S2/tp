@@ -29,6 +29,11 @@ public class Ui {
     public static final String INVALID_ADD = "Wrong/Incomplete Format! Please add new items in the following format: " +
             "add n/[name] upc/[UPC] qty/[quantity] p/[price]\nTip: Ensure that your UPC, quantity and price are all " +
             "in numbers and within valid range";
+
+    public static final String INVALID_AUTO_SAVE_INPUT = "Invalid input! Please enter either 'on' or 'off' to " +
+            "enable/disable auto-save";
+    public static final String AUTOSAVE_ON = "Auto-save has been enabled!";
+    public static final String AUTOSAVE_OFF = "Auto-save has been disabled!";
     public static final String DUPLICATE_ADD = "Duplicate item found! Please add another item with a different UPC";
     public static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
 
@@ -186,6 +191,24 @@ public class Ui {
     public static void printInvalidAddCommand() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + INVALID_ADD + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidAutoSaveInput() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_AUTO_SAVE_INPUT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printAutoSaveEnabled() {
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + AUTOSAVE_ON + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printAutoSaveDisabled() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + AUTOSAVE_OFF + ANSI_RESET);
         System.out.println(LINE);
     }
 
