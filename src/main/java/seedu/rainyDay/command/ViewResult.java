@@ -86,8 +86,9 @@ public class ViewResult {
 
         for (int index : indexArray) {
             logger.log(Level.INFO, "starting statement " + index);
-            FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
-            output = formatFinancialStatement(index + 1, currentStatement);
+            FinancialStatement currentStatement = financialReport.getFinancialStatement(index - 1);
+            output = formatFinancialStatement(index, currentStatement);
+
             System.out.print(output);
             logger.log(Level.INFO, "passed statement " + index);
         }
