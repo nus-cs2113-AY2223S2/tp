@@ -3,7 +3,6 @@ package seedu.brokeMan.entry.expense;
 import seedu.brokeMan.entry.Entry;
 import seedu.brokeMan.entry.EntryList;
 import seedu.brokeMan.parser.StringToTime;
-import seedu.brokeMan.save.SaveExpense;
 import seedu.brokeMan.ui.Ui;
 import seedu.brokeMan.entry.Category;
 
