@@ -9,7 +9,9 @@ import java.time.LocalDateTime;
 public class AddIncomeCommand extends Command {
     public static final String COMMAND_WORD = "addIncome";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": add income to the income list.\n" +
-            "|  Parameters: a/ <amount> d/ <description> t/ <time>\n" +
+            "|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>\n" +
+            "|  Valid categories are: FOOD, SHOPPING, GROCERIES, " +
+            "TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS\n" +
             "|  Example: " + COMMAND_WORD + " a/ 3000 d/ salary t/ 2023 3 10 10 10 c/ SALARY";
     private final Income income;
 
