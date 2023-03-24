@@ -12,46 +12,73 @@
 |
 |  -----------------------------------------------------------------------
 |  -----------------------------------------------------------------------
+|  You have successfully added [$4.00 spent on lunch - 2023-06-10 @ 00:10 [OTHERS]]
 |
-|  Enter command: |  You have successfully added [$4.00 spent on lunch - 2022-09-08 @ 12:14]
+|  -----------------------------------------------------------------------
+|  You have successfully added [$600.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]]
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully added [$6.00 spent on dinner - 2023-06-12 @ 20:01]
+|  Enter command: |  You have successfully added [$4.00 spent on lunch - 2022-09-08 @ 12:14 [FOOD]]
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  You have successfully added [$6.00 spent on dinner - 2023-06-12 @ 20:01 [FOOD]]
 |
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Here are the expenses you have made.
-|  1. $4.00 spent on lunch - 2022-09-08 @ 12:14
-|  2. $6.00 spent on dinner - 2023-06-12 @ 20:01
+|  1. $4.00 spent on lunch - 2023-06-10 @ 00:10 [OTHERS]
+|  2. $4.00 spent on lunch - 2022-09-08 @ 12:14 [FOOD]
+|  3. $6.00 spent on dinner - 2023-06-12 @ 20:01 [FOOD]
+|  Total expenses: $14.0
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited amount.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited description.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited time.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited category.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully deleted.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Here are the expenses you have made.
+|  1. $4.00 spent on lunch - 2023-06-10 @ 00:10 [OTHERS]
+|  2. $6.00 spent on dinner - 2023-06-12 @ 20:01 [FOOD]
 |  Total expenses: $10.0
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Type specified is incorrect.
-|
-|  editExpense: edits the expense from the list.
-|  Parameter: i/ <index> t/ <type> n/ <newEntry>
-|  There are 3 type that can be changed, amount, info, time
-|  Example: editExpense i/ 1 t/ cost n/ 5
+|  Enter command: |  You have successfully added [$400.00 earned on salary - 2023-03-12 @ 15:01 [SALARY]]
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Successfully edited expense.
+|  Enter command: |  You have successfully added [$600.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]]
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Successfully edited expense.
+|  Enter command: |  Here are the income you have made.
+|  1. $600.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]
+|  2. $400.00 earned on salary - 2023-03-12 @ 15:01 [SALARY]
+|  3. $600.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]
+|  Total income: $1600.00
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Successfully deleted expense.
-|
-|  -----------------------------------------------------------------------
-|
-|  Enter command: |  Here are the expenses you have made.
-|  1. $6.00 spent on dinner - 2023-06-10 @ 00:10
-|  Total expenses: $6.0
+|  Enter command: |  Successfully edited amount.
 |
 |  -----------------------------------------------------------------------
 |
@@ -71,18 +98,27 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully added [$400.00 earned on salary - 2023-03-12 @ 15:01]
+|  Enter command: |  Invalid add command format.
+|
+|  addIncome: add income to the income list.
+|  Parameters: a/ <amount> d/ <description> t/ <time>
+|  Example: addIncome a/ 3000 d/ salary t/ 2023 3 10 10 10 c/ SALARY
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully added [$600.00 earned on stocks - 2023-03-15 @ 15:10]
+|  Enter command: |  Invalid add command format.
+|
+|  addIncome: add income to the income list.
+|  Parameters: a/ <amount> d/ <description> t/ <time>
+|  Example: addIncome a/ 3000 d/ salary t/ 2023 3 10 10 10 c/ SALARY
 |
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Here are the income you have made.
-|  1. $400.00 earned on salary - 2023-03-12 @ 15:01
-|  2. $600.00 earned on stocks - 2023-03-15 @ 15:10
-|  Total income: $1000.00
+|  1. $700.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]
+|  2. $400.00 earned on salary - 2023-03-12 @ 15:01 [SALARY]
+|  3. $600.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]
+|  Total income: $1700.00
 |
 |  -----------------------------------------------------------------------
 |
@@ -96,9 +132,10 @@
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Here are the income you have made for 2023/MARCH.
-|  1. $400.00 earned on salary - 2023-03-12 @ 15:01
-|  2. $600.00 earned on stocks - 2023-03-15 @ 15:10
-|  Total income: $1000.0
+|  1. $700.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]
+|  2. $400.00 earned on salary - 2023-03-12 @ 15:01 [SALARY]
+|  3. $600.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]
+|  Total income: $1700.0
 |
 |  -----------------------------------------------------------------------
 |
@@ -106,31 +143,31 @@
 |
 |  editIncome: edits the income from the list.
 |  Parameter: i/ <index> t/ <type> n/ <newEntry>
-|  There are 3 type that can be changed, amount, info, time
+|  There are 4 types that can be changed, amount, info, time, category
 |  Example: editIncome i/ 1 t/ info n/ stocks
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Successfully edited expense.
+|  Enter command: |  Successfully edited description.
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Invalid time information. Please present your time as 'YYYY MM DD HH mm'
-|
-|  editIncome: edits the income from the list.
-|  Parameter: i/ <index> t/ <type> n/ <newEntry>
-|  There are 3 type that can be changed, amount, info, time
-|  Example: editIncome i/ 1 t/ info n/ stocks
+|  Enter command: |  Successfully edited time.
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Successfully deleted expense.
+|  Enter command: |  Successfully edited category.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully deleted.
 |
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Here are the income you have made.
-|  1. $400.00 earned on pay - 2023-03-12 @ 15:01
-|  Total income: $400.00
+|  1. $700.00 earned on pay - 2023-03-15 @ 15:10 [INVESTMENT]
+|  2. $600.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]
+|  Total income: $1300.00
 |
 |  -----------------------------------------------------------------------
 |
@@ -203,35 +240,43 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully added [$10.00 spent on shopping - 2023-08-11 @ 10:19]
+|  Enter command: |  Invalid add command format.
+|
+|  addExpense: add expense to the expense list.
+|  Parameters: a/ <amount> d/ <description> t/ <time>
+|  Example: addExpense a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully added [$800.00 earned on allowance - 2023-04-19 @ 19:10]
+|  Enter command: |  Invalid add command format.
+|
+|  addIncome: add income to the income list.
+|  Parameters: a/ <amount> d/ <description> t/ <time>
+|  Example: addIncome a/ 3000 d/ salary t/ 2023 3 10 10 10 c/ SALARY
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  1. $800.00 earned on allowance - 2023-04-19 @ 19:10
-|  2. $400.00 earned on pay - 2023-03-12 @ 15:01
-|  Total income: $1200.00
+|  Enter command: |  1. $700.00 earned on pay - 2023-03-15 @ 15:10 [INVESTMENT]
+|  2. $600.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]
+|  Total income: $1300.00
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  1. $800.00 earned on allowance - 2023-04-19 @ 19:10
-|  2. $400.00 earned on pay - 2023-03-12 @ 15:01
-|  Total income: $1200.00
+|  Enter command: |  1. $700.00 earned on pay - 2023-03-15 @ 15:10 [INVESTMENT]
+|  2. $600.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]
+|  Total income: $1300.00
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  1. $10.00 spent on shopping - 2023-08-11 @ 10:19
-|  2. $6.00 spent on dinner - 2023-06-10 @ 00:10
-|  Total expenses: $16.0
+|  Enter command: |  1. $6.00 spent on dinner - 2023-06-12 @ 20:01 [FOOD]
+|  2. $4.00 spent on lunch - 2023-06-10 @ 00:10 [OTHERS]
+|  Total expenses: $10.0
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  1. $10.00 spent on shopping - 2023-08-11 @ 10:19
-|  2. $6.00 spent on dinner - 2023-06-10 @ 00:10
-|  Total expenses: $16.0
+|  Enter command: |  1. $6.00 spent on dinner - 2023-06-12 @ 20:01 [FOOD]
+|  2. $4.00 spent on lunch - 2023-06-10 @ 00:10 [OTHERS]
+|  Total expenses: $10.0
 |
 |  -----------------------------------------------------------------------
 |
