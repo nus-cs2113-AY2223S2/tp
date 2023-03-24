@@ -6,10 +6,17 @@ import utils.UserInterface;
 import utils.exceptions.InkaException;
 import utils.storage.IDataStorage;
 
-public class ExceptionCommand extends Command {
+public class PrintHelpCommand extends Command {
+
+    private String helpMessage;
+
+    public PrintHelpCommand(String helpMessage) {
+        this.helpMessage = helpMessage;
+    }
+
     @Override
     public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage)
             throws InkaException {
-        ui.printWrongCommand();
+        ui.printHelp(helpMessage);
     }
 }

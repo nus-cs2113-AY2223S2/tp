@@ -6,10 +6,10 @@ import utils.UserInterface;
 import utils.exceptions.InkaException;
 import utils.storage.IDataStorage;
 
-public class ExceptionCommand extends Command {
+public class ListCardCommand extends Command {
     @Override
     public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage)
             throws InkaException {
-        ui.printWrongCommand();
+        ui.printCardList(cardList);
     }
 }

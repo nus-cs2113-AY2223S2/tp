@@ -3,6 +3,7 @@
 /out/
 /*.iml
 /*.class
+/*.jar
 
 # Gradle build files
 /.gradle/
@@ -14,5 +15,5 @@ src/main/resources/docs/
 *.iml
 bin/
 
-/text-ui-test/ACTUAL.TXT
+text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT

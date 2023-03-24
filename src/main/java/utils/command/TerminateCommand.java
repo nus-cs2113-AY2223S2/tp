@@ -1,12 +1,15 @@
 package utils.command;
 
-import utils.Card;
-import utils.cardlist.CardList;
-import utils.userinterface.UserInterface;
+import model.CardList;
+import model.TagList;
+import utils.UserInterface;
+import utils.exceptions.InkaException;
+import utils.storage.IDataStorage;
 
-public class TerminateCommand extends Command{
+public class TerminateCommand extends Command {
     @Override
-    public void execute(CardList cardList, UserInterface ui) {
+    public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage)
+            throws InkaException {
         ui.printBye();
     }
 }

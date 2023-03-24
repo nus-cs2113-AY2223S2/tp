@@ -1,0 +1,16 @@
+{
+  "deckName": "lky deck",
+  "numCards": 2,
+  "cards": [
+    {
+      "uuid": "00000000-0000-0000-0000-000000000000",
+      "question": "is akhil a dirty commie",
+      "answer": "yes"
+    },
+    {
+      "uuid": "00000000-0000-0000-0000-000000000001",
+      "question": "why do other groups keep attackin ian",
+      "answer": "he is not a dirty commie"
+    }
+  ]
+}
