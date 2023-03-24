@@ -17,7 +17,9 @@ bin/
 /htmlReport/
 
 #logging files
-**/logging.xml*
+**/fitness_duke.*
+*.log
+*.log.*
 
 # UserData files
 **/testData.json
