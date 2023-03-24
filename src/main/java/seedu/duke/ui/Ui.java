@@ -1,5 +1,9 @@
 package seedu.duke.ui;
 
+import seedu.duke.company.Company;
+
+import java.util.ArrayList;
+
 public class Ui {
 
     public void showLine() {
@@ -83,7 +87,12 @@ public class Ui {
         System.out.println("Company has been successfully confirmed/uncomfirmed!");
     }
 
-
+    public void showSortedCompanyList(String industry, ArrayList<Company> sortedCompanyList){
+        System.out.println("Here are the companies in <" + industry + "> field.");
+        for(Company company : sortedCompanyList){
+            System.out.println(company);
+        }
+    }
 
 
     public void showVenueSelectionMessage(String venue) {

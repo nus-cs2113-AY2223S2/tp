@@ -22,6 +22,8 @@ public class Company {
         return companyName;
     }
 
+    public String getIndustry(){ return industry;}
+
     public int getContactNumber(){
         return contactNumber;
     }

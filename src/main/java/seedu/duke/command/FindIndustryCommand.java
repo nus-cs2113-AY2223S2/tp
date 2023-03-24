@@ -13,5 +13,6 @@ public class FindIndustryCommand extends Command{
 
     @Override
     public void execute(CompanyList companyList){
+        companyList.findIndustry(industry);
     }
 }

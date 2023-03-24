@@ -66,6 +66,17 @@ public class CompanyList {
         }
     }
 
+    public void findIndustry(String industry){
+        ArrayList<Company> sortedCompanyList = new ArrayList<>();
+        for (Company company : companyList){
+            if(company.getIndustry().equals(industry)){
+                sortedCompanyList.add(company);
+            }
+        }
+        Ui ui = new Ui();
+        ui.showSortedCompanyList(industry, sortedCompanyList);
+    }
+
     public void loadSampleCompanyInformation() throws InputMismatchException {
         Ui ui = new Ui();
         Company sampleCompany1 = new Company("Huawei", "Tech", 80060114 , "APSupport@huawei.com");

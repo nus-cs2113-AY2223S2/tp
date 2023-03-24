@@ -14,7 +14,6 @@ public class AddCommand extends Command {
         this.industry = industry;
         this.contactNumber = contactNumber;
         this.contactEmail = contactEmail;
-        this.industry = industry;
     }
 
     @Override
