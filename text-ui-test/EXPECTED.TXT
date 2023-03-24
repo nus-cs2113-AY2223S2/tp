@@ -21,7 +21,7 @@ Okay, I have edited the parameters of this task:
 Okay, here are the tasks in your list: 1 task found.
 1. [X] laundry, due: 30 Apr 2023 08:45
 Okay, I have set the email of the Professors/TA for this task:
-[X] do math homework, due: 30 Apr 2023 08:45
+[X] laundry, due: 30 Apr 2023 08:45
 Okay, Here is the email of the Professor/TA for this task:
 rui@gmail.com
 See you again, bye!
