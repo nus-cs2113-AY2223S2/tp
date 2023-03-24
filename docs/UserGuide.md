@@ -30,18 +30,16 @@ Format: `event NAME e/<expense number> [(optional) t/<time>]`
 
 * `NAME` is the name of the event.
 * `<expense number>` is the expense number of the event.
-* `<time>` is the time of the recurring event.
-* The`t/` parameters is optional.
-* This gives you the flexibility to add a one-time expense or recurring expenses.
+* `<time>` is the date of the monthly recurring event, in the pattern of "dd/MM/yyyy". Invalid patterns are replaced with the current System date.
+* The `t/` parameters is optional.
+* This gives you the flexibility to add a one-time expense or monthly recurring expenses.
+* Monthly recurring expenses will be require the user to update the expense number every month.
 
 Example of usage:
 
 `event bus travel fee e/1.50`
 
 `event bubble tea e/6.50`
-
-(for recurring event I’m not sure about the format of <time>, 
-Hongfeng please help)
 
 ### Add a category: `category`
 
