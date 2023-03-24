@@ -1,0 +1,115 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":ListPuModulesCommand"
+
+":ListPuModulesCommand" -> "<<class>>\nui:UI" : printPUModListMessage(universityName)
+activate "<<class>>\nui:UI"
+"<<class>>\nui:UI" -> UserConsole : Print University Name Modules Message
+"<<class>>\nui:UI" <-- UserConsole
+
+":ListPuModulesCommand" <-- "<<class>>\nui:UI"
+deactivate "<<class>>\nui:UI"
+
+":ListPuModulesCommand" -> "<<class>>\nui:UI" : printPUModules(univId)
+activate "<<class>>\nui:UI"
+
+create "puModulesToPrint: ArrayList<Module>"
+"<<class>>\nui:UI" -> "puModulesToPrint: ArrayList<Module>" : ArrayList<Module>()
+
+loop for each puModule in puModules
+    "<<class>>\nui:UI" -> "puModules :ArrayList<Module>"
+    activate "puModules :ArrayList<Module>"
+    create ":puModule"
+    "puModules :ArrayList<Module>" -> ":puModule"
+    activate ":puModule"
+    "puModules :ArrayList<Module>" <-- ":puModule"
+    deactivate ":puModule"
+    "<<class>>\nui:UI" <-- "puModules :ArrayList<Module>"
+    deactivate "puModules :ArrayList<Module>"
+
+
+
+    "<<class>>\nui:UI" -> ":puModule" : getUnivId()
+    "<<class>>\nui:UI" <-- ":puModule" : UnivId
+        opt Module UnivId == univID input
+        "<<class>>\nui:UI" -> "puModulesToPrint: ArrayList<Module>": add(module)
+        "<<class>>\nui:UI" <-- "puModulesToPrint: ArrayList<Module>"
+        end
+end
+loop for each puModuleToPrint in puModulestoPrint
+
+     "<<class>>\nui:UI" -> "puModulesToPrint: ArrayList<Module>"
+     activate "puModulesToPrint: ArrayList<Module>"
+     create ":puModuleToPrint"
+     "puModulesToPrint: ArrayList<Module>" -> ":puModuleToPrint"
+     activate ":puModuleToPrint"
+     "puModulesToPrint: ArrayList<Module>" <-- ":puModuleToPrint"
+     deactivate ":puModuleToPrint"
+     "<<class>>\nui:UI" <-- "puModulesToPrint: ArrayList<Module>"
+     deactivate "puModulesToPrint: ArrayList<Module>"
+
+
+
+
+
+    "<<class>>\nui:UI" -> ":puModuleToPrint" : getModuleCode()
+    "<<class>>\nui:UI" <-- ":puModuleToPrint" : ModuleCode
+
+    "<<class>>\nui:UI" -> ":puModuleToPrint" : getModuleName()
+    "<<class>>\nui:UI" <-- ":puModuleToPrint" : ModuleName
+    "<<class>>\nui:UI" -> ":puModuleToPrint" : getModuleMCs()
+    "<<class>>\nui:UI" <-- ":puModuleToPrint" : ModuleMcs
+    "<<class>>\nui:UI" -> ":puModuleToPrint" : getNusModuleCode()
+    "<<class>>\nui:UI" <-- ":puModuleToPrint" : NusModuleCode
+    "<<class>>\nui:UI" -> ":puModuleToPrint" : getNusModuleName()
+    "<<class>>\nui:UI" <-- ":puModuleToPrint" : NusModuleCode
+    "<<class>>\nui:UI" -> ":puModuleToPrint" : getNusModuleMCs()
+    "<<class>>\nui:UI" <-- ":puModuleToPrint" : NusModuleMCs
+
+
+    "<<class>>\nui:UI" -> UserConsole : Print Partner University Information\n and Corresponding Nus Module Information
+    "<<class>>\nui:UI" <-- UserConsole
+
+end
+
+
+'activate ":ListCurrentCommand"
+'
+'":ListCurrentCommand" -> "<<class>>\nui:UI" : printCurrentModList(modules)
+'activate "<<class>>\nui:UI"
+'
+'alt modules.size() < 1
+'    "<<class>>\nui:UI" -> UserConsole : Print Current List Empty Message
+'    "<<class>>\nui:UI" <-- UserConsole
+'else modules.size() >= 1
+'    loop modules
+'
+'    "<<class>>\nui:UI" -> ":Module" : "getModuleCode()"
+'    "<<class>>\nui:UI" <-- ":Module" : moduleCode
+'
+'
+'    "<<class>>\nui:UI" -> ":Module" : "getModuleName()"
+'    "<<class>>\nui:UI" <-- ":Module" : moduleName
+'
+'    "<<class>>\nui:UI" -> ":Module" : "getModuleMCs()"
+'    "<<class>>\nui:UI" <-- ":Module" : moduleMCs
+'
+'    "<<class>>\nui:UI" -> ":Module" : "getNusModuleCode()"
+'    "<<class>>\nui:UI" <-- ":Module" : NusModuleCode
+'
+'    "<<class>>\nui:UI" -> ":Module" : "getNusModuleName()"
+'    "<<class>>\nui:UI" <-- ":Module" : NusmModuleName
+'
+'    "<<class>>\nui:UI" -> ":Module" : "getNusModuleMCs()"
+'    "<<class>>\nui:UI" <-- ":Module" : NusModuleMCs
+'
+'    "<<class>>\nui:UI" -> UserConsole : Print out Modules details
+'    "<<class>>\nui:UI" <-- UserConsole
+'    end
+'end
+'
+'"<<class>>\nui:UI" --> ":ListCurrentCommand" : return control
+'deactivate "<<class>>\nui:UI"
+
+@enduml

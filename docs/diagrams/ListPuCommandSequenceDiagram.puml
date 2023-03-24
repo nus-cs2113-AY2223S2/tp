@@ -1,0 +1,75 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+activate ":ListPuCommand"
+
+":ListPuCommand" -> "<<class>>\nui:UI" : printPUListMessage()
+activate "<<class>>\nui:UI"
+
+"<<class>>\nui:UI" -> UserConsole : Print Start of List PU Message String
+"<<class>>\nui:UI" <-- UserConsole
+
+
+":ListPuCommand" <-- "<<class>>\nui:UI"
+deactivate "<<class>>\nui:UI"
+
+
+":ListPuCommand" -> "<<class>>\nui:UI" : printPUList()
+activate "<<class>>\nui:UI"
+"<<class>>\nui:UI" -> UserConsole : Print Line String
+"<<class>>\nui:UI" <-- UserConsole
+
+    loop for each university in universities
+    "<<class>>\nui:UI" -> "universities: ArrayList<University>"
+     activate "universities: ArrayList<University>"
+     create ":University"
+     "universities: ArrayList<University>" -> ":University"
+     activate ":University"
+     "universities: ArrayList<University>" <-- ":University"
+     deactivate ":University"
+     "<<class>>\nui:UI" <-- "universities: ArrayList<University>"
+     deactivate "universities: ArrayList<University>"
+
+
+    "<<class>>\nui:UI" -> ":University" : getUnivName()
+    "<<class>>\nui:UI" <-- ":University" : uniName
+
+    "<<class>>\nui:UI" -> ":University" : getUnivAbbName()
+    "<<class>>\nui:UI" <-- ":University" : uniAbbName
+
+    "<<class>>\nui:UI" -> UserConsole : Print out uniId + uniName + uniAbbName
+    "<<class>>\nui:UI" <-- UserConsole
+    end
+"<<class>>\nui:UI" -> UserConsole : Print Line String
+"<<class>>\nui:UI" <-- UserConsole
+
+":ListPuCommand" <-- "<<class>>\nui:UI" : return control
+'    "<<class>>\nui:UI" -> ":Module" : "getModuleCode()"
+'    activate ":Module"
+'    "<<class>>\nui:UI" <-- ":Module" : moduleCode
+'
+'    "<<class>>\nui:UI" -> ":Module" : "getModuleName()"
+'    "<<class>>\nui:UI" <-- ":Module" : moduleName
+'
+'    "<<class>>\nui:UI" -> ":Module" : "getModuleMCs()"
+'    "<<class>>\nui:UI" <-- ":Module" : moduleMCs
+'
+'    "<<class>>\nui:UI" -> ":Module" : "getNusModuleCode()"
+'    "<<class>>\nui:UI" <-- ":Module" : NusModuleCode"
+'
+'    "<<class>>\nui:UI" -> ":Module" : "getNusModuleName()"
+'    "<<class>>\nui:UI" <-- ":Module" : NusmModuleName
+'
+'    "<<class>>\nui:UI" -> ":Module" : "getNusModuleMCs()"
+'    "<<class>>\nui:UI" <-- ":Module" : NusModuleMCs
+'    deactivate ":Module"
+'    "<<class>>\nui:UI" -> UserConsole : Print out Modules details
+'    "<<class>>\nui:UI" <-- UserConsole
+
+'end
+
+'"<<class>>\nui:UI" --> ":ListPuCommand" : return control
+'deactivate "<<class>>\nui:UI"
+
+@enduml

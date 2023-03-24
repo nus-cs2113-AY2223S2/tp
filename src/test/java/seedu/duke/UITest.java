@@ -49,7 +49,6 @@ class UITest {
     public void restoreStream() {
         System.setOut(originalOut);
     }
-    //@@author dfa
 
     //Solution below adapted from https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
     /*
