@@ -25,6 +25,14 @@ which contains the information of previously saved companies. If the text file e
 stored will be copied over to a local ArrayList. If there is no text file, a text file will be created as soon as the 
 user tries to add company information.
 
+### [Proposed] Add feature
+#### Proposed Implementation
+The proposed <code>CompanyList.add</code> is facilitated by <code>AddCommand</code>. It will add new company to existing 
+list of companies. It has three parameters, <code>String companyName </code>, <code>Int contactNumber </code>, and <code>
+String contactEmail</code>. Using this information, <code>CompanyList.add</code> creates new Company object and adds it 
+at the end of the company list. After successfully executing the command, it will show successful addition message using
+the related method in the <code>Ui</code>.
+
 ## Product scope
 ### Target user profile
 
