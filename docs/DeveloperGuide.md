@@ -114,6 +114,43 @@ This is how the ListPetCommand works:
     <i>Figure 2: Sequence Diagram for List Pet Command</i>
 </p>
 
+### [Added] Add Pet Stat Feature
+
+#### Implementation
+
+The add pet stat mechanism is facilitated by the `Pet` class. It is stored internally as a `petList` created under the `PetList` class. Additionally, it  implements the following operations:
+
+- `Pet#addStat()` - Checks which type of stat the user wants to add (i.e. weight, age, pet type)
+- `Pet#setAge()` - Sets the age of the pet
+- `Pet#setPetType()` - Sets the type of the pet (e.g. Dog, Cat, Parrot)
+- `Pet#setWeight()` - Sets the weight of the pet
+
+These operations are exposed in the `PetList` class as `PetList#addStat()` and `AddStatCommand` class as `AddStatCommand#execute()`.
+
+<p align="center">
+    <img src="images/AddPetStatFeatureClassDiagram.png">
+    <br />
+    <i>Figure 3: Class Diagram for Add Pet Stat Feature</i>
+</p>
+
+Given below is an example usage scenario and how the add pet stat mechanism behaves.
+
+Step 1. After the user launches the application and added a pet named "Bob", a `Pet` object will be initialised and saved in the `petList`.
+
+<p align="center">
+    <img src="images/AddPetStatFeatureObjectDiagram (1).png">
+    <br />
+    <i>Figure 4: Object Diagram for Add Pet Stat Feature After Step 1</i>
+</p>
+
+Step 2. The user executes `add-stat Bob weight 5` command to add a weight stat of 5kg in the `Pet` object. The `add-stat` command calls `AddStatCommand#execute()` then `PetList#addStat()`, causing the `Pet` object's `weight` variable to be modified and saved.
+
+<p align="center">
+    <img src="images/AddPetStatFeatureObjectDiagram (2).png">
+    <br />
+    <i>Figure 5: Object Diagram for Add Pet Stat Feature After Step 2</i>
+</p>
+
 ## User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
