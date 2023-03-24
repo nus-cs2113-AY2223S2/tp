@@ -13,14 +13,14 @@ import static seedu.rainyDay.RainyDay.financialReport;
 
 public class ViewResult {
     private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
-            "|Here is your full financial report!                                          |\n";
+            "|Here is your financial report!                                                                   |\n";
     private static final String ACKNOWLEDGE_FILTER_COMMAND = "" +
-            "|Here is your filtered financial report!                                      |\n";
+            "|Here is your filtered financial report!                                                          |\n";
     private static final String TABLE_FORMAT = "" +
-            "+-----+------------------------------+------------+----------------+----------+\n" +
-            "|Index|Name                          |Amount      |Category        |Date      |\n";
+            "+-----+---------------------------------------------+------------+---------------------+----------+\n" +
+            "|Index|Description                                  |Amount      |Category             |Date      |\n";
     private static final String TABLE_BORDER = "" +
-            "+-----+------------------------------+------------+----------------+----------+\n";
+            "+-----+---------------------------------------------+------------+---------------------+----------+\n";
 
     private static final Logger logger = Logger.getLogger(ViewResult.class.getName());
 
@@ -58,10 +58,10 @@ public class ViewResult {
         index = index.substring(index.length() - 5);
         String value = String.format(" %s$%.2f            ", statementDirection, statementValue);
         value = value.substring(0, 12);
-        String name = String.format("%s                              ", statementName);
-        name = name.substring(0, 30);
-        String category = String.format("%s                ", statementCategory);
-        category = category.substring(0, 16);
+        String name = String.format("%s                                             ", statementName);
+        name = name.substring(0, 45);
+        String category = String.format("%s                     ", statementCategory);
+        category = category.substring(0, 21);
         statementOutput = "|" + index + "|" + name + "|" + value + "|" + category + "|" + date + "|"
                 + System.lineSeparator();
         return statementOutput;
@@ -87,8 +87,7 @@ public class ViewResult {
         for (int index : indexArray) {
             logger.log(Level.INFO, "starting statement " + index);
             FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
-
-            output = formatFinancialStatement(index, currentStatement);
+            output = formatFinancialStatement(index + 1, currentStatement);
             System.out.print(output);
             logger.log(Level.INFO, "passed statement " + index);
         }
@@ -98,24 +97,24 @@ public class ViewResult {
     /**
      * Appends financial statements to the end of a string
      */
-    public static void printFullReport() {
+    public static void printReport(ArrayList<Integer> validIndexes) {
         double totalInflow = 0;
         double totalOutflow = 0;
 
         System.out.print(TABLE_BORDER);
         System.out.print(ACKNOWLEDGE_VIEW_COMMAND);
         System.out.print(TABLE_FORMAT);
-        for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
-            logger.log(Level.INFO, "starting statement " + i);
-            FinancialStatement currentStatement = financialReport.getFinancialStatement(i);
+        for (Integer index: validIndexes) {
+            logger.log(Level.INFO, "starting statement " + index);
+            FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
             if (currentStatement.getFlowDirectionWord().equals("in")) {
                 totalInflow += currentStatement.getValue();
             } else {
                 totalOutflow += currentStatement.getValue();
             }
-            String formattedOutput = formatFinancialStatement(i + 1, currentStatement);
+            String formattedOutput = formatFinancialStatement(index + 1, currentStatement);
             System.out.print(formattedOutput);
-            logger.log(Level.INFO, "passed statement " + i);
+            logger.log(Level.INFO, "passed statement " + index);
         }
         System.out.print(TABLE_BORDER);
         System.out.print(formatSummary(totalInflow, totalOutflow));
