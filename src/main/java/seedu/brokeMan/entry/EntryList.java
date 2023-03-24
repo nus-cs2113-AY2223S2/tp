@@ -145,7 +145,7 @@ public abstract class EntryList {
         }
         if (entriesByCategory.size() > 0) {
             listEntry(entriesByCategory);
-            Ui.showToUser("Total in this category: $" + getTotalAmount(entriesByCategory));
+            Ui.showToUser("Total in this category: $" + getEntryListSum(entriesByCategory));
         } else {
             Ui.showToUser("No entries found under this category. ");
         }
