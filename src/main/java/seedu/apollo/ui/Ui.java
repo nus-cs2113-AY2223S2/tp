@@ -623,4 +623,8 @@ public class Ui {
                     timetable.getEndTime());
         }
     }
+
+    public void printClashingLesson() {
+        System.out.println("This lesson clashes with another lesson in your timetable!");
+    }
 }
