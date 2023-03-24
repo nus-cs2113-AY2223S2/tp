@@ -14,11 +14,14 @@
 3. The class imports the **`SniffException`** class from the exception package and utilizes it in the **`showErrorMessage()`** method to display an error message to the user.
 
 ### Command - Class Implementation
-![img_9.png](img_9.png) <br>
+![img_16.png](img_16.png) <br>
 **Figure 2: UML Diagram of Command Class**
+1. The **`Command class`** named `Command` belongs to the package functionalities.commands. The class is an abstract class that provides a basic template for implementing commands in the command-line interface. This class is designed to be extended by subclasses that implement specific commands, such as **ListCommand** and **ConsultationCommand**.
+2. The **`Command class`** has a boolean isExit field that can be set to true and exit the entire programme, or remain as false to continue running the programme. It has a **`isExit()`** method that sets that field to false initially. It also has a **`executeCommand()`** method that takes an instance of SniffTasks as a parameter and throws a SniffException if an error occurs during execution. Subclasses override this method in order to run other commands that the user inputs.
 
 ![img_12.png](img_12.png) <br>
 **Figure 3: Sequence Diagram showing the logical implementation of executeCommand() for the Consultation Command**
+1. The 
 
 ![img_14.png](img_14.png) <br>
 **Figure 4: Sequence Diagram showing the logical implementation of executeCommand() for the Vaccination Command**
@@ -26,8 +29,12 @@
 ![img_13.png](img_13.png) <br>
 **Figure 5: Sequence Diagram showing the logical implementation of executeCommand() for the Surgery Command**
 
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user removes an appointment.
 ![img_10.png](img_10.png) <br>
 **Figure 6: Sequence Diagram showing the logical implementation of executeCommand() for the Remove Command**
+The remove command is facilitated by `SniffTasks` which stores all the current appointments as `APPOINTMENTS`. It then implements the following operation:
+* `Snifftasks.removeAppointment()` -- Removes the appointment with the specified UID.
+
 
 ![img_11.png](img_11.png) <br>
 **Figure 7: Sequence Diagram showing the logical implementation of executeCommand() for the List Command**
@@ -88,6 +95,7 @@ ______________________________________________________________________
  What can I do for you?
 ______________________________________________________________________
 ```
+
 ### Sample test cases
 
 #### Adding appointments
@@ -101,7 +109,7 @@ ______________________________________________________________________
    6. Dates: `cd`, `vd`, `sd`, `ed`, in the format of **YYYY-MM-DD**.
    7. Times: `ct`, `vt`, `st`, `et`, in the format of **HH:MM**.
    8. Vaccine: `v/`.
-   9. Priority: `p/`, in the format of `H`, `M`, `L`.
+   9. Priority: `p/`, in the format of **H**, **M**, or **L**.
    
 2. Test case: `consultation at/Cat an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`<br>
    Expected output: A consultation appointment has been added successfully, details shown in the status message.
@@ -250,7 +258,13 @@ ______________________________________________________________________
 2. Test case: `mark V12400172X`<br>
    Expected output: The appointment with the specified UID is marked as done, details shown in the status message.
    Example:
+```
+
+```
 3. Test case: `unmark V12400172X`<br>
    Expected output: The appointment with the specified UID is unmarked as done, details shown in the status message.
    Example:
+```
+
+```
 
