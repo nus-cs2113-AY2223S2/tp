@@ -57,10 +57,10 @@ public class Ui {
         System.out.println("                    purge");
         System.out.println(" ");
         System.out.println("To search for a company, type:");
-        System.out.println("                    find company");
+        System.out.println("                    find company <COMPANY_NAME>");
         System.out.println(" ");
         System.out.println("To filter according to industry, type:");
-        System.out.println("                    find <INDUSTRY>");
+        System.out.println("                    find industry <INDUSTRY>");
         System.out.println(" ");
         System.out.println("To display unconfirmed attendees, type:");
         System.out.println("                    list unconfirmed");
@@ -89,7 +89,9 @@ public class Ui {
 
     public void showSortedCompanyList(String industry, ArrayList<Company> sortedCompanyList){
         System.out.println("Here are the companies in <" + industry + "> field.");
+        int i=1;
         for(Company company : sortedCompanyList){
+            System.out.println(i++ + ".");
             System.out.println(company);
         }
     }
