@@ -19,7 +19,8 @@ import java.util.HashSet;
 //@@author jeromeongithub
 public class AddTaskCommand extends Command {
     public static final String KEYWORD = "add";
-    public static final HashSet<String> FLAGS = new HashSet<>(Arrays.asList(KEYWORD, Flags.DEADLINE.FLAG, Flags.REPEAT.FLAG));
+    public static final HashSet<String> FLAGS = new HashSet<>(Arrays.asList(KEYWORD,
+            Flags.DEADLINE.FLAG, Flags.REPEAT.FLAG));
 
     private String description;
     private LocalDateTime deadline;
