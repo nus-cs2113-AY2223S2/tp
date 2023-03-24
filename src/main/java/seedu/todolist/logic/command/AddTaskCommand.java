@@ -40,7 +40,11 @@ public class AddTaskCommand extends Command {
         try {
             repeatDuration = Integer.parseInt(args.get(Flags.REPEAT.FLAG));
         } catch (NumberFormatException e) {
-            throw new InvalidDurationException();
+            if (args.get(Flags.REPEAT.FLAG) == null) {
+                repeatDuration = 0;
+            } else {
+                throw new InvalidDurationException();
+            }
         }
     }
 

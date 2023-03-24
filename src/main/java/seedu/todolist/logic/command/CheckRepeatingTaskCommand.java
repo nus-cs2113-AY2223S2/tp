@@ -7,8 +7,6 @@ import seedu.todolist.task.TaskList;
 public class CheckRepeatingTaskCommand extends Command {
     public static final String KEYWORD = "check";
 
-    private int index;
-
     public CheckRepeatingTaskCommand() {}
 
     @Override
