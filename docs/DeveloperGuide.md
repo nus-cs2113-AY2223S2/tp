@@ -14,8 +14,8 @@
 3. The class imports the **`SniffException`** class from the exception package and utilizes it in the **`showErrorMessage()`** method to display an error message to the user.
 
 ### Command - Class Implementation
-![img_16.png](Updated Command UML.png) <br>
-**Figure 2: UML Diagram of Command Class**
+![img_16.png](Updated%20Command%20UML.png) <br>
+**Figure 2: UML Diagram of Command Class** <br>
 1. The **`Command class`** named `Command` belongs to the package functionalities.commands. The class is an abstract class that provides a basic template for implementing commands in the command-line interface. This class is designed to be extended by subclasses that implement specific commands, such as **`ListCommand`** and **`ConsultationCommand`**.
 2. The **`Command class`** has a boolean isExit field that can be set to true to exit the entire programme, or remain as false to continue running the programme. It has a **`isExit()`** method that sets that field to false initially. It also has a **`executeCommand()`** method that takes an instance of SniffTasks as a parameter and throws a SniffException if an error occurs during execution. Subclasses override this method in order to run other commands.
 
