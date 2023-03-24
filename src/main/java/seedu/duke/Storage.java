@@ -242,6 +242,7 @@ public class Storage implements DatabaseInterface {
                 long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
                 if (daysDiff <= 7) {
                     UI.printReminderMessage(deadline, counter);
+                    counter++;
                 }
             }
         } catch (Exception e) {
