@@ -16,8 +16,8 @@
 ### Command - Class Implementation
 ![img_16.png](img_16.png) <br>
 **Figure 2: UML Diagram of Command Class**
-1. The **`Command class`** named `Command` belongs to the package functionalities.commands. The class is an abstract class that provides a basic template for implementing commands in the command-line interface. This class is designed to be extended by subclasses that implement specific commands, such as **ListCommand** and **ConsultationCommand**.
-2. The **`Command class`** has a boolean isExit field that can be set to true and exit the entire programme, or remain as false to continue running the programme. It has a **`isExit()`** method that sets that field to false initially. It also has a **`executeCommand()`** method that takes an instance of SniffTasks as a parameter and throws a SniffException if an error occurs during execution. Subclasses override this method in order to run other commands that the user inputs.
+1. The **`Command class`** named `Command` belongs to the package functionalities.commands. The class is an abstract class that provides a basic template for implementing commands in the command-line interface. This class is designed to be extended by subclasses that implement specific commands, such as **`ListCommand`** and **`ConsultationCommand`**.
+2. The **`Command class`** has a boolean isExit field that can be set to true to exit the entire programme, or remain as false to continue running the programme. It has a **`isExit()`** method that sets that field to false initially. It also has a **`executeCommand()`** method that takes an instance of SniffTasks as a parameter and throws a SniffException if an error occurs during execution. Subclasses override this method in order to run other commands.
 
 ![img_12.png](img_12.png) <br>
 **Figure 3: Sequence Diagram showing the logical implementation of executeCommand() for the Consultation Command**
