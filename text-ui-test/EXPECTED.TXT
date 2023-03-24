@@ -10,27 +10,31 @@ Hello from
 Enter "help" to see a list of commands.
 ____________________________________________________________
 ____________________________________________________________
+Task Commands:
+- Enter "list" to see all tasks
+- Enter "todo [task]" to add a task
+- Enter "deadline [task] /by [date]" to add a deadline
+- Enter "event [task] /from [date] /to [date]" to add an event
+- Enter "mark [idx]" to mark task as done
+- Enter "unmark [idx]" to mark task as not done
+- Enter "delete [idx]" to remove task from list
+- Enter "find [keyword]" to see all tasks containing [keyword]
+- Enter "date [yyyy-MM-dd]" to see all tasks occurring on that date
 
- Enter "list" to see all tasks
- Enter "listmod" to see your module list
- Enter "todo [task]" to add a task
- Enter "deadline [task] /by [date]" to add a deadline
- Enter "event [task] /from [date] /to [date]" to add an event
- Enter "addmod [MODULE_CODE]" to add a Module to the Module list
- Enter "addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a lesson
- Enter "showmod [MODULE_CODE]" to see more information about the module
- Enter "mark [idx]" to mark task as done
- Enter "unmark [idx]" to mark task as not done
- Enter "delete [idx]" to remove task from list
- Enter "delmod [MODULE_CODE]" to remove a Module you previously added
- Enter "week" to see your schedule for the week
- Enter "find [keyword]" to see all tasks containing [keyword]
- Enter "date [yyyy-MM-dd]" to see all tasks occurring on that date
- Enter "bye" to exit the program
+Module Commands:
+- Enter "listmod" to see your module list
+- Enter "addmod [MODULE_CODE]" to add a Module to the Module list
+- Enter "addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a lesson
+- Enter "showmod [MODULE_CODE]" to see more information about the module
+- Enter "delmod [MODULE_CODE]" to remove a Module you previously added
 
- ***NOTE***
- Please enter all [date]s in the format: "yyyy-MM-ddThh:mm"
- eg. "2023-10-30T23:59" represents Oct 20 2023, 11:59PM
+Common Commands:
+- Enter "week" to see your schedule for the week
+- Enter "bye" to exit the program
+
+***NOTE***
+Please enter all [date]s in the format: "yyyy-MM-ddThh:mm"
+eg. "2023-10-30T23:59" represents Oct 20 2023, 11:59PM
 
 There are -FLAGS for the various lessons options per module:
 -lec			LECTURE
@@ -45,7 +49,6 @@ There are -FLAGS for the various lessons options per module:
 -smc			SEMINAR STYLE MODULE CLASS
 -mp				MINI PROJECT
 -tt2			TUTORIAL TYPE 2
-
 ____________________________________________________________
 ____________________________________________________________
 There are no tasks in your list!
@@ -184,6 +187,7 @@ Number of MC: 4
 Here are the lesson types for this module:
 Sectional Teaching (-st)
 Tutorial (-tut)
+
 Sectional Teaching 1
    Friday 1200 - 1300
 Sectional Teaching 1
@@ -215,6 +219,7 @@ Number of MC: 4
 Here are the lesson types for this module:
 Laboratory (-lab)
 Lecture (-lec)
+
 Laboratory 01
    Monday 1400 - 1700
 Laboratory 02
@@ -235,6 +240,11 @@ Lecture 02
    Thursday 1600 - 1800
 Lecture 02
    Tuesday 1600 - 1800
+____________________________________________________________
+____________________________________________________________
+Here are all available lessons of type: SECTIONAL_TEACHING for CS1010:
+Class Number: 1
+   Monday 1200 - 1400
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(
