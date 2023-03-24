@@ -5,11 +5,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.userdata.UserCareerData;
+import seedu.duke.model.userdata.UserCareerData;
 
 import java.io.FileWriter;
 import java.io.Writer;
-import seedu.duke.userplan.UserPlan;
+import seedu.duke.model.userdata.userplan.UserPlan;
 
 /**
  * Class to write an ArrayList of completedWorkouts into a json file.

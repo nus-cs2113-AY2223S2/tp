@@ -1,4 +1,4 @@
-package seedu.duke.userplan;
+package seedu.duke.model.userdata.userplan;
 
 import java.util.ArrayList;
 
@@ -19,8 +19,10 @@ public class Plan {
         this.planName = planName;
         this.noOfExercise = 0;
     }
+
     /**
      * initialize new plan
+     *
      * @return planName name of the plan
      */
     public String getPlanName () {
@@ -29,9 +31,11 @@ public class Plan {
 
     /**
      * get the exercise plans of the plan
+     *
      * @return the exercise plan
      */
     public ArrayList<String> getExercisePlans () {
         return this.exercisePlans;
     }
+
 }

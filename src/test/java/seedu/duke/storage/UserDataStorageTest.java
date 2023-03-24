@@ -11,12 +11,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.exercisegenerator.GenerateExercise;
-import seedu.duke.exersisedata.ExerciseData;
-import seedu.duke.userdata.Session;
-import seedu.duke.userdata.UserCareerData;
-import seedu.duke.userplan.Plan;
-import seedu.duke.userplan.UserPlan;
+import seedu.duke.model.exercisegenerator.GenerateExercise;
+import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.model.userdata.Session;
+import seedu.duke.model.userdata.UserCareerData;
+import seedu.duke.model.userdata.userplan.Plan;
+import seedu.duke.model.userdata.userplan.UserPlan;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;

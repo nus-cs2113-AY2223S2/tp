@@ -1,8 +1,8 @@
 package seedu.duke.storage;
 
-import seedu.duke.exersisedata.ExerciseData;
-import seedu.duke.userdata.Session;
-import seedu.duke.userdata.UserCareerData;
+import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.model.userdata.Session;
+import seedu.duke.model.userdata.UserCareerData;
 
 import java.util.ArrayList;
 
@@ -14,9 +14,9 @@ public class TestReading {
      * read into the respective classes.
      *
      * @param completedSessionWorkouts The arrayList of all completed sessions from the userCareerData (in this
-     *         test case only one session is created) that has been read from the json file.
+     *     test case only one session is created) that has been read from the json file.
      * @param sessionExercises The total completed session exercises that was initially added before saving to
-     *         the json file which is used as the reference for this test.
+     *     the json file which is used as the reference for this test.
      */
     public static void testReading (ArrayList<Session> completedSessionWorkouts,
                                     ArrayList<ExerciseData> sessionExercises) {
@@ -25,9 +25,9 @@ public class TestReading {
                                              .get(0)
                                              .getName(), sessionExercises.get(0).getName());
         assertEquals(3, completedSessionWorkouts
-                .get(0)
-                .getSessionExercises()
-                .size());
+            .get(0)
+            .getSessionExercises()
+            .size());
     }
 
     public static void testReadingUserCareer (UserCareerData userCareerDataFromFile,
@@ -35,17 +35,17 @@ public class TestReading {
         ArrayList<Session> userCareerSessionsFromFile = userCareerDataFromFile.getTotalUserCareerSessions();
         ArrayList<Session> userCareerSessionsFromUser = userCareerDataFromUser.getTotalUserCareerSessions();
         assertEquals(userCareerSessionsFromFile.size(), userCareerSessionsFromUser.size(), "Different session counts " +
-                "from user and file");
+            "from user and file");
         for (int i = 0; i < userCareerSessionsFromUser.size(); i++) {
             ArrayList<ExerciseData> sessionExercisesFromUser = userCareerSessionsFromUser.get(i).getSessionExercises();
             ArrayList<ExerciseData> sessionExercisesFromFile = userCareerSessionsFromFile.get(i).getSessionExercises();
             assertEquals(sessionExercisesFromFile.size(), sessionExercisesFromUser.size(), "Different exercise data " +
-                    "sizes from user and file");
+                "sizes from user and file");
             for (int j = 0; j < sessionExercisesFromUser.size(); j++) {
                 ExerciseData exerciseFromUser = sessionExercisesFromUser.get(j);
                 ExerciseData exerciseFromFile = sessionExercisesFromFile.get(j);
                 assertEquals(exerciseFromFile.getName(), exerciseFromUser.getName(), "Different exercises in each " +
-                        "sesssion");
+                    "sesssion");
             }
 
         }

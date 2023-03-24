@@ -1,4 +1,4 @@
-package seedu.duke.exersisedata;
+package seedu.duke.model.exercisegenerator.exersisedata;
 
 //@@author Khulon
 public class ExerciseFilter {
@@ -12,12 +12,14 @@ public class ExerciseFilter {
         "medium",
         "hard"
     };
-    public static boolean isAValidFilter(String filter){
-        for (int i = 0; i < filters.length; i ++) {
-            if (filter.equals(filters[i])){
+
+    public static boolean isAValidFilter (String filter) {
+        for (int i = 0; i < filters.length; i++) {
+            if (filter.equals(filters[i])) {
                 return true;
             }
         }
         return false;
     }
+
 }

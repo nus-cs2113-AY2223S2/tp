@@ -10,10 +10,10 @@ import java.io.Reader;
 
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.commons.exceptions.FileReadError;
-import seedu.duke.userdata.Session;
-import seedu.duke.userdata.UserCareerData;
-import seedu.duke.userplan.Plan;
-import seedu.duke.userplan.UserPlan;
+import seedu.duke.model.userdata.Session;
+import seedu.duke.model.userdata.UserCareerData;
+import seedu.duke.model.userdata.userplan.Plan;
+import seedu.duke.model.userdata.userplan.UserPlan;
 
 /**
  * Class to read and parse the json file containing userData into an ArrayList of completed workouts.

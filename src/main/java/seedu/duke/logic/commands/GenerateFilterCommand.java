@@ -1,11 +1,11 @@
-package seedu.duke.commands;
+package seedu.duke.logic.commands;
 
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.commons.exceptions.ExerciseNumberInputAsStringError;
 import seedu.duke.commons.exceptions.UnknownFilterInputError;
 import seedu.duke.commons.exceptions.TooManyFiltersError;
-import seedu.duke.exercisegenerator.GenerateExercise;
-import seedu.duke.exersisedata.ExerciseData;
+import seedu.duke.model.exercisegenerator.GenerateExercise;
+import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package seedu.duke.commandhandler;
+package seedu.duke.logic.commandhandler;
 
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.commons.exceptions.OngoingExGenerationError;
@@ -7,10 +7,10 @@ import seedu.duke.commons.exceptions.OngoingExHistoryError;
 import seedu.duke.commons.exceptions.OngoingExProgressError;
 import seedu.duke.commons.exceptions.OngoingExWriteError;
 
-import seedu.duke.states.ExerciseStateHandler;
+import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.ui.Ui;
-import seedu.duke.userdata.UserCareerData;
-import seedu.duke.userexercisedata.UserExerciseData;
+import seedu.duke.model.userdata.UserCareerData;
+import seedu.duke.model.userdata.UserExerciseData;
 
 import java.util.HashMap;
 import java.util.Scanner;

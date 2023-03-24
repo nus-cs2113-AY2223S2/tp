@@ -1,4 +1,4 @@
-package seedu.duke.userdata;
+package seedu.duke.model.userdata;
 
 import java.util.ArrayList;
 

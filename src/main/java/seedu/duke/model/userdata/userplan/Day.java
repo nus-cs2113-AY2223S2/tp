@@ -1,4 +1,4 @@
-package seedu.duke.userplan;
+package seedu.duke.model.userdata.userplan;
 
 //@@author Khulon
 public class Day {
@@ -8,7 +8,7 @@ public class Day {
      * @param day the day that the event starts from
      * @return the string that was converted from an integer
      */
-    public static String intToDay(int day) {
+    public static String intToDay (int day) {
         switch (day) {
         case 0:
             return "MONDAY";
@@ -35,7 +35,7 @@ public class Day {
      * @param day the day that the event starts from
      * @return the integer that was converted from a string
      */
-    public static int dayToInt(String day) {
+    public static int dayToInt (String day) {
         switch (day) {
         case "monday":
             return 0;
@@ -55,4 +55,5 @@ public class Day {
             return -1;
         }
     }
+
 }

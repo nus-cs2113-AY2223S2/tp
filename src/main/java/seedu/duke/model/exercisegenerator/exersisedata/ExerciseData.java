@@ -1,4 +1,4 @@
-package seedu.duke.exersisedata;
+package seedu.duke.model.exercisegenerator.exersisedata;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -36,79 +36,79 @@ public class ExerciseData {
     @Expose
     private String category;
 
-    public String getId() {
+    public String getId () {
         return id;
     }
 
-    public String getName() {
+    public String getName () {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName (String name) {
         this.name = name;
     }
 
-    public String getForce() {
+    public String getForce () {
         return force;
     }
 
-    public void setForce(String force) {
+    public void setForce (String force) {
         this.force = force;
     }
 
-    public String getLevel() {
+    public String getLevel () {
         return level;
     }
 
-    public void setLevel(String level) {
+    public void setLevel (String level) {
         this.level = level;
     }
 
-    public String getMechanic() {
+    public String getMechanic () {
         return mechanic;
     }
 
-    public void setMechanic(String mechanic) {
+    public void setMechanic (String mechanic) {
         this.mechanic = mechanic;
     }
 
-    public String getEquipment() {
+    public String getEquipment () {
         return equipment;
     }
 
-    public void setEquipment(String equipment) {
+    public void setEquipment (String equipment) {
         this.equipment = equipment;
     }
 
-    public List<String> getWorkoutType() {
+    public List<String> getWorkoutType () {
         return workoutType;
     }
 
-    public void setWorkoutType(List<String> workoutType) {
+    public void setWorkoutType (List<String> workoutType) {
         this.workoutType = workoutType;
     }
 
-    public List<Object> getSecondaryMuscles() {
+    public List<Object> getSecondaryMuscles () {
         return secondaryMuscles;
     }
 
-    public void setSecondaryMuscles(List<Object> secondaryMuscles) {
+    public void setSecondaryMuscles (List<Object> secondaryMuscles) {
         this.secondaryMuscles = secondaryMuscles;
     }
 
-    public List<String> getInstructions() {
+    public List<String> getInstructions () {
         return instructions;
     }
 
-    public void setInstructions(List<String> instructions) {
+    public void setInstructions (List<String> instructions) {
         this.instructions = instructions;
     }
 
-    public String getCategory() {
+    public String getCategory () {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory (String category) {
         this.category = category;
     }
 

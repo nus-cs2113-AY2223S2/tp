@@ -2,7 +2,8 @@ package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.exercisegenerator.GenerateExercise;
+import seedu.duke.logic.commands.GenerateFilterCommand;
+import seedu.duke.model.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

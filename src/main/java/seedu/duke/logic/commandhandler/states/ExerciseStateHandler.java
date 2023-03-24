@@ -1,12 +1,12 @@
-package seedu.duke.states;
+package seedu.duke.logic.commandhandler.states;
 
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.commons.exceptions.NoOngoingExError;
-import seedu.duke.exersisedata.ExerciseData;
+import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.storage.StorageHandler;
-import seedu.duke.userdata.UserCareerData;
+import seedu.duke.model.userdata.UserCareerData;
 import seedu.duke.ui.Ui;
-import seedu.duke.userdata.Session;
+import seedu.duke.model.userdata.Session;
 
 import java.util.ArrayList;
 
