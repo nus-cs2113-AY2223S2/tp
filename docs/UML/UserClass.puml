@@ -1,0 +1,7 @@
+@startuml
+class User {
+ -semester
+ +getSemester()
+ +setSemester()
+}
+@enduml
