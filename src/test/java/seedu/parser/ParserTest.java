@@ -151,4 +151,18 @@ public class ParserTest {
         finalCommand = MainInputParser.parseInputs(replaceDWithF);
         assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
     }
+
+    @Test
+    void parseMarkCommand() {
+        String inputString = "mark 1";
+        Command finalCommand = MainInputParser.parseInputs(inputString);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.MarkCommand");
+    }
+
+    @Test
+    void parseUnmarkCommand() {
+        String inputString = "unmark 1";
+        Command finalCommand = MainInputParser.parseInputs(inputString);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.UnmarkCommand");
+    }
 }
