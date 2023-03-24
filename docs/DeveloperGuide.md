@@ -54,7 +54,9 @@
 ![img_17.png](img_17.png) <br>
 **Figure 10: Sequence Diagram showing the logical implementation of executeCommand() for the Find Command**
 
-Find command can be used by the user to find up to 3 categories, **`Appointment ID`**, **`Appointments Type`**, **`Animal Type`**.
+- Find command can be used by the user to find up to 3 categories, **`Appointment ID`**, **`Appointments Type`**, **`Animal Type`**.
+- If user input is not supported by these three find commands, a **`SniffException`** is thrown.
+
 #### findAppointment()
 1. **`findAppointment`** loops through arraylist appointments and checks if matching appointment ID is present.
 2. If matching appointment ID is found, it calls **`toString`** and **`formatPrintList`** to print out appointments to user.
