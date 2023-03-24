@@ -176,7 +176,7 @@ It works like this:
 This feature was implemented like this in order to maximize use of the OOP paradigm. 
 
 <p align="center">
-    <img src="images/">
+    <img src="images/RemoveStatCommand.png">
     <br />
     <i>Figure 6: Sequence Diagram for Remove Pet Stat Command</i>
 </p>
