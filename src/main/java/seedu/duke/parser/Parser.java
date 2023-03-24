@@ -10,6 +10,7 @@ import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.ListVenueCommand;
 import seedu.duke.command.ConfirmCommand;
 import seedu.duke.command.UnconfirmCommand;
+import seedu.duke.command.ListUnconfirmedCommand;
 
 import seedu.duke.ui.Ui;
 import seedu.duke.exception.WrongFormatException;
@@ -31,6 +32,9 @@ public interface Parser {
             } else if (inputWords[1].equals("venues")) {
                 ListVenueCommand venueCommand = new ListVenueCommand(command + " venues");
                 return venueCommand;
+            } else if (inputWords[1].equals("unconfirmed")){
+                ListUnconfirmedCommand unconfirmedCommand = new ListUnconfirmedCommand(command + " unconfirmed");
+                return unconfirmedCommand;
             }
             throw new WrongFormatException();
         case "add":
