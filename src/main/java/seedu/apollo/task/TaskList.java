@@ -97,8 +97,8 @@ public class TaskList extends ArrayList<Task> {
 
                     if (task1 instanceof Deadline && task2 instanceof Deadline) {
 
-                        LocalDateTime deadline1Date = ((Deadline) task1).getDateTime();
-                        LocalDateTime deadline2Date = ((Deadline) task2).getDateTime();
+                        LocalDateTime deadline1Date = ((Deadline) task1).getByDate();
+                        LocalDateTime deadline2Date = ((Deadline) task2).getByDate();
                         return deterministicSortForDeadline(deadline1Date, deadline2Date);
 
                     } else {
