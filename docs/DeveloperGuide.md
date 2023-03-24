@@ -54,6 +54,19 @@ Similarly, the state of the user's event list is saved when the user exits the a
 The Gson library was chosen as it allowed for flexible adaptation of its TypeAdapter class, allowing for custom 
 serialization and deserialization of data to be saved. 
 
+### Schedule component
+
+this component is the super class of event class, Tutorial/lecture/Lab and contains all common time-related attributes and corresponding methods.
+
+#### How is the feature implemented:
+
+Schedule Class contains following attributes:
+
+> - isRecurring: whether the event is recurring or not.
+> - startTime: the first start date and time for recurring event and is also considered as the happening time of a non-recurring event if the value of isRecurring is false.
+> - endTime: the end date and time for recurring and non-recurring event
+> - 
+
 ## Product scope
 ### Target user profile
 
@@ -83,12 +96,4 @@ serialization and deserialization of data to be saved.
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
 
-
-### EventList component 
-
-API: Eventlist.java
-
-the EventList component:
-
-- stores a ArrayList of current event
 
