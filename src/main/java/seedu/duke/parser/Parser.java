@@ -1,11 +1,13 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.ChooseVenueCommand;
 import seedu.duke.command.ListCompanyCommand;
-import seedu.duke.command.ListVenueCommand;
-import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.PurgeCommand;
+import seedu.duke.command.AddCommand;
 import seedu.duke.command.LoadSampleCompanyCommand;
+import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.ListVenueCommand;
 
 import seedu.duke.ui.Ui;
 import seedu.duke.exception.WrongFormatException;
@@ -42,8 +44,8 @@ public interface Parser {
             if (inputWords.length == 1){
                 throw new WrongFormatException();
             }
-            int taskNum = Integer.parseInt(inputWords[1]) - 1;
-            DeleteCommand deleteCommand = new DeleteCommand(command, taskNum);
+            int companyNum = Integer.parseInt(inputWords[1]) - 1;
+            DeleteCommand deleteCommand = new DeleteCommand(command, companyNum);
             return deleteCommand;
         case "load":
             if (inputWords.length == 1) {
@@ -52,6 +54,19 @@ public interface Parser {
             if (inputWords[1].equals("samples")) {
                 LoadSampleCompanyCommand loadSampleCompanyCommand = new LoadSampleCompanyCommand(command + " samples");
                 return loadSampleCompanyCommand;
+            }
+            throw new WrongFormatException();
+        case "purge":
+            PurgeCommand purgeCommand = new PurgeCommand(command);
+            return purgeCommand;
+        case "choose":
+            if (inputWords.length != 3) {
+                throw new WrongFormatException();
+            }
+            if (inputWords[1].equals("venue")) {
+                int venueNum = Integer.parseInt(inputWords[2]) - 1;
+                ChooseVenueCommand chooseVenueCommand = new ChooseVenueCommand(command + " venue", venueNum);
+                return chooseVenueCommand;
             }
             throw new WrongFormatException();
         case "help":

@@ -20,4 +20,12 @@ public class VenueList {
             System.out.println(venueList.get(i));
         }
     }
+
+    public Venue getVenue(int venueNum) {
+        return venueList.get(venueNum);
+    }
+
+    public int getVenueListSize(){
+        return venueList.size();
+    }
 }
