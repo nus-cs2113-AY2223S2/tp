@@ -1,6 +1,7 @@
 package seedu.todolist.task;
 
 import seedu.todolist.exception.InvalidIndexException;
+import seedu.todolist.exception.ToDoListException;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -114,6 +115,25 @@ public class TaskList implements Serializable {
      */
     public void sortByDeadline() {
         tasks.sort(Task.taskDeadlineComparator);
+    }
+
+    public String setEmail(int index, String email) throws InvalidIndexException {
+        if (index < 0 || index > tasks.size() - 1) {
+            throw new InvalidIndexException();
+        }
+        tasks.get(index).setEmail(email);
+        return tasks.get(index).toString();
+    }
+
+    public String getEmail(int index) throws ToDoListException {
+        if (index < 0 || index > tasks.size() - 1) {
+            throw new InvalidIndexException();
+        }
+        if (tasks.get(index).getEmail().isEmpty()) {
+            throw new NullPointerException();
+        } else {
+            return (tasks.get(index).getEmail());
+        }
     }
 
     public void checkRepeatingTasks() {

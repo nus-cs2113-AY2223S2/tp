@@ -9,4 +9,6 @@ edit 3 -due 30/04/2023 08:45
 edit 1 -due 31/04/2023 08:45
 edit 1 -due 30/04/2023 08:45
 list
+set_email 1 -email rui@gmail.com
+get_email 1
 exit

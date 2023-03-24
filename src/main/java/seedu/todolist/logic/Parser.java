@@ -14,6 +14,8 @@ import seedu.todolist.logic.command.ListTasksCommand;
 import seedu.todolist.logic.command.MarkTaskCommand;
 import seedu.todolist.logic.command.ProgressBarCommand;
 import seedu.todolist.logic.command.UnmarkTaskCommand;
+import seedu.todolist.logic.command.SetEmailCommand;
+import seedu.todolist.logic.command.GetEmailCommand;
 import seedu.todolist.logic.command.CheckRepeatingTaskCommand;
 
 import java.time.LocalDateTime;
@@ -98,6 +100,10 @@ public class Parser {
             return new EditDeadlineCommand(getArguments(splitInput, EditDeadlineCommand.FLAGS));
         case DeleteTaskCommand.KEYWORD:
             return new DeleteTaskCommand(getArguments(splitInput, DeleteTaskCommand.FLAGS));
+        case SetEmailCommand.KEYWORD:
+            return new SetEmailCommand(getArguments(splitInput, SetEmailCommand.FLAGS));
+        case GetEmailCommand.KEYWORD:
+            return new GetEmailCommand(getArguments(splitInput, GetEmailCommand.FLAGS));
         case ExitCommand.KEYWORD:
             return new ExitCommand();
         case CheckRepeatingTaskCommand.KEYWORD:
