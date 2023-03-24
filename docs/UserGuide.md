@@ -30,7 +30,7 @@ Duck is a **desktop app for managing tasks and deadlines, optimised for use via 
 # Features
 
 
-### **Viewing help : `help`**
+## **Viewing help : `help`**
 
 Displays all available commands and their input format on the terminal.
 
@@ -50,7 +50,7 @@ COMMAND_FORMAT : COMMAND_FUNCTIONALITY EXPLANATION
 
 
 
-### **Listing all tasks : `list`**
+## **Listing all tasks : `list`**
 
 Displays all tasks currently stored in the application.
 
@@ -69,7 +69,7 @@ Here are the tasks in your list:
 
 
 
-### **Listing all tasks up to X days in the future : `list X`**
+## **Listing all tasks up to X days in the future : `list X`**
 
 Displays all tasks currently stored in the application, up to X days into the future.
 
@@ -88,7 +88,7 @@ For instance <code>list 0<strong></strong></code>returns all tasks that are star
 
 
 
-### **Marking a task : `mark <Task_Number>`**
+## **Marking a task : `mark <Task_Number>`**
 
 Marks a task from the tasklist as complete.
 
@@ -104,7 +104,7 @@ Understood. I've marked this task as done:
 
 
 
-### **Unmarking a task : `unmark <Task_Number>`**
+## **Unmarking a task : `unmark <Task_Number>`**
 
 Unmarks a task from the tasklist as not complete.
 
@@ -120,7 +120,7 @@ Unmarks a task from the tasklist as not complete.
 
 
 
-### **Deleting a task : `delete`**
+## **Deleting a task : `delete`**
 
 Removes a task from the tasklist.
 
@@ -135,7 +135,7 @@ Understood. I have removed this task:
 You now have 3 tasks in your list.
 ```
 
-### **Designate a task priority : `priority <Task_Number> <priority>`**
+## **Designate a task priority : `priority <Task_Number> <priority>`**
 
 
 
@@ -157,7 +157,7 @@ Understood. The task's new priority is:
 ```
 
 
-### **Purge Expired Tasks : `purge`**
+## **Purge Expired Tasks : `purge`**
 
 Prompts the user for confirmation. Proceeds to remove all expired tasks from storage upon confirmation. This operation is automatically executed once upon Duck’s startup.
 
@@ -192,7 +192,7 @@ I love purging things,human...
 Quack! Expired tasks have not been purged.
 ```
 
-### **Clearing tasks from storage: `clear`**
+## **Clearing tasks from storage: `clear`**
 
 Prompts the user for confirmation. Proceeds to clear all tasks from storage upon confirmation.
 
@@ -210,7 +210,7 @@ THIS IS AN IRREVERSIBLE PROCESS. ARE YOU SURE? Y/N
 * **If the user inputs ‘Y’:** `Got it, all tasks have been cleared.`
 * **If the user inputs ‘N’:** `Quack! Process cancelled.`
 
-### **Finding tasks from storage that match a keyword: `find <keyword>`**
+## **Finding tasks from storage that match a keyword: `find <keyword>`**
 
 Traverses through the stored tasks to return all tasks that contain the keyword
 
@@ -226,7 +226,7 @@ Here are the matching tasks in your list:
 
 
 
-### **Adding a ToDo Task : `<description>`**
+## **Adding a ToDo Task : `<description>`**
 
 Adds a ToDo task to the storage of Duck
 
@@ -243,7 +243,7 @@ You now have 2 tasks in your list.
 
 
 
-### **Adding a Deadline Task : `<description> /by <yyyy-MM-dd HHmm>`**
+## **Adding a Deadline Task : `<description> /by <yyyy-MM-dd HHmm>`**
 
 Adds a Deadline task to the storage of Duck
 
@@ -260,7 +260,7 @@ You now have 3 tasks in your list.
 
 
 
-### **Adding an Event Task : `<description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>`**
+## **Adding an Event Task : `<description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>`**
 
 Adds an Event task to the storage of Duck
 
@@ -277,7 +277,7 @@ You now have 4 tasks in your list.
 
 
 
-### **Adding a Class Task : `<description> /class <class_name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>`**
+## **Adding a Class Task : `<description> /class <class_name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>`**
 
 Adds a Class task to the storage of Duck
 
@@ -294,7 +294,7 @@ You now have 5 tasks in your list.
 
 
 
-### **Exiting the program : `bye`**
+## **Exiting the program : `bye`**
 
 Exits the program.
 
@@ -308,6 +308,6 @@ Bye. Hope to see you again soon!
 ```
 
 
-### **Saving the data :**
+## **Saving the data :**
 
 Duck’s data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
