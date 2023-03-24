@@ -26,6 +26,8 @@ public class ShowTargetCommand extends Command{
      */
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
                         Converter converter, TargetStorage targetStorage) throws ChChingException {
-        System.out.println("     Current target: " + targetStorage.getTarget().getValue() + " SGD");
+        double target = targetStorage.getTarget().getValue();
+        String convertedCurrencies = converter.printConverter(target, selector);
+        System.out.println("     Current target: " + target + " SGD" + convertedCurrencies);
     }
 }

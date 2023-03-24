@@ -111,6 +111,12 @@ public class Ui {
         System.out.println("    convert /cr <currency>");
         System.out.println("    Currencies available: HKD, PHP, IDR, MYR, VND");
         System.out.println();
+        System.out.println("    ADD TARGET:");
+        System.out.println("    add target /v <value>");
+        System.out.println();
+        System.out.println("    SHOW TARGET:");
+        System.out.println("    show target");
+        System.out.println();
         System.out.println("    SHOW HELP:");
         System.out.println("    help");
         System.out.println();
