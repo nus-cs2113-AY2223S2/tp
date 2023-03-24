@@ -7,7 +7,7 @@
 ## Design & implementation
 
 ### User Interface (UI) - Class Implementation
-![img_15.png](team/Images /img_15.png) <br>
+![img.png](img.png) <br>
 **Figure 1: UML Diagram of User Interface (UI) Class**
 1. The **`UI class`** named `Ui` belongs to the package functionalities.ui. The class contains several static and non-static methods that display messages to the user such as **`showUserMessage()`**, **`showErrorMessage()`**, and **`showWelcomeMessage()`**. The class is also used to read user input, format and print appointment lists, and add or remove appointments from the **`sniff appointment manager`**. The **`Ui`** class has a **`showLine()`** method that displays a divider line to the user.
 2. The **`UI class`** has a private static final String DOT_THEN_SPACE field that is used as a constant string value to format user messages. It has a **`readUserCommand()`** method that returns a string value that is entered by the user through the Command Line Interface (CLI).
@@ -21,7 +21,6 @@
 
 ![img_12.png](img_12.png) <br>
 **Figure 3: Sequence Diagram showing the logical implementation of executeCommand() for the Consultation Command**
-1. The 
 
 ![img_14.png](img_14.png) <br>
 **Figure 4: Sequence Diagram showing the logical implementation of executeCommand() for the Vaccination Command**
@@ -30,8 +29,10 @@
 **Figure 5: Sequence Diagram showing the logical implementation of executeCommand() for the Surgery Command**
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user removes an appointment.
+
 ![img_10.png](img_10.png) <br>
-**Figure 6: Sequence Diagram showing the logical implementation of executeCommand() for the Remove Command**
+**Figure 6: Sequence Diagram showing the logical implementation of executeCommand() for the Remove Command** <br>
+
 The remove command is facilitated by `SniffTasks` which stores all the current appointments as `APPOINTMENTS`. It then implements the following operation:
 * `Snifftasks.removeAppointment()` -- Removes the appointment with the specified UID.
 
@@ -49,7 +50,7 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 1. The UnMark command will unmark the appointment input by the user as not done or pending. It will se the isDone as false and will be updated accordingly in the Storage class.
 
 ### Parser - Class Implementation
-![img_4.png](img_4.png) <br>
+![img_16.png](img_16.png) <br>
 **Figure 8: UML Diagram of Parser Class**
 1. The Parser class takes in a user command and generates a corresponding Command object for veterinary management system tasks such as **add consultation, vaccination or surgery, find, remove, list, and exit**. This implementation makes use of the Command design pattern to encapsulate the behavior of different types of commands, and the parser serves as a factory for creating these commands based on the user input.
 2. The Parser class contains several static methods that parse different types of commands, such as **`ConsultationCommand`**, **`VaccinationCommand`**, **`SurgeryCommand`**, **`FindCommand`**, **`RemoveCommand`**, **`ListCommand`**, and **`ExitCommand`**.
@@ -58,7 +59,7 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 5. Finally, the parse method returns the command object. If an exception occurs during parsing, it throws a **`SniffException`**.
 
 ### Storage - Class Implementation 
-![img_16.png](Updated Command UML.png) <br>
+![img_18.png](img_18.png) <br>
 **Figure 9: UML Diagram of Storage class**
 1. The Storage class takes in the path of the Sniff storage file.
 2. **`load()`** method loads the contents of the saved file. It calls **`printFileContents(File)`** which will print out all the stored appointments.
@@ -90,7 +91,7 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 3. If no matching appointments are stored, ui method, **`showUserMessage`** is called.
 
 ### Appointment - Class Implementation (non UID)
-![Screenshot 2023-03-24 at 8.46.36 AM.png](..%2F..%2F..%2FDesktop%2FScreenshot%202023-03-24%20at%208.46.36%20AM.png)<br>
+![img_19.png](img_19.png)<br>
 **Figure 9: UML Diagram of Appointment Class**
 1. The appointment class takes in the user input of adding an appointment to the list of appointments.
 2. The **`Appointment class`** named `Appointment` takes in input such as uid, name, type of appointment, animal type, and date of appointment. This appointment will then  be added to the list.
