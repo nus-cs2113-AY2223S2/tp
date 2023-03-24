@@ -45,7 +45,7 @@ public class FilterCommand extends Command {
      *
      * @param category String category to filter items by.
      */
-    private void filterCategory(String category) {
+    private ArrayList<Item> filterCategory(String category) {
         ArrayList<Item> filteredItems = new ArrayList<>();
         for (Item item : itemInventory) {
             if (item.getCategory().equals(category)) {
@@ -53,10 +53,9 @@ public class FilterCommand extends Command {
             }
         }
         if (filteredItems.isEmpty()) {
-            Ui.printEmptySearch();
-            return;
+            return null;
         }
-        Ui.printSearchItems(filteredItems);
+        return filteredItems;
     }
 
     /**
@@ -64,7 +63,7 @@ public class FilterCommand extends Command {
      *
      * @param tag String tag to filter items by.
      */
-    private void filterTags(final String tag) {
+    private ArrayList<Item> filterTags(final String tag) {
         ArrayList<Item> filteredItems = new ArrayList<>();
         for (Item item : itemInventory) {
             if (item.getTags().isEmpty()) {
@@ -77,10 +76,9 @@ public class FilterCommand extends Command {
             }
         }
         if (filteredItems.isEmpty()) {
-            Ui.printEmptySearch();
-            return;
+            return null;
         }
-        Ui.printSearchItems(filteredItems);
+        return filteredItems;
     }
 
     /**
@@ -93,7 +91,7 @@ public class FilterCommand extends Command {
      *              p/let - price less than or equal to
      *              p/get - price greater than or equal to
      */
-    private void filterPrice(final double price, final String mode) {
+    private ArrayList<Item> filterPrice(final double price, final String mode) {
         ArrayList<Item> filteredItems = new ArrayList<>();
         for (Item item : itemInventory) {
             switch (mode) {
@@ -122,10 +120,9 @@ public class FilterCommand extends Command {
             }
         }
         if (filteredItems.isEmpty()) {
-            Ui.printEmptySearch();
-            return;
+            return null;
         }
-        Ui.printSearchItems(filteredItems);
+        return filteredItems;
     }
 
     /**
@@ -133,21 +130,27 @@ public class FilterCommand extends Command {
      */
     @Override
     public void run() {
+        ArrayList<Item> filteredItems = null;
         switch (filterType) {
         case "f/category":
-            filterCategory(filterValue);
+            filteredItems = filterCategory(filterValue);
             break;
         case "f/tag":
-            filterTags(filterValue);
+            filteredItems = filterTags(filterValue);
             break;
         case "p/lt":
         case "p/gt":
         case "p/let":
         case "p/get":
-            filterPrice(filterPrice, filterType);
+            filteredItems = filterPrice(filterPrice, filterType);
             break;
         default:
             break;
+        }
+        if(filteredItems == null){
+            Ui.printEmptySearch();
+        }else{
+            Ui.printSearchItems(filteredItems);
         }
     }
 }
