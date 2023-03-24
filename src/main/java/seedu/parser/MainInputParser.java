@@ -5,7 +5,9 @@ import seedu.commands.EditCommand;
 import seedu.commands.HelpCommand;
 import seedu.commands.DeleteCommand;
 import seedu.commands.ExitCommand;
-import seedu.commands.ViewExpenditureCommand;
+import seedu.commands.ListExpenditureCommand;
+import seedu.commands.ViewDateExpenditureCommand;
+import seedu.commands.ViewTypeExpenditureCommand;
 import seedu.commands.AcademicExpenditureCommand;
 import seedu.commands.AccommodationExpenditureCommand;
 import seedu.commands.EntertainmentExpenditureCommand;
@@ -19,6 +21,8 @@ import seedu.commands.InvalidCommand;
 import seedu.commands.UnmarkCommand;
 import seedu.commands.MarkCommand;
 import seedu.commands.SortCommand;
+
+import java.time.format.DateTimeParseException;
 
 public class MainInputParser {
     public static final int LIMIT = 2;
@@ -53,8 +57,12 @@ public class MainInputParser {
                 ParseSort prepareSort;
                 prepareSort = new ParseSort(splitValues[INDEX_USERSTRING]);
                 return prepareSort.sortExpenditures();
-            case ViewExpenditureCommand.COMMAND_WORD:
-                return new ViewExpenditureCommand();
+            case ListExpenditureCommand.COMMAND_WORD:
+                return new ListExpenditureCommand();
+            case ViewDateExpenditureCommand.COMMAND_WORD:
+                return new ViewDateExpenditureCommand(splitValues[INDEX_USERSTRING]);
+            case ViewTypeExpenditureCommand.COMMAND_WORD:
+                return new ViewTypeExpenditureCommand(splitValues[INDEX_USERSTRING]);
             case AcademicExpenditureCommand.COMMAND_WORD:
             case AccommodationExpenditureCommand.COMMAND_WORD:
             case EntertainmentExpenditureCommand.COMMAND_WORD:
@@ -76,6 +84,8 @@ public class MainInputParser {
             }
         } catch (IndexOutOfBoundsException e) {
             return new InvalidCommand("Input command does not have required parameters! Please try again");
+        } catch (DateTimeParseException d) {
+            return new InvalidCommand("date time error");
         }
     }
 }
