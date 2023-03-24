@@ -34,4 +34,9 @@ public class Messages {
             "Please present your time as [YYYY/MM]";
     public static final String MESSAGE_INVALID_OPTIONAL_TIME_FLAG = "Invalid optional time flag format.";
     public static final String MESSAGE_WRONG_FLAG_ORDER = "Wrong flags order.";
+
+    public static final String MESSAGE_INVALID_CATEGORY = "Invalid category tag. You can add category tags: " +
+            "FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, " +
+            "SALARY, INVESTMENT," +
+            "OTHERS";
 }

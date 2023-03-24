@@ -1,6 +1,7 @@
 package seedu.brokeMan.entry.income;
 
 
+import seedu.brokeMan.entry.Category;
 import seedu.brokeMan.entry.Entry;
 import seedu.brokeMan.entry.EntryList;
 import seedu.brokeMan.parser.StringToTime;
@@ -74,6 +75,8 @@ public class IncomeList extends EntryList {
         editEntryTime(index, newEntry, incomeList);
     }
 
+    public static void editIncome(int index, Category newEntry) { editEntryCategory(index, newEntry, incomeList);}
+
 
     /**
      * Sorts income using Entry comparator
@@ -88,6 +91,10 @@ public class IncomeList extends EntryList {
         sortEntriesByDate(incomeList);
         Ui.showToUser(String.format("Total income: $%.2f", getEntryListSum(incomeList)));
         Ui.showToUserWithLineBreak("");
+    }
+
+    public static void findIncomeByCategory(Category category) {
+        findEntriesByCategory(category, incomeList);
     }
 
     public static List<Entry> getIncomesMadeInMonth(int year, Month month) {

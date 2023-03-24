@@ -5,6 +5,7 @@ import seedu.brokeMan.entry.EntryList;
 import seedu.brokeMan.parser.StringToTime;
 import seedu.brokeMan.save.SaveExpense;
 import seedu.brokeMan.ui.Ui;
+import seedu.brokeMan.entry.Category;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -71,7 +72,6 @@ public class ExpenseList extends EntryList {
 
     /**
      * Edits the amount of expense specified by the index in the list
-     *
      * @param expenseIndex index of the expense in the list
      * @param newEntry     new amount that will replace the current amount
      */
@@ -87,6 +87,10 @@ public class ExpenseList extends EntryList {
      */
     public static void editExpense(int expenseIndex, LocalDateTime newEntry) {
         editEntryTime(expenseIndex, newEntry, expenseList);
+    }
+
+    public static void editExpense(int expenseIndex, Category newEntry) {
+        editEntryCategory(expenseIndex, newEntry, expenseList);
     }
 
     /**
@@ -105,6 +109,11 @@ public class ExpenseList extends EntryList {
         sortEntriesByDate(expenseList);
         Ui.showToUser("Total expenses: $" + getEntryListSum(expenseList));
         Ui.showToUserWithLineBreak("");
+    }
+
+
+    public static void findExpenseByCategory(Category category) {
+        findEntriesByCategory(category, expenseList);
     }
 
     public static List<Entry> getExpensesMadeInMonth(int year, Month month) {

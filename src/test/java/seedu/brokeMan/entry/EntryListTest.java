@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.brokeMan.entry.EntryList.deleteEntry;
 import static seedu.brokeMan.entry.EntryList.getEntryListSum;
 import static seedu.brokeMan.parser.StringToTime.convertStringToTime;
+import static seedu.brokeMan.parser.StringToCategory.convertStringToCategory;
 
 
 public class EntryListTest {
@@ -22,8 +23,8 @@ public class EntryListTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        entry1 = new Expense(4, "lunch", convertStringToTime("2022 09 08 12 14"));
-        entry2 = new Expense(6, "dinner",  convertStringToTime("2023 12 12 20 01"));
+        entry1 = new Expense(4, "lunch", convertStringToTime("2022 09 08 12 14"), convertStringToCategory("FOOD"));
+        entry2 = new Expense(6, "dinner",  convertStringToTime("2023 12 12 20 01"), convertStringToCategory("FOOD"));
         expenseList = new LinkedList<Entry>(Arrays.asList(entry1, entry2));
     }
 

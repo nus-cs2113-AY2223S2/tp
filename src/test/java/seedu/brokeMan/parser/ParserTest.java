@@ -100,7 +100,7 @@ class ParserTest {
 
     @Test
     void validAddExpenseCommandShouldReturnAddExpenseCommand() {
-        final String userFullInput = "addExpense a/ 4.0 d/ lunch t/ 2022 08 12 11 59";
+        final String userFullInput = "addExpense a/ 4.00 d/ lunch t/ 2022 09 08 12 14 c/ FOOD";
         Command actualCommand = Parser.parseCommand(userFullInput);
 
         assertTrue(actualCommand instanceof AddExpenseCommand);
@@ -108,7 +108,7 @@ class ParserTest {
 
     @Test
     void validAddIncomeCommandShouldReturnAddIncomeCommand() {
-        final String userFullInput = "addIncome a/ 400 d/ stocks t/ 2023 12 11 12 41";
+        final String userFullInput = "addIncome a/ 400 d/ stocks t/ 2023 12 11 12 41 c/ INVESTMENT";
         Command actualCommand = Parser.parseCommand(userFullInput);
 
         assertTrue(actualCommand instanceof AddIncomeCommand);
@@ -116,7 +116,7 @@ class ParserTest {
 
     @Test
     void validDeleteExpenseCommandShouldReturnDeleteExpenseCommand() {
-        final String userFirstInput = "addExpense a/ 4.0 d/ lunch t/ 2022 07 21 10 41";
+        final String userFirstInput = "addExpense a/ 4.0 d/ lunch t/ 2022 07 21 10 41 c/ FOOD";
         Command addExpenseCommand = Parser.parseCommand(userFirstInput);
         addExpenseCommand.execute();
         final String userFullInput = "deleteExpense 1";
@@ -127,7 +127,7 @@ class ParserTest {
 
     @Test
     void validDeleteIncomeCommandShouldReturnDeleteIncomeCommand() {
-        final String userFirstInput = "addIncome a/ 4000 d/ salary t/ 2012 04 29 01 40";
+        final String userFirstInput = "addIncome a/ 4000 d/ salary t/ 2012 04 29 01 40 c/ SALARY";
         Command addIncomeCommand = Parser.parseCommand(userFirstInput);
         addIncomeCommand.execute();
         final String userFullInput = "deleteIncome 1";
@@ -138,10 +138,10 @@ class ParserTest {
 
     @Test
     void validEditExpenseCommandShouldReturnEditExpenseCommand() {
-        final String userFirstInput = "addExpense a/ 4.0 d/ lunch t/ 2017 08 19 13 29";
+        final String userFirstInput = "addExpense a/ 4.0 d/ lunch t/ 2017 08 19 13 29 c/ FOOD";
         Command addExpenseCommand = Parser.parseCommand(userFirstInput);
         addExpenseCommand.execute();
-        final String userFullInput = "editExpense i/ 1 t/ info n/ brunch";
+        final String userFullInput = "editExpense i/ 1 t/ info n/ brunch c/ FOOD";
         Command actualCommand = Parser.parseCommand(userFullInput);
 
         assertTrue(actualCommand instanceof EditExpenseCommand);
@@ -149,7 +149,7 @@ class ParserTest {
 
     @Test
     void validEditIncomeCommandShouldReturnEditIncomeCommand() {
-        final String userFirstInput = "addIncome a/ 4000 d/ salary t/ 2000 10 19 12 42";
+        final String userFirstInput = "addIncome a/ 4000 d/ salary t/ 2000 10 19 12 42 c/ SALARY";
         Command addExpenseCommand = Parser.parseCommand(userFirstInput);
         addExpenseCommand.execute();
         final String userFullInput = "editIncome i/ 1 t/ amount n/ 3000";
