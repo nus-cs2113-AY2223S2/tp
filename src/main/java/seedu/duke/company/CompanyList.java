@@ -15,26 +15,21 @@ public class CompanyList {
         this.companyList = companyList;
     }
 
-    public boolean add(String companyName, int contactNumber, String contactEmail) {
-        try {
-            Ui ui = new Ui();
-            companyName = companyName.strip().toUpperCase();
-            contactEmail = contactEmail.strip().toUpperCase();
-            Company newCompany = new Company(companyName, contactNumber, contactEmail);
-            for (int i = 0; i < companyList.size(); i++) {
-                String companyAlreadyAdded = companyList.get(i).getCompanyName();
-                if (companyAlreadyAdded.contains(companyName)) {
-                    System.out.println("Company already exists in the list!");
-                    System.out.println(companyList.get(i));
-                    return false;
-                }
+    public void add(String companyName, int contactNumber, String contactEmail) {
+        Ui ui = new Ui();
+        companyName = companyName.strip().toUpperCase();
+        contactEmail = contactEmail.strip().toUpperCase();
+        Company newCompany = new Company(companyName, contactNumber, contactEmail);
+        for (int i = 0; i < companyList.size(); i++) {
+            String companyAlreadyAdded = companyList.get(i).getCompanyName();
+            if (companyAlreadyAdded.contains(companyName)) {
+                System.out.println("Company already exists in the list!");
+                System.out.println(companyList.get(i));
+                return;
             }
-            companyList.add(newCompany);
-            ui.showSuccessfulAdditionMessage(companyName);
-            return true;
-        } catch (InputMismatchException e) {
-            return false;
         }
+        companyList.add(newCompany);
+        ui.showSuccessfulAdditionMessage(companyName);
     }
 
     public void printCompanyInformation() throws EmptyListException {
@@ -66,5 +61,9 @@ public class CompanyList {
         companyList.add(sampleCompany3);
         ui.showSampleDataLoadedMessage();
 
+    }
+
+    public void purgeData() {
+        companyList.clear();
     }
 }
