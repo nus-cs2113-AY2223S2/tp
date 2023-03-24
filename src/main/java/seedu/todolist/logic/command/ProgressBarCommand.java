@@ -12,7 +12,7 @@ import java.util.Locale;
 
 public class ProgressBarCommand extends Command {
     public static final String KEYWORD = "progress";
-    public static final int TOTAL_NUMBER_OF_SECTIONS = 50;
+    public static final int TOTAL_NUMBER_OF_SECTIONS_FOR_PROGRESS_BAR = 50;
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIndexException {
         TemporalField fieldISO = WeekFields.of(Locale.FRANCE).dayOfWeek();
@@ -28,10 +28,10 @@ public class ProgressBarCommand extends Command {
                     dueDate.isEqual(endOfWeek));
             boolean isCompleted = currentTask.isDone();
             if (isDueThisWeek) {
-                totalNumberOfTasksThisWeek++; // find all tasks due this week
+                totalNumberOfTasksThisWeek++;
             }
             if (isCompleted) {
-                numberOfCompletedTasksThisWeek++; // find number of marked tasks
+                numberOfCompletedTasksThisWeek++;
             }
         }
         ui.printProgressBar(totalNumberOfTasksThisWeek, numberOfCompletedTasksThisWeek);
