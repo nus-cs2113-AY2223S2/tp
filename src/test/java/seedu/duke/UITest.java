@@ -28,7 +28,7 @@ public class UITest {
         recipeList = new RecipeList();
         try{
             ArrayList<String> parsed = Parser.parseRecipe(
-                    "add n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian s/0");
+                    "n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian s/0");
             String recipeName = parsed.get(0);
             IngredientList ingredientLists = Parser.parseIngredients(parsed.get(1));
             String recipeTag = parsed.get(2);
