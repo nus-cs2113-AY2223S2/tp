@@ -1,5 +1,19 @@
 # Developer Guide
 
+- Acknowledgements
+- Design & implementation
+- Main Components of MyLedger
+  - Adding a Todo: [```todo```](#adding-a-todo-todo)
+  - Adding a Deadline: [```deadline```](#adding-a-deadline-deadline)
+  - Adding an Event: [```event```](#adding-an-event-event)
+  - Listing all tasks: All tasks: [```list```](#listing-all-tasks-list) and Tasks on specific date: [```list```](#listing-all-tasks-occurring-on-a-specific-date)
+  - Finding tasks: [```find```](#finding-tasks-find)
+  - Marking a task: [```mark```](#marking-a-task-mark)
+  - Unmarking a task: [```unmark```](#unmarking-a-task-unmark)
+  - Deleting a task: [```delete```](#deleting-a-task-delete)
+  - Exiting the program: [```bye```](#exiting-the-program-exit)
+  - Saving the data
+
 ## Acknowledgements
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -37,9 +51,58 @@ parseLendBorrow. The only difference is the condition, with the loop happening o
 
 ### Commands
 
-### Expenditure Type
+### Expenditure Categories
+The **API** of this component is specified in the super abstract class `Expenditure.java` and its sub-classes. Its sub-classes represent the different expenditure categories. When users create a new expenditure record, one of these different expenditure categories are instantiated. The expenditure types and fields are as shown below.
+
+`Expenditure`:
+- Fields: `date`, `amount`, `description`
+
+`AcademicExpenditure`: 
+- Fields: `date`, `amount`, `description`
+`AccommodationExpenditure`:
+- Fields: `date`, `amount`, `description`, `isPaid`
+`BorrowExpenditure`:
+- Fields: `date`, `borrowerName`, `amount`, `deadline`, `description`
+`EntertainmentExpenditure`
+- Fields: `date`, `amount`, `description`
+`FoodExpenditure`: 
+- Fields: `date`, `amount`, `description`
+`LendExpenditure`:
+- Fields: `date`, `borrowerName`, `amount`, `deadline`, `description`
+`OtherExpenditure`:
+- Fields: `date`, `amount`, `description`
+`TransportExpenditure`:
+- Fields: `date`, `amount`, `description`
+`TuitionExpenditure`:
+- Fields: `date`, `amount`, `description`, `isPaid`
+
+`ExpenditureList`:
+- Instantiated at the start of the program and stores expenditures of type `Expenditure`.
+
+The following shows the UML diagram used for the Expenditure Categories component implemented in MyLedger.
+
+![](team/images/umlClassDiagramExpenditure.png)
+
+In the diagram, the aforementioned expenditure categories inherit from the `Expenditure` class. The `ExpenditureList` class is a composition of expenditures of `Expenditure` type. 
+
+`Expenditure` has a multiplicity of `*` to `ExpenditureList` as an empty expenditure list is instantiated at the beginning of the program, and any number of expenditures can be added to the expenditure list. Thus, it is also observed that the `ExpenditureList` class is an *composition* of `Expenditure`.
 
 ### Storage
+The class `TxtFileStatus` and `ExpenditureList` are involved in storing the expenditure list.
+After every user input is completed, saveExpenditureList is called, and the text file will be
+updated with all the current expenditures in the expenditure array list.
+
+![](team/images/saveList.png)
+
+The following shows the sequence diagram of detailing the process for saveExpenditureList.
+
+Likewise when MyLedger first runs, it instantiates ExpenditureList and stores a reference to it.
+MyLedger then checks if the text file exists, else it gets created. Recorded expenditure stored 
+as a string in the text file is then added to the array list in ExpenditureList by iterating through
+the strings in the text file, instantiating an expenditure using the string received, and adding
+the expenditure into the array list.
+
+![](team/images/initializeList.png)
 
 ## Product scope
 ### Target user profile
