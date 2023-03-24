@@ -10,6 +10,7 @@ public class TerminateCommand extends Command {
     @Override
     public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage)
             throws InkaException {
+        storage.save(cardList);
         ui.printBye();
     }
 }

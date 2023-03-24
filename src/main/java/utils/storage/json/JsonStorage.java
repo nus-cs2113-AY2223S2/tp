@@ -1,6 +1,172 @@
+
+/*d
+
+
+
+s
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
 package utils.storage.json;
 
 import com.google.gson.JsonSyntaxException;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import com.google.gson.Gson;
@@ -9,13 +175,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+
 import model.Card;
 import model.CardList;
 import model.CardUUID;
@@ -29,9 +192,21 @@ import utils.storage.Storage;
 public class JsonStorage extends Storage {
     private static Logger logger = Logger.getLogger("storage.JsonStorage");
     private GsonBuilder gsonBuilder;
+    private File backupFile;
 
     public JsonStorage(String filePath) {
         super(filePath);
+
+        // Create the backup file
+        String backupFilePath = filePath.replace(".json", "_backup.json");
+        String backupFileDir = saveFile.getParent();
+        if (backupFileDir == null) {
+            backupFileDir = ".";
+        }
+        backupFilePath = backupFileDir + File.separator + "." + backupFilePath.substring(
+                backupFilePath.lastIndexOf(File.separator) + 1);
+        backupFile = new File(backupFilePath);
+
         gsonBuilder = new GsonBuilder();
 
         //Add custom adapters
@@ -41,18 +216,19 @@ public class JsonStorage extends Storage {
 
     @Override
     public CardList load() throws InkaException {
+        CardList cardList = null;
+        boolean useBackup = false;
+        try {
+            FileReader fileReader = new FileReader(saveFile);
 
-        CardList cardList;
-        try (FileReader fileReader = new FileReader(saveFile);
-                BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            gsonBuilder.setLenient();
             JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
             JsonObject jsonObject = jsonElement.getAsJsonObject();
             String deckName = jsonObject.get("deckName").getAsString();
-
             JsonArray jsonArray = jsonObject.getAsJsonArray("cards");
             Type cardListType = new TypeToken<ArrayList<Card>>() {
             }.getType();
-
             ArrayList<Card> cards = gsonBuilder.create().fromJson(jsonArray, cardListType);
             cardList = new CardList(cards);
         } catch (IOException e) {
@@ -63,8 +239,30 @@ public class JsonStorage extends Storage {
         } catch (NullPointerException | JsonSyntaxException e) {
             String absolutePath = this.saveFile.getAbsolutePath();
             logger.log(Level.WARNING, "Corrupted save file: " + absolutePath, e);
-
+            useBackup = true;
             throw new StorageCorrupted(absolutePath);
+        }
+
+        if (useBackup == true) {
+            logger.log(Level.INFO, "Trying to load backup file");
+            try {
+                FileReader fileReader = new FileReader(backupFile);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
+                JsonObject jsonObject = jsonElement.getAsJsonObject();
+                String deckName = jsonObject.get("deckName").getAsString();
+
+                JsonArray jsonArray = jsonObject.getAsJsonArray("cards");
+                Type cardListType = new TypeToken<ArrayList<Card>>() {
+                }.getType();
+
+                ArrayList<Card> cards = gsonBuilder.create().fromJson(jsonArray, cardListType);
+                cardList = new CardList(cards);
+            } catch (IOException | NullPointerException | JsonSyntaxException ex) {
+                String absolutePath = this.backupFile.getAbsolutePath();
+                logger.log(Level.WARNING, "Corrupted backup file: " + absolutePath, ex);
+                throw new StorageCorrupted(absolutePath);
+            }
         }
 
         return cardList;
@@ -89,18 +287,26 @@ public class JsonStorage extends Storage {
         }
         exportData.add("cards", cardData);
 
-        try (FileWriter fileWriter = new FileWriter(saveFile);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+        try {
+            saveDataToFile(saveFile, exportData);
 
-            Gson gson = gsonBuilder.setPrettyPrinting().create();
-            String serialized = gson.toJson(exportData);
-
-            bufferedWriter.write(serialized);
+            // Save data to the backup file
+            saveDataToFile(backupFile, exportData);
         } catch (IOException e) {
             String absolutePath = this.saveFile.getAbsolutePath();
             logger.log(Level.WARNING, "Failed to save data to savedata.json" + absolutePath, e);
-
             throw new StorageSaveFailure(absolutePath);
+        }
+    }
+
+    private void saveDataToFile(File file, JsonObject data) throws IOException {
+        try (FileWriter fileWriter = new FileWriter(file);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+
+            Gson gson = gsonBuilder.setPrettyPrinting().create();
+            String serialized = gson.toJson(data);
+
+            bufferedWriter.write(serialized);
         }
     }
 }
