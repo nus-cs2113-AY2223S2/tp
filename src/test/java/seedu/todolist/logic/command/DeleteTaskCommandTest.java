@@ -25,7 +25,7 @@ public class DeleteTaskCommandTest {
 
     @BeforeEach
     void setUp() {
-        String sampleTask = "add something -due 06-04-2000 23:59";
+        String sampleTask = "add something -due 06-04-2000 23:59 -rep 0";
         testList = new TaskList();
         try {
             parser.parseCommand(sampleTask).execute(testList, ui);

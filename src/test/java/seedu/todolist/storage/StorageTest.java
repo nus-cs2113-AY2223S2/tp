@@ -21,10 +21,10 @@ class StorageTest {
     @Test
     void saveAndLoadData_properFilePath_success() {
         try {
-            String sampleInput1 = "add bubu -due 18-02-2022 18:00";
+            String sampleInput1 = "add bubu -due 18-02-2022 18:00 -rep 0";
             Command command1 = parser.parseCommand(sampleInput1);
             command1.execute(taskList, ui);
-            String sampleInput2 = "add baba -due 18-04-2023 12:00";
+            String sampleInput2 = "add baba -due 18-04-2023 12:00 -rep 0";
             Command command2 = parser.parseCommand(sampleInput2);
             command2.execute(taskList, ui);
             storage.saveData(taskList); // save modified task list object
