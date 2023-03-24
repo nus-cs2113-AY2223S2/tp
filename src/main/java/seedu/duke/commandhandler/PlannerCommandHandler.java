@@ -1,11 +1,11 @@
 package seedu.duke.commandhandler;
 
-import seedu.duke.exceptions.DukeError;
+import seedu.duke.commons.exceptions.DukeError;
 
 import seedu.duke.storage.StorageHandler;
 import seedu.duke.ui.Ui;
 import seedu.duke.userplan.UserPlan;
-import seedu.duke.util.StringSplitter;
+import seedu.duke.commons.util.StringSplitter;
 
 import java.util.Scanner;
 

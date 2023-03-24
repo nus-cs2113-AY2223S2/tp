@@ -8,8 +8,8 @@ import com.google.gson.JsonParser;
 import java.io.FileReader;
 import java.io.Reader;
 
-import seedu.duke.exceptions.DukeError;
-import seedu.duke.exceptions.FileReadError;
+import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.commons.exceptions.FileReadError;
 import seedu.duke.userdata.Session;
 import seedu.duke.userdata.UserCareerData;
 import seedu.duke.userplan.Plan;

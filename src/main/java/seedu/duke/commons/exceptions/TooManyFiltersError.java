@@ -1,9 +1,9 @@
-package seedu.duke.exceptions;
+package seedu.duke.commons.exceptions;
 
 import seedu.duke.ui.ErrorMessages;
 
 public class TooManyFiltersError extends DukeError {
-    public TooManyFiltersError(){
+    public TooManyFiltersError () {
         super(ErrorMessages.ERROR_EXCESSIVE_FILTERS.toString());
     }
 

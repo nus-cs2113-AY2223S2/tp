@@ -1,9 +1,10 @@
-package seedu.duke.exceptions;
+package seedu.duke.commons.exceptions;
 
 import seedu.duke.ui.ErrorMessages;
 
-public class OngoingExHelpError extends DukeError{
-    public OngoingExHelpError(){
+public class OngoingExHelpError extends DukeError {
+    public OngoingExHelpError () {
         super(ErrorMessages.ERROR_ONGOING_EXERCISE_HELP_COMMAND.toString());
     }
+
 }

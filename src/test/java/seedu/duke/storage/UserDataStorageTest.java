@@ -10,7 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import seedu.duke.exceptions.DukeError;
+import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.userdata.Session;
@@ -56,7 +56,7 @@ public class UserDataStorageTest {
     @Test
     void testSaving () throws DukeError {
         ArrayList<ExerciseData> generatedWorkouts = generateExercise.generateFilteredDifficultySetFrom(
-                generateExercise.generateSetAll(), "easy");
+            generateExercise.generateSetAll(), "easy");
         ArrayList<ExerciseData> sessionExercises = generateExercise.generateRandomSetFrom(generatedWorkouts, 3);
         Session session = new Session(sessionExercises);
         UserCareerData userCareerData = new UserCareerData();
@@ -95,7 +95,7 @@ public class UserDataStorageTest {
     @Test
     void testReadingCareerData () throws DukeError {
         ArrayList<ExerciseData> generatedWorkouts = generateExercise.generateFilteredDifficultySetFrom(
-                generateExercise.generateSetAll(), "medium");
+            generateExercise.generateSetAll(), "medium");
         UserCareerData userCareerData = new UserCareerData();
         Random random = new Random();
         random.setSeed(1);
@@ -142,10 +142,10 @@ public class UserDataStorageTest {
         file.delete();
         assertFalse(checkIfUserFileExists(filePath),
                     "Testing userData file must be deleted to ensure the integrity of the " +
-                            "test");
+                        "test");
         UserCareerData userCareerDataFromFile = storageHandler.loadUserData();
         assertNotNull(userCareerDataFromFile, "Missing instance of user career data, userCareerData must be empty but" +
-                " initialised");
+            " initialised");
         assertTrue(checkIfUserFileExists(filePath), "New user file has not been created");
     }
 
@@ -159,10 +159,10 @@ public class UserDataStorageTest {
         file.delete();
         assertFalse(checkIfUserFileExists(plansPath),
                     "Testing planning file must be deleted to ensure the integrity of the " +
-                            "test");
+                        "test");
         UserPlan userPlan = storageHandler.loadUserPlans();
         assertNotNull(userPlan, "Missing instance of user plans data, user plans must be empty but" +
-                " initialised");
+            " initialised");
         assertTrue(checkIfUserFileExists(filePath), "New plans file has not been created");
     }
 
@@ -176,7 +176,7 @@ public class UserDataStorageTest {
     @Test
     void testDateTime () throws DukeError {
         ArrayList<ExerciseData> generatedWorkouts = generateExercise.generateFilteredDifficultySetFrom(
-                generateExercise.generateSetAll(), "hard");
+            generateExercise.generateSetAll(), "hard");
         ArrayList<ExerciseData> sessionExercises = generateExercise.generateRandomSetFrom(generatedWorkouts, 5);
         Session session = new Session(sessionExercises);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -199,7 +199,7 @@ public class UserDataStorageTest {
         String timeFromFile = dateTimeFormatter.format(session.getDateAdded());
         String currentTime = dateTimeFormatter.format(LocalDateTime.now());
         assertEquals(timeFromFile, currentTime, "User file and current time conflict, conflict should not be more " +
-                "than 1 minute");
+            "than 1 minute");
     }
 
     /**

@@ -3,7 +3,7 @@ package seedu.duke.storage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import seedu.duke.exceptions.DukeError;
+import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.userdata.UserCareerData;
 
 import java.io.File;

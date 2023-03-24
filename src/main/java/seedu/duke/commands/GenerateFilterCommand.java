@@ -1,9 +1,9 @@
 package seedu.duke.commands;
 
-import seedu.duke.exceptions.DukeError;
-import seedu.duke.exceptions.ExerciseNumberInputAsStringError;
-import seedu.duke.exceptions.UnknownFilterInputError;
-import seedu.duke.exceptions.TooManyFiltersError;
+import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.commons.exceptions.ExerciseNumberInputAsStringError;
+import seedu.duke.commons.exceptions.UnknownFilterInputError;
+import seedu.duke.commons.exceptions.TooManyFiltersError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.ui.Ui;

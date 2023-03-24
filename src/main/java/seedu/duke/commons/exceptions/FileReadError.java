@@ -1,4 +1,4 @@
-package seedu.duke.exceptions;
+package seedu.duke.commons.exceptions;
 
 import seedu.duke.ui.ErrorMessages;
 

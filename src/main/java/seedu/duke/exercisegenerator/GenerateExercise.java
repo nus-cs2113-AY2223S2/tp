@@ -1,8 +1,8 @@
 package seedu.duke.exercisegenerator;
 
-import seedu.duke.exceptions.DukeError;
-import seedu.duke.exceptions.InvalidDifficultyInputError;
-import seedu.duke.exceptions.InvalidBodyWorkoutTypeError;
+import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.commons.exceptions.InvalidDifficultyInputError;
+import seedu.duke.commons.exceptions.InvalidBodyWorkoutTypeError;
 import seedu.duke.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
