@@ -586,14 +586,27 @@ public class Ui {
         System.out.println("Lessons Deleted: " + lessonType + " - " + lessonNumber);
     }
 
+    /**
+     * Prints message when a module has no timetable information.
+     */
     public void printNoTimetableMessage() {
         System.out.println("This module has no timetable information");
     }
 
+    /**
+     * Prints a message when a module does not have that particular lesson type.
+     */
     public void printNoLessonType() {
         System.out.println("This module does not have this lesson type");
     }
 
+    /**
+     * Prints message of lesson schedule for a particular lesson type for a module
+     *
+     * @param module The module whose lesson schedule is being printed.
+     * @param lessonType The lesson type whose schedule is being printed.
+     * @param copyList The list of lessons of that lesson type for that module.
+     */
     public void printModuleLessonTimetable(Module module, LessonType lessonType, ArrayList<Timetable> copyList) {
         System.out.println("Here are all available lessons of type: " + lessonType.toString() + " for "
                 + module.getCode() + ":");
