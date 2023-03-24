@@ -3,7 +3,7 @@ package seedu.duke.logic.commandhandler.states;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.commons.exceptions.NoOngoingExError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
-import seedu.duke.storage.StorageHandler;
+import seedu.duke.storage.Storage;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.Session;
@@ -18,15 +18,15 @@ public class ExerciseStateHandler {
 
     private static ArrayList<ExerciseData> previousGeneratedWorkout = new ArrayList<>();
     public boolean workoutOngoing;
-    private final StorageHandler storageHandler;
     private Session currentSessionWorkout;
+    private Storage storage;
 
-    public ExerciseStateHandler(StorageHandler storageHandler) {
-        this.storageHandler = storageHandler;
+    public ExerciseStateHandler (Storage storage) {
+        this.storage = storage;
         this.currentSessionWorkout = new Session(null);
     }
 
-    private static void printCancelWorkoutSessionMessage() {
+    private static void printCancelWorkoutSessionMessage () {
         System.out.println("Workout cancelled, you can complete it next time!");
     }
 
@@ -35,9 +35,9 @@ public class ExerciseStateHandler {
      * (In other words, whenever the generate command is called)
      *
      * @param previousWorkout Temporarily logs the most recent generated exercise
-     *                        list
+     *     list
      */
-    public void storePreviousGeneratedWorkout(ArrayList<ExerciseData> previousWorkout) {
+    public void storePreviousGeneratedWorkout (ArrayList<ExerciseData> previousWorkout) {
         assert previousWorkout != null;
         previousGeneratedWorkout = previousWorkout;
     }
@@ -46,7 +46,7 @@ public class ExerciseStateHandler {
      * This function switches the state of how Command Handler functions,
      * blocking off certain commands until the session has ended
      */
-    public void startWorkout() {
+    public void startWorkout () {
         System.out.println("Start workout! You got this, all the best!");
         currentSessionWorkout = new Session(previousGeneratedWorkout);
         workoutOngoing = true;
@@ -57,9 +57,9 @@ public class ExerciseStateHandler {
      * Otherwise throws an error
      *
      * @throws NoOngoingExError Throws an error if there is no ongoing exercise
-     *                          session
+     *     session
      */
-    public void printCurrentWorkout() throws NoOngoingExError {
+    public void printCurrentWorkout () throws NoOngoingExError {
         if (!workoutOngoing) {
             throw new NoOngoingExError();
         }
@@ -71,9 +71,9 @@ public class ExerciseStateHandler {
      * This ends the current workout, resuming access to other functions
      *
      * @param workoutCompleted Will add current session to saved sessions if true
-     * @param userCareerData   Stores and contains user data
+     * @param userCareerData Stores and contains user data
      */
-    public void endWorkout(boolean workoutCompleted, UserCareerData userCareerData) throws DukeError {
+    public void endWorkout (boolean workoutCompleted, UserCareerData userCareerData) throws DukeError {
         assert userCareerData != null;
         workoutOngoing = false;
         if (workoutCompleted) {
@@ -88,13 +88,13 @@ public class ExerciseStateHandler {
      * Prints congratulation message and saves the completed session
      *
      * @param completedWorkout The workout to be saved to userData.json
-     * @param userCareerData   Stores User Data
+     * @param userCareerData Stores User Data
      */
-    private void saveWorkoutSession(Session completedWorkout, UserCareerData userCareerData) throws DukeError {
+    private void saveWorkoutSession (Session completedWorkout, UserCareerData userCareerData) throws DukeError {
         assert completedWorkout != null;
         System.out.println("Workout completed! Congratulations on your hard work!");
         userCareerData.addWorkoutSession(completedWorkout);
-        storageHandler.writeToJson(userCareerData);
+        storage.writeToJson(userCareerData);
         // complete workout
     }
 
