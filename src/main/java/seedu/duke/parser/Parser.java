@@ -8,6 +8,9 @@ import seedu.duke.command.AddCommand;
 import seedu.duke.command.LoadSampleCompanyCommand;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.ListVenueCommand;
+import seedu.duke.command.ConfirmCommand;
+import seedu.duke.command.UnconfirmCommand;
+import seedu.duke.command.ListUnconfirmedCommand;
 
 import seedu.duke.ui.Ui;
 import seedu.duke.exception.WrongFormatException;
@@ -20,7 +23,7 @@ public interface Parser {
         String command = inputWords[0];
         switch (command) {
         case "list":
-            if (inputWords.length == 1){
+            if (inputWords.length == 1) {
                 throw new WrongFormatException();
             }
             if (inputWords[1].equals("companies")) {
@@ -29,6 +32,9 @@ public interface Parser {
             } else if (inputWords[1].equals("venues")) {
                 ListVenueCommand venueCommand = new ListVenueCommand(command + " venues");
                 return venueCommand;
+            } else if (inputWords[1].equals("unconfirmed")){
+                ListUnconfirmedCommand unconfirmedCommand = new ListUnconfirmedCommand(command + " unconfirmed");
+                return unconfirmedCommand;
             }
             throw new WrongFormatException();
         case "add":
@@ -41,7 +47,7 @@ public interface Parser {
             AddCommand addCommand = new AddCommand(command, companyName, contactNumber, contactEmail);
             return addCommand;
         case "delete":
-            if (inputWords.length == 1){
+            if (inputWords.length == 1) {
                 throw new WrongFormatException();
             }
             int companyNum = Integer.parseInt(inputWords[1]) - 1;
@@ -69,6 +75,20 @@ public interface Parser {
                 return chooseVenueCommand;
             }
             throw new WrongFormatException();
+        case "confirm":
+            if (inputWords.length == 1) {
+                throw new WrongFormatException();
+            }
+            int companyConfirmNum = Integer.parseInt(inputWords[1]) - 1;
+            ConfirmCommand confirmCommand = new ConfirmCommand(command, companyConfirmNum);
+            return confirmCommand;
+        case "unconfirm":
+            if (inputWords.length == 1){
+                throw new WrongFormatException();
+            }
+            int companyUnconfirmNum = Integer.parseInt(inputWords[1]) - 1;
+            UnconfirmCommand unconfirmCommand = new UnconfirmCommand(command, companyUnconfirmNum);
+            return unconfirmCommand;
         case "help":
             ui.showGuide();
             break;

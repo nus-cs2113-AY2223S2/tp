@@ -5,6 +5,7 @@ import seedu.duke.exception.InputMismatchException;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.ui.Ui;
 
+
 import java.util.ArrayList;
 
 public class CompanyList {
@@ -38,6 +39,30 @@ public class CompanyList {
         }
         companyList.remove(index);
         ui.showSuccessfulDeletionMessage();
+    }
+
+    public Company getCompany(int index) throws InvalidIndexException {
+        if (index < 0 | index >= companyList.size()) {
+            throw new InvalidIndexException();
+        }
+        Ui ui = new Ui();
+        ui.showSuccessfulConfirmedMessage();
+        return companyList.get(index);
+    }
+
+    public void printUnconfirmed() throws EmptyListException {
+        int idx = 1;
+        if (companyList.isEmpty()) {
+            throw new EmptyListException();
+        }
+        for (int i = 0; i < companyList.size(); i += 1){
+            Company company = companyList.get(i);
+            if (!company.isConfirmed){
+                System.out.println(idx + ".");
+                System.out.println(companyList.get(i));
+                idx += 1;
+            }
+        }
     }
 
     public void loadSampleCompanyInformation() throws InputMismatchException {
