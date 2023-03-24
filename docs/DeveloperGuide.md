@@ -111,6 +111,8 @@ Below shows the sequence diagram for the above RemoveCommand:
 
 ![RemoveIngredientSequenceUML.png](images/RemoveIngredientSequenceUML.png)
 
+###### [Back to table of contents](#table-of-contents)
+
 ### Storage Feature
 
 The proposed storage mechanism of ingredients is facilitated by `IngredientStorage`. 
