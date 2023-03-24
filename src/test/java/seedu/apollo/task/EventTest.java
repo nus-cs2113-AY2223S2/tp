@@ -50,7 +50,7 @@ class EventTest {
     }
 
     @Test
-    void getType_normalDeadline_expectDeadline() {
+    void getType_normalEvent_expectEventString() {
         assertEquals("event", event.getType());
     }
 

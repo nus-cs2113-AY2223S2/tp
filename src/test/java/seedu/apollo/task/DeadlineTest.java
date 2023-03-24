@@ -38,7 +38,7 @@ class DeadlineTest {
     }
 
     @Test
-    void getType_normalDeadline_expectDeadline() {
+    void getType_normalDeadline_expectDeadlineString() {
         assertEquals("deadline", deadline.getType());
     }
 
