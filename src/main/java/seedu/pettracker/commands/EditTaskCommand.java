@@ -1,7 +1,7 @@
 package seedu.pettracker.commands;
 
 import seedu.pettracker.ui.Ui;
-import seedu.pettracker.data.PetList;
+import seedu.pettracker.data.TaskList;
 
 public class EditTaskCommand extends Command {
 
@@ -25,8 +25,8 @@ public class EditTaskCommand extends Command {
      */
     @Override
     public void execute(Ui ui) {
-        PetList.editTask
-        ui.editStatCommandMessage(petName, statName, statValue);
+        TaskList.editTask(taskNumber, newDescription);
+        ui.editTaskCommandMessage(taskNumber, newDescription);
     }
 
     /**
