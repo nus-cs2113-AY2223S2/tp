@@ -15,6 +15,7 @@
     * [Edit Recipes Feature](#edit-recipes-feature)
     * [Categorise/Tag Recipes Feature](#categorisetag-recipes-feature)
     * [List Recipes Feature](#list-recipes-feature)
+    * [Delete Recipes Feature](#delete-recipes-feature)
 
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -89,7 +90,7 @@ The `WeeklyPlan` component:
 * stores the names of recipes that the user plans to prepare for the week as `String`
 * stores the number of times the user plans to prepare each recipe as `Integer`
 * allows users to add single or multiple recipes from the weekly plan
-* allows users to delete single or multiple recipes from the weekly plan
+* allows users to delete single, multiple, or all recipes from the weekly plan
 
 How the `WeeklyPlan` component works:
 
@@ -180,6 +181,24 @@ It is implemented through the following step:
    component.
 3. In `RecipeList`, `listRecipes()` is executed to filter all recipes that match the filters,
    and return the `recipeList`containing all relevant recipes to `ParserRecipe()`.
+
+The sequence diagram below shows how this feature works:
+{UML will be added here.}
+
+### Delete Recipes Feature
+
+The current implementation:
+* deletes a single recipe by name or recipe's index in recipe list  
+* deletes a range of recipes
+* deletes all recipes 
+
+It is implemented through the following step:
+1. When the user enters an input with the first word being `delete`, the input is passed to
+   the `Parser` component.
+2. In `Parser`, `parseDeleteRecipe()` is executed to identify whether the user wants to delete all recipes, a single 
+   recipe, or range of recipes.
+4. In `RecipeList`, `deleteRecipe()` is executed to delete the recipe at whatever index is passed as a parameter,
+   and return the `Recipe` object at that index/the one just deleted.
 
 The sequence diagram below shows how this feature works:
 {UML will be added here.}
