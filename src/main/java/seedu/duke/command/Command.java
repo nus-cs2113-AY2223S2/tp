@@ -8,7 +8,6 @@ import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 import seedu.duke.recipe.StepList;
 import seedu.duke.storage.Storage;
-import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
 import java.io.IOException;
