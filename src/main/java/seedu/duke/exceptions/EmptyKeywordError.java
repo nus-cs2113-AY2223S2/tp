@@ -1,8 +1,10 @@
 package seedu.duke.exceptions;
 
+import seedu.duke.ui.ErrorMessages;
+
 public class EmptyKeywordError extends DukeError{
     public EmptyKeywordError(){
-        super("Please key in a keyword for Fitness Duke to search!");
+        super(ErrorMessages.ERROR_EMPTY_KEYWORD.toString());
     }
 
 }
