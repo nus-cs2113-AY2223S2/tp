@@ -1,13 +1,11 @@
 package seedu.duke.company;
 
-import seedu.duke.exception.InputMismatchException;
-
 public class Company {
     private String companyName;
     private int contactNumber;
     private String contactEmail;
 
-    public Company(String companyName, int contactNumber, String contactEmail) throws InputMismatchException {
+    public Company(String companyName, int contactNumber, String contactEmail){
         this.companyName = companyName;
         this.contactNumber = contactNumber;
         this.contactEmail = contactEmail;

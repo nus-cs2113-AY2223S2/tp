@@ -14,16 +14,11 @@ public class CompanyList {
     public CompanyList(ArrayList<Company> companyList) {
         this.companyList = companyList;
     }
-    public boolean add(String companyName, int contactNumber, String contactEmail) {
-        try{
-            Ui ui = new Ui();
-            Company newCompany = new Company(companyName, contactNumber, contactEmail);
-            companyList.add(newCompany);
-            ui.showSuccessfulAdditionMessage(companyName);
-            return true;
-        } catch(InputMismatchException e) {
-            return false;
-        }
+    public void add(String companyName, int contactNumber, String contactEmail) {
+        Ui ui = new Ui();
+        Company newCompany = new Company(companyName, contactNumber, contactEmail);
+        companyList.add(newCompany);
+        ui.showSuccessfulAdditionMessage(companyName);
     }
 
     public void printCompanyInformation() throws EmptyListException {
