@@ -151,6 +151,36 @@ Step 2. The user executes `add-stat Bob weight 5` command to add a weight stat o
     <i>Figure 5: Object Diagram for Add Pet Stat Feature After Step 2</i>
 </p>
 
+### Remove Pet Stat Command
+
+The `RemoveStatCommand` class inherits its properties from the abstract `Command` class.
+
+This class is executed whenever the `remove-stat <pet name> <stat name>` command is called by the user. The intended functionality of this command is to remove the `<stat name>` from the pet with name `<pet name>`. 
+
+It works like this:
+
+1. The `main()` method calls `ui.getUserInput()` from `ui`. The user's command is parsed through `commandParser.parseCommand()`.
+
+2. Within `commandParser.parseCommand()`, `newCommand()` will identify the command received (`remove-stat`).
+
+3. `RemoveStatCommand.parseArgs()` separates the arguments into the pet name and stat name.
+
+4. `RemoveStatCommand.execute()` calls `PetList.removeStat()` with the pet name and stat name, and calls `ui.removeStatCommandMessage()` to send output to the user.
+
+5. `PetList.removeStat()` uses its internal `find()` method to find the corresponding Pet object, and calls `Pet.removeStat()` on that object.
+
+6. `Pet.removeStat()` uses a switch statement on the stat name to identify the proper method to call: either `setPetType("")`, `setAge("")`, or `setWeight("")`. If the stat name does not match any of those, it prints out an error message.
+
+7. `Pet.removeStat()`, `PetList.removeStat()`, and `RemoveStatCommand` all return, allowing the program to receive another command.
+
+This feature was implemented like this in order to maximize use of the OOP paradigm. 
+
+<p align="center">
+    <img src="images/RemoveStatCommand.png">
+    <br />
+    <i>Figure 6: Sequence Diagram for Remove Pet Stat Command</i>
+</p>
+
 ## User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
