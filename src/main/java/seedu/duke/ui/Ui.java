@@ -96,6 +96,15 @@ public class Ui {
         }
     }
 
+    public void showCompanyFoundMessage(Company company){
+        System.out.println("The company is found in the company list.");
+        System.out.println(company);
+    }
+
+    public void showCompanyNotFoundMessage(String targetCompany){
+        System.out.println("The company <" + targetCompany + "> is not found in the company list.");
+    }
+
 
     public void showVenueSelectionMessage(String venue) {
         System.out.println(venue + " has been successfully updated!");

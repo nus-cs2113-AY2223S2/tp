@@ -4,15 +4,15 @@ import seedu.duke.company.CompanyList;
 
 public class FindIndustryCommand extends Command{
 
-    protected String industry;
+    protected String targetIndustry;
 
-    public FindIndustryCommand(String commandType, String industry){
+    public FindIndustryCommand(String commandType, String targetIndustry){
         super(commandType);
-        this.industry = industry;
+        this.targetIndustry = targetIndustry;
     }
 
     @Override
     public void execute(CompanyList companyList){
-        companyList.findIndustry(industry);
+        companyList.findIndustry(targetIndustry);
     }
 }
