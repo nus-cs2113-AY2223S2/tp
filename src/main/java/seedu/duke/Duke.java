@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.budget.BudgetPlanner;
 import seedu.duke.command.Command;
 
 import java.util.Scanner;
@@ -12,6 +13,8 @@ public class Duke {
      */
     private static DataReader dataReader = new DataReader();
     private static Storage storage = new Storage();
+
+    private static BudgetPlanner budgetPlanner = new BudgetPlanner();
     private static UI ui = new UI();
 
     private static Parser parser = new Parser();
@@ -20,13 +23,14 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         String userInput;
         boolean isContinue = true;
+        ArrayList<University> universities = dataReader.getUniversities();
+        ArrayList<Module> allModules = dataReader.getModules();
+        ArrayList<Module> modules = storage.getModules();
         ui.printGreetingMessage();
         while (isContinue) {
             userInput = in.nextLine();
-            ArrayList<University> universities = dataReader.getUniversities();
-            ArrayList<Module> modules = storage.getModules();
-            ArrayList<Module> allModules = dataReader.getModules();
-            Command command = parser.parseUserCommand(userInput, universities, modules, allModules, storage);
+            Command command = parser.parseUserCommand(userInput, universities, modules, allModules, storage,
+                    budgetPlanner);
             command.execute();
             isContinue = !command.getIsExit();
         }

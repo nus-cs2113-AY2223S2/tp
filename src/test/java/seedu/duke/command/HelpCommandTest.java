@@ -8,6 +8,7 @@ import seedu.duke.Module;
 import seedu.duke.Parser;
 import seedu.duke.Storage;
 import seedu.duke.University;
+import seedu.duke.budget.BudgetPlanner;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -35,7 +36,8 @@ public class HelpCommandTest {
         ArrayList<Module> puModules = new ArrayList<>();
         Storage storage = new Storage();
         Parser parser = new Parser();
-        assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage)
+        BudgetPlanner budgetPlanner = new BudgetPlanner();
+        assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, budgetPlanner)
                 instanceof HelpCommand);
     }
 
