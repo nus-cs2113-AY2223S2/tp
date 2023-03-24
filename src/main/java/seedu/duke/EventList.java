@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 public class EventList {
     private static final String DTINIT = "2000/01/01 01:01";
+    private static final String TIMEPLACEHOLDER = " 00:00";
     private static DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 
     protected ArrayList<Schedule> taskList;
@@ -48,7 +49,7 @@ public class EventList {
     }
 
     private LocalDateTime changeToDate(String date) {
-        return LocalDateTime.parse(date + " 00:00", dfWithTime);
+        return LocalDateTime.parse(date + TIMEPLACEHOLDER, dfWithTime);
     }
 
     /**
