@@ -19,7 +19,8 @@ public class AddTaskCommandTest {
     private TaskList testList = new TaskList();
     private Ui ui = new Ui();
 
-    private HashMap<String, String> generateInputArguments(String description, String date, String time, String repeatCount) {
+    private HashMap<String, String> generateInputArguments(String description, String date, String time,
+                                                           String repeatCount) {
         HashMap<String, String> args = new HashMap<>();
         args.put(AddTaskCommand.KEYWORD, description);
         args.put(Flags.DEADLINE.FLAG, date + " " + time);
