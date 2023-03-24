@@ -195,7 +195,7 @@ public class Meal360 {
     }
 
     public static void main(String[] args) {
-        
+
         startApp();
 
         String line;
