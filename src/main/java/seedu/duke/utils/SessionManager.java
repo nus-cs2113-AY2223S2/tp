@@ -1,6 +1,7 @@
 package seedu.duke.utils;
 
 import seedu.duke.objects.Inventory;
+import seedu.duke.types.Types;
 
 public class SessionManager {
     private static boolean isAutoSaveActive = true;
@@ -9,7 +10,7 @@ public class SessionManager {
     }
 
     public static void writeSession(Inventory inventory) {
-        Storage.writeCSV(inventory);
+            Storage.writeCSV(inventory);
     }
 
     public static Inventory getSession() {

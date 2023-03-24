@@ -13,18 +13,17 @@ import java.util.regex.Pattern;
 import static seedu.duke.utils.ColorCode.*;
 
 public class Storage {
-    private static String filePath;
     private static Inventory inventory = new Inventory();
     private static final String VALID_DATAROW_REGEX = "^\\d+,[^,]+,\\d+,\\d+,\\d+(?:\\.\\d+)?,[^,]+$";
 
-    public Storage(String filePath) {
-        Storage.filePath = filePath;
+    public Storage() {
+
     }
 
     public static Inventory readCSV() {
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            BufferedReader reader = new BufferedReader(new FileReader(Types.SESSIONFILEPATH));
             String line = reader.readLine();
             if (line == null) {
                 Ui.printEmptySessionFile();
@@ -60,7 +59,7 @@ public class Storage {
 
     public static void writeCSV(Inventory currentInventory) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(Types.SESSIONFILEPATH));
             for (int i = 0; i < currentInventory.getItemInventory().size(); i++) {
                 Item item = currentInventory.getItemInventory().get(i);
                 writer.write(i + "," + item.getName() + "," + item.getUpc() + "," + item.getQuantity() + "," +
@@ -68,7 +67,6 @@ public class Storage {
             }
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

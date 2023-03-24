@@ -23,7 +23,7 @@ public class Duke {
 
     public Duke(String filePath) {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage();
         inventory = new Inventory();
         inventory = currentSession.getSession();
         alertList = new AlertList();

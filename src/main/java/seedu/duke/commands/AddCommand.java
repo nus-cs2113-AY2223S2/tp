@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
+import seedu.duke.types.Types;
 import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 
