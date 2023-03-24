@@ -1,5 +1,5 @@
-Acadd/penv/2.1t/2023-01-01p/Nonen/Noneo/None
-Tud/schoolv/8100.0t/2023-01-27p/[ ]n/Noneo/None
-Accomd/rcv/3000.0t/2023-01-28p/[X]n/Noneo/None
+Tud/schoolv/8100.0t/2023-01-27p/[X]n/Noneo/None
+Accomd/rcv/3000.0t/2023-01-28p/[ ]n/Noneo/None
 Ld/yayv/25.1t/2023-02-02p/Nonen/Akshay Narayano/2023-04-02
 Trd/Eat Foodv/5.5t/2023-02-15p/Nonen/Noneo/None
+Acadd/penv/2.1t/2023-01-01p/Nonen/Noneo/None

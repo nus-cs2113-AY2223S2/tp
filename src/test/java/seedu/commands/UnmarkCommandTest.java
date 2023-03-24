@@ -2,6 +2,7 @@ package seedu.commands;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.exceptions.AlreadyMarkException;
 import seedu.exceptions.NoPaidFieldException;
 import seedu.expenditure.AcademicExpenditure;
 import seedu.expenditure.ExpenditureList;
@@ -16,7 +17,7 @@ class UnmarkCommandTest {
     ExpenditureList testExpenditures = new ExpenditureList();
 
     @BeforeEach
-    public void setUpExpenditureList() throws NoPaidFieldException {
+    public void setUpExpenditureList() throws NoPaidFieldException, AlreadyMarkException {
         testExpenditures.addExpenditure(
                 new AcademicExpenditure("pen", 2.10, LocalDate.parse("2023-01-01")));
         testExpenditures.addExpenditure(
