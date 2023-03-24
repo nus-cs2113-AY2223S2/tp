@@ -19,10 +19,13 @@ public class Task implements Serializable {
     private LocalDateTime deadline;
     private boolean isDone = false;
     private String email;
+    private int repeatDuration;
 
-    public Task(String description, LocalDateTime deadline) {
+
+    public Task(String description, LocalDateTime deadline, int repeatDuration) {
         this.description = description;
         this.deadline = deadline;
+        this.repeatDuration = repeatDuration;
     }
 
     public String toString() {
@@ -38,16 +41,33 @@ public class Task implements Serializable {
         this.isDone = isDone;
     }
 
-    //@@ clement559
+    //@@author clement559
     public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
     public String getEmail() {
         return email;
+
+
+    public int getRepeatDuration() {
+        return this.repeatDuration;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public LocalDateTime getDeadline() {
+        return this.deadline;
+    }
+
+    public void setRepeatDuration(int newRepeatDuration) {
+        this.repeatDuration = newRepeatDuration;
     }
 
 }

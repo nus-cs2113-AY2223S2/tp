@@ -6,7 +6,7 @@ package seedu.todolist.constants;
 public enum Flags {
     DEADLINE("-due"),
     EMAIL("-email");
-
+    REPEAT("-rep");
 
     public final String FLAG;
 

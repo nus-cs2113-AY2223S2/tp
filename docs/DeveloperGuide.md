@@ -7,9 +7,17 @@
   - [Setup](#setup)
     - [Setting up the project on your computer](#setting-up-the-project-on-your-computer)
   - [Design](#design)
+    - [Architecture](#architecture)
+    - [ToDoListManager](#manager-component)
+    - [UI](#ui-component)
+    - [Logic](#logic-component)
+    - [TaskList](#tasklist-component)
+    - [Storage](#storage-component)
   - [Implementation](#implementation)
     - [Delete task feature](#delete-task-feature)
     - [Edit task deadline feature](#edit-task-deadline-feature)
+    - [List tasks sorted by deadline feature](#list-tasks-sorted-by-deadline-feature)
+    - [Storage feature](#storage-feature)
   - [Appendix: Requirements](#appendix--requirements)
     - [Product Scope](#product-scope)
     - [User Stories](#user-stories)
@@ -35,9 +43,57 @@ If you plan to use Intellij IDEA (highly recommended):
 
 ## Design
 
-{Describe the design of the product. Use UML diagrams and short code snippets where applicable.}
+> **Tip:** The `.puml` files used to create the diagrams in this guide can be found in the [diagrams](diagrams) folder.
+
+### Architecture
+
+![ArchitectureDiagram](images/ArchitectureDiagram.png)
+
+The above diagram provides a high-level overview of the program's design, which consists of 5 main components.
+
+- [`ToDoListManager`](#manager-component): Initializes the other components and connects them together
+- [`UI`](#ui-component): Handles all input and output between the user and the program
+- [`Logic`](#logic-component): Parses user input to commands and executes them
+- [`TaskList`](#tasklist-component): Holds the program's data in memory
+- [`Storage`](#storage-component): Saves data to the hard disk and loads it during the program's startup
+
+### Manager Component
+
+The code for this component is found in [`ToDoListManager.java`](../src/main/java/seedu/todolist/ToDoListManager.java).
+
+![ManagerClassDiagram](images/ManagerClassDiagram.png)
+
+The `ToDoListManager` component contains the `Ui`, `Logic`, `TaskList`, and `Storage` components, and depends
+on the `Command` class, which is returned by the `Parser` class and executed by the `ToDoListManager`.
+
+The `ToDoListManager` component,
+- initializes all the other components that it operates on (`Ui`, `Parser`, `TaskList`, `Storage`).
+- passes user input from the `Ui` component to the `Logic` component, which returns a `Command` object.
+- executes the returned `Command` object on the `TaskList` component, using the `Logic` component.
+- calls on the `Storage` component to save the data of the `TaskList` component to the hard disk.
+
+### Ui component
+
+The code for this component is found in [`Ui.java`](../src/main/java/seedu/todolist/ui/Ui.java).
+
+### Logic component
+
+The main code for this component is found in [`Parser.java`](../src/main/java/seedu/todolist/logic/Parser.java).
+
+### TaskList component
+
+The code for this component is found in [`TaskList.java`](../src/main/java/seedu/todolist/task/TaskList.java).
+
+### Storage component
+
+The code for this component is found in [`Storage.java`](../src/main/java/seedu/todolist/storage/Storage.java).
+
+The Storage component can save the task list as TaskList objects in a .txt file format using Serialization and read it 
+back into a TaskList object.
 
 ## Implementation
+
+> **Note:** The lifeline of the sequence diagrams in this section should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 ### Delete task feature
 
@@ -58,6 +114,7 @@ To-do List. The user does this by inputting the command `delete 1` into the term
 The command will then call the `TaskList#deleteTask()`, which removes the task at index 1 of the TaskList.
 
 The following sequence diagram shows how the delete task operation works:
+
 ![DeleteTaskCommandSequence](images/DeleteTaskCommandSequence.png)
 
 Step 4: The user then decides to execute the command list. This command does not modify the TaskList.
@@ -79,6 +136,7 @@ For the unmark command, the user can instead input the command `unmark 1` to set
 The command also calls `TaskList#setDone` which sets the task at index 1 to be not done.
 
 The following sequence diagram shows how the mark/unmark task operation works:
+
 ![MarkOrUnmarkTaskCommandSequence](images/MarkorUnmarkTaskCommandSequence.png)
 
 ### Edit task deadline feature
@@ -86,6 +144,7 @@ The following sequence diagram shows how the mark/unmark task operation works:
 The edit deadline function extends NUS To-do List with an edit feature for the deadlines assigned to tasks.
 It is facilitated by the TaskList and Command classes. It implements the `TaskList#editDeadline()` operation,
 which edits deadline of task at assigned index.
+
 
 Given below is an example usage scenario and how the edit deadline mechanism will behave at each step.
 
@@ -101,6 +160,106 @@ which updates the value of deadline for the Task item saved at index 1 to the ne
 The following sequence diagram shows how the edit operations works:
 
 ![EditDeadlineCommandSequence](images/EditDeadlineCommandSequence.png)
+
+### List tasks sorted by deadline feature
+
+This ListTasksCommand extends NUS To-do List with an automatic sorting feature that sorts all tasks in an ascending
+deadline order and displays the To-do List to users. It is facilitated by the TaskList, Command class, and ui class.
+It implements the `TaskList#sortByDeadline()` and  `ui#printTaskList()`operation.
+
+Given below is an example usage scenario and how the ListTasksCommand mechanism will behave at each step.
+
+Step 1. The user launches the application for the first time. There are no existing tasks read by the program.
+
+Step 2. The user executes `add survey -d 20/03/2023 12:00` and `add survey -d 21/03/2023 12:00` command to add 2 task
+to the To-do List. The `add` command calls `TaskList#addTask()` once for each task, which causes 2 new Tasks to
+be added to the existing TaskList.
+
+Step 3. The user wants to view the entire list of deadlines that he/she has added. The user can do this by using the
+command `list` into the terminal. By doing so,`TaskList#sortByDeadline()` will be executed, which will sort the list
+in an ascending deadline order, where the deadline that is closest to date will be at the top and the deadline furthest
+to date will be at the bottom. Next, `ui#printTaskList()` will be executed, which will display the list of deadlines to
+the user in the terminal.
+
+The following sequence diagram shows how the list operation works:
+
+![ListTasksCommandSequence](images/ListTasksCommandSequence.png)
+
+### Storage feature
+
+The storage feature is facilitated by the `Storage` class.
+
+The Storage class implements the following operations:
+- `Storage#saveData(TaskList)` --- Saves the current task list.
+- `Storage#loadData()` --- Loads a task list from the previously saved file, if there is one.
+
+Given below is an example usage scenario and how the Storage mechanism behaves at each step.
+
+Step 1. The user launches the application (not for the first time). The program loads the previously saved task list 
+data as there is a saved file `'./data.txt'` that Storage can find.
+
+![Step 1](images/StorageSequenceDiagramStep1.png)
+
+Step 2. The user executes `list` command. The `list` command calls `Ui#printTaskList()` which lists all tasks in the 
+task list. `ToDoListManager` calls `storage#saveData()`, so the task list is saved into `'./data.txt'`.
+
+![Step2](images/StorageSequenceDiagramStep2-Step_2.png)
+
+Step 3. The user executes `add cg2023 assignment -d 18/12/2023` command. The `add` command calls `TaskList#addTask()`, 
+which adds a new Task to the existing task list. `ToDoListManager` calls `storage#saveData()`, so the task list is saved
+into `'./data.txt'`.
+
+![Step3](images/StorageSequenceDiagramStep3-Step_3.png)
+
+Step 4. The user executes `exit` command and exits the program. The `exit` command calls `Ui#printGoodByeMessage` to 
+notify the user that (s)he is exiting the program. `ToDoListManager` calls `storage#saveData(taskList)`, so the task 
+list is saved into `'./data.txt'` again before the program exits.
+
+![Step4](images/StorageSequenceDiagramStep4-Step_4.png)
+
+#### Design considerations:
+- **Option 1**: Save task list as a self-formatted .txt file which can be printed and used as a physical task list.
+    - Pros: Can get a physical task list to use.
+    - Cons: Difficult to maintain as Storage class has to be updated whenever more fields are added to Task class. For
+          example, if we add a "tag" field to Task, the formatting for the saved .txt file has to be updated to reflect
+          that change.
+- **Option 2**: Append rather than overwrite when saving the task list.
+    - Pros: Will likely be able to save the task list much faster.
+    - Cons: Difficult to implement, especially when considering the current mark task operation.
+- **Option 3 (current choice)**: Save task list as a Serializable TaskList object in a .txt file.
+    - Pros: Easy to implement and easy to maintain as Storage class does not have to be updated whenever new fields are 
+            added to Task class. Do not need to consider whether we use append or overwrite when saving task list as
+            it is irrelevant when using this implementation.
+    - Cons: No physical task list to use as the saved .txt file is practically unreadable.
+
+Main reasons for choosing Alternative 3: It is much easier to implement and maintain than the other 2 alternatives,
+and we found that the lack of a physical task list to use is not a very significant issue.
+
+### [Proposed] History feature
+
+The proposed history feature is facilitated by the `Storage`, `TaskList` and `Command` classes. Internally, there will 
+be 2 task lists stored - `completedTasks` and `uncompletedTasks`. There will be a rework to how marking tasks as done 
+works, a removal of the operation `TaskList#setDone()` and a new command for users to input to the CLI: `history`.
+
+There will be 2 new operations:
+* `TaskList#markTask(index i)` - Moves the task at index i of `uncompletedTasks` to `completedTasks`.  
+* `TaskList#unmarkTask(index i)` - Moves the task at index i of `completedTasks` to `uncompletedTasks`.
+
+Given below is an example usage scenario and how the history mechanism works.
+
+Step 1. The user launches the application for the first time. Both `completedTasks` and `uncompletedTasks` are empty.
+
+Step 2. The user executes `add cg2023 assignment -d 18/12/2023` command to add a task that (s)he has to complete. The
+`add` command causes the task to be added to `uncompletedTasks`.
+
+Step 3. The user executes `mark` command to mark a task that (s)he has completed. The `mark` command causes the task to
+be added to `completedTasks` and removed from `uncompletedTasks`.
+
+Step 4. The user executes `list` command to see what tasks (s)he has still not completed. The `list` command causes the 
+tasks in `uncompletedTasks` to be listed for the user to see.
+
+Step 5. The user executes `history` command to see what tasks (s)he has already completed. The `history` command causes 
+the tasks in `completedTasks` to be listed for the user to see.
 
 ## Appendix: Requirements
 

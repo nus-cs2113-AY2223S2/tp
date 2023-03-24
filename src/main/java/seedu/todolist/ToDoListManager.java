@@ -3,6 +3,7 @@ package seedu.todolist;
 import seedu.todolist.exception.FailedLoadException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Parser;
+import seedu.todolist.logic.command.CheckRepeatingTaskCommand;
 import seedu.todolist.logic.command.Command;
 import seedu.todolist.storage.Storage;
 import seedu.todolist.task.TaskList;
@@ -24,8 +25,12 @@ public class ToDoListManager {
         }
         try {
             taskList = storage.loadData();
+            Command checkRepeating = new CheckRepeatingTaskCommand();
+            checkRepeating.execute(taskList, ui);
             ui.printLoadSaveMessage(taskList.size());
         } catch (FailedLoadException e) {
+            ui.printError(e);
+        } catch (ToDoListException e) {
             ui.printError(e);
         }
     }

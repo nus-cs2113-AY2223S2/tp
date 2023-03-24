@@ -12,9 +12,11 @@ import seedu.todolist.logic.command.EditDeadlineCommand;
 import seedu.todolist.logic.command.ExitCommand;
 import seedu.todolist.logic.command.ListTasksCommand;
 import seedu.todolist.logic.command.MarkTaskCommand;
+import seedu.todolist.logic.command.ProgressBarCommand;
 import seedu.todolist.logic.command.UnmarkTaskCommand;
 import seedu.todolist.logic.command.SetEmailCommand;
 import seedu.todolist.logic.command.GetEmailCommand;
+import seedu.todolist.logic.command.CheckRepeatingTaskCommand;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -64,7 +66,7 @@ public class Parser {
         return arguments;
     }
 
-    //@@ clement559
+    //@@author clement559
     public static LocalDateTime formatDateTime(String date) throws InvalidTimeException {
         if (date == null) {
             throw new InvalidTimeException();
@@ -75,7 +77,7 @@ public class Parser {
         return LocalDateTime.parse(date, inputFormatter);
     }
 
-    //@@ ERJUNZE
+    //@@author ERJUNZE
     /**
      * Parses the given command string into a command that can be executed.
      *
@@ -104,6 +106,10 @@ public class Parser {
             return new GetEmailCommand(getArguments(splitInput, GetEmailCommand.FLAGS));
         case ExitCommand.KEYWORD:
             return new ExitCommand();
+        case CheckRepeatingTaskCommand.KEYWORD:
+            return new CheckRepeatingTaskCommand();
+        case ProgressBarCommand.KEYWORD:
+            return new ProgressBarCommand();
         default:
             throw new InvalidCommandException();
         }
