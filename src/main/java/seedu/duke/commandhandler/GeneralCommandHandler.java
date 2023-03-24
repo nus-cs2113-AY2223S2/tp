@@ -24,6 +24,9 @@ import java.util.HashMap;
 
 public class GeneralCommandHandler implements CommandList{
 
+    //@@author ChubbsBunns
+    //@@author Khulon
+    //@@author Chng
     /**
      * This class handles all user commands when not in an exercise
      *
@@ -33,8 +36,6 @@ public class GeneralCommandHandler implements CommandList{
      * @param userCareerData       This keeps track and allows logging of all user data
      * @param exerciseStateHandler This allows us to start workouts
      */
-
-    //addition of user exercise history
     public void handleGeneralUserCommands(String[] userCommands, Ui ui, GenerateExercise exerciseGenerator,
                                           UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
                                           StorageHandler storageHandler, UserPlan planner) {

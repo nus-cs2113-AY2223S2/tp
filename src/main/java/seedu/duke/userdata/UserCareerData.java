@@ -40,6 +40,7 @@ public class UserCareerData {
         totalUserCareerSessions.add(session);
     }
 
+    //@@author ChubbsBunns
     public void printAllFinishedWorkoutSessions () {
         PrintExercises exercisePrinter = new PrintExercises();
         for (int i = 0; i < totalUserCareerSessions.size(); i++) {

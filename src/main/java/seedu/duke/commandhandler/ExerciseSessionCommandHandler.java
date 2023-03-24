@@ -30,7 +30,7 @@ public class ExerciseSessionCommandHandler implements CommandList{
      * @param userCareerData       This keeps track and allows logging of all user data
      * @param exerciseStateHandler This allows us to know whether an exercise is ongoing or not
      */
-
+    //@@author ChubbsBunns
     public void handleExerciseSessionUserCommands(String[] userCommands, Ui ui,
                                                   UserCareerData userCareerData
                                                   , ExerciseStateHandler exerciseStateHandler

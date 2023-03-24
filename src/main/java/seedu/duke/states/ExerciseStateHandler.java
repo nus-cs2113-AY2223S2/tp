@@ -10,7 +10,7 @@ import seedu.duke.userdata.Session;
 
 import java.util.ArrayList;
 
-
+//@@author ChubbsBunns
 /**
  * This class handles the functions of the Fitness Duke
  * when the user is doing a workout
@@ -27,6 +27,7 @@ public class ExerciseStateHandler {
         this.currentSessionWorkout = new Session(null);
     }
 
+    //@@author ChubbsBunns
     /**
      * This function logs the previous workout everytime a workout is generated
      * (In other words, whenever the generate command is called)
@@ -38,6 +39,7 @@ public class ExerciseStateHandler {
         previousGeneratedWorkout = previousWorkout;
     }
 
+    //@@author ChubbsBunns
     /**
      * This function switches the state of how Command Handler functions,
      * blocking off certain commands until the session has ended
@@ -48,6 +50,8 @@ public class ExerciseStateHandler {
         workoutOngoing = true;
     }
 
+
+    //@@author ChubbsBunns
     /**
      * Prints the current workout if it exists
      * Otherwise throws an error
@@ -62,6 +66,8 @@ public class ExerciseStateHandler {
         ui.printExerciseFromList(currentSessionWorkout.getSessionExercises());
     }
 
+
+    //@@author ChubbsBunns
     /**
      * This ends the current workout, resuming access to other functions
      *
@@ -79,6 +85,8 @@ public class ExerciseStateHandler {
         currentSessionWorkout = null;
     }
 
+
+    //@@author ChubbsBunns
     /**
      * Prints congratulation message and saves the completed session
      *
@@ -93,6 +101,7 @@ public class ExerciseStateHandler {
         //complete workout
     }
 
+    //@@author ChubbsBunns
     private static void printCancelWorkoutSessionMessage(){
         System.out.println("Workout cancelled, you can complete it next time!");
     }
