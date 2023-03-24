@@ -17,11 +17,13 @@ ____________________________________________________________
  Enter "deadline [task] /by [date]" to add a deadline
  Enter "event [task] /from [date] /to [date]" to add an event
  Enter "addmod [MODULE_CODE]" to add a Module to the Module list
- Enter "addmod [MODULE_CODE] -FLAG [LESSON NUMBER]" to add a lesson
+ Enter "addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a lesson
+ Enter "showmod [MODULE_CODE]" to see more information about the module
  Enter "mark [idx]" to mark task as done
  Enter "unmark [idx]" to mark task as not done
  Enter "delete [idx]" to remove task from list
  Enter "delmod [MODULE_CODE]" to remove a Module you previously added
+ Enter "week" to see your schedule for the week
  Enter "find [keyword]" to see all tasks containing [keyword]
  Enter "date [yyyy-MM-dd]" to see all tasks occurring on that date
  Enter "bye" to exit the program
@@ -86,15 +88,18 @@ Please enter [date]s in the format of yyyy-MM-ddThh:mm.
 eg. "2023-10-30T23:59" for Oct 20 2023, 11:59PM
 ____________________________________________________________
 ____________________________________________________________
+Oops, your event: lecture (from: May 03 2022, 09:00AM to: May 03 2022, 11:00AM) occurs before today!
+____________________________________________________________
+____________________________________________________________
 Got it. I've added this event:
   [E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
-1.[T][ ] eat lunch
-2.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
-3.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
+2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+3.[T][ ] eat lunch
 There are 3 unmarked tasks in your tasklist.
 ____________________________________________________________
 ____________________________________________________________
@@ -105,19 +110,19 @@ Please enter [idx] in the form of an integer from 1 to 3
 ____________________________________________________________
 ____________________________________________________________
 Nice!, I've marked this task as done:
-  [D][X] submit tutorial (by: May 03 2023, 11:59PM)
+  [E][X] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
-1.[T][ ] eat lunch
-2.[D][X] submit tutorial (by: May 03 2023, 11:59PM)
-3.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
+2.[E][X] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+3.[T][ ] eat lunch
 There are 2 unmarked tasks in your tasklist.
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
-  [D][ ] submit tutorial (by: May 03 2023, 11:59PM)
+  [E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this todo:
@@ -126,9 +131,9 @@ ____________________________________________________________
 ____________________________________________________________
 You have a total of 4 tasks in your tasklist.
 Here are the tasks in your list:
-1.[T][ ] eat lunch
-2.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
-3.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
+2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+3.[T][ ] eat lunch
 4.[T][ ] sleep
 There are 4 unmarked tasks in your tasklist.
 ____________________________________________________________
@@ -146,9 +151,9 @@ ____________________________________________________________
 ____________________________________________________________
 You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
-1.[T][ ] eat lunch
-2.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
-3.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
+2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+3.[T][ ] eat lunch
 There are 3 unmarked tasks in your tasklist.
 ____________________________________________________________
 ____________________________________________________________
@@ -159,8 +164,8 @@ There are no matching tasks!
 ____________________________________________________________
 ____________________________________________________________
 Here are the matching tasks in your list:
-1.[T][ ] eat lunch
-2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+2.[T][ ] eat lunch
 ____________________________________________________________
 ____________________________________________________________
 Please enter date in the format of yyyy-MM-dd.
@@ -174,28 +179,95 @@ Here are the tasks happening on May 03 2023:
 2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
+CS1231
+Number of MC: 4
+Here are the lesson types for this module:
+Sectional Teaching (-st)
+Tutorial (-tut)
+Sectional Teaching 1
+   Friday 1200 - 1300
+Sectional Teaching 1
+   Wednesday 1200 - 1400
+Tutorial 02
+   Monday 1000 - 1200
+Tutorial 04
+   Monday 1400 - 1600
+Tutorial 05
+   Monday 1600 - 1800
+Tutorial 07
+   Tuesday 1000 - 1200
+Tutorial 08
+   Tuesday 1200 - 1400
+Tutorial 09
+   Tuesday 1400 - 1600
+Tutorial 10
+   Tuesday 1600 - 1800
+Tutorial 12
+   Wednesday 1600 - 1800
+Tutorial 17
+   Friday 1400 - 1600
+Tutorial 18
+   Friday 1600 - 1800
+____________________________________________________________
+____________________________________________________________
+CG2023
+Number of MC: 4
+Here are the lesson types for this module:
+Laboratory (-lab)
+Lecture (-lec)
+Laboratory 01
+   Monday 1400 - 1700
+Laboratory 02
+   Monday 1400 - 1700
+Laboratory 03
+   Tuesday 0900 - 1200
+Laboratory 04
+   Tuesday 0900 - 1200
+Laboratory 05
+   Friday 0900 - 1200
+Laboratory 06
+   Friday 0900 - 1200
+Lecture 01
+   Thursday 1600 - 1800
+Lecture 01
+   Tuesday 1600 - 1800
+Lecture 02
+   Thursday 1600 - 1800
+Lecture 02
+   Tuesday 1600 - 1800
+____________________________________________________________
+____________________________________________________________
 Sorry, but I don't know what that means :(
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this module:
   CS2113: Software Engineering & Object-Oriented Programming
 Total modular credits you have in this semester: 4
+Enter "addmod CS2113 -[FLAG] [LESSON NUMBER]" to add lessons for this module.
 Here are the lesson types for this module:
-Lecture
-Tutorial
-To see how to add lessons, enter 'help'.
+Lecture (-lec)
+Tutorial (-tut)
 ____________________________________________________________
 ____________________________________________________________
 Module already added in Module List!
+Enter "addmod CS2113 -[FLAG] [LESSON NUMBER]" to add lessons for this module.
+____________________________________________________________
+____________________________________________________________
+Adding lesson type: LECTURE for Module: CS2113
+Class Number: 1
+____________________________________________________________
+____________________________________________________________
+Adding lesson type: TUTORIAL for Module: CS2113
+Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this module:
   CS2040C: Data Structures and Algorithms
 Total modular credits you have in this semester: 8
+Enter "addmod CS2040C -[FLAG] [LESSON NUMBER]" to add lessons for this module.
 Here are the lesson types for this module:
-Laboratory
-Lecture
-To see how to add lessons, enter 'help'.
+Laboratory (-lab)
+Lecture (-lec)
 ____________________________________________________________
 ____________________________________________________________
 You are taking 2 module(s) this semester:
@@ -204,17 +276,65 @@ You are taking 2 module(s) this semester:
 Total modular credits you have in this semester: 8
 ____________________________________________________________
 ____________________________________________________________
-Sorry, the module 2 does not exist in your Module list!
-Total modular credits you have in this semester: 8
+Got it, removed CS2113 from your Module list.
+Total modular credits you have in this semester: 4
 ____________________________________________________________
 ____________________________________________________________
 Got it, removed CS2040C from your Module list.
-Total modular credits you have in this semester: 4
+Total modular credits you have in this semester: 0
 ____________________________________________________________
 ____________________________________________________________
-You are taking 1 module(s) this semester:
-1.CS2113: Software Engineering & Object-Oriented Programming (4 MCs)
-Total modular credits you have in this semester: 4
+There are no modules in your module list!
+____________________________________________________________
+____________________________________________________________
+Adding lesson type: LECTURE for Module: ST2334
+Class Number: 1
+____________________________________________________________
+____________________________________________________________
+Here's your week from 2023-03-20 to 2023-03-26:
+______________________
+MONDAY
+
+Lessons:
+
+Tasks:
+______________________
+TUESDAY
+
+Lessons:
+1. ST2334 Lecture: 0800-1000
+
+Tasks:
+______________________
+WEDNESDAY
+
+Lessons:
+
+Tasks:
+______________________
+THURSDAY
+
+Lessons:
+
+Tasks:
+______________________
+FRIDAY
+
+Lessons:
+
+Tasks:
+______________________
+SATURDAY
+
+Lessons:
+
+Tasks:
+______________________
+SUNDAY
+
+Lessons:
+
+Tasks:
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(

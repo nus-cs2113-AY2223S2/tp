@@ -1,20 +1,27 @@
 package seedu.apollo.ui;
 
-import seedu.apollo.module.LessonType;
+import seedu.apollo.calendar.Calendar;
 import seedu.apollo.exception.task.DateOverException;
-import seedu.apollo.module.ModuleList;
-import seedu.apollo.task.Task;
+import seedu.apollo.module.CalendarModule;
+import seedu.apollo.module.LessonType;
 import seedu.apollo.module.Module;
+import seedu.apollo.module.ModuleList;
+import seedu.apollo.module.Timetable;
+import seedu.apollo.task.Task;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.utils.LessonTypeUtil;
 
 import java.rmi.UnexpectedException;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Locale;
 import java.util.Scanner;
+
+import static seedu.apollo.utils.DayTypeUtil.determineDay;
 
 /**
  * User Interface class that deals with inputs from and outputs to the user.
@@ -67,11 +74,13 @@ public class Ui {
                 " Enter \"deadline [task] /by [date]\" to add a deadline\n" +
                 " Enter \"event [task] /from [date] /to [date]\" to add an event\n" +
                 " Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n" +
-                " Enter \"addmod [MODULE_CODE] -FLAG [LESSON NUMBER]\" to add a lesson\n" +
+                " Enter \"addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a lesson\n" +
+                " Enter \"showmod [MODULE_CODE]\" to see more information about the module\n" +
                 " Enter \"mark [idx]\" to mark task as done\n" +
                 " Enter \"unmark [idx]\" to mark task as not done\n" +
                 " Enter \"delete [idx]\" to remove task from list\n" +
                 " Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added\n" +
+                " Enter \"week\" to see your schedule for the week\n" +
                 " Enter \"find [keyword]\" to see all tasks containing [keyword]\n" +
                 " Enter \"date [yyyy-MM-dd]\" to see all tasks occurring on that date\n" +
                 " Enter \"bye\" to exit the program\n\n" +
@@ -119,6 +128,51 @@ public class Ui {
     }
 
     /**
+     * Prints out the user's schedule for the week.
+     *
+     * @param taskList Contains details about the user's tasks during the week.
+     * @param calendar Contains details about the user's lessons during the week.
+     */
+    public void printWeek(TaskList taskList, Calendar calendar) {
+        ZoneId zid = ZoneId.of("Asia/Singapore");
+        LocalDate now = LocalDate.now(zid);
+        LocalDate startWeek = now.with(DayOfWeek.MONDAY);
+        LocalDate endWeek = now.with(DayOfWeek.SUNDAY);
+        LocalDate curr = startWeek;
+        System.out.println("Here's your week from " + startWeek + " to " + endWeek + ":");
+        for (int i = 0; i<7; i++) {
+            System.out.println("______________________");
+            DayOfWeek day = determineDay(i);
+            System.out.println(day + "\n");
+
+            printLessonsOnDay(calendar, i);
+            printTasksOnDay(taskList, curr);
+
+            curr = curr.plusDays(1);
+        }
+    }
+
+    private static void printLessonsOnDay(Calendar calendar, int i) {
+        System.out.println("Lessons:");
+        int count = 1;
+        for (CalendarModule module : calendar.get(i)) {
+            System.out.println(count + ". " + module.getCode() + " " + module.getSchedule());
+            count++;
+        }
+    }
+
+    private static void printTasksOnDay(TaskList taskList, LocalDate curr) {
+        System.out.println("\nTasks:");
+        int count = 1;
+        for (Task task : taskList) {
+            if (task.isOnDate(curr)) {
+                System.out.println(count + ". " + task);
+                count++;
+            }
+        }
+    }
+
+    /**
      * For {@code list} command.
      * Prints all Modules within the ArrayList given
      *
@@ -143,9 +197,9 @@ public class Ui {
      *
      * @param moduleCode The code of the module which was deleted.
      */
-    public void printModuleDeleteMessage(String moduleCode) {
+    public void printModuleDeleteMessage(String moduleCode, ModuleList moduleList) {
         System.out.println("Got it, removed " + moduleCode.toUpperCase() + " from your Module list.");
-
+        printTotalModularCredits(moduleList);
     }
 
     /**
@@ -175,9 +229,30 @@ public class Ui {
      *
      * @param newModule Module that has just been added.
      */
-    public void printAddModuleMessage(Module newModule) {
+    public void printAddModuleMessage(Module newModule, ModuleList allModules, ArrayList<LessonType> lessonTypes) {
         System.out.println("Got it. I've added this module:\n" +
                 "  " + newModule);
+        printTotalModularCredits(allModules);
+        System.out.println("Enter \"addmod " + newModule.getCode() + " -[FLAG] [LESSON NUMBER]\" " +
+                "to add lessons for this module.");
+        printLessonTypeMessage(lessonTypes);
+    }
+
+    /**
+     * For {@code showmod} command
+     * Prints out message existing Module information
+     *
+     * @param newModule  Module that needs to show information
+     */
+    public void printShowModuleMessage(Module newModule, ArrayList<LessonType> lessonTypes,
+                                       ArrayList<Timetable> timetableList) {
+        System.out.println(newModule.getCode() +'\n' +
+                "Number of MC: " + newModule.getModuleCredits());
+        printLessonTypeMessage(lessonTypes);
+        for (Timetable timetable: timetableList){
+            System.out.println(timetable.getLessonType() + " " + timetable.getClassnumber() + '\n' +
+                    "   " + timetable.getDay() + " " + timetable.getStartTime() + " - " + timetable.getEndTime());
+        }
     }
 
     /**
@@ -187,15 +262,8 @@ public class Ui {
      * @param allModules ArrayList of Modules
      */
     public void printTotalModularCredits(ModuleList allModules) {
-        allModules.totalModuleCredits();
-    }
-
-    /**
-     * For {@code addmod} command.
-     * Prints out a message for user to refer to help menu for lesson option flags.
-     */
-    public void printAddLessonOptions() {
-        System.out.println("To see how to add lessons, enter 'help'.");
+        int moduleCredits = allModules.getTotalModuleCredits();
+        System.out.println("Total modular credits you have in this semester: " + moduleCredits);
     }
 
 
@@ -294,6 +362,20 @@ public class Ui {
     }
 
     /**
+     * Prints error message if the index entered does not fit the format.
+     *
+     * @param size Number of modules within the current ModuleList.
+     */
+    public void printErrorForModIdx(int size) {
+        boolean isEmptyModuleList = (size == 0);
+        if (!isEmptyModuleList) {
+            System.out.println("Please enter [idx] in the form of an integer from 1 to " + size);
+        } else {
+            System.out.println("There are no modules in your list!");
+        }
+    }
+
+    /**
      * Prints error message if reading or writing to the hard disk throws an IO error.
      */
     public void printErrorForIO() {
@@ -367,6 +449,13 @@ public class Ui {
     }
 
     /**
+     * Prints error message if the user does not specify the module code for module information.
+     */
+    public void printEmptyShowModCode() {
+        System.out.println("Please enter a module code!");
+    }
+
+    /**
      * Prints error message if the start date of an even occurs after the end date.
      */
     public void printDateOrderException() {
@@ -422,8 +511,15 @@ public class Ui {
         System.out.println("Please specify a module to delete!");
     }
 
-    public void printDuplicateModule() {
+    /**
+     * Prints warning that the module being added by the user has been added before.
+     *
+     * @param module The module being added.
+     */
+    public void printDuplicateModule(Module module) {
         System.out.println("Module already added in Module List!");
+        System.out.println("Enter \"addmod " + module.getCode() + " -[FLAG] [LESSON NUMBER]\" " +
+                "to add lessons for this module.");
     }
 
     /**
@@ -437,24 +533,58 @@ public class Ui {
             return;
         }
         System.out.println("Here are the lesson types for this module:");
-        lessonTypes.sort(
-                Comparator.comparing(Enum::toString));
+        lessonTypes.sort(Comparator.comparing(Enum::toString));
 
         for (LessonType lessonType : lessonTypes) {
-            System.out.println(LessonTypeUtil.enumToString(lessonType));
+            System.out.println(LessonTypeUtil.enumToString(lessonType, true));
         }
     }
 
+    /**
+     * Prints message when lesson is added to a timetable.
+     *
+     * @param moduleCode Module code of the module whose lesson is being added.
+     * @param lessonType Type of lesson being added.
+     * @param classNumber Class number of the lesson being added.
+     */
     public void printClassAddedMessage(String moduleCode, LessonType lessonType, String classNumber) {
         System.out.println("Adding lesson type: " + lessonType + " for Module: " + moduleCode);
         System.out.println("Class Number: " + classNumber);
     }
 
+    /**
+     * Prints message when lesson is Invalid.
+     *
+     */
     public void printInvalidLessonType() {
         System.out.println("This lesson type does not exist!");
     }
 
+    /**
+     * Prints message when lesson has already been added to the timetable.
+     *
+     */
     public void printLessonExists() {
         System.out.println("This lesson type already exists for this lesson!");
+    }
+
+    /**
+     * Prints message when lesson has not been added to the timetable.
+     *
+     */
+    public void printClassNotAdded() {
+        System.out.println("This class has not been added to your timetable!");
+    }
+
+    /**
+     * Prints message when lesson is deleted from the timetable.
+     *
+     * @param moduleCode Module code of the module whose lesson is being deleted.
+     * @param lessonType Type of lesson being deleted.
+     * @param lessonNumber Class number of the lesson being deleted.
+     */
+    public void printModuleLessonDeleteMessage(String moduleCode, LessonType lessonType, String lessonNumber) {
+        System.out.println("Deleting lessons for module: " + moduleCode.toUpperCase());
+        System.out.println("Lessons Deleted: " + lessonType + " - " + lessonNumber);
     }
 }

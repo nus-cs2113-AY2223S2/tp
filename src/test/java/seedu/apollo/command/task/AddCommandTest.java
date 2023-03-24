@@ -1,6 +1,7 @@
 package seedu.apollo.command.task;
 
 import org.junit.jupiter.api.Test;
+import seedu.apollo.calendar.Calendar;
 import seedu.apollo.exception.task.InvalidDeadline;
 import seedu.apollo.exception.task.InvalidEvent;
 import seedu.apollo.module.ModuleList;
@@ -26,11 +27,12 @@ class AddCommandTest {
     Storage storage = new Storage("test.txt", "test1.txt");
     ModuleList moduleList = new ModuleList();
     ModuleList allModules = new ModuleList();
+    Calendar calendar = new Calendar();
 
     @Test
     void execute_normalToDo_expectAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
         AddCommand addCommand = new AddCommand("todo", "add junit tests");
-        addCommand.execute(taskList, ui, storage, moduleList, allModules);
+        addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
         Task result = taskList.get(0);
         assertTrue(result instanceof ToDo);
         assertEquals("add junit tests", result.getDescription());
@@ -39,7 +41,7 @@ class AddCommandTest {
     @Test
     void execute_normalDeadline_expectAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
         AddCommand addCommand = new AddCommand("deadline", "submit homework /by 2024-01-01T23:59");
-        addCommand.execute(taskList, ui, storage, moduleList, allModules);
+        addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
         Task result = taskList.get(0);
         assertTrue(result instanceof Deadline);
         assertEquals("submit homework", result.getDescription());
@@ -47,14 +49,21 @@ class AddCommandTest {
     }
 
     @Test
-    void execute_invalidDeadline_expectException() {
+    void newAddCommand_invalidDeadline_expectException() {
         assertThrows(InvalidDeadline.class, () -> new AddCommand("deadline", "submit homework"));
     }
 
     @Test
-    void execute_invalidDeadlineDateTime_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
+    void execute_invalidDateTimeDeadline_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
         AddCommand addCommand = new AddCommand("deadline", "submit homework /by tomorrow");
-        addCommand.execute(taskList, ui, storage, moduleList, allModules);
+        addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
+        assertEquals(0, taskList.size());
+    }
+
+    @Test
+    void execute_overDateTimeDeadline_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
+        AddCommand addCommand = new AddCommand("deadline", "submit homework /by 2022-01-01T00:00");
+        addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
         assertEquals(0, taskList.size());
     }
 
@@ -62,7 +71,7 @@ class AddCommandTest {
     void execute_normalEvent_expectAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
         AddCommand addCommand = new AddCommand("event",
                 "concert /from 2024-01-01T10:00 /to 2024-01-01T13:00");
-        addCommand.execute(taskList, ui, storage, moduleList, allModules);
+        addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
         Task result = taskList.get(0);
         assertTrue(result instanceof Event);
         assertEquals("concert", result.getDescription());
@@ -71,14 +80,28 @@ class AddCommandTest {
     }
 
     @Test
-    void execute_invalidEvent_expectException() {
+    void newAddCommand_invalidEvent_expectException() {
         assertThrows(InvalidEvent.class, () -> new AddCommand("event", "concert"));
     }
 
     @Test
-    void execute_invalidEventDateTime_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
+    void execute_invalidDateTimeEvent_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
         AddCommand addCommand = new AddCommand("event", "concert /from now /to later");
-        addCommand.execute(taskList, ui, storage, moduleList, allModules);
+        addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
+        assertEquals(0, taskList.size());
+    }
+
+    @Test
+    void execute_overDateTimeEvent_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
+        AddCommand addCommand = new AddCommand("event", "concert /from 2022-01-01T23:59 /to 2022-02-01T00:00");
+        addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
+        assertEquals(0, taskList.size());
+    }
+
+    @Test
+    void execute_wrongOrderDateTimeEvent_expectNoAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
+        AddCommand addCommand = new AddCommand("event", "concert /from 2024-12-12T23:59 /to 2024-01-01T00:00");
+        addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
         assertEquals(0, taskList.size());
     }
 

@@ -1,17 +1,20 @@
 package seedu.apollo.command.module;
 
+import seedu.apollo.calendar.Calendar;
 import seedu.apollo.exception.module.DuplicateModuleException;
 import seedu.apollo.exception.module.LessonAddedException;
 import seedu.apollo.exception.utils.IllegalCommandException;
+import seedu.apollo.exception.utils.InvalidSaveFile;
 import seedu.apollo.module.LessonType;
+import seedu.apollo.module.Module;
+import seedu.apollo.module.ModuleList;
 import seedu.apollo.module.Timetable;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.ui.Ui;
 import seedu.apollo.command.Command;
 import seedu.apollo.exception.module.InvalidModule;
-import seedu.apollo.module.Module;
-import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
+import seedu.apollo.utils.LoggerInterface;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,10 +28,10 @@ import java.util.logging.Logger;
 import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
 
-public class AddModuleCommand extends Command implements seedu.apollo.utils.Logger {
+public class AddModuleCommand extends Command implements LoggerInterface {
     private static Logger logger = Logger.getLogger("AddModuleCommand");
     private Module module;
-    private String params;
+    private String[] args;
 
     /**
      * Constructor for AddModuleCommand.
@@ -43,8 +46,7 @@ public class AddModuleCommand extends Command implements seedu.apollo.utils.Logg
         assert (param != null) : "AddModuleCommand: Params should not be null!";
         assert (allModules != null) : "AddModuleCommand: Module list should not be null!";
 
-        params = param;
-        String[] args = param.split("\\s+");
+        args = param.split("\\s+");
 
         if (args.length != 3 && args.length != 1) {
             throw new IllegalCommandException();
@@ -62,6 +64,12 @@ public class AddModuleCommand extends Command implements seedu.apollo.utils.Logg
 
     }
 
+    /**
+     * Sets up logger for AddModuleCommand class.
+     *
+     * @throws IOException If logger file cannot be created.
+     */
+    @Override
     public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
@@ -101,9 +109,9 @@ public class AddModuleCommand extends Command implements seedu.apollo.utils.Logg
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules) {
+    public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
+                        Calendar calendar) {
         try {
-            String[] args = params.split("\\s+");
             if (args.length == 3) {
                 handleMultiCommand(moduleList, allModules, args);
                 ui.printClassAddedMessage(args[0].toUpperCase(), getCommand(args[1]), args[2]);
@@ -116,25 +124,25 @@ public class AddModuleCommand extends Command implements seedu.apollo.utils.Logg
                     moduleList.add(module);
                     moduleList.sortModules();
                     Module referenceModule = allModules.findModule(module.getCode());
-                    ui.printAddModuleMessage(module);
-                    ui.printTotalModularCredits(moduleList);
-                    ui.printLessonTypeMessage(getLessonTypes(referenceModule));
-                    ui.printAddLessonOptions();
+                    ui.printAddModuleMessage(module, moduleList, getLessonTypes(referenceModule));
 
                 }
             }
-            storage.updateModule(moduleList);
+
+            storage.updateModule(moduleList, calendar);
         } catch (IOException e) {
             logger.log(Level.SEVERE, "IO Exception", e);
             ui.printErrorForIO();
         } catch (DuplicateModuleException e) {
-            ui.printDuplicateModule();
+            ui.printDuplicateModule(module);
         } catch (IllegalCommandException e) {
             ui.printInvalidCommand();
         } catch (ClassNotFoundException e) {
             ui.printInvalidLessonType();
         } catch (LessonAddedException e) {
             ui.printLessonExists();
+        } catch (InvalidSaveFile e) {
+            ui.printErrorForIO();
         }
     }
 
@@ -160,9 +168,9 @@ public class AddModuleCommand extends Command implements seedu.apollo.utils.Logg
             }
         }
 
-        if (this.isAdded(moduleList, module)){
+        if (this.isAdded(moduleList, module)) {
             int index = 0;
-            for (Module module: moduleList){
+            for (Module module: moduleList) {
                 if (module.getCode().equals(this.module.getCode())){
                     this.module.setTimetable(module.getModuleTimetable());
                     break;

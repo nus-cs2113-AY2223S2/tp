@@ -47,11 +47,15 @@ public class Deadline extends Task {
     /**
      * {@inheritDoc}
      */
+
     @Override
     public String getType() {
         return "deadline";
     }
 
+    public LocalDateTime getDateTime() {
+        return by;
+    }
     /**
      * {@inheritDoc}
      */

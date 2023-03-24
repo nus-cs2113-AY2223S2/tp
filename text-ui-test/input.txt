@@ -11,6 +11,7 @@ event
 event lecture /from 2023-05-03T09:00
 event lecture /from 2023-05-03T11:00 /to 2023-05-03T09:00
 event lecture /from 2023-05-03T11:00 /to 1 hour later
+event lecture /from 2022-05-03T09:00 /to 2022-05-03T11:00
 event lecture /from 2023-05-03T09:00 /to 2023-05-03T11:00
 list
 mark eat lunch
@@ -30,13 +31,19 @@ find c
 date
 date 2025-01-01
 date 2023-05-03
+showmod cs1231
+showmod cg2023
 addmod software engineering
 addmod cs2113
 addmod cs2113
+addmod cs2113 -lec 1
+addmod cs2113 -tut 1
 addmod cs2040c
 listmod
 delmod 2
 delmod cs2040c
 listmod
+addmod st2334 -lec 1
+week
 hello
 bye

@@ -1,5 +1,7 @@
 package seedu.apollo.ui;
 
+import seedu.apollo.command.WeekCommand;
+import seedu.apollo.command.module.ShowModuleCommand;
 import seedu.apollo.command.task.AddCommand;
 import seedu.apollo.command.module.AddModuleCommand;
 import seedu.apollo.command.Command;
@@ -13,6 +15,7 @@ import seedu.apollo.command.module.ListModuleCommand;
 import seedu.apollo.command.task.ModifyCommand;
 import seedu.apollo.exception.module.EmptyAddModException;
 import seedu.apollo.exception.module.EmptyDelModException;
+import seedu.apollo.exception.module.EmptyShowModException;
 import seedu.apollo.exception.utils.EmptyKeywordException;
 import seedu.apollo.exception.task.EmptyTaskDescException;
 import seedu.apollo.exception.utils.IllegalCommandException;
@@ -23,8 +26,6 @@ import seedu.apollo.exception.module.InvalidModule;
 import seedu.apollo.module.ModuleList;
 
 import java.rmi.UnexpectedException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 /**
@@ -36,6 +37,7 @@ public class Parser {
     public static final String COMMAND_EXIT_WORD = "bye";
     public static final String COMMAND_HELP_WORD = "help";
     public static final String COMMAND_LIST_WORD = "list";
+    public static final String COMMAND_WEEK_WORD = "week";
     public static final String COMMAND_DATE_WORD = "date";
     public static final String COMMAND_FIND_WORD = "find";
     public static final String COMMAND_MARK_WORD = "mark";
@@ -48,6 +50,7 @@ public class Parser {
     public static final String COMMAND_ADD_MODULE_WORD = "addmod";
     public static final String COMMAND_LIST_MODULE_WORD = "listmod";
     public static final String COMMAND_DELETE_MODULE_WORD = "delmod";
+    public static final String COMMAND_SHOW_MODULE_DETAILS_WORD = "showmod";
 
     /**
      * Returns the corresponding Command to the user input.
@@ -83,6 +86,8 @@ public class Parser {
             ui.printInvalidDate();
         } catch (InvalidModule e) {
             ui.printInvalidModule();
+        } catch (EmptyShowModException e) {
+            ui.printEmptyShowModCode();
         }
         return null;
     }
@@ -101,13 +106,22 @@ public class Parser {
      * @throws InvalidEvent            If the input format for adding an event is wrong.
      * @throws IllegalCommandException If an unknown command is input by the user.
      * @throws UnexpectedException     If some unexpected error occurs.
+     * @throws InvalidModule           If the module does not exist
+     * @throws EmptyDelModException    If there is no input for module code
+     * @throws EmptyAddModException    If there is no input for module code
+     * @throws EmptyShowModException   If there is no input for module code
      */
     private static Command parseCommand(String[] split, int size, ModuleList moduleData)
             throws InvalidDateTime, EmptyKeywordException, EmptyTaskDescException, InvalidDeadline, InvalidEvent,
             IllegalCommandException, NumberFormatException, UnexpectedException, InvalidModule,
-            EmptyAddModException, EmptyDelModException {
+            EmptyAddModException, EmptyDelModException, EmptyShowModException {
         String command = split[0];
         switch (command) {
+        case COMMAND_SHOW_MODULE_DETAILS_WORD:
+            if (isEmptyParam(split)) {
+                throw new EmptyShowModException();
+            }
+            return new ShowModuleCommand(split[1], moduleData);
 
         case COMMAND_LIST_MODULE_WORD:
             if (!isOneWord(split)) {
@@ -132,6 +146,9 @@ public class Parser {
                 throw new IllegalCommandException();
             }
             return new ListCommand();
+
+        case COMMAND_WEEK_WORD:
+            return new WeekCommand();
 
         case COMMAND_DATE_WORD:
             if (isEmptyParam(split)) {
@@ -173,6 +190,7 @@ public class Parser {
             }
             String moduleCode = split[1];
             return new DeleteModuleCommand(moduleCode);
+
         default:
             throw new IllegalCommandException();
         }
@@ -198,20 +216,6 @@ public class Parser {
         return (split.length == 1);
     }
 
-    /**
-     * Parses LocalDateTime into a String according to the given pattern.
-     *
-     * @param date       Date and time with LocalDateTime data type.
-     * @param dateString Date and time with String data type.
-     * @param pattern    Desired pattern to format String.
-     * @return Parsed date and time in a String.
-     */
-    public static String parseDateTime(LocalDateTime date, String dateString, DateTimeFormatter pattern) {
-        if (date != null) {
-            return date.format(pattern);
-        }
-        return dateString;
-    }
 
     /**
      * Separates a Deadline's input data into its description, and due date.

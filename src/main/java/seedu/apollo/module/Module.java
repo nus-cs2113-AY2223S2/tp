@@ -43,6 +43,11 @@ public class Module {
         return title;
     }
 
+    /**
+     * Retrieves a String with the module's credit.
+     *
+     * @return String of the module credit
+     */
     public String getModuleCredits() {
         return moduleCredits;
     }
@@ -96,5 +101,13 @@ public class Module {
             }
         }
         return false;
+    }
+
+    public CalendarModule toCalendarModule() {
+        CalendarModule calendarModule = new CalendarModule(this.code, this.title, this.moduleCredits);
+        for (Timetable timetable : this.timetable) {
+            calendarModule.setSchedule(timetable);
+        }
+        return calendarModule;
     }
 }
