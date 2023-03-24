@@ -109,6 +109,12 @@ public abstract class EntryList {
         }
     }
 
+    /**
+     * Edits category of an entry in the specific index in the list
+     * @param entryIndex index of the entry in the list
+     * @param newCategory new category that will replace current category
+     * @param entryList LinkedList that contains the entries
+     */
     public static void editEntryCategory(int entryIndex, Category newCategory, LinkedList<Entry> entryList) {
         try {
             Entry entryBeingEdited = entryList.get(entryIndex - 1);
