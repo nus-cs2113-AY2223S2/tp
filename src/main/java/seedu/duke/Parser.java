@@ -186,7 +186,7 @@ public class Parser {
     // Format of dueDate is: dd-MM-yyyy
     private Command handleAddDeadlineCommand(Storage storage, String deadlineToAdd)
             throws InvalidCommandException {
-        String[] stringSplit = deadlineToAdd.split("/by");
+        String[] stringSplit = deadlineToAdd.split(" /by");
         if (stringSplit.length != 2) {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
