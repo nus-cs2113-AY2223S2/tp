@@ -4,7 +4,7 @@ import seedu.duke.exception.EmptyListException;
 import seedu.duke.exception.InputMismatchException;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.ui.Ui;
-import seedu.duke.company.Company;
+
 
 import java.util.ArrayList;
 

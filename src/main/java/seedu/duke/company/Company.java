@@ -5,7 +5,7 @@ public class Company {
     private int contactNumber;
     private String contactEmail;
 
-    boolean isConfirmed;
+    public boolean isConfirmed;
 
     public Company(String companyName, int contactNumber, String contactEmail){
         this.companyName = companyName;
