@@ -30,8 +30,8 @@ public class TrigoGraphVisualiser extends JPanel {
         this.phase = phase;
         this.freqInHz = freqInHz;
         this.verticalShift = verticalShift;
-        xMin = -2 * Math.PI * freqInHz;
-        xMax = 2 * Math.PI * freqInHz;
+        xMin = (-2 * Math.PI) / freqInHz;
+        xMax = (2 * Math.PI) / freqInHz;
         yMin = -10;
         yMax = 10;
     }
