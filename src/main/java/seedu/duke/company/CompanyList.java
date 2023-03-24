@@ -11,6 +11,7 @@ public class CompanyList {
 
     private static ArrayList<Company> companyList;
 
+
     public CompanyList(ArrayList<Company> companyList) {
         this.companyList = companyList;
     }
@@ -38,6 +39,15 @@ public class CompanyList {
         Ui ui = new Ui();
         companyList.remove(index);
         ui.showSuccessfulDeletionMessage();
+    }
+
+    public Company getCompany(int index) throws InvalidIndexException {
+        if (index < 0 | index >= companyList.size()) {
+            throw new InvalidIndexException();
+        }
+        Ui ui = new Ui();
+        ui.showSuccessfulConfirmedMessage();
+        return companyList.get(index);
     }
 
     public void loadSampleCompanyInformation() throws InputMismatchException {

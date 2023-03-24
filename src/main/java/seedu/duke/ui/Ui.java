@@ -79,6 +79,15 @@ public class Ui {
         System.out.println("Sample data has been loaded into the list!");
     }
 
+    public void showSuccessfulConfirmedMessage() {
+        System.out.println("Company has been successfully confirmed!");
+    }
+
+    public void showSuccessfulUnconfirmedMessage() {
+        System.out.println("Company has been successfully unconfirmed!");
+    }
+
+
     public void showVenueSelectionMessage(String venue) {
         System.out.println(venue + " has been successfully updated!");
     }
