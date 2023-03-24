@@ -9,6 +9,6 @@ import seedu.duke.userdata.UserCareerData;
 public interface Storage {
     public void writeToJson (UserCareerData userCareerData) throws DukeError;
 
-    public UserCareerData loadUserCareer ();
+    public UserCareerData loadUserData ();
 
 }

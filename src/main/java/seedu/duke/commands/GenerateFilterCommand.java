@@ -1,4 +1,3 @@
-
 package seedu.duke.commands;
 
 import seedu.duke.exceptions.DukeError;
@@ -28,15 +27,15 @@ public class GenerateFilterCommand extends Command {
 
     private ArrayList<ExerciseData> exerciseListGenerated;
 
-
     /**
      * Parses the user input into data required
      * for generating an exercise
+     *
      * @param userCommands The parameters that the user wishes their exercises to have
-     *                     and includes the number of exercises to have.
+     *     and includes the number of exercises to have.
      * @throws DukeError
      */
-    public GenerateFilterCommand(String[] userCommands) throws DukeError {
+    public GenerateFilterCommand (String[] userCommands) throws DukeError {
         this.filterArguments = userCommands.length - 1;
         this.userCommands = userCommands;
         String userGenerateCount = userCommands[userCommands.length - 1];
@@ -48,17 +47,19 @@ public class GenerateFilterCommand extends Command {
     }
 
     //@@author Khulon
+
     /**
      * Filters the whole list of available exercises based off the
      * input from the user.
+     *
      * @param ui Prints out the respective exercises for a given input
      * @param exerciseGenerator Generates Exercises
      * @throws DukeError duke error
      */
-    public void executeCommand(Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
+    public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
         assert System.identityHashCode(exercises) != System.identityHashCode(exerciseGenerator.generateSetAll())
-                : "Do not modify the ArrayList of GenerateExercise";
+            : "Do not modify the ArrayList of GenerateExercise";
         for (int i = 1; i < filterArguments; i++) {
             switch (userCommands[i]) {
             case GYM:
@@ -88,10 +89,10 @@ public class GenerateFilterCommand extends Command {
         exerciseListGenerated = exercises;
         ui.printExerciseFromList(exercises);
     }
+    //@author
 
-
-
-    public ArrayList<ExerciseData> provideExerciseList() {
+    public ArrayList<ExerciseData> provideExerciseList () {
         return exerciseListGenerated;
     }
+
 }
