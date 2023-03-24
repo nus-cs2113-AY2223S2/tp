@@ -12,29 +12,4 @@ Hello from rainyDay!
            |
          `='
 Welcome John
-Done! Added: in for ang bao, +$1337.00
-Done! Added: out for noodles, -$5.00
-Done! Added: out for food, -$20.00
-+-----+---------------------------------------------+------------+---------------------+----------+
-|Here is your full financial report!                                                              |
-+-----+---------------------------------------------+------------+---------------------+----------+
-|Index|Description                                  |Amount      |Category             |Date      |
-|00001|ang bao                                      | +$1337.00  |Money                |no date   |
-|00002|noodles                                      | -$5.00     |miscellaneous        |no date   |
-|00003|food                                         | -$20.00    |miscellaneous        |no date   |
-+-----+---------------------------------------------+------------+---------------------+----------+
-|Inflow: $1337.00
-|Outflow: $25.00
-|Remaining value: $1312.00
-Done, deleted "noodles" from the financial report
-+-----+---------------------------------------------+------------+---------------------+----------+
-|Here is your full financial report!                                                              |
-+-----+---------------------------------------------+------------+---------------------+----------+
-|Index|Description                                  |Amount      |Category             |Date      |
-|00001|ang bao                                      | +$1337.00  |Money                |no date   |
-|00002|food                                         | -$20.00    |miscellaneous        |no date   |
-+-----+---------------------------------------------+------------+---------------------+----------+
-|Inflow: $1337.00
-|Outflow: $20.00
-|Remaining value: $1317.00
 Bye John

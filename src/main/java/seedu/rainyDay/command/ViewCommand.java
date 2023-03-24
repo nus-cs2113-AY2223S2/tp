@@ -1,21 +1,30 @@
 package seedu.rainyDay.command;
 
+import seedu.rainyDay.data.FinancialStatement;
+
+import java.time.LocalDate;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Represents a command to view the financial report
  */
 public class ViewCommand extends Command{
 
-    //@@author lil1n
     private static final Logger logger = Logger.getLogger(ViewCommand.class.getName());
 
-    public ViewCommand() {
-    }
+    private final LocalDate timeLimit;
+    private final boolean sortByValue;
 
+    public ViewCommand (LocalDate timeLimit, boolean sortByValue) {
+        this.timeLimit = timeLimit;
+        this.sortByValue = sortByValue;
+    }
     /**
      * Sets up logger for logging
      */
@@ -32,6 +41,35 @@ public class ViewCommand extends Command{
         }
     }
 
+    private ArrayList<Integer> filterBeforeSpecificDateSorted() {
+        Map<Double, Integer> sortedIndexes = new TreeMap<>();
+        for(int index = 0; index < financialReport.getStatementCount(); index++) {
+            FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
+            double statementValue = currentStatement.getValue();
+            LocalDate statementDate = currentStatement.getDate();
+            if(statementDate.isAfter(timeLimit)) {
+                sortedIndexes.put(statementValue, index);
+            }
+        }
+        ArrayList<Integer> filteredIndexes = new ArrayList<>();
+        for(Map.Entry<Double, Integer> currentEntry : sortedIndexes.entrySet()) {
+            filteredIndexes.add(currentEntry.getValue());
+        }
+        return filteredIndexes;
+    }
+
+    private ArrayList<Integer> filterBeforeSpecificDate() {
+        ArrayList<Integer> filteredIndexes = new ArrayList<>();
+        for(int index = 0; index < financialReport.getStatementCount(); index++) {
+            FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
+            LocalDate statementDate = currentStatement.getDate();
+            if(statementDate.isAfter(timeLimit)) {
+                filteredIndexes.add(index);
+            }
+        }
+        return filteredIndexes;
+    }
+
     /**
      * Executes the command and print the relevant output message
      */
@@ -39,9 +77,14 @@ public class ViewCommand extends Command{
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting ViewCommand.execute()");
-
         String output = "";
-        if (financialReport.getStatementCount() == 0) {
+        ArrayList<Integer> validIndexes;
+        if(sortByValue) {
+            validIndexes = filterBeforeSpecificDateSorted();
+        } else {
+            validIndexes = filterBeforeSpecificDate();
+        }
+        if (validIndexes.size() == 0) {
             assert financialReport.getStatementCount() == 0 : "statement count mismatch";
             logger.log(Level.INFO, "empty financial report");
             output = "Your financial report is empty";
@@ -49,7 +92,7 @@ public class ViewCommand extends Command{
         }
         assert financialReport.getStatementCount() != 0 : "statement count mismatch";
         CommandResult result = new CommandResult(output);
-        ViewResult.printFullReport();
+        ViewResult.printReport(validIndexes);
         return result;
     }
 }
