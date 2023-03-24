@@ -25,6 +25,11 @@ public class TaskList {
         numberOfTasks += 1;
     }
 
+    public static void editTask(int taskNumber, String newDescription) {
+        Task task = taskList.get(taskNumber - 1);
+        task.description = newDescription;
+    }
+
     /**
      * Removes a task from the task list
      *
