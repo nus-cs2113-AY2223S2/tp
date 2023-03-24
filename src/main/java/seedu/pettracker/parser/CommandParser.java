@@ -2,16 +2,17 @@ package seedu.pettracker.parser;
 
 import seedu.pettracker.commands.AddPetCommand;
 import seedu.pettracker.commands.AddStatCommand;
+import seedu.pettracker.commands.AddTaskCommand;
 import seedu.pettracker.commands.Command;
+import seedu.pettracker.commands.EditStatCommand;
 import seedu.pettracker.commands.ExitCommand;
 import seedu.pettracker.commands.InvalidCommand;
 import seedu.pettracker.commands.ListPetCommand;
-import seedu.pettracker.commands.RemovePetCommand;
-import seedu.pettracker.commands.RemoveStatCommand;
-import seedu.pettracker.commands.AddTaskCommand;
-import seedu.pettracker.commands.RemoveTaskCommand;
 import seedu.pettracker.commands.ListTasksCommand;
 import seedu.pettracker.commands.MarkTaskCommand;
+import seedu.pettracker.commands.RemovePetCommand;
+import seedu.pettracker.commands.RemoveStatCommand;
+import seedu.pettracker.commands.RemoveTaskCommand;
 import seedu.pettracker.commands.UnMarkTaskCommand;
 //import seedu.pettracker.exceptions.UnknownKeywordException;
 
@@ -26,6 +27,7 @@ public class CommandParser {
     final String KEYWORD_LIST_PET = "list";
     final String KEYWORD_ADD_STAT = "add-stat";
     final String KEYWORD_REMOVE_STAT = "remove-stat";
+    final String KEYWORD_EDIT_STAT = "edit-stat";
     final String KEYWORD_ADD_TASK = "add-task";
     final String KEYWORD_REMOVE_TASK = "remove-task";
     final String KEYWORD_LIST_TASKS = "list-tasks";
@@ -99,6 +101,13 @@ public class CommandParser {
         case KEYWORD_REMOVE_STAT:
             try {
                 return new RemoveStatCommand(parseArgs(commandString));
+            } catch (ArrayIndexOutOfBoundsException e) {
+                logger.log(Level.INFO,"bounds error");
+                break;
+            }
+        case KEYWORD_EDIT_STAT:
+            try {
+                return new EditStatCommand(parseArgs(commandString));
             } catch (ArrayIndexOutOfBoundsException e) {
                 logger.log(Level.INFO,"bounds error");
                 break;

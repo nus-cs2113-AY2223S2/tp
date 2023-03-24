@@ -59,6 +59,10 @@ public class Pet {
         return petName;
     }
 
+    public void setPetName(String petName) {
+        this.petName = petName;
+    }
+
     public String getPetType() {
         return petType;
     }
