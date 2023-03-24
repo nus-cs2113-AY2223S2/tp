@@ -16,6 +16,7 @@ import seedu.rainyDay.exceptions.RainyDayException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -194,33 +195,42 @@ public class Parser {
     //@@author ChongQiRong
     private Command filterStatement(String input) {
         try {
-            if (input.contains("-date")) {
-                parseFilterByDate(input);
-            } else if (input.contains("-d")) {
-                parseByDescription(input);
-            } else if (input.contains("-c")) {
-                parseByCategory(input);
-            } else if (input.contains("-in")) {
-                parseFilterByFlowDirection(input);
-            } else if (input.contains("-out")) {
-                parseFilterByFlowDirection(input);
+            int count = (int) input.chars().filter(ch -> ch == '-').count();
+            if (count >= 1) {
+                return new FilterCommand(parseFilterMultipleFlags(input, count));
             } else {
-                parseDefaultFilterByDescription(input);
+                logger.warning("unrecognised input from user!");
+                return new InvalidCommand(ErrorMessage.WRONG_FILTER_FORMAT.toString());
             }
-            return new FilterCommand(this.field, this.filterFlag);
         } catch (Exception e) {
             logger.warning("filter command given by user in the wrong format");
             return new InvalidCommand(ErrorMessage.WRONG_FILTER_FORMAT.toString());
         }
     }
 
-    private void parseDefaultFilterByDescription(String input) {
-        this.field = input.trim();
-        this.filterFlag = "-d";
+    private ArrayList<String> parseFilterMultipleFlags(String input, int count) {
+        Pattern pattern = Pattern.compile("(?:(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*){0,1}" +
+                "(?:(-c)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*){0,1}" +
+                "(?:(-date)\\s+(\\d{2}/\\d{2}/\\d{4})\\s*){0,1}" +
+                "(?:(-in|-out))?{0,1}\\s*$");
+        Matcher matcher = pattern.matcher(input);
+        ArrayList<String> filterFlagAndField = new ArrayList<>();
+
+        if (matcher.find()) {
+            for (int i = 1; i <= 7; i += 1) {
+                if (matcher.group(i) != null){
+                    filterFlagAndField.add(matcher.group(i));
+                }
+            }
+            return filterFlagAndField;
+        } else {
+            logger.warning("filter command given by user in the wrong format");
+            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
     }
 
     private void parseByDescription(String input) {
-        Pattern pattern = Pattern.compile("^(-d)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
+        Pattern pattern = Pattern.compile("^(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             this.filterFlag = matcher.group(1);
@@ -232,35 +242,11 @@ public class Parser {
     }
 
     private void parseByCategory(String input) {
-        Pattern pattern = Pattern.compile("^(-c)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
+        Pattern pattern = Pattern.compile("^(-c)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             this.filterFlag = matcher.group(1);
             this.field = matcher.group(2);
-        } else {
-            logger.warning("filter command given by user in the wrong format");
-            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
-        }
-    }
-
-    private void parseFilterByFlowDirection(String input) {
-        Pattern pattern = Pattern.compile("^(-in|-out)\\s*$");
-        Matcher matcher = pattern.matcher(input);
-        if (matcher.find()) {
-            this.filterFlag = matcher.group(1);
-            this.field = "none";
-        } else {
-            logger.warning("filter command given by user in the wrong format");
-            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
-        }
-    }
-
-    private void parseFilterByDate(String input) {
-        Pattern pattern = Pattern.compile("-date\\s+(\\d{2}/\\d{2}/\\d{4})");
-        Matcher matcher = pattern.matcher(input);
-        if (matcher.matches()) {
-            this.filterFlag = "-date";
-            this.field = matcher.group(1);
         } else {
             logger.warning("filter command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
