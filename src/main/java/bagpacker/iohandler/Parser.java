@@ -63,7 +63,7 @@ public class Parser {
         setFullInput(inputLine);
         String[] inputStringList = inputLine.trim().split(" ");
         setInputStringArray(inputStringList);
-        switch (inputStringList[0]) {
+        switch (getCommand()) {
         case "add":
             return createAddObj();
         case "delete":
@@ -92,7 +92,7 @@ public class Parser {
      * @return inputLine the String input of the user
      * @throws EmptyInputException when user input empty line
      */
-    private static String readLine() throws EmptyInputException {
+    public static String readLine() throws EmptyInputException {
         String inputLine;
         Scanner in = new Scanner(System.in);
         inputLine = in.nextLine().trim();
