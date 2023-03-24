@@ -1,7 +1,7 @@
 package seedu.duke.states;
 
-import seedu.duke.exceptions.DukeError;
-import seedu.duke.exceptions.NoOngoingExError;
+import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.commons.exceptions.NoOngoingExError;
 import seedu.duke.exersisedata.ExerciseData;
 import seedu.duke.storage.StorageHandler;
 import seedu.duke.userdata.UserCareerData;
@@ -10,7 +10,6 @@ import seedu.duke.userdata.Session;
 
 import java.util.ArrayList;
 
-
 /**
  * This class handles the functions of the Fitness Duke
  * when the user is doing a workout
@@ -18,13 +17,17 @@ import java.util.ArrayList;
 public class ExerciseStateHandler {
 
     private static ArrayList<ExerciseData> previousGeneratedWorkout = new ArrayList<>();
-    public boolean workoutOngoing;
     private final StorageHandler storageHandler;
+    public boolean workoutOngoing;
     private Session currentSessionWorkout;
 
     public ExerciseStateHandler (StorageHandler storageHandler) {
         this.storageHandler = storageHandler;
         this.currentSessionWorkout = new Session(null);
+    }
+
+    private static void printCancelWorkoutSessionMessage () {
+        System.out.println("Workout cancelled, you can complete it next time!");
     }
 
     /**
@@ -91,10 +94,6 @@ public class ExerciseStateHandler {
         userCareerData.addWorkoutSession(completedWorkout);
         storageHandler.writeToJson(userCareerData);
         //complete workout
-    }
-
-    private static void printCancelWorkoutSessionMessage(){
-        System.out.println("Workout cancelled, you can complete it next time!");
     }
 
 }

@@ -1,6 +1,6 @@
 package seedu.duke.storage;
 
-import seedu.duke.exceptions.DukeError;
+import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.userdata.UserCareerData;
 
 /**

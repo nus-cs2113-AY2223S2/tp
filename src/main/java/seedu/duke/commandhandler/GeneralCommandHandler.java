@@ -6,7 +6,7 @@ import seedu.duke.commands.GenerateFilterCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.QuickStartCommand;
 
-import seedu.duke.exceptions.DukeError;
+import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.exercisegenerator.GenerateExercise;
 import seedu.duke.states.ExerciseStateHandler;
 import seedu.duke.storage.StorageHandler;
