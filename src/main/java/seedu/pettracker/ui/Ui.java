@@ -40,6 +40,14 @@ public class Ui {
     }
 
     /**
+     * Message that prints when a pet's stats are edited.
+     * @param petName String containing the name of the added pet.
+     */
+    public void editStatCommandMessage(String petName, String stat, String statValue) {
+        System.out.println("Successfully updated " + petName + "'s " + stat + " to " + statValue);
+    }
+
+    /**
      * Message that prints when a new stat is added for a pet.
      * @param petName String containing the name of the corresponding pet.
      * @param statName String indicating the name of the added stat.

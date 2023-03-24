@@ -82,4 +82,25 @@ public class PetList {
     public static int getNumberOfPets() {
         return numberOfPets;
     }
+
+    public static void editPetStats(String petName, String stat, String newValue) {
+        int index = PetList.find(petName);
+        Pet petToEdit = PetList.get(index);
+        switch (stat.toLowerCase()) {
+        case "name":
+            petToEdit.setPetName(newValue);
+            break;
+        case "type":
+            petToEdit.setPetType(newValue);
+            break;
+        case "age":
+            petToEdit.setAge(newValue);
+            break;
+        case "weight":
+            petToEdit.setWeight(newValue);
+            break;
+        default:
+            System.out.println("Invalid stat");
+        }
+    }
 }
