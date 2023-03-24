@@ -68,25 +68,31 @@ public class Ui {
      * Prints out a list of all available commands.
      */
     public void printHelpMessage() {
-        System.out.println("\n" + " Enter \"list\" to see all tasks\n" +
-                " Enter \"listmod\" to see your module list\n" +
-                " Enter \"todo [task]\" to add a task\n" +
-                " Enter \"deadline [task] /by [date]\" to add a deadline\n" +
-                " Enter \"event [task] /from [date] /to [date]\" to add an event\n" +
-                " Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n" +
-                " Enter \"addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a lesson\n" +
-                " Enter \"showmod [MODULE_CODE]\" to see more information about the module\n" +
-                " Enter \"mark [idx]\" to mark task as done\n" +
-                " Enter \"unmark [idx]\" to mark task as not done\n" +
-                " Enter \"delete [idx]\" to remove task from list\n" +
-                " Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added\n" +
-                " Enter \"week\" to see your schedule for the week\n" +
-                " Enter \"find [keyword]\" to see all tasks containing [keyword]\n" +
-                " Enter \"date [yyyy-MM-dd]\" to see all tasks occurring on that date\n" +
-                " Enter \"bye\" to exit the program\n\n" +
-                " ***NOTE***\n" +
-                " Please enter all [date]s in the format: \"yyyy-MM-ddThh:mm\"\n" +
-                " eg. \"2023-10-30T23:59\" represents Oct 20 2023, 11:59PM\n");
+        System.out.println("Task Commands:\n" +
+                "- Enter \"list\" to see all tasks\n" +
+                "- Enter \"todo [task]\" to add a task\n" +
+                "- Enter \"deadline [task] /by [date]\" to add a deadline\n" +
+                "- Enter \"event [task] /from [date] /to [date]\" to add an event\n" +
+                "- Enter \"mark [idx]\" to mark task as done\n" +
+                "- Enter \"unmark [idx]\" to mark task as not done\n" +
+                "- Enter \"delete [idx]\" to remove task from list\n" +
+                "- Enter \"find [keyword]\" to see all tasks containing [keyword]\n" +
+                "- Enter \"date [yyyy-MM-dd]\" to see all tasks occurring on that date\n\n" +
+
+                "Module Commands:\n" +
+                "- Enter \"listmod\" to see your module list\n" +
+                "- Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n" +
+                "- Enter \"addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a lesson\n" +
+                "- Enter \"showmod [MODULE_CODE]\" to see more information about the module\n" +
+                "- Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added\n\n" +
+
+                "Common Commands:\n" +
+                "- Enter \"week\" to see your schedule for the week\n" +
+                "- Enter \"bye\" to exit the program\n\n" +
+
+                "***NOTE***\n" +
+                "Please enter all [date]s in the format: \"yyyy-MM-ddThh:mm\"\n" +
+                "eg. \"2023-10-30T23:59\" represents Oct 20 2023, 11:59PM\n");
         printAddModuleOptions();
     }
 
@@ -100,7 +106,7 @@ public class Ui {
                 + "-ptut\t\t\t" + "PACKAGED TUTORIAL\n" + "-rcit\t\t\t" + "RECITATION\n" + "-lab\t\t\t"
                 + "LABORATORY\n" + "-ws\t\t\t\t" + "WORKSHOP\n" + "-smc\t\t\t"
                 + "SEMINAR STYLE MODULE CLASS\n" + "-mp\t\t\t\t" + "MINI PROJECT\n" + "-tt2\t\t\t"
-                + "TUTORIAL TYPE 2\n");
+                + "TUTORIAL TYPE 2");
     }
 
 
