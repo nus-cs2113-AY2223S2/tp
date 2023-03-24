@@ -52,6 +52,15 @@ public class Event {
         this.expense = expense;
     }
 
+    /**
+     * Gets the time of the event.
+     *
+     * @return the time of the event
+     */
+    public String getTime() {
+        return time;
+    }
+
     public String toString() {
         if (time == null) {
             return description + " [expense]" + expense;

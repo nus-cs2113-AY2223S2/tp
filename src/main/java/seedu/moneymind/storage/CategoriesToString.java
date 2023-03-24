@@ -41,9 +41,14 @@ public class CategoriesToString {
     private static String eventsToString(ArrayList<Event> events) {
         String eventsAsString = "";
         for (Event event : events) {
-            eventsAsString += STORAGE_NEXT_VARIABLE + event.getDescription() 
-                    + STORAGE_NEXT_VARIABLE + event.getExpense() + NEW_LINE;
-            // TODO: Update to include case with getTime();
+            if (event.getTime() != null) {
+                eventsAsString += STORAGE_NEXT_VARIABLE + event.getDescription() 
+                        + STORAGE_NEXT_VARIABLE + event.getExpense() + STORAGE_NEXT_VARIABLE 
+                        + event.getTime() + NEW_LINE;
+            } else {
+                eventsAsString += STORAGE_NEXT_VARIABLE + event.getDescription() 
+                        + STORAGE_NEXT_VARIABLE + event.getExpense() + NEW_LINE;
+            }
         }
         return eventsAsString;
     }
