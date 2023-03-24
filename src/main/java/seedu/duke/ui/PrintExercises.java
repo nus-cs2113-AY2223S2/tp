@@ -1,6 +1,6 @@
 package seedu.duke.ui;
 
-import seedu.duke.exersisedata.ExerciseData;
+import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class PrintExercises {
     private static final String OPEN_BRACE = "[";
     private static final String CLOSE_BRACE = "]";
 
-    public static void printExercise(ArrayList<ExerciseData> exercises) {
+    public static void printExercise (ArrayList<ExerciseData> exercises) {
         String getWorkoutType;
         String getWorkoutTypeFinal;
         String getInstructions;

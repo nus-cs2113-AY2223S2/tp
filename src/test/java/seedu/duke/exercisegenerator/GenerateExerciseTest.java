@@ -1,13 +1,14 @@
 package seedu.duke.exercisegenerator;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.commands.GenerateFilterCommand;
-import seedu.duke.exceptions.DukeError;
-import seedu.duke.exceptions.ExerciseNumberInputAsStringError;
-import seedu.duke.exceptions.TooManyFiltersError;
-import seedu.duke.exersisedata.ExerciseData;
+import seedu.duke.logic.commands.GenerateFilterCommand;
+import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.commons.exceptions.ExerciseNumberInputAsStringError;
+import seedu.duke.commons.exceptions.TooManyFiltersError;
+import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
+import seedu.duke.model.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
