@@ -4,6 +4,12 @@ import java.time.DayOfWeek;
 
 public class DayTypeUtil {
 
+    /**
+     * Converts a DayOfWeek enum to an integer.
+     *
+     * @param dayInt The integer to be converted.
+     * @return The  DayFfWeek enum representation of the integer.
+     */
     public static DayOfWeek determineDay(int dayInt) {
         switch (dayInt) {
         case 0:
@@ -25,6 +31,12 @@ public class DayTypeUtil {
         }
     }
 
+    /**
+     * Converts a day string to an integer.
+     *
+     * @param day The string to be converted.
+     * @return The integer representation of the day string.
+     */
     public static int determineDay(String day) {
         switch (day) {
         case "Monday":
