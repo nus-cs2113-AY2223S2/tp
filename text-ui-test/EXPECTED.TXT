@@ -76,7 +76,8 @@
 |  Enter command: |  Invalid optional time flag format.
 |
 |  listExpense: lists expenses made in the current month.
-|  listExpense [t/ YYYY/MM]: : lists expenses made in the specified month
+|  listExpense t/ <date in YYYY/MM>: : lists expenses made in the specified month
+|  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: listExpense
 |  Example: listExpense t/ 2023/03
 |
@@ -92,7 +93,8 @@
 |  Enter command: |  Invalid add command format.
 |
 |  addIncome: add income to the income list.
-|  Parameters: a/ <amount> d/ <description> t/ <time>
+|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
+|  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
 |  Example: addIncome a/ 3000 d/ salary t/ 2023 3 10 10 10 c/ SALARY
 |
 |  -----------------------------------------------------------------------
@@ -100,7 +102,8 @@
 |  Enter command: |  Invalid add command format.
 |
 |  addIncome: add income to the income list.
-|  Parameters: a/ <amount> d/ <description> t/ <time>
+|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
+|  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
 |  Example: addIncome a/ 3000 d/ salary t/ 2023 3 10 10 10 c/ SALARY
 |
 |  -----------------------------------------------------------------------
@@ -115,7 +118,8 @@
 |  Enter command: |  Invalid optional time flag format.
 |
 |  listIncome: lists incomes made in the current month.
-|  listIncome [t/ YYYY/MM]: : lists incomes made in the specified month
+|  listIncome t/ <date in YYYY/MM>: : lists incomes made in the specified month
+|  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: listIncome
 |  Example: listIncome t/ 2023/03
 |
@@ -166,8 +170,10 @@
 |
 |  Enter command: |  Negative amount is not allowed.
 |
-|  setBudget: sets your budget.
-|  Parameter: <amount> [t/ YYYY/MM]
+|  setBudget: sets your budget for current month.
+|  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
+|  Compulsory Parameter: <amount>
+|  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: setBudget 500
 |  Example: setBudget 500 t/ 2023/03
 |
@@ -179,8 +185,10 @@
 |
 |  Enter command: |  Invalid Date Format!
 |
-|  setBudget: sets your budget.
-|  Parameter: <amount> [t/ YYYY/MM]
+|  setBudget: sets your budget for current month.
+|  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
+|  Compulsory Parameter: <amount>
+|  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: setBudget 500
 |  Example: setBudget 500 t/ 2023/03
 |
@@ -189,8 +197,10 @@
 |  Enter command: |  The budget you have set is not a double.
 |  If you are trying to enter date information, please use t/.
 |
-|  setBudget: sets your budget.
-|  Parameter: <amount> [t/ YYYY/MM]
+|  setBudget: sets your budget for current month.
+|  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
+|  Compulsory Parameter: <amount>
+|  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: setBudget 500
 |  Example: setBudget 500 t/ 2023/03
 |
@@ -208,7 +218,8 @@
 |  Enter command: |  Invalid optional time flag format.
 |
 |  viewBudget: view your budget and how much of it is left remaining.
-|  viewBudget [t/ YYYY/MM]: view your budget and how much of was left in the specified month
+|  viewBudget t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month
+|  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: viewBudget
 |  Example: viewBudget /t 2023/03
 |
@@ -217,7 +228,8 @@
 |  Enter command: |  Invalid time information. Please present your time as [YYYY/MM]
 |
 |  viewBudget: view your budget and how much of it is left remaining.
-|  viewBudget [t/ YYYY/MM]: view your budget and how much of was left in the specified month
+|  viewBudget t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month
+|  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: viewBudget
 |  Example: viewBudget /t 2023/03
 |
@@ -231,7 +243,8 @@
 |  Enter command: |  Invalid add command format.
 |
 |  addExpense: add expense to the expense list.
-|  Parameters: a/ <amount> d/ <description> t/ <time>
+|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM HH mm> c/ <category>
+|  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
 |  Example: addExpense a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD
 |
 |  -----------------------------------------------------------------------
@@ -239,7 +252,8 @@
 |  Enter command: |  Invalid add command format.
 |
 |  addIncome: add income to the income list.
-|  Parameters: a/ <amount> d/ <description> t/ <time>
+|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
+|  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
 |  Example: addIncome a/ 3000 d/ salary t/ 2023 3 10 10 10 c/ SALARY
 |
 |  -----------------------------------------------------------------------
