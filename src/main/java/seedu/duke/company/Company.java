@@ -1,11 +1,13 @@
 package seedu.duke.company;
 
 public class Company {
+
+    public boolean isConfirmed;
     private String companyName;
     private int contactNumber;
     private String contactEmail;
 
-    public boolean isConfirmed;
+
 
     public Company(String companyName, int contactNumber, String contactEmail){
         this.companyName = companyName;
