@@ -49,6 +49,7 @@ command: `/add McDonalds -c Food -p 10.50`
 The add entry mechanism is facilitated by `EntryLog`. Every instance of `AddCommand` is created with an `Entry` instance.
 
 The following sequence diagram shows how the add command work:
+
 ![AddCommandSequenceDiagram](./static/AddCommandSequenceDiagram.png)
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
