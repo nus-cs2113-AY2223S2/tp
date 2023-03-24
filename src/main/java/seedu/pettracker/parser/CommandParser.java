@@ -28,6 +28,7 @@ public class CommandParser {
     final String KEYWORD_ADD_STAT = "add-stat";
     final String KEYWORD_REMOVE_STAT = "remove-stat";
     final String KEYWORD_EDIT_STAT = "edit-stat";
+    final String KEYWORD_EDIT_TASK = "edit-task";
     final String KEYWORD_ADD_TASK = "add-task";
     final String KEYWORD_REMOVE_TASK = "remove-task";
     final String KEYWORD_LIST_TASKS = "list-tasks";
@@ -110,6 +111,13 @@ public class CommandParser {
                 return new EditStatCommand(parseArgs(commandString));
             } catch (ArrayIndexOutOfBoundsException e) {
                 logger.log(Level.INFO,"bounds error");
+                break;
+            }
+        case KEYWORD_EDIT_TASK:
+            try {
+                return new EditTaskCommand(parseArgs(commandString));
+            } catch (ArrayIndexOutOfBoundsException e) {
+                logger.log(Level.INFO, "bounds error");
                 break;
             }
         case KEYWORD_ADD_TASK:
