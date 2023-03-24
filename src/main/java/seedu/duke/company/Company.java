@@ -15,7 +15,7 @@ public class Company {
         this.contactNumber = contactNumber;
         this.contactEmail = contactEmail;
         this.isConfirmed = false;
-        this.industry = industry;
+        this.industry = industry.toUpperCase();
     }
 
     public String getCompanyName(){

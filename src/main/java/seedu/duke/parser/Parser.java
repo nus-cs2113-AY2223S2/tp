@@ -1,16 +1,6 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.Command;
-import seedu.duke.command.ChooseVenueCommand;
-import seedu.duke.command.ListCompanyCommand;
-import seedu.duke.command.PurgeCommand;
-import seedu.duke.command.AddCommand;
-import seedu.duke.command.LoadSampleCompanyCommand;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.ListVenueCommand;
-import seedu.duke.command.ConfirmCommand;
-import seedu.duke.command.UnconfirmCommand;
-import seedu.duke.command.ListUnconfirmedCommand;
+import seedu.duke.command.*;
 
 import seedu.duke.ui.Ui;
 import seedu.duke.exception.WrongFormatException;
@@ -39,11 +29,14 @@ public interface Parser {
             throw new WrongFormatException();
         case "add":
             input = input.replaceFirst("add", "").trim();
-            String[] inputs = input.split(" ");
-            String companyName = inputs[0].replace("n/", " ").trim();
-            String industry = inputs[1].replace("i/"," ").trim();
-            int contactNumber = Integer.parseInt(inputs[2].replace("c/"," ").trim());
-            String contactEmail = inputs[3].replace("e/", " ").trim();
+            int indexOfName = input.indexOf("n/");
+            int indexOfIndustry = input.indexOf("i/");
+            int indexOfContactNumber = input.indexOf("c/");
+            int indexOfContactEmail = input.indexOf("e/");
+            String companyName = input.substring(indexOfName+2, indexOfIndustry).trim();
+            String industry = input.substring(indexOfIndustry+2, indexOfContactNumber).trim();
+            int contactNumber = Integer.parseInt(input.substring(indexOfContactNumber+2, indexOfContactEmail).trim());
+            String contactEmail = input.substring(indexOfContactEmail).trim();
             AddCommand addCommand = new AddCommand(command, industry, companyName, contactNumber, contactEmail);
             return addCommand;
         case "delete":
@@ -89,6 +82,13 @@ public interface Parser {
             int companyUnconfirmNum = Integer.parseInt(inputWords[1]) - 1;
             UnconfirmCommand unconfirmCommand = new UnconfirmCommand(command, companyUnconfirmNum);
             return unconfirmCommand;
+        case "find":
+            if(inputWords[1].equals("industry")){
+                String targetIndustry = input.replace("find", "").trim();
+                targetIndustry = targetIndustry.replace("industry", "").trim();
+                return new FindIndustryCommand(command, targetIndustry.toUpperCase());
+            }
+            break;
         case "help":
             ui.showGuide();
             break;
