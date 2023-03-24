@@ -17,21 +17,9 @@ import java.util.regex.Pattern;
 public class SetEmailCommand extends Command {
     public static final String KEYWORD = "set_email";
     public static final HashSet<String> FLAGS = new HashSet<>(Arrays.asList(KEYWORD, Flags.EMAIL.FLAG));
-    private int index;
     public String email;
+    private int index;
 
-    public static boolean isValidEmail(String email)
-    {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
-                "[a-zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                "A-Z]{2,7}$";
-
-        Pattern pat = Pattern.compile(emailRegex);
-        if (email == null)
-            return false;
-        return pat.matcher(email).matches();
-    }
     public SetEmailCommand(HashMap<String, String> args)  throws ToDoListException {
         email = args.get(Flags.EMAIL.FLAG);
         if (!isValidEmail(email)) {
@@ -42,6 +30,20 @@ public class SetEmailCommand extends Command {
         } catch (NumberFormatException e) {
             throw new InvalidIndexException();
         }
+    }
+
+    public static boolean isValidEmail(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null) {
+            return false;
+        }
+        return pat.matcher(email).matches();
     }
 
     @Override
