@@ -23,7 +23,7 @@ public class SetEmailCommand extends Command {
     public SetEmailCommand(HashMap<String, String> args)  throws ToDoListException {
         email = args.get(Flags.EMAIL.FLAG);
         if (!isValidEmail(email)) {
-           throw new InvalidEmailFormatException();
+            throw new InvalidEmailFormatException();
         }
         try {
             index = Integer.parseInt(args.get(KEYWORD)) - 1;
