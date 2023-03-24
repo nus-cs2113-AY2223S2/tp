@@ -53,7 +53,7 @@ public class Deadline extends Task {
         return "deadline";
     }
 
-    public LocalDateTime getDateTime() {
+    public LocalDateTime getByDate() {
         return by;
     }
     /**

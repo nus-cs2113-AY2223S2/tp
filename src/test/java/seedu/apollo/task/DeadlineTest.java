@@ -9,7 +9,6 @@ import java.time.format.DateTimeParseException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -22,8 +21,8 @@ class DeadlineTest {
 
     @Test
     void newDeadline_normalDeadline_expectDeadline() throws DateOverException {
-        deadline = new Deadline("test", "2024-01-01T23:59");
-        assertNotNull(deadline);
+        deadline = new Deadline("test", "2025-01-01T23:59");
+        assertEquals("[D][ ] test (by: Jan 01 2025, 11:59PM)", deadline.toString());
     }
 
     @Test
@@ -44,9 +43,9 @@ class DeadlineTest {
     }
 
     @Test
-    void getDateTime_normalDeadline_expectByDateTime() {
-        LocalDateTime dateTime = LocalDateTime.parse("2024-01-01T23:59");
-        assertEquals(dateTime, deadline.getDateTime());
+    void getByDate_normalDeadline_expectLocalDateTime() {
+        LocalDateTime by = LocalDateTime.parse("2024-01-01T23:59");
+        assertEquals(by, deadline.getByDate());
     }
 
     @Test
@@ -59,11 +58,6 @@ class DeadlineTest {
     void isOnDate_notOnDate_expectFalse() {
         LocalDate date = LocalDate.parse("2024-01-02");
         assertFalse(deadline.isOnDate(date));
-    }
-
-    @Test
-    void testToString_unmarkedDeadline_expectString() {
-        assertEquals("[D][ ] test (by: Jan 01 2024, 11:59PM)", deadline.toString());
     }
 
     @Test
