@@ -45,8 +45,6 @@ public class DateCommand extends Command implements LoggerInterface {
 
     /**
      * Sets up logger for DateCommand class.
-     *
-     * @throws IOException If logger file cannot be created.
      */
     @Override
     public void setUpLogger() {
@@ -58,7 +56,7 @@ public class DateCommand extends Command implements LoggerInterface {
         try {
 
             if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
+                assert(new File("apollo.log").createNewFile()) : "Error in creating save file";
             }
 
             FileHandler logFile = new FileHandler("apollo.log", true);

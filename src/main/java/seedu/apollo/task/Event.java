@@ -85,10 +85,9 @@ public class Event extends Task {
     public Boolean isOnDate(LocalDate date) {
         LocalDate fromDate = from.toLocalDate();
         LocalDate toDate = to.toLocalDate();
-        boolean isOnFrom =  date.isEqual(fromDate);
-        boolean isOnTo = date.isEqual(toDate);
-        boolean isBetween = date.isAfter(fromDate) && date.isBefore(toDate);
-        return isOnFrom || isOnTo || isBetween;
+        boolean isBefore = date.isBefore(fromDate);
+        boolean isAfter = date.isAfter(toDate);
+        return !(isBefore | isAfter);
     }
 
     /**
