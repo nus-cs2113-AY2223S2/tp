@@ -27,7 +27,8 @@ public class Ui {
     public static final String UNKNOWN_COMMAND = "I don't understand that command, please refer to the user guide " +
             "for all available commands";
     public static final String INVALID_ADD = "Wrong/Incomplete Format! Please add new items in the following format: " +
-            "add n/[name] upc/[UPC] qty/[quantity] p/[price]";
+            "add n/[name] upc/[UPC] qty/[quantity] p/[price]\nTip: Ensure that your UPC, quantity and price are all " +
+            "in numbers and within valid range";
     public static final String DUPLICATE_ADD = "Duplicate item found! Please add another item with a different UPC";
     public static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
 
@@ -120,6 +121,7 @@ public class Ui {
     public static void printLine() {
         System.out.println(LINE);
     }
+
     public static void printDoubleNeeded() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + MISSING_PRICE + ANSI_RESET);
@@ -169,10 +171,12 @@ public class Ui {
         System.out.println(ANSI_GREEN + RECOVERED_SESSION_FILE + ANSI_RESET);
         System.out.println(LINE);
     }
+
     public static void printEmptySessionFile() {
         System.out.println(ANSI_YELLOW + EMPTY_SESSION_FILE + ANSI_RESET);
         System.out.println(LINE);
     }
+
     public static void printUnknownCommand() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + UNKNOWN_COMMAND + ANSI_RESET);
@@ -299,6 +303,7 @@ public class Ui {
         }
         return row.toString();
     }
+
     private static String printRow(String name, String upc, String qty, String price,
                                    int[] columnWidths) {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
@@ -440,12 +445,11 @@ public class Ui {
     }
 
 
-
     /**
      * Prints the updated attributes of the item as specified by the user. Shows both the previous attributes
      * and the updated attributes of the item.
      *
-     * @param oldItem The item containing the old attributes.
+     * @param oldItem     The item containing the old attributes.
      * @param updatedItem The same item but with new attributes as defined by the user.
      */
     private static void printUpdatedItemDetails(Item oldItem, Item updatedItem) {

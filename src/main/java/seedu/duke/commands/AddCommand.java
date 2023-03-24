@@ -13,7 +13,13 @@ import java.util.ArrayList;
 public class AddCommand extends Command {
     private final Item item;
 
-    public AddCommand(Inventory inventory, Item item) {
+    /**
+     * Constructor for the AddCommand class.
+     *
+     * @param inventory The inventory to be initialised in the Command class.
+     * @param item      The item to be added to the inventory.
+     */
+    public AddCommand(final Inventory inventory, final Item item) {
         super(inventory);
         this.item = item;
     }
@@ -29,7 +35,7 @@ public class AddCommand extends Command {
             itemInventory.add(item);
             Ui.printSuccessAdd();
             String[] itemNames = item.getName().toLowerCase().split(" ");
-            for(String itemName: itemNames){
+            for (String itemName : itemNames) {
                 if (!itemNameHash.containsKey(itemName)) {
                     itemNameHash.put(itemName, new ArrayList<>());
                 }
