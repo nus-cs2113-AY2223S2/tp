@@ -1,5 +1,8 @@
 package seedu.moneymind.event;
 
+import static seedu.moneymind.UserDate.isValidDate;
+import static seedu.moneymind.UserDate.getSystemDate;
+
 public class Event {
     private static final int DEFAULT_EXPENSE = 0;
     private String description;
@@ -16,12 +19,17 @@ public class Event {
     }
 
     /**
-     * A constructor with all parameters.
+     * A constructor with all parameters. 
+     * If the time is not valid, the system date will be used.
      */
     public Event(String description, int expense, String time) {
         this.description = description;
         this.expense = expense;
-        this.time = time;
+        if (isValidDate(time)) {
+            this.time = time;
+        } else {
+            this.time = getSystemDate();
+        }
     }
 
     /**
