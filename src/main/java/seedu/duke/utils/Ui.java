@@ -639,7 +639,6 @@ public class Ui {
     }
 
     public static void printDashboard(Inventory inventory, AlertList alertList) {
-        ;
         Item mostQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithMostQuantity());
         Item leastQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithLeastQuantity());
         System.out.println(LINE);
@@ -648,9 +647,21 @@ public class Ui {
         System.out.println(LINE);
         System.out.println(ANSI_ORANGE + "Total number of items: " + ANSI_WHITE + inventory.getItemInventory().size() + ANSI_RESET);
         System.out.println(ANSI_ORANGE + "Total number of active alerts: " + ANSI_WHITE + alertList.getAlertList().size() + ANSI_RESET);
+
         System.out.println(ANSI_ORANGE + "Total value of inventory: " + ANSI_WHITE + "$" + inventory.getTotalValue() + ANSI_RESET);
-        System.out.println(ANSI_ORANGE + "Item with most quantity: " + ANSI_GREEN + mostQuantityItem.getName() + " (" + mostQuantityItem.getQuantity() + ") " + ANSI_RESET);
-        System.out.println(ANSI_ORANGE + "Item with least quantity: " + ANSI_RED + leastQuantityItem.getName() + " (" + leastQuantityItem.getQuantity() + ") " + ANSI_RESET);
+        if (!inventory.getItemInventory().isEmpty()) {
+            System.out.println(ANSI_ORANGE + "Item with most quantity: " + ANSI_GREEN + mostQuantityItem.getName() + " (" + mostQuantityItem.getQuantity() + ") " + ANSI_RESET);
+            System.out.println(ANSI_ORANGE + "Item with least quantity: " + ANSI_RED + leastQuantityItem.getName() + " (" + leastQuantityItem.getQuantity() + ") " + ANSI_RESET);
+        }
+        System.out.println(LINE);
+        System.out.println(ANSI_CYAN + "Current Session Configurations:" + ANSI_RESET);
+        System.out.println(LINE);
+        if (SessionManager.getAutoSave()) {
+            System.out.println("AutoSave Mode: " + ANSI_GREEN + "TRUE" + ANSI_RESET);
+        } else {
+            System.out.println("AutoSave Mode: " + ANSI_RED + "FALSE" + ANSI_RESET);
+        }
+        System.out.println("Inventory Data File Status: " + SessionManager.InventoryDataFileExist());
         System.out.println(LINE);
         System.out.println(ANSI_GREEN + "List of active alerts: #TODO: IMPLEMENT ACTIVE ALERT VIEW AND ETC" + ANSI_RESET);
     }

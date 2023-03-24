@@ -27,7 +27,7 @@ public class ParserHandler {
         } else {
             commandInfo = "";
         }
-        switch (commandWord) {
+        switch (commandWord.toLowerCase()) {
         case "bye":
         case "exit":
             Ui.printExitMessage();

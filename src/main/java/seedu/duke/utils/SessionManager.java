@@ -23,4 +23,8 @@ public class SessionManager {
     public static void setAutoSave(boolean AutoSaveMode) {
         isAutoSaveActive = AutoSaveMode;
     }
+
+    public static String InventoryDataFileExist() {
+        return Storage.InventoryDataFileExist();
+    }
 }
