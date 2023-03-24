@@ -1,8 +1,10 @@
 package seedu.duke;
 
 import seedu.duke.budget.BudgetPlanner;
+import seedu.duke.command.AddDeadlineCommand;
 import seedu.duke.command.AddModuleCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.DeleteDeadlineCommand;
 import seedu.duke.command.DeleteModuleCommand;
 import seedu.duke.command.EditAccommodationCommand;
 import seedu.duke.command.EditAirplaneTicketCommand;
@@ -13,6 +15,7 @@ import seedu.duke.command.ExceptionHandleCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.ListCurrentCommand;
+import seedu.duke.command.ListDeadlinesCommand;
 import seedu.duke.command.ListPuCommand;
 import seedu.duke.command.ListPuModulesCommand;
 import seedu.duke.command.ViewBudgetCommand;
@@ -26,7 +29,8 @@ public class Parser {
     private static UI ui = new UI();
 
     public Command parseUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
-                                    ArrayList<Module> puModules, Storage storage, BudgetPlanner budgetPlanner) {
+                                    ArrayList<Module> puModules, Storage storage, BudgetPlanner budgetPlanner,
+                                    ArrayList<Deadline> deadlines) {
 
         ArrayList<String> userInputWords = parseCommand(userInput);
         String userCommandFirstKeyword = userInputWords.get(0);
@@ -53,12 +57,19 @@ public class Parser {
             case "add":
                 return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
             case "remove":
-                int indexToRemove = stringToInt(userCommandSecondKeyword);
-                return new DeleteModuleCommand(storage, indexToRemove, modules);
+                int indexModToRemove = stringToInt(userCommandSecondKeyword);
+                return new DeleteModuleCommand(storage, indexModToRemove, modules);
             case "/help":
                 return new HelpCommand();
             case "/budget":
                 return prepareBudgetCommand(userCommandSecondKeyword,budgetPlanner);
+            case "/deadline/list":
+                return new ListDeadlinesCommand(deadlines);
+            case "/deadline/add":
+                return prepareAddDeadlineCommand(storage, userCommandSecondKeyword);
+            case "/deadline/remove":
+                int indexDeadlineToRemove = stringToInt(userCommandSecondKeyword);
+                return new DeleteDeadlineCommand(storage, indexDeadlineToRemove, deadlines);
             default:
                 throw new InvalidCommandException(ui.getCommandInputError());
             }
@@ -161,6 +172,28 @@ public class Parser {
             throw new InvalidModuleException(ui.getInvalidModuleMessage());
         }
         return new AddModuleCommand(moduleToAdd, storage);
+    }
+
+    private Command prepareAddDeadlineCommand(Storage storage, String deadlineToAdd) {
+        try {
+            return handleAddDeadlineCommand(storage, deadlineToAdd);
+        } catch (InvalidCommandException e) {
+            return new ExceptionHandleCommand(e);
+        }
+    }
+
+    // Format of user input is: task /by dueDate
+    // Format of dueDate is: dd-MM-yyyy
+    private Command handleAddDeadlineCommand(Storage storage, String deadlineToAdd)
+            throws InvalidCommandException {
+        String[] stringSplit = deadlineToAdd.split("/by");
+        if (stringSplit.length != 2) {
+            throw new InvalidCommandException(ui.getCommandInputError());
+        }
+        String task = stringSplit[0];
+        String dueDate = stringSplit[1];
+        Deadline deadlineTypeToAdd = new Deadline(task, dueDate);
+        return new AddDeadlineCommand(deadlineTypeToAdd, storage);
     }
 
     // /budget accommodation 200
