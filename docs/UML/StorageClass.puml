@@ -1,0 +1,40 @@
+@startuml
+!include Style.puml
+hide circle
+skinparam classAttributeIconSize 0
+
+class Storage{
+- saveLocation : String
+- builder : GsonBuilder
+- gson : Gson
++ void saveToFile(eventList)
++ ArrayList<Event> loadEvents()
+}
+
+class com.google.gson.TypeAdapter{
+}
+
+class EventListAdapter{
+- dfWithTime : DateTimeFormatter
++ void write(JsonWriter, ArrayList<Event>)
++ void writeEvent(JsonWriter, Event)
++ ArrayList<Event> read(JsonReader)
++ Event readEvent(JsonReader)
++ String readDate(JsonReader)
++ String readTime(Jsonreader)
+}
+
+
+class EventList{
+# taskList : ArrayList<Event>
+}
+
+
+
+Storage --> "1" EventListAdapter
+
+
+EventListAdapter .l> com.google.gson.TypeAdapter
+Storage . EventList : writes to <
+Storage . EventList :  > gets data from
+@enduml
