@@ -10,22 +10,42 @@ import java.util.Hashtable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PatientTest {
+    private String testName = "Akshay";
+    private String testPassword = "iloveCS2113";
+    private ArrayList<String> testDiagnosisHistory = new ArrayList<>();
+    private Hashtable<String, ArrayList<String>> testMedicineHistory = new Hashtable<>();
+
     @Test
     public void createNewPatientTest() {
-        String name = "Tom";
-        String password = "iloveCS2113";
 
-        ArrayList<String> diagnosisHistory = new ArrayList<>();
-        diagnosisHistory.add("Flu");
-        diagnosisHistory.add("COVID-19");
+        ArrayList<String> dummyDiagnosisHistory = new ArrayList<>();
 
-        Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable<>();
+        Patient testPatient = new Patient(
+                testName, Information.hashPassword(testPassword), testDiagnosisHistory, testMedicineHistory);
 
-
-        Patient testPatient = new Patient(name, Information.hashPassword(password), diagnosisHistory, medicineHistory);
-
-        assertEquals(testPatient.getName(), "Tom");
+        assertEquals(testPatient.getName(), "Akshay");
         assertEquals(testPatient.getPassword(), Information.hashPassword("iloveCS2113"));
-        assertEquals(diagnosisHistory, testPatient.getPatientDiagnosisHistory());
+        assertEquals(dummyDiagnosisHistory, testPatient.getPatientDiagnosisHistory());
+
+    }
+
+    @Test
+    public void testUpdatePatientDiagnosisHistory() {
+
+        ArrayList<String> dummyPatientDiagnosisHistory = new ArrayList<>();
+        dummyPatientDiagnosisHistory.add("Flu");
+        dummyPatientDiagnosisHistory.add("Fever");
+        dummyPatientDiagnosisHistory.add("COVID-19");
+
+        Patient testPatient = new Patient(
+                testName, Information.hashPassword(testPassword), testDiagnosisHistory, testMedicineHistory);
+
+        testPatient.updatePatientDiagnosisHistory("Flu");
+        testPatient.updatePatientDiagnosisHistory("Fever");
+        testPatient.updatePatientDiagnosisHistory("COVID-19");
+
+        assertEquals(dummyPatientDiagnosisHistory, testPatient.getPatientDiagnosisHistory());
+
     }
 }
+//@@author

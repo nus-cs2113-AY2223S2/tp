@@ -24,6 +24,8 @@ public class MedicineManager {
     private static final Medicine EYE_DROPS = new Medicine("Eye Drops", "When your eyes itch");
     private static final Medicine ULTRACARBON = new Medicine("Ultracarbon", "1 250mg Tablet");
     private static final Medicine DULCOLAX = new Medicine("Dulcolax", "1 tablet every day");
+    private static final Medicine GUAIFENESIN = new Medicine("Guaifenesin", "200-400 mg 4 hourly");
+
     public MedicineManager() {
         initialiseMedications();
         initialiseMedicineDosages();
@@ -52,7 +54,10 @@ public class MedicineManager {
                 .collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Medicine> constipationMedications = Stream.of(DULCOLAX)
                 .collect(Collectors.toCollection(ArrayList::new));
-
+        ArrayList<Medicine> soreThroatMedications = Stream.of(LOZENGE)
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Medicine> bronchitisMedications = Stream.of(GUAIFENESIN, IBUPROFEN)
+                .collect(Collectors.toCollection(ArrayList::new));
 
         medicationDict.put("Covid-19", covidMedications);
         medicationDict.put("General Flu", commonFluMedications);
@@ -63,6 +68,8 @@ public class MedicineManager {
         medicationDict.put("Conjunctivitis", conjunctivitisMedications);
         medicationDict.put("Diarrhoea", diarrhoeaMedications);
         medicationDict.put("Constipation", constipationMedications);
+        medicationDict.put("Sore Throat", soreThroatMedications);
+        medicationDict.put("Bronchitis", bronchitisMedications);
     }
     /**
      * This Method initialises the dictionary of Medications and their dosages.
@@ -78,7 +85,7 @@ public class MedicineManager {
         medicineDosages.put(EYE_DROPS.toString(), EYE_DROPS.getDosage());
         medicineDosages.put(ULTRACARBON.toString(), ULTRACARBON.getDosage());
         medicineDosages.put(DULCOLAX.toString(), DULCOLAX.getDosage());
-
+        assert medicineDosages.isEmpty() == false : "Medicine dosage hashtable must not be empty";
     }
 
     /**
@@ -96,7 +103,6 @@ public class MedicineManager {
 
     /**
      * Prints medications if they are available over the counter. Otherwise, recommends patient to consult doctor.
-     * @author Jeraldchen
      * @param relevantMedications ArrayList of medications suggested.
      */
     private static void printMedication(ArrayList<Medicine> relevantMedications) {
@@ -126,6 +132,7 @@ public class MedicineManager {
             }
             return medicineList;
         } else {
+            assert medicineList.size() == 0 : "No medicines available";
             return null;
         }
 

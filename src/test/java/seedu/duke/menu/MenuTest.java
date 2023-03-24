@@ -12,7 +12,7 @@ public class MenuTest {
     //@@author Jeraldchen
     @Test
     public void registerPatient() {
-        String name = "Akshay";
+        String name = "Tom";
         String password1 = "iloveCS2113";
         String password2 = "iloveCS2113";
 

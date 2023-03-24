@@ -84,10 +84,11 @@ public class Parser {
         case "5":
             Information.resetSymptomChoice(Menu.symptoms);
             break;
-        //@@author Geeeetyx
+        //@@author tanyizhe
         case "6":
             user.printPatientMedicineHistory();
             break;
+        //@@author Geeeetyx
         case "7":
             Menu.exit();
             break;
