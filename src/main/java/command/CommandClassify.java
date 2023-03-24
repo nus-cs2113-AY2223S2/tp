@@ -65,6 +65,7 @@ public class CommandClassify extends Command {
         for (String categoryStored : categorySet) {
             System.out.print(categoryStored + " ");
         }
-        System.out.println("Totally there are " + categorySet.size() + "categories");
+        System.out.println();
+        System.out.println("Totally there are " + categorySet.size() + " categories.");
     }
 }
