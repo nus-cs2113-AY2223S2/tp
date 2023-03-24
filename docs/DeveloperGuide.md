@@ -54,20 +54,30 @@ Similarly, the state of the user's event list is saved when the user exits the a
 The Gson library was chosen as it allowed for flexible adaptation of its TypeAdapter class, allowing for custom 
 serialization and deserialization of data to be saved. 
 
-### Schedule component
+### EventList component
 
-this component is the super class of event class, Tutorial/lecture/Lab and contains all common time-related attributes and corresponding methods.
+API: `EventList.java`
+
+this component maintains a list of Schedule instance. It receives commands from Parser.java and adds/deletes/edits tasks and their information in the list according to the commands.
 
 #### How is the feature implemented:
 
-Schedule Class contains following attributes:
+the main functions are
 
-> - isRecurring: whether the event is recurring or not.
-> - startTime: the first start date and time for recurring event and is also considered as the happening time of a non-recurring event if the value of isRecurring is false.
-> - endTime: the end date and time for recurring and non-recurring event
-> - 
+> - add new task (accepts event without starting time/ending time/ending date).
+> - delete a single tasks / delete all tasks.
+> - edit the time information of task (starting time/ending time/ending date can be omitted).
+> - search for a event by index / description.
+> - get all the detail of a event in the list in String form.
 
-## Product scope
+The class diagram below illustrates the structure of the EventList component.
+
+<img src="UML\Images\EventListUML.png" />
+
+#### Why implemented in this way:
+
+It is necessary to have a list which contains all the current event/class so that we can show/ batch process events more efficiently. Moreover, this component serves intermediary functions and avoids other classes access deep into the functionality of classes (Event, Schedule e.t.c) inside the ArrayList, thus reduces the coupling of the code base. Additionally, this component also converted all the String parameters parsed by Parser into various Types that required by other classes that the EventList contains, further reducing the coupling.
+
 ### Target user profile
 
 {Describe the target user profile}
