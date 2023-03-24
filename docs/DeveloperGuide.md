@@ -187,6 +187,16 @@ The following are the new operations implemented.
 
 <br />
 
+### List Upcoming Tasks Feature
+
+**Implementation**
+
+The ```Ui#printUpcomingTasks()``` was implemented to allow the user to view their upcoming tasks in ```ndays``` days where ```ndays``` is specified. 
+
+-   ```Ui#printUpcomingTasks()``` - navigates through the task list and compares the due time/starting time of that task and current time. prints all upcoming tasks in the number of days specified.
+ 
+ <br />
+ 
 ## Product scope
 ### Target user profile
 
