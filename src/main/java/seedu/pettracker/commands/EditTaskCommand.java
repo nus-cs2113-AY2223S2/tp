@@ -12,6 +12,7 @@ public class EditTaskCommand extends Command {
 
     public EditTaskCommand(String commandArgs) {
         super();
+        assert parseArgs(commandArgs).length > 0 : "no arguments";
         this.taskNumber = Integer.parseInt(parseArgs(commandArgs)[0]);
         this.newDescription = parseArgs(commandArgs)[1];
     }
