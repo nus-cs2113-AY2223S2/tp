@@ -69,6 +69,30 @@ Example:
 For successful returns of books, the program will output a string showing that the action is successful and mark the book as available for borrowing by other users in the system. The program will handle cases of incorrect title input and unsuccessful returns.
 
 
+### [Proposed] Add book
+Description: Add new books into the system
+Format: librarian -title TITLE -topic TOPIC -author AUTHOR -isbn ISBN -action add
+Example:
+- librarian -title C++Primer -topic Programming -author James -isbn 12345 -action add
+This feature is only applicable for admin. For successful addition of new book, the program will output a message to inform the librarian. The new book will also be added into the inventory of the system so that users can now borrow the book from the library. Error inputs and missing inputs will be handled accordingly.
+ 
+
+### [Proposed] Delete book
+Description: Remove books from the system
+Format: librarian -title TITLE -topic TOPIC -author AUTHOR -isbn ISBN -action delete
+Example:
+- librarian -title C++Primer -topic Programming -author James -isbn 12345 -action delete
+This feature is only applicable for admin. For successful deletion of book, the program will output a message to inform the librarian. The book will also be deleted from the inventory of the system so that it will not be able to be borrowed by users anymore. Error inputs and missing inputs will be handled accordingly.
+
+
+### [Proposed] List book
+Description: List all the books in the library
+Format: list
+Example:
+- list
+The program will list out all the books in the library inventory. If the inventory is empty, the program will output a message indicating that there is currently no book in the library system.
+
+
 ## Product scope
 ### Target user profile
 
