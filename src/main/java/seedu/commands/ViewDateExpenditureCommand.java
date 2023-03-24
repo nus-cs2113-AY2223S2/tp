@@ -9,9 +9,7 @@ public class ViewDateExpenditureCommand extends Command {
     public final LocalDate date;
 
     public ViewDateExpenditureCommand(String userInput) {
- 
-            this.date = LocalDate.parse(userInput);
-
+        this.date = LocalDate.parse(userInput);
     }
 
     @Override
