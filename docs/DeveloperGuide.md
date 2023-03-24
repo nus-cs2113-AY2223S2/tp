@@ -35,6 +35,9 @@ The Sequence Diagram below shows how the components interact with each other for
 The remove command is facilitated by `SniffTasks` which stores all the current appointments as `APPOINTMENTS`. It then implements the following operation:
 * `Snifftasks.removeAppointment()` -- Removes the appointment with the specified UID.
 
+Given below is an example usage scenario and how the remove mechanism behaves.
+1. The user had already launched and added a few appointments to `Snifftasks`.
+2. The user executes `remove C123` command to remove the appointment with that specific UID. The remove command is then executed and calls `SniffTask#removeAppointment()`, causing the appointment with that UID to be removed. It then calls the `Ui#printAppointmentRemovedMessage()` that then calls `Appointment#toString`  that prints to the output the details of the appointment that had been removed. Lastly, it calls `Ui#showUserMessage()` to tell the user that the remove appointment mechanism is successful.
 
 ![img_11.png](img_11.png) <br>
 **Figure 7: Sequence Diagram showing the logical implementation of executeCommand() for the List Command**
@@ -175,7 +178,7 @@ ______________________________________________________________________
 ```
 
 7. Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/19:00 p/H`
-   Expected output: A surgery appointment is not added due to invalid date description.
+   Expected output: A surgery appointment is not added due to dates and times being the same .
    Example:
 ```
 ______________________________________________________________________
@@ -267,4 +270,3 @@ ______________________________________________________________________
 ```
 
 ```
-
