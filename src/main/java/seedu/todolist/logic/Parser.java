@@ -14,6 +14,7 @@ import seedu.todolist.logic.command.ListTasksCommand;
 import seedu.todolist.logic.command.MarkTaskCommand;
 import seedu.todolist.logic.command.ProgressBarCommand;
 import seedu.todolist.logic.command.UnmarkTaskCommand;
+import seedu.todolist.logic.command.CheckRepeatingTaskCommand;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -99,6 +100,8 @@ public class Parser {
             return new DeleteTaskCommand(getArguments(splitInput, DeleteTaskCommand.FLAGS));
         case ExitCommand.KEYWORD:
             return new ExitCommand();
+        case CheckRepeatingTaskCommand.KEYWORD:
+            return new CheckRepeatingTaskCommand();
         case ProgressBarCommand.KEYWORD:
             return new ProgressBarCommand();
         default:

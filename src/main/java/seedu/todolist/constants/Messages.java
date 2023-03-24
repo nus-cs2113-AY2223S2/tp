@@ -15,7 +15,9 @@ public enum Messages {
     DELETE_TASK("Okay, I've removed this task:"),
     EDIT_TASK("Okay, I have edited the parameters of this task:"),
     LIST_TASKS("Okay, here are the tasks in your list:"),
-    EMPTY_LIST("There are no tasks in your list.");
+    EMPTY_LIST("There are no tasks in your list."),
+
+    CHECK_REPEATING("The list has been checked for any repeating tasks.");
 
     public final String MESSAGE;
 

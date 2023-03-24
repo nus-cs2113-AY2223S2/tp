@@ -18,10 +18,12 @@ public class Task implements Serializable {
     private String description;
     private LocalDateTime deadline;
     private boolean isDone = false;
+    private int repeatDuration;
 
-    public Task(String description, LocalDateTime deadline) {
+    public Task(String description, LocalDateTime deadline, int repeatDuration) {
         this.description = description;
         this.deadline = deadline;
+        this.repeatDuration = repeatDuration;
     }
 
     public String toString() {
@@ -42,7 +44,21 @@ public class Task implements Serializable {
         this.deadline = deadline;
     }
 
-    public LocalDateTime getDeadline() { // might remove later
+
+    public int getRepeatDuration() {
+        return this.repeatDuration;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public LocalDateTime getDeadline() {
         return this.deadline;
     }
+
+    public void setRepeatDuration(int newRepeatDuration) {
+        this.repeatDuration = newRepeatDuration;
+    }
+
 }
