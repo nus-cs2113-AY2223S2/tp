@@ -324,7 +324,7 @@ public class TaskList {
                     Storage.trySave(tasks);
                     Ui.borderLine();
                     System.out.println("\t Expired Tasks have been purged from the list!");
-                    System.out.println("\t I love purging things human...");
+                    System.out.println("\t I love purging things, human...");
                     Ui.borderLine();
                 } else {
                     Ui.borderLine();
@@ -335,7 +335,9 @@ public class TaskList {
                 System.out.println("\t Quack! No tasks have expired!");
                 Ui.borderLine();
             }
-
+        } else {
+            System.out.println("\t Quack! No tasks currently pending!");
+            Ui.borderLine();
         }
     }
 }
