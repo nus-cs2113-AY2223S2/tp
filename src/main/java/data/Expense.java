@@ -85,5 +85,22 @@ public class Expense implements Serializable {
         String timeString = this.expenseTime.toString();
         return (currencyString + amountString + " cat:" + descriptionString + " date:" + timeString);
     }
+
+    /**
+     * Standardize the printing format of sorted expenses
+     */
+
+    public String sortedDisplay(String sortBy) {
+        String currencyString = this.currencyType;
+        String amountString = this.expenseAmount.toString();
+        String descriptionString = this.description;
+        String timeString = this.expenseTime.toString();
+        if (sortBy.equals("C")) {
+            return ("cat:" + descriptionString + " " + currencyString + amountString + " date:" + timeString);
+        } else {
+            return ("date:" + timeString + " " + currencyString + amountString + " cat:" + descriptionString);
+        }
+
+    }
 }
 
