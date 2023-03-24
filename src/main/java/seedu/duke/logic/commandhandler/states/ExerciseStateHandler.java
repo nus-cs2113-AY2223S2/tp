@@ -17,8 +17,8 @@ import java.util.ArrayList;
 public class ExerciseStateHandler {
 
     private static ArrayList<ExerciseData> previousGeneratedWorkout = new ArrayList<>();
-    private final StorageHandler storageHandler;
     public boolean workoutOngoing;
+    private final StorageHandler storageHandler;
     private Session currentSessionWorkout;
 
     public ExerciseStateHandler (StorageHandler storageHandler) {
