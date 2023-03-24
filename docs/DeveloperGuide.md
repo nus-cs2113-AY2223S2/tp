@@ -9,11 +9,9 @@
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
-## Design & implementation
+## Design
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
-:smiley: You can use PlantUML to create UML diagrams like what we did in this documentation. See [Using PlantUML](https://se-education.org/guides/tutorials/plantUml.html) for more information.
 
 ### Architecture
 
@@ -34,7 +32,7 @@ it initializes the other components in the correct sequence and is responsible f
 
 The following sections will explain the architecture in more detail.
 
-## Storage component
+### Storage component
 
 **API**: `Storage.java`
 
@@ -44,7 +42,7 @@ The `Storage` component,
 * can save category and event data in txt format, and read it back. (txt format is chosen because it is human readable)
 * depends on `CategoryList.java` and `CategoryCommand.java` to save and load data from ArrayList and HashMap.
 
-## Commands component
+### Commands component
 
 **API**: `Command.java`
 
@@ -54,7 +52,7 @@ The `Command` component,
 * can execute different commands, such as adding category, adding event, deleting category, deleting event, viewing category, viewing event
 * depends on `CategoryList.java`, `CategoryCommand.java`, `Event.java`, `Parser.java` to execute the commands.
 
-## Parser component
+### Parser component
 
 **API**: `Parser.java`
 
@@ -64,7 +62,10 @@ The `Parser` component,
 * can parse the user input and process it to the correct format
 * depends on `CategoryList.java`, `CategoryCommand.java`, `Event.java`, `Command.java` to execute the commands.
 
-## Product scope
+## Implementation
+This section describes some noteworthy details on how certain features are implemented.
+  
+## Appendix A: Product Scope
 ### Target user profile
 
 {Describe the target user profile}
@@ -73,7 +74,7 @@ The `Parser` component,
 
 {Describe the value proposition: what problem does it solve?}
 
-## User Stories
+## Appendix B: User Stories
 
 | Version | As a ... | I want to ...                                                                                          | So that I can ...                                          |
 |-----|------|--------------------------------------------------------------------------------------------------------|------------------------------------------------------------|
@@ -83,15 +84,15 @@ The `Parser` component,
 | v2.0 | user | **edit** one time expenses                                                                             | change when I type wrongly |
 |     | user | **search** for specific expenses by keyword or date range                                              | easily find and review my past spending         |
 
-## Non-Functional Requirements
+## Appendix C: Non Functional Requirements
 
 {Give non-functional requirements}
 
-## Glossary
+## Appendix D: Glossary
 
 * *glossary item* - Definition
 
-## Instructions for manual testing
+## Appendix E: Instructions for Manual Testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
