@@ -60,7 +60,7 @@ public class Ui {
         System.out.println("                    find company");
         System.out.println(" ");
         System.out.println("To filter according to industry, type:");
-        System.out.println("                    find industry");
+        System.out.println("                    find <INDUSTRY>");
         System.out.println(" ");
         System.out.println("To display unconfirmed attendees, type:");
         System.out.println("                    list unconfirmed");
