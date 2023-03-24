@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object SearchParser{
+    rawInput = "123"
+    Inventory = inventory
+    searchType = Types.SearchType.UPC
+}
+
+object SearchCommand{
+    rawInput = "123"
+    Inventory = inventory
+    searchType = Types.SearchType.UPC
+}
+
+object Ui{
+    Item = item
+}
+
+SearchParser -> SearchCommand
+SearchCommand -> Ui
+
+@enduml

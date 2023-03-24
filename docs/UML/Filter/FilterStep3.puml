@@ -1,0 +1,12 @@
+@startuml
+object FilterParser{
+    rawInput = "f/price p/gt 23.50"
+    Inventory = inventory
+}
+object FilterCommand{
+    Inventory = inventory
+    price = 23.50
+    FilterPriceMode = "p/gt"
+}
+FilterParser -> FilterCommand
+@enduml
