@@ -41,4 +41,8 @@ public class Task implements Serializable {
     public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
     }
+
+    public LocalDateTime getDeadline() { // might remove later
+        return this.deadline;
+    }
 }
