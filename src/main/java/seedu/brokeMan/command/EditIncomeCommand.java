@@ -1,7 +1,6 @@
 package seedu.brokeMan.command;
 
 import seedu.brokeMan.entry.Category;
-import seedu.brokeMan.entry.expense.ExpenseList;
 import seedu.brokeMan.entry.income.IncomeList;
 import seedu.brokeMan.exception.CategoryNotCorrectException;
 import seedu.brokeMan.parser.StringToCategory;

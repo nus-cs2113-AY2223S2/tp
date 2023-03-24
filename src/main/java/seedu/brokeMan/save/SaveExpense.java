@@ -3,6 +3,8 @@ package seedu.brokeMan.save;
 import seedu.brokeMan.entry.Entry;
 import seedu.brokeMan.entry.expense.Expense;
 import seedu.brokeMan.entry.expense.ExpenseList;
+import seedu.brokeMan.exception.CategoryNotCorrectException;
+import seedu.brokeMan.parser.StringToCategory;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -25,10 +27,13 @@ public class SaveExpense {
             myWriter.flush();
             String message = "";
             for (Entry expense : expenses) {
-                message = expense.getAmount() + "/" + expense.getInfo() + "/" + expense.getTime();
+                message = expense.getAmount() +
+                        "/" + expense.getInfo() +
+                        "/" + expense.getTime() +
+                        "/" + expense.getCategory() +
+                        "\n";
+                myWriter.write(message);
             }
-            myWriter.write(message);
-
             myWriter.close();
         } catch (IOException foe) {
             try {
@@ -52,10 +57,14 @@ public class SaveExpense {
                 try {
                     Expense expense = new Expense(Double.parseDouble(strExpense[0]),
                             strExpense[1],
-                            LocalDateTime.parse(strExpense[2]));
-                    ExpenseList.addExpense(expense);
+                            LocalDateTime.parse(strExpense[2]),
+                            StringToCategory.convertStringToCategory((strExpense[3])));
+                    ExpenseList.expenseList.add(expense);
+
                 } catch (IndexOutOfBoundsException iobe) {
                     System.out.println("Incorrectly Saved Expense");
+                } catch (CategoryNotCorrectException e) {
+                    throw new RuntimeException(e);
                 }
             }
         } catch (IOException ioe) {

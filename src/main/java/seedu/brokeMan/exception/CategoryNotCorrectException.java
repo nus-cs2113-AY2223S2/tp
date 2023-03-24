@@ -1,8 +1,10 @@
 package seedu.brokeMan.exception;
 
+import static seedu.brokeMan.common.Messages.MESSAGE_INVALID_CATEGORY;
+
 public class CategoryNotCorrectException extends BrokeManException{
-    public String getMessage() {return "Category should be one of the enum tags: \n"+
-            "    SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL,\n" +
-            "    SALARY, INVESTMENT,\n" +
-            "    OTHERS"; }
+    @Override
+    public String getMessage() {
+        return MESSAGE_INVALID_CATEGORY;
+    }
 }

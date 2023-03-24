@@ -19,16 +19,29 @@ import seedu.brokeMan.command.SortIncomeByAmountCommand;
 import seedu.brokeMan.command.SortIncomeByDateCommand;
 import seedu.brokeMan.command.ViewBudgetCommand;
 import seedu.brokeMan.entry.Category;
-import seedu.brokeMan.exception.*;
+import seedu.brokeMan.exception.CategoryNotCorrectException;
+import seedu.brokeMan.exception.InvalidEditCommandException;
+import seedu.brokeMan.exception.BudgetNotADoubleException;
+import seedu.brokeMan.exception.ContainsEmptyFlagException;
+import seedu.brokeMan.exception.AmountIsNotADoubleException;
+import seedu.brokeMan.exception.hasNotSetBudgetException;
+import seedu.brokeMan.exception.IncorrectTypeException;
+import seedu.brokeMan.exception.IndexNotAnIntegerException;
+import seedu.brokeMan.exception.InvalidAddCommandException;
+import seedu.brokeMan.exception.InvalidDateTimeException;
+import seedu.brokeMan.exception.InvalidMonthTimeException;
+import seedu.brokeMan.exception.InvalidOptionalTimeFlagException;
+import seedu.brokeMan.exception.NegativeAmountException;
+import seedu.brokeMan.exception.WrongFlagOrderException;
+import seedu.brokeMan.exception.BrokeManException;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import static seedu.brokeMan.common.Messages.MESSAGE_ARGUMENTS_NOT_SPECIFIED;
 import static seedu.brokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
+import static seedu.brokeMan.parser.StringToCategory.convertStringToCategory;
 
 
 /*
@@ -115,13 +128,12 @@ public class Parser {
      */
     private static String checkValidOptionalTimeFlagException(String description)
             throws InvalidOptionalTimeFlagException, InvalidMonthTimeException {
-        if (description.length() < 3 || !description.substring(0, 3).equals("t/ ")) {
+        if (!description.startsWith("t/ ")) {
             throw new InvalidOptionalTimeFlagException();
         }
         String newDescription = description.substring(3).trim();
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu/MM");
-            YearMonth date = YearMonth.parse(newDescription, formatter);
+            StringToTime.checkIfValidDateString(newDescription);
         } catch (DateTimeParseException dtpe) {
             throw new InvalidMonthTimeException();
         }
@@ -158,7 +170,13 @@ public class Parser {
             String errorMessage = new BudgetNotADoubleException().getMessage();
             return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
         }
+
         if (descriptionByWord.length == 2) {
+            try {
+                StringToTime.checkIfValidDateString(descriptionByWord[1]);
+            } catch (DateTimeParseException dtpe) {
+                return new InvalidCommand("Invalid Date Format!", SetBudgetCommand.MESSAGE_USAGE);
+            }
             descriptionByWord[1] = descriptionByWord[1].trim();
             return (descriptionByWord[1] == "" ? new SetBudgetCommand(budget)
                     : new SetBudgetCommand(budget, descriptionByWord[1]));
@@ -236,12 +254,13 @@ public class Parser {
         double amount = Double.parseDouble(splitDescriptions[1]);
         String newDescription = splitDescriptions[2];
         LocalDateTime time = StringToTime.convertStringToTime(splitDescriptions[3]);
-        Category category = null;
+        Category category;
         try {
-            category = StringToCategory.convertStringToCategory(splitDescriptions[4]);
+            category = convertStringToCategory(splitDescriptions[4]);
         } catch (CategoryNotCorrectException e) {
             throw new RuntimeException(e);
         }
+
 
         return new AddExpenseCommand(amount, newDescription, time, category);
     }
@@ -253,7 +272,7 @@ public class Parser {
      * @return the prepared command
      */
     private static Command prepareAddIncomeCommand(String description) {
-        // description in the form of "a/ <amount> d/ <description> t/ time"
+        // description in the form of "a/ <amount> d/ <description> t/ time c/ category"
 
         if (description.equals("")) {
             return new InvalidCommand(MESSAGE_ARGUMENTS_NOT_SPECIFIED,
@@ -272,7 +291,7 @@ public class Parser {
         LocalDateTime time = StringToTime.convertStringToTime(splitDescriptions[3]);
         Category category = null;
         try {
-            category = StringToCategory.convertStringToCategory(splitDescriptions[4]);
+            category = convertStringToCategory(splitDescriptions[4]);
         } catch (CategoryNotCorrectException e) {
             throw new RuntimeException(e);
         }
@@ -304,18 +323,20 @@ public class Parser {
 
         String[] splitDescriptions = description.split("/");
 
-        int length = splitDescriptions[1].length();
-        int length1 = splitDescriptions[2].length();
+        int length1 = splitDescriptions[1].length();
+        int length2 = splitDescriptions[2].length();
+        int length3 = splitDescriptions[3].length();
 
-        splitDescriptions[1] = splitDescriptions[1].substring(0, length - 1).trim();
-        checkDoubleException(splitDescriptions[1]);
-        splitDescriptions[2] = splitDescriptions[2].substring(0, length1 - 1).trim();
-        checkEmptyFlag(splitDescriptions);
-        splitDescriptions[3] = splitDescriptions[3].substring(1, 18);
-        checkTimeException(splitDescriptions[3]);
+
+        splitDescriptions[1] = splitDescriptions[1].substring(0, length1 - 1).trim();
+        splitDescriptions[2] = splitDescriptions[2].substring(0, length2 - 1).trim();
+        splitDescriptions[3] = splitDescriptions[3].substring(0, length3 - 1).trim();
+        checkEmptyAddFlag(splitDescriptions);
         splitDescriptions[4] = splitDescriptions[4].substring(1);
-        checkCategoryException(splitDescriptions[4]);
+        checkDoubleException(splitDescriptions[1]);
+        checkTimeException(splitDescriptions[3]);
 
+        convertStringToCategory(splitDescriptions[4]);
         return splitDescriptions;
     }
 
@@ -351,12 +372,25 @@ public class Parser {
      * @param splitDescriptions split command descriptions that contains the description of flags
      * @throws ContainsEmptyFlagException custom exception to indicate flag descriptions is / are empty
      */
+    private static void checkEmptyAddFlag(String[] splitDescriptions) throws ContainsEmptyFlagException {
+        if (splitDescriptions.length == 4) {
+            throw new ContainsEmptyFlagException();
+        }
+
+        assert (splitDescriptions.length >= 5) : "Invalid input\n";
+        for (String description : splitDescriptions) {
+            if (description.isEmpty()) {
+                throw new ContainsEmptyFlagException();
+            }
+        }
+    }
+
     private static void checkEmptyFlag(String[] splitDescriptions) throws ContainsEmptyFlagException {
         if (splitDescriptions.length == 3) {
             throw new ContainsEmptyFlagException();
         }
 
-        assert (splitDescriptions.length == 4) : "Invalid input\n";
+        assert (splitDescriptions.length >= 4) : "Invalid input\n";
         for (String description : splitDescriptions) {
             if (description.isEmpty()) {
                 throw new ContainsEmptyFlagException();
@@ -449,13 +483,6 @@ public class Parser {
         }
     }
 
-    private static void checkCategoryException(String category) throws CategoryNotCorrectException {
-        try {
-            StringToCategory.convertStringToCategory(category);
-        } catch (CategoryNotCorrectException cnce) {
-            throw new CategoryNotCorrectException();
-        }
-    }
 
     /**
      * Parses the command description in the context for the context of
@@ -477,6 +504,7 @@ public class Parser {
             throw new WrongFlagOrderException();
         }
         String[] splitDescriptions = description.split("/");
+
         int length1 = splitDescriptions[1].length();
         int length2 = splitDescriptions[2].length();
         splitDescriptions[1] = splitDescriptions[1].substring(0, length1 - 1).trim();
@@ -485,12 +513,14 @@ public class Parser {
         checkIsIntegerIndex(splitDescriptions[1]);
         checkCorrectType(splitDescriptions[2]);
         splitDescriptions[3] = splitDescriptions[3].trim();
-
-        if (splitDescriptions[2].equals("amount")) {
+        if (splitDescriptions[2].equals("category")) {
+            convertStringToCategory(splitDescriptions[3]);
+        } else if (splitDescriptions[2].equals("amount")) {
             checkDoubleException(splitDescriptions[3]);
         } else if (splitDescriptions[2].equals("time")) {
-            checkTimeException(splitDescriptions[3]);
+            checkTimeException((splitDescriptions[3]));
         }
+
         return splitDescriptions;
     }
 

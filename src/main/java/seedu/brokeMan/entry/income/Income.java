@@ -10,6 +10,7 @@ public class Income extends Entry{
     }
 
     public String toString() {
-        return String.format("$%.2f earned on %s - %s [%s]", amount, info, super.convertTimeToString(), category.name());
+        return String.format("$%.2f earned on %s - %s [%s]", amount, info,
+                super.convertTimeToString(), category.name());
     }
 }

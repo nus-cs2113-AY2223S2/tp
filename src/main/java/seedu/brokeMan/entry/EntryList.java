@@ -26,11 +26,15 @@ public abstract class EntryList {
      * @param entryList LinkedList that contains the entries
      */
     public static void listEntry(List<Entry> entryList) {
-        int counter = 1;
-        for (Entry entryLog : entryList) {
-            String message = String.format("%d. %s", counter, entryLog.toString());
-            Ui.showToUser(message);
-            counter++;
+        if (entryList.size() == 0) {
+            Ui.showToUser("The requested list is empty\n|");
+        } else if (entryList.size() > 0) {
+            int counter = 1;
+            for (Entry entryLog : entryList) {
+                String message = String.format("%d. %s", counter, entryLog.toString());
+                Ui.showToUser(message);
+                counter++;
+            }
         }
     }
 
@@ -121,16 +125,6 @@ public abstract class EntryList {
         }
     }
 
-    protected static double getTotalAmount(LinkedList<Entry> entryList) {
-        double totalAmount = 0;
-        if (entryList.size() > 0) {
-            for (Entry entryLog : entryList) {
-                totalAmount += entryLog.getAmount();
-            }
-        }
-        return totalAmount;
-    }
-
     /**
      * Sorts entries using Entry comparator
      * @param entryList LinkedList that contains the entries
@@ -157,7 +151,7 @@ public abstract class EntryList {
         }
         if (entriesByCategory.size() > 0) {
             listEntry(entriesByCategory);
-            Ui.showToUser("Total in this category: $" + getTotalAmount(entriesByCategory));
+            Ui.showToUser("Total in this category: $" + getEntryListSum(entriesByCategory));
         } else {
             Ui.showToUser("No entries found under this category. ");
         }
