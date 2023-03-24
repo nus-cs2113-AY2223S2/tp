@@ -4,6 +4,7 @@ import seedu.commands.SortCommand;
 import seedu.exceptions.NoPaidFieldException;
 import seedu.txtdata.TxtFileStatus;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -46,8 +47,8 @@ public class ExpenditureList {
         }
     }
 
-    public int getSize() {
-        return expenditures.size();
+    public ArrayList<Expenditure> getExpenditures() {
+        return expenditures;
     }
 
     public Expenditure getExpenditure(int index) {
@@ -60,6 +61,19 @@ public class ExpenditureList {
         for (int i = 0; i < expenditures.size(); i++) {
             final int expenditureNumber = i + 1;
             stringOfExpenditures.append(String.format("%d. %s\n", expenditureNumber, expenditures.get(i)));
+        }
+        return stringOfExpenditures.toString().stripTrailing();
+    }
+
+    public static String printSpecificDate (LocalDate date) {
+        StringBuilder stringOfExpenditures = new StringBuilder();
+        int counter = 1;
+        for (int i = 0; i < expenditures.size(); i++) {
+            Expenditure expenditure = expenditures.get(i);
+            if (date.equals(expenditure.getDate())) {
+                stringOfExpenditures.append(String.format("%d. %s\n", counter, expenditure));
+                counter += 1;
+            }
         }
         return stringOfExpenditures.toString().stripTrailing();
     }
