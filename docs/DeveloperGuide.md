@@ -1,7 +1,7 @@
 # Developer Guide
 
 ## Acknowledgements
-
+x
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 ## Design & implementation
@@ -10,15 +10,20 @@
 Entry class is the underlying superclass for Expense and Income classes. It establishes the common attributes and methods that are necessary to represent Expenses and Incomes. Abstract class is used to represent their common features to maximize code reusability and increase maintainability. 
 
 Private attributes
+
 Info: String that stores the description of the entry
+
 Amount: Double that stores the monetary value of entry
+
 Time: LocalDateTime that stores the date and time of entry
+
+Category: Category that stores the type tag of entry
 
 **Methods**
 
 Getters can be used to provide the private attributes to other classes
 
-editDescription(), editAmount(), editTime()
+editDescription(), editAmount(), editTime(), editCategory()
 * Takes in corresponding parameters to edit the private attributes.
 * Used by EntryList to make edits
 
@@ -63,10 +68,16 @@ SortEntryByAmount()
 SortEntryByDate()
 * Returns a sorted list of entry by date of entry.
   
+findEntriesByCategory()
+* Returns a list of entries with the same category and the total amount in this category.
 
 ### ExpenseList, IncomeList
 
-Classes ExpenseList and IncomeList is responsible for keeping track of the corresponding entry instances added to the program by the user. At a class level, it keeps a **LinkedList** of corresponding entries. They both extend EntryList, the abstract class that represents a collection of Entry instances. It provides static functionalities of managing and viewing entry instances at a class level. Instances of ExpenseList and IncomeList are not created as all functionalities can be provided at the class level. 
+Classes ExpenseList and IncomeList is responsible for keeping track of the corresponding entry instances added to the program by the user. 
+At a class level, it keeps a **LinkedList** of corresponding entries. 
+They both extend EntryList, the abstract class that represents a collection of Entry instances. 
+It provides static functionalities of managing and viewing entry instances at a class level. 
+Instances of ExpenseList and IncomeList are not created as all functionalities can be provided at the class level. 
   
 **Methods**
   
@@ -93,14 +104,16 @@ The program will offer visualization of the user's incomes, expenses and budget,
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|user|add, delete, edit, and list my income|manage my income|
-|v1.0|user|add, delete, edit, and list my expenses|manage my expenses|
-|v1.0|user|set and view my budget|set expectation of how much money I should use|
-|v1.0|user|view how much of the budget I spend|manage and change my spending habit as necessary|
-|v1.0|user|view all comments that I can enter|get help on the features if necessary|
-|v2.0|user|list monthly expenses, income, and budget|refer to financial status in previous months|
+|Version| As a ... | I want to ...                                                         | So that I can ...                                |
+|--------|----------|-----------------------------------------------------------------------|--------------------------------------------------|
+|v1.0|user| add, delete, edit, and list my income                                 | manage my income                                 |
+|v1.0|user| add, delete, edit, and list my expenses                               | manage my expenses                               |
+|v1.0|user| set and view my budget                                                | set expectation of how much money I should use   |
+|v1.0|user| view how much of the budget I spend                                   | manage and change my spending habit as necessary |
+|v1.0|user| view all comments that I can enter                                    | get help on the features if necessary            |
+|v2.0|user| list monthly expenses, income, and budget                             | refer to financial status in previous months     |
+|v2.0|user| set the category of income and expenses, and list entries by category | refer to expenses and income by category         |
+
 
 ## Non-Functional Requirements
 
