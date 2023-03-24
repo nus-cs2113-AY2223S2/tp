@@ -78,7 +78,7 @@ public class Parser {
         String matcher = input;
         int count = 0;
         while (matcher.contains(regex)){
-            matcher=matcher.substring(matcher.indexOf(regex)+1);
+            matcher = matcher.substring(matcher.indexOf(regex)+1);
             ++count;
         }
         boolean isMatch = (count == 1);
