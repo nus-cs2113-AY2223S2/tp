@@ -106,6 +106,10 @@ public class Ui {
         System.out.println("Successfully removed task " + taskNumber);
     }
 
+    public void editTaskCommandMessage(int taskNumber, String newDescription) {
+        System.out.println("Updated task " + taskNumber + " to " + newDescription + ".");
+    }
+
     /**
      * Message that prints before listing all tasks.
      */
