@@ -54,7 +54,30 @@ Similarly, the state of the user's event list is saved when the user exits the a
 The Gson library was chosen as it allowed for flexible adaptation of its TypeAdapter class, allowing for custom 
 serialization and deserialization of data to be saved. 
 
-## Product scope
+### EventList component
+
+API: `EventList.java`
+
+this component maintains a list of Schedule instance. It receives commands from Parser.java and adds/deletes/edits tasks and their information in the list according to the commands.
+
+#### How is the feature implemented:
+
+the main functions are
+
+> - add new task (accepts event without starting time/ending time/ending date).
+> - delete a single tasks / delete all tasks.
+> - edit the time information of task (starting time/ending time/ending date can be omitted).
+> - search for a event by index / description.
+> - get all the detail of a event in the list in String form.
+
+The class diagram below illustrates the structure of the EventList component.
+
+<img src="UML\Images\EventListUML.png" />
+
+#### Why implemented in this way:
+
+It is necessary to have a list which contains all the current event/class so that we can show/ batch process events more efficiently. Moreover, this component serves intermediary functions and avoids other classes access deep into the functionality of classes (Event, Schedule e.t.c) inside the ArrayList, thus reduces the coupling of the code base. Additionally, this component also converted all the String parameters parsed by Parser into various Types that required by other classes that the EventList contains, further reducing the coupling.
+
 ### Target user profile
 
 {Describe the target user profile}
@@ -83,12 +106,4 @@ serialization and deserialization of data to be saved.
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
 
-
-### EventList component 
-
-API: Eventlist.java
-
-the EventList component:
-
-- stores a ArrayList of current event
 
