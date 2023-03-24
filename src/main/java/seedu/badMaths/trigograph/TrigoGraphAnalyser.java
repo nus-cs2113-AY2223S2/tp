@@ -55,12 +55,16 @@ public class TrigoGraphAnalyser {
             logger.log(Level.SEVERE, "NumberFormatException", e);
             Ui.printIncorrectFormatEntered();
             return CANNOT_RUN_ANALYSER;
-        } catch (IllegalArgumentException e) {
-            logger.log(Level.SEVERE, "IllegalArgumentException", e);
+        } catch (GraphException e) {
+            logger.log(Level.SEVERE, "GraphException", e);
             Ui.printNegativeAmplitudeEntered();
             return CANNOT_RUN_ANALYSER;
         } catch (ArrayIndexOutOfBoundsException e){
             logger.log(Level.SEVERE, "ArrayIndexOutOfBounds", e);
+            Ui.printIncorrectFormatEntered();
+            return CANNOT_RUN_ANALYSER;
+        } catch (IllegalArgumentException e){
+            logger.log(Level.SEVERE, "IllegalArguementException", e);
             Ui.printIncorrectFormatEntered();
             return CANNOT_RUN_ANALYSER;
         }
@@ -91,9 +95,9 @@ public class TrigoGraphAnalyser {
         }
     }
 
-    private void testForSignOfAmplitude() throws IllegalArgumentException {
+    private void testForSignOfAmplitude() throws GraphException {
         if (trigoEqn.startsWith("-")) {
-            throw new IllegalArgumentException();
+            throw new GraphException();
         }
     }
 
@@ -103,7 +107,7 @@ public class TrigoGraphAnalyser {
         }
     }
 
-    public String[] splitAmplitudeFromTrigoEqn() throws NumberFormatException, IllegalArgumentException {
+    public String[] splitAmplitudeFromTrigoEqn() throws NumberFormatException, IllegalArgumentException, GraphException {
         testForSignOfAmplitude();
         String[] amplitudeAndEqn = trigoEqn.split("\\*", 2);
         testForMultipleAsterisk(amplitudeAndEqn[1]);
