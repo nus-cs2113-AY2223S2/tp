@@ -1,9 +1,11 @@
 package seedu.expenditure;
 
+import seedu.commands.SortCommand;
 import seedu.exceptions.NoPaidFieldException;
 import seedu.txtdata.TxtFileStatus;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class ExpenditureList {
     public static final int LIST_OFFSET = 1;
@@ -68,5 +70,24 @@ public class ExpenditureList {
         } catch (IOException e) {
             System.out.println("Error saving file");
         }
+    }
+
+    public static ExpenditureList sortAmount(String sortType) {
+        ArrayList<Expenditure> sortExpenditureAmount = expenditures;
+        switch (sortType) {
+        case SortCommand.AMOUNT_ASCENDING:
+            sortExpenditureAmount.sort(Comparator.comparing(Expenditure::getValue));
+            break;
+        case SortCommand.AMOUNT_DESCENDING:
+            sortExpenditureAmount.sort(Comparator.comparing(Expenditure::getValue).reversed());
+            break;
+        default:
+            break;
+        }
+        ExpenditureList sortedExpenditures = new ExpenditureList();
+        for (Expenditure expenditure : sortExpenditureAmount) {
+            sortedExpenditures.addExpenditure(expenditure);
+        }
+        return sortedExpenditures;
     }
 }

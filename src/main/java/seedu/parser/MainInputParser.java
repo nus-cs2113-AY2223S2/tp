@@ -18,6 +18,7 @@ import seedu.commands.BorrowExpenditureCommand;
 import seedu.commands.InvalidCommand;
 import seedu.commands.UnmarkCommand;
 import seedu.commands.MarkCommand;
+import seedu.commands.SortCommand;
 
 public class MainInputParser {
     public static final int LIMIT = 2;
@@ -48,6 +49,10 @@ public class MainInputParser {
             case EditCommand.COMMAND_WORD:
                 ParseEdit prepareEdit = new ParseEdit(splitValues[INDEX_USERSTRING]);
                 return prepareEdit.editItem();
+            case SortCommand.COMMAND_WORD:
+                ParseSort prepareSort;
+                prepareSort = new ParseSort(splitValues[INDEX_USERSTRING]);
+                return prepareSort.sortExpenditures();
             case ViewExpenditureCommand.COMMAND_WORD:
                 return new ViewExpenditureCommand();
             case AcademicExpenditureCommand.COMMAND_WORD:
