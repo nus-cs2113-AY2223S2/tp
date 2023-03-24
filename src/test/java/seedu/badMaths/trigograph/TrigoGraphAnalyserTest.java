@@ -14,7 +14,7 @@ class TrigoGraphAnalyserTest {
         });
     }
     @Test
-    void amplitudeOfOneShouldReturnOne(){
+    void amplitudeOfOneShouldReturnOne() throws GraphException {
         String equation = "sin(2*pi*x+1)+3";
         TrigoGraphAnalyser analyser = new TrigoGraphAnalyser(equation);
         String [] input = analyser.splitAmplitudeFromTrigoEqn();
