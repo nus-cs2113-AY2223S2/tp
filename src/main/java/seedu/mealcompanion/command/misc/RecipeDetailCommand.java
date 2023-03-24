@@ -1,5 +1,6 @@
 package seedu.mealcompanion.command.misc;
 
+import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.ingredient.Ingredient;
@@ -9,6 +10,7 @@ import seedu.mealcompanion.recipe.Instruction;
 import seedu.mealcompanion.recipe.InstructionList;
 import seedu.mealcompanion.recipe.Recipe;
 import seedu.mealcompanion.recipe.RecipeList;
+import seedu.mealcompanion.ui.MealCompanionUI;
 
 /**
  * Represents the "recipe detail" command.
@@ -25,7 +27,7 @@ public class RecipeDetailCommand extends ExecutableCommand {
      * @param argument the string to check for
      * @return true if string is number, false otherwise
      */
-    private boolean isIndex(String argument) {
+    private boolean isNum(String argument) {
         return argument.matches("[0-9]+");  //match a number with optional '-' and decimal.
     }
 
@@ -35,7 +37,7 @@ public class RecipeDetailCommand extends ExecutableCommand {
      * @param dukeSession the dukeSession containing the list of recipes to look in
      * @return index of recipe if recipe is found, else return -1
      */
-    private int findIndex(String name, MealCompanionSession dukeSession) {
+    private int findIndex(String name, MealCompanionSession dukeSession) throws MealCompanionException {
         RecipeList recipes = dukeSession.getRecipes();
         int index = 1;
         for (Recipe recipe : recipes.getRecipes()) {
@@ -44,44 +46,80 @@ public class RecipeDetailCommand extends ExecutableCommand {
             }
             index++;
         }
-        return -1;
+        throw new MealCompanionException("Recipe not found!");
     }
 
-    @Override
-    public void execute(MealCompanionSession mealCompanionSession) {
-        int index;
-        if (!isIndex(this.argument)) {
-            index = findIndex(this.argument, mealCompanionSession) - 1;
-        } else {
-            index = Integer.parseInt(this.argument) - 1;
-        }
-
-        Recipe recipe = mealCompanionSession.getRecipes().getRecipe(index);
-        mealCompanionSession.getUi().printMessage("Recipe for " + recipe.getName());
-        mealCompanionSession.getUi().printMessage(""); //print newline for all OS
-        mealCompanionSession.getUi().printMessage("Calories: " + recipe.getCalorieCount());
-        mealCompanionSession.getUi().printMessage(""); //print newline for all OS
-        mealCompanionSession.getUi().printMessage("Prep Time: " + recipe.getPrepTime());
-        mealCompanionSession.getUi().printMessage(""); //print newline for all OS
-        mealCompanionSession.getUi().printMessage("Cook Time: " + recipe.getCookTime());
-        mealCompanionSession.getUi().printMessage(""); //print newline for all OS
-        mealCompanionSession.getUi().printMessage("Ingredients:");
-        IngredientList ingredients = recipe.getIngredients();
+    /**
+     * Print the list of ingredients.
+     * @param ui the UI used for printing
+     * @param ingredients the list of ingredients to be printed
+     */
+    private void printIngredients(MealCompanionUI ui, IngredientList ingredients) {
+        ui.printMessage("Ingredients:");
         for (int i = 0; i < ingredients.size(); i++) {
             Ingredient ingredient = ingredients.get(i);
             IngredientMetadata metadata = ingredient.getMetadata();
             String ingredientName = metadata.getName();
             String unitLabel = metadata.getUnitLabel();
             double qty = ingredient.getQuantity();
-            mealCompanionSession.getUi().printMessage(Integer.toString(i+1) + ". " + ingredientName + " "
+            ui.printMessage(Integer.toString(i+1) + ". " + ingredientName + " "
                     +Double.toString(qty) + " " + unitLabel);
         }
-        mealCompanionSession.getUi().printMessage(""); //print newline for all OS
-        mealCompanionSession.getUi().printMessage("Instructions:");
-        InstructionList instructions = recipe.getInstructions();
+    }
+
+    /**
+     * Print the list of instructions.
+     * @param ui the UI used for printing
+     * @param instructions the list of instructions to be printed
+     */
+    private void printInstructions(MealCompanionUI ui, InstructionList instructions) {
+        ui.printMessage("Instructions:");
         for (int i = 0; i < instructions.size(); i++) {
             Instruction instruction = instructions.get(i);
-            mealCompanionSession.getUi().printMessage(Integer.toString(i+1) + ". " + instruction.getInstruction());
+            ui.printMessage(Integer.toString(i+1) + ". " + instruction.getInstruction());
+        }
+    }
+
+    /**
+     * Print the recipe.
+     * @param ui the UI used for printing
+     * @param recipe the recipe to be printed
+     */
+    private void printRecipe(MealCompanionUI ui, Recipe recipe) {
+        ui.printMessage("Recipe for " + recipe.getName());
+        ui.printMessage(""); //print newline for all OS
+        ui.printMessage("Calories: " + recipe.getCalorieCount());
+        ui.printMessage(""); //print newline for all OS
+        IngredientList ingredients = recipe.getIngredients();
+        printIngredients(ui, ingredients);
+        ui.printMessage(""); //print newline for all OS
+        InstructionList instructions = recipe.getInstructions();
+        printInstructions(ui, instructions);
+    }
+
+    @Override
+    public void execute(MealCompanionSession mealCompanionSession) {
+        try {
+            if (this.argument == null) {
+                throw new MealCompanionException("Missing argument!");
+            }
+
+            int index;
+            if (!isNum(this.argument)) {
+                index = findIndex(this.argument, mealCompanionSession) - 1;
+            } else {
+                index = Integer.parseInt(this.argument) - 1;
+            }
+
+            if (index < 0 || index >= mealCompanionSession.getRecipes().size()) {
+                throw new MealCompanionException("Recipe index out of range!");
+            }
+            assert index >= 0 && index < mealCompanionSession.getRecipes().size();
+
+            Recipe recipe = mealCompanionSession.getRecipes().getRecipe(index);
+            printRecipe(mealCompanionSession.getUi(), recipe);
+        } catch (MealCompanionException e) {
+            mealCompanionSession.getUi().printMessage(String.valueOf(e));
         }
     }
 }
