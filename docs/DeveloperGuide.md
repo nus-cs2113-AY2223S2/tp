@@ -85,7 +85,7 @@ Key Aspects:
 
 The class diagram as shown in *Figure X.1* illustrates the structure of the different classes in Storage.
 <div align="center">
-<img src="UML/Images/StorageHandlerClass.png" />
+<img src="UML/Images/StorageHandlerClass.png"/>
 <p>
 Figure X.1
 </p>
@@ -95,9 +95,40 @@ The StorageHandler interacts with the other classes as shown in the *Sequence Di
 where it shows how the StorageHandler loads the local user data json file as well as the user plans json file upon the 
 resumption of the program.
 <div align="center">
-<img src="UML/Images/LoadingUserCareerData.png" />
+<img src="UML/Images/LoadingUserCareerData.png"/>
 <p>
 Figure X.2
+</p>
+</div>
+
+### Command Handler Component
+
+The command handler component consists of multiple states that the program can be at any time. 
+It controls where the user input is being processed.
+
+#### Key Aspects: 
+
+* Handles when there is an exercise ongoing, giving access to finishing and hence saving finished exercises, and keeping track of what exercises there are.
+* Handles when there is no exercise ongoing, granting access to generating new exercises with different confines.
+
+<div align="center">
+<img src="UML/Images/CommandHandler.png" />
+<p>
+Figure X.X
+</p>
+</div>
+
+### ExerciseSessionCommandHandler
+The exercise Command Handler is engaged when the user has an ongoing workout.
+Upon completion of the workout, the user can save their workout if completed, such
+that the completed workout is logged and will be saved for future reference.
+
+To manage this exists the ```ExerciseStateHandler```, which allows for saving, starting
+ending, cancelling workouts.
+<div align="center">
+<img src="UML/Images/CommandHandler.png/">
+<p>
+Figure X.X
 </p>
 </div>
 
@@ -105,10 +136,17 @@ Figure X.2
 
 Accounts for the different scenarios that may trigger an error during user's interactions with the program
 
+#### Error Message Handling
+Enumeration: [```ErrorMessages.java```]
+All error messages are stored in the ErrorMessage enumeration for easy access across different classes that could run into similar exceptions.
+<img src="UML/Images/ErrorMessagesEnum.png/">
+
+
 ### Additional features to be added
 
 1. An IPPT calculator to integrate with Fitness Duke to facilitate users who want to train for their IPPT fitness
    assessments.
+2. An achievement list that 
 
 ## Product scope
 
@@ -129,13 +167,14 @@ progress.
 
 ## User Stories
 
-| Version | As a ...                                                                                       | I want to ...                                                                                                                   | So that I can ...                                                              |
-|---------|------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| v1.0    | - User who wants to start working out<br/>- User who wants to train a specific part of my body | - Select a specific intensity workout<br/>- Request a workout that comprises exercises that thoroughly exercises that body part | - Exercise according to selected intensity<br/> - Work on my target body part. |
-| V1.0    | - User                                                                                         | - be able to filter my exercises by body part                                                                                   | - train a specific part of my body                                             |
-| V2.0    | - User                                                                                         | - be able to start a workout and set it as complete and save it                                                                 | - reflect and track my progress                                                |
-| V2.0    | - User looking for motivation                                                                  | - be able to track my workout history as statistics                                                                             | - better visualise my overall progress                                         |
-| V2.0    | - user with little to no experience with exercise                                              | - be given instructions for the specific exercise that I am working on                                                          | be educated on how to complete the exercise correctly                          |
+| Version | As a ...                                                                                                 | I want to ...                                                                                                                   | So that I can ...                                                              |
+|---------|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| v1.0    | - User who wants to start working out<br/>- User who wants to train a specific part of my body           | - Select a specific intensity workout<br/>- Request a workout that comprises exercises that thoroughly exercises that body part | - Exercise according to selected intensity<br/> - Work on my target body part. |
+| V1.0    | - User                                                                                                   | - be able to filter my exercises by body part                                                                                   | - train a specific part of my body                                             |
+| V2.0    | - User                                                                                                   | - be able to start a workout and set it as complete and save it                                                                 | - reflect and track my progress                                                |
+| V2.0    | - User looking for motivation                                                                            | - be able to track my workout history as statistics                                                                             | - better visualise my overall progress                                         |
+| V2.0    | - user with little to no experience with exercise                                                        | - be given instructions for the specific exercise that I am working on                                                          | be educated on how to complete the exercise correctly                          |
+| V2.0    | - User who wants to stay motivated to workout </br> - User who wants to feel good about my past workouts | - See myself be able to accomplish or achieve incrementally greater goals </br> - Keep track of all my exercises                | - Continue to stay motivated in making exercise a fun, long-lasting habit      |
 
 ## Non-Functional Requirements
 1. The program should be able to generate a list of exercises within 5 seconds

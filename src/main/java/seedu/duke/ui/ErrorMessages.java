@@ -1,5 +1,6 @@
 package seedu.duke.ui;
 
+//@@author ChubbsBunns
 /**
  * Provides enum variables for storing custom program error messages.
  */
@@ -29,6 +30,8 @@ public enum ErrorMessages {
     ERROR_INVALID_DATE_INPUT("Invalid date input!"),
     ERROR_INVALID_FILTER_INPUT("Invalid filter input!"),
     ERROR_INVALID_DELETE_COMMAND("Invalid delete command!"),
+    ERROR_NUM_ACHIEVEMENT_NOT_FOUND("The number of achievements seem to be lost. Achievements might not"),
+    ERROR_LOAD_CORRUPT_ACHIEVEMENT_DATA("This particular achievement entry is corrupt, not loading this achievement"),
     ERROR_INVALID_PLAN("No such plan found!");
 
     public final String message;

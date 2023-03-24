@@ -1,5 +1,7 @@
 package seedu.duke.ui;
 
+//@@author ChubbsBunns
+//@@author Khulon
 public class PrintHelpMessage {
     public static void showAvailableCommands() {
         System.out.println("These are some commands available:");
