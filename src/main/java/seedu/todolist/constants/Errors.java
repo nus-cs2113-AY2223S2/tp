@@ -11,6 +11,7 @@ public enum Errors {
     INVALID_DESCRIPTION("You need to provide a description."),
     INVALID_INDEX("You need to provide a valid index number."),
     INVALID_TIME("You need to provide a date in a valid format, such as dd-mm-yyyy hh:mm."),
+    INVALID_DURATION("You need to provide a number for the repeat occurrence. Put 0 if this is a non-repeating task."),
 
     FAILED_SAVE("Error when saving your data, please check that you have write permissions for "
             + Storage.DEFAULT_SAVE_PATH),

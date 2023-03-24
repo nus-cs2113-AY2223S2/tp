@@ -57,6 +57,10 @@ public class Ui {
         printWithNewlineSeparator(Messages.EDIT_TASK.MESSAGE, taskString);
     }
 
+    public void printCheckRepeatingTaskMessage() {
+        printWithNewlineSeparator(Messages.CHECK_REPEATING.MESSAGE);
+    }
+
     private String generateTaskCountString(int taskListSize) {
         return taskListSize + " task" + (taskListSize == 1 ? "" : "s") + " found.";
     }

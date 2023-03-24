@@ -13,6 +13,7 @@ import seedu.todolist.logic.command.ExitCommand;
 import seedu.todolist.logic.command.ListTasksCommand;
 import seedu.todolist.logic.command.MarkTaskCommand;
 import seedu.todolist.logic.command.UnmarkTaskCommand;
+import seedu.todolist.logic.command.CheckRepeatingTaskCommand;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -98,6 +99,8 @@ public class Parser {
             return new DeleteTaskCommand(getArguments(splitInput, DeleteTaskCommand.FLAGS));
         case ExitCommand.KEYWORD:
             return new ExitCommand();
+        case CheckRepeatingTaskCommand.KEYWORD:
+            return new CheckRepeatingTaskCommand();
         default:
             throw new InvalidCommandException();
         }

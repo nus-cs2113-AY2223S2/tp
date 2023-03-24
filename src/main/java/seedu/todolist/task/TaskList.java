@@ -115,4 +115,20 @@ public class TaskList implements Serializable {
     public void sortByDeadline() {
         tasks.sort(Task.taskDeadlineComparator);
     }
+
+    public void checkRepeatingTasks() {
+        int originalListSize = tasks.size();
+        for (int i = 0; i < originalListSize; i++) {
+            Task task = tasks.get(i);
+            int repeatDuration = task.getRepeatDuration();
+            LocalDateTime originalDeadline = task.getDeadline();
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            if (repeatDuration > 0 && (currentDateTime.isAfter(originalDeadline))) {
+                LocalDateTime deadline = originalDeadline.plusWeeks(1);
+                String description = task.getDescription();
+                tasks.add(new Task(description, deadline, repeatDuration - 1));
+                task.setRepeatDuration(0);
+            }
+        }
+    }
 }
