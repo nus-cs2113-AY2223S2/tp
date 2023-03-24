@@ -66,15 +66,27 @@ public class CompanyList {
         }
     }
 
-    public void findIndustry(String industry){
+    public void findIndustry(String targetIndustry){
         ArrayList<Company> sortedCompanyList = new ArrayList<>();
         for (Company company : companyList){
-            if(company.getIndustry().equals(industry)){
+            if(company.getIndustry().equals(targetIndustry)){
                 sortedCompanyList.add(company);
             }
         }
         Ui ui = new Ui();
-        ui.showSortedCompanyList(industry, sortedCompanyList);
+        ui.showSortedCompanyList(targetIndustry, sortedCompanyList);
+    }
+
+    public void findCompany(String targetCompany){
+        Ui ui = new Ui();
+        targetCompany = targetCompany.toLowerCase();
+        for (Company company : companyList){
+            if(company.getCompanyName().toLowerCase().equals(targetCompany)){
+                ui.showCompanyFoundMessage(company);
+                return;
+            }
+        }
+        ui.showCompanyNotFoundMessage(targetCompany);
     }
 
     public void loadSampleCompanyInformation() throws InputMismatchException {
