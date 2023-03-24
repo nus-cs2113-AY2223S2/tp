@@ -18,9 +18,9 @@ class TransportExpenditureCommandTest {
                 2.1,
                 LocalDate.parse("2023-03-21"));
         assertEquals("Added transport expenditure: " +
-                        "[Transport] || Date: 2023-03-21 || Value: 2.1 || Description: MRT",
+                        "[Transport] || Date: 21 Mar 2023 || Value: 2.1 || Description: MRT",
                 testTransportExpenditureCommand.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Transport] || Date: 2023-03-21 || Value: 2.1 || Description: MRT",
+        assertEquals("1. [Transport] || Date: 21 Mar 2023 || Value: 2.1 || Description: MRT",
                 testExpenditures.toString());
     }
 
@@ -34,10 +34,10 @@ class TransportExpenditureCommandTest {
                 2.1,
                 LocalDate.parse("2023-03-21"));
         assertEquals("Added transport expenditure: " +
-                        "[Transport] || Date: 2023-03-21 || Value: 2.1 || Description: MRT",
+                        "[Transport] || Date: 21 Mar 2023 || Value: 2.1 || Description: MRT",
                 testTransportExpenditureCommand.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Academic] || Date: 2021-08-01 || Value: 1500.0 || Description: laptop\n" +
-                        "2. [Transport] || Date: 2023-03-21 || Value: 2.1 || Description: MRT",
+        assertEquals("1. [Academic] || Date: 1 Aug 2021 || Value: 1500.0 || Description: laptop\n" +
+                        "2. [Transport] || Date: 21 Mar 2023 || Value: 2.1 || Description: MRT",
                 testExpenditures.toString());
     }
 

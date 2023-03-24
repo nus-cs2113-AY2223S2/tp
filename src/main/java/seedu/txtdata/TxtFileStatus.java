@@ -82,7 +82,7 @@ public abstract class TxtFileStatus {
                         saveData[1],
                         Double.parseDouble(saveData[2]),
                         LocalDate.parse(saveData[3]));
-                if (saveData[4].equals("[X]")) {
+                if (saveData[4].equals(AccommodationExpenditure.iconPaid)) {
                     accommodationExpenditure.setPaid();
                 }
                 expenditures.addExpenditure(accommodationExpenditure);
@@ -138,7 +138,7 @@ public abstract class TxtFileStatus {
                         saveData[1],
                         Double.parseDouble(saveData[2]),
                         LocalDate.parse(saveData[3]));
-                if (saveData[4].equals("[X]")) {
+                if (saveData[4].equals(TuitionExpenditure.iconPaid)) {
                     tuitionExpenditure.setPaid();
                 }
                 expenditures.addExpenditure(tuitionExpenditure);
