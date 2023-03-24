@@ -9,6 +9,7 @@ import seedu.duke.command.LoadSampleCompanyCommand;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.ListVenueCommand;
 import seedu.duke.command.ConfirmCommand;
+import seedu.duke.command.UnconfirmCommand;
 
 import seedu.duke.ui.Ui;
 import seedu.duke.exception.WrongFormatException;
@@ -74,9 +75,16 @@ public interface Parser {
             if (inputWords.length == 1) {
                 throw new WrongFormatException();
             }
-            int companyMarkNum = Integer.parseInt(inputWords[1]) - 1;
-            ConfirmCommand confirmCommand = new ConfirmCommand(command, companyMarkNum);
+            int companyConfirmNum = Integer.parseInt(inputWords[1]) - 1;
+            ConfirmCommand confirmCommand = new ConfirmCommand(command, companyConfirmNum);
             return confirmCommand;
+        case "unconfirm":
+            if (inputWords.length == 1){
+                throw new WrongFormatException();
+            }
+            int companyUnconfirmNum = Integer.parseInt(inputWords[1]) - 1;
+            UnconfirmCommand unconfirmCommand = new UnconfirmCommand(command, companyUnconfirmNum);
+            return unconfirmCommand;
         case "help":
             ui.showGuide();
             break;

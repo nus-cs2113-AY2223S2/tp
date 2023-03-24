@@ -80,12 +80,10 @@ public class Ui {
     }
 
     public void showSuccessfulConfirmedMessage() {
-        System.out.println("Company has been successfully confirmed!");
+        System.out.println("Company has been successfully confirmed/uncomfirmed!");
     }
 
-    public void showSuccessfulUnconfirmedMessage() {
-        System.out.println("Company has been successfully unconfirmed!");
-    }
+
 
 
     public void showVenueSelectionMessage(String venue) {
