@@ -9,8 +9,8 @@ import seedu.duke.commons.exceptions.OngoingExWriteError;
 
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.ui.Ui;
-import seedu.duke.model.userdata.UserCareerData;
-import seedu.duke.model.userdata.UserExerciseData;
+import seedu.duke.data.userdata.UserCareerData;
+import seedu.duke.data.userdata.UserExerciseData;
 
 import java.util.HashMap;
 import java.util.Scanner;

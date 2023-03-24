@@ -1,11 +1,11 @@
 package seedu.duke.logic.commandhandler;
 
-import seedu.duke.model.exercisegenerator.GenerateExercise;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.storage.StorageHandler;
-import seedu.duke.model.userdata.UserCareerData;
+import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.ui.Ui;
-import seedu.duke.model.userdata.userplan.UserPlan;
+import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.commons.util.StringSplitter;
 
 public class CommandHandler {

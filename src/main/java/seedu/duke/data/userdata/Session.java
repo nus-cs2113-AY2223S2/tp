@@ -1,9 +1,9 @@
-package seedu.duke.model.userdata;
+package seedu.duke.data.userdata;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 
 public class Session {
     private final LocalDateTime dateAdded;

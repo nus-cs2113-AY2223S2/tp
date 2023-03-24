@@ -1,6 +1,6 @@
 package seedu.duke.logic.commands;
 
-import seedu.duke.model.exercisegenerator.GenerateExercise;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
 
 public class HelpCommand extends Command {

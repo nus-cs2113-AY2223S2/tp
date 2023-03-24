@@ -1,9 +1,9 @@
 package seedu.duke.logic.commands;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.model.exercisegenerator.GenerateExercise;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
-import seedu.duke.model.userdata.userplan.UserPlan;
+import seedu.duke.data.userdata.userplan.UserPlan;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
 package seedu.duke.ui;
 
-import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
 

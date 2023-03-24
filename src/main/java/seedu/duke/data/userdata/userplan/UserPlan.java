@@ -1,4 +1,4 @@
-package seedu.duke.model.userdata.userplan;
+package seedu.duke.data.userdata.userplan;
 
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.commons.exceptions.InvalidAddPlanError;
@@ -8,9 +8,9 @@ import seedu.duke.commons.exceptions.InvalidDeletePlanError;
 import seedu.duke.commons.exceptions.InvalidPlanError;
 import java.util.ArrayList;
 
-import static seedu.duke.model.exercisegenerator.exersisedata.ExerciseFilter.isAValidFilter;
-import static seedu.duke.model.userdata.userplan.Day.dayToInt;
-import static seedu.duke.model.userdata.userplan.Day.intToDay;
+import static seedu.duke.data.exercisegenerator.exersisedata.ExerciseFilter.isAValidFilter;
+import static seedu.duke.data.userdata.userplan.Day.dayToInt;
+import static seedu.duke.data.userdata.userplan.Day.intToDay;
 
 //@@author Khulon
 public class UserPlan {

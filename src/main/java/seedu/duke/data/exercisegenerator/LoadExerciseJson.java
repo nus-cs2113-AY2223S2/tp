@@ -1,9 +1,9 @@
-package seedu.duke.model.exercisegenerator;
+package seedu.duke.data.exercisegenerator;
 
 import com.google.gson.Gson;
 
-import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
-import seedu.duke.model.exercisegenerator.exersisedata.ExerciseDataList;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseDataList;
 
 import java.io.InputStreamReader;
 import java.io.Reader;

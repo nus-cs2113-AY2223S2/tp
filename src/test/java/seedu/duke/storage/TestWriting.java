@@ -1,7 +1,7 @@
 package seedu.duke.storage;
 
-import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
-import seedu.duke.model.userdata.UserCareerData;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.data.userdata.UserCareerData;
 
 import java.util.ArrayList;
 

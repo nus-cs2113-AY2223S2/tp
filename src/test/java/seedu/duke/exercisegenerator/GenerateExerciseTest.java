@@ -5,10 +5,10 @@ import seedu.duke.logic.commands.GenerateFilterCommand;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.commons.exceptions.ExerciseNumberInputAsStringError;
 import seedu.duke.commons.exceptions.TooManyFiltersError;
-import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
-import seedu.duke.model.exercisegenerator.GenerateExercise;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

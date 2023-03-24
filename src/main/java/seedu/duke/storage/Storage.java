@@ -1,7 +1,7 @@
 package seedu.duke.storage;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.model.userdata.UserCareerData;
+import seedu.duke.data.userdata.UserCareerData;
 
 /**
  * Interface for the handling of user data storage

@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+hide footbox
+
+participant ":Main" as main MAIN_COLOUR
+
+main++ MAIN_COLOUR
+'create ":Parser" as commandHandler LOGIC_COLOUR
+main -> commandHandler ++ LOGIC_COLOUR : startWorkout()
+participant ":Session" as session DATA_COLOUR
+commandHandler -> session ++ DATA_COLOUR : new Session()
+session --> commandHandler --  : Session()
+commandHandler --> main -- : Session()
+
+main -> commandHandler ++ LOGIC_COLOUR : endWorkout()
+commandHandler -> ":Storage" ++ STORAGE_COLOUR : writeToJson()
+":Storage" --> commandHandler
+deactivate ":Storage"
+participant ":Ui" as ui UI_COLOUR
+commandHandler -> ui ++ UI_COLOUR : printCompleteMessage()
+ui --> commandHandler
+deactivate ui
+commandHandler --> main
+deactivate commandHandler
+@enduml

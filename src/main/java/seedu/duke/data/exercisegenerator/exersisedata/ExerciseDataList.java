@@ -1,4 +1,4 @@
-package seedu.duke.model.exercisegenerator.exersisedata;
+package seedu.duke.data.exercisegenerator.exersisedata;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

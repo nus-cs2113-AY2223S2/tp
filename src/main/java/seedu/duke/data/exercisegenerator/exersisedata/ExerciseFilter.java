@@ -1,4 +1,4 @@
-package seedu.duke.model.exercisegenerator.exersisedata;
+package seedu.duke.data.exercisegenerator.exersisedata;
 
 //@@author Khulon
 public class ExerciseFilter {

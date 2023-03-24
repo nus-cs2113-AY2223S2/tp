@@ -4,7 +4,7 @@ import seedu.duke.commons.exceptions.DukeError;
 
 import seedu.duke.storage.StorageHandler;
 import seedu.duke.ui.Ui;
-import seedu.duke.model.userdata.userplan.UserPlan;
+import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.commons.util.StringSplitter;
 
 import java.util.Scanner;

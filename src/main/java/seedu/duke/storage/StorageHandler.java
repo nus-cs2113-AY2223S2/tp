@@ -3,20 +3,17 @@ package seedu.duke.storage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import seedu.duke.commons.LogMaster;
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.model.userdata.UserCareerData;
+import seedu.duke.data.userdata.UserCareerData;
 
-import java.io.File;
 import java.time.LocalDateTime;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import seedu.duke.model.userdata.userplan.UserPlan;
+import seedu.duke.data.userdata.userplan.UserPlan;
 
 public class StorageHandler implements Storage {
-    private static final Logger logger = Logger.getLogger("Storage");
+    private static final Logger logger = LogMaster.getLogger(StorageHandler.class);
     protected final String userFilePath;
     protected final String plansFilePath;
     protected Gson gson;
@@ -32,26 +29,6 @@ public class StorageHandler implements Storage {
         this.userDataLoader = new UserDataLoader(gson);
         this.userFilePath = userFilePath;
         this.plansFilePath = plansFilePath;
-        initLogger();
-    }
-
-    public void initLogger () {
-        LogManager.getLogManager().reset();
-        ConsoleHandler consoleHandler = new ConsoleHandler();
-        logger.setLevel(Level.ALL);
-        consoleHandler.setLevel(Level.ALL);
-        logger.addHandler(consoleHandler);
-        try {
-            File logFile = new File("logging.xml");
-            if (!logFile.exists()) {
-                new File("logging.xml").createNewFile();
-            }
-            FileHandler fileHandler = new FileHandler("logging.xml", true);
-            fileHandler.setLevel(Level.FINE);
-            logger.addHandler(fileHandler);
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, "Unable to create a new logfile");
-        }
     }
 
     public void writeToJson (UserCareerData userCareerData) throws DukeError {

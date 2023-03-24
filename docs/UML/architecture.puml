@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+left to right direction
+skinparam BackgroundColor transparent
+skinparam componentStyle rectangle
+
+component User
+component "Hard Drive"
+
+component FitnessDuke{
+component Ui UI_COLOUR
+component main MAIN_COLOUR
+component CommandHandler LOGIC_COLOUR
+component Storage STORAGE_COLOUR
+
+}
+[User]..>[Ui]
+[Ui]-->[main]
+[main]-->[Storage]
+[Hard Drive]..>[Storage]
+[main]-->[CommandHandler]
+[main]-->[Ui]
+[CommandHandler]..>[main]
+[Storage]-->[Hard Drive]
+@enduml

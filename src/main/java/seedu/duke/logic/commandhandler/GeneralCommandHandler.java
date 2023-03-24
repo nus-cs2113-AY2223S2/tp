@@ -7,13 +7,13 @@ import seedu.duke.logic.commands.HelpCommand;
 import seedu.duke.logic.commands.QuickStartCommand;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.model.exercisegenerator.GenerateExercise;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.storage.StorageHandler;
 import seedu.duke.ui.Ui;
-import seedu.duke.model.userdata.UserCareerData;
-import seedu.duke.model.userdata.UserExerciseData;
-import seedu.duke.model.userdata.userplan.UserPlan;
+import seedu.duke.data.userdata.UserCareerData;
+import seedu.duke.data.userdata.UserExerciseData;
+import seedu.duke.data.userdata.userplan.UserPlan;
 
 import java.util.HashMap;
 
