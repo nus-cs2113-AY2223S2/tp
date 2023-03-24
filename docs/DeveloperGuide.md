@@ -11,6 +11,8 @@
     * [WeeklyPlan Component](#weeklyplan-component)
     * [Database Component](#database-component)
 * [Implementation](#implementation)
+    * [Add Recipes Feature](#add-recipes-feature)
+    * [Edit Recipes Feature](#edit-recipes-feature)
     * [Categorise/Tag Recipes Feature](#categorisetag-recipes-feature)
     * [List Recipes Feature](#list-recipes-feature)
 
@@ -134,6 +136,8 @@ The activity diagram below shows how the `Database` component works at start up:
 ## Implementation
 * [Categorise/Tag Recipes Feature](#categorisetag-recipes-feature)
 * [List Recipes Feature](#list-recipes-feature)
+* [Add Recipes Feature](#add-recipes-feature)
+* [Edit Recipes Feature](#edit-recipes-feature)
 
 ### Categorise/Tag Recipes Feature
 
@@ -179,6 +183,36 @@ It is implemented through the following step:
 
 The sequence diagram below shows how this feature works:
 {UML will be added here.}
+
+### Add Recipes Feature
+
+The current implementation:
+* Add a single recipe in 1 line and followed by all the ingredients in next another line after being prompted.
+
+It is implemented through the following steps:
+1. When the user enters an input with the first word being `add`, the input is passed to the `Parser` component.
+2. In `Parser`, the `parseAddRecipe` is executed to identify whether the recipe is an already existing recipe or
+   it's a new recipe that is being added.
+3. After the user enters the ingredients in 1 line, the input is passed to `parseIngredientName` which returns a 
+   hashmap<string,integer> with the ingredient name as 'key' and quantity as 'value'.
+4. After the recipe name and ingredients are accepted and processed, the input is sent to `recipeList.addRecipe()` 
+   to store the new recipe data.
+
+### Edit Recipes Feature
+
+The current implementation:
+* There are 3 ways to edit:
+   * Edit all ingredients.
+   * Edit 1 particular ingredient.
+   * Add new ingredient.
+  
+It is implemented through the following steps:
+
+1. When the user enters an input with the first word being `edit`, the input is passed to the `Parser` component.
+2. In `Parser`, the `parseEditRecipe` is executed to identify whether the recipe is an already existing recipe to make edits.
+3. The user will then be prompted with 3 options as mentioned above to make edits to the recipe ingredients.
+4. After the new ingredients are accepted and processed, the input is sent to `recipeList.editRecipe()`
+   to update the new recipe data.
 
 ---
 ## Appendix: Requirements
