@@ -623,4 +623,11 @@ public class Ui {
                     timetable.getEndTime());
         }
     }
+
+    /**
+     * Prints message when the user tries to add a lesson that clashes with another lesson in the timetable.
+     */
+    public void printClashingLesson() {
+        System.out.println("This lesson clashes with another lesson in your timetable!");
+    }
 }
