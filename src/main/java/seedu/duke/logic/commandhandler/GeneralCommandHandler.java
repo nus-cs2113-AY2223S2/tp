@@ -1,19 +1,19 @@
-package seedu.duke.commandhandler;
+package seedu.duke.logic.commandhandler;
 
-import seedu.duke.commands.ExerciseSearchCommand;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.GenerateFilterCommand;
-import seedu.duke.commands.HelpCommand;
-import seedu.duke.commands.QuickStartCommand;
+import seedu.duke.logic.commands.ExerciseSearchCommand;
+import seedu.duke.logic.commands.Command;
+import seedu.duke.logic.commands.GenerateFilterCommand;
+import seedu.duke.logic.commands.HelpCommand;
+import seedu.duke.logic.commands.QuickStartCommand;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.exercisegenerator.GenerateExercise;
-import seedu.duke.states.ExerciseStateHandler;
+import seedu.duke.model.exercisegenerator.GenerateExercise;
+import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.storage.StorageHandler;
 import seedu.duke.ui.Ui;
-import seedu.duke.userdata.UserCareerData;
-import seedu.duke.userexercisedata.UserExerciseData;
-import seedu.duke.userplan.UserPlan;
+import seedu.duke.model.userdata.UserCareerData;
+import seedu.duke.model.userdata.UserExerciseData;
+import seedu.duke.model.userdata.userplan.UserPlan;
 
 import java.util.HashMap;
 

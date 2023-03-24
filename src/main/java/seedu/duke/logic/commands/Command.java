@@ -1,7 +1,7 @@
-package seedu.duke.commands;
+package seedu.duke.logic.commands;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.exercisegenerator.GenerateExercise;
+import seedu.duke.model.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
 
 /**

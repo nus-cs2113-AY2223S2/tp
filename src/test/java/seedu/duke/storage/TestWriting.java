@@ -1,7 +1,7 @@
 package seedu.duke.storage;
 
-import seedu.duke.exersisedata.ExerciseData;
-import seedu.duke.userdata.UserCareerData;
+import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.model.userdata.UserCareerData;
 
 import java.util.ArrayList;
 
@@ -14,19 +14,19 @@ public class TestWriting {
      * code of each exercise that is written into the sessionExercise.
      *
      * @param sessionExercises exercises that has been completed by the user in the current session but not yet
-     *         added to the user career data.
+     *     added to the user career data.
      * @param userCareerData All exercises that the user has completed, but for this test only a single session
-     *         is used.
+     *     is used.
      */
     public static void testWriting (ArrayList<ExerciseData> sessionExercises, UserCareerData userCareerData) {
         int i = 0;
         for (ExerciseData sessionExercise : sessionExercises) {
             assertEquals(System.identityHashCode(sessionExercise)
-                    , System.identityHashCode(userCareerData
-                                                      .getTotalUserCareerSessions()
-                                                      .get(0)
-                                                      .getSessionExercises()
-                                                      .get(i)));
+                , System.identityHashCode(userCareerData
+                                              .getTotalUserCareerSessions()
+                                              .get(0)
+                                              .getSessionExercises()
+                                              .get(i)));
             i++;
         }
         assertEquals(3, userCareerData.getTotalUserCareerSessions()

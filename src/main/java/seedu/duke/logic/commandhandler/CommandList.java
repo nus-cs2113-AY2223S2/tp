@@ -1,4 +1,4 @@
-package seedu.duke.commandhandler;
+package seedu.duke.logic.commandhandler;
 
 /**
  * Contains all the possible commands that the user can input
@@ -23,4 +23,5 @@ public interface CommandList {
     String DELETE_PLAN_COMMAND = "delete";
     String ADD_PLAN_COMMAND = "add";
     String EXERCISE_DATA_COMMAND = "data";
+
 }
