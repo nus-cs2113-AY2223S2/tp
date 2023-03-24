@@ -8,8 +8,8 @@ class functionalities.commands.VaccinationCommand {
 - Animal animal
 - Owner owner
 - String vaccine
-- String date
-- String time
+- LocalDate date
+- LocalTime time
 + void executeCommand(SniffTasks)
 }
 abstract class functionalities.commands.Command {
@@ -21,10 +21,10 @@ class functionalities.commands.SurgeryCommand {
 - Animal animal
 - Owner owner
 - String priority
-- String startDate
-- String startTime
-- String endDate
-- String endTime
+- LocalDate startDate
+- LocalTime startTime
+- LocalDate endDate
+- LocalTime endTime
 + void executeCommand(SniffTasks)
 }
 class functionalities.commands.RemoveCommand {
@@ -40,8 +40,8 @@ class functionalities.commands.ExitCommand {
 class functionalities.commands.ConsulationCommand {
 - Animal animal
 - Owner owner
-- String date
-- String time
+- LocalDate date
+- LocalTime time
 + void executeCommand(SniffTasks)
 }
 
