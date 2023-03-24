@@ -1,6 +1,8 @@
 package seedu.duke.commandhandler;
 
 import seedu.duke.exceptions.DukeError;
+
+import seedu.duke.storage.StorageHandler;
 import seedu.duke.ui.Ui;
 import seedu.duke.userplan.UserPlan;
 import seedu.duke.util.StringSplitter;
@@ -8,9 +10,8 @@ import seedu.duke.util.StringSplitter;
 import java.util.Scanner;
 
 //@@author Khulon
-public class PlannerCommandHandler implements CommandList{
-    public static void plannerCommandHandler (Ui ui, UserPlan planner) throws
-            DukeError{
+public class PlannerCommandHandler implements CommandList {
+    public static void plannerCommandHandler (Ui ui, UserPlan planner, StorageHandler storageHandler) throws DukeError {
         ui.printPlannerGreeting();
         Scanner in = new Scanner(System.in);
 
@@ -40,6 +41,8 @@ public class PlannerCommandHandler implements CommandList{
             default:
                 ui.unknownCommand();
             }
+            storageHandler.writeToJson(planner);
+
         }
     }
 

@@ -1,5 +1,6 @@
 @startuml
 hide footbox
+":duke" -> ":StorageHandler" : loadUserData()
 activate ":StorageHandler"
 create ":UserDataLoader"
 
@@ -8,8 +9,6 @@ activate ":UserDataLoader"
 ":UserDataLoader" --> ":StorageHandler"
 deactivate ":UserDataLoader"
 
-    ":StorageHandler" -> ":StorageHandler" : loadUserCareer()
-    activate ":StorageHandler"
     ":StorageHandler" -> ":UserDataLoader": loadFromJson()
     activate ":UserDataLoader"
         ":UserDataLoader"-> ":UserCareerData": UserCareerData()
@@ -19,9 +18,30 @@ deactivate ":UserDataLoader"
             end
             ":UserCareerData" --> ":UserDataLoader" : :UserCareerData
         ":UserDataLoader" --> ":StorageHandler" : :UserCareerData
-    deactivate ":UserDataLoader"
-    destroy ":UserDataLoader"
     deactivate ":UserCareerData"
-    deactivate ":StorageHandler"
+    deactivate ":UserDataLoader"
+    ":StorageHandler" --> ":duke" : :UserCareerData
+deactivate ":StorageHandler"
+":duke" -> ":StorageHandler" : loadUserPlans()
+    activate ":StorageHandler"
+
+    ":StorageHandler" -> ":UserDataLoader" : loadPlansFromJson()
+    activate ":UserDataLoader"
+    ":UserDataLoader" -> ":UserPlan" : UserPlan()
+    activate ":UserPlan"
+    loop days in a week times
+            loop plans from file in a day times
+                ":UserDataLoader" -> ":UserPlan" : addDayPlan()
+            end
+    end
+    ":UserPlan" --> ":UserDataLoader" : :UserPlan
+    deactivate ":UserPlan"
+    ":UserDataLoader" --> ":StorageHandler" : :UserPlan
+    deactivate ":UserDataLoader"
+    ":StorageHandler" --> ":duke" : :UserPlan
+    destroy ":UserDataLoader"
+
+deactivate ":StorageHandler"
+
 
 @enduml
