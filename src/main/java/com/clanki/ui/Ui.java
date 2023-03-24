@@ -34,9 +34,9 @@ public class Ui {
     }
 
     public void printSuccessfulAddMessage(String questionText, String answerText) {
-        System.out.println("A new card is now added:");
-        System.out.println("Question: " + questionText);
-        System.out.println("Answer: " + answerText);
+        System.out.println("You have added the following card:");
+        System.out.println("Q: " + questionText);
+        System.out.println("A: " + answerText);
     }
 
     public void printByeMessage() {
@@ -51,8 +51,8 @@ public class Ui {
         System.out.println("The input is in an incorrect format.");
     }
 
-    public void printSuccessfulDelete() {
-        System.out.print("Got it. Deleted the flashcard at index ");
+    public void printSuccessfulDelete(int index) {
+        System.out.println("Got it. Deleted the flashcard at index " + index);
     }
 
     /**
