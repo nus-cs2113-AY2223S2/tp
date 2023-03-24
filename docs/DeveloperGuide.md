@@ -1,12 +1,35 @@
 # Developer Guide
+Welcome to the NUSPlanner Developer Guide!
+We hope this documents serves useful to understand the behind-the-scenes working of our product. 
+
+## Table of Contents
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}'
+
+## Getting started
+
+Refer to the user guide [here](https://github.com/AY2223S2-CS2113-F13-3/tp/blob/master/docs/UserGuide.md).
+
 
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+
+### Parser Component
+The component will return the correct command based on what the user inputs into the application.
+
+#### How is the feature implemented?
+
+The Parser component parses the command of the user input and breaks the user input into different parts based on the flags.
+This component also ensures to validate that user input is correct.
+
+#### Why is the feature implemented this way?
+
+This component should be able to guide the user to inputting the correct format of the command to do data validation.
+It should be able to perform basic data validation checks to ensure that the user does not enter any invalid commands.
+This makes life easier to developers in the future if they wish to add new features that requires users to use new commands.
 
 ### Storage Component
 API: `Storage.java`
