@@ -52,6 +52,23 @@ public class Ui {
         }
 
     }
+    
+    public void printWeeklyIngredients(WeeklyPlan weeklyPlan, RecipeList recipeList) {
+        if (weeklyPlan.isEmpty()) {
+            printMessage("Your weekly plan is empty!");
+        } else {
+            printMessage("Here are your weekly ingredients:");
+            weeklyPlan.forEach((recipe, count) -> {
+                Recipe currRecipe = recipeList.findByName(recipe.toString().trim());
+                for (String ingredient : currRecipe.getIngredients().keySet()) {
+                    String outputMessage = String.format("%s (%d)", ingredient,
+                            currRecipe.getIngredients().get(ingredient) * count);
+                    System.out.println(formatMessage(outputMessage));
+                }
+            });
+        }
+
+    }
 
     public void listRecipe(RecipeList recipeListToPrint) {
         int numberOfRecipes = recipeListToPrint.size();
