@@ -18,6 +18,7 @@ public class Task implements Serializable {
     private String description;
     private LocalDateTime deadline;
     private boolean isDone = false;
+    private String email;
 
     public Task(String description, LocalDateTime deadline) {
         this.description = description;
@@ -41,4 +42,12 @@ public class Task implements Serializable {
     public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
     }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
 }

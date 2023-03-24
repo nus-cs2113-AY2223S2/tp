@@ -11,6 +11,8 @@ public enum Errors {
     INVALID_DESCRIPTION("You need to provide a description."),
     INVALID_INDEX("You need to provide a valid index number."),
     INVALID_TIME("You need to provide a date in a valid format, such as dd-mm-yyyy hh:mm."),
+    INVALID_EMAIL("You need to provide an email in a valid format, such as username@email.com."),
+    EMPTY_EMAIL("There is no email set for this task."),
 
     FAILED_SAVE("Error when saving your data, please check that you have write permissions for "
             + Storage.DEFAULT_SAVE_PATH),

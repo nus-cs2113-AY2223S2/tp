@@ -57,6 +57,14 @@ public class Ui {
         printWithNewlineSeparator(Messages.EDIT_TASK.MESSAGE, taskString);
     }
 
+    public void printSetEmailMessage(String taskString) {
+        printWithNewlineSeparator(Messages.SET_EMAIL.MESSAGE, taskString);
+    }
+
+    public void printGetTaskEmailMessage(String email) {
+        printWithNewlineSeparator(Messages.GET_EMAIL.MESSAGE, email);
+    }
+
     private String generateTaskCountString(int taskListSize) {
         return taskListSize + " task" + (taskListSize == 1 ? "" : "s") + " found.";
     }

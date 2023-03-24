@@ -15,6 +15,8 @@ public enum Messages {
     DELETE_TASK("Okay, I've removed this task:"),
     EDIT_TASK("Okay, I have edited the parameters of this task:"),
     LIST_TASKS("Okay, here are the tasks in your list:"),
+    SET_EMAIL("Okay, I have set the email of the Professors/TA for this task:"),
+    GET_EMAIL("Okay, Here is the email of the Professor/TA for this task:"),
     EMPTY_LIST("There are no tasks in your list.");
 
     public final String MESSAGE;
