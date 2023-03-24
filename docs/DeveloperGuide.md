@@ -61,7 +61,7 @@
 1. **`findAppointment`** loops through arraylist appointments and checks if matching appointment ID is present.
 2. If matching appointment ID is found, it calls **`toString`** and **`formatPrintList`** to print out appointments to user.
 3. If empty appointment ID is provided by user or appointment ID is in an invalid format, **`SniffException`**, is thrown for both cases.
-4. If no matching appointments are stored, a ui method, **`showUserMessage`** is called.
+4. If no matching appointments are stored, an ui method, **`showUserMessage`** is called.
 
 #### findAnimal()
 1. **`findAnimal`** loops through arraylist appointments and checks if appointments for specified animal type is present.
