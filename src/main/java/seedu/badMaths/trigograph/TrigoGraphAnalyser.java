@@ -107,7 +107,7 @@ public class TrigoGraphAnalyser {
         }
     }
 
-    public String[] splitAmplitudeFromTrigoEqn() throws NumberFormatException, IllegalArgumentException, GraphException {
+    public String[] splitAmplitudeFromTrigoEqn() throws IllegalArgumentException, GraphException {
         testForSignOfAmplitude();
         String[] amplitudeAndEqn = trigoEqn.split("\\*", 2);
         testForMultipleAsterisk(amplitudeAndEqn[1]);

@@ -9,12 +9,12 @@ class TrigoGraphAnalyserTest {
     void negativeAmplitudeShouldReturnIllegalArgumentException(){
         String equation = "-2*sin(2*pi*x+1)+3";
         TrigoGraphAnalyser analyser = new TrigoGraphAnalyser(equation);
-        assertThrows(IllegalArgumentException.class,()->{
+        assertThrows(GraphException.class,()->{
             analyser.splitAmplitudeFromTrigoEqn();
         });
     }
     @Test
-    void amplitudeOfOneShouldReturnOne(){
+    void amplitudeOfOneShouldReturnOne() throws GraphException {
         String equation = "sin(2*pi*x+1)+3";
         TrigoGraphAnalyser analyser = new TrigoGraphAnalyser(equation);
         String [] input = analyser.splitAmplitudeFromTrigoEqn();

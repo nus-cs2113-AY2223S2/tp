@@ -95,8 +95,10 @@ public class TrigoGraphVisualiser extends JPanel {
     }
 
     public void labelAmplitude(Graphics g, double yScale){
-        g.drawString(String.valueOf(verticalShift+amplitude),0,(int)(Math.round(-(verticalShift+amplitude)*yScale)));
-        g.drawString(String.valueOf(verticalShift-amplitude),0,(int)(Math.round(-(verticalShift-amplitude)*yScale)));
+        g.drawString(String.valueOf(verticalShift+amplitude),0,
+                (int)(Math.round(-(verticalShift+amplitude)*yScale)));
+        g.drawString(String.valueOf(verticalShift-amplitude),0,
+                (int)(Math.round(-(verticalShift-amplitude)*yScale)));
     }
 
     public void drawCosCurve(Graphics g, double xScale, double yScale) {
