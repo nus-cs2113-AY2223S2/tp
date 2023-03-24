@@ -66,9 +66,7 @@ public class SearchCommand extends Command {
         if(searchType==Types.SearchType.KEYWORD){
             ArrayList<Item> searchResults = searchKeyword();
             if(searchResults != null){
-                Ui.printLine();
                 Ui.printSearchItems(searchResults);
-                Ui.printLine();
             }
         }else{
             Item searchResult = searchUPC();
