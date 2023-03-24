@@ -236,6 +236,13 @@ public class AddModuleCommand extends Command implements LoggerInterface {
         return lessonTypes;
     }
 
+    /**
+     * Checks if the lesson clashes with another lesson.
+     *
+     * @param calendar The calendar of the user containing timetable information.
+     * @param timetable The timetable of the lesson to be checked.
+     * @param ui The ui of the user for message printing.
+     */
     private void checkClashingLesson(Calendar calendar, Timetable timetable, Ui ui) {
         String day = timetable.getDay();
         int index = determineDay(day);
@@ -252,10 +259,18 @@ public class AddModuleCommand extends Command implements LoggerInterface {
             Timetable schedule = lessonModule.getSchedule();
             if (isClashing(schedule, timetable)) {
                 ui.printClashingLesson();
+                break;
             }
         }
     }
 
+    /**
+     * Checks if a lesson clashes with another lesson.
+     *
+     * @param schedule The lesson to be checked.
+     * @param timetable The lesson to be checked against.
+     * @return True if the timetable clashes with another timetable.
+     */
     private boolean isClashing(Timetable schedule, Timetable timetable) {
 
         SimpleDateFormat format = new SimpleDateFormat("HHmm");
@@ -280,7 +295,6 @@ public class AddModuleCommand extends Command implements LoggerInterface {
         } catch (ParseException e) {
             return false;
         }
-
         return false;
     }
 
