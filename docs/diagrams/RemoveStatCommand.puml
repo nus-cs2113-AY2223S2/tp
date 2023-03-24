@@ -1,0 +1,76 @@
+@startuml
+ !include style.puml
+
+ Participant ":Main" as Main
+ Participant "ui:Ui" as Ui
+ Participant ":CommandParser" as CommandParser
+ Participant "command:RemoveStatCommand" as RemoveStatCommand
+ Participant ":Petlist" as PetList
+ Participant "pet:Pet" as Pet
+
+ -> Main
+ activate Main
+
+ 	Main -> Ui:getUserInput()
+ 	activate Ui
+ 	return commandString
+
+ Main -> CommandParser:parseCommand("remove-stat")
+ activate CommandParser
+
+ 	CommandParser -> CommandParser:newCommand("remove-stat")
+ 	activate CommandParser
+ 	return
+
+ 	create RemoveStatCommand
+ 	CommandParser -> RemoveStatCommand
+ 	activate RemoveStatCommand
+        RemoveStatCommand -> RemoveStatCommand:parseArgs(commandArgs)
+        activate RemoveStatCommand
+        return
+
+        RemoveStatCommand -> RemoveStatCommand:execute()
+        activate RemoveStatCommand
+
+            activate PetList
+            RemoveStatCommand -> PetList
+                PetList -> PetList:find(petName)
+                activate PetList
+                
+            
+                activate Pet
+                return
+                PetList -> Pet 
+
+                    alt statName = "type"
+                        Pet -> Pet:setPetType("")
+                        activate Pet
+                        return
+
+                    else statName = "age"
+                        Pet -> Pet:setAge("")
+                        activate Pet
+                        return
+
+                    else statName = "weight"
+                        Pet -> Pet:setWeight("")
+                        activate Pet
+                        return
+                    
+                end
+                    return
+                    deactivate Pet
+                
+            return
+            deactivate PetList
+            
+
+        deactivate RemoveStatCommand
+        return
+
+
+        
+
+    
+
+@enduml
