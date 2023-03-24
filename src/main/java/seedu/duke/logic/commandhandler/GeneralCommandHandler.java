@@ -32,59 +32,59 @@ public class GeneralCommandHandler implements CommandList {
      */
     // addition of user exercise history
     public void handleGeneralUserCommands(String[] userCommands, Ui ui, GenerateExercise exerciseGenerator,
-            UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
-            StorageHandler storageHandler, UserPlan planner) {
+                                          UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
+                                          StorageHandler storageHandler, UserPlan planner) {
         Command command = null;
         boolean errorExists = false;
         try {
 
             switch (userCommands[0]) {
-                case GENERATE_COMMAND:
-                    command = new GenerateFilterCommand(userCommands);
-                    break;
-                case FILTERS_COMMAND:
-                    ui.printFilters();
-                    break;
-                case EXIT_COMMAND:
-                    ui.byeUser();
-                    System.exit(0);
-                    break;
-                case HELP_COMMAND:
-                    command = new HelpCommand();
-                    break;
-                case PLANNER_EDITOR_COMMAND:
-                    PlannerCommandHandler.plannerCommandHandler(ui, planner, storageHandler);
-                    break;
-                case VIEW_PLAN_COMMAND:
-                    ui.showPlan(planner);
-                    break;
-                case QUICK_START_COMMAND:
-                    command = new QuickStartCommand(userCommands, ui, exerciseGenerator);
-                    break;
-                case START_COMMAND:
-                    exerciseStateHandler.startWorkout();
-                    break;
-                case CURRENT_COMMAND:
-                case FINISH_COMMAND:
-                case CANCEL_COMMAND:
-                    System.out.println("No workout session active." +
-                            " Please generate a workout and use the \"start\" command!");
-                    break;
-                case HISTORY_COMMAND:
-                    userCareerData.printAllFinishedWorkoutSessions();
-                    break;
-                case FIND_COMMAND:
-                    command = new ExerciseSearchCommand(userCommands);
-                    break;
-                case EXERCISE_DATA_COMMAND:
-                    HashMap<String, Integer> userExerciseDataMap = UserExerciseData
-                            .addUserExerciseHistory(userCareerData);
-                    ui.printUserExerciseHistory(userExerciseDataMap);
-                    break;
-                default:
-                    ui.unknownCommand();
-                    errorExists = true;
-                    break;
+            case GENERATE_COMMAND:
+                command = new GenerateFilterCommand(userCommands);
+                break;
+            case FILTERS_COMMAND:
+                ui.printFilters();
+                break;
+            case EXIT_COMMAND:
+                ui.byeUser();
+                System.exit(0);
+                break;
+            case HELP_COMMAND:
+                command = new HelpCommand();
+                break;
+            case PLANNER_EDITOR_COMMAND:
+                PlannerCommandHandler.plannerCommandHandler(ui, planner, storageHandler);
+                break;
+            case VIEW_PLAN_COMMAND:
+                ui.showPlan(planner);
+                break;
+            case QUICK_START_COMMAND:
+                command = new QuickStartCommand(userCommands, ui, exerciseGenerator);
+                break;
+            case START_COMMAND:
+                exerciseStateHandler.startWorkout();
+                break;
+            case CURRENT_COMMAND:
+            case FINISH_COMMAND:
+            case CANCEL_COMMAND:
+                System.out.println("No workout session active." +
+                        " Please generate a workout and use the \"start\" command!");
+                break;
+            case HISTORY_COMMAND:
+                userCareerData.printAllFinishedWorkoutSessions();
+                break;
+            case FIND_COMMAND:
+                command = new ExerciseSearchCommand(userCommands);
+                break;
+            case EXERCISE_DATA_COMMAND:
+                HashMap<String, Integer> userExerciseDataMap = UserExerciseData
+                        .addUserExerciseHistory(userCareerData);
+                ui.printUserExerciseHistory(userExerciseDataMap);
+                break;
+            default:
+                ui.unknownCommand();
+                errorExists = true;
+                break;
             }
         } catch (DukeError e) {
             System.out.println(e.getMessage());

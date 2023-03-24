@@ -15,17 +15,18 @@ import seedu.duke.model.userdata.UserExerciseData;
 import java.util.HashMap;
 import java.util.Scanner;
 
+//@@ChubbsBunns
 public class ExerciseSessionCommandHandler implements CommandList {
     private static final boolean COMPLETED_EXERCISE = true;
     private static final boolean INCOMPLETE_EXERCISE = false;
 
+    //@@ChubbsBunns
     /**
      * This checks with the user whether they wish to exit a Fitness Duke
      * session while an exercise is ongoing.
      * Prompts the user for confirmation to exit or to continue their exercise
      *
-     * @return Returns true if the user wishes to exit, false if they do not want
-     *         exit
+     * @return Returns true if the user wants to exit, false otherwise
      */
     private static boolean confirmExitDuringWorkout() {
         System.out.println("Are you sure you want to exit? You have a workout session ongoing." +
@@ -34,16 +35,18 @@ public class ExerciseSessionCommandHandler implements CommandList {
         while (true) {
             String input = in.nextLine();
             switch (input.toLowerCase()) {
-                case "y":
-                    return true;
-                case "n":
-                    return false;
-                default:
-                    System.out.println("Please type in a 'y' or a 'n' to state whether you wish to exit or not");
+            case "y":
+                return true;
+            case "n":
+                return false;
+            default:
+                System.out.println("Please type in a 'y' or a 'n' to state whether you wish to exit or not");
             }
         }
     }
 
+
+    //@@ChubbsBunns
     /**
      * This class takes in parsed user input and handles all user commands when an
      * exercise is ongoing
@@ -61,49 +64,50 @@ public class ExerciseSessionCommandHandler implements CommandList {
      */
 
     public void handleExerciseSessionUserCommands(String[] userCommands, Ui ui,
-            UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler) {
+                                                  UserCareerData userCareerData,
+                                                  ExerciseStateHandler exerciseStateHandler) {
         try {
             switch (userCommands[0]) {
-                case GENERATE_COMMAND:
-                    throw new OngoingExGenerationError();
-                case HELP_COMMAND:
-                case FILTERS_COMMAND:
-                case FIND_COMMAND:
-                    throw new OngoingExHelpError();
-                case BYE_COMMAND:
-                case EXIT_COMMAND:
-                    boolean exit = confirmExitDuringWorkout();
-                    if (exit) {
-                        ui.byeUser();
-                        System.exit(0);
-                    } else {
-                        System.out.println("You got this! Finish your exercise session!");
-                    }
-                    break;
-                case READ_SAMPLE_COMMAND:
-                case WRITE_SAMPLE_COMMAND:
-                    throw new OngoingExWriteError();
-                case START_COMMAND:
-                    throw new OngoingExProgressError();
-                case CURRENT_COMMAND:
-                    exerciseStateHandler.printCurrentWorkout();
-                    break;
-                case FINISH_COMMAND:
-                    exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData);
-                    break;
-                case CANCEL_COMMAND:
-                    exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData);
-                    break;
-                case HISTORY_COMMAND:
-                    throw new OngoingExHistoryError();
-                case EXERCISE_DATA_COMMAND:
-                    HashMap<String, Integer> userExerciseDataMap = UserExerciseData
-                            .addUserExerciseHistory(userCareerData);
-                    ui.printUserExerciseHistory(userExerciseDataMap);
-                    break;
-                default:
-                    ui.unknownCommand();
-                    break;
+            case GENERATE_COMMAND:
+                throw new OngoingExGenerationError();
+            case HELP_COMMAND:
+            case FILTERS_COMMAND:
+            case FIND_COMMAND:
+                throw new OngoingExHelpError();
+            case BYE_COMMAND:
+            case EXIT_COMMAND:
+                boolean exit = confirmExitDuringWorkout();
+                if (exit) {
+                    ui.byeUser();
+                    System.exit(0);
+                } else {
+                    System.out.println("You got this! Finish your exercise session!");
+                }
+                break;
+            case READ_SAMPLE_COMMAND:
+            case WRITE_SAMPLE_COMMAND:
+                throw new OngoingExWriteError();
+            case START_COMMAND:
+                throw new OngoingExProgressError();
+            case CURRENT_COMMAND:
+                exerciseStateHandler.printCurrentWorkout();
+                break;
+            case FINISH_COMMAND:
+                exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData);
+                break;
+            case CANCEL_COMMAND:
+                exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData);
+                break;
+            case HISTORY_COMMAND:
+                throw new OngoingExHistoryError();
+            case EXERCISE_DATA_COMMAND:
+                HashMap<String, Integer> userExerciseDataMap = UserExerciseData
+                        .addUserExerciseHistory(userCareerData);
+                ui.printUserExerciseHistory(userExerciseDataMap);
+                break;
+            default:
+                ui.unknownCommand();
+                break;
             }
         } catch (DukeError e) {
             System.out.println(e.getMessage());

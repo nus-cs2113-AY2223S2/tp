@@ -1,7 +1,5 @@
 package seedu.duke.achievements;
 
-import seedu.duke.ui.ErrorMessages;
-
 public enum AchievementDifficulty {
     EASY("*"),
     MEDIUM ("**"),
@@ -12,5 +10,8 @@ public enum AchievementDifficulty {
         this.difficulty = difficulty;
     }
 
-    public String toString() { return difficulty; }
+    public String toString() {
+        return difficulty;
+    }
+
 }
