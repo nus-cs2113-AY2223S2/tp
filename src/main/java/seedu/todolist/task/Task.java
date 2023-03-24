@@ -39,10 +39,11 @@ public class Task implements Serializable {
         this.isDone = isDone;
     }
 
-    //@@ clement559
+    //@@author clement559
     public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
     }
+
 
     public int getRepeatDuration() {
         return this.repeatDuration;
@@ -59,4 +60,5 @@ public class Task implements Serializable {
     public void setRepeatDuration(int newRepeatDuration) {
         this.repeatDuration = newRepeatDuration;
     }
+
 }

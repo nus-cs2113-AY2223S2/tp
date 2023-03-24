@@ -4,6 +4,8 @@ import seedu.todolist.constants.Messages;
 
 import java.util.Scanner;
 
+import static seedu.todolist.logic.command.ProgressBarCommand.TOTAL_NUMBER_OF_SECTIONS_FOR_PROGRESS_BAR;
+
 public class Ui {
     private final Scanner INPUT = new Scanner(System.in);
 
@@ -76,5 +78,24 @@ public class Ui {
 
     public void printError(Exception e) {
         printWithNewlineSeparator(e.getMessage());
+    }
+
+    public void printProgressBar(int totalNumberOfTasksThisWeek, int numberOfCompletedTasksThisWeek) {
+        double progress = (double) numberOfCompletedTasksThisWeek/ totalNumberOfTasksThisWeek;
+        double progressPercentage = progress * 100;
+        System.out.println("You have completed " + progressPercentage + "% of the tasks that are due this week!");
+        System.out.print("Progress: |");
+
+        int numberOfSectionsForCompletedTasks = (int) (progress * TOTAL_NUMBER_OF_SECTIONS_FOR_PROGRESS_BAR);
+        int numberOfSectionsForUncompletedTasks = TOTAL_NUMBER_OF_SECTIONS_FOR_PROGRESS_BAR
+                                                - numberOfSectionsForCompletedTasks;
+
+        for (int i = 0; i < numberOfSectionsForCompletedTasks; ++i) {
+            System.out.print("=");
+        }
+        for (int j = 0; j < numberOfSectionsForUncompletedTasks; ++j) {
+            System.out.print("-");
+        }
+        System.out.println("|");
     }
 }

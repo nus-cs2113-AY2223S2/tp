@@ -1,21 +1,27 @@
 @startuml
-
-autonumber
-hide footbox
-title Sequence Diagram for DeleteTaskCommand
+!include Style.puml
 
 actor User
 
-box Logic
-participant ":ToDoListManager" as ToDoListManager
-participant ":Parser" as Parser
-participant ":DeleteTaskCommand" as DeleteTaskCommand
+box Manager COLOR_MAIN_LIGHT
+participant ":ToDoListManager" as ToDoListManager COLOR_MAIN
 end box
-box Model
-participant ":exception" as exception
-participant ":TaskList" as TaskList
-participant ":Ui" as Ui
-participant ":Storage" as Storage
+
+box Logic COLOR_LOGIC_LIGHT
+participant ":Parser" as Parser COLOR_LOGIC
+participant ":DeleteTaskCommand" as DeleteTaskCommand COLOR_LOGIC
+end box
+
+box TaskList COLOR_TASK_LIST_LIGHT
+participant ":TaskList" as TaskList COLOR_TASK_LIST
+end box
+
+box Ui COLOR_UI_LIGHT
+participant ":Ui" as Ui COLOR_UI
+end box
+
+box Storage COLOR_STORAGE_LIGHT
+participant ":Storage" as Storage COLOR_STORAGE
 end box
 
 User -> ToDoListManager: input("delete <index>")
@@ -25,16 +31,10 @@ activate Parser
 create DeleteTaskCommand
 Parser -> DeleteTaskCommand
 activate DeleteTaskCommand
-DeleteTaskCommand -> Parser : HashMap
+DeleteTaskCommand --> Parser : HashMap
 deactivate DeleteTaskCommand
 Parser -> DeleteTaskCommand : parse("<index>")
 activate DeleteTaskCommand
-alt  index <= 0 || index > TaskList.size()
-   DeleteTaskCommand --> exception : throw InvalidIndexException
-   activate exception
-   deactivate exception
-end
-destroy exception
 DeleteTaskCommand --> Parser
 deactivate DeleteTaskCommand
 Parser --> ToDoListManager : command
@@ -50,19 +50,13 @@ activate Ui
 Ui --> DeleteTaskCommand
 deactivate Ui
 DeleteTaskCommand --> ToDoListManager : result
+ToDoListManager --> User : Notify user task has been deleted
 deactivate DeleteTaskCommand
 destroy DeleteTaskCommand
 ToDoListManager ->Storage : saveData(taskList)
 activate Storage
-alt  fail to save updated task list
-   Storage --> exception : throw FailedSaveException
-   activate exception
-   deactivate exception
-end
-destroy exception
 Storage -> Storage : updates data
 Storage --> ToDoListManager
 deactivate Storage
-ToDoListManager --> User : Notify user task has been deleted
 
 @enduml
