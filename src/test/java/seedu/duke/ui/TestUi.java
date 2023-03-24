@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.HashMap;
 
 public class TestUi {
     /**
@@ -174,6 +175,7 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+
     /**
      * Checks if the ui.byeUser() method prints the correct output.
      */
@@ -256,6 +258,40 @@ public class TestUi {
                     "\tExit workout plan editor\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    /**
+     * Checks if printUserExerciseHistory() method prints the correct output.
+     */
+    @Test
+    void testPrintUserExerciseHistory() {
+        //add one value then compare.
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+        HashMap<String,Integer> userExerciseDataMap = new HashMap<>();
+        String exerciseName = "3/4 Sit-Up";
+
+        if (userExerciseDataMap.containsKey(exerciseName)) {
+            int count = userExerciseDataMap.get(exerciseName);
+            userExerciseDataMap.put(exerciseName, count + 1);
+        } else {
+            userExerciseDataMap.put(exerciseName, 1);
+        }
+
+        Ui ui = new Ui();
+        ui.printUserExerciseHistory(userExerciseDataMap);
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "Here is a list of all the exercises you have completed:\r\n" +
+                    "\r\n" +
+                    "Exercise: 3/4 Sit-Up" + "\tFrequency of Completion: 1\r\n";
+        } else {
+            expectedOutput = "Exercise: 3/4 Sit-Up" + "\tFrequency of Completion: 1\n";
+        }
+        assertEquals(expectedOutput,actualOutput.toString());
     }
 
     //To be completed
