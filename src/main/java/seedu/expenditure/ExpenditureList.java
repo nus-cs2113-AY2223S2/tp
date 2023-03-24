@@ -90,4 +90,23 @@ public class ExpenditureList {
         }
         return sortedExpenditures;
     }
+
+    public static ExpenditureList sortDate(String sortType) {
+        ArrayList<Expenditure> sortExpenditureDate = expenditures;
+        switch (sortType) {
+        case SortCommand.DATE_FROM_EARLIEST:
+            sortExpenditureDate.sort(Comparator.comparing(Expenditure::getDate));
+            break;
+        case SortCommand.DATE_FROM_LATEST:
+            sortExpenditureDate.sort(Comparator.comparing(Expenditure::getDate).reversed());
+            break;
+        default:
+            break;
+        }
+        ExpenditureList sortedExpenditures = new ExpenditureList();
+        for (Expenditure expenditure : sortExpenditureDate) {
+            sortedExpenditures.addExpenditure(expenditure);
+        }
+        return sortedExpenditures;
+    }
 }
