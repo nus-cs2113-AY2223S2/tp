@@ -3,7 +3,6 @@ package seedu.brokeMan.save;
 import seedu.brokeMan.entry.Entry;
 import seedu.brokeMan.entry.expense.Expense;
 import seedu.brokeMan.entry.expense.ExpenseList;
-import seedu.brokeMan.entry.income.IncomeList;
 import seedu.brokeMan.exception.CategoryNotCorrectException;
 import seedu.brokeMan.parser.StringToCategory;
 

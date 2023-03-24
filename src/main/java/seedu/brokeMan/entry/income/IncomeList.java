@@ -1,6 +1,5 @@
 package seedu.brokeMan.entry.income;
 
-
 import seedu.brokeMan.entry.Category;
 import seedu.brokeMan.entry.Entry;
 import seedu.brokeMan.entry.EntryList;
