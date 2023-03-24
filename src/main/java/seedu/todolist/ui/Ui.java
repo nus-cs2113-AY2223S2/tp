@@ -65,6 +65,7 @@ public class Ui {
 
     public void printGetTaskEmailMessage(String email) {
         printWithNewlineSeparator(Messages.GET_EMAIL.MESSAGE, email);
+    }
         
     public void printCheckRepeatingTaskMessage() {
         printWithNewlineSeparator(Messages.CHECK_REPEATING.MESSAGE);

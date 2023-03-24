@@ -52,7 +52,7 @@ public class Task implements Serializable {
 
     public String getEmail() {
         return email;
-
+    }
 
     public int getRepeatDuration() {
         return this.repeatDuration;

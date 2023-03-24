@@ -129,11 +129,12 @@ public class TaskList implements Serializable {
         if (index < 0 || index > tasks.size() - 1) {
             throw new InvalidIndexException();
         }
-        if (tasks.get(index).getEmail().isEmpty()){
+        if (tasks.get(index).getEmail().isEmpty()) {
             throw new NullPointerException();
-        }
-        else {
+        } else {
             return (tasks.get(index).getEmail());
+        }
+    }
 
     public void checkRepeatingTasks() {
         int originalListSize = tasks.size();

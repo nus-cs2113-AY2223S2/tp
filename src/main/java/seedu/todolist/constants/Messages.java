@@ -17,7 +17,7 @@ public enum Messages {
     LIST_TASKS("Okay, here are the tasks in your list:"),
     SET_EMAIL("Okay, I have set the email of the Professors/TA for this task:"),
     GET_EMAIL("Okay, Here is the email of the Professor/TA for this task:"),
-    EMPTY_LIST("There are no tasks in your list.");
+    EMPTY_LIST("There are no tasks in your list."),
     CHECK_REPEATING("The list has been checked for any repeating tasks.");
 
     public final String MESSAGE;
