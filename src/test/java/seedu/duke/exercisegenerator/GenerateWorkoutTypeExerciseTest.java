@@ -1,10 +1,11 @@
 package seedu.duke.exercisegenerator;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.DukeError;
-import seedu.duke.exersisedata.ExerciseData;
+import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
+import seedu.duke.model.exercisegenerator.GenerateExercise;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -25,22 +26,22 @@ public class GenerateWorkoutTypeExerciseTest {
      * list of data
      */
     @Test
-    void testUpperBodyWorkout() {
+    void testUpperBodyWorkout () {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
 
         exerciseData = generateExercise.generateSetAll();
-        try{
+        try {
             exerciseData = generateExercise.generateFilteredWorkoutTypeFrom(exerciseData, UPPER);
-        } catch (DukeError e){
+        } catch (DukeError e) {
             System.out.println(e.getMessage());
         }
 
-        for (int i = 0; i < exerciseData.size(); i++){
+        for (int i = 0; i < exerciseData.size(); i++) {
             String workoutType = exerciseData.get(i).getWorkoutType().toString();
             int start = workoutType.indexOf(OPEN_BRACE);
             int end = workoutType.indexOf(CLOSE_BRACE);
-            String workoutTypeFinal = workoutType.substring(start+1,end);
+            String workoutTypeFinal = workoutType.substring(start + 1, end);
             assertEquals(workoutTypeFinal, UPPER_BODY);
         }
     }
@@ -50,22 +51,22 @@ public class GenerateWorkoutTypeExerciseTest {
      * list of data
      */
     @Test
-    void testCoreWorkout() {
+    void testCoreWorkout () {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
 
         exerciseData = generateExercise.generateSetAll();
-        try{
+        try {
             exerciseData = generateExercise.generateFilteredWorkoutTypeFrom(exerciseData, CORE);
-        } catch (DukeError e){
+        } catch (DukeError e) {
             System.out.println(e.getMessage());
         }
 
-        for (int i = 0; i < exerciseData.size(); i++){
+        for (int i = 0; i < exerciseData.size(); i++) {
             String workoutType = exerciseData.get(i).getWorkoutType().toString();
             int start = workoutType.indexOf(OPEN_BRACE);
             int end = workoutType.indexOf(CLOSE_BRACE);
-            String workoutTypeFinal = workoutType.substring(start+1,end);
+            String workoutTypeFinal = workoutType.substring(start + 1, end);
             assertEquals(workoutTypeFinal, CORE);
         }
     }
@@ -75,24 +76,24 @@ public class GenerateWorkoutTypeExerciseTest {
      * list of data
      */
     @Test
-    void testLegsWorkout() {
+    void testLegsWorkout () {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
 
         exerciseData = generateExercise.generateSetAll();
-        try{
+        try {
             exerciseData = generateExercise.generateFilteredWorkoutTypeFrom(exerciseData, LEGS);
-        } catch (DukeError e){
+        } catch (DukeError e) {
             System.out.println(e.getMessage());
         }
 
-        for (int i = 0; i < exerciseData.size(); i++){
+        for (int i = 0; i < exerciseData.size(); i++) {
             String workoutType = exerciseData.get(i).getWorkoutType().toString();
             //new stuff
             //assert workoutType == "core": "workoutType should be core";
             int start = workoutType.indexOf(OPEN_BRACE);
             int end = workoutType.indexOf(CLOSE_BRACE);
-            String workoutTypeFinal = workoutType.substring(start+1,end);
+            String workoutTypeFinal = workoutType.substring(start + 1, end);
             assertEquals(workoutTypeFinal, LEGS);
         }
     }
@@ -102,23 +103,23 @@ public class GenerateWorkoutTypeExerciseTest {
      * when ran together
      */
     @Test
-    void testWorkoutTypeAndGymSet() {
+    void testWorkoutTypeAndGymSet () {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
 
         exerciseData = generateExercise.generateSetAll();
-        try{
+        try {
             exerciseData = generateExercise.generateFilteredWorkoutTypeFrom(exerciseData, CORE);
             exerciseData = generateExercise.generateFilteredGymSetFrom(exerciseData);
-        } catch (DukeError e){
+        } catch (DukeError e) {
             System.out.println(e.getMessage());
         }
 
-        for (int i = 0; i < exerciseData.size(); i++){
+        for (int i = 0; i < exerciseData.size(); i++) {
             String workoutType = exerciseData.get(i).getWorkoutType().toString();
             int start = workoutType.indexOf(OPEN_BRACE);
             int end = workoutType.indexOf(CLOSE_BRACE);
-            String workoutTypeFinal = workoutType.substring(start+1,end);
+            String workoutTypeFinal = workoutType.substring(start + 1, end);
             assertEquals(workoutTypeFinal, CORE);
             assertNotEquals(exerciseData.get(i).getEquipment(), BODY);
         }
@@ -129,25 +130,26 @@ public class GenerateWorkoutTypeExerciseTest {
      * specific difficulty when ran together
      */
     @Test
-    void testWorkoutTypeAndDifficulty() {
+    void testWorkoutTypeAndDifficulty () {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
 
         exerciseData = generateExercise.generateSetAll();
-        try{
+        try {
             exerciseData = generateExercise.generateFilteredWorkoutTypeFrom(exerciseData, CORE);
             exerciseData = generateExercise.generateFilteredDifficultySetFrom(exerciseData, EASY);
-        } catch (DukeError e){
+        } catch (DukeError e) {
             System.out.println(e.getMessage());
         }
 
-        for (int i = 0; i < exerciseData.size(); i++){
+        for (int i = 0; i < exerciseData.size(); i++) {
             String workoutType = exerciseData.get(i).getWorkoutType().toString();
             int start = workoutType.indexOf(OPEN_BRACE);
             int end = workoutType.indexOf(CLOSE_BRACE);
-            String workoutTypeFinal = workoutType.substring(start+1,end);
+            String workoutTypeFinal = workoutType.substring(start + 1, end);
             assertEquals(workoutTypeFinal, CORE);
             assertEquals(exerciseData.get(i).getLevel(), BEGINNER);
         }
     }
+
 }

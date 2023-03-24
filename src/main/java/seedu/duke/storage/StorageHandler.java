@@ -3,8 +3,8 @@ package seedu.duke.storage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import seedu.duke.exceptions.DukeError;
-import seedu.duke.userdata.UserCareerData;
+import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.model.userdata.UserCareerData;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -13,7 +13,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import seedu.duke.userplan.UserPlan;
+import seedu.duke.model.userdata.userplan.UserPlan;
 
 public class StorageHandler implements Storage {
     private static final Logger logger = Logger.getLogger("Storage");

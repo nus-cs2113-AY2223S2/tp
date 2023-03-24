@@ -1,12 +1,12 @@
 package seedu.duke;
 
-import seedu.duke.commandhandler.CommandHandler;
-import seedu.duke.exercisegenerator.GenerateExercise;
+import seedu.duke.logic.commandhandler.CommandHandler;
+import seedu.duke.model.exercisegenerator.GenerateExercise;
 import seedu.duke.storage.StorageHandler;
-import seedu.duke.userdata.UserCareerData;
+import seedu.duke.model.userdata.UserCareerData;
 import seedu.duke.ui.Ui;
-import seedu.duke.states.ExerciseStateHandler;
-import seedu.duke.userplan.UserPlan;
+import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
+import seedu.duke.model.userdata.userplan.UserPlan;
 
 import java.util.HashMap;
 import java.util.Scanner;
