@@ -30,7 +30,7 @@ public class EntryEndpoint extends Endpoint {
     @Override
     public Response handleDelete(Request request) {
         logger.info("/entry [DELETE]: request received");
-        int targetId = Integer.parseInt(request.getData());
+        int targetId = Integer.parseInt(request.getBody());
         try {
             Entry deletedEntry = entries.deleteEntry(targetId - 1);
             logger.info("/entry [DELETE]: OK");
@@ -43,10 +43,10 @@ public class EntryEndpoint extends Endpoint {
 
     @Override
     public Response handleGet(Request request) {
-        logger.info("/entry [GET]: request received - " + request.getData());
-        Entry entry = entries.getEntry(Integer.parseInt(request.getData()));
+        logger.info("/entry [GET]: request received - " + request.getBody());
+        Entry entry = entries.getEntry(Integer.parseInt(request.getBody()));
         if (entry == null) {
-            logger.warning("/entry [GET]: received invalid entry ID " + request.getData());
+            logger.warning("/entry [GET]: received invalid entry ID " + request.getBody());
             return new Response(ResponseStatus.NOT_FOUND, "");
         }
         logger.info("/entry [GET]: OK");
@@ -66,9 +66,9 @@ public class EntryEndpoint extends Endpoint {
     @Override
     public Response handlePatch(Request request) {
         logger.info("/entry [PATCH]: request received");
-        Entry editEntry = entries.getEntry(Integer.parseInt(request.getData()));
+        Entry editEntry = entries.getEntry(Integer.parseInt(request.getBody()));
         if (editEntry == null) {
-            logger.warning("/entry [PATCH]: received invalid entry ID " + request.getData());
+            logger.warning("/entry [PATCH]: received invalid entry ID " + request.getBody());
             return new Response(ResponseStatus.NOT_FOUND, "");
         }
 
@@ -76,21 +76,21 @@ public class EntryEndpoint extends Endpoint {
             try {
                 String category = request.getParam(RequestParams.EDIT_CATEGORY);
                 editEntry.setCategory(CategoryUtil.convertStringToCategory(category));
-                logger.info("/entry [PATCH]: update category" + request.getData());
+                logger.info("/entry [PATCH]: update category" + request.getBody());
             } catch (InvalidCategoryException e) {
-                logger.warning("/entry [PATCH]: received invalid category" + request.getData());
+                logger.warning("/entry [PATCH]: received invalid category" + request.getBody());
                 return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, "");
             }
         }
         if (request.hasParam(RequestParams.EDIT_AMOUNT)) {
             double amount = Double.parseDouble(request.getParam(RequestParams.EDIT_AMOUNT));
             editEntry.setAmount(amount);
-            logger.info("/entry [PATCH]: update amount" + request.getData());
+            logger.info("/entry [PATCH]: update amount" + request.getBody());
         }
         if (request.hasParam(RequestParams.EDIT_DESCRIPTION)) {
             String description = request.getParam(RequestParams.EDIT_DESCRIPTION);
             editEntry.setDescription(description);
-            logger.info("/entry [PATCH]: update description" + request.getData());
+            logger.info("/entry [PATCH]: update description" + request.getBody());
         }
 
         logger.info("/entry [PATCH]: OK");
@@ -107,7 +107,7 @@ public class EntryEndpoint extends Endpoint {
     @Override
     public Response handlePost(Request request) {
         logger.info("/entry [POST]: request received");
-        String json = request.getData();
+        String json = request.getBody();
         Entry entry = EntryParser.deserialise(json);
         entries.addEntry(entry);
         logger.info("/entry [POST]: CREATED");

@@ -1,0 +1,46 @@
+@startuml
+title Endpoint Class Diagram
+
+interface Requestable
+class Request
+class Response
+abstract class Endpoint
+class EntryEndpoint
+class EntriesEndpoint
+class EntryLog
+
+Endpoint ..|> Requestable
+Endpoint --|> EntryEndpoint
+Endpoint --|> EntriesEndpoint
+EntryEndpoint o-- "1" EntryLog
+EntriesEndpoint o-- "1" EntryLog
+EntryEndpoint ...> Request
+EntryEndpoint ...> Response
+EntriesEndpoint ...> Request
+EntriesEndpoint ...> Response
+
+abstract class Endpoint {
++ handleRequest(request : Request) : Response
++ handleDelete(request : Request) : Response
++ handleGet(request : Request) : Response
++ handlePatch(request : Request) : Response
++ handlePost(request : Request) : Response
+}
+
+class EntryEndpoint {
+- {static} logger : Logger
++ handleDelete(request : Request) : Response
++ handleGet(request : Request) : Response
++ handlePatch(request : Request) : Response
++ handlePost(request : Request) : Response
+}
+
+class EntriesEndpoint {
+- {static} logger : Logger
++ handleGet(request : Request) : Response
+- handleGetSize() : Response
+- handleGetEntries(request : Request) : Response
+- handleGetEntriesFilter(request : Request) : EntryLog
+}
+
+@enduml

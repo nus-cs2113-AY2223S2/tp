@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/class-diagram
+scale 2
+class Storage{
+    -filePath: String
+    -delimiter: String
+    +Storage()
+    +Storage(String)
+    -makeFileIfNotExists(): void
+    -readEntryLine(String): Entry
+    -writeEntryLine(Entry): String
+    +readFromDatabase(): List<Entry>
+    +writeToDatabase(List<Entry>): void
+    +reset(): void
+}
+
+@enduml
