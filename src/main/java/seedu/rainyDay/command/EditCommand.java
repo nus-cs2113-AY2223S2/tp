@@ -1,7 +1,9 @@
 package seedu.rainyDay.command;
 
+import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.FlowDirection;
+import seedu.rainyDay.modules.Storage;
 
 import java.time.LocalDate;
 import java.util.logging.FileHandler;
@@ -94,16 +96,22 @@ public class EditCommand extends Command {
                     new FinancialStatement(description, flowDirection, value, category, date), index);
         } else if (flag.equals("-d")) {
             financialReport.getFinancialStatement(index).setDescription(fieldToChange);
+            Storage.writeToFile(financialReport, RainyDay.filePath);
         } else if (flag.equals("-c")) {
             financialReport.getFinancialStatement(index).setCategory(fieldToChange);
+            Storage.writeToFile(financialReport, RainyDay.filePath);
         } else if (flag.equals("-v")) {
             financialReport.getFinancialStatement(index).setValue(valueToChange);
+            Storage.writeToFile(financialReport, RainyDay.filePath);
         } else if (flag.equals("-out")) {
             financialReport.getFinancialStatement(index).setFlowDirection(FlowDirection.OUTFLOW);
+            Storage.writeToFile(financialReport, RainyDay.filePath);
         } else if (flag.equals("-in")) {
             financialReport.getFinancialStatement(index).setFlowDirection(FlowDirection.INFLOW);
+            Storage.writeToFile(financialReport, RainyDay.filePath);
         } else if (flag.equals("-date")) {
             financialReport.getFinancialStatement(index).setDate(dateToChange);
+            Storage.writeToFile(financialReport, RainyDay.filePath);
         }
 
         String output = "Done, edited entry " + (index + 1)
