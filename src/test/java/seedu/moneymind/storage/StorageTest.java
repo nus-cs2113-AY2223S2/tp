@@ -65,10 +65,11 @@ public class StorageTest {
     }
     
     @Test
-    void save_validArrayList_saveFileUpdated() {
+    void save_validArrayList_saveFileUpdated() throws InterruptedException {
         Storage storage = new Storage("testFile.txt");
         File testFile = new File("testFile.txt");
         Long timeStamp = testFile.lastModified();
+        Thread.sleep(5);
         storage.save(storageTestData());
         assertTrue(testFile.lastModified() != timeStamp);
         testFile.delete();
