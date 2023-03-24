@@ -184,6 +184,7 @@ Number of MC: 4
 Here are the lesson types for this module:
 Sectional Teaching (-st)
 Tutorial (-tut)
+
 Sectional Teaching 1
    Friday 1200 - 1300
 Sectional Teaching 1
@@ -215,6 +216,7 @@ Number of MC: 4
 Here are the lesson types for this module:
 Laboratory (-lab)
 Lecture (-lec)
+
 Laboratory 01
    Monday 1400 - 1700
 Laboratory 02
@@ -235,6 +237,11 @@ Lecture 02
    Thursday 1600 - 1800
 Lecture 02
    Tuesday 1600 - 1800
+____________________________________________________________
+____________________________________________________________
+Here are all available lessons of type: SECTIONAL_TEACHING for CS1010:
+Class Number: 1
+   Monday 1200 - 1400
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(

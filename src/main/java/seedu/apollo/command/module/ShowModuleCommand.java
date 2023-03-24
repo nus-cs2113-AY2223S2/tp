@@ -3,6 +3,7 @@ package seedu.apollo.command.module;
 import seedu.apollo.calendar.Calendar;
 import seedu.apollo.command.Command;
 import seedu.apollo.exception.module.InvalidModule;
+import seedu.apollo.exception.utils.IllegalCommandException;
 import seedu.apollo.module.LessonType;
 import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
@@ -27,28 +28,36 @@ import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
 public class ShowModuleCommand extends Command implements LoggerInterface {
     private static Logger logger = Logger.getLogger("ShowModuleCommand");
+    private String[] args;
     private Module module;
 
     /**
      * Constructor for ShowModuleCommand.
      *
-     * @param moduleCode The module code of the module to be checked.
+     * @param params     The parameters the user passes into the command.
      * @param allModules The list of all modules.
      * @throws InvalidModule If the module code is invalid.
      */
 
-    public ShowModuleCommand(String moduleCode, ModuleList allModules) throws InvalidModule {
+    public ShowModuleCommand(String params, ModuleList allModules) throws InvalidModule, IllegalCommandException {
 
         setUpLogger();
-        assert (moduleCode != null) : "ShowModuleCommand: ModuleCode should not be null!";
+        assert (params != null) : "ShowModuleCommand: ModuleCode should not be null!";
         assert (allModules != null) : "ShowModuleCommand: Module list should not be null!";
 
+        args = params.split("\\s+");
+
+        if (args.length != 2 && args.length != 1) {
+            throw new IllegalCommandException();
+        }
+
+        String moduleCode = args[0];
         Module checkMod = allModules.findModule(moduleCode);
         if (checkMod == null) {
             throw new InvalidModule();
         }
 
-        module = new Module(checkMod.getCode(), checkMod.getTitle(), checkMod.getModuleCredits());
+        module = checkMod;
 
     }
 
@@ -82,17 +91,23 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
-                        Calendar calendar) {
-        if (module != null) {
-            Module referenceModule = allModules.findModule(module.getCode());
-            ArrayList<Timetable> copyList = new ArrayList<>(referenceModule.getModuleTimetable());
-            Comparator<Timetable> compareByLessonType = Comparator.comparing(Timetable::getLessonType);
-            Comparator<Timetable> compareByClassNumber = Comparator.comparing(Timetable::getClassnumber);
-            Comparator<Timetable> compareAll = compareByLessonType.thenComparing(compareByClassNumber);
-            ArrayList<Timetable> parseList =
-                    copyList.stream().sorted(compareAll).collect(Collectors.toCollection(ArrayList::new));
-            ui.printShowModuleMessage(module, getLessonTypes(referenceModule), parseList);
+                        Calendar calendar)  {
+
+
+        assert (module != null) : "ShowModuleCommand: Module should not be null!";
+        try {
+            if (args.length == 2) {
+                handleMultiCommand(ui);
+            } else {
+                Module referenceModule = allModules.findModule(module.getCode());
+                ArrayList<Timetable> copyList = new ArrayList<>(referenceModule.getModuleTimetable());
+                ArrayList<Timetable> parseList = sortTimetable(copyList);
+                ui.printShowModuleMessage(module, getLessonTypes(referenceModule), parseList);
+            }
+        } catch (IllegalCommandException e) {
+            ui.printInvalidCommand();
         }
+
     }
 
     /**
@@ -110,6 +125,55 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
             }
         }
         return lessonTypes;
+    }
+
+    /**
+     * Handles the command when the user wants to see the timetable of a specific lesson type.
+     *
+     * @param ui The Ui object to print the timetable.
+     */
+    private void handleMultiCommand(Ui ui) throws IllegalCommandException {
+        String type = args[1];
+
+        LessonType lessonType = getCommand(type);
+        if (lessonType == null) {
+            throw new IllegalCommandException();
+        }
+        ArrayList<Timetable> copyList = new ArrayList<>();
+        ArrayList<Timetable> timetableList = module.getModuleTimetable();
+        if (timetableList == null) {
+            throw new IllegalCommandException();
+        }
+        for (Timetable timetable : timetableList) {
+            LessonType checkType = determineLessonType(timetable.getLessonType());
+            assert (checkType != null) : "ShowModuleCommand: Lesson type should not be null!";
+
+            if (checkType.equals(lessonType)) {
+                copyList.add(timetable);
+            }
+        }
+
+        if (copyList.size() == 0) {
+            ui.printNoLessonType();
+        }
+        sortTimetable(copyList);
+        ui.printModuleLessonTimetable(module, lessonType, copyList);
+
+    }
+
+    /**
+     * Sorts the timetable by lesson type, class number and class time .
+     *
+     * @param copyList The list of lessons to be sorted.
+     * @return The sorted list of lessons.
+     */
+    private ArrayList<Timetable> sortTimetable(ArrayList<Timetable> copyList) {
+        Comparator<Timetable> compareByLessonType = Comparator.comparing(Timetable::getLessonType);
+        Comparator<Timetable> compareByClassNumber = Comparator.comparing(Timetable::getClassnumber);
+        Comparator<Timetable> compareAll = compareByLessonType.thenComparing(compareByClassNumber);
+        ArrayList<Timetable> parseList =
+                copyList.stream().sorted(compareAll).collect(Collectors.toCollection(ArrayList::new));
+        return parseList;
     }
 
 }

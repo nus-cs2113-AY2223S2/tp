@@ -140,7 +140,7 @@ public class Ui {
         LocalDate endWeek = now.with(DayOfWeek.SUNDAY);
         LocalDate curr = startWeek;
         System.out.println("Here's your week from " + startWeek + " to " + endWeek + ":");
-        for (int i = 0; i<7; i++) {
+        for (int i = 0; i < 7; i++) {
             System.out.println("______________________");
             DayOfWeek day = determineDay(i);
             System.out.println(day + "\n");
@@ -242,14 +242,15 @@ public class Ui {
      * For {@code showmod} command
      * Prints out message existing Module information
      *
-     * @param newModule  Module that needs to show information
+     * @param newModule Module that needs to show information
      */
     public void printShowModuleMessage(Module newModule, ArrayList<LessonType> lessonTypes,
                                        ArrayList<Timetable> timetableList) {
-        System.out.println(newModule.getCode() +'\n' +
+        System.out.println(newModule.getCode() + '\n' +
                 "Number of MC: " + newModule.getModuleCredits());
         printLessonTypeMessage(lessonTypes);
-        for (Timetable timetable: timetableList){
+        System.out.println();
+        for (Timetable timetable : timetableList) {
             System.out.println(timetable.getLessonType() + " " + timetable.getClassnumber() + '\n' +
                     "   " + timetable.getDay() + " " + timetable.getStartTime() + " - " + timetable.getEndTime());
         }
@@ -543,8 +544,8 @@ public class Ui {
     /**
      * Prints message when lesson is added to a timetable.
      *
-     * @param moduleCode Module code of the module whose lesson is being added.
-     * @param lessonType Type of lesson being added.
+     * @param moduleCode  Module code of the module whose lesson is being added.
+     * @param lessonType  Type of lesson being added.
      * @param classNumber Class number of the lesson being added.
      */
     public void printClassAddedMessage(String moduleCode, LessonType lessonType, String classNumber) {
@@ -554,7 +555,6 @@ public class Ui {
 
     /**
      * Prints message when lesson is Invalid.
-     *
      */
     public void printInvalidLessonType() {
         System.out.println("This lesson type does not exist!");
@@ -562,7 +562,6 @@ public class Ui {
 
     /**
      * Prints message when lesson has already been added to the timetable.
-     *
      */
     public void printLessonExists() {
         System.out.println("This lesson type already exists for this lesson!");
@@ -570,7 +569,6 @@ public class Ui {
 
     /**
      * Prints message when lesson has not been added to the timetable.
-     *
      */
     public void printClassNotAdded() {
         System.out.println("This class has not been added to your timetable!");
@@ -579,12 +577,44 @@ public class Ui {
     /**
      * Prints message when lesson is deleted from the timetable.
      *
-     * @param moduleCode Module code of the module whose lesson is being deleted.
-     * @param lessonType Type of lesson being deleted.
+     * @param moduleCode   Module code of the module whose lesson is being deleted.
+     * @param lessonType   Type of lesson being deleted.
      * @param lessonNumber Class number of the lesson being deleted.
      */
     public void printModuleLessonDeleteMessage(String moduleCode, LessonType lessonType, String lessonNumber) {
         System.out.println("Deleting lessons for module: " + moduleCode.toUpperCase());
         System.out.println("Lessons Deleted: " + lessonType + " - " + lessonNumber);
+    }
+
+    /**
+     * Prints message when a module has no timetable information.
+     */
+    public void printNoTimetableMessage() {
+        System.out.println("This module has no timetable information");
+    }
+
+    /**
+     * Prints a message when a module does not have that particular lesson type.
+     */
+    public void printNoLessonType() {
+        System.out.println("This module does not have this lesson type");
+    }
+
+    /**
+     * Prints message of lesson schedule for a particular lesson type for a module
+     *
+     * @param module The module whose lesson schedule is being printed.
+     * @param lessonType The lesson type whose schedule is being printed.
+     * @param copyList The list of lessons of that lesson type for that module.
+     */
+    public void printModuleLessonTimetable(Module module, LessonType lessonType, ArrayList<Timetable> copyList) {
+        System.out.println("Here are all available lessons of type: " + lessonType.toString() + " for "
+                + module.getCode() + ":");
+
+        for (Timetable timetable : copyList) {
+            System.out.println("Class Number: " + timetable.getClassnumber());
+            System.out.println("   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
+                    timetable.getEndTime());
+        }
     }
 }
