@@ -100,23 +100,6 @@ public class Command {
             ui.showSave();
             Storage.writeSavedFile();
             break;
-        case FIND:
-            try {
-                ArrayList<Recipe> findRecipeResults = new ArrayList<>();
-                String keywords = fullDescription;
-                if (keywords.isEmpty()) {
-                    throw new IncompleteInputException(StringLib.MISSING_KEYWORD);
-                }
-                for (Recipe recipe : recipeList.getRecipeList()) {
-                    if (recipe.getName().contains(keywords)) {
-                        findRecipeResults.add(recipe);
-                    }
-                }
-                ui.showFindResults(findRecipeResults, keywords);
-            } catch (Exception e) {
-                ui.showFindingTaskErrorMessage(e);
-            }
-            break;
         case CLEAR:
             recipeList.clearRecipeList();
             ui.showRecipeListCleared();

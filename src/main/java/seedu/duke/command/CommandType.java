@@ -6,7 +6,6 @@ package seedu.duke.command;
  *  {@link #LIST}
  *  {@link #ADD}
  *  {@link #VIEW}
- *  {@link #FIND}
  *  {@link #DELETE}
  *  {@link #HELP}
  *  {@link #EXIT}
@@ -22,13 +21,10 @@ public enum CommandType {
      */
     ADD,
     /**
-     * Displays a particular recipe in the recipe list.
+     * Displays a particular recipe in the recipe list or finds all recipes containing keywords on the current recipe
+     * list.
      */
     VIEW,
-    /**
-     * Finds all recipes containing keywords on the current recipe list.
-     */
-    FIND,
     /**
      * Removes a particular recipe from the recipe list.
      */

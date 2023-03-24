@@ -47,19 +47,6 @@ public class UI {
     public String readCommand() {
         return in.nextLine();
     }
-    public void showFindResults(ArrayList<Recipe> list, String keywords) {
-        if (list.size() == 0) {
-            System.out.println(NO_MATCHING_FIND_RESULTS_MESSAGE + keywords + '\n');
-            return;
-        }
-        System.out.println(FIND_LIST_MESSAGE);
-        int i = 1;
-        for (Recipe t : list) {
-            System.out.println(i + ". " + t.toString());
-            i += 1;
-        }
-        System.out.println();
-    }
     public void showRecipeList(ArrayList<Recipe> list) {
         if (list.size() == 0) {
             System.out.println(EMPTY_LIST_MESSAGE);
