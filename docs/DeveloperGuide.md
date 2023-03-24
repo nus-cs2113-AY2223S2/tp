@@ -183,6 +183,7 @@ It is implemented through the following step:
    and return the `recipeList`containing all relevant recipes to `ParserRecipe()`.
 
 The sequence diagram below shows how this feature works:
+
 ![](../docs/UML/Implementation/ListFunction/ListFunction.png)
 
 ### Delete Recipes Feature
