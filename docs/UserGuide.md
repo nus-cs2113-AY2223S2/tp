@@ -1,4 +1,4 @@
-[comment]: <> (//@@Geeeetyx)
+[comment]: <> (//@@author Geeeetyx)
 # User Guide
 
 ## Introduction
@@ -394,3 +394,4 @@ Thank you for using
 |____/|_|    |____/ \__,_|_|\_\___|
 ---------------------------------------------------
 ~~~
+[comment]: <> (//@@author)

@@ -144,7 +144,7 @@ prescribed to the Patient object.
 `appendMedicineToSameDate()` appends medicine patient is prescribed if additional medicine is prescribed on the same
 day, allowing us to keep track of multiple prescriptions to one patient in one session.
 
-
+[comment]: <> (//@@Geeeetyx)
 ## Product scope
 
 ### Target user profile
