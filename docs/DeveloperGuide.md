@@ -159,7 +159,7 @@ It is implemented through the following step:
      in to the tag.
 
 The sequence diagram below shows how this feature works:
-{UML will be added here.}
+![](../docs/UML/Implementation/TagFunction/TagFunction.png)
 
 ### List Recipes Feature
 
@@ -178,7 +178,7 @@ It is implemented through the following step:
    and return the `recipeList`containing all relevant recipes to `ParserRecipe()`.
 
 The sequence diagram below shows how this feature works:
-{UML will be added here.}
+![](../docs/UML/Implementation/ListFunction/ListFunction.png)
 
 ---
 ## Appendix: Requirements
