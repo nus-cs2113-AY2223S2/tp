@@ -3,13 +3,16 @@ package functionalities.appointments;
 import functionalities.Animal;
 import functionalities.Owner;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Vaccination extends Appointment {
-    protected String date;
-    protected String time;
+    protected LocalDate date;
+    protected LocalTime time;
     protected String vaccine;
     protected String description = "vaccination";
 
-    public Vaccination(String uid, Animal animal, Owner owner, String date, String time, String vaccine) {
+    public Vaccination(String uid, Animal animal, Owner owner, LocalDate date, LocalTime time, String vaccine) {
         super(uid, animal, owner);
         this.uid = uid;
         this.animal = animal;

@@ -1,0 +1,14 @@
+@startuml
+class functionalities.parser.Parser {
+# {static} Command command
+~ {static} Logger logger
++ {static} Command parse(String)
+- {static} void parseConsultationCommand(String)
+- {static} void parseVaccinationCommand(String)
+- {static} void parseSurgeryCommand(String)
+- {static} void parseFindCommand(String)
+- {static} void parseListCommand()
+- {static} void parseRemoveCommand(String)
+- {static} void parseByeCommand()
+}
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class functionalities.ui.Ui {
+- {static} String DOT_THEN_SPACE
++ {static} void showUserMessage(String)
++ String readUserCommand()
++ void showErrorMessage()
++ void showWelcomeMessage()
++ void showLine()
++ {static} void formatPrintList(int,String)
++ {static} void printAppointmentAddedMessage(Appointment)
++ {static} void printAppointmentRemovedMessage(Appointment)
+}
+@enduml
