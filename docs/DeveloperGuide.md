@@ -87,11 +87,17 @@ The current `MealCompanionSession` would keep track of the `RecipeList` which is
 
 The add and remove command is facilitated by the methods in `IngredientList` and `Ingredient`. Given below is an example usage scenario and how the add and remove command behaves.
 
-Step 1. The user inputs his command e.g. `add egg /qty 5`, the name of the ingredient 'egg' would be crosschecked with our database of known ingredients
+Step 1. The user inputs his command e.g. `add egg /qty 5`, `IngredientList` would be called to check if egg is already stored inside the list
 
-Step 2. Since 'egg' is a known ingredient in our database, `IngredientList` would be called to check if egg is already stored inside the list
+Step 2. Suppose egg is not currently stored in `IngredientList`,  the name of the ingredient 'egg' would be crosschecked with our database of known ingredients
 
-Step 3. Suppose egg is not currently stored in `IngredientList`, a new `Ingredient` object would be created with the quantity, 5, and name, egg, specified by the user and added to `IngredientList` with the `add()` method.
+Step 3. Since egg is part of our list of known ingredients, a new `Ingredient` object would be created with the quantity, 5, and name, egg, specified by the user and added to `IngredientList` with the `add()` method.
+
+Below shows the sequence diagram for the above AddCommand:
+
+![AddIngredientSequenceUML.png](images/AddIngredientSequenceUML.png)
+
+Continuing from the above AddCommand:
 
 Step 4. Now the user decides to remove 2 eggs and inputs his command e.g. `remove egg /qty 2`, the `IngredientList` would be searched through to see if egg is in the list
 
@@ -101,9 +107,9 @@ Step 6. The current quantity of egg in the list would be obtained by calling `ge
 
 Step 7. Since the quantity input by the user is smaller than the current quantity of egg, which is 3, in the `IngredientList`, the new quantity would be calculated to be 3 and updated by calling `setQuantity(3)` 
 
+Below shows the sequence diagram for the above RemoveCommand:
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
+![RemoveIngredientSequenceUML.png](images/RemoveIngredientSequenceUML.png)
 
 ### Storage Feature
 
