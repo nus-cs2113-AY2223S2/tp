@@ -1,9 +1,15 @@
 package seedu.duke.ui;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exersisedata.ExerciseData;
+import seedu.duke.userdata.Session;
+import seedu.duke.userdata.UserCareerData;
+import seedu.duke.userplan.UserPlan;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TestUi {
@@ -270,6 +276,7 @@ public class TestUi {
         System.setOut(new PrintStream(actualOutput));
         HashMap<String,Integer> userExerciseDataMap = new HashMap<>();
         String exerciseName = "3/4 Sit-Up";
+        String exerciseNameTwo = "Ab Crunch Machine";
 
         if (userExerciseDataMap.containsKey(exerciseName)) {
             int count = userExerciseDataMap.get(exerciseName);
@@ -293,6 +300,13 @@ public class TestUi {
         }
         assertEquals(expectedOutput,actualOutput.toString());
     }
+
+    //test for show plan.
+    /*@Test
+    void testShowPlan() {
+        UserPlan planner = new UserPlan();
+
+    }*/
 
     //To be completed
     /*@Test
