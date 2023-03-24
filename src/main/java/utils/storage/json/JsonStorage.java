@@ -157,13 +157,16 @@ s
 
 */
 
-
-
 package utils.storage.json;
 
 import com.google.gson.JsonSyntaxException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import com.google.gson.Gson;
@@ -175,7 +178,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-
 
 import model.Card;
 import model.CardList;
@@ -201,7 +203,8 @@ public class JsonStorage extends Storage {
         if (backupFileDir == null) {
             backupFileDir = ".";
         }
-        backupFilePath = backupFileDir + File.separator + "." + backupFilePath.substring(backupFilePath.lastIndexOf(File.separator) + 1);
+        backupFilePath = backupFileDir + File.separator + "." + backupFilePath.substring(
+                backupFilePath.lastIndexOf(File.separator) + 1);
         backupFile = new File(backupFilePath);
 
         gsonBuilder = new GsonBuilder();
@@ -209,7 +212,6 @@ public class JsonStorage extends Storage {
         //Add custom adapters
         gsonBuilder.registerTypeAdapter(CardUUID.class, new CardUuidJsonAdapter());
         gsonBuilder.registerTypeAdapter(TagUUID.class, new TagUuidJsonAdapter());
-
     }
 
     @Override
@@ -217,9 +219,9 @@ public class JsonStorage extends Storage {
         CardList cardList = null;
         boolean useBackup = false;
         try {
-                FileReader fileReader = new FileReader(saveFile);
+            FileReader fileReader = new FileReader(saveFile);
 
-             BufferedReader bufferedReader = new BufferedReader(fileReader);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
             gsonBuilder.setLenient();
             JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
             JsonObject jsonObject = jsonElement.getAsJsonObject();
@@ -229,7 +231,6 @@ public class JsonStorage extends Storage {
             }.getType();
             ArrayList<Card> cards = gsonBuilder.create().fromJson(jsonArray, cardListType);
             cardList = new CardList(cards);
-
         } catch (IOException e) {
             String absolutePath = this.saveFile.getAbsolutePath();
             logger.log(Level.WARNING, "Failed to load file from " + absolutePath, e);
@@ -244,7 +245,8 @@ public class JsonStorage extends Storage {
 
         if (useBackup == true) {
             logger.log(Level.INFO, "Trying to load backup file");
-            try{  FileReader fileReader = new FileReader(backupFile);
+            try {
+                FileReader fileReader = new FileReader(backupFile);
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
                 JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
                 JsonObject jsonObject = jsonElement.getAsJsonObject();
@@ -265,7 +267,6 @@ public class JsonStorage extends Storage {
 
         return cardList;
     }
-
 
     @Override
     public void save(CardList cardList) throws StorageSaveFailure {
@@ -300,7 +301,7 @@ public class JsonStorage extends Storage {
 
     private void saveDataToFile(File file, JsonObject data) throws IOException {
         try (FileWriter fileWriter = new FileWriter(file);
-             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
 
             Gson gson = gsonBuilder.setPrettyPrinting().create();
             String serialized = gson.toJson(data);
