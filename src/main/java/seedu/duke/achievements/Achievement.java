@@ -1,7 +1,7 @@
 package seedu.duke.achievements;
 
 import seedu.duke.ui.ErrorMessages;
-import seedu.duke.exceptions.DukeError;
+import seedu.duke.commons.exceptions.DukeError;
 public abstract class Achievement {
     private final static String BLANK = " ";
     private final static String COLON = ":";
@@ -65,6 +65,10 @@ public abstract class Achievement {
                 nextLine + completed +
                 nextLine + requirement
          );
+    }
+
+    public void complete() {
+        this.completed = true;
     }
 
 }

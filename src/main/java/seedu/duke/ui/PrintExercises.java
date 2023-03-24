@@ -1,6 +1,6 @@
 package seedu.duke.ui;
 
-import seedu.duke.exersisedata.ExerciseData;
+import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class PrintExercises {
         String getInstructions;
         String getInstructionsFinal;
         for (ExerciseData exercise : exercises) {
-            //Removed open and close braces for instructions as well as workout type.
+            // Removed open and close braces for instructions as well as workout type.
             getWorkoutType = exercise.getWorkoutType().toString();
             getInstructions = exercise.getInstructions().toString();
             int start = getWorkoutType.indexOf(OPEN_BRACE);

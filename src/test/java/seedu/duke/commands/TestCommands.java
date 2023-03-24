@@ -1,8 +1,9 @@
 package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.DukeError;
-import seedu.duke.exercisegenerator.GenerateExercise;
+import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.logic.commands.GenerateFilterCommand;
+import seedu.duke.model.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -17,7 +18,7 @@ public class TestCommands {
      * input. If number of exercise is not present in user input, an exception should be thrown, none otherwise.
      */
     @Test
-    public void testUserFilterCommand() {
+    public void testUserFilterCommand () {
 
         String[] invalidCommands = {"this is an invalid command", "this is another invalid command"};
         assertThrows(DukeError.class, () -> {
@@ -34,7 +35,7 @@ public class TestCommands {
      * error such as when an event that the user inputs an invalid filter argument.
      */
     @Test
-    public void testExecuteFilterCommand() {
+    public void testExecuteFilterCommand () {
         String[] invalidCommands = {"An", "invalid", "command", "3"};
         Ui ui = new Ui();
         GenerateExercise generateExercise = new GenerateExercise();

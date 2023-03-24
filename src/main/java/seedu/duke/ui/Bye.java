@@ -8,7 +8,7 @@ public class Bye {
             "/_____/\\__, /\\___(_)   " + System.lineSeparator() +
             "      /____/    ";
 
-    public static void bye(){
+    public static void bye() {
         System.out.println(EXIT_LOGO);
         System.out.println("Thanks for using Fitness Duke!" + System.lineSeparator());
         System.out.println("Hope to see you again!" + System.lineSeparator());
