@@ -115,9 +115,11 @@ public class ParserTest {
         String inputMissingDescription = "academic d/2000-01-01 a/200.0";
         Command finalCommand = MainInputParser.parseInputs(inputMissingDescription);
         assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
+
         String inputMissingDate = "academic a/200.0 s/Tuition";
         finalCommand = MainInputParser.parseInputs(inputMissingDate);
         assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
+
         String inputMissingAmount = "academic d/2000-01-01 s/Tuition";
         finalCommand = MainInputParser.parseInputs(inputMissingAmount);
         assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
@@ -165,4 +167,12 @@ public class ParserTest {
         Command finalCommand = MainInputParser.parseInputs(inputString);
         assertEquals(finalCommand.getClass().getName(), "seedu.commands.UnmarkCommand");
     }
+
+    @Test
+    void parseSortCommand() {
+        String inputString = "sort ascend";
+        Command finalCommand = MainInputParser.parseInputs(inputString);
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.SortCommand");
+    }
+
 }
