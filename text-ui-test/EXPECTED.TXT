@@ -1,6 +1,5 @@
 Hello, I am your todo list and I will help you remember the tasks you need to do!
 No save data found, creating a new task list for you!
-The list has been checked for any repeating tasks.
 Okay, I have added this task:
 [ ] do math homework, due: 20 Apr 2023 23:59
 Okay, I have added this task:
