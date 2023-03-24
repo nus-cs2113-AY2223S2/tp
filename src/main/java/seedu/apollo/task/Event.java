@@ -63,6 +63,13 @@ public class Event extends Task {
         return to.format(pattern);
     }
 
+    public LocalDateTime getFromDate() {
+        return from;
+    }
+
+    public LocalDateTime getToDate() {
+        return to;
+    }
     /**
      * {@inheritDoc}
      */

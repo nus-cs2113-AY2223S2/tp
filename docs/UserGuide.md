@@ -24,7 +24,9 @@ If you can type fast, Apollo can get your timetable management done faster than 
     + [`addmod` - Adding a module](#addmod---adding-a-module)
       + [`addmod` flags](#addmod-flags)
     + [`delmod` - Deleting a module](#delmod---deleting-a-module)
+      + [`delmod` flags](#delmod-flags)
     + [`listmod` - Listing all modules](#listmod---listing-all-modules)
+    + [`showmod` - Show information of a module](#showmod---show-information-of-a-module)
     + [`week` - Viewing weekly schedule](#week---viewing-weekly-schedule)
     + [`bye` - Exiting the program](#bye---exiting-the-program)
     + [Loading and saving of data](#loading-and-saving-of-data)
@@ -55,23 +57,24 @@ ____________________________________________________________
 
 ## Command Summary
 
-|     Action      |              Format              |
-|:---------------:|:--------------------------------:|
-|      Help       |              `help`              |
-|   List Tasks    |              `list`              |
-|      Todo       |           `todo TASK`            |
-|    Deadline     |     `deadline TASK /by DATE`     |
-|      Event      | `event TASK /from DATE /to DATE` |
-|      Mark       |            `mark IDX`            |
-|     Unmark      |           `unmark IDX`           |
-|   Delete Task   |           `delete IDX`           |
-|      Find       |          `find KEYWORD`          |
-|      Date       |           `date DATE`            |
-|       Bye       |              `bye`               |
-|   Add Module    |       `addmod MODULE_CODE`       |
-|  Delete Module  |           `delmod IDX`           |
-|  List Modules   |            `listmod`             |
- | Weekly Schedule |              `week`              |
+|         Action          |              Format              |
+|:-----------------------:|:--------------------------------:|
+|          Help           |              `help`              |
+|       List Tasks        |              `list`              |
+|          Todo           |           `todo TASK`            |
+|        Deadline         |     `deadline TASK /by DATE`     |
+|          Event          | `event TASK /from DATE /to DATE` |
+|          Mark           |            `mark IDX`            |
+|         Unmark          |           `unmark IDX`           |
+|       Delete Task       |           `delete IDX`           |
+|          Find           |          `find KEYWORD`          |
+|          Date           |           `date DATE`            |
+|           Bye           |              `bye`               |
+|       Add Module        |       `addmod MODULE_CODE`       |
+|      Delete Module      |           `delmod IDX`           |
+|      List Modules       |            `listmod`             |
+| Show Module Information |            `showmod`             |
+ |     Weekly Schedule     |              `week`              |
 
 > Notes about the command format:
 > + Words in `UPPER_CASE` are the parameters to be supplied by the user.
@@ -264,6 +267,8 @@ This will add the first section teaching lesson of CS1010 to your module list.
 ### `delmod` - Deleting a module
 
 Removes a module from Apollo.
+
+#### `delmod` IDX
 Format: `delmod IDX`
 
 - `IDX` can be obtained by using `list` to find the task's index.
@@ -273,6 +278,30 @@ Format: `delmod IDX`
 Got it, removed CS2113 from your Module list.
 ```
 
+#### `delmod` MODULE_CODE
+Format: `delmod MODULE_CODE`
+
+To delete a module, use the following format:
+`delmod MODULE_CODE`
+
+Example:
+```
+>> delmod CS1010
+Got it, removed CS1010 from your Module list.
+```
+
+#### `delmod` flags
+The lesson types and their corresponding guide are the same as `addmod` flags.
+
+To delete a lesson, use the following format:
+`delmod MODULE_CODE -FLAG [LESSON NUMBER]`
+
+Example:
+```
+>> delmod CS1010 -st 1
+Deleting lessons for module: CS1010
+Lessons deleted: SECTIONAL TEACHING - 1
+```
 ### `listmod` - Listing all modules
 
 Shows a list of all modules in Apollo.
@@ -284,6 +313,18 @@ You are taking 3 module(s) this semester:
 1.CDE2000: Creating Narratives
 2.CG2023: Signals and Systems
 3.CS2040C: Data Structures and Algorithms
+```
+### `showmod` - Show information of a module
+
+Shows the information of a module.
+Format: `showmod`
+
+```
+>> showmod cs1231
+Here are the lesson types for this module:
+Sectional Teaching (-st)
+Tutorial (-tut)
+Number of MC: 4
 ```
 
 ### `week` - Viewing weekly schedule

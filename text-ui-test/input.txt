@@ -31,6 +31,8 @@ find c
 date
 date 2025-01-01
 date 2023-05-03
+showmod cs1231
+showmod cg2023
 addmod software engineering
 addmod cs2113
 addmod cs2113
