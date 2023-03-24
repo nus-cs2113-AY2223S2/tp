@@ -46,6 +46,16 @@ public class Parser implements Serializable {
         }
     }
 
+    public String extractCategory(String userInput) {
+        try {
+            String[] input = userInput.split(WHITESPACE, EXTRACT_INDEX_LENGTH);
+            System.out.println(1);
+            return input[1].trim();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
+    }
+
     public String extractCommandParameters(String parameterType, String userInput) {
         int parameterTypeLength = parameterType.length();
         String[] words = userInput.split(WHITESPACE);

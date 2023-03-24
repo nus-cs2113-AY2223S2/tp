@@ -5,6 +5,7 @@ import command.CommandDelete;
 import command.CommandList;
 import command.CommandTotal;
 import command.CommandSort;
+import command.CommandClassify;
 import data.ExpenseList;
 import data.Currency;
 import parser.Parser;
@@ -63,6 +64,9 @@ public class Duke {
                 break;
             case "sort":
                 new CommandSort(expenseList.getExpenseList(), parser.extractSortBy(input)).execute();
+                break;
+            case "category":
+                new CommandClassify(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
                 break;
             default:
                 System.out.println("Unknown command.");
