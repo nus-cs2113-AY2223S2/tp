@@ -80,9 +80,9 @@ public class Parser {
         if (details.length <= 1) {
             throw new NPExceptions("Event description and start day of your event are strictly required!");
         }
-        boolean[] duplicity = new boolean[5]; // to detect duplicate flags in command
+        boolean[] duplicity = new boolean[6]; // to detect duplicate flags in command
         Arrays.fill(duplicity, false);
-        String[] information = new String[5];
+        String[] information = new String[6];
         Arrays.fill(information, "");
         for (int i = 1; i < details.length; i++) {
             String field = details[i].substring(0, 2).trim();
@@ -128,6 +128,14 @@ public class Parser {
                     throw new NPExceptions("Cannot have duplicate flags a command!");
                 }
                 break;
+            case ("r"):
+                if (!duplicity[5]) {
+                    information[5] = change;
+                    duplicity[4] = true;
+                } else {
+                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                }
+                break;
             default:
                 break;
             }
@@ -141,9 +149,18 @@ public class Parser {
         if (!information[4].equals("")) {
             String endTime = information[3];
             String endDate = information[4];
-            eventList.addEvent(eventName, startTime, startDate, endTime, endDate);
+            if (information[5].equals("")) {
+                eventList.addEvent(eventName, startTime, startDate, endTime, endDate);
+            } else {
+                eventList.addEvent(eventName, startTime, startDate, endTime, endDate, information[5]);
+            }
+
         } else {
-            eventList.addEvent(eventName, startTime, startDate);
+            if (information[5].equals("")) {
+                eventList.addEvent(eventName, startTime, startDate);
+            } else {
+                eventList.addEvent(eventName, startTime, startDate,information[5]);
+            }
         }
 
         Ui.addSuccessMsg(eventList.getLastTaskDescription());

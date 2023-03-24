@@ -1,14 +1,13 @@
 package seedu.duke;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-public class Event extends Schedule{
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-    
+public class Event extends Schedule {
+
     private String description;
 
-    public Event(String eventDescription, LocalDateTime start, LocalDateTime end, boolean hasSt, boolean hasEd) {
+    public Event(String eventDescription, LocalDateTime start, LocalDateTime end, boolean hasSt,
+            boolean hasEd) {
         super(start, end, hasSt, hasEd);
         this.description = eventDescription;
     }
@@ -18,12 +17,23 @@ public class Event extends Schedule{
         this.description = eventDescription;
     }
 
+    public Event(String eventDescription, LocalDateTime start, LocalDateTime end, boolean hasSt,
+            boolean hasEd, String recurTime) {
+        super(start, end, hasSt, hasEd, recurTime);
+        this.description = eventDescription;
+    }
+
+    public Event(String eventDescription, LocalDateTime start, boolean hasSt, String recurTime) {
+        super(start, hasSt, recurTime);
+        this.description = eventDescription;
+    }
+
     public String getDescription() {
         return description;
     }
 
     public String toString() {
-        return "[E] " + getDescription() + " (" + super.getTime()+ ")";
+        return "[E] " + getDescription() + " (" + super.getTime() + ")";
     }
 
 }
