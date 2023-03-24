@@ -115,5 +115,7 @@ public interface StringLib {
     String RECIPE_SAVED = "\nRecipe list saved!";
     String RECIPE_LOADED = "\nSaved recipes loaded!";
     String MISSING_NUM = "Please enter a valid number for the sum of steps!\n";
-    String MISSING_KEYWORD = "Find is missing KEYWORDS!";
+    String MISSING_KEYWORD = "\nFind is missing KEYWORDS!";
+    String MATCHING_ITEMS = "\nHere are the matching items: ";
+    String NO_MATCHES = "\nNo dishes matches what you are looking for! :(";
 }
