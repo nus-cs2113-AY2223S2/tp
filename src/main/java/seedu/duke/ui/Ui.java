@@ -32,7 +32,7 @@ public class Ui {
     private static void showHelpText() {
         System.out.println("Here are the functions of the application!");
         System.out.println("To add a company, type:");
-        System.out.println("        add n/<COMPANY_NAME> c/<CONTACT_NUMBER> e/<EMAIL>");
+        System.out.println("        add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>");
         System.out.println(" ");
         System.out.println("To list companies, type:");
         System.out.println("                    list companies");

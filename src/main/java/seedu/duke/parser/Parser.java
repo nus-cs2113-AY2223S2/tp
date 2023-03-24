@@ -39,12 +39,12 @@ public interface Parser {
             throw new WrongFormatException();
         case "add":
             input = input.replaceFirst("add n/", "").trim();
-            int indexOfSlash = input.indexOf("/");
-            int lastIndexOfSlash = input.lastIndexOf("/");
-            String companyName = input.substring(0, indexOfSlash - 2);
-            int contactNumber = Integer.parseInt(input.substring(indexOfSlash + 1, lastIndexOfSlash - 2));
-            String contactEmail = input.substring(lastIndexOfSlash + 1);
-            AddCommand addCommand = new AddCommand(command, companyName, contactNumber, contactEmail);
+            String[] inputs = input.split("/");
+            String companyName = inputs[1].trim();
+            String industry = inputs[3].trim();
+            int contactNumber = Integer.parseInt(inputs[5].trim());
+            String contactEmail = inputs[7].trim();
+            AddCommand addCommand = new AddCommand(command, industry, companyName, contactNumber, contactEmail);
             return addCommand;
         case "delete":
             if (inputWords.length == 1) {
