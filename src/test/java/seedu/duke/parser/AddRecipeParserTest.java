@@ -9,6 +9,7 @@ public class AddRecipeParserTest {
     private static final String RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP = "Recipe is missing the \"NAME\" "
             + "or \"INGREDIENTS\" or \"TAG\" or \"SUM of the STEPs" +
             "\n or there is more than one \"NAME\" or \"INGREDIENTS\" or \"TAG\" or \"SUM of the STEPs\"!\n";
+    private static final String RECIPE_WRONG_LEADING_STRING = "Recipe contains the leading string!\n";
     private static final String RECIPE_MISSING_NAME = "Recipe is missing \"NAME\"!\n";
     private static final String RECIPE_MISSING_INGREDIENTS = "Recipe is missing \"INGREDIENTS\"!\n";
     private static final String RECIPE_MISSING_TAG = "Recipe is missing \"TAG\"!\n";
@@ -20,7 +21,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionIncompleteNameA() {
         try {
-            Parser.parseRecipe("add n/ i/Pasta, Tomato Sauce, Cheese t/Italian s/0");
+            Parser.parseRecipe("n/ i/Pasta, Tomato Sauce, Cheese t/Italian s/0");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_MISSING_NAME, e.getMessage());
@@ -34,7 +35,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionIncompleteNameB() {
         try {
-            Parser.parseRecipe("add n/    i/Pasta, Tomato Sauce, Cheese t/Italian s/0");
+            Parser.parseRecipe("n/    i/Pasta, Tomato Sauce, Cheese t/Italian s/0");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_MISSING_NAME, e.getMessage());
@@ -48,7 +49,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionIncompleteIngredientsA() {
         try {
-            Parser.parseRecipe("add n/Spaghetti i/ t/Italian s/0");
+            Parser.parseRecipe("n/Spaghetti i/ t/Italian s/0");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_MISSING_INGREDIENTS, e.getMessage());
@@ -62,7 +63,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionIncompleteIngredientsB() {
         try {
-            Parser.parseRecipe("add n/Spaghetti i/    t/Italian s/0");
+            Parser.parseRecipe("n/Spaghetti i/    t/Italian s/0");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_MISSING_INGREDIENTS, e.getMessage());
@@ -76,7 +77,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionIncompleteTagA() {
         try {
-            Parser.parseRecipe("add n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/ s/0");
+            Parser.parseRecipe("n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/ s/0");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_MISSING_TAG, e.getMessage());
@@ -90,7 +91,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionIncompleteTagB() {
         try {
-            Parser.parseRecipe("add n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/    s/0");
+            Parser.parseRecipe("n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/    s/0");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_MISSING_TAG, e.getMessage());
@@ -104,7 +105,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionIncompleteSumOfStepsA() {
         try {
-            Parser.parseRecipe("add n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian s/");
+            Parser.parseRecipe("n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian s/");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_MISSING_STEP, e.getMessage());
@@ -118,7 +119,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionIncompleteSumOfStepsB() {
         try {
-            Parser.parseRecipe("add n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian s/    ");
+            Parser.parseRecipe("n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian s/    ");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_MISSING_STEP, e.getMessage());
@@ -132,7 +133,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionNoName() {
         try {
-            Parser.parseRecipe("add i/Pasta, Tomato Sauce, Cheese t/Italian s/0");
+            Parser.parseRecipe("i/Pasta, Tomato Sauce, Cheese t/Italian s/0");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP, e.getMessage());
@@ -146,7 +147,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionNoIngredients() {
         try {
-            Parser.parseRecipe("add n/Spaghetti t/Italian s/0");
+            Parser.parseRecipe("n/Spaghetti t/Italian s/0");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP, e.getMessage());
@@ -160,7 +161,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionNoTag() {
         try {
-            Parser.parseRecipe("add n/Spaghetti i/Pasta, Tomato Sauce, Cheese s/0");
+            Parser.parseRecipe("n/Spaghetti i/Pasta, Tomato Sauce, Cheese s/0");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP, e.getMessage());
@@ -174,7 +175,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionNoSumOfSteps() {
         try {
-            Parser.parseRecipe("add n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian");
+            Parser.parseRecipe("n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP, e.getMessage());
@@ -188,7 +189,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionTooManyName() {
         try {
-            Parser.parseRecipe("add n/Spaghetti n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian s/0");
+            Parser.parseRecipe("n/Spaghetti n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian s/0");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP, e.getMessage());
@@ -202,7 +203,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionTooManyIngredients() {
         try {
-            Parser.parseRecipe("add n/Spaghetti i/Pasta, i/Tomato Sauce, Cheese t/Italian s/0");
+            Parser.parseRecipe("n/Spaghetti i/Pasta, i/Tomato Sauce, Cheese t/Italian s/0");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP, e.getMessage());
@@ -217,7 +218,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionTooManyTag() {
         try {
-            Parser.parseRecipe("add n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian t/Chinese s/0");
+            Parser.parseRecipe("n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian t/Chinese s/0");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP, e.getMessage());
@@ -231,7 +232,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionTooManySumOfSteps() {
         try {
-            Parser.parseRecipe("add n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian s/0 s/1");
+            Parser.parseRecipe("n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian s/0 s/1");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP, e.getMessage());
@@ -245,7 +246,7 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionNoMeaningInputA() {
         try {
-            Parser.parseRecipe("add");
+            Parser.parseRecipe("");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP, e.getMessage());
@@ -259,10 +260,24 @@ public class AddRecipeParserTest {
     @Test
     void parseRecipeExceptionNoMeaningInputB() {
         try {
-            Parser.parseRecipe("add asdfasdfa");
+            Parser.parseRecipe("asdfasdfa");
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP, e.getMessage());
+        }
+    }
+
+    /**
+     * Test for no meaning input.(with random string)
+     * @throws IncompleteInputException if input is incomplete.
+     */
+    @Test
+    void parseRecipeExceptionNoMeaningInputC() {
+        try {
+            Parser.parseRecipe("asdfasdfa    n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/4");
+        } catch (Exception e) {
+            assertTrue(e instanceof IncompleteInputException);
+            Assertions.assertEquals(RECIPE_WRONG_LEADING_STRING, e.getMessage());
         }
     }
 }
