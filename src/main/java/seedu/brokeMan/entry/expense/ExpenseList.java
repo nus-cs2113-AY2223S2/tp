@@ -103,6 +103,8 @@ public class ExpenseList extends EntryList {
      */
     public static void sortExpensesByAmount() {
         sortEntriesByAmount(expenseList);
+        Ui.showToUser("Total expenses: $" + getEntryListSum(expenseList));
+        Ui.showToUserWithLineBreak("");
         SaveExpense.writeFile(expenseList);
     }
 
@@ -111,6 +113,8 @@ public class ExpenseList extends EntryList {
      */
     public static void sortExpensesByDate() {
         sortEntriesByDate(expenseList);
+        Ui.showToUser("Total expenses: $" + getEntryListSum(expenseList));
+        Ui.showToUserWithLineBreak("");
         SaveExpense.writeFile(expenseList);
     }
 

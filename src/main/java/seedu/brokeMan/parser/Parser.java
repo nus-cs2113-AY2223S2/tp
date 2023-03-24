@@ -37,8 +37,6 @@ import seedu.brokeMan.exception.BrokeManException;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import static seedu.brokeMan.common.Messages.MESSAGE_ARGUMENTS_NOT_SPECIFIED;
@@ -130,13 +128,12 @@ public class Parser {
      */
     private static String checkValidOptionalTimeFlagException(String description)
             throws InvalidOptionalTimeFlagException, InvalidMonthTimeException {
-        if (description.length() < 3 || !description.substring(0, 3).equals("t/ ")) {
+        if (!description.startsWith("t/ ")) {
             throw new InvalidOptionalTimeFlagException();
         }
         String newDescription = description.substring(3).trim();
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu/MM");
-            YearMonth date = YearMonth.parse(newDescription, formatter);
+            StringToTime.checkIfValidDateString(newDescription);
         } catch (DateTimeParseException dtpe) {
             throw new InvalidMonthTimeException();
         }
@@ -173,7 +170,13 @@ public class Parser {
             String errorMessage = new BudgetNotADoubleException().getMessage();
             return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
         }
+
         if (descriptionByWord.length == 2) {
+            try {
+                StringToTime.checkIfValidDateString(descriptionByWord[1]);
+            } catch (DateTimeParseException dtpe) {
+                return new InvalidCommand("Invalid Date Format!", SetBudgetCommand.MESSAGE_USAGE);
+            }
             descriptionByWord[1] = descriptionByWord[1].trim();
             return (descriptionByWord[1] == "" ? new SetBudgetCommand(budget)
                     : new SetBudgetCommand(budget, descriptionByWord[1]));
