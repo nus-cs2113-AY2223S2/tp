@@ -14,6 +14,7 @@ import seedu.apollo.ui.Ui;
 import seedu.apollo.exception.task.InvalidDeadline;
 import seedu.apollo.exception.task.InvalidEvent;
 import seedu.apollo.task.ToDo;
+import seedu.apollo.utils.LoggerInterface;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +34,7 @@ import static seedu.apollo.ui.Parser.COMMAND_TODO_WORD;
  * Add Command class that adds a Task to the existing TaskList.
  * Handles {@code todo}, {@code deadline}, and {@code event} commands.
  */
-public class AddCommand extends Command {
+public class AddCommand extends Command implements LoggerInterface {
 
     private static Logger logger = Logger.getLogger("AddCommand");
 
@@ -53,7 +54,7 @@ public class AddCommand extends Command {
      * @throws UnexpectedException If the command word cannot be understood.
      */
     public AddCommand(String command, String param) throws InvalidDeadline, InvalidEvent, UnexpectedException {
-        AddCommand.setUpLogger();
+        setUpLogger();
         this.command = command;
         assert (command.equals(COMMAND_TODO_WORD) | command.equals(COMMAND_DEADLINE_WORD) |
                 command.equals(COMMAND_EVENT_WORD)) : "AddCommand: Invalid Add Command";
@@ -82,7 +83,8 @@ public class AddCommand extends Command {
      *
      * @throws IOException If logger file cannot be created.
      */
-    public static void setUpLogger() {
+    @Override
+    public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
         ConsoleHandler logConsole = new ConsoleHandler();
@@ -116,9 +118,11 @@ public class AddCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar)
             throws UnexpectedException {
+
         int initialSize = taskList.size();
         try {
             addTask(taskList);
+
         } catch (DateTimeParseException e) {
             ui.printInvalidDateTime();
             return;
