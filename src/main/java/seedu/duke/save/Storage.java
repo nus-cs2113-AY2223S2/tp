@@ -187,8 +187,8 @@ public class Storage {
             for (String medString : medicineHistory.get(date)) {
                 writer.write(medString + " ");
             }
+            writer.write("\n");
         }
-        writer.write("\n");
     }
     //@@author Thunderdragon221
     /**
