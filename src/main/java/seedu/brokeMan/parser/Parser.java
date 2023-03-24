@@ -260,7 +260,7 @@ public class Parser {
         } catch (CategoryNotCorrectException e) {
             throw new RuntimeException(e);
         }
-//        Category category = convertStringToCategory(splitDescriptions[4]);
+
 
         return new AddExpenseCommand(amount, newDescription, time, category);
     }
@@ -335,7 +335,7 @@ public class Parser {
         splitDescriptions[4] = splitDescriptions[4].substring(1);
         checkDoubleException(splitDescriptions[1]);
         checkTimeException(splitDescriptions[3]);
-//        checkCategoryException(splitDescriptions[4]);
+
         convertStringToCategory(splitDescriptions[4]);
         return splitDescriptions;
     }
@@ -483,13 +483,6 @@ public class Parser {
         }
     }
 
-//    private static void checkCategoryException(String category) throws CategoryNotCorrectException {
-//        try {
-//            convertStringToCategory(category);
-//        } catch (CategoryNotCorrectException cnce) {
-//            throw new CategoryNotCorrectException();
-//        }
-//    }
 
     /**
      * Parses the command description in the context for the context of
