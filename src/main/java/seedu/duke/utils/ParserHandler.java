@@ -73,6 +73,9 @@ public class ParserHandler {
             AutoSaveParser autoSaveParser = new AutoSaveParser(commandInfo, inventory);
             autoSaveParser.run();
             break;
+        case "db":
+            Ui.printDashboard(inventory, alertList);
+            break;
         default:
             Ui.printUnknownCommand();
             break;

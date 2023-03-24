@@ -1,27 +1,39 @@
 package seedu.duke.utils;
 
 import seedu.duke.exceptions.EditErrorException;
+import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static seedu.duke.utils.ColorCode.ANSI_BLUE;
-import static seedu.duke.utils.ColorCode.ANSI_GREEN;
-import static seedu.duke.utils.ColorCode.ANSI_RED;
-import static seedu.duke.utils.ColorCode.ANSI_RESET;
-import static seedu.duke.utils.ColorCode.ANSI_YELLOW;
+import static seedu.duke.utils.ColorCode.*;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
-    public static final String LOGO =
-            "    /|    //| |     // | |     //   ) )  //   / / //   ) )\n"
-                    + "   //|   // | |    //__| |    //        //   / / ((\n"
-                    + "  // |  //  | |   / ___  |   //  ____  //   / /    \\\\\\\\\n"
-                    + " //  | //   | |  //    | |  //    / / //   / /       ) )\n"
-                    + "//   |//    | | //     | | ((____/ / ((___/ / ((___ / /";
+
+    public static final String DASHBOARDLOGO =
+            "░░░░░░   ░░░░░  ░░░░░░░ ░░   ░░ ░░░░░░   ░░░░░░   ░░░░░  ░░░░░░  ░░░░░░  \n" +
+                    "▒▒   ▒▒ ▒▒   ▒▒ ▒▒      ▒▒   ▒▒ ▒▒   ▒▒ ▒▒    ▒▒ ▒▒   ▒▒ ▒▒   ▒▒ ▒▒   ▒▒ \n" +
+                    "▒▒   ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒    ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒   ▒▒ \n" +
+                    "▓▓   ▓▓ ▓▓   ▓▓      ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ \n" +
+                    "██████  ██   ██ ███████ ██   ██ ██████   ██████  ██   ██ ██   ██ ██████  \n";
+    public static final String LOGO1 = "░░░    ░░░  ░░░░░   ░░░░░░  ░░    ░░ ░░░░░░░ ░░░░░░░ ░░░░░░░░  ░░░░░░   ░░░░░░ ░░   ░░ \n";
+    public static final String LOGO2 = "▒▒▒▒  ▒▒▒▒ ▒▒   ▒▒ ▒▒       ▒▒    ▒▒ ▒▒      ▒▒         ▒▒    ▒▒    ▒▒ ▒▒      ▒▒  ▒▒  \n";
+    public static final String LOGO3 = "▒▒ ▒▒▒▒ ▒▒ ▒▒▒▒▒▒▒ ▒▒   ▒▒▒ ▒▒    ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒    ▒▒    ▒▒    ▒▒ ▒▒      ▒▒▒▒▒ \n";
+    public static final String LOGO4 = "▓▓  ▓▓  ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓    ▓▓      ▓▓      ▓▓    ▓▓    ▓▓    ▓▓ ▓▓      ▓▓  ▓▓  \n";
+    public static final String LOGO5 = "██      ██ ██   ██  ██████   ██████  ███████ ███████    ██     ██████   ██████ ██   ██ \n";
+
+//"░░░    ░░░  ░░░░░   ░░░░░░  ░░    ░░ ░░░░░░░ ░░░░░░░ ░░░░░░░░  ░░░░░░   ░░░░░░ ░░   ░░
+//        ▒▒▒▒  ▒▒▒▒ ▒▒   ▒▒ ▒▒       ▒▒    ▒▒ ▒▒      ▒▒         ▒▒    ▒▒    ▒▒ ▒▒      ▒▒  ▒▒
+//        ▒▒ ▒▒▒▒ ▒▒ ▒▒▒▒▒▒▒ ▒▒   ▒▒▒ ▒▒    ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒    ▒▒    ▒▒    ▒▒ ▒▒      ▒▒▒▒▒
+//        ▓▓  ▓▓  ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓    ▓▓      ▓▓      ▓▓    ▓▓    ▓▓    ▓▓ ▓▓      ▓▓  ▓▓
+//        ██      ██ ██   ██  ██████   ██████  ███████ ███████    ██     ██████   ██████ ██   ██
+
+
     public static final String GREET_MESSAGE = "Welcome to MagusStock. How may I assist you today?";
     public static final String EXIT_MESSAGE = "Hope you had an enjoyable experience. See you next time!";
     public static final String UNKNOWN_COMMAND = "I don't understand that command, please refer to the user guide " +
@@ -162,7 +174,9 @@ public class Ui {
 
     public static void greetUser() {
         System.out.println(LINE);
-        System.out.println(LOGO);
+        System.out.println(
+                ANSI_RED + LOGO1 + ANSI_ORANGE + LOGO2 + ANSI_YELLOW + LOGO3 +
+                        ANSI_GREEN + LOGO4 + ANSI_CYAN + LOGO5 + ANSI_RESET);
         System.out.println(GREET_MESSAGE);
         System.out.println(LINE);
     }
@@ -621,6 +635,16 @@ public class Ui {
         System.out.println(LINE);
         System.out.println(ANSI_RED + NONEXISTENT_REMOVE_ALERT + ANSI_RESET);
         System.out.println(LINE);
+    }
+
+    public static void printDashboard(Inventory inventory, AlertList alertList) {
+        System.out.println(LINE);
+        System.out.println(ANSI_YELLOW + DASHBOARDLOGO + ANSI_RESET);
+        System.out.println(LINE);
+        System.out.println(ANSI_CYAN + "Total number of items: " + inventory.getItemInventory().size() + ANSI_RESET);
+        System.out.println(ANSI_CYAN + "Total number of active alerts: " + alertList.getAlertList().size() + ANSI_RESET);
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + "List of active alerts: ....." + ANSI_RESET);
     }
 }
 
