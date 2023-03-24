@@ -1,7 +1,5 @@
 package seedu.duke;
 
-import seedu.duke.command.ListDeadlinesCommand;
-
 import java.util.ArrayList;
 
 public class UI {
