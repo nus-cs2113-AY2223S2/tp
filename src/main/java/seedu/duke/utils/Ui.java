@@ -41,6 +41,11 @@ public class Ui {
     public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered." +
             " The inventory has been updated.";
     public static final String EMPTY_SESSION_FILE = "INFO: Empty/No Session Inventory file found.";
+
+    public static final int INVENTORY_ATTRIBUTE_COUNT = 4;
+    public static final int HELP_ATTRIBUTE_COUNT = 2;
+    public static final int ALERT_ATTRIBUTE_COUNT = 3;
+
     public static final int NAME_COL_WIDTH = 15;
     public static final int UPC_COL_WIDTH = 12;
     public static final int QTY_COL_WIDTH = 8;
@@ -48,6 +53,8 @@ public class Ui {
     public static final int PRICE_COL_WIDTH = 8;
     public static final int COMMAND_COL_WIDTH = 15;
     public static final int FORMAT_COL_WIDTH = 25;
+
+    public static final int MINMAX_COL_WIDTH = 10;
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
             "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
     public static final String ITEM_NOT_FOUND = "Command failed! Reason: Item not found in database. Please add item " +
@@ -120,6 +127,7 @@ public class Ui {
     public static void printLine() {
         System.out.println(LINE);
     }
+
     public static void printDoubleNeeded() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + MISSING_PRICE + ANSI_RESET);
@@ -169,10 +177,12 @@ public class Ui {
         System.out.println(ANSI_GREEN + RECOVERED_SESSION_FILE + ANSI_RESET);
         System.out.println(LINE);
     }
+
     public static void printEmptySessionFile() {
         System.out.println(ANSI_YELLOW + EMPTY_SESSION_FILE + ANSI_RESET);
         System.out.println(LINE);
     }
+
     public static void printUnknownCommand() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + UNKNOWN_COMMAND + ANSI_RESET);
@@ -243,12 +253,30 @@ public class Ui {
         return table.toString();
     }
 
+    public static String printTable(HashMap<String, Integer> upcMap, String limitType) {
+
+        int[] columnWidths = {UPC_COL_WIDTH, QTY_COL_WIDTH, MINMAX_COL_WIDTH};
+
+        StringBuilder table = new StringBuilder();
+        table.append(printTableSeparator(columnWidths));
+        table.append(printHeadings(columnWidths));
+        table.append(printTableSeparator(columnWidths));
+
+        upcMap.forEach((key, value) -> table.append(printRow(key, value.toString(), limitType, columnWidths)));
+
+        return table.toString();
+
+    }
+
     private static String printHeadings(int[] columnWidths) {
-        String[] headings;
-        if (columnWidths.length == 4) {
+        String[] headings = {};
+        if (columnWidths.length == INVENTORY_ATTRIBUTE_COUNT) {
             headings = new String[]{NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
-        } else {
+        } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT) {
             headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
+        } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
+            //repeat format like above
+            headings = new String[]{"UPC", "Stock", "Type"};
         }
         StringBuilder allHeadings = new StringBuilder();
 
@@ -299,6 +327,7 @@ public class Ui {
         }
         return row.toString();
     }
+
     private static String printRow(String name, String upc, String qty, String price,
                                    int[] columnWidths) {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
@@ -325,6 +354,32 @@ public class Ui {
                 row.append(printTableSeparator(columnWidths));
             }
         }
+        return row.toString();
+    }
+
+    private static String printRow(String upc, String stock, String limitType, int[] columnWidths) {
+        String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
+        String[] stockLines = wrapText(stock, QTY_COL_WIDTH);
+        String[] limitLines = wrapText(limitType, MINMAX_COL_WIDTH);
+        StringBuilder row = new StringBuilder();
+
+        int rowHeight = findRowHeight(upcLines, stockLines, limitLines);
+
+        for (int i = 0; i < rowHeight; i += 1) {
+            row.append(TABLE_LEFT);
+            row.append(printAttribute(upcLines, UPC_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(stockLines, QTY_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(limitLines, MINMAX_COL_WIDTH, i));
+            row.append(TABLE_RIGHT);
+            row.append(System.lineSeparator());
+
+            if (i == rowHeight - 1) {
+                row.append(printTableSeparator(columnWidths));
+            }
+        }
+
         return row.toString();
     }
 
@@ -440,12 +495,11 @@ public class Ui {
     }
 
 
-
     /**
      * Prints the updated attributes of the item as specified by the user. Shows both the previous attributes
      * and the updated attributes of the item.
      *
-     * @param oldItem The item containing the old attributes.
+     * @param oldItem     The item containing the old attributes.
      * @param updatedItem The same item but with new attributes as defined by the user.
      */
     private static void printUpdatedItemDetails(Item oldItem, Item updatedItem) {
