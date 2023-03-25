@@ -21,17 +21,13 @@ import static seedu.duke.ui.StringLib.FILE_IO_ERROR;
 import static seedu.duke.ui.StringLib.FILE_LOADING_DEFAULT_ERROR;
 import static seedu.duke.ui.StringLib.FILE_NOT_FOUND_ERROR;
 import static seedu.duke.ui.StringLib.FILE_PARSE_READING_ERROR;
-import static seedu.duke.ui.StringLib.FIND_LIST_MESSAGE;
 import static seedu.duke.ui.StringLib.HELP;
 import static seedu.duke.ui.StringLib.LINE;
 import static seedu.duke.ui.StringLib.MISSING_DESCRIPTION_ERROR;
-import static seedu.duke.ui.StringLib.MISSING_INPUTS_ERROR;
-import static seedu.duke.ui.StringLib.NO_MATCHING_FIND_RESULTS_MESSAGE;
 import static seedu.duke.ui.StringLib.PARSING_STRING_ERROR;
 import static seedu.duke.ui.StringLib.PREFIX_EMPTY_LIMIT_LIST_ERROR;
 import static seedu.duke.ui.StringLib.RECIPE_ADDING_DEFAULT_ERROR;
 import static seedu.duke.ui.StringLib.RECIPE_DELETING_DEFAULT_ERROR;
-import static seedu.duke.ui.StringLib.RECIPE_FINDING_DEFAULT_ERROR;
 import static seedu.duke.ui.StringLib.SUFFIX_EMPTY_LIMIT_LIST_ERROR;
 import static seedu.duke.ui.StringLib.UNRECOGNIZABLE_COMMAND_ERROR;
 import static seedu.duke.ui.StringLib.UNRECOGNIZABLE_ERROR;
@@ -130,13 +126,7 @@ public class UI {
             System.out.println(RECIPE_DELETING_DEFAULT_ERROR + e.getMessage());
         }
     }
-    public void showFindingTaskErrorMessage(Exception e) {
-        if (e instanceof IncompleteInputException) {
-            System.out.println(MISSING_INPUTS_ERROR + e.getMessage());
-        } else {
-            System.out.println(RECIPE_FINDING_DEFAULT_ERROR + e.getMessage());
-        }
-    }
+
     public void showRecipeViewed(Recipe recipe) {
         System.out.println("Here is the recipe you requested, which is a "+ recipe.getTag() + " flavour:");
         System.out.println("name: " + recipe.getName());
