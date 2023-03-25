@@ -64,7 +64,9 @@ public class RainyDay {
     private void executeCommand(Command command) {
         command.setData(financialReport);
         CommandResult result = command.execute();
-        result.printResult();
+        if(result != null) {
+            result.printResult();
+        }
     }
 
     private static void setupLogger() {
