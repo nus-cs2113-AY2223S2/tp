@@ -89,6 +89,17 @@ public class Ui {
     public static final String WRONG_PRICE_INPUT = "For Price inputs: MUST BE a WHOLE NUMBER/DECIMAL NUMBER.";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
     public static final String MISSING_PRICE = "Please enter a number for the price!";
+    public static final String ITEM_ADDED_AT = "Item added at: ";
+    public static final String AT = "At: ";
+    public static final String CATEGORY_CHANGED_TO = "Category changed to: ";
+    public static final String SOLD = "Sold ";
+    public static final String ITEMS = " items";
+    public static final String BOUGHT = "Bought ";
+    public static final String RENAMED_TO = "Renamed to: ";
+    public static final String PRICE_DECREASED_FROM = "Price decreased from $";
+    public static final String PRICE_INCREASED_FROM = "Price increased from $";
+    public static final String TO_ = " to $";
+    public static final String TAGS_CHANGED_TO = "Tags changed to: ";
 
     private static final String NAME_HEADING = "Name";
     private static final String UPC_HEADING = "UPC";
@@ -142,17 +153,7 @@ public class Ui {
 
     private static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove " +
             "does not exist.";
-    public static final String ITEM_ADDED_AT = "Item added at: ";
-    public static final String AT = "At: ";
-    public static final String CATEGORY_CHANGED_TO = "Category changed to: ";
-    public static final String SOLD = "Sold ";
-    public static final String ITEMS = " items";
-    public static final String BOUGHT = "Bought ";
-    public static final String RENAMED_TO = "Renamed to: ";
-    public static final String PRICE_DECREASED_FROM_$ = "Price decreased from $";
-    public static final String PRICE_INCREASED_FROM_$ = "Price increased from $";
-    public static final String TO_$ = " to $";
-    public static final String TAGS_CHANGED_TO = "Tags changed to: ";
+
 
     public Ui() {
         greetUser();
@@ -721,12 +722,12 @@ public class Ui {
                     System.out.println(RENAMED_TO + results.get(i).getName());
                     break;
                 case PRICE_DECREASE:
-                    System.out.print(PRICE_DECREASED_FROM_$ + results.get(i-1).getPrice());
-                    System.out.println(TO_$ + results.get(i).getPrice());
+                    System.out.print(PRICE_DECREASED_FROM + results.get(i-1).getPrice());
+                    System.out.println(TO_ + results.get(i).getPrice());
                     break;
                 case PRICE_INCREASE:
-                    System.out.print(PRICE_INCREASED_FROM_$ + results.get(i-1).getPrice());
-                    System.out.println(TO_$ + results.get(i).getPrice());
+                    System.out.print(PRICE_INCREASED_FROM + results.get(i-1).getPrice());
+                    System.out.println(TO_ + results.get(i).getPrice());
                     break;
                 case CHANGE_TAG:
                     ArrayList<String> tags = results.get(i-1).getTags();
