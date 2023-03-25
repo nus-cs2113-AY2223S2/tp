@@ -126,8 +126,7 @@ public class Parser {
     }
 
     private String setCategory(String input) throws RainyDayException {
-        Pattern pattern = Pattern.compile("^-c\\s(.+)\\s");
-        // Pattern pattern = Pattern.compile("-c\\s+(\\S+)");
+        Pattern pattern = Pattern.compile("^-c\\s(.+)");
         Matcher matcher = pattern.matcher(input);
         if (matcher.matches()) {
             this.category = matcher.group(1);
