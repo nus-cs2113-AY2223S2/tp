@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 
 //@@author clement559
-public class EditDeadlineCommandTest {
-    private static final String DATE_EXAMPLE = "06-04-2000";
+public class EditCommandTest {
+    private static final String DATE_EXAMPLE = "06-04-2030";
     private static final String TIME_EXAMPLE = "23:59";
     private static final String REPEAT_EXAMPLE = "0";
 
@@ -22,17 +22,17 @@ public class EditDeadlineCommandTest {
     private TaskList testList;
     private Ui ui = new Ui();
 
-    private HashMap<String, String> generateInputArguments(String index, String date, String time, String repeatCount) {
-        HashMap<String, String> args = new HashMap<>();
-        args.put(AddTaskCommand.KEYWORD, index);
-        args.put(Flags.DEADLINE.FLAG, date + " " + time);
-        args.put(Flags.REPEAT.FLAG, repeatCount);
+    private HashMap<Flags, String> generateInputArguments(String index, String date, String time, String repeatCount) {
+        HashMap<Flags, String> args = new HashMap<>();
+        args.put(Flags.COMMAND_ADD, index);
+        args.put(Flags.DEADLINE, date + " " + time);
+        args.put(Flags.REPEAT, repeatCount);
         return args;
     }
 
     @BeforeEach
     void setUp() {
-        String sampleTask = "add something -due 02-02-2023 18:00 -rep 0";
+        String sampleTask = "add something -due 02-02-2033 18:00 -rep 0";
         testList = new TaskList();
         try {
             parser.parseCommand(sampleTask).execute(testList, ui);
@@ -45,9 +45,9 @@ public class EditDeadlineCommandTest {
     public void editDeadline_invalidIndex_throwsException() {
         final String[] invalidIndexes = {"", "]", "wq", "7.5", "-3"};
         for (String index : invalidIndexes) {
-            HashMap<String, String> args = generateInputArguments(index, DATE_EXAMPLE, TIME_EXAMPLE, REPEAT_EXAMPLE);
+            HashMap<Flags, String> args = generateInputArguments(index, DATE_EXAMPLE, TIME_EXAMPLE, REPEAT_EXAMPLE);
             try {
-                Command testEdit = new EditDeadlineCommand(args);
+                Command testEdit = new EditCommand(args);
                 testEdit.execute(testList, ui);
             } catch (ToDoListException e) {
                 continue;
@@ -60,9 +60,9 @@ public class EditDeadlineCommandTest {
     public void editDeadline_invalidDate_throwsException() {
         final String[] invalidDates = {"31/06/2032", "493430", "2013-12-22", "1023-43-22"};
         for (String date : invalidDates) {
-            HashMap<String, String> args = generateInputArguments("0", date, TIME_EXAMPLE, REPEAT_EXAMPLE);
+            HashMap<Flags, String> args = generateInputArguments("0", date, TIME_EXAMPLE, REPEAT_EXAMPLE);
             try {
-                Command testEdit = new EditDeadlineCommand(args);
+                Command testEdit = new EditCommand(args);
                 testEdit.execute(testList, ui);
             } catch (ToDoListException e) {
                 continue;
@@ -75,9 +75,9 @@ public class EditDeadlineCommandTest {
     public void editDeadline_invalidTime_throwsException() {
         final String[] invalidTimes = {"1000", "493430", "9AM"};
         for (String time : invalidTimes) {
-            HashMap<String, String> args = generateInputArguments("0", DATE_EXAMPLE, time, REPEAT_EXAMPLE);
+            HashMap<Flags, String> args = generateInputArguments("0", DATE_EXAMPLE, time, REPEAT_EXAMPLE);
             try {
-                Command testEdit = new EditDeadlineCommand(args);
+                Command testEdit = new EditCommand(args);
                 testEdit.execute(testList, ui);
             } catch (ToDoListException e) {
                 continue;

@@ -1,11 +1,11 @@
 package seedu.todolist.task;
 
 import seedu.todolist.exception.InvalidIndexException;
-import seedu.todolist.exception.ToDoListException;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.StringJoiner;
 
 /**
@@ -13,6 +13,19 @@ import java.util.StringJoiner;
  */
 public class TaskList implements Serializable {
     private ArrayList<Task> tasks = new ArrayList<>();
+    private HashSet<String> tags = new HashSet<>();
+
+    /**
+     * Checks if the provided index is valid, which is when it is from 0 to task list size - 1.
+     *
+     * @param index The index being checked.
+     * @throws InvalidIndexException If the provided index is invalid.
+     */
+    private void validateIndex(int index) throws InvalidIndexException {
+        if (index < 0 || index > tasks.size() - 1) {
+            throw new InvalidIndexException(index + 1);
+        }
+    }
 
     /**
      * Converts the task list into its string representation.
@@ -40,14 +53,15 @@ public class TaskList implements Serializable {
      * Returns the task at the given index of the task list.
      *
      * @param index The index of the task to return.
-     *              Must be between 1 and the size of the task list.
      * @return The task at the given index of the task list.
      */
     public Task getTask(int index) throws InvalidIndexException {
-        if (index < 0 || index > tasks.size() - 1) {
-            throw new InvalidIndexException();
-        }
+        validateIndex(index);
         return tasks.get(index);
+    }
+
+    public HashSet<String> getTags() {
+        return tags;
     }
 
     /**
@@ -58,55 +72,23 @@ public class TaskList implements Serializable {
      */
     public String addTask(Task task) {
         tasks.add(task);
-        return task.toString();
-    }
-
-    /**
-     * Sets the completion status of the task at the given index of the task list.
-     *
-     * @param index The index of the task whose completion status should be set.
-     *              Must be between 1 and the size of the task list.
-     * @param isDone Whether the task should be marked as completed.
-     * @return String representation of the task whose completion status was set.
-     */
-    public String setDone(int index, boolean isDone) throws InvalidIndexException {
-        if (index < 0 || index > tasks.size() - 1) {
-            throw new InvalidIndexException();
+        if (task.getTags() != null) {
+            tags.addAll(task.getTags());
         }
-        tasks.get(index).setDone(isDone);
-        assert tasks.get(index).isDone() == isDone;
-        return tasks.get(index).toString();
+        return task.toString();
     }
 
     /**
      * Deletes the task at the given index of the task list.
      *
      * @param index The index of the task to be deleted.
-     *              Must be between 1 and the size of the task list.
-     * @return String representation of the task that was deleted.
+     * @throws InvalidIndexException If the given index is not within the task list's size.
      */
     public String deleteTask(int index) throws InvalidIndexException {
-        if (index < 0 || index > size() - 1) {
-            throw new InvalidIndexException();
-        }
+        validateIndex(index);
         String taskString = tasks.get(index).toString();
         tasks.remove(index);
         return taskString;
-    }
-
-    /**
-     * Replace deadline of task at the given index of the task list.
-     *
-     * @param index The index of the task whose deadline should be changed.
-     *              Must be between 1 and the size of the task list.
-     * @return String representation of the task whose deadline was changed.
-     */
-    public String editDeadline(int index, LocalDateTime deadline) throws InvalidIndexException {
-        if (index < 0 || index > tasks.size() - 1) {
-            throw new InvalidIndexException();
-        }
-        tasks.get(index).setDeadline(deadline);
-        return tasks.get(index).toString();
     }
 
     //@@author KedrianLoh
@@ -117,38 +99,49 @@ public class TaskList implements Serializable {
         tasks.sort(Task.taskDeadlineComparator);
     }
 
-    public String setEmail(int index, String email) throws InvalidIndexException {
-        if (index < 0 || index > tasks.size() - 1) {
-            throw new InvalidIndexException();
-        }
-        tasks.get(index).setEmail(email);
-        return tasks.get(index).toString();
-    }
-
-    public String getEmail(int index) throws ToDoListException {
-        if (index < 0 || index > tasks.size() - 1) {
-            throw new InvalidIndexException();
-        }
-        if (tasks.get(index).getEmail().isEmpty()) {
-            throw new NullPointerException();
-        } else {
-            return (tasks.get(index).getEmail());
-        }
-    }
-
+    //@@author clement559
     public void checkRepeatingTasks() {
         int originalListSize = tasks.size();
         for (int i = 0; i < originalListSize; i++) {
             Task task = tasks.get(i);
             int repeatDuration = task.getRepeatDuration();
             LocalDateTime originalDeadline = task.getDeadline();
-            LocalDateTime currentDateTime = LocalDateTime.now();
-            if (repeatDuration > 0 && (currentDateTime.isAfter(originalDeadline))) {
-                LocalDateTime deadline = originalDeadline.plusWeeks(1);
-                String description = task.getDescription();
-                tasks.add(new Task(description, deadline, repeatDuration - 1));
+            if (repeatDuration > 0 && (LocalDateTime.now().isAfter(originalDeadline))) {
+                Task repeatTask = new Task(task);
+                repeatTask.setDeadline(originalDeadline.plusWeeks(1));
+                repeatTask.setRepeatDuration(repeatDuration - 1);
+                addTask(repeatTask);
                 task.setRepeatDuration(0);
             }
         }
+    }
+
+    //@@author ERJUNZE
+    /**
+     * Adds the given tags to the task at the given index of the task list.
+     * No effect if the task already has the given tags.
+     *
+     * @param index The index of the task that tags are being added to.
+     * @param tags The tags being added.
+     * @throws InvalidIndexException If the given index is not within the task list's size.
+     */
+    public void addTags(int index, HashSet<String> tags) throws InvalidIndexException {
+        validateIndex(index);
+        this.tags.addAll(tags);
+        tasks.get(index).addTags(tags);
+    }
+
+    /**
+     * Deletes the given tags from the task at the given index of the task list.
+     * No effect if the task does not have the given tags.
+     *
+     * @param index The index of the task that tags are being added to.
+     * @param tags The tags being added.
+     * @throws InvalidIndexException If the given index is not within the task list's size.
+     */
+    public void deleteTags(int index, HashSet<String> tags) throws InvalidIndexException {
+        validateIndex(index);
+        this.tags.removeAll(tags);
+        tasks.get(index).deleteTags(tags);
     }
 }
