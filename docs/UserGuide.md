@@ -98,7 +98,10 @@ For example, to view the recipe for Hainanese Chicken Rice, use the command `rec
 ### Possible Recipes
 Meal Companion includes the functionality to suggest recipes based on ingredient availability. Simply use the command `recipe possible`, and Meal Companion will list out the recipes that can be made with the ingredients you currently have.
 
-![recipepossible.png](images/recipepossible.png)
+![recipepossible.png](images/recipepossible.png)]
+
+### Check Ingredients for Recipe
+To check if you have sufficient ingredients to make a recipe, you can run the command `recipe need <recipe_name>`. Ingredients that you are missing will be listed along with the quantity needed.
 
 ###### [Back to table of contents](#table-of-contents)
 
