@@ -6,6 +6,7 @@ import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.DeleteCommand;
 import seedu.rainyDay.command.EditCommand;
 import seedu.rainyDay.command.ExportCommand;
+import seedu.rainyDay.command.ShortcutCommand;
 import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.command.FilterCommand;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -58,7 +60,14 @@ public class Parser {
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_EXPORT)) {
                 logger.info("export command executing");
                 return generateExport();
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT)) {
+                return generateShortcut(action[1].trim());
             } else {
+                // check if the user has a shortcut command
+                HashMap<String, String> shortcutCommands = RainyDay.userData.getShortcutCommands();
+                if (shortcutCommands.containsKey(userInput)) {
+                    return parseUserInput(shortcutCommands.get(userInput));
+                }
                 logger.warning("unrecognised input from user!");
                 return new InvalidCommand(ErrorMessage.UNRECOGNIZED_INPUT.toString());
             }
@@ -387,7 +396,29 @@ public class Parser {
     }
 
     //@@author KN-CY
-    public ExportCommand generateExport() {
+    private ExportCommand generateExport() {
         return new ExportCommand();
+    }
+
+    //@@author KN-CY
+    private Command generateShortcut(String userInput) {
+        if (!userInput.contains(" -maps ")) {
+            return new InvalidCommand(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
+        }
+
+        String[] tokens = userInput.split(" -maps ");
+
+        // check for > 1 instance of " -maps "
+        if (tokens.length > 2) { //
+            return new InvalidCommand(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
+        }
+        String key = tokens[0];
+        String value = tokens[1];
+
+        if (key.contains(" ")) {
+            return new InvalidCommand(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
+        }
+
+        return new ShortcutCommand(key, value);
     }
 }

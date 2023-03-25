@@ -1,5 +1,6 @@
 package seedu.rainyDay.data;
 
+
 import java.util.HashMap;
 
 public class UserData {

@@ -36,11 +36,9 @@ public class RainyDay {
             String username = ui.readUserName();
             assert username != null : "Inputted username should not be null";
             FinancialReport financialReport = new FinancialReport(new ArrayList<>());
-            financialReport.setReportOwner(username);
             userData = new UserData(financialReport);
+            financialReport.setReportOwner(username);
         }
-
-
     }
 
     private void run() {
@@ -92,5 +90,7 @@ public class RainyDay {
         logger.log(Level.INFO, "Starting RainyDay");
         new RainyDay(filePath).run();
         logger.log(Level.INFO, "Quitting RainyDay");
+        System.out.println(userData.getShortcutCommands()); // just to see what shortcuts u have alr saved, will make
+        // into a proper command later.
     }
 }

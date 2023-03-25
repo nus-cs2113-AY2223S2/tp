@@ -16,9 +16,9 @@ public abstract class Command {
     public static final String COMMAND_FILTER = "filter";
     public static final String COMMAND_EDIT = "edit";
     public static final String COMMAND_EXPORT = "export";
+    public static final String COMMAND_SHORTCUT = "shortcut";
 
     protected FinancialReport financialReport;
-
     /**
      * Sets the attribute to reference the financial report for execution of commands
      *

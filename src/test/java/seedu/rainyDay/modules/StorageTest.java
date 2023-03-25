@@ -27,7 +27,7 @@ public class StorageTest {
     }
 
     @Test
-    public void writeToFileTest_contentMatch() throws IOException, ClassNotFoundException {
+    public void writeToFileTest_contentMatch() throws IOException {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport financialReport = new FinancialReport(statements);
         financialReport.addStatement(
@@ -38,7 +38,7 @@ public class StorageTest {
         Storage.writeToFile(userData, filePath);
         UserData userDataLoaded = Storage.loadFromFile(filePath);
 
-        assertEquals(userDataLoaded.getFinancialReport().getFullStatement(0),
+        assertEquals(userData.getFinancialReport().getFullStatement(0),
                 userDataLoaded.getFinancialReport().getFullStatement(0));
     }
 
