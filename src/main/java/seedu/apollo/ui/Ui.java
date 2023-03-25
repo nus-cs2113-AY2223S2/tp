@@ -84,7 +84,9 @@ public class Ui {
                 "- Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n" +
                 "- Enter \"addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a lesson\n" +
                 "- Enter \"showmod [MODULE_CODE]\" to see more information about the module\n" +
-                "- Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added\n\n" +
+                "- Enter \"showmod [MODULE_CODE] -[FLAG]\" to see schedule of specific lesson type for a module\n" +
+                "- Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added\n" +
+                "- Enter \"delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a task to a lesson\n\n" +
 
                 "Common Commands:\n" +
                 "- Enter \"week\" to see your schedule for the week\n" +
