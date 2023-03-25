@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import static seedu.rainyDay.RainyDay.financialReport;
 
+//@@author BenjaminPoh
 public class ViewResult {
     private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
             "|Here is your financial report!                                                                   |\n";
@@ -27,7 +28,6 @@ public class ViewResult {
     /**
      * Sets up logger for logging
      */
-    //@Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
@@ -40,7 +40,13 @@ public class ViewResult {
         }
     }
 
-    //@@author BenjaminPoh
+    /**
+     * Used to format the information shown to the user such that it fits the table.
+     *
+     * @param statementIndex 1-based indexing to be shown to the user
+     * @param currentStatement the FinancialStatement
+     * @return A formatted string
+     */
     private static String formatFinancialStatement(int statementIndex, FinancialStatement currentStatement) {
         String statementOutput;
         String statementName = currentStatement.getDescription();
@@ -53,7 +59,6 @@ public class ViewResult {
         } else {
             date = currentStatement.getDate().format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
         }
-
         String index = String.format("00000%d", statementIndex);
         index = index.substring(index.length() - 5);
         String value = String.format(" %s$%.2f            ", statementDirection, statementValue);
@@ -77,6 +82,12 @@ public class ViewResult {
                 remainingValueInformation);
     }
 
+    /**
+     * Prints all statements specified by an ArrayList to the user.
+     * Note that indices are 1-based in input, while it is 0-based in financialStatement
+     *
+     * @param indexArray ArrayList of Integers with the indices of the entries to print from financialReport
+     */
     public static void printItemsInList(ArrayList<Integer> indexArray) {
         String output;
 
@@ -92,11 +103,16 @@ public class ViewResult {
             System.out.print(output);
             logger.log(Level.INFO, "passed statement " + index);
         }
+
         System.out.print(TABLE_BORDER);
     }
 
     /**
-     * Appends financial statements to the end of a string
+     * Prints all statements specified by an ArrayList to the user.
+     * Additional information, including the user's total inflow and outflow are also provided
+     * Note that indices are 1-based in input, while it is 0-based in financialStatement
+     *
+     * @param validIndexes ArrayList of Integers with the indices of the entries to print from financialReport
      */
     public static void printReport(ArrayList<Integer> validIndexes) {
         double totalInflow = 0;
