@@ -22,7 +22,9 @@ public class Company {
         return companyName;
     }
 
-    public String getIndustry(){ return industry;}
+    public String getIndustry(){
+        return industry;
+    }
 
     public int getContactNumber(){
         return contactNumber;
@@ -32,7 +34,9 @@ public class Company {
         return contactEmail;
     }
 
-    public String getConfirmStatus() { return (isConfirmed ? "Confirmed" : "Unconfirmed");}
+    public String getConfirmStatus() {
+        return (isConfirmed ? "Confirmed" : "Unconfirmed");
+    }
 
     public void markConfirmed() {
         this.isConfirmed = true;
