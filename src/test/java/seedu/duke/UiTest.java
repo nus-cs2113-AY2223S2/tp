@@ -28,7 +28,27 @@ public class UiTest {
         Ui ui = new Ui();
         ui.showLine();
         assertEquals("____________________________________________________________",
-                    out.toString().trim());
+                out.toString().trim());
+    }
+
+    @Test
+    public void showWelcome_atStartup_displayWelcomeMessage() {
+        Ui ui = new Ui();
+        ui.showWelcome();
+        String expected = ("____________________________________________________________\nHello! Welcome to EveNtUS!" +
+                "\n" + "____________________________________________________________")
+                .replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
+        assertEquals(expected, out.toString().trim());
+    }
+
+    @Test
+    public void showExitMessage_atExit_displayExitMessage() {
+        Ui ui = new Ui();
+        ui.showExitMessage();
+        String expected = ("____________________________________________________________\nBye!" +
+                "\n" + "____________________________________________________________")
+                .replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
+        assertEquals(expected, out.toString().trim());
     }
 
     @Test
