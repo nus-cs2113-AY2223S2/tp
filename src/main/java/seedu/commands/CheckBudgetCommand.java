@@ -3,8 +3,6 @@ package seedu.commands;
 import seedu.expenditure.Expenditure;
 import seedu.expenditure.ExpenditureList;
 
-import java.util.ArrayList;
-
 public class CheckBudgetCommand extends Command {
     public static final String COMMAND_WORD = "check";
     public CheckBudgetCommand() {
@@ -18,8 +16,12 @@ public class CheckBudgetCommand extends Command {
         for (Expenditure individualExpenditure : expenditures.getExpenditures()){
             totalAmount += individualExpenditure.getValue();
         }
+        return getCommandResult(budget, totalAmount);
+    }
+
+    private static CommandResult getCommandResult(double budget, double totalAmount) {
         if (budget == 0) {
-          return new CommandResult("Your current budget is set at 0, please use the 'set' command to set a budget.");
+            return new CommandResult("Your current budget is set at 0, please use the 'set' command to set a budget.");
         } else if (budget >= totalAmount) {
             // Remaining budget available
             double difference = budget - totalAmount;
@@ -30,8 +32,9 @@ public class CheckBudgetCommand extends Command {
         } else {
             double difference = totalAmount - budget;
             return new CommandResult(String.format(
-                "You have exceeded your budget of $%.2f by $%.2f! Your current spending stands at $%.2f",
-                budget, difference, totalAmount
-            ));}
+                    "You have exceeded your budget of $%.2f by $%.2f! Your current spending stands at $%.2f",
+                    budget, difference, totalAmount
+            ));
+        }
     }
 }
