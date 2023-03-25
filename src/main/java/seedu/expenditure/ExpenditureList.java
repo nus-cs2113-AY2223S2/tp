@@ -14,6 +14,7 @@ import java.util.Comparator;
 public class ExpenditureList {
     public static final int LIST_OFFSET = 1;
     private static ArrayList<Expenditure> expenditures;
+    private static double budgetSet = 0;
 
     public ExpenditureList() {
         expenditures = new ArrayList<>();
@@ -52,6 +53,19 @@ public class ExpenditureList {
         } else {
             throw new NoPaidFieldException();
         }
+    }
+
+    public void duplicateExpenditure(int index) {
+        Expenditure expenditure = expenditures.get(index);
+        addExpenditure(expenditure);
+    }
+
+    public void setNewBudget(double budget) {
+        budgetSet = budget;
+    }
+
+    public double getBudgetSet() {
+        return budgetSet;
     }
 
     public ArrayList<Expenditure> getExpenditures() {
