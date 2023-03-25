@@ -32,6 +32,7 @@ public class Parser {
     private double amount = -1.0;
     private String field;
     private LocalDate date = LocalDate.now();
+
     public Command parseUserInput(String userInput) {
         try {
             assert userInput != null : "Failed to read user input!";
@@ -67,7 +68,7 @@ public class Parser {
         }
     }
 
-    private Command addStatement(String addInput) { // example: add -<in/out> <description> $value -c -d
+    private Command addStatement(String addInput) { // example: add -<in/out> <description> $value -c -date
         try {
             this.category = "miscellaneous";
             String remainingInformation = returnRemainingInformation(addInput);
@@ -125,19 +126,20 @@ public class Parser {
     }
 
     private String setCategory(String input) throws RainyDayException {
-        Pattern pattern = Pattern.compile("-c\\s+(\\S+)");
+        Pattern pattern = Pattern.compile("^-c\\s(.+)\\s");
+        // Pattern pattern = Pattern.compile("-c\\s+(\\S+)");
         Matcher matcher = pattern.matcher(input);
         if (matcher.matches()) {
             this.category = matcher.group(1);
             logger.info("obtaining category");
             return "";
         }
-        Pattern newPattern = Pattern.compile("-c\\s+(\\S+)\\s+(.*)");
+        Pattern newPattern = Pattern.compile("^-c\\s(.+)\\s-date\\s(\\d{2}/\\d{2}/\\d{4})$");
         Matcher newMatcher = newPattern.matcher(input);
         if (newMatcher.matches()) {
             this.category = newMatcher.group(1);
             logger.info("obtaining category");
-            return newMatcher.group(2);
+            return "-date " + newMatcher.group(2);
         }
         logger.warning("add command given by user in the wrong format");
         throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
@@ -186,7 +188,7 @@ public class Parser {
     public Command generateReport(String input) {
         input = input.substring(4).trim();
         LocalDate startDate = LocalDate.now();
-        if(input.equals("")) {
+        if (input.equals("")) {
             startDate = startDate.minusMonths(1);
             return new ViewCommand(startDate, false);
         }
