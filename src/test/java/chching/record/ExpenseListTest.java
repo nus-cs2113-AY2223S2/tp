@@ -22,6 +22,14 @@ class ExpenseListTest {
     private Expense expense;
     private ExpenseList expenses;
     
+    /**
+     * Sets up ExpenseList expenses with one expense for each JUnit testing
+     * expense contains the following details:
+     * category: entertainment
+     * description: beach party
+     * date: 23-05-2023
+     * value: 50
+     */
     @BeforeEach
     void setUp() {
         expense = new Expense(CATEGORY, DESCRIPTION, DATE, EXPENSE_VALUE);
