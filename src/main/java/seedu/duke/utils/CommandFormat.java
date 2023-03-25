@@ -25,7 +25,8 @@ public class CommandFormat {
     public static final String SEARCH_KEYWORD_DESCRIPTION = "search:\n search existing items by keywords";
     public static final String SEARCH_UPC_DESCRIPTION = "searchupc:\nsearch existing items by UPC";
     public static final String FILTER_DESCRIPTION = "filter:\nfilters items by category or price or tag";
-    public static final String ALERT_ADD_DESCRIPTION = "alert add:\nadds new alert for an item to track its stock count";
+    public static final String ALERT_ADD_DESCRIPTION = "alert add:\nadds new alert for an item to "
+            + "track its stock count";
     public static final String ALERT_REMOVE_DESCRIPTION = "alert remove:\nremoves existing alert for an item";
     public static final String CATEGORY_DESCRIPTION = "cat:\nputs an item into the specified category";
     public static final String TAG_DESCRIPTION = "tag:\nadds or removes a tag of an existing item";
