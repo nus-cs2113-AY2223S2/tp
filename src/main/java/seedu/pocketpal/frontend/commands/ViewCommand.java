@@ -18,14 +18,35 @@ public class ViewCommand extends Command {
     private final int numberOfEntriesToView;
     private final Category categoryToView;
 
+    private final Double priceToViewMin;
+    private final Double priceToViewMax;
+
     public ViewCommand(int numberOfEntriesToView) {
-        this(numberOfEntriesToView, null);
+        this(numberOfEntriesToView, null, 0.0 , Double.MAX_VALUE);
     }
 
-    public ViewCommand(int numberOfEntriesToView, Category categoryToView) {
+    public ViewCommand(int numberOfEntriesToView, Category categoryToView, Double priceToViewMin, Double priceToViewMax) {
         this.categoryToView = categoryToView;
         this.numberOfEntriesToView = numberOfEntriesToView;
+        this.priceToViewMin = priceToViewMin;
+        this.priceToViewMax = priceToViewMax;
+        System.out.println(priceToViewMin);
+        System.out.println(priceToViewMax);
+        System.out.println("VIEWCOUNT: " + numberOfEntriesToView);
     }
+
+//    public ViewCommand(int numberOfEntriesToView, Double priceToViewMin, Double priceToViewMax){
+//        this.numberOfEntriesToView = numberOfEntriesToView;
+//        this.priceToViewMin = priceToViewMin;
+//        this.priceToViewMax = priceToViewMax;
+//    }
+
+//    public ViewCommand(int priceToViewMin, int priceToViewMax){
+//        this.numberOfEntriesToView = 2;
+//        this.categoryToView = null;
+//        this.priceToViewMin = priceToViewMin;
+//        this.priceToViewMax = priceToViewMax;
+//    }
 
     /**
      * Executes the view command.
@@ -42,6 +63,9 @@ public class ViewCommand extends Command {
             String category = StringUtil.toTitleCase(String.valueOf(categoryToView));
             request.addParam(RequestParams.FILTER_BY_CATEGORY, category);
         }
+
+        request.addParam(RequestParams.FILTER_BY_AMOUNT_START, String.valueOf(priceToViewMin));
+        request.addParam(RequestParams.FILTER_BY_AMOUNT_END, String.valueOf(priceToViewMax));
 
         Response response = backend.requestEndpointEntries(request);
         EntryLog relevantEntries = EntryLogParser.deserialise(response.getData());

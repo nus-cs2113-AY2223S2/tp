@@ -312,8 +312,12 @@ public class Parser {
         logger.info("Parsing view command with arguments: " + arguments);
         Category category = null;
         String categoryStr = "";
+        String priceMinStr;
+        String priceMaxStr;
         String viewCount;
         int viewCountInt;
+        Double priceMinInt;
+        Double priceMaxInt;
         if (arguments.isEmpty()) {
             logger.info("No count specified. Listing all expenses");
             // list all commands;
@@ -323,6 +327,8 @@ public class Parser {
         assert argumentsArray.length >= 1 : "User input contains at least 1 argument";
         Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
         Pattern viewCountPattern = Pattern.compile("\\d+");
+//        Pattern priceRangePattern = Pattern.compile("(-p|-price)\\s+(\\d+(\\D+\\d+))\\s+(-p|-price)*\\s+(\\d+(\\D+\\d+))*");
+        Pattern priceRangePattern = Pattern.compile("(-p|-price)\\s+(\\d+\\.\\d+)\\s+(-p|-price)\\s+(\\d+\\.\\d+)");
         Matcher matcher = viewCountPattern.matcher(arguments);
         if (matcher.find()) {
             viewCount = matcher.group(0);
@@ -334,8 +340,21 @@ public class Parser {
             categoryStr = matcher.group(2);
             category = CategoryUtil.convertStringToCategory(StringUtil.toTitleCase(categoryStr));
         }
+        matcher = priceRangePattern.matcher(arguments);
+        if (matcher.find()) {
+            priceMinStr = matcher.group(2);
+            priceMaxStr = matcher.group(4);
+        } else{
+            priceMinStr = "0.0";
+            priceMaxStr = Double.toString(Double.MAX_VALUE);
+        }
+
+
+        //use if statement if numebr of matches is only 1 then set max = min = group()
+
         try {
             viewCountInt = Integer.parseInt(viewCount);
+
         } catch (NumberFormatException e) {
             logger.warning("Expense ID is not an integer: " + MessageConstants.MESSAGE_INVALID_ID);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
@@ -346,6 +365,11 @@ public class Parser {
         logger.info("User entered count:" + viewCount);
         logger.info("User entered category:" + categoryStr);
         logger.exiting(Parser.class.getName(), "parseViewCommand()");
-        return new ViewCommand(viewCountInt, category);
+
+
+        priceMinInt = Double.parseDouble(priceMinStr);
+        priceMaxInt = Double.parseDouble(priceMaxStr);
+        // if doesn't work for single price input, try nested if
+        return new ViewCommand(viewCountInt, category, priceMinInt, priceMaxInt);
     }
 }
