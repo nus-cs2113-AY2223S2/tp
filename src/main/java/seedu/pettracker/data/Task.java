@@ -13,4 +13,11 @@ public class Task {
         return '[' + (isDone ? "X" : " ") + ']';
     }
 
+    public String saveFormat() {
+        String toSave = "0";
+        if (isDone) {
+            toSave = "1";
+        }
+        return toSave + "|" + description;
+    }
 }

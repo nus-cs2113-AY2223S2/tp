@@ -1,3 +1,4 @@
+invalidcommand
 add-pet Bob
 add-stat Bob Weight 30
 list
@@ -12,4 +13,12 @@ add-stat Candy Type Dog
 add-stat Candy Age 3
 add-stat Candy Weight 10
 remove-stat Candy Age
+add-task Feed Bob
+remove-task 1
+add-task Feed Candi
+add-task Feed Alice
+mark-task 1
+list-tasks
+edit-task 1 Feed Candy
+list-tasks
 exit

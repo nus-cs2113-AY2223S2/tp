@@ -1,5 +1,7 @@
 Welcome to the Pet Health Tracker!
 
+Please enter a valid command!
+
 Successfully added new pet: Bob
 
 Updated Weight to 30 for Bob
@@ -32,5 +34,25 @@ Updated Age to 3 for Candy
 Updated Weight to 10 for Candy
 
 Successfully removed Age from Candy
+
+Added new task to list
+
+Successfully removed task 1
+
+Added new task to list
+
+Added new task to list
+
+Task marked as done
+
+Here are your tasks:
+1. [X] Feed Candi
+2. [ ] Feed Alice
+
+Updated task 1 to Feed Candy.
+
+Here are your tasks:
+1. [X] Feed Candy
+2. [ ] Feed Alice
 
 Goodbye! See you soon.

@@ -4,6 +4,7 @@ import seedu.pettracker.commands.Command;
 import seedu.pettracker.parser.CommandParser;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
+
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -19,7 +20,9 @@ public class Main {
 
     private final Storage storage;
 
-    private final String STORAGE_FILE_PATH = "./output/petoutput.txt";
+    private final String PET_STORAGE_FILE_PATH = "./output/petoutput.txt";
+    private final String TASK_STORAGE_FILE_PATH = "./output/taskoutput.txt";
+
 
     /**
      * Creates the Main class by initializing the other classes
@@ -27,8 +30,10 @@ public class Main {
     public Main() {
         ui = new Ui();
         commandParser = new CommandParser();
-        storage = new Storage(STORAGE_FILE_PATH);
-        storage.createFile(ui);
+        storage = new Storage(PET_STORAGE_FILE_PATH, TASK_STORAGE_FILE_PATH);
+        storage.createPetFile(ui);
+        storage.createTaskFile(ui);
+
     }
 
     /**
@@ -45,15 +50,15 @@ public class Main {
     /**
      * Executes commands until isExit is changed to true
      */
-    public void runCommandTillExit() {       
+    public void runCommandTillExit() {
         boolean isExit = false;
         while (!isExit) {
             String commandString = ui.getUserInput();
             Command command = commandParser.parseCommand(commandString);
-            command.execute(ui,storage);
+            command.execute(ui, storage);
             isExit = command.isExit();
         }
-        logger.log(Level.INFO,"End of processing commands");
+        logger.log(Level.INFO, "End of processing commands");
     }
 
     public static void main(String[] args) {

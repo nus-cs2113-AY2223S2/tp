@@ -27,6 +27,7 @@ public class EditTaskCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) {
         TaskList.editTask(taskNumber, newDescription);
+        TaskList.saveTasksToStorage(storage, ui);
         ui.editTaskCommandMessage(taskNumber, newDescription);
     }
 

@@ -1,5 +1,8 @@
 package seedu.pettracker.data;
 
+import seedu.pettracker.storage.Storage;
+import seedu.pettracker.ui.Ui;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -60,4 +63,9 @@ public class TaskList {
         taskList.get(taskNumber - 1).isDone = isDone;
         logger.log(Level.INFO, "Task marked as " + isDone + " : " + taskNumber);
     }
+
+    public static void saveTasksToStorage(Storage storage, Ui ui){
+        storage.saveTasks(taskList,ui);
+    }
+
 }
