@@ -1,5 +1,6 @@
 package seedu.todolist.logic.command;
 
+import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Parser;
 import seedu.todolist.ui.Ui;
@@ -17,15 +18,15 @@ public class DeleteTaskCommandTest {
     private TaskList testList;
     private Ui ui = new Ui();
 
-    private HashMap<String, String> generateInputArguments(String index) {
-        HashMap<String, String> args = new HashMap<>();
-        args.put(AddTaskCommand.KEYWORD, index);
+    private HashMap<Flags, String> generateInputArguments(String index) {
+        HashMap<Flags, String> args = new HashMap<>();
+        args.put(Flags.COMMAND_ADD, index);
         return args;
     }
 
     @BeforeEach
     void setUp() {
-        String sampleTask = "add something -due 06-04-2000 23:59 -rep 0";
+        String sampleTask = "add something -due 06-04-2030 23:59";
         testList = new TaskList();
         try {
             parser.parseCommand(sampleTask).execute(testList, ui);

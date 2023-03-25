@@ -19,18 +19,18 @@ public class AddTaskCommandTest {
     private TaskList testList = new TaskList();
     private Ui ui = new Ui();
 
-    private HashMap<String, String> generateInputArguments(String description, String date, String time,
+    private HashMap<Flags, String> generateInputArguments(String description, String date, String time,
                                                            String repeatCount) {
-        HashMap<String, String> args = new HashMap<>();
-        args.put(AddTaskCommand.KEYWORD, description);
-        args.put(Flags.DEADLINE.FLAG, date + " " + time);
-        args.put(Flags.REPEAT.FLAG, repeatCount);
+        HashMap<Flags, String> args = new HashMap<>();
+        args.put(Flags.COMMAND_ADD, description);
+        args.put(Flags.DEADLINE, date + " " + time);
+        args.put(Flags.REPEAT, repeatCount);
         return args;
     }
 
     @Test
     public void addTask_emptyDescription_throwsException() {
-        HashMap<String, String> args = generateInputArguments("", DATE_EXAMPLE, TIME_EXAMPLE, REPEAT_EXAMPLE);
+        HashMap<Flags, String> args = generateInputArguments("", DATE_EXAMPLE, TIME_EXAMPLE, REPEAT_EXAMPLE);
         try {
             Command testAdd = new AddTaskCommand(args);
             testAdd.execute(testList, ui);
@@ -44,7 +44,7 @@ public class AddTaskCommandTest {
     public void addTask_invalidDate_throwsException() {
         final String[] invalidDates = {"29/02/2031", "493430", "2013-12-22", "1023-43-22"};
         for (String date : invalidDates) {
-            HashMap<String, String> args = generateInputArguments("0", date, TIME_EXAMPLE, REPEAT_EXAMPLE);
+            HashMap<Flags, String> args = generateInputArguments("0", date, TIME_EXAMPLE, REPEAT_EXAMPLE);
             try {
                 Command testDelete = new AddTaskCommand(args);
                 testDelete.execute(testList, ui);
@@ -59,7 +59,7 @@ public class AddTaskCommandTest {
     public void addTask_invalidTime_throwsException() {
         final String[] invalidTimes = {"1000", "493430", "9AM"};
         for (String time : invalidTimes) {
-            HashMap<String, String> args = generateInputArguments("0", DATE_EXAMPLE, time, REPEAT_EXAMPLE);
+            HashMap<Flags, String> args = generateInputArguments("0", DATE_EXAMPLE, time, REPEAT_EXAMPLE);
             try {
                 Command testDelete = new AddTaskCommand(args);
                 testDelete.execute(testList, ui);

@@ -7,9 +7,13 @@ public enum Formats {
     TIME_IN ("[d-M-uuuu H:m][d/M/uuuu H:m]"),
     TIME_OUT("dd LLL uuuu HH:mm");
 
-    public final String FORMAT;
+    private final String format;
 
     Formats(String format) {
-        FORMAT = format;
+        this.format = format;
+    }
+
+    public String getFormat() {
+        return format;
     }
 }

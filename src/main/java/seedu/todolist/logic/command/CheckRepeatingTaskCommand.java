@@ -5,10 +5,6 @@ import seedu.todolist.task.TaskList;
 
 //@@author clement559
 public class CheckRepeatingTaskCommand extends Command {
-    public static final String KEYWORD = "check";
-
-    public CheckRepeatingTaskCommand() {}
-
     @Override
     public void execute(TaskList taskList, Ui ui) {
         taskList.checkRepeatingTasks();

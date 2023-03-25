@@ -1,27 +1,27 @@
 Hello, I am your todo list and I will help you remember the tasks you need to do!
 No save data found, creating a new task list for you!
 Okay, I have added this task:
-[ ] do math homework, due: 20 Apr 2023 23:59
+[ ] do math homework, due: 20 Apr 3023 23:59
 Okay, I have added this task:
-[ ] laundry, due: 18 Apr 2023 16:30
-Okay, here are the tasks in your list: 2 tasks found.
-1. [ ] laundry, due: 18 Apr 2023 16:30
-2. [ ] do math homework, due: 20 Apr 2023 23:59
+[ ] laundry, due: 18 Apr 3023 16:30
+Okay, here is your task list, with 2 tasks
+1. [ ] laundry, due: 18 Apr 3023 16:30
+2. [ ] do math homework, due: 20 Apr 3023 23:59
 Okay, I have marked this task as complete:
-[X] laundry, due: 18 Apr 2023 16:30
+[X] laundry, due: 18 Apr 3023 16:30
 Okay, I've removed this task:
-[ ] do math homework, due: 20 Apr 2023 23:59
-Okay, here are the tasks in your list: 1 task found.
-1. [X] laundry, due: 18 Apr 2023 16:30
+[ ] do math homework, due: 20 Apr 3023 23:59
+Okay, here is your task list, with 1 task
+1. [X] laundry, due: 18 Apr 3023 16:30
 You need to provide a valid command.
-You need to provide a valid index number.
-You need to provide a date in a valid format, such as dd-mm-yyyy hh:mm.
+Invalid index number: 3
+Invalid or past date: 31/04/3023 08:45
 Okay, I have edited the parameters of this task:
-[X] laundry, due: 30 Apr 2023 08:45
-Okay, here are the tasks in your list: 1 task found.
-1. [X] laundry, due: 30 Apr 2023 08:45
-Okay, I have set the email of the Professors/TA for this task:
-[X] laundry, due: 30 Apr 2023 08:45
+[X] laundry, due: 30 Apr 3023 08:45
+Okay, here is your task list, with 1 task
+1. [X] laundry, due: 30 Apr 3023 08:45
+Okay, I have edited the parameters of this task:
+[X] laundry, due: 30 Apr 3023 08:45
 Okay, Here is the email of the Professor/TA for this task:
 rui@gmail.com
 See you again, bye!

@@ -3,7 +3,7 @@ package seedu.todolist.exception;
 import seedu.todolist.constants.Errors;
 
 public class InvalidFlagException extends ToDoListException {
-    public InvalidFlagException() {
-        super(Errors.INVALID_FLAGS.MESSAGE);
+    public InvalidFlagException(String flag) {
+        super(Errors.INVALID_FLAGS.getMessage() + flag);
     }
 }

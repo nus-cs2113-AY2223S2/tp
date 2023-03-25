@@ -13,6 +13,7 @@ class StorageTest {
     private static final String PROPER_SAVE_FILE = "./src/test/data/properSaveFile.txt";
     private static final String INVALID_SAVE_FILE = "./src/test/data/invalidSaveFile.txt";
     private static final String TEST_DATA_FOLDER = "./src/test/data";
+    
     private TaskList taskList = new TaskList();
     private Ui ui = new Ui();
     private Parser parser = new Parser();
@@ -21,10 +22,10 @@ class StorageTest {
     @Test
     void saveAndLoadData_properFilePath_success() {
         try {
-            String sampleInput1 = "add bubu -due 18-02-2022 18:00 -rep 0";
+            String sampleInput1 = "add bubu -due 18-02-2032 18:00 -rep 0";
             Command command1 = parser.parseCommand(sampleInput1);
             command1.execute(taskList, ui);
-            String sampleInput2 = "add baba -due 18-04-2023 12:00 -rep 0";
+            String sampleInput2 = "add baba -due 18-04-2033 12:00 -rep 0";
             Command command2 = parser.parseCommand(sampleInput2);
             command2.execute(taskList, ui);
             storage.saveData(taskList); // save modified task list object

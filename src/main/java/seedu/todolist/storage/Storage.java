@@ -33,7 +33,7 @@ public class Storage {
      * Writes the current task list to the local save file.
      *
      * @param taskList The task list being saved.
-     * @throws FailedSaveException if an error occurs while writing to the save file.
+     * @throws FailedSaveException If an error occurs while writing to the save file.
      */
     public void saveData(TaskList taskList) throws FailedSaveException {
         try {
@@ -49,7 +49,7 @@ public class Storage {
      * Loads the task list from the local save file, if it exists.
      *
      * @return The task list read from the save file, if it exists.
-     * @throws FailedLoadException if an error occurs while reading from the save file.
+     * @throws FailedLoadException If an error occurs while reading from the save file.
      */
     public TaskList loadData() throws FailedLoadException {
         try {

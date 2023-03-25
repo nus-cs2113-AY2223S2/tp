@@ -7,8 +7,6 @@ import seedu.todolist.task.TaskList;
  * Command for displaying the current task list.
  */
 public class ListTasksCommand extends Command {
-    public static final String KEYWORD = "list";
-
     //@@author KedrianLoh
     /**
      * Displays the current task list.
