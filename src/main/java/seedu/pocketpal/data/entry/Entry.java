@@ -17,7 +17,7 @@ public class Entry implements Serialisable {
     private Category category;
     private String description;
     private double amount;
-    private String dateTime;
+    private final String dateTime;
 
     public Entry(String description, double amount, Category category) {
         assert amount >= 0 : "Entry amount must be non-negative!";
@@ -30,6 +30,31 @@ public class Entry implements Serialisable {
         this.dateTime = dateTime.format(DateTimeFormatter.ofPattern("d MMM uuuu, HH:mm:ss"));
     }
 
+    /**
+     * Compare to another entry. Ignores DateTime in both entries.
+     *
+     * @param entry Entry to compare
+     * @return true if both entry is the same as this, false otherwise
+     */
+    public boolean equals(Entry entry) {
+        return equals(entry, false);
+    }
+
+    /**
+     * Compare to another entry.
+     *
+     * @param entry       Entry to compare
+     * @param compareDate True if date and time in both entries need to be the same
+     * @return true if both entry is the same as this, false otherwise
+     */
+    public boolean equals(Entry entry, boolean compareDate) {
+        boolean isSameAmount = amount == entry.getAmount();
+        boolean isSameCategory = category == entry.getCategory();
+        boolean isSameDescription = description.equals(entry.getDescription());
+        boolean isSameDateTime = dateTime.compareTo(entry.getDateTime()) == 0;
+        return isSameAmount && isSameCategory && isSameDescription && (!compareDate || isSameDateTime);
+    }
+
     public double getAmount() {
         return amount;
     }
@@ -38,7 +63,7 @@ public class Entry implements Serialisable {
         return category;
     }
 
-    public String getDateTime(){
+    public String getDateTime() {
         return dateTime;
     }
 
