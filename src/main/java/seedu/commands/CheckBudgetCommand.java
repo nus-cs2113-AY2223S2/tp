@@ -16,7 +16,6 @@ public class CheckBudgetCommand extends Command {
         double borrowedAmount = 0;
         for (Expenditure individualExpenditure : expenditures.getExpenditures()){
             if (individualExpenditure.getExpenditureType().equals("B")) {
-                totalAmount -= individualExpenditure.getValue();
                 borrowedAmount += individualExpenditure.getValue();
             } else {
                 totalAmount += individualExpenditure.getValue();
