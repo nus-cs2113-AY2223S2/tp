@@ -3,6 +3,9 @@ package seedu.duke.command;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.company.Company;
 import seedu.duke.company.CompanyList;
+import seedu.duke.storage.CompanyListEncoder;
+
+import java.io.IOException;
 
 
 public class ConfirmCommand extends Command {
@@ -13,12 +16,12 @@ public class ConfirmCommand extends Command {
         this.companyNum = companyNum;
     }
     @Override
-    public void execute(CompanyList company){
+    public void execute(CompanyList companyList){
         try {
-            Company companyToConfirm = company.getCompany(companyNum);
+            Company companyToConfirm = companyList.getCompany(companyNum);
             companyToConfirm.markConfirmed();
-
-        } catch (InvalidIndexException err){
+            CompanyListEncoder.write(companyList);
+        } catch (InvalidIndexException | IOException err) {
             System.out.println("Invalid index provided! Please try again");
         }
     }
