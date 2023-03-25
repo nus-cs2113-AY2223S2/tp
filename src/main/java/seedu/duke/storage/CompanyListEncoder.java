@@ -9,5 +9,10 @@ import java.io.IOException;
 
 public class CompanyListEncoder extends Storage {
 
-
+    private static int convertConfirmStatusToBinary(String confirmStatus) {
+        if (confirmStatus.equals("Confirmed")) {
+            return 1;
+        }
+        return 0;
+    }
 }
