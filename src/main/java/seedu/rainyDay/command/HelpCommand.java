@@ -117,7 +117,7 @@ public class HelpCommand extends Command {
             "| -c <category> | Optional    | Used to change the category of an entry                              |\n" +
             "| -date <Date>  | Optional    | Used to change the date of an entry                                  |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
-            "| Note: Only 1 Optional flag is allowed. For multiple edits to the same entry, use ????              | \n" +
+            "| Note: Only 1 Optional flag is allowed. For multiple edits to the same entry, use ????              |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
