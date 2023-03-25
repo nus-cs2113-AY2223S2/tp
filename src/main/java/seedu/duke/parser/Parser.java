@@ -48,7 +48,7 @@ public interface Parser {
             String companyName = input.substring(indexOfName+2, indexOfIndustry).trim();
             String industry = input.substring(indexOfIndustry+2, indexOfContactNumber).trim();
             int contactNumber = Integer.parseInt(input.substring(indexOfContactNumber+2, indexOfContactEmail).trim());
-            String contactEmail = input.substring(indexOfContactEmail).trim();
+            String contactEmail = input.substring(indexOfContactEmail+2).trim();
             AddCommand addCommand = new AddCommand(command, industry, companyName, contactNumber, contactEmail);
             return addCommand;
         case "delete":
