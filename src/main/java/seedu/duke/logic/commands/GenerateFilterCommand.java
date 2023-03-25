@@ -4,8 +4,8 @@ import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.commons.exceptions.ExerciseNumberInputAsStringError;
 import seedu.duke.commons.exceptions.UnknownFilterInputError;
 import seedu.duke.commons.exceptions.TooManyFiltersError;
-import seedu.duke.model.exercisegenerator.GenerateExercise;
-import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;

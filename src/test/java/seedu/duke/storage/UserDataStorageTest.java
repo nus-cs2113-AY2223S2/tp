@@ -11,12 +11,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.model.exercisegenerator.GenerateExercise;
-import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
-import seedu.duke.model.userdata.Session;
-import seedu.duke.model.userdata.UserCareerData;
-import seedu.duke.model.userdata.userplan.Plan;
-import seedu.duke.model.userdata.userplan.UserPlan;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.data.userdata.Session;
+import seedu.duke.data.userdata.UserCareerData;
+import seedu.duke.data.userdata.userplan.Plan;
+import seedu.duke.data.userdata.userplan.UserPlan;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,7 +32,9 @@ public class UserDataStorageTest {
     private static final String filePath = "testData.json";
     private static final String plansPath = "testPlans.json";
     private final GenerateExercise generateExercise = new GenerateExercise();
-    private final StorageHandler storageHandler = new StorageHandler(filePath, plansPath);
+    private final UserPlansStorage userPlansStorage = new JsonUserPlansStorage(plansPath);
+    private final UserCareerStorage userCareerStorage = new JsonUserCareerStorage(filePath);
+    private final Storage storage = new StorageManager(userCareerStorage, userPlansStorage);
 
     @AfterAll
     @BeforeAll
@@ -62,10 +64,10 @@ public class UserDataStorageTest {
         UserCareerData userCareerData = new UserCareerData();
         userCareerData.addWorkoutSession(session);
         TestWriting.testWriting(sessionExercises, userCareerData);
-        storageHandler.writeToJson(userCareerData);
+        storage.writeToJson(userCareerData);
         assertDoesNotThrow(() -> new DukeError("File Write Error"));
         ArrayList<Session> completedSessionWorkouts;
-        completedSessionWorkouts = storageHandler.loadUserData().getTotalUserCareerSessions();
+        completedSessionWorkouts = storage.loadUserData().getTotalUserCareerSessions();
         TestReading.testReading(completedSessionWorkouts, sessionExercises);
     }
 
@@ -82,7 +84,7 @@ public class UserDataStorageTest {
         for (int i = 0; i < 7; i++) {
             userPlan.addDayPlan(plan, i);
         }
-        storageHandler.writeToJson(userPlan);
+        storage.writeToJson(userPlan);
         assertDoesNotThrow(() -> new DukeError("File Write Error"));
     }
 
@@ -105,9 +107,9 @@ public class UserDataStorageTest {
                                                                                              random.nextInt(30));
             Session session = new Session(sessionWorkouts);
             userCareerData.addWorkoutSession(session);
-            storageHandler.writeToJson(userCareerData);
+            storage.writeToJson(userCareerData);
         }
-        UserCareerData userCareerDataFromFile = storageHandler.loadUserData();
+        UserCareerData userCareerDataFromFile = storage.loadUserData();
         TestReading.testReadingUserCareer(userCareerDataFromFile, userCareerData);
     }
 
@@ -121,7 +123,7 @@ public class UserDataStorageTest {
         samplePlan.add("Upper");
         samplePlan.add("easy");
         Plan plan = new Plan(samplePlan, "Sample Plan Name");
-        userPlan = storageHandler.loadUserPlans();
+        userPlan = storage.loadUserPlans();
         for (int i = 0; i < 7; i++) {
             Plan todayPlans = userPlan.getDayPlans(i).get(0);
             assertEquals(todayPlans.getPlanName(), plan.getPlanName());
@@ -143,7 +145,7 @@ public class UserDataStorageTest {
         assertFalse(checkIfUserFileExists(filePath),
                     "Testing userData file must be deleted to ensure the integrity of the " +
                         "test");
-        UserCareerData userCareerDataFromFile = storageHandler.loadUserData();
+        UserCareerData userCareerDataFromFile = storage.loadUserData();
         assertNotNull(userCareerDataFromFile, "Missing instance of user career data, userCareerData must be empty but" +
             " initialised");
         assertTrue(checkIfUserFileExists(filePath), "New user file has not been created");
@@ -160,7 +162,7 @@ public class UserDataStorageTest {
         assertFalse(checkIfUserFileExists(plansPath),
                     "Testing planning file must be deleted to ensure the integrity of the " +
                         "test");
-        UserPlan userPlan = storageHandler.loadUserPlans();
+        UserPlan userPlan = storage.loadUserPlans();
         assertNotNull(userPlan, "Missing instance of user plans data, user plans must be empty but" +
             " initialised");
         assertTrue(checkIfUserFileExists(filePath), "New plans file has not been created");
@@ -193,7 +195,7 @@ public class UserDataStorageTest {
      */
     @Test
     void testDateTimeSerializers () {
-        UserCareerData userCareerDataFromFile = storageHandler.loadUserData();
+        UserCareerData userCareerDataFromFile = storage.loadUserData();
         Session session = userCareerDataFromFile.getTotalUserCareerSessions().get(0);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         String timeFromFile = dateTimeFormatter.format(session.getDateAdded());

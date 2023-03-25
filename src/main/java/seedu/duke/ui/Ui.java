@@ -1,7 +1,7 @@
 package seedu.duke.ui;
 
-import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
-import seedu.duke.model.userdata.userplan.UserPlan;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.data.userdata.userplan.UserPlan;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,10 +1,10 @@
 package seedu.duke.exercisegenerator;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
-import seedu.duke.model.exercisegenerator.GenerateExercise;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 

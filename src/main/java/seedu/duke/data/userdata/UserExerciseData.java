@@ -1,4 +1,4 @@
-package seedu.duke.model.userdata;
+package seedu.duke.data.userdata;
 
 import java.util.HashMap;
 

@@ -1,11 +1,11 @@
 package seedu.duke.logic.commandhandler;
 
-import seedu.duke.model.exercisegenerator.GenerateExercise;
-import seedu.duke.storage.StorageHandler;
-import seedu.duke.model.userdata.UserCareerData;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
+import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
+import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
-import seedu.duke.model.userdata.userplan.UserPlan;
+import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.commons.util.StringSplitter;
 
 public class CommandHandler {
@@ -20,7 +20,7 @@ public class CommandHandler {
      */
     public void handleUserCommands (String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator,
                                     UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
-                                    StorageHandler storageHandler, UserPlan planner) {
+                                    Storage storage, UserPlan planner) {
         StringSplitter stringSplitter = new StringSplitter();
         String[] userCommands = stringSplitter.splitString(rawUserCommands);
         if (exerciseStateHandler.workoutOngoing) {
@@ -30,7 +30,8 @@ public class CommandHandler {
         } else {
             GeneralCommandHandler generalCommandHandler = new GeneralCommandHandler();
             generalCommandHandler.handleGeneralUserCommands(userCommands, ui, exerciseGenerator,
-                                                            userCareerData, exerciseStateHandler, storageHandler,
+                                                            userCareerData, exerciseStateHandler,
+                                                            storage,
                                                             planner);
         }
     }
