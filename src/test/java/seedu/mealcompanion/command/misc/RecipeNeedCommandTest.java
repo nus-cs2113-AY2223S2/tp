@@ -29,7 +29,7 @@ class RecipeNeedCommandTest {
 
         RecipeNeedCommand command = new RecipeNeedCommand("Cup of Water");
         command.execute(mealCompanionSession);
-        String expectedOutput = "These are the ingredient(s) you need:"
+        String expectedOutput = "These are the ingredient(s) you are missing:"
                 + System.lineSeparator()
                 + "1. water (quantity: 300.0)"
                 + System.lineSeparator();
@@ -39,7 +39,7 @@ class RecipeNeedCommandTest {
         addCommand.execute(mealCompanionSession);
         newOutStream.reset();
         command.execute(mealCompanionSession);
-        expectedOutput = "These are the ingredient(s) you need:"
+        expectedOutput = "These are the ingredient(s) you are missing:"
                 + System.lineSeparator()
                 + "1. water (quantity: 150.0)"
                 + System.lineSeparator();
@@ -48,7 +48,7 @@ class RecipeNeedCommandTest {
         addCommand.execute(mealCompanionSession);
         newOutStream.reset();
         command.execute(mealCompanionSession);
-        expectedOutput = "These are the ingredient(s) you need:"
+        expectedOutput = "These are the ingredient(s) you are missing:"
                 + System.lineSeparator()
                 + "You have all the ingredients to make this recipe!"
                 + System.lineSeparator();

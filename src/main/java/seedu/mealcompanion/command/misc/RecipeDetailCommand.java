@@ -49,39 +49,44 @@ public class RecipeDetailCommand extends ExecutableCommand {
 
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
-        int index;
-        if (!isIndex(this.argument)) {
-            index = findIndex(this.argument, mealCompanionSession) - 1;
-        } else {
-            index = Integer.parseInt(this.argument) - 1;
-        }
+        try {
+            int index;
+            if (!isIndex(this.argument)) {
+                index = findIndex(this.argument, mealCompanionSession) - 1;
+            } else {
+                index = Integer.parseInt(this.argument) - 1;
+            }
 
-        Recipe recipe = mealCompanionSession.getRecipes().getRecipe(index);
-        mealCompanionSession.getUi().printMessage("Recipe for " + recipe.getName());
-        mealCompanionSession.getUi().printMessage(""); //print newline for all OS
-        mealCompanionSession.getUi().printMessage("Calories: " + recipe.getCalorieCount());
-        mealCompanionSession.getUi().printMessage(""); //print newline for all OS
-        mealCompanionSession.getUi().printMessage("Prep Time: " + recipe.getPrepTime());
-        mealCompanionSession.getUi().printMessage(""); //print newline for all OS
-        mealCompanionSession.getUi().printMessage("Cook Time: " + recipe.getCookTime());
-        mealCompanionSession.getUi().printMessage(""); //print newline for all OS
-        mealCompanionSession.getUi().printMessage("Ingredients:");
-        IngredientList ingredients = recipe.getIngredients();
-        for (int i = 0; i < ingredients.size(); i++) {
-            Ingredient ingredient = ingredients.get(i);
-            IngredientMetadata metadata = ingredient.getMetadata();
-            String ingredientName = metadata.getName();
-            String unitLabel = metadata.getUnitLabel();
-            double qty = ingredient.getQuantity();
-            mealCompanionSession.getUi().printMessage(Integer.toString(i+1) + ". " + ingredientName + " "
-                    +Double.toString(qty) + " " + unitLabel);
-        }
-        mealCompanionSession.getUi().printMessage(""); //print newline for all OS
-        mealCompanionSession.getUi().printMessage("Instructions:");
-        InstructionList instructions = recipe.getInstructions();
-        for (int i = 0; i < instructions.size(); i++) {
-            Instruction instruction = instructions.get(i);
-            mealCompanionSession.getUi().printMessage(Integer.toString(i+1) + ". " + instruction.getInstruction());
+            Recipe recipe = mealCompanionSession.getRecipes().getRecipe(index);
+            mealCompanionSession.getUi().printMessage("Recipe for " + recipe.getName());
+            mealCompanionSession.getUi().printMessage(""); //print newline for all OS
+            mealCompanionSession.getUi().printMessage("Calories: " + recipe.getCalorieCount());
+            mealCompanionSession.getUi().printMessage(""); //print newline for all OS
+            mealCompanionSession.getUi().printMessage("Prep Time: " + recipe.getPrepTime());
+            mealCompanionSession.getUi().printMessage(""); //print newline for all OS
+            mealCompanionSession.getUi().printMessage("Cook Time: " + recipe.getCookTime());
+            mealCompanionSession.getUi().printMessage(""); //print newline for all OS
+            mealCompanionSession.getUi().printMessage("Ingredients:");
+            IngredientList ingredients = recipe.getIngredients();
+            for (int i = 0; i < ingredients.size(); i++) {
+                Ingredient ingredient = ingredients.get(i);
+                IngredientMetadata metadata = ingredient.getMetadata();
+                String ingredientName = metadata.getName();
+                String unitLabel = metadata.getUnitLabel();
+                double qty = ingredient.getQuantity();
+                mealCompanionSession.getUi().printMessage(Integer.toString(i + 1) + ". " + ingredientName + " "
+                        + Double.toString(qty) + " " + unitLabel);
+            }
+            mealCompanionSession.getUi().printMessage(""); //print newline for all OS
+            mealCompanionSession.getUi().printMessage("Instructions:");
+            InstructionList instructions = recipe.getInstructions();
+            for (int i = 0; i < instructions.size(); i++) {
+                Instruction instruction = instructions.get(i);
+                mealCompanionSession.getUi().printMessage(Integer.toString(i + 1) + ". " + instruction.getInstruction());
+            }
+        } catch (NullPointerException e) {
+            mealCompanionSession.getUi().
+                    printMessage("Oops, recipe name cannot be empty, please input a valid recipe name!");
         }
     }
 }

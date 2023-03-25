@@ -54,7 +54,7 @@ public class RecipeNeedCommand extends ExecutableCommand{
             ArrayList<Ingredient> ingredientsInRecipe = ingredients.getIngredients();
             boolean isMissing = false;
             int index = 1;
-            mealCompanionSession.getUi().printMessage("These are the ingredient(s) you need:");
+            mealCompanionSession.getUi().printMessage("These are the ingredient(s) you are missing:");
             for (Ingredient ingredient : ingredientsInRecipe) {
                 double quantityNeeded = additionalQuantityNeeded(ingredient, ingredientsInFridge);
                 if (quantityNeeded > 0) {
@@ -70,6 +70,9 @@ public class RecipeNeedCommand extends ExecutableCommand{
             }
         } catch (MealCompanionException e) {
             mealCompanionSession.getUi().printMessage("Please input a valid recipe name!");
+        } catch (NullPointerException e) {
+            mealCompanionSession.getUi().
+                    printMessage("Oops, recipe name cannot be empty, please input a valid recipe name!");
         }
     }
 }
