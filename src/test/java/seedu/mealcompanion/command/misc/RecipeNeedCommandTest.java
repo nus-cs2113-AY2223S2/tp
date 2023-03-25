@@ -5,13 +5,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
-import seedu.mealcompanion.ingredient.Ingredient;
-import seedu.mealcompanion.ingredient.IngredientList;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@@author jingyaaa
 class RecipeNeedCommandTest {
