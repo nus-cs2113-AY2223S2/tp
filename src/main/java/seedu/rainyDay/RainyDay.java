@@ -1,5 +1,6 @@
 package seedu.rainyDay;
 
+import com.google.gson.stream.MalformedJsonException;
 import seedu.rainyDay.command.CommandResult;
 import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
@@ -7,6 +8,7 @@ import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.modules.Parser;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.FileHandler;
@@ -15,7 +17,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class RainyDay {
-    public static String filePath = "./data/rainyDay.ser";
+    public static String filePath = "./data/rainyDay.json";
     public static FinancialReport financialReport = new FinancialReport(new ArrayList<>());
     private static Logger logger = Logger.getLogger(RainyDay.class.getName());
     private final Ui ui;
@@ -25,7 +27,8 @@ public class RainyDay {
         try {
             financialReport = Storage.loadFromFile(filePath);
             logger.log(Level.INFO, "File loaded successfully.");
-        } catch (IOException | ClassNotFoundException | ClassCastException e) {
+       // } catch (IOException | ClassNotFoundException | ClassCastException e) {
+        } catch (FileNotFoundException | MalformedJsonException e) {
             logger.log(Level.INFO, "No valid save file detected. Starting with empty financial data.");
             ui.noFileExist();
             String username = ui.readUserName();

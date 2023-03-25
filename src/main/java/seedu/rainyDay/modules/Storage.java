@@ -1,15 +1,21 @@
 package seedu.rainyDay.modules;
 
+import com.google.gson.Gson;
+import com.google.gson.stream.MalformedJsonException;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.FlowDirection;
 
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.logging.FileHandler;
@@ -22,14 +28,29 @@ import com.opencsv.CSVWriter;
 
 public class Storage {
     private static Logger logger = Logger.getLogger("Storage.log");
+    private static Gson gson = new Gson();
 
     //@@author ChongQiRong
+
     /**
-     * Uses serialization to save the FinancialReport object into a file.
+     * Uses JSON serialization to save the FinancialReport object into a JSON file.
      *
-     * @param report The object containing the FinancialReport to save.
+     * @param report   The object containing the FinancialReport to save.
      * @param filePath The file path where the FinancialReport will be saved to.
      */
+    public static void writeToFile(FinancialReport report, String filePath) {
+        try {
+            String jsonReport = gson.toJson(report);
+            FileWriter fileWriter = new FileWriter(filePath);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            bufferedWriter.write(jsonReport);
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /*
     public static void writeToFile(FinancialReport report, String filePath) {
         setupLogger();
         try {
@@ -47,31 +68,41 @@ public class Storage {
             e.printStackTrace();
         }
     }
+    */
 
     //@@author KN-CY
+
     /**
      * Uses deserialization to load the FinancialReport from a serialized file.
      *
      * @param filePath The file path where the FinancialReport will be loaded from.
      * @return The FinancialReport after deserialization from the file.
-     * @throws IOException If there is an error loading the TaskList object from the file.
+     * @throws IOException            If there is an error loading the TaskList object from the file.
      * @throws ClassNotFoundException If there is an error loading the TaskList object from the file.
-     * @throws ClassCastException If the serialized object is of a different class type.
+     * @throws ClassCastException     If the serialized object is of a different class type.
      */
-    public static FinancialReport loadFromFile(String filePath)
-            throws IOException, ClassNotFoundException, ClassCastException {
-        FileInputStream readData = new FileInputStream(filePath);
-        ObjectInputStream readStream = new ObjectInputStream(readData);
+//    public static FinancialReport loadFromFile(String filePath)
+//            throws IOException, ClassNotFoundException, ClassCastException {
+//        FileInputStream readData = new FileInputStream(filePath);
+//        ObjectInputStream readStream = new ObjectInputStream(readData);
+//
+//        FinancialReport statements = (FinancialReport) readStream.readObject();
+//
+//        readStream.close();
+//        readData.close();
+//
+//        return statements;
+//        }
+    public static FinancialReport loadFromFile(String filePath) throws FileNotFoundException, MalformedJsonException {
+        Reader reader = new FileReader(filePath);
+        FinancialReport statements = gson.fromJson(reader, FinancialReport.class);
 
-        FinancialReport statements = (FinancialReport) readStream.readObject();
-
-        readStream.close();
-        readData.close();
 
         return statements;
     }
 
     //@@author KN-CY
+
     /**
      * Fills up the CSVWriter with the contents of the financial statements within the FinancialReport.
      *
@@ -98,6 +129,7 @@ public class Storage {
     }
 
     //@@author KN-CY
+
     /**
      * Writes to a file in .csv format.
      *
@@ -117,7 +149,7 @@ public class Storage {
 
         tableWriter.close();
     }
-    
+
     /**
      * Sets up logger for logging
      */
