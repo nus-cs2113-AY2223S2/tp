@@ -1,6 +1,9 @@
 package seedu.expenditure;
 
 import seedu.commands.SortCommand;
+import seedu.exceptions.AlreadyMarkException;
+import seedu.exceptions.AlreadyUnmarkException;
+import seedu.exceptions.ExceptionChecker;
 import seedu.exceptions.NoPaidFieldException;
 import seedu.txtdata.TxtFileStatus;
 import java.io.IOException;
@@ -25,22 +28,26 @@ public class ExpenditureList {
         expenditures.trimToSize();
     }
 
-    public void markExpenditure(int index) throws NoPaidFieldException {
+    public void markExpenditure(int index) throws NoPaidFieldException, AlreadyMarkException {
         Expenditure expenditure = expenditures.get(index);
         if (expenditure instanceof TuitionExpenditure) {
+            ExceptionChecker.checkAlreadyMark(expenditure);
             ((TuitionExpenditure) expenditure).setPaid();
         } else if (expenditure instanceof AccommodationExpenditure) {
+            ExceptionChecker.checkAlreadyMark(expenditure);
             ((AccommodationExpenditure) expenditure).setPaid();
         } else {
             throw new NoPaidFieldException();
         }
     }
 
-    public void unmarkExpenditure(int index) throws NoPaidFieldException {
+    public void unmarkExpenditure(int index) throws NoPaidFieldException, AlreadyUnmarkException {
         Expenditure expenditure = expenditures.get(index);
         if (expenditure instanceof TuitionExpenditure) {
+            ExceptionChecker.checkAlreadyUnmark(expenditure);
             ((TuitionExpenditure) expenditure).resetPaid();
         } else if (expenditure instanceof AccommodationExpenditure) {
+            ExceptionChecker.checkAlreadyUnmark(expenditure);
             ((AccommodationExpenditure) expenditure).resetPaid();
         } else {
             throw new NoPaidFieldException();
@@ -59,7 +66,7 @@ public class ExpenditureList {
     public String toString() {
         StringBuilder stringOfExpenditures = new StringBuilder();
         for (int i = 0; i < expenditures.size(); i++) {
-            final int expenditureNumber = i + 1;
+            final int expenditureNumber = i + LIST_OFFSET;
             stringOfExpenditures.append(String.format("%d. %s\n", expenditureNumber, expenditures.get(i)));
         }
         return stringOfExpenditures.toString().stripTrailing();
