@@ -25,10 +25,10 @@ public class ExpenditureListTest {
 
     @Test
     public void testExpenditureListToString() {
-        assertEquals("1. [Academic] || Date: 2021-10-10 || Value: 1500.0 || Description: Laptop\n" +
-                "2. [Tuition] || [ ] || Date: 2023-01-20 || Value: 8000.5 || Description: NUS Year 2 Semester 2\n" +
-                "3. [Borrow] || Borrowed from: BankX || Date: 2021-07-20 || Value: 8100.0 " +
-                        "|| Description: School Loan || By: 2025-05-30",
+        assertEquals("1. [Academic] || Date: 10 Oct 2021 || Value: 1500.0 || Description: Laptop\n" +
+                "2. [Tuition] || [ ] || Date: 20 Jan 2023 || Value: 8000.5 || Description: NUS Year 2 Semester 2\n" +
+                "3. [Borrow] || Borrowed from: BankX || Date: 20 Jul 2021 || Value: 8100.0 " +
+                        "|| Description: School Loan || By: 30 May 2025",
                 testExpenditures.toString());
     }
 
