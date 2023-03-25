@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import static seedu.rainyDay.RainyDay.financialReport;
+import static seedu.rainyDay.RainyDay.userData;
 
 //@@author BenjaminPoh
 public class ViewResult {
@@ -43,7 +43,7 @@ public class ViewResult {
     /**
      * Used to format the information shown to the user such that it fits the table.
      *
-     * @param statementIndex 1-based indexing to be shown to the user
+     * @param statementIndex   1-based indexing to be shown to the user
      * @param currentStatement the FinancialStatement
      * @return A formatted string
      */
@@ -97,7 +97,7 @@ public class ViewResult {
 
         for (int index : indexArray) {
             logger.log(Level.INFO, "starting statement " + index);
-            FinancialStatement currentStatement = financialReport.getFinancialStatement(index - 1);
+            FinancialStatement currentStatement = userData.getFinancialReport().getFinancialStatement(index - 1);
             output = formatFinancialStatement(index, currentStatement);
 
             System.out.print(output);
@@ -121,9 +121,9 @@ public class ViewResult {
         System.out.print(TABLE_BORDER);
         System.out.print(ACKNOWLEDGE_VIEW_COMMAND);
         System.out.print(TABLE_FORMAT);
-        for (Integer index: validIndexes) {
+        for (Integer index : validIndexes) {
             logger.log(Level.INFO, "starting statement " + index);
-            FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
+            FinancialStatement currentStatement = userData.getFinancialReport().getFinancialStatement(index);
             if (currentStatement.getFlowDirectionWord().equals("in")) {
                 totalInflow += currentStatement.getValue();
             } else {

@@ -2,7 +2,7 @@ package seedu.rainyDay.data;
 
 import java.time.LocalDate;
 
-public class FinancialStatement   {
+public class FinancialStatement {
     private static final String INFLOW_WORD = "in";
     private static final String OUTFLOW_WORD = "out";
     private static final String INFLOW_SYMBOL = "+";

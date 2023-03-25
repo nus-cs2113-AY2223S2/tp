@@ -2,6 +2,7 @@ package seedu.rainyDay;
 
 import com.google.gson.JsonParseException;
 import seedu.rainyDay.command.CommandResult;
+import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 import seedu.rainyDay.command.Command;
@@ -17,33 +18,40 @@ import java.util.logging.Logger;
 
 public class RainyDay {
     public static String filePath = "./data/rainyDay.json";
-    public static FinancialReport financialReport = new FinancialReport(new ArrayList<>());
+    public static UserData userData;
+
     private static Logger logger = Logger.getLogger(RainyDay.class.getName());
+
     private final Ui ui;
+
 
     private RainyDay(String filePath) {
         ui = new Ui();
         try {
-            financialReport = Storage.loadFromFile(filePath);
+            userData = Storage.loadFromFile(filePath);
             logger.log(Level.INFO, "File loaded successfully.");
         } catch (FileNotFoundException | JsonParseException e) {
             logger.log(Level.INFO, "No valid save file detected. Starting with empty financial data.");
             ui.noFileExist();
             String username = ui.readUserName();
             assert username != null : "Inputted username should not be null";
+            FinancialReport financialReport = new FinancialReport(new ArrayList<>());
             financialReport.setReportOwner(username);
+            userData = new UserData(financialReport);
         }
+
+
     }
 
     private void run() {
         showStartingMessage();
         runCommand();
-        ui.sayFarewellToUser(financialReport.getReportOwner());
+        ui.sayFarewellToUser(userData.getFinancialReport().getReportOwner());
     }
 
     private void showStartingMessage() {
         ui.printLogo();
-        ui.greetUser(financialReport.getReportOwner());
+        ui.greetUser(userData.getFinancialReport().getReportOwner());
     }
 
     private void runCommand() {
@@ -63,7 +71,7 @@ public class RainyDay {
     }
 
     private void executeCommand(Command command) {
-        command.setData(financialReport);
+        command.setData(userData.getFinancialReport());
         CommandResult result = command.execute();
         result.printResult();
     }

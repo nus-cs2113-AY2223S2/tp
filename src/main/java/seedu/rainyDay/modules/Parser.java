@@ -106,8 +106,8 @@ public class Parser {
                 this.direction = matcher.group(1);
                 this.description = matcher.group(2);
                 double exactAmount = Double.parseDouble(matcher.group(3));
-                exactAmount = (int) (exactAmount*100);
-                if(exactAmount == 0) {
+                exactAmount = (int) (exactAmount * 100);
+                if (exactAmount == 0) {
                     throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
                 }
                 this.amount = exactAmount / 100;
@@ -120,8 +120,8 @@ public class Parser {
                 this.direction = matcher.group(1);
                 this.description = matcher.group(2);
                 double exactAmount = Double.parseDouble(matcher.group(3));
-                exactAmount = (int) (exactAmount*100);
-                if(exactAmount == 0) {
+                exactAmount = (int) (exactAmount * 100);
+                if (exactAmount == 0) {
                     throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
                 }
                 this.amount = exactAmount / 100;
@@ -181,7 +181,7 @@ public class Parser {
         }
         try {
             int index = Integer.parseInt(tokens[1]);
-            if (index > RainyDay.financialReport.getStatementCount()) {
+            if (index > RainyDay.userData.getFinancialReport().getStatementCount()) {
                 throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
             }
             if (index <= 0) {
@@ -191,7 +191,7 @@ public class Parser {
         } catch (Exception e) {
             logger.warning("delete index provided incorrectly");
             return new InvalidCommand(ErrorMessage.WRONG_DELETE_INDEX.toString()
-                    + RainyDay.financialReport.getStatementCount() + "!");
+                    + RainyDay.userData.getFinancialReport().getStatementCount() + "!");
         }
     }
 
@@ -339,7 +339,7 @@ public class Parser {
             }
 
             int index = Integer.parseInt(tokens[1]);
-            if (index > RainyDay.financialReport.getStatementCount()) {
+            if (index > RainyDay.userData.getFinancialReport().getStatementCount()) {
                 throw new IllegalArgumentException();
             }
 
