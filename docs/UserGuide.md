@@ -34,6 +34,8 @@ Thank you for using rainyDay.
         * [Saving the data](#saving-the-data)
         * [Loading saved data](#loading-saved-data)
         * [Exporting to CSV](#exporting-to-csv)
+            * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
+            * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
         * [Exiting the application](#exiting-the-application)
     * [FAQ](#faq)
     * [Command Summary](#command-summary)
@@ -45,6 +47,11 @@ Thank you for using rainyDay.
 ## How to use the user guide
 
 {todo patterns that we will be using, what does it mean, e.g. "", ` `, CAPS... etc}
+
+- *italics*:
+- `markdown`:
+- CAPS:
+- "double quotes":
 
 ## Quick Start
 
@@ -89,7 +96,7 @@ Format: `add -DIRECTION DESCRIPTION $AMOUNT`
 * `TRANSACTION_NAME` can contain any characters and space
 * `AMOUNT` needs to be a number more than equal to 0
 
-Example of usage: <br>
+Example of usage:
 
 You received an angpao containing $500 from your mother. To add it to rainyDay, the following command can be provided to
 rainyDay:
@@ -117,7 +124,7 @@ Format: `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY -date DD/MM/YYYY`
     * `MM` is a two-digit number representing the month
     * `YYYY` is a four-digit number representing the year
 
-Example of usage: <br>
+Example of usage:
 
 You received your monthly income of $2000 on 05/03/2023. To add it to rainyDay, the following command can be provided to
 rainyDay:
@@ -211,7 +218,7 @@ Format : `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FL
 
 Example of usage:
 
-`edit 1 -add -in -d Beef noodles -c Food $15`
+`edit 1 -add -in Beef noodles $15 -c Food`
 
 `edit 2 -d school`
 
@@ -235,7 +242,20 @@ Format: `export`
 >💡Saving your financial statements in a CSV file will allow you to view your statements in commonly use applications
 > like *Microsoft Excel* and *Google Sheets*.
 
-{todo: tell user where they can locate saved file}
+#### Where to locate exported CSV file?
+
+The CSV file will be located in the `data` folder within the same folder as your `rainyDay.jar` file. This should have
+been configured in step 3 of the [Quick Start section](#quick-start). The CSV file will be named `report`.
+
+#### How to view the CSV file using Microsoft Excel?
+
+1. Open your Microsoft Excel application and open a blank workbook.
+2. Click on the *Data* tab found at the top and click on *From Text/CSV*.![csvtoexcel.csv](csvtoexcel.png)
+3. Navigate to the CSV file as directed in
+   the [where to locate exported CSV file section](#where-to-locate-exported-csv-file).
+4. Double-click on the CSV file and click the *load* button.
+5. With steps 1-4, your financial statements should be viewable in a nicely formatted table as shown
+   below.![statementstable.png](statementstable.png)
 
 ### Exiting the application
 
@@ -258,12 +278,12 @@ that
 | View   | `view`                                                                                                                                                                                                                                                                                                                                                                  |
 | Help   | `help`                                                                                                                                                                                                                                                                                                                                                                  |
 | Filter | `filter DESCRIPTION` or `filter FLAG FIELD` <br><br> **Example:** <br> `filter school` <br> `filter -d school` <br>`filter -date 22/03/2023`                                                                                                                                                                                                                            |
-| Edit   | `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -add -in -d Beef noodles -c Food $15` <br> `edit -d school` <br> `edit -in`                                                                                                                                                                               |
+| Edit   | `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -add -in Beef noodles $15 -c Food` <br> `edit -d school` <br> `edit -in`                                                                                                                                                                                  |
 | Exit   | `bye`                                                                                                                                                                                                                                                                                                                                                                   |
 
 ## An Example Usage of rainyDay
 
-{a walkthrough of an usage of the product (so that users know how the product works without using the product), to
+{a walkthrough of possible usage of the product (so that users know how the product works without using the product), to
 update when product is finalised}
 
 ## Glossary

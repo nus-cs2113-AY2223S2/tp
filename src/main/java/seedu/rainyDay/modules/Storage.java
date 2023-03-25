@@ -90,8 +90,9 @@ public class Storage {
                 value = Double.toString(-currStatement.getValue());
             }
             String category = currStatement.getCategory();
+            String date = currStatement.getDate().toString();
 
-            String[] tableRow = {statementID, description, value, category};
+            String[] tableRow = {statementID, description, value, category, date};
             tableWriter.writeNext(tableRow);
         }
     }
@@ -110,7 +111,7 @@ public class Storage {
         FileWriter outputFile = new FileWriter(CSVFilePath);
         CSVWriter tableWriter = new CSVWriter(outputFile);
 
-        String[] tableHeader = {"ID", "Description", "Value", "Category"};
+        String[] tableHeader = {"ID", "Description", "Amount", "Category", "Date"};
         tableWriter.writeNext(tableHeader);
         fillTableBody(report, tableWriter);
 
