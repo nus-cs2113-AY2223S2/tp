@@ -6,18 +6,24 @@ public class Company {
     private String companyName;
     private int contactNumber;
     private String contactEmail;
+    private String industry;
 
 
 
-    public Company(String companyName, int contactNumber, String contactEmail){
+    public Company(String companyName, String industry, int contactNumber, String contactEmail){
         this.companyName = companyName;
         this.contactNumber = contactNumber;
         this.contactEmail = contactEmail;
         this.isConfirmed = false;
+        this.industry = industry.toUpperCase();
     }
 
     public String getCompanyName(){
         return companyName;
+    }
+
+    public String getIndustry(){
+        return industry;
     }
 
     public int getContactNumber(){
@@ -28,7 +34,9 @@ public class Company {
         return contactEmail;
     }
 
-    public String getConfirmStatus() { return (isConfirmed ? "Confirmed" : "Unconfirmed"); }
+    public String getConfirmStatus() {
+        return (isConfirmed ? "Confirmed" : "Unconfirmed");
+    }
 
     public void markConfirmed() {
         this.isConfirmed = true;
@@ -41,7 +49,7 @@ public class Company {
     @Override
     public String toString() {
         return "Company name: " + companyName + "\nCompany contact number: " + contactNumber +
-                "\nCompany contact email: "  + contactEmail + "\n[" + this.getConfirmStatus()
-                 + "]";
+                "\nCompany contact email: "  + contactEmail + "\nCompany industry: " + industry +
+                "\n[" + this.getConfirmStatus() + "]";
     }
 }

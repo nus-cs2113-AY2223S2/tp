@@ -21,7 +21,7 @@ public class VenueList {
             throw new EmptyListException();
         }
         for (int i = 0; i < venueList.size(); i++) {
-            System.out.println(venueList.get(i));
+            System.out.println(i + 1 + ". " + venueList.get(i));
         }
     }
 

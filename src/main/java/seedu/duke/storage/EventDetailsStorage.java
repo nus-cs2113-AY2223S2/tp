@@ -1,14 +1,10 @@
 package seedu.duke.storage;
 
-import seedu.duke.data.VenueListData;
 import seedu.duke.venue.Venue;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class EventDetailsStorage extends Storage{
 
