@@ -10,7 +10,7 @@ public class HelpCommand extends Command {
             "+-----+-----------+--------+-------------------------------------------------------------------------+\n" +
             "|Add entry        |add     |[-in/-out] [description] $[value] {-c category} {-date date}             |\n" +
             "|Delete entry     |delete  |[index]                                                                  |\n" +
-            "|View entries     |view    |{time} {-sort}                                                                        |\n" +
+            "|View entries     |view    |{time} {-sort}                                                           |\n" +
             "|Filter entries   |filter  |{-in} {-out} {-d description} {-c category} {-date date}                 |\n" +
             "|Edit an entry    |edit    |[index] {-in/ -out/ -d description/ -v $value/ -c category/ -date date}  |\n" +
             "|Export to .csv   |export  |                                                                         |\n" +
