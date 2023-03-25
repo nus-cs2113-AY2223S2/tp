@@ -98,7 +98,7 @@ public class Ui {
     public static final String RENAMED_TO = "Renamed to: ";
     public static final String PRICE_DECREASED_FROM = "Price decreased from $";
     public static final String PRICE_INCREASED_FROM = "Price increased from $";
-    public static final String TO_ = " to $";
+    public static final String TO_DOLLAR_SIGN = " to $";
     public static final String TAGS_CHANGED_TO = "Tags changed to: ";
 
     private static final String NAME_HEADING = "Name";
@@ -723,11 +723,11 @@ public class Ui {
                     break;
                 case PRICE_DECREASE:
                     System.out.print(PRICE_DECREASED_FROM + results.get(i-1).getPrice());
-                    System.out.println(TO_ + results.get(i).getPrice());
+                    System.out.println(TO_DOLLAR_SIGN + results.get(i).getPrice());
                     break;
                 case PRICE_INCREASE:
                     System.out.print(PRICE_INCREASED_FROM + results.get(i-1).getPrice());
-                    System.out.println(TO_ + results.get(i).getPrice());
+                    System.out.println(TO_DOLLAR_SIGN + results.get(i).getPrice());
                     break;
                 case CHANGE_TAG:
                     ArrayList<String> tags = results.get(i-1).getTags();

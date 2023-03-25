@@ -69,6 +69,11 @@ public class SearchCommandTest {
         searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
         searchResults = searchCommand.searchKeyword();
         assertEquals(searchResults.size(),1);
+        editParser = new EditParser("upc/1 n/laptops", inventory);
+        editParser.run();
+        searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
+        searchResults = searchCommand.searchKeyword();
+        assertEquals(null, searchResults);
     }
 
     @Test
