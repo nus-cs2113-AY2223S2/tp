@@ -16,15 +16,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DeleteModuleCommandTest {
 
-    void setUpStorage(String params) throws FileNotFoundException, IllegalCommandException, InvalidModule {
-        Storage storage = new Storage("test.txt", "testModuleData.txt");
-        ModuleList allModules = storage.loadModuleData();
-        ModuleList moduleList = new ModuleList();
-        TaskList taskList = new TaskList();
-        Ui ui = new Ui();
-        Calendar calendar = new Calendar();
-        AddModuleCommand newCommand  = new AddModuleCommand("CS2113", allModules);
-        newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
+    Storage storage = new Storage("test.txt", "testModuleData.txt");
+    ModuleList allModules = storage.loadModuleData();
+    ModuleList moduleList = new ModuleList();
+    TaskList taskList = new TaskList();
+    Ui ui = new Ui();
+    Calendar calendar = new Calendar();
+
+
+    DeleteModuleCommandTest() throws FileNotFoundException {
+
     }
 
     @Test
@@ -35,7 +36,8 @@ class DeleteModuleCommandTest {
     @Test
     void testDeleteModuleCommand_validParams_expectsNoException() throws
             FileNotFoundException, IllegalCommandException, InvalidModule {
-        setUpStorage("CS2113");
+        AddModuleCommand newCommand  = new AddModuleCommand("CS2113", allModules);
+        newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
         assertDoesNotThrow(() -> new DeleteModuleCommand("CS2113"));
     }
 
@@ -43,7 +45,8 @@ class DeleteModuleCommandTest {
     void testDeleteModuleCommand_invalidLessonType_expectsNoException()
             throws IllegalCommandException, FileNotFoundException, InvalidModule {
 
-        setUpStorage("CS2113 -lec 1");
+        new AddModuleCommand("CS2113 -lec 1", allModules).
+                execute(taskList, ui, storage, moduleList, allModules, calendar);
         DeleteModuleCommand newCommand = new DeleteModuleCommand("CS2113 -lc 1");
         assertDoesNotThrow(() -> newCommand.execute(new TaskList(), new Ui(),
                 new Storage("test.txt", "testModuleData.txt"), new ModuleList(),

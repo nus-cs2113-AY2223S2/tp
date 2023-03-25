@@ -14,29 +14,26 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class ListCommandTest {
 
+    Storage storage = new Storage("test.txt", "testModuleData.txt");
+    ModuleList allModules = storage.loadModuleData();
+    TaskList taskList = new TaskList();
+    Ui ui = new Ui();
+    Calendar calendar = new Calendar();
+
+    ModuleList moduleList = new ModuleList();
+
+    ListCommandTest() throws FileNotFoundException {
+    }
+
     @Test
     void testListCommandExecute_emptyTaskList_expectsNoException() throws FileNotFoundException {
-        Storage storage = new Storage("test.txt", "testModuleData.txt");
-        ModuleList allModules = storage.loadModuleData();
-        TaskList taskList = new TaskList();
-        ModuleList moduleList = new ModuleList();
-        Ui ui = new Ui();
-        Calendar calendar = new Calendar();
-
         ListCommand newCommand = new ListCommand();
-
         assertDoesNotThrow(() -> newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
 
     @Test
     void testListCommandExecute_normalList_expectsNoException() throws FileNotFoundException {
 
-        Storage storage = new Storage("test.txt", "testModuleData.txt");
-        ModuleList allModules = storage.loadModuleData();
-        TaskList taskList = new TaskList();
-        Ui ui = new Ui();
-        Calendar calendar = new Calendar();
-        ModuleList moduleList = new ModuleList();
         ListCommand newCommand = new ListCommand();
         taskList.add(new ToDo("Test Junit"));
 
