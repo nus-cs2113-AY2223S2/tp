@@ -1,9 +1,11 @@
 package seedu.duke.storage;
 
+import seedu.duke.data.VenueListData;
 import seedu.duke.venue.Venue;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,7 +18,8 @@ public class VenueListStorage extends Storage{
     public static ArrayList<Venue> venueListInit() {
         try {
             checkFileAccess(filePath);
-            load();
+            updateFile();
+//            load();
         } catch (FileNotFoundException err) {
             System.out.println("File not Found");
         } catch (IOException err) {
@@ -39,4 +42,26 @@ public class VenueListStorage extends Storage{
         }
     }
 
+    public static void writeToFile(String textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        fw.write(textToAdd);
+        fw.close();
+    }
+
+    public static void appendToFile(String textToAppend) throws IOException {
+        FileWriter fw = new FileWriter(filePath, true);
+        fw.write(textToAppend);
+        fw.close();
+    }
+    public static void updateFile() {
+        venueList = VenueListData.returnVenueList();
+        try {
+            writeToFile("");
+            for (Venue venue : venueList) {
+                appendToFile(venue + System.lineSeparator());
+            }
+        } catch (IOException err) {
+            System.out.println("Something went wrong: " + err.getMessage());
+        }
+    }
 }

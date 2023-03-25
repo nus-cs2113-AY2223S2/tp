@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.company.Company;
 import seedu.duke.company.CompanyList;
+import seedu.duke.data.VenueListData;
 import seedu.duke.event.Event;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
@@ -25,8 +26,8 @@ public class Eventus {
         storage = new Storage();
         ui = new Ui();
         companyList = new CompanyList(new ArrayList<>(), ui);
-        event = new Event(companyList);
-        venueList = new VenueList(VenueListStorage.venueListInit(), ui);
+        event = new Event(companyList, ui);
+        venueList = new VenueList(VenueListData.returnVenueList(), ui);
         run();
     }
 
@@ -42,8 +43,6 @@ public class Eventus {
                     c.execute(venueList);
                 } else if (c.getCommandType().equals("choose venue")){
                     c.execute(event, venueList);
-                    ui.showVenueSelectionMessage("Venue");
-                    System.out.println(event); //prints event venue name
                 } else {
                     c.execute(companyList);
                 }
