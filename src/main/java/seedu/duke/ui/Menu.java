@@ -127,9 +127,10 @@ public class Menu {
         System.out.println("2. View diagnosis history");
         System.out.println("3. Reset diagnosis history");
         System.out.println("4. View symptoms History");
-        System.out.println("5. Reset symptoms");
-        System.out.println("6. View Medicine history");
-        System.out.println("7. Exit");
+        System.out.println("5. Delete symptom choice");
+        System.out.println("6. Reset symptoms");
+        System.out.println("7. View Medicine history");
+        System.out.println("8. Exit");
         System.out.println("---------------------------------------------------");
     }
 
