@@ -49,7 +49,7 @@ public class Main {
         while (!isExit) {
             String commandString = ui.getUserInput();
             Command command = commandParser.parseCommand(commandString);
-            command.execute(ui);
+            command.execute(ui,storage);
             isExit = command.isExit();
         }
         logger.log(Level.INFO,"End of processing commands");
