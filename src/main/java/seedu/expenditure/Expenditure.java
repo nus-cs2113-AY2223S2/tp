@@ -1,6 +1,7 @@
 package seedu.expenditure;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Expenditure {
     private String description;
@@ -36,8 +37,13 @@ public abstract class Expenditure {
         return date;
     }
 
+    public String getFullDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
+        return getDate().format(formatter);
+    }
+
     public String toString() {
-        return String.format("Date: %s || Value: %s || Description: %s", getDate(), getValue(), getDescription());
+        return String.format("Date: %s || Value: %s || Description: %s", getFullDate(), getValue(), getDescription());
     }
     /**
      * @return String representing the type of expenditure

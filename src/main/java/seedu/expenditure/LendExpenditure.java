@@ -1,6 +1,7 @@
 package seedu.expenditure;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class LendExpenditure extends Expenditure {
     private LocalDate deadline;
@@ -29,10 +30,15 @@ public class LendExpenditure extends Expenditure {
         this.lenderName = lenderName;
     }
 
+    public String getFullDeadline() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
+        return getDeadline().format(formatter);
+    }
+
     @Override
     public String toString() {
         return String.format("[Lend] || Lent to: %s || %s || by: %s",
-                getLenderName(), super.toString(), getDeadline());
+                getLenderName(), super.toString(), getFullDeadline());
     }
     @Override
     public String getExpenditureType() {
