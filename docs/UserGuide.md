@@ -76,19 +76,23 @@ ____________________________________________________________
 
 ### `list` - Listing all saved tasks
 
-Shows a numbered list of all tasks (Todos, Events, Deadlines) in Apollo.
+Shows a numbered list of all tasks (Todos, Events, Deadlines) in Apollo. `list` automatically sorts the tasks by type, 
+then date within each type.
 
 Format: `list`
 
 ```
 >> list
-You have a total of 4 tasks in your tasklist.
+You have a total of 7 tasks in your tasklist.
 Here are the tasks in your list:
-1.[T][ ] Eat Lunch
-2.[E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
-3.[D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
-4.[T][ ] Feed the fish
-There are 4 unmarked tasks in your tasklist.
+1.[D][ ] submit tutorial (by: Apr 01 2023, 11:59PM)
+2.[D][ ] submit tutorial (by: May 01 2023, 11:59PM)
+3.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
+4.[E][ ] lecture (from: Apr 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+5.[E][ ] lecture (from: Apr 04 2023, 09:00AM to: May 03 2023, 11:00AM)
+6.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+7.[T][ ] eat lunch
+There are 7 unmarked tasks in your tasklist.
 ```
 
 ### `todo` - Adding a ToDo
@@ -205,15 +209,17 @@ Here are the tasks happening on Mar 30 2023:
 
 ### `listmod` - Listing all modules
 
-Shows a list of all modules in Apollo.
+Shows a list of all modules in Apollo. It will also show the total number of modular credits you have in this semester.
+The list will be automatically sorted in alphabetical order according to EduRec standards.
 Format: `listmod`
 
 ```
 >> listmod
 You are taking 3 module(s) this semester:
-1.CDE2000: Creating Narratives
-2.CG2023: Signals and Systems
-3.CS2040C: Data Structures and Algorithms
+1.CG1111A: Engineering Principles and Practice I (4 MCs)
+2.CS2113: Software Engineering & Object-Oriented Programming (4 MCs)
+3.DTK1234: Design Thinking (4 MCs)
+Total modular credits you have in this semester: 12
 ```
 
 ### `addmod` - Adding a module
@@ -276,8 +282,9 @@ Got it, removed CS2113 from your Module list.
 Format: `delmod MODULE_CODE`
 
 ```
->> delmod CS1010
-Got it, removed CS1010 from your Module list.
+>> delmod dtk1234
+Got it, removed DTK1234 from your Module list.
+Total modular credits you have in this semester: 8
 ```
 
 #### `delmod` flags
@@ -295,7 +302,7 @@ Lessons deleted: SECTIONAL TEACHING - 1
 ### `showmod` - Show information of a module
 
 Shows the information of a module.
-Format: `showmod`
+Format: `showmod MODULE_CODE`
 
 ```
 >> showmod cs1231
@@ -304,6 +311,10 @@ Sectional Teaching (-st)
 Tutorial (-tut)
 Number of MC: 4
 ```
+#### `showmod` flags
+The lesson types and their corresponding guide are the same as `addmod` flags.
+To show the information on a lesson, use the following format:
+`showmod MODULE_CODE -FLAG`
 
 ## *Common Commands*
 
