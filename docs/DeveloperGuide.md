@@ -7,7 +7,10 @@
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-<br>
+<br
+
+<img src="eventus.png">
+
 ### [Proposed] Duplication checker feature
 #### Proposed Implementation
 The proposed <code>duplicationChecker</code> is facilitated by <code>Parser</code>. It will check against the existing
@@ -32,10 +35,6 @@ list of companies. It has three parameters, <code>String companyName </code>, <c
 String contactEmail</code>. Using this information, <code>CompanyList.add</code> creates new Company object and adds it 
 at the end of the company list. After successfully executing the command, it will show successful addition message using
 the related method in the <code>Ui</code>.
-
-### [Proposed] Load Samples feature
-#### Proposed Implementation
-...
 
 ## Product scope
 ### Target user profile
