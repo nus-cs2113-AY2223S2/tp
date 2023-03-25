@@ -1,7 +1,6 @@
 
 package com.clanki.storage;
 
-import com.clanki.exceptions.StorageOperationException;
 import com.clanki.objects.Flashcard;
 import com.clanki.objects.FlashcardList;
 import org.junit.jupiter.api.Test;
@@ -13,7 +12,6 @@ import java.util.List;
 import static com.clanki.storage.FlashcardListDecoder.decodeFlashcardList;
 import static com.clanki.storage.FlashcardListEncoder.encodeAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class FlashcardListDecoderTest {
