@@ -45,13 +45,6 @@ Should you have any feedback or enquiries, please do not hesitate to drop us an 
 
 ## How to use the user guide
 
-{todo patterns that we will be using, what does it mean, e.g. "", ` `, CAPS... etc}
-
-- *italics*:
-- `markdown`:
-- CAPS:
-- "double quotes":
-
 This section assumes that you are a new user of rainyDay and are interested in learning more about the basic features provided by rainyDay.
 More advanced users are encouraged to refer to the section under [Advanced Usage (For Advanced Users)](#advanced-usage--for-advanced-users-) 
 to enjoy the full capabilities of rainyDay.
@@ -164,7 +157,7 @@ rainyDay:
 * `add -out lunch at hawker centre $6.80 -c food and drinks -date 10/03/2023` - Signifies an outflow with the description 
 "lunch at hawker center" of value "$6.80", under the category of "food and drinks" and with the date "10/03/2023".
 
-> 💡**Tip:** The flags `-c` and `-date` can als be used exclusively. The following are also valid formats:
+> 💡**Tip:** The flags `-c` and `-date` can also be used exclusively. The following are also valid formats:
 >
 > * `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY`
 > * `add -DIRECTION DESCRIPTION $AMOUNT -date DD/MM/YYYY`
@@ -204,30 +197,45 @@ subsequently after requesting to view the transactions will be as such: <br>
 
 ### Filter statements
 
-View a filtered list of statements in the financial report
+To ease your time searching through all the entries in the financial report, the "filter" function of rainyDay
+will let view a filtered list of statements based by the criteria you want to filter by
 
-Format : `filter DESCRIPTION` or `filter FLAG FIELD`
+Format : `filter FLAG FIELD`
 
-* Default filter without `FLAG` filters by description
 * The `FLAG` must be one of the following:
     * `-d` to filter by description
     * `-c` to filter by category
+    * `-date` to filter by date
     * `-in` to filter by inflows
     * `-out` to filter by outflows
-    * `-date` to filter by date
-* date must be in the form DD/MM/YYYY
+* date `FIELD` must be in the form DD/MM/YYYY
 
-Example of usage:
+Example of usage: After requesting to view the transactions from rainyDay, the following is shown to you:
+![viewForFilter.png](viewForFilter.png)
 
-`filter school`
+Suppose you want to find out transactions related to chicken, you can use this command:
+- `filter -d chicken`
+![filterChicken.png](filterChicken.png)
 
-`filter -d school`
+Suppose you want to check your outflows only, you can use this command:
+- `filter -out`
+![filterOutflow.png](filterOutflow.png)
 
-`filter -date 22/03/2023`
+> 💡**Tip:** Multiple flags may be used at once but must be in this order: 
+> 
+> `-d` -> `-c` -> `-date` -> `-in` or `out`
+> 
+> Suppose you want to find out what food you ate on a particular day, you can use this command:
+> 
+> `filter -c Food and Drinks -date 26/03/2023`
+> 
+> ![FilterMultipleFlags.png](FilterMultipleFlags.png)
+
 
 ### Edit statements
 
-Edit a statement already in financial report
+Transactions keyed in may contain input errors by mistake. rainyDay's "edit" function supports editing a single entry
+from your overview
 
 Format : `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG`
 
@@ -235,9 +243,10 @@ Format : `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FL
     * `-d` to edit the description
     * `-c` to edit the category
     * `-v` to edit the value
+    * `date` to edit the date
     * `-in` to change direction to inflow
     * `-out` to change direction to outflow
-    * {todo}
+
 * No `NEWFIELD` required for changing direction
 
 Example of usage:
