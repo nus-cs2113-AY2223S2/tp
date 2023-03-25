@@ -5,11 +5,14 @@ import java.util.ArrayList;
 public class UI {
     private static final String LIST_PU_MESSAGE = "This is the list of PUs:";
     private static final String LIST_CURRENT_MESSAGE = "List of Added modules:";
+    private static final String LIST_DEADLINES_MESSAGE = "List of Deadlines:";
     private static final String LINE = "____________________________________________________________";
     private static final String ADD_MOD_MESSAGE = "This module has been added to the current module list!";
+    private static final String ADD_DEADLINE_MESSAGE = "This deadline has been added to the current deadlines";
     private static final String DELETE_MOD_MESSAGE = "This module has been deleted from the current module list!";
 
     private static final String ADD_MOD_FAILURE_MESSAGE = "Save Module Failed";
+    private static final String ADD_DEADLINE_FAILURE_MESSAGE = "Save Deadline task Failed";
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
     private static final String WELCOME_MESSAGE = "~Welcome to SEP Helper~";
     private static final String READ_COMMAND_INPUT = "What can I do for you?";
@@ -18,7 +21,8 @@ public class UI {
     private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name";
     private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name";
     private static final String INVALID_BUDGET_MESSAGE = "Please type in the correct budget command";
-    private static final String CURRENT_LIST_EMPTY = "The current module list is empty";
+    private static final String CURRENT_MOD_LIST_EMPTY = "The current module list is empty";
+    private static final String CURRENT_DEADLINES_LIST_EMPTY = "The current deadlines list is empty";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
@@ -64,6 +68,7 @@ public class UI {
     public String getInvalidBudgetMessage() {
         return INVALID_BUDGET_MESSAGE;
     }
+
     public String getLine() {
         return LINE;
     }
@@ -121,8 +126,7 @@ public class UI {
     public void printCurrentModList(ArrayList<Module> modules) {
         int listIndex = 0;
         if (modules.size() < 1) {
-            System.out.println(CURRENT_LIST_EMPTY);
-            System.out.println(LINE);
+            System.out.println(CURRENT_MOD_LIST_EMPTY);
             System.out.println(LINE);
         } else {
             System.out.println(LIST_CURRENT_MESSAGE);
@@ -144,12 +148,47 @@ public class UI {
         }
     }
 
+    public void printDeadlinesList(ArrayList<Deadline> deadlines) {
+        int listIndex = 0;
+        if (deadlines.size() < 1) {
+            System.out.println(CURRENT_DEADLINES_LIST_EMPTY);
+        } else {
+            System.out.println(LIST_DEADLINES_MESSAGE);
+            System.out.println(LINE);
+            for (Deadline deadline : deadlines) {
+                listIndex++;
+                String deadlineTask = deadline.getTask();
+                String deadlineDueDate = deadline.getDueDate();
+                System.out.println(listIndex + ". " + deadlineTask + " [Due by: " + deadlineDueDate + "]");
+            }
+        }
+        System.out.println(LINE);
+    }
+
+    public void printAddDeadlineMessage() {
+        System.out.println(ADD_DEADLINE_MESSAGE);
+        System.out.println(LINE);
+    }
+
+    public static void printReminderMessage(Deadline deadline, int counter) {
+        String deadlineTask = deadline.getTask();
+        String deadlineDueDate = deadline.getDueDate();
+        System.out.println("REMINDER! The following task(s) is/are due soon: ");
+        System.out.println(counter + ". " + deadlineTask + " [Due by: " + deadlineDueDate + "]");
+        System.out.println(LINE);
+    }
+
     public void printInvalidInputMessage() {
         System.out.println("Invalid Input");
     }
 
     public static void printAddModuleFailureMessage() {
         System.out.println(ADD_MOD_FAILURE_MESSAGE);
+    }
+
+    public static void printAddDeadlineFailureMessage() {
+        System.out.println(ADD_DEADLINE_FAILURE_MESSAGE);
+        System.out.println(LINE);
     }
 
     public static void printHelpCommandMessage() {

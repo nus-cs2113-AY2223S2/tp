@@ -5,7 +5,6 @@ import seedu.duke.Storage;
 
 public class AddModuleCommand extends Command {
 
-
     private Module moduleToAdd;
     private Storage storage;
 

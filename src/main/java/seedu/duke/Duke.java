@@ -26,11 +26,13 @@ public class Duke {
         ArrayList<University> universities = dataReader.getUniversities();
         ArrayList<Module> allModules = dataReader.getModules();
         ArrayList<Module> modules = storage.getModules();
+        ArrayList<Deadline> deadlines = storage.getDeadlines();
         ui.printGreetingMessage();
+        storage.compareDeadlines(deadlines);
         while (isContinue) {
             userInput = in.nextLine();
             Command command = parser.parseUserCommand(userInput, universities, modules, allModules, storage,
-                    budgetPlanner);
+                    budgetPlanner, deadlines);
             command.execute();
             isContinue = !command.getIsExit();
         }
