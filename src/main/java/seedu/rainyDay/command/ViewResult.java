@@ -77,7 +77,7 @@ public class ViewResult {
         String inflowInformation = String.format("|Inflow: $%.2f", inflow);
         String outflowInformation = String.format("|Outflow: $%.2f", outflow);
 
-        String remainingValueInformation = String.format("|Remaining value: $%.2f", (inflow - outflow));
+        String remainingValueInformation = String.format("|Remaining value: $%.2f\n", (inflow - outflow));
         return String.join(System.lineSeparator(), inflowInformation, outflowInformation,
                 remainingValueInformation);
     }
