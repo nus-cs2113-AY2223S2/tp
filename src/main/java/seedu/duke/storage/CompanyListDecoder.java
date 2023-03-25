@@ -12,5 +12,9 @@ import java.util.Scanner;
 public class CompanyListDecoder extends Storage {
 
     public static final String filePath = "data/companyList.txt";
-
+    
+    private static String[] parseInput(String line) {
+        String[] parsedline = line.split("\\|");
+        return parsedline;
+    }
 }
