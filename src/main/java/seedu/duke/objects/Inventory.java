@@ -13,6 +13,8 @@ public class Inventory {
     private final Trie trie = new Trie();
     private final HashMap<String, ArrayList<Item>> itemNameHash = new HashMap<>();
 
+    private final AlertList alertList = new AlertList();
+
 
     /**
      * Retrieves all the UPC Codes in the inventory currently.
@@ -67,6 +69,10 @@ public class Inventory {
 
     public Trie getTrie() {
         return trie;
+    }
+
+    public AlertList getAlertList() {
+        return alertList;
     }
 
     /**

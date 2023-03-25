@@ -12,11 +12,17 @@ public class RemoveAlertCommand extends Command {
     private String upc;
     private String minmax;
 
-    public RemoveAlertCommand(Inventory inventory, AlertList alertList, String upc, String minmax) {
+    public RemoveAlertCommand(Inventory inventory, String upc, String minmax) {
         super(inventory);
-        this.alertList = alertList;
+        this.alertList = inventory.getAlertList();
         this.upc = upc;
         this.minmax = minmax;
+    }
+
+    public RemoveAlertCommand(Inventory inventory, String upc) {
+        super(inventory);
+        this.alertList = inventory.getAlertList();
+        this.upc = upc;
     }
 
     private void checkRemoveAlertUpc() {
@@ -40,7 +46,7 @@ public class RemoveAlertCommand extends Command {
         }
     }
 
-    private boolean hasUpcInAlerts (HashMap<String, Integer> alertUpcMap) {
+    private boolean hasUpcInAlerts(HashMap<String, Integer> alertUpcMap) {
         if (alertUpcMap.containsKey(upc)) {
             return true;
         }

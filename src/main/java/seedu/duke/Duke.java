@@ -18,7 +18,7 @@ public class Duke {
     private ParserHandler parserHandler;
     private Inventory inventory;
     private SessionManager currentSession;
-    private AlertList alertList;
+   // private AlertList alertList;
 
 
     public Duke(String filePath) {
@@ -26,8 +26,8 @@ public class Duke {
         storage = new Storage();
         inventory = new Inventory();
         inventory = currentSession.getSession();
-        alertList = new AlertList();
-        parserHandler = new ParserHandler(inventory, alertList);
+        //alertList = new AlertList();
+        parserHandler = new ParserHandler(inventory);
     }
 
     public void run() {

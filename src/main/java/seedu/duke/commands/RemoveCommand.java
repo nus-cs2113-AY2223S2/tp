@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.exceptions.RemoveErrorException;
+import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.SessionManager;
@@ -15,7 +16,6 @@ public class RemoveCommand extends Command {
     private String userConfirmation;
 
     private int itemIndex;
-
 
     /**
      * Constructor for RemoveCommand where item is removed from the inventory by its index
@@ -72,6 +72,14 @@ public class RemoveCommand extends Command {
                     itemNameHash.get(itemName).remove(itemToRemove);
                 }
             }
+
+            AlertList alertList = inventory.getAlertList();
+            if (alertList.getMinAlertUpcs().containsKey(upcCode)) {
+                alertList.getMinAlertUpcs().remove(upcCode);
+            }
+            if (alertList.getMaxAlertUpcs().containsKey(upcCode)) {
+                alertList.getMaxAlertUpcs().remove(upcCode);
+            }
             Ui.printSuccessRemove(itemToRemove);
             break;
         case "N":
@@ -106,6 +114,13 @@ public class RemoveCommand extends Command {
                 itemsTrie.remove(itemName);
             } else {
                 itemNameHash.get(itemName).remove(itemToRemove);
+            }
+            AlertList alertList = inventory.getAlertList();
+            if (alertList.getMinAlertUpcs().containsKey(upcCode)) {
+                alertList.getMinAlertUpcs().remove(upcCode);
+            }
+            if (alertList.getMaxAlertUpcs().containsKey(upcCode)) {
+                alertList.getMaxAlertUpcs().remove(upcCode);
             }
             Ui.printSuccessRemove(itemToRemove);
             break;

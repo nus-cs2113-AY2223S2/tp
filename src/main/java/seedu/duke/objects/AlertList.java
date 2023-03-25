@@ -15,8 +15,7 @@ public class AlertList {
     }
 
     public int getTotalAlertNumber() {
-        int totalAlerts = minAlertUpcs.size() + maxAlertUpcs.size();
-        return totalAlerts;
+        return  minAlertUpcs.size() + maxAlertUpcs.size();
     }
     public void setMinAlertUpcs(String upc, int min) {
         this.minAlertUpcs.put(upc, min);
