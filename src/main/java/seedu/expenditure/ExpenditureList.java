@@ -86,12 +86,25 @@ public class ExpenditureList {
         return stringOfExpenditures.toString().stripTrailing();
     }
 
-    public static String printSpecificDate (LocalDate date) {
+    public static String printSpecificDate(LocalDate date) {
         StringBuilder stringOfExpenditures = new StringBuilder();
         int counter = 1;
         for (int i = 0; i < expenditures.size(); i++) {
             Expenditure expenditure = expenditures.get(i);
             if (date.equals(expenditure.getDate())) {
+                stringOfExpenditures.append(String.format("%d. %s\n", counter, expenditure));
+                counter += 1;
+            }
+        }
+        return stringOfExpenditures.toString().stripTrailing();
+    }
+
+    public static String printSpecificType(String expenditureType) {
+        StringBuilder stringOfExpenditures = new StringBuilder();
+        int counter = 1;
+        for (int i = 0; i < expenditures.size(); i++) {
+            Expenditure expenditure = expenditures.get(i);
+            if (expenditureType.equals(expenditure.getExpenditureType())) {
                 stringOfExpenditures.append(String.format("%d. %s\n", counter, expenditure));
                 counter += 1;
             }

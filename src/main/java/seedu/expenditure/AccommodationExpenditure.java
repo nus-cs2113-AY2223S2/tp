@@ -3,8 +3,10 @@ package seedu.expenditure;
 import java.time.LocalDate;
 
 public class AccommodationExpenditure extends Expenditure {
+    public static final String expenditureType = "Accom";
     public static String iconPaid = "[X]";
     public static String iconUnpaid = "[ ]";
+
     private boolean isPaid;
 
     public AccommodationExpenditure(String description, double value, LocalDate date) {
@@ -31,7 +33,7 @@ public class AccommodationExpenditure extends Expenditure {
 
     @Override
     public String getExpenditureType() {
-        return "Accom";
+        return expenditureType;
     }
 
     @Override

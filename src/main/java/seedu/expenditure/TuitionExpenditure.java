@@ -3,8 +3,11 @@ package seedu.expenditure;
 import java.time.LocalDate;
 
 public class TuitionExpenditure extends Expenditure {
+
+    public static final String expenditureType = "Tu";
     public static String iconPaid = "[X]";
     public static String iconUnpaid = "[ ]";
+    
     boolean isPaid;
 
     public TuitionExpenditure(String description, double value, LocalDate date) {
@@ -30,7 +33,7 @@ public class TuitionExpenditure extends Expenditure {
     }
 
     public String getExpenditureType() {
-        return "Tu";
+        return expenditureType;
     }
 
     @Override
