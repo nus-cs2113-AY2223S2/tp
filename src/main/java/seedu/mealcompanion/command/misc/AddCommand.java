@@ -86,9 +86,6 @@ public class AddCommand extends ExecutableCommand {
             if (quantity <= 0) {
                 throw new MealCompanionException("OOPS, quantity must be greater than 0");
             }
-            if (name.isBlank()) {
-                throw new MealCompanionException("OOPS, name cannot be blank");
-            }
             int indexOfExistingIngredient = findIndex(mealCompanionSession, name);
             if (indexOfExistingIngredient == -1) {
                 addNewIngredient(mealCompanionSession, quantity, name);

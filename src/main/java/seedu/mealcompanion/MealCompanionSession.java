@@ -6,6 +6,7 @@ import seedu.mealcompanion.command.factory.ingredients.IngredientsListCommandFac
 import seedu.mealcompanion.command.factory.ingredients.IngredientsSearchCommandFactory;
 import seedu.mealcompanion.command.factory.misc.AddCommandFactory;
 import seedu.mealcompanion.command.factory.misc.ByeCommandFactory;
+import seedu.mealcompanion.command.factory.misc.ClearCommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelloWorldCommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelpCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RemoveCommandFactory;
@@ -35,6 +36,7 @@ public class MealCompanionSession {
                     )
                     .route("bye", new ByeCommandFactory())
                     .route("add", new AddCommandFactory())
+                    .route("clear", new ClearCommandFactory())
                     .route("help", new HelpCommandFactory())
                     .route("remove", new RemoveCommandFactory())
                     .route("make", new MakeCommandFactory())
