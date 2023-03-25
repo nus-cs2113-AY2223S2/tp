@@ -1,16 +1,7 @@
 package seedu.rainyDay.modules;
 
 import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.command.Command;
-import seedu.rainyDay.command.AddCommand;
-import seedu.rainyDay.command.DeleteCommand;
-import seedu.rainyDay.command.EditCommand;
-import seedu.rainyDay.command.ExportCommand;
-import seedu.rainyDay.command.ShortcutCommand;
-import seedu.rainyDay.command.ViewCommand;
-import seedu.rainyDay.command.HelpCommand;
-import seedu.rainyDay.command.FilterCommand;
-import seedu.rainyDay.command.InvalidCommand;
+import seedu.rainyDay.command.*;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 
@@ -19,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -61,8 +53,13 @@ public class Parser {
                 logger.info("export command executing");
                 return generateExport();
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT)) {
+                logger.info("shortcut command executing");
                 return generateShortcut(action[1].trim());
-            } else {
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_SET_BUDGET)) {
+                logger.info("set budget command executing");
+                return setUserBudgetGoal(action[1].trim());
+            }
+            else {
                 // check if the user has a shortcut command
                 HashMap<String, String> shortcutCommands = RainyDay.userData.getShortcutCommands();
                 if (shortcutCommands.containsKey(userInput)) {
@@ -420,5 +417,21 @@ public class Parser {
         }
 
         return new ShortcutCommand(key, value);
+    }
+
+    //@@author BenjaminPoh
+    private Command setUserBudgetGoal(String userInput) {
+        try {
+            double amount = Double.parseDouble(userInput);
+            amount = (int) (amount * 100);
+            if (amount < 0) {
+                logger.warning("set budget details provided incorrectly");
+                return new InvalidCommand(ErrorMessage.WRONG_SET_BUDGET_FORMAT.toString());
+            }
+        } catch (Exception e) {
+            logger.warning("set budget details provided incorrectly");
+            return new InvalidCommand(ErrorMessage.WRONG_SET_BUDGET_FORMAT.toString());
+        }
+        return new SetBudgetCommand(amount);
     }
 }

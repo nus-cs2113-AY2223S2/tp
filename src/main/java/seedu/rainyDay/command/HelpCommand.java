@@ -12,7 +12,7 @@ public class HelpCommand extends Command {
             "|Delete entry     |delete  |[index]                                                                  |\n" +
             "|View entries     |view    |{time} {-sort}                                                           |\n" +
             "|Filter entries   |filter  |{-in} {-out} {-d description} {-c category} {-date date}                 |\n" +
-            "|Edit an entry    |edit    |[index] {-in/ -out/ -d description/ -v $value/ -c category/ -date date}  |\n" +
+            "|Edit an entry    |edit    |[index] [-in/ -out/ -d description/ -v $value/ -c category/ -date date]  |\n" +
             "|                 |        |[index] [valid add command]                                              |\n" +
             "|Export to .csv   |export  |                                                                         |\n" +
             "|Display a guide  |help    |{command}                                                                |\n" +

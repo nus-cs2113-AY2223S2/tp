@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class UserData {
     private FinancialReport financialReport;
     private HashMap<String, String> shortcutCommands;
+    private double budgetGoal = 0;
 
     public UserData(FinancialReport financialReport) {
         this.financialReport = financialReport;
@@ -19,4 +20,13 @@ public class UserData {
     public HashMap<String, String> getShortcutCommands() {
         return shortcutCommands;
     }
+
+    public void setBudgetGoal(double goal) {
+        this.budgetGoal = goal;
+    }
+
+    public double getBudgetGoal() {
+        return this.budgetGoal;
+    }
+
 }

@@ -17,6 +17,7 @@ public abstract class Command {
     public static final String COMMAND_EDIT = "edit";
     public static final String COMMAND_EXPORT = "export";
     public static final String COMMAND_SHORTCUT = "shortcut";
+    public static final String COMMAND_SET_BUDGET = "setbudget";
 
     protected FinancialReport financialReport;
     /**

@@ -13,7 +13,8 @@ public enum ErrorMessage {
             "edit [index] ADDCOMMAND\n" + "or\n" +
             "edit [index] {-in/ -out/ -d description/ -v $value/ -c category/ -date date\n"),
     MISSING_DETAILS("Please include some details for your command!"),
-    WRONG_SHORTCUT_FORMAT("Wrong format for shortcut");
+    WRONG_SHORTCUT_FORMAT("Wrong format for shortcut"),
+    WRONG_SET_BUDGET_FORMAT("Wrong format to set budget goal!");
 
 
     private final String error;
