@@ -28,10 +28,6 @@ public class Ui {
         showLine();
     }
 
-    public void exitProgram() {
-        System.exit(0);
-    }
-
     private static void showHelpText() {
         System.out.println("Here are the functions of the application!");
         System.out.println("To add a company, type:");
@@ -95,9 +91,9 @@ public class Ui {
         }
     }
 
-    public void showCompanyFoundMessage(Company company){
+    public void showCompanyFoundMessage(Company company, int idx){
         System.out.println("The company is found in the company list.");
-        System.out.println(company);
+        System.out.println(idx + System.lineSeparator() + company);
     }
 
     public void showCompanyNotFoundMessage(String targetCompany){

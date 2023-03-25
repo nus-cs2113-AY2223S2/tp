@@ -17,6 +17,9 @@ public class CompanyList {
         this.ui = ui;
     }
 
+    public static ArrayList<Company> getCompanyList() {
+        return companyList;
+    }
     public static void add(String companyName, String industry, int contactNumber, String contactEmail) {
         companyName = companyName.strip().toUpperCase();
         contactEmail = contactEmail.strip().toUpperCase();
@@ -49,6 +52,10 @@ public class CompanyList {
         }
     }
 
+    public int getNumberOfCompanies() {
+        return companyList.size();
+    }
+
     public void deleteCompanyInformation(int index) throws InvalidIndexException {
         if (index < 0 | index >= companyList.size()) {
             throw new InvalidIndexException();
@@ -61,21 +68,18 @@ public class CompanyList {
         if (index < 0 | index >= companyList.size()) {
             throw new InvalidIndexException();
         }
-        ui.showSuccessfulConfirmedMessage();
         return companyList.get(index);
     }
 
     public void printUnconfirmed() throws EmptyListException {
-        int idx = 1;
         if (companyList.isEmpty()) {
             throw new EmptyListException();
         }
         for (int i = 0; i < companyList.size(); i += 1){
             Company company = companyList.get(i);
             if (!company.isConfirmed){
-                System.out.println(idx + ".");
+                System.out.println((i + 1));
                 System.out.println(companyList.get(i));
-                idx += 1;
             }
         }
     }
@@ -94,8 +98,9 @@ public class CompanyList {
         ArrayList<Company> sortedCompanyList = new ArrayList<>();
         targetCompany = targetCompany.toLowerCase();
         for (Company company : companyList){
+            int idx = companyList.indexOf(company) + 1;
             if (company.getCompanyName().toLowerCase().contains(targetCompany)){
-                ui.showCompanyFoundMessage(company);
+                ui.showCompanyFoundMessage(company, idx);
                 sortedCompanyList.add(company);
             }
         }
@@ -114,5 +119,23 @@ public class CompanyList {
     public void purgeData() {
         companyList.clear();
         ui.showSuccessfulPurgingMessage();
+    }
+
+    public void markConfirm(int companyNum) throws InvalidIndexException {
+        if (companyNum < 0 | companyNum >= companyList.size()) {
+            throw new InvalidIndexException();
+        }
+        Company company = companyList.get(companyNum);
+        company.markConfirmed();
+        ui.showSuccessfulConfirmedMessage();
+    }
+
+    public void markUnconfirm(int companyNum) throws InvalidIndexException {
+        if (companyNum < 0 | companyNum >= companyList.size()) {
+            throw new InvalidIndexException();
+        }
+        Company company = companyList.get(companyNum);
+        company.markUnconfirmed();
+        ui.showSuccessfulConfirmedMessage();
     }
 }

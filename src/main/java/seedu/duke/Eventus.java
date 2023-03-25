@@ -4,6 +4,7 @@ import seedu.duke.company.CompanyList;
 import seedu.duke.data.VenueListData;
 import seedu.duke.event.Event;
 import seedu.duke.parser.Parser;
+import seedu.duke.storage.CompanyListDecoder;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.command.Command;
@@ -31,6 +32,7 @@ public class Eventus {
 
     public void run() {
         ui.showWelcome();
+        loadSavedInformation();
         String input;
         Scanner in = new Scanner(System.in);
         while (true) {
@@ -50,6 +52,10 @@ public class Eventus {
                 System.out.println("Number expected! Please type <help> for more information");
             }
         }
+    }
+
+    public void loadSavedInformation() {
+        CompanyListDecoder.read(companyList);
     }
 
     public static void main(String[] args) {

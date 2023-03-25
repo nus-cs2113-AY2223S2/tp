@@ -1,6 +1,10 @@
 package seedu.duke.command;
 
 import seedu.duke.company.CompanyList;
+import seedu.duke.exception.InvalidIndexException;
+import seedu.duke.storage.CompanyListEncoder;
+
+import java.io.IOException;
 
 public class AddCommand extends Command {
     protected String companyName;
@@ -18,6 +22,11 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(CompanyList companyList) {
-        companyList.add(companyName, industry, contactNumber, contactEmail);
+        try {
+            companyList.add(companyName, industry, contactNumber, contactEmail);
+            CompanyListEncoder.write(companyList);
+        } catch (InvalidIndexException | IOException err) {
+            System.out.println("Unsuccessful in saving your file :/");
+        }
     }
 }
