@@ -1,3 +1,4 @@
+// @@author kaceycsn
 package seedu.pocketpal.frontend.commands;
 
 import seedu.pocketpal.backend.Backend;
@@ -64,3 +65,4 @@ public class DeleteCommand extends Command {
         return this.entryIds[entryId];
     }
 }
+// @@author
