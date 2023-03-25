@@ -23,21 +23,17 @@ class FlashcardListDecoderTest {
         List<String> storedString = new ArrayList<>();
         storedString.add("q/q1 a/a1 d/" + LocalDate.now().toString() + " p/0");
         storedString.add("q/q2 a/a2 d/" + LocalDate.now().toString() + " p/0");
-        try {
-            ArrayList<Flashcard> decodedFlashcardList = decodeFlashcardList(storedString);
-            Flashcard testCard1 = decodedFlashcardList.get(0);
-            assertEquals("q1", testCard1.getQuestion());
-            assertEquals("a1", testCard1.getAnswer());
-            assertEquals(LocalDate.now(), testCard1.getDueDate());
-            assertEquals(0, testCard1.getCurrentPeriodInDays());
-            Flashcard testCard2 = decodedFlashcardList.get(1);
-            assertEquals("q2", testCard2.getQuestion());
-            assertEquals("a2", testCard2.getAnswer());
-            assertEquals(LocalDate.now(), testCard2.getDueDate());
-            assertEquals(0, testCard2.getCurrentPeriodInDays());
-        } catch (StorageOperationException e) {
-            throw new RuntimeException(e);
-        }
+        ArrayList<Flashcard> decodedFlashcardList = decodeFlashcardList(storedString);
+        Flashcard testCard1 = decodedFlashcardList.get(0);
+        assertEquals("q1", testCard1.getQuestion());
+        assertEquals("a1", testCard1.getAnswer());
+        assertEquals(LocalDate.now(), testCard1.getDueDate());
+        assertEquals(0, testCard1.getCurrentPeriodInDays());
+        Flashcard testCard2 = decodedFlashcardList.get(1);
+        assertEquals("q2", testCard2.getQuestion());
+        assertEquals("a2", testCard2.getAnswer());
+        assertEquals(LocalDate.now(), testCard2.getDueDate());
+        assertEquals(0, testCard2.getCurrentPeriodInDays());
     }
 
     @Test
@@ -46,21 +42,17 @@ class FlashcardListDecoderTest {
         flashcardList.addNewFlashcard("q1", "a1");
         flashcardList.addNewFlashcard("q2", "a2");
         List<String> encodedResult = encodeAddressBook(flashcardList);
-        try {
-            ArrayList<Flashcard> decodedFlashcardList = decodeFlashcardList(encodedResult);
-            Flashcard testCard1 = decodedFlashcardList.get(0);
-            assertEquals("q1", testCard1.getQuestion());
-            assertEquals("a1", testCard1.getAnswer());
-            assertEquals(LocalDate.now(), testCard1.getDueDate());
-            assertEquals(0, testCard1.getCurrentPeriodInDays());
-            Flashcard testCard2 = decodedFlashcardList.get(1);
-            assertEquals("q2", testCard2.getQuestion());
-            assertEquals("a2", testCard2.getAnswer());
-            assertEquals(LocalDate.now(), testCard2.getDueDate());
-            assertEquals(0, testCard2.getCurrentPeriodInDays());
-        } catch (StorageOperationException e) {
-            throw new RuntimeException(e);
-        }
+        ArrayList<Flashcard> decodedFlashcardList = decodeFlashcardList(encodedResult);
+        Flashcard testCard1 = decodedFlashcardList.get(0);
+        assertEquals("q1", testCard1.getQuestion());
+        assertEquals("a1", testCard1.getAnswer());
+        assertEquals(LocalDate.now(), testCard1.getDueDate());
+        assertEquals(0, testCard1.getCurrentPeriodInDays());
+        Flashcard testCard2 = decodedFlashcardList.get(1);
+        assertEquals("q2", testCard2.getQuestion());
+        assertEquals("a2", testCard2.getAnswer());
+        assertEquals(LocalDate.now(), testCard2.getDueDate());
+        assertEquals(0, testCard2.getCurrentPeriodInDays());
     }
 
     @Test
@@ -69,6 +61,16 @@ class FlashcardListDecoderTest {
         storedString.add("q1 a/a1 d/" + LocalDate.now().toString() + " p/0");
         assertThrows(StorageOperationException.class,
                 () -> decodeFlashcardList(storedString));
+    }
+
+    @Test
+    void decodeAddressBook_correctAndInvalidInput_correctOutput() {
+        List<String> storedString = new ArrayList<>();
+        storedString.add("q1 a/a1 d/" + LocalDate.now().toString() + " p/0");
+        storedString.add("q/q2 a/a2 d/" + LocalDate.now().toString() + " p/0");
+        ArrayList<Flashcard> decodedFlashcardList = decodeFlashcardList(storedString);
+        assertEquals(1, decodedFlashcardList.size());
+        assertEquals("q2", decodedFlashcardList.get(0).getQuestion());
     }
 
 }

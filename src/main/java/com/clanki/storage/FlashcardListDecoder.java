@@ -26,11 +26,14 @@ public class FlashcardListDecoder {
      *
      * @throws StorageOperationException if the {@code encodedFlashcardList} is in an invalid format.
      */
-    public static ArrayList<Flashcard> decodeFlashcardList(List<String> encodedFlashcardList)
-            throws StorageOperationException {
+    public static ArrayList<Flashcard> decodeFlashcardList(List<String> encodedFlashcardList) {
         final ArrayList<Flashcard> decodedFlashcard = new ArrayList<>();
         for (String encodedFlashcard : encodedFlashcardList) {
-            decodedFlashcard.add(decodeFlashcardFromString(encodedFlashcard));
+            try {
+                decodedFlashcard.add(decodeFlashcardFromString(encodedFlashcard));
+            } catch (StorageOperationException e) {
+                System.out.println("Some flashcards are formatted incorrectly, they will be deleted.");
+            }
         }
         return decodedFlashcard;
     }
