@@ -33,6 +33,10 @@ public class CompanyList {
         }
     }
 
+    public int getNumberOfCompanies() {
+        return companyList.size();
+    }
+
     public void deleteCompanyInformation(int index) throws InvalidIndexException {
         if (index < 0 | index >= companyList.size()) {
             throw new InvalidIndexException();
