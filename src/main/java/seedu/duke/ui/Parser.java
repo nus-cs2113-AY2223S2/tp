@@ -82,14 +82,17 @@ public class Parser {
             Information.viewSymptomHistory(Menu.symptoms);
             break;
         case "5":
+            Information.deleteSymptom(Menu.symptoms);
+            break;
+        case "6":
             Information.resetSymptomChoice(Menu.symptoms);
             break;
         //@@author tanyizhe
-        case "6":
+        case "7":
             user.printPatientMedicineHistory();
             break;
         //@@author Geeeetyx
-        case "7":
+        case "8":
             Menu.exit();
             break;
         default:
