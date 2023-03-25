@@ -1,5 +1,8 @@
 package seedu.pettracker.data;
 
+import seedu.pettracker.storage.Storage;
+import seedu.pettracker.ui.Ui;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -102,5 +105,8 @@ public class PetList {
         default:
             System.out.println("Invalid stat");
         }
+    }
+    public static void savePetsToStorage(Storage storage, Ui ui){
+        storage.savePets(petList,ui);
     }
 }
