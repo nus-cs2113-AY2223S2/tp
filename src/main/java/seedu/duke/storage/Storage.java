@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 
@@ -14,5 +15,17 @@ public class Storage {
         if (!f.exists()) {
             f.createNewFile();
         }
+    }
+
+    public static void writeToFile(String textToAdd, String filePath) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        fw.write(textToAdd);
+        fw.close();
+    }
+
+    public static void appendToFile(String textToAppend, String filePath) throws IOException {
+        FileWriter fw = new FileWriter(filePath, true);
+        fw.write(textToAppend);
+        fw.close();
     }
 }

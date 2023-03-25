@@ -90,4 +90,8 @@ public class Ui {
         System.out.println(venue + " has been successfully updated!");
     }
 
+    public void showEventNameSelectionMessage(String eventName) {
+        System.out.println(eventName + " has been successfully updated!");
+    }
+
 }

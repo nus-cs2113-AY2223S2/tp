@@ -19,7 +19,6 @@ public class VenueListStorage extends Storage{
         try {
             checkFileAccess(filePath);
             updateFile();
-//            load();
         } catch (FileNotFoundException err) {
             System.out.println("File not Found");
         } catch (IOException err) {
@@ -42,23 +41,12 @@ public class VenueListStorage extends Storage{
         }
     }
 
-    public static void writeToFile(String textToAdd) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
-        fw.write(textToAdd);
-        fw.close();
-    }
-
-    public static void appendToFile(String textToAppend) throws IOException {
-        FileWriter fw = new FileWriter(filePath, true);
-        fw.write(textToAppend);
-        fw.close();
-    }
     public static void updateFile() {
         venueList = VenueListData.returnVenueList();
         try {
-            writeToFile("");
+            writeToFile("", filePath);
             for (Venue venue : venueList) {
-                appendToFile(venue + System.lineSeparator());
+                appendToFile(venue + System.lineSeparator(), filePath);
             }
         } catch (IOException err) {
             System.out.println("Something went wrong: " + err.getMessage());

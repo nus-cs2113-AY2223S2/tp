@@ -28,7 +28,7 @@ public class Company {
         return contactEmail;
     }
 
-    public String getConfirmStatus() { return (isConfirmed ? "Confirmed" : "Unconfirmed");}
+    public String getConfirmStatus() { return (isConfirmed ? "Confirmed" : "Unconfirmed"); }
 
     public void markConfirmed() {
         this.isConfirmed = true;

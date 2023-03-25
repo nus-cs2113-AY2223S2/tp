@@ -1,12 +1,10 @@
 package seedu.duke;
 
-import seedu.duke.company.Company;
 import seedu.duke.company.CompanyList;
 import seedu.duke.data.VenueListData;
 import seedu.duke.event.Event;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
-import seedu.duke.storage.VenueListStorage;
 import seedu.duke.ui.Ui;
 import seedu.duke.command.Command;
 import seedu.duke.venue.VenueList;

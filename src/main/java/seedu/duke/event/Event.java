@@ -10,6 +10,8 @@ public class Event {
 
     private Venue venue;
 
+    private String eventName;
+
     private CompanyList companyList;
 
     private Ui ui;
@@ -25,6 +27,11 @@ public class Event {
         }
         venue = venueList.getVenue(venueNum);
         ui.showVenueSelectionMessage(venue.getVenueName());
+    }
+
+    public void updateEventName(String eventName){
+        this.eventName = eventName;
+        ui.showEventNameSelectionMessage(eventName);
     }
 
     @Override
