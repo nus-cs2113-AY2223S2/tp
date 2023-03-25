@@ -66,6 +66,7 @@ public class Storage {
      */
     public static void writeToFile(UserData userData, String filePath) {
         try {
+            Files.createDirectories(Paths.get("./data"));
             String jsonUserData = gson.toJson(userData);
             FileWriter fileWriter = new FileWriter(filePath);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
