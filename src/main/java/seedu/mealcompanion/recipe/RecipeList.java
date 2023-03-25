@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.serde.SerializableRecipe;
 
 public class RecipeList {
@@ -43,5 +44,15 @@ public class RecipeList {
 
     public Recipe getRecipe(int index) {
         return recipes.get(index);
+    }
+
+    //@@author jingyaaa
+    public Recipe getRecipe(String recipeName) throws MealCompanionException {
+        for (Recipe recipe : recipes) {
+            if (recipeName.equals(recipe.getName())) {
+                return recipe;
+            }
+        }
+        throw new MealCompanionException("Oops, recipe not found.");
     }
 }
