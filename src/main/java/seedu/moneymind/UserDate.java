@@ -61,4 +61,19 @@ public class UserDate {
         return (int) now.until(inputDate, DAYS);
     }
 
+    /**
+     * Returns the date of the next monthly expense.
+     *
+     * @param oldDate The date to be updated.
+     * @return The date after updating.
+     */
+    public static String updateDate(String oldDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate inputDate = LocalDate.parse(oldDate, formatter);
+        while (inputDate.isBefore(LocalDate.now())) {
+            inputDate = inputDate.plusMonths(1);
+        }
+        return inputDate.format(formatter);
+    }
+
 }
