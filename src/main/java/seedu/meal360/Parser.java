@@ -200,7 +200,7 @@ public class Parser {
             }
             // user inputted index of recipe in list
         } else {
-            // deleting a range of recipes
+            // check if deleting a range of recipes
             if (input[1].length() >= 3) {
                 StringBuilder rangeRecipes = new StringBuilder();
                 int startIndex = Integer.parseInt(input[1].charAt(0) + "");
