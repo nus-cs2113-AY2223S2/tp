@@ -1,6 +1,5 @@
 package seedu.rainyDay.command;
 
-
 import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.modules.Storage;
 
@@ -11,29 +10,28 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author KN-CY
-public class ShortcutCommand extends Command {
+public class DeleteShortcutCommand extends Command {
     private static final Logger logger = Logger.getLogger(ShortcutCommand.class.getName());
-    private static String key; // for now lets limit key to be a single word with no space.
-    private static String value;
+
+    private static String keyToDelete;
     private static HashMap<String, String> shortcutCommands;
-    private static final String SHORTCUT_SUCCESSFULLY_ADDED = "Shortcut successfully added";
-    private static final String SHORTCUT_ALREADY_EXISTS = "Shortcut already exists";
+    private static final String SHORTCUT_SUCCESSFULLY_DELETED = "Shortcut successfully deleted.";
+    private static final String SHORTCUT_DOES_NOT_EXIST = "The shortcut does not exist.";
 
 
-    public ShortcutCommand(String key, String value) {
-        this.key = key;
-        this.value = value;
+    public DeleteShortcutCommand(String key) {
+        this.keyToDelete = key;
         shortcutCommands = RainyDay.userData.getShortcutCommands();
     }
 
     @Override
     public CommandResult execute() {
-        if (!shortcutCommands.containsKey(key)) {
-            shortcutCommands.put(key, value);
+        if (shortcutCommands.containsKey(keyToDelete)) {
+            shortcutCommands.remove(keyToDelete);
             Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
-            return new CommandResult(SHORTCUT_SUCCESSFULLY_ADDED);
+            return new CommandResult(SHORTCUT_SUCCESSFULLY_DELETED);
         }
-        return new CommandResult(SHORTCUT_ALREADY_EXISTS);
+        return new CommandResult(SHORTCUT_DOES_NOT_EXIST);
     }
 
     /**
@@ -44,10 +42,10 @@ public class ShortcutCommand extends Command {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("ShortcutCommand.log", true);
+            FileHandler fileHandler = new FileHandler("DeleteShortcutCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
-            System.out.println("unable to log ShortcutCommand class");
+            System.out.println("unable to log DeleteShortcutCommand class");
             logger.log(Level.SEVERE, "File logger not working.", e);
         }
     }
