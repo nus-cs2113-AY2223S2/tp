@@ -21,6 +21,7 @@ public class AddTaskCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) {
         TaskList.addTask(todoDescription);
+        TaskList.saveTasksToStorage(storage, ui);
         ui.addTodoCommandMessage();
     }
 

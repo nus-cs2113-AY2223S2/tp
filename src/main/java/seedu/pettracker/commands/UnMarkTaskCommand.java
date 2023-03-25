@@ -20,6 +20,7 @@ public class UnMarkTaskCommand extends Command{
     @Override
     public void execute(Ui ui, Storage storage) {
         TaskList.markTask(taskNumber, false);
+        TaskList.saveTasksToStorage(storage, ui);
         ui.unmarkTaskCommandMessage();
     }
 

@@ -20,6 +20,7 @@ public class MarkTaskCommand extends Command{
     @Override
     public void execute(Ui ui, Storage storage) {
         TaskList.markTask(taskNumber, true);
+        TaskList.saveTasksToStorage(storage, ui);
         ui.markTaskCommandMessage();
     }
 

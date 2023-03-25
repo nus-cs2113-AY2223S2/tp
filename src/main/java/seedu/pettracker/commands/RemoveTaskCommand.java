@@ -21,6 +21,7 @@ public class RemoveTaskCommand extends Command{
     @Override
     public void execute(Ui ui, Storage storage) {
         TaskList.removeTask(taskNumber);
+        TaskList.saveTasksToStorage(storage, ui);
         ui.removeTaskCommandMessage(taskNumber);
     }
 
