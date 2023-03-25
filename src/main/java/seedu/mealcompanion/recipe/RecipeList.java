@@ -46,10 +46,6 @@ public class RecipeList {
         return recipes.get(index);
     }
     
-    public int size() {
-        return recipes.size();
-    }
-
     //@@author jingyaaa
     /**
      * Fetch a recipe by its specified name.
@@ -63,5 +59,9 @@ public class RecipeList {
             }
         }
         throw new MealCompanionException("Oops, recipe not found.");
+    }
+    
+    public int size() {
+        return recipes.size();
     }
 }
