@@ -27,7 +27,8 @@ public class Main {
     public Main() {
         ui = new Ui();
         commandParser = new CommandParser();
-        storage = new Storage(STORAGE_FILE_PATH, ui);
+        storage = new Storage(STORAGE_FILE_PATH);
+        storage.createFile(ui);
     }
 
     /**

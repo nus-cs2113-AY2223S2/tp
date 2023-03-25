@@ -12,24 +12,23 @@ import java.util.ArrayList;
 public class Storage {
     private final String filePath;
 
-    public Storage(String filePath, Ui ui) {
+    public Storage(String filePath) {
         this.filePath = filePath;
-        try {
-            createFile();
-        } catch (IOException e) {
-            ui.fileIOErrorMessage();
-        }
     }
 
-    private void createFile() throws IOException {
-        File file = new File(filePath);
-        if (file.exists()) {
-            return;
+    public void createFile(Ui ui) {
+        try {
+            File file = new File(filePath);
+            if (file.exists()) {
+                return;
+            }
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
+            file.createNewFile();
+        } catch (IOException e){
+            ui.fileIOErrorMessage();
         }
-        if (!file.getParentFile().exists()) {
-            file.getParentFile().mkdirs();
-        }
-        file.createNewFile();
     }
 
     private void writePetsToFile(ArrayList<Pet> petList) throws IOException {
