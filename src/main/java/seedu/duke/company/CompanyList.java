@@ -19,7 +19,17 @@ public class CompanyList {
     }
 
     public void add(String companyName, String industry, int contactNumber, String contactEmail) {
+        companyName = companyName.strip().toUpperCase();
+        contactEmail = contactEmail.strip().toUpperCase();
         Company newCompany = new Company(companyName, industry, contactNumber, contactEmail);
+        for (int i = 0; i < companyList.size(); i++) {
+            String companyAlreadyAdded = companyList.get(i).getCompanyName();
+            if (companyAlreadyAdded.contains(companyName)) {
+                System.out.println("Company already exists in the list!");
+                System.out.println(companyList.get(i));
+                return;
+            }
+        }
         companyList.add(newCompany);
         ui.showSuccessfulAdditionMessage(companyName);
     }
@@ -83,10 +93,6 @@ public class CompanyList {
                 ui.showCompanyFoundMessage(company);
                 sortedCompanyList.add(company);
             }
-//            if(company.getCompanyName().toLowerCase().equals(targetCompany)){
-//                ui.showCompanyFoundMessage(company);
-//                return;
-//            }
         }
         if (sortedCompanyList.isEmpty()){
             ui.showCompanyNotFoundMessage(targetCompany);
@@ -104,7 +110,7 @@ public class CompanyList {
 
     }
 
-    public void purgeData(){
+    public void purgeData() {
         companyList.clear();
     }
 }
