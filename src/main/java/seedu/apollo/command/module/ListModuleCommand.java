@@ -23,7 +23,6 @@ public class ListModuleCommand extends Command implements LoggerInterface {
         setUpLogger();
     }
 
-
     /**
      * Sets up logger for ListModuleCommand class.
      *
