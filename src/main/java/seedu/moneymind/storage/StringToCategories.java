@@ -7,6 +7,7 @@ import seedu.moneymind.event.Event;
 
 import static seedu.moneymind.string.Strings.STORAGE_CATEGORY_NAME;
 import static seedu.moneymind.string.Strings.STORAGE_NEXT_VARIABLE;
+import static seedu.moneymind.UserDate.updateDate;
 import static seedu.moneymind.string.Strings.NEW_LINE;
 
 /**
@@ -48,7 +49,7 @@ public class StringToCategories {
         if (savedEvent.length == 3) {
             return new Event(savedEvent[1], Integer.parseInt(savedEvent[2]));
         } else if (savedEvent.length == 4) {
-            return new Event(savedEvent[1], Integer.parseInt(savedEvent[2]), savedEvent[3]);
+            return new Event(savedEvent[1], Integer.parseInt(savedEvent[2]), updateDate(savedEvent[3]));
         } else {
             throw new IllegalArgumentException("Invalid event format in storage file.");
         }

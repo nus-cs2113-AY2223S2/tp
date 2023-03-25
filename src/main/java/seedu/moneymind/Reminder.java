@@ -25,9 +25,7 @@ public class Reminder {
         for (Category category : categories) {
             reminder += checkEventReminder(category);
         }
-        return reminder; 
-        // TODO: implement in startup sequence
-        // TODO: update outdated time to next month
+        return reminder;// TODO: print return String in startup sequence
     }
 
     private static String checkEventReminder(Category category) {
