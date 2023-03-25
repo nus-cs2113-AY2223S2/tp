@@ -10,7 +10,7 @@ public class SessionManager {
     }
 
     public static void writeSession(Inventory inventory) {
-            Storage.writeCSV(inventory);
+        Storage.writeCSV(inventory);
     }
 
     public static Inventory getSession() {

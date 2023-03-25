@@ -10,7 +10,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static seedu.duke.utils.ColorCode.*;
+import static seedu.duke.utils.ColorCode.ANSI_BLUE;
+import static seedu.duke.utils.ColorCode.ANSI_CYAN;
+import static seedu.duke.utils.ColorCode.ANSI_GREEN;
+import static seedu.duke.utils.ColorCode.ANSI_ORANGE;
+import static seedu.duke.utils.ColorCode.ANSI_RED;
+import static seedu.duke.utils.ColorCode.ANSI_RESET;
+import static seedu.duke.utils.ColorCode.ANSI_WHITE;
+import static seedu.duke.utils.ColorCode.ANSI_YELLOW;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
@@ -125,7 +132,7 @@ public class Ui {
     private static final String SUCCESS_ADD_ALERT = "Successfully added a new alert.";
 
     private static final String INVALID_REMOVE_ALERT =
-            "Wrong/Incomplete Format! Please remove new alerts in the " + "following format: \n" +
+            "Wrong/Incomplete Format! " + "Please remove new alerts in the " + "following format: \n" +
                     "\"alert remove upc/[UPC] level/min\" to remove an alert for minimum stock level \n" +
                     " OR\n" +
                     "\"alert remove upc/[UPC] level/max\" to remove an alert for maximum stock level. \n";
@@ -726,13 +733,18 @@ public class Ui {
         System.out.println(ANSI_YELLOW + DASHBOARDLOGO + ANSI_RESET);
         System.out.println("Overview:");
         System.out.println(LINE);
-        System.out.println(ANSI_ORANGE + "Total number of items: " + ANSI_WHITE + inventory.getItemInventory().size() + ANSI_RESET);
-        System.out.println(ANSI_ORANGE + "Total number of active alerts: " + ANSI_WHITE + alertList.getTotalAlertNumber() + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Total number of items: " + ANSI_WHITE +
+                inventory.getItemInventory().size() + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Total number of active alerts: " + ANSI_WHITE +
+                alertList.getTotalAlertNumber() + ANSI_RESET);
 
-        System.out.println(ANSI_ORANGE + "Total value of inventory: " + ANSI_WHITE + "$" + inventory.getTotalValue() + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Total value of inventory: " + ANSI_WHITE +
+                "$" + inventory.getTotalValue() + ANSI_RESET);
         if (!inventory.getItemInventory().isEmpty()) {
-            System.out.println(ANSI_ORANGE + "Item with most quantity: " + ANSI_GREEN + mostQuantityItem.getName() + " (" + mostQuantityItem.getQuantity() + ") " + ANSI_RESET);
-            System.out.println(ANSI_ORANGE + "Item with least quantity: " + ANSI_RED + leastQuantityItem.getName() + " (" + leastQuantityItem.getQuantity() + ") " + ANSI_RESET);
+            System.out.println(ANSI_ORANGE + "Item with most quantity: " + ANSI_GREEN + mostQuantityItem.getName() +
+                    " (" + mostQuantityItem.getQuantity() + ") " + ANSI_RESET);
+            System.out.println(ANSI_ORANGE + "Item with least quantity: " + ANSI_RED + leastQuantityItem.getName() +
+                    " (" + leastQuantityItem.getQuantity() + ") " + ANSI_RESET);
         }
         System.out.println(LINE);
         System.out.println(ANSI_CYAN + "Current Session Configurations:" + ANSI_RESET);
