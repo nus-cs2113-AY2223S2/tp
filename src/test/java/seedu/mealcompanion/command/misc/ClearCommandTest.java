@@ -7,6 +7,7 @@ import seedu.mealcompanion.ingredient.Ingredient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author TJW0911
 public class ClearCommandTest {
 
     @Test
