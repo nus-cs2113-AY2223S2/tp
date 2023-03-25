@@ -100,7 +100,7 @@ public class EditCommand extends Command {
         try {
             Item updatedItem = retrieveItemFromHashMap(editInfo);
             Item oldItem = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
-                    updatedItem.getPrice());
+                    updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
             for (int data = 1; data < editInfo.length; data += 1) {
                 updateItemInfo(updatedItem, editInfo[data]);
             }
@@ -127,7 +127,7 @@ public class EditCommand extends Command {
         String[] oldItemNames = oldItem.getName().toLowerCase().split(" ");
         String newItemNamesFull = updatedItem.getName().toLowerCase();
         for(String oldItemName: oldItemNames) {
-            if (newItemNamesFull.contains(oldItemName) && itemNameHash.get(oldItemName).size() == 1) {
+            if (!newItemNamesFull.contains(oldItemName) && itemNameHash.get(oldItemName).size() == 1) {
                 itemNameHash.remove(oldItemName);
                 itemsTrie.remove(oldItemName);
             } else {
@@ -137,9 +137,10 @@ public class EditCommand extends Command {
         String[] newItemNames = newItemNamesFull.split(" ");
         for(String newItemName: newItemNames){
             if(!itemNameHash.containsKey(newItemName)){
-                itemNameHash.put(newItemName, new ArrayList<Item>());
+                itemNameHash.put(newItemName, new ArrayList<>());
             }
             itemNameHash.get(newItemName).add(updatedItem);
+            itemsTrie.add(newItemName);
         }
     }
 

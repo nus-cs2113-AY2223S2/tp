@@ -24,12 +24,34 @@ public class Item implements Comparable<Item>{
         this.quantity = qty;
         this.dateTime = LocalDateTime.now();
     }
+    public Item(String name, String upc, Integer qty, Double price, String category, ArrayList<String> tags) {
+        this.name = name;
+        this.upc = upc;
+        this.price = price;
+        this.quantity = qty;
+        this.category = category;
+        for(String tag: tags){
+            this.tags.add(tag);
+        }
+        this.dateTime = LocalDateTime.now();
+    }
     public Item(String name, String upc, Integer qty, Double price, LocalDateTime dateTime) {
         this.name = name;
         this.upc = upc;
         this.price = price;
         this.quantity = qty;
         this.dateTime = dateTime;
+    }
+    public Item(Item item){
+        this.name = item.getName();
+        this.dateTime = item.getDateTime();
+        this.upc = item.getUpc();
+        this.price = item.getPrice();
+        this.quantity = item.getQuantity();
+        this.category = item.getCategory();
+        for(String tag: item.getTags()){
+            tags.add(tag);
+        }
     }
 
     public ArrayList<String> getTags() {
