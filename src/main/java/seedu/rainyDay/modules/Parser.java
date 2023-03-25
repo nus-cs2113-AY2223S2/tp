@@ -353,10 +353,14 @@ public class Parser {
             }
 
             if (tokens[2].contains("add")) {
+                this.category = "miscellaneous";
+                this.date = LocalDate.now();
                 tokens[2] = tokens[2].replaceFirst("add ", "");
                 String remainingInformation = returnRemainingInformation(tokens[2]);
+                logger.info("obtained mandatory information for edit ADDCOMMAND");
                 if (remainingInformation.trim().isEmpty()) {
-                    return new EditCommand(index, description, direction, amount, category);
+                    logger.info("returning new EditCommand object");
+                    return new EditCommand(index, description, direction, amount, category, date);
                 }
                 if (!remainingInformation.contains("-c ") && !remainingInformation.contains("-date ")) {
                     logger.info("returning new InvalidCommand object");
@@ -368,7 +372,8 @@ public class Parser {
                 if (remainingInformation.contains("-date ")) {
                     setDate(remainingInformation);
                 }
-                return new EditCommand(index, description, direction, amount, category);
+                logger.info("returning new EditCommand object");
+                return new EditCommand(index, description, direction, amount, category, date);
             } else if (tokens[2].contains("-date")) {
                 parseEditByDate(tokens[2]);
                 return new EditCommand(index, "-date", LocalDate.parse(field,
