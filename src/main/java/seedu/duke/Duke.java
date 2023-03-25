@@ -23,12 +23,11 @@ public class Duke {
 
     public Duke(String filePath) {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage();
         inventory = new Inventory();
-        currentSession = SessionManager.getInstance();
         inventory = currentSession.getSession();
         alertList = new AlertList();
-        parserHandler = new ParserHandler(inventory, currentSession, alertList);
+        parserHandler = new ParserHandler(inventory, alertList);
     }
 
     public void run() {

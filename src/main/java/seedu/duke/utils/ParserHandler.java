@@ -3,28 +3,21 @@ package seedu.duke.utils;
 import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.types.Types;
-import seedu.duke.utils.parsers.AddParser;
-import seedu.duke.utils.parsers.AlertParser;
-import seedu.duke.utils.parsers.EditParser;
-import seedu.duke.utils.parsers.FilterParser;
-import seedu.duke.utils.parsers.HelpParser;
-import seedu.duke.utils.parsers.ListParser;
-import seedu.duke.utils.parsers.RemoveParser;
-import seedu.duke.utils.parsers.SearchParser;
+import seedu.duke.utils.parsers.*;
 
 import java.util.Scanner;
 
 public class ParserHandler {
     private static Scanner in = new Scanner(System.in);
     private Inventory inventory;
-    private SessionManager session;
     private AlertList alertList;
-    public ParserHandler(Inventory inventory, SessionManager session, AlertList alertList) {
+
+    public ParserHandler(Inventory inventory, AlertList alertList) {
         this.inventory = inventory;
-        this.session = session;
         this.alertList = alertList;
     }
-    public void run(){
+
+    public void run() {
         String command = in.nextLine().trim();
         String[] splitCommand = command.split(" ", 2);
         String commandWord = splitCommand[0];
@@ -34,7 +27,7 @@ public class ParserHandler {
         } else {
             commandInfo = "";
         }
-        switch (commandWord) {
+        switch (commandWord.toLowerCase()) {
         case "bye":
         case "exit":
             Ui.printExitMessage();
@@ -73,11 +66,15 @@ public class ParserHandler {
             alertParser.run();
             break;
         case "help":
-            HelpParser helpParser= new HelpParser();
+            HelpParser helpParser = new HelpParser();
             helpParser.run();
             break;
-        case "write":
-            session.writeSession(inventory);
+        case "autosave":
+            AutoSaveParser autoSaveParser = new AutoSaveParser(commandInfo, inventory);
+            autoSaveParser.run();
+            break;
+        case "db":
+            Ui.printDashboard(inventory, alertList);
             break;
         default:
             Ui.printUnknownCommand();

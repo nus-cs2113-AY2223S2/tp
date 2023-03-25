@@ -1,33 +1,51 @@
 package seedu.duke.utils;
 
 import seedu.duke.exceptions.EditErrorException;
+import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static seedu.duke.utils.ColorCode.ANSI_BLUE;
-import static seedu.duke.utils.ColorCode.ANSI_GREEN;
-import static seedu.duke.utils.ColorCode.ANSI_RED;
-import static seedu.duke.utils.ColorCode.ANSI_RESET;
-import static seedu.duke.utils.ColorCode.ANSI_YELLOW;
+import static seedu.duke.utils.ColorCode.*;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
-    public static final String LOGO =
-            "    /|    //| |     // | |     //   ) )  //   / / //   ) )\n"
-                    + "   //|   // | |    //__| |    //        //   / / ((\n"
-                    + "  // |  //  | |   / ___  |   //  ____  //   / /    \\\\\\\\\n"
-                    + " //  | //   | |  //    | |  //    / / //   / /       ) )\n"
-                    + "//   |//    | | //     | | ((____/ / ((___/ / ((___ / /";
+
+    public static final String DASHBOARDLOGO =
+            "░░░░░░   ░░░░░  ░░░░░░░ ░░   ░░ ░░░░░░   ░░░░░░   ░░░░░  ░░░░░░  ░░░░░░  \n" +
+                    "▒▒   ▒▒ ▒▒   ▒▒ ▒▒      ▒▒   ▒▒ ▒▒   ▒▒ ▒▒    ▒▒ ▒▒   ▒▒ ▒▒   ▒▒ ▒▒   ▒▒ \n" +
+                    "▒▒   ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒    ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒   ▒▒ \n" +
+                    "▓▓   ▓▓ ▓▓   ▓▓      ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ \n" +
+                    "██████  ██   ██ ███████ ██   ██ ██████   ██████  ██   ██ ██   ██ ██████  \n";
+    public static final String LOGO1 = "░░░    ░░░  ░░░░░   ░░░░░░  ░░    ░░ ░░░░░░░ ░░░░░░░ ░░░░░░░░  ░░░░░░   ░░░░░░ ░░   ░░ \n";
+    public static final String LOGO2 = "▒▒▒▒  ▒▒▒▒ ▒▒   ▒▒ ▒▒       ▒▒    ▒▒ ▒▒      ▒▒         ▒▒    ▒▒    ▒▒ ▒▒      ▒▒  ▒▒  \n";
+    public static final String LOGO3 = "▒▒ ▒▒▒▒ ▒▒ ▒▒▒▒▒▒▒ ▒▒   ▒▒▒ ▒▒    ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒    ▒▒    ▒▒    ▒▒ ▒▒      ▒▒▒▒▒ \n";
+    public static final String LOGO4 = "▓▓  ▓▓  ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓    ▓▓      ▓▓      ▓▓    ▓▓    ▓▓    ▓▓ ▓▓      ▓▓  ▓▓  \n";
+    public static final String LOGO5 = "██      ██ ██   ██  ██████   ██████  ███████ ███████    ██     ██████   ██████ ██   ██ \n";
+
+    public static final String INVENTORYLOGO = "░░ ░░░    ░░ ░░    ░░ ░░░░░░░ ░░░    ░░ ░░░░░░░░  ░░░░░░  ░░░░░░  ░░    ░░ \n" +
+            "▒▒ ▒▒▒▒   ▒▒ ▒▒    ▒▒ ▒▒      ▒▒▒▒   ▒▒    ▒▒    ▒▒    ▒▒ ▒▒   ▒▒  ▒▒  ▒▒  \n" +
+            "▒▒ ▒▒ ▒▒  ▒▒ ▒▒    ▒▒ ▒▒▒▒▒   ▒▒ ▒▒  ▒▒    ▒▒    ▒▒    ▒▒ ▒▒▒▒▒▒    ▒▒▒▒   \n" +
+            "▓▓ ▓▓  ▓▓ ▓▓  ▓▓  ▓▓  ▓▓      ▓▓  ▓▓ ▓▓    ▓▓    ▓▓    ▓▓ ▓▓   ▓▓    ▓▓    \n" +
+            "██ ██   ████   ████   ███████ ██   ████    ██     ██████  ██   ██    ██    \n";
+
+
     public static final String GREET_MESSAGE = "Welcome to MagusStock. How may I assist you today?";
     public static final String EXIT_MESSAGE = "Hope you had an enjoyable experience. See you next time!";
     public static final String UNKNOWN_COMMAND = "I don't understand that command, please refer to the user guide " +
             "for all available commands";
     public static final String INVALID_ADD = "Wrong/Incomplete Format! Please add new items in the following format: " +
-            "add n/[name] upc/[UPC] qty/[quantity] p/[price]";
+            "add n/[name] upc/[UPC] qty/[quantity] p/[price]\nTip: Ensure that your UPC, quantity and price are all " +
+            "in numbers and within valid range";
+
+    public static final String INVALID_AUTO_SAVE_INPUT = "Invalid input! Please enter either 'on' or 'off' to " +
+            "enable/disable auto-save";
+    public static final String AUTOSAVE_ON = "Auto-save has been enabled!";
+    public static final String AUTOSAVE_OFF = "Auto-save has been disabled!";
     public static final String DUPLICATE_ADD = "Duplicate item found! Please add another item with a different UPC";
     public static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
 
@@ -163,7 +181,9 @@ public class Ui {
 
     public static void greetUser() {
         System.out.println(LINE);
-        System.out.println(LOGO);
+        System.out.println(
+                ANSI_RED + LOGO1 + ANSI_ORANGE + LOGO2 + ANSI_YELLOW + LOGO3 +
+                        ANSI_GREEN + LOGO4 + ANSI_CYAN + LOGO5 + ANSI_RESET);
         System.out.println(GREET_MESSAGE);
         System.out.println(LINE);
     }
@@ -195,6 +215,24 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public static void printInvalidAutoSaveInput() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_AUTO_SAVE_INPUT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printAutoSaveEnabled() {
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + AUTOSAVE_ON + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printAutoSaveDisabled() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + AUTOSAVE_OFF + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
     public static void printDuplicateAdd() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + DUPLICATE_ADD + ANSI_RESET);
@@ -209,6 +247,7 @@ public class Ui {
 
     public static void printSuccessList() {
         System.out.println(LINE);
+        System.out.println(ANSI_CYAN + INVENTORYLOGO + ANSI_CYAN);
         System.out.println(ANSI_GREEN + SUCCESS_LIST + ANSI_RESET);
     }
 
@@ -648,6 +687,34 @@ public class Ui {
         System.out.println(LINE);
         System.out.println(ANSI_RED + NONEXISTENT_REMOVE_ALERT + ANSI_RESET);
         System.out.println(LINE);
+    }
+
+    public static void printDashboard(Inventory inventory, AlertList alertList) {
+        Item mostQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithMostQuantity());
+        Item leastQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithLeastQuantity());
+        System.out.println(LINE);
+        System.out.println(ANSI_YELLOW + DASHBOARDLOGO + ANSI_RESET);
+        System.out.println("Overview:");
+        System.out.println(LINE);
+        System.out.println(ANSI_ORANGE + "Total number of items: " + ANSI_WHITE + inventory.getItemInventory().size() + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Total number of active alerts: " + ANSI_WHITE + alertList.getAlertList().size() + ANSI_RESET);
+
+        System.out.println(ANSI_ORANGE + "Total value of inventory: " + ANSI_WHITE + "$" + inventory.getTotalValue() + ANSI_RESET);
+        if (!inventory.getItemInventory().isEmpty()) {
+            System.out.println(ANSI_ORANGE + "Item with most quantity: " + ANSI_GREEN + mostQuantityItem.getName() + " (" + mostQuantityItem.getQuantity() + ") " + ANSI_RESET);
+            System.out.println(ANSI_ORANGE + "Item with least quantity: " + ANSI_RED + leastQuantityItem.getName() + " (" + leastQuantityItem.getQuantity() + ") " + ANSI_RESET);
+        }
+        System.out.println(LINE);
+        System.out.println(ANSI_CYAN + "Current Session Configurations:" + ANSI_RESET);
+        System.out.println(LINE);
+        if (SessionManager.getAutoSave()) {
+            System.out.println("AutoSave Mode: " + ANSI_GREEN + "TRUE" + ANSI_RESET);
+        } else {
+            System.out.println("AutoSave Mode: " + ANSI_RED + "FALSE" + ANSI_RESET);
+        }
+        System.out.println("Inventory Data File Status: " + SessionManager.InventoryDataFileExist());
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + "List of active alerts: #TODO: IMPLEMENT ACTIVE ALERT VIEW AND ETC" + ANSI_RESET);
     }
 }
 

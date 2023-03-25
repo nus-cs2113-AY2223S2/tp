@@ -3,6 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
+import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 import seedu.duke.exceptions.EditErrorException;
 
@@ -107,6 +108,9 @@ public class EditCommand extends Command {
             upcCodes.remove(oldItem.getUpc());
             upcCodes.put(updatedItem.getUpc(), updatedItem);
             Ui.printEditDetails(oldItem, updatedItem);
+            if (SessionManager.getAutoSave()) {
+                SessionManager.writeSession(inventory);
+            }
         } catch (EditErrorException eee) {
             Ui.printItemNotFound();
         } catch (MissingParametersException mpe) {
