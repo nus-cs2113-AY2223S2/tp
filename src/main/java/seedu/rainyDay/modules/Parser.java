@@ -126,19 +126,20 @@ public class Parser {
     }
 
     private String setCategory(String input) throws RainyDayException {
-        Pattern pattern = Pattern.compile("^-c\\s(.+)");
-        Matcher matcher = pattern.matcher(input);
-        if (matcher.matches()) {
-            this.category = matcher.group(1);
-            logger.info("obtaining category");
-            return "";
-        }
-        Pattern newPattern = Pattern.compile("^-c\\s(.+)\\s-date\\s(\\d{2}/\\d{2}/\\d{4})$");
+        Pattern newPattern = Pattern.compile("-c\\s+(.+)\\s+-date\\s+(\\d{2}/\\d{2}/\\d{4})");
         Matcher newMatcher = newPattern.matcher(input);
         if (newMatcher.matches()) {
             this.category = newMatcher.group(1);
             logger.info("obtaining category");
             return "-date " + newMatcher.group(2);
+        }
+
+        Pattern pattern = Pattern.compile("-c\\s+(.+)");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.matches()) {
+            this.category = matcher.group(1);
+            logger.info("obtaining category");
+            return "";
         }
         logger.warning("add command given by user in the wrong format");
         throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
