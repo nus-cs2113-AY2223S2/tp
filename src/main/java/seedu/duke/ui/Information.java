@@ -135,6 +135,10 @@ public class Information {
 
     //@@author JeraldChen
     public static void deleteSymptom(ArrayList<Symptom> symptoms) {
+        if (symptoms.size() == 0) {
+            System.out.println("You have not entered any symptoms.");
+            return;
+        }
         System.out.println("---------------------------------------------------");
         System.out.println("Here is the list of your symptoms:");
         for (int i = 0; i < symptoms.size(); i++) {
