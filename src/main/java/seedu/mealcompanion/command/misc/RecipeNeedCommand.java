@@ -54,7 +54,7 @@ public class RecipeNeedCommand extends ExecutableCommand{
             ArrayList<Ingredient> ingredientsInRecipe = ingredients.getIngredients();
             boolean isMissing = false;
             int index = 1;
-            mealCompanionSession.getUi().printMessage("These are the ingredients you need:");
+            mealCompanionSession.getUi().printMessage("These are the ingredient(s) you need:");
             for (Ingredient ingredient : ingredientsInRecipe) {
                 double quantityNeeded = additionalQuantityNeeded(ingredient, ingredientsInFridge);
                 if (quantityNeeded > 0) {
