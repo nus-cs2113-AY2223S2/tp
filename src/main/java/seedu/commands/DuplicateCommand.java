@@ -10,7 +10,11 @@ public class DuplicateCommand extends Command {
     }
     @Override
     public CommandResult execute(ExpenditureList expenditures) {
-        expenditures.duplicateExpenditure(index);
-        return new CommandResult(String.format("Duplicated " + expenditures.getExpenditure(index)));
+        try {
+            expenditures.duplicateExpenditure(index);
+            return new CommandResult(String.format("Duplicated " + expenditures.getExpenditure(index)));
+        } catch (IndexOutOfBoundsException e) {
+            return new CommandResult("Index is out of bounds or negative");
+        }
     }
 }
