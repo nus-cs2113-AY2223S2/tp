@@ -1,5 +1,6 @@
 package seedu.commands;
 
+import seedu.exceptions.AlreadyMarkException;
 import seedu.exceptions.NoPaidFieldException;
 import seedu.expenditure.ExpenditureList;
 
@@ -20,6 +21,8 @@ public class MarkCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             return new CommandResult("Index is out of bounds or negative");
         } catch (NoPaidFieldException e) {
+            return new CommandResult(e.getMessage());
+        } catch (AlreadyMarkException e) {
             return new CommandResult(e.getMessage());
         }
 

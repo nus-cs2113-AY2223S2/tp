@@ -12,7 +12,7 @@ public class DuplicateCommand extends Command {
     public CommandResult execute(ExpenditureList expenditures) {
         try {
             expenditures.duplicateExpenditure(index);
-            return new CommandResult(String.format("Duplicated " + expenditures.getExpenditure(index)));
+            return new CommandResult("Duplicated " + expenditures.getExpenditure(index));
         } catch (IndexOutOfBoundsException e) {
             return new CommandResult("Index is out of bounds or negative");
         }

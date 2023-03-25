@@ -16,9 +16,9 @@ public class AccommodationExpenditureCommandTest {
                 2300.7,
                 LocalDate.parse("2021-08-01"));
         assertEquals("Added accommodation expenditure: " +
-                        "[Accommodation] || [ ] || Date: 2021-08-01 || Value: 2300.7 || Description: sheares hall",
+                        "[Accommodation] || [ ] || Date: 1 Aug 2021 || Value: 2300.7 || Description: sheares hall",
                 testAccommodationExpenditureCommand.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Accommodation] || [ ] || Date: 2021-08-01 || Value: 2300.7 || " +
+        assertEquals("1. [Accommodation] || [ ] || Date: 1 Aug 2021 || Value: 2300.7 || " +
                         "Description: sheares hall",
                 testExpenditures.toString());
     }
@@ -33,10 +33,10 @@ public class AccommodationExpenditureCommandTest {
                 2300.7,
                 LocalDate.parse("2021-08-01"));
         assertEquals("Added accommodation expenditure: " +
-                        "[Accommodation] || [ ] || Date: 2021-08-01 || Value: 2300.7 || Description: sheares hall",
+                        "[Accommodation] || [ ] || Date: 1 Aug 2021 || Value: 2300.7 || Description: sheares hall",
                 testAccommodationExpenditureCommand.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Academic] || Date: 2021-08-01 || Value: 1500.0 || Description: laptop\n" +
-                        "2. [Accommodation] || [ ] || Date: 2021-08-01 || Value: 2300.7 || Description: sheares hall",
+        assertEquals("1. [Academic] || Date: 1 Aug 2021 || Value: 1500.0 || Description: laptop\n" +
+                        "2. [Accommodation] || [ ] || Date: 1 Aug 2021 || Value: 2300.7 || Description: sheares hall",
                 testExpenditures.toString());
     }
 }
