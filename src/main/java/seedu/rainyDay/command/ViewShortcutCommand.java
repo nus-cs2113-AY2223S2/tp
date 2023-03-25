@@ -1,10 +1,8 @@
 package seedu.rainyDay.command;
 
-import org.apache.commons.lang3.ObjectUtils;
 import seedu.rainyDay.RainyDay;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -15,13 +13,14 @@ public class ViewShortcutCommand extends Command {
     private static final Logger logger = Logger.getLogger(ShortcutCommand.class.getName());
     private static HashMap<String, String> shortcutCommands;
     private static final String TABLE_BORDER = "" +
-            "+-----+---------------------------------------------+------------+---------------------+----------+\n";
+            "+-----------------------------------+-------------------------------------------------------------+\n";
 
     private static final String ACKNOWLEDGE_VIEW_SHORTCUT_COMMAND = "" +
             "|Here are your shortcuts!                                                                         |\n";
     private static final String HEADERS = "" +
-            "+-----+---------------------------------------------+------------+---------------------+----------+\n" +
+            "+-----------------------------------+-------------------------------------------------------------+\n" +
             "|Shortcut                           |Mapped Command                                               |\n";
+    private static final String NO_SHORTCUTS = "You do not have any shortcuts configured.";
 
     public ViewShortcutCommand() {
         shortcutCommands = RainyDay.userData.getShortcutCommands();
@@ -49,6 +48,9 @@ public class ViewShortcutCommand extends Command {
 
     @Override
     public CommandResult execute() {
+        if (shortcutCommands.size() == 0) {
+            return new CommandResult(NO_SHORTCUTS);
+        }
         printCommandsTable();
         return null;
     }
