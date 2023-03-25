@@ -42,6 +42,9 @@ class ExpenseListTest {
         assertEquals(EXPECTED_SIZE, list.getRecordCount());
     }
     
+    /**
+     * JUnit test to test method to edit category of expense
+     */
     @Test
     void editExpense_editCategory_success() {
         String expectedOutputCategory = "food and drinks";
@@ -57,6 +60,9 @@ class ExpenseListTest {
         }
     }
     
+    /**
+     * JUnit test to test method to edit description of expense
+     */
     @Test
     void editExpense_editDescription_success() {
         String expectedOutputDescription = "birthday party";
@@ -71,6 +77,9 @@ class ExpenseListTest {
         }
     }
     
+    /**
+     * JUnit test to test method to edit date of expense
+     */
     @Test
     void editExpense_editDate_success() {
         LocalDate expectedOutputDate = LocalDate.parse("23-05-2024", FORMATTER);
@@ -85,6 +94,9 @@ class ExpenseListTest {
         }
     }
     
+    /**
+     * JUnit test to test method to edit value of expense
+     */
     @Test
     void editExpense_editValue_success() {
         float expectedOutputValue = (float) 100;
