@@ -56,14 +56,6 @@ class FlashcardListDecoderTest {
     }
 
     @Test
-    void decodeAddressBook_invalidInput_exception() {
-        List<String> storedString = new ArrayList<>();
-        storedString.add("q1 a/a1 d/" + LocalDate.now().toString() + " p/0");
-        assertThrows(StorageOperationException.class,
-                () -> decodeFlashcardList(storedString));
-    }
-
-    @Test
     void decodeAddressBook_correctAndInvalidInput_correctOutput() {
         List<String> storedString = new ArrayList<>();
         storedString.add("q1 a/a1 d/" + LocalDate.now().toString() + " p/0");
