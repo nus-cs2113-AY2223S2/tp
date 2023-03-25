@@ -104,7 +104,7 @@ public class ViewCommand extends Command{
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting ViewCommand.execute()");
-        String output = "";
+        String output = "View Command Done!";
         ArrayList<Integer> validIndexes;
         if(sortByValue) {
             validIndexes = filterBeforeSpecificDateSorted();

@@ -69,7 +69,7 @@ public class Parser {
         }
     }
 
-    private Command addStatement(String addInput) { // example: add -<in/out> <description> $value -c -d
+    private Command addStatement(String addInput) { // example: add -<in/out> <description> $value -c -date
         try {
             this.category = "miscellaneous";
             this.date = LocalDate.now();
@@ -139,19 +139,20 @@ public class Parser {
     }
 
     private String setCategory(String input) throws RainyDayException {
-        Pattern pattern = Pattern.compile("-c\\s+(\\S+)");
+        Pattern newPattern = Pattern.compile("-c\\s+(.+)\\s+-date\\s+(\\d{2}/\\d{2}/\\d{4})");
+        Matcher newMatcher = newPattern.matcher(input);
+        if (newMatcher.matches()) {
+            this.category = newMatcher.group(1);
+            logger.info("obtaining category");
+            return "-date " + newMatcher.group(2);
+        }
+
+        Pattern pattern = Pattern.compile("-c\\s+(.+)");
         Matcher matcher = pattern.matcher(input);
         if (matcher.matches()) {
             this.category = matcher.group(1);
             logger.info("obtaining category");
             return "";
-        }
-        Pattern newPattern = Pattern.compile("-c\\s+(\\S+)\\s+(.*)");
-        Matcher newMatcher = newPattern.matcher(input);
-        if (newMatcher.matches()) {
-            this.category = newMatcher.group(1);
-            logger.info("obtaining category");
-            return newMatcher.group(2);
         }
         logger.warning("add command given by user in the wrong format");
         throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
@@ -200,7 +201,7 @@ public class Parser {
     public Command generateReport(String input) {
         input = input.substring(4).trim();
         LocalDate startDate = LocalDate.now();
-        if(input.equals("")) {
+        if (input.equals("")) {
             startDate = startDate.minusMonths(1);
             return new ViewCommand(startDate, false);
         }

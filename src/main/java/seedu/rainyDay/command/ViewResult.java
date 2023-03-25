@@ -75,6 +75,12 @@ public class ViewResult {
                 remainingValueInformation);
     }
 
+    /**
+     * Prints all statements specified by an ArrayList to the user.
+     * Note that indices are 1-based in ArrayList, while it is 0-based in financialStatement
+     *
+     * @param indexArray ArrayList of Integers with the indices of the entries to print from financialReport
+     */
     public static void printItemsInList(ArrayList<Integer> indexArray) {
         String output;
 
@@ -90,6 +96,7 @@ public class ViewResult {
             System.out.print(output);
             logger.log(Level.INFO, "passed statement " + index);
         }
+
         System.out.print(TABLE_BORDER);
     }
 
