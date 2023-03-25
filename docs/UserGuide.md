@@ -62,7 +62,7 @@ Please note the following about the format of commands given under each [feature
 
 * Items in `markdown` format are related to commands provided by the user
 
-* Items in square brackets are optional
+* Items surrounded by square brackets "[]" are mandatory fields, while the items in curly brackets "{}" are optional
 
 * Items in double quotation marks "" are the names of items 
 
@@ -95,9 +95,19 @@ Please note the following about the format of commands given under each [feature
 
 {feature list with links?}
 
+### Viewing help
+
+In case you need a reminder of the capabilities of rainyDay, the help command will give you a comprehensive list of all
+the possible commands and their respective structures!
+
+Format: `add -DIRECTION DESCRIPTION $AMOUNT`
+
+The table below will be shown:
+![help.png](help.png)
+
 ### Adding a transaction
 
-The most integral feature of any budgeting application is to add transactions. The "add" function of rainyDay allows you 
+An integral feature of any budgeting application is to add transactions. The "add" function of rainyDay allows you 
 to keep track of your inflows and outflows. The following explains how you can add different types of transactions 
 to rainyDay.
 
@@ -107,7 +117,7 @@ to rainyDay.
 The "Simple Usage" of adding transactions is highly recommended for new users who are just starting out. Since rainyDay can comprehend simplified 
 instructions given by the user, it provides a user-friendly experience for those who are just starting to learn how to use the basic functions.
 
-Format: `add -DIRECTION DESCRIPTION $AMOUNT`
+Format: `add [-DIRECTION] [DESCRIPTION] [$AMOUNT]`
 
 * `DIRECTION` should be either:
     * `in` signifying an inflow type of transaction, or
@@ -131,7 +141,7 @@ The "Advanced Usage" of adding transactions is suitable for more advanced users 
 rainyDay. We recommend exploring the advanced features and customization options that the app offers. These features allow 
 for greater control and flexibility in using rainyDay to fit specific needs and preferences. 
 
-Format: `add -DIRECTION DESCRIPTION $AMOUNT [-c CATEGORY] [-date DD/MM/YYYY]`
+Format: `add [-DIRECTION] [DESCRIPTION] [$AMOUNT] {-c CATEGORY} {-date DD/MM/YYYY}`
 
 * `DIRECTION`, `DESCRIPTION`, `AMOUNT` is as mentioned under [Simple Usage](#simple-usage--for-beginner-users-) 
 * `CATEGORY` can contain any characters and space
@@ -161,37 +171,36 @@ rainyDay:
 
 ### Viewing the transactions
 
-{to be updated} <br>
-
-Lists all the transaction added, the total resultant amount after inflow - outflow, total inflow amount, and total
-outflow amount <br>
+An important aspect to track your finances is to view all the transactions that you have already done before. The "view"
+command of rainyDay will list all the transaction added, the resultant amount of all your inflows and outflows.
 
 Format: `view`
 
+The output will look something similar to below
+
+![view.png](view.png)
+
 ### Deleting a transaction
 
-Deletes a transaction from rainyDay. <br>
+The transactions added into rainyDay are not fixed. For whatever reason that you require deleting any transaction data,
+rainyDay's "delete" function supports removing any previous transaction from your overview.
 
-Format: `delete INDEX`
+Format: `delete [INDEX]`
 
 * `INDEX` is the transaction number given by rainyDay to a transaction
-    * The transaction number can be obtained by the [viewing the transactions](#viewing-the-transactions)
+    * The transaction number can be obtained from [viewing the transactions](#viewing-the-transactions)
 
-Example of usage: <br>
+Example of usage:
 After requesting to view the transactions from rainyDay, the following is shown to you: <br>
 ![delete.png](delete.png)
 To delete the transaction with the description lunch at hawker centre, provide the command:
 
 * `delete 2`
 
-The transaction with the description lunch at hawker centre will be deleted, and the transactions shown to you
+The transaction with the description "lunch at hawker centre" will be deleted, and the transactions shown to you
 subsequently after requesting to view the transactions will be as such: <br>
 
 ![delete1.png](delete1.png)
-
-### Viewing help
-
-{todo}
 
 ### Filter statements
 
@@ -274,7 +283,9 @@ been configured in step 3 of the [Quick Start section](#quick-start). The CSV fi
 
 ### Exiting the application
 
-{todo}
+To exit rainyDay, the following format is used:
+
+Format: `exit`
 
 ## FAQ
 
