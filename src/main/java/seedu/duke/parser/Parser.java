@@ -1,16 +1,18 @@
 package seedu.duke.parser;
 
 import seedu.duke.command.Command;
-import seedu.duke.command.ChooseVenueCommand;
-import seedu.duke.command.ListCompanyCommand;
-import seedu.duke.command.PurgeCommand;
 import seedu.duke.command.AddCommand;
-import seedu.duke.command.LoadSampleCompanyCommand;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.ListVenueCommand;
 import seedu.duke.command.ConfirmCommand;
 import seedu.duke.command.UnconfirmCommand;
+import seedu.duke.command.ChooseVenueCommand;
+import seedu.duke.command.FindCompanyCommand;
+import seedu.duke.command.FindIndustryCommand;
+import seedu.duke.command.ListCompanyCommand;
 import seedu.duke.command.ListUnconfirmedCommand;
+import seedu.duke.command.ListVenueCommand;
+import seedu.duke.command.LoadSampleCompanyCommand;
+import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.PurgeCommand;
 
 import seedu.duke.ui.Ui;
 import seedu.duke.exception.WrongFormatException;
@@ -38,13 +40,16 @@ public interface Parser {
             }
             throw new WrongFormatException();
         case "add":
-            input = input.replaceFirst("add n/", "").trim();
-            int indexOfSlash = input.indexOf("/");
-            int lastIndexOfSlash = input.lastIndexOf("/");
-            String companyName = input.substring(0, indexOfSlash - 2);
-            int contactNumber = Integer.parseInt(input.substring(indexOfSlash + 1, lastIndexOfSlash - 2));
-            String contactEmail = input.substring(lastIndexOfSlash + 1);
-            AddCommand addCommand = new AddCommand(command, companyName, contactNumber, contactEmail);
+            input = input.replaceFirst("add", "").trim();
+            int indexOfName = input.indexOf("n/");
+            int indexOfIndustry = input.indexOf("i/");
+            int indexOfContactNumber = input.indexOf("c/");
+            int indexOfContactEmail = input.indexOf("e/");
+            String companyName = input.substring(indexOfName+2, indexOfIndustry).trim();
+            String industry = input.substring(indexOfIndustry+2, indexOfContactNumber).trim();
+            int contactNumber = Integer.parseInt(input.substring(indexOfContactNumber+2, indexOfContactEmail).trim());
+            String contactEmail = input.substring(indexOfContactEmail+2).trim();
+            AddCommand addCommand = new AddCommand(command, industry, companyName, contactNumber, contactEmail);
             return addCommand;
         case "delete":
             if (inputWords.length == 1) {
@@ -89,6 +94,17 @@ public interface Parser {
             int companyUnconfirmNum = Integer.parseInt(inputWords[1]) - 1;
             UnconfirmCommand unconfirmCommand = new UnconfirmCommand(command, companyUnconfirmNum);
             return unconfirmCommand;
+        case "find":
+            if(inputWords[1].equals("industry")){
+                String targetIndustry = input.replace("find", "").trim();
+                targetIndustry = targetIndustry.replace("industry", "").trim();
+                return new FindIndustryCommand("find industry", targetIndustry.toUpperCase());
+            } else if(inputWords[1].equals("company")){
+                String targetCompany = input.replace("find", "").trim();
+                targetCompany = targetCompany.replace("company", "").trim();
+                return new FindCompanyCommand("find company", targetCompany);
+            }
+            break;
         case "help":
             ui.showGuide();
             break;

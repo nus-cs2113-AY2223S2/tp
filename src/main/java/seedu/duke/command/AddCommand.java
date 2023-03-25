@@ -6,16 +6,18 @@ public class AddCommand extends Command {
     protected String companyName;
     protected int contactNumber;
     protected String contactEmail;
+    protected String industry;
 
-    public AddCommand(String commandType, String companyName, int contactNumber, String contactEmail) {
+    public AddCommand(String commandType, String industry, String companyName, int contactNumber, String contactEmail) {
         super(commandType);
         this.companyName = companyName;
+        this.industry = industry;
         this.contactNumber = contactNumber;
         this.contactEmail = contactEmail;
     }
 
     @Override
     public void execute(CompanyList companyList) {
-        companyList.add(companyName, contactNumber, contactEmail);
+        companyList.add(companyName, industry, contactNumber, contactEmail);
     }
 }
