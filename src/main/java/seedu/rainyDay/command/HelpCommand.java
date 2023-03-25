@@ -13,6 +13,7 @@ public class HelpCommand extends Command {
             "|View entries     |view    |{time} {-sort}                                                           |\n" +
             "|Filter entries   |filter  |{-in} {-out} {-d description} {-c category} {-date date}                 |\n" +
             "|Edit an entry    |edit    |[index] {-in/ -out/ -d description/ -v $value/ -c category/ -date date}  |\n" +
+            "|                 |        |[index] [valid add command]                                              |\n" +
             "|Export to .csv   |export  |                                                                         |\n" +
             "|Display a guide  |help    |{command}                                                                |\n" +
             "+=====+==============================================================================================+\n" +
@@ -30,7 +31,7 @@ public class HelpCommand extends Command {
             "| -in / -out    | Mandatory   | Used to denote if the entry is an inflow or an outflow               |\n" +
             "| <description> | Optional    | Used to describe the entry. Description will be left blank if omitted|\n" +
             "| $<value>      | Mandatory   | Used to set the value of the entry.                                  |\n" +
-            "| -c <category> | Optional    | Used to denote the category of the entry. Set to Default if omitted  |\n" +
+            "| -c <category> | Optional    | Used to denote the category of the entry. Set to Misc if omitted     |\n" +
             "| -date <date>  | Optional    | Used to denote the date of the entry. Set to present date if omitted |\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
@@ -75,16 +76,59 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
-            "| view -1d                   | View entries starting from yesterday, including today                 |\n" +
-            "| view -18d                  | View entries starting from the past 18 days                           |\n" +
-            "| view -18d -sort            | View entries starting from the past 18 days in sorted order           |\n" +
-            "| view -3w                   | View entries starting from the past 3 weeks                           |\n" +
-            "| view -6m                   | View entries starting from the past 6 months                          |\n" +
-            "| view -12m                  | View entries starting from the past 12 months / 1 year                |\n" +
-            "| view -3y                   | View entries starting from the past 3 years                           |\n" +
+            "| view -1d                    | View entries starting from yesterday, including today                |\n" +
+            "| view -18d                   | View entries starting from the past 18 days                          |\n" +
+            "| view -18d -sort             | View entries starting from the past 18 days in sorted order          |\n" +
+            "| view -3w                    | View entries starting from the past 3 weeks                          |\n" +
+            "| view -6m                    | View entries starting from the past 6 months                         |\n" +
+            "| view -12m                   | View entries starting from the past 12 months / 1 year               |\n" +
+            "| view -3y                    | View entries starting from the past 3 years                          |\n" +
             "+====================================================================================================+\n";
-    private static final String HELP_FILTER_COMMAND = "Filter WIP. Go Read the UG";
-    private static final String HELP_EDIT_COMMAND = "Edit WIP. Go Read the UG";
+    private static final String HELP_FILTER_COMMAND = "" +
+            "+====================================================================================================+\n" +
+            "| Filter command              | Filters entries by specific constraints                              |\n" +
+            "+====================================================================================================+\n" +
+            "| Details       | Requirement | Description                                                          |\n" +
+            "+---------------+-------------+----------------------------------------------------------------------+\n" +
+            "| -in / -out    | Optional    | Used to filter for only inflows / outflows.                          |\n" +
+            "| -d <desc>     | Optional    | Used to filter for descriptions with a matching substring            |\n" +
+            "| -c <category> | Optional    | Used to filter for categories with a matching substring              |\n" +
+            "| -date <Date>  | Optional    | Used to filter for entries with the specific date                    |\n" +
+            "+====================================================================================================+\n" +
+            "| Example Usage               | Description                                                          |\n" +
+            "+-----------------------------+----------------------------------------------------------------------+\n" +
+            "| filter -in                  | View all inflows                                                     |\n" +
+            "| filter -c Food              | View all entries with the category: Food                             |\n" +
+            "| filter -date 22/03/2022     | View all entries with the date: 22/03/2022                           |\n" +
+            "| filter -d Bubble Tea        | View all entries containing the phrase: Bubble Tea                   |\n" +
+            "| filter -out -c Transfers    | View all outflows with the category: Transfers                       |\n" +
+            "| filter -out -d Shark -c Toys| View all outflows containing the word: Shark and the category: Toys  |\n" +
+            "+====================================================================================================+\n";
+    private static final String HELP_EDIT_COMMAND = "" +
+            "+====================================================================================================+\n" +
+            "| Edit command (WIP)          | Edits a specific entry                                               |\n" +
+            "+====================================================================================================+\n" +
+            "| Details       | Requirement | Description                                                          |\n" +
+            "+---------------+-------------+----------------------------------------------------------------------+\n" +
+            "| index         | Mandatory   | Used to specify the entry to edit                                    |\n" +
+            "| -in / -out    | Optional    | Used to change an entry to outflow or inflow                         |\n" +
+            "| -d <desc>     | Optional    | Used to change the description of an entry                           |\n" +
+            "| -v $<value>   | Optional    | Used to change the value of an entry                                 |\n" +
+            "| -c <category> | Optional    | Used to change the category of an entry                              |\n" +
+            "| -date <Date>  | Optional    | Used to change the date of an entry                                  |\n" +
+            "+---------------+-------------+----------------------------------------------------------------------+\n" +
+            "| Note: Only 1 Optional flag is allowed. For multiple edits to the same entry, use ????              |\n" +
+            "+---------------+-------------+----------------------------------------------------------------------+\n" +
+            "+====================================================================================================+\n" +
+            "| Example Usage               | Description                                                          |\n" +
+            "+-----------------------------+----------------------------------------------------------------------+\n" +
+            "| filter -in                  | View all inflows                                                     |\n" +
+            "| filter -c Food              | View all entries with the category: Food                             |\n" +
+            "| filter -date 22/03/2022     | View all entries with the date: 22/03/2022                           |\n" +
+            "| filter -d Bubble Tea        | View all entries containing the phrase: Bubble Tea                   |\n" +
+            "| filter -out -c Transfers    | View all outflows with the category: Transfers                       |\n" +
+            "| filter -out -d Shark -c Toys| View all outflows containing the word: Shark and the category: Toys  |\n" +
+            "+====================================================================================================+\n";
     private static final String HELP_EXPORT_COMMAND = "" +
             "+====================================================================================================+\n" +
             "| Export command              | Used to export all entries in RainyDay to CSV                        |\n" +
@@ -106,6 +150,12 @@ public class HelpCommand extends Command {
 
     }
 
+    /**
+     * Depending on the requested help, prints a specific help to console.
+     * A general overview is provided if description does not match to valid commands, or if it is empty
+     *
+     * @return a valid CommandResult which prints the string for the Help Table
+     */
     @Override
     public CommandResult execute() {
         if(description.equals("add")) {

@@ -96,15 +96,14 @@ public class ViewCommand extends Command{
         return filteredIndexes;
     }
 
-
     /**
-     * Executes the command and print the relevant output message
+     * Executes the command and print the relevant statements by calling ViewResult
+     * If there are no valid Indices, an error message to indicate this is printed instead
      */
     @Override
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting ViewCommand.execute()");
-        String output = "View Command Done!";
         ArrayList<Integer> validIndexes;
         if(sortByValue) {
             validIndexes = filterBeforeSpecificDateSorted();
@@ -114,12 +113,11 @@ public class ViewCommand extends Command{
         if (validIndexes.size() == 0) {
             assert financialReport.getStatementCount() == 0 : "statement count mismatch";
             logger.log(Level.INFO, "empty financial report");
-            output = "Your financial report is empty";
+            String output = "Your financial report is empty";
             return new CommandResult(output);
         }
         assert financialReport.getStatementCount() != 0 : "statement count mismatch";
-        CommandResult result = new CommandResult(output);
         ViewResult.printReport(validIndexes);
-        return result;
+        return null;
     }
 }
