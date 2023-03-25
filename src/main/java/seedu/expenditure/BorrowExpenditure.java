@@ -4,9 +4,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class BorrowExpenditure extends Expenditure {
+    public static final String expenditureType = "B";
     private LocalDate deadline;
     private String borrowerName;
-    public static final String expenditureType = "B";
+
 
     public BorrowExpenditure(String description, String borrowerName, double borrowValue, LocalDate date,
                              LocalDate deadline) {
