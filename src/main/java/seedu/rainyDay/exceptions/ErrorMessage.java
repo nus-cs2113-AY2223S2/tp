@@ -12,7 +12,7 @@ public enum ErrorMessage {
     WRONG_EDIT_FORMAT("Sorry, your edit command is invalid. Edit format is as follows: \n" +
             "edit [index] ADDCOMMAND\n" + "or\n" +
             "edit [index] {-in/ -out/ -d description/ -v $value/ -c category/ -date date\n"),
-    NO_EDIT_INDEX("Please include a edit index!");
+    MISSING_DETAILS("Please include some details for your command!");
 
     private final String error;
 

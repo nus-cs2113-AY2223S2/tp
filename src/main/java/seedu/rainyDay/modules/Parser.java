@@ -13,6 +13,7 @@ import seedu.rainyDay.command.InvalidCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -31,7 +32,8 @@ public class Parser {
     private String filterFlag;
     private double amount = -1.0;
     private String field;
-    private LocalDate date = LocalDate.now();
+    private LocalDate date;
+
     public Command parseUserInput(String userInput) {
         try {
             assert userInput != null : "Failed to read user input!";
@@ -47,7 +49,7 @@ public class Parser {
                 return generateReport(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
                 logger.info("help command executing");
-                return displayHelp(action[1].trim());
+                return displayHelp(userInput.trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
                 logger.info("filter command executing");
                 return filterStatement(action[1]);
@@ -63,13 +65,14 @@ public class Parser {
             }
         } catch (IndexOutOfBoundsException e) {
             logger.warning("filter or add command missing details");
-            return new InvalidCommand(ErrorMessage.UNRECOGNIZED_INPUT.toString());
+            return new InvalidCommand(ErrorMessage.MISSING_DETAILS.toString());
         }
     }
 
     private Command addStatement(String addInput) { // example: add -<in/out> <description> $value -c -d
         try {
             this.category = "miscellaneous";
+            this.date = LocalDate.now();
             String remainingInformation = returnRemainingInformation(addInput);
             logger.info("obtained mandatory information");
             if (remainingInformation.trim().isEmpty()) {
@@ -103,7 +106,12 @@ public class Parser {
             if (matcher.matches()) {
                 this.direction = matcher.group(1);
                 this.description = matcher.group(2);
-                this.amount = Double.parseDouble(matcher.group(3));
+                double exactAmount = Double.parseDouble(matcher.group(3));
+                exactAmount = (int) (exactAmount*100);
+                if(exactAmount == 0) {
+                    throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+                }
+                this.amount = exactAmount / 100;
                 logger.info("obtaining mandatory information");
                 return "";
             }
@@ -112,7 +120,13 @@ public class Parser {
             if (newMatcher.matches()) {
                 this.direction = newMatcher.group(1);
                 this.description = newMatcher.group(2);
-                this.amount = Double.parseDouble(newMatcher.group(3));
+                double exactAmount = Double.parseDouble(matcher.group(3));
+
+                exactAmount = (int) (exactAmount*100);
+                if(exactAmount == 0) {
+                    throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+                }
+                this.amount = exactAmount / 100;
                 logger.info("obtaining mandatory information");
                 return newMatcher.group(4);
             }
@@ -198,7 +212,7 @@ public class Parser {
                 int minusAmount = Integer.parseInt(matcher.group(1));
                 String dateType = matcher.group(2);
                 boolean sortRequired = matcher.group(3).equals("-sort");
-                if (dateType.equals("d") && minusAmount < 31) {
+                if (dateType.equals("d") && minusAmount < 32) {
                     startDate = startDate.minusDays(minusAmount);
                     return new ViewCommand(startDate, sortRequired);
                 }

@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import static seedu.rainyDay.RainyDay.financialReport;
 
+//@@author BenjaminPoh
 public class ViewResult {
     private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
             "|Here is your financial report!                                                                   |\n";
@@ -27,7 +28,6 @@ public class ViewResult {
     /**
      * Sets up logger for logging
      */
-    //@Override
     protected void setupLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
@@ -40,7 +40,6 @@ public class ViewResult {
         }
     }
 
-    //@@author BenjaminPoh
     private static String formatFinancialStatement(int statementIndex, FinancialStatement currentStatement) {
         String statementOutput;
         String statementName = currentStatement.getDescription();
@@ -53,7 +52,6 @@ public class ViewResult {
         } else {
             date = currentStatement.getDate().format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
         }
-
         String index = String.format("00000%d", statementIndex);
         index = index.substring(index.length() - 5);
         String value = String.format(" %s$%.2f            ", statementDirection, statementValue);
