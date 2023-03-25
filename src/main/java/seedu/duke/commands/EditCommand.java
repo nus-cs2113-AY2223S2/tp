@@ -7,6 +7,7 @@ import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 import seedu.duke.exceptions.EditErrorException;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -104,10 +105,13 @@ public class EditCommand extends Command {
             for (int data = 1; data < editInfo.length; data += 1) {
                 updateItemInfo(updatedItem, editInfo[data]);
             }
+            Item itemForHistory = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
+                    updatedItem.getPrice());
             handleTrie(updatedItem, oldItem);
             upcCodes.remove(oldItem.getUpc());
             upcCodes.put(updatedItem.getUpc(), updatedItem);
             Ui.printEditDetails(oldItem, updatedItem);
+            inventory.getUpcCodesHistory().get(oldItem.getUpc()).add(itemForHistory);
             if (SessionManager.getAutoSave()) {
                 SessionManager.writeSession(inventory);
             }

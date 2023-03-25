@@ -4,13 +4,20 @@ import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
+import seedu.duke.types.Types;
 
-import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static seedu.duke.utils.ColorCode.*;
+import static seedu.duke.utils.ColorCode.ANSI_BLUE;
+import static seedu.duke.utils.ColorCode.ANSI_CYAN;
+import static seedu.duke.utils.ColorCode.ANSI_GREEN;
+import static seedu.duke.utils.ColorCode.ANSI_ORANGE;
+import static seedu.duke.utils.ColorCode.ANSI_RED;
+import static seedu.duke.utils.ColorCode.ANSI_RESET;
+import static seedu.duke.utils.ColorCode.ANSI_WHITE;
+import static seedu.duke.utils.ColorCode.ANSI_YELLOW;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
@@ -21,13 +28,19 @@ public class Ui {
                     "▒▒   ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒    ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒   ▒▒ \n" +
                     "▓▓   ▓▓ ▓▓   ▓▓      ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ \n" +
                     "██████  ██   ██ ███████ ██   ██ ██████   ██████  ██   ██ ██   ██ ██████  \n";
-    public static final String LOGO1 = "░░░    ░░░  ░░░░░   ░░░░░░  ░░    ░░ ░░░░░░░ ░░░░░░░ ░░░░░░░░  ░░░░░░   ░░░░░░ ░░   ░░ \n";
-    public static final String LOGO2 = "▒▒▒▒  ▒▒▒▒ ▒▒   ▒▒ ▒▒       ▒▒    ▒▒ ▒▒      ▒▒         ▒▒    ▒▒    ▒▒ ▒▒      ▒▒  ▒▒  \n";
-    public static final String LOGO3 = "▒▒ ▒▒▒▒ ▒▒ ▒▒▒▒▒▒▒ ▒▒   ▒▒▒ ▒▒    ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒    ▒▒    ▒▒    ▒▒ ▒▒      ▒▒▒▒▒ \n";
-    public static final String LOGO4 = "▓▓  ▓▓  ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓    ▓▓      ▓▓      ▓▓    ▓▓    ▓▓    ▓▓ ▓▓      ▓▓  ▓▓  \n";
-    public static final String LOGO5 = "██      ██ ██   ██  ██████   ██████  ███████ ███████    ██     ██████   ██████ ██   ██ \n";
+    public static final String LOGO1 = "░░░    ░░░  ░░░░░   ░░░░░░  ░░    ░░ ░░░░░░░ "
+            + "░░░░░░░ ░░░░░░░░  ░░░░░░   ░░░░░░ ░░   ░░ \n";
+    public static final String LOGO2 = "▒▒▒▒  ▒▒▒▒ ▒▒   ▒▒ ▒▒       ▒▒    ▒▒ ▒▒      "
+            + "▒▒         ▒▒    ▒▒    ▒▒ ▒▒      ▒▒  ▒▒  \n";
+    public static final String LOGO3 = "▒▒ ▒▒▒▒ ▒▒ ▒▒▒▒▒▒▒ ▒▒   ▒▒▒ ▒▒    ▒▒ ▒▒▒▒▒▒▒ "
+            + "▒▒▒▒▒▒▒    ▒▒    ▒▒    ▒▒ ▒▒      ▒▒▒▒▒ \n";
+    public static final String LOGO4 = "▓▓  ▓▓  ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓    ▓▓      ▓▓ "
+            + "     ▓▓    ▓▓    ▓▓    ▓▓ ▓▓      ▓▓  ▓▓  \n";
+    public static final String LOGO5 = "██      ██ ██   ██  ██████   ██████  ███████ "
+            + "███████    ██     ██████   ██████ ██   ██ \n";
 
-    public static final String INVENTORYLOGO = "░░ ░░░    ░░ ░░    ░░ ░░░░░░░ ░░░    ░░ ░░░░░░░░  ░░░░░░  ░░░░░░  ░░    ░░ \n" +
+    public static final String INVENTORYLOGO = "░░ ░░░    ░░ ░░    ░░ ░░░░░░░ ░░░    ░░ "
+            + "░░░░░░░░  ░░░░░░  ░░░░░░  ░░    ░░ \n" +
             "▒▒ ▒▒▒▒   ▒▒ ▒▒    ▒▒ ▒▒      ▒▒▒▒   ▒▒    ▒▒    ▒▒    ▒▒ ▒▒   ▒▒  ▒▒  ▒▒  \n" +
             "▒▒ ▒▒ ▒▒  ▒▒ ▒▒    ▒▒ ▒▒▒▒▒   ▒▒ ▒▒  ▒▒    ▒▒    ▒▒    ▒▒ ▒▒▒▒▒▒    ▒▒▒▒   \n" +
             "▓▓ ▓▓  ▓▓ ▓▓  ▓▓  ▓▓  ▓▓      ▓▓  ▓▓ ▓▓    ▓▓    ▓▓    ▓▓ ▓▓   ▓▓    ▓▓    \n" +
@@ -129,6 +142,17 @@ public class Ui {
 
     private static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove " +
             "does not exist.";
+    public static final String ITEM_ADDED_AT = "Item added at: ";
+    public static final String AT = "At: ";
+    public static final String CATEGORY_CHANGED_TO = "Category changed to: ";
+    public static final String SOLD = "Sold ";
+    public static final String ITEMS = " items";
+    public static final String BOUGHT = "Bought ";
+    public static final String RENAMED_TO = "Renamed to: ";
+    public static final String PRICE_DECREASED_FROM_$ = "Price decreased from $";
+    public static final String PRICE_INCREASED_FROM_$ = "Price increased from $";
+    public static final String TO_$ = " to $";
+    public static final String TAGS_CHANGED_TO = "Tags changed to: ";
 
     public Ui() {
         greetUser();
@@ -645,13 +669,18 @@ public class Ui {
         System.out.println(ANSI_YELLOW + DASHBOARDLOGO + ANSI_RESET);
         System.out.println("Overview:");
         System.out.println(LINE);
-        System.out.println(ANSI_ORANGE + "Total number of items: " + ANSI_WHITE + inventory.getItemInventory().size() + ANSI_RESET);
-        System.out.println(ANSI_ORANGE + "Total number of active alerts: " + ANSI_WHITE + alertList.getAlertList().size() + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Total number of items: " + ANSI_WHITE + inventory.getItemInventory().size()
+                + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Total number of active alerts: " + ANSI_WHITE
+                + alertList.getAlertList().size() + ANSI_RESET);
 
-        System.out.println(ANSI_ORANGE + "Total value of inventory: " + ANSI_WHITE + "$" + inventory.getTotalValue() + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Total value of inventory: " + ANSI_WHITE + "$"
+                + inventory.getTotalValue() + ANSI_RESET);
         if (!inventory.getItemInventory().isEmpty()) {
-            System.out.println(ANSI_ORANGE + "Item with most quantity: " + ANSI_GREEN + mostQuantityItem.getName() + " (" + mostQuantityItem.getQuantity() + ") " + ANSI_RESET);
-            System.out.println(ANSI_ORANGE + "Item with least quantity: " + ANSI_RED + leastQuantityItem.getName() + " (" + leastQuantityItem.getQuantity() + ") " + ANSI_RESET);
+            System.out.println(ANSI_ORANGE + "Item with most quantity: " + ANSI_GREEN
+                    + mostQuantityItem.getName() + " (" + mostQuantityItem.getQuantity() + ") " + ANSI_RESET);
+            System.out.println(ANSI_ORANGE + "Item with least quantity: " + ANSI_RED
+                    + leastQuantityItem.getName() + " (" + leastQuantityItem.getQuantity() + ") " + ANSI_RESET);
         }
         System.out.println(LINE);
         System.out.println(ANSI_CYAN + "Current Session Configurations:" + ANSI_RESET);
@@ -661,9 +690,61 @@ public class Ui {
         } else {
             System.out.println("AutoSave Mode: " + ANSI_RED + "FALSE" + ANSI_RESET);
         }
-        System.out.println("Inventory Data File Status: " + SessionManager.InventoryDataFileExist());
+        System.out.println("Inventory Data File Status: " + SessionManager.inventoryDataFileExist());
         System.out.println(LINE);
-        System.out.println(ANSI_GREEN + "List of active alerts: #TODO: IMPLEMENT ACTIVE ALERT VIEW AND ETC" + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "List of active alerts: #TODO: IMPLEMENT ACTIVE ALERT VIEW AND ETC"
+                + ANSI_RESET);
+    }
+    public static void printHistory(ArrayList<Item> results){
+        System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
+        System.out.println(ITEM_ADDED_AT + results.get(0).getDateTimeString());
+        System.out.println(results.get(0).toString());
+        System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
+        for(int i = 1; i<results.size(); i++){
+            System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
+            System.out.println(AT + results.get(i).getDateTimeString() + ANSI_CYAN);
+            ArrayList<Types.EditType> edits = results.get(i-1).getEditTypes(results.get(i));
+            for(Types.EditType editType: edits){
+                switch(editType){
+                case RECATEGORIZE:
+                    System.out.println(CATEGORY_CHANGED_TO + results.get(i).getCategory());
+                    break;
+                case SOLD:
+                    System.out.print(SOLD + (results.get(i-1).getQuantity()-results.get(i).getQuantity()));
+                    System.out.println(ITEMS);
+                    break;
+                case BOUGHT:
+                    System.out.print(BOUGHT + (results.get(i).getQuantity()-results.get(i-1).getQuantity()));
+                    System.out.println(ITEMS);
+                    break;
+                case RENAME:
+                    System.out.println(RENAMED_TO + results.get(i).getName());
+                    break;
+                case PRICE_DECREASE:
+                    System.out.print(PRICE_DECREASED_FROM_$ + results.get(i-1).getPrice());
+                    System.out.println(TO_$ + results.get(i).getPrice());
+                    break;
+                case PRICE_INCREASE:
+                    System.out.print(PRICE_INCREASED_FROM_$ + results.get(i-1).getPrice());
+                    System.out.println(TO_$ + results.get(i).getPrice());
+                    break;
+                case CHANGE_TAG:
+                    ArrayList<String> tags = results.get(i-1).getTags();
+                    if(!tags.isEmpty()){
+                        System.out.print(TAGS_CHANGED_TO);
+                        for(int j = 0; j < tags.size()-1; j++){
+                            System.out.print(tags.get(j) + ", ");
+                        }
+                        System.out.println(tags.get(tags.size()-1));
+                    }
+                    break;
+                default:
+                    break;
+                }
+            }
+            System.out.println(ANSI_RESET + results.get(i).toString());
+            System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
+        }
     }
 }
 

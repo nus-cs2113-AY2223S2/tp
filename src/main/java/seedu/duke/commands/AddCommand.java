@@ -2,7 +2,6 @@ package seedu.duke.commands;
 
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
-import seedu.duke.types.Types;
 import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 
@@ -44,6 +43,11 @@ public class AddCommand extends Command {
                 itemNameHash.get(itemName).add(item);
                 itemsTrie.add(itemName);
             }
+            Item itemForHistory = new Item(item.getName(),item.getUpc(),item.getQuantity(),item.getPrice());
+            if(!inventory.getUpcCodesHistory().containsKey(item.getUpc())){
+                inventory.getUpcCodesHistory().put(item.getUpc(),new ArrayList<>());
+            }
+            inventory.getUpcCodesHistory().get(item.getUpc()).add(itemForHistory);
             if (SessionManager.getAutoSave()) {
                 SessionManager.writeSession(inventory);
             }

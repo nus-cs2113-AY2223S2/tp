@@ -62,6 +62,7 @@ public class RemoveCommand extends Command {
         case "Y":
             int indexOfItem = itemInventory.indexOf(itemToRemove);
             upcCodes.remove(upcCode);
+            inventory.getUpcCodesHistory().remove(upcCode);
             itemInventory.remove(indexOfItem);
             String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
             for (String itemName : itemNames) {
@@ -100,6 +101,7 @@ public class RemoveCommand extends Command {
             String upcCode = itemToRemove.getUpc();
             int i = itemInventory.indexOf(itemToRemove);
             upcCodes.remove(upcCode);
+            inventory.getUpcCodesHistory().remove(upcCode);
             itemInventory.remove(i);
             if (itemNameHash.get(itemName).size() == 1) {
                 itemNameHash.remove(itemName);
