@@ -47,6 +47,11 @@ public class ExpenditureList {
         }
     }
 
+    public void duplicateExpenditure(int index) {
+        Expenditure expenditure = expenditures.get(index);
+        addExpenditure(expenditure);
+    }
+
     public ArrayList<Expenditure> getExpenditures() {
         return expenditures;
     }
