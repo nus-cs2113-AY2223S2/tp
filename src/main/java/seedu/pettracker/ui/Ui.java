@@ -130,4 +130,12 @@ public class Ui {
     public void unmarkTaskCommandMessage() {
         System.out.println("Task marked as not done");
     }
+
+    /**
+     * Message that prints when the storage experiences IO error.
+     */
+    public void fileIOErrorMessage() {
+        System.out.println("Error with File IO");
+    }
+
 }

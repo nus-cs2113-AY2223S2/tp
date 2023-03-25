@@ -1,5 +1,6 @@
 package seedu.pettracker.commands;
 
+import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 
 public class ExitCommand extends Command {
@@ -15,8 +16,8 @@ public class ExitCommand extends Command {
      * @param ui Ui class to do prints
      */
     @Override
-    public void execute(Ui ui) {
-        
+    public void execute(Ui ui, Storage storage) {
+
     }
 
     /**

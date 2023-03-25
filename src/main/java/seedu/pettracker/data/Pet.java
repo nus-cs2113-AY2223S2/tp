@@ -97,4 +97,8 @@ public class Pet {
     public String toString() {
         return getPetName() + "\nType: " + getPetType() + "\nAge: " + getAge() + "\nWeight: " + getWeight();
     }
+
+    public String saveFormat() {
+        return getPetName() + "|" + getPetType() + "|" + getAge() + "|" + getWeight();
+    }
 }

@@ -15,4 +15,22 @@ Successfully removed Weight from Bob
 
 Successfully removed pet: Bob
 
+Successfully added new pet: Alice
+
+Updated Type to Cat for Alice
+
+Updated Age to 5 for Alice
+
+Updated Weight to 20 for Alice
+
+Successfully added new pet: Candy
+
+Updated Type to Dog for Candy
+
+Updated Age to 3 for Candy
+
+Updated Weight to 10 for Candy
+
+Successfully removed Age from Candy
+
 Goodbye! See you soon.

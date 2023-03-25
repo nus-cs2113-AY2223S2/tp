@@ -1,5 +1,6 @@
 package seedu.pettracker.commands;
 
+import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.PetList;
 
@@ -23,8 +24,9 @@ public class EditStatCommand extends Command {
      * @param ui Ui to do printing if required
      */
     @Override
-    public void execute(Ui ui) {
+    public void execute(Ui ui, Storage storage) {
         PetList.editPetStats(petName, statName, statValue);
+        PetList.savePetsToStorage(storage, ui);
         ui.editStatCommandMessage(petName, statName, statValue);
     }
 
