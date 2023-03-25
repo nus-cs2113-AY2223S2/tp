@@ -5,13 +5,13 @@ import seedu.duke.utils.trie.Trie;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static java.lang.Math.round;
 
 public class Inventory {
     private final ArrayList<Item> itemInventory = new ArrayList<>();
     private final HashMap<String, Item> upcCodes = new HashMap<>();
     private final Trie trie = new Trie();
     private final HashMap<String, ArrayList<Item>> itemNameHash = new HashMap<>();
+    private final HashMap<String, ArrayList<Item>> upcCodesHistory = new HashMap<>();
 
     private final AlertList alertList = new AlertList();
 
@@ -83,6 +83,8 @@ public class Inventory {
     public HashMap<String, ArrayList<Item>> getItemNameHash() {
         return itemNameHash;
     }
-
+    public HashMap<String, ArrayList<Item>> getUpcCodesHistory() {
+        return upcCodesHistory;
+    }
 
 }

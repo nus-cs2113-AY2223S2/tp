@@ -18,6 +18,12 @@ public class MissingParametersException extends Exception {
                 "guide!" + ANSI_RESET);
         System.out.println(LINE);
     }
+    public void missingHistoryItemParameters() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + "History parameters incorrect! Please follow the format provided in the user " +
+                "guide!" + ANSI_RESET);
+        System.out.println(LINE);
+    }
 
     public void missingRemoveItemParameters() {
         System.out.println(LINE);

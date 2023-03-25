@@ -14,9 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import java.util.ArrayList;
 
 public class SearchCommandTest {
-    Inventory inventory = new Inventory();
+    Inventory inventory;
     @Test
     public void searchByKeywordTest(){
+        inventory = new Inventory();
         AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
         addParser.run();
         addParser = new AddParser("n/orange upc/2 qty/5 p/5",inventory);
@@ -72,6 +73,7 @@ public class SearchCommandTest {
 
     @Test
     public void searchByUPCTest(){
+        inventory = new Inventory();
         AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
         addParser.run();
         addParser = new AddParser("n/orange upc/2 qty/5 p/5",inventory);

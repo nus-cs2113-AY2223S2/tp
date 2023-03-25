@@ -9,6 +9,7 @@ import seedu.duke.utils.parsers.AutoSaveParser;
 import seedu.duke.utils.parsers.EditParser;
 import seedu.duke.utils.parsers.FilterParser;
 import seedu.duke.utils.parsers.HelpParser;
+import seedu.duke.utils.parsers.HistoryParser;
 import seedu.duke.utils.parsers.ListParser;
 import seedu.duke.utils.parsers.RemoveParser;
 import seedu.duke.utils.parsers.SearchParser;
@@ -58,8 +59,8 @@ public class ParserHandler {
             searchParser.run();
             break;
         case "searchupc":
-            searchParser = new SearchParser(commandInfo, inventory, Types.SearchType.UPC);
-            searchParser.run();
+            SearchParser searchParserUPC = new SearchParser(commandInfo, inventory, Types.SearchType.UPC);
+            searchParserUPC.run();
             break;
         case "filter":
             FilterParser filterParser = new FilterParser(commandInfo, inventory);
@@ -83,6 +84,10 @@ public class ParserHandler {
             break;
         case "db":
             Ui.printDashboard(inventory, alertList);
+            break;
+        case "history":
+            HistoryParser historyParser = new HistoryParser(commandInfo, inventory);
+            historyParser.run();
             break;
         default:
             Ui.printUnknownCommand();

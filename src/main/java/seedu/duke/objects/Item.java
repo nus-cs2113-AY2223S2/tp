@@ -1,9 +1,15 @@
 package seedu.duke.objects;
 
+import seedu.duke.types.Types;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.time.LocalDateTime;
 
-public class Item {
+public class Item implements Comparable<Item>{
+    private final LocalDateTime dateTime;
     private String upc;
     private String name;
     private Double price;
@@ -16,6 +22,14 @@ public class Item {
         this.upc = upc;
         this.price = price;
         this.quantity = qty;
+        this.dateTime = LocalDateTime.now();
+    }
+    public Item(String name, String upc, Integer qty, Double price, LocalDateTime dateTime) {
+        this.name = name;
+        this.upc = upc;
+        this.price = price;
+        this.quantity = qty;
+        this.dateTime = dateTime;
     }
 
     public ArrayList<String> getTags() {
@@ -24,6 +38,10 @@ public class Item {
 
     public void setTags(ArrayList<String> tags) {
         this.tags = tags;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
 
@@ -86,6 +104,50 @@ public class Item {
         }
         return itemsChanged != 0;
     }
+    public ArrayList<Types.EditType> getEditTypes(Item item){
+        ArrayList<Types.EditType> results = new ArrayList<>();
+        if(quantity<item.getQuantity()){
+            results.add(Types.EditType.BOUGHT);
+        }
+        if(quantity>item.getQuantity()){
+            results.add(Types.EditType.SOLD);
+        }
+        if(!category.equals(item.getCategory())){
+            results.add(Types.EditType.RECATEGORIZE);
+        }
+        if(!name.equals(item.getName())){
+            results.add(Types.EditType.RENAME);
+        }
+        if(price<item.getPrice()){
+            results.add(Types.EditType.PRICE_INCREASE);
+        }
+        if(price>item.getPrice()){
+            results.add(Types.EditType.PRICE_DECREASE);
+        }
+        if(!tags.equals(item.getTags())){
+            results.add(Types.EditType.CHANGE_TAG);
+        }
+        return results;
+    }
+    private static String getDateString(LocalDate date){
+        return date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear();
+    }
+    private static int adjustHour(int hour){
+        if(hour%12==0){
+            return 12;
+        }
+        return hour%12;
+    }
+    private static String getTimeString(LocalTime time){
+        LocalTime noon = LocalTime.parse("12:00");
+        return adjustHour(time.getHour()) + ":" + (time.getMinute()<10?"0":"") + time.getMinute()
+                + " " + (time.isBefore(noon)?"AM":"PM");
+    }
+    public String getDateTimeString(){
+        LocalDate date = dateTime.toLocalDate();
+        LocalTime time = dateTime.toLocalTime();
+        return getTimeString(time) + ", " + getDateString(date);
+    }
 
     @Override
     public String toString() {
@@ -109,7 +171,23 @@ public class Item {
             return false;
         }
         Item item = (Item) o;
-        return item.getUpc().equals(upc);
+        if(item.getUpc().equals(upc)){
+            return true;
+        }
+        return false;
     }
 
+    @Override
+    public int compareTo(Item o) {
+        if(o.getDateTime()==null || dateTime == null){
+            return 0;
+        }
+        if(o.getDateTime().isEqual(dateTime)){
+            return 0;
+        }
+        if(dateTime.isBefore(o.getDateTime())){
+            return -1;
+        }
+        return 1;
+    }
 }
