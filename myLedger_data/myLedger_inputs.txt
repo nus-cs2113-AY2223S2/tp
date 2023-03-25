@@ -1,5 +1,6 @@
 Acadd/penv/2.1t/2023-01-01p/Nonen/Noneo/None
+Fd/chicken ricev/4.5t/2023-03-21p/Nonen/Noneo/None
+Trd/circle linev/2.1t/2023-03-21p/Nonen/Noneo/None
 Tud/schoolv/8100.0t/2023-01-27p/[ ]n/Noneo/None
-Accomd/rcv/3000.0t/2023-01-28p/[X]n/Noneo/None
-Ld/yayv/25.1t/2023-02-02p/Nonen/Akshay Narayano/2023-04-02
-Trd/Eat Foodv/5.5t/2023-02-15p/Nonen/Noneo/None
+Accomd/rcv/3000.0t/2023-02-02p/[ ]n/Noneo/None
+Acadd/NUSv/2.2t/2023-02-02p/Nonen/Noneo/None

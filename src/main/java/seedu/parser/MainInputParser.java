@@ -21,6 +21,7 @@ import seedu.commands.InvalidCommand;
 import seedu.commands.UnmarkCommand;
 import seedu.commands.MarkCommand;
 import seedu.commands.SortCommand;
+import seedu.exceptions.WrongInputException;
 
 import java.time.format.DateTimeParseException;
 
@@ -86,6 +87,8 @@ public class MainInputParser {
             return new InvalidCommand("Input command does not have required parameters! Please try again");
         } catch (DateTimeParseException d) {
             return new InvalidCommand("date time error");
+        } catch (WrongInputException e) {
+            return new InvalidCommand("invalid expenditure type");
         }
     }
 }

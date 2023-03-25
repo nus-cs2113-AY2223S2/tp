@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class BorrowExpenditure extends Expenditure {
     private LocalDate deadline;
     private String borrowerName;
+    public static final String expenditureType = "B";
 
     public BorrowExpenditure(String description, String borrowerName, double borrowValue, LocalDate date,
                              LocalDate deadline) {
@@ -37,7 +38,7 @@ public class BorrowExpenditure extends Expenditure {
 
     @Override
     public String getExpenditureType() {
-        return "B";
+        return expenditureType;
     }
 
     @Override

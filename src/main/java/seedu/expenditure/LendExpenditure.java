@@ -3,6 +3,7 @@ package seedu.expenditure;
 import java.time.LocalDate;
 
 public class LendExpenditure extends Expenditure {
+    public static final String expenditureType = "L";
     private LocalDate deadline;
     private String lenderName;
 
@@ -36,7 +37,7 @@ public class LendExpenditure extends Expenditure {
     }
     @Override
     public String getExpenditureType() {
-        return "L";
+        return expenditureType;
     }
 
     @Override
