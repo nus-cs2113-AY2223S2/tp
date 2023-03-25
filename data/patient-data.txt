@@ -1,21 +1,16 @@
 49
 Demo
-11
+6
 Bronchitis
-Muscle Ache
-Headache
-COVID-19
-Dengue Fever
-General Cold
-General Flu
-Insomnia
 Sore Throat
 Fever
-Insomnia
-1
+Headache
+Sore Throat
+Fever
+2
 2023/03/23 Ultracarbon Paracetamol Ibuprofen Aspirin Robitussin Magnesium 
+2023/03/25 Paracetamol Lozenges Guaifenesin Ibuprofen 
 50
 sjfnsdkl
 0
 0
-
