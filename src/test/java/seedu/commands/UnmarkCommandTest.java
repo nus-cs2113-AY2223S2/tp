@@ -2,6 +2,7 @@ package seedu.commands;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.exceptions.AlreadyMarkException;
 import seedu.exceptions.NoPaidFieldException;
 import seedu.expenditure.AcademicExpenditure;
 import seedu.expenditure.ExpenditureList;
@@ -16,7 +17,7 @@ class UnmarkCommandTest {
     ExpenditureList testExpenditures = new ExpenditureList();
 
     @BeforeEach
-    public void setUpExpenditureList() throws NoPaidFieldException {
+    public void setUpExpenditureList() throws NoPaidFieldException, AlreadyMarkException {
         testExpenditures.addExpenditure(
                 new AcademicExpenditure("pen", 2.10, LocalDate.parse("2023-01-01")));
         testExpenditures.addExpenditure(
@@ -42,14 +43,14 @@ class UnmarkCommandTest {
     public void test_unmarkCommand_onThreeIndex() {
         UnmarkCommand testUnmarkThreeIndex = new UnmarkCommand(3);
         assertEquals("Unmarked your expenditure!\n" +
-                        "[Tuition] || [ ] || Date: 2023-01-27 || Value: 8100.0 || Description: school",
+                        "[Tuition] || [ ] || Date: 27 Jan 2023 || Value: 8100.0 || Description: school",
                 testUnmarkThreeIndex.execute(testExpenditures).getCommandResult());
         testUnmarkThreeIndex.execute(testExpenditures);
-        assertEquals("1. [Academic] || Date: 2023-01-01 || Value: 2.1 || Description: pen\n" +
-                        "2. [Food] || Date: 2023-03-21 || Value: 4.5 || Description: chicken rice\n" +
-                        "3. [Transport] || Date: 2023-03-21 || Value: 2.1 || Description: circle line\n" +
-                        "4. [Tuition] || [ ] || Date: 2023-01-27 || Value: 8100.0 || Description: school\n" +
-                        "5. [Accommodation] || [X] || Date: 2023-01-28 || Value: 3000.0 || Description: rc",
+        assertEquals("1. [Academic] || Date: 1 Jan 2023 || Value: 2.1 || Description: pen\n" +
+                        "2. [Food] || Date: 21 Mar 2023 || Value: 4.5 || Description: chicken rice\n" +
+                        "3. [Transport] || Date: 21 Mar 2023 || Value: 2.1 || Description: circle line\n" +
+                        "4. [Tuition] || [ ] || Date: 27 Jan 2023 || Value: 8100.0 || Description: school\n" +
+                        "5. [Accommodation] || [X] || Date: 28 Jan 2023 || Value: 3000.0 || Description: rc",
                 testExpenditures.toString());
     }
 
@@ -57,15 +58,24 @@ class UnmarkCommandTest {
     public void test_unmarkCommand_onFourIndex() {
         UnmarkCommand testUnmarkFourIndex = new UnmarkCommand(4);
         assertEquals("Unmarked your expenditure!\n" +
-                        "[Accommodation] || [ ] || Date: 2023-01-28 || Value: 3000.0 || Description: rc",
+                        "[Accommodation] || [ ] || Date: 28 Jan 2023 || Value: 3000.0 || Description: rc",
                 testUnmarkFourIndex.execute(testExpenditures).getCommandResult());
         testUnmarkFourIndex.execute(testExpenditures);
-        assertEquals("1. [Academic] || Date: 2023-01-01 || Value: 2.1 || Description: pen\n" +
-                        "2. [Food] || Date: 2023-03-21 || Value: 4.5 || Description: chicken rice\n" +
-                        "3. [Transport] || Date: 2023-03-21 || Value: 2.1 || Description: circle line\n" +
-                        "4. [Tuition] || [X] || Date: 2023-01-27 || Value: 8100.0 || Description: school\n" +
-                        "5. [Accommodation] || [ ] || Date: 2023-01-28 || Value: 3000.0 || Description: rc",
+        assertEquals("1. [Academic] || Date: 1 Jan 2023 || Value: 2.1 || Description: pen\n" +
+                        "2. [Food] || Date: 21 Mar 2023 || Value: 4.5 || Description: chicken rice\n" +
+                        "3. [Transport] || Date: 21 Mar 2023 || Value: 2.1 || Description: circle line\n" +
+                        "4. [Tuition] || [X] || Date: 27 Jan 2023 || Value: 8100.0 || Description: school\n" +
+                        "5. [Accommodation] || [ ] || Date: 28 Jan 2023 || Value: 3000.0 || Description: rc",
                 testExpenditures.toString());
+    }
+
+    @Test
+    public void test_unmarkCommand_onFourIndexAgain() {
+        UnmarkCommand testMarkFourIndex = new UnmarkCommand(4);
+        testMarkFourIndex.execute(testExpenditures);
+        UnmarkCommand testMarkFourIndexAgain = new UnmarkCommand(4);
+        assertEquals("Sorry! This expenditure is already unmarked!",
+                testMarkFourIndexAgain.execute(testExpenditures).getCommandResult());
     }
 
     @Test
