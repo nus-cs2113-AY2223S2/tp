@@ -1,8 +1,9 @@
 package seedu.duke.utils.parsers;
+
 import seedu.duke.objects.Inventory;
 import seedu.duke.utils.SessionManager;
 
-public abstract class Parser{
+public abstract class Parser {
     protected static final String ADD_REGEX = "n/([\\w\\s]+) upc/(\\d+) qty/(\\d+) p/(\\d+(?:\\.\\d+)?)";
     protected static final Integer NAME_INDEX = 1;
     protected static final Integer UPC_INDEX = 2;
@@ -22,19 +23,23 @@ public abstract class Parser{
     protected Inventory inventory;
     protected SessionManager session;
 
-    public Parser(String rawInput, Inventory inventory, SessionManager session){
+    public Parser(String rawInput, Inventory inventory, SessionManager session) {
         this.rawInput = rawInput;
         this.inventory = inventory;
         this.session = session;
     }
-    public Parser(String rawInput, Inventory inventory){
+
+    public Parser(String rawInput, Inventory inventory) {
         this.rawInput = rawInput;
         this.inventory = inventory;
     }
-    public Parser(Inventory inventory){
+
+    public Parser(Inventory inventory) {
         this.inventory = inventory;
     }
-    public Parser(){
+
+    public Parser() {
     }
+
     public abstract void run();
 }

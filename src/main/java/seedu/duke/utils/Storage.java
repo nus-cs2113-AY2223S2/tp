@@ -2,23 +2,28 @@ package seedu.duke.utils;
 
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
+import seedu.duke.types.Types;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static seedu.duke.utils.ColorCode.*;
 
 public class Storage {
-    private static String filePath;
     private static Inventory inventory = new Inventory();
-    public Storage(String filePath) {
-        Storage.filePath = filePath;
+    private static final String VALID_DATAROW_REGEX = "^\\d+,[^,]+,\\d+,\\d+,\\d+(?:\\.\\d+)?,[^,]+$";
+
+    public Storage() {
+
     }
+
     public static Inventory readCSV() {
+
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            BufferedReader reader = new BufferedReader(new FileReader(Types.SESSIONFILEPATH));
             String line = reader.readLine();
             if (line == null) {
                 Ui.printEmptySessionFile();
@@ -54,7 +59,7 @@ public class Storage {
 
     public static void writeCSV(Inventory currentInventory) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(Types.SESSIONFILEPATH));
             for (int i = 0; i < currentInventory.getItemInventory().size(); i++) {
                 Item item = currentInventory.getItemInventory().get(i);
                 writer.write(i + "," + item.getName() + "," + item.getUpc() + "," + item.getQuantity() + "," +
@@ -62,7 +67,50 @@ public class Storage {
             }
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
+        }
+    }
+
+    public static Types.FileHealth checkFileValid(String path) {
+        File file = new File(path);
+
+        if (!file.exists()) {
+            return Types.FileHealth.MISSING;
+        }
+
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                Pattern pattern = Pattern.compile(VALID_DATAROW_REGEX);
+                Matcher matcher = pattern.matcher(line);
+
+                if (!matcher.matches()) {
+                    scanner.close();
+                    return Types.FileHealth.CORRUPT;
+                }
+            }
+
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            return Types.FileHealth.MISSING;
+        }
+
+        return Types.FileHealth.OK;
+    }
+
+    public static String InventoryDataFileExist() {
+        String path = Types.SESSIONFILEPATH;
+        Types.FileHealth fileHealth = checkFileValid(path);
+
+        switch (fileHealth) {
+        case OK:
+            return ANSI_GREEN + "VALID" + ANSI_RESET;
+        case CORRUPT:
+            return ANSI_RED + "CORRUPTED" + ANSI_RESET;
+        case MISSING:
+            return ANSI_ORANGE + "MISSING (Will be created if AutoSave is TRUE)" + ANSI_RESET;
+        default:
+            return "UNKNOWN";
         }
     }
 }

@@ -12,7 +12,7 @@ import java.util.HashMap;
  * Represents an abstract command class for all commands.
  */
 public abstract class Command {
-
+    protected final Inventory inventory;
     protected static final String MIN_KEYWORD = "min";
     protected static final String MAX_KEYWORD = "max";
     protected ArrayList<Item> itemInventory;
@@ -21,6 +21,7 @@ public abstract class Command {
     protected Trie itemsTrie;
 
     public Command(Inventory inventory) {
+        this.inventory = inventory;
         this.itemInventory = inventory.getItemInventory();
         this.itemNameHash = inventory.getItemNameHash();
         this.upcCodes = inventory.getUpcCodes();

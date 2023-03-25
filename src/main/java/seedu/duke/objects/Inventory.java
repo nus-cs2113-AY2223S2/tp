@@ -5,6 +5,8 @@ import seedu.duke.utils.trie.Trie;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static java.lang.Math.round;
+
 public class Inventory {
     private final ArrayList<Item> itemInventory = new ArrayList<>();
     private final HashMap<String, Item> upcCodes = new HashMap<>();
@@ -28,6 +30,38 @@ public class Inventory {
      */
     public ArrayList<Item> getItemInventory() {
         return itemInventory;
+    }
+
+    public double getTotalValue() {
+        double totalCost = 0;
+        for (Item item : itemInventory) {
+            totalCost += item.getPrice() * item.getQuantity();
+        }
+        return Math.round(totalCost * 100.0) / 100.0;
+    }
+
+    public String getItemWithMostQuantity() {
+        int maxQuantity = 0;
+        String itemUPC = "";
+        for (Item item : itemInventory) {
+            if (item.getQuantity() > maxQuantity) {
+                maxQuantity = item.getQuantity();
+                itemUPC = item.getUpc();
+            }
+        }
+        return itemUPC;
+    }
+
+    public String getItemWithLeastQuantity() {
+        int minQuantity = Integer.MAX_VALUE;
+        String itemUPC = "";
+        for (Item item : itemInventory) {
+            if (item.getQuantity() < minQuantity) {
+                minQuantity = item.getQuantity();
+                itemUPC = item.getUpc();
+            }
+        }
+        return itemUPC;
     }
 
 
