@@ -70,5 +70,35 @@ public class Parser implements Serializable {
         return parserAdd.parseInput(userInput);
     }
 
+    /**
+     * Checks if the overview requested is a monthly one.
+     *
+     * @param userInput as String.
+     * @return true if user requires a monthly overview, false if yearly overview requested.
+     */
+
+    boolean isMonthlyOverview(String userInput) {
+        String[] input = userInput.split(WHITESPACE);
+        return input.length == 3;
+    }
+
+    public String extractMonth(String userInput) {
+        String[] input = userInput.split(WHITESPACE);
+        if (isMonthlyOverview(userInput)) {
+            return input[1].toLowerCase().trim(); // input: ['overview', 'MONTH', 'YEAR']
+        } else {
+            return null;
+        }
+    }
+
+    public String extractYear(String userInput) {
+        String[] input = userInput.split(WHITESPACE);
+        if (isMonthlyOverview(userInput)) {
+            return input[2].toLowerCase().trim();
+        } else {
+            return input[1].toLowerCase().trim();
+        }
+    }
+
 
 }

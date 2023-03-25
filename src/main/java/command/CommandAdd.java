@@ -35,6 +35,7 @@ public class CommandAdd extends Command {
         this.expenseList = expenseList;
         this.parsedInput = parsedInput;
     }
+
     /**
      * Adds an entry into the ArrayList based on the parsed input provided. Currently, if the currency specified does
      * not exist, it is defaulted to SGD.
@@ -42,9 +43,9 @@ public class CommandAdd extends Command {
     @Override
     public CommandRes execute() {
         try {
-            if(LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter).isAfter(LocalDate.now())) {
+            if (LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter).isAfter(LocalDate.now())) {
                 throw new Exception();
-            }else {
+            } else {
                 Time date = new Time(LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter));
                 String exchangeRateDate = LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter)
                         .with(Temporals.previousWorkingDay()).toString();
@@ -69,7 +70,6 @@ public class CommandAdd extends Command {
         }
         return null;
     }
-
 
 
 }

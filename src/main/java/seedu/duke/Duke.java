@@ -1,11 +1,7 @@
 package seedu.duke;
 
-import command.CommandAdd;
-import command.CommandDelete;
-import command.CommandList;
-import command.CommandTotal;
-import command.CommandSort;
-import command.CommandCategory;
+import command.*;
+import command.overview.CommandOverview;
 import data.ExpenseList;
 import data.Currency;
 import parser.Parser;
@@ -67,6 +63,9 @@ public class Duke {
                 break;
             case "category":
                 new CommandCategory(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
+                break;
+            case "overview":
+                new CommandOverview(expenseList.getExpenseList(), parser.extractMonth(input), parser.extractYear(input)).execute();
                 break;
             default:
                 System.out.println("Unknown command.");
