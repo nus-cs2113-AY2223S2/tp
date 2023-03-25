@@ -32,6 +32,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import com.opencsv.CSVWriter;
+import seedu.rainyDay.data.UserData;
 
 //@@author KN-CY
 public class Storage {
@@ -60,16 +61,16 @@ public class Storage {
     /**
      * Uses JSON serialization to save the FinancialReport object into a JSON file.
      *
-     * @param report   The object containing the FinancialReport to save.
+     * @param userData The object containing the UserData to save.
      * @param filePath The file path where the FinancialReport will be saved to.
      */
-    public static void writeToFile(FinancialReport report, String filePath) {
+    public static void writeToFile(UserData userData, String filePath) {
         try {
-            String jsonReport = gson.toJson(report);
+            String jsonUserData = gson.toJson(userData);
             FileWriter fileWriter = new FileWriter(filePath);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            bufferedWriter.write(jsonReport);
+            bufferedWriter.write(jsonUserData);
             bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -84,12 +85,12 @@ public class Storage {
      * @throws FileNotFoundException If the file specified by the filePath is not found.
      * @throws JsonParseException    If Json is given in invalid format and is unable to be parsed.
      */
-    public static FinancialReport loadFromFile(String filePath) throws FileNotFoundException
+    public static UserData loadFromFile(String filePath) throws FileNotFoundException
             , JsonParseException {
         Reader reader = new FileReader(filePath);
-        FinancialReport statements = gson.fromJson(reader, FinancialReport.class);
+        UserData userData = gson.fromJson(reader, UserData.class);
 
-        return statements;
+        return userData;
     }
 
     /**

@@ -6,7 +6,7 @@ import seedu.rainyDay.modules.Storage;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class FinancialReport  {
+public class FinancialReport {
     private final ArrayList<FinancialStatement> financialReport;
     private String reportOwner;
 
@@ -23,7 +23,7 @@ public class FinancialReport  {
 
     public void setReportOwner(String name) {
         this.reportOwner = name;
-        Storage.writeToFile(this, RainyDay.filePath);
+        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public int getStatementCount() {
@@ -32,17 +32,17 @@ public class FinancialReport  {
 
     public void addStatement(FinancialStatement statement) {
         financialReport.add(statement);
-        Storage.writeToFile(this, RainyDay.filePath);
+        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public void addStatementAtIndex(FinancialStatement statement, int index) {
         financialReport.add(index, statement);
-        Storage.writeToFile(this, RainyDay.filePath);
+        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public void deleteStatement(int statementNumber) {
         financialReport.remove(financialReport.get(statementNumber));
-        Storage.writeToFile(this, RainyDay.filePath);
+        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public String getFullStatement(int statementNumber) {

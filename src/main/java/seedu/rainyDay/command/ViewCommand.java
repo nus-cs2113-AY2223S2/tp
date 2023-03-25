@@ -12,17 +12,18 @@ import java.util.Map;
 import java.util.TreeMap;
 
 //@@author BenjaminPoh
+
 /**
  * Represents a command to view the financial report
  */
-public class ViewCommand extends Command{
+public class ViewCommand extends Command {
 
     private static final Logger logger = Logger.getLogger(ViewCommand.class.getName());
 
     private final LocalDate timeLimit;
     private final boolean sortByValue;
 
-    public ViewCommand (LocalDate timeLimit, boolean sortByValue) {
+    public ViewCommand(LocalDate timeLimit, boolean sortByValue) {
         this.timeLimit = timeLimit;
         this.sortByValue = sortByValue;
     }
@@ -52,10 +53,10 @@ public class ViewCommand extends Command{
      */
     private ArrayList<Integer> filterBeforeSpecificDate() {
         ArrayList<Integer> filteredIndexes = new ArrayList<>();
-        for(int index = 0; index < financialReport.getStatementCount(); index++) {
+        for (int index = 0; index < financialReport.getStatementCount(); index++) {
             FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
             LocalDate statementDate = currentStatement.getDate();
-            if(statementDate.isAfter(timeLimit)) {
+            if (statementDate.isAfter(timeLimit)) {
                 filteredIndexes.add(index);
             }
         }
@@ -74,23 +75,22 @@ public class ViewCommand extends Command{
     private ArrayList<Integer> filterBeforeSpecificDateSorted() {
         Map<Double, Integer> sortedIndexesInflows = new TreeMap<>();
         Map<Double, Integer> sortedIndexesOutflows = new TreeMap<>();
-        for(int index = 0; index < financialReport.getStatementCount(); index++) {
+        for (int index = 0; index < financialReport.getStatementCount(); index++) {
             FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
             double statementValue = currentStatement.getValue();
             String direction = currentStatement.getFlowSymbol();
             LocalDate statementDate = currentStatement.getDate();
-            if(statementDate.isAfter(timeLimit) && direction.equals("+")) {
+            if (statementDate.isAfter(timeLimit) && direction.equals("+")) {
                 sortedIndexesInflows.put(statementValue, index);
-            }
-            else if(statementDate.isAfter(timeLimit) && direction.equals("-")) {
+            } else if (statementDate.isAfter(timeLimit) && direction.equals("-")) {
                 sortedIndexesOutflows.put(statementValue, index);
             }
         }
         ArrayList<Integer> filteredIndexes = new ArrayList<>();
-        for(Map.Entry<Double, Integer> currentEntry : sortedIndexesInflows.entrySet()) {
+        for (Map.Entry<Double, Integer> currentEntry : sortedIndexesInflows.entrySet()) {
             filteredIndexes.add(currentEntry.getValue());
         }
-        for(Map.Entry<Double, Integer> currentEntry : sortedIndexesOutflows.entrySet()) {
+        for (Map.Entry<Double, Integer> currentEntry : sortedIndexesOutflows.entrySet()) {
             filteredIndexes.add(currentEntry.getValue());
         }
         return filteredIndexes;
@@ -105,7 +105,7 @@ public class ViewCommand extends Command{
         setupLogger();
         logger.log(Level.INFO, "starting ViewCommand.execute()");
         ArrayList<Integer> validIndexes;
-        if(sortByValue) {
+        if (sortByValue) {
             validIndexes = filterBeforeSpecificDateSorted();
         } else {
             validIndexes = filterBeforeSpecificDate();
