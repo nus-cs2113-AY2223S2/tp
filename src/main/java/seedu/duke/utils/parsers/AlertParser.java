@@ -71,9 +71,6 @@ public class AlertParser extends Parser {
                 case "remove":
                     parseRemoveAlert(matcher.group(ALERT_DETAILS_INDEX), inventory);
                     break;
-                case "list":
-                    //parseListAlert
-                    break;
                 default:
                     Ui.printInvalidAlertKeyword();
 

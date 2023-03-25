@@ -71,8 +71,6 @@ public class Ui {
     public static final int PRICE_COL_WIDTH = 8;
     public static final int COMMAND_COL_WIDTH = 15;
     public static final int FORMAT_COL_WIDTH = 25;
-
-    public static final int MINMAX_COL_WIDTH = 10;
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
             "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
     public static final String ITEM_NOT_FOUND = "Command failed! Reason: Item not found in database. Please add item " +
@@ -112,7 +110,6 @@ public class Ui {
                     " OR\n" +
                     "\"alert add upc/[UPC] max/[integer]\" to set an alert when stock exceeds a maximum. \n";
 
-
     private static final String EXISTING_MIN_ALERT = "This item already has a minimum alert. " +
             "Delete the existing one first.";
 
@@ -140,7 +137,6 @@ public class Ui {
     public Ui() {
         greetUser();
     }
-
 
     public static void printLine() {
         System.out.println(LINE);
@@ -292,16 +288,18 @@ public class Ui {
         return table.toString();
     }
 
-    public static String printTable(HashMap<String, Integer> upcMap, String limitType) {
+    public static String printTable(HashMap<String, Integer> upcMap, Inventory inventory) {
 
-        int[] columnWidths = {UPC_COL_WIDTH, QTY_COL_WIDTH, MINMAX_COL_WIDTH};
-
+        int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH};
         StringBuilder table = new StringBuilder();
         table.append(printTableSeparator(columnWidths));
         table.append(printHeadings(columnWidths));
         table.append(printTableSeparator(columnWidths));
 
-        upcMap.forEach((key, value) -> table.append(printRow(key, value.toString(), limitType, columnWidths)));
+        HashMap<String, Item> inventoryMap = inventory.getUpcCodes();
+
+        upcMap.forEach((key, value)
+                -> table.append(printRow(inventoryMap.get(key).getName(), key, value.toString(), columnWidths)));
 
         return table.toString();
 
@@ -315,7 +313,7 @@ public class Ui {
             headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
             //repeat format like above
-            headings = new String[]{"UPC", "Stock", "Type"};
+            headings = new String[]{"Name", "UPC", "Stock"};
         }
         StringBuilder allHeadings = new StringBuilder();
 
@@ -396,21 +394,21 @@ public class Ui {
         return row.toString();
     }
 
-    private static String printRow(String upc, String stock, String limitType, int[] columnWidths) {
+    private static String printRow(String name, String upc, String stock, int[] columnWidths) {
         String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
         String[] stockLines = wrapText(stock, QTY_COL_WIDTH);
-        String[] limitLines = wrapText(limitType, MINMAX_COL_WIDTH);
+        String[] nameLines = wrapText(name, NAME_COL_WIDTH);
         StringBuilder row = new StringBuilder();
 
-        int rowHeight = findRowHeight(upcLines, stockLines, limitLines);
+        int rowHeight = findRowHeight(upcLines, stockLines, nameLines);
 
         for (int i = 0; i < rowHeight; i += 1) {
             row.append(TABLE_LEFT);
+            row.append(printAttribute(nameLines, NAME_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
             row.append(printAttribute(upcLines, UPC_COL_WIDTH, i));
             row.append(TABLE_MIDDLE);
             row.append(printAttribute(stockLines, QTY_COL_WIDTH, i));
-            row.append(TABLE_MIDDLE);
-            row.append(printAttribute(limitLines, MINMAX_COL_WIDTH, i));
             row.append(TABLE_RIGHT);
             row.append(System.lineSeparator());
 
@@ -689,6 +687,38 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    private static String printAlerts(Inventory inventory, AlertList alertList) {
+
+        StringBuilder alertTable = new StringBuilder();
+
+        boolean hasMinAlerts = !alertList.getMinAlertUpcs().isEmpty();
+        boolean hasMaxAlerts = !alertList.getMaxAlertUpcs().isEmpty();
+
+        String minAlertTable = "";
+        String maxAlertTable = "";
+
+        if (hasMinAlerts) {
+            minAlertTable = Ui.printTable(alertList.getMinAlertUpcs(), inventory);
+            alertTable.append(ANSI_CYAN + "Alerts for minimum stock level:" + ANSI_RESET + System.lineSeparator());
+            alertTable.append(minAlertTable);
+        }
+
+        if (hasMaxAlerts) {
+            if (hasMinAlerts) {
+                alertTable.append(System.lineSeparator());
+            }
+            maxAlertTable = Ui.printTable(alertList.getMaxAlertUpcs(), inventory);
+            alertTable.append(ANSI_CYAN + "Alerts for maximum stock level:" + ANSI_RESET + System.lineSeparator());
+            alertTable.append(maxAlertTable);
+        }
+
+        if (!hasMinAlerts && !hasMaxAlerts) {
+            alertTable.append("No alerts to print.");
+        }
+
+        return alertTable.toString();
+    }
+
     public static void printDashboard(Inventory inventory, AlertList alertList) {
         Item mostQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithMostQuantity());
         Item leastQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithLeastQuantity());
@@ -697,7 +727,7 @@ public class Ui {
         System.out.println("Overview:");
         System.out.println(LINE);
         System.out.println(ANSI_ORANGE + "Total number of items: " + ANSI_WHITE + inventory.getItemInventory().size() + ANSI_RESET);
-        System.out.println(ANSI_ORANGE + "Total number of active alerts: " + ANSI_WHITE + alertList.getAlertList().size() + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Total number of active alerts: " + ANSI_WHITE + alertList.getTotalAlertNumber() + ANSI_RESET);
 
         System.out.println(ANSI_ORANGE + "Total value of inventory: " + ANSI_WHITE + "$" + inventory.getTotalValue() + ANSI_RESET);
         if (!inventory.getItemInventory().isEmpty()) {
@@ -714,7 +744,12 @@ public class Ui {
         }
         System.out.println("Inventory Data File Status: " + SessionManager.InventoryDataFileExist());
         System.out.println(LINE);
-        System.out.println(ANSI_GREEN + "List of active alerts: #TODO: IMPLEMENT ACTIVE ALERT VIEW AND ETC" + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "List of active alerts:" + ANSI_RESET);
+
+        String alertTable = printAlerts(inventory, alertList);
+
+        System.out.println(alertTable);
+        System.out.println(LINE);
     }
 }
 
