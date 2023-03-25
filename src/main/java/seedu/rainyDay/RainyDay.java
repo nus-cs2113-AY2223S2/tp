@@ -90,7 +90,7 @@ public class RainyDay {
         logger.log(Level.INFO, "Starting RainyDay");
         new RainyDay(filePath).run();
         logger.log(Level.INFO, "Quitting RainyDay");
-        System.out.println(userData.getShortcutCommands()); // just to see what shortcuts u have alr saved, will make
+        // System.out.println(userData.getShortcutCommands()); // just to see what shortcuts u have alr saved, will make
         // into a proper command later.
     }
 }
