@@ -13,8 +13,6 @@ public class FinancialStatement {
     public double value;
     public String category;
 
-
-
     public LocalDate date = null;
 
     public FinancialStatement(String description, String flowDirection, double value, String category, LocalDate date) {
@@ -81,6 +79,10 @@ public class FinancialStatement {
 
     public LocalDate getDate() {
         return this.date;
+    }
+
+    public int getMonthAndYear() {
+        return date.getYear()*12 + date.getMonthValue();
     }
 
     public void setDate(LocalDate date) {

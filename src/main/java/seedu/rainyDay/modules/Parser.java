@@ -10,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -424,14 +423,15 @@ public class Parser {
         try {
             double amount = Double.parseDouble(userInput);
             amount = (int) (amount * 100);
-            if (amount < 0) {
+            amount /= 100 ;
+            if (amount <= 0) {
                 logger.warning("set budget details provided incorrectly");
                 return new InvalidCommand(ErrorMessage.WRONG_SET_BUDGET_FORMAT.toString());
             }
+            return new SetBudgetCommand(amount);
         } catch (Exception e) {
             logger.warning("set budget details provided incorrectly");
             return new InvalidCommand(ErrorMessage.WRONG_SET_BUDGET_FORMAT.toString());
         }
-        return new SetBudgetCommand(amount);
     }
 }

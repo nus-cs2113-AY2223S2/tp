@@ -66,6 +66,16 @@ public class Ui {
         return userInput.trim();
     }
 
+    public static String checkUserBudgetLimit(double currentSpending, double budgetLimit) {
+        if(budgetLimit == 0) {
+            return "";
+        }
+        if(currentSpending >= budgetLimit) {
+            return "\nYou've exceeded your budget! Try harder next time :(";
+        }
+        return "\nSome message about how far you have gotten"; //Todo
+    }
+
     public void sayFarewellToUser(String username) {
         System.out.println("Bye " + username);
     }

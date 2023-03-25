@@ -5,13 +5,16 @@ import seedu.rainyDay.modules.Storage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FinancialReport {
     private final ArrayList<FinancialStatement> financialReport;
+    private final HashMap<Integer, Double> monthlyExpenditures;
     private String reportOwner;
 
-    public FinancialReport(ArrayList<FinancialStatement> financialReport) {
+    public FinancialReport(ArrayList<FinancialStatement> financialReport, HashMap<Integer, Double> monthlyOutflow) {
         this.financialReport = financialReport;
+        this.monthlyExpenditures = monthlyOutflow;
     }
 
     public String getReportOwner() {
@@ -32,6 +35,7 @@ public class FinancialReport {
 
     public void addStatement(FinancialStatement statement) {
         financialReport.add(statement);
+
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
@@ -40,25 +44,15 @@ public class FinancialReport {
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
-    public void deleteStatement(int statementNumber) {
+    public FinancialStatement deleteStatement(int statementNumber) {
+        FinancialStatement oldStatement = financialReport.get(statementNumber);
         financialReport.remove(financialReport.get(statementNumber));
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
+        return oldStatement;
     }
 
     public String getFullStatement(int statementNumber) {
         return financialReport.get(statementNumber).getStatementForList();
-    }
-
-    public String getStatementDirection(int statementNumber) {
-        return financialReport.get(statementNumber).getFlowDirectionWord();
-    }
-
-    public double getStatementValue(int statementNumber) {
-        return financialReport.get(statementNumber).getValue();
-    }
-
-    public String getStatementFlowSymbol(int statementNumber) {
-        return financialReport.get(statementNumber).getFlowSymbol();
     }
 
     public String getStatementDescription(int statementNumber) {
@@ -79,5 +73,22 @@ public class FinancialReport {
 
     public LocalDate getStatementDate(int statementNumber) {
         return financialReport.get(statementNumber).getDate();
+    }
+
+    public double updateMonthlyExpenditure(FinancialStatement statement, boolean addToExpenditure) {
+        int monthAndYear = statement.getMonthAndYear();
+        if(!monthlyExpenditures.containsKey(monthAndYear)) {
+            monthlyExpenditures.put(monthAndYear, 0.0);
+        }
+        double currentExpenditure = monthlyExpenditures.get(monthAndYear);
+        if(statement.getFlowDirectionWord().equals("out")) {
+            if(addToExpenditure) {
+                currentExpenditure += statement.getValue();
+            } else {
+                currentExpenditure -= statement.getValue();
+            }
+            monthlyExpenditures.put(monthAndYear, currentExpenditure);
+        }
+        return currentExpenditure;
     }
 }

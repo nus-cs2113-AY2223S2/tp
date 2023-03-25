@@ -2,6 +2,7 @@ package seedu.rainyDay.command;
 
 import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.data.FinancialStatement;
+import seedu.rainyDay.modules.Ui;
 
 import java.time.LocalDate;
 import java.util.logging.FileHandler;
@@ -55,15 +56,15 @@ public class AddCommand extends Command {
         logger.log(Level.INFO, "starting AddCommand.execute()");
 
         int totalStatementCount = financialReport.getStatementCount();
-
-        financialReport.addStatement(new FinancialStatement(description, flowDirection, value, category, date));
+        FinancialStatement newStatement = new FinancialStatement(description, flowDirection, value, category, date);
+        financialReport.addStatement(newStatement);
+        double updatedMonthlyExpenditure = financialReport.updateMonthlyExpenditure(newStatement, true);
 
         assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";
 
-        String output = "Done! Added: " + financialReport.getFinancialStatement(totalStatementCount).getFullStatement();
-        if(RainyDay.userData.getBudgetGoal() != 0) {
-            output += ""
-        }
+        String output = "Done! Added: " + financialReport.getFinancialStatement(totalStatementCount).getFullStatement() +
+                Ui.checkUserBudgetLimit(updatedMonthlyExpenditure, RainyDay.userData.getBudgetGoal());
+
         logger.log(Level.INFO, " end of AddCommand.execute()");
         return new CommandResult(output);
     }
