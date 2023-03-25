@@ -52,4 +52,5 @@ public class CompanyListDecoder extends Storage {
             Company company = companyList.getCompany(currCompany);
             company.markConfirmed();
         }
+    }
 }
