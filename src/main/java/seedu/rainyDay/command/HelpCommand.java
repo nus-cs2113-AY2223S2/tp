@@ -10,7 +10,7 @@ public class HelpCommand extends Command {
             "+-----+-----------+--------+-------------------------------------------------------------------------+\n" +
             "|Add entry        |add     |[-in/-out] [description] $[value] {-c category} {-date date}             |\n" +
             "|Delete entry     |delete  |[index]                                                                  |\n" +
-            "|View all entries |view    |                                                                         |\n" +
+            "|View entries     |view    |{time} {-sort}                                                           |\n" +
             "|Filter entries   |filter  |{-in} {-out} {-d description} {-c category} {-date date}                 |\n" +
             "|Edit an entry    |edit    |[index] {-in/ -out/ -d description/ -v $value/ -c category/ -date date}  |\n" +
             "|Export to .csv   |export  |                                                                         |\n" +
@@ -64,20 +64,36 @@ public class HelpCommand extends Command {
 
     private static final String HELP_VIEW_COMMAND = "" +
             "+====================================================================================================+\n" +
-            "| View command                | Views all entries in RainyDay                                        |\n" +
+            "| View command                | Views entries within a specific timeframe in RainyDay                |\n" +
             "+====================================================================================================+\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
-            "| Behold the barren lands, that will be this way till sorting is implemented                         |\n" +
+            "| Time       | Optional       | Used to set the timeframe, going back from the current date; With    |\n" +
+            "|            |                | timeframes not more than 31 days, 4 weeks, 12 months or 10 years.    |\n" +
+            "| -sort      | Optional       | Sort entries by their value. Statements will be displayed            |\n" +
+            "|            |                | in entry order if omitted.                                           |\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
-            "| WIP                         | WIP                                                                  |\n" +
+            "| view -1d                   | View entries starting from yesterday, including today                 |\n" +
+            "| view -18d                  | View entries starting from the past 18 days                           |\n" +
+            "| view -18d -sort            | View entries starting from the past 18 days in sorted order           |\n" +
+            "| view -3w                   | View entries starting from the past 3 weeks                           |\n" +
+            "| view -6m                   | View entries starting from the past 6 months                          |\n" +
+            "| view -12m                  | View entries starting from the past 12 months / 1 year                |\n" +
+            "| view -3y                   | View entries starting from the past 3 years                           |\n" +
             "+====================================================================================================+\n";
-    private static final String HELP_FILTER_COMMAND = "WIP. Go Read the UG";
-    private static final String HELP_EDIT_COMMAND = "WIP. Go Read the UG";
-    private static final String HELP_EXPORT_COMMAND = "WIP. Go Read the UG";
-    private static final String HELP_HELP_COMMAND = "Very funny";
+    private static final String HELP_FILTER_COMMAND = "Filter WIP. Go Read the UG";
+    private static final String HELP_EDIT_COMMAND = "Edit WIP. Go Read the UG";
+    private static final String HELP_EXPORT_COMMAND = "" +
+            "+====================================================================================================+\n" +
+            "| Export command              | Used to export all entries in RainyDay to CSV                        |\n" +
+            "+====================================================================================================+\n" +
+            "| Example Usage               | Description                                                          |\n" +
+            "+-----------------------------+----------------------------------------------------------------------+\n" +
+            "| export                      | Creates a CSV file with all entries                                  |\n" +
+            "+====================================================================================================+\n";
+    private static final String HELP_HELP_COMMAND = "You funny guy. I like you.";
 
     private final String description;
 

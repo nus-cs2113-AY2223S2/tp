@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
+//@@author BenjaminPoh
 /**
  * Represents a command to view the financial report
  */
@@ -25,6 +26,7 @@ public class ViewCommand extends Command{
         this.timeLimit = timeLimit;
         this.sortByValue = sortByValue;
     }
+
     /**
      * Sets up logger for logging
      */
@@ -41,23 +43,13 @@ public class ViewCommand extends Command{
         }
     }
 
-    private ArrayList<Integer> filterBeforeSpecificDateSorted() {
-        Map<Double, Integer> sortedIndexes = new TreeMap<>();
-        for(int index = 0; index < financialReport.getStatementCount(); index++) {
-            FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
-            double statementValue = currentStatement.getValue();
-            LocalDate statementDate = currentStatement.getDate();
-            if(statementDate.isAfter(timeLimit)) {
-                sortedIndexes.put(statementValue, index);
-            }
-        }
-        ArrayList<Integer> filteredIndexes = new ArrayList<>();
-        for(Map.Entry<Double, Integer> currentEntry : sortedIndexes.entrySet()) {
-            filteredIndexes.add(currentEntry.getValue());
-        }
-        return filteredIndexes;
-    }
-
+    /**
+     * Helper function used to check if entries in financialReport are before a specific date
+     * Indexes of entries with a date equal or after the specific date are stored
+     * The lower bound of the date is specified in timeLimit
+     *
+     * @return ArrayList of indexes which passed the check
+     */
     private ArrayList<Integer> filterBeforeSpecificDate() {
         ArrayList<Integer> filteredIndexes = new ArrayList<>();
         for(int index = 0; index < financialReport.getStatementCount(); index++) {
@@ -71,13 +63,48 @@ public class ViewCommand extends Command{
     }
 
     /**
+     * Helper function used to check if entries in financialReport are before a specific date
+     * Indexes of entries with a date equal or after the specific date are stored
+     * The lower bound of the date is specified in timeLimit
+     * Similar to filterBeforeSpecificDate(), with the additional benefit of sorting the
+     * entries by their absolute value in ascending order, with inflows displayed before outflows
+     *
+     * @return ArrayList of indexes which passed the check
+     */
+    private ArrayList<Integer> filterBeforeSpecificDateSorted() {
+        Map<Double, Integer> sortedIndexesInflows = new TreeMap<>();
+        Map<Double, Integer> sortedIndexesOutflows = new TreeMap<>();
+        for(int index = 0; index < financialReport.getStatementCount(); index++) {
+            FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
+            double statementValue = currentStatement.getValue();
+            String direction = currentStatement.getFlowSymbol();
+            LocalDate statementDate = currentStatement.getDate();
+            if(statementDate.isAfter(timeLimit) && direction.equals("+")) {
+                sortedIndexesInflows.put(statementValue, index);
+            }
+            else if(statementDate.isAfter(timeLimit) && direction.equals("-")) {
+                sortedIndexesOutflows.put(statementValue, index);
+            }
+        }
+        ArrayList<Integer> filteredIndexes = new ArrayList<>();
+        for(Map.Entry<Double, Integer> currentEntry : sortedIndexesInflows.entrySet()) {
+            filteredIndexes.add(currentEntry.getValue());
+        }
+        for(Map.Entry<Double, Integer> currentEntry : sortedIndexesOutflows.entrySet()) {
+            filteredIndexes.add(currentEntry.getValue());
+        }
+        return filteredIndexes;
+    }
+
+
+    /**
      * Executes the command and print the relevant output message
      */
     @Override
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting ViewCommand.execute()");
-        String output = "";
+        String output = "View Command Done!";
         ArrayList<Integer> validIndexes;
         if(sortByValue) {
             validIndexes = filterBeforeSpecificDateSorted();
