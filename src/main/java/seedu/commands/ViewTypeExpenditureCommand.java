@@ -26,25 +26,25 @@ public class ViewTypeExpenditureCommand extends Command {
             expenditureType = AccommodationExpenditure.expenditureType;
             break;
         case "borrow":
-        expenditureType = BorrowExpenditure.expenditureType;
+            expenditureType = BorrowExpenditure.expenditureType;
             break;
         case "entertainment":
-        expenditureType = EntertainmentExpenditure.expenditureType;
+            expenditureType = EntertainmentExpenditure.expenditureType;
             break;
         case "food":
-        expenditureType = FoodExpenditure.expenditureType;
+            expenditureType = FoodExpenditure.expenditureType;
             break;
         case "lend":
-        expenditureType = LendExpenditure.expenditureType;
+            expenditureType = LendExpenditure.expenditureType;
             break;
         case "other":
-        expenditureType = OtherExpenditure.expenditureType;
+            expenditureType = OtherExpenditure.expenditureType;
             break;
         case "transport":
-        expenditureType = TransportExpenditure.expenditureType;
+            expenditureType = TransportExpenditure.expenditureType;
             break;
         case "tuition":
-        expenditureType = TuitionExpenditure.expenditureType;
+            expenditureType = TuitionExpenditure.expenditureType;
             break;
         default:
             throw new WrongInputException();
