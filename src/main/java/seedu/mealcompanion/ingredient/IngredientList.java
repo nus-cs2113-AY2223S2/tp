@@ -21,6 +21,11 @@ public class IngredientList {
     }
 
     //@@author jingyaaa
+    /**
+     * Fetch an ingredient by its specified name.
+     * @param ingredientName string containing ingredient name to look for
+     * @return ingredient found
+     */
     public Ingredient get(String ingredientName) throws MealCompanionException {
         for (Ingredient ingredient : ingredients) {
             if (ingredientName.equals(ingredient.getMetadata().getName())) {

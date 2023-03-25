@@ -8,6 +8,9 @@ import seedu.mealcompanion.parser.CommandArguments;
 
 
 //@@author jingyaaa
+/**
+ * Represents a factory for the "recipe need" command.
+ */
 public class RecipeNeedCommandFactory extends ExecutableCommandFactory {
 
     @Override

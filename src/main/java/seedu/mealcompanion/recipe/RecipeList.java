@@ -47,6 +47,11 @@ public class RecipeList {
     }
 
     //@@author jingyaaa
+    /**
+     * Fetch a recipe by its specified name.
+     * @param recipeName string containing recipe name to look for
+     * @return recipe found
+     */
     public Recipe getRecipe(String recipeName) throws MealCompanionException {
         for (Recipe recipe : recipes) {
             if (recipeName.equals(recipe.getName())) {

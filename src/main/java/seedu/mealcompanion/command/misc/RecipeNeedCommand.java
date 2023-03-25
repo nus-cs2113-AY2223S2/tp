@@ -10,7 +10,9 @@ import seedu.mealcompanion.recipe.Recipe;
 import java.util.ArrayList;
 
 //@@author jingyaaa
-
+/**
+ * Represents the "recipe need" possible
+ */
 public class RecipeNeedCommand extends ExecutableCommand{
 
     String recipeName;
@@ -19,6 +21,12 @@ public class RecipeNeedCommand extends ExecutableCommand{
         this.recipeName = recipeName;
     }
 
+    /**
+     * Check if user possess sufficient quantity of ingredient needed.
+     * @param targetIngredient the ingredient to check for
+     * @param ingredientInFridge ingredient list containing user's ingredients to check in
+     * @return additional quantity needed
+     */
     private double additionalQuantityNeeded(Ingredient targetIngredient, IngredientList ingredientInFridge) {
         try {
             double quantityPossessed;
@@ -33,6 +41,10 @@ public class RecipeNeedCommand extends ExecutableCommand{
         }
     }
 
+    /**
+     * List all ingredients that are insufficient to make a specific recipe
+     * @param mealCompanionSession the session containing list of recipes and user's ingredient list
+     */
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
