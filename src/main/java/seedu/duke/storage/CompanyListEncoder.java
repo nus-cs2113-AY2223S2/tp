@@ -15,13 +15,11 @@ public class CompanyListEncoder extends Storage {
         try {
             FileWriter fw = new FileWriter(filePath);
             int numberOfCompanies = companyList.getNumberOfCompanies();
-            // If the last company in the array list is deleted clear the entire text file
-            // Since the for loop only iterates if there is more than one company in companyList
-            if (numberOfCompanies == 0) {
+            if (numberOfCompanies == 0) { //If the last company in the array list is deleted clear the entire text file
                 fw.write("");
                 fw.close();
             }
-            // Iterate through company in companyList and parse company information for storage
+
             for (int i = 0; i < numberOfCompanies; i += 1) {
                 Company company = companyList.getCompany(i);
                 parseAndWriteToFile(company, fw);
