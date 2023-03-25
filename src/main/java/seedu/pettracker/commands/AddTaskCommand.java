@@ -1,9 +1,10 @@
 package seedu.pettracker.commands;
 
+import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
 
-public class AddTaskCommand extends Command{
+public class AddTaskCommand extends Command {
 
     protected String todoDescription;
 
@@ -18,7 +19,7 @@ public class AddTaskCommand extends Command{
      * @param ui Ui to do printing if required
      */
     @Override
-    public void execute(Ui ui) {
+    public void execute(Ui ui, Storage storage) {
         TaskList.addTask(todoDescription);
         ui.addTodoCommandMessage();
     }

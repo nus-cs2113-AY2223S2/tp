@@ -1,5 +1,6 @@
 package seedu.pettracker.commands;
 
+import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 
 public class InvalidCommand extends Command{
@@ -9,7 +10,7 @@ public class InvalidCommand extends Command{
      * @param ui Ui to do printing if required
      */
     @Override
-    public void execute(Ui ui) {
+    public void execute(Ui ui, Storage storage) {
         ui.invalidCommandMessage();
     }
 

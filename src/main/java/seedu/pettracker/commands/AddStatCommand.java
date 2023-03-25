@@ -1,5 +1,6 @@
 package seedu.pettracker.commands;
 
+import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.PetList;
 
@@ -23,8 +24,9 @@ public class AddStatCommand extends Command {
      * @param ui Ui to do printing if required
      */
     @Override
-    public void execute(Ui ui) {
+    public void execute(Ui ui, Storage storage) {
         PetList.addStat(petName, statName, statValue);
+        PetList.savePetsToStorage(storage, ui);
         ui.addStatCommandMessage(petName, statName, statValue);
     }
 
@@ -41,7 +43,7 @@ public class AddStatCommand extends Command {
 
     /**
      * Sets isExit to be true to exit the program
-     * 
+     *
      * @return isExit boolean value for program to exit
      */
     @Override

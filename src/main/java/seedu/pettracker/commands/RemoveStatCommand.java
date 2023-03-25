@@ -1,5 +1,6 @@
 package seedu.pettracker.commands;
 
+import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.PetList;
 
@@ -20,10 +21,11 @@ public class RemoveStatCommand extends Command {
      * @param ui Ui to do printing if required
      */
     @Override
-    public void execute(Ui ui) {
+    public void execute(Ui ui, Storage storage) {
         // petIndex = petList.find(petName);
         // petList.get(petIndex).removeStat(statName);
         PetList.removeStat(petName, statName);
+        PetList.savePetsToStorage(storage, ui);
         ui.removeStatCommandMessage(petName, statName);
     }
 
