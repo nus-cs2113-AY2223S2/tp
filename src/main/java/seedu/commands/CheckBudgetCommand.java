@@ -18,8 +18,9 @@ public class CheckBudgetCommand extends Command {
         for (Expenditure individualExpenditure : expenditures.getExpenditures()){
             totalAmount += individualExpenditure.getValue();
         }
-
-        if (budget >= totalAmount) {
+        if (budget == 0) {
+          return new CommandResult("Your current budget is set at 0, please use the 'set' command to set a budget.");
+        } else if (budget >= totalAmount) {
             // Remaining budget available
             double difference = budget - totalAmount;
             return new CommandResult(String.format("You are $%.2f away from hitting your budget of $%.2f." +
