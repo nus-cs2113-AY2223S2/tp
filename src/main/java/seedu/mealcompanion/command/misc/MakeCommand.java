@@ -135,10 +135,10 @@ public class MakeCommand extends ExecutableCommand {
 
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
-            if (this.name.isBlank()) {
+            RecipeList recipes = mealCompanionSession.getRecipes();
+            if(name == null || name.trim().isEmpty()) {
                 throw new MealCompanionException("recipe name cannot be blank");
             }
-            RecipeList recipes = mealCompanionSession.getRecipes();
             int index = findRecipeName(recipes);
             if (index == -1) {
                 throw new MealCompanionException("recipe name not found");
@@ -151,7 +151,7 @@ public class MakeCommand extends ExecutableCommand {
                 throw new MealCompanionException("Ingredients in inventory is insufficient");
             }
         } catch (Exception e) {
-            System.out.println(e);
+            mealCompanionSession.getUi().printMessage(String.valueOf(e));
         }
     }
 }
