@@ -4,13 +4,23 @@ import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.types.Types;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.duke.utils.ColorCode.*;
+import static seedu.duke.utils.ColorCode.ANSI_GREEN;
+import static seedu.duke.utils.ColorCode.ANSI_ORANGE;
+import static seedu.duke.utils.ColorCode.ANSI_RED;
+import static seedu.duke.utils.ColorCode.ANSI_RESET;
 
 public class Storage {
     private static Inventory inventory = new Inventory();
@@ -29,24 +39,43 @@ public class Storage {
                 Ui.printEmptySessionFile();
                 return new Inventory();
             }
+            Inventory tempInventory = new Inventory();
             while (line != null) {
                 String[] fields = line.split(",");
-                if (fields.length != 6) {
+                if (fields.length != 7) {
                     Ui.printInvalidSessionFile();
                     return new Inventory();
                 }
-                Item item = new Item(fields[1], fields[2],
-                        Integer.parseInt(fields[3]), Double.parseDouble(fields[4]));
-                inventory.getItemInventory().add(item);
-                inventory.getUpcCodes().put(fields[2], item);
-                if (inventory.getItemNameHash().containsKey(fields[1])) {
-                    inventory.getItemNameHash().get(fields[1]).add(item);
-                } else {
-                    ArrayList<Item> items = new ArrayList<>();
-                    items.add(item);
-                    inventory.getItemNameHash().put(fields[1], items);
+                Item item = new Item(fields[1], fields[2], Integer.parseInt(fields[3]),
+                        Double.parseDouble(fields[4]), LocalDateTime.parse(fields[6]));
+                if(tempInventory.getUpcCodes().containsKey(fields[2])){
+                    if(tempInventory.getUpcCodes().get(fields[2]).compareTo(item)==-1){
+                        tempInventory.getItemInventory().remove(tempInventory.getUpcCodes().get(fields[2]));
+                        tempInventory.getItemInventory().add(item);
+                        tempInventory.getUpcCodes().remove(fields[2]);
+                        tempInventory.getUpcCodes().put(fields[2],item);
+                    }
+                }else{
+                    tempInventory.getItemInventory().add(item);
+                    tempInventory.getUpcCodes().put(fields[2], item);
                 }
+                if(!inventory.getUpcCodesHistory().containsKey(item.getUpc())){
+                    inventory.getUpcCodesHistory().put(item.getUpc(),new ArrayList<>());
+                }
+                inventory.getUpcCodesHistory().get(item.getUpc()).add(item);
                 line = reader.readLine();
+            }
+            for(Item item: tempInventory.getItemInventory()){
+                inventory.getItemInventory().add(item);
+                inventory.getUpcCodes().put(item.getUpc(),item);
+                String[] itemNames = item.getName().toLowerCase().split(" ");
+                for (String itemName : itemNames) {
+                    if (!inventory.getItemNameHash().containsKey(itemName)) {
+                        inventory.getItemNameHash().put(itemName, new ArrayList<>());
+                    }
+                    inventory.getItemNameHash().get(itemName).add(item);
+                    inventory.getTrie().add(itemName);
+                }
             }
             reader.close();
         } catch (IOException | NumberFormatException e) {
@@ -60,13 +89,18 @@ public class Storage {
     public static void writeCSV(Inventory currentInventory) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(Types.SESSIONFILEPATH));
+            int counter = 0;
             for (int i = 0; i < currentInventory.getItemInventory().size(); i++) {
-                Item item = currentInventory.getItemInventory().get(i);
-                writer.write(i + "," + item.getName() + "," + item.getUpc() + "," + item.getQuantity() + "," +
-                        item.getPrice() + "," + item.getCategory() + "\n");
+                String itemUPC = currentInventory.getItemInventory().get(i).getUpc();
+                for(Item item: currentInventory.getUpcCodesHistory().get(itemUPC)){
+                    writer.write(counter + "," + item.getName() + "," + item.getUpc() + "," + item.getQuantity()
+                            + "," + item.getPrice() + "," + item.getCategory() + "," + item.getDateTime()+"\n");
+                    counter++;
+                }
             }
             writer.close();
         } catch (IOException e) {
+            System.out.println("An error occurred while loading");
         }
     }
 
@@ -98,7 +132,7 @@ public class Storage {
         return Types.FileHealth.OK;
     }
 
-    public static String InventoryDataFileExist() {
+    public static String inventoryDataFileExist() {
         String path = Types.SESSIONFILEPATH;
         Types.FileHealth fileHealth = checkFileValid(path);
 

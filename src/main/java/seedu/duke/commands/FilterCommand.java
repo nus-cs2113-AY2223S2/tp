@@ -125,12 +125,8 @@ public class FilterCommand extends Command {
         return filteredItems;
     }
 
-    /**
-     * Delegate and executes the correct filter command.
-     */
-    @Override
-    public void run() {
-        ArrayList<Item> filteredItems = null;
+    public ArrayList<Item> getFilteredItems(){
+        ArrayList<Item> filteredItems = new ArrayList<>();
         switch (filterType) {
         case "f/category":
             filteredItems = filterCategory(filterValue);
@@ -147,6 +143,15 @@ public class FilterCommand extends Command {
         default:
             break;
         }
+        return filteredItems;
+    }
+
+    /**
+     * Delegate and executes the correct filter command.
+     */
+    @Override
+    public void run() {
+        ArrayList<Item> filteredItems = getFilteredItems();
         if(filteredItems == null){
             Ui.printEmptySearch();
         }else{

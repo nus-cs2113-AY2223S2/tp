@@ -11,5 +11,13 @@ public class Types {
         CORRUPT,
         MISSING
     }
-
+    public enum EditType {
+        PRICE_INCREASE,
+        PRICE_DECREASE,
+        RENAME,
+        RECATEGORIZE,
+        CHANGE_TAG,
+        SOLD,
+        BOUGHT
+    }
 }

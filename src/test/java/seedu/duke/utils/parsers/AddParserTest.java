@@ -1,13 +1,13 @@
 package seedu.duke.utils.parsers;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.objects.Inventory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * JUnit test class for AddParser
