@@ -12,7 +12,7 @@ public class HistoryParser extends Parser{
     public HistoryParser(String rawInput, Inventory inventory){
         super(rawInput, inventory);
     }
-    private ArrayList<Item> getHistoryResults(){
+    public ArrayList<Item> getHistoryResults(){
         if(!inventory.getUpcCodesHistory().containsKey(rawInput)){
             return null;
         }
