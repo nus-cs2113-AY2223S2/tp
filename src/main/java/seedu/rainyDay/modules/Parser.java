@@ -1,6 +1,7 @@
 package seedu.rainyDay.modules;
 
 import seedu.rainyDay.RainyDay;
+
 import seedu.rainyDay.command.*;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 //@@author azriellee
 public class Parser {
@@ -50,15 +52,20 @@ public class Parser {
                 return editStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_EXPORT)) {
                 logger.info("export command executing");
-                return generateExport();
+                return new ExportCommand();
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT)) {
                 logger.info("shortcut command executing");
                 return generateShortcut(action[1].trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SET_BUDGET)) {
                 logger.info("set budget command executing");
                 return setUserBudgetGoal(action[1].trim());
-            }
-            else {
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE_SHORTCUT)) {
+                logger.info("delete_shortcut command executing");
+                return new DeleteShortcutCommand(action[1].trim());
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW_SHORTCUT)) {
+                logger.info("view_shortcut command executing");
+                return new ViewShortcutCommand();
+            } else {
                 // check if the user has a shortcut command
                 HashMap<String, String> shortcutCommands = RainyDay.userData.getShortcutCommands();
                 if (shortcutCommands.containsKey(userInput)) {
@@ -280,6 +287,10 @@ public class Parser {
                     filterFlagAndField.add(matcher.group(i));
                 }
             }
+            if (filterFlagAndField.size() != count) {
+                logger.warning("filter command given by user in the wrong format");
+                throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+            }
             return filterFlagAndField;
         } else {
             logger.warning("filter command given by user in the wrong format");
@@ -349,10 +360,14 @@ public class Parser {
             }
 
             if (tokens[2].contains("add")) {
+                this.category = "miscellaneous";
+                this.date = LocalDate.now();
                 tokens[2] = tokens[2].replaceFirst("add ", "");
                 String remainingInformation = returnRemainingInformation(tokens[2]);
+                logger.info("obtained mandatory information for edit ADDCOMMAND");
                 if (remainingInformation.trim().isEmpty()) {
-                    return new EditCommand(index, description, direction, amount, category);
+                    logger.info("returning new EditCommand object");
+                    return new EditCommand(index, description, direction, amount, category, date);
                 }
                 if (!remainingInformation.contains("-c ") && !remainingInformation.contains("-date ")) {
                     logger.info("returning new InvalidCommand object");
@@ -364,7 +379,8 @@ public class Parser {
                 if (remainingInformation.contains("-date ")) {
                     setDate(remainingInformation);
                 }
-                return new EditCommand(index, description, direction, amount, category);
+                logger.info("returning new EditCommand object");
+                return new EditCommand(index, description, direction, amount, category, date);
             } else if (tokens[2].contains("-date")) {
                 parseEditByDate(tokens[2]);
                 return new EditCommand(index, "-date", LocalDate.parse(field,
@@ -391,10 +407,6 @@ public class Parser {
         }
     }
 
-    //@@author KN-CY
-    private ExportCommand generateExport() {
-        return new ExportCommand();
-    }
 
     //@@author KN-CY
     private Command generateShortcut(String userInput) {
@@ -411,6 +423,7 @@ public class Parser {
         String key = tokens[0];
         String value = tokens[1];
 
+        // ensure that shortcut is a single word
         if (key.contains(" ")) {
             return new InvalidCommand(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
         }

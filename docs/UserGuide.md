@@ -5,12 +5,8 @@
 rainyDay is a desktop application for managing your finances that runs on a Command Line Interface (CLI). rainyDay
 provides a simple solution to track your finances and achieve your financial goals.
 
-This user guide provides an in-depth documentation on how to install rainyDay, how to use it, and the necessary
-troubleshooting steps you should take when encountering an issue.
-
-## Acknowledgement
-
-Thank you for using rainyDay.
+This user guide provides an in-depth documentation on how to install and use rainyDay. This guide caters to all users of
+rainyDay, from people who are just starting out to advanced users looking for extra features they were unaware of.
 
 ## Content Page
 
@@ -18,8 +14,8 @@ Thank you for using rainyDay.
 
 * [rainyDay User Guide](#rainyday-user-guide)
     * [Introduction](#introduction)
-    * [Acknowledgement](#acknowledgement)
     * [Content Page](#content-page)
+    * [Introduction](#introduction-1)
     * [How to use the user guide](#how-to-use-the-user-guide)
     * [Quick Start](#quick-start)
     * [Features](#features)
@@ -31,7 +27,12 @@ Thank you for using rainyDay.
         * [Viewing help](#viewing-help)
         * [Filter statements](#filter-statements)
         * [Edit statements](#edit-statements)
+        * [Adding a shortcut](#adding-a-shortcut)
+        * [Using a shortcut](#using-a-shortcut)
+        * [Viewing a shortcut](#viewing-a-shortcut)
+        * [Deleting a shortcut](#deleting-a-shortcut)
         * [Saving the data](#saving-the-data)
+            * [Where is my saved file located?](#where-is-my-saved-file-located)
         * [Loading saved data](#loading-saved-data)
         * [Exporting to CSV](#exporting-to-csv)
             * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
@@ -44,6 +45,11 @@ Thank you for using rainyDay.
 
 <!-- TOC -->
 
+## Acknowledgement
+
+Thank you for choosing rainyDay! We sincerely hope that rainyDay has made it easier for you to track your finances.
+Should you have any feedback or enquiries, please do not hesitate to drop us an email!
+
 ## How to use the user guide
 
 {todo patterns that we will be using, what does it mean, e.g. "", ` `, CAPS... etc}
@@ -53,9 +59,25 @@ Thank you for using rainyDay.
 - CAPS:
 - "double quotes":
 
+This section assumes that you are a new user of rainyDay and are interested in learning more about the basic features
+provided by rainyDay.
+More advanced users are encouraged to refer to the section
+under [Advanced Usage (For Advanced Users)](#advanced-usage--for-advanced-users-)
+to enjoy the full capabilities of rainyDay.
+
+Please note the following about the format of commands given under each [feature](#features).
+
+* Words in CAPS are the parameters to be supplied by the user
+
+* Items in `markdown` format are related to commands provided by the user
+
+* Items surrounded by square brackets "[]" are mandatory fields, while the items in curly brackets "{}" are optional
+
+* Items in double quotation marks "" are the names of items
+
 ## Quick Start
 
-1. Ensure that you have Java 11 or above installed your computer
+1. Ensure that you have Java 11 or above installed on your computer
     1. Click [here](https://www.java.com/en/download/help/version_manual.html) for steps on how to check your Java
        version
     2. Click
@@ -74,7 +96,7 @@ Thank you for using rainyDay.
     1. Open the folder containing "rainyDay.jar" and click on the address bar <br>
        ![folderpath.png](folderpath.png)
     2. Type the words "cmd" in the folder path in the address bar <br>
-       ![img.png](img.png)
+       ![cmd.png](cmd.png)
     3. Hit the "enter" key. Your Command Prompt should now be open in the folder containing "rainyDay.jar".
 5. Type `java -jar rainyDay.jar` and press Enter on your keyboard to start the application
 
@@ -82,42 +104,58 @@ Thank you for using rainyDay.
 
 {feature list with links?}
 
-### Adding a transaction
+### Viewing help
 
-The following explains how you can add a new transaction to rainyDay.
-
-#### Simple Usage (For Beginner Users)
+In case you need a reminder of the capabilities of rainyDay, the help command will give you a comprehensive list of all
+the possible commands and their respective structures!
 
 Format: `add -DIRECTION DESCRIPTION $AMOUNT`
 
-* `DIRECTION` to be
+The table below will be shown:
+![help.png](help.png)
+
+### Adding a transaction
+
+An integral feature of any budgeting application is to add transactions. The "add" function of rainyDay allows you
+to keep track of your inflows and outflows. The following explains how you can add different types of transactions
+to rainyDay.
+
+#### Simple Usage (For Beginner Users)
+
+The "Simple Usage" of adding transactions is highly recommended for new users who are just starting out. Since rainyDay
+can comprehend simplified
+instructions given by the user, it provides a user-friendly experience for those who are just starting to learn how to
+use the basic functions.
+
+Format: `add [-DIRECTION] [DESCRIPTION] [$AMOUNT]`
+
+* `DIRECTION` should be either:
     * `in` signifying an inflow type of transaction, or
     * `out` signifying an outflow type of transaction
-* `TRANSACTION_NAME` can contain any characters and space
-* `AMOUNT` needs to be a number more than equal to 0
+* `DESCRIPTION` signifies the description of the transaction, consisting of words
+* `AMOUNT` signifies the cost of transaction, needs to be a number more than or equal to 0
 
 Example of usage:
 
-You received an angpao containing $500 from your mother. To add it to rainyDay, the following command can be provided to
-rainyDay:
+You received a gift of $500 from your mother. To add it to rainyDay, the following command can be provided to rainyDay:
 
-* `add -in angpao $500`
-    * Signify an inflow with the description angpao of value $500
+* `add -in gift from mom $500` - Signifies an inflow with the description "gift from mom" of value "$500"
 
-You paid for your school fee of $1000. To add it to rainyDay, the following command can be provided to rainyDay:
+You paid for your school fees of $1000.50. To add it to rainyDay, the following command can be provided to rainyDay:
 
-* `add -out school fees $1000`
-    * Signify an outflow with the description school fees of value $1000
+* `add -out school fees $1000.50` - Signifies an outflow with the description "school fees" of value "$1000.50"
 
 #### Advanced Usage (For Advanced Users)
 
-Format: `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY -date DD/MM/YYYY`
+The "Advanced Usage" of adding transactions is suitable for more advanced users who are already familiar with the basic
+functions of
+rainyDay. We recommend exploring the advanced features and customization options that the app offers. These features
+allow
+for greater control and flexibility in using rainyDay to fit specific needs and preferences.
 
-* `DIRECTION` to be
-    * `in` signifying an inflow type of transaction, or
-    * `out` signifying an outflow type of transaction
-* `TRANSACTION_NAME` can contain any characters and space
-* `AMOUNT` needs to be a number more than equal to 0
+Format: `add [-DIRECTION] [DESCRIPTION] [$AMOUNT] {-c CATEGORY} {-date DD/MM/YYYY}`
+
+* `DIRECTION`, `DESCRIPTION`, `AMOUNT` is as mentioned under [Simple Usage](#simple-usage--for-beginner-users-)
 * `CATEGORY` can contain any characters and space
 * `DD/MM/YYYY` represents a valid date, where
     * `DD` is a two-digit number representing the day
@@ -129,54 +167,54 @@ Example of usage:
 You received your monthly income of $2000 on 05/03/2023. To add it to rainyDay, the following command can be provided to
 rainyDay:
 
-* `add -in income $2000 -c pay -date 05/03/2023`
-    * Signify an inflow with the description income of value $2000, under the category of pay with the date 05/03/2023.
+* `add -in income $2000 -c pay -date 05/03/2023` - Signifies an inflow with the description "income" of value "$2000",
+  under the category of "pay" with the date "05/03/2023"
 
-You had lunch at a hawker centre for $6 on 10/03/2023. To add it to rainyDay, the following command can be provided to
+You had lunch at a hawker centre for $6.80 on 10/03/2023. To add it to rainyDay, the following command can be provided
+to
 rainyDay:
 
-* `add -out lunch at hawker centre $6 -c food and drinks -date 10/03/2023`
-    * Signify an outflow with the description lunch at hawker center of value $6, under the category of food and drinks
-      and with the date 10/03/2023.
+* `add -out lunch at hawker centre $6.80 -c food and drinks -date 10/03/2023` - Signifies an outflow with the
+  description
+  "lunch at hawker center" of value "$6.80", under the category of "food and drinks" and with the date "10/03/2023".
 
-> 💡**Tip:** The flags `-c` and `-date` can be used exclusively. The following are also valid format:
+> 💡**Tip:** The flags `-c` and `-date` can als be used exclusively. The following are also valid formats:
 >
 > * `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY`
 > * `add -DIRECTION DESCRIPTION $AMOUNT -date DD/MM/YYYY`
 
 ### Viewing the transactions
 
-{to be updated} <br>
-
-Lists all the transaction added, the total resultant amount after inflow - outflow, total inflow amount, and total
-outflow amount <br>
+An important aspect to track your finances is to view all the transactions that you have already done before. The "view"
+command of rainyDay will list all the transaction added, the resultant amount of all your inflows and outflows.
 
 Format: `view`
 
+The output will look something similar to below
+
+![view.png](view.png)
+
 ### Deleting a transaction
 
-Deletes a transaction from rainyDay. <br>
+The transactions added into rainyDay are not fixed. For whatever reason that you require deleting any transaction data,
+rainyDay's "delete" function supports removing any previous transaction from your overview.
 
-Format: `delete INDEX`
+Format: `delete [INDEX]`
 
 * `INDEX` is the transaction number given by rainyDay to a transaction
-    * The transaction number can be obtained by the [viewing the transactions](#viewing-the-transactions)
+    * The transaction number can be obtained from [viewing the transactions](#viewing-the-transactions)
 
-Example of usage: <br>
+Example of usage:
 After requesting to view the transactions from rainyDay, the following is shown to you: <br>
 ![delete.png](delete.png)
 To delete the transaction with the description lunch at hawker centre, provide the command:
 
 * `delete 2`
 
-The transaction with the description lunch at hawker centre will be deleted, and the transactions shown to you
+The transaction with the description "lunch at hawker centre" will be deleted, and the transactions shown to you
 subsequently after requesting to view the transactions will be as such: <br>
 
 ![delete1.png](delete1.png)
-
-### Viewing help
-
-{todo}
 
 ### Filter statements
 
@@ -224,13 +262,86 @@ Example of usage:
 
 `edit 3 -in`
 
+### Adding a shortcut
+
+Do you find some of your commonly used commands too lengthy to type? Configure your shortcuts now to save yourself some
+trouble!
+
+Format: `shortcut SHORTCUTCOMMAND -maps ACTUALCOMMAND`
+
+* `SHORTCUTCOMMAND` can be any single word of your choice
+* `ACTUALCOMMAND` is the actual command which you want your shortcut to perform
+
+Example of usage:
+
+You often eat the same noodle dish from your favourite coffee shop. To save yourself the trouble of typing the same
+full command everytime, you could configure the shortcut as follows.
+
+`shortcut myshortcut -maps add -out noodles $4 -c food`
+
+### Using a shortcut
+
+Now that you have [configured your shortcuts](#adding-a-shortcut), you would like to use the shortcut to save yourself
+the trouble of typing the full command.
+
+Format: `SHORTCUTCOMMAND`
+
+Example of Usage:
+
+You have configured the shortcut according to the example in the [adding a shortcut](#adding-a-shortcut) section. Now
+all you have to do is input the shortcut as follows.
+
+`myshortcut`
+
+Using the shortcut will allow you to add the same entry for noodles with a shorter command!
+
+![shortcutusage.png](shortcutusage.png)
+
+### Viewing a shortcut
+
+Now that you have [configured many shortcuts](#adding-a-shortcut), you may have started losing track of some of your
+shortcuts. The `view_shortcut` command could be useful to help you remember what shortcuts you have configured.
+
+Example of Usage:
+
+`view_shortcut`
+
+The output will look something like this:
+
+![viewshortcut.png](viewshortcut.png)
+
+### Deleting a shortcut
+
+At some point in time, you might find that the shortcut you configured is no longer useful, or you also might have
+misconfigured a [previously added shortcut](#adding-a-shortcut). Don't worry as you are able to delete your configured
+shortcuts
+any time!
+
+Format: `delete_shortcut SHORTCUTCOMMAND`
+
+* `SHORTCUTCOMMAND` The shortcut command that you want deleted
+
+Example of Usage:
+
+You have configured the shortcut according to the example in the adding a shortcut section. Unfortunately, your
+favourite coffee shop has closed down, and you are no longer able to enjoy your favourite noodle dish. Now the shortcut
+you previously configured is no longer useful. All you have to do is delete the shortcut as follows:
+
+`delete_shortcut myshortcut`
+
 ### Saving the data
 
-{todo}
+Your data will automatically be saved whenever any changes are made to your data. This includes your financial data and
+your configured shortcuts.
+
+#### Where is my saved file located?
+
+It is located in the `data` folder within the same folder as your `rainyDay.jar` file. This should have
+been configured in step 3 of the [Quick Start section](#quick-start). The data file will be named `rainyDay.json`.
 
 ### Loading saved data
 
-{todo}
+Whenever you start up your rainyDay application, previously saved data will automatically be loaded if such data exists.
 
 ### Exporting to CSV
 
@@ -255,11 +366,14 @@ been configured in step 3 of the [Quick Start section](#quick-start). The CSV fi
    the [where to locate exported CSV file section](#where-to-locate-exported-csv-file).
 4. Double-click on the CSV file and click the *load* button.
 5. With steps 1-4, your financial statements should be viewable in a nicely formatted table as shown
-   below.![statementstable.png](statementstable.png)
+   below.
+   ![statementstable.png](statementstable.png)
 
 ### Exiting the application
 
-{todo}
+To exit rainyDay, the following format is used:
+
+Format: `exit`
 
 ## FAQ
 
@@ -271,15 +385,20 @@ that
 
 ## Command Summary
 
-| Action | Format <br> Example input                                                                                                                                                                                                                                                                                                                                               |
-|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add    | For beginner users: <br> `add -DIRECTION DESCRIPTION $VALUE` <br><br> **Example:** <br> `add -in angpao $300` <br> `add -out ipad $120` <br> For advanced users: <br> `add -DIRECTION $VALUE -c CATEGORY -date DD/MM/YYYY` <br><br> **Example:** <br> `add -in income $2000 -c pay -date 05/03/2023` <br> `add -out hawker food $6 -c food and drinks -date 10/03/2023` |
-| Delete | `delete INDEX` <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                                                                                                                                                                                                                                                                                    |
-| View   | `view`                                                                                                                                                                                                                                                                                                                                                                  |
-| Help   | `help`                                                                                                                                                                                                                                                                                                                                                                  |
-| Filter | `filter DESCRIPTION` or `filter FLAG FIELD` <br><br> **Example:** <br> `filter school` <br> `filter -d school` <br>`filter -date 22/03/2023`                                                                                                                                                                                                                            |
-| Edit   | `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -add -in Beef noodles $15 -c Food` <br> `edit -d school` <br> `edit -in`                                                                                                                                                                                  |
-| Exit   | `bye`                                                                                                                                                                                                                                                                                                                                                                   |
+| Action          | Format <br> Example input                                                                                                                                                                                                                                                                                                                                               |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add             | For beginner users: <br> `add -DIRECTION DESCRIPTION $VALUE` <br><br> **Example:** <br> `add -in angpao $300` <br> `add -out ipad $120` <br> For advanced users: <br> `add -DIRECTION $VALUE -c CATEGORY -date DD/MM/YYYY` <br><br> **Example:** <br> `add -in income $2000 -c pay -date 05/03/2023` <br> `add -out hawker food $6 -c food and drinks -date 10/03/2023` |
+| Delete          | `delete INDEX` <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                                                                                                                                                                                                                                                                                    |
+| View            | `view`                                                                                                                                                                                                                                                                                                                                                                  |
+| Help            | `help`                                                                                                                                                                                                                                                                                                                                                                  |
+| Filter          | `filter DESCRIPTION` or `filter FLAG FIELD` <br><br> **Example:** <br> `filter school` <br> `filter -d school` <br>`filter -date 22/03/2023`                                                                                                                                                                                                                            |
+| Edit            | `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -add -in Beef noodles $15 -c Food` <br> `edit -d school` <br> `edit -in`                                                                                                                                                                                  |
+| Add Shortcut    | `shortcut SHORTCUTCOMMAND -maps ACTUALCOMMAND`<br><br> **Example:** <br> `shortcut myshortcut -maps add -out noodles $4`                                                                                                                                                                                                                                                |   
+| Use Shortcut    | `SHORTCUTCOMMAND`                                                                                                                                                                                                                                                                                                                                                       |
+| View Shortcuts  | `view_shortcut`                                                                                                                                                                                                                                                                                                                                                         |
+| Delete Shortcut | `delete_shortcut SHORTCUTCOMMAND`<br><br> **Example:** <br> `delete_shortcut myshortcut`                                                                                                                                                                                                                                                                                |
+| Export to CSV   | `export`                                                                                                                                                                                                                                                                                                                                                                |              
+| Exit            | `bye`                                                                                                                                                                                                                                                                                                                                                                   |
 
 ## An Example Usage of rainyDay
 
