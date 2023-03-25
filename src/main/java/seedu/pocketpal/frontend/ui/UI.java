@@ -17,6 +17,7 @@ public class UI {
      * @param entryID ID of the entry Object
      * @return String of details about the entry
      */
+    // @@author leonghuenweng
     public String formatViewEntries(Entry entry, int entryID) {
         String description = entry.getDescription();
         double price = entry.getAmount();
@@ -66,6 +67,7 @@ public class UI {
      *
      * @param entries EntryLog with entries requested by the user
      */
+    // @@author leonghuenweng
     public void printEntriesToBeViewed(EntryLog entries) {
         printEntriesToBeViewed(entries, null);
     }
@@ -77,6 +79,7 @@ public class UI {
      * @param entries  EntryLog with entries requested by the user
      * @param category Category selected by the user
      */
+    // @@author leonghuenweng
     public void printEntriesToBeViewed(EntryLog entries, Category category) {
         assert entries != null;
         if (entries.getSize() == 0) {
@@ -132,6 +135,7 @@ public class UI {
      *
      * @param entry Expenditure to be printed
      */
+    // @@author leonghuenweng
     public void printExpenditureEdited(Entry entry) {
         print(MessageConstants.MESSAGE_EXPENDITURE_EDITED
                 + UIUtil.formatExpenditure(entry.getDescription(), entry.getAmount(), entry.getCategoryString(),
