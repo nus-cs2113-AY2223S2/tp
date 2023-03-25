@@ -78,12 +78,10 @@ public class StorageFile {
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
             return new ArrayList<>();
         }
-
         try {
             return FlashcardListDecoder.decodeFlashcardList(Files.readAllLines(path));
         } catch (FileNotFoundException fnfe) {
             throw new AssertionError("A non-existent file scenario is already handled earlier.");
-            // other errors
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         }
