@@ -772,7 +772,7 @@ public class Ui {
         } else {
             System.out.println("AutoSave Mode: " + ANSI_RED + "FALSE" + ANSI_RESET);
         }
-        System.out.println("Inventory Data File Status: " + SessionManager.InventoryDataFileExist());
+        System.out.println("Inventory Data File Status: " + SessionManager.inventoryDataFileExist());
         System.out.println(LINE);
         System.out.println(ANSI_GREEN + "List of active alerts:" + ANSI_RESET);
 
