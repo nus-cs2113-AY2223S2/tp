@@ -4,6 +4,7 @@ import seedu.duke.company.Company;
 import seedu.duke.company.CompanyList;
 import seedu.duke.event.Event;
 import seedu.duke.parser.Parser;
+import seedu.duke.storage.CompanyListDecoder;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.VenueListStorage;
 import seedu.duke.ui.Ui;
@@ -30,6 +31,7 @@ public class Eventus {
         event = new Event(companyList);
         venueList = new VenueList(VenueListStorage.venueListInit());
         ui = new Ui();
+        loadSavedInformation();
         run();
     }
 
@@ -55,6 +57,10 @@ public class Eventus {
                 System.out.println("Number expected! Please type <help> for more information");
             }
         }
+    }
+
+    public void loadSavedInformation() {
+        CompanyListDecoder.read(companyList);
     }
 
     public static void main(String[] args) {
