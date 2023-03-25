@@ -16,9 +16,21 @@ public class CompanyList {
     public CompanyList(ArrayList<Company> companyList) {
         this.companyList = companyList;
     }
+
     public void add(String companyName, String industry, int contactNumber, String contactEmail) {
         Ui ui = new Ui();
+        companyName = companyName.strip().toUpperCase();
+        contactEmail = contactEmail.strip().toUpperCase();
         Company newCompany = new Company(companyName, industry, contactNumber, contactEmail);
+        for (int i = 0; i < companyList.size(); i++) {
+            String companyAlreadyAdded = companyList.get(i).getCompanyName();
+            if (companyAlreadyAdded.contains(companyName)) {
+                System.out.println("Company already exists in the list!");
+                System.out.println(companyList.get(i));
+                return;
+            }
+        }
+
         companyList.add(newCompany);
         ui.showSuccessfulAdditionMessage(companyName);
     }
@@ -91,6 +103,7 @@ public class CompanyList {
 
     public void loadSampleCompanyInformation() throws InputMismatchException {
         Ui ui = new Ui();
+
         Company sampleCompany1 = new Company("Huawei", "Tech", 80060114 , "APSupport@huawei.com");
         Company sampleCompany2 = new Company("Google", "Tech", 91002500, "google@google.com");
         Company sampleCompany3 = new Company("Tiktok", "Social Media", 91231239, "tiktok@tiktok.com");
@@ -101,7 +114,7 @@ public class CompanyList {
 
     }
 
-    public void purgeData(){
+    public void purgeData() {
         companyList.clear();
     }
 }
