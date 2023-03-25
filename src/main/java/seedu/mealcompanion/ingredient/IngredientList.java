@@ -25,6 +25,10 @@ public class IngredientList {
         return ingredients.size();
     }
 
+    public void clear() {
+        ingredients.clear();
+    }
+
     public ArrayList<Ingredient> getIngredients() {
         return ingredients;
     }
