@@ -115,20 +115,19 @@ public class Parser {
                 logger.info("obtaining mandatory information");
                 return "";
             }
-            Pattern newPattern = Pattern.compile("-(in|out)\\s+(.+)\\$([\\d.]+)\\s+(.*)");
-            Matcher newMatcher = newPattern.matcher(input);
-            if (newMatcher.matches()) {
-                this.direction = newMatcher.group(1);
-                this.description = newMatcher.group(2);
+            pattern = Pattern.compile("-(in|out)\\s+(.+)\\$([\\d.]+)\\s+(.*)");
+            matcher = pattern.matcher(input);
+            if (matcher.matches()) {
+                this.direction = matcher.group(1);
+                this.description = matcher.group(2);
                 double exactAmount = Double.parseDouble(matcher.group(3));
-
                 exactAmount = (int) (exactAmount*100);
                 if(exactAmount == 0) {
                     throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
                 }
                 this.amount = exactAmount / 100;
                 logger.info("obtaining mandatory information");
-                return newMatcher.group(4);
+                return matcher.group(4);
             }
         } catch (Exception e) {
             logger.warning("add command given by user in the wrong format");
