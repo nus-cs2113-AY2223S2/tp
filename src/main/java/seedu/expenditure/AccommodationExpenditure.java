@@ -4,6 +4,9 @@ import java.time.LocalDate;
 
 public class AccommodationExpenditure extends Expenditure {
     public static final String expenditureType = "Accom";
+    public static String iconPaid = "[X]";
+    public static String iconUnpaid = "[ ]";
+
     private boolean isPaid;
 
     public AccommodationExpenditure(String description, double value, LocalDate date) {
@@ -20,7 +23,7 @@ public class AccommodationExpenditure extends Expenditure {
     }
 
     public String getStatusIcon() {
-        return (isPaid) ? "[X]" : "[ ]";
+        return (isPaid) ? iconPaid : iconUnpaid;
     }
 
     @Override
