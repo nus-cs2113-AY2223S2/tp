@@ -11,17 +11,16 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author ChongQiRong
+
 /**
  * Represents a command that filters from the financial report
  */
 public class FilterCommand extends Command {
     private static final Logger logger = Logger.getLogger(FilterCommand.class.getName());
-    private final String description;
-    private final String filterFlag;
+    private final ArrayList<String> filterFlagAndField;
 
-    public FilterCommand(String description, String filterFlag) {
-        this.description = description;
-        this.filterFlag = filterFlag;
+    public FilterCommand(ArrayList<String> filterFlagAndField) {
+        this.filterFlagAndField = filterFlagAndField;
     }
 
     /**
@@ -49,56 +48,159 @@ public class FilterCommand extends Command {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting FilterCommand.execute()");
+
         ArrayList<FinancialStatement> filteredList = new ArrayList<>();
         ArrayList<Integer> statementIndex = new ArrayList<>();
+        ArrayList<FinancialStatement> listToFilter = new ArrayList<>();
+        ArrayList<Integer> listToFilterStatementIndex = new ArrayList<>();
 
-        if (filterFlag.equalsIgnoreCase("-d")) {
-            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
-                if (financialReport.getFinancialStatement(i).getDescription().contains(this.description)) {
-                    filteredList.add(financialReport.getFinancialStatement(i));
-                    statementIndex.add(i + 1);
+        boolean isFirstFlag = true;
+        for (int i = 0; i < filterFlagAndField.size(); i += 2) {
+            if (filterFlagAndField.get(i).equalsIgnoreCase("-d")) {
+                isFirstFlag = false;
+                filterByDescriptionFirstFlag(filteredList, statementIndex, i);
+            } else if (filterFlagAndField.get(i).equalsIgnoreCase("-c")) {
+                if (isFirstFlag) {
+                    isFirstFlag = false;
+                    filterByCategoryFirstFlag(filteredList, statementIndex, i);
+                } else {
+                    filterByCategory(filteredList, statementIndex, listToFilter, listToFilterStatementIndex, i);
+                }
+            } else if (filterFlagAndField.get(i).equalsIgnoreCase("-date")) {
+                if (isFirstFlag) {
+                    isFirstFlag = false;
+                    filterByDateFirstFlag(filteredList, statementIndex, i);
+                } else {
+                    filterByDate(filteredList, statementIndex, listToFilter, listToFilterStatementIndex, i);
+                }
+            } else if (filterFlagAndField.get(i).equalsIgnoreCase("-in")) {
+                if (isFirstFlag) {
+                    isFirstFlag = false;
+                    filterByInflowFirstFlag(filteredList, statementIndex);
+                } else {
+                    filterByInflow(filteredList, statementIndex, listToFilter, listToFilterStatementIndex);
+                }
+            } else if (filterFlagAndField.get(i).equalsIgnoreCase("-out")) {
+                if (isFirstFlag) {
+                    isFirstFlag = false;
+                    filterByOutflowFirstFlag(filteredList, statementIndex);
+                } else {
+                    filterByOutflow(filteredList, statementIndex, listToFilter, listToFilterStatementIndex);
                 }
             }
-        } else if (filterFlag.equalsIgnoreCase("-c")) {
-            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
-                if (financialReport.getFinancialStatement(i).getCategory().contains(this.description)) {
-                    filteredList.add(financialReport.getFinancialStatement(i));
-                    statementIndex.add(i + 1);
-                }
-            }
-        } else if (filterFlag.equalsIgnoreCase("-in")) {
-            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
-                if (financialReport.getFinancialStatement(i).getFlowDirectionWord().equals("in")) {
-                    filteredList.add(financialReport.getFinancialStatement(i));
-                    statementIndex.add(i + 1);
-                }
-            }
-        } else if (filterFlag.equalsIgnoreCase("-out")) {
-            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
-                if (financialReport.getFinancialStatement(i).getFlowDirectionWord().equals("out")) {
-                    filteredList.add(financialReport.getFinancialStatement(i));
-                    statementIndex.add(i + 1);
-                }
-            }
-        } else if (filterFlag.equalsIgnoreCase("-date")) {
-            for (int i = 0; i < financialReport.getStatementCount(); i += 1) {
-                if (financialReport.getStatementDate(i) != null &&
-                        financialReport.getStatementDate(i).equals(
-                                LocalDate.parse(this.description, DateTimeFormatter.ofPattern("dd/MM/uuuu")))) {
-                    filteredList.add(financialReport.getFinancialStatement(i));
-                    statementIndex.add(i + 1);
-                }
-            }
+
+            listToFilter = filteredList;
+            listToFilterStatementIndex = statementIndex;
+            filteredList = new ArrayList<>();
+            statementIndex = new ArrayList<>();
         }
 
         String output;
-        if (filteredList.size() == 0) {
+        if (listToFilter.size() == 0) {
             output = "We could not find any matches for your description in your report";
             return new CommandResult(output);
         }
         output = "Here are the list of matching items!"; // todo
         CommandResult result = new CommandResult(output);
-        ViewResult.printItemsInList(statementIndex);
+        ViewResult.printItemsInList(listToFilterStatementIndex);
         return result;
+    }
+
+    private static void filterByOutflow(ArrayList<FinancialStatement> filteredList, ArrayList<Integer> statementIndex,
+                                        ArrayList<FinancialStatement> listToFilter,
+                                        ArrayList<Integer> listToFilterStatementIndex) {
+        for (int j = 0; j < listToFilter.size(); j += 1) {
+            if (listToFilter.get(j).getFlowDirectionWord().equals("out")) {
+                filteredList.add(listToFilter.get(j));
+                statementIndex.add(listToFilterStatementIndex.get(j));
+            }
+        }
+    }
+
+    private void filterByOutflowFirstFlag(ArrayList<FinancialStatement> filteredList,
+                                          ArrayList<Integer> statementIndex) {
+        for (int j = 0; j < financialReport.getStatementCount(); j += 1) {
+            if (financialReport.getFinancialStatement(j).getFlowDirectionWord().equals("out")) {
+                filteredList.add(financialReport.getFinancialStatement(j));
+                statementIndex.add(j + 1);
+            }
+        }
+    }
+
+    private static void filterByInflow(ArrayList<FinancialStatement> filteredList, ArrayList<Integer> statementIndex,
+                                       ArrayList<FinancialStatement> listToFilter,
+                                       ArrayList<Integer> listToFilterStatementIndex) {
+        for (int j = 0; j < listToFilter.size(); j += 1) {
+            if (listToFilter.get(j).getFlowDirectionWord().equals("in")) {
+                filteredList.add(listToFilter.get(j));
+                statementIndex.add(listToFilterStatementIndex.get(j));
+            }
+        }
+    }
+
+    private void filterByInflowFirstFlag(ArrayList<FinancialStatement> filteredList,
+                                         ArrayList<Integer> statementIndex) {
+        for (int j = 0; j < financialReport.getStatementCount(); j += 1) {
+            if (financialReport.getFinancialStatement(j).getFlowDirectionWord().equals("in")) {
+                filteredList.add(financialReport.getFinancialStatement(j));
+                statementIndex.add(j + 1);
+            }
+        }
+    }
+
+    private void filterByDate(ArrayList<FinancialStatement> filteredList, ArrayList<Integer> statementIndex,
+                              ArrayList<FinancialStatement> listToFilter, ArrayList<Integer> listToFilterStatementIndex,
+                              int i) {
+        for (int j = 0; j < listToFilter.size(); j += 1) {
+            if (listToFilter.get(j).getDate().equals(LocalDate.parse(filterFlagAndField.get(i + 1),
+                    DateTimeFormatter.ofPattern("dd/MM/uuuu")))) {
+                filteredList.add(listToFilter.get(j));
+                statementIndex.add(listToFilterStatementIndex.get(j));
+            }
+        }
+    }
+
+    private void filterByDateFirstFlag(ArrayList<FinancialStatement> filteredList, ArrayList<Integer> statementIndex,
+                                       int i) {
+        for (int j = 0; j < financialReport.getStatementCount(); j += 1) {
+            if (financialReport.getStatementDate(j) != null &&
+                    financialReport.getStatementDate(j).equals(
+                            LocalDate.parse(filterFlagAndField.get(i + 1),
+                                    DateTimeFormatter.ofPattern("dd/MM/uuuu")))) {
+                filteredList.add(financialReport.getFinancialStatement(j));
+                statementIndex.add(j + 1);
+            }
+        }
+    }
+
+    private void filterByCategory(ArrayList<FinancialStatement> filteredList, ArrayList<Integer> statementIndex,
+                                  ArrayList<FinancialStatement> listToFilter,
+                                  ArrayList<Integer> listToFilterStatementIndex, int i) {
+        for (int j = 0; j < listToFilter.size(); j += 1) {
+            if (listToFilter.get(j).getCategory().contains(filterFlagAndField.get(i + 1))) {
+                filteredList.add(listToFilter.get(j));
+                statementIndex.add(listToFilterStatementIndex.get(j));
+            }
+        }
+    }
+
+    private void filterByCategoryFirstFlag(ArrayList<FinancialStatement> filteredList,
+                                           ArrayList<Integer> statementIndex, int i) {
+        for (int j = 0; j < financialReport.getStatementCount(); j += 1) {
+            if (financialReport.getFinancialStatement(j).getCategory().contains(filterFlagAndField.get(i + 1))) {
+                filteredList.add(financialReport.getFinancialStatement(j));
+                statementIndex.add(j + 1);
+            }
+        }
+    }
+
+    private void filterByDescriptionFirstFlag(ArrayList<FinancialStatement> filteredList,
+                                              ArrayList<Integer> statementIndex, int i) {
+        for (int j = 0; j < financialReport.getStatementCount(); j += 1) {
+            if (financialReport.getFinancialStatement(j).getDescription().contains(filterFlagAndField.get(i + 1))) {
+                filteredList.add(financialReport.getFinancialStatement(j));
+                statementIndex.add(j + 1);
+            }
+        }
     }
 }

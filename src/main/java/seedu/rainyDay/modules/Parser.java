@@ -16,6 +16,7 @@ import seedu.rainyDay.exceptions.RainyDayException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,19 +26,12 @@ public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
     private String direction;
-
     private String description;
-
     private String category;
-
     private String filterFlag;
-
     private double amount = -1.0;
-
     private String field;
-
-    private LocalDate date = null;
-
+    private LocalDate date = LocalDate.now();
     public Command parseUserInput(String userInput) {
         try {
             assert userInput != null : "Failed to read user input!";
@@ -47,11 +41,12 @@ public class Parser {
                 return addStatement(action[1].trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
                 logger.info("delete command executing");
-                return parseDeleteStatement(userInput); //todo: fix this to reduce calls of split.();
+                return parseDeleteStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
                 logger.info("view command executing");
-                return generateReport();
+                return generateReport(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
+                logger.info("help command executing");
                 return displayHelp(action[1].trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
                 logger.info("filter command executing");
@@ -187,45 +182,95 @@ public class Parser {
         }
     }
 
-    public ViewCommand generateReport() {
-        return new ViewCommand();
+    //@@author BenjaminPoh
+    public Command generateReport(String input) {
+        input = input.substring(4).trim();
+        LocalDate startDate = LocalDate.now();
+        if(input.equals("")) {
+            startDate = startDate.minusMonths(1);
+            return new ViewCommand(startDate, false);
+        }
+        Pattern pattern = Pattern.compile("^(\\d{1,2})(d|w|m|y)\\s*(?:((-sort)?))\\s*$");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.matches()) {
+            try {
+                logger.info("obtaining relevant data");
+                int minusAmount = Integer.parseInt(matcher.group(1));
+                String dateType = matcher.group(2);
+                boolean sortRequired = matcher.group(3).equals("-sort");
+                if (dateType.equals("d") && minusAmount < 31) {
+                    startDate = startDate.minusDays(minusAmount);
+                    return new ViewCommand(startDate, sortRequired);
+                }
+                if (dateType.equals("w") && minusAmount < 5) {
+                    startDate = startDate.minusWeeks(minusAmount);
+                    return new ViewCommand(startDate, sortRequired);
+                }
+                if (dateType.equals("m") && minusAmount < 13) {
+                    startDate = startDate.minusMonths(minusAmount);
+                    return new ViewCommand(startDate, sortRequired);
+                }
+                if (dateType.equals("y") && minusAmount < 11) {
+                    startDate = startDate.minusYears(minusAmount);
+                    return new ViewCommand(startDate, sortRequired);
+                }
+                logger.warning("view command given by user in the wrong format");
+                return new InvalidCommand(ErrorMessage.WRONG_VIEW_FORMAT.toString());
+            } catch (Exception e) {
+                logger.warning("view command given by user in the wrong format");
+                return new InvalidCommand(ErrorMessage.WRONG_VIEW_FORMAT.toString());
+            }
+        } else {
+            logger.warning("view command given by user in the wrong format");
+            return new InvalidCommand(ErrorMessage.WRONG_VIEW_FORMAT.toString());
+        }
     }
 
     //@@author BenjaminPoh
     public HelpCommand displayHelp(String input) {
+        input = input.substring(4);
         return new HelpCommand(input.trim());
     }
 
     //@@author ChongQiRong
     private Command filterStatement(String input) {
         try {
-            if (input.contains("-date")) {
-                parseFilterByDate(input);
-            } else if (input.contains("-d")) {
-                parseFilterByDescription(input);
-            } else if (input.contains("-c")) {
-                parseFilterByCategory(input);
-            } else if (input.contains("-in")) {
-                parseFilterByFlowDirection(input);
-            } else if (input.contains("-out")) {
-                parseFilterByFlowDirection(input);
+            int count = (int) input.chars().filter(ch -> ch == '-').count();
+            if (count >= 1) {
+                return new FilterCommand(parseFilterMultipleFlags(input, count));
             } else {
-                parseDefaultFilterByDescription(input);
+                logger.warning("unrecognised input from user!");
+                return new InvalidCommand(ErrorMessage.WRONG_FILTER_FORMAT.toString());
             }
-            return new FilterCommand(this.field, this.filterFlag);
         } catch (Exception e) {
             logger.warning("filter command given by user in the wrong format");
             return new InvalidCommand(ErrorMessage.WRONG_FILTER_FORMAT.toString());
         }
     }
 
-    private void parseDefaultFilterByDescription(String input) {
-        this.field = input.trim();
-        this.filterFlag = "-d";
+    private ArrayList<String> parseFilterMultipleFlags(String input, int count) {
+        Pattern pattern = Pattern.compile("(?:(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*){0,1}" +
+                "(?:(-c)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*){0,1}" +
+                "(?:(-date)\\s+(\\d{2}/\\d{2}/\\d{4})\\s*){0,1}" +
+                "(?:(-in|-out))?{0,1}\\s*$");
+        Matcher matcher = pattern.matcher(input);
+        ArrayList<String> filterFlagAndField = new ArrayList<>();
+
+        if (matcher.find()) {
+            for (int i = 1; i <= 7; i += 1) {
+                if (matcher.group(i) != null) {
+                    filterFlagAndField.add(matcher.group(i));
+                }
+            }
+            return filterFlagAndField;
+        } else {
+            logger.warning("filter command given by user in the wrong format");
+            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
     }
 
-    private void parseFilterByDescription(String input) {
-        Pattern pattern = Pattern.compile("^(-d)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
+    private void parseByDescription(String input) {
+        Pattern pattern = Pattern.compile("^(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             this.filterFlag = matcher.group(1);
@@ -236,36 +281,12 @@ public class Parser {
         }
     }
 
-    private void parseFilterByCategory(String input) {
-        Pattern pattern = Pattern.compile("^(-c)\\s+?([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
+    private void parseByCategory(String input) {
+        Pattern pattern = Pattern.compile("^(-c)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             this.filterFlag = matcher.group(1);
             this.field = matcher.group(2);
-        } else {
-            logger.warning("filter command given by user in the wrong format");
-            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
-        }
-    }
-
-    private void parseFilterByFlowDirection(String input) {
-        Pattern pattern = Pattern.compile("^(-in|-out)\\s*$");
-        Matcher matcher = pattern.matcher(input);
-        if (matcher.find()) {
-            this.filterFlag = matcher.group(1);
-            this.field = "none";
-        } else {
-            logger.warning("filter command given by user in the wrong format");
-            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
-        }
-    }
-
-    private void parseFilterByDate(String input) {
-        Pattern pattern = Pattern.compile("-date\\s+(\\d{2}/\\d{2}/\\d{4})");
-        Matcher matcher = pattern.matcher(input);
-        if (matcher.matches()) {
-            this.filterFlag = "-date";
-            this.field = matcher.group(1);
         } else {
             logger.warning("filter command given by user in the wrong format");
             throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
@@ -284,17 +305,29 @@ public class Parser {
         }
     }
 
+    private void parseEditByDate(String input) {
+        Pattern pattern = Pattern.compile("^(-date)\\s+(\\d{2}/\\d{2}/\\d{4})$");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            this.filterFlag = matcher.group(1);
+            this.field = matcher.group(2);
+        } else {
+            logger.warning("filter command given by user in the wrong format");
+            throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
+    }
+
     public Command editStatement(String userInput) throws IllegalArgumentException {
         try {
             String[] tokens = userInput.split("\\s+", 3);
-            if (tokens.length == 1) {  // todo change to if second value not int or less than equals 1
+            if (tokens.length == 1) {
                 logger.warning("invalid edit index from user");
-                throw new IllegalArgumentException(ErrorMessage.NO_EDIT_INDEX.toString());
+                throw new IllegalArgumentException();
             }
 
             int index = Integer.parseInt(tokens[1]);
             if (index > RainyDay.financialReport.getStatementCount()) {
-                throw new IllegalArgumentException(ErrorMessage.WRONG_EDIT_INDEX.toString());
+                throw new IllegalArgumentException();
             }
 
             if (tokens[2].contains("add")) {
@@ -305,7 +338,7 @@ public class Parser {
                 }
                 if (!remainingInformation.contains("-c ") && !remainingInformation.contains("-date ")) {
                     logger.info("returning new InvalidCommand object");
-                    return new InvalidCommand(ErrorMessage.WRONG_ADD_FORMAT.toString());
+                    return new InvalidCommand(ErrorMessage.WRONG_EDIT_FORMAT.toString());
                 }
                 if (remainingInformation.contains("-c ")) {
                     remainingInformation = setCategory(remainingInformation);
@@ -314,11 +347,15 @@ public class Parser {
                     setDate(remainingInformation);
                 }
                 return new EditCommand(index, description, direction, amount, category);
-            } else if (tokens[2].contains("-d")) { // todo add -date
-                parseFilterByDescription(tokens[2]);
+            } else if (tokens[2].contains("-date")) {
+                parseEditByDate(tokens[2]);
+                return new EditCommand(index, "-date", LocalDate.parse(field,
+                        DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            } else if (tokens[2].contains("-d")) {
+                parseByDescription(tokens[2]);
                 return new EditCommand(index, "-d", field);
             } else if (tokens[2].contains("-c")) {
-                parseFilterByCategory(tokens[2]);
+                parseByCategory(tokens[2]);
                 return new EditCommand(index, "-c", field);
             } else if (tokens[2].contains("-v")) {
                 parseEditByValue(tokens[2]);
@@ -328,11 +365,11 @@ public class Parser {
             } else if (tokens[2].equals("-in")) {
                 return new EditCommand(index, "-in");
             } else {
-                return new InvalidCommand(ErrorMessage.WRONG_INPUT_FORMAT.toString());
+                return new InvalidCommand(ErrorMessage.WRONG_EDIT_FORMAT.toString());
             }
         } catch (Exception e) {
             logger.warning("edit index provided incorrectly");
-            return new InvalidCommand(ErrorMessage.WRONG_INPUT_FORMAT.toString()); // todo update
+            return new InvalidCommand(ErrorMessage.WRONG_EDIT_FORMAT.toString());
         }
     }
 

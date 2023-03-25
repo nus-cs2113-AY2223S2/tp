@@ -2,40 +2,41 @@
 
 ## Introduction
 
-rainyDay is a desktop application for managing your finances. With a command line interface, you can keep track of your
-financial inflows and outflows and view them with a single command.
+rainyDay is a desktop application for managing your finances that runs on a Command Line Interface (CLI). rainyDay
+provides a simple solution to track your finances and achieve your financial goals.
+
+This user guide provides an in-depth documentation on how to install rainyDay, how to use it, and the necessary
+troubleshooting
+steps you should take when encountering an issue.
 
 ## Acknowledgement
 
 Thank you for using rainyDay. {todo}
 
-## How to use the user guide
-
-{todo patterns that we will be using, what does it mean, e.g. "", ` `, CAPS... etc}
-
 <!-- TOC -->
-* [User Guide](#user-guide)
-  * [Introduction](#introduction)
-  * [Acknowledgement](#acknowledgement)
-  * [How to use the user guide](#how-to-use-the-user-guide)
-  * [Quick Start](#quick-start)
-  * [Features](#features)
+
+* [Quick Start](#quick-start)
+* [How to use the user guide](#how-to-use-the-user-guide)
+* [Features](#features)
     * [Adding a transaction](#adding-a-transaction)
     * [Deleting a transaction](#deleting-a-transaction)
     * [Viewing the financial report](#viewing-the-financial-report)
     * [Viewing help](#viewing-help)
     * [Filter statements](#filter-statements)
+    * [Edit statements](#edit-statements)
     * [Saving the data](#saving-the-data)
     * [Loading saved data](#loading-saved-data)
     * [Exporting to CSV](#exporting-to-csv)
     * [Exiting the application](#exiting-the-application)
-  * [FAQ](#faq)
-  * [Command Summary](#command-summary)
-  * [Glossary](#glossary)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
+* [Glossary](#glossary)
+
 <!-- TOC -->
 
+## How to use the user guide
 
-
+{todo patterns that we will be using, what does it mean, e.g. "", ` `, CAPS... etc}
 
 ## Quick Start
 
@@ -47,17 +48,19 @@ Thank you for using rainyDay. {todo}
        for the guide on installing Java 11
 2. Download the latest version of "rainyDay"
    from [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/releases/download/v1.0/rainyDay.jar).
-3. Move the "rainyDay.jar" file to the file directory of your choice
-    1. You can move the jar file by right-clicking on Duke.jar
-    2. Select cut
-    3. Go to the directory of choice
-    4. Right-click in the file window
-    5. Select paste
-4. Right-click on the directory with "rainyDay.jar" and select "open in terminal" <br> //todo learn how to add images
-   <img alt="Screenshot toolbar with &quot;open in terminal&quot;" height="629" src="\images\right-click-to-open-terminal-red-arrow.png" title="Open in terminal" width="578"/>
-    - Screenshot of file directory containing "rainyDay.jar", after performing a right click on an empty space in the
-      file
-      directory
+3. Move the "rainyDay.jar" file to the folder of your choice by doing the following steps:
+    1. Locate the "rainyDay.jar" file in your "Downloads" folder
+    2. Right-click the "rainyDay.jar" file and select cut from the table that appears
+       ![cut.png](cut.png)
+    3. Go to the folder of your choice
+    4. Right-click in the file window and select paste as seen below
+       ![paste.png](paste.png)
+4. In order to run "rainyDay.jar" on the command line, we have to do the following:
+    1. Open the folder containing "rainyDay.jar" and click on the address bar
+       ![folderpath.png](folderpath.png)
+    2. Type the words "cmd" in the folder path in the address bar
+       ![img.png](img.png)
+    3. Hit the "enter" key. Your Command Prompt should now be open in the folder containing "rainyDay.jar".
 5. Type `java -jar rainyDay.jar` and press Enter on your keyboard to start the application
 
 ## Features
@@ -113,11 +116,11 @@ Format : `filter DESCRIPTION` or `filter FLAG FIELD`
 
 * Default filter without `FLAG` filters by description
 * The `FLAG` must be one of the following:
-  * `-d` to filter by description
-  * `-c` to filter by category
-  * `-in` to filter by inflows
-  * `-out` to filter by outflows
-  * `-date` to filter by date
+    * `-d` to filter by description
+    * `-c` to filter by category
+    * `-in` to filter by inflows
+    * `-out` to filter by outflows
+    * `-date` to filter by date
 * date must be in the form DD/MM/YYYY
 
 Example of usage:
@@ -128,7 +131,6 @@ Example of usage:
 
 `filter -date 22/03/2023`
 
-
 ### Edit statements
 
 Edit a statement already in financial report
@@ -138,7 +140,7 @@ Format : `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FL
 * The `FLAG` must be one of the following:
     * `-d` to edit the description
     * `-c` to edit the category
-    * `-v` to edit the date
+    * `-v` to edit the value
     * `-in` to change direction to inflow
     * `-out` to change direction to outflow
     * {todo}
@@ -166,11 +168,23 @@ Exports your financial statements into a comma-separated values file.
 
 Format: `export`
 > **Background:** A CSV file allows data to be saved in a format which can be viewed as a table.
-> 
->💡Saving your financial statements in a CSV file will allow you to view your statements in commonly use applications like *Microsoft Excel* and *Google Sheets*.
+>
+>💡Saving your financial statements in a CSV file will allow you to view your statements in commonly use applications
+> like *Microsoft Excel* and *Google Sheets*.
 
-{todo: tell user where they can locate saved file}
+#### Where to locate exported CSV file?
 
+The CSV file will be located in the `data` folder within the same folder as your `rainyDay.jar` file. This should have
+been configured in step 3 of the [Quick Start section](#quick-start). The CSV file will be named `report`.
+
+#### How to view the CSV file using Microsoft Excel?
+
+1. Open your Microsoft Excel application and open a blank workbook.
+2. Click on the *Data* tab found at the top and click on *From Text/CSV*.![csvtoexcel.csv](csvtoexcel.png)
+3. Navigate to the CSV file as directed in
+   the [where to locate exported CSV file section](#where-to-locate-exported-csv-file).
+4. Double-click on the CSV file and click the *load* button.
+5. With steps 1-4, your financial statements should be viewable in a nicely formatted table as shown below.![statementstable.png](statementstable.png)
 
 ### Exiting the application
 

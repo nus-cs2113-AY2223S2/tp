@@ -10,6 +10,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -31,6 +33,7 @@ public class Storage {
     public static void writeToFile(FinancialReport report, String filePath) {
         setupLogger();
         try {
+            Files.createDirectories(Paths.get("./data"));
             FileOutputStream writeData = new FileOutputStream(filePath);
             ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
 
@@ -87,8 +90,9 @@ public class Storage {
                 value = Double.toString(-currStatement.getValue());
             }
             String category = currStatement.getCategory();
+            String date = currStatement.getDate().toString();
 
-            String[] tableRow = {statementID, description, value, category};
+            String[] tableRow = {statementID, description, value, category, date};
             tableWriter.writeNext(tableRow);
         }
     }
@@ -101,13 +105,13 @@ public class Storage {
      * @throws IOException When there is an error writing to the .csv file.
      */
     public static void writeToCSV(FinancialReport report) throws IOException {
-        String CSVFilePath = "report.csv";
-
+        Files.createDirectories(Paths.get("./data"));
+        String CSVFilePath = "./data/report.csv";
 
         FileWriter outputFile = new FileWriter(CSVFilePath);
         CSVWriter tableWriter = new CSVWriter(outputFile);
 
-        String[] tableHeader = {"ID", "Description", "Value", "Category"};
+        String[] tableHeader = {"ID", "Description", "Amount", "Category", "Date"};
         tableWriter.writeNext(tableHeader);
         fillTableBody(report, tableWriter);
 
