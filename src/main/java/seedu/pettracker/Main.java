@@ -2,6 +2,7 @@ package seedu.pettracker;
 
 import seedu.pettracker.commands.Command;
 import seedu.pettracker.parser.CommandParser;
+import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -16,12 +17,17 @@ public class Main {
     private final Ui ui;
     private final CommandParser commandParser;
 
+    private final Storage storage;
+
+    private final String STORAGE_FILE_PATH = "./output/petoutput.txt";
+
     /**
      * Creates the Main class by initializing the other classes
      */
     public Main() {
         ui = new Ui();
         commandParser = new CommandParser();
+        storage = new Storage(STORAGE_FILE_PATH, ui);
     }
 
     /**
