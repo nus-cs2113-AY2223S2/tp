@@ -11,7 +11,9 @@ public class CommandFormat {
     public static final String SEARCH_UPC_FORMAT = "searchupc [UPC]";
     public static final String FILTER_FORMAT = "filter f/[Filter type] {p/[Price type] [Category or Price or Tag]}";
     public static final String LIST_FORMAT = "list";
-    public static final String ALERT_ADD_FORMAT = "alertadd i/[Index] m/[Min/Max] qty/[Quantity]";
+    public static final String ALERT_ADD_FORMAT = "alert add upc/[UPC] {min/[Minimum] or max/[Maximum]}";
+
+    public static final String ALERT_REMOVE_FORMAT = "alert remove upc/[UPC] level/[Min or Max]";
     public static final String CATEGORY_FORMAT = "cat n/[Name] c/[Category]";
     public static final String TAG_FORMAT = "tag a/[Add/Remove] n/[Name] [Tag]";
 
@@ -23,7 +25,8 @@ public class CommandFormat {
     public static final String SEARCH_KEYWORD_DESCRIPTION = "search:\n search existing items by keywords";
     public static final String SEARCH_UPC_DESCRIPTION = "searchupc:\nsearch existing items by UPC";
     public static final String FILTER_DESCRIPTION = "filter:\nfilters items by category or price or tag";
-    public static final String ALERT_ADD_DESCRIPTION = "alertadd:\nadds new alert for an item to track its stock count";
+    public static final String ALERT_ADD_DESCRIPTION = "alert add:\nadds new alert for an item to track its stock count";
+    public static final String ALERT_REMOVE_DESCRIPTION = "alert remove:\nremoves existing alert for an item";
     public static final String CATEGORY_DESCRIPTION = "cat:\nputs an item into the specified category";
     public static final String TAG_DESCRIPTION = "tag:\nadds or removes a tag of an existing item";
 
@@ -43,6 +46,7 @@ public class CommandFormat {
         commands.put(CATEGORY_FORMAT, CATEGORY_DESCRIPTION);
         commands.put(TAG_FORMAT, TAG_DESCRIPTION);
         commands.put(ALERT_ADD_FORMAT, ALERT_ADD_DESCRIPTION);
+        commands.put(ALERT_REMOVE_FORMAT, ALERT_REMOVE_DESCRIPTION);
         commands.put(HELP_FORMAT, HELP_DESCRIPTION);
         return commands;
     }

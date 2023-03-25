@@ -106,6 +106,5 @@ class ListCommandTest {
                         System.lineSeparator() + "____________________________________________________________" +
                         System.lineSeparator();
         assertTrue(outContent.toString().contains(expectedOutput));
-
     }
 }

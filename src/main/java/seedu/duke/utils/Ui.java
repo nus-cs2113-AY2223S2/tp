@@ -76,7 +76,7 @@ public class Ui {
     public static final int QTY_COL_WIDTH = 8;
 
     public static final int PRICE_COL_WIDTH = 8;
-    public static final int COMMAND_COL_WIDTH = 15;
+    public static final int COMMAND_COL_WIDTH = 25;
     public static final int FORMAT_COL_WIDTH = 25;
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
             "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
