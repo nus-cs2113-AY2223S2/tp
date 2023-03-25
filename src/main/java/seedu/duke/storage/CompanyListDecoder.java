@@ -13,6 +13,27 @@ public class CompanyListDecoder extends Storage {
 
     public static final String filePath = "data/companyList.txt";
 
+    public static void read(CompanyList companyList) {
+        try {
+            File f = new File(filePath);
+            Scanner s = new Scanner(f);
+            if (!s.hasNext()) {
+                throw new NoSavedInformationException();
+            }
+            while (s.hasNext()) {
+                String line = s.nextLine();
+                String[] parsedInput = parseInput(line);
+                writeToCompanyList(companyList, parsedInput);
+            }
+        } catch (NoSavedInformationException e) {
+            System.out.println("There is no saved data found.");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+        } catch (InvalidIndexException e) {
+            System.out.println("Invalid index. Please try again.");
+        }
+    }
+
     private static String[] parseInput(String line) {
         String[] parsedline = line.split("\\|");
         return parsedline;
