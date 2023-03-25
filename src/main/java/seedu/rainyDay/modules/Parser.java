@@ -284,7 +284,21 @@ public class Parser {
                     filterFlagAndField.add(matcher.group(i));
                 }
             }
-            if (filterFlagAndField.size() != count) {
+            int sizeOfFilterFlagAndField = 0;
+            for (String s : filterFlagAndField) {
+                if (s.equals("-d")) {
+                    sizeOfFilterFlagAndField += 2;
+                } else if (s.equals("-c")) {
+                    sizeOfFilterFlagAndField += 2;
+                } else if (s.equals("-date")) {
+                    sizeOfFilterFlagAndField += 2;
+                } else if (s.equals("-in")) {
+                    sizeOfFilterFlagAndField += 1;
+                } else if (s.equals("-out")) {
+                    sizeOfFilterFlagAndField += 1;
+                }
+            }
+            if (filterFlagAndField.size() != sizeOfFilterFlagAndField) {
                 logger.warning("filter command given by user in the wrong format");
                 throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
             }
