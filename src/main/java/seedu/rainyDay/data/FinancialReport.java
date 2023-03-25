@@ -3,11 +3,10 @@ package seedu.rainyDay.data;
 import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.modules.Storage;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class FinancialReport implements Serializable {
+public class FinancialReport  {
     private final ArrayList<FinancialStatement> financialReport;
     private String reportOwner;
 

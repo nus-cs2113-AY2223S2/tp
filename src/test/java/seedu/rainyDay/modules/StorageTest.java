@@ -1,5 +1,6 @@
 package seedu.rainyDay.modules;
 
+import com.google.gson.JsonParseException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.rainyDay.data.FinancialReport;
@@ -48,6 +49,6 @@ public class StorageTest {
     @Test
     public void loadFromFile_invalidFileType_classNotFoundExceptionThrown() {
         String invalidTypeFilePath = "test files/thisFileTypeIsInvalid.txt";
-        assertThrows(IOException.class, () -> Storage.loadFromFile(invalidTypeFilePath));
+        assertThrows(JsonParseException.class, () -> Storage.loadFromFile(invalidTypeFilePath));
     }
 }

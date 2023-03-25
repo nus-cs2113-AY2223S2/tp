@@ -1,17 +1,31 @@
 package seedu.rainyDay.modules;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.FlowDirection;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.Reader;
+
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -19,63 +33,70 @@ import java.util.logging.Logger;
 
 import com.opencsv.CSVWriter;
 
-
+//@@author KN-CY
 public class Storage {
     private static Logger logger = Logger.getLogger("Storage.log");
+    private static Gson gson =
+            new GsonBuilder().setPrettyPrinting().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).create();
 
-    //@@author ChongQiRong
     /**
-     * Uses serialization to save the FinancialReport object into a file.
+     * Custom adaptor for serializing and deserializing LocalDate objects with Gson
+     */
+    private static class LocalDateAdapter implements JsonSerializer<LocalDate>, JsonDeserializer<LocalDate> {
+        private final DateTimeFormatter dateFormat = DateTimeFormatter.ISO_LOCAL_DATE;
+
+        @Override
+        public JsonElement serialize(LocalDate date, Type typeOfSrc, JsonSerializationContext context) {
+            return new JsonPrimitive(date.format(dateFormat));
+        }
+
+        @Override
+        public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+            return LocalDate.parse(json.getAsString(), dateFormat);
+        }
+    }
+
+    /**
+     * Uses JSON serialization to save the FinancialReport object into a JSON file.
      *
-     * @param report The object containing the FinancialReport to save.
+     * @param report   The object containing the FinancialReport to save.
      * @param filePath The file path where the FinancialReport will be saved to.
      */
     public static void writeToFile(FinancialReport report, String filePath) {
-        setupLogger();
         try {
-            Files.createDirectories(Paths.get("./data"));
-            FileOutputStream writeData = new FileOutputStream(filePath);
-            ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
+            String jsonReport = gson.toJson(report);
+            FileWriter fileWriter = new FileWriter(filePath);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            writeStream.writeObject(report);
-
-            writeStream.flush();
-            writeStream.close();
-            logger.log(Level.INFO, "Data successfully written and writeStream successfully flushed and closed");
-
+            bufferedWriter.write(jsonReport);
+            bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    //@@author KN-CY
     /**
      * Uses deserialization to load the FinancialReport from a serialized file.
      *
      * @param filePath The file path where the FinancialReport will be loaded from.
      * @return The FinancialReport after deserialization from the file.
-     * @throws IOException If there is an error loading the TaskList object from the file.
-     * @throws ClassNotFoundException If there is an error loading the TaskList object from the file.
-     * @throws ClassCastException If the serialized object is of a different class type.
+     * @throws FileNotFoundException If the file specified by the filePath is not found.
+     * @throws JsonParseException    If Json is given in invalid format and is unable to be parsed.
      */
-    public static FinancialReport loadFromFile(String filePath)
-            throws IOException, ClassNotFoundException, ClassCastException {
-        FileInputStream readData = new FileInputStream(filePath);
-        ObjectInputStream readStream = new ObjectInputStream(readData);
-
-        FinancialReport statements = (FinancialReport) readStream.readObject();
-
-        readStream.close();
-        readData.close();
+    public static FinancialReport loadFromFile(String filePath) throws FileNotFoundException
+            , JsonParseException {
+        Reader reader = new FileReader(filePath);
+        FinancialReport statements = gson.fromJson(reader, FinancialReport.class);
 
         return statements;
     }
 
-    //@@author KN-CY
     /**
      * Fills up the CSVWriter with the contents of the financial statements within the FinancialReport.
      *
-     * @param report The FinancialReport which contains the financial statements to be saved into CSV.
+     * @param report      The FinancialReport which contains the financial statements to be saved into CSV.
+     * @param tableWriter The CSV writer object.
      */
     private static void fillTableBody(FinancialReport report, CSVWriter tableWriter) {
         for (int i = 0; i < report.getStatementCount(); i++) {
@@ -97,7 +118,6 @@ public class Storage {
         }
     }
 
-    //@@author KN-CY
     /**
      * Writes to a file in .csv format.
      *
@@ -117,7 +137,7 @@ public class Storage {
 
         tableWriter.close();
     }
-    
+
     /**
      * Sets up logger for logging
      */
