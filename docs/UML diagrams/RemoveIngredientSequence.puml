@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+[-> ":RemoveCommand": new RemoveCommand("egg", 2)
+
+activate ":RemoveCommand"
+
+":RemoveCommand" -> ":IngredientList": getIngredients()
+activate ":IngredientList"
+":RemoveCommand" <- ":IngredientList": ArrayList<Ingredient>: ingredients
+deactivate ":IngredientList"
+
+":RemoveCommand" -> ":RemoveCommand": findIndex("egg")
+activate ":RemoveCommand"
+
+":RemoveCommand" -> ":RemoveCommand": return index
+
+deactivate ":RemoveCommand"
+
+":RemoveCommand" -> ":IngredientList": get(index)
+activate ":IngredientList"
+":IngredientList" -> ":Ingredient": getQuantity()
+activate ":Ingredient"
+":IngredientList" <- ":Ingredient": return 5
+deactivate ":Ingredient"
+":RemoveCommand" <- ":IngredientList": return 5
+deactivate ":IngredientList"
+
+
+":RemoveCommand" -> ":IngredientList": get(index)
+activate ":IngredientList"
+":IngredientList" -> ":Ingredient": setQuantity(3)
+activate ":Ingredient"
+":IngredientList" <-- ":Ingredient":
+deactivate ":Ingredient"
+":RemoveCommand" <-- ":IngredientList":
+deactivate ":IngredientList"
+
+[<- ":RemoveCommand": Done
+deactivate ":RemoveCommand"
+@enduml
