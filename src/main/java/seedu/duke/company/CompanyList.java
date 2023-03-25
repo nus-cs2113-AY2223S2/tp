@@ -4,7 +4,6 @@ import seedu.duke.exception.EmptyListException;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.ui.Ui;
 
-
 import java.util.ArrayList;
 
 public class CompanyList {

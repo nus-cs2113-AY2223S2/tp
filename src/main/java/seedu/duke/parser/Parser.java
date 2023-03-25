@@ -19,7 +19,8 @@ import seedu.duke.exception.WrongFormatException;
 
 public interface Parser {
 
-    static Command parse(String input) throws WrongFormatException, NumberFormatException {
+    static Command parse(String input) throws WrongFormatException,
+            NumberFormatException, NullPointerException, IndexOutOfBoundsException {
         Ui ui = new Ui();
         String[] inputWords = input.split(" ");
         String command = inputWords[0];
@@ -40,6 +41,9 @@ public interface Parser {
             }
             throw new WrongFormatException();
         case "add":
+            if (inputWords.length == 1) {
+                throw new WrongFormatException();
+            }
             input = input.replaceFirst("add", "").trim();
             int indexOfName = input.indexOf("n/");
             int indexOfIndustry = input.indexOf("i/");

@@ -2,6 +2,9 @@ package seedu.duke.command;
 
 import seedu.duke.company.CompanyList;
 import seedu.duke.exception.InvalidIndexException;
+import seedu.duke.storage.CompanyListEncoder;
+
+import java.io.IOException;
 
 public class UnconfirmCommand extends Command {
     protected int companyNum;
@@ -11,10 +14,11 @@ public class UnconfirmCommand extends Command {
         this.companyNum = companyNum;
     }
     @Override
-    public void execute(CompanyList company){
+    public void execute(CompanyList companyList){
         try {
-            company.markUnconfirm(companyNum);
-        } catch (InvalidIndexException err){
+            companyList.markUnconfirm(companyNum);
+            CompanyListEncoder.write(companyList);
+        } catch (InvalidIndexException | IOException e) {
             System.out.println("Invalid index provided! Please try again");
         }
     }

@@ -46,7 +46,7 @@ public class Eventus {
                 } else {
                     c.execute(companyList);
                 }
-            } catch (WrongFormatException err){
+            } catch (WrongFormatException | NullPointerException | IndexOutOfBoundsException err){
                 System.out.println("Wrong Format! Please type <help> for more information");
             } catch (NumberFormatException err){
                 System.out.println("Number expected! Please type <help> for more information");

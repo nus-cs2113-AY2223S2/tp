@@ -36,7 +36,7 @@ public class UiTest {
         Ui ui = new Ui();
         ui.showWelcome();
         String expected = ("____________________________________________________________\nHello! Welcome to EveNtUS!" +
-                "\n" + "____________________________________________________________")
+                "\nType <help> to get started" + "\n" + "____________________________________________________________")
                 .replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
         assertEquals(expected, out.toString().trim());
     }

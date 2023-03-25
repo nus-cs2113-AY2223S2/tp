@@ -13,6 +13,7 @@ public class Ui {
     public void showWelcome() {
         showLine();
         System.out.println("Hello! Welcome to EveNtUS!");
+        System.out.println("Type <help> to get started");
         showLine();
     }
 
@@ -30,8 +31,8 @@ public class Ui {
 
     private static void showHelpText() {
         System.out.println("Here are the functions of the application!");
-        System.out.println("To add a company, type:");
-        System.out.println("        add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>");
+        System.out.println("To display this guide at any time, type:");
+        System.out.println("                    help");
         System.out.println(" ");
         System.out.println("To list companies, type:");
         System.out.println("                    list companies");
@@ -39,16 +40,25 @@ public class Ui {
         System.out.println("To list venues, type:");
         System.out.println("                    list venues");
         System.out.println(" ");
-        System.out.println("To delete, type:");
+        System.out.println("To list unconfirmed attendees, type:");
+        System.out.println("                    list unconfirmed");
+        System.out.println(" ");
+        System.out.println("To add a company, type:");
+        System.out.println("        add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>");
+        System.out.println(" ");
+        System.out.println("To delete company, type:");
         System.out.println("                    delete <INDEX>");
         System.out.println(" ");
-        System.out.println("To display this guide at any time, type:");
-        System.out.println("                    help");
+        System.out.println("To mark a company's attendance, type:");
+        System.out.println("                    confirm <INDEX>");
+        System.out.println(" ");
+        System.out.println("To unmark a company's attendance, type:");
+        System.out.println("                    unconfirm <INDEX>");
         System.out.println(" ");
         System.out.println("To load sample data, type:");
         System.out.println("                    load samples");
         System.out.println(" ");
-        System.out.println("To purge list data, type:");
+        System.out.println("To purge company list data, type:");
         System.out.println("                    purge");
         System.out.println(" ");
         System.out.println("To search for a company, type:");
@@ -57,8 +67,8 @@ public class Ui {
         System.out.println("To filter according to industry, type:");
         System.out.println("                    find industry <INDUSTRY>");
         System.out.println(" ");
-        System.out.println("To display unconfirmed attendees, type:");
-        System.out.println("                    list unconfirmed");
+        System.out.println("To choose a venue, type:");
+        System.out.println("                    choose venue <INDEX>");
         System.out.println(" ");
     }
 
