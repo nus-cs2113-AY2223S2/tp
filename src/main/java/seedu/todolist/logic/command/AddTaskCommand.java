@@ -16,7 +16,7 @@ import java.util.HashSet;
  */
 public class AddTaskCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_ADD,
-            Flags.EMAIL, Flags.DEADLINE, Flags.TAG, Flags.REPEAT};
+        Flags.EMAIL, Flags.DEADLINE, Flags.TAG, Flags.REPEAT};
 
     private String description;
     private String email;

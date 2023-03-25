@@ -15,7 +15,7 @@ import java.util.HashSet;
 //@@author clement559
 public class EditCommand extends Command  {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT,
-            Flags.DESCRIPTION, Flags.EMAIL, Flags.DEADLINE, Flags.TAG};
+        Flags.DESCRIPTION, Flags.EMAIL, Flags.DEADLINE, Flags.TAG};
 
     public int index;
     public String description;

@@ -5,14 +5,14 @@ import seedu.todolist.constants.Messages;
 import java.util.Scanner;
 
 public class Ui {
-    private final Scanner INPUT = new Scanner(System.in);
+    private final Scanner input = new Scanner(System.in);
 
     public String getUserInput() {
-        return INPUT.nextLine();
+        return input.nextLine();
     }
 
     public void close() {
-        INPUT.close();
+        input.close();
     }
 
     /**

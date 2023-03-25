@@ -28,22 +28,9 @@ public enum Flags {
     REPEAT("-rep", false),
     TAG("-tag", false);
 
+    private static final HashMap<String, Flags> map = new HashMap<>();
     private final String name;
     private final boolean canBeEmpty;
-    private final static HashMap<String, Flags> map = new HashMap<>();
-
-    static {
-        for (Flags flag : Flags.values()) {
-            map.put(flag.name, flag);
-        }
-    }
-
-    public static Flags fromString(String name) {
-        if (map.containsKey(name)) {
-            return map.get(name);
-        }
-        return null;
-    }
 
     /**
      * Constructs the flags enum.
@@ -63,5 +50,18 @@ public enum Flags {
 
     public boolean canBeEmpty() {
         return canBeEmpty;
+    }
+
+    static {
+        for (Flags flag : Flags.values()) {
+            map.put(flag.name, flag);
+        }
+    }
+
+    public static Flags fromString(String name) {
+        if (map.containsKey(name)) {
+            return map.get(name);
+        }
+        return null;
     }
 }
