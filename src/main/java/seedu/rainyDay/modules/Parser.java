@@ -284,6 +284,10 @@ public class Parser {
                     filterFlagAndField.add(matcher.group(i));
                 }
             }
+            if (filterFlagAndField.size() != count) {
+                logger.warning("filter command given by user in the wrong format");
+                throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+            }
             return filterFlagAndField;
         } else {
             logger.warning("filter command given by user in the wrong format");
