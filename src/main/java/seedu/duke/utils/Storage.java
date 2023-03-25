@@ -39,6 +39,7 @@ public class Storage {
                 Ui.printEmptySessionFile();
                 return new Inventory();
             }
+            Inventory tempInventory = new Inventory();
             while (line != null) {
                 String[] fields = line.split(",");
                 if (fields.length != 7) {
@@ -47,17 +48,26 @@ public class Storage {
                 }
                 Item item = new Item(fields[1], fields[2], Integer.parseInt(fields[3]),
                         Double.parseDouble(fields[4]), LocalDateTime.parse(fields[6]));
-                if(inventory.getUpcCodes().containsKey(fields[2])){
-                    if(inventory.getUpcCodes().get(fields[2]).compareTo(item)==-1){
-                        inventory.getItemInventory().remove(inventory.getUpcCodes().get(fields[2]));
-                        inventory.getItemInventory().add(item);
-                        inventory.getUpcCodes().remove(fields[2]);
-                        inventory.getUpcCodes().put(fields[2],item);
+                if(tempInventory.getUpcCodes().containsKey(fields[2])){
+                    if(tempInventory.getUpcCodes().get(fields[2]).compareTo(item)==-1){
+                        tempInventory.getItemInventory().remove(tempInventory.getUpcCodes().get(fields[2]));
+                        tempInventory.getItemInventory().add(item);
+                        tempInventory.getUpcCodes().remove(fields[2]);
+                        tempInventory.getUpcCodes().put(fields[2],item);
                     }
                 }else{
-                    inventory.getItemInventory().add(item);
-                    inventory.getUpcCodes().put(fields[2], item);
+                    tempInventory.getItemInventory().add(item);
+                    tempInventory.getUpcCodes().put(fields[2], item);
                 }
+                if(!inventory.getUpcCodesHistory().containsKey(item.getUpc())){
+                    inventory.getUpcCodesHistory().put(item.getUpc(),new ArrayList<>());
+                }
+                inventory.getUpcCodesHistory().get(item.getUpc()).add(item);
+                line = reader.readLine();
+            }
+            for(Item item: tempInventory.getItemInventory()){
+                inventory.getItemInventory().add(item);
+                inventory.getUpcCodes().put(item.getUpc(),item);
                 String[] itemNames = item.getName().toLowerCase().split(" ");
                 for (String itemName : itemNames) {
                     if (!inventory.getItemNameHash().containsKey(itemName)) {
@@ -66,11 +76,6 @@ public class Storage {
                     inventory.getItemNameHash().get(itemName).add(item);
                     inventory.getTrie().add(itemName);
                 }
-                if(!inventory.getUpcCodesHistory().containsKey(fields[2])){
-                    inventory.getUpcCodesHistory().put(fields[2],new ArrayList<>());
-                }
-                inventory.getUpcCodesHistory().get(fields[2]).add(item);
-                line = reader.readLine();
             }
             reader.close();
         } catch (IOException | NumberFormatException e) {

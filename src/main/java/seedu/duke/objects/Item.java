@@ -171,7 +171,7 @@ public class Item implements Comparable<Item>{
             return false;
         }
         Item item = (Item) o;
-        if(item.getUpc().equals(upc)&&item.getDateTime().isEqual(dateTime)){
+        if(item.getUpc().equals(upc)){
             return true;
         }
         return false;
