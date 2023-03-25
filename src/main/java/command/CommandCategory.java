@@ -9,7 +9,7 @@ import java.util.HashSet;
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.MESSAGE_DIVIDER_CATEGORY;
 
-public class CommandClassify extends Command {
+public class CommandCategory extends Command {
     public static final String COMMAND_NAME = "classify";
     public static final String ALL_CATEGORY = "Here are all your expense categories: ";
 
@@ -17,7 +17,7 @@ public class CommandClassify extends Command {
     private String category;
     private Set<String> categorySet = new HashSet<>();
 
-    public CommandClassify(ArrayList<Expense> expenseList, String category) {
+    public CommandCategory(ArrayList<Expense> expenseList, String category) {
         super(COMMAND_NAME);
         this.expenseList = expenseList;
         this.category = category;

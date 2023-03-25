@@ -12,7 +12,7 @@ import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.MESSAGE_DIVIDER_CATEGORY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CommandClassifyTest {
+public class CommandCategoryTest {
     public ExpenseList expenseList = new ExpenseList();
     public Parser parser = new Parser();
 
@@ -45,7 +45,7 @@ public class CommandClassifyTest {
                 + "1.cat:food USD2.50 date:02/02/2013\n"
                 + MESSAGE_DIVIDER + "\n";
 
-        new CommandClassify(expenseList.getExpenseList(), input).execute();
+        new CommandCategory(expenseList.getExpenseList(), input).execute();
         String actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
         assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
 
@@ -54,7 +54,7 @@ public class CommandClassifyTest {
         System.setOut(new PrintStream(outContent));
         expected = "Sorry, none of your previous expenses corresponds to this category.\n"
                 + MESSAGE_DIVIDER + "\n";
-        new CommandClassify(expenseList.getExpenseList(), input).execute();
+        new CommandCategory(expenseList.getExpenseList(), input).execute();
         actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
         assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
         expenseList.clear();
