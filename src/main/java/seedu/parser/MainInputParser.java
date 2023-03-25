@@ -22,6 +22,7 @@ import seedu.commands.UnmarkCommand;
 import seedu.commands.MarkCommand;
 import seedu.commands.SortCommand;
 import seedu.commands.DuplicateCommand;
+import seedu.commands.SetBudgetCommand;
 
 import java.time.format.DateTimeParseException;
 
@@ -82,6 +83,9 @@ public class MainInputParser {
             case DuplicateCommand.COMMAND_WORD:
                 ParseDuplicate prepareDuplicate = new ParseDuplicate(splitValues[INDEX_USERSTRING]);
                 return prepareDuplicate.duplicateItem();
+            case SetBudgetCommand.COMMAND_WORD:
+                ParseSetBudget prepareBudget = new ParseSetBudget(splitValues[INDEX_USERSTRING]);
+                return prepareBudget.setBudget();
             default:
                 // Commands that are not listed above
                 return new InvalidCommand("Command not recognised. Please try again");
