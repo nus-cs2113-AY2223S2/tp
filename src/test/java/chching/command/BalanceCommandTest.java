@@ -2,15 +2,19 @@ package chching.command;
 
 import chching.Storage;
 import chching.Ui;
-import chching.record.*;
+import chching.record.ExpenseList;
+import chching.record.IncomeList;
+import chching.record.TargetStorage;
+import chching.record.Target;
+import chching.record.Expense;
+import chching.record.Income;
 import chching.currency.Selector;
 import chching.currency.Converter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
