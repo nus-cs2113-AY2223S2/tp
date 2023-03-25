@@ -8,13 +8,19 @@ public class Company {
     private String contactEmail;
     private String industry;
 
-
-
     public Company(String companyName, String industry, int contactNumber, String contactEmail){
         this.companyName = companyName;
         this.contactNumber = contactNumber;
         this.contactEmail = contactEmail;
         this.isConfirmed = false;
+        this.industry = industry.toUpperCase();
+    }
+
+    public Company(String companyName, String industry, int contactNumber, String contactEmail, boolean isConfirmed){
+        this.companyName = companyName;
+        this.contactNumber = contactNumber;
+        this.contactEmail = contactEmail;
+        this.isConfirmed = isConfirmed;
         this.industry = industry.toUpperCase();
     }
 

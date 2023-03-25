@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class CompanyListEncoder extends Storage {
 
-    public static final String filePath = "data/companyList.txt";
+    private static final String filePath = "data/companyList.txt";
 
     public static void write(CompanyList companyList) throws IOException, InvalidIndexException {
         try {

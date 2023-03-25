@@ -7,14 +7,17 @@ import seedu.duke.exception.NoSavedInformationException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CompanyListDecoder extends Storage {
 
-    public static final String filePath = "data/companyList.txt";
+    private static final String filePath = "data/companyList.txt";
 
     public static void read(CompanyList companyList) {
         try {
+            checkFileAccess(filePath);
             File f = new File(filePath);
             Scanner s = new Scanner(f);
             if (!s.hasNext()) {
@@ -31,6 +34,8 @@ public class CompanyListDecoder extends Storage {
             System.out.println("File not found.");
         } catch (InvalidIndexException e) {
             System.out.println("Invalid index. Please try again.");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -45,12 +50,9 @@ public class CompanyListDecoder extends Storage {
         String contactEmail = parsedInput[2];
         int status = Integer.parseInt(parsedInput[3]);
         String industry = parsedInput[4];
-        companyList.add(companyName, industry, contactNumber, contactEmail);
-        int currCompany = companyList.getNumberOfCompanies() - 1;
-        // If status was previously indicated as confirmed, mark the status of the company as confirmed in companyList
-        if (status == 1) {
-            Company company = companyList.getCompany(currCompany);
-            company.markConfirmed();
-        }
+        Company company = new Company(companyName, industry,
+                contactNumber, contactEmail, (status == 1 ? true : false ));
+        ArrayList<Company> companyList1 = companyList.getCompanyList();
+        companyList1.add(company);
     }
 }

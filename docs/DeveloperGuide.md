@@ -7,7 +7,10 @@
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-<br>
+<br
+
+<img src="eventus.png">
+
 ### [Proposed] Duplication checker feature
 #### Proposed Implementation
 The proposed <code>duplicationChecker</code> is facilitated by <code>Parser</code>. It will check against the existing

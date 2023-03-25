@@ -1,38 +1,44 @@
 package seedu.duke.company;
 
 import seedu.duke.exception.EmptyListException;
-import seedu.duke.exception.InputMismatchException;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.ui.Ui;
-
 
 import java.util.ArrayList;
 
 public class CompanyList {
 
     private static ArrayList<Company> companyList;
+    private static Ui ui;
 
-
-    public CompanyList(ArrayList<Company> companyList) {
+    public CompanyList(ArrayList<Company> companyList, Ui ui) {
         this.companyList = companyList;
+        this.ui = ui;
     }
 
-    public void add(String companyName, String industry, int contactNumber, String contactEmail) {
-        Ui ui = new Ui();
+    public static ArrayList<Company> getCompanyList() {
+        return companyList;
+    }
+    public static void add(String companyName, String industry, int contactNumber, String contactEmail) {
         companyName = companyName.strip().toUpperCase();
         contactEmail = contactEmail.strip().toUpperCase();
         Company newCompany = new Company(companyName, industry, contactNumber, contactEmail);
+        if (!isDuplicateCompany(companyName)) {
+            companyList.add(newCompany);
+            ui.showSuccessfulAdditionMessage(companyName);
+        } else {
+            System.out.println("Company already exists in the list!");
+        }
+    }
+
+    public static boolean isDuplicateCompany(String companyName){
         for (int i = 0; i < companyList.size(); i++) {
             String companyAlreadyAdded = companyList.get(i).getCompanyName();
             if (companyAlreadyAdded.contains(companyName)) {
-                System.out.println("Company already exists in the list!");
-                System.out.println(companyList.get(i));
-                return;
+                return true;
             }
         }
-
-        companyList.add(newCompany);
-        ui.showSuccessfulAdditionMessage(companyName);
+        return false;
     }
 
     public void printCompanyInformation() throws EmptyListException {
@@ -53,7 +59,6 @@ public class CompanyList {
         if (index < 0 | index >= companyList.size()) {
             throw new InvalidIndexException();
         }
-        Ui ui = new Ui();
         companyList.remove(index);
         ui.showSuccessfulDeletionMessage();
     }
@@ -62,22 +67,18 @@ public class CompanyList {
         if (index < 0 | index >= companyList.size()) {
             throw new InvalidIndexException();
         }
-        Ui ui = new Ui();
-        ui.showSuccessfulConfirmedMessage();
         return companyList.get(index);
     }
 
     public void printUnconfirmed() throws EmptyListException {
-        int idx = 1;
         if (companyList.isEmpty()) {
             throw new EmptyListException();
         }
         for (int i = 0; i < companyList.size(); i += 1){
             Company company = companyList.get(i);
             if (!company.isConfirmed){
-                System.out.println(idx + ".");
+                System.out.println((i + 1));
                 System.out.println(companyList.get(i));
-                idx += 1;
             }
         }
     }
@@ -89,36 +90,51 @@ public class CompanyList {
                 sortedCompanyList.add(company);
             }
         }
-        Ui ui = new Ui();
         ui.showSortedCompanyList(targetIndustry, sortedCompanyList);
     }
 
     public void findCompany(String targetCompany){
-        Ui ui = new Ui();
+        ArrayList<Company> sortedCompanyList = new ArrayList<>();
         targetCompany = targetCompany.toLowerCase();
         for (Company company : companyList){
-            if(company.getCompanyName().toLowerCase().equals(targetCompany)){
-                ui.showCompanyFoundMessage(company);
-                return;
+            int idx = companyList.indexOf(company) + 1;
+            if (company.getCompanyName().toLowerCase().contains(targetCompany)){
+                ui.showCompanyFoundMessage(company, idx);
+                sortedCompanyList.add(company);
             }
         }
-        ui.showCompanyNotFoundMessage(targetCompany);
+        if (sortedCompanyList.isEmpty()){
+            ui.showCompanyNotFoundMessage(targetCompany);
+        }
     }
 
-    public void loadSampleCompanyInformation() throws InputMismatchException {
-        Ui ui = new Ui();
-
-        Company sampleCompany1 = new Company("Huawei", "Tech", 80060114 , "APSupport@huawei.com");
-        Company sampleCompany2 = new Company("Google", "Tech", 91002500, "google@google.com");
-        Company sampleCompany3 = new Company("Tiktok", "Social Media", 91231239, "tiktok@tiktok.com");
-        companyList.add(sampleCompany1);
-        companyList.add(sampleCompany2);
-        companyList.add(sampleCompany3);
+    public void loadSampleCompanyInformation() {
+        add("Huawei", "Tech", 80060114 , "APSupport@huawei.com");
+        add("Google", "Tech", 91002500, "google@google.com");
+        add("Tiktok", "Social Media", 91231239, "tiktok@tiktok.com");
         ui.showSampleDataLoadedMessage();
-
     }
 
     public void purgeData() {
         companyList.clear();
+        ui.showSuccessfulPurgingMessage();
+    }
+
+    public void markConfirm(int companyNum) throws InvalidIndexException {
+        if (companyNum < 0 | companyNum >= companyList.size()) {
+            throw new InvalidIndexException();
+        }
+        Company company = companyList.get(companyNum);
+        company.markConfirmed();
+        ui.showSuccessfulConfirmedMessage();
+    }
+
+    public void markUnconfirm(int companyNum) throws InvalidIndexException {
+        if (companyNum < 0 | companyNum >= companyList.size()) {
+            throw new InvalidIndexException();
+        }
+        Company company = companyList.get(companyNum);
+        company.markUnconfirmed();
+        ui.showSuccessfulConfirmedMessage();
     }
 }
