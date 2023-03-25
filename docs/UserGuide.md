@@ -316,6 +316,19 @@ The lesson types and their corresponding guide are the same as `addmod` flags.
 To show the information on a lesson, use the following format:
 `showmod MODULE_CODE -FLAG`
 
+```
+>> showmod CS1010 -st
+Here are all available lessons of type: SECTIONAL_TEACHING for CS1010:
+Class Number: 1
+   Monday 1200 - 1400
+```
+
+The ordering of lessons in the list are sorted as follows:
+
+1. Lesson Type
+2. Lesson Number (lexicographically)
+3. Lesson Day and time
+
 ## *Common Commands*
 
 ### `help` - Viewing help
