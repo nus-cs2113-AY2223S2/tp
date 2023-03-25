@@ -1,7 +1,6 @@
 package seedu.duke.company;
 
 import seedu.duke.exception.EmptyListException;
-import seedu.duke.exception.InputMismatchException;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.ui.Ui;
 
@@ -18,20 +17,26 @@ public class CompanyList {
         this.ui = ui;
     }
 
-    public void add(String companyName, String industry, int contactNumber, String contactEmail) {
+    public static void add(String companyName, String industry, int contactNumber, String contactEmail) {
         companyName = companyName.strip().toUpperCase();
         contactEmail = contactEmail.strip().toUpperCase();
         Company newCompany = new Company(companyName, industry, contactNumber, contactEmail);
+        if (!isDuplicateCompany(companyName)) {
+            companyList.add(newCompany);
+            ui.showSuccessfulAdditionMessage(companyName);
+        } else {
+            System.out.println("Company already exists in the list!");
+        }
+    }
+
+    public static boolean isDuplicateCompany(String companyName){
         for (int i = 0; i < companyList.size(); i++) {
             String companyAlreadyAdded = companyList.get(i).getCompanyName();
             if (companyAlreadyAdded.contains(companyName)) {
-                System.out.println("Company already exists in the list!");
-                System.out.println(companyList.get(i));
-                return;
+                return true;
             }
         }
-        companyList.add(newCompany);
-        ui.showSuccessfulAdditionMessage(companyName);
+        return false;
     }
 
     public void printCompanyInformation() throws EmptyListException {
@@ -99,18 +104,15 @@ public class CompanyList {
         }
     }
 
-    public void loadSampleCompanyInformation() throws InputMismatchException {
-        Company sampleCompany1 = new Company("Huawei", "Tech", 80060114 , "APSupport@huawei.com");
-        Company sampleCompany2 = new Company("Google", "Tech", 91002500, "google@google.com");
-        Company sampleCompany3 = new Company("Tiktok", "Social Media", 91231239, "tiktok@tiktok.com");
-        companyList.add(sampleCompany1);
-        companyList.add(sampleCompany2);
-        companyList.add(sampleCompany3);
+    public void loadSampleCompanyInformation() {
+        add("Huawei", "Tech", 80060114 , "APSupport@huawei.com");
+        add("Google", "Tech", 91002500, "google@google.com");
+        add("Tiktok", "Social Media", 91231239, "tiktok@tiktok.com");
         ui.showSampleDataLoadedMessage();
-
     }
 
     public void purgeData() {
         companyList.clear();
+        ui.showSuccessfulPurgingMessage();
     }
 }

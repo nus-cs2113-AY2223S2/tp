@@ -1,7 +1,6 @@
 package seedu.duke.command;
 
 import seedu.duke.company.CompanyList;
-import seedu.duke.exception.InputMismatchException;
 
 public class LoadSampleCompanyCommand extends Command{
 
@@ -10,10 +9,6 @@ public class LoadSampleCompanyCommand extends Command{
     }
     @Override
     public void execute(CompanyList companyList) {
-        try {
-            companyList.loadSampleCompanyInformation();
-        } catch (InputMismatchException e) {
-            throw new RuntimeException(e);
-        }
+        companyList.loadSampleCompanyInformation();
     }
 }

@@ -110,6 +110,7 @@ public interface Parser {
             break;
         case "exit":
             ui.showExitMessage();
+            System.exit(0);
             break;
         default:
             throw new WrongFormatException();
