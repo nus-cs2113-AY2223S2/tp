@@ -1,0 +1,16 @@
+@echo off
+setlocal enableextensions
+pushd %~dp0
+
+cd ..
+
+cd build\libs
+for /f "tokens=*" %%a in (
+    'dir /b *.jar'
+) do (
+    set jarloc=%%a
+)
+
+cd ..\..\text-ui-test
+
+FC ACTUAL.TXT EXPECTED.TXT >NUL && ECHO Test passed! || Echo Test failed!

@@ -1,32 +1,64 @@
 package seedu.duke.utils;
 
-import seedu.duke.commands.EditCommand;
 import seedu.duke.exceptions.EditErrorException;
+import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
+import seedu.duke.types.Types;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 import static seedu.duke.utils.ColorCode.ANSI_BLUE;
+import static seedu.duke.utils.ColorCode.ANSI_CYAN;
 import static seedu.duke.utils.ColorCode.ANSI_GREEN;
+import static seedu.duke.utils.ColorCode.ANSI_ORANGE;
 import static seedu.duke.utils.ColorCode.ANSI_RED;
 import static seedu.duke.utils.ColorCode.ANSI_RESET;
+import static seedu.duke.utils.ColorCode.ANSI_WHITE;
+import static seedu.duke.utils.ColorCode.ANSI_YELLOW;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
-    public static final String LOGO =
-            "    /|    //| |     // | |     //   ) )  //   / / //   ) )\n"
-                    + "   //|   // | |    //__| |    //        //   / / ((\n"
-                    + "  // |  //  | |   / ___  |   //  ____  //   / /    \\\\\\\\\n"
-                    + " //  | //   | |  //    | |  //    / / //   / /       ) )\n"
-                    + "//   |//    | | //     | | ((____/ / ((___/ / ((___ / /";
+
+    public static final String DASHBOARDLOGO =
+            "░░░░░░   ░░░░░  ░░░░░░░ ░░   ░░ ░░░░░░   ░░░░░░   ░░░░░  ░░░░░░  ░░░░░░  \n" +
+                    "▒▒   ▒▒ ▒▒   ▒▒ ▒▒      ▒▒   ▒▒ ▒▒   ▒▒ ▒▒    ▒▒ ▒▒   ▒▒ ▒▒   ▒▒ ▒▒   ▒▒ \n" +
+                    "▒▒   ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒    ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒   ▒▒ \n" +
+                    "▓▓   ▓▓ ▓▓   ▓▓      ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ \n" +
+                    "██████  ██   ██ ███████ ██   ██ ██████   ██████  ██   ██ ██   ██ ██████  \n";
+    public static final String LOGO1 = "░░░    ░░░  ░░░░░   ░░░░░░  ░░    ░░ ░░░░░░░ "
+            + "░░░░░░░ ░░░░░░░░  ░░░░░░   ░░░░░░ ░░   ░░ \n";
+    public static final String LOGO2 = "▒▒▒▒  ▒▒▒▒ ▒▒   ▒▒ ▒▒       ▒▒    ▒▒ ▒▒      "
+            + "▒▒         ▒▒    ▒▒    ▒▒ ▒▒      ▒▒  ▒▒  \n";
+    public static final String LOGO3 = "▒▒ ▒▒▒▒ ▒▒ ▒▒▒▒▒▒▒ ▒▒   ▒▒▒ ▒▒    ▒▒ ▒▒▒▒▒▒▒ "
+            + "▒▒▒▒▒▒▒    ▒▒    ▒▒    ▒▒ ▒▒      ▒▒▒▒▒ \n";
+    public static final String LOGO4 = "▓▓  ▓▓  ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓    ▓▓      ▓▓ "
+            + "     ▓▓    ▓▓    ▓▓    ▓▓ ▓▓      ▓▓  ▓▓  \n";
+    public static final String LOGO5 = "██      ██ ██   ██  ██████   ██████  ███████ "
+            + "███████    ██     ██████   ██████ ██   ██ \n";
+
+    public static final String INVENTORYLOGO = "░░ ░░░    ░░ ░░    ░░ ░░░░░░░ ░░░    ░░ "
+            + "░░░░░░░░  ░░░░░░  ░░░░░░  ░░    ░░ \n" +
+            "▒▒ ▒▒▒▒   ▒▒ ▒▒    ▒▒ ▒▒      ▒▒▒▒   ▒▒    ▒▒    ▒▒    ▒▒ ▒▒   ▒▒  ▒▒  ▒▒  \n" +
+            "▒▒ ▒▒ ▒▒  ▒▒ ▒▒    ▒▒ ▒▒▒▒▒   ▒▒ ▒▒  ▒▒    ▒▒    ▒▒    ▒▒ ▒▒▒▒▒▒    ▒▒▒▒   \n" +
+            "▓▓ ▓▓  ▓▓ ▓▓  ▓▓  ▓▓  ▓▓      ▓▓  ▓▓ ▓▓    ▓▓    ▓▓    ▓▓ ▓▓   ▓▓    ▓▓    \n" +
+            "██ ██   ████   ████   ███████ ██   ████    ██     ██████  ██   ██    ██    \n";
+
+
     public static final String GREET_MESSAGE = "Welcome to MagusStock. How may I assist you today?";
     public static final String EXIT_MESSAGE = "Hope you had an enjoyable experience. See you next time!";
     public static final String UNKNOWN_COMMAND = "I don't understand that command, please refer to the user guide " +
             "for all available commands";
     public static final String INVALID_ADD = "Wrong/Incomplete Format! Please add new items in the following format: " +
-            "add n/[name] upc/[UPC] qty/[quantity] p/[price]";
+            "add n/[name] upc/[UPC] qty/[quantity] p/[price]\nTip: Ensure that your UPC, quantity and price are all " +
+            "in numbers and within valid range";
+
+    public static final String INVALID_AUTO_SAVE_INPUT = "Invalid input! Please enter either 'on' or 'off' to " +
+            "enable/disable auto-save";
+    public static final String AUTOSAVE_ON = "Auto-save has been enabled!";
+    public static final String AUTOSAVE_OFF = "Auto-save has been disabled!";
     public static final String DUPLICATE_ADD = "Duplicate item found! Please add another item with a different UPC";
     public static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
 
@@ -35,14 +67,26 @@ public class Ui {
     public static final String EMPTY_LIST = "There are no items in your inventory.";
     public static final String CONFIRM_MESSAGE = "Are you sure you want this item to be permanently deleted?\n(Y/N)";
 
+    public static final String INVALID_SESSION_FILE = "INFO: A Session Inventory file was found but it is corrupted. " +
+            "Please delete the corrupt .csv file";
+    public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered." +
+            " The inventory has been updated.";
+    public static final String EMPTY_SESSION_FILE = "INFO: Empty/No Session Inventory file found.";
+
+    public static final int INVENTORY_ATTRIBUTE_COUNT = 4;
+    public static final int HELP_ATTRIBUTE_COUNT = 2;
+    public static final int ALERT_ATTRIBUTE_COUNT = 3;
+
     public static final int NAME_COL_WIDTH = 15;
     public static final int UPC_COL_WIDTH = 12;
     public static final int QTY_COL_WIDTH = 8;
 
     public static final int PRICE_COL_WIDTH = 8;
+    public static final int COMMAND_COL_WIDTH = 25;
+    public static final int FORMAT_COL_WIDTH = 25;
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
             "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
-    public static final String ITEM_NOT_FOUND = "Edit failed! Reason: Item not found in database. Please add item " +
+    public static final String ITEM_NOT_FOUND = "Command failed! Reason: Item not found in database. Please add item " +
             "first!";
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
     public static final String ITEM_NOT_EDITED = "Item Specified will not be updated.";
@@ -50,11 +94,24 @@ public class Ui {
     public static final String WRONG_PRICE_INPUT = "For Price inputs: MUST BE a WHOLE NUMBER/DECIMAL NUMBER.";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
     public static final String MISSING_PRICE = "Please enter a number for the price!";
+    public static final String ITEM_ADDED_AT = "Item added at: ";
+    public static final String AT = "At: ";
+    public static final String CATEGORY_CHANGED_TO = "Category changed to: ";
+    public static final String SOLD = "Sold ";
+    public static final String ITEMS = " items";
+    public static final String BOUGHT = "Bought ";
+    public static final String RENAMED_TO = "Renamed to: ";
+    public static final String PRICE_DECREASED_FROM = "Price decreased from $";
+    public static final String PRICE_INCREASED_FROM = "Price increased from $";
+    public static final String TO_DOLLAR_SIGN = " to $";
+    public static final String TAGS_CHANGED_TO = "Tags changed to: ";
 
     private static final String NAME_HEADING = "Name";
     private static final String UPC_HEADING = "UPC";
     private static final String QTY_HEADING = "Quantity";
     private static final String PRICE_HEADING = "Price";
+    private static final String COMMAND_HEADING = "Command";
+    private static final String FORMAT_HEADING = "Command Format";
 
     private static final String TABLE_CORNER = "+";
     private static final String TABLE_ROW = "-";
@@ -69,14 +126,47 @@ public class Ui {
             "Please try again :(";
     private static final String INVALID_INDEX = "This index is invalid.\nPlease enter a number ";
 
+    private static final String INVALID_ALERT_KEYWORD = "Keyword after alert can only be \"add\", \"remove\" " +
+            "\"or list\".";
+    private static final String INVALID_ADD_ALERT =
+            "Wrong/Incomplete Format! Please add new alerts in the following format: \n" +
+                    "\"alert add upc/[UPC] min/[integer]\" to set an alert when stock falls below a minimum \n" +
+                    " OR\n" +
+                    "\"alert add upc/[UPC] max/[integer]\" to set an alert when stock exceeds a maximum. \n";
+
+    private static final String EXISTING_MIN_ALERT = "This item already has a minimum alert. " +
+            "Delete the existing one first.";
+
+    private static final String EXISTING_MAX_ALERT = "This item already has a maximum alert. " +
+            "Delete the existing one first.";
+
+    private static final String INVALID_MIN_ALERT = "Minimum value to set an alert must be less than existing " + "" +
+            "maximum alert value of this item.";
+
+    private static final String INVALID_MAX_ALERT = "Maximum value to set an alert must be more than existing " + "" +
+            "mimimum alert value of this item.";
+
+    private static final String SUCCESS_ADD_ALERT = "Successfully added a new alert.";
+
+    private static final String INVALID_REMOVE_ALERT =
+            "Wrong/Incomplete Format! " + "Please remove new alerts in the " + "following format: \n" +
+                    "\"alert remove upc/[UPC] level/min\" to remove an alert for minimum stock level \n" +
+                    " OR\n" +
+                    "\"alert remove upc/[UPC] level/max\" to remove an alert for maximum stock level. \n";
+    private static final String SUCCESS_REMOVE_ALERT = "Successfully removed the alert.";
+
+    private static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove " +
+            "does not exist.";
+
+
     public Ui() {
         greetUser();
     }
 
-
     public static void printLine() {
         System.out.println(LINE);
     }
+
     public static void printDoubleNeeded() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + MISSING_PRICE + ANSI_RESET);
@@ -112,8 +202,25 @@ public class Ui {
 
     public static void greetUser() {
         System.out.println(LINE);
-        System.out.println(LOGO);
+        System.out.println(
+                ANSI_RED + LOGO1 + ANSI_ORANGE + LOGO2 + ANSI_YELLOW + LOGO3 +
+                        ANSI_GREEN + LOGO4 + ANSI_CYAN + LOGO5 + ANSI_RESET);
         System.out.println(GREET_MESSAGE);
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidSessionFile() {
+        System.out.println(ANSI_YELLOW + INVALID_SESSION_FILE + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printRecoveredSessionFile() {
+        System.out.println(ANSI_GREEN + RECOVERED_SESSION_FILE + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printEmptySessionFile() {
+        System.out.println(ANSI_YELLOW + EMPTY_SESSION_FILE + ANSI_RESET);
         System.out.println(LINE);
     }
 
@@ -126,6 +233,24 @@ public class Ui {
     public static void printInvalidAddCommand() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + INVALID_ADD + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidAutoSaveInput() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_AUTO_SAVE_INPUT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printAutoSaveEnabled() {
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + AUTOSAVE_ON + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printAutoSaveDisabled() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + AUTOSAVE_OFF + ANSI_RESET);
         System.out.println(LINE);
     }
 
@@ -143,6 +268,7 @@ public class Ui {
 
     public static void printSuccessList() {
         System.out.println(LINE);
+        System.out.println(ANSI_CYAN + INVENTORYLOGO + ANSI_CYAN);
         System.out.println(ANSI_GREEN + SUCCESS_LIST + ANSI_RESET);
     }
 
@@ -150,6 +276,21 @@ public class Ui {
         System.out.println(LINE);
         System.out.println(ANSI_RED + EMPTY_LIST + ANSI_RESET);
         System.out.println(LINE);
+    }
+
+    public static String printTable() {
+        HashMap<String, String> commandsHashMap = new HashMap<>();
+        CommandFormat commandFormat = new CommandFormat(commandsHashMap);
+        int[] columnWidths = {COMMAND_COL_WIDTH, FORMAT_COL_WIDTH};
+
+        StringBuilder table = new StringBuilder();
+
+        table.append(printTableSeparator(columnWidths));
+        table.append(printHeadings(columnWidths));
+        table.append(printTableSeparator(columnWidths));
+        commandsHashMap.forEach((format, description)
+                -> table.append((printRow(description, format, columnWidths))));
+        return table.toString();
     }
 
     public static String printTable(ArrayList<Item> items) {
@@ -172,8 +313,33 @@ public class Ui {
         return table.toString();
     }
 
+    public static String printTable(HashMap<String, Integer> upcMap, Inventory inventory) {
+
+        int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH};
+        StringBuilder table = new StringBuilder();
+        table.append(printTableSeparator(columnWidths));
+        table.append(printHeadings(columnWidths));
+        table.append(printTableSeparator(columnWidths));
+
+        HashMap<String, Item> inventoryMap = inventory.getUpcCodes();
+
+        upcMap.forEach((key, value)
+                -> table.append(printRow(inventoryMap.get(key).getName(), key, value.toString(), columnWidths)));
+
+        return table.toString();
+
+    }
+
     private static String printHeadings(int[] columnWidths) {
-        String[] headings = {NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
+        String[] headings = {};
+        if (columnWidths.length == INVENTORY_ATTRIBUTE_COUNT) {
+            headings = new String[]{NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
+        } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT) {
+            headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
+        } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
+            //repeat format like above
+            headings = new String[]{"Name", "UPC", "Stock"};
+        }
         StringBuilder allHeadings = new StringBuilder();
 
         for (int i = 0; i < headings.length; i += 1) {
@@ -202,6 +368,28 @@ public class Ui {
         return tableSeparator.toString();
     }
 
+    private static String printRow(String description, String format, int[] columnWidths) {
+        String[] descriptionLines = wrapText(description, COMMAND_COL_WIDTH);
+        String[] formatLines = wrapText(format, FORMAT_COL_WIDTH);
+        StringBuilder row = new StringBuilder();
+
+        int rowHeight = findRowHeight(descriptionLines, formatLines);
+
+        for (int i = 0; i < rowHeight; i += 1) {
+            row.append(TABLE_LEFT);
+            row.append(printAttribute(descriptionLines, COMMAND_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(formatLines, FORMAT_COL_WIDTH, i));
+            row.append(TABLE_RIGHT);
+            row.append(System.lineSeparator());
+
+            if (i == rowHeight - 1) {
+                row.append(printTableSeparator(columnWidths));
+            }
+        }
+        return row.toString();
+    }
+
     private static String printRow(String name, String upc, String qty, String price,
                                    int[] columnWidths) {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
@@ -228,6 +416,32 @@ public class Ui {
                 row.append(printTableSeparator(columnWidths));
             }
         }
+        return row.toString();
+    }
+
+    private static String printRow(String name, String upc, String stock, int[] columnWidths) {
+        String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
+        String[] stockLines = wrapText(stock, QTY_COL_WIDTH);
+        String[] nameLines = wrapText(name, NAME_COL_WIDTH);
+        StringBuilder row = new StringBuilder();
+
+        int rowHeight = findRowHeight(upcLines, stockLines, nameLines);
+
+        for (int i = 0; i < rowHeight; i += 1) {
+            row.append(TABLE_LEFT);
+            row.append(printAttribute(nameLines, NAME_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(upcLines, UPC_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(stockLines, QTY_COL_WIDTH, i));
+            row.append(TABLE_RIGHT);
+            row.append(System.lineSeparator());
+
+            if (i == rowHeight - 1) {
+                row.append(printTableSeparator(columnWidths));
+            }
+        }
+
         return row.toString();
     }
 
@@ -272,7 +486,7 @@ public class Ui {
                                                     int current, int width) {
         line.append(words[current]);
 
-        if (words[current].length() < width) {
+        if (line.length() < width) {
             line.append(" ");
         }
 
@@ -343,12 +557,11 @@ public class Ui {
     }
 
 
-
     /**
      * Prints the updated attributes of the item as specified by the user. Shows both the previous attributes
      * and the updated attributes of the item.
      *
-     * @param oldItem The item containing the old attributes.
+     * @param oldItem     The item containing the old attributes.
      * @param updatedItem The same item but with new attributes as defined by the user.
      */
     private static void printUpdatedItemDetails(Item oldItem, Item updatedItem) {
@@ -441,6 +654,183 @@ public class Ui {
             break;
         }
         System.out.println(LINE);
+    }
+
+    public static void printExistingMinAlert() {
+        System.out.println(ANSI_RED + EXISTING_MIN_ALERT + ANSI_RESET);
+    }
+
+    public static void printExistingMaxAlert() {
+        System.out.println(ANSI_RED + EXISTING_MAX_ALERT + ANSI_RESET);
+    }
+
+    public static void printInvalidAddAlertCommand() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_ADD_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidMinAlert() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_MIN_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidMaxAlert() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_MAX_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printSuccessAddAlert() {
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + SUCCESS_ADD_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidAlertKeyword() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_ALERT_KEYWORD + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidRemoveAlertCommand() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_REMOVE_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printSuccessRemoveAlertCommand() {
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + SUCCESS_REMOVE_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printNonExistentRemoveAlert() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + NONEXISTENT_REMOVE_ALERT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    private static String printAlerts(Inventory inventory, AlertList alertList) {
+
+        StringBuilder alertTable = new StringBuilder();
+
+        boolean hasMinAlerts = !alertList.getMinAlertUpcs().isEmpty();
+        boolean hasMaxAlerts = !alertList.getMaxAlertUpcs().isEmpty();
+
+        String minAlertTable = "";
+        String maxAlertTable = "";
+
+        if (hasMinAlerts) {
+            minAlertTable = Ui.printTable(alertList.getMinAlertUpcs(), inventory);
+            alertTable.append(ANSI_CYAN + "Alerts for minimum stock level:" + ANSI_RESET + System.lineSeparator());
+            alertTable.append(minAlertTable);
+        }
+
+        if (hasMaxAlerts) {
+            if (hasMinAlerts) {
+                alertTable.append(System.lineSeparator());
+            }
+            maxAlertTable = Ui.printTable(alertList.getMaxAlertUpcs(), inventory);
+            alertTable.append(ANSI_CYAN + "Alerts for maximum stock level:" + ANSI_RESET + System.lineSeparator());
+            alertTable.append(maxAlertTable);
+        }
+
+        if (!hasMinAlerts && !hasMaxAlerts) {
+            alertTable.append("No alerts to print.");
+        }
+
+        return alertTable.toString();
+    }
+
+    public static void printDashboard(Inventory inventory, AlertList alertList) {
+        Item mostQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithMostQuantity());
+        Item leastQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithLeastQuantity());
+        System.out.println(LINE);
+        System.out.println(ANSI_YELLOW + DASHBOARDLOGO + ANSI_RESET);
+        System.out.println("Overview:");
+        System.out.println(LINE);
+        System.out.println(ANSI_ORANGE + "Total number of items: " + ANSI_WHITE +
+                inventory.getItemInventory().size() + ANSI_RESET);
+        System.out.println(ANSI_ORANGE + "Total number of active alerts: " + ANSI_WHITE +
+                alertList.getTotalAlertNumber() + ANSI_RESET);
+
+        System.out.println(ANSI_ORANGE + "Total value of inventory: " + ANSI_WHITE +
+                "$" + inventory.getTotalValue() + ANSI_RESET);
+        if (!inventory.getItemInventory().isEmpty()) {
+            System.out.println(ANSI_ORANGE + "Item with most quantity: " + ANSI_GREEN + mostQuantityItem.getName() +
+                    " (" + mostQuantityItem.getQuantity() + ") " + ANSI_RESET);
+            System.out.println(ANSI_ORANGE + "Item with least quantity: " + ANSI_RED + leastQuantityItem.getName() +
+                    " (" + leastQuantityItem.getQuantity() + ") " + ANSI_RESET);
+        }
+        System.out.println(LINE);
+        System.out.println(ANSI_CYAN + "Current Session Configurations:" + ANSI_RESET);
+        System.out.println(LINE);
+        if (SessionManager.getAutoSave()) {
+            System.out.println("AutoSave Mode: " + ANSI_GREEN + "TRUE" + ANSI_RESET);
+        } else {
+            System.out.println("AutoSave Mode: " + ANSI_RED + "FALSE" + ANSI_RESET);
+        }
+        System.out.println("Inventory Data File Status: " + SessionManager.inventoryDataFileExist());
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + "List of active alerts:" + ANSI_RESET);
+
+        String alertTable = printAlerts(inventory, alertList);
+
+        System.out.println(alertTable);
+        System.out.println(LINE);
+    }
+    public static void printHistory(ArrayList<Item> results){
+        System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
+        System.out.println(ITEM_ADDED_AT + results.get(0).getDateTimeString());
+        System.out.println(results.get(0).toString());
+        System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
+        for(int i = 1; i<results.size(); i++){
+            System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
+            System.out.println(AT + results.get(i).getDateTimeString() + ANSI_CYAN);
+            ArrayList<Types.EditType> edits = results.get(i-1).getEditTypes(results.get(i));
+            for(Types.EditType editType: edits){
+                switch(editType){
+                case RECATEGORIZE:
+                    System.out.println(CATEGORY_CHANGED_TO + results.get(i).getCategory());
+                    break;
+                case SOLD:
+                    System.out.print(SOLD + (results.get(i-1).getQuantity()-results.get(i).getQuantity()));
+                    System.out.println(ITEMS);
+                    break;
+                case BOUGHT:
+                    System.out.print(BOUGHT + (results.get(i).getQuantity()-results.get(i-1).getQuantity()));
+                    System.out.println(ITEMS);
+                    break;
+                case RENAME:
+                    System.out.println(RENAMED_TO + results.get(i).getName());
+                    break;
+                case PRICE_DECREASE:
+                    System.out.print(PRICE_DECREASED_FROM + results.get(i-1).getPrice());
+                    System.out.println(TO_DOLLAR_SIGN + results.get(i).getPrice());
+                    break;
+                case PRICE_INCREASE:
+                    System.out.print(PRICE_INCREASED_FROM + results.get(i-1).getPrice());
+                    System.out.println(TO_DOLLAR_SIGN + results.get(i).getPrice());
+                    break;
+                case CHANGE_TAG:
+                    ArrayList<String> tags = results.get(i-1).getTags();
+                    if(!tags.isEmpty()){
+                        System.out.print(TAGS_CHANGED_TO);
+                        for(int j = 0; j < tags.size()-1; j++){
+                            System.out.print(tags.get(j) + ", ");
+                        }
+                        System.out.println(tags.get(tags.size()-1));
+                    }
+                    break;
+                default:
+                    break;
+                }
+            }
+            System.out.println(ANSI_RESET + results.get(i).toString());
+            System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
+        }
     }
 }
 

@@ -3,6 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
+import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 import seedu.duke.exceptions.EditErrorException;
 
@@ -98,15 +99,21 @@ public class EditCommand extends Command {
     public void setEditInfo() {
         try {
             Item updatedItem = retrieveItemFromHashMap(editInfo);
-            Item oldItem = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity().toString(),
-                    updatedItem.getPrice().toString());
+            Item oldItem = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
+                    updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
             for (int data = 1; data < editInfo.length; data += 1) {
                 updateItemInfo(updatedItem, editInfo[data]);
             }
+            Item itemForHistory = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
+                    updatedItem.getPrice());
             handleTrie(updatedItem, oldItem);
             upcCodes.remove(oldItem.getUpc());
             upcCodes.put(updatedItem.getUpc(), updatedItem);
             Ui.printEditDetails(oldItem, updatedItem);
+            inventory.getUpcCodesHistory().get(oldItem.getUpc()).add(itemForHistory);
+            if (SessionManager.getAutoSave()) {
+                SessionManager.writeSession(inventory);
+            }
         } catch (EditErrorException eee) {
             Ui.printItemNotFound();
         } catch (MissingParametersException mpe) {
@@ -117,22 +124,24 @@ public class EditCommand extends Command {
     }
 
     private void handleTrie(Item updatedItem, Item oldItem) {
-        String oldItemName = oldItem.getName().toLowerCase();
-        String newItemName = updatedItem.getName().toLowerCase();
-        if (!oldItemName.equals(newItemName) && itemNameHash.get(oldItemName).size() == 1) {
-            itemNameHash.remove(oldItemName);
-            itemsTrie.remove(oldItemName);
-            ArrayList<Item> newItemArrayList = new ArrayList<>();
-            newItemArrayList.add(updatedItem);
-            itemNameHash.put(newItemName, newItemArrayList);
-        } else {
-            itemNameHash.get(oldItemName).remove(oldItem);
-            if (!itemNameHash.containsKey(newItemName)) {
-                itemNameHash.put(newItemName, new ArrayList<Item>());
+        String[] oldItemNames = oldItem.getName().toLowerCase().split(" ");
+        String newItemNamesFull = updatedItem.getName().toLowerCase();
+        for(String oldItemName: oldItemNames) {
+            if (!newItemNamesFull.contains(oldItemName) && itemNameHash.get(oldItemName).size() == 1) {
+                itemNameHash.remove(oldItemName);
+                itemsTrie.remove(oldItemName);
+            } else {
+                itemNameHash.get(oldItemName).remove(oldItem);
+            }
+        }
+        String[] newItemNames = newItemNamesFull.split(" ");
+        for(String newItemName: newItemNames){
+            if(!itemNameHash.containsKey(newItemName)){
+                itemNameHash.put(newItemName, new ArrayList<>());
             }
             itemNameHash.get(newItemName).add(updatedItem);
+            itemsTrie.add(newItemName);
         }
-        itemsTrie.add(newItemName);
     }
 
     /**
