@@ -61,6 +61,21 @@ public class Event {
     }
 
     /**
+     * Sets the time of the event.
+     * If the time is not valid, the system date will be used.
+     *
+     * @param time the time of the event
+     */
+    public String setTime(String time) {
+        if (isValidDate(time)) {
+            this.time = time;
+        } else {
+            this.time = getSystemDate();
+        }
+        return this.time;
+    }
+
+    /**
      * Gets the time of the event.
      *
      * @return the time of the event
@@ -69,6 +84,11 @@ public class Event {
         return time;
     }
 
+    /**
+     * Returns a string representation of the event.
+     *
+     * @return a string representation of the event
+     */
     public String toString() {
         if (time == null) {
             return description + " [expense]" + expense;
