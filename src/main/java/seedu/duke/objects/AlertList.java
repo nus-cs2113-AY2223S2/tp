@@ -1,9 +1,7 @@
 package seedu.duke.objects;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AlertList {
-    private final ArrayList<Alert> alertList = new ArrayList<>();
     private final HashMap<String, Integer> minAlertUpcs = new HashMap<>();
     private final HashMap<String, Integer> maxAlertUpcs = new HashMap<>();
 
@@ -15,10 +13,9 @@ public class AlertList {
         return maxAlertUpcs;
     }
 
-    public ArrayList<Alert> getAlertList() {
-        return alertList;
+    public int getTotalAlertNumber() {
+        return  minAlertUpcs.size() + maxAlertUpcs.size();
     }
-
     public void setMinAlertUpcs(String upc, int min) {
         this.minAlertUpcs.put(upc, min);
     }

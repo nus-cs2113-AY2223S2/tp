@@ -15,9 +15,9 @@ import java.util.regex.Pattern;
 public class AlertParser extends Parser {
     private AlertList alertList;
 
-    public AlertParser(String rawInput, Inventory inventory, AlertList alertList) {
+    public AlertParser(String rawInput, Inventory inventory) {
         super(rawInput, inventory);
-        this.alertList = alertList;
+        this.alertList = inventory.getAlertList();
     }
 
     //TODO: trim trailing whitespace from input string?
@@ -30,7 +30,7 @@ public class AlertParser extends Parser {
             Alert newAlert = new Alert(matcher.group(ALERT_UPC_INDEX), matcher.group(ADD_MINMAX_INDEX),
                     matcher.group(STOCK_INDEX));
 
-            Command addAlertCommand = new AddAlertCommand(inventory, newAlert, alertList);
+            Command addAlertCommand = new AddAlertCommand(inventory, newAlert);
             addAlertCommand.run();
 
         } else {
@@ -44,7 +44,7 @@ public class AlertParser extends Parser {
         Matcher matcher = pattern.matcher(rawInput);
 
         if (matcher.matches()) {
-            Command removeAlertCommand = new RemoveAlertCommand(inventory, alertList, matcher.group(ALERT_UPC_INDEX),
+            Command removeAlertCommand = new RemoveAlertCommand(inventory, matcher.group(ALERT_UPC_INDEX),
                     matcher.group(REMOVE_MINMAX_INDEX));
             removeAlertCommand.run();
         } else {
@@ -70,9 +70,6 @@ public class AlertParser extends Parser {
                     break;
                 case "remove":
                     parseRemoveAlert(matcher.group(ALERT_DETAILS_INDEX), inventory);
-                    break;
-                case "list":
-                    //parseListAlert
                     break;
                 default:
                     Ui.printInvalidAlertKeyword();

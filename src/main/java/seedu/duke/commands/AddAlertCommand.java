@@ -14,10 +14,10 @@ public class AddAlertCommand extends Command  {
 
 
 
-    public AddAlertCommand(Inventory inventory, Alert alert, AlertList alertList) {
+    public AddAlertCommand(Inventory inventory, Alert alert) {
         super(inventory);
         this.alert = alert;
-        this.alertList = alertList;
+        this.alertList = inventory.getAlertList();
     }
 
     private void checkAddAlertUpc() {

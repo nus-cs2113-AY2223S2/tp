@@ -21,9 +21,9 @@ public class ParserHandler {
     private Inventory inventory;
     private AlertList alertList;
 
-    public ParserHandler(Inventory inventory, AlertList alertList) {
+    public ParserHandler(Inventory inventory) {
         this.inventory = inventory;
-        this.alertList = alertList;
+        this.alertList = inventory.getAlertList();
     }
 
     public void run() {
@@ -71,7 +71,7 @@ public class ParserHandler {
             removeParser.run();
             break;
         case "alert":
-            AlertParser alertParser = new AlertParser(commandInfo, inventory, alertList);
+            AlertParser alertParser = new AlertParser(commandInfo, inventory);
             alertParser.run();
             break;
         case "help":

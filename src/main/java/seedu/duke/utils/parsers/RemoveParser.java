@@ -4,6 +4,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.RemoveCommand;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.RemoveErrorException;
+import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
@@ -13,8 +14,11 @@ import java.util.Scanner;
 
 public class RemoveParser extends Parser{
     private static Scanner in = new Scanner(System.in);
-    public RemoveParser(String rawInput, Inventory inventory){
+    private static AlertList alertList;
+
+    public RemoveParser(String rawInput, Inventory inventory) {
         super(rawInput, inventory);
+        this.alertList = inventory.getAlertList();
     }
     private static void parseRemoveByIndex(final String[] commands, Inventory inventory)
             throws MissingParametersException {
