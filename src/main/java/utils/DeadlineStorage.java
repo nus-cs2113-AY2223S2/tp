@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DeadlineStorage {
-    private static final String FILENAME_DEADLINE = "deadline_list.txt";
+    public static final String FILENAME_DEADLINE = "deadline_list.txt";
     private static final String FILEPATH_DEADLINE_LIST = Storage.FILE_DIRECTORY + "/" + FILENAME_DEADLINE;
 
     /**

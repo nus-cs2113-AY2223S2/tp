@@ -1,17 +1,17 @@
 The following file was not found:
-java.io.FileNotFoundException: data\deadline_list.txt (The system cannot find the file specified)
+deadline_list.txt
 A new file will be created when a new task is added.
 
 The following file was not found:
-java.io.FileNotFoundException: data\meeting_list.txt (The system cannot find the file specified)
+meeting_list.txt
 A new file will be created when a new task is added.
 
 The following file was not found:
-java.io.FileNotFoundException: data\dish_list.txt (The system cannot find the file specified)
+dish_list.txt
 A new file will be created when a new task is added.
 
 The following file was not found:
-java.io.FileNotFoundException: data\staff_list.txt (The system cannot find the file specified)
+staff_list.txt
 A new file will be created when a new task is added.
 
 Loading done. Starting Dinerdirector...

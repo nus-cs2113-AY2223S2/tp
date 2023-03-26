@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class DishStorage {
-    private static final String FILENAME_DISH = "dish_list.txt";
+    public static final String FILENAME_DISH = "dish_list.txt";
     private static final String FILEPATH_DISH_LIST = Storage.FILE_DIRECTORY + "/" + FILENAME_DISH;
 
     /**

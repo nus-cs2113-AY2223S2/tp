@@ -61,28 +61,28 @@ public class DinerDirector {
         try {
             deadlineList = deadlineStorage.readAndLoadFromDeadlineFile();
         } catch (FileNotFoundException e) {
-            ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, e));
+            ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, DeadlineStorage.FILENAME_DEADLINE));
             deadlineList = new DeadlineManager(new ArrayList<>());
         }
 
         try {
             meetingList = meetingStorage.readAndLoadFromMeetingFile();
         } catch (FileNotFoundException e) {
-            ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, e));
+            ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, MeetingStorage.FILENAME_MEETING));
             meetingList = new MeetingManager(new ArrayList<>());
         }
 
         try {
             dishList = dishStorage.readAndLoadFromDishFile();
         } catch (FileNotFoundException e) {
-            ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, e));
+            ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, DishStorage.FILENAME_DISH));
             dishList = new DishManager(new ArrayList<>());
         }
 
         try {
             staffList = staffStorage.readAndLoadFromStaffFile();
         } catch (FileNotFoundException e) {
-            ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, e));
+            ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, StaffStorage.FILENAME_STAFF));
             staffList = new StaffManager(new ArrayList<>());
         }
 

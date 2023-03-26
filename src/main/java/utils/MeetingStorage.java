@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MeetingStorage {
-    private static final String FILENAME_MEETING = "meeting_list.txt";
+    public static final String FILENAME_MEETING = "meeting_list.txt";
     private static final String FILEPATH_MEETING_LIST = Storage.FILE_DIRECTORY + "/" + FILENAME_MEETING;
 
     /**
