@@ -69,7 +69,10 @@ This section describes some noteworthy details on how certain features are imple
 ### Target user profile
 
 -------------------------
+<div align="center">
 <img src="images\NUS_Students.png" width="300" />
+</div>
+
 * **Name**: NUS Student
 * **Age**: 18-25 years old
 * **Occupation**: Student
@@ -106,7 +109,20 @@ optimize their spending to achieve their financial goals.
 
 ## Appendix D: Glossary
 
-* *glossary item* - Definition
+* *budget* - A budget is a financial plan that outlines an individual's or 
+organization's expected income and expenses over a specific period of time.
+In context given, the budget here is scaled down to NUS students' expenses over 
+different categories.
+Budgets can typically include categories for different types of expenses, 
+such as housing, transportation, food, entertainment, and savings.
+* *expense* - An expense is the cost incurred by an organization or individual.
+In context given, the expense here is scaled down to NUS students' spending over
+different events that they are engaged in.
+*  *event* - An event is a specific occurrence of expenses that is planned or occurs.
+It can be a one time expense like buying a pair of sneakers or recurring expenses like
+electricity bills.
+*  *category* - A category is a group of events that are related to each other. For example,
+food, transportation, entertainment,
 
 ## Appendix E: Instructions for Manual Testing
 
