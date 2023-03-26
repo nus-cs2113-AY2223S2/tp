@@ -1,8 +1,14 @@
 package seedu.duck;
 
+import seedu.duck.task.Deadline;
+import seedu.duck.task.Event;
+import seedu.duck.task.SchoolClass;
 import seedu.duck.task.Task;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -142,7 +148,7 @@ public class Ui {
      * Prints the results of the find command
      *
      * @param matchingResults The array list of tasks that contain the keywords
-     * @param matchCount The number of tasks in the list that contain the keywords
+     * @param matchCount      The number of tasks in the list that contain the keywords
      */
     private static void printFindResults(ArrayList<Task> matchingResults, int matchCount, ArrayList<Integer> matchingResultsIndex) {
         if (matchingResults.isEmpty()) {
@@ -156,7 +162,7 @@ public class Ui {
      * Prints the list of tasks that contain the keywords
      *
      * @param matchingResults The array list of tasks that contain the keywords
-     * @param matchCount The number of tasks in the list that contain the keywords
+     * @param matchCount      The number of tasks in the list that contain the keywords
      */
     static void printMatchingList(ArrayList<Task> matchingResults, int matchCount, ArrayList<Integer> matchingResultsIndex) {
         borderLine();
@@ -167,7 +173,170 @@ public class Ui {
         borderLine();
     }
 
-    /** Prints the border for opening or closing messages */
+    /**
+     * Display upcoming deadline
+     *
+     * @param tasks tasks store in the file
+     */
+    static void displayUpcomingDeadline(ArrayList<Task> tasks) {
+        System.out.println("\t Here are the upcoming deadline:  ");
+        int count = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i) instanceof Deadline) {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+                String deadline = ((Deadline) tasks.get(i)).getDeadline();
+                Date d;
+                Date n = new Date();
+                try {
+                    d = format.parse(deadline);
+                    long diff = d.getTime() - n.getTime();
+                    String di = getTimeDiff(diff);
+                    String description = tasks.get(i).getDescription().replace("deadline ", "");
+                    System.out.println("\t " + (count + 1) + "." + description + " (" + di + "before the deadline)");
+                    count++;
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        borderLine();
+    }
+
+    /**
+     * Prints the list of tasks in x days in the future
+     *
+     * @param tasks the array list of all the tasks
+     * @param days  the required the number of days x from now onwards
+     */
+    static void printUpcomingTasks(ArrayList<Task> tasks, String days) {
+        borderLine();
+        System.out.println("\t Here are your tasks in " + days + " days:");
+        int count = 0;
+        Date d;
+        Date n = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+        for (int i = 0; i < tasks.size(); i++) {
+            String timeUntilTask = null;
+            if (tasks.get(i) instanceof Deadline) {
+                timeUntilTask = ((Deadline) tasks.get(i)).getDeadline();
+            } else if (tasks.get(i) instanceof Event) {
+                timeUntilTask = ((Event) tasks.get(i)).getStart();
+            } else if (tasks.get(i) instanceof SchoolClass) {
+                timeUntilTask = ((SchoolClass) tasks.get(i)).getStart();
+            }
+            if (timeUntilTask != null) {
+                try {
+                    d = format.parse(timeUntilTask);
+                    long diff = d.getTime() - n.getTime();
+                    String di = getTimeDiff(diff);
+                    String[] diffSplit = di.split(" ");
+                    if (diffSplit.length >= 2 && ((diffSplit[1].contains("day") && Integer.parseInt(diffSplit[0])
+                            <= Integer.parseInt(days)) || diffSplit[1].contains("hour")
+                            || diffSplit[1].contains("minute"))) {
+                        count++;
+                        System.out.println("\t " + count + "." + tasks.get(i).toString());
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        borderLine();
+    }
+
+    /**
+     * Function help for calculating time difference
+     *
+     * @param timeDifferenceMilliseconds time difference between now and deadline
+     * @return time difference in structured format
+     */
+    static String getTimeDiff(long timeDifferenceMilliseconds) {
+        long diffMinutes = timeDifferenceMilliseconds / (60 * 1000) % 60;
+        long diffHours = timeDifferenceMilliseconds / (60 * 60 * 1000) % 60;
+        long diffDays = timeDifferenceMilliseconds / (60 * 60 * 1000 * 24) % 24;
+        long diffMonths = (long) ((timeDifferenceMilliseconds / (60 * 60 * 1000 * 24 * 30.41666666)) % 30.41666666);
+        long diffYears = timeDifferenceMilliseconds / ((long) 60 * 60 * 1000 * 24 * 365) % 365;
+        String result = "";
+        if (diffYears != 0) {
+            result += diffYears;
+            result += " year";
+            if (diffYears != 1) {
+                result += "s";
+            }
+            result += " ";
+        }
+        if (diffMonths != 0) {
+            result += diffMonths;
+            result += " month";
+            if (diffMonths != 1) {
+                result += "s";
+            }
+            result += " ";
+        }
+        if (diffDays != 0) {
+            result += diffDays;
+            result += " day";
+            if (diffDays != 1) {
+                result += "s";
+            }
+            result += " ";
+        }
+        if (diffHours != 0) {
+            result += diffHours;
+            result += " hour";
+            if (diffHours != 1) {
+                result += "s";
+            }
+            result += " ";
+        }
+        if (diffMinutes != 0) {
+            result += diffMinutes;
+            result += " minute";
+            if (diffMinutes != 1) {
+                result += "s";
+            }
+            result += " ";
+        }
+        return result;
+    }
+
+    /**
+     * Display Next Upcoming Class
+     *
+     * @param tasks the array list of all the tasks
+     */
+    static void displayNextUpcomingClass(ArrayList<Task> tasks) {
+        borderLine();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+        Date compare = null;
+        int index = -1;
+        System.out.println("\t Here are your next upcoming class: ");
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i) instanceof SchoolClass) {
+                Date d;
+                try {
+                    d = format.parse(((SchoolClass) tasks.get(i)).getStart());
+                    if (compare == null || d.before(compare)) {
+                        compare = d;
+                        index = i;
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (index != -1) {
+            String re = tasks.get(index).toString().replace("[C][ ]", "");
+            System.out.println("\t " + re);
+        } else {
+            System.out.println("\t No upcoming class");
+        }
+        borderLine();
+    }
+
+    /**
+     * Prints the border for opening or closing messages
+     */
     static void borderLine() {
         System.out.println("\t____________________________________________________________");
     }
@@ -184,8 +353,8 @@ public class Ui {
         borderLine();
     }
 
-    static boolean doubleCheck(){
-        System.out.println("THIS IS AN IRREVERSIBLE PROCESS. ARE YOU SURE? Y/N");
+    static boolean doubleCheck() {
+        System.out.println("\t THIS IS AN IRREVERSIBLE PROCESS. ARE YOU SURE? Y/N");
         Scanner in = new Scanner(System.in);
         String line;
         line = in.nextLine();
@@ -196,14 +365,16 @@ public class Ui {
         borderLine();
         System.out.println("\t （`･v･´ ）: Here are the commands you can give me:");
         System.out.println("\t - list: I'll list out all the tasks you have recorded.");
+        System.out.println("\t - list <number_of_days>: I'll list out all the tasks in that number of days.");
         System.out.println("\t - priority_list: I'll list out all the tasks you have recorded arranged by their priority.");
         System.out.println("\t - low_priority: I'll list out all the tasks you have that are low in priority.");
         System.out.println("\t - medium_priority: I'll list out all the tasks you have that are medium in priority.");
         System.out.println("\t - high_priority: I'll list out all the tasks you have that are high in priority.");
-        System.out.println("\t - clear: The list will be cleared. This in an irreversible process.");
+        System.out.println("\t - clear: The list will be cleared. This is an IRREVERSIBLE process.");
         System.out.println("\t - mark <task_number>: I'll mark that task as done.");
         System.out.println("\t - unmark <task_number>: I'll mark that task as undone.");
         System.out.println("\t - delete <task_number>: I'll delete that task from your list.");
+        System.out.println("\t - purge: I'll delete all expired tasks from your list after a confirmation.");
         System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
         System.out.println("\t - priority <task_number> <1/2/3>: I'll set the priority of a given task as");
         System.out.println("\t                                   1:Low, 2:Medium and 3:High.");
@@ -211,11 +382,12 @@ public class Ui {
         System.out.println("\t Here are the following ways to input tasks:");
         System.out.println("\t Deadlines: <description> /by <yyyy-MM-dd HHmm>");
         System.out.println("\t            (eg. Eat bread /by 2023-03-15 2015)");
-        System.out.println("\t    Events: <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>");
+        System.out.println("\t Events   : <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>");
         System.out.println("\t            (eg. Meeting /from 2023-03-15 2015 /to 2023-03-15 2215)");
-        System.out.println("\t   Classes: <description> /class <class_name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>");
+        System.out.println("\t Classes  : <description> /class <class_name> /from <yyyy-MM-dd HHmm> " +
+                "/to <yyyy-MM-dd HHmm>");
         System.out.println("\t            (eg. Bring laptop /class CS2113 /from 2023-03-15 1100 /to 2023-03-15 1200)");
-        System.out.println("\t      Todo: <description>");
+        System.out.println("\t Todo     : <description>");
         System.out.println("\t            (eg. Water the plants) \n");
         System.out.println("\t （`･v･´ ）: How else may I assist you today, human?");
         borderLine();
@@ -290,7 +462,9 @@ public class Ui {
         borderLine();
     }
 
-    /** Prints the startup message, includes instructions on available commands */
+    /**
+     * Prints the startup message, includes instructions on available commands
+     */
     static void greetingMessage() {
         borderLine();
         System.out.println("\t （`･v･´ ）: Nice to meet you human. As you can see,  I'm a Duck.");
@@ -299,10 +473,11 @@ public class Ui {
         System.out.println("\t （´˘v˘´ ）: That being said, I am a smart Duck. " +
                 "If you wish to know what I understand, just enter 'help'.");
         System.out.println("\t （`･v･´ ）: How may I assist you today, human?");
-        borderLine();
     }
 
-    /** Prints the exiting message when closing the program */
+    /**
+     * Prints the exiting message when closing the program
+     */
     static void exitMessage() {
         borderLine();
         System.out.println("\t Bye. Hope to see you again soon!");

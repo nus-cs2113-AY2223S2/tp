@@ -1,16 +1,24 @@
 package seedu.duck;
 
-import seedu.duck.exception.*;
+import seedu.duck.exception.expiredDateException;
+import seedu.duck.exception.IllegalSchoolClassException;
+import seedu.duck.exception.IllegalEventException;
+import seedu.duck.exception.IllegalDeadlineException;
+import seedu.duck.exception.IllegalTodoException;
+import seedu.duck.exception.startAfterEndException;
 import seedu.duck.task.Deadline;
 import seedu.duck.task.Event;
 import seedu.duck.task.SchoolClass;
 import seedu.duck.task.Task;
 import seedu.duck.task.Todo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Contains operations to manipulate the task list
@@ -29,7 +37,7 @@ public class TaskList {
             } catch (DateTimeException e) {
                 Ui.invalidDateTimeMessage();
             }
-        } else if (line.contains("/class")){
+        } else if (line.contains("/class")) {
             // Adding a SchoolClass
             try {
                 addSchoolClass(line, tasks);
@@ -71,7 +79,7 @@ public class TaskList {
     /**
      * Adds a _Todo_ to the list
      *
-     * @param line The line of input from the user
+     * @param line  The line of input from the user
      * @param tasks The array list of tasks
      */
     static void addTodo(String line, ArrayList<Task> tasks) throws IllegalTodoException {
@@ -103,7 +111,7 @@ public class TaskList {
     /**
      * Adds an event to the list
      *
-     * @param line The line of input from the user
+     * @param line  The line of input from the user
      * @param tasks The array list of tasks
      */
     static void addEvent(String line, ArrayList<Task> tasks) throws IllegalEventException, startAfterEndException,
@@ -130,11 +138,11 @@ public class TaskList {
     /**
      * Adds a schoolClass to the list
      *
-     * @param line The line of input from the user
+     * @param line  The line of input from the user
      * @param tasks The array list of tasks
      */
-    static void addSchoolClass(String line, ArrayList<Task> tasks) throws IllegalSchoolClassException, startAfterEndException,
-            expiredDateException {
+    static void addSchoolClass(String line, ArrayList<Task> tasks) throws IllegalSchoolClassException,
+            startAfterEndException, expiredDateException {
         String description = line.substring(0, line.indexOf("/class")).trim();
         String className = line.substring(line.indexOf("/class") + 6, line.indexOf("/from")).trim();
         String startString = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
@@ -158,7 +166,7 @@ public class TaskList {
     /**
      * Adds a deadline to the list
      *
-     * @param line The line of input from the user
+     * @param line  The line of input from the user
      * @param tasks The array list of tasks
      */
     static void addDeadline(String line, ArrayList<Task> tasks) throws IllegalDeadlineException, expiredDateException {
@@ -239,6 +247,97 @@ public class TaskList {
             tasks.remove(taskNumber - 1);
             Task.decrementCount();
             Ui.deleteTaskMessage(taskToDelete);
+        }
+    }
+
+    static void purge(ArrayList<Task> tasks) {
+        Ui.borderLine();
+        System.out.println("\t Displaying all expired tasks below...");
+        System.out.println();
+        if (tasks.size() > 0) {
+            int expiredCount = 0;
+            ArrayList<Task> expiredTasks = new ArrayList<>();
+            for (Task task : tasks) {
+                if (task instanceof Deadline) {
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+                    String deadline = ((Deadline) task).getDeadline();
+                    Date d = null;
+                    Date n = new Date();
+                    try {
+                        d = format.parse(deadline);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    assert d != null;
+                    long diff = d.getTime() - n.getTime();
+                    if (diff < 0) {
+                        expiredCount++;
+                        System.out.println(task);
+                        expiredTasks.add(task);
+                    }
+                } else if (task instanceof Event) {
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+                    String end = ((Event) task).getEnd();
+                    Date d = null;
+                    Date n = new Date();
+                    try {
+                        d = format.parse(end);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    assert d != null;
+                    long diff = d.getTime() - n.getTime();
+                    if (diff < 0) {
+                        expiredCount++;
+                        System.out.println(task);
+                        expiredTasks.add(task);
+                    }
+                } else if (task instanceof SchoolClass) {
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+                    String end = ((SchoolClass) task).getEnd();
+                    Date d = null;
+                    Date n = new Date();
+                    try {
+                        d = format.parse(end);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    assert d != null;
+                    long diff = d.getTime() - n.getTime();
+                    if (diff < 0) {
+                        expiredCount++;
+                        System.out.println(task);
+                        expiredTasks.add(task);
+                    }
+                }
+            }
+            if (expiredCount > 0) {
+                Ui.borderLine();
+                System.out.println("\t Quack! A total of " + expiredCount + " tasks have expired!");
+                System.out.println("\t Should I remove these tasks from the pending list human?");
+                Ui.borderLine();
+                if (Ui.doubleCheck()) {
+                    for (Task expiredTask : expiredTasks) {
+                        tasks.removeIf(task -> task == expiredTask);
+                        Task.decrementCount();
+                    }
+                    Storage.trySave(tasks);
+                    Ui.borderLine();
+                    System.out.println("\t Expired Tasks have been purged from the list!");
+                    System.out.println("\t I love purging things, human...");
+                    Ui.borderLine();
+                } else {
+                    Ui.borderLine();
+                    System.out.println("\t Quack! Expired tasks have not been purged.");
+                    Ui.borderLine();
+                }
+            } else {
+                System.out.println("\t Quack! No tasks have expired!");
+                Ui.borderLine();
+            }
+        } else {
+            System.out.println("\t Quack! No tasks currently pending!");
+            Ui.borderLine();
         }
     }
 }

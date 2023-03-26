@@ -60,6 +60,11 @@ public class Parser {
             } else if (line.equals("help")) {
                 // List out all the tasks added
                 Ui.help();
+            } else if (words[0].equals("list") && (words.length == 2) && (isNumeric(words[1]))) {
+                //list out all tasks in x days in the future specified by the user
+                Ui.printUpcomingTasks(tasks, words[1]);
+            } else if (line.equals("upcoming class")) {
+                Ui.displayNextUpcomingClass(tasks);
             } else if (words[0].equals("unmark") && (words.length == 2) && (isNumeric(words[1]))) {
                 // Mark a task as not done
                 TaskList.unmarkTask(tasks, words);
@@ -75,6 +80,9 @@ public class Parser {
             } else if (words[0].equals("find") && (words.length > 1)) {
                 // Find tasks that contain a keyword
                 Ui.find(tasks, words);
+            } else if (words[0].equals("purge")){
+                // Find tasks that contain a keyword
+                TaskList.purge(tasks);
             } else if (words[0].equals("priority") && (words.length == 3)) {
                 // Find tasks that contain a keyword
                 TaskList.setPriority(tasks,words);
@@ -90,7 +98,7 @@ public class Parser {
                     Storage.clearTask();
                 } else {
                     Ui.borderLine();
-                    System.out.println("\t Process cancelled.");
+                    System.out.println("\t Quack! Process cancelled.");
                     Ui.borderLine();
                 }
             } else {

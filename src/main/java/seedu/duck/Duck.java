@@ -13,7 +13,8 @@ public class Duck {
 
         ArrayList<Task> tasks = new ArrayList<>();
         Storage.tryLoad(tasks);
-
+        TaskList.purge(tasks);
+        Ui.displayUpcomingDeadline(tasks);
         String line;
         Scanner in = new Scanner(System.in);
         line = in.nextLine();
