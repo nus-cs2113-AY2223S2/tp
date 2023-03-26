@@ -30,8 +30,8 @@ public class TrigoGraphVisualiser extends JPanel {
         this.phase = phase;
         this.freqInHz = freqInHz;
         this.verticalShift = verticalShift;
-        xMin = -2 * Math.PI * freqInHz;
-        xMax = 2 * Math.PI * freqInHz;
+        xMin = (-2 * Math.PI) / freqInHz;
+        xMax = (2 * Math.PI) / freqInHz;
         yMin = -10;
         yMax = 10;
     }
@@ -95,8 +95,10 @@ public class TrigoGraphVisualiser extends JPanel {
     }
 
     public void labelAmplitude(Graphics g, double yScale){
-        g.drawString(String.valueOf(verticalShift+amplitude),0,(int)(Math.round(-(verticalShift+amplitude)*yScale)));
-        g.drawString(String.valueOf(verticalShift-amplitude),0,(int)(Math.round(-(verticalShift-amplitude)*yScale)));
+        g.drawString(String.valueOf(verticalShift+amplitude),0,
+                (int)(Math.round(-(verticalShift+amplitude)*yScale)));
+        g.drawString(String.valueOf(verticalShift-amplitude),0,
+                (int)(Math.round(-(verticalShift-amplitude)*yScale)));
     }
 
     public void drawCosCurve(Graphics g, double xScale, double yScale) {
