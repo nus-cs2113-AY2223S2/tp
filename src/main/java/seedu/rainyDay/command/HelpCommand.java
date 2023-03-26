@@ -191,7 +191,7 @@ public class HelpCommand extends Command {
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| ignore 7                    | Ignores the 7th entry from the list                                  |\n" +
-            "| unignore 7                  | Un-ignores the 7th entry from the list                                |\n" +
+            "| unignore 7                  | Un-ignores the 7th entry from the list                               |\n" +
             "+====================================================================================================+\n";
 
     private static final String HELP_HELP_COMMAND = "You funny guy. I like you.";
