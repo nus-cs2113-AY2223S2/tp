@@ -46,7 +46,7 @@ public class IgnoreCommand extends Command {
         if (this.command.equalsIgnoreCase("unignore") && currentStatement.isIgnored()) {
             currentStatement.setIgnore(false);
             output = "Done, Entry " + (index + 1) + " included in overview calculations";
-            financialReport.removeFromMonthlyExpenditure(currentStatement);
+            financialReport.addToMonthlyExpenditure(currentStatement);
             logger.log(Level.INFO, "Ignore status updated in financial report");
             Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         } else if (this.command.equalsIgnoreCase("unignore") && !currentStatement.isIgnored()) {
@@ -54,7 +54,7 @@ public class IgnoreCommand extends Command {
         } else if (this.command.equalsIgnoreCase("ignore") && !currentStatement.isIgnored()) {
             currentStatement.setIgnore(true);
             output = "Done, Entry " + (index + 1) + " ignored from overview calculations";
-            financialReport.addToMonthlyExpenditure(currentStatement);
+            financialReport.removeFromMonthlyExpenditure(currentStatement);
             logger.log(Level.INFO, "Ignore status updated in financial report");
             Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         } else {

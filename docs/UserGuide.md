@@ -126,6 +126,14 @@ Format: `help`
 The table below will be shown: <br>
 ![help.png](help.png)
 
+For more information on each individual command, the help command can also provide a more detailed guide, including
+details such as input constraints and examples for you to refer to
+
+Format: `help {COMMAND}`
+
+For instance, the table below are details for the add command: <br>
+![detailedhelp.png](detailedhelp.png)
+
 ### Adding a transaction
 
 An integral feature of any budgeting application is to add transactions. The "add" function of rainyDay allows you
@@ -186,11 +194,18 @@ to rainyDay:
 ### Viewing the transactions
 
 An important aspect to track your finances is to view all the transactions that you have already done before. The "view"
-command of rainyDay will list all the transaction added, the resultant amount of all your inflows and outflows.
+command of rainyDay can list all the transaction added, and the resultant amount of all your inflows and outflows.
 
-Format: `view`
+Format: `view {TIMESPAN} {-sort}`
 
-The output will look something similar to below
+* `TIMESPAN` is used to denote how much history to show.
+    * `1d - 31d` is used to view 1 to 31 days of history
+    * `1w - 4w`  is used to view 1 to 4 weeks of history
+    * `1m - 12m` is used to view 1 to 12 months of history
+    * `1y - 10y` is used to view 1 to 10 years of history
+* `-sort` can be included to sort entries in ascending order, with inflows displayed before outflows.
+
+> 💡**Tip:** To view all entries you can use -all in place of a specific time in TIMESPAN
 
 ![view.png](view.png)
 
@@ -287,6 +302,29 @@ However, if you want to edit multiple fields of an entry, and instead of deletin
 this command:
 `edit 2 add -out Beef noodles $15 -c Food -date 22/03/2023`
 ![EditMultipleEntries.png](EditMultipleEntries.png)
+
+### Setting a Monthly Budget
+
+In the process of keeping track of your expenses, you might feel inclined to stick to a budget. RainyDay can help
+to give you reminders, and encourage you to stick to your budget!
+With a set monthly budget, RainyDay will remind you how much you have spent for the month with
+every new expense in the same month.
+
+Format : `setbudget GOAL`
+
+For example, if you would like to set a monthly budget goal of $1000, use the command below:
+`setbudget 1000`
+
+![setbudgetgoal.png](setbudgetgoal.png)
+
+An additional message will accompany new expenses on how much you have spent for the month!
+
+![messgewithsetbudget.png](messgewithsetbudget.png)
+
+If at any point of time you would like to remove this feature, simply set the goal to $0
+`setbudget 0`
+
+![unsetbudgetgoal.png](unsetbudgetgoal.png)
 
 ### Adding a shortcut
 
@@ -435,10 +473,11 @@ that "rainyDay.jar" is going to be stored in
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Add             | For beginner users: <br> `add -DIRECTION DESCRIPTION $VALUE` <br><br> **Example:** <br> `add -in angpao $300` <br> `add -out ipad $120` <br><br> For advanced users: <br> `add -DIRECTION $VALUE -c CATEGORY -date DD/MM/YYYY` <br><br> **Example:** <br> `add -in income $2000 -c pay -date 05/03/2023` <br> `add -out hawker food $6 -c food and drinks -date 10/03/2023` |
 | Delete          | `delete INDEX` <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                                                                                                                                                                                                                                                                                        |
-| View            | `view`                                                                                                                                                                                                                                                                                                                                                                      |
-| Help            | `help`                                                                                                                                                                                                                                                                                                                                                                      |
+| View            | `view TIMESPAN -sort`                                                                                                                                                                                                                                                                                                                                                       |
+| Help            | `help` or `help COMMAND`                                                                                                                                                                                                                                                                                                                                                    |
 | Filter          | `filter DESCRIPTION` or `filter FLAG FIELD` <br><br> **Example:** <br> `filter school` <br> `filter -d school` <br>`filter -date 22/03/2023`                                                                                                                                                                                                                                |
 | Edit            | `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -add -in Beef noodles $15 -c Food` <br> `edit -d school` <br> `edit -in`                                                                                                                                                                                      |
+| Set Budget      | `setbudget VALUE`                                                                                                                                                                                                                                                                                                                                                           |   
 | Add Shortcut    | `shortcut SHORTCUTCOMMAND -maps ACTUALCOMMAND`<br><br> **Example:** <br> `shortcut myshortcut -maps add -out noodles $4`                                                                                                                                                                                                                                                    |   
 | Use Shortcut    | `SHORTCUTCOMMAND`                                                                                                                                                                                                                                                                                                                                                           |
 | View Shortcuts  | `view_shortcut`                                                                                                                                                                                                                                                                                                                                                             |
