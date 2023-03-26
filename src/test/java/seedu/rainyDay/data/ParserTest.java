@@ -6,15 +6,17 @@ import org.junit.jupiter.api.Test;
 import seedu.rainyDay.modules.Parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 class ParserTest {
     ArrayList<FinancialStatement> statements = new ArrayList<>();
-    FinancialReport financialReport = new FinancialReport(statements);
+    HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
+    FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
 
     // todo add more test cases
     @Test
     public void parseAddInCommand() throws Exception {
-        FinancialReport testReport = new FinancialReport(statements);
+        FinancialReport testReport = new FinancialReport(statements, monthlyExpenditures);
         testReport.addStatement(new FinancialStatement("noodles", "in", 5, "Default",
                 null));
         new Parser().parseUserInput("add -in noodles $5");
@@ -25,7 +27,7 @@ class ParserTest {
     @Test
     public void parseAddOutCommand() {
         try {
-            FinancialReport testReport = new FinancialReport(statements);
+            FinancialReport testReport = new FinancialReport(statements, monthlyExpenditures);
             testReport.addStatement(new FinancialStatement("noodles", "out", 5,
                     "Default", null));
             new Parser().parseUserInput("add -out noodles $5");
