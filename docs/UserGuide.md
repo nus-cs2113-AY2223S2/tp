@@ -31,10 +31,11 @@ Read this section to find out how NUSPlanner can make your life easier!
 ### Adding an event: `add`
 Adds an event to the schedule. Assuming x is an switch. Use –x to specify the attributes to edit. 
 
-Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE`
+Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE`
 * sd and ed must be of the format YYYY/MM/DD
 * e, sd and st are compulsory fields 
 * ed and et are optional, but they must be written together if you use them
+* v is optional
 
 #### Examples of usage
 * Add event that starts and ends on different days: `add –e Career Fair –st 14:00 –sd 2023/02/10 –et 16:00 –ed 2023-02-11`
@@ -183,7 +184,7 @@ ____________________________________________________________
 ### Editing an event: `edit`
 Edit an event that has been added to the schedule. Use –x to specify the attributes to edit.
 
-Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE`
+Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE`
 * sd is required and it must be of the format YYYY/MM/DD
 * st is required and it must be of the format HH:MM
 * Other fields are optional
