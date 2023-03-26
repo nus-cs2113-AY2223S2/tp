@@ -111,6 +111,18 @@ Example of usage:
 
 `view` : view all categories in moneymind
 
+### Search for a category or event: `search`
+
+Finds and displays all categories and events that contain a specified keyword.
+
+Format: `search KEYWORD`
+
+* Categories and events that contains `KEYWORD` will be displayed.
+
+Example of usage:
+
+`search bill`
+
 ### Check the Instruction Menu: `help`
 
 This command allows the user to view the instruction menu.
