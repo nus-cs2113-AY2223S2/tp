@@ -89,20 +89,20 @@ public class Ui {
     public static final String ITEM_NOT_FOUND = "Command failed! Reason: Item not found in database. Please add item " +
             "first!";
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
-    private static final String SUCCESS_RESTOCK = "Successfully restocked the following item:";
-    private static final String SUCCESS_SELL = "Successfully sold the following item:";
+    public static final String SUCCESS_RESTOCK = "Successfully restocked the following item:";
+    public static final String SUCCESS_SELL = "Successfully sold the following item:";
     public static final String ITEM_NOT_EDITED = "Item Specified will not be updated.";
     public static final String WRONG_QUANTITY_INPUT = "For Quantity inputs: MUST BE a WHOLE NUMBER.";
     public static final String WRONG_PRICE_INPUT = "For Price inputs: MUST BE a WHOLE NUMBER/DECIMAL NUMBER.";
-    private static final String INVALID_RESTOCK_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
+    public static final String INVALID_RESTOCK_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
             "following format: " + "restock upc/[UPC] qty/[Quantity]";
-    private static final String INVALID_ADD_QUANTITY_FORMAT = "Unable to restock item. REASON: Quantity inputs" +
+    public static final String INVALID_ADD_QUANTITY_FORMAT = "Unable to restock item. REASON: Quantity inputs" +
             " SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!";
-    private static final String INVALID_DEDUCT_QUANTITY_FORMAT = "Unable to sell item. REASON: Quantity inputs" +
+    public static final String INVALID_DEDUCT_QUANTITY_FORMAT = "Unable to sell item. REASON: Quantity inputs" +
             " SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!" + "\n" +
             ANSI_RED + "Also ensure that the desired" + " quantity to be deducted is LESS THAN current stock levels."
             + ANSI_RESET;
-    private static final String INVALID_SELL_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
+    public static final String INVALID_SELL_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
             "following format: " + "sell upc/[UPC] qty/[Quantity]";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
     public static final String MISSING_PRICE = "Please enter a number for the price!";
