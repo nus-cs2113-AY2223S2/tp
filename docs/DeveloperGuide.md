@@ -105,7 +105,12 @@ optimize their spending to achieve their financial goals.
 
 ## Appendix C: Non Functional Requirements
 
-{Give non-functional requirements}
+1. MoneyMind should work on any mainstream OS as long as it has Java 11 or above installed.
+2. The user is expected to be a fast-typer. MoneyMind is not optimised for users that are not 
+used to CLI applications.
+3. The user is expected to have a good habit of constantly and systematically recording their
+expenses. MoneyMind is not optimised for users that only record their expense on ad-hoc basis.
+4. Other than the above, please enjoy using MoneyMind!
 
 ## Appendix D: Glossary
 
