@@ -76,10 +76,7 @@
 
 ## Frontend
 
-<div style="text-align: right;">
-   <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
-
+<!-- @@author adenteo -->
 ### Parser
 
 The `Parser` class is a fundamental component instantiated as soon as PocketPal is initialised. Its __purpose__ is to
@@ -120,7 +117,7 @@ command: `/add McDonalds -c Food -p 10.50`
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-
+<!-- @@author kaceycsn -->
 ### Commands
 
 #### Add Command
@@ -183,7 +180,7 @@ The following activity diagram summarizes what happens when a user executes a de
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-
+<!-- @@author -->
 ### UI
 
 <div style="text-align: right;">
@@ -206,6 +203,7 @@ To find out more, visit the following sections:
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
+<!-- @@author nghochi123 -->
 ### Storage
 
 The `Storage` class is responsible for the serialization of `Entry` data into a csv-like syntax, as well as the deserialization of that data back into `Entry` objects.
@@ -228,6 +226,7 @@ The Sequence Diagram below illustrates the interactions within the `Parser` comp
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
+<!-- @@author jinxuan-owyong -->
 ### API
 #### Endpoints
 
@@ -491,6 +490,7 @@ class TestEntriesGet extends EntryTestUtil {
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
+<!-- @@author adenteo -->
 ## Instructions for manual testing
 
 ### Launching of PocketPal
