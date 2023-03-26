@@ -3,6 +3,7 @@ package seedu.rainyDay.command;
 import seedu.rainyDay.data.FinancialReport;
 
 //@@author lil1n
+
 /**
  * Represents an executable command
  */
@@ -19,10 +20,12 @@ public abstract class Command {
     public static final String COMMAND_SHORTCUT = "shortcut";
     public static final String COMMAND_DELETE_SHORTCUT = "delete_shortcut";
     public static final String COMMAND_VIEW_SHORTCUT = "view_shortcut";
-
+    public static final String COMMAND_IGNORE = "ignore";
+    public static final String COMMAND_UNIGNORE = "unignore";
 
 
     protected FinancialReport financialReport;
+
     /**
      * Sets the attribute to reference the financial report for execution of commands
      *

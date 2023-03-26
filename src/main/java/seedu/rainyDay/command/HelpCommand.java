@@ -14,12 +14,15 @@ public class HelpCommand extends Command {
             "|Filter entries   |filter  |{-in} {-out} {-d description} {-c category} {-date date}                 |\n" +
             "|Edit an entry    |edit    |[index] {-in/ -out/ -d description/ -v $value/ -c category/ -date date}  |\n" +
             "|                 |        |[index] [valid add command]                                              |\n" +
+            "|Shortcuts        |shortcut|[SHORTCUTNAME -maps ACTUALCOMMAND]                                       |\n" +
+            "|Ignore entry     |ignore  |[index]                                                                  |\n" +
+            "|Unignore entry   |unignore|[index]                                                                  |\n" +
             "|Export to .csv   |export  |                                                                         |\n" +
             "|Display a guide  |help    |{command}                                                                |\n" +
             "+=====+==============================================================================================+\n" +
             "|[] :  Denotes compulsory fields. Relevant details / flags must be included.                         |\n" +
             "|{} :  Denotes optional fields. Can be ignored                                                       |\n" +
-            "|For more information on any command: type   < help {command} >   as shown above                     |\n" +
+            "|For more information on any command: type   < help {command} >   as shown above (e.g. help add)     |\n" +
             "+====================================================================================================+\n";
 
     private static final String HELP_ADD_COMMAND = "" +
@@ -138,7 +141,20 @@ public class HelpCommand extends Command {
             "| export                      | Creates a CSV file with all entries                                  |\n" +
             "+====================================================================================================+\n";
     private static final String HELP_HELP_COMMAND = "You funny guy. I like you.";
-
+    private static final String HELP_SHORTCUT_COMMAND = "{TODO}";
+    private static final String HELP_IGNORE_COMMAND = "" +
+            "+====================================================================================================+\n" +
+            "| Ignore/Unignore command     | Used to ignore the calculation of an existing entry from RainyDay    |\n" +
+            "+====================================================================================================+\n" +
+            "| Details    | Requirement    | Description                                                          |\n" +
+            "+------------+----------------+----------------------------------------------------------------------+\n" +
+            "| index      | Mandatory      | Entry at the given index will be ignored when calculating overview   |\n" +
+            "+====================================================================================================+\n" +
+            "| Example Usage               | Description                                                          |\n" +
+            "+-----------------------------+----------------------------------------------------------------------+\n" +
+            "| ignore 7                    | Ignores the 7th entry from the list                                  |\n" +
+            "| unignore 7                  | Unignores the 7th entry from the list                                |\n" +
+            "+====================================================================================================+\n";
     private final String description;
 
     public HelpCommand (String description) {
@@ -178,6 +194,12 @@ public class HelpCommand extends Command {
         }
         if(description.equals("export")) {
             return new CommandResult(HELP_EXPORT_COMMAND);
+        }
+        if(description.equals("shortcut")) {
+            return new CommandResult(HELP_SHORTCUT_COMMAND);
+        }
+        if(description.equals("ignore") || description.equalsIgnoreCase("unignore")) {
+            return new CommandResult(HELP_SHORTCUT_COMMAND);
         }
         return new CommandResult(HELP_COMMAND);
     }
