@@ -20,7 +20,7 @@ title: Developer Guide
 ### Architecture Component
 
 <div align="center">
-<img src="UML/Images/architecture.png/">
+<img src="UML/Images/architecture.png"/>
 <p>
 Figure 1.1
 </p>
@@ -41,7 +41,7 @@ The architecture comprises five main components.
 **Interaction of components**
 
 <div align="center">
-<img src="UML/Images/overall_sequence-0.png/">
+<img src="UML/Images/overall_sequence-0.png"/>
 <p>
 Figure 1.2
 </p>
@@ -112,7 +112,7 @@ It controls where the user input is being processed.
 * Handles when there is no exercise ongoing, granting access to generating new exercises with different confines.
 
 <div align="center">
-<img src="UML/Images/CommandHandler.png" />
+<img src="UML/Images/CommandHandler.png"/>
 <p>
 Figure X.X
 </p>
@@ -126,7 +126,7 @@ that the completed workout is logged and will be saved for future reference.
 To manage this exists the ```ExerciseStateHandler```, which allows for saving, starting
 ending, cancelling workouts.
 <div align="center">
-<img src="UML/Images/CommandHandler.png/">
+<img src="UML/Images/CommandHandler.png"/>
 <p>
 Figure X.X
 </p>
@@ -139,7 +139,7 @@ Accounts for the different scenarios that may trigger an error during user's int
 #### Error Message Handling
 Enumeration: [```ErrorMessages.java```]
 All error messages are stored in the ErrorMessage enumeration for easy access across different classes that could run into similar exceptions.
-<img src="UML/Images/ErrorMessagesEnum.png/">
+<img src="UML/Images/ErrorMessagesEnum.png"/>
 
 
 ### Additional features to be added

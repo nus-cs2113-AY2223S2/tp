@@ -18,11 +18,19 @@ FitnessDuke is a CLI Based workout organizer/tracker.
 
 ## Features
 
+## *Basics*
+
 ### Viewing help: ```help```
 
 Shows all possible commands that user can input
 
 Example Command: ```help```
+
+### Exiting the program: ```exit```
+
+Gracefully exits the program and prints bye message
+
+Example command: ```exit```
 
 ### Getting a list of specific workouts: ```generate [arguments] [number]```
 
@@ -38,11 +46,71 @@ Shows a list containing *number* of random workouts that suits the arguments fil
 
 Example Command: ```generate easy 3```, ```generate hard upper 4```
 
-### Exiting the program: ```bye```,```exit```
+### Getting the filters to generate workout ```filters```
 
-Gracefully exits the program and prints bye message
+Shows a list of filters available and their description
 
-Example command: ```bye```,```exit```
+The filters are shown here:
+
+| Filter   | Description                                   |
+|----------|-----------------------------------------------|
+| [gym]    | exercises that can be done with gym equipment |
+| [static] | exercises that only require your body         |
+| [easy]   | exercises of low intensity                    |
+| [medium] | exercises of medium intensity                 |
+| [hard]   | exercises of hard intensity                   |
+| [upper]  | exercises that train your upper body          |
+| [core]   | exercises that train your core                |
+| [legs]   | exercises that train your legs                |
+_____________________________________________________________
+
+### Searching for a workout ```find```
+
+[todo]
+
+### Viewing plans ```plans```
+
+[todo]
+
+### Seeing your workout history ```history```
+
+Displays your entire career history in using Fitness Duke.
+Each history will give you details on the sessions you completed with the date and time as well
+as the exercises that you completed.
+
+Example command ```history```
+
+### Seeing your workout summary ```data```
+
+[todo]
+
+
+## *Starting a workout session*
+
+### Getting into a workout ```start```
+
+Enters a workout session
+
+**Note that you will not be able to access any other features until you complete your exercise
+
+Example command: ```start```
+
+### A quick one ```quick```
+
+[todo]
+
+### Within your workout session
+Click [here](UG_features/workout_session.md) to learn more about using our workouts feature.
+
+
+### Getting into the fitness planner ```planner```
+
+## *Configuring plans*
+Enters another interface where you can configure your workout plans and save them for the week
+
+Example command ```planner```
+
+Click [here](UG_features/planner.md) to learn more about using our planner feature.
 
 ## FAQ
 
@@ -56,4 +124,4 @@ Example command: ```bye```,```exit```
 * Quick Start Workout: ```quick```
 * Generate specific Workout set: ```generate```
 * Exiting the program: ```exit```,```bye```
-
+[todo]
