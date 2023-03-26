@@ -127,14 +127,14 @@ public class ExpenditureList {
     public static ExpenditureList sortAmount(String sortType) {
         ArrayList<Expenditure> sortExpenditureAmount = expenditures;
         switch (sortType) {
-            case SortCommand.AMOUNT_ASCENDING:
-                sortExpenditureAmount.sort(Comparator.comparing(Expenditure::getValue));
-                break;
-            case SortCommand.AMOUNT_DESCENDING:
-                sortExpenditureAmount.sort(Comparator.comparing(Expenditure::getValue).reversed());
-                break;
-            default:
-                break;
+        case SortCommand.AMOUNT_ASCENDING:
+            sortExpenditureAmount.sort(Comparator.comparing(Expenditure::getValue));
+            break;
+        case SortCommand.AMOUNT_DESCENDING:
+            sortExpenditureAmount.sort(Comparator.comparing(Expenditure::getValue).reversed());
+            break;
+        default:
+            break;
         }
         ExpenditureList sortedExpenditures = new ExpenditureList();
         for (Expenditure expenditure : sortExpenditureAmount) {
@@ -146,14 +146,14 @@ public class ExpenditureList {
     public static ExpenditureList sortDate(String sortType) {
         ArrayList<Expenditure> sortExpenditureDate = expenditures;
         switch (sortType) {
-            case SortCommand.DATE_FROM_EARLIEST:
-                sortExpenditureDate.sort(Comparator.comparing(Expenditure::getDate));
-                break;
-            case SortCommand.DATE_FROM_LATEST:
-                sortExpenditureDate.sort(Comparator.comparing(Expenditure::getDate).reversed());
-                break;
-            default:
-                break;
+        case SortCommand.DATE_FROM_EARLIEST:
+            sortExpenditureDate.sort(Comparator.comparing(Expenditure::getDate));
+            break;
+        case SortCommand.DATE_FROM_LATEST:
+            sortExpenditureDate.sort(Comparator.comparing(Expenditure::getDate).reversed());
+            break;
+        default:
+            break;
         }
         ExpenditureList sortedExpenditures = new ExpenditureList();
         for (Expenditure expenditure : sortExpenditureDate) {
