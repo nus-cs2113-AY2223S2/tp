@@ -18,7 +18,6 @@ import java.util.regex.Pattern;
 //@@author azriellee
 public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
-
     private String direction;
     private String description;
     private String category;
@@ -422,7 +421,6 @@ public class Parser {
             return new InvalidCommand(ErrorMessage.WRONG_EDIT_FORMAT.toString());
         }
     }
-
 
     //@@author KN-CY
     private Command generateShortcut(String userInput) {
