@@ -58,7 +58,7 @@ public interface StringLib {
             + "Format      : \"exit\" \n"
             + "Example use : \"exit\" \n \n \n"
             + "Hope this list has been informational to you! \n";
-    String EXIT_MESSAGE = "\nBye. Hope to see you again soon!\n";
+    String EXIT_MESSAGE = "\nBye. Hope to see you again soon!";
     String EMPTY_LIST_MESSAGE = "\nMATE! Your list is empty!\n";
     String NO_MATCHING_FIND_RESULTS_MESSAGE = "\nSeems like you do not have any recipes matching: ";
     String CREATING_NEW_FILE_AND_DIRECTORY = "\nNew file and directory will be created.";
