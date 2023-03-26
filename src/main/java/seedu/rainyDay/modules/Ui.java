@@ -40,10 +40,6 @@ public class Ui {
     }
 
     public void greetUser(String username) {
-        if (username.trim().isEmpty()) {
-            System.out.println("Very funny, you should not have an empty name!");
-            System.exit(0);
-        }
         System.out.println("Welcome " + username);
     }
 
@@ -57,7 +53,16 @@ public class Ui {
 
     public String readUserName() {
         System.out.println("Welcome new user! What is your name?");
-        return in.nextLine().trim();
+        String username;
+        while(true) {
+            username = in.nextLine().trim();
+            if (username.isEmpty()) {
+                System.out.println("Very funny, you should not have an empty name!\nWhat is your name?");
+            } else {
+                break;
+            }
+        }
+        return username;
     }
 
     public String readUserCommand() {
