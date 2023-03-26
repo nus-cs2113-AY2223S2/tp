@@ -6,12 +6,16 @@ import seedu.mealcompanion.command.factory.ingredients.IngredientsListCommandFac
 import seedu.mealcompanion.command.factory.ingredients.IngredientsSearchCommandFactory;
 import seedu.mealcompanion.command.factory.misc.AddCommandFactory;
 import seedu.mealcompanion.command.factory.misc.ByeCommandFactory;
+import seedu.mealcompanion.command.factory.misc.ClearCommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelloWorldCommandFactory;
+import seedu.mealcompanion.command.factory.misc.HelpCommandFactory;
+import seedu.mealcompanion.command.factory.misc.RemoveCommandFactory;
+import seedu.mealcompanion.command.factory.misc.MakeCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeAllCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeDetailCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipePossibleCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RemoveCommandFactory;
-import seedu.mealcompanion.command.factory.misc.HelpCommandFactory;
+import seedu.mealcompanion.command.factory.misc.RecipeNeedCommandFactory;
+import seedu.mealcompanion.command.factory.misc.RecipeRandomCommandFactory;
 import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.parser.CommandArguments;
 import seedu.mealcompanion.parser.CommandTokens;
@@ -33,12 +37,19 @@ public class MealCompanionSession {
                     )
                     .route("bye", new ByeCommandFactory())
                     .route("add", new AddCommandFactory())
+                    .route("clear", new ClearCommandFactory())
                     .route("help", new HelpCommandFactory())
                     .route("remove", new RemoveCommandFactory())
+                    .route("make", new MakeCommandFactory())
                     .route("recipe", new CommandRouterNode()
                             .route("possible", new RecipePossibleCommandFactory())
-                            .route("all", new RecipeAllCommandFactory()))
-                    .route("recipe", new RecipeDetailCommandFactory())
+                            .route("all", new RecipeAllCommandFactory())
+                            .route("random", new RecipeRandomCommandFactory())
+                    )
+                    .route("recipe", new CommandRouterNode()
+                            .route("detail", new RecipeDetailCommandFactory())
+                            .route("need", new RecipeNeedCommandFactory())
+                    )
                     .route("ingredients", new CommandRouterNode()
                             .route("list", new IngredientsListCommandFactory())
                             .route("search", new IngredientsSearchCommandFactory())

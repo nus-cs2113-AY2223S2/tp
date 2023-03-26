@@ -1,0 +1,32 @@
+@startuml
+!include Style.puml
+participant ":AddCommand" as AddCommand
+participant ":MealCompanionSession" as MealCompanionSession
+participant ":IngredientStorage" as IngredientStorage
+
+
+-> AddCommand: execute(mealCompanionSession)
+activate AddCommand
+AddCommand -> AddCommand: findIndex()
+activate AddCommand
+AddCommand -> AddCommand: return ingredient index
+deactivate AddCommand
+AddCommand -> MealCompanionSession: addExistingIngredient()
+activate MealCompanionSession
+MealCompanionSession -> IngredientStorage: getIngredientStorage()
+activate IngredientStorage
+IngredientStorage -> IngredientStorage:writeIngredientsToFile()
+activate IngredientStorage
+loop for each ingredient in the ingredient list
+IngredientStorage -> IngredientStorage: writeIngredientToFile()
+deactivate IngredientStorage
+end
+IngredientStorage -> MealCompanionSession
+deactivate IngredientStorage
+MealCompanionSession -> AddCommand: result
+deactivate MealCompanionSession
+
+
+
+
+@enduml

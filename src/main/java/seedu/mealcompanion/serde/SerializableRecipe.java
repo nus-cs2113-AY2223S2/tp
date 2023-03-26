@@ -15,6 +15,9 @@ import java.util.List;
  */
 public class SerializableRecipe {
     private String name;
+    private int calorieCount;
+    private int prepTime;
+    private int cookTime;
     private List<SerializableIngredient> ingredients;
     private List<String> instructions;
 
@@ -32,6 +35,6 @@ public class SerializableRecipe {
         for (String instruction : instructions) {
             instructionList.add(new Instruction(instruction));
         }
-        return new Recipe(this.name, ingredientList, instructionList);
+        return new Recipe(this.name, this.calorieCount, this.prepTime, this.cookTime, ingredientList, instructionList);
     }
 }

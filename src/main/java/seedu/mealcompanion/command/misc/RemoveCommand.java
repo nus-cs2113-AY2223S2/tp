@@ -4,6 +4,7 @@ import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
 
+//@@author TJW0911
 /**
  * Represents the "remove" command.
  */
@@ -28,7 +29,7 @@ public class RemoveCommand extends ExecutableCommand {
      */
     public static int findIndex(MealCompanionSession mealCompanionSession, String name) {
         for (int i = 0; i < mealCompanionSession.getIngredients().size(); i += 1) {
-            if (mealCompanionSession.getIngredients().get(i).getMetadata().getName().equals(name)) {
+            if (mealCompanionSession.getIngredients().get(i).getMetadata().getName().equalsIgnoreCase(name)) {
                 return i;
             }
         }
@@ -48,9 +49,6 @@ public class RemoveCommand extends ExecutableCommand {
             throws MealCompanionException {
         if (quantity <= 0) {
             throw new MealCompanionException("OOPS, quantity must be greater than 0");
-        }
-        if (name.isBlank()) {
-            throw new MealCompanionException("OOPS, name cannot be blank");
         }
         if (indexOfExistingIngredient == -1) {
             throw new MealCompanionException("OOPS, ingredient is not in fridge");
@@ -94,6 +92,11 @@ public class RemoveCommand extends ExecutableCommand {
             indexOfExistingIngredient = findIndex(mealCompanionSession, name);
             validateInput(mealCompanionSession, quantity, name);
             removeIngredient(mealCompanionSession, quantity, name);
+        } catch (NumberFormatException e) {
+            mealCompanionSession.getUi().printMessage("OOPS, please input a number for quantity");
+        } catch (NullPointerException e) {
+            mealCompanionSession.getUi().printMessage("OOPS, Certain fields are empty");
+            mealCompanionSession.getUi().printMessage("please follow the format: add <ingredient> /qty <quantity>");
         } catch (Exception e) {
             mealCompanionSession.getUi().printMessage(String.valueOf(e));
         }

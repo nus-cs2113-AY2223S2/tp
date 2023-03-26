@@ -51,7 +51,6 @@ public class MealCompanionUI {
         printRecipeAllHelp();
         printByeCommandHelp();
         printSearchIngredientsHelp();
-        printListIngredientsHelp();
     }
 
     private static void printHelpMessageHeader() {

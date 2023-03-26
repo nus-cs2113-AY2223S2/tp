@@ -35,14 +35,16 @@ class RecipeAllCommandTest {
             IngredientList hamSandwichIngredients = new IngredientList();
             hamSandwichIngredients.add(new Ingredient("bread", 2.0));
             hamSandwichIngredients.add(new Ingredient("ham", 1.0));
-            Recipe hamSandwich = new Recipe("ham sandwich", hamSandwichIngredients, new InstructionList());
+            Recipe hamSandwich = new Recipe("ham sandwich", 200, 30, 10,
+                    hamSandwichIngredients, new InstructionList());
             mealCompanionSession.getRecipes().add(hamSandwich);
 
             // Add eggSandwich recipe to mealCompanionSession.
             IngredientList eggSandwichIngredients = new IngredientList();
             eggSandwichIngredients.add(new Ingredient("bread", 2.0));
             eggSandwichIngredients.add(new Ingredient("egg", 1.0));
-            Recipe eggSandwich = new Recipe("egg sandwich", eggSandwichIngredients, new InstructionList());
+            Recipe eggSandwich = new Recipe("egg sandwich", 200, 30, 10,
+                    eggSandwichIngredients, new InstructionList());
             mealCompanionSession.getRecipes().add(eggSandwich);
         } catch (MealCompanionException e) {
             mealCompanionSession.getUi().printMessage(e.toString());
