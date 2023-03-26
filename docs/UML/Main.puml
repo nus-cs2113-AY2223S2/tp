@@ -1,0 +1,26 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+!include style.puml
+class Duke MAIN_COLOUR {
+- ui : Ui
+- exerciseGenerator : GenerateExercise
+- exerciseHandler : ExerciseStateHandler
+- storageHandler : StorageHandler
+- userCareerData : UserCareerData
+}
+class StorageHandler STORAGE_COLOUR {
+}
+class CommandHandler LOGIC_COLOUR {
+}
+class Ui UI_COLOUR {
+}
+class UserData DATA_COLOUR{
+}
+
+Duke --> "1" Ui : formats output\n to user >
+Duke --> "1" CommandHandler : Parses and handles\n user commands >
+Duke --> "1" StorageHandler : Retrieves Data >
+Duke --> "1" UserData : Loads Data >
+
+@enduml

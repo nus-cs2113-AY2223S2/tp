@@ -1,8 +1,8 @@
 package seedu.duke.ui;
 
-import seedu.duke.model.userdata.userplan.Plan;
-import seedu.duke.model.userdata.userplan.UserPlan;
-import seedu.duke.model.userdata.userplan.Day;
+import seedu.duke.data.userdata.userplan.Plan;
+import seedu.duke.data.userdata.userplan.UserPlan;
+import seedu.duke.data.userdata.userplan.Day;
 import java.util.ArrayList;
 
 //@@author Khulon

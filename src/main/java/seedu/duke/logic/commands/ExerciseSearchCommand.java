@@ -1,8 +1,8 @@
 package seedu.duke.logic.commands;
 
 import seedu.duke.commons.exceptions.EmptyKeywordError;
-import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
-import seedu.duke.model.exercisegenerator.GenerateExercise;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;

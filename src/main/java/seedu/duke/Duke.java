@@ -1,12 +1,17 @@
 package seedu.duke;
 
 import seedu.duke.logic.commandhandler.CommandHandler;
-import seedu.duke.model.exercisegenerator.GenerateExercise;
-import seedu.duke.storage.StorageHandler;
-import seedu.duke.model.userdata.UserCareerData;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
+import seedu.duke.storage.JsonUserCareerStorage;
+import seedu.duke.storage.JsonUserPlansStorage;
+import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageManager;
+import seedu.duke.storage.UserCareerStorage;
+import seedu.duke.data.userdata.UserCareerData;
+import seedu.duke.storage.UserPlansStorage;
 import seedu.duke.ui.Ui;
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
-import seedu.duke.model.userdata.userplan.UserPlan;
+import seedu.duke.data.userdata.userplan.UserPlan;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -17,7 +22,7 @@ public class Duke {
     private final Ui ui;
     private final GenerateExercise exerciseGenerator;
     private final ExerciseStateHandler exerciseHandler;
-    private final StorageHandler storageHandler;
+    private Storage storage;
     private UserCareerData userCareerData;
     private HashMap<String, Integer> userExerciseHistory;
     private UserPlan planner;
@@ -25,10 +30,12 @@ public class Duke {
     public Duke () {
         ui = new Ui();
         exerciseGenerator = new GenerateExercise();
-        storageHandler = new StorageHandler(USER_FILEPATH, PLANS_FILEPATH);
-        exerciseHandler = new ExerciseStateHandler(storageHandler);
-        this.userCareerData = storageHandler.loadUserData();
-        this.planner = storageHandler.loadUserPlans();
+        UserPlansStorage userPlansStorage = new JsonUserPlansStorage(PLANS_FILEPATH);
+        UserCareerStorage userCareerStorage = new JsonUserCareerStorage(USER_FILEPATH);
+        storage = new StorageManager(userCareerStorage, userPlansStorage);
+        exerciseHandler = new ExerciseStateHandler(storage);
+        this.userCareerData = storage.loadUserData();
+        this.planner = storage.loadUserPlans();
         assert this.userCareerData != null : "User career is null, data should not be empty";
         assert this.planner != null : "Planner is null, data should not be empty";
     }
@@ -44,7 +51,7 @@ public class Duke {
         ui.greetUser();
         while (true) {
             commandHandler.handleUserCommands(in.nextLine(), ui, exerciseGenerator, userCareerData, exerciseHandler,
-                                              storageHandler, planner);
+                                              storage, planner);
         }
     }
 

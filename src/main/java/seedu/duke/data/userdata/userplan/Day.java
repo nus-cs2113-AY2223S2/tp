@@ -1,4 +1,4 @@
-package seedu.duke.model.userdata.userplan;
+package seedu.duke.data.userdata.userplan;
 
 //@@author Khulon
 public class Day {

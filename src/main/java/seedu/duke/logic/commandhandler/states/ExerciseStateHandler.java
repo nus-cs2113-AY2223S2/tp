@@ -2,11 +2,11 @@ package seedu.duke.logic.commandhandler.states;
 
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.commons.exceptions.NoOngoingExError;
-import seedu.duke.model.exercisegenerator.exersisedata.ExerciseData;
-import seedu.duke.storage.StorageHandler;
-import seedu.duke.model.userdata.UserCareerData;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.storage.Storage;
+import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.ui.Ui;
-import seedu.duke.model.userdata.Session;
+import seedu.duke.data.userdata.Session;
 
 import java.util.ArrayList;
 
@@ -18,11 +18,11 @@ public class ExerciseStateHandler {
 
     private static ArrayList<ExerciseData> previousGeneratedWorkout = new ArrayList<>();
     public boolean workoutOngoing;
-    private final StorageHandler storageHandler;
     private Session currentSessionWorkout;
+    private Storage storage;
 
-    public ExerciseStateHandler (StorageHandler storageHandler) {
-        this.storageHandler = storageHandler;
+    public ExerciseStateHandler (Storage storage) {
+        this.storage = storage;
         this.currentSessionWorkout = new Session(null);
     }
 
@@ -34,7 +34,8 @@ public class ExerciseStateHandler {
      * This function logs the previous workout everytime a workout is generated
      * (In other words, whenever the generate command is called)
      *
-     * @param previousWorkout Temporarily logs the most recent generated exercise list
+     * @param previousWorkout Temporarily logs the most recent generated exercise
+     *     list
      */
     public void storePreviousGeneratedWorkout (ArrayList<ExerciseData> previousWorkout) {
         assert previousWorkout != null;
@@ -55,7 +56,8 @@ public class ExerciseStateHandler {
      * Prints the current workout if it exists
      * Otherwise throws an error
      *
-     * @throws NoOngoingExError Throws an error if there is no ongoing exercise session
+     * @throws NoOngoingExError Throws an error if there is no ongoing exercise
+     *     session
      */
     public void printCurrentWorkout () throws NoOngoingExError {
         if (!workoutOngoing) {
@@ -92,8 +94,8 @@ public class ExerciseStateHandler {
         assert completedWorkout != null;
         System.out.println("Workout completed! Congratulations on your hard work!");
         userCareerData.addWorkoutSession(completedWorkout);
-        storageHandler.writeToJson(userCareerData);
-        //complete workout
+        storage.writeToJson(userCareerData);
+        // complete workout
     }
 
 }
