@@ -99,8 +99,9 @@ public class Ui {
     private static final String INVALID_ADD_QUANTITY_FORMAT = "Unable to restock item. REASON: Quantity inputs" +
             " SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!";
     private static final String INVALID_DEDUCT_QUANTITY_FORMAT = "Unable to sell item. REASON: Quantity inputs" +
-            " SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!" + "\n" + "ALso ensure that the desired"
-            + " quantity to be deducted is LESS THAN current stock levels.";
+            " SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!" + "\n" +
+            ANSI_RED + "Also ensure that the desired" + " quantity to be deducted is LESS THAN current stock levels."
+            + ANSI_RESET;
     private static final String INVALID_SELL_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
             "following format: " + "sell upc/[UPC] qty/[Quantity]";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";

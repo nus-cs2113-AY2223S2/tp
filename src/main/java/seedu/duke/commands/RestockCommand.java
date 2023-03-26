@@ -8,8 +8,6 @@ import seedu.duke.objects.Item;
 import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 
-import java.util.ArrayList;
-
 public class RestockCommand extends Command{
 
     private final String[] restockInfo;
