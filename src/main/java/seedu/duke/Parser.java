@@ -11,15 +11,14 @@ import java.util.List;
 import java.util.Map;
 
 public class Parser {
-
-    private static final int OFFSET = 1;
-    private static final NusmodConverter converter = new NusmodConverter();
-    private static final Map<Integer, LocalDate> SEMESTER_START_DATES = Map.of(
+    public static final Map<Integer, LocalDate> SEMESTER_START_DATES = Map.of(
             1, LocalDate.of(2022, 8, 8),
             2, LocalDate.of(2023, 1, 9),
             3, LocalDate.of(2023, 5, 8),
             4, LocalDate.of(2023, 6, 19)
     );
+    private static final int OFFSET = 1;
+    private static final NusmodConverter converter = new NusmodConverter();
     private final Ui ui;
 
     public Parser() {
@@ -46,7 +45,7 @@ public class Parser {
                 parseDeleteCommand(remainder, eventList);
                 break;
             case "list":
-                parseListCommand(eventList);
+                parseListCommand(remainder, eventList);
                 break;
             case "edit":
                 parseEditCommand(remainder, eventList);
@@ -60,8 +59,18 @@ public class Parser {
         }
     }
 
-    private static void parseListCommand(EventList eventList) {
-        Ui.listTask(eventList.getFullList());
+    private static void parseListCommand(String remainder, EventList eventList) {
+        String[] details = remainder.split("-");
+
+        if (details.length <= 1) {
+            Ui.listTask(eventList.getFullList());
+            return;
+        }
+
+        String information = details[1].substring(2).trim();
+        int weekNumber = Integer.parseInt(information);
+        UserUtility.printScheduleTable(eventList.getFullList(), weekNumber);
+
     }
 
     private static void parseDeleteCommand(String remainder, EventList eventList) throws NPExceptions {
@@ -170,25 +179,25 @@ public class Parser {
         }
         addFormatChecker(information);
 
-        // if body executed when user adds a module. Code inside "else" is same as before.
+        // Harsha - if body executed when user adds a module. Code inside "else" is same as before.
         if (addModuleFlag) {
-            // count to store the number of classes added into eventList.
+            // Harsha - count to store the number of classes added into eventList.
             int count = 0;
 
-            // fetching information
+            // Harsha - fetching information
             String moduleCode = information[0];
             String classNumber = information[1];
             String lectureType = information[2];
 
-            // loading modules. Need to update when singleton design is utilized.
+            // Harsha - loading modules. Need to update when singleton design is utilized.
             HashMap<String, NusModule> nusmods = converter.loadModules();
-            // fetch NusModule from module code
+            // Harsha - Fetch NusModule from module code
             NusModule nusModule = nusmods.get(moduleCode);
             if (nusModule == null) {
                 throw new NPExceptions("Module "+ moduleCode +" does not exist!");
             }
 
-            // fetch lessons from module
+            // Harsha - Fetch lessons from module
             List<Lesson> lessons = nusModule.getLesson(UserUtility.getUser().getSemester(), lectureType, classNumber);
             if (lessons == null || lessons.isEmpty()) {
                 Ui.printErrorMsg("Selected module is not available for semester " +
@@ -196,14 +205,14 @@ public class Parser {
                 return;
             }
 
-            // create event for each day of module
+            // Harsha - Create event for each day of module
             for(Lesson lesson: lessons) {
                 for(Integer week: lesson.getWeeks()) {
 
-                    // method to get date on the lesson's day in a given week number.
+                    // Harsha - Method to get date on the lesson's day in a given week number.
                     String startDate = findDateOfWeek(UserUtility.getUser().getSemester(), week, lesson.getDay());
 
-                    // converting time to HH:mm format.
+                    // Harsha - Converting time to HH:mm format.
                     StringBuilder sb = new StringBuilder(lesson.getStartTime());
                     String startTime = sb.insert(2, ':').toString();
                     sb = new StringBuilder(lesson.getEndTime());
