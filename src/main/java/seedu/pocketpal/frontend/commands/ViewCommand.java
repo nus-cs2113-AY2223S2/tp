@@ -25,7 +25,9 @@ public class ViewCommand extends Command {
         this(numberOfEntriesToView, null, 0.0 , Double.MAX_VALUE);
     }
 
-    public ViewCommand(int numberOfEntriesToView, Category categoryToView, Double priceToViewMin, Double priceToViewMax) {
+    public ViewCommand(int numberOfEntriesToView,
+                       Category categoryToView, Double priceToViewMin,
+                       Double priceToViewMax) {
         this.categoryToView = categoryToView;
         this.numberOfEntriesToView = numberOfEntriesToView;
         this.priceToViewMin = priceToViewMin;

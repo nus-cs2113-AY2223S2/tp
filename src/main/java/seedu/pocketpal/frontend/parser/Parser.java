@@ -348,7 +348,6 @@ public class Parser {
             priceMinStr = "0.0";
             priceMaxStr = Double.toString(Double.MAX_VALUE);
         }
-
         try {
             viewCountInt = Integer.parseInt(viewCount);
 
