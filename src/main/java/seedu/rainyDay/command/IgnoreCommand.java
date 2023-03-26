@@ -1,6 +1,7 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.RainyDay;
+import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.modules.Storage;
 
 import java.util.logging.FileHandler;
@@ -39,29 +40,25 @@ public class IgnoreCommand extends Command {
         String output;
         index -= 1;
 
+        FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
         int previousStatementCount = financialReport.getStatementCount();
         assert (index < financialReport.getStatementCount() && index >= 0) : "invalid index provided for ignore";
-        if (this.command.equalsIgnoreCase("unignore") &&
-                financialReport.getFinancialStatement(index).isIgnored()) {
-            financialReport.getFinancialStatement(index).setIgnore(false);
-            output = "Done, Entry " + (index + 1)
-                    + " included in overview calculations";
+        if (this.command.equalsIgnoreCase("unignore") && currentStatement.isIgnored()) {
+            currentStatement.setIgnore(false);
+            output = "Done, Entry " + (index + 1) + " included in overview calculations";
+            financialReport.removeFromMonthlyExpenditure(currentStatement);
             logger.log(Level.INFO, "Ignore status updated in financial report");
             Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
-        } else if (this.command.equalsIgnoreCase("unignore") &&
-                !financialReport.getFinancialStatement(index).isIgnored()) {
-            output = "Entry " + (index + 1)
-                    + " already included in overview calculations";
-        } else if (this.command.equalsIgnoreCase("ignore") &&
-                !financialReport.getFinancialStatement(index).isIgnored()) {
-            financialReport.getFinancialStatement(index).setIgnore(true);
-            output = "Done, Entry " + (index + 1)
-                    + " ignored from overview calculations";
+        } else if (this.command.equalsIgnoreCase("unignore") && !currentStatement.isIgnored()) {
+            output = "Entry " + (index + 1) + " already included in overview calculations";
+        } else if (this.command.equalsIgnoreCase("ignore") && !currentStatement.isIgnored()) {
+            currentStatement.setIgnore(true);
+            output = "Done, Entry " + (index + 1) + " ignored from overview calculations";
+            financialReport.addToMonthlyExpenditure(currentStatement);
             logger.log(Level.INFO, "Ignore status updated in financial report");
             Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         } else {
-            output = "Entry " + (index + 1)
-                    + " is already ignored from overview calculations";
+            output = "Entry " + (index + 1) + " is already ignored from overview calculations";
         }
 
         assert previousStatementCount == financialReport.getStatementCount() : "statement count mismatch";

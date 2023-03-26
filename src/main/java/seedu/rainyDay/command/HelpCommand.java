@@ -1,24 +1,24 @@
 package seedu.rainyDay.command;
 
-
+//@@author BenjaminPoh
 public class HelpCommand extends Command {
     private static final String HELP_COMMAND = "" +
             "+====================================================================================================+\n" +
             "|Welcome to RainyDay! Here is the overview of commands available                                     |\n" +
             "+====================================================================================================+\n" +
-            "|Feature          |Command |Additional Syntax                                                        |\n" +
+            "|Feature          |Command  |Additional Syntax                                                       |\n" +
             "+-----+-----------+--------+-------------------------------------------------------------------------+\n" +
-            "|Add entry        |add     |[-in/-out] [description] $[value] {-c category} {-date date}             |\n" +
-            "|Delete entry     |delete  |[index]                                                                  |\n" +
-            "|View entries     |view    |{time} {-sort}                                                           |\n" +
-            "|Filter entries   |filter  |{-in} {-out} {-d description} {-c category} {-date date}                 |\n" +
-            "|Edit an entry    |edit    |[index] [-in/ -out/ -d description/ -v $value/ -c category/ -date date]  |\n" +
-            "|                 |        |[index] [valid add command]                                              |\n" +
-            "|Shortcuts        |shortcut|[SHORTCUTNAME -maps ACTUALCOMMAND]                                       |\n" +
-            "|Ignore entry     |ignore  |[index]                                                                  |\n" +
-            "|Unignore entry   |unignore|[index]                                                                  |\n" +
-            "|Export to .csv   |export  |                                                                         |\n" +
-            "|Display a guide  |help    |{command}                                                                |\n" +
+            "|Add entry        |add      |[-in/-out] [DESCRIPTION] $[VALUE] {-c CATEGORY} {-date DATE}            |\n" +
+            "|Delete entry     |delete   |[INDEX]                                                                 |\n" +
+            "|View entries     |view     |{TIME} {-sort}                                                          |\n" +
+            "|Filter entries   |filter   |{-in} {-out} {-d DESCRIPTION} {-c CATEGORY} {-date DATE}                |\n" +
+            "|Edit an entry    |edit     |[INDEX] [-in/ -out/ -d DESCRIPTION/ -v $VALUE/ -c CATEGORY/ -date DATE] |\n" +
+            "|                 |         |[INDEX] [VALID ADD COMMAND]                                             |\n" +
+            "|Create Shortcuts |shortcut |[SHORTCUT COMMAND -maps VALID COMMAND]                                  |\n" +
+            "|Ignore entry     |ignore   |[INDEX]                                                                 |\n" +
+            "|Unignore entry   |unignore |[INDEX]                                                                 |\n" +
+            "|Export to .csv   |export   |                                                                        |\n" +
+            "|Display a guide  |help     |{COMMAND}                                                               |\n" +
             "+=====+==============================================================================================+\n" +
             "|[] :  Denotes compulsory fields. Relevant details / flags must be included.                         |\n" +
             "|{} :  Denotes optional fields. Can be ignored                                                       |\n" +
@@ -32,10 +32,10 @@ public class HelpCommand extends Command {
             "| Details       | Requirement | Description                                                          |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "| -in / -out    | Mandatory   | Used to denote if the entry is an inflow or an outflow               |\n" +
-            "| <description> | Optional    | Used to describe the entry. Description will be left blank if omitted|\n" +
-            "| $<value>      | Mandatory   | Used to set the value of the entry.                                  |\n" +
-            "| -c <category> | Optional    | Used to denote the category of the entry. Set to Misc if omitted     |\n" +
-            "| -date <date>  | Optional    | Used to denote the date of the entry. Set to present date if omitted |\n" +
+            "| <DESCRIPTION> | Optional    | Used to describe the entry. Description will be left blank if omitted|\n" +
+            "| $<VALUE>      | Mandatory   | Used to set the value of the entry.                                  |\n" +
+            "| -c <CATEGORY> | Optional    | Used to denote the category of the entry. Set to Misc if omitted     |\n" +
+            "| -date <DATE>  | Optional    | Used to denote the date of the entry. Set to present date if omitted |\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
@@ -59,7 +59,7 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
-            "| index      | Mandatory      | Used to delete an entry, as denoted by the given index               |\n" +
+            "| INDEX      | Mandatory      | Used to delete an entry, as denoted by the given index               |\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
@@ -72,7 +72,7 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
-            "| Time       | Optional       | Used to set the timeframe, going back from the current date; With    |\n" +
+            "| TIME       | Optional       | Used to set the timeframe, going back from the current date; With    |\n" +
             "|            |                | timeframes not more than 31 days, 4 weeks, 12 months or 10 years.    |\n" +
             "| -sort      | Optional       | Sort entries by their value. Statements will be displayed            |\n" +
             "|            |                | in entry order if omitted.                                           |\n" +
@@ -94,9 +94,9 @@ public class HelpCommand extends Command {
             "| Details       | Requirement | Description                                                          |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "| -in / -out    | Optional    | Used to filter for only inflows / outflows.                          |\n" +
-            "| -d <desc>     | Optional    | Used to filter for descriptions with a matching substring            |\n" +
-            "| -c <category> | Optional    | Used to filter for categories with a matching substring              |\n" +
-            "| -date <Date>  | Optional    | Used to filter for entries with the specific date                    |\n" +
+            "| -d <DESC>     | Optional    | Used to filter for descriptions with a matching substring            |\n" +
+            "| -c <CATEGORY> | Optional    | Used to filter for categories with a matching substring              |\n" +
+            "| -date <DATE>  | Optional    | Used to filter for entries with the specific date                    |\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
@@ -115,10 +115,10 @@ public class HelpCommand extends Command {
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "| index         | Mandatory   | Used to specify the entry to edit                                    |\n" +
             "| -in / -out    | Optional    | Used to change an entry to outflow or inflow                         |\n" +
-            "| -d <desc>     | Optional    | Used to change the description of an entry                           |\n" +
-            "| -v $<value>   | Optional    | Used to change the value of an entry                                 |\n" +
-            "| -c <category> | Optional    | Used to change the category of an entry                              |\n" +
-            "| -date <Date>  | Optional    | Used to change the date of an entry                                  |\n" +
+            "| -d <DESC>     | Optional    | Used to change the description of an entry                           |\n" +
+            "| -v $<VALUE>   | Optional    | Used to change the value of an entry                                 |\n" +
+            "| -c <CATEGORY> | Optional    | Used to change the category of an entry                              |\n" +
+            "| -date <DATE>  | Optional    | Used to change the date of an entry                                  |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "| Note: Only 1 Optional flag is allowed. For multiple edits to the same entry, refer below           |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
@@ -146,7 +146,7 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
-            "| value      | Mandatory      | Used to specify the user's Monthly Budget Goal, up to 2dp            |\n" +
+            "| VALUE      | Mandatory      | Used to specify the user's Monthly Budget Goal, up to 2dp            |\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
@@ -154,21 +154,48 @@ public class HelpCommand extends Command {
             "| budgetset 0                 | Remove the user's Budget Goal                                        |\n" +
             "+====================================================================================================+\n";
 
-    private static final String HELP_HELP_COMMAND = "You funny guy. I like you.";
-    private static final String HELP_SHORTCUT_COMMAND = "{TODO}";
+    private static final String HELP_SHORTCUT_COMMAND = "" +
+            "+====================================================================================================+\n" +
+            "| Shortcut commands (3)       | Used to create custom commands to act as shortcuts                   |\n" +
+            "+====================================================================================================+\n" +
+            "|   <shortcut add>            |                                                                      |\n" +
+            "| Details    | Requirement    | Description                                                          |\n" +
+            "+------------+----------------+----------------------------------------------------------------------+\n" +
+            "| SHORTCUT   | Mandatory      | Used to denote the shortcut the user wants to use                    |\n" +
+            "| -maps      | Mandatory      | Used to separate the shortcut from the actual command                |\n" +
+            "| COMMAND    | Mandatory      | Used to denote the actual command                                    |\n" +
+            "+------------+----------------+----------------------------------------------------------------------+\n" +
+            "|   <shortcut delete>         |                                                                      |\n" +
+            "| Details    | Requirement    | Description                                                          |\n" +
+            "+------------+----------------+----------------------------------------------------------------------+\n" +
+            "| SHORTCUT   | Mandatory      | Used to denote the shortcut the user wants to delete                 |\n" +
+            "+====================================================================================================+\n" +
+            "| Example Usage               | Description                                                          |\n" +
+            "+-----------------------------+----------------------------------------------------------------------+\n" +
+            "| shortcut salary -maps add   | Creates a shortcut: salary ,which runs add -in $10000 salary         |\n" +
+            "| -in $10000 salary           |                                                                      |\n" +
+            "|                             |                                                                      |\n" +
+            "| view_shortcut               | Views all shortcuts created and what they are mapped to              |\n" +
+            "|                             |                                                                      |\n" +
+            "| delete_shortcut salary      | Remove the shortcut: salary                                          |\n" +
+            "+====================================================================================================+\n";
+
     private static final String HELP_IGNORE_COMMAND = "" +
             "+====================================================================================================+\n" +
-            "| Ignore/Unignore command     | Used to ignore the calculation of an existing entry from RainyDay    |\n" +
+            "| Ignore commands (2)         | Used to ignore the calculation of an existing entry from RainyDay    |\n" +
             "+====================================================================================================+\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
-            "| index      | Mandatory      | Entry at the given index will be ignored when calculating overview   |\n" +
+            "| INDEX      | Mandatory      | Entry at the given index will be ignored when calculating overview   |\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| ignore 7                    | Ignores the 7th entry from the list                                  |\n" +
-            "| unignore 7                  | Unignores the 7th entry from the list                                |\n" +
+            "| unignore 7                  | Un-ignores the 7th entry from the list                                |\n" +
             "+====================================================================================================+\n";
+
+    private static final String HELP_HELP_COMMAND = "You funny guy. I like you.";
+
     private final String description;
 
     public HelpCommand (String description) {
