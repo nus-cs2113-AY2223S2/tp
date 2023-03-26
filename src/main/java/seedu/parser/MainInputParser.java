@@ -5,6 +5,7 @@ import seedu.commands.EditCommand;
 import seedu.commands.HelpCommand;
 import seedu.commands.DeleteCommand;
 import seedu.commands.ExitCommand;
+import seedu.commands.FindCommand;
 import seedu.commands.ListExpenditureCommand;
 import seedu.commands.ViewDateExpenditureCommand;
 import seedu.commands.ViewTypeExpenditureCommand;
@@ -25,7 +26,6 @@ import seedu.exceptions.WrongInputException;
 import seedu.commands.DuplicateCommand;
 import seedu.commands.SetBudgetCommand;
 import seedu.commands.CheckBudgetCommand;
-
 
 import java.time.format.DateTimeParseException;
 
@@ -91,6 +91,10 @@ public class MainInputParser {
                 return prepareBudget.setBudget();
             case CheckBudgetCommand.COMMAND_WORD:
                 return new CheckBudgetCommand();
+            case FindCommand.COMMAND_WORD:
+                ParseFind prepareFind;
+                prepareFind = new ParseFind(splitValues[INDEX_USERSTRING]);
+                return prepareFind.findExpenditure();
             default:
                 // Commands that are not listed above
                 return new InvalidCommand("Command not recognised. Please try again");

@@ -40,9 +40,7 @@ public class EditCommand extends Command {
                 String amountVal3 = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, SSLASH);
                 String descriptionVal3 = ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
                 LocalDate date3 = LocalDate.parse(dateVal3);
-                editedExpenditure.setDate(date3);
-                editedExpenditure.setValue(Double.parseDouble(amountVal3));
-                editedExpenditure.setDescription(descriptionVal3);
+                editedExpenditure.setDescriptionValueDate(descriptionVal3, Double.parseDouble(amountVal3), date3);
                 return new CommandResult(
                         String.format("Edited! Here is the updated list:\n" + expenditures.toString()));
             } else {
@@ -53,15 +51,11 @@ public class EditCommand extends Command {
                 String name = ParseIndividualValue.parseIndividualValue(userInput, NSLASH, ASLASH);
                 LocalDate deadline = LocalDate
                         .parse(ParseIndividualValue.parseIndividualValue(userInput, BSLASH, SSLASH));
-                editedExpenditure.setDate(date);
-                editedExpenditure.setValue(Double.parseDouble(amountVal));
-                editedExpenditure.setDescription(descriptionVal);
+                editedExpenditure.setDescriptionValueDate(descriptionVal, Double.parseDouble(amountVal), date);
                 if (editedExpenditure.getExpenditureType() == LEND_EXPENDITURE_TYPE) {
-                    ((LendExpenditure) editedExpenditure).setLenderName(name);
-                    ((LendExpenditure) editedExpenditure).setDeadline(deadline);
+                    ((LendExpenditure) editedExpenditure).setLenderNameAndDeadline(name, deadline);
                 } else {
-                    ((BorrowExpenditure) editedExpenditure).setBorrowerName(name);
-                    ((BorrowExpenditure) editedExpenditure).setDeadline(deadline);
+                    ((BorrowExpenditure) editedExpenditure).setBorrowerNameAndDeadline(name, deadline);
                 }
             }
             return new CommandResult(String.format("Edited! Here is the updated list:\n" + expenditures.toString()));
