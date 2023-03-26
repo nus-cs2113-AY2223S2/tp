@@ -49,4 +49,8 @@ public class Staff {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String savableString() {
+        return this.name + "~|~" + this.workingDay + "~|~" + this.dateOfBirth + "~|~" + this.phoneNumber;
+    }
 }

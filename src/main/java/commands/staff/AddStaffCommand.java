@@ -22,7 +22,7 @@ public class AddStaffCommand extends Command {
     @Override
     public void execute(TextUi ui) {
         Staff staff = new Staff(this.name, this.workingDay, this.phoneNumber, this.dateOfBirth);
-        StaffManager.addStaff(staff);
+        StaffManager.addStaff(staff, ui);
         ui.printMessage(staff + " added!");
     }
 

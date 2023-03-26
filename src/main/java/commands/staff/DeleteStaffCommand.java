@@ -14,7 +14,7 @@ public class DeleteStaffCommand extends Command {
 
     @Override
     public void execute(TextUi ui) {
-        StaffManager.deleteStaffByName(this.staffName);
+        StaffManager.deleteStaffByName(this.staffName, ui);
         ui.printMessage(staffName + " removed");
 
     }
