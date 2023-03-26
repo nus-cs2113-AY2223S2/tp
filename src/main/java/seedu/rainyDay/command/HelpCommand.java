@@ -144,7 +144,7 @@ public class HelpCommand extends Command {
     private static final String HELP_SHORTCUT_COMMAND = "{TODO}";
     private static final String HELP_IGNORE_COMMAND = "" +
             "+====================================================================================================+\n" +
-            "| Ignore/Unignore command     | Used to ignore the calculation of an existing entry from RainyDay     |\n" +
+            "| Ignore/Unignore command     | Used to ignore the calculation of an existing entry from RainyDay    |\n" +
             "+====================================================================================================+\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +

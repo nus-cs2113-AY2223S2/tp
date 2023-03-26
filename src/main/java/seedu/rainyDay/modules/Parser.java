@@ -1,7 +1,19 @@
 package seedu.rainyDay.modules;
 
 import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.command.*;
+import seedu.rainyDay.command.Command;
+import seedu.rainyDay.command.AddCommand;
+import seedu.rainyDay.command.DeleteCommand;
+import seedu.rainyDay.command.DeleteShortcutCommand;
+import seedu.rainyDay.command.EditCommand;
+import seedu.rainyDay.command.ExportCommand;
+import seedu.rainyDay.command.ShortcutCommand;
+import seedu.rainyDay.command.ViewCommand;
+import seedu.rainyDay.command.HelpCommand;
+import seedu.rainyDay.command.FilterCommand;
+import seedu.rainyDay.command.InvalidCommand;
+import seedu.rainyDay.command.ViewShortcutCommand;
+import seedu.rainyDay.command.IgnoreCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 
@@ -18,7 +30,6 @@ import java.util.regex.Pattern;
 //@@author azriellee
 public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
-
     private String direction;
     private String description;
     private String category;
@@ -422,7 +433,6 @@ public class Parser {
             return new InvalidCommand(ErrorMessage.WRONG_EDIT_FORMAT.toString());
         }
     }
-
 
     //@@author KN-CY
     private Command generateShortcut(String userInput) {

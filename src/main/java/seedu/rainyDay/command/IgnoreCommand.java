@@ -9,9 +9,10 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class IgnoreCommand extends Command {
+    private static final Logger logger = Logger.getLogger(IgnoreCommand.class.getName());
     private int index;
     private String command;
-    private static final Logger logger = Logger.getLogger(IgnoreCommand.class.getName());
+
 
     public IgnoreCommand(int index, String command) {
         this.index = index;
