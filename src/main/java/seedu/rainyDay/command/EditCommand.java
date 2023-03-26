@@ -29,12 +29,14 @@ public class EditCommand extends Command {
     private LocalDate dateToChange;
     private LocalDate date;
 
-    public EditCommand(int index, String description, String flowDirection, double value, String category) {
+    public EditCommand(int index, String description, String flowDirection, double value, String category,
+                       LocalDate date) {
         this.index = index;
         this.description = description;
         this.flowDirection = flowDirection;
         this.value = value;
         this.category = category;
+        this.date = date;
     }
 
     public EditCommand(int index, String flag, String field) {
