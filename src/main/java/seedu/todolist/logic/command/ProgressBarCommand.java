@@ -1,6 +1,5 @@
 package seedu.todolist.logic.command;
 
-import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.task.Task;
 import seedu.todolist.task.TaskList;
 import seedu.todolist.ui.Ui;

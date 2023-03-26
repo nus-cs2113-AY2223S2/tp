@@ -4,7 +4,6 @@ import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.constants.Flags;
 import seedu.todolist.logic.ParserUtil;
 import seedu.todolist.ui.Ui;
-import seedu.todolist.task.Task;
 import seedu.todolist.task.TaskList;
 
 import java.time.LocalDateTime;

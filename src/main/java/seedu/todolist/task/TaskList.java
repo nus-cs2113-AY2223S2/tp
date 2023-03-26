@@ -4,7 +4,6 @@ import seedu.todolist.exception.InvalidIdException;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
