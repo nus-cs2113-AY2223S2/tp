@@ -78,10 +78,10 @@ public class Parser {
         String matcher = input;
         int count = 0;
         while (matcher.contains(regex)){
-            matcher = matcher.substring(matcher.indexOf(regex)+1);
+            matcher=matcher.substring(matcher.indexOf(regex)+1);
             ++count;
         }
-        boolean isMatch = (count == 1);
+        boolean isMatch = (count==1);
         return isMatch;
     }
     /**
@@ -98,7 +98,7 @@ public class Parser {
                 || !matchString(description,"t/") || !matchString(description,"s/")){
             throw new IncompleteInputException(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP);
         }
-        if(!description.startsWith("n/")){
+        if(!description.substring(0,2).equals("n/")){
             throw new IncompleteInputException(RECIPE_WRONG_LEADING_STRING);
         }
         String[] parsedName = description.split(" i/");

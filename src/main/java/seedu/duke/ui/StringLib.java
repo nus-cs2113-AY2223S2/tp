@@ -58,7 +58,7 @@ public interface StringLib {
             + "Format      : \"exit\" \n"
             + "Example use : \"exit\" \n \n \n"
             + "Hope this list has been informational to you! \n";
-    String EXIT_MESSAGE = "\nBye. Hope to see you again soon!\n";
+    String EXIT_MESSAGE = "\nBye. Hope to see you again soon!";
     String EMPTY_LIST_MESSAGE = "\nMATE! Your list is empty!\n";
     String NO_MATCHING_FIND_RESULTS_MESSAGE = "\nSeems like you do not have any recipes matching: ";
     String CREATING_NEW_FILE_AND_DIRECTORY = "\nNew file and directory will be created.";
@@ -115,5 +115,7 @@ public interface StringLib {
     String RECIPE_SAVED = "\nRecipe list saved!";
     String RECIPE_LOADED = "\nSaved recipes loaded!";
     String MISSING_NUM = "Please enter a valid number for the sum of steps!\n";
-    String MISSING_KEYWORD = "Find is missing KEYWORDS!";
+    String MISSING_KEYWORD = "\nView is missing KEYWORDS!";
+    String MATCHING_ITEMS = "\nHere are the matching items:";
+    String NO_MATCHES = "\nNo dishes matches what you are looking for! :(";
 }

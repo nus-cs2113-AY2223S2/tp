@@ -1,6 +1,8 @@
 package seedu.duke.recipe;
 
 import seedu.duke.exceptions.RecipeListEmptyError;
+import seedu.duke.ui.StringLib;
+
 import java.util.ArrayList;
 
 public class RecipeList {
@@ -53,5 +55,31 @@ public class RecipeList {
         recipeList.clear();
         currRecipeNumber = 0;
         assert(recipeList.size() == 0);
+    }
+
+    public static void searchRecipeList(String term) {
+        ArrayList<String> matches = new ArrayList<>();
+        if (term.equals("")) {
+            System.out.println(StringLib.MISSING_KEYWORD);
+            return;
+        }
+        if (getCurrRecipeNumber() == 0) {
+            System.out.println(StringLib.EMPTY_LIST_MESSAGE);
+            return;
+        }
+        for (int i = 1; i <= getCurrRecipeNumber(); i++) {
+            Recipe dish = getRecipeFromList(i);
+            if (dish.getName().toLowerCase().contains(term.toLowerCase())) {
+                matches.add(dish + " [Index: " + i + "]");
+            }
+        }
+        if (matches.isEmpty()) {
+            System.out.println(StringLib.NO_MATCHES);
+        } else {
+            System.out.println(StringLib.MATCHING_ITEMS);
+            for (String match : matches) {
+                System.out.println("  " + match);
+            }
+        }
     }
 }

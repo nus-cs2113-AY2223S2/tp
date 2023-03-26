@@ -21,8 +21,7 @@ public enum CommandType {
      */
     ADD,
     /**
-     * Displays a particular recipe in the recipe list or finds all recipes containing keywords on the current recipe
-     * list.
+     * Displays a particular recipe in the recipe list.
      */
     VIEW,
     /**

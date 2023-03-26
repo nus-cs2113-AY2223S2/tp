@@ -12,6 +12,9 @@ add spaghetti
 end
 add n/Carbonara i/Pasta, Bacon, Egg, Cheese t/Italian s/0
 add n/Beijing Duck i/Duck, Pancakes t/Chinese s/0
+view duck
+view capybara
+view
 list
 delete 1
 list

@@ -28,6 +28,7 @@ __________________________________________________________
 MATE! Your list is empty!
 
 __________________________________________________________
+
 Please enter the description of step 1:
 
 Please enter the description of step 2:
@@ -35,7 +36,6 @@ Please enter the description of step 2:
 Please enter the description of step 3:
 
 Please enter the description of step 4:
-
 
 Got it. I've added this recipe:
   [Chinese] Hotpot
@@ -45,8 +45,8 @@ Now you have 1 recipes in the list.
 Recipe list saved!
 Hotpot
 __________________________________________________________
-Please enter the description of step 1:
 
+Please enter the description of step 1:
 
 Got it. I've added this recipe:
   [Chinese] MaLaXiangGuo
@@ -64,8 +64,8 @@ RECIPE LIST
 2. [Chinese] MaLaXiangGuo
 
 __________________________________________________________
-Please enter the description of step 1:
 
+Please enter the description of step 1:
 
 Got it. I've added this recipe:
   [Italian] Spaghetti
@@ -106,6 +106,16 @@ MaLaXiangGuo
 Spaghetti
 Carbonara
 Beijing Duck
+__________________________________________________________
+
+Here are the matching items:
+  [Chinese] Beijing Duck [Index: 5]
+__________________________________________________________
+
+No dishes matches what you are looking for! :(
+__________________________________________________________
+
+View is missing KEYWORDS!
 __________________________________________________________
 
 RECIPE LIST
@@ -240,5 +250,4 @@ Try typing "help" to see the valid commands you can use!
 __________________________________________________________
 
 Bye. Hope to see you again soon!
-
 __________________________________________________________

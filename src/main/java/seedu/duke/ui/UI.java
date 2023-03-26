@@ -82,7 +82,7 @@ public class UI {
         System.out.println(LINE);
     }
     public void showStepInsertMessage(int stepNumber) {
-        System.out.println("Please enter the description of step " + stepNumber + ":\n");
+        System.out.println("\nPlease enter the description of step " + stepNumber + ":");
     }
     public void showDudeMainError(Exception e) {
         if (e instanceof IOException) {
@@ -126,7 +126,6 @@ public class UI {
             System.out.println(RECIPE_DELETING_DEFAULT_ERROR + e.getMessage());
         }
     }
-
     public void showRecipeViewed(Recipe recipe) {
         System.out.println("Here is the recipe you requested, which is a "+ recipe.getTag() + " flavour:");
         System.out.println("name: " + recipe.getName());

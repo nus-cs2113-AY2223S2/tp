@@ -107,6 +107,12 @@ public class Command {
             break;
         case VIEW:
             try {
+                Integer.parseInt(fullDescription);
+            } catch (NumberFormatException e) {
+                RecipeList.searchRecipeList(fullDescription);
+                break;
+            }
+            try {
                 if (fullDescription.isEmpty()) {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
