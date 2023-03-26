@@ -29,14 +29,13 @@ public class CommandTotal extends Command {
      * Calculates the total expenses in the expense list in SGD.
      */
 
+    // TODO: combine calculateTotal and getTotal
     public BigDecimal calculateTotal() {
-        total = new BigDecimal(0);
         for (Expense i : expenseList) {
             total = total.add(i.getExpenseAmount().multiply(i.getRate()));
         }
         return total;
     }
-
 
     /**
      * Prints out the total expenses in the expense list in SGD.

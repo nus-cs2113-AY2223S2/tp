@@ -29,7 +29,7 @@ public class CommandOverview extends Command {
     @Override
     public CommandRes execute() {
         if (isMonthlyOverview()) {
-            new MonthlyOverview(expenses, month, year);
+            new MonthlyOverview(expenses, month, year).printOverview();
         } else { // yearly overview
             new YearlyOverview();
         }
