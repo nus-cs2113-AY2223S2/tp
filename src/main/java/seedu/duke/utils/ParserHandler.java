@@ -3,16 +3,7 @@ package seedu.duke.utils;
 import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.types.Types;
-import seedu.duke.utils.parsers.AddParser;
-import seedu.duke.utils.parsers.AlertParser;
-import seedu.duke.utils.parsers.AutoSaveParser;
-import seedu.duke.utils.parsers.EditParser;
-import seedu.duke.utils.parsers.FilterParser;
-import seedu.duke.utils.parsers.HelpParser;
-import seedu.duke.utils.parsers.HistoryParser;
-import seedu.duke.utils.parsers.ListParser;
-import seedu.duke.utils.parsers.RemoveParser;
-import seedu.duke.utils.parsers.SearchParser;
+import seedu.duke.utils.parsers.*;
 
 import java.util.Scanner;
 
@@ -49,6 +40,14 @@ public class ParserHandler {
         case "edit":
             EditParser editParser = new EditParser(commandInfo, inventory);
             editParser.run();
+            break;
+        case "restock":
+            RestockParser restockParser = new RestockParser(commandInfo, inventory);
+            restockParser.run();
+            break;
+        case "sell":
+            SellParser sellParser = new SellParser(commandInfo, inventory);
+            sellParser.run();
             break;
         case "list":
             ListParser listParser = new ListParser(inventory);

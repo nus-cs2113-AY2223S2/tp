@@ -89,9 +89,14 @@ public class Ui {
     public static final String ITEM_NOT_FOUND = "Command failed! Reason: Item not found in database. Please add item " +
             "first!";
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
+    private static final String SUCCESS_RESTOCK = "Successfully restocked the following item:";
     public static final String ITEM_NOT_EDITED = "Item Specified will not be updated.";
     public static final String WRONG_QUANTITY_INPUT = "For Quantity inputs: MUST BE a WHOLE NUMBER.";
     public static final String WRONG_PRICE_INPUT = "For Price inputs: MUST BE a WHOLE NUMBER/DECIMAL NUMBER.";
+    private static final String INVALID_RESTOCK_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
+            "following format: " + "restock upc/[UPC] qty/[Quantity]";
+    private static final String INVALID_SELL_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
+            "following format: " + "sell upc/[UPC] qty/[Quantity]";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
     public static final String MISSING_PRICE = "Please enter a number for the price!";
     public static final String ITEM_ADDED_AT = "Item added at: ";
@@ -157,6 +162,8 @@ public class Ui {
 
     private static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove " +
             "does not exist.";
+    private static final String INVALID_QUANTITY_FORMAT = "Unable to restock item. REASON: Quantity inputs SHOULD NOT"
+            + " contain NEGATIVE integers or STRING inputs!";
 
 
     public Ui() {
@@ -577,6 +584,25 @@ public class Ui {
     }
 
     /**
+     * Prints the updated quantity of an item as specified by the user. Shows both the previous quantity
+     * and the updated quantity of the item.
+     *
+     * @param oldItem     The item containing the old attributes.
+     * @param updatedItem The same item but with new attributes as defined by the user.
+     */
+    public static void printRestockDetails(Item oldItem, Item updatedItem) {
+        System.out.println(LINE);
+        System.out.println(ANSI_BLUE + SUCCESS_RESTOCK + ANSI_RESET + "\n");
+        System.out.println(ANSI_RED + "Before Update: " + ANSI_RESET);
+        System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
+                "Quantity Available: " + ANSI_RED + oldItem.getQuantity() + ANSI_RESET);
+        System.out.println("\n" + ANSI_GREEN + "After Update: " + ANSI_RESET);
+        System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
+                "Quantity Available: " + ANSI_GREEN + updatedItem.getQuantity() + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    /**
      * Prints an error message to inform the user that the item is not updated.
      */
     private static void printItemNotUpdatedError() {
@@ -595,6 +621,34 @@ public class Ui {
         System.out.println(ANSI_RED + "REASON:" + ANSI_RESET);
         System.out.println(ANSI_RED + WRONG_QUANTITY_INPUT + ANSI_RESET);
         System.out.println(ANSI_RED + WRONG_PRICE_INPUT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    /**
+     * Prints an error message to inform the user that the user command for restock is invalid.
+     */
+    public static void printInvalidRestockCommand() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_RESTOCK_FORMAT + ANSI_RESET);
+        System.out.println(LINE);
+
+    }
+
+    /**
+     * Prints an error message to inform the user that the restock command contains negative values or strings.
+     */
+    public static void printInvalidAddQuantityInput() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_QUANTITY_FORMAT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    /**
+     * Prints an error message to inform the user that the user command for selling is invalid.
+     */
+    public static void printInvalidSellCommand() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_SELL_FORMAT + ANSI_RESET);
         System.out.println(LINE);
     }
 
@@ -832,5 +886,6 @@ public class Ui {
             System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
         }
     }
+
 }
 
