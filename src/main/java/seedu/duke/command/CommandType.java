@@ -26,10 +26,6 @@ public enum CommandType {
      */
     VIEW,
     /**
-     * Finds all recipes containing keywords on the current recipe list.
-     */
-    FIND,
-    /**
      * Removes a particular recipe from the recipe list.
      */
     DELETE,

@@ -61,9 +61,6 @@ public class Parser {
         case "help":
             type = CommandType.HELP;
             break;
-        case "find":
-            type = CommandType.FIND;
-            break;
         case "clear":
             type = CommandType.CLEAR;
             break;

@@ -99,14 +99,6 @@ public class Command {
             ui.showSave();
             Storage.writeSavedFile();
             break;
-        case FIND:
-            try {
-                String keywords = fullDescription;
-                RecipeList.searchRecipeList(keywords);
-            } catch (Exception e) {
-                ui.showFindingTaskErrorMessage(e);
-            }
-            break;
         case CLEAR:
             recipeList.clearRecipeList();
             ui.showRecipeListCleared();
@@ -114,6 +106,12 @@ public class Command {
             Storage.writeSavedFile();
             break;
         case VIEW:
+            try {
+                Integer.parseInt(fullDescription);
+            } catch (NumberFormatException e) {
+                RecipeList.searchRecipeList(fullDescription);
+                break;
+            }
             try {
                 if (fullDescription.isEmpty()) {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
