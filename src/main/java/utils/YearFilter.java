@@ -10,7 +10,7 @@ public class YearFilter {
     private ArrayList<Expense> expenses;
     private final ArrayList<Expense> yearlyExpenses = new ArrayList<>();
 
-    public YearFilter(String year, ArrayList<Expense> expenses) {
+    public YearFilter(ArrayList<Expense> expenses, String year) {
         this.year = year;
         this.expenses = expenses;
     }

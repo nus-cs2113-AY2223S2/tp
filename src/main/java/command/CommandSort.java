@@ -116,5 +116,11 @@ public class CommandSort extends Command {
         }
     }
 
+    /* @@Ju Can
+     */
+    private void sortByCategorySum() {
+        
+    }
+
 
 }
