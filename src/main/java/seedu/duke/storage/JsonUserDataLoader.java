@@ -9,9 +9,9 @@ import java.io.FileReader;
 import java.io.Reader;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.commons.exceptions.FileReadError;
 import seedu.duke.data.userdata.Session;
 import seedu.duke.data.userdata.UserCareerData;
+import seedu.duke.ui.ErrorMessages;
 
 /**
  * Class to read and parse the json file containing userData into an ArrayList of completed workouts.
@@ -46,7 +46,7 @@ public class JsonUserDataLoader {
                 "into arrayList";
             reader.close();
         } catch (Exception e) {
-            throw new FileReadError();
+            throw new DukeError(ErrorMessages.ERROR_FILE_READ.toString());
         }
         return userCareerData;
     }
