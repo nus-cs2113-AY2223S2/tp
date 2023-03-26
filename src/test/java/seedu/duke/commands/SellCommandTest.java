@@ -3,7 +3,6 @@ package seedu.duke.commands;
 import org.junit.jupiter.api.Test;
 import seedu.duke.objects.Inventory;
 import seedu.duke.utils.parsers.AddParser;
-import seedu.duke.utils.parsers.RestockParser;
 import seedu.duke.utils.parsers.SellParser;
 
 public class SellCommandTest {
