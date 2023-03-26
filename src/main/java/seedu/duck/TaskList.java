@@ -16,15 +16,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.PriorityQueue;
 
 /**
  * Contains operations to manipulate the task list
  */
 public class TaskList {
-    static void addTask(String line, ArrayList<Task> tasks) {
+    static void addTask(String line, ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) {
         if (line.contains("/by")) {
             // Adding a Deadline
             try {
@@ -40,8 +43,7 @@ public class TaskList {
         } else if (line.contains("/class")) {
             // Adding a SchoolClass
             try {
-                addSchoolClass(line, tasks);
-                Task.incrementCount();
+                addSchoolClass(line, classes);
             } catch (IllegalSchoolClassException | IndexOutOfBoundsException e) {
                 Ui.eventErrorMessage();
             } catch (expiredDateException e) {
@@ -139,27 +141,32 @@ public class TaskList {
      * Adds a schoolClass to the list
      *
      * @param line  The line of input from the user
-     * @param tasks The array list of tasks
+     * @param classes The priority queue of school classes
      */
-    static void addSchoolClass(String line, ArrayList<Task> tasks) throws IllegalSchoolClassException,
-            startAfterEndException, expiredDateException {
+    static void addSchoolClass(String line, PriorityQueue<SchoolClass> classes) throws IllegalSchoolClassException,
+            startAfterEndException, expiredDateException, IllegalArgumentException, NullPointerException {
         String description = line.substring(0, line.indexOf("/class")).trim();
-        String className = line.substring(line.indexOf("/class") + 6, line.indexOf("/from")).trim();
-        String startString = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
-        String endString = line.substring(line.indexOf("/to") + 3).trim();
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        LocalDateTime start = LocalDateTime.parse(startString, dateFormat);
-        LocalDateTime end = LocalDateTime.parse(endString, dateFormat);
-        if (start.isAfter(end)) {
-            throw new startAfterEndException();
-        } else if (start.isBefore(LocalDateTime.now()) || end.isBefore(LocalDateTime.now())) {
-            throw new expiredDateException();
-        } else if (className.isBlank() || startString.isBlank() || endString.isBlank()) {
-            throw new IllegalSchoolClassException();
-        } else {
-            SchoolClass currSchoolClass = new SchoolClass(className, description, startString, endString);
-            tasks.add(currSchoolClass);
-            Ui.addedTaskMessage(currSchoolClass);
+        String className = line.substring(line.indexOf("/class") + 6, line.indexOf("/day")).trim();
+        try {
+            DayOfWeek day = DayOfWeek.valueOf(line.substring(line.indexOf("/day") + 4, line.indexOf("/from")).trim());
+            String startString = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
+            String endString = line.substring(line.indexOf("/to") + 3).trim();
+            DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HHmm");
+            LocalTime start = LocalTime.parse(startString, timeFormat);
+            LocalTime end = LocalTime.parse(endString, timeFormat);
+            if (start.isAfter(end)) {
+                throw new startAfterEndException();
+            } else if (className.isBlank() || startString.isBlank() || endString.isBlank()) {
+                throw new IllegalSchoolClassException();
+            } else {
+                SchoolClass currSchoolClass = new SchoolClass(className, description, day, startString, endString);
+                classes.add(currSchoolClass);
+                Ui.addedSchoolClassMessage(currSchoolClass, classes);
+            }
+        } catch (IllegalArgumentException e) {
+            Ui.invalidDayMessage();
+        } catch (NullPointerException e) {
+            Ui.emptyDayErrorMessage();
         }
     }
 
@@ -250,7 +257,41 @@ public class TaskList {
         }
     }
 
-    static void purge(ArrayList<Task> tasks) {
+    static void deleteClass(PriorityQueue<SchoolClass> classes, String line) throws
+            IllegalArgumentException, NullPointerException, StringIndexOutOfBoundsException{
+        try {
+        // Buffer holds the string "remove class" and is redundant
+            String buffer = line.substring(0, line.indexOf("/class")).trim();
+            String className = line.substring(line.indexOf("/class") + 6, line.indexOf("/description")).trim();
+            String description = line.substring(line.indexOf("/description") + 12, line.indexOf("/day")).trim();
+            DayOfWeek day = DayOfWeek.valueOf(line.substring(line.indexOf("/day") + 4, line.indexOf("/from")).trim());
+            String startString = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
+            String endString = line.substring(line.indexOf("/to") + 3).trim();
+            SchoolClass toDelete = new SchoolClass(className, description, day, startString, endString);
+            if (classes.remove(toDelete) == true) {
+                System.out.println("class removed");
+            } else {
+                System.out.println("class not removed");
+            }
+        } catch (IllegalArgumentException e) {
+            Ui.invalidDayMessage();
+        } catch (NullPointerException e) {
+            Ui.emptyDayErrorMessage();
+        } catch (StringIndexOutOfBoundsException e) {
+            Ui.invalidRemoveClassMessage();
+        }
+    }
+
+    static void tryDeleteClass(PriorityQueue<SchoolClass> classes, String line) {
+        if (!line.contains("/class") || !line.contains("/description") || !line.contains("/day") ||
+                !line.contains("/from") || !line.contains("/to")) {
+            Ui.invalidRemoveClassMessage();
+        } else {
+            deleteClass(classes, line);
+        }
+    }
+
+    static void purge(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) {
         Ui.borderLine();
         System.out.println("\t Displaying all expired tasks below...");
         System.out.println();
@@ -321,7 +362,7 @@ public class TaskList {
                         tasks.removeIf(task -> task == expiredTask);
                         Task.decrementCount();
                     }
-                    Storage.trySave(tasks);
+                    Storage.trySave(tasks, classes);
                     Ui.borderLine();
                     System.out.println("\t Expired Tasks have been purged from the list!");
                     System.out.println("\t I love purging things, human...");

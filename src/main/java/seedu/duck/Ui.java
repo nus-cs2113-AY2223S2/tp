@@ -9,7 +9,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Objects;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 /**
@@ -28,6 +30,16 @@ public class Ui {
         System.out.println("\t Here are the tasks in your list:");
         for (int i = 0; i < taskCount; i++) {
             System.out.println("\t " + (i + 1) + "." + tasks.get(i));
+        }
+        borderLine();
+    }
+
+    static void listClasses(PriorityQueue<SchoolClass> classes) {
+        Iterator<SchoolClass> iterator = classes.iterator();
+        borderLine();
+        System.out.println("\t Here is your class schedule:\n");
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
         }
         borderLine();
     }
@@ -374,21 +386,23 @@ public class Ui {
         System.out.println("\t - mark <task_number>: I'll mark that task as done.");
         System.out.println("\t - unmark <task_number>: I'll mark that task as undone.");
         System.out.println("\t - delete <task_number>: I'll delete that task from your list.");
+        System.out.println("\t - remove class /class <class_name> /description <description /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>");
+        System.out.println("\t   : I'll remove this class from your class schedule.");
         System.out.println("\t - purge: I'll delete all expired tasks from your list after a confirmation.");
         System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
         System.out.println("\t - priority <task_number> <1/2/3>: I'll set the priority of a given task as");
         System.out.println("\t                                   1:Low, 2:Medium and 3:High.");
         System.out.println("\t - bye: I will shut down my program.\n");
-        System.out.println("\t Here are the following ways to input tasks:");
+        System.out.println("\t Here are the following ways to input tasks/classes:");
         System.out.println("\t Deadlines: <description> /by <yyyy-MM-dd HHmm>");
         System.out.println("\t            (eg. Eat bread /by 2023-03-15 2015)");
         System.out.println("\t Events   : <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>");
         System.out.println("\t            (eg. Meeting /from 2023-03-15 2015 /to 2023-03-15 2215)");
-        System.out.println("\t Classes  : <description> /class <class_name> /from <yyyy-MM-dd HHmm> " +
-                "/to <yyyy-MM-dd HHmm>");
-        System.out.println("\t            (eg. Bring laptop /class CS2113 /from 2023-03-15 1100 /to 2023-03-15 1200)");
+        System.out.println("\t            (eg. Bring laptop /class CS2113 /day TUESDAY /from 1100 /to 1200)");
         System.out.println("\t Todo     : <description>");
-        System.out.println("\t            (eg. Water the plants) \n");
+        System.out.println("\t            (eg. Water the plants)");
+        System.out.println("\t Classes  : <description> /class <class_name> /day <DAY_OF_WEEK>" +
+                "/from <HHmm> /to <HHmm> \n");
         System.out.println("\t （`･v･´ ）: How else may I assist you today, human?");
         borderLine();
     }
@@ -397,6 +411,13 @@ public class Ui {
         borderLine();
         System.out.println("\t Alright, I have added this task: \n\t\t" + currentTask);
         System.out.println("\t You now have " + (Task.getTaskCount() + 1) + " tasks in your list.");
+        borderLine();
+    }
+
+    static void addedSchoolClassMessage(SchoolClass currentClass, PriorityQueue<SchoolClass> classes) {
+        borderLine();
+        System.out.println("\t Alright, I have added this class: \n\t\t" + currentClass);
+        System.out.println("\t You now have " + (classes.size()) + " classes in your schedule.");
         borderLine();
     }
 
@@ -451,6 +472,24 @@ public class Ui {
     static void schoolClassErrorMessage() {
         borderLine();
         System.out.println("\t Error. Please enter a valid class name, description, start time and end time");
+        borderLine();
+    }
+
+    static void invalidDayMessage() {
+        borderLine();
+        System.out.println("\t Error. Please enter a valid day of week in all capital letters (Eg. MONDAY).");
+        borderLine();
+    }
+
+    static void emptyDayErrorMessage() {
+        borderLine();
+        System.out.println("\t Error. Please enter a day of week.");
+        borderLine();
+    }
+
+    static void invalidRemoveClassMessage() {
+        borderLine();
+        System.out.println("\t Error. Please follow the correct format to remove classes.");
         borderLine();
     }
 
