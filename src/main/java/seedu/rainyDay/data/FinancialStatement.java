@@ -11,8 +11,8 @@ public class FinancialStatement {
     public FlowDirection flowDirection;
     public double value;
     public String category;
-    public LocalDate date = null;
-    private boolean isIgnored = false;
+    public LocalDate date;
+    private boolean isIgnored;
 
     public FinancialStatement(String description, String flowDirection, double value, String category, LocalDate date) {
         this.description = description;
@@ -23,9 +23,8 @@ public class FinancialStatement {
         }
         this.value = value;
         this.category = category;
-        if (date != null) {
-            this.date = date;
-        }
+        this.date = date;
+        this.isIgnored = false;
     }
 
     public String getCategory() {
@@ -78,6 +77,10 @@ public class FinancialStatement {
 
     public LocalDate getDate() {
         return this.date;
+    }
+
+    public int getMonthAndYear() {
+        return date.getYear() * 12 + date.getMonthValue();
     }
 
     public void setDate(LocalDate date) {

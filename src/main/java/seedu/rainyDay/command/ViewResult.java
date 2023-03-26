@@ -80,8 +80,8 @@ public class ViewResult {
 
     private static String formatSummary(double inflow, double outflow) {
         assert (inflow != 0 || outflow != 0);
-        String inflowInformation = String.format("|Inflow: $%.2f", inflow);
-        String outflowInformation = String.format("|Outflow: $%.2f", outflow);
+        String inflowInformation = String.format("|Total Inflow: $%.2f", inflow);
+        String outflowInformation = String.format("|Total Outflow: $%.2f", outflow);
 
         String remainingValueInformation = String.format("|Remaining value: $%.2f\n", (inflow - outflow));
         return String.join(System.lineSeparator(), inflowInformation, outflowInformation,
