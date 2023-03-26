@@ -1,9 +1,11 @@
 package seedu.duck;
 
+import seedu.duck.task.SchoolClass;
 import seedu.duck.task.Task;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 /**
@@ -37,7 +39,8 @@ public class Parser {
      * @param line The line of user input
      * @param in The input from scanner
      */
-    static void processCommand(ArrayList<Task> tasks, String line, Scanner in) throws IOException {
+    static void processCommand(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes, String line, Scanner in)
+            throws IOException {
         while (!line.equals("bye")) { // Exits the program if input is "bye"
             String[] words = line.split(" ");
             if (line.isBlank()) {
@@ -57,6 +60,8 @@ public class Parser {
             } else if (line.equals("high_priority")){
                 // Lists out all the tasks that are high in priority
                 Ui.printHighPriority(tasks);
+            } else if (line.equals("list classes")) {
+                Ui.listClasses(classes);
             } else if (line.equals("help")) {
                 // List out all the tasks added
                 Ui.help();
@@ -68,25 +73,29 @@ public class Parser {
             } else if (words[0].equals("unmark") && (words.length == 2) && (isNumeric(words[1]))) {
                 // Mark a task as not done
                 TaskList.unmarkTask(tasks, words);
-                Storage.trySave(tasks);
+                Storage.trySave(tasks, classes);
             } else if (words[0].equals("mark") && (words.length == 2) && (isNumeric(words[1]))) {
                 // Mark a task as done
                 TaskList.markTask(tasks, words);
-                Storage.trySave(tasks);
+                Storage.trySave(tasks, classes);
             } else if (words[0].equals("delete") && (words.length == 2) && (isNumeric(words[1]))) {
                 // Delete a task
                 TaskList.deleteTask(tasks, words);
-                Storage.trySave(tasks);
+                Storage.trySave(tasks, classes);
+            } else if (words[0].equals("remove") && words[1].equals("class")) {
+                // Remove a class from class list
+                TaskList.tryDeleteClass(classes, line);
+                Storage.trySave(tasks, classes);
             } else if (words[0].equals("find") && (words.length > 1)) {
                 // Find tasks that contain a keyword
                 Ui.find(tasks, words);
             } else if (words[0].equals("purge")){
                 // Find tasks that contain a keyword
-                TaskList.purge(tasks);
+                TaskList.purge(tasks, classes);
             } else if (words[0].equals("priority") && (words.length == 3)) {
                 // Find tasks that contain a keyword
                 TaskList.setPriority(tasks,words);
-                Storage.trySave(tasks);
+                Storage.trySave(tasks, classes);
             } else if (words[0].equals("clear")) {
                 if (Ui.doubleCheck()) {
                     // Find tasks that contain a keyword
@@ -103,8 +112,8 @@ public class Parser {
                 }
             } else {
                 // Adding a task to the list
-                TaskList.addTask(line, tasks);
-                Storage.trySave(tasks);
+                TaskList.addTask(line, tasks, classes);
+                Storage.trySave(tasks, classes);
             }
             line = in.nextLine();
         }
