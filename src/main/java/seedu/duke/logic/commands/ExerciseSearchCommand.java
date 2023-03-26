@@ -1,8 +1,9 @@
 package seedu.duke.logic.commands;
 
-import seedu.duke.commons.exceptions.EmptyKeywordError;
+import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
+import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -16,9 +17,9 @@ public class ExerciseSearchCommand extends Command {
      * for generating the list of relevant exercises with the specified keyword
      *
      * @param userCommands
-     * @throws EmptyKeywordError (if user did not key in a keyword to search)
+     * @throws DukeError (if user did not key in a keyword to search)
      */
-    public ExerciseSearchCommand (String[] userCommands) throws EmptyKeywordError {
+    public ExerciseSearchCommand (String[] userCommands) throws DukeError {
 
         if (userCommands.length > 2) {
             for (int i = 1; i < userCommands.length; i++) {
@@ -27,7 +28,7 @@ public class ExerciseSearchCommand extends Command {
         } else if (userCommands.length == 2) {
             keyword = userCommands[1];
         } else {
-            throw new EmptyKeywordError();
+            throw new DukeError(ErrorMessages.ERROR_EMPTY_KEYWORD.toString());
         }
     }
     //@@author ghzr0

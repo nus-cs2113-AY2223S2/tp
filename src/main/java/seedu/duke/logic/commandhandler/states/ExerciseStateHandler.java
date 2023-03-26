@@ -1,10 +1,10 @@
 package seedu.duke.logic.commandhandler.states;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.commons.exceptions.NoOngoingExError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.storage.Storage;
 import seedu.duke.data.userdata.UserCareerData;
+import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.Session;
 
@@ -56,12 +56,12 @@ public class ExerciseStateHandler {
      * Prints the current workout if it exists
      * Otherwise throws an error
      *
-     * @throws NoOngoingExError Throws an error if there is no ongoing exercise
+     * @throws DukeError Throws an error if there is no ongoing exercise
      *     session
      */
-    public void printCurrentWorkout () throws NoOngoingExError {
+    public void printCurrentWorkout () throws DukeError {
         if (!workoutOngoing) {
-            throw new NoOngoingExError();
+            throw new DukeError(ErrorMessages.ERROR_NO_ONGOING_EXERCISE.toString());
         }
         Ui ui = new Ui();
         ui.printExerciseFromList(currentSessionWorkout.getSessionExercises());

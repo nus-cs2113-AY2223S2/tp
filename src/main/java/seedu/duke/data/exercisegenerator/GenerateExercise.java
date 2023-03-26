@@ -1,9 +1,8 @@
 package seedu.duke.data.exercisegenerator;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.commons.exceptions.InvalidDifficultyInputError;
-import seedu.duke.commons.exceptions.InvalidBodyWorkoutTypeError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.ui.ErrorMessages;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -59,7 +58,7 @@ public class GenerateExercise {
         case HARD:
             return EXPERT;
         default:
-            throw new InvalidDifficultyInputError();
+            throw new DukeError(ErrorMessages.ERROR_DIFFICULTY_INPUT.toString());
         }
     }
 
@@ -83,7 +82,7 @@ public class GenerateExercise {
         case LEGS:
             return LEGS;
         default:
-            throw new InvalidBodyWorkoutTypeError();
+            throw new DukeError(ErrorMessages.ERROR_BODY_WORKOUT_TYPE_INPUT.toString());
         }
     }
 
