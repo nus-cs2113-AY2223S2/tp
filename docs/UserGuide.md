@@ -314,7 +314,7 @@ every new expense in the same month.
 
 Format : `setbudget GOAL`
 
-For example, if you would like to set a monthly budget goal of $1000, use the command below:
+For example, if you would like to set a monthly budget goal of $1000, use the command below:<br>
 `setbudget 1000`
 
 ![setbudgetgoal.png](setbudgetgoal.png)
@@ -323,7 +323,7 @@ An additional message will accompany new expenses on how much you have spent for
 
 ![messgewithsetbudget.png](messgewithsetbudget.png)
 
-If at any point of time you would like to remove this feature, simply set the goal to $0
+If at any point of time you would like to remove this feature, simply set the goal to $0<br>
 `setbudget 0`
 
 ![unsetbudgetgoal.png](unsetbudgetgoal.png)
