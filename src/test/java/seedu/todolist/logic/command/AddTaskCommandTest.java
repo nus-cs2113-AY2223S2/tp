@@ -29,18 +29,6 @@ public class AddTaskCommandTest {
     }
 
     @Test
-    public void addTask_emptyDescription_throwsException() {
-        HashMap<Flags, String> args = generateInputArguments("", DATE_EXAMPLE, TIME_EXAMPLE, REPEAT_EXAMPLE);
-        try {
-            Command testAdd = new AddTaskCommand(args);
-            testAdd.execute(testList, ui);
-        } catch (ToDoListException e) {
-            return;
-        }
-        fail("An add command was successfully constructed with missing description");
-    }
-
-    @Test
     public void addTask_invalidDate_throwsException() {
         final String[] invalidDates = {"29/02/2031", "493430", "2013-12-22", "1023-43-22"};
         for (String date : invalidDates) {

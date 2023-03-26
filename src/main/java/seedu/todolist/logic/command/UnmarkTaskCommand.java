@@ -1,7 +1,7 @@
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
-import seedu.todolist.exception.InvalidIndexException;
+import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.logic.ParserUtil;
 import seedu.todolist.ui.Ui;
 import seedu.todolist.task.TaskList;
@@ -14,14 +14,14 @@ public class UnmarkTaskCommand extends Command{
 
     private int index;
 
-    public UnmarkTaskCommand(HashMap<Flags, String> args) throws InvalidIndexException {
-        index = ParserUtil.parseIndex(args.get(Flags.COMMAND_UNMARK));
+    public UnmarkTaskCommand(HashMap<Flags, String> args) throws InvalidIdException {
+        index = ParserUtil.parseId(args.get(Flags.COMMAND_UNMARK));
         assert index >= 0 : "Invalid index contained in variable";
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) throws InvalidIndexException {
-        taskList.getTask(index).setDone(false);
-        ui.printUnmarkTaskMessage(taskList.getTask(index).toString());
+    public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
+        String taskString = taskList.setDone(index, false);
+        ui.printUnmarkTaskMessage(taskString);
     }
 }

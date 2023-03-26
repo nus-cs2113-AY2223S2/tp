@@ -41,7 +41,7 @@ public class AddTaskCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui) {
-        String taskString = taskList.addTask(new Task(description, deadline, email, tags, repeatDuration));
+        String taskString = taskList.addTask(description, deadline, email, tags, repeatDuration);
         ui.printAddTaskMessage(taskString);
     }
 }
