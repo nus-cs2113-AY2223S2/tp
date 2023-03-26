@@ -3,66 +3,35 @@ skinparam classAttributeIconSize 0
 hide circle
 
 class storage.StorageManager {
-- {static} Logger logger
-- UserCareerStorage userCareerStorage
-- UserPlansStorage userPlansStorage
-+ void writeToJson(UserCareerData)
-+ void writeToJson(UserPlan)
-+ UserCareerData loadUserData()
-+ UserPlan loadUserPlans()
 }
 interface storage.Storage <<interface>> {
+writeToJson(UserCareerData) : void
+loadUserData() : UserCareerData
+
+
+writeToJson(UserPlan) : void
+loadUserPlans() : UserPlan
 }
 class storage.JsonUserPlansStorage {
-- {static} Logger logger
-- String userPlansFilePath
-- Gson gson
-- JsonUserPlansLoader jsonUserPlansLoader
-- JsonUserPlansWriter jsonUserPlansWriter
-+ void writeToJson(UserPlan)
-+ UserPlan loadUserPlans()
+
 }
 interface storage.UserPlansStorage <<interface>> {
-~ void writeToJson(UserPlan)
-+ UserPlan loadUserPlans()
-}
-class storage.LocalDateAdapter {
-+ LocalDateTime deserialize(JsonElement,Type,JsonDeserializationContext)
-+ JsonElement serialize(LocalDateTime,Type,JsonSerializationContext)
+
 }
 
 class storage.JsonUserCareerStorage {
-- {static} Logger logger
-- String userFilePath
-- Gson gson
-- JsonUserDataLoader jsonUserDataLoader
-- JsonUserDataWriter jsonUserDataWriter
-+ void writeToJson(UserCareerData)
-+ UserCareerData loadUserData()
 }
 abstract class storage.TextDataUtility {
-+ void checkForListData(File)
 }
 class storage.JsonUserPlansWriter {
-- Gson gson
-+ boolean saveToJson(String,UserPlan)
 }
 interface storage.UserCareerStorage <<interface>> {
-+ void writeToJson(UserCareerData)
-+ UserCareerData loadUserData()
 }
 class storage.JsonUserDataWriter {
-- Gson gson
-+ boolean saveToJson(String,UserCareerData)
 }
 class storage.JsonUserPlansLoader {
-- Gson gson
-+ UserPlan loadPlanFromJson(String)
 }
 class storage.JsonUserDataLoader {
-- {static} Integer DAYSINAWEEK
-- Gson gson
-+ UserCareerData loadFromJson(String)
 }
 
 storage.StorageManager .d.|> storage.Storage
@@ -74,10 +43,9 @@ storage.UserPlansStorage <|.. storage.JsonUserPlansStorage
 
 storage.UserCareerStorage <|.. storage.JsonUserCareerStorage
 
-storage.JsonUserCareerStorage -l-> storage.JsonUserDataLoader
-storage.JsonUserCareerStorage -r-> storage.JsonUserDataWriter
-storage.JsonUserPlansStorage -l-> storage.JsonUserPlansLoader
-storage.JsonUserPlansStorage -> storage.JsonUserPlansWriter
-google.gson.JsonSerializer <|.u. storage.LocalDateAdapter
-google.gson.JsonDeserializer <|.u. storage.LocalDateAdapter
+storage.JsonUserCareerStorage -d--> storage.JsonUserDataLoader
+storage.JsonUserCareerStorage -d--> storage.JsonUserDataWriter
+storage.JsonUserPlansStorage -d--> storage.JsonUserPlansLoader
+storage.JsonUserPlansStorage -d--> storage.JsonUserPlansWriter
+
 @enduml
