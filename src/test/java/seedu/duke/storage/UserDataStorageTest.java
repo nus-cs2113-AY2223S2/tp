@@ -56,7 +56,7 @@ public class UserDataStorageTest {
      * @throws DukeError Occurs when there is a file read/write error
      */
     @Test
-    void testSaving () throws DukeError {
+    void testBasicJsonIO () throws DukeError {
         ArrayList<ExerciseData> generatedWorkouts = generateExercise.generateFilteredDifficultySetFrom(
             generateExercise.generateSetAll(), "easy");
         ArrayList<ExerciseData> sessionExercises = generateExercise.generateRandomSetFrom(generatedWorkouts, 3);
@@ -95,7 +95,7 @@ public class UserDataStorageTest {
      * @throws DukeError occurs when there is an error in reading from the file
      */
     @Test
-    void testReadingCareerData () throws DukeError {
+    void testIntermediateJsonIO () throws DukeError {
         ArrayList<ExerciseData> generatedWorkouts = generateExercise.generateFilteredDifficultySetFrom(
             generateExercise.generateSetAll(), "medium");
         UserCareerData userCareerData = new UserCareerData();
