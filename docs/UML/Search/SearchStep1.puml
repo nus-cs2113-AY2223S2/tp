@@ -1,0 +1,11 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object SearchParser{
+    rawInput = "apple"
+    Inventory = inventory
+    searchType = Types.SearchType.KEYWORD
+}
+
+
+@enduml

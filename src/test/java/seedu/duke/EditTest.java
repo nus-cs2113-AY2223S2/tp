@@ -1,26 +1,29 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.EditErrorException;
+import seedu.duke.commands.SearchCommand;
+import seedu.duke.objects.Inventory;
+import seedu.duke.objects.Item;
+import seedu.duke.utils.parsers.AddParser;
+import seedu.duke.utils.parsers.EditParser;
+import seedu.duke.types.Types;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 class EditTest {
 
-    Parser testParser;
+    Inventory inventory = new Inventory();
 
     @Test
     public void sampleTest() {
-        testParser.parseAdd("n/orange upc/123 qty/5 p/5");
-        testParser.parseEdit("upc/123 n/apple");
+        AddParser addParser = new AddParser("n/orange upc/123 qty/5 p/5",inventory);
+        addParser.run();
+        EditParser editParser = new EditParser("upc/123 n/apple", inventory);
+        editParser.run();
         String[] data = {"upc/123"};
         Item updatedItem = null;
-        try {
-            updatedItem = Inventory.retrieveItemFromArrayList(data);
-        } catch (EditErrorException eee) {
-            fail();
-        }
+        SearchCommand searchCommand = new SearchCommand(inventory, "123", Types.SearchType.UPC);
+        updatedItem = searchCommand.searchUPC();
         assertEquals("apple", updatedItem.getName(), "Name not changed to apple.");
     }
 }
