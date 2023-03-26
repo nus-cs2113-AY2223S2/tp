@@ -110,7 +110,7 @@ public class RecipeDetailCommand extends ExecutableCommand {
             } else {
                 index = Integer.parseInt(this.argument) - 1;
             }
-
+            
             if (index < 0 || index >= mealCompanionSession.getRecipes().size()) {
                 throw new MealCompanionException("Recipe index out of range!");
             }

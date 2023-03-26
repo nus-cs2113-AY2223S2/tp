@@ -100,6 +100,9 @@ Meal Companion includes the functionality to suggest recipes based on ingredient
 
 ![recipepossible.png](images/recipepossible.png)
 
+### Check Ingredients for Recipe
+To check if you have sufficient ingredients to make a recipe, you can run the command `recipe need <recipe_name>`. Ingredients that you are missing will be listed along with the quantity needed.
+
 ###### [Back to table of contents](#table-of-contents)
 
 ## Saving Data
