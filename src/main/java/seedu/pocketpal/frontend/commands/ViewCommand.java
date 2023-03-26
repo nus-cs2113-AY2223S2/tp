@@ -35,19 +35,6 @@ public class ViewCommand extends Command {
         System.out.println("VIEWCOUNT: " + numberOfEntriesToView);
     }
 
-//    public ViewCommand(int numberOfEntriesToView, Double priceToViewMin, Double priceToViewMax){
-//        this.numberOfEntriesToView = numberOfEntriesToView;
-//        this.priceToViewMin = priceToViewMin;
-//        this.priceToViewMax = priceToViewMax;
-//    }
-
-//    public ViewCommand(int priceToViewMin, int priceToViewMax){
-//        this.numberOfEntriesToView = 2;
-//        this.categoryToView = null;
-//        this.priceToViewMin = priceToViewMin;
-//        this.priceToViewMax = priceToViewMax;
-//    }
-
     /**
      * Executes the view command.
      *
