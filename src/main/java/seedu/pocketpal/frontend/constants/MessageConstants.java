@@ -23,13 +23,13 @@ public final class MessageConstants {
             + NEWLINE;
     public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes a specified expense from your expenditure."
             + NEWLINE
-            + "Usage: /delete <EXPENSE_ID>" + NEWLINE + NEWLINE;
+            + "Usage: /delete <EXPENSE_ID> [ADDITIONAL_EXPENSE_ID...]" + NEWLINE + NEWLINE;
     public static final String MESSAGE_EDIT_COMMAND = "Edit - Edits a specified expense in your current expenditure."
             + NEWLINE
             + "Usage: /edit <EXPENSE_ID> [FLAG...]" + NEWLINE + NEWLINE;
     public static final String MESSAGE_VIEW_COMMAND = "View - Displays a list of your current expenditure."
             + NEWLINE
-            + "Usage: /view [COUNT]" + NEWLINE + NEWLINE;
+            + "Usage: /view [COUNT] [-c | -category CATEGORY]" + NEWLINE + NEWLINE;
     public static final String MESSAGE_HELP_COMMAND = "Help - Displays the help menu." + NEWLINE
             + "Usage: /help" + NEWLINE + NEWLINE;
     public static final String MESSAGE_BYE_COMMAND = "Exit - Terminates PocketPal." + NEWLINE

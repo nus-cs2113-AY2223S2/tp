@@ -9,7 +9,7 @@ enum Category
 interface Serialisable
 
 Entry ...|> Serialisable
-Entry ---> "1" Category
+Entry *--- "1" Category
 Entry "0..." -o EntryLog
 Entry ...> EntryParser
 EntryLog ...|> Serialisable
