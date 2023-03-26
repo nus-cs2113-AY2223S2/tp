@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+title Overall sequence diagram for editing an Entry
+
+main -> frontend: start()
+ref over frontend, Parser, EditCommand : create new EditCommand
+
+'EXECUTE
+frontend -> EditCommand ++ : execute(ui, backend)
+EditCommand -> Request ** : Request(PATCH, expenseId)
+activate Request
+return new Request
+opt edit price
+    EditCommand -> Request : addParam(RequestParams.EDIT_AMOUNT, newPrice)
+end
+opt edit description
+    EditCommand -> Request : addParam(RequestParams.EDIT_DESCRIPTION, newDescription)
+end
+opt edit category
+    EditCommand -> Request : addParam(RequestParams.EDIT_CATEGORY, StringUtil.toTitleCase(newCategory))
+end
+EditCommand -> Backend : requestEndpointEntry(request)
+ref over Backend, entryEndpoint : Endpoint/Entry - Handle PATCH
+ref over Backend : save()
+Backend --> EditCommand : new Response()
+opt ResponseStatus == OK
+    EditCommand -> EntryParser : deserialise response data
+    EntryParser -> EditCommand : return deserialised data
+end
+EditCommand -> UI --: print "entry edited" acknowledgement message
+@enduml
