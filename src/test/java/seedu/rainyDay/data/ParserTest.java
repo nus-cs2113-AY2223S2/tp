@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import seedu.rainyDay.modules.Parser;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,7 +19,7 @@ class ParserTest {
     public void parseAddInCommand() throws Exception {
         FinancialReport testReport = new FinancialReport(statements, monthlyExpenditures);
         testReport.addStatement(new FinancialStatement("noodles", "in", 5, "Default",
-                null));
+                LocalDate.now()));
         new Parser().parseUserInput("add -in noodles $5");
         assertEquals(financialReport.getFullStatement(0),
                 testReport.getFullStatement(0)); // todo, update after modified
@@ -29,7 +30,7 @@ class ParserTest {
         try {
             FinancialReport testReport = new FinancialReport(statements, monthlyExpenditures);
             testReport.addStatement(new FinancialStatement("noodles", "out", 5,
-                    "Default", null));
+                    "Default", LocalDate.now()));
             new Parser().parseUserInput("add -out noodles $5");
             assertEquals(financialReport.getFullStatement(0),
                     testReport.getFullStatement(0)); // todo, update after modified

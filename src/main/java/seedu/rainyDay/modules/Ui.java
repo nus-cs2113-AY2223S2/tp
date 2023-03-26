@@ -1,5 +1,6 @@
 package seedu.rainyDay.modules;
 
+import org.apache.commons.lang3.ObjectUtils;
 import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.UserData;
@@ -72,15 +73,21 @@ public class Ui {
     }
 
     public static String checkUserBudgetLimit(double currentSpending, FinancialStatement newStatement) {
-        double budgetLimit = RainyDay.userData.getBudgetGoal();
-        int currentMonthYear = LocalDate.now().getMonthValue() + LocalDate.now().getYear()*12;
-        if(newStatement.getMonthAndYear() != currentMonthYear) {
+        double budgetLimit;
+        try {
+            budgetLimit = RainyDay.userData.getBudgetGoal();
+        } catch (NullPointerException e) {
+            budgetLimit = 0;
+        }
+
+        int currentMonthYear = LocalDate.now().getMonthValue() + LocalDate.now().getYear() * 12;
+        if (newStatement.getMonthAndYear() != currentMonthYear) {
             return "";
         }
-        if(budgetLimit == 0) {
+        if (budgetLimit == 0) {
             return "";
         }
-        if(currentSpending >= budgetLimit) {
+        if (currentSpending >= budgetLimit) {
             return "\nYou've exceeded your budget! Try harder next time :(";
         }
         return String.format("\nYou have spent $%.2f/$%.2f, Keep it up!", currentSpending, budgetLimit);

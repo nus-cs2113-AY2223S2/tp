@@ -9,6 +9,7 @@ import seedu.rainyDay.data.UserData;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -34,7 +35,7 @@ public class StorageTest {
         HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
         FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
         financialReport.addStatement(
-                new FinancialStatement("noodles", "in", 5, "Default", null));
+                new FinancialStatement("noodles", "in", 5, "Default", LocalDate.now()));
         String filePath = "rainyDay.txt";
 
         UserData userData = new UserData(financialReport);
