@@ -102,7 +102,7 @@ public class RestockCommand extends Command{
             checkRestockCommandLength(restockInfo);
             updateItemQuantity(updatedItem, restockInfo[1]);
             Item itemForHistory = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
-                    updatedItem.getPrice());
+                    updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
             itemToRestock.handleTrie(updatedItem, oldItem);
             upcCodes.remove(oldItem.getUpc());
             upcCodes.put(updatedItem.getUpc(), updatedItem);
