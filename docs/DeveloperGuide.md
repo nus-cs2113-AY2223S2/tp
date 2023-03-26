@@ -68,7 +68,23 @@ This section describes some noteworthy details on how certain features are imple
 ## Appendix A: Product Scope
 ### Target user profile
 
-{Describe the target user profile}
+-------------------------
+<img src="images\NUS_Students.png" width="300" />
+* **Name**: NUS Student
+* **Age**: 18-25 years old
+* **Occupation**: Student
+* **Education**: Currently enrolled in NUS
+* **Income**: Limited income sources (part-time jobs, allowances from parents, etc.)
+* **Technology usage**: Tech-savvy and comfortable using a CLI-based application
+* **Interests**: Campus life, budgeting, saving, optimizing spending
+* **Financial goals**: Prioritize spending, cut down on unnecessary expenses, improve financial health
+* **Challenges**: Limited income, lack of financial knowledge, lack of financial discipline
+* **Needs**: A simple, easy-to-use application to help manage expenses and track spending habits
+
+Overall, NUS Student is a financially-conscious individual who wants to prioritize spending and save for the future while 
+enjoying a good campus life. They are comfortable with technology and prefer an efficient and easy-to-use tool like MoneyMind 
+to manage their finances. They are interested in tracking their expenses by category and exploring new ways to 
+optimize their spending to achieve their financial goals.
 
 ### Value proposition
 
