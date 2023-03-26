@@ -55,7 +55,8 @@ public class Command {
             notes.handleCache(command);
             break;
         case "List":
-            notes.handleCache(command);
+            notes.setToDo(toDo); // 1
+            notes.handleCache(command); // List
             break;
         case "Delete":
             notes.setToDo(toDo); // 2

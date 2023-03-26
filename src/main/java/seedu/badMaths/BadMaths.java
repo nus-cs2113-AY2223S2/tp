@@ -23,14 +23,14 @@ public class BadMaths {
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
-            String userInput = scanner.nextLine(); // "Delete. 2
+            String userInput = scanner.nextLine(); // "List. 1"
             Parser parser = new Parser(userInput);
-            String command = parser.getCommand(); // Delete
-            String toDo = parser.getToDo(); // 2
+            String command = parser.getCommand(); // List
+            String toDo = parser.getToDo(); // 1
             commandChecker(userInput, command);
 
-            // command == Delete
-            // toDo == 2
+            // command == List
+            // toDo == 1
 
             if (inputCommand == null) {
                 inputCommand = new Command(command, toDo);

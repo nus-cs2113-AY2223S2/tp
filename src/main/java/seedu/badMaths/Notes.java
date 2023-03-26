@@ -32,11 +32,11 @@ public class Notes {
         }
     }
 
-    public void setToDo(String toDo) { // 2
+    public void setToDo(String toDo) { // 1
         this.toDo = toDo;
     }
 
-    public void handleCache(String input){ // Delete as input
+    public void handleCache(String input){ // List as input
         implementLogger();
         try {
             logr.log(Level.INFO, "Reading in inputs by users");
@@ -50,7 +50,18 @@ public class Notes {
                 break;
 
             case "List":
-                Ui.printNotes(cache);
+                // List. 1
+                // toDo is "1"
+                // List.
+                // toDo is "Invalid todo"
+                if (toDo.equals("Invalid todo")) {
+                    Ui.printNotes(cache);
+                    break;
+                }
+                int indexList;
+                indexList = Integer.parseInt(toDo);
+                System.out.println("cache is" + cache);
+                System.out.println(cache.get(indexList - 1));
                 break;
 
             case "Delete":
@@ -63,6 +74,7 @@ public class Notes {
 
             default:
             }
+
         } catch (Exception e) {
             System.out.println("Please key in a valid input command");
             logr.severe("Invalid input command");
