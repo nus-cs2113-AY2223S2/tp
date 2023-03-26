@@ -30,8 +30,18 @@ public class UserData {
         return this.budgetGoal;
     }
 
-    public String checkUserBudgetLimit(double currentSpending, FinancialStatement newStatement) {
+    /**
+     * Helper command used to check if the user's expenditure for the month has exceeded his set
+     * budget
+     * The progress is show if and only if a budget is present, and the changed entry is in the same
+     * month and year as the user. Otherwise, an empty string is returned
+     *
+     * @param newStatement The statement added or removed from the FinancialReport
+     * @return A string denoting the progress if applicable
+     */
+    public String checkUserBudgetLimit(FinancialStatement newStatement) {
         double budgetLimit = getBudgetGoal();
+        double currentSpending = financialReport.getMonthlyExpenditure(newStatement);
         int currentMonthYear = LocalDate.now().getMonthValue() + LocalDate.now().getYear() * 12;
         if (newStatement.getMonthAndYear() != currentMonthYear) {
             return "";
@@ -44,5 +54,4 @@ public class UserData {
         }
         return String.format("\nYou have spent $%.2f/$%.2f, Keep it up!", currentSpending, budgetLimit);
     }
-
 }

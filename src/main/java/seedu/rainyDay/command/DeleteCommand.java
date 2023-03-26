@@ -53,13 +53,12 @@ public class DeleteCommand extends Command {
         assert (index < financialReport.getStatementCount() && index >= 0) : "invalid index provided for delete";
 
         FinancialStatement oldStatement = financialReport.deleteStatement(index);
-        double updatedMonthlyExpenditure = financialReport.getMonthlyExpenditure(oldStatement);
         assert previousStatementCount - 1 == financialReport.getStatementCount() : "statement count mismatch";
 
         //To fix, due to Junit Test failing
         String budgetInfo;
         try {
-            budgetInfo = userData.checkUserBudgetLimit(updatedMonthlyExpenditure, oldStatement);
+            budgetInfo = userData.checkUserBudgetLimit(oldStatement);
         } catch (Exception e) {
             budgetInfo = "";
         }
