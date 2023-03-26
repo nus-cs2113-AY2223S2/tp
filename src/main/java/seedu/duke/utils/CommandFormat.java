@@ -6,6 +6,8 @@ public class CommandFormat {
     public static final String ADD_FORMAT = "add n/[Name] upc/[UPC] qty/[Quantity] p/[Price]";
     public static final String EDIT_FORMAT = "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
     public static final String REMOVE_FORMAT = "remove f/item upc/[UPC]\nremove f/index [Index]";
+    public static final String RESTOCK_FORMAT = "restock upc/[UPC] qty/[Quantity]";
+    public static final String SELL_FORMAT = "sell upc/[UPC] qty/[Quantity]";
     public static final String HELP_FORMAT = "help";
     public static final String SEARCH_KEYWORD_FORMAT = "search [Keyword]";
     public static final String SEARCH_UPC_FORMAT = "searchupc [UPC]";
@@ -20,6 +22,8 @@ public class CommandFormat {
     public static final String ADD_DESCRIPTION = "add:\nadds an item to the inventory list";
     public static final String EDIT_DESCRIPTION = "edit:\nedits relevant information of an item";
     public static final String REMOVE_DESCRIPTION = "remove:\nremoves an item from the inventory list";
+    public static final String RESTOCK_DESCRIPTION = "restock:\nincreases the quantity of an item";
+    public static final String SELL_DESCRIPTION = "sell:\ndecreases the quantity of an item";
     public static final String HELP_DESCRIPTION = "help:\nshows you this list of commands";
     public static final String LIST_DESCRIPTION = "list:\nshows you the inventory list of items";
     public static final String SEARCH_KEYWORD_DESCRIPTION = "search:\n search existing items by keywords";
@@ -40,6 +44,8 @@ public class CommandFormat {
         commands.put(ADD_FORMAT, ADD_DESCRIPTION);
         commands.put(REMOVE_FORMAT, REMOVE_DESCRIPTION);
         commands.put(EDIT_FORMAT, EDIT_DESCRIPTION);
+        commands.put(RESTOCK_FORMAT, RESTOCK_DESCRIPTION);
+        commands.put(SELL_FORMAT, SELL_DESCRIPTION);
         commands.put(LIST_FORMAT, LIST_DESCRIPTION);
         commands.put(SEARCH_UPC_FORMAT, SEARCH_UPC_DESCRIPTION);
         commands.put(SEARCH_KEYWORD_FORMAT, SEARCH_KEYWORD_DESCRIPTION);

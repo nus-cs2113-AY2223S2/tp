@@ -10,6 +10,10 @@ public class EditParser extends Parser{
     public EditParser(String rawInput, Inventory inventory){
         super(rawInput, inventory);
     }
+
+    /**
+     * Processes the "edit" command and prints an error message if wrong inputs from the user are detected.
+     */
     @Override
     public void run(){
         String[] editInfo = rawInput.split(" ");

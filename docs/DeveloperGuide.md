@@ -46,6 +46,11 @@ The add command is mainly handled by the `AddCommand` class, which extends the `
 ### Edit
 The "edit" command is mainly handled by the `EditCommand` class, which extends the `Command` class.
 
+### Restock
+The "restock" command is mainly handled by the `RestockCommand` class, which extends the `Command` class.
+
+### Sell
+The "sell" command is mainly handled by the `SellCommand` class, which extends the `Command` class. 
 ### Remove
 The remove command is mainly handled by the `RemoveCommand` class, which extends the `Command` class.
 
@@ -143,19 +148,21 @@ method takes in an `Item item` and prints it out in a table showing the name, UP
 | v1.0    | small business owner     | add new items to the inventory                                  | account for the stocks I have                                 |
 | v1.0    | small business owner     | keep track of all the items we have in stock                    | have a record readily available                               |
 | v1.0    | small business owner     | delete items from the inventory if they are no longer needed    | keep the inventory clean and up-to-date                       |
-| v1.0    | small business owner     | set minimum and maximum stock levels for items in the inventory | be alerted if our stock levels fall outside of these limits   |
 | v1.0    | IT team member           | update the quantity of items in the inventory                   | ensure the inventory always reflects the current stock levels |
 | v1.0    | IT team member           | search for items in the inventory by name SKU or category       | quickly find what I need                                      |
 
 
-| Version | As a ...                 | I want to ...                                                   | So that I can ...                                             |
-|---------|--------------------------|-----------------------------------------------------------------|---------------------------------------------------------------|
-| v2.0    | small business owner     | analyze past sales from the historical records of the stocks    | make better decisions                                         |
-| v2.0    | small business owner     | see a report of items that are due to be reordered              | make sure we have enough stock to meet customer demand        |
-| v2.0    | small business owner     | set different prices for items in the inventory                 | charge different prices for different items                   |
-| v2.0    | small business owner     | categorize items in the inventory                               | quickly find items that belong to a specific category         |
-| v2.0    | IT team member           | assign unique SKUs to items in the inventory                    | easily track and manage the items                             |
-| v2.0    | convenience store owner  | store information on the large variety of products              | find them easily                                              |
+| Version | As a ...                | I want to ...                                                            | So that I can ...                                                                                           |
+|---------|-------------------------|--------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| v2.0    | small business owner    | analyze past sales from the historical records of the stocks             | make better decisions                                                                                       |
+| v2.0    | small business owner    | see a report of items that are due to be reordered                       | make sure we have enough stock to meet customer demand                                                      |
+| v2.0    | small business owner    | set different prices for items in the inventory                          | charge different prices for different items                                                                 |
+| v2.0    | small business owner    | categorize items in the inventory                                        | quickly find items that belong to a specific category                                                       |
+| v2.0    | small business owner    | directly top up and deduct the quantity of an item in the inventory list | keep track of the item quantities with ease without the inconvenience of editing the item quantity manually |
+| v2.0    | small business owner    | see the list of commands that can be executed                            | quickly identify the function I can use and their command formats.                                          |
+| v2.0    | small business owner    | set minimum and maximum stock levels for items in the inventory          | be alerted if our stock levels fall outside of these limits                                                 |
+| v2.0    | IT team member          | assign unique SKUs to items in the inventory                             | easily track and manage the items                                                                           |
+| v2.0    | convenience store owner | store information on the large variety of products                       | find them easily                                                                                            |
 
 
 ## Non-Functional Requirements
