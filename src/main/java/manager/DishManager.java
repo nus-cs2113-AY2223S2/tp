@@ -31,6 +31,27 @@ public class DishManager {
         return everyDishInList;
     }
 
+    public static String findDishCommand(String stringToFind) {
+        ArrayList<Dish> dishesMatchingKeyword = new ArrayList<>();
+        ArrayList<Integer> indexes = new ArrayList<Integer>();
+        for (int i = 0; i < getDishesSize(); i++) {
+            String[] words = dishes.get(i).getDishName().split(" ");
+            for (String word : words) {
+                if (word.equals(stringToFind)) {
+                    dishesMatchingKeyword.add(dishes.get(i));
+                    indexes.add(i + 1);
+                }
+            }
+        }
+
+        String dishesWithStringToFindInList = "";
+        for (int i = 0; i < dishesMatchingKeyword.size(); i++) {
+            dishesWithStringToFindInList += stringOfDishWithIndex(indexes.get(i), dishesMatchingKeyword.get(i))
+                    + System.lineSeparator();
+        }
+        return dishesWithStringToFindInList;
+    }
+
     private static String stringOfDishWithIndex(int index, Dish dish) {
         return index + ". " + stringOfDish(dish);
     }
@@ -40,5 +61,8 @@ public class DishManager {
                 + dish.getPriceOfDishInDollars() + "; "
                 + dish.getIngredientsList();
     }
+
+
+
 
 }

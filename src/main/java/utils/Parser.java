@@ -1,6 +1,7 @@
 package utils;
 
 
+import commands.menu.FindDishCommand;
 import commands.staff.AddStaffCommand;
 import commands.staff.ViewStaffCommand;
 import commands.staff.DeleteStaffCommand;
@@ -72,6 +73,8 @@ public class Parser {
             return prepareDeleteDishCommand(userInputNoCommand);
         case ViewDishCommand.COMMAND_WORD:
             return prepareViewDishCommand(userInputNoCommand);
+        case "find_dish":
+            return prepareFindDishCommand(userInputNoCommand);
         default:
             return new IncorrectCommand();
         }
@@ -326,4 +329,28 @@ public class Parser {
         }
         return new AddDishCommand(name, price, ingredients);
     }
+
+    private Command prepareFindDishCommand(String userInputNoCommand) {
+        String stringToFind = "";
+
+        try {
+            String[] keywords;
+            try {
+                keywords = userInputNoCommand.substring(1).split(" ");
+            } catch (IndexOutOfBoundsException e) {
+                throw new DinerDirectorException("Your keyword cannot be blank or a space.");
+            }
+
+            if (keywords.length > 1) {
+                throw new DinerDirectorException("Please key in only 1 keyword.");
+            } else if (keywords.length == 1) {
+                stringToFind = keywords[0];
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e.getMessage());
+            return new IncorrectCommand();
+        }
+        return new FindDishCommand(stringToFind);
+    }
+
 }
