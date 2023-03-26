@@ -68,9 +68,6 @@ Components:
 - Commands in the correct format will then be parsed to extract the relevant information, and an `AddCommand` object
   will be created with the relevant attributes
 - `RainyDay` will then call `execute` method in `Command`, where the transaction will be added into the financial report
-- Commands in the correct format will then be parsed to extract the relevant information, and an AddCommand object will
-  be created with the relevant information passed to it
-- `RainyDay` will then call `execute` method in `Command`, where the transaction will be added into the financial report
 
 #### Design considerations
 
@@ -177,14 +174,14 @@ the commands grew more complex, the .split() function became very messy and inco
 us needing to do more exceptions and error handling, which just made the entire process very complicated. Thus, we opted
 to use regular expressions, which is a more tidy and logical way to parse the inputs.
 
-### Viewing your data
+### Viewing your data `view`
 
 - The command `view` is used to view all statements, and a ViewCommand object will be created.
     - Any other characters after `view` are automatically ignored
 - RainyDay will then call Command.execute(), where every entry in the financial report will be printed.
 - Information will be presented in a table format to help improve clarity for users.
 
-### Editing an entry
+### Editing an entry `edit`
 
 - When a command is given to edit a statement, the command is first parsed to check whether it follows the format of an
   edit command: `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` with the use of regex.
@@ -192,10 +189,10 @@ to use regular expressions, which is a more tidy and logical way to parse the in
   command.
 - Otherwise, methods specific to the flags will be used to validate the remaining fields using regex pattern
 - Commands in the correct format will then be used to create a FilterCommand object.
-- rainyDay will then call Command.execute(), where the transaction's specific field be edited or deleted then added
+- `RainyDay` will then call `execute` method in `Command`, where the transaction's specific field be edited or deleted then added
   into the financial report.
 
-### Filtering your data
+### Filtering your data `filter`
 
 - When a command is given to filter a report by certain conditions, the command is first parsed to check whether it
   follows the format of a filter command with the use of regex pattern
