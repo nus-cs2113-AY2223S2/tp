@@ -46,6 +46,11 @@ The add command is mainly handled by the `AddCommand` class, which extends the `
 ### Edit
 The "edit" command is mainly handled by the `EditCommand` class, which extends the `Command` class.
 
+### Restock
+The "restock" command is mainly handled by the `RestockCommand` class, which extends the `Command` class.
+
+### Sell
+The "sell" command is mainly handled by the `SellCommand` class, which extends the `Command` class. 
 ### Remove
 The remove command is mainly handled by the `RemoveCommand` class, which extends the `Command` class.
 

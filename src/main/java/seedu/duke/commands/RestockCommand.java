@@ -30,6 +30,7 @@ public class RestockCommand extends Command{
     }
 
     /**
+     * Increases the quantity of an item by a user defined amount and detects for invalid user inputs.
      *
      * @param item The target item in the ArrayList in which the user wants to edit.
      * @param data The user input which contains the information to be used to update the item attributes.
