@@ -21,7 +21,7 @@ The input of user is collected by `getUserCommand()` inside class `Ui`.
 
 Step 2:
 The input string will be converted into a `Command` object by being passed through
-`parseCommand(String userInput)` inside `Paser`.
+`parseCommand(String userInput)` inside `Parser`.
 
 In this case, an `AddCommand` will be created and returned.
 
@@ -58,6 +58,46 @@ coupling in the program as the `AddCommand` will not have access to the inner st
     - Pros: Simplifies code
     - Cons: Will cause trouble when temporary flashcard (that need not be stored) are
       created
+
+### Delete Flashcard Feature
+
+#### Current implementation
+
+The current delete flashcard allows the user to remove a flashcard from the list of flashcards,
+it is implemented through the following steps:
+
+Step 1: The input of user is collected by `getUserCommand()` inside class `Ui`.
+
+Step 2: The input string will be converted into a `Command` object by being passed through
+`parseCommand(String userInput)` inside `Parser`.
+
+In this case, a `DeleteCommnad` will be created and returned.
+
+Step 3: The `execute()` function of `DeleteCommand` will run, creating a copy of the list of flashcards.
+Then `findFlashcards(flashcards, query)` is called to find the flashcards with questions matching the query,
+before calling `printFlashcardList(matchingFlashcards)` to display the found flashcards.
+
+User input is taken to get the index of the flashcard to be removed. `deleteFlashcard` is called from
+class `flashcardList` to remove the flashcard from the original list of flashcards. Finally 
+`printSuccessfulDelete` is called from class `Ui` to indicate a successful removal of the flashcard.
+
+The deletion process is now completed and the program will await another command.
+
+#### Reason for current implementation
+
+Through using `DeleteCommand` class, which extends `Command` class it increases the level of
+abstraction as the code can now perform the various commands on a class level.
+
+In order to minimise the time for users to search for the flashcard to delete, they are able
+to first search for a sub-list of flashcards with matching questions as the query. This method
+makes the deletion process simple even if the user does not remember the index of the flashcard.
+
+#### Alternative implementation
+
+- Alternative 1: Delete flashcard by index from the start
+    - Pros: Easy to implement and simplifies code
+    - Cons: Cumbersome to delete if user forgets the flashcard's index and has to search
+            through the whole list of flashcards.
 
 ## Product scope
 

@@ -99,8 +99,8 @@ public class Parser {
     }
 
     public static DeleteCommand getDeleteCommand(ParsedInput parsedInput) {
-        int index = Integer.parseInt(parsedInput.getBody());
-        return new DeleteCommand(index);
+        String query = parsedInput.getBody();
+        return new DeleteCommand(query);
     }
 
     public static ByeCommand getByeCommand(ParsedInput parsedInput) {
