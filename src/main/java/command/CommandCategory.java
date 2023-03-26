@@ -53,6 +53,7 @@ public class CommandCategory extends Command {
                 if (e.getDescription().equals(category)) {
                     System.out.print((index) + ".");
                     System.out.println(e.sortedDisplay("C"));
+                    index++;
                 }
             }
             System.out.println(MESSAGE_DIVIDER);
