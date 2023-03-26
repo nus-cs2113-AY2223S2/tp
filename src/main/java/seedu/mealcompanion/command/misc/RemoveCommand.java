@@ -20,21 +20,6 @@ public class RemoveCommand extends ExecutableCommand {
         this.amount = flag;
     }
 
-    /**
-     * Finds the index of a specified ingredient name in the ingredients list
-     *
-     * @param mealCompanionSession the MealCompanionSession containing the list of ingredients
-     * @param name the name of the ingredient
-     * @return the index of the ingredient in the ingredients list and -1 if ingredient does not exist
-     */
-    public static int findIndex(MealCompanionSession mealCompanionSession, String name) {
-        for (int i = 0; i < mealCompanionSession.getIngredients().size(); i += 1) {
-            if (mealCompanionSession.getIngredients().get(i).getMetadata().getName().equalsIgnoreCase(name)) {
-                return i;
-            }
-        }
-        return -1;
-    }
 
     /**
      * Validates if the remove command can be executed with the arguments provided and throws
@@ -89,7 +74,7 @@ public class RemoveCommand extends ExecutableCommand {
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
             Double quantity = Double.parseDouble(amount);
-            indexOfExistingIngredient = findIndex(mealCompanionSession, name);
+            indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(name);
             validateInput(mealCompanionSession, quantity, name);
             removeIngredient(mealCompanionSession, quantity, name);
         } catch (NumberFormatException e) {
