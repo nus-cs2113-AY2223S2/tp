@@ -48,3 +48,14 @@ jobs:
         working-directory:  ${{ github.workspace }}/text-ui-test
         shell: cmd
         run: runtest.bat
+        
+      - name: Run Coverage
+        run: ./gradlew check coverage
+
+      - name: Add Coverage to PR
+        uses: codecov/codecov-action@v3
+        if: runner.os == 'Linux'
+        with:
+          directory: ${{ github.workspace }}/build/reports/jacoco/coverage
+          files: coverage.xml
+          fail_ci_if_error: true
