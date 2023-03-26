@@ -104,8 +104,8 @@ public class SellCommand extends Command{
                     updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
             checkSellCommandLength(sellInfo);
             updateItemQuantity(updatedItem, sellInfo[1]);
-            Item itemForHistory = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
-                    updatedItem.getPrice());
+            Item itemForHistory =  new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
+                    updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
             itemToSell.handleTrie(updatedItem, oldItem);
             upcCodes.remove(oldItem.getUpc());
             upcCodes.put(updatedItem.getUpc(), updatedItem);
