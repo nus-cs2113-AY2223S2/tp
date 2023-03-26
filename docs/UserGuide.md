@@ -30,10 +30,16 @@ Format: `event NAME e/<expense number> [(optional) t/<time>]`
 
 * `NAME` is the name of the event.
 * `<expense number>` is the expense number of the event.
-* `<time>` is the date of the monthly recurring event, in the pattern of "dd/MM/yyyy". Invalid patterns are replaced with the current System date. 
+* `<time>` is the date of the monthly recurring event, in the pattern of "dd/MM/yyyy". 
+Invalid patterns are replaced with the current System date.
 * The `t/` parameters is optional.
 * This gives you the flexibility to add a one-time expense or monthly recurring expenses.
 * Monthly recurring expenses will be require the user to update the expense number every month.
+* In the context of this application, the 'MM' and 'yyyy' in the data format of `<time>` is less important
+as the frequency is set as *monthly*. Hence, whatever valid month input that the user types
+in, the event will be always recorded as a monthly recurring event based on its date.
+To avoid confusion, the user is advised to type in the month and year of the first occurrence of the event
+which they want to record down.
 
 Example of usage:
 

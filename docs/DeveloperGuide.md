@@ -68,7 +68,26 @@ This section describes some noteworthy details on how certain features are imple
 ## Appendix A: Product Scope
 ### Target user profile
 
-{Describe the target user profile}
+-------------------------
+<div align="center">
+<img src="images\NUS_Students.png" width="300" />
+</div>
+
+* **Name**: NUS Student
+* **Age**: 18-25 years old
+* **Occupation**: Student
+* **Education**: Currently enrolled in NUS
+* **Income**: Limited income sources (part-time jobs, allowances from parents, etc.)
+* **Technology usage**: Tech-savvy and comfortable using a CLI-based application
+* **Interests**: Campus life, budgeting, saving, optimizing spending
+* **Financial goals**: Prioritize spending, cut down on unnecessary expenses, improve financial health
+* **Challenges**: Limited income, lack of financial knowledge, lack of financial discipline
+* **Needs**: A simple, easy-to-use application to help manage expenses and track spending habits
+
+Overall, NUS Student is a financially-conscious individual who wants to prioritize spending and save for the future while 
+enjoying a good campus life. They are comfortable with technology and prefer an efficient and easy-to-use tool like MoneyMind 
+to manage their finances. They are interested in tracking their expenses by category and exploring new ways to 
+optimize their spending to achieve their financial goals.
 
 ### Value proposition
 
@@ -86,11 +105,32 @@ This section describes some noteworthy details on how certain features are imple
 
 ## Appendix C: Non Functional Requirements
 
-{Give non-functional requirements}
+1. MoneyMind should work on any mainstream OS as long as it has Java 11 or above installed.
+2. The user is expected to be a fast-typer. MoneyMind is not optimised for users that are not 
+used to CLI applications.
+3. The user is expected to have a good habit of constantly and systematically recording their
+expenses. MoneyMind is not optimised for users that only record their expense on ad-hoc basis.
+4. Other than the above, please enjoy using MoneyMind!
 
 ## Appendix D: Glossary
 
-* *glossary item* - Definition
+* *budget* - A budget is a financial plan that outlines an individual's or 
+organization's expected income and expenses over a specific period of time.
+In context given, the budget here is scaled down to NUS students' expenses over 
+different categories.
+Budgets can typically include categories for different types of expenses, 
+such as housing, transportation, food, entertainment, and savings.
+* *expense* - An expense is the cost incurred by an organization or individual.
+In context given, the expense here is scaled down to NUS students' spending over
+different events that they are engaged in.
+*  *event* - An event is a specific occurrence of expenses that is planned or occurs.
+It can be a one time expense like buying a pair of sneakers or recurring expenses like
+electricity bills.
+*  *category* - A category is a group of events that are related to each other. For example,
+food, transportation, entertainment, etc.
+*  *one time expense* - An expense that occurs only once.
+*  *recurring expense* - An expense that occurs repeatedly, in the context of MoneyMind, the
+frequency is set to monthly.
 
 ## Appendix E: Instructions for Manual Testing
 
