@@ -249,13 +249,18 @@ Format : `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FL
 
 * No `NEWFIELD` required for changing direction
 
-Example of usage:
+Example of usage:  After requesting to view the transactions from rainyDay, the following is shown to you:
+![viewForFilter.png](viewForFilter.png)
 
-`edit 1 -add -in Beef noodles $15 -c Food`
+For example, you realised you made a mistake in the category of entry 1 and want to replace the category of entry 1 with
+'Food and Drinks' instead of 'Food', you can use this command:
+`edit 1 -c Food and Drinks`
+![EditCategory.png](EditCategory.png)
 
-`edit 2 -d school`
-
-`edit 3 -in`
+However if you want to edit multiple fields of an entry, and instead of deleting and adding a new entry, you can use
+this command:
+`edit 2 add -out Beef noodles $15 -c Food -date 22/03/2023`
+![EditMultipleEntries.png](EditMultipleEntries.png)
 
 ### Saving the data
 
@@ -306,15 +311,15 @@ that
 
 ## Command Summary
 
-| Action | Format <br> Example input                                                                                                                                                                                                                                                                                                                                               |
-|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action | Format <br> Example input                                                                                                                                                                                                                                                                                                                                          |
+|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Add    | For beginner users: <br> `add -DIRECTION DESCRIPTION $VALUE` <br><br> **Example:** <br> `add -in angpao $300` <br> `add -out ipad $120` <br> For advanced users: <br> `add -DIRECTION $VALUE -c CATEGORY -date DD/MM/YYYY` <br><br> **Example:** <br> `add -in income $2000 -c pay -date 05/03/2023` <br> `add -out hawker food $6 -c food and drinks -date 10/03/2023` |
-| Delete | `delete INDEX` <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                                                                                                                                                                                                                                                                                    |
-| View   | `view`                                                                                                                                                                                                                                                                                                                                                                  |
-| Help   | `help`                                                                                                                                                                                                                                                                                                                                                                  |
-| Filter | `filter DESCRIPTION` or `filter FLAG FIELD` <br><br> **Example:** <br> `filter school` <br> `filter -d school` <br>`filter -date 22/03/2023`                                                                                                                                                                                                                            |
-| Edit   | `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -add -in Beef noodles $15 -c Food` <br> `edit -d school` <br> `edit -in`                                                                                                                                                                                  |
-| Exit   | `bye`                                                                                                                                                                                                                                                                                                                                                                   |
+| Delete | `delete INDEX` <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                                                                                                                                                                                                                                                                               |
+| View   | `view`                                                                                                                                                                                                                                                                                                                                                             |
+| Help   | `help`                                                                                                                                                                                                                                                                                                                                                             |
+| Filter | `filter FLAG FIELD` <br><br> **Example:**  <br> `filter -d school` <br>`filter -date 22/03/2023`                                                                                                                                                                                                                            |
+| Edit   | `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -add -in Beef noodles $15 -c Food` <br> `edit -d school` <br> `edit -in`                                                                                                                                                                             |
+| Exit   | `bye`                                                                                                                                                                                                                                                                                                                                                              |
 
 ## An Example Usage of rainyDay
 
