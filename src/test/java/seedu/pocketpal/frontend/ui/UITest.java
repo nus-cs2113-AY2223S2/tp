@@ -130,7 +130,7 @@ public class UITest {
         }
 
         @Test
-        void testEditExpenditure(){
+        void testEditExpenditure() {
             ui.printExpenditureEdited(testEntry);
             assertEquals(MessageConstants.MESSAGE_EXPENDITURE_EDITED
                             + UIUtil.formatExpenditure(testEntry.getDescription(),
@@ -142,23 +142,27 @@ public class UITest {
         }
 
         @Test
-        void testViewExpenditure(){
+        void testViewExpenditure() {
             testEntries.addEntry(testEntries1);
             testEntries.addEntry(testEntries2);
             testEntries.addEntry(testEntries3);
 
             ui.printEntriesToBeViewed(testEntries);
-
+            double expectedTotalPrice = 0;
+            for (int index = 1; index <= testEntries.getSize(); index++) {
+                expectedTotalPrice += testEntries.getEntry(index).getAmount();
+            }
             StringBuilder expectedString = new StringBuilder();
             expectedString.append("These are the latest ")
                     .append(testEntries.getSize())
                     .append(" entries.")
                     .append(System.lineSeparator());
-
+            expectedString.append("Total expenditure: $" + expectedTotalPrice).append(System.lineSeparator());
             for (int index = 1; index <= testEntries.getSize(); index++) {
                 String formattedEntry = ui.formatViewEntries(testEntries.getEntry(index), index);
                 expectedString.append(formattedEntry)
-                        .append(System.lineSeparator());}
+                        .append(System.lineSeparator());
+            }
 
             expectedString.append(UIConstants.LINE);
             assertEquals(expectedString.toString(), outContent.toString());
