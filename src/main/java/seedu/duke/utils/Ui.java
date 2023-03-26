@@ -882,7 +882,11 @@ public class Ui {
                     break;
                 }
             }
-            System.out.println(ANSI_RESET + results.get(i).toString());
+            System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
+        }
+        if(results.size()>1){
+            System.out.println(ANSI_ORANGE + LINE);
+            System.out.println(ANSI_RESET + results.get(results.size() - 1).toString());
             System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
         }
     }

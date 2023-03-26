@@ -62,7 +62,7 @@ public class Storage {
                 if(!inventory.getUpcCodesHistory().containsKey(item.getUpc())){
                     inventory.getUpcCodesHistory().put(item.getUpc(),new ArrayList<>());
                 }
-                inventory.getUpcCodesHistory().get(item.getUpc()).add(item);
+                inventory.getUpcCodesHistory().get(item.getUpc()).add(new Item(item));
                 line = reader.readLine();
             }
             for(Item item: tempInventory.getItemInventory()){
