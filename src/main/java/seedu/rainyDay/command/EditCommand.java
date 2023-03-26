@@ -97,23 +97,23 @@ public class EditCommand extends Command {
             financialReport.deleteStatement(index);
             FinancialStatement newStatement = new FinancialStatement(description, flowDirection, value, category, date);
             financialReport.addStatementAtIndex(newStatement, index);
-        } else if (flag.equals("-d")) {
-            financialReport.getFinancialStatement(index).setDescription(fieldToChange);
-            Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
-        } else if (flag.equals("-c")) {
-            financialReport.getFinancialStatement(index).setCategory(fieldToChange);
-            Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
-        } else if (flag.equals("-v")) {
-            financialReport.getFinancialStatement(index).setValue(valueToChange);
-            Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
-        } else if (flag.equals("-out")) {
-            financialReport.getFinancialStatement(index).setFlowDirection(FlowDirection.OUTFLOW);
-            Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
-        } else if (flag.equals("-in")) {
-            financialReport.getFinancialStatement(index).setFlowDirection(FlowDirection.INFLOW);
-            Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
-        } else if (flag.equals("-date")) {
-            financialReport.getFinancialStatement(index).setDate(dateToChange);
+        } else {
+            FinancialStatement editedStatement = financialReport.getFinancialStatement(index);
+            financialReport.removeFromMonthlyExpenditure(editedStatement);
+            if (flag.equals("-d")) {
+                editedStatement.setDescription(fieldToChange);
+            } else if (flag.equals("-c")) {
+                editedStatement.setCategory(fieldToChange);
+            } else if (flag.equals("-v")) {
+                editedStatement.setValue(valueToChange);
+            } else if (flag.equals("-out")) {
+                editedStatement.setFlowDirection(FlowDirection.OUTFLOW);
+            } else if (flag.equals("-in")) {
+                editedStatement.setFlowDirection(FlowDirection.INFLOW);
+            } else if (flag.equals("-date")) {
+                editedStatement.setDate(dateToChange);
+            }
+            financialReport.addToMonthlyExpenditure(editedStatement);
             Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         }
 

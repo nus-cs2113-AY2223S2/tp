@@ -35,20 +35,20 @@ public class FinancialReport {
 
     public void addStatement(FinancialStatement statement) {
         financialReport.add(statement);
-        updateMonthlyExpenditure(statement, true);
+        addToMonthlyExpenditure(statement);
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public void addStatementAtIndex(FinancialStatement statement, int index) {
         financialReport.add(index, statement);
-        updateMonthlyExpenditure(statement, true);
+        addToMonthlyExpenditure(statement);
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public FinancialStatement deleteStatement(int statementNumber) {
         FinancialStatement oldStatement = financialReport.get(statementNumber);
         financialReport.remove(financialReport.get(statementNumber));
-        updateMonthlyExpenditure(oldStatement, false);
+        removeFromMonthlyExpenditure(oldStatement);
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         return oldStatement;
     }
@@ -79,18 +79,23 @@ public class FinancialReport {
         return financialReport.get(statementNumber).getDate();
     }
 
-    private void updateMonthlyExpenditure(FinancialStatement statement, boolean addToExpenditure) {
+    public void addToMonthlyExpenditure(FinancialStatement statement) {
         int monthAndYear = statement.getMonthAndYear();
         if(!monthlyExpenditures.containsKey(monthAndYear)) {
             monthlyExpenditures.put(monthAndYear, 0.0);
         }
         double currentExpenditure = monthlyExpenditures.get(monthAndYear);
         if(statement.getFlowDirectionWord().equals("out")) {
-            if(addToExpenditure) {
-                currentExpenditure += statement.getValue();
-            } else {
-                currentExpenditure -= statement.getValue();
-            }
+            currentExpenditure += statement.getValue();
+            monthlyExpenditures.put(monthAndYear, currentExpenditure);
+        }
+    }
+
+    public void removeFromMonthlyExpenditure(FinancialStatement statement) {
+        int monthAndYear = statement.getMonthAndYear();
+        double currentExpenditure = monthlyExpenditures.get(monthAndYear);
+        if(statement.getFlowDirectionWord().equals("out")) {
+            currentExpenditure -= statement.getValue();
             monthlyExpenditures.put(monthAndYear, currentExpenditure);
         }
     }

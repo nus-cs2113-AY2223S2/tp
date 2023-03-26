@@ -1,6 +1,5 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.modules.Ui;
 
