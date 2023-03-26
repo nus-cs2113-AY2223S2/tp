@@ -7,12 +7,12 @@ public class FinancialStatement {
     private static final String OUTFLOW_WORD = "out";
     private static final String INFLOW_SYMBOL = "+";
     private static final String OUTFLOW_SYMBOL = "-";
-    private boolean isIgnored = false;
     public String description;
     public FlowDirection flowDirection;
     public double value;
     public String category;
     public LocalDate date = null;
+    private boolean isIgnored = false;
 
     public FinancialStatement(String description, String flowDirection, double value, String category, LocalDate date) {
         this.description = description;
