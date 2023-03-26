@@ -32,11 +32,11 @@ public class Notes {
         }
     }
 
-    public void setToDo(String toDo) {
+    public void setToDo(String toDo) { // 2
         this.toDo = toDo;
     }
 
-    public void handleCache(String input){
+    public void handleCache(String input){ // Delete as input
         implementLogger();
         try {
             logr.log(Level.INFO, "Reading in inputs by users");
@@ -48,9 +48,19 @@ public class Notes {
                 System.out.println("You have stored: " + toDo);
                 Storage.saveFile(filePath, cache);
                 break;
+
             case "List":
                 Ui.printNotes(cache);
                 break;
+
+            case "Delete":
+                // input is Delete, toDo is "2" String
+                int index = Integer.parseInt(toDo);
+                System.out.println("Ok, I have deleted the following list item: " + cache.get(index - 1));
+                cache.remove(index - 1);
+                Storage.saveFile(filePath, cache);
+                break;
+
             default:
             }
         } catch (Exception e) {

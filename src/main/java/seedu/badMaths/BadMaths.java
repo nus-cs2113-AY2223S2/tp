@@ -8,8 +8,8 @@ public class BadMaths {
 
     public static void commandChecker(String userInput, String command) {
         try {
-            if (!(command.equals("Graph") || command.equals("Bye") || command.equals("List") || command.equals("Store")
-                    || command.equals("Matrix") || command.equals("Help"))) {
+            if (!(command.equals("Graph") || command.equals("Bye") || command.equals("Delete") || command.equals("List")
+                    || command.equals("Store") || command.equals("Matrix") || command.equals("Help"))) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -23,12 +23,14 @@ public class BadMaths {
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
-            String userInput = scanner.nextLine();
-
+            String userInput = scanner.nextLine(); // "Delete. 2
             Parser parser = new Parser(userInput);
-            String command = parser.getCommand();
-            String toDo = parser.getToDo();
+            String command = parser.getCommand(); // Delete
+            String toDo = parser.getToDo(); // 2
             commandChecker(userInput, command);
+
+            // command == Delete
+            // toDo == 2
 
             if (inputCommand == null) {
                 inputCommand = new Command(command, toDo);
