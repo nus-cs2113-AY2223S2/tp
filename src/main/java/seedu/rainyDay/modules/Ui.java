@@ -1,9 +1,7 @@
 package seedu.rainyDay.modules;
 
-import org.apache.commons.lang3.ObjectUtils;
 import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.data.FinancialStatement;
-import seedu.rainyDay.data.UserData;
 
 import java.io.InputStream;
 import java.time.LocalDate;
