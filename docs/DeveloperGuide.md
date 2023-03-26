@@ -124,6 +124,14 @@ the expenditure into the array list.
 
 ### 4.2. Edit Command
 
+The ```EditCommand``` edits an existing expenditure in the record.
+
+It cannot change the expenditure type of a record, only its fields
+
+For editing an expenditure, the full command is  ```edit INDEX d/DATE a/AMOUNT s/DESCRIPTION```
+
+For editing a borrow/lend record, the full command is  ```edit INDEX d/DATE n/(LEND/BORROW)_NAME a/AMOUNT b/DEADLINE s/DESCRIPTION```
+       
 The sequence diagram below shows the interactions of a successful execution of the EditCommand
 
 <p align="center">
