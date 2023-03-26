@@ -1,3 +1,4 @@
+// @@author kaceycsn
 package seedu.pocketpal.frontend.commands;
 
 import seedu.pocketpal.backend.Backend;
@@ -18,3 +19,4 @@ public class ExitCommand extends Command {
     public void execute(UI ui, Backend backend) {
     }
 }
+// @@author

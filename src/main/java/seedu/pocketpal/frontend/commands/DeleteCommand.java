@@ -1,3 +1,4 @@
+// @@author kaceycsn
 package seedu.pocketpal.frontend.commands;
 
 import seedu.pocketpal.backend.Backend;
@@ -38,7 +39,6 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(UI ui, Backend backend) throws InvalidEntryIdException {
-        // delete request
         Arrays.sort(entryIds, Collections.reverseOrder());
         Integer[] uniqueEntryIds = Arrays.stream(entryIds).distinct().toArray(Integer[]::new);
         for(int entryId: uniqueEntryIds){
@@ -65,3 +65,4 @@ public class DeleteCommand extends Command {
         return this.entryIds[entryId];
     }
 }
+// @@author

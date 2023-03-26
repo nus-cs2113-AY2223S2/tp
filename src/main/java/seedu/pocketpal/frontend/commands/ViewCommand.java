@@ -1,3 +1,4 @@
+// @@author leonghuenweng
 package seedu.pocketpal.frontend.commands;
 
 import seedu.pocketpal.backend.Backend;
@@ -56,3 +57,4 @@ public class ViewCommand extends Command {
         }
     }
 }
+// @@author

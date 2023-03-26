@@ -1,41 +1,111 @@
+<!-- omit in toc -->
 # Developer Guide
 
-## Acknowledgements
+<!-- omit in toc -->
+## Table of Contents
+- [Acknowledgements](#acknowledgements)
+  - [Documentation](#documentation)
+  - [Storage](#storage)
+  - [Unit Tests](#unit-tests)
+- [Design \& implementation](#design--implementation)
+  - [Architecture](#architecture)
+  - [Frontend](#frontend)
+    - [Parser](#parser)
+    - [Commands](#commands)
+      - [Add Command](#add-command)
+    - [UI](#ui)
+  - [Backend](#backend)
+    - [API](#api)
+      - [Endpoints](#endpoints)
+        - [Creating a request](#creating-a-request)
+        - [Making a request](#making-a-request)
+      - [Access all entries available](#access-all-entries-available)
+        - [Get recent or all entries](#get-recent-or-all-entries)
+      - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
+        - [Add an entry](#add-an-entry)
+        - [View a specific entry](#view-a-specific-entry)
+        - [Delete an entry](#delete-an-entry)
+        - [Modify an entry](#modify-an-entry)
+  - [Communication](#communication)
+  - [Data Structure](#data-structure)
+- [Testing](#testing)
+  - [Unit Tests](#unit-tests-1)
+  - [Integration Testing](#integration-testing)
+  - [System Testing](#system-testing)
+  - [Instructions for manual testing](#instructions-for-manual-testing)
+  - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
+- [Product scope](#product-scope)
+  - [Target user profile](#target-user-profile)
+  - [Value proposition](#value-proposition)
+- [User Stories](#user-stories)
+- [Non-Functional Requirements](#non-functional-requirements)
+- [Glossary](#glossary)
 
-### Documentation
+# Acknowledgements
+
+## Documentation
 
 - [Github REST API documentation](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28)
 - [Diagrams.net](https://app.diagrams.net/)
 - PlantUML
 
-### Storage
+## Storage
 
 - [Function `makeFileIfNotExists` - StackOverflow](https://stackoverflow.com/questions/9620683/java-fileoutputstream-create-file-if-not-exists)
 - [Deleting files - w3Schools](https://www.w3schools.com/java/java_files_delete.asp)
 - [BufferedReader - Baeldung](https://www.baeldung.com/java-buffered-reader)
 
-### Unit Tests
+## Unit Tests
 
 - [Assert Exceptions Thrown - Baeldung](https://www.baeldung.com/junit-assert-exception)
 - [Arrange, Act, Assert](https://java-design-patterns.com/patterns/arrange-act-assert)
 
-## Design & implementation
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
 
-### Architecture
+# Design & implementation
+
+## Architecture
 ![PocketPal Architecture](./static/PocketPalArchitecture.png)
 ![Backend Overview](./static/backend/BackendOverviewClassDiagram.png)
 
-### Communication
-This project uses a simplified HTTP model, where the frontend sends a `Request` to the backend to perform data-related operations. The backend returns a `Response`, which is then processed by the frontend
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
 
-![Simplified HTTP Model](static/communication/SimplifiedHTTPClassDiagram.png)
+## Frontend
 
-### Data
-We use the `EntryLog` data structure to keep track of the entries entered by the user.
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
 
-![Data Structure Class Diagram](./static/data/DataStructureClassDiagram.png)
+### Parser
 
-### Backend
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+### Commands
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+#### Add Command
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+
+### UI
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+## Backend
 
 The backend uses a simplified RESTful API approach. This allows us to decouple code using the proven industry practices.
 
@@ -45,6 +115,10 @@ To find out more, visit the following sections:
 - [API](#api)
 - [Add, modify, view or delete an entry - `GET`](#add-modify-view-or-delete-an-entry)
 - [Access all entries available - `DELETE`, `GET`, `PATCH`, `POST`](#access-all-entries-available)
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
 
 ### API
 #### Endpoints
@@ -88,6 +162,10 @@ Entry entry = EntryParser.deserialise(res.getData());
 // process entry
 ```
 
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
 #### Access all entries available
 ##### Get recent or all entries
 
@@ -129,6 +207,9 @@ __Responses__
 | `200`       | OK                    | Gson-serialised `List<Entry>`, deserialise with `EntryLogParser::deserialise` |
 | `422`       | Unprocessable Content | -                                                                             |
 
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
 
 #### Add, modify, view or delete an entry
 ##### Add an entry
@@ -220,9 +301,33 @@ __Responses__
 | `404`       | Not Found             | -                                                                    |
 | `422`       | Unprocessable Content | -                                                                    |  |
 
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
 
-### Automated Testing
+## Communication
 
+This project uses a simplified HTTP model, where the frontend sends a `Request` to the backend to perform data-related operations. The backend returns a `Response`, which is then processed by the frontend
+
+![Simplified HTTP Model](static/communication/SimplifiedHTTPClassDiagram.png)
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+## Data Structure
+
+We use the `EntryLog` data structure to keep track of the entries entered by the user.
+
+![Data Structure Class Diagram](./static/data/DataStructureClassDiagram.png)
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+# Testing
+
+## Unit Tests
 We adopt the Arrange, Act, Assert pattern for unit tests in this project. 
 This allows us to achieve a structured unit tests while balancing code readability and maintainability, and allowing a clear separation of the setup, operations and results. 
 For backend testing, we use utility classes such as `EntryTestUtil` and `BackendTestUtil` to reduce code repetition and to simplify the testing process.
@@ -261,8 +366,36 @@ __Example:__
       }
   }
   ```
-  
-### Parser
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+## Integration Testing
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+## System Testing
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+## Instructions for manual testing
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+## Testing with sample data (from file)
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+<!-- ## Parser
 
 The `Parser` class is a fundamental component instantiated as soon as PocketPal is initialised. Its __purpose__ is to
 convert the user's input into structured data which then produces clear instructions for the rest of the program.
@@ -296,9 +429,9 @@ How `Parser` works:
 The Sequence Diagram below illustrates the interactions within the `Parser` component when a user inputs the following
 command: `/add McDonalds -c Food -p 10.50`
 
-![ParserSequenceDiagram](static/ParserSequenceDiagram.png)
+![ParserSequenceDiagram](static/ParserSequenceDiagram.png) -->
 
-### Storage
+<!-- ## Storage
 
 The `Storage` class is responsible for the serialization of `Entry` data into a csv-like syntax, as well as the deserialization of that data back into `Entry` objects.
 
@@ -314,34 +447,113 @@ The structure of the Storage class is as follows:
 
 The Sequence Diagram below illustrates the interactions within the `Parser` component upon initialization of PocketPal, as well as whenever data is being saved.
 
-![StorageSequenceDiagram](./static/StorageSequenceDiagram.png)
+![StorageSequenceDiagram](./static/StorageSequenceDiagram.png) -->
 
-## Product scope
+<!-- ### Add Command
+The add entry mechanism is facilitated by `EntryLog`. Every instance of `AddCommand` is created with an `Entry` instance.
 
-### Target user profile
+The following sequence diagram shows how the add command work:
+
+![AddCommandSequenceDiagram](./static/AddCommandSequenceDiagram.png)
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `EntryLog` will be initialized and contains no entry.
+
+Step 2. The user executes `/add Lunch at McDonalds -category Food -price 19.9` command to add an `Entry` to the `EntryLog`.
+
+_***Note.*** The command will fail its execution if its format is incorrect, and no `Entry` will be added to the `Entrylog`. An error message will be displayed informing the user._
+
+Step 3. The command will be resolved by `Parser`, which would create an `AddCommmand` object.
+
+Step 4. The `AddCommand` constructor creates and returns an `Entry` object containing the description, price and category to be added.
+
+Step 5. When `execute()` method is called, a `Request` object is created.
+
+Step 6. From there, the `Request` is ready to be handled. `addEntry()` method is called and the new `Entry` is added to the `EntryLog`.
+
+Step 7. A success message is after the new `Entry` is added to the `EntryLog`.
+
+The following activity diagram summarizes what happens when a user executes an add command:
+
+![AddCommandActivityDiagram](./static/AddCommandActivityDiagram.png) -->
+
+<!-- ### Delete Command
+The delete entry mechanism is facilitated by `EntryLog`.
+
+Every instance of `DeleteCommand` is created with an Integer, which is the ID of the `Entry` to be deleted.
+
+The following sequence diagram shows how the delete command work:
+
+![DeleteCommandSequenceDiagram](./static/DeleteCommandSequenceDiagram.png)
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user decides to remove an `Entry` from the `EntryLog` and executes `/delete 1` command.
+
+_**Note:** The command will fail its execution if the index provided is invalid, and no `Entry` will be removed from the `EntryLog`. An error message will be displayed informing the user._
+
+Step 2. The command will be resolved by `Parser`, which would create an `DeleteCommmand` object containing the index of the `Entry` to be deleted.
+
+Step 3. When `execute()` method is called, a `Request` object is created.
+
+Step 4. From there, the `Request` is ready to be handled. `deleteEntry()` method is called and the `Entry` is removed from `EntryLog`.
+
+Step 5. A success message is after the `Entry` is removed from `EntryLog`.
+
+The following activity diagram summarizes what happens when a user executes a delete   command:
+
+![DeleteCommandActivityDiagram](./static/DeleteCommandActivityDiagram.png) -->
+
+
+
+# Product scope
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+## Target user profile
 
 {Describe the target user profile}
 
-### Value proposition
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+## Value proposition
 
 {Describe the value proposition: what problem does it solve?}
 
-## User Stories
+# User Stories
 
-| Version | As a ... | I want to ...             | So that I can ...                                           |
-|---------|----------|---------------------------|-------------------------------------------------------------|
+| Version | As a ... | I want to ... | So that I can ... |
+| ------- | -------- | ------------- | ----------------- |
 
-## Non-Functional Requirements
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+# Non-Functional Requirements
 
 {Give non-functional requirements}
 
-## Glossary
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+# Glossary
 
 * *glossary item* - Definition
 
-## Instructions for manual testing
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
 
-## Testing with sample data (from file)
+<!-- ## Instructions for manual testing
+
+### Testing with sample data (from file)
 
 PocketPal stores data in a *storage.txt* file under the "*data/*" directory. Each row in the "*storage.txt*" file
 represents a single expense Entry. Each column in each row should have 3 columns, representing the *description* of the
@@ -396,9 +608,9 @@ replicated as follows:
 First, place the downloaded *PocketPal.jar* into an empty folder. Launch Windows Powershell in the
 directory of *PocketPal.jar* and run the following command to launch PocketPal.
 
-`java -jar PocketPal.jar`
+`java -jar PocketPal.jar` -->
 
-# Feature Testing
+<!-- # Feature Testing
 
 The following section provides instructions and code snippets for the manual testing of all currently supported features
 in PocketPal.
@@ -624,4 +836,4 @@ ________________________________________________
 ```
 
 ---
-More test cases will be added as more features are introduced.
+More test cases will be added as more features are introduced. -->
