@@ -41,13 +41,17 @@ Deletes a specified expense from your current expenditure.
 
 The expense ID can be obtained from the [`/view`](#view) command.
 
-Format: `/delete <EXPENSE_ID>`
+Format: `/delete <EXPENSE_ID> [ADDITIONAL_EXPENSE_ID...]`
 
-- The `EXPENSE_ID` must be a whole number.
+- `EXPENSE_ID` and `ADDITIONAL_EXPENSE_ID` must be whole numbers.
 
 Example of usage:
 
 `/delete 5`
+
+OR
+
+`/delete 4 5 6`
 
 ## Edit an expense: `/edit` {#edit}
 
