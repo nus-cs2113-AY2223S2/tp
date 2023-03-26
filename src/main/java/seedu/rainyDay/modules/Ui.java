@@ -1,6 +1,11 @@
 package seedu.rainyDay.modules;
 
+import seedu.rainyDay.RainyDay;
+import seedu.rainyDay.data.FinancialStatement;
+import seedu.rainyDay.data.UserData;
+
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,14 +71,19 @@ public class Ui {
         return userInput.trim();
     }
 
-    public static String checkUserBudgetLimit(double currentSpending, double budgetLimit) {
+    public static String checkUserBudgetLimit(double currentSpending, FinancialStatement newStatement) {
+        double budgetLimit = RainyDay.userData.getBudgetGoal();
+        int currentMonthYear = LocalDate.now().getMonthValue() + LocalDate.now().getYear()*12;
+        if(newStatement.getMonthAndYear() != currentMonthYear) {
+            return "";
+        }
         if(budgetLimit == 0) {
             return "";
         }
         if(currentSpending >= budgetLimit) {
             return "\nYou've exceeded your budget! Try harder next time :(";
         }
-        return "\nSome message about how far you have gotten"; //Todo
+        return String.format("\nYou have spent $%.2f/$%.2f, Keep it up!", currentSpending, budgetLimit);
     }
 
     public void sayFarewellToUser(String username) {

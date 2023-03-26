@@ -53,11 +53,12 @@ public class DeleteCommand extends Command {
         assert (index < financialReport.getStatementCount() && index >= 0) : "invalid index provided for delete";
 
         FinancialStatement oldStatement = financialReport.deleteStatement(index);
-        double updatedMonthlyExpenditure = financialReport.updateMonthlyExpenditure(oldStatement, false);
-        String output = "Done, deleted \"" + oldStatement.getDescription() + "\" from the financial report"
-                + Ui.checkUserBudgetLimit(updatedMonthlyExpenditure, RainyDay.userData.getBudgetGoal());
-
+        double updatedMonthlyExpenditure = financialReport.getMonthlyExpenditure(oldStatement);
         assert previousStatementCount - 1 == financialReport.getStatementCount() : "statement count mismatch";
+
+        String budgetInfo = Ui.checkUserBudgetLimit(updatedMonthlyExpenditure, oldStatement);
+        String output = "Done, deleted \"" + oldStatement.getDescription() + "\" from the financial report"
+                + budgetInfo;
         logger.log(Level.INFO, "deleted from financial report");
 
         return new CommandResult(output);

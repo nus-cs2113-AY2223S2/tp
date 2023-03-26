@@ -58,12 +58,13 @@ public class AddCommand extends Command {
         int totalStatementCount = financialReport.getStatementCount();
         FinancialStatement newStatement = new FinancialStatement(description, flowDirection, value, category, date);
         financialReport.addStatement(newStatement);
-        double updatedMonthlyExpenditure = financialReport.updateMonthlyExpenditure(newStatement, true);
+        double updatedMonthlyExpenditure = financialReport.getMonthlyExpenditure(newStatement);
 
         assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";
 
-        String output = "Done! Added:" + financialReport.getFinancialStatement(totalStatementCount).getFullStatement() +
-                Ui.checkUserBudgetLimit(updatedMonthlyExpenditure, RainyDay.userData.getBudgetGoal());
+        String budgetInfo = Ui.checkUserBudgetLimit(updatedMonthlyExpenditure, newStatement);
+        String output = "Done! Added: " + financialReport.getFinancialStatement(totalStatementCount).getFullStatement()
+                + budgetInfo;
 
         logger.log(Level.INFO, " end of AddCommand.execute()");
         return new CommandResult(output);

@@ -95,8 +95,8 @@ public class EditCommand extends Command {
 
         if (flag.isEmpty()) {
             financialReport.deleteStatement(index);
-            financialReport.addStatementAtIndex(
-                    new FinancialStatement(description, flowDirection, value, category, date), index);
+            FinancialStatement newStatement = new FinancialStatement(description, flowDirection, value, category, date);
+            financialReport.addStatementAtIndex(newStatement, index);
         } else if (flag.equals("-d")) {
             financialReport.getFinancialStatement(index).setDescription(fieldToChange);
             Storage.writeToFile(RainyDay.userData, RainyDay.filePath);

@@ -35,18 +35,20 @@ public class FinancialReport {
 
     public void addStatement(FinancialStatement statement) {
         financialReport.add(statement);
-
+        updateMonthlyExpenditure(statement, true);
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public void addStatementAtIndex(FinancialStatement statement, int index) {
         financialReport.add(index, statement);
+        updateMonthlyExpenditure(statement, true);
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public FinancialStatement deleteStatement(int statementNumber) {
         FinancialStatement oldStatement = financialReport.get(statementNumber);
         financialReport.remove(financialReport.get(statementNumber));
+        updateMonthlyExpenditure(oldStatement, false);
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         return oldStatement;
     }
@@ -55,8 +57,10 @@ public class FinancialReport {
         return financialReport.get(statementNumber).getStatementForList();
     }
 
-    public String getStatementDescription(int statementNumber) {
-        return financialReport.get(statementNumber).getDescription();
+    public double getMonthlyExpenditure(FinancialStatement currentStatement) {
+        int monthAndYear = currentStatement.getMonthAndYear();
+        assert (monthlyExpenditures.containsKey(monthAndYear));
+        return monthlyExpenditures.get(monthAndYear);
     }
 
     public void clearReport() {
@@ -75,7 +79,7 @@ public class FinancialReport {
         return financialReport.get(statementNumber).getDate();
     }
 
-    public double updateMonthlyExpenditure(FinancialStatement statement, boolean addToExpenditure) {
+    private void updateMonthlyExpenditure(FinancialStatement statement, boolean addToExpenditure) {
         int monthAndYear = statement.getMonthAndYear();
         if(!monthlyExpenditures.containsKey(monthAndYear)) {
             monthlyExpenditures.put(monthAndYear, 0.0);
@@ -89,6 +93,5 @@ public class FinancialReport {
             }
             monthlyExpenditures.put(monthAndYear, currentExpenditure);
         }
-        return currentExpenditure;
     }
 }
