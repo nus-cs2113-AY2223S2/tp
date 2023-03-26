@@ -106,9 +106,9 @@ public class Parser {
         if (details.length <= 1) {
             throw new NPExceptions("Event description and start day of your event are strictly required!");
         }
-        boolean[] duplicity = new boolean[6]; // to detect duplicate flags in command
+        boolean[] duplicity = new boolean[7]; // to detect duplicate flags in command
         Arrays.fill(duplicity, false);
-        String[] information = new String[6];
+        String[] information = new String[7];
         Arrays.fill(information, "");
         for (int i = 1; i < details.length; i++) {
             String field = details[i].substring(0, 2).trim();
@@ -168,7 +168,15 @@ public class Parser {
             case ("r"):
                 if (!duplicity[5]) {
                     information[5] = change;
-                    duplicity[4] = true;
+                    duplicity[5] = true;
+                } else {
+                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                }
+                break;
+            case ("v"): // venue/location of the event
+                if (!duplicity[6]) {
+                    information[6] = change;
+                    duplicity[6] = true;
                 } else {
                     throw new NPExceptions("Cannot have duplicate flags a command!");
                 }
@@ -207,6 +215,7 @@ public class Parser {
 
             // Harsha - Create event for each day of module
             for(Lesson lesson: lessons) {
+                String venue = lesson.getVenue();
                 for(Integer week: lesson.getWeeks()) {
 
                     // Harsha - Method to get date on the lesson's day in a given week number.
@@ -218,8 +227,10 @@ public class Parser {
                     sb = new StringBuilder(lesson.getEndTime());
                     String endTime = sb.insert(2, ':').toString();
 
+                    int size = eventList.getSize();
                     try {
                         eventList.addEvent(nusModule.getModuleCode(), startTime, startDate, endTime, startDate);
+                        eventList.reviseLocation(size++, venue);
                         count++;
                     } catch (NPExceptions e) {
                         System.out.println(e.getMessage());
@@ -239,6 +250,13 @@ public class Parser {
             } else {
                 eventList.addEvent(eventName, startTime, startDate);
             }
+
+            // add location(venue)
+            int eventNum = eventList.getSize() - 1;
+            if(duplicity[6] == true){
+                eventList.reviseLocation(eventNum, information[6]);
+            }
+
             Ui.addSuccessMsg(eventList.getLastTaskDescription());
         }
     }
@@ -258,7 +276,7 @@ public class Parser {
 
     private static void parseEditCommand(String remainder, EventList eventList) throws NPExceptions {
         String[] details = remainder.split("-");
-        String[] information = new String[5];
+        String[] information = new String[6];
 
         if (!(details[1].substring(0, 2).trim().equalsIgnoreCase("i")
                 || details[1].substring(0, 2).trim().equalsIgnoreCase("e"))) {
@@ -285,6 +303,9 @@ public class Parser {
             case ("ed"):
                 information[4] = change;
                 break;
+            case ("v"):
+                information[5] = change;
+                break;
             default:
                 break;
             }
@@ -300,9 +321,17 @@ public class Parser {
         } else {
             reviseTimeInfoUsingIndex(information, eventList);
         }
+        
     }
 
     private static void addFormatChecker(String[] information) throws NPExceptions {
+        // System.out.println();
+        // System.out.println();
+        // System.out.println();
+        // System.out.println();
+        // for(int i = 0; i < 7; i++){
+        //     System.out.println("information[" + i + "]: " + information[i]);
+        // }
         boolean isValidFormat = !information[0].equalsIgnoreCase("") && !information[2].equalsIgnoreCase("");
 
         if (!isValidFormat) {
@@ -331,6 +360,11 @@ public class Parser {
             eventList.reviseTimeInfo(eventIndex, information[1], information[2]);
         }
 
+        // revise location info
+        if (!information[5].equals("")) {
+            eventList.reviseLocation(eventIndex, information[5]);
+        }
+        
         Ui.editSuccessMsg(eventList.getDescription(eventIndex), eventList.getTime(eventIndex));
     }
 
@@ -344,6 +378,12 @@ public class Parser {
         }
 
         int eventIndex = eventList.searchTaskIndex(information[0]);
+
+        // revise location info
+        if (!information[5].equals("")) {
+            eventList.reviseLocation(eventIndex, information[5]);
+        }
+
         Ui.editSuccessMsg(eventList.getDescription(eventIndex), eventList.getTime(eventIndex));
     }
 }

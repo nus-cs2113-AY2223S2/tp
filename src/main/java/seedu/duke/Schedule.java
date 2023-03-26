@@ -17,12 +17,17 @@ public class Schedule {
     // format: x D for x day, or x W for x weeks and x M for x month.
     private String timeInterval;
 
+    private String location;
+    private boolean hasLocation;
+
     public Schedule(LocalDateTime start, boolean hasSt) {
         this.startTime = start;
         this.hasEndTime = false;
         this.hasStartTime = hasSt;
         this.hasEndInfo = false;
         this.isRecurring = false;
+        this.hasLocation = false;
+        this.location = "";
     }
 
     public Schedule(LocalDateTime start, boolean hasSt, String recurringTime) {
@@ -138,6 +143,13 @@ public class Schedule {
         }
     }
 
+    public void changeLocation(String location) {
+        if(!location.equals("")) {
+            hasLocation = true;
+        }
+        this.location = location;
+    }
+
     public boolean hasEndTime() {
         return hasEndTime;
     }
@@ -150,12 +162,20 @@ public class Schedule {
         return hasEndInfo;
     }
 
+    public boolean hasLocation() {
+        return hasLocation;
+    }
+
     public LocalDateTime getStartTime() {
         return startTime;
     }
 
     public LocalDateTime getEndTime() {
         return endTime;
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     public String getDescription() {
