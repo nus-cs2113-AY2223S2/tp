@@ -122,7 +122,10 @@ different events that they are engaged in.
 It can be a one time expense like buying a pair of sneakers or recurring expenses like
 electricity bills.
 *  *category* - A category is a group of events that are related to each other. For example,
-food, transportation, entertainment,
+food, transportation, entertainment, etc.
+*  *one time expense* - An expense that occurs only once.
+*  *recurring expense* - An expense that occurs repeatedly, in the context of MoneyMind, the
+frequency is set to monthly.
 
 ## Appendix E: Instructions for Manual Testing
 
