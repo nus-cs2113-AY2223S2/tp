@@ -11,7 +11,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 /**
@@ -27,38 +30,34 @@ public class Storage {
      * @param line The line of input from the save file
      * @param tasks The array list of tasks
      */
-    static void loadTask(String line, ArrayList<Task> tasks) {
+    static void loadTask(String line, ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes, String doneStatus) {
         if (line.contains("/by")) {
             loadDeadline(line, tasks);
+            loadTaskStatus(tasks, doneStatus);
+            Task.incrementCount();
         } else if (line.contains("/class")) {
-            loadSchoolClass(line, tasks);
+            loadSchoolClass(line, classes);
         } else if (line.contains("/from") || line.contains("/to")) {
             loadEvent(line, tasks);
+            loadTaskStatus(tasks, doneStatus);
+            Task.incrementCount();
         } else {
             loadTodo(line, tasks);
+            loadTaskStatus(tasks, doneStatus);
+            Task.incrementCount();
         }
     }
     static void clearTask() throws IOException {
         {
-
             try {
-
                 FileWriter fw = new FileWriter(SAVEPATH, false);
-
                 PrintWriter pw = new PrintWriter(fw, false);
-
                 pw.flush();
-
                 pw.close();
-
                 fw.close();
-
             } catch (Exception exception) {
-
                 System.out.println("Exception have been caught");
-
             }
-
         }
     }
 
@@ -99,17 +98,16 @@ public class Storage {
      * to be used when loading from save data.
      *
      * @param line The line of input from the user
-     * @param tasks The array list of tasks
+     * @param classes The priority queue of school classes
      */
-    static void loadSchoolClass(String line, ArrayList<Task> tasks) {
+    static void loadSchoolClass(String line, PriorityQueue<SchoolClass> classes) {
         String description = line.substring(0, line.indexOf("/class")).trim();
-        String className = line.substring(line.indexOf("/class") + 6, line.indexOf("/from")).trim();
+        String className = line.substring(line.indexOf("/class") + 6, line.indexOf("/day")).trim();
+        DayOfWeek day = DayOfWeek.valueOf(line.substring(line.indexOf("/day") + 4, line.indexOf("/from")).trim());
         String startString = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
-        String endString = line.substring(line.indexOf("/to") + 3, line.indexOf("<p>")).trim();
-        String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("<p>") + 4).trim();
-        SchoolClass currSchoolClass = new SchoolClass(className, description, startString, endString);
-        currSchoolClass.setPriority(priority);
-        tasks.add(currSchoolClass);
+        String endString = line.substring(line.indexOf("/to") + 3).trim();
+        SchoolClass currSchoolClass = new SchoolClass(className, description, day, startString, endString);
+        classes.add(currSchoolClass);
     }
 
     /**
@@ -148,18 +146,27 @@ public class Storage {
      *
      * @param tasks The array list of tasks
      */
-    static void save(ArrayList<Task> tasks) throws IOException {
+    static void save(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) throws IOException {
         File f = new File(SAVEPATH);
         if (f.exists()) {
             f.delete();
         }
         f.createNewFile();
 
+        // Saving the task list to the save file
         FileWriter fw = new FileWriter(SAVEPATH);
         for (Task currTask : tasks) {
             fw.write(currTask.toSaveString());
         }
         fw.close();
+
+        // Saving the class schedule to the save file
+        FileWriter fw2 = new FileWriter(SAVEPATH, true);
+        PriorityQueue<SchoolClass> temp = new PriorityQueue<SchoolClass>(classes);
+        while (!temp.isEmpty()) {
+            fw2.write(temp.poll().toSaveString());
+        }
+        fw2.close();
     }
 
     /**
@@ -167,9 +174,9 @@ public class Storage {
      *
      * @param tasks The array list of tasks
      */
-    static void trySave(ArrayList<Task> tasks) {
+    static void trySave(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) {
         try {
-            save(tasks);
+            save(tasks, classes);
         } catch (IOException e) {
             System.out.println("Saving error.");
         }
@@ -180,7 +187,7 @@ public class Storage {
      *
      * @param tasks The array list of tasks
      */
-    static void load(ArrayList<Task> tasks) throws IOException {
+    static void load(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) throws IOException {
         File folder = new File(SAVEFOLDER);
         if (!folder.exists()) {
             new File(SAVEFOLDER).mkdir();
@@ -201,9 +208,7 @@ public class Storage {
                 command += formattedInput[i];
                 command += " ";
             }
-            loadTask(command, tasks);
-            loadTaskStatus(tasks, doneStatus);
-            Task.incrementCount();
+            loadTask(command, tasks, classes, doneStatus);
         }
     }
 
@@ -212,9 +217,9 @@ public class Storage {
      *
      * @param tasks The array list of tasks
      */
-    static void tryLoad(ArrayList<Task> tasks) {
+    static void tryLoad(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) {
         try {
-            load(tasks);
+            load(tasks, classes);
         } catch (IOException e) {
             System.out.println("Error loading save file.");
         }
