@@ -14,7 +14,11 @@ import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.command.FilterCommand;
 import seedu.rainyDay.command.InvalidCommand;
 import seedu.rainyDay.command.ViewShortcutCommand;
+<<<<<<< HEAD
 import seedu.rainyDay.command.SetBudgetCommand;
+=======
+import seedu.rainyDay.command.IgnoreCommand;
+>>>>>>> master
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 
@@ -30,7 +34,6 @@ import java.util.regex.Pattern;
 //@@author azriellee
 public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
-
     private String direction;
     private String description;
     private String category;
@@ -76,6 +79,12 @@ public class Parser {
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW_SHORTCUT)) {
                 logger.info("view_shortcut command executing");
                 return new ViewShortcutCommand();
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_IGNORE)) {
+                logger.info("ignore command executing");
+                return ignoreStatement(userInput);
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_UNIGNORE)) {
+                logger.info("ignore command executing");
+                return ignoreStatement(userInput);
             } else {
                 // check if the user has a shortcut command
                 HashMap<String, String> shortcutCommands = RainyDay.userData.getShortcutCommands();
@@ -273,7 +282,7 @@ public class Parser {
         try {
             int count = (int) input.chars().filter(ch -> ch == '-').count();
             if (count >= 1) {
-                return new FilterCommand(parseFilterMultipleFlags(input, count));
+                return new FilterCommand(parseFilterMultipleFlags(input));
             } else {
                 logger.warning("unrecognised input from user!");
                 return new InvalidCommand(ErrorMessage.WRONG_FILTER_FORMAT.toString());
@@ -284,11 +293,11 @@ public class Parser {
         }
     }
 
-    private ArrayList<String> parseFilterMultipleFlags(String input, int count) {
-        Pattern pattern = Pattern.compile("(?:(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*){0,1}" +
-                "(?:(-c)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*){0,1}" +
-                "(?:(-date)\\s+(\\d{2}/\\d{2}/\\d{4})\\s*){0,1}" +
-                "(?:(-in|-out))?{0,1}\\s*$");
+    private ArrayList<String> parseFilterMultipleFlags(String input) {
+        Pattern pattern = Pattern.compile("(?:(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
+                "(?:(-c)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
+                "(?:(-date)\\s+(\\d{2}/\\d{2}/\\d{4})\\s*)?" +
+                "(?:(-in|-out)\\s+)?\\s*$");
         Matcher matcher = pattern.matcher(input);
         ArrayList<String> filterFlagAndField = new ArrayList<>();
 
@@ -432,7 +441,6 @@ public class Parser {
         }
     }
 
-
     //@@author KN-CY
     private Command generateShortcut(String userInput) {
         if (!userInput.contains(" -maps ")) {
@@ -452,10 +460,10 @@ public class Parser {
         if (key.contains(" ")) {
             return new InvalidCommand(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
         }
-
         return new ShortcutCommand(key, value);
     }
 
+<<<<<<< HEAD
     //@@author BenjaminPoh
     private Command setUserBudgetGoal(String userInput) {
         try {
@@ -470,6 +478,24 @@ public class Parser {
         } catch (Exception e) {
             logger.warning("set budget details provided incorrectly");
             return new InvalidCommand(ErrorMessage.WRONG_SET_BUDGET_FORMAT.toString());
+=======
+    public Command ignoreStatement(String userInput) throws IllegalArgumentException {
+        try {
+            String[] tokens = userInput.split("\\s+", 2);
+            if (tokens.length < 1) {
+                logger.warning("invalid ignore command from user");
+                throw new IllegalArgumentException();
+            }
+
+            int index = Integer.parseInt(tokens[1]);
+            if (index > RainyDay.userData.getFinancialReport().getStatementCount()) {
+                throw new IllegalArgumentException();
+            }
+            return new IgnoreCommand(index, tokens[0]);
+        } catch (Exception e) {
+            logger.warning("edit index provided incorrectly");
+            return new InvalidCommand(ErrorMessage.WRONG_EDIT_FORMAT.toString());
+>>>>>>> master
         }
     }
 }
