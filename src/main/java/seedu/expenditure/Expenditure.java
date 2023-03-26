@@ -21,11 +21,18 @@ public abstract class Expenditure {
     public void setDescription(String description) {
         this.description = description;
     }
+
     public void setValue(double value) {
         this.value = value;
     }
 
     public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setDescriptionValueDate(String description, double value, LocalDate date) {
+        this.description = description;
+        this.value = value;
         this.date = date;
     }
 
@@ -45,16 +52,19 @@ public abstract class Expenditure {
     public String toString() {
         return String.format("Date: %s || Value: %s || Description: %s", getFullDate(), getValue(), getDescription());
     }
+
     /**
      * @return String representing the type of expenditure
      */
     public abstract String getExpenditureType();
 
     /**
-     * Outputs a formatted String containing information of the task saved in a text file.
+     * Outputs a formatted String containing information of the task saved in a text
+     * file.
      * Overridden for expenditure types with extra descriptions
+     * 
      * @return String containing information of the expenditure.
      */
-    //override not done for special expenditures
+    // override not done for special expenditures
     public abstract String saveInfo();
 }

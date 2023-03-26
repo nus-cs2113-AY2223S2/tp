@@ -8,9 +8,8 @@ public class BorrowExpenditure extends Expenditure {
     private LocalDate deadline;
     private String borrowerName;
 
-
     public BorrowExpenditure(String description, String borrowerName, double borrowValue, LocalDate date,
-                             LocalDate deadline) {
+            LocalDate deadline) {
         super(description, borrowValue, date);
         setBorrowerName(borrowerName);
         setDeadline(deadline);
@@ -30,6 +29,11 @@ public class BorrowExpenditure extends Expenditure {
 
     public void setBorrowerName(String borrowerName) {
         this.borrowerName = borrowerName;
+    }
+
+    public void setBorrowerNameAndDeadline(String lenderName, LocalDate deadline) {
+        this.borrowerName = lenderName;
+        this.deadline = deadline;
     }
 
     public String getFullDeadline() {

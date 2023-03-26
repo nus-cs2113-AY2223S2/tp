@@ -76,6 +76,10 @@ public class ExpenditureList {
         return expenditures.get(index);
     }
 
+    public int getSize() {
+        return expenditures.size();
+    }
+
     @Override
     public String toString() {
         StringBuilder stringOfExpenditures = new StringBuilder();
