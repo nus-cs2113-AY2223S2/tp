@@ -64,13 +64,13 @@ Please note the following about the format of commands given under each [feature
 
 * Words in CAPS are the parameters to be supplied by the user
 
-* Items in `markdown` format are related to commands provided by the user
+* Words in `markdown` format are related to commands provided by the user
 
-* Items in *italics* format are related to buttons that can be found on the screen
+* Words in *italics* format are related to buttons that can be found on the screen
 
 * Items surrounded by square brackets "[]" are mandatory fields, while the items in curly brackets "{}" are optional
 
-* Items in "double quotation marks" are the names of items
+* Words in "double quotation marks" are the names of items
 
 ## Quick Start
 
