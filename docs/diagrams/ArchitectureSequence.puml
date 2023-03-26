@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+title Architecture Sequence Diagram
+
+Actor User as user #crimson
+participant MoneyMind as mm #lightblue
+participant UI as ui #lightpink
+participant Parser as ps #orange
+participant Command as cmd #lightgreen
+participant Data as data #lightyellow
+participant Storage as storage #lightgrey
+
+
+user -[#crimson]> mm : event  buy lunch e/10
+activate mm #lightblue
+
+mm -[#lightblue]> ps : parseNextCommand()
+activate ps #orange
+
+ps -[#orange]> ps : createEventCommand()
+activate ps #orange
+
+
+
+
+
+@enduml

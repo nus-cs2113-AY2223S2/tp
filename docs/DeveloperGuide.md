@@ -30,6 +30,10 @@ it initializes the other components in the correct sequence and is responsible f
 * `Data`: The data classes used in the application, including Event, Category and CategoryList.
 * `Command`: The command of the application, including AddCommand, DeleteCommand, ListCommand, etc.
 
+<img src="images\ArchitectureSequence.png" width="500" />
+
+The *sequence diagram* above shows how the components interact with each other for the scenario where the user issues the command `event buy lunch e/10`.
+
 The following sections will explain the architecture in more detail.
 
 ### Storage component
