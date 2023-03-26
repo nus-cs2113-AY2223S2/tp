@@ -7,7 +7,7 @@ import commands.IncorrectCommand;
 import commands.meeting.AddMeetingCommand;
 import commands.meeting.DeleteMeetingCommand;
 import commands.meeting.ViewMeetingCommand;
-
+import commands.meeting.FindMeetingCommand;
 import commands.ExitCommand;
 import commands.HelpCommand;
 import commands.deadline.AddDeadlineCommand;
@@ -33,7 +33,8 @@ public class DinerDirectorTest {
         listOfCommands.add("view_meetings");
         listOfCommands.add("delete_meeting 1");
         listOfCommands.add("view_meeting");
-
+        listOfCommands.add("find_meeting a");
+        listOfCommands.add("find_meeting");
         for (String listOfCommand : listOfCommands) {
             Command command = new Parser().parseCommand(listOfCommand);
             if (listOfCommand.equals("view_meeting")) {
@@ -44,6 +45,10 @@ public class DinerDirectorTest {
                 assertTrue(command instanceof AddMeetingCommand);
             } else if (listOfCommand.equals("delete_meeting 1")) {
                 assertTrue(command instanceof DeleteMeetingCommand);
+            } else if(listOfCommand.equals("find_meeting a")){
+                assertTrue(command instanceof FindMeetingCommand);
+            } else if(listOfCommand.equals("find_meeting")){
+                assertTrue(command instanceof IncorrectCommand);
             }
         }
     }
