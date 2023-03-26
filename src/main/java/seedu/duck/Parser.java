@@ -45,6 +45,18 @@ public class Parser {
             } else if (line.equals("list")) {
                 // List out all the tasks added
                 Ui.list(tasks);
+            } else if (line.equals("priority_list")){
+                // Lists out all the tasks by priority
+                Ui.printPriorityList(tasks);
+            } else if (line.equals("low_priority")){
+                // Lists out all the tasks that are low in priority
+                Ui.printLowPriority(tasks);
+            } else if (line.equals("medium_priority")){
+                // Lists out all the tasks that are medium in priority
+                Ui.printMediumPriority(tasks);
+            } else if (line.equals("high_priority")){
+                // Lists out all the tasks that are high in priority
+                Ui.printHighPriority(tasks);
             } else if (line.equals("help")) {
                 // List out all the tasks added
                 Ui.help();

@@ -57,6 +57,10 @@ public class Task {
         return "No priority established.";
     }
 
+    public int returnPriority(){
+        return this.priority;
+    }
+
     public int getPriorityIndex() {
         return this.priority;
     }
