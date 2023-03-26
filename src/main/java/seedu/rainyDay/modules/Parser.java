@@ -1,15 +1,21 @@
 package seedu.rainyDay.modules;
 
 import seedu.rainyDay.RainyDay;
+
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.DeleteCommand;
+import seedu.rainyDay.command.DeleteShortcutCommand;
 import seedu.rainyDay.command.EditCommand;
 import seedu.rainyDay.command.ExportCommand;
+import seedu.rainyDay.command.ShortcutCommand;
 import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.command.FilterCommand;
 import seedu.rainyDay.command.InvalidCommand;
+import seedu.rainyDay.command.ViewShortcutCommand;
+import seedu.rainyDay.command.SetBudgetCommand;
+import seedu.rainyDay.command.IgnoreCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 
@@ -17,6 +23,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,7 +31,6 @@ import java.util.regex.Pattern;
 //@@author azriellee
 public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
-
     private String direction;
     private String description;
     private String category;
@@ -57,8 +63,31 @@ public class Parser {
                 return editStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_EXPORT)) {
                 logger.info("export command executing");
-                return generateExport();
+                return new ExportCommand();
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT)) {
+                logger.info("shortcut command executing");
+                return generateShortcut(action[1].trim());
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_SET_BUDGET)) {
+                logger.info("set budget command executing");
+                return setUserBudgetGoal(action[1].trim());
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE_SHORTCUT)) {
+                logger.info("delete_shortcut command executing");
+                return new DeleteShortcutCommand(action[1].trim());
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW_SHORTCUT)) {
+                logger.info("view_shortcut command executing");
+                return new ViewShortcutCommand();
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_IGNORE)) {
+                logger.info("ignore command executing");
+                return ignoreStatement(userInput);
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_UNIGNORE)) {
+                logger.info("ignore command executing");
+                return ignoreStatement(userInput);
             } else {
+                // check if the user has a shortcut command
+                HashMap<String, String> shortcutCommands = RainyDay.userData.getShortcutCommands();
+                if (shortcutCommands.containsKey(userInput)) {
+                    return parseUserInput(shortcutCommands.get(userInput));
+                }
                 logger.warning("unrecognised input from user!");
                 return new InvalidCommand(ErrorMessage.UNRECOGNIZED_INPUT.toString());
             }
@@ -106,8 +135,8 @@ public class Parser {
                 this.direction = matcher.group(1);
                 this.description = matcher.group(2);
                 double exactAmount = Double.parseDouble(matcher.group(3));
-                exactAmount = (int) (exactAmount*100);
-                if(exactAmount == 0) {
+                exactAmount = (int) (exactAmount * 100);
+                if (exactAmount == 0) {
                     throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
                 }
                 this.amount = exactAmount / 100;
@@ -120,8 +149,8 @@ public class Parser {
                 this.direction = matcher.group(1);
                 this.description = matcher.group(2);
                 double exactAmount = Double.parseDouble(matcher.group(3));
-                exactAmount = (int) (exactAmount*100);
-                if(exactAmount == 0) {
+                exactAmount = (int) (exactAmount * 100);
+                if (exactAmount == 0) {
                     throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
                 }
                 this.amount = exactAmount / 100;
@@ -181,7 +210,7 @@ public class Parser {
         }
         try {
             int index = Integer.parseInt(tokens[1]);
-            if (index > RainyDay.financialReport.getStatementCount()) {
+            if (index > RainyDay.userData.getFinancialReport().getStatementCount()) {
                 throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
             }
             if (index <= 0) {
@@ -191,7 +220,7 @@ public class Parser {
         } catch (Exception e) {
             logger.warning("delete index provided incorrectly");
             return new InvalidCommand(ErrorMessage.WRONG_DELETE_INDEX.toString()
-                    + RainyDay.financialReport.getStatementCount() + "!");
+                    + RainyDay.userData.getFinancialReport().getStatementCount() + "!");
         }
     }
 
@@ -250,7 +279,7 @@ public class Parser {
         try {
             int count = (int) input.chars().filter(ch -> ch == '-').count();
             if (count >= 1) {
-                return new FilterCommand(parseFilterMultipleFlags(input, count));
+                return new FilterCommand(parseFilterMultipleFlags(input));
             } else {
                 logger.warning("unrecognised input from user!");
                 return new InvalidCommand(ErrorMessage.WRONG_FILTER_FORMAT.toString());
@@ -261,11 +290,11 @@ public class Parser {
         }
     }
 
-    private ArrayList<String> parseFilterMultipleFlags(String input, int count) {
-        Pattern pattern = Pattern.compile("(?:(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*){0,1}" +
-                "(?:(-c)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*){0,1}" +
-                "(?:(-date)\\s+(\\d{2}/\\d{2}/\\d{4})\\s*){0,1}" +
-                "(?:(-in|-out))?{0,1}\\s*$");
+    private ArrayList<String> parseFilterMultipleFlags(String input) {
+        Pattern pattern = Pattern.compile("(?:(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
+                "(?:(-c)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
+                "(?:(-date)\\s+(\\d{2}/\\d{2}/\\d{4})\\s*)?" +
+                "(?:(-in|-out)\\s+)?\\s*$");
         Matcher matcher = pattern.matcher(input);
         ArrayList<String> filterFlagAndField = new ArrayList<>();
 
@@ -274,6 +303,24 @@ public class Parser {
                 if (matcher.group(i) != null) {
                     filterFlagAndField.add(matcher.group(i));
                 }
+            }
+            int sizeOfFilterFlagAndField = 0;
+            for (String s : filterFlagAndField) {
+                if (s.equals("-d")) {
+                    sizeOfFilterFlagAndField += 2;
+                } else if (s.equals("-c")) {
+                    sizeOfFilterFlagAndField += 2;
+                } else if (s.equals("-date")) {
+                    sizeOfFilterFlagAndField += 2;
+                } else if (s.equals("-in")) {
+                    sizeOfFilterFlagAndField += 1;
+                } else if (s.equals("-out")) {
+                    sizeOfFilterFlagAndField += 1;
+                }
+            }
+            if (filterFlagAndField.size() != sizeOfFilterFlagAndField) {
+                logger.warning("filter command given by user in the wrong format");
+                throw new IllegalArgumentException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
             }
             return filterFlagAndField;
         } else {
@@ -339,15 +386,19 @@ public class Parser {
             }
 
             int index = Integer.parseInt(tokens[1]);
-            if (index > RainyDay.financialReport.getStatementCount()) {
+            if (index > RainyDay.userData.getFinancialReport().getStatementCount()) {
                 throw new IllegalArgumentException();
             }
 
             if (tokens[2].contains("add")) {
+                this.category = "miscellaneous";
+                this.date = LocalDate.now();
                 tokens[2] = tokens[2].replaceFirst("add ", "");
                 String remainingInformation = returnRemainingInformation(tokens[2]);
+                logger.info("obtained mandatory information for edit ADDCOMMAND");
                 if (remainingInformation.trim().isEmpty()) {
-                    return new EditCommand(index, description, direction, amount, category);
+                    logger.info("returning new EditCommand object");
+                    return new EditCommand(index, description, direction, amount, category, date);
                 }
                 if (!remainingInformation.contains("-c ") && !remainingInformation.contains("-date ")) {
                     logger.info("returning new InvalidCommand object");
@@ -359,7 +410,8 @@ public class Parser {
                 if (remainingInformation.contains("-date ")) {
                     setDate(remainingInformation);
                 }
-                return new EditCommand(index, description, direction, amount, category);
+                logger.info("returning new EditCommand object");
+                return new EditCommand(index, description, direction, amount, category, date);
             } else if (tokens[2].contains("-date")) {
                 parseEditByDate(tokens[2]);
                 return new EditCommand(index, "-date", LocalDate.parse(field,
@@ -387,7 +439,61 @@ public class Parser {
     }
 
     //@@author KN-CY
-    public ExportCommand generateExport() {
-        return new ExportCommand();
+    private Command generateShortcut(String userInput) {
+        if (!userInput.contains(" -maps ")) {
+            return new InvalidCommand(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
+        }
+
+        String[] tokens = userInput.split(" -maps ");
+
+        // check for > 1 instance of " -maps "
+        if (tokens.length > 2) { //
+            return new InvalidCommand(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
+        }
+        String key = tokens[0];
+        String value = tokens[1];
+
+        // ensure that shortcut is a single word
+        if (key.contains(" ")) {
+            return new InvalidCommand(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
+        }
+        return new ShortcutCommand(key, value);
+    }
+
+
+    //@@author BenjaminPoh
+    private Command setUserBudgetGoal(String userInput) {
+        try {
+            double amount = Double.parseDouble(userInput);
+            amount = (int) (amount * 100);
+            amount /= 100;
+            if (amount < 0) {
+                logger.warning("set budget details provided incorrectly");
+                return new InvalidCommand(ErrorMessage.WRONG_SET_BUDGET_FORMAT.toString());
+            }
+            return new SetBudgetCommand(amount);
+        } catch (Exception e) {
+            logger.warning("set budget details provided incorrectly");
+            return new InvalidCommand(ErrorMessage.WRONG_SET_BUDGET_FORMAT.toString());
+        }
+    }
+
+    public Command ignoreStatement(String userInput) throws IllegalArgumentException {
+        try {
+            String[] tokens = userInput.split("\\s+", 2);
+            if (tokens.length < 1) {
+                logger.warning("invalid ignore command from user");
+                throw new IllegalArgumentException();
+            }
+
+            int index = Integer.parseInt(tokens[1]);
+            if (index > RainyDay.userData.getFinancialReport().getStatementCount()) {
+                throw new IllegalArgumentException();
+            }
+            return new IgnoreCommand(index, tokens[0]);
+        } catch (Exception e) {
+            logger.warning("edit index provided incorrectly");
+            return new InvalidCommand(ErrorMessage.WRONG_EDIT_FORMAT.toString());
+        }
     }
 }

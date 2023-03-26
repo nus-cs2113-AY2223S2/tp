@@ -12,6 +12,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author ChongQiRong
+
 /**
  * Represents a command that edits a statement from the financial report
  */
@@ -28,12 +29,14 @@ public class EditCommand extends Command {
     private LocalDate dateToChange;
     private LocalDate date;
 
-    public EditCommand(int index, String description, String flowDirection, double value, String category) {
+    public EditCommand(int index, String description, String flowDirection, double value, String category,
+                       LocalDate date) {
         this.index = index;
         this.description = description;
         this.flowDirection = flowDirection;
         this.value = value;
         this.category = category;
+        this.date = date;
     }
 
     public EditCommand(int index, String flag, String field) {
@@ -92,26 +95,26 @@ public class EditCommand extends Command {
 
         if (flag.isEmpty()) {
             financialReport.deleteStatement(index);
-            financialReport.addStatementAtIndex(
-                    new FinancialStatement(description, flowDirection, value, category, date), index);
-        } else if (flag.equals("-d")) {
-            financialReport.getFinancialStatement(index).setDescription(fieldToChange);
-            Storage.writeToFile(financialReport, RainyDay.filePath);
-        } else if (flag.equals("-c")) {
-            financialReport.getFinancialStatement(index).setCategory(fieldToChange);
-            Storage.writeToFile(financialReport, RainyDay.filePath);
-        } else if (flag.equals("-v")) {
-            financialReport.getFinancialStatement(index).setValue(valueToChange);
-            Storage.writeToFile(financialReport, RainyDay.filePath);
-        } else if (flag.equals("-out")) {
-            financialReport.getFinancialStatement(index).setFlowDirection(FlowDirection.OUTFLOW);
-            Storage.writeToFile(financialReport, RainyDay.filePath);
-        } else if (flag.equals("-in")) {
-            financialReport.getFinancialStatement(index).setFlowDirection(FlowDirection.INFLOW);
-            Storage.writeToFile(financialReport, RainyDay.filePath);
-        } else if (flag.equals("-date")) {
-            financialReport.getFinancialStatement(index).setDate(dateToChange);
-            Storage.writeToFile(financialReport, RainyDay.filePath);
+            FinancialStatement newStatement = new FinancialStatement(description, flowDirection, value, category, date);
+            financialReport.addStatementAtIndex(newStatement, index);
+        } else {
+            FinancialStatement editedStatement = financialReport.getFinancialStatement(index);
+            financialReport.removeFromMonthlyExpenditure(editedStatement);
+            if (flag.equals("-d")) {
+                editedStatement.setDescription(fieldToChange);
+            } else if (flag.equals("-c")) {
+                editedStatement.setCategory(fieldToChange);
+            } else if (flag.equals("-v")) {
+                editedStatement.setValue(valueToChange);
+            } else if (flag.equals("-out")) {
+                editedStatement.setFlowDirection(FlowDirection.OUTFLOW);
+            } else if (flag.equals("-in")) {
+                editedStatement.setFlowDirection(FlowDirection.INFLOW);
+            } else if (flag.equals("-date")) {
+                editedStatement.setDate(dateToChange);
+            }
+            financialReport.addToMonthlyExpenditure(editedStatement);
+            Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         }
 
         String output = "Done, edited entry " + (index + 1)

@@ -5,13 +5,16 @@ import seedu.rainyDay.modules.Storage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class FinancialReport  {
+public class FinancialReport {
     private final ArrayList<FinancialStatement> financialReport;
+    private final HashMap<Integer, Double> monthlyExpenditures;
     private String reportOwner;
 
-    public FinancialReport(ArrayList<FinancialStatement> financialReport) {
+    public FinancialReport(ArrayList<FinancialStatement> financialReport, HashMap<Integer, Double> monthlyOutflow) {
         this.financialReport = financialReport;
+        this.monthlyExpenditures = monthlyOutflow;
     }
 
     public String getReportOwner() {
@@ -23,7 +26,7 @@ public class FinancialReport  {
 
     public void setReportOwner(String name) {
         this.reportOwner = name;
-        Storage.writeToFile(this, RainyDay.filePath);
+        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public int getStatementCount() {
@@ -32,37 +35,32 @@ public class FinancialReport  {
 
     public void addStatement(FinancialStatement statement) {
         financialReport.add(statement);
-        Storage.writeToFile(this, RainyDay.filePath);
+        addToMonthlyExpenditure(statement);
+        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public void addStatementAtIndex(FinancialStatement statement, int index) {
         financialReport.add(index, statement);
-        Storage.writeToFile(this, RainyDay.filePath);
+        addToMonthlyExpenditure(statement);
+        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
-    public void deleteStatement(int statementNumber) {
+    public FinancialStatement deleteStatement(int statementNumber) {
+        FinancialStatement oldStatement = financialReport.get(statementNumber);
         financialReport.remove(financialReport.get(statementNumber));
-        Storage.writeToFile(this, RainyDay.filePath);
+        removeFromMonthlyExpenditure(oldStatement);
+        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
+        return oldStatement;
     }
 
     public String getFullStatement(int statementNumber) {
         return financialReport.get(statementNumber).getStatementForList();
     }
 
-    public String getStatementDirection(int statementNumber) {
-        return financialReport.get(statementNumber).getFlowDirectionWord();
-    }
-
-    public double getStatementValue(int statementNumber) {
-        return financialReport.get(statementNumber).getValue();
-    }
-
-    public String getStatementFlowSymbol(int statementNumber) {
-        return financialReport.get(statementNumber).getFlowSymbol();
-    }
-
-    public String getStatementDescription(int statementNumber) {
-        return financialReport.get(statementNumber).getDescription();
+    public double getMonthlyExpenditure(FinancialStatement currentStatement) {
+        int monthAndYear = currentStatement.getMonthAndYear();
+        assert (monthlyExpenditures.containsKey(monthAndYear));
+        return monthlyExpenditures.get(monthAndYear);
     }
 
     public void clearReport() {
@@ -79,5 +77,26 @@ public class FinancialReport  {
 
     public LocalDate getStatementDate(int statementNumber) {
         return financialReport.get(statementNumber).getDate();
+    }
+
+    public void addToMonthlyExpenditure(FinancialStatement statement) {
+        int monthAndYear = statement.getMonthAndYear();
+        if (!monthlyExpenditures.containsKey(monthAndYear)) {
+            monthlyExpenditures.put(monthAndYear, 0.0);
+        }
+        double currentExpenditure = monthlyExpenditures.get(monthAndYear);
+        if (statement.getFlowDirectionWord().equals("out")) {
+            currentExpenditure += statement.getValue();
+            monthlyExpenditures.put(monthAndYear, currentExpenditure);
+        }
+    }
+
+    public void removeFromMonthlyExpenditure(FinancialStatement statement) {
+        int monthAndYear = statement.getMonthAndYear();
+        double currentExpenditure = monthlyExpenditures.get(monthAndYear);
+        if (statement.getFlowDirectionWord().equals("out")) {
+            currentExpenditure -= statement.getValue();
+            monthlyExpenditures.put(monthAndYear, currentExpenditure);
+        }
     }
 }

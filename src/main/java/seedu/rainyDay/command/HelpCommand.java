@@ -12,14 +12,17 @@ public class HelpCommand extends Command {
             "|Delete entry     |delete  |[index]                                                                  |\n" +
             "|View entries     |view    |{time} {-sort}                                                           |\n" +
             "|Filter entries   |filter  |{-in} {-out} {-d description} {-c category} {-date date}                 |\n" +
-            "|Edit an entry    |edit    |[index] {-in/ -out/ -d description/ -v $value/ -c category/ -date date}  |\n" +
+            "|Edit an entry    |edit    |[index] [-in/ -out/ -d description/ -v $value/ -c category/ -date date]  |\n" +
             "|                 |        |[index] [valid add command]                                              |\n" +
+            "|Shortcuts        |shortcut|[SHORTCUTNAME -maps ACTUALCOMMAND]                                       |\n" +
+            "|Ignore entry     |ignore  |[index]                                                                  |\n" +
+            "|Unignore entry   |unignore|[index]                                                                  |\n" +
             "|Export to .csv   |export  |                                                                         |\n" +
             "|Display a guide  |help    |{command}                                                                |\n" +
             "+=====+==============================================================================================+\n" +
             "|[] :  Denotes compulsory fields. Relevant details / flags must be included.                         |\n" +
             "|{} :  Denotes optional fields. Can be ignored                                                       |\n" +
-            "|For more information on any command: type   < help {command} >   as shown above                     |\n" +
+            "|For more information on any command: type   < help {command} >   as shown above (e.g. help add)     |\n" +
             "+====================================================================================================+\n";
 
     private static final String HELP_ADD_COMMAND = "" +
@@ -117,7 +120,7 @@ public class HelpCommand extends Command {
             "| -c <category> | Optional    | Used to change the category of an entry                              |\n" +
             "| -date <Date>  | Optional    | Used to change the date of an entry                                  |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
-            "| Note: Only 1 Optional flag is allowed. For multiple edits to the same entry, use ????              |\n" +
+            "| Note: Only 1 Optional flag is allowed. For multiple edits to the same entry, refer below           |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
@@ -137,8 +140,35 @@ public class HelpCommand extends Command {
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| export                      | Creates a CSV file with all entries                                  |\n" +
             "+====================================================================================================+\n";
-    private static final String HELP_HELP_COMMAND = "You funny guy. I like you.";
+    private static final String HELP_SET_BUDGET_COMMAND = "" +
+            "+====================================================================================================+\n" +
+            "| Set budget command          | Used to set the user's Monthly Budget Goal                           |\n" +
+            "+====================================================================================================+\n" +
+            "| Details    | Requirement    | Description                                                          |\n" +
+            "+------------+----------------+----------------------------------------------------------------------+\n" +
+            "| value      | Mandatory      | Used to specify the user's Monthly Budget Goal, up to 2dp            |\n" +
+            "+====================================================================================================+\n" +
+            "| Example Usage               | Description                                                          |\n" +
+            "+-----------------------------+----------------------------------------------------------------------+\n" +
+            "| budgetset 44.5              | Sets the user's Budget Goal to be $44.50                             |\n" +
+            "| budgetset 0                 | Remove the user's Budget Goal                                        |\n" +
+            "+====================================================================================================+\n";
 
+    private static final String HELP_HELP_COMMAND = "You funny guy. I like you.";
+    private static final String HELP_SHORTCUT_COMMAND = "{TODO}";
+    private static final String HELP_IGNORE_COMMAND = "" +
+            "+====================================================================================================+\n" +
+            "| Ignore/Unignore command     | Used to ignore the calculation of an existing entry from RainyDay    |\n" +
+            "+====================================================================================================+\n" +
+            "| Details    | Requirement    | Description                                                          |\n" +
+            "+------------+----------------+----------------------------------------------------------------------+\n" +
+            "| index      | Mandatory      | Entry at the given index will be ignored when calculating overview   |\n" +
+            "+====================================================================================================+\n" +
+            "| Example Usage               | Description                                                          |\n" +
+            "+-----------------------------+----------------------------------------------------------------------+\n" +
+            "| ignore 7                    | Ignores the 7th entry from the list                                  |\n" +
+            "| unignore 7                  | Unignores the 7th entry from the list                                |\n" +
+            "+====================================================================================================+\n";
     private final String description;
 
     public HelpCommand (String description) {
@@ -178,6 +208,15 @@ public class HelpCommand extends Command {
         }
         if(description.equals("export")) {
             return new CommandResult(HELP_EXPORT_COMMAND);
+        }
+        if(description.equals("setbudget")) {
+            return new CommandResult(HELP_SET_BUDGET_COMMAND);
+        }
+        if(description.equals("shortcut")) {
+            return new CommandResult(HELP_SHORTCUT_COMMAND);
+        }
+        if(description.equals("ignore") || description.equalsIgnoreCase("unignore")) {
+            return new CommandResult(HELP_IGNORE_COMMAND);
         }
         return new CommandResult(HELP_COMMAND);
     }

@@ -2,6 +2,7 @@ package seedu.rainyDay;
 
 import com.google.gson.JsonParseException;
 import seedu.rainyDay.command.CommandResult;
+import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 import seedu.rainyDay.command.Command;
@@ -10,6 +11,7 @@ import seedu.rainyDay.modules.Parser;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -17,20 +19,24 @@ import java.util.logging.Logger;
 
 public class RainyDay {
     public static String filePath = "./data/rainyDay.json";
-    public static FinancialReport financialReport = new FinancialReport(new ArrayList<>());
+    public static UserData userData;
+
     private static Logger logger = Logger.getLogger(RainyDay.class.getName());
+
     private final Ui ui;
 
     private RainyDay(String filePath) {
         ui = new Ui();
         try {
-            financialReport = Storage.loadFromFile(filePath);
+            userData = Storage.loadFromFile(filePath);
             logger.log(Level.INFO, "File loaded successfully.");
         } catch (FileNotFoundException | JsonParseException e) {
             logger.log(Level.INFO, "No valid save file detected. Starting with empty financial data.");
             ui.noFileExist();
             String username = ui.readUserName();
             assert username != null : "Inputted username should not be null";
+            FinancialReport financialReport = new FinancialReport(new ArrayList<>(), new HashMap<>());
+            userData = new UserData(financialReport);
             financialReport.setReportOwner(username);
         }
     }
@@ -38,12 +44,12 @@ public class RainyDay {
     private void run() {
         showStartingMessage();
         runCommand();
-        ui.sayFarewellToUser(financialReport.getReportOwner());
+        ui.sayFarewellToUser(userData.getFinancialReport().getReportOwner());
     }
 
     private void showStartingMessage() {
         ui.printLogo();
-        ui.greetUser(financialReport.getReportOwner());
+        ui.greetUser(userData.getFinancialReport().getReportOwner());
     }
 
     private void runCommand() {
@@ -63,9 +69,9 @@ public class RainyDay {
     }
 
     private void executeCommand(Command command) {
-        command.setData(financialReport);
+        command.setData(userData.getFinancialReport());
         CommandResult result = command.execute();
-        if(result != null) {
+        if (result != null) {
             result.printResult();
         }
     }
@@ -86,5 +92,7 @@ public class RainyDay {
         logger.log(Level.INFO, "Starting RainyDay");
         new RainyDay(filePath).run();
         logger.log(Level.INFO, "Quitting RainyDay");
+        // System.out.println(userData.getShortcutCommands()); // just to see what shortcuts u have alr saved, will make
+        // into a proper command later.
     }
 }

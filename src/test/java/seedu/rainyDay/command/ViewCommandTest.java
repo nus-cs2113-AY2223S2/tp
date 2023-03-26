@@ -6,13 +6,15 @@ import seedu.rainyDay.data.FinancialStatement;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ViewCommandTest {
 
     ArrayList<FinancialStatement> statements = new ArrayList<>();
-    FinancialReport financialReport = new FinancialReport(statements);
+    HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
+    FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
 
     @Test
     public void execute_emptyReport_emptyReportStatement() {

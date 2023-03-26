@@ -5,10 +5,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
+import seedu.rainyDay.data.UserData;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -18,26 +21,29 @@ public class StorageTest {
     @Test
     public void writeToFileTest_fileExists() {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
-        FinancialReport financialReport = new FinancialReport(statements);
+        HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
+        FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
         String filePath = "rainyDay.txt";
-        Storage.writeToFile(financialReport, filePath);
+        UserData userData = new UserData(financialReport);
+        Storage.writeToFile(userData, filePath);
         Assertions.assertTrue(new File(filePath).exists());
     }
 
     @Test
-    public void writeToFileTest_contentMatch() throws IOException, ClassNotFoundException {
+    public void writeToFileTest_contentMatch() throws IOException {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
-        FinancialReport financialReport = new FinancialReport(statements);
+        HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
+        FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
         financialReport.addStatement(
-                new FinancialStatement("noodles", "in", 5, "Default", null));
+                new FinancialStatement("noodles", "in", 5, "Default", LocalDate.now()));
         String filePath = "rainyDay.txt";
-        Storage.writeToFile(financialReport, filePath);
-        FinancialReport financialReportLoaded = Storage.loadFromFile(filePath);
-        //ViewCommand viewList = new ViewCommand();
-        //viewList.setData(financialReportLoaded);
-        //viewList.execute();
-        assertEquals(financialReport.getFullStatement(0),
-                financialReportLoaded.getFullStatement(0));
+
+        UserData userData = new UserData(financialReport);
+        Storage.writeToFile(userData, filePath);
+        UserData userDataLoaded = Storage.loadFromFile(filePath);
+
+        assertEquals(userData.getFinancialReport().getFullStatement(0),
+                userDataLoaded.getFinancialReport().getFullStatement(0));
     }
 
     @Test

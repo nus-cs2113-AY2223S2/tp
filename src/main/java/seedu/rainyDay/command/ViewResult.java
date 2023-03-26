@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import static seedu.rainyDay.RainyDay.financialReport;
+import static seedu.rainyDay.RainyDay.userData;
 
 //@@author BenjaminPoh
 public class ViewResult {
@@ -43,7 +43,7 @@ public class ViewResult {
     /**
      * Used to format the information shown to the user such that it fits the table.
      *
-     * @param statementIndex 1-based indexing to be shown to the user
+     * @param statementIndex   1-based indexing to be shown to the user
      * @param currentStatement the FinancialStatement
      * @return A formatted string
      */
@@ -54,6 +54,7 @@ public class ViewResult {
         String statementCategory = currentStatement.getCategory();
         String statementDirection = currentStatement.getFlowSymbol();
         String date;
+        String description;
         if (currentStatement.getDate() == null) {
             date = "no date   ";
         } else {
@@ -63,21 +64,26 @@ public class ViewResult {
         index = index.substring(index.length() - 5);
         String value = String.format(" %s$%.2f            ", statementDirection, statementValue);
         value = value.substring(0, 12);
-        String name = String.format("%s                                             ", statementName);
-        name = name.substring(0, 45);
+        String desc;
+        if (currentStatement.isIgnored()) {
+            desc = String.format("%s (I)                                          ", statementName);
+        } else {
+            desc = String.format("%s                                              ", statementName);
+        }
+        description = desc.substring(0, 45);
         String category = String.format("%s                     ", statementCategory);
         category = category.substring(0, 21);
-        statementOutput = "|" + index + "|" + name + "|" + value + "|" + category + "|" + date + "|"
+        statementOutput = "|" + index + "|" + description + "|" + value + "|" + category + "|" + date + "|"
                 + System.lineSeparator();
         return statementOutput;
     }
 
     private static String formatSummary(double inflow, double outflow) {
         assert (inflow != 0 || outflow != 0);
-        String inflowInformation = String.format("|Inflow: $%.2f", inflow);
-        String outflowInformation = String.format("|Outflow: $%.2f", outflow);
+        String inflowInformation = String.format("|Total Inflow: $%.2f", inflow);
+        String outflowInformation = String.format("|Total Outflow: $%.2f", outflow);
 
-        String remainingValueInformation = String.format("|Remaining value: $%.2f", (inflow - outflow));
+        String remainingValueInformation = String.format("|Remaining value: $%.2f\n", (inflow - outflow));
         return String.join(System.lineSeparator(), inflowInformation, outflowInformation,
                 remainingValueInformation);
     }
@@ -97,7 +103,7 @@ public class ViewResult {
 
         for (int index : indexArray) {
             logger.log(Level.INFO, "starting statement " + index);
-            FinancialStatement currentStatement = financialReport.getFinancialStatement(index - 1);
+            FinancialStatement currentStatement = userData.getFinancialReport().getFinancialStatement(index - 1);
             output = formatFinancialStatement(index, currentStatement);
 
             System.out.print(output);
@@ -121,12 +127,12 @@ public class ViewResult {
         System.out.print(TABLE_BORDER);
         System.out.print(ACKNOWLEDGE_VIEW_COMMAND);
         System.out.print(TABLE_FORMAT);
-        for (Integer index: validIndexes) {
+        for (Integer index : validIndexes) {
             logger.log(Level.INFO, "starting statement " + index);
-            FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
-            if (currentStatement.getFlowDirectionWord().equals("in")) {
+            FinancialStatement currentStatement = userData.getFinancialReport().getFinancialStatement(index);
+            if (currentStatement.getFlowDirectionWord().equals("in") && !currentStatement.isIgnored()) {
                 totalInflow += currentStatement.getValue();
-            } else {
+            } else if (currentStatement.getFlowDirectionWord().equals("out") && !currentStatement.isIgnored()) {
                 totalOutflow += currentStatement.getValue();
             }
             String formattedOutput = formatFinancialStatement(index + 1, currentStatement);

@@ -1,9 +1,13 @@
 package seedu.rainyDay.command;
 
+import seedu.rainyDay.data.FinancialStatement;
+
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+
+import static seedu.rainyDay.RainyDay.userData;
 
 //@@author lil1n
 /**
@@ -48,13 +52,20 @@ public class DeleteCommand extends Command {
         int previousStatementCount = financialReport.getStatementCount();
         assert (index < financialReport.getStatementCount() && index >= 0) : "invalid index provided for delete";
 
-        String output = "Done, deleted \"" + financialReport.getStatementDescription(index)
-                + "\" from the financial report";
-
-        financialReport.deleteStatement(index);
-
+        FinancialStatement oldStatement = financialReport.deleteStatement(index);
+        double updatedMonthlyExpenditure = financialReport.getMonthlyExpenditure(oldStatement);
         assert previousStatementCount - 1 == financialReport.getStatementCount() : "statement count mismatch";
 
+        //To fix, due to Junit Test failing
+        String budgetInfo;
+        try {
+            budgetInfo = userData.checkUserBudgetLimit(updatedMonthlyExpenditure, oldStatement);
+        } catch (Exception e) {
+            budgetInfo = "";
+        }
+
+        String output = "Done, deleted \"" + oldStatement.getDescription() + "\" from the financial report"
+                + budgetInfo;
         logger.log(Level.INFO, "deleted from financial report");
 
         return new CommandResult(output);

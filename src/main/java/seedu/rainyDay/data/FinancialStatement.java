@@ -2,20 +2,17 @@ package seedu.rainyDay.data;
 
 import java.time.LocalDate;
 
-public class FinancialStatement   {
+public class FinancialStatement {
     private static final String INFLOW_WORD = "in";
     private static final String OUTFLOW_WORD = "out";
     private static final String INFLOW_SYMBOL = "+";
     private static final String OUTFLOW_SYMBOL = "-";
-
     public String description;
     public FlowDirection flowDirection;
     public double value;
     public String category;
-
-
-
-    public LocalDate date = null;
+    public LocalDate date;
+    private boolean isIgnored;
 
     public FinancialStatement(String description, String flowDirection, double value, String category, LocalDate date) {
         this.description = description;
@@ -26,9 +23,8 @@ public class FinancialStatement   {
         }
         this.value = value;
         this.category = category;
-        if (date != null) {
-            this.date = date;
-        }
+        this.date = date;
+        this.isIgnored = false;
     }
 
     public String getCategory() {
@@ -83,6 +79,10 @@ public class FinancialStatement   {
         return this.date;
     }
 
+    public int getMonthAndYear() {
+        return date.getYear() * 12 + date.getMonthValue();
+    }
+
     public void setDate(LocalDate date) {
         this.date = date;
     }
@@ -94,5 +94,13 @@ public class FinancialStatement   {
 
     public String getStatementForList() {
         return String.format("%s %s$%.2f (%s)", getDescription(), getFlowSymbol(), getValue(), getFlowDirectionWord());
+    }
+
+    public boolean isIgnored() {
+        return this.isIgnored;
+    }
+
+    public void setIgnore(boolean ignoreStatus) {
+        this.isIgnored = ignoreStatus;
     }
 }

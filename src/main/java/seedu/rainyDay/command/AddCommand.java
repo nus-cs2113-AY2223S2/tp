@@ -8,8 +8,9 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-//@@author lil1n
+import static seedu.rainyDay.RainyDay.userData;
 
+//@@author lil1n
 /**
  * Represents a command that add statement to the financial report
  */
@@ -17,13 +18,9 @@ public class AddCommand extends Command {
     private static final Logger logger = Logger.getLogger(AddCommand.class.getName());
 
     private final String description;
-
     private final String flowDirection;
-
     private final double value;
-
     private final String category;
-
     private final LocalDate date;
 
     public AddCommand(String description, String flowDirection, double value, String category, LocalDate date) {
@@ -59,15 +56,24 @@ public class AddCommand extends Command {
         logger.log(Level.INFO, "starting AddCommand.execute()");
 
         int totalStatementCount = financialReport.getStatementCount();
-
-        financialReport.addStatement(new FinancialStatement(description, flowDirection, value, category, date));
+        FinancialStatement newStatement = new FinancialStatement(description, flowDirection, value, category, date);
+        financialReport.addStatement(newStatement);
+        double updatedMonthlyExpenditure = financialReport.getMonthlyExpenditure(newStatement);
 
         assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";
 
-        String output = "Done! Added: " + financialReport.getFinancialStatement(totalStatementCount).getFullStatement();
+        //To fix, due to Junit Test failing
+        String budgetInfo;
+        try {
+            budgetInfo = userData.checkUserBudgetLimit(updatedMonthlyExpenditure, newStatement);
+        } catch (Exception e) {
+            budgetInfo = "";
+        }
+
+        String output = "Done! Added: " + financialReport.getFinancialStatement(totalStatementCount).getFullStatement()
+                + budgetInfo;
 
         logger.log(Level.INFO, " end of AddCommand.execute()");
-
         return new CommandResult(output);
     }
 }
