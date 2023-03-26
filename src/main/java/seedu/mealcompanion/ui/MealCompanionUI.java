@@ -45,53 +45,53 @@ public class MealCompanionUI {
 
     public void printHelpMessages() {
         printHelpMessageHeader();
-        PrintIngredientHelp();
-        PrintRecipeHelp();
+        printIngredientHelp();
+        printRecipeHelp();
         printByeCommandHelp();
     }
 
-    private static void PrintIngredientHelp() {
+    private static void printIngredientHelp() {
         printAddCommandHelp();
         printRemoveCommandHelp();
-        PrintMakeCommandHelp();
-        PrintClearCommandHelp();
+        printMakeCommandHelp();
+        printClearCommandHelp();
         printListIngredientsHelp();
         printSearchIngredientsHelp();
     }
 
-    private static void PrintRecipeHelp() {
+    private static void printRecipeHelp() {
         printRecipePossibleHelp();
         printRecipeAllHelp();
-        PrintRecipeRandomHelp();
-        PrintRecipeDetailHelp();
-        PrintRecipeNeedHelp();
+        printRecipeRandomHelp();
+        printRecipeDetailHelp();
+        printRecipeNeedHelp();
     }
 
-    private static void PrintRecipeNeedHelp() {
+    private static void printRecipeNeedHelp() {
         System.out.println("Command: recipe detail <recipe name>");
         System.out.println("Prints all the missing ingredients needed to make a specified recipe");
         System.out.println(DIVIDER);
     }
 
-    private static void PrintRecipeDetailHelp() {
+    private static void printRecipeDetailHelp() {
         System.out.println("Command: recipe detail <recipe index/name>");
         System.out.println("Prints all the details of the specified recipe");
         System.out.println(DIVIDER);
     }
 
-    private static void PrintRecipeRandomHelp() {
+    private static void printRecipeRandomHelp() {
         System.out.println("Command: recipe random");
         System.out.println("Prints a random recipe from the list of all recipes");
         System.out.println(DIVIDER);
     }
 
-    private static void PrintMakeCommandHelp() {
+    private static void printMakeCommandHelp() {
         System.out.println("Command: make <recipe name>");
         System.out.println("Removes all the ingredients needed to make a specified recipe from inventory");
         System.out.println(DIVIDER);
     }
 
-    private static void PrintClearCommandHelp() {
+    private static void printClearCommandHelp() {
         System.out.println("Command: clear");
         System.out.println("Clears all the ingredient in the inventory");
         System.out.println(DIVIDER);
