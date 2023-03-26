@@ -3,7 +3,18 @@ package seedu.duke.utils;
 import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.types.Types;
-import seedu.duke.utils.parsers.*;
+import seedu.duke.utils.parsers.AddParser;
+import seedu.duke.utils.parsers.AlertParser;
+import seedu.duke.utils.parsers.AutoSaveParser;
+import seedu.duke.utils.parsers.EditParser;
+import seedu.duke.utils.parsers.FilterParser;
+import seedu.duke.utils.parsers.HelpParser;
+import seedu.duke.utils.parsers.HistoryParser;
+import seedu.duke.utils.parsers.ListParser;
+import seedu.duke.utils.parsers.RemoveParser;
+import seedu.duke.utils.parsers.SearchParser;
+import seedu.duke.utils.parsers.RestockParser;
+import seedu.duke.utils.parsers.SellParser;
 
 import java.util.Scanner;
 
