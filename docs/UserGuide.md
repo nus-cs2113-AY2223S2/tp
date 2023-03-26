@@ -238,7 +238,7 @@ subsequently after requesting to view the transactions will be as such: <br>
 To ease your time searching through all the entries in the financial report, the "filter" function of rainyDay
 will help you extract certain transactions based on a specific criteria
 
-Format : `filter FLAG FIELD`
+Format : `filter [FLAG] {FIELD}`
 
 * The `FLAG` must be one of the following:
     * `-d` to filter by description
@@ -278,7 +278,7 @@ Suppose you want to check your outflows only, you can use this command:
 Should you need to update details in a previous transaction, rainyDay's "edit" function supports changing the details of
 a past transaction
 
-Format : `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG`
+Format : `edit [INDEX] [ADDCOMMAND]` or `edit [INDEX] [FLAG] {NEWFIELD}`
 
 * The `FLAG` must be one of the following:
     * `-d` to edit the description
@@ -330,10 +330,10 @@ If at any point of time you would like to remove this feature, simply set the go
 
 ### Adding a shortcut
 
-If you happen to have certain commands that you find yourself frequently using, rainyDay's shortcuts can make it much easier 
-to execute those commands!
+If you happen to have certain commands that you find yourself frequently using, rainyDay's shortcuts can make it much
+easier to execute those commands!
 
-Format: `shortcut SHORTCUTNAME -maps ACTUALCOMMAND`
+Format: `shortcut [SHORTCUTNAME] -maps [ACTUALCOMMAND]`
 
 * `SHORTCUTNAME` can be any single word of your choice to save a reference to the actual command
 * `ACTUALCOMMAND` is the actual command which you want your shortcut to perform
@@ -343,25 +343,24 @@ Example of usage:
 You often eat the same noodle dish from your favourite coffee shop. To save yourself the trouble of typing the same
 command in full everytime, you could configure the shortcut as follows.
 
-`shortcut FavouriteLunch -maps add -out noodles $4 -c food`
+`shortcut FavLunch -maps add -out noodles $4 -c food`
 
 ### Using a shortcut
 
-After you have configuring your shortcuts, you would like to use the shortcut to save yourself the trouble of typing the full command.
-This can be done by providing an input according to the following format:
+After you have configuring your shortcuts, you would like to use the shortcut to save yourself the trouble of typing the
+full command. This can be done by providing an input according to the following format:
 
-Format: `SHORTCUTNAME`
+Format: `[SHORTCUTNAME]`
 
 Example of Usage:
 
 You have configured the shortcut according to the example in the [adding a shortcut](#adding-a-shortcut) section. Now
 all you have to do is input the name of the shortcut as follows.
 
-`FavouriteLunch`
+`FavLunch`
 
 Using the shortcut will allow you to add the same entry for noodles with a shorter command!
-
-![shortcutusage.png](shortcutusage.png)
+![shortcutusage](shortcutusage.png)
 
 ### Viewing a shortcut
 
@@ -378,10 +377,11 @@ The output will look something like this:
 
 ### Deleting a shortcut
 
-At some point, you may discover that the shortcut you configured is no longer useful, or you may have misconfigured a 
-previously added shortcut. In such a situation, the delete_shortcut command provided by rainyDay can prove to be quite handy.
+At some point, you may discover that the shortcut you configured is no longer useful, or you may have misconfigured a
+previously added shortcut. In such a situation, the delete_shortcut command provided by rainyDay can prove to be quite
+handy.
 
-Format: `delete_shortcut SHORTCUTCOMMAND`
+Format: `delete_shortcut [SHORTCUTCOMMAND]`
 
 * `SHORTCUTCOMMAND` The shortcut command that you want deleted
 
@@ -392,12 +392,13 @@ Unfortunately, your favourite coffee shop has closed down, and you are no longer
 dish. Now the shortcut you previously configured is no longer useful. All you have to do is delete the shortcut as
 follows:
 
-`delete_shortcut myshortcut`
+`delete_shortcut FavLunch`
 
 ### Ignoring an entry
 
-Due to potential certain one-time payments or receivables that you encounter, rainyDay's ignore function can help you 
-keep a more accurate track of your finances by allowing you to ignore certain transactions from the overall calculation of your inflow and outflow.
+Due to potential certain one-time payments or receivables that you encounter, rainyDay's ignore function can help you
+keep a more accurate track of your finances by allowing you to ignore certain transactions from the overall calculation
+of your inflow and outflow.
 Conversely, the unignore function is to include a transaction that was previously ignored.
 
 Format: `ignore [index]` or `unignore [index]`
@@ -406,8 +407,8 @@ Format: `ignore [index]` or `unignore [index]`
 
 Example of Usage:
 
-You have received a one-time payment from government GST refunds. You would like to keep track of it however do not want to
-include it in your budget calculations.  After executing the add command, input view to find its index.
+You have received a one-time payment from government GST refunds. You would like to keep track of it however do not want
+to include it in your budget calculations. After executing the add command, input view to find its index.
 ![ignore_view.png](ignore_view.png)
 
 You can then execute the following command to ignore the entry:
@@ -458,7 +459,8 @@ been configured in step 3 of the [Quick Start section](#quick-start). The CSV fi
 
 ### Exiting the application
 
-After you have completed updating your transactions and would like to close the application, input the following command:
+After you have completed updating your transactions and would like to close the application, input the following
+command:
 
 Format: `bye`
 
@@ -507,7 +509,7 @@ Command Line Interface
 CSV
 
 - Stands for Comma Separated Value, a type of file format that can be imported to other statistical software such as
-  Microsoft Excel or R Commander.
+  Microsoft Excel, R Commander or Google Sheets.
 
 Filter
 
