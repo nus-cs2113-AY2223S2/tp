@@ -213,9 +213,12 @@ public class DinerDirectorTest {
         listOfCommands.add(TEST_CASE_OUT_OF_BOUNDS_INDEX);
         listOfCommands.add(TEST_CASE_VALID_INDEX);
 
+
         for (String listOfCommand : listOfCommands) {
             Command deleteCommand = new Parser().parseCommand(listOfCommand);
-            if (listOfCommand.equals(TEST_CASE_NO_INDEX)) {
+            if (listOfCommand.equals(dishSetup)) {
+                assertTrue(deleteCommand instanceof AddDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_NO_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_DECIMAL_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
@@ -224,6 +227,8 @@ public class DinerDirectorTest {
             } else if (listOfCommand.equals(TEST_CASE_ZERO_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_OUT_OF_BOUNDS_INDEX)) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals((TEST_CASE_VALID_INDEX))) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             }
         }
