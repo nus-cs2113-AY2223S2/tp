@@ -1,10 +1,6 @@
 package seedu.rainyDay.modules;
 
-import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.data.FinancialStatement;
-
 import java.io.InputStream;
-import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
