@@ -14,11 +14,8 @@ import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.command.FilterCommand;
 import seedu.rainyDay.command.InvalidCommand;
 import seedu.rainyDay.command.ViewShortcutCommand;
-<<<<<<< HEAD
 import seedu.rainyDay.command.SetBudgetCommand;
-=======
 import seedu.rainyDay.command.IgnoreCommand;
->>>>>>> master
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 
@@ -463,13 +460,13 @@ public class Parser {
         return new ShortcutCommand(key, value);
     }
 
-<<<<<<< HEAD
+
     //@@author BenjaminPoh
     private Command setUserBudgetGoal(String userInput) {
         try {
             double amount = Double.parseDouble(userInput);
             amount = (int) (amount * 100);
-            amount /= 100 ;
+            amount /= 100;
             if (amount < 0) {
                 logger.warning("set budget details provided incorrectly");
                 return new InvalidCommand(ErrorMessage.WRONG_SET_BUDGET_FORMAT.toString());
@@ -478,7 +475,9 @@ public class Parser {
         } catch (Exception e) {
             logger.warning("set budget details provided incorrectly");
             return new InvalidCommand(ErrorMessage.WRONG_SET_BUDGET_FORMAT.toString());
-=======
+        }
+    }
+
     public Command ignoreStatement(String userInput) throws IllegalArgumentException {
         try {
             String[] tokens = userInput.split("\\s+", 2);
@@ -495,7 +494,6 @@ public class Parser {
         } catch (Exception e) {
             logger.warning("edit index provided incorrectly");
             return new InvalidCommand(ErrorMessage.WRONG_EDIT_FORMAT.toString());
->>>>>>> master
         }
     }
 }

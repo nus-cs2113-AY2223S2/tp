@@ -209,16 +209,14 @@ public class HelpCommand extends Command {
         if(description.equals("export")) {
             return new CommandResult(HELP_EXPORT_COMMAND);
         }
-<<<<<<< HEAD
         if(description.equals("setbudget")) {
             return new CommandResult(HELP_SET_BUDGET_COMMAND);
-=======
+        }
         if(description.equals("shortcut")) {
             return new CommandResult(HELP_SHORTCUT_COMMAND);
         }
         if(description.equals("ignore") || description.equalsIgnoreCase("unignore")) {
-            return new CommandResult(HELP_SHORTCUT_COMMAND);
->>>>>>> master
+            return new CommandResult(HELP_IGNORE_COMMAND);
         }
         return new CommandResult(HELP_COMMAND);
     }

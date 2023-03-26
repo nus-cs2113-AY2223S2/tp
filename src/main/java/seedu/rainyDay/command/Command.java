@@ -21,12 +21,8 @@ public abstract class Command {
     public static final String COMMAND_SET_BUDGET = "setbudget";
     public static final String COMMAND_DELETE_SHORTCUT = "delete_shortcut";
     public static final String COMMAND_VIEW_SHORTCUT = "view_shortcut";
-<<<<<<< HEAD
-=======
     public static final String COMMAND_IGNORE = "ignore";
     public static final String COMMAND_UNIGNORE = "unignore";
-
->>>>>>> master
 
     protected FinancialReport financialReport;
 

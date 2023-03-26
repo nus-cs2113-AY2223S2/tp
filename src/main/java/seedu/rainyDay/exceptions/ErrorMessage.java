@@ -20,15 +20,11 @@ public enum ErrorMessage {
             "edit [index] {-in/ -out/ -d description/ -v $value/ -c category/ -date date\n" +
             "Please refer to 'help' for more information!"),
     MISSING_DETAILS("Please include some details for your command!"),
-<<<<<<< HEAD
-    WRONG_SHORTCUT_FORMAT("Wrong format for shortcut"),
-    WRONG_SET_BUDGET_FORMAT("Wrong format to set budget goal!");
-
-=======
+    WRONG_SET_BUDGET_FORMAT("Wrong format to set budget goal!"),
     WRONG_SHORTCUT_FORMAT("Sorry, your shortcut command is invalid. Shortcut format is as follows: \n" +
             "shortcut [SHORTCUTNAME -maps ACTUALCOMMAND] \n" +
             "Please refer to 'help' for more information!");
->>>>>>> master
+
 
     private final String error;
 
