@@ -51,7 +51,7 @@ public class CommandAdd extends Command {
                 Expense addedExpense = new Expense(currency.roundInput((parsedInput[ParserAdd.AMOUNT_INDEX])),
                         date, parsedInput[ParserAdd.CATEGORY_INDEX],
                         Currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]),
-                        Currency.getExchangeRate(exchangeRateDate,
+                        Currency.getExchangeRate(LocalDate.parse(exchangeRateDate),
                                 currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX])));
                 expenseList.add(addedExpense);
                 return new CommandRes(SUCCESSFUL_ADD, addedExpense,

@@ -3,7 +3,6 @@ package data;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.threeten.extra.Temporals;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,10 +18,14 @@ import java.util.HashMap;
 
 public class Currency implements Serializable {
 
-    protected static HashMap<String, String> currencies =  new HashMap<>();
+    protected static HashMap<String, String> currencies = new HashMap<>();
+    protected static HashMap<String, BigDecimal> offlineExchangeRate = new HashMap<>();
+
     public Currency() {
+        generateOfflineRates();
         getCurrencyAvailable(currencies);
     }
+
     public static HashMap<String, String> getCurrencies() {
         return currencies;
     }
@@ -36,7 +39,6 @@ public class Currency implements Serializable {
      */
     public static String convertCurrency(String currency) {
         // Default currency is SGD
-        currencies = getCurrencies();
         if (currency == null) {
             return "SGD";
         }
@@ -58,61 +60,51 @@ public class Currency implements Serializable {
     }
 
     /**
-     * Gets the types of currency available in the API and stores them in a HashMap
+     * Instantiates the key and API key pairs of the types of currency available and stores them in a HashMap
      *
      * @param currencies the HashMap of currencies available stored by ISO4217 and JSON key respectively
      * @throws IOException
      */
     public static void getCurrencyAvailable(HashMap<String, String> currencies) {
-        String getUrl = "https://eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=95932927-c8bc-" +
-                "4e7a-b484-68a66a24edfe&filters[end_of_day]=" +
-                LocalDate.now().with(Temporals.previousWorkingDay()).toString() + "&limit=1";
-        try {
-            URL url = new URL(getUrl);
-            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestMethod("GET");
-            int responseCode = httpURLConnection.getResponseCode();
-            if (responseCode == httpURLConnection.HTTP_OK) { //successful request
-                BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-                String inputLine;
-                StringBuffer response = new StringBuffer();
-
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                in.close();
-                JSONObject obj = new JSONObject(response.toString());
-                JSONObject result = obj.getJSONObject("result");
-                JSONArray records = result.getJSONArray("records");
-                JSONObject data = records.getJSONObject(0);
-                for (String key : data.keySet()) {
-                    if (key.equals("end_of_day") || key.equals("preliminary") || key.equals("timestamp")) {
-                        continue;
-                    }
-                    //stores the ISO4217 and JSON key as a key value pair
-                    currencies.put(key.substring(0, 3).toUpperCase(), key);
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("get failed");
-        }
+        currencies.put("EUR", "eur_sgd");
+        currencies.put("GBP","gbp_sgd");
+        currencies.put("USD", "usd_sgd");
+        currencies.put("AUD", "aud_sgd");
+        currencies.put("CAD", "cad_sgd");
+        currencies.put("CNY", "cny_sgd_100");
+        currencies.put("HKD", "hkd_sgd_100");
+        currencies.put("INR", "inr_sgd_100");
+        currencies.put("IDR", "idr_sgd_100");
+        currencies.put("JPY", "jpy_sgd_100");
+        currencies.put("KRW", "krw_sgd_100");
+        currencies.put("MYR", "myr_sgd_100");
+        currencies.put("TWD", "twd_sgd_100");
+        currencies.put("NZD", "nzd_sgd");
+        currencies.put("PHP", "php_sgd_100");
+        currencies.put("QAR", "qar_sgd_100");
+        currencies.put("SAR", "sar_sgd_100");
+        currencies.put("CHF", "chf_sgd");
+        currencies.put("THB", "thb_sgd_100");
+        currencies.put("AED", "aed_sgd_100");
+        currencies.put("VND", "vnd_sgd_100");
     }
 
     /**
      * Gets the exchange rate of the currency relative to SGD from the previous working day from the specified date.
      * Returns an exchange rate of 1 if specified currency cannot be found.
-     * @param date the date specified in the user input.
+     *
+     * @param date     the date specified in the user input.
      * @param currency the currency specified in the user input.
      * @return returns the exchange rate of that particular currency for the previous working day from the date.
      */
-    public static BigDecimal getExchangeRate(String date, String currency){
+    public static BigDecimal getExchangeRate(LocalDate date, String currency) {
         String currencyKey = convertCurrency(currency);
-        if(currencyKey.equals("SGD")) {
+        if (currencyKey.equals("SGD")) {
             return new BigDecimal(1);
         }
         try {
             String GET_URL = "https://eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=95932927-c8b" +
-                    "c-4e7a-b484-68a66a24edfe&filters[end_of_day]=" + date + "&limit=1";
+                    "c-4e7a-b484-68a66a24edfe&filters[end_of_day]=" + date.toString() + "&limit=1";
             URL url = new URL(GET_URL);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");
@@ -126,19 +118,54 @@ public class Currency implements Serializable {
                     response.append(inputLine);
                 }
                 in.close();
+                BigDecimal rate;
                 JSONObject obj = new JSONObject(response.toString());
                 JSONObject result = obj.getJSONObject("result");
                 JSONArray records = result.getJSONArray("records");
-                JSONObject data = records.getJSONObject(0);
-                BigDecimal rate = new BigDecimal(data.getDouble(currencies.get(currencyKey)));
-                if (currencies.get(currencyKey).contains("100")) {
-                    return rate.divide(new BigDecimal(100));
+                if (records.isEmpty()) {
+                    return getExchangeRate(date.minusDays(1), currency);
+                } else {
+                    JSONObject data = records.getJSONObject(0);
+                    rate = new BigDecimal(data.getDouble(currencies.get(currencyKey)));
+                    if (currencies.get(currencyKey).contains("100")) {
+                        return rate.divide(new BigDecimal(100));
+                    }
+                    return rate;
                 }
-                return rate;
             }
-        }catch (IOException e){
+        } catch (IOException e) {
+            //returns a preset offline rate if no internet connection is available
             System.out.println("get failed.");
+            return getOfflineRate(currencyKey);
         }
-        return new BigDecimal(0);
+        assert false;
+        return null;
+    }
+    public static void generateOfflineRates() {
+        offlineExchangeRate.put("eur_sgd", new BigDecimal(1.5395));
+        offlineExchangeRate.put("gbp_sgd", new BigDecimal(1.8278));
+        offlineExchangeRate.put("usd_sgd", new BigDecimal(1.3431));
+        offlineExchangeRate.put("aud_sgd", new BigDecimal(0.9596));
+        offlineExchangeRate.put("cad_sgd", new BigDecimal(1.0601));
+        offlineExchangeRate.put("cny_sgd_100", new BigDecimal(0.2111));
+        offlineExchangeRate.put("hkd_sgd_100", new BigDecimal(0.1724));
+        offlineExchangeRate.put("inr_sgd_100", new BigDecimal(0.017075));
+        offlineExchangeRate.put("idr_sgd_100", new BigDecimal(0.00009342));
+        offlineExchangeRate.put("jpy_sgd_100", new BigDecimal(0.011688));
+        offlineExchangeRate.put("krw_sgd_100", new BigDecimal(0.001119));
+        offlineExchangeRate.put("myr_sgd_100", new BigDecimal(0.3214));
+        offlineExchangeRate.put("twd_sgd_100", new BigDecimal(0.048318));
+        offlineExchangeRate.put("nzd_sgd", new BigDecimal(0.8968));
+        offlineExchangeRate.put("php_sgd_100", new BigDecimal(0.026322));
+        offlineExchangeRate.put("qar_sgd_100", new BigDecimal(0.3689));
+        offlineExchangeRate.put("sar_sgd_100", new BigDecimal(0.3580));
+        offlineExchangeRate.put("chf_sgd", new BigDecimal(1.4600));
+        offlineExchangeRate.put("thb_sgd_100", new BigDecimal(0.040657));
+        offlineExchangeRate.put("aed_sgd_100", new BigDecimal(0.3657));
+        offlineExchangeRate.put("vnd_sgd_100", new BigDecimal(0.00005930));
+    }
+
+    public static BigDecimal getOfflineRate(String key) {
+        return offlineExchangeRate.get(currencies.get(key));
     }
 }
