@@ -81,11 +81,11 @@ public class FinancialReport {
 
     public void addToMonthlyExpenditure(FinancialStatement statement) {
         int monthAndYear = statement.getMonthAndYear();
-        if(!monthlyExpenditures.containsKey(monthAndYear)) {
+        if (!monthlyExpenditures.containsKey(monthAndYear)) {
             monthlyExpenditures.put(monthAndYear, 0.0);
         }
         double currentExpenditure = monthlyExpenditures.get(monthAndYear);
-        if(statement.getFlowDirectionWord().equals("out")) {
+        if (statement.getFlowDirectionWord().equals("out")) {
             currentExpenditure += statement.getValue();
             monthlyExpenditures.put(monthAndYear, currentExpenditure);
         }
@@ -94,7 +94,7 @@ public class FinancialReport {
     public void removeFromMonthlyExpenditure(FinancialStatement statement) {
         int monthAndYear = statement.getMonthAndYear();
         double currentExpenditure = monthlyExpenditures.get(monthAndYear);
-        if(statement.getFlowDirectionWord().equals("out")) {
+        if (statement.getFlowDirectionWord().equals("out")) {
             currentExpenditure -= statement.getValue();
             monthlyExpenditures.put(monthAndYear, currentExpenditure);
         }

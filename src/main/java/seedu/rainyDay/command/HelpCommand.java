@@ -117,7 +117,7 @@ public class HelpCommand extends Command {
             "| -c <category> | Optional    | Used to change the category of an entry                              |\n" +
             "| -date <Date>  | Optional    | Used to change the date of an entry                                  |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
-            "| Note: Only 1 Optional flag is allowed. For multiple edits to the same entry, use ????              |\n" +
+            "| Note: Only 1 Optional flag is allowed. For multiple edits to the same entry, refer below           |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
@@ -137,6 +137,20 @@ public class HelpCommand extends Command {
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| export                      | Creates a CSV file with all entries                                  |\n" +
             "+====================================================================================================+\n";
+    private static final String HELP_SET_BUDGET_COMMAND = "" +
+            "+====================================================================================================+\n" +
+            "| Set budget command          | Used to set the user's Monthly Budget Goal                           |\n" +
+            "+====================================================================================================+\n" +
+            "| Details    | Requirement    | Description                                                          |\n" +
+            "+------------+----------------+----------------------------------------------------------------------+\n" +
+            "| value      | Mandatory      | Used to specify the user's Monthly Budget Goal, up to 2dp            |\n" +
+            "+====================================================================================================+\n" +
+            "| Example Usage               | Description                                                          |\n" +
+            "+-----------------------------+----------------------------------------------------------------------+\n" +
+            "| budgetset 44.5              | Sets the user's Budget Goal to be $44.50                             |\n" +
+            "| budgetset 0                 | Remove the user's Budget Goal                                        |\n" +
+            "+====================================================================================================+\n";
+
     private static final String HELP_HELP_COMMAND = "You funny guy. I like you.";
 
     private final String description;
@@ -178,6 +192,9 @@ public class HelpCommand extends Command {
         }
         if(description.equals("export")) {
             return new CommandResult(HELP_EXPORT_COMMAND);
+        }
+        if(description.equals("setbudget")) {
+            return new CommandResult(HELP_SET_BUDGET_COMMAND);
         }
         return new CommandResult(HELP_COMMAND);
     }

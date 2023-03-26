@@ -7,9 +7,9 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-//@@author lil1n
+//@@author BenjaminPoh
 /**
- * Represents a command that delete statement from the financial report
+ * Represents a command that sets the User's budget for the month
  */
 public class SetBudgetCommand extends Command {
 
@@ -38,14 +38,19 @@ public class SetBudgetCommand extends Command {
     }
 
     /**
-     * Executes the command and print the relevant output message
+     * Executes the command and prints the relevant output message
      */
     @Override
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "Starting SetBudgetCommand.execute()");
         RainyDay.userData.setBudgetGoal(goal);
-        String output = String.format("Monthly Budget Goal set to $%,.2f!", goal);
+        String output;
+        if(goal > 0) {
+            output = String.format("Monthly Budget Goal set to $%,.2f!", goal);
+        } else {
+            output = "Monthly Budget Goal removed!";
+        }
         logger.log(Level.INFO, "Completed SetBudgetCommand.execute()");
         return new CommandResult(output);
     }

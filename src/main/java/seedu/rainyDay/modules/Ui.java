@@ -70,27 +70,6 @@ public class Ui {
         return userInput.trim();
     }
 
-    public static String checkUserBudgetLimit(double currentSpending, FinancialStatement newStatement) {
-        double budgetLimit;
-        try {
-            budgetLimit = RainyDay.userData.getBudgetGoal();
-        } catch (NullPointerException e) {
-            budgetLimit = 0;
-        }
-
-        int currentMonthYear = LocalDate.now().getMonthValue() + LocalDate.now().getYear() * 12;
-        if (newStatement.getMonthAndYear() != currentMonthYear) {
-            return "";
-        }
-        if (budgetLimit == 0) {
-            return "";
-        }
-        if (currentSpending >= budgetLimit) {
-            return "\nYou've exceeded your budget! Try harder next time :(";
-        }
-        return String.format("\nYou have spent $%.2f/$%.2f, Keep it up!", currentSpending, budgetLimit);
-    }
-
     public void sayFarewellToUser(String username) {
         System.out.println("Bye " + username);
     }

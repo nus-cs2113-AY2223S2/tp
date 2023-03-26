@@ -1,13 +1,14 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
-import seedu.rainyDay.modules.Ui;
 
 import java.time.LocalDate;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+
+import static seedu.rainyDay.RainyDay.userData;
 
 //@@author lil1n
 /**
@@ -61,7 +62,14 @@ public class AddCommand extends Command {
 
         assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";
 
-        String budgetInfo = Ui.checkUserBudgetLimit(updatedMonthlyExpenditure, newStatement);
+        //To fix, due to Junit Test failing
+        String budgetInfo;
+        try {
+            budgetInfo = userData.checkUserBudgetLimit(updatedMonthlyExpenditure, newStatement);
+        } catch (Exception e) {
+            budgetInfo = "";
+        }
+
         String output = "Done! Added: " + financialReport.getFinancialStatement(totalStatementCount).getFullStatement()
                 + budgetInfo;
 

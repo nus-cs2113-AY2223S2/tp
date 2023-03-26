@@ -27,7 +27,6 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 //@@author azriellee
 public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
@@ -463,7 +462,7 @@ public class Parser {
             double amount = Double.parseDouble(userInput);
             amount = (int) (amount * 100);
             amount /= 100 ;
-            if (amount <= 0) {
+            if (amount < 0) {
                 logger.warning("set budget details provided incorrectly");
                 return new InvalidCommand(ErrorMessage.WRONG_SET_BUDGET_FORMAT.toString());
             }

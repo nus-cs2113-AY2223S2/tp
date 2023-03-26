@@ -82,7 +82,7 @@ public class FinancialStatement {
     }
 
     public int getMonthAndYear() {
-        return date.getYear()*12 + date.getMonthValue();
+        return date.getYear() * 12 + date.getMonthValue();
     }
 
     public void setDate(LocalDate date) {
