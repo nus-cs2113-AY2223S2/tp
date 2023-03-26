@@ -4,7 +4,6 @@ import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.constants.Flags;
 import seedu.todolist.logic.ParserUtil;
 import seedu.todolist.ui.Ui;
-import seedu.todolist.task.Task;
 import seedu.todolist.task.TaskList;
 
 import java.time.LocalDateTime;
@@ -41,7 +40,7 @@ public class AddTaskCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui) {
-        String taskString = taskList.addTask(new Task(description, deadline, email, tags, repeatDuration));
+        String taskString = taskList.addTask(description, deadline, email, tags, repeatDuration);
         ui.printAddTaskMessage(taskString);
     }
 }

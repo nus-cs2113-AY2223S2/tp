@@ -1,43 +1,64 @@
 package seedu.todolist.task;
 
-import seedu.todolist.exception.InvalidIndexException;
+import seedu.todolist.exception.InvalidIdException;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.StringJoiner;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * A list of Task objects representing the current list of tasks.
  */
 public class TaskList implements Serializable {
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private int id = 1;
+    private HashMap<Integer, Task> tasks = new HashMap<>();
     private HashSet<String> tags = new HashSet<>();
 
     /**
-     * Checks if the provided index is valid, which is when it is from 0 to task list size - 1.
+     * Checks if the provided id is valid, which is when it is from 0 to task list size - 1.
      *
-     * @param index The index being checked.
-     * @throws InvalidIndexException If the provided index is invalid.
+     * @param id The id being checked.
+     * @throws InvalidIdException If the provided id is invalid.
      */
-    private void validateIndex(int index) throws InvalidIndexException {
-        if (index < 0 || index > tasks.size() - 1) {
-            throw new InvalidIndexException(index + 1);
+    private void validateIndex(int id) throws InvalidIdException {
+        if (!tasks.containsKey(id)) {
+            throw new InvalidIdException(id);
         }
     }
 
     /**
-     * Converts the task list into its string representation.
+     * Returns the task at the given id of the task list.
      *
-     * @return String representation of the task list.
+     * @param id The id of the task to return.
+     * @return The task at the given id of the task list.
      */
-    public String toString() {
-        StringJoiner taskListString = new StringJoiner(System.lineSeparator());
-        for (int i = 0; i < size(); i++) {
-            taskListString.add((i + 1) + ". " + tasks.get(i).toString());
-        }
-        return taskListString.toString();
+    private Task getTask(int id) throws InvalidIdException {
+        validateIndex(id);
+        return tasks.get(id);
+    }
+
+    public String addTask(String description, LocalDateTime deadline, String email, HashSet<String> tags,
+                          int repeatDuration) {
+        Task task = new Task(id, description, deadline, email, tags, repeatDuration);
+        tasks.put(id++, task);
+        tags.addAll(task.getTags());
+        return task.toString();
+    }
+
+    /**
+     * Deletes the task at the given id of the task list.
+     *
+     * @param id The id of the task to be deleted.
+     * @throws InvalidIdException If there is no task with the given id.
+     */
+    public String deleteTask(int id) throws InvalidIdException {
+        String taskString = getTask(id).toString();
+        tasks.remove(id);
+        return taskString;
     }
 
     /**
@@ -49,99 +70,144 @@ public class TaskList implements Serializable {
         return tasks.size();
     }
 
-    /**
-     * Returns the task at the given index of the task list.
-     *
-     * @param index The index of the task to return.
-     * @return The task at the given index of the task list.
-     */
-    public Task getTask(int index) throws InvalidIndexException {
-        validateIndex(index);
-        return tasks.get(index);
-    }
-
-    public HashSet<String> getTags() {
-        return tags;
+    public int countTasksWithFilter(Predicate<Task> p) {
+        return (int) tasks.values().stream().filter(p).count();
     }
 
     /**
-     * Appends the given task to the task list.
+     * Converts the task list into its string representation.
      *
-     * @param task The task to be added to the task list.
-     * @return String representation of the task that was added.
+     * @return String representation of the task list.
      */
-    public String addTask(Task task) {
-        tasks.add(task);
-        if (task.getTags() != null) {
-            tags.addAll(task.getTags());
-        }
-        return task.toString();
+    public String toString() {
+        return tasks.values().stream().map(Task::toString)
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     /**
-     * Deletes the task at the given index of the task list.
+     * Filters the task list using a predicate before converting it into its sorted string representation.
      *
-     * @param index The index of the task to be deleted.
-     * @throws InvalidIndexException If the given index is not within the task list's size.
+     * @param p The predicate to sort the task list with.
+     * @return Filtered string representation of the task list.
      */
-    public String deleteTask(int index) throws InvalidIndexException {
-        validateIndex(index);
-        String taskString = tasks.get(index).toString();
-        tasks.remove(index);
-        return taskString;
+    public String toString(Predicate<Task> p) {
+        return tasks.values().stream().filter(p).map(Task::toString)
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     //@@author KedrianLoh
     /**
-     * Sorts the ArrayList tasks, by the corresponding Task deadlines
+     * Sorts the task list using a comparator before converting it into its sorted string representation.
+     *
+     * @param c The comparator to sort the task list with.
+     * @return Sorted string representation of the task list.
      */
-    public void sortByDeadline() {
-        tasks.sort(Task.taskDeadlineComparator);
-    }
-
-    //@@author clement559
-    public void checkRepeatingTasks() {
-        int originalListSize = tasks.size();
-        for (int i = 0; i < originalListSize; i++) {
-            Task task = tasks.get(i);
-            int repeatDuration = task.getRepeatDuration();
-            LocalDateTime originalDeadline = task.getDeadline();
-            if (repeatDuration > 0 && (LocalDateTime.now().isAfter(originalDeadline))) {
-                Task repeatTask = new Task(task);
-                repeatTask.setDeadline(originalDeadline.plusWeeks(1));
-                repeatTask.setRepeatDuration(repeatDuration - 1);
-                addTask(repeatTask);
-                task.setRepeatDuration(0);
-            }
-        }
+    public String toString(Comparator<Task> c) {
+        return tasks.values().stream().sorted(c).map(Task::toString)
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     //@@author ERJUNZE
     /**
-     * Adds the given tags to the task at the given index of the task list.
-     * No effect if the task already has the given tags.
+     * Gets the string representation of the task at the given id of the task list.
      *
-     * @param index The index of the task that tags are being added to.
-     * @param tags The tags being added.
-     * @throws InvalidIndexException If the given index is not within the task list's size.
+     * @param id The id of the task whose tags are being set.
+     * @return The string representation of the task.
+     * @throws InvalidIdException If there is no task with the given id.
      */
-    public void addTags(int index, HashSet<String> tags) throws InvalidIndexException {
-        validateIndex(index);
-        this.tags.addAll(tags);
-        tasks.get(index).addTags(tags);
+    public String getTaskString(int id) throws InvalidIdException {
+        return getTask(id).toString();
+    }
+
+    public String getDescription(int id) throws InvalidIdException {
+        return getTask(id).getDescription();
+    }
+
+    public String getEmail(int id) throws InvalidIdException {
+        return getTask(id).getEmail();
+    }
+
+    public LocalDateTime getDeadline(int id) throws InvalidIdException {
+        return getTask(id).getDeadline();
+    }
+
+    public HashSet<String> getTags(int id) throws InvalidIdException {
+        return getTask(id).getTags();
+    }
+
+    public boolean isDone(int id) throws InvalidIdException {
+        return getTask(id).isDone();
+    }
+
+    public HashSet<String> getAllTags() {
+        return tags;
+    }
+
+    public String setDescription(int id, String description) throws InvalidIdException {
+        return getTask(id).setDescription(description);
+    }
+
+    public String setEmail(int id, String email) throws InvalidIdException {
+        return getTask(id).setEmail(email);
+    }
+
+    public String setDeadline(int id, LocalDateTime deadline) throws InvalidIdException {
+        return getTask(id).setDeadline(deadline);
     }
 
     /**
-     * Deletes the given tags from the task at the given index of the task list.
+     * Sets the tags of the task at the given id of task list to the provided tags.
+     *
+     * @param id The id of the task whose tags are being set.
+     * @param tags The tags being set to.
+     * @return The string representation of the task.
+     * @throws InvalidIdException If there is no task with the given id.
+     */
+    public String setTags(int id, HashSet<String> tags) throws InvalidIdException {
+        return getTask(id).setTags(tags);
+    }
+
+    /**
+     * Adds the given tags to the task at the given id of the task list.
+     * No effect if the task already has the given tags.
+     *
+     * @param id The id of the task that tags are being added to.
+     * @param tags The tags being added.
+     * @return The string representation of the task.
+     * @throws InvalidIdException If there is no task with the given id.
+     */
+    public String addTags(int id, HashSet<String> tags) throws InvalidIdException {
+        return getTask(id).addTags(tags);
+    }
+
+    /**
+     * Deletes the given tags from the task at the given id of the task list.
      * No effect if the task does not have the given tags.
      *
-     * @param index The index of the task that tags are being added to.
+     * @param id The id of the task that tags are being added to.
      * @param tags The tags being added.
-     * @throws InvalidIndexException If the given index is not within the task list's size.
+     * @return The string representation of the task.
+     * @throws InvalidIdException If there is no task with the given id.
      */
-    public void deleteTags(int index, HashSet<String> tags) throws InvalidIndexException {
-        validateIndex(index);
-        this.tags.removeAll(tags);
-        tasks.get(index).deleteTags(tags);
+    public String deleteTags(int id, HashSet<String> tags) throws InvalidIdException {
+        return getTask(id).deleteTags(tags);
+    }
+
+    public String setDone(int id, boolean isDone) throws InvalidIdException {
+        return getTask(id).setDone(isDone);
+    }
+
+    //@@author clement559
+    public void checkRepeatingTasks() {
+        for (Task task : tasks.values()) {
+            int repeatDuration = task.getRepeatDuration();
+            LocalDateTime originalDeadline = task.getDeadline();
+            if (repeatDuration > 0 && (LocalDateTime.now().isAfter(originalDeadline))) {
+                LocalDateTime newDeadline = originalDeadline.plusWeeks(1);
+                int newRepeatDuration = repeatDuration - 1;
+                addTask(task.getDescription(), newDeadline, task.getEmail(), task.getTags(), newRepeatDuration);
+                task.setRepeatDuration(0);
+            }
+        }
     }
 }

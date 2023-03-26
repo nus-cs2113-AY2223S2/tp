@@ -3,10 +3,12 @@ package seedu.todolist.task;
 import seedu.todolist.constants.Formats;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.function.Predicate;
 
 public class Task implements Serializable {
     //@@author KedrianLoh
@@ -14,7 +16,7 @@ public class Task implements Serializable {
      * Comparator for the task class, used for sorting the task list by deadline.
      * Tasks without deadlines are placed at the bottom.
      */
-    public static Comparator<Task> taskDeadlineComparator = (task1, task2) -> {
+    public static Comparator<Task> deadlineComparator = (task1, task2) -> {
         if (task1.getDeadline() == null) {
             return 1;
         }
@@ -25,6 +27,7 @@ public class Task implements Serializable {
     };
 
     //@@author jeromeongithub
+    private int id;
     private String description;
     private String email;
     private LocalDateTime deadline;
@@ -32,7 +35,9 @@ public class Task implements Serializable {
     private boolean isDone = false;
     private int repeatDuration;
 
-    public Task(String description, LocalDateTime deadline, String email, HashSet<String> tags, int repeatDuration) {
+    public Task(int id, String description, LocalDateTime deadline, String email, HashSet<String> tags,
+                int repeatDuration) {
+        this.id = id;
         this.description = description;
         this.email = email;
         this.deadline = deadline;
@@ -40,22 +45,15 @@ public class Task implements Serializable {
         this.repeatDuration = repeatDuration;
     }
 
-    public Task(Task task) {
-        description = task.description;
-        email = task.email;
-        deadline = task.deadline;
-        tags = task.tags;
-        isDone = task.isDone;
-        repeatDuration = task.repeatDuration;
-    }
-
     public String toString() {
-        String taskString = "[" + (isDone ? "X" : " ") + "] " + description;
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_OUT.getFormat());
+        String isDoneString = isDone ? "X" : " ";
         if (deadline == null) {
-            return taskString;
+            return String.format(Formats.TASK_STRING_NO_DEADLINE.getFormat(), id, isDoneString, description);
         }
-        return taskString + ", due: " + deadline.format(outputFormatter);
+
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_OUT.getFormat());
+        String deadlineString = deadline.format(outputFormatter);
+        return String.format(Formats.TASK_STRING.getFormat(), id, isDoneString, description, deadlineString);
     }
 
     public String getDescription() {
@@ -82,31 +80,56 @@ public class Task implements Serializable {
         return this.repeatDuration;
     }
 
-    public void setDescription(String description) {
+    public String setDescription(String description) {
         this.description = description;
+        return toString();
     }
 
-    public void setEmail(String email) {
+    public String setEmail(String email) {
         this.email = email;
+        return toString();
     }
 
-    public void setDeadline(LocalDateTime deadline) {
+    public String setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
+        return toString();
     }
 
-    public void setDone(boolean isDone) {
+    public String setDone(boolean isDone) {
         this.isDone = isDone;
+        return toString();
     }
 
-    public void setRepeatDuration(int newRepeatDuration) {
+    public String setRepeatDuration(int newRepeatDuration) {
         this.repeatDuration = newRepeatDuration;
+        return toString();
     }
 
-    public void addTags(HashSet<String> tags) {
+    public String setTags(HashSet<String> tags) {
+        this.tags = tags;
+        return toString();
+    }
+
+    public String addTags(HashSet<String> tags) {
         this.tags.addAll(tags);
+        return toString();
     }
 
-    public void deleteTags(HashSet<String> tags) {
+    public String deleteTags(HashSet<String> tags) {
         this.tags.removeAll(tags);
+        return toString();
+    }
+
+    //@@author ERJUNZE
+    public static Predicate<Task> isDonePredicate() {
+        return task -> task.isDone;
+    }
+
+    public static Predicate<Task> beforeDate(LocalDate date) {
+        return task -> task.deadline != null && task.deadline.toLocalDate().isBefore(date);
+    }
+
+    public static Predicate<Task> afterDate(LocalDate date) {
+        return task -> task.deadline != null && task.deadline.toLocalDate().isAfter(date);
     }
 }

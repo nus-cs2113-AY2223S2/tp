@@ -1,18 +1,18 @@
 package seedu.todolist.logic.command;
 
+import seedu.todolist.task.Task;
 import seedu.todolist.ui.Ui;
 import seedu.todolist.task.TaskList;
 
+//@@author KedrianLoh
 /**
  * Command for displaying the current task list.
  */
 public class ListTasksCommand extends Command {
-    //@@author KedrianLoh
     /**
      * Displays the current task list.
      */
     public void execute(TaskList taskList, Ui ui) {
-        taskList.sortByDeadline();
-        ui.printTaskList(taskList.size(), taskList.toString());
+        ui.printTaskList(taskList.size(), taskList.toString(Task.deadlineComparator));
     }
 }

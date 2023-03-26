@@ -20,7 +20,7 @@ public class Ui {
      *
      * @param strings The strings to print out.
      */
-    private void printWithNewlineSeparator(String... strings) {
+    private void println(String... strings) {
         for (String string : strings) {
             System.out.println(string);
         }
@@ -38,85 +38,93 @@ public class Ui {
     }
 
     public void printWelcomeMessage() {
-        printWithNewlineSeparator(Messages.START.getMessage());
+        println(Messages.START.getMessage());
     }
 
     public void printNewSaveMessage() {
-        printWithNewlineSeparator(Messages.NEW_SAVE.getMessage());
+        println(Messages.NEW_SAVE.getMessage());
     }
 
     public void printLoadSaveMessage(int taskListSize) {
-        printWithNewlineSeparator(Messages.LOAD_SAVE.getMessage() + generateTaskCountString(taskListSize));
+        println(Messages.LOAD_SAVE.getMessage() + generateTaskCountString(taskListSize));
     }
 
     public void printGoodbyeMessage() {
-        printWithNewlineSeparator(Messages.EXIT.getMessage());
+        println(Messages.EXIT.getMessage());
     }
 
     public void printAddTaskMessage(String taskString) {
-        printWithNewlineSeparator(Messages.ADD_TASK.getMessage(), taskString);
+        println(Messages.ADD_TASK.getMessage(), taskString);
     }
 
     public void printMarkTaskMessage(String taskString) {
-        printWithNewlineSeparator(Messages.MARK_TASK.getMessage(), taskString);
+        println(Messages.MARK_TASK.getMessage(), taskString);
     }
 
     public void printUnmarkTaskMessage(String taskString) {
-        printWithNewlineSeparator(Messages.UNMARK_TASK.getMessage(), taskString);
+        println(Messages.UNMARK_TASK.getMessage(), taskString);
     }
 
     public void printDeleteTaskMessage(String taskString) {
-        printWithNewlineSeparator(Messages.DELETE_TASK.getMessage(), taskString);
+        println(Messages.DELETE_TASK.getMessage(), taskString);
     }
 
     public void printEditTaskMessage(String taskString) {
-        printWithNewlineSeparator(Messages.EDIT_TASK.getMessage(), taskString);
+        println(Messages.EDIT_TASK.getMessage(), taskString);
     }
 
     public void printSetEmailMessage(String taskString) {
-        printWithNewlineSeparator(Messages.SET_EMAIL.getMessage(), taskString);
+        println(Messages.SET_EMAIL.getMessage(), taskString);
     }
 
     public void printGetTaskEmailMessage(String email) {
-        printWithNewlineSeparator(Messages.GET_EMAIL.getMessage(), email);
+        println(Messages.GET_EMAIL.getMessage(), email);
     }
         
     public void printCheckRepeatingTaskMessage() {
-        printWithNewlineSeparator(Messages.CHECK_REPEATING.getMessage());
+        println(Messages.CHECK_REPEATING.getMessage());
     }
 
     public void printTagInfo(int tagCount, String tagString) {
         if (tagCount == 0) {
-            printWithNewlineSeparator(Messages.TAG_EMPTY.getMessage());
+            println(Messages.TAG_EMPTY.getMessage());
         } else {
-            printWithNewlineSeparator(Messages.TAG_INFO.getMessage(), tagString);
+            println(Messages.TAG_INFO.getMessage(), tagString);
         }
     }
 
     public void printDeletedTagsMessage(String tagString) {
-        printWithNewlineSeparator(Messages.TAG_DELETE.getMessage(), tagString);
+        println(Messages.TAG_DELETE.getMessage(), tagString);
     }
 
     public void printTaskList(int taskListSize, String taskListString) {
         if (taskListSize == 0) {
-            printWithNewlineSeparator(Messages.LIST_EMPTY.getMessage());
+            println(Messages.LIST_EMPTY.getMessage());
         } else {
-            printWithNewlineSeparator(Messages.LIST_TASKS.getMessage() + generateTaskCountString(taskListSize),
+            println(Messages.LIST_TASKS.getMessage() + generateTaskCountString(taskListSize),
                     taskListString);
         }
     }
 
     public void printError(Exception e) {
-        printWithNewlineSeparator(e.getMessage());
+        println(e.getMessage());
     }
 
     //@@author jeromeongithub
-    public void printProgressBar(int tasksThisWeek, int completedTasksThisWeek, int totalSections) {
-        double progress = 100.0 * completedTasksThisWeek / tasksThisWeek;
+    public void printProgressBar(int completedTasksThisWeek, int tasksThisWeek,
+                                 int totalSections, String taskListString) {
+        if (tasksThisWeek == 0) {
+            println("You have no tasks due this week!");
+            return;
+        }
+
+        double progress = (double) completedTasksThisWeek / tasksThisWeek;
         int completedSections = (int) (progress * totalSections);
         int incompleteSections = totalSections - completedSections;
 
-        printWithNewlineSeparator("You have completed " + progress + "% of the tasks that are due this week!",
-                "Progress: |" + "=".repeat(completedSections) + "-".repeat(incompleteSections) + "|");
+        println("You have completed " + 100 * progress + "% of the "
+                + generateTaskCountString(tasksThisWeek) + " due this week!",
+                "Progress: |" + "=".repeat(completedSections) + "-".repeat(incompleteSections) + "|",
+                taskListString);
     }
 }

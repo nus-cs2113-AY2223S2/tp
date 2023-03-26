@@ -10,8 +10,8 @@ public enum Errors {
 
     INVALID_COMMAND("You need to provide a valid command."),
     INVALID_FLAGS("Unknown or duplicate flags are not allowed: "),
-    INVALID_INDEX("Invalid index number: "),
-    INVALID_DATE("Invalid or past date: "),
+    INVALID_ID("Invalid task id: "),
+    INVALID_DATE("Invalid date format: "),
     INVALID_EMAIL("Invalid email address: "),
     INVALID_DURATION("Invalid repeat duration: "),
     INVALID_EDIT("At least one new parameter must be provided when editing a task."),

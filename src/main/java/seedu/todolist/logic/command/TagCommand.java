@@ -9,6 +9,6 @@ import seedu.todolist.ui.Ui;
 public class TagCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui) {
-        ui.printTagInfo(taskList.getTags().size(), String.join(" ", taskList.getTags()));
+        ui.printTagInfo(taskList.getAllTags().size(), String.join(" ", taskList.getAllTags()));
     }
 }

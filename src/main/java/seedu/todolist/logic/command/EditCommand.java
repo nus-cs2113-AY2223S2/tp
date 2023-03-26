@@ -1,7 +1,7 @@
 package seedu.todolist.logic.command;
 
 import seedu.todolist.exception.InvalidEditException;
-import seedu.todolist.exception.InvalidIndexException;
+import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.constants.Flags;
 import seedu.todolist.logic.ParserUtil;
@@ -24,7 +24,7 @@ public class EditCommand extends Command  {
     private HashSet<String> tags;
 
     public EditCommand(HashMap<Flags, String> args) throws ToDoListException {
-        index = ParserUtil.parseIndex(args.get(Flags.COMMAND_EDIT));
+        index = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT));
         description = ParserUtil.parseDescription(args.get(Flags.DESCRIPTION));
         deadline = ParserUtil.parseDeadline(args.get(Flags.DEADLINE));
         email = ParserUtil.parseEmail(args.get(Flags.EMAIL));
@@ -36,19 +36,19 @@ public class EditCommand extends Command  {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) throws InvalidIndexException {
+    public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
         if (description != null) {
-            taskList.getTask(index).setDescription(description);
+            taskList.setDescription(index, description);
         }
         if (deadline != null) {
-            taskList.getTask(index).setDeadline(deadline);
+            taskList.setDeadline(index, deadline);
         }
         if (email != null) {
-            taskList.getTask(index).setEmail(email);
+            taskList.setEmail(index, email);
         }
         if (!tags.isEmpty()) {
             taskList.addTags(index, tags);
         }
-        ui.printEditTaskMessage(taskList.getTask(index).toString());
+        ui.printEditTaskMessage(taskList.getTaskString(index));
     }
 }

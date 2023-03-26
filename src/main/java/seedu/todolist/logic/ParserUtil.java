@@ -4,7 +4,7 @@ import seedu.todolist.constants.Formats;
 import seedu.todolist.exception.InvalidDateException;
 import seedu.todolist.exception.InvalidDurationException;
 import seedu.todolist.exception.InvalidEmailFormatException;
-import seedu.todolist.exception.InvalidIndexException;
+import seedu.todolist.exception.InvalidIdException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,12 +22,29 @@ public class ParserUtil {
     }
 
     /**
-     * Parses the description string, which is not allowed to be empty.
+     * Parses the id string.
+     *
+     * @param id The id string.
+     * @return The id, as an integer.
+     * @throws InvalidIdException If the id cannot be parsed to an integer.
+     */
+    public static int parseId(String id) throws InvalidIdException {
+        try {
+            return Integer.parseInt(id);
+        } catch (NumberFormatException e) {
+            throw new InvalidIdException(id);
+        }
+    }
+
+    /**
+     * Parses the description string.
      *
      * @param description The description string.
      * @return The description of the task.
      */
     public static String parseDescription(String description) {
+        // Empty descriptions should have been caught by the command parser
+        assert description != null && !description.isEmpty();
         return description;
     }
 
@@ -50,11 +67,7 @@ public class ParserUtil {
         try {
             DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN.getFormat())
                     .withResolverStyle(ResolverStyle.STRICT);
-            LocalDateTime dateTime = LocalDateTime.parse(deadline, inputFormatter);
-            if (dateTime.isBefore(LocalDateTime.now())) {
-                throw new InvalidDateException(deadline);
-            }
-            return dateTime;
+            return LocalDateTime.parse(deadline, inputFormatter);
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(deadline);
         }
@@ -121,21 +134,6 @@ public class ParserUtil {
             return Integer.parseInt(repeatDuration);
         } catch (NumberFormatException e) {
             throw new InvalidDurationException(repeatDuration);
-        }
-    }
-
-    /**
-     * Parses the index string.
-     *
-     * @param index The index string.
-     * @return The index, as an integer.
-     * @throws InvalidIndexException If the index cannot be parsed to an integer.
-     */
-    public static int parseIndex(String index) throws InvalidIndexException {
-        try {
-            return Integer.parseInt(index) - 1;
-        } catch (NumberFormatException e) {
-            throw new InvalidIndexException(index);
         }
     }
 }
