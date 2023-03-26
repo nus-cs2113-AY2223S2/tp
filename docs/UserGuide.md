@@ -43,9 +43,9 @@ which they want to record down.
 
 Example of usage:
 
-`event bus travel fee e/1.50`
+`event bus travel fee e/2`
 
-`event bubble tea e/6.50`
+`event bubble tea e/6`
 
 ### Add a category: `category`
 
