@@ -90,7 +90,6 @@ public class Storage {
             , JsonParseException {
         Reader reader = new FileReader(filePath);
         UserData userData = gson.fromJson(reader, UserData.class);
-
         return userData;
     }
 

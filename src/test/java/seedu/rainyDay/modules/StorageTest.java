@@ -9,7 +9,9 @@ import seedu.rainyDay.data.UserData;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -19,7 +21,8 @@ public class StorageTest {
     @Test
     public void writeToFileTest_fileExists() {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
-        FinancialReport financialReport = new FinancialReport(statements);
+        HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
+        FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
         String filePath = "rainyDay.txt";
         UserData userData = new UserData(financialReport);
         Storage.writeToFile(userData, filePath);
@@ -29,9 +32,10 @@ public class StorageTest {
     @Test
     public void writeToFileTest_contentMatch() throws IOException {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
-        FinancialReport financialReport = new FinancialReport(statements);
+        HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
+        FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
         financialReport.addStatement(
-                new FinancialStatement("noodles", "in", 5, "Default", null));
+                new FinancialStatement("noodles", "in", 5, "Default", LocalDate.now()));
         String filePath = "rainyDay.txt";
 
         UserData userData = new UserData(financialReport);

@@ -11,6 +11,7 @@ import seedu.rainyDay.modules.Parser;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -24,7 +25,6 @@ public class RainyDay {
 
     private final Ui ui;
 
-
     private RainyDay(String filePath) {
         ui = new Ui();
         try {
@@ -35,7 +35,7 @@ public class RainyDay {
             ui.noFileExist();
             String username = ui.readUserName();
             assert username != null : "Inputted username should not be null";
-            FinancialReport financialReport = new FinancialReport(new ArrayList<>());
+            FinancialReport financialReport = new FinancialReport(new ArrayList<>(), new HashMap<>());
             userData = new UserData(financialReport);
             financialReport.setReportOwner(username);
         }
