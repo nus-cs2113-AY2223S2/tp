@@ -21,17 +21,13 @@ import static seedu.duke.ui.StringLib.FILE_IO_ERROR;
 import static seedu.duke.ui.StringLib.FILE_LOADING_DEFAULT_ERROR;
 import static seedu.duke.ui.StringLib.FILE_NOT_FOUND_ERROR;
 import static seedu.duke.ui.StringLib.FILE_PARSE_READING_ERROR;
-import static seedu.duke.ui.StringLib.FIND_LIST_MESSAGE;
 import static seedu.duke.ui.StringLib.HELP;
 import static seedu.duke.ui.StringLib.LINE;
 import static seedu.duke.ui.StringLib.MISSING_DESCRIPTION_ERROR;
-import static seedu.duke.ui.StringLib.MISSING_INPUTS_ERROR;
-import static seedu.duke.ui.StringLib.NO_MATCHING_FIND_RESULTS_MESSAGE;
 import static seedu.duke.ui.StringLib.PARSING_STRING_ERROR;
 import static seedu.duke.ui.StringLib.PREFIX_EMPTY_LIMIT_LIST_ERROR;
 import static seedu.duke.ui.StringLib.RECIPE_ADDING_DEFAULT_ERROR;
 import static seedu.duke.ui.StringLib.RECIPE_DELETING_DEFAULT_ERROR;
-import static seedu.duke.ui.StringLib.RECIPE_FINDING_DEFAULT_ERROR;
 import static seedu.duke.ui.StringLib.SUFFIX_EMPTY_LIMIT_LIST_ERROR;
 import static seedu.duke.ui.StringLib.UNRECOGNIZABLE_COMMAND_ERROR;
 import static seedu.duke.ui.StringLib.UNRECOGNIZABLE_ERROR;
@@ -46,19 +42,6 @@ public class UI {
     }
     public String readCommand() {
         return in.nextLine();
-    }
-    public void showFindResults(ArrayList<Recipe> list, String keywords) {
-        if (list.size() == 0) {
-            System.out.println(NO_MATCHING_FIND_RESULTS_MESSAGE + keywords + '\n');
-            return;
-        }
-        System.out.println(FIND_LIST_MESSAGE);
-        int i = 1;
-        for (Recipe t : list) {
-            System.out.println(i + ". " + t.toString());
-            i += 1;
-        }
-        System.out.println();
     }
     public void showRecipeList(ArrayList<Recipe> list) {
         if (list.size() == 0) {
@@ -99,7 +82,7 @@ public class UI {
         System.out.println(LINE);
     }
     public void showStepInsertMessage(int stepNumber) {
-        System.out.println("Please enter the description of step " + stepNumber + ":\n");
+        System.out.println("\nPlease enter the description of step " + stepNumber + ":");
     }
     public void showDudeMainError(Exception e) {
         if (e instanceof IOException) {
@@ -141,13 +124,6 @@ public class UI {
             System.out.println(PREFIX_EMPTY_LIMIT_LIST_ERROR + type + SUFFIX_EMPTY_LIMIT_LIST_ERROR);
         } else {
             System.out.println(RECIPE_DELETING_DEFAULT_ERROR + e.getMessage());
-        }
-    }
-    public void showFindingTaskErrorMessage(Exception e) {
-        if (e instanceof IncompleteInputException) {
-            System.out.println(MISSING_INPUTS_ERROR + e.getMessage());
-        } else {
-            System.out.println(RECIPE_FINDING_DEFAULT_ERROR + e.getMessage());
         }
     }
     public void showRecipeViewed(Recipe recipe) {

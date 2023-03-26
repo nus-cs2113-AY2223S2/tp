@@ -6,7 +6,6 @@ package seedu.duke.command;
  *  {@link #LIST}
  *  {@link #ADD}
  *  {@link #VIEW}
- *  {@link #FIND}
  *  {@link #DELETE}
  *  {@link #HELP}
  *  {@link #EXIT}
