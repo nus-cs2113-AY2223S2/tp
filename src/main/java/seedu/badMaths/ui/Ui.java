@@ -26,7 +26,7 @@ public class Ui {
 
     public static void printNotes(ArrayList<String> notes) {
         if (notes.size() == 0) {
-            System.out.println("You have no note yet. :(");
+            System.out.println("You have no notes yet. :(");
         }
         else {
             System.out.println("Here are the notes you have stored:");
