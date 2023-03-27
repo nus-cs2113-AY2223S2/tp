@@ -29,6 +29,8 @@ class UITest {
     private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name";
     private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name";
     private static final String CURRENT_LIST_EMPTY = "The current module list is empty";
+    private static final String INVALID_SEARCH_MODULE_MESSAGE = "There is no matching module code found.\n"
+            + "Please ensure that you have typed in the correct NUS Module Code";
 
     /*
         Testing below sets up an ByteArrayOutputStream where prints to System.out would go to.
@@ -113,6 +115,14 @@ class UITest {
         UI ui = new UI();
         String invalidModuleMessage = ui.getInvalidModuleMessage();
         assertEquals(INVALID_MODULE_MESSAGE, invalidModuleMessage.stripTrailing());
+        outContent.reset();
+    }
+
+    @Test
+    void getInvalidSearchModuleMessage_correctLines_success() {
+        UI ui = new UI();
+        String invalidSearchModule = ui.getInvalidSearchModuleMessage();
+        assertEquals(INVALID_SEARCH_MODULE_MESSAGE, invalidSearchModule.stripTrailing());
         outContent.reset();
     }
 
