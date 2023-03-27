@@ -1,12 +1,14 @@
 package seedu.commands;
 
-import seedu.database.ExerciseStorage;
-import seedu.database.FoodStorage;
-import seedu.database.MealStorage;
-import seedu.database.UserStorage;
+import java.time.LocalDate;
+
 import seedu.entities.CaloricIntake;
 import seedu.entities.User;
 import seedu.exceptions.LifeTrackerException;
+import seedu.storage.ExerciseStorage;
+import seedu.storage.FoodStorage;
+import seedu.storage.MealStorage;
+import seedu.storage.UserStorage;
 import seedu.ui.GeneralUi;
 import seedu.ui.CalorieUi;
 
@@ -19,7 +21,7 @@ public class ViewUserCommand extends Command {
             throws LifeTrackerException {
         User user = userStorage.getUser();
         CalorieUi calorieUi = new CalorieUi();
-        CaloricIntake meals = new CaloricIntake(mealStorage.getMeal());
+        CaloricIntake meals = new CaloricIntake(mealStorage.getMealByDate(LocalDate.now()));
         int choice;
         boolean toContinue = true;
 

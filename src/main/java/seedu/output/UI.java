@@ -1,7 +1,7 @@
 package seedu.output;
 
-import seedu.database.FoodStorage;
 import seedu.entities.Food;
+import seedu.storage.FoodStorage;
 
 import java.util.Scanner;
 

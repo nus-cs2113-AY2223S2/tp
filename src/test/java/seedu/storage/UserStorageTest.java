@@ -1,4 +1,4 @@
-package seedu.database;
+package seedu.storage;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;

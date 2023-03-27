@@ -6,10 +6,6 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.database.ExerciseStorage;
-import seedu.database.FoodStorage;
-import seedu.database.MealStorage;
-import seedu.database.UserStorage;
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
@@ -20,6 +16,10 @@ import seedu.exceptions.LifeTrackerException;
 import seedu.exceptions.MissingArgumentsException;
 import seedu.logger.LogFileHandler;
 import seedu.parser.DateParser;
+import seedu.storage.ExerciseStorage;
+import seedu.storage.FoodStorage;
+import seedu.storage.MealStorage;
+import seedu.storage.UserStorage;
 import seedu.ui.GeneralUi;
 
 public class AddMealCommand extends Command {

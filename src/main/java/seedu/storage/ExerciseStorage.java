@@ -1,4 +1,4 @@
-package seedu.database;
+package seedu.storage;
 
 import com.opencsv.CSVWriter;
 import seedu.entities.Exercise;
@@ -14,7 +14,6 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
     private static final String CSV_DELIMITER = ",";
     private ArrayList<Exercise> exercises;
     private BufferedReader br;
-
 
     public ExerciseStorage(String filePath) {
         super(filePath);
@@ -36,7 +35,10 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
             String[] exerciseLine;
             exerciseLine = line.split(CSV_DELIMITER);
             try {
-                exercises.add(new Exercise(exerciseLine[0], exerciseLine[1], Float.parseFloat(exerciseLine[2])));
+                String exerciseName = exerciseLine[0];
+                String exerciseDescription = exerciseLine[1];
+                float calorieBurnt = Float.parseFloat(exerciseLine[2]);
+                exercises.add(new Exercise(exerciseName, exerciseDescription, calorieBurnt));
             } catch (Exception e) {
                 LogFileHandler.logError("Invalid exercise format!");
             }

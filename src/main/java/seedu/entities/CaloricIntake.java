@@ -1,21 +1,21 @@
 package seedu.entities;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CaloricIntake {
-    private ArrayList<Meal> dailyCalories;
+    private List<Meal> dailyCalories;
     private float totalDailyCalories;
 
-    public CaloricIntake(ArrayList<Meal> dailyCalories) {
+    public CaloricIntake(List<Meal> dailyCalories) {
         this.dailyCalories = dailyCalories;
         calculateTotalCalories();
     }
 
-    public ArrayList<Meal> getDailyCalories(){
+    public List<Meal> getDailyCalories() {
         return this.dailyCalories;
     }
 
-    public void setDailyCalories(ArrayList<Meal> dailyCalories) {
+    public void setDailyCalories(List<Meal> dailyCalories) {
         this.dailyCalories = dailyCalories;
     }
 

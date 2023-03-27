@@ -1,12 +1,13 @@
 package seedu.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.database.FoodStorage;
-import seedu.database.MealStorage;
+
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
 import seedu.exceptions.InvalidArgumentsException;
+import seedu.storage.FoodStorage;
+import seedu.storage.MealStorage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

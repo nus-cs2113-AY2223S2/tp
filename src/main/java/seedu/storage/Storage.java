@@ -1,4 +1,4 @@
-package seedu.database;
+package seedu.storage;
 
 public abstract class Storage {
     protected String filePath;
