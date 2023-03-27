@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import model.Card;
 import model.CardList;
+import model.DeckList;
 import model.Tag;
 import model.TagList;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,6 +25,7 @@ public class TagParserTest {
     private UserInterface ui;
     private Storage storage;
     private Parser parser;
+    private DeckList deckList;
 
     /**
      * Each test should have a new instance of all these
@@ -35,6 +37,7 @@ public class TagParserTest {
         ui = new UserInterface();
         storage = new FakeStorage();
         parser = new Parser();
+        deckList = new DeckList();
     }
 
     @Test
@@ -63,7 +66,7 @@ public class TagParserTest {
 
         Command cmd = parser.parseCommand("tag delete -t tagName");
         assert cmd instanceof DeleteTagCommand;
-        cmd.execute(cardList, tagList, ui, storage);
+        cmd.execute(cardList, tagList, deckList,ui, storage);
         assert tagList.isEmpty();
     }
 
@@ -71,7 +74,7 @@ public class TagParserTest {
     public void parse_tag_deleteUnknownTag() throws InkaException {
         Command cmd = parser.parseCommand("tag delete -t tagName");
         assert cmd instanceof DeleteTagCommand;
-        assertThrows(TagNotFoundException.class, () -> cmd.execute(cardList, tagList, ui, storage),
+        assertThrows(TagNotFoundException.class, () -> cmd.execute(cardList, tagList, deckList,ui, storage),
                 "Should not delete non-existent tag");
     }
 }
