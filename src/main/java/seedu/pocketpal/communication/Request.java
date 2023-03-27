@@ -4,24 +4,24 @@ import java.util.EnumMap;
 
 public class Request {
     private final RequestMethod requestMethod;
-    private final String data;
+    private final String body;
     private final EnumMap<RequestParams, String> params = new EnumMap<>(RequestParams.class);
 
     public Request(RequestMethod requestMethod) {
         this(requestMethod, null);
     }
 
-    public Request(RequestMethod requestMethod, String data) {
+    public Request(RequestMethod requestMethod, String body) {
         this.requestMethod = requestMethod;
-        this.data = data;
+        this.body = body;
     }
 
     public void addParam(RequestParams paramKey, String paramValue) {
         params.put(paramKey, paramValue);
     }
 
-    public String getData() {
-        return data;
+    public String getBody() {
+        return body;
     }
 
     public RequestMethod getRequestMethod() {

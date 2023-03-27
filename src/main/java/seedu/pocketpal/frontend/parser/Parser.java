@@ -1,3 +1,4 @@
+// @@author adenteo
 package seedu.pocketpal.frontend.parser;
 
 import java.util.logging.Level;
@@ -349,3 +350,4 @@ public class Parser {
         return new ViewCommand(viewCountInt, category);
     }
 }
+// @@author

@@ -61,10 +61,10 @@ public class EntriesEndpoint extends Endpoint {
 
         try {
             final EntryLog filteredEntries = handleGetEntriesFilter(request, entriesToFilter);
-            logger.info("/entries [GET]: OK" + request.getData());
+            logger.info("/entries [GET]: OK" + request.getBody());
             return new Response(ResponseStatus.OK, filteredEntries.serialise());
         } catch (InvalidCategoryException e) {
-            logger.warning("/entries [GET]: unknown filter category" + request.getData());
+            logger.warning("/entries [GET]: unknown filter category" + request.getBody());
             return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, MessageConstants.MESSAGE_INVALID_CATEGORY);
         }
     }

@@ -1,0 +1,21 @@
+@startuml
+title Backend Overview
+
+class Backend
+interface Requestable
+class Request
+class Response
+abstract class Endpoint
+class Endpoint
+class Storage
+class EntryLog
+
+Endpoint ..|> Requestable
+Backend --> "1.." Endpoint : handle request
+Backend ..> Request
+Backend ..> Response
+Backend --> "1" Storage : read/write
+Backend --> "1" EntryLog
+Endpoint *-- "1" EntryLog : retrieve/store
+
+@enduml
