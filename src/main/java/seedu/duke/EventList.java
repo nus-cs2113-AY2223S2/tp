@@ -133,6 +133,10 @@ public class EventList {
         listSize++;
     }
 
+    public void reviseLocation(int index, String location){
+        taskList.get(index).changeLocation(location);
+    }
+
     public void reviseTimeInfo(int index, String startTime, String startDay, String endTime, String endDay)
             throws NPExceptions {
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
