@@ -1,4 +1,4 @@
-[comment]: <> (//@@Geeeetyx)
+[comment]: <> (//@@author Geeeetyx)
 # User Guide
 
 ## Introduction
@@ -133,18 +133,19 @@ What would you like to do? Please enter the number:
 1. Report symptoms
 2. View diagnosis history
 3. Reset diagnosis history
-4. Reset symptoms
-5. View Medicine history
-6. Exit
----------------------------------------------------
+4. View symptoms History
+5. Delete symptom choice
+6. Reset symptoms
+7. View Medicine history
+8. Exit---------------------------------------------------
 ~~~
 
 ### 1. Report Symptoms
-The patient can choose what symptoms they have for Doctor Duke to diagnose.\
+The patient can choose what symptoms they have for Doctor Duke to diagnose.
 
 Format: `1`
 
-A list of symptoms will then be displayed to the user. \
+A list of symptoms will then be displayed to the user. 
 
 ~~~
 ---------------------------------------------------
@@ -152,9 +153,11 @@ What would you like to do? Please enter the number:
 1. Report symptoms
 2. View diagnosis history
 3. Reset diagnosis history
-4. Reset symptoms
-5. View Medicine history
-6. Exit
+4. View symptoms history
+5. Delete symptom choice
+6. Reset symptoms
+7. View Medicine history
+8. Exit
 ---------------------------------------------------
 1
 ---------------------------------------------------
@@ -252,9 +255,11 @@ What would you like to do? Please enter the number:
 1. Report symptoms
 2. View diagnosis history
 3. Reset diagnosis history
-4. Reset symptoms
-5. View Medicine history
-6. Exit
+4. View symptoms History
+5. Delete symptom choice
+6. Reset symptoms
+7. View Medicine history
+8. Exit
 ---------------------------------------------------
 2
 ---------------------------------------------------
@@ -279,9 +284,11 @@ What would you like to do? Please enter the number:
 1. Report symptoms
 2. View diagnosis history
 3. Reset diagnosis history
-4. Reset symptoms
-5. View Medicine history
-6. Exit
+4. View symptoms History
+5. Delete symptom choice
+6. Reset symptoms
+7. View Medicine history
+8. Exit
 ---------------------------------------------------
 3
 ---------------------------------------------------
@@ -291,20 +298,82 @@ What would you like to do? Please enter the number:
 1. Report symptoms
 2. View diagnosis history
 3. Reset diagnosis history
-4. Reset symptoms
-5. View Medicine history
-6. Exit
+4. View symptoms History
+5. Delete symptom choice
+6. Reset symptoms
+7. View Medicine history
+8. Exit
 ---------------------------------------------------
 2
 ---------------------------------------------------
 You have no past diagnoses
 ---------------------------------------------------
 ```
+[comment]: <> (//@@author Jeraldchen)
 
-### 4. Reset Symptoms
+### 4. Viewing Symptoms History
+The patient can view the list of his/her symptoms that she has entered into Dr Duke.
+
+Format: Enter `4` to choose to view the symptoms history.
+
+Expected outcome (if no symptoms were entered prior):
+```
+---------------------------------------------------
+You have not entered any symptoms.
+---------------------------------------------------
+```
+
+Else, expected outcome after entering some symptoms:
+```
+---------------------------------------------------
+DRY_COUGH
+COUGH_WITH_PHLEGM
+FEVER
+---------------------------------------------------
+```
+### 5. Delete Symptom Choice
+
+The patient can choose to delete a symptom from the list of symptoms that she has entered into Dr Duke.
+
+Format: Enter `5` to choose to delete a symptom.
+
+Expected outcome (if no symptoms were entered prior):
+```
+---------------------------------------------------
+You have not entered any symptoms.
+---------------------------------------------------
+```
+
+Else, expected outcome after entering some symptoms:
+```
+---------------------------------------------------
+Here is the list of your symptoms:
+1. FEVER
+2. DRY_COUGH
+3. COUGH_WITH_PHLEGM
+4. THROAT_IRRITATION
+5. LOSS_OF_TASTE_OR_SMELL
+6. RUNNY_NOSE
+Please enter the number of the symptom you want to delete.
+---------------------------------------------------
+4
+---------------------------------------------------
+Successfully deleted symptom!
+Here is the updated list of your symptoms:
+1. FEVER
+2. DRY_COUGH
+3. COUGH_WITH_PHLEGM
+4. LOSS_OF_TASTE_OR_SMELL
+5. RUNNY_NOSE
+---------------------------------------------------
+
+```
+
+[comment]: <> (//@@author Geeeetyx)
+### 6. Reset Symptoms
 The patient can choose to reset his/her entered symptoms.
 
-Format: Enter `4` to reset entered symptoms.
+Format: Enter `6` to reset entered symptoms.
 
 If the patient has not entered any symptoms prior to this, Doctor Duke will prompt the patient.\
 We assume this occurs after the patient first logs in and attempts to reset the non-existent symptoms.
@@ -319,11 +388,13 @@ What would you like to do? Please enter the number:
 1. Report symptoms
 2. View diagnosis history
 3. Reset diagnosis history
-4. Reset symptoms
-5. View Medicine history
-6. Exit
+4. View symptoms History
+5. Delete symptom choice
+6. Reset symptoms
+7. View Medicine history
+8. Exit
 ---------------------------------------------------
-4
+6
 --------------------------------------------------------
 You have not entered any symptoms. No symptoms to reset.
 ~~~
@@ -335,20 +406,22 @@ What would you like to do? Please enter the number:
 1. Report symptoms
 2. View diagnosis history
 3. Reset diagnosis history
-4. Reset symptoms
-5. View Medicine history
-6. Exit
+4. View symptoms History
+5. Delete symptom choice
+6. Reset symptoms
+7. View Medicine history
+8. Exit
 ---------------------------------------------------
-4
+6
 ---------------------------------------------------
 Your symptom choice has been reset.
 ---------------------------------------------------
 ~~~
 
-### 5. Viewing Medicine History
+### 7. Viewing Medicine History
 The patient can choose to view his/her medicine history.
 
-Format: Enter `5` to view past medicine history.
+Format: Enter `7` to view past medicine history.
 
 Expected outcome:
 ~~~
@@ -357,21 +430,23 @@ What would you like to do? Please enter the number:
 1. Report symptoms
 2. View diagnosis history
 3. Reset diagnosis history
-4. Reset symptoms
-5. View Medicine history
-6. Exit
+4. View symptoms History
+5. Delete symptom choice
+6. Reset symptoms
+7. View Medicine history
+8. Exit
 ---------------------------------------------------
-5
+7
 ---------------------------------------------------
 Medication History:
 2023/03/22: [Paracetamol]
 ---------------------------------------------------
 ~~~
 
-### 6. Exiting Doctor Duke
+### 8. Exiting Doctor Duke
 Once the patient is done with the program, he/she can exit the program.
 
-Format: Enter `6` to exit Doctor Duke.
+Format: Enter `8` to exit Doctor Duke.
 
 Expected outcome:
 ~~~
@@ -380,11 +455,13 @@ What would you like to do? Please enter the number:
 1. Report symptoms
 2. View diagnosis history
 3. Reset diagnosis history
-4. Reset symptoms
-5. View Medicine history
-6. Exit
+4. View symptoms History
+5. Delete symptom choice
+6. Reset symptoms
+7. View Medicine history
+8. Exit
 ---------------------------------------------------
-6
+8
 ---------------------------------------------------
 Thank you for using
  ____         ____        _        
@@ -394,3 +471,4 @@ Thank you for using
 |____/|_|    |____/ \__,_|_|\_\___|
 ---------------------------------------------------
 ~~~
+[comment]: <> (//@@author)
