@@ -1,16 +1,18 @@
 # Developer Guide
 
 ---
-## Acknowledgements
+### Acknowledgements
 
 1. Command, Parser and UI java files are adapted from one of our group member's [Duke Project](https://github.com/MingEn82/tp)
 ---
+
 ## Design & implementation
 
 ---
 ### Architecture
 
 ![](../out/docs/uml/Architecture/architecture.svg)
+
 **Main Components of LifeTracker**
 
 `LifeTracker` is where users will access the application from. It is responsible for:
@@ -37,6 +39,40 @@ The `UI` component,
 # Implementation
 This section describes some noteworthy details on how certain features are implemented.  
 <p>&nbsp;</p>
+
+## [Proposed] Add meal feature
+
+### Proposed Implementation
+
+The proposed mechanism for adding a meal is facilitated by `AddMealCommand`. It extends `Command` and overrides the
+`execute` method in the `Command` class.
+
+In this command, there are 2 ways for the user to add a meal to storage. 
+1. Using a one-line command in their CLI in the format `add [DATE] /on [MEAL_TYPE] /type [FOOD_INDEX] /foods`
+2. Typing `add` into the CLI and following the printed prompts to enter the date in the specified format, type of meal and specific food.
+
+<img src="uml/AddMealCommand1.png" alt="Sequence Diagram" width="500">
+
+Step 1. As seen from the sequence diagram above, when the AddMealCommand is executed via the `execute` method in 
+LifeTracker, the user's input is first parsed to determine how he/she wants to input it. Either method sets the food, 
+date and meal type features necessary to create a new meal.
+
+Step 2. The constructor for the `Meal` class is called which instantiates a new instance of Meal using the
+parameters provided.
+
+Step 3. `mealStorage` saves the meal to the database and then `ui` prints out the confirmation of the meal added.
+
+## [Proposed] Delete meal feature
+
+### Proposed Implementation
+
+In order to delete a meal from their meal history, a user has to type `delete [MEAL_INDEX]` into the CLI. Users can see 
+which meal they want to delete by viewing the mealData.csv file.
+
+<img src="uml/DeleteMealCommand1.png" alt="Sequence Diagram" width="500">
+
+In the above implementation, DeleteMealCommand parses the user input to obtain the index to delete and proceeds to 
+delete it via the method from mealStorage() and prints out the deleted meal to the user.
 
 ## [Proposed] View feature
 
@@ -160,7 +196,6 @@ the user to keep track of their net calorie gain on a daily basis.
 ## Glossary
 
 * *glossary item* - Definition
-
 ___
 # Appendix: Instructions for manual testing
 
