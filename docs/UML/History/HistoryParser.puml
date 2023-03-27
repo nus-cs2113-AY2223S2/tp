@@ -17,7 +17,7 @@ HistoryParser -> HistoryCommand: run()
 HistoryCommand -> HistoryCommand: getHistoryResults()
 activate HistoryCommand #cyan
 alt upcCode does not belong to any item
-    HistoryCommand --> HistoryParser: null
+    HistoryCommand --> HistoryCommand: null
 end
 ref over HistoryCommand
     retrieve history from inventory
