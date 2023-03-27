@@ -148,6 +148,7 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
+    //@@author L-K-Chng
     /**
      * Returns an exercise list which is filtered according to the workout type
      * chosen by the user.
@@ -158,7 +159,6 @@ public class GenerateExercise {
      *
      * @throws DukeError Occurs if user inputs invalid workout type.
      */
-    //@@author L-K-Chng
     public ArrayList<ExerciseData> generateFilteredWorkoutTypeFrom (ArrayList<ExerciseData> exerciseList,
                                                                     String workoutType) throws DukeError {
         assert exerciseList != null : "Exercise List should not be null.";

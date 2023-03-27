@@ -1,0 +1,2007 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-19T12:32:21.350039800Z</date>
+  <millis>1679229141350</millis>
+  <nanos>39800</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-20T17:19:46.697983800Z</date>
+  <millis>1679332786697</millis>
+  <nanos>983800</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-20T17:23:46.673809700Z</date>
+  <millis>1679333026673</millis>
+  <nanos>809700</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-20T17:25:33.252019500Z</date>
+  <millis>1679333133252</millis>
+  <nanos>19500</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-20T17:29:16.612494Z</date>
+  <millis>1679333356612</millis>
+  <nanos>494000</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-20T17:29:31.185503400Z</date>
+  <millis>1679333371185</millis>
+  <nanos>503400</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-20T18:03:08.141255200Z</date>
+  <millis>1679335388141</millis>
+  <nanos>255200</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-20T18:08:36.381453500Z</date>
+  <millis>1679335716381</millis>
+  <nanos>453500</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+<record>
+  <date>2023-03-20T18:09:00.361401600Z</date>
+  <millis>1679335740361</millis>
+  <nanos>401600</nanos>
+  <sequence>1</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-20T18:09:15.675135900Z</date>
+  <millis>1679335755675</millis>
+  <nanos>135900</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+<record>
+  <date>2023-03-20T18:12:50.331059200Z</date>
+  <millis>1679335970331</millis>
+  <nanos>59200</nanos>
+  <sequence>1</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T00:25:14.961214100Z</date>
+  <millis>1679444714961</millis>
+  <nanos>214100</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T00:26:30.774689400Z</date>
+  <millis>1679444790774</millis>
+  <nanos>689400</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T00:30:30.956113600Z</date>
+  <millis>1679445030956</millis>
+  <nanos>113600</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T03:56:48.545979400Z</date>
+  <millis>1679457408545</millis>
+  <nanos>979400</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T04:06:53.394490Z</date>
+  <millis>1679458013394</millis>
+  <nanos>490000</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T05:14:03.326509300Z</date>
+  <millis>1679462043326</millis>
+  <nanos>509300</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.357453100Z</date>
+  <millis>1679462043357</millis>
+  <nanos>453100</nanos>
+  <sequence>1</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.367447900Z</date>
+  <millis>1679462043367</millis>
+  <nanos>447900</nanos>
+  <sequence>2</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.376455700Z</date>
+  <millis>1679462043376</millis>
+  <nanos>455700</nanos>
+  <sequence>3</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.382529300Z</date>
+  <millis>1679462043382</millis>
+  <nanos>529300</nanos>
+  <sequence>4</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.390502600Z</date>
+  <millis>1679462043390</millis>
+  <nanos>502600</nanos>
+  <sequence>5</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.399233600Z</date>
+  <millis>1679462043399</millis>
+  <nanos>233600</nanos>
+  <sequence>6</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.411856100Z</date>
+  <millis>1679462043411</millis>
+  <nanos>856100</nanos>
+  <sequence>7</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.424233Z</date>
+  <millis>1679462043424</millis>
+  <nanos>233000</nanos>
+  <sequence>8</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.434208500Z</date>
+  <millis>1679462043434</millis>
+  <nanos>208500</nanos>
+  <sequence>9</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.443849100Z</date>
+  <millis>1679462043443</millis>
+  <nanos>849100</nanos>
+  <sequence>10</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.455886800Z</date>
+  <millis>1679462043455</millis>
+  <nanos>886800</nanos>
+  <sequence>11</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.467418600Z</date>
+  <millis>1679462043467</millis>
+  <nanos>418600</nanos>
+  <sequence>12</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.478310500Z</date>
+  <millis>1679462043478</millis>
+  <nanos>310500</nanos>
+  <sequence>13</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.493225900Z</date>
+  <millis>1679462043493</millis>
+  <nanos>225900</nanos>
+  <sequence>14</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.523863700Z</date>
+  <millis>1679462043523</millis>
+  <nanos>863700</nanos>
+  <sequence>15</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T05:14:03.574414800Z</date>
+  <millis>1679462043574</millis>
+  <nanos>414800</nanos>
+  <sequence>16</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T05:14:03.608808200Z</date>
+  <millis>1679462043608</millis>
+  <nanos>808200</nanos>
+  <sequence>17</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.609110400Z</date>
+  <millis>1679462043609</millis>
+  <nanos>110400</nanos>
+  <sequence>18</sequence>
+  <logger>Storage</logger>
+  <level>WARNING</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data file has been corrupted or missing, we will create a new file and reset your progress.</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T05:14:03.637634500Z</date>
+  <millis>1679462043637</millis>
+  <nanos>634500</nanos>
+  <sequence>19</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:14:03.639628400Z</date>
+  <millis>1679462043639</millis>
+  <nanos>628400</nanos>
+  <sequence>20</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T05:16:20.837362800Z</date>
+  <millis>1679462180837</millis>
+  <nanos>362800</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:20.898688400Z</date>
+  <millis>1679462180898</millis>
+  <nanos>688400</nanos>
+  <sequence>1</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:20.929002300Z</date>
+  <millis>1679462180929</millis>
+  <nanos>2300</nanos>
+  <sequence>2</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:20.954642600Z</date>
+  <millis>1679462180954</millis>
+  <nanos>642600</nanos>
+  <sequence>3</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:20.982661600Z</date>
+  <millis>1679462180982</millis>
+  <nanos>661600</nanos>
+  <sequence>4</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:21.018704900Z</date>
+  <millis>1679462181018</millis>
+  <nanos>704900</nanos>
+  <sequence>5</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:21.051398900Z</date>
+  <millis>1679462181051</millis>
+  <nanos>398900</nanos>
+  <sequence>6</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:21.100654300Z</date>
+  <millis>1679462181100</millis>
+  <nanos>654300</nanos>
+  <sequence>7</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:21.149020700Z</date>
+  <millis>1679462181149</millis>
+  <nanos>20700</nanos>
+  <sequence>8</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:21.204655300Z</date>
+  <millis>1679462181204</millis>
+  <nanos>655300</nanos>
+  <sequence>9</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:21.261096900Z</date>
+  <millis>1679462181261</millis>
+  <nanos>96900</nanos>
+  <sequence>10</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:21.325273900Z</date>
+  <millis>1679462181325</millis>
+  <nanos>273900</nanos>
+  <sequence>11</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:21.393367700Z</date>
+  <millis>1679462181393</millis>
+  <nanos>367700</nanos>
+  <sequence>12</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:21.431580400Z</date>
+  <millis>1679462181431</millis>
+  <nanos>580400</nanos>
+  <sequence>13</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:21.482745200Z</date>
+  <millis>1679462181482</millis>
+  <nanos>745200</nanos>
+  <sequence>14</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:21.553070700Z</date>
+  <millis>1679462181553</millis>
+  <nanos>70700</nanos>
+  <sequence>15</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T05:16:21.653822100Z</date>
+  <millis>1679462181653</millis>
+  <nanos>822100</nanos>
+  <sequence>16</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T05:16:21.740963100Z</date>
+  <millis>1679462181740</millis>
+  <nanos>963100</nanos>
+  <sequence>17</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:21.741458600Z</date>
+  <millis>1679462181741</millis>
+  <nanos>458600</nanos>
+  <sequence>18</sequence>
+  <logger>Storage</logger>
+  <level>WARNING</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data file has been corrupted or missing, we will create a new file and reset your progress.</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T05:16:21.824401900Z</date>
+  <millis>1679462181824</millis>
+  <nanos>401900</nanos>
+  <sequence>19</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T05:16:21.828687900Z</date>
+  <millis>1679462181828</millis>
+  <nanos>687900</nanos>
+  <sequence>20</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T08:37:11.751974100Z</date>
+  <millis>1679474231751</millis>
+  <nanos>974100</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.769914300Z</date>
+  <millis>1679474231769</millis>
+  <nanos>914300</nanos>
+  <sequence>1</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.776890700Z</date>
+  <millis>1679474231776</millis>
+  <nanos>890700</nanos>
+  <sequence>2</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.782870900Z</date>
+  <millis>1679474231782</millis>
+  <nanos>870900</nanos>
+  <sequence>3</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.787854100Z</date>
+  <millis>1679474231787</millis>
+  <nanos>854100</nanos>
+  <sequence>4</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.792837500Z</date>
+  <millis>1679474231792</millis>
+  <nanos>837500</nanos>
+  <sequence>5</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.800811200Z</date>
+  <millis>1679474231800</millis>
+  <nanos>811200</nanos>
+  <sequence>6</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.809781900Z</date>
+  <millis>1679474231809</millis>
+  <nanos>781900</nanos>
+  <sequence>7</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.816757700Z</date>
+  <millis>1679474231816</millis>
+  <nanos>757700</nanos>
+  <sequence>8</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.823734900Z</date>
+  <millis>1679474231823</millis>
+  <nanos>734900</nanos>
+  <sequence>9</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.831707600Z</date>
+  <millis>1679474231831</millis>
+  <nanos>707600</nanos>
+  <sequence>10</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.842671300Z</date>
+  <millis>1679474231842</millis>
+  <nanos>671300</nanos>
+  <sequence>11</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.851641500Z</date>
+  <millis>1679474231851</millis>
+  <nanos>641500</nanos>
+  <sequence>12</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.858617900Z</date>
+  <millis>1679474231858</millis>
+  <nanos>617900</nanos>
+  <sequence>13</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.866592400Z</date>
+  <millis>1679474231866</millis>
+  <nanos>592400</nanos>
+  <sequence>14</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.892504200Z</date>
+  <millis>1679474231892</millis>
+  <nanos>504200</nanos>
+  <sequence>15</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T08:37:11.940345Z</date>
+  <millis>1679474231940</millis>
+  <nanos>345000</nanos>
+  <sequence>16</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T08:37:11.978218700Z</date>
+  <millis>1679474231978</millis>
+  <nanos>218700</nanos>
+  <sequence>17</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:11.978218700Z</date>
+  <millis>1679474231978</millis>
+  <nanos>218700</nanos>
+  <sequence>18</sequence>
+  <logger>Storage</logger>
+  <level>WARNING</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data file has been corrupted or missing, we will create a new file and reset your progress.</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T08:37:12.013101900Z</date>
+  <millis>1679474232013</millis>
+  <nanos>101900</nanos>
+  <sequence>19</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T08:37:12.015094600Z</date>
+  <millis>1679474232015</millis>
+  <nanos>94600</nanos>
+  <sequence>20</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T09:19:57.557048200Z</date>
+  <millis>1679476797557</millis>
+  <nanos>48200</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T09:32:33.548494200Z</date>
+  <millis>1679477553548</millis>
+  <nanos>494200</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T09:54:19.787404800Z</date>
+  <millis>1679478859787</millis>
+  <nanos>404800</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T10:01:47.568050900Z</date>
+  <millis>1679479307568</millis>
+  <nanos>50900</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T10:14:38.721266200Z</date>
+  <millis>1679480078721</millis>
+  <nanos>266200</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T16:45:17.538053500Z</date>
+  <millis>1679503517538</millis>
+  <nanos>53500</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.570944400Z</date>
+  <millis>1679503517570</millis>
+  <nanos>944400</nanos>
+  <sequence>1</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.584897200Z</date>
+  <millis>1679503517584</millis>
+  <nanos>897200</nanos>
+  <sequence>2</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.598850800Z</date>
+  <millis>1679503517598</millis>
+  <nanos>850800</nanos>
+  <sequence>3</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.612804700Z</date>
+  <millis>1679503517612</millis>
+  <nanos>804700</nanos>
+  <sequence>4</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.631742Z</date>
+  <millis>1679503517631</millis>
+  <nanos>742000</nanos>
+  <sequence>5</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.649680900Z</date>
+  <millis>1679503517649</millis>
+  <nanos>680900</nanos>
+  <sequence>6</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.670610800Z</date>
+  <millis>1679503517670</millis>
+  <nanos>610800</nanos>
+  <sequence>7</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.698517200Z</date>
+  <millis>1679503517698</millis>
+  <nanos>517200</nanos>
+  <sequence>8</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.729414100Z</date>
+  <millis>1679503517729</millis>
+  <nanos>414100</nanos>
+  <sequence>9</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.760310700Z</date>
+  <millis>1679503517760</millis>
+  <nanos>310700</nanos>
+  <sequence>10</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.787220600Z</date>
+  <millis>1679503517787</millis>
+  <nanos>220600</nanos>
+  <sequence>11</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.811140400Z</date>
+  <millis>1679503517811</millis>
+  <nanos>140400</nanos>
+  <sequence>12</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.840044Z</date>
+  <millis>1679503517840</millis>
+  <nanos>44000</nanos>
+  <sequence>13</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.868947600Z</date>
+  <millis>1679503517868</millis>
+  <nanos>947600</nanos>
+  <sequence>14</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:17.914794200Z</date>
+  <millis>1679503517914</millis>
+  <nanos>794200</nanos>
+  <sequence>15</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T16:45:17.978580900Z</date>
+  <millis>1679503517978</millis>
+  <nanos>580900</nanos>
+  <sequence>16</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T16:45:18.033397300Z</date>
+  <millis>1679503518033</millis>
+  <nanos>397300</nanos>
+  <sequence>17</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:18.034393800Z</date>
+  <millis>1679503518034</millis>
+  <nanos>393800</nanos>
+  <sequence>18</sequence>
+  <logger>Storage</logger>
+  <level>WARNING</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data file has been corrupted or missing, we will create a new file and reset your progress.</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T16:45:18.070273900Z</date>
+  <millis>1679503518070</millis>
+  <nanos>273900</nanos>
+  <sequence>19</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:45:18.072267400Z</date>
+  <millis>1679503518072</millis>
+  <nanos>267400</nanos>
+  <sequence>20</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T16:57:25.818021500Z</date>
+  <millis>1679504245818</millis>
+  <nanos>21500</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:25.848917700Z</date>
+  <millis>1679504245848</millis>
+  <nanos>917700</nanos>
+  <sequence>1</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:25.860877800Z</date>
+  <millis>1679504245860</millis>
+  <nanos>877800</nanos>
+  <sequence>2</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:25.869847300Z</date>
+  <millis>1679504245869</millis>
+  <nanos>847300</nanos>
+  <sequence>3</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:25.878817600Z</date>
+  <millis>1679504245878</millis>
+  <nanos>817600</nanos>
+  <sequence>4</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:25.892771700Z</date>
+  <millis>1679504245892</millis>
+  <nanos>771700</nanos>
+  <sequence>5</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:25.904731Z</date>
+  <millis>1679504245904</millis>
+  <nanos>731000</nanos>
+  <sequence>6</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:25.914697200Z</date>
+  <millis>1679504245914</millis>
+  <nanos>697200</nanos>
+  <sequence>7</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:25.926659400Z</date>
+  <millis>1679504245926</millis>
+  <nanos>659400</nanos>
+  <sequence>8</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:25.938617700Z</date>
+  <millis>1679504245938</millis>
+  <nanos>617700</nanos>
+  <sequence>9</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:25.951575Z</date>
+  <millis>1679504245951</millis>
+  <nanos>575000</nanos>
+  <sequence>10</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:25.964530900Z</date>
+  <millis>1679504245964</millis>
+  <nanos>530900</nanos>
+  <sequence>11</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:25.978484500Z</date>
+  <millis>1679504245978</millis>
+  <nanos>484500</nanos>
+  <sequence>12</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:25.991442500Z</date>
+  <millis>1679504245991</millis>
+  <nanos>442500</nanos>
+  <sequence>13</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:26.003400800Z</date>
+  <millis>1679504246003</millis>
+  <nanos>400800</nanos>
+  <sequence>14</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:26.038284900Z</date>
+  <millis>1679504246038</millis>
+  <nanos>284900</nanos>
+  <sequence>15</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T16:57:26.085128500Z</date>
+  <millis>1679504246085</millis>
+  <nanos>128500</nanos>
+  <sequence>16</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T16:57:26.136954600Z</date>
+  <millis>1679504246136</millis>
+  <nanos>954600</nanos>
+  <sequence>17</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:26.137951700Z</date>
+  <millis>1679504246137</millis>
+  <nanos>951700</nanos>
+  <sequence>18</sequence>
+  <logger>Storage</logger>
+  <level>WARNING</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data file has been corrupted or missing, we will create a new file and reset your progress.</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T16:57:26.173831100Z</date>
+  <millis>1679504246173</millis>
+  <nanos>831100</nanos>
+  <sequence>19</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-22T16:57:26.177818Z</date>
+  <millis>1679504246177</millis>
+  <nanos>818000</nanos>
+  <sequence>20</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-22T16:59:03.278630500Z</date>
+  <millis>1679504343278</millis>
+  <nanos>630500</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T02:21:15.497467600Z</date>
+  <millis>1679538075497</millis>
+  <nanos>467600</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T02:45:59.111021900Z</date>
+  <millis>1679539559111</millis>
+  <nanos>21900</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+<record>
+  <date>2023-03-23T02:47:51.729255500Z</date>
+  <millis>1679539671729</millis>
+  <nanos>255500</nanos>
+  <sequence>1</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T05:26:40.647931Z</date>
+  <millis>1679549200647</millis>
+  <nanos>931000</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+<record>
+  <date>2023-03-23T05:27:53.971985500Z</date>
+  <millis>1679549273971</millis>
+  <nanos>985500</nanos>
+  <sequence>1</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+<record>
+  <date>2023-03-23T05:31:03.580462Z</date>
+  <millis>1679549463580</millis>
+  <nanos>462000</nanos>
+  <sequence>2</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T05:46:05.272702500Z</date>
+  <millis>1679550365272</millis>
+  <nanos>702500</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T05:54:50.603737500Z</date>
+  <millis>1679550890603</millis>
+  <nanos>737500</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T06:12:23.559135900Z</date>
+  <millis>1679551943559</millis>
+  <nanos>135900</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T06:14:34.085186400Z</date>
+  <millis>1679552074085</millis>
+  <nanos>186400</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T06:19:33.005375900Z</date>
+  <millis>1679552373005</millis>
+  <nanos>375900</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T06:21:50.668424600Z</date>
+  <millis>1679552510668</millis>
+  <nanos>424600</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+<record>
+  <date>2023-03-23T06:22:02.449261Z</date>
+  <millis>1679552522449</millis>
+  <nanos>261000</nanos>
+  <sequence>1</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>writeToJson</method>
+  <thread>1</thread>
+  <message>User Data has been written to file</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T06:26:52.202460700Z</date>
+  <millis>1679552812202</millis>
+  <nanos>460700</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T06:29:25.081979700Z</date>
+  <millis>1679552965081</millis>
+  <nanos>979700</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T06:34:04.554602500Z</date>
+  <millis>1679553244554</millis>
+  <nanos>602500</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T08:41:33.952805500Z</date>
+  <millis>1679560893952</millis>
+  <nanos>805500</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T08:53:44.944689500Z</date>
+  <millis>1679561624944</millis>
+  <nanos>689500</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T17:31:59.936117900Z</date>
+  <millis>1679592719936</millis>
+  <nanos>117900</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-03-23T17:33:56.384158200Z</date>
+  <millis>1679592836384</millis>
+  <nanos>158200</nanos>
+  <sequence>0</sequence>
+  <logger>Storage</logger>
+  <level>INFO</level>
+  <class>seedu.duke.storage.StorageHandler</class>
+  <method>loadUserCareer</method>
+  <thread>1</thread>
+  <message>Data has been restored from previous session!</message>
+</record>
+</log>
