@@ -28,6 +28,12 @@ Afterwards, the ```execute()``` method will print ```"Income deleted, here is th
 
 ![Record Class](../images/DeleteIncomeCommand_sequence_diagram.png)
 
+### Target and TargetStorage
+
+The `Target` and `TargetStorage` class allows users to set a target for their ideal balance.
+
+![Target Class](../images/Target_UML.png)
+
 ### [Proposed] EditIncomeCommand/EditExpenseCommand
 The proposed edit income command is facilitated by `Parser`, `EditIncomeCommand`, `IncomeList`, while the proposed edit expense command is facilitated by `Parser`, `EditExpenseCommand` and `ExpenseList`. 
 
@@ -83,6 +89,7 @@ The selected currencies will be marked with a ```[X]``` and the unselected curre
 
 
 ## Product scope
+
 ### Target user profile
 
 Target users are people who are keen on improving their financial accountability
@@ -93,14 +100,18 @@ The value proposition of ChChing is its ability to track income and expenses on 
 
 ## User Stories
 
-| Version | As a ... | I want to ...                  | So that I can ...                                      |
-|---------|----------|--------------------------------|--------------------------------------------------------|
-| v1.0    |new user| see usage instructions         | refer to them when I forget how to use the application |
-| v1.0    |user| add new expense to the records | record all my expenses                                 |
-| v1.0    |user| add new income to the records  | record all my incomes                                  |
-| v1.0    |user| view all the records           | refer to them when I forgot my expenses and incomes    |
-| v1.0    |user| edit the records               | modify/fix if the records is changed/wrong             |
-| v1.0    |user| know current balance           | aware how much money do I have left                    |
+| Version | As a ...  | I want to ...                           | So that I can ...                                                                       |
+|---------|-----------|-----------------------------------------|-----------------------------------------------------------------------------------------|
+| v1.0    | new user  | see usage instructions                  | refer to them when I forget how to use the application                                  |
+| v1.0    | user      | add new expense to the records          | record all my expenses                                                                  |
+| v1.0    | user      | add new income to the records           | record all my incomes                                                                   |
+| v1.0    | user      | view all the records                    | refer to them when I forgot my expenses and incomes                                     |
+| v1.0    | user      | edit the records                        | modify/fix if the records is changed/wrong                                              |
+| v1.0    | user      | know current balance                    | aware how much money do I have left                                                     |
+| v2.0    | user      | edit my existing entries                | rectify or update any entries without having to enter another entry and delete an entry |
+| v2.0    | user      | find specific entries                   | refer to specific entries when necessary                                                |
+| v2.0    | foreigner | view my entries in a different currency | read my incomes and expenses in a currency I am familiar with                           |
+| v2.0    | user      | set a target for my balance             | improve my financial management                                                         |
 
 ## Non-Functional Requirements
 
