@@ -181,6 +181,13 @@ public class AddCommand extends Command implements LoggerInterface {
     }
 
 
+    /**
+     * Checks if a event user wants to add clashes with existing events 
+     * @param taskList The ArrayList containing the tasks
+     * @param from The time that event starts
+     * @param to The time that event ends
+     * @return
+     */
     public boolean isClashingEvent(TaskList taskList, LocalDateTime from, LocalDateTime to) {
         for (Task task : taskList) {
             if (task instanceof Event) {
