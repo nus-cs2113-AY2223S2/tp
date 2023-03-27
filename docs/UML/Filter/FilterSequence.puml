@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor User
+participant FilterParser
+User -> FilterParser **
+activate FilterParser
+User -> FilterParser: run()
+alt rawInput == null
+    ref over FilterParser
+        handle input error
+    end ref
+    FilterParser -> User
+end
+alt first command == "f/price"
+    alt command length is 3
+        ref over FilterParser
+            handle input error
+        end ref
+        FilterParser -> User
+    end
+    FilterParser -> FilterParser: parseFilterPrice()
+    activate FilterParser #cyan
+    alt price is not double or mode is wrong
+        ref over FilterParser
+            handle input error
+        end ref
+    end
+    ref over FilterParser
+        filter price
+    end ref
+    return
+else first command == "f/category" || "f/tag"
+    alt command length < 2
+        ref over FilterParser
+            handle input error
+        end ref
+        FilterParser -> User
+    end
+    FilterParser -> FilterParser: parseFilterCategoryOrTag()
+    activate FilterParser #cyan
+    ref over FilterParser
+        get user keyword from user input by excluding command word
+        filter category or tag
+    end ref
+    return
+else
+    ref over FilterParser
+        handle input error
+    end ref
+    FilterParser -> User
+end
+return
+destroy FilterParser
+@enduml

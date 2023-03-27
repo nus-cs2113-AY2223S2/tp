@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor User
+participant SearchParser
+User -> SearchParser **
+activate SearchParser
+User -> SearchParser: run()
+
+alt searchType == Types.SearchType.KEYWORD
+    SearchParser -> SearchParser: parseSearch
+        alt rawInput == null
+            ref over SearchParser
+                handle input error
+            end ref
+        end
+        SearchParser -> SearchCommand ** :
+        SearchParser -> SearchCommand ++ : run()
+        ref over SearchCommand
+            SearchCommand runs
+        end ref
+        SearchCommand -> SearchParser
+        deactivate SearchCommand
+        destroy SearchCommand
+else
+    SearchParser -> SearchParser: parseSearchUPC
+        alt rawInput == null or rawInput has more than 1 word
+            ref over SearchParser
+                handle input error
+            end ref
+        end
+        SearchParser -> SearchCommand ** :
+        SearchParser -> SearchCommand ++ : run()
+        ref over SearchCommand
+            SearchCommand runs
+        end ref
+        SearchCommand -> SearchParser
+        deactivate SearchCommand
+        destroy SearchCommand
+end
+return
+destroy SearchParser
+@enduml
