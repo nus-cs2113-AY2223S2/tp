@@ -31,8 +31,8 @@ public class Reminder {
     private static String checkEventReminder(Category category) {
         String reminder = "";
         for (Event event : category.getEvents()) {
-            if (isApproaching(event.getTime())) {
-                reminder += category.getName() + "has an event: " + event.getDescription() 
+            if (event.getTime() != null && isApproaching(event.getTime())) {
+                reminder += category.getName() + " has an event: " + event.getDescription() 
                         + " in " + numberDaysAway(event.getTime()) + " days" + NEW_LINE;
             }
         }

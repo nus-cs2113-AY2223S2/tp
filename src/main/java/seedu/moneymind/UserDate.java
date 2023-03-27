@@ -45,7 +45,7 @@ public class UserDate {
      * @return True if the date is approaching.
      */
     public static Boolean isApproaching(String date) {
-        return numberDaysAway(date) <= 5;
+        return (numberDaysAway(date) <= 5 && numberDaysAway(date) >= 0);
     }
 
     /**
