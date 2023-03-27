@@ -8,24 +8,50 @@ original source as well}
 - [AB3](https://github.com/se-edu/addressbook-level3)
 - [OpenCSV](https://opencsv.sourceforge.net/)
 
+## Introduction 
+
+Welcome to rainyDay's developer guide! rainyDay is a desktop application for managing your finances that runs on a Command Line Interface (CLI). rainyDay
+provides a simple solution to track your finances and achieve your financial goals. 
+
+#### Main functions:
+* Adding, deleting and editing transaction entries
+* Viewing your transactions and filtering by certain fields
+* Saving your data into a csv file
+* Setting budgeting goals
+
+#### Purpose and target reader
+
+This guide is designed for potential engineers  and professors who would want to who may want to understand how rainyDay is implemented. 
+We assume that you already have a certain level of technical knowledge as we will be going into detail of the technical aspects
+of rainyDay. <br> If you are a user looking for instructions on how to use rainyDay, please refer to our [UserGuide](https://ay2223s2-cs2113t-t09-1.github.io/tp/UserGuide.html)
+
+#### How to use this guide
+
+{todo, talk about the diagrams, formatting (markdown etc)}
+
 ## Design
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+> 💡**Tip:** The .puml files used to create diagrams in this document can be found [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/tree/master/docs/diagrams). 
+> Refer to the PlantUML Tutorial at se-edu/guides to learn how to create and edit diagrams.
 
 ### Architecture
 
-{to insert image?}
-{insert description of image?}
-Components:
+#### Main components of the architecture
+- `Main`: Initializes the components in the correct sequence, and connects them up with each other
+- `Parser`: breaks down inputs passed from user
+- `Command`: executes the appropriate commands
+- `Userdata`: Data input by the user
+- `UI`: the user interface
+- `Storage`: reads data from and writes data to the hard disk file
 
-- `RainyDay`: the main component to initialize the components and shutting down
-- `Modules`: parts of the product
-- `Data`: holds the data of the app
-- `Command`: carries out the respective commands
-- `Exceptions`: application specific error related information
+The diagram given below explains the high-level design of rainyDay, and how the components are related to one another.
 
-**How the architecture components interact with each other**
-{insert diagram and explain}
+![architecture.png](images%2Farchitecture.png)
+
+The Sequence Diagram below shows the timeline of how the different components will interact with one another, we will
+illustrate a 'delete' command, e.g. `delete 1`.
+
+![ArchitectureSequence.png](images%2FArchitectureSequence.png)
 
 ### Modules component
 

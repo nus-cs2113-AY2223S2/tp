@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+
+Participant ":Main" as main #grey
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Parser" as parser #black
+Participant ":Command" as command COMMAND_COLOR
+Participant ":Userdata" as userdata USERDATA_COLOR
+Participant ":Storage" as storage STORAGE_COLOR
+
+activate main #grey
+
+activate ui UI_COLOR
+user -[USER_COLOR]> ui : delete 1
+
+ui -> parser : delete 1
+activate parser #black
+
+parser -> command :DeleteCommand(1)
+activate command COMMAND_COLOR
+
+command -> userdata :deleteStatement(1)
+activate userdata USERDATA_COLOR
+userdata --> command
+deactivate userdata
+command --> parser
+deactivate command
+parser --> ui
+deactivate parser
+deactivate ui
+
+main -> storage
+activate storage STORAGE_COLOR
+storage -> storage : save to file
+activate storage STORAGE_COLOR_T1
+storage --> storage
+deactivate storage
+storage -> main
+
+@enduml
