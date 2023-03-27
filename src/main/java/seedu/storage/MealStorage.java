@@ -1,4 +1,4 @@
-package seedu.database;
+package seedu.storage;
 
 import java.io.BufferedReader;
 // import java.io.File;
@@ -10,7 +10,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 import seedu.entities.Meal;
 import seedu.exceptions.InvalidMealException;
@@ -124,8 +126,15 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         return this.meals.size();
     }
 
-    public ArrayList<Meal> getMeal() {
+    public ArrayList<Meal> getMeals() {
         return this.meals;
+    }
+
+    public List<Meal> getMealByDate(LocalDate date) {
+        List<Meal> filteredMeals = meals.stream()
+                .filter(m -> m.getDate().equals(date))
+                .collect(Collectors.toList());
+        return filteredMeals;
     }
 
     public Meal getMealById(int id) {

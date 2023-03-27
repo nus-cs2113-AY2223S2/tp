@@ -8,6 +8,7 @@ import seedu.commands.UpdateUserCommand;
 import seedu.commands.ViewUserCommand;
 import seedu.commands.ListCommand;
 import seedu.commands.NutritionCommand;
+import seedu.commands.TrackCalorieCommand;
 import seedu.commands.ExerciseCommand;
 import seedu.commands.FilterCaloriesCommand;
 import seedu.exceptions.InvalidCommandException;
@@ -46,6 +47,9 @@ public class CommandParser {
             break;
         case "exercise":
             command = new ExerciseCommand();
+            break;
+        case "track":
+            command = new TrackCalorieCommand();
             break;
         default:
             throw new InvalidCommandException();
