@@ -104,7 +104,7 @@ public class Parser {
             description = matcher.group(0);
             arguments = arguments.replaceFirst(description, "").trim();
         }
-
+        System.out.print(arguments);
         matcher = categoryPattern.matcher(arguments);
         if (matcher.find()) {
             category = matcher.group(2);
@@ -287,12 +287,7 @@ public class Parser {
             if (has_letters) {
                 throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
             }
-            try {
-                Double.parseDouble(price);
-            } catch (NumberFormatException e) {
-                logger.warning("Price not in numerical format: " + MessageConstants.MESSAGE_INVALID_PRICE);
-                throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
-            }
+            Double.parseDouble(price);
         }
 
         if (!category.isEmpty()) {
@@ -323,17 +318,16 @@ public class Parser {
         int viewCountInt;
         if (arguments.isEmpty()) {
             logger.info("No count specified. Listing all expenses");
-            // list all commands;
             return new ViewCommand(Integer.MAX_VALUE);
         }
-        String[] argumentsArray = arguments.split(" ", 3);
-        assert argumentsArray.length >= 1 : "User input contains at least 1 argument";
+        String[] argumentsArray = arguments.split(" ");
+        assert argumentsArray.length >= 1 : "User input must contain at least 1 argument";
         Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
-        Pattern viewCountPattern = Pattern.compile("\\d+");
+        Pattern viewCountPattern = Pattern.compile("\\S+");
         Matcher matcher = viewCountPattern.matcher(arguments);
-        if (matcher.find()) {
-            viewCount = matcher.group(0);
-        } else { //count not specified
+        matcher.find();
+        viewCount = matcher.group(0);
+        if (viewCount.equals("-c") || viewCount.equals("-category")) { //only category specified
             viewCount = Integer.toString(Integer.MAX_VALUE);
         }
         matcher = categoryPattern.matcher(arguments);

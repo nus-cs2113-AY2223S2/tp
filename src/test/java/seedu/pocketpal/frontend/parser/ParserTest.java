@@ -8,11 +8,60 @@ import org.junit.jupiter.api.Test;
 
 import seedu.pocketpal.frontend.constants.MessageConstants;
 import seedu.pocketpal.frontend.exceptions.InvalidArgumentsException;
+import seedu.pocketpal.frontend.exceptions.InvalidCategoryException;
 import seedu.pocketpal.frontend.exceptions.InvalidCommandException;
 import seedu.pocketpal.frontend.exceptions.MissingArgumentsException;
 
 
 public class ParserTest {
+    @Test
+    public void parseUserInput_emptyDescription_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(MissingArgumentsException.class, () -> {
+            parser.parseUserInput("/add -p 100 -c food");
+        });
+
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_ARGS_ADD;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseUserInput_emptyPrice_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(MissingArgumentsException.class, () -> {
+            parser.parseUserInput("/add expense1 -c food");
+        });
+
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_ARGS_ADD;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseUserInput_emptyCategory_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(MissingArgumentsException.class, () -> {
+            parser.parseUserInput("/add expense1 -p 100");
+        });
+
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_ARGS_ADD;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseUserInput_nonNumericalPrice_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/add expense1 -p 10f0 -c food");
+        });
+
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_PRICE;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
     @Test
     public void parseUserInput_emptyInput_exceptionThrown() {
         Parser parser = new Parser();
@@ -46,6 +95,73 @@ public class ParserTest {
     }
 
     @Test
+    public void parseEditCommand_missingArguments_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(MissingArgumentsException.class, () -> {
+            parser.parseUserInput("/edit");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_ARGS_EDIT;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseEditCommand_invalidExpenseId_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/edit f");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_ID;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseEditCommand_wrongPriceFormat_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/edit 10 -p 10f");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_PRICE;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseEditCommand_invalidCategory_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/edit 10 -c wrongCategory");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_CATEGORY;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseViewCommand_invalidExpenseId_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/view 10f");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_ID;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseViewCommand_negativeExpenseId_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/view -5");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_ID;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+
+    @Test
     public void parseUserInput_validAddCommand_parsedSuccessfully() {
         Parser parser = new Parser();
         assertDoesNotThrow(() -> {
@@ -60,9 +176,34 @@ public class ParserTest {
     }
 
     @Test
-    public void parseUserInput_validEditCommand_parsedSuccessfully() {
+    public void parseViewCommand_validViewCategory_parsedSuccessfully() {
+        Parser parser = new Parser();
+        assertDoesNotThrow(() -> parser.parseUserInput("/view -c food"));
+    }
+
+//    @Test
+//    public void parseViewCommand_countNotSpecified_maxIntReturned() {
+//        Parser parser = new Parser();
+//
+//    }
+
+
+    @Test
+    public void parseEditCommand_validEditCommand_parsedSuccessfully() {
         Parser parser = new Parser();
         assertDoesNotThrow(() -> parser.parseUserInput("/edit 1 -d new description"));
+    }
+
+    @Test
+    public void parseEditCommand_validEditCategory_parsedSuccessfully() {
+        Parser parser = new Parser();
+        assertDoesNotThrow(() -> parser.parseUserInput("/edit 10 -c food"));
+    }
+
+    @Test
+    public void parseEditCommand_validEditPrice_parsedSuccessfully() {
+        Parser parser = new Parser();
+        assertDoesNotThrow(() -> parser.parseUserInput("/edit 10 -p 10"));
     }
 
     @Test
