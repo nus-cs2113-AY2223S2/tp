@@ -11,6 +11,7 @@ Hey there! Thanks for choosing Meal Companion, your one-stop solution to handlin
        2. [Remove Ingredients](#remove-ingredients)
        3. [List Ingredients](#list-ingredients)
        4. [Search Ingredients](#search-ingredients)
+       5. [Clear Ingredients](#clear-ingredients)
     2. [Recipes](#recipes)
         1. [Default Recipes](#default-recipes)
         2. [All Recipes](#all-recipes)
@@ -69,6 +70,9 @@ If you would like to search for a specific ingredient that Meal Companion recogn
 
 Omitting the keyword will return a list of all valid ingredients.
 ![search2.png](images/search2.png)
+
+### Clear Ingredients
+To remove all ingredients from Meal Companion's storage, use the `clear` command.
  
 ###### [Back to table of contents](#table-of-contents)
  
