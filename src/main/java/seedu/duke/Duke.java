@@ -46,11 +46,12 @@ public class Duke {
         if (in.hasNextLine()) {
             System.out.println("Hello " + in.nextLine());
         } do {
-            System.out.println("Enter \"login\", \"register\", or \"exit\"");
+            System.out.println("Enter \"login\", \"signup\", or \"exit\"");
             String input = in.nextLine();
             if (input.equals("login")) {
                 // get login details
                 caseLogIn();
+                break;
             } else if (input.equals("signup")) {
                 // get register details
                 caseSignUp();
@@ -65,9 +66,6 @@ public class Duke {
         String input = "";
         if (in.hasNextLine()) {
             input = in.nextLine();
-        }
-        while (input.equals("login")) {
-            
         }
         while (!input.equals("exit")) {
             switch (parser.extractCommandKeyword(input)) {
