@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.Deadline;
 import seedu.duke.Module;
 import seedu.duke.Parser;
 import seedu.duke.Storage;
@@ -18,10 +19,11 @@ public class InvalidCommandTest {
         ArrayList<University> universities = new ArrayList<>();
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Module> puModules = new ArrayList<>();
+        ArrayList<Deadline> deadlines = new ArrayList<>();
         Storage storage = new Storage();
         Parser parser = new Parser();
         BudgetPlanner budgetPlanner = new BudgetPlanner();
-        assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, budgetPlanner)
-                instanceof ExceptionHandleCommand);
+        assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, budgetPlanner,
+                deadlines) instanceof ExceptionHandleCommand);
     }
 }
