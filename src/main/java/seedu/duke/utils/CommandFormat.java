@@ -19,6 +19,7 @@ public class CommandFormat {
     public static final String CATEGORY_FORMAT = "cat n/[Name] c/[Category]";
     public static final String TAG_FORMAT = "tag a/[Add/Remove] n/[Name] [Tag]";
 
+    public static final String DASHBOARD_FORMAT = "db";
     public static final String ADD_DESCRIPTION = "add:\nadds an item to the inventory list";
     public static final String EDIT_DESCRIPTION = "edit:\nedits relevant information of an item";
     public static final String REMOVE_DESCRIPTION = "remove:\nremoves an item from the inventory list";
@@ -34,8 +35,10 @@ public class CommandFormat {
     public static final String ALERT_REMOVE_DESCRIPTION = "alert remove:\nremoves existing alert for an item";
     public static final String CATEGORY_DESCRIPTION = "cat:\nputs an item into the specified category";
     public static final String TAG_DESCRIPTION = "tag:\nadds or removes a tag of an existing item";
+    public static final String DASHBOARD_DESCRIPTION = "db:\nDisplays the dashboard of Magus-Stock";
 
     protected HashMap<String, String> commandsHashMap;
+
     public CommandFormat(HashMap<String, String> commandsHashMap) {
         this.commandsHashMap = getCommandsHashMap(commandsHashMap);
     }
@@ -55,6 +58,7 @@ public class CommandFormat {
         commands.put(ALERT_ADD_FORMAT, ALERT_ADD_DESCRIPTION);
         commands.put(ALERT_REMOVE_FORMAT, ALERT_REMOVE_DESCRIPTION);
         commands.put(HELP_FORMAT, HELP_DESCRIPTION);
+        commands.put(DASHBOARD_FORMAT, DASHBOARD_DESCRIPTION);
         return commands;
     }
 }

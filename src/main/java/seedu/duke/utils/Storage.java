@@ -24,12 +24,22 @@ import static seedu.duke.utils.ColorCode.ANSI_RESET;
 
 public class Storage {
     private static Inventory inventory = new Inventory();
-    private static final String VALID_DATAROW_REGEX = "^\\d+,[^,]+,\\d+,\\d+,\\d+(?:\\.\\d+)?,[^,]+$";
+    private static final Integer MAX_NUMBER_OF_FIELDS = 7;
+    private static final Integer NAME_INDEX = 1;
+    private static final Integer UPC_INDEX = 2;
+    private static final Integer QUANTITY_INDEX = 3;
+    private static final Integer PRICE_INDEX = 4;
+    private static final Integer DATE_INDEX = 6;
 
-    public Storage() {
+    private static final String VALID_DATAROW_REGEX =
+            "^\\d+,[^,]+,\\d+,\\d+,\\d+(?:\\.\\d+)?,[^,]+,\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{9}$";
 
-    }
-
+    /**
+     * Reads the CSV file from Types.SESSIONFILEPATH and
+     * returns an Inventory object.
+     *
+     * @return Inventory object
+     */
     public static Inventory readCSV() {
 
         try {
@@ -42,32 +52,32 @@ public class Storage {
             Inventory tempInventory = new Inventory();
             while (line != null) {
                 String[] fields = line.split(",");
-                if (fields.length != 7) {
+                if (fields.length != MAX_NUMBER_OF_FIELDS) {
                     Ui.printInvalidSessionFile();
                     return new Inventory();
                 }
-                Item item = new Item(fields[1], fields[2], Integer.parseInt(fields[3]),
-                        Double.parseDouble(fields[4]), LocalDateTime.parse(fields[6]));
-                if(tempInventory.getUpcCodes().containsKey(fields[2])){
-                    if(tempInventory.getUpcCodes().get(fields[2]).compareTo(item)==-1){
-                        tempInventory.getItemInventory().remove(tempInventory.getUpcCodes().get(fields[2]));
+                Item item = new Item(fields[NAME_INDEX], fields[UPC_INDEX], Integer.parseInt(fields[QUANTITY_INDEX]),
+                        Double.parseDouble(fields[PRICE_INDEX]), LocalDateTime.parse(fields[DATE_INDEX]));
+                if (tempInventory.getUpcCodes().containsKey(fields[UPC_INDEX])) {
+                    if (tempInventory.getUpcCodes().get(fields[UPC_INDEX]).compareTo(item) == -1) {
+                        tempInventory.getItemInventory().remove(tempInventory.getUpcCodes().get(fields[UPC_INDEX]));
                         tempInventory.getItemInventory().add(item);
-                        tempInventory.getUpcCodes().remove(fields[2]);
-                        tempInventory.getUpcCodes().put(fields[2],item);
+                        tempInventory.getUpcCodes().remove(fields[UPC_INDEX]);
+                        tempInventory.getUpcCodes().put(fields[UPC_INDEX], item);
                     }
-                }else{
+                } else {
                     tempInventory.getItemInventory().add(item);
-                    tempInventory.getUpcCodes().put(fields[2], item);
+                    tempInventory.getUpcCodes().put(fields[UPC_INDEX], item);
                 }
-                if(!inventory.getUpcCodesHistory().containsKey(item.getUpc())){
-                    inventory.getUpcCodesHistory().put(item.getUpc(),new ArrayList<>());
+                if (!inventory.getUpcCodesHistory().containsKey(item.getUpc())) {
+                    inventory.getUpcCodesHistory().put(item.getUpc(), new ArrayList<>());
                 }
                 inventory.getUpcCodesHistory().get(item.getUpc()).add(new Item(item));
                 line = reader.readLine();
             }
-            for(Item item: tempInventory.getItemInventory()){
+            for (Item item : tempInventory.getItemInventory()) {
                 inventory.getItemInventory().add(item);
-                inventory.getUpcCodes().put(item.getUpc(),item);
+                inventory.getUpcCodes().put(item.getUpc(), item);
                 String[] itemNames = item.getName().toLowerCase().split(" ");
                 for (String itemName : itemNames) {
                     if (!inventory.getItemNameHash().containsKey(itemName)) {
@@ -86,25 +96,41 @@ public class Storage {
         return inventory;
     }
 
-    public static void writeCSV(Inventory currentInventory) {
+    /**
+     * Writes the current inventory to the CSV file.
+     *
+     * @param currentInventory Current inventory
+     */
+    public static void writeCSV(final Inventory currentInventory) {
         try {
+            File dataFolder = new File("./data");
+            if (!dataFolder.exists()) {
+                dataFolder.mkdir();
+            }
+
             BufferedWriter writer = new BufferedWriter(new FileWriter(Types.SESSIONFILEPATH));
             int counter = 0;
             for (int i = 0; i < currentInventory.getItemInventory().size(); i++) {
                 String itemUPC = currentInventory.getItemInventory().get(i).getUpc();
-                for(Item item: currentInventory.getUpcCodesHistory().get(itemUPC)){
+                for (Item item : currentInventory.getItemInventory()) {
                     writer.write(counter + "," + item.getName() + "," + item.getUpc() + "," + item.getQuantity()
-                            + "," + item.getPrice() + "," + item.getCategory() + "," + item.getDateTime()+"\n");
+                            + "," + item.getPrice() + "," + item.getCategory() + "," + item.getDateTime() + "\n");
                     counter++;
                 }
             }
             writer.close();
         } catch (IOException e) {
-            System.out.println("An error occurred while loading");
+            System.out.println("Critical: An error occurred when writing to the file.");
         }
     }
 
-    public static Types.FileHealth checkFileValid(String path) {
+    /**
+     * Checks if a given file path is valid.
+     *
+     * @param path File path
+     * @return FileHealth enum that indicates the state of the file (MISSING/CORRUPT/OK)
+     */
+    public static Types.FileHealth checkFileValid(final String path) {
         File file = new File(path);
 
         if (!file.exists()) {
@@ -132,6 +158,11 @@ public class Storage {
         return Types.FileHealth.OK;
     }
 
+    /**
+     * Checks if the data inside an inventory data .csv file is valid.
+     *
+     * @return String that will be printed which indicates the state of the file (MISSING/CORRUPT/OK/UNKNOWN)
+     */
     public static String inventoryDataFileExist() {
         String path = Types.SESSIONFILEPATH;
         Types.FileHealth fileHealth = checkFileValid(path);

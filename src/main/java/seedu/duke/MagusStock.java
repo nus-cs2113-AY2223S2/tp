@@ -8,7 +8,7 @@ import seedu.duke.utils.Storage;
 import seedu.duke.utils.Ui;
 import seedu.duke.utils.ParserHandler;
 
-public class Duke {
+public class MagusStock {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -18,7 +18,7 @@ public class Duke {
     private Inventory inventory;
     private SessionManager currentSession;
 
-    public Duke(String filePath) {
+    public MagusStock(String filePath) {
         ui = new Ui();
         storage = new Storage();
         inventory = new Inventory();
@@ -33,6 +33,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke(Types.SESSIONFILEPATH).run();
+        new MagusStock(Types.SESSIONFILEPATH).run();
     }
 }

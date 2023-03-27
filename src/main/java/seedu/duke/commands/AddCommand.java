@@ -43,8 +43,8 @@ public class AddCommand extends Command {
                 itemNameHash.get(itemName).add(item);
                 itemsTrie.add(itemName);
             }
-            if(!inventory.getUpcCodesHistory().containsKey(item.getUpc())){
-                inventory.getUpcCodesHistory().put(item.getUpc(),new ArrayList<>());
+            if (!inventory.getUpcCodesHistory().containsKey(item.getUpc())) {
+                inventory.getUpcCodesHistory().put(item.getUpc(), new ArrayList<>());
             }
             inventory.getUpcCodesHistory().get(item.getUpc()).add(new Item(item));
             if (SessionManager.getAutoSave()) {

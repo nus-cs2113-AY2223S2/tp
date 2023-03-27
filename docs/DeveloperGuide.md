@@ -19,12 +19,29 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+The documentation and organisation of our project follows the recommended format as shown in [SE-Education](http://se-education.org/addressbook-level3/DeveloperGuide.html)
 
-## Design & implementation
+## Design
+### Architecture Design Diagram
+![Architecture Diagram](ArchitectureDiagram.png)
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+Breakdown of each component and its role in the application:
 
+`MagusStock`: This is the entry point for the application, and it's responsible for starting the application and coordinating the interactions between the other components.
+
+`ParserHandler`: This component is responsible for handling user input and determining which parser to execute based on the input. It uses a Parser to parse the input and generate a corresponding Command object.
+
+`Parser`: This component is responsible for parsing the user input and generating a Command object. The ParserHandler uses the Parser to parse the input and determine which Command object to create.
+
+`SessionManager`: This component is responsible for managing the inventory data persistence. It's connected to the Storage component, which reads and writes inventory data to and from a CSV file.
+
+`Storage`: This component is responsible for reading and writing inventory data to a CSV file. It's connected to the SessionManager, which uses it to manage the inventory data persistence.
+
+`Ui`: This component is responsible for displaying information to the user. It receives messages and data from the other components and displays them to the user.
+
+Overall, the architecture diagram shows how the different components of the MagusStock application work together to provide the user with a command-line interface for managing an inventory of items. The components are designed to be modular and loosely coupled, allowing for easy modification and extension of the application.
+
+### UML Design Diagram
 
 ## Implementation
 ### List
