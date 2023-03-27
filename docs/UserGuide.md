@@ -57,7 +57,7 @@ Format: `help`
 <h2 id="adding-a-recipe-add"> Adding a recipe: <code class="language-plaintext highlighter-rouge">add</code></h2>
 
 Adds a recipe to the recipe manager.
-Format: `add n/NAME i/INGREDIENTS t/TAG s/SumOfSteps`
+Format: `add n/NAME i/INGREDIENTS t/TAG s/NumberOfSteps`
 Examples:
 * `add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/3`
 <p>App will prompt you to start entering the steps to the recipe
@@ -75,21 +75,22 @@ Examples:
 <h2 id="deleting-a-recipe-delete"> Deleting a recipe: <code class="language-plaintext highlighter-rouge">delete</code></h2>
 
 Deletes a recipe from the recipe manager.
-Format: `delete n/NAME`
+Format: `delete INDEX`
 Examples:
-* `delete n/Hotpot`
-<p>App will prompt if you confirm to delete recipe_name, if yes then it will remove the recipe.Else revert back to main screen.</p>
+* `delete 1`
+<p>App will remove the recipe with the corresponding index.</p>
 
 <h2 id="viewing-a-recipe-view"> Viewing a recipe: <code class="language-plaintext highlighter-rouge">view</code></h2>
 
-Views a detailed recipe from the recipe manager.
-Format: `view n/NAME` or `view INDEX`
+Views a detailed recipe from the recipe manager if INDEX is entered. 
+Searches recipe list for recipes with matching names if NAME is entered.
+Format: `view NAME` or `view INDEX`
 Examples:
-* `view n/Hotpot`
+* `view Hotpot`
 * `view 1`
 
 Constraints:
-* The index must be a positive integer 1, 2, 3, …
+* The index must be a positive integer larger than 0.
 
 <h2 id="listing-all-recipes-list"> Listing all recipes: <code class="language-plaintext highlighter-rouge">list</code></h2>
 
@@ -117,10 +118,10 @@ The recipe manager data are saved in the hard disk automatically after any comma
 
 <h2 id="edit-data"> Editing the data file </h2>
 
-The recipe manager data are saved as a JSON file `[JAR file location]/data/recipeData.json`. Advanced users are welcome to update data directly by editing that data file.
-<div class="alert alert-warning">
+The recipe data are saved as a text file `[JAR file location]/data/[dish name].txt`. <strong class="alert alert-warning">
 
-!!! warning
+<h3> Warning </h3>
+    <div>Do <strong>NOT</strong> modify the save data.</div>
     If you change the data file <strong>in a wrong way</strong>, the recipe manager will not start up correctly.
 
 
