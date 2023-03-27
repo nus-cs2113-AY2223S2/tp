@@ -39,7 +39,7 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 
 Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
 
-If you wish to view the source code, you may click on `Source Code (zip)` to download the source code of Meal Companion for your perusal and testing. Unzip the folder and open the project using any Integrated Development Environment (IDE), although we recommend using IntelliJ Idea. You can download IntelliJ Idea [here](https://www.jetbrains.com/idea/download/#section=windows). Please ensure you download the right version for your respective operating system. 
+If you wish to view the source code, you may click on either `Source code (zip)` or `Source code (tar.gz)` to download the source code of Meal Companion for your perusal and testing. Unzip the folder and open the project using any Integrated Development Environment (IDE), although we recommend using IntelliJ Idea. You can download IntelliJ Idea [here](https://www.jetbrains.com/idea/download/#section=windows). Please ensure you download the right version for your respective operating system. 
 
 3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file path>` commands as necessary.
 4. Ensure the terminal is within the correct folder.
