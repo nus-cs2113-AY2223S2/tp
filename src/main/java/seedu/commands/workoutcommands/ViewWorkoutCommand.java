@@ -1,10 +1,12 @@
-package seedu.commands;
+package seedu.commands.workoutcommands;
+
+import seedu.commands.Command;
 
 import java.util.Date;
 
-public class ViewCommand extends Command {
+public class ViewWorkoutCommand extends Command {
     Date workoutToViewDate;
-    public ViewCommand(Date workoutToViewDate) {
+    public ViewWorkoutCommand(Date workoutToViewDate) {
 
         this.workoutToViewDate = workoutToViewDate;
     }

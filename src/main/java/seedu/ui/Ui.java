@@ -13,8 +13,8 @@ public class Ui {
             "|__|     |__|     |__|     /________|";
     private static final String ENDING_MESSAGE = "Thank you, hope you had a great workout!!!";
     private static final String LINE = "=======================================";
-    private static final String LINE_SEPERATOR = "----------------------------------";
-    private final Scanner in = new Scanner(System.in);
+    private static final String LINE_SEPARATOR = "----------------------------------";
+    private static final Scanner in = new Scanner(System.in);
 
 
     public static void showGreeting() {
@@ -30,11 +30,18 @@ public class Ui {
     public static void showLine(){
         System.out.println(LINE);
     }
-    public static void  showseperator(){
-        System.out.println(LINE_SEPERATOR);
+    public static void showSeparator(){
+        System.out.println(LINE_SEPARATOR);
     }
 
-    public String getUserInput() {
+    public static String getUserInput() {
         return in.nextLine();
+    }
+
+    public static void showWelcomeMessage() {
+        showLine();
+        showLogo();
+        showLine();
+        showGreeting();
     }
 }

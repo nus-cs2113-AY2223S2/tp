@@ -1,5 +1,6 @@
 package seedu.commands;
 
+
 public class ExitCommand extends Command {
 
     public static boolean isExit(Command command) {

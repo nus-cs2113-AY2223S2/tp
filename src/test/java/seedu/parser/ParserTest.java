@@ -1,6 +1,7 @@
 package seedu.parser;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.commands.Command;
 import seedu.commands.IncorrectCommand;
 import static org.junit.jupiter.api.Assertions.assertTrue;

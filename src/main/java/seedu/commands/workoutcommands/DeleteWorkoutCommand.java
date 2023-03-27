@@ -1,11 +1,13 @@
-package seedu.commands;
+package seedu.commands.workoutcommands;
+
+import seedu.commands.Command;
 
 import java.util.Date;
 
 
-public class DeleteCommand extends Command {
+public class DeleteWorkoutCommand extends Command {
     Date workoutToDeleteDate;
-    public DeleteCommand(Date workoutToDeleteDate) {
+    public DeleteWorkoutCommand(Date workoutToDeleteDate) {
         this.workoutToDeleteDate = workoutToDeleteDate;
     }
 

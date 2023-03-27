@@ -1,13 +1,15 @@
-package seedu.commands;
+package seedu.commands.workoutcommands;
 
+
+import seedu.commands.Command;
 
 /**
  * This is the class for executing the list command
  */
-public class ListCommand extends Command {
+public class ListWorkoutCommand extends Command {
 
     //@@ author ZIZI-czh
-    public ListCommand() {
+    public ListWorkoutCommand() {
     }
 
 
