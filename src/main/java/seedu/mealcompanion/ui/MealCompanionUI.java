@@ -65,6 +65,14 @@ public class MealCompanionUI {
         printRecipeRandomHelp();
         printRecipeDetailHelp();
         printRecipeNeedHelp();
+        printRecipeAlmostHelp();
+    }
+
+    private static void printRecipeAlmostHelp() {
+        System.out.println("Command: recipe almost");
+        System.out.println("Lists all the recipes that cannot currently be made but has " +
+                "less than 4 insufficient ingredients");
+        System.out.println(DIVIDER);
     }
 
     private static void printRecipeNeedHelp() {
