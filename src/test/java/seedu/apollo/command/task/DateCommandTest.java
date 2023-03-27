@@ -2,20 +2,19 @@ package seedu.apollo.command.task;
 
 import org.junit.jupiter.api.Test;
 import seedu.apollo.calendar.Calendar;
-
 import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.exception.task.InvalidDateTime;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.task.Deadline;
 import seedu.apollo.task.TaskList;
-import seedu.apollo.task.ToDo;
+
 import seedu.apollo.ui.Ui;
 
 import java.io.FileNotFoundException;
-import java.time.format.DateTimeParseException;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 
 class DateCommandTest {
