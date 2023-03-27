@@ -50,6 +50,38 @@ Format:
 <br> `list expense`
 <br> `list income`
 
+### Updating an entry: `edit`
+Edit an existing expense/income that is currently in the list.
+
+Format:
+<br> `edit expense i/INDEX  c/CATEGORY de/DESCRIPTION da/DATE v/VALUE`
+
+
+Use case:
+* Edits the item at the specified INDEX, where INDEX is a positive integer.
+* At least one of the fields must be provided.
+* Existing values will be updated to the input values.
+
+Example of usage:
+`edit expense i/1 d/Lunch @Technoedge v/5.20`
+
+### Finding an entry: `find`
+Find an existing expense/income that is currently in the list.
+
+Format:
+<br> `find expense c/CATEGORY de/DESCRIPTION`
+
+Use case:
+* Shows user the entry that they are looking for.
+
+Example of usage:
+<br> `find expense c/Grocery de/Beef`
+### Showing the balance: `balance`
+Shows users the balance he has after calculating the difference of income and expense.
+
+Format:
+<br> `balance`
+
 ### Deleting an entry: `delete`
 Remove an entry from the expense/income list.
 
@@ -90,6 +122,11 @@ When reading from the file, entries for income and expenses are stored in their 
 * List Records: `list`
 * List Expenses: `list expense`
 * List Incomes: `list income`
+* Edit income list: `edit income i/INDEX  c/CATEGORY de/DESCRIPTION da/DATE v/VALUE`
+* Edit expense list: `edit expense i/INDEX  c/CATEGORY de/DESCRIPTION da/DATE v/VALUE`
+* Find income entry: `find income c/CATEGORY de/DESCRIPTION`
+* Find expense entry: `find expense c/CATEGORY de/DESCRIPTION`
+* Show balance: `balance`
 * Delete Expense: `delete expense /in INDEX`
 * Delete Income: `delete income /in INDEX`
 * Show Balance: `balance`
