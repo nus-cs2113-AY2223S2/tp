@@ -1,6 +1,8 @@
 package seedu.workouttracker.workout;
 
 
+import seedu.DateFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,8 +20,10 @@ public class Workout {
         System.out.println("Added " + exercise);
     }
 
-    public Date getDate() {
-        return date;
+    public String getDate() {
+        DateFormat dateFormat = new DateFormat(date);
+        return dateFormat.formatDate();
+
     }
 
     public void setDate(Date date) {

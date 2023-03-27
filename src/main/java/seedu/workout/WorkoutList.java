@@ -1,5 +1,7 @@
 package seedu.workout;
 
+import seedu.workouttracker.workout.Workout;
+
 import java.util.ArrayList;
 
 
