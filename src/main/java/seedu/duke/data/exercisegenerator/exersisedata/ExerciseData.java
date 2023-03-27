@@ -39,7 +39,8 @@ public class ExerciseData {
     public String getId () {
         return id;
     }
-    //see whether this helps
+
+    //added setId for junit test.
     public void setId(String id) {
         this.id = id;
     }

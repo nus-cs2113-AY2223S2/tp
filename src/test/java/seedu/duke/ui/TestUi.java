@@ -1,13 +1,11 @@
 package seedu.duke.ui;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.data.userdata.userplan.UserPlan;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
