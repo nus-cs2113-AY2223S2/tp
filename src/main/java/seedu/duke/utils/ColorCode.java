@@ -7,7 +7,6 @@ public class ColorCode {
     public static final String ANSI_YELLOW = "\u001B[93m";
     public static final String ANSI_ORANGE = "\u001B[38;2;255;165;0m";
     public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
 }

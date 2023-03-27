@@ -871,47 +871,48 @@ public class Ui {
         System.out.println(alertTable);
         System.out.println(LINE);
     }
-    public static void printHistory(ArrayList<Item> results){
+
+    public static void printHistory(ArrayList<Item> results) {
         System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
         System.out.println(ITEM_ADDED_AT + results.get(0).getDateTimeString());
         System.out.println(results.get(0).toString());
         System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
-        for(int i = 1; i<results.size(); i++){
+        for (int i = 1; i < results.size(); i++) {
             System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
             System.out.println(AT + results.get(i).getDateTimeString() + ANSI_CYAN);
-            ArrayList<Types.EditType> edits = results.get(i-1).getEditTypes(results.get(i));
-            for(Types.EditType editType: edits){
-                switch(editType){
+            ArrayList<Types.EditType> edits = results.get(i - 1).getEditTypes(results.get(i));
+            for (Types.EditType editType : edits) {
+                switch (editType) {
                 case RECATEGORIZE:
                     System.out.println(CATEGORY_CHANGED_TO + results.get(i).getCategory());
                     break;
                 case SOLD:
-                    System.out.print(SOLD + (results.get(i-1).getQuantity()-results.get(i).getQuantity()));
+                    System.out.print(SOLD + (results.get(i - 1).getQuantity() - results.get(i).getQuantity()));
                     System.out.println(ITEMS);
                     break;
                 case BOUGHT:
-                    System.out.print(BOUGHT + (results.get(i).getQuantity()-results.get(i-1).getQuantity()));
+                    System.out.print(BOUGHT + (results.get(i).getQuantity() - results.get(i - 1).getQuantity()));
                     System.out.println(ITEMS);
                     break;
                 case RENAME:
                     System.out.println(RENAMED_TO + results.get(i).getName());
                     break;
                 case PRICE_DECREASE:
-                    System.out.print(PRICE_DECREASED_FROM + results.get(i-1).getPrice());
+                    System.out.print(PRICE_DECREASED_FROM + results.get(i - 1).getPrice());
                     System.out.println(TO_DOLLAR_SIGN + results.get(i).getPrice());
                     break;
                 case PRICE_INCREASE:
-                    System.out.print(PRICE_INCREASED_FROM + results.get(i-1).getPrice());
+                    System.out.print(PRICE_INCREASED_FROM + results.get(i - 1).getPrice());
                     System.out.println(TO_DOLLAR_SIGN + results.get(i).getPrice());
                     break;
                 case CHANGE_TAG:
-                    ArrayList<String> tags = results.get(i-1).getTags();
-                    if(!tags.isEmpty()){
+                    ArrayList<String> tags = results.get(i - 1).getTags();
+                    if (!tags.isEmpty()) {
                         System.out.print(TAGS_CHANGED_TO);
-                        for(int j = 0; j < tags.size()-1; j++){
+                        for (int j = 0; j < tags.size() - 1; j++) {
                             System.out.print(tags.get(j) + ", ");
                         }
-                        System.out.println(tags.get(tags.size()-1));
+                        System.out.println(tags.get(tags.size() - 1));
                     }
                     break;
                 default:
@@ -920,7 +921,7 @@ public class Ui {
             }
             System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
         }
-        if(results.size()>1){
+        if (results.size() > 1) {
             System.out.println(ANSI_ORANGE + LINE);
             System.out.println(ANSI_RESET + results.get(results.size() - 1).toString());
             System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
@@ -938,7 +939,6 @@ public class Ui {
                 " is above the maximum level of " + ANSI_RED + alertLevel + ANSI_YELLOW + "." + ANSI_RESET);
         System.out.println(LINE);
     }
-
 
 
 }

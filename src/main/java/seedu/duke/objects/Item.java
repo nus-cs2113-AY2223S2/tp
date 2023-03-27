@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.time.LocalDateTime;
 
-public class Item implements Comparable<Item>{
+public class Item implements Comparable<Item> {
     private final LocalDateTime dateTime;
     private String upc;
     private String name;
@@ -24,32 +24,37 @@ public class Item implements Comparable<Item>{
         this.quantity = qty;
         this.dateTime = LocalDateTime.now();
     }
-    public Item(String name, String upc, Integer qty, Double price, String category, ArrayList<String> tags) {
+
+    public Item(final String name, final String upc, final Integer qty,
+                final Double price, final String category, final ArrayList<String> tags) {
         this.name = name;
         this.upc = upc;
         this.price = price;
         this.quantity = qty;
         this.category = category;
-        for(String tag: tags){
+        for (String tag : tags) {
             this.tags.add(tag);
         }
         this.dateTime = LocalDateTime.now();
     }
-    public Item(String name, String upc, Integer qty, Double price, LocalDateTime dateTime) {
+
+    public Item(final String name, final String upc, final Integer qty,
+                final Double price, final LocalDateTime dateTime) {
         this.name = name;
         this.upc = upc;
         this.price = price;
         this.quantity = qty;
         this.dateTime = dateTime;
     }
-    public Item(Item item){
+
+    public Item(Item item) {
         this.name = item.getName();
         this.dateTime = item.getDateTime();
         this.upc = item.getUpc();
         this.price = item.getPrice();
         this.quantity = item.getQuantity();
         this.category = item.getCategory();
-        for(String tag: item.getTags()){
+        for (String tag : item.getTags()) {
             tags.add(tag);
         }
     }
@@ -58,7 +63,7 @@ public class Item implements Comparable<Item>{
         return tags;
     }
 
-    public void setTags(ArrayList<String> tags) {
+    public void setTags(final ArrayList<String> tags) {
         this.tags = tags;
     }
 
@@ -71,7 +76,7 @@ public class Item implements Comparable<Item>{
         return upc;
     }
 
-    public void setUpc(String upc) {
+    public void setUpc(final String upc) {
         this.upc = upc;
     }
 
@@ -79,7 +84,7 @@ public class Item implements Comparable<Item>{
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -87,7 +92,7 @@ public class Item implements Comparable<Item>{
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(final Double price) {
         this.price = price;
     }
 
@@ -109,7 +114,7 @@ public class Item implements Comparable<Item>{
     /**
      * Updates the quantity of the item.
      */
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(final Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -126,46 +131,51 @@ public class Item implements Comparable<Item>{
         }
         return itemsChanged != 0;
     }
-    public ArrayList<Types.EditType> getEditTypes(Item item){
+
+    public ArrayList<Types.EditType> getEditTypes(final Item item) {
         ArrayList<Types.EditType> results = new ArrayList<>();
-        if(quantity<item.getQuantity()){
+        if (quantity < item.getQuantity()) {
             results.add(Types.EditType.BOUGHT);
         }
-        if(quantity>item.getQuantity()){
+        if (quantity > item.getQuantity()) {
             results.add(Types.EditType.SOLD);
         }
-        if(!category.equals(item.getCategory())){
+        if (!category.equals(item.getCategory())) {
             results.add(Types.EditType.RECATEGORIZE);
         }
-        if(!name.equals(item.getName())){
+        if (!name.equals(item.getName())) {
             results.add(Types.EditType.RENAME);
         }
-        if(price<item.getPrice()){
+        if (price < item.getPrice()) {
             results.add(Types.EditType.PRICE_INCREASE);
         }
-        if(price>item.getPrice()){
+        if (price > item.getPrice()) {
             results.add(Types.EditType.PRICE_DECREASE);
         }
-        if(!tags.equals(item.getTags())){
+        if (!tags.equals(item.getTags())) {
             results.add(Types.EditType.CHANGE_TAG);
         }
         return results;
     }
-    private static String getDateString(LocalDate date){
+
+    private static String getDateString(final LocalDate date) {
         return date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear();
     }
-    private static int adjustHour(int hour){
-        if(hour%12==0){
+
+    private static int adjustHour(final int hour) {
+        if (hour % 12 == 0) {
             return 12;
         }
-        return hour%12;
+        return hour % 12;
     }
-    private static String getTimeString(LocalTime time){
+
+    private static String getTimeString(final LocalTime time) {
         LocalTime noon = LocalTime.parse("12:00");
-        return adjustHour(time.getHour()) + ":" + (time.getMinute()<10?"0":"") + time.getMinute()
-                + " " + (time.isBefore(noon)?"AM":"PM");
+        return adjustHour(time.getHour()) + ":" + (time.getMinute() < 10 ? "0" : "") + time.getMinute()
+                + " " + (time.isBefore(noon) ? "AM" : "PM");
     }
-    public String getDateTimeString(){
+
+    public String getDateTimeString() {
         LocalDate date = dateTime.toLocalDate();
         LocalTime time = dateTime.toLocalTime();
         return getTimeString(time) + ", " + getDateString(date);
@@ -188,26 +198,26 @@ public class Item implements Comparable<Item>{
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (!o.getClass().equals(this.getClass())) {
             return false;
         }
         Item item = (Item) o;
-        if(item.getUpc().equals(upc)){
+        if (item.getUpc().equals(upc)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public int compareTo(Item o) {
-        if(o.getDateTime()==null || dateTime == null){
+    public int compareTo(final Item item) {
+        if (item.getDateTime() == null || dateTime == null) {
             return 0;
         }
-        if(o.getDateTime().isEqual(dateTime)){
+        if (item.getDateTime().isEqual(dateTime)) {
             return 0;
         }
-        if(dateTime.isBefore(o.getDateTime())){
+        if (dateTime.isBefore(item.getDateTime())) {
             return -1;
         }
         return 1;
