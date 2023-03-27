@@ -32,6 +32,7 @@ The add entry mechanism is facilitated by `EntryLog`. Every instance of `AddComm
 The following sequence diagram shows how the add command work:
 
 ![AddCommandSequenceDiagram](./static/AddCommandSequenceDiagram.png)
+![AddCommandSequenceDiagramReference](./static/AddCommandSequenceDiagramReference.png)
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
@@ -63,6 +64,9 @@ Every instance of `DeleteCommand` is created with an Integer, which is the ID of
 The following sequence diagram shows how the delete command work:
 
 ![DeleteCommandSequenceDiagram](./static/DeleteCommandSequenceDiagram.png)
+![DeleteCommandSequenceDiagramGetResponse](./static/DeleteCommandSequenceDiagramDeleteResponse.png)
+![DeleteCommandSequenceDiagramDeleteResponse](./static/DeleteCommandSequenceDiagramDeleteResponse.png)
+
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
@@ -605,7 +609,12 @@ Enter a command or /help to see the list of commands available.
 #### Test case 3:
 
 **Prerequisites:** At least **2** expenses pre-added into the program
-> /delete 1 2
+
+`/delete 1 2`
+ 
+Expected output:
+
+```
 ________________________________________________
 The following expenditure has been deleted:
 Description: Light bulb
@@ -620,6 +629,7 @@ Category: Food
 28 Mar 2023, 01:04:30
 ________________________________________________
 Enter a command or /help to see the list of commands available.
+```
 
 ## Edit expense: /edit
 
