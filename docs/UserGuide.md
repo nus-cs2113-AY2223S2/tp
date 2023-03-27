@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Doctor Duke is a desktop app for diagnosing patients who have **_mild_** illnesses, 
+Dr Duke is a desktop app for diagnosing patients who have **_mild_** illnesses, 
 optimised for use via a Command Line Interface (CLI). 
 
 Doctor Duke can diagnose illnesses and suggest medicine accordingly faster than visiting a General Practitioner.
@@ -11,7 +11,7 @@ Doctor Duke can diagnose illnesses and suggest medicine accordingly faster than 
 ## Start Guide
 
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of **Doctor Duke** from [this GitHub repo](https://github.com/AY2223S2-CS2113-W13-1/tp/releases/tag/v1.0).
+2. Down the latest version of **Dr Duke** from [this GitHub repo](https://github.com/AY2223S2-CS2113-W13-1/tp/releases/tag/v1.0).
 3. Download the jar file from the latest release, labelled as **Tp.main.jar**.
 4. Place the file in the folder you want to use as the home folder for your Duke.
 5. Run the jar file via double-clicking on the JAR file, or by copying the file path and entering the following
@@ -22,7 +22,7 @@ Doctor Duke can diagnose illnesses and suggest medicine accordingly faster than 
    ~~~
 
 # Features Guide
-Upon starting Doctor Duke, you will be greeted with a welcome message, 
+Upon starting Dr Duke, you will be greeted with a welcome message, 
 
 A menu with options for registering and/or logging in will be shown.
 
@@ -314,7 +314,7 @@ You have no past diagnoses
 ### 4. Viewing Symptoms History
 The patient can view the list of his/her symptoms that she has entered into Dr Duke.
 
-Format: Enter `4` to choose to view the symptoms history.
+Format: Enter `4` to choose to view the symptoms' history.
 
 Expected outcome (if no symptoms were entered prior):
 ```
