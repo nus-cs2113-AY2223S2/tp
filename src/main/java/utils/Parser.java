@@ -57,7 +57,6 @@ public class Parser {
             return prepareDeleteMeetingCommand(userInputNoCommand);
         case ViewMeetingCommand.COMMAND_WORD:
             return prepareViewMeetingCommand(userInputNoCommand);
-            return prepareViewMeetingCommand(commandWord);
         case FindMeetingCommand.COMMAND_WORD:
             return prepareFindMeetingCommand(userInputNoCommand);
         case AddStaffCommand.COMMAND_WORD:
