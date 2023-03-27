@@ -314,8 +314,12 @@ public class Parser {
         logger.info("Parsing view command with arguments: " + arguments);
         Category category = null;
         String categoryStr = "";
+        String priceMinStr;
+        String priceMaxStr;
         String viewCount;
         int viewCountInt;
+        Double priceMinDble;
+        Double priceMaxDble;
         if (arguments.isEmpty()) {
             logger.info("No count specified. Listing all expenses");
             return new ViewCommand(Integer.MAX_VALUE);
@@ -324,6 +328,8 @@ public class Parser {
         assert argumentsArray.length >= 1 : "User input must contain at least 1 argument";
         Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
         Pattern viewCountPattern = Pattern.compile("\\S+");
+        Pattern priceRangePattern = Pattern.compile("(?:-p|-price)\\s+(\\d+\\.*\\d*)\\s+" +
+                                                    "(?:-p|-price)\\s+(\\d+\\.*\\d*)");
         Matcher matcher = viewCountPattern.matcher(arguments);
         matcher.find();
         viewCount = matcher.group(0);
@@ -335,8 +341,18 @@ public class Parser {
             categoryStr = matcher.group(2);
             category = CategoryUtil.convertStringToCategory(StringUtil.toTitleCase(categoryStr));
         }
+        matcher = priceRangePattern.matcher(arguments);
+        if (matcher.find()) {
+            priceMinStr = matcher.group(1);
+            priceMaxStr = matcher.group(2);
+            viewCount = Integer.toString(Integer.MAX_VALUE);
+        } else{
+            priceMinStr = "0.0";
+            priceMaxStr = Double.toString(Double.MAX_VALUE);
+        }
         try {
             viewCountInt = Integer.parseInt(viewCount);
+
         } catch (NumberFormatException e) {
             logger.warning("Expense ID is not an integer: " + MessageConstants.MESSAGE_INVALID_ID);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
@@ -347,7 +363,11 @@ public class Parser {
         logger.info("User entered count:" + viewCount);
         logger.info("User entered category:" + categoryStr);
         logger.exiting(Parser.class.getName(), "parseViewCommand()");
-        return new ViewCommand(viewCountInt, category);
+
+
+        priceMinDble = Double.parseDouble(priceMinStr);
+        priceMaxDble = Double.parseDouble(priceMaxStr);
+        return new ViewCommand(viewCountInt, category, priceMinDble, priceMaxDble);
     }
 }
 // @@author
