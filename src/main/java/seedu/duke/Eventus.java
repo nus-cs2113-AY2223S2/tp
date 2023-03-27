@@ -5,6 +5,7 @@ import seedu.duke.data.VenueListData;
 import seedu.duke.event.Event;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.CompanyListDecoder;
+import seedu.duke.storage.EventDetailsStorage;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.command.Command;
@@ -55,6 +56,7 @@ public class Eventus {
     }
 
     public void loadSavedInformation() {
+        EventDetailsStorage.eventDetailsInit(event, venueList, ui);
         CompanyListDecoder.read(companyList);
     }
 

@@ -34,6 +34,9 @@ public class Event {
         ui.showEventNameSelectionMessage(eventName);
     }
 
+    public String getEventName() {
+        return eventName;
+    }
     @Override
     public String toString() {
         return venue.getVenueName() + " is your chosen location!";
