@@ -41,5 +41,10 @@ public class Dish {
         this.ingredientsList = ingredientsList;
     }
 
+    public String savableString() {
+        String ingredients = ingredientsList.toString().substring(1, ingredientsList.toString().length() - 1);
+        return this.dishName + "~|~" + this.dishPrice + "~|~" + ingredients;
+    }
+
 
 }
