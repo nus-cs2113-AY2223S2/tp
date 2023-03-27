@@ -1,6 +1,8 @@
 package seedu.duke.ui;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.data.userdata.userplan.UserPlan;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -117,9 +119,12 @@ public class TestUi {
                     "\tShow all plans\r\n" +
                     "[planner]\r\n" +
                     "\tEnter workout plan editor\r\n" +
+                    "[quick]\r\n" +
+                    "\tGenerate a planned exercise: quick PLAN_NAME x\r\n" +
+                    "\tPLAN_NAME needs has to be in your planner, and x is the number of exercises\r\n" +
                     "[find]\r\n" +
                     "\tfinds all relevant exercises based on the keyword : find [keyword]\r\n" +
-                    "[bye]\r\n" +
+                    "[exit]\r\n" +
                     "\tEnd the program\r\n";
         } else {
             expectedOutput = "These are some commands available:\n" +
@@ -132,9 +137,12 @@ public class TestUi {
                     "\tShow all plans\n" +
                     "[planner]\n" +
                     "\tEnter workout plan editor\n" +
+                    "[quick]\n" +
+                    "\tGenerate a planned exercise: quick PLAN_NAME x\n" +
+                    "\tPLAN_NAME needs has to be in your planner, and x is the number of exercises\n" +
                     "[find]\n" +
                     "\tfinds all relevant exercises based on the keyword : find [keyword]\n" +
-                    "[bye]\n" +
+                    "[exit]\n" +
                     "\tEnd the program\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -257,6 +265,57 @@ public class TestUi {
         }
         assertEquals(expectedOutput, actualOutput.toString());
     }
+
+    //@author Khulon
+    @Test
+    void testPrintPlans() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        UserPlan planner = new UserPlan();
+        Ui ui = new Ui();
+        ui.showPlan(planner);
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "YOUR WORKOUT PLAN:\r\n" +
+                    "_________\r\n" +
+                    "MONDAY\r\n" +
+                    "_________\r\n" +
+                    "TUESDAY\r\n" +
+                    "_________\r\n" +
+                    "WEDNESDAY\r\n" +
+                    "_________\r\n" +
+                    "THURSDAY\r\n" +
+                    "_________\r\n" +
+                    "FRIDAY\r\n" +
+                    "_________\r\n" +
+                    "SATURDAY\r\n" +
+                    "_________\r\n" +
+                    "SUNDAY\r\n";
+        } else {
+            expectedOutput = "YOUR WORKOUT PLAN:\n" +
+                    "_________\n" +
+                    "MONDAY\n" +
+                    "_________\n" +
+                    "TUESDAY\n" +
+                    "_________\n" +
+                    "WEDNESDAY\n" +
+                    "_________\n" +
+                    "THURSDAY\n" +
+                    "_________\n" +
+                    "FRIDAY\n" +
+                    "_________\n" +
+                    "SATURDAY\n" +
+                    "_________\n" +
+                    "SUNDAY\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+
 
     //To be completed
     /*@Test
