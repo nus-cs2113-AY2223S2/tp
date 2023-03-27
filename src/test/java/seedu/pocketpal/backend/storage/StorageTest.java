@@ -11,6 +11,7 @@ import seedu.pocketpal.data.entrylog.EntryLog;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
 import seedu.pocketpal.frontend.constants.EntryConstants;
+import seedu.pocketpal.frontend.exceptions.InvalidCategoryException;
 import seedu.pocketpal.backend.exceptions.InvalidReadFileException;
 
 import java.util.List;
@@ -103,6 +104,7 @@ public class StorageTest {
         private static final String TEST_CATEGORY_STRING = EntryConstants.FOOD;
         private static final String INVALID_DELIMITER = ";";
         private static final String INVALID_AMOUNT_STRING = "ABC123";
+        private static final String INVALID_CATEGORY_STRING = "ABC123";
         FileWriter writer;
 
         @BeforeEach
@@ -155,6 +157,26 @@ public class StorageTest {
             Storage storage = new Storage(PATH_STRING);
             Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
             String expectedMessage = "Amount is not valid for line:";
+            String actualMessage = exception.getMessage();
+
+            assertTrue(actualMessage.contains(expectedMessage));
+        }
+
+        @Test
+        public void testInvalidCategory() {
+            writer = assertDoesNotThrow(() -> new FileWriter(PATH_STRING));
+            String writeString = String.join(
+                    TEST_DELIMITER,
+                    TEST_DESCRIPTION,
+                    TEST_AMOUNT_STRING,
+                    INVALID_CATEGORY_STRING
+            );
+            assertDoesNotThrow(() -> writer.append(writeString));
+            assertDoesNotThrow(() -> writer.close());
+
+            Storage storage = new Storage(PATH_STRING);
+            Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
+            String expectedMessage = "Category is not valid for line:";
             String actualMessage = exception.getMessage();
 
             assertTrue(actualMessage.contains(expectedMessage));
