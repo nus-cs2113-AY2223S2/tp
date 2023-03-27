@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 //@@author BenjaminPoh
-
 /**
  * Represents a command to view the financial report
  */
@@ -56,7 +55,7 @@ public class ViewCommand extends Command {
         for (int index = 0; index < userData.getStatementCount(); index++) {
             FinancialStatement currentStatement = userData.getStatement(index);
             LocalDate statementDate = currentStatement.getDate();
-            if (statementDate.isAfter(timeLimit)) {
+            if (statementDate.isAfter(timeLimit) && !statementDate.isAfter(LocalDate.now())) {
                 filteredIndexes.add(index);
             }
         }
@@ -75,18 +74,19 @@ public class ViewCommand extends Command {
     private ArrayList<Integer> filterBeforeSpecificDateSorted() {
         Map<Double, ArrayList<Integer>> sortedIndexesInflows = new TreeMap<>();
         Map<Double, ArrayList<Integer>> sortedIndexesOutflows = new TreeMap<>();
+        LocalDate today = LocalDate.now();
         for (int index = 0; index < userData.getStatementCount(); index++) {
             FinancialStatement currentStatement = userData.getStatement(index);
             double statementValue = currentStatement.getValue();
             String direction = currentStatement.getFlowSymbol();
             LocalDate statementDate = currentStatement.getDate();
-            if (statementDate.isAfter(timeLimit) && direction.equals("+")) {
+            if (statementDate.isAfter(timeLimit) && !statementDate.isAfter(today) && direction.equals("+")) {
                 if (!sortedIndexesInflows.containsKey(statementValue)) {
                     ArrayList<Integer> list = new ArrayList<>();
                     sortedIndexesInflows.put(statementValue, list);
                 }
                 sortedIndexesInflows.get(statementValue).add(index);
-            } else if (statementDate.isAfter(timeLimit) && direction.equals("-")) {
+            } else if (statementDate.isAfter(timeLimit) && !statementDate.isAfter(today) && direction.equals("-")) {
                 if (!sortedIndexesInflows.containsKey(statementValue)) {
                     ArrayList<Integer> list = new ArrayList<>();
                     sortedIndexesOutflows.put(statementValue, list);
@@ -103,7 +103,6 @@ public class ViewCommand extends Command {
                 currentList.remove(0);
             }
         }
-
         for (Map.Entry<Double, ArrayList<Integer>> currentEntry : sortedIndexesOutflows.entrySet()) {
             ArrayList<Integer> currentList = currentEntry.getValue();
             while (!currentList.isEmpty()) {
