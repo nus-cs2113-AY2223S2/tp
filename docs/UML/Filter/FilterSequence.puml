@@ -10,14 +10,14 @@ alt rawInput == null
     ref over FilterParser
         handle input error
     end ref
-    FilterParser -> User
+    FilterParser --> User
 end
 alt first command == "f/price"
     alt command length is 3
         ref over FilterParser
             handle input error
         end ref
-        FilterParser -> User
+        FilterParser --> User
     end
     FilterParser -> FilterParser: parseFilterPrice()
     activate FilterParser #cyan
@@ -26,6 +26,7 @@ alt first command == "f/price"
             handle input error
         end ref
     end
+    FilterParser --> User
     ref over FilterParser
         filter price
     end ref
@@ -35,7 +36,7 @@ else first command == "f/category" || "f/tag"
         ref over FilterParser
             handle input error
         end ref
-        FilterParser -> User
+        FilterParser --> User
     end
     FilterParser -> FilterParser: parseFilterCategoryOrTag()
     activate FilterParser #cyan
@@ -48,7 +49,7 @@ else
     ref over FilterParser
         handle input error
     end ref
-    FilterParser -> User
+    FilterParser --> User
 end
 return
 destroy FilterParser

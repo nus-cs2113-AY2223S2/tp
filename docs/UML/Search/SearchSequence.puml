@@ -13,13 +13,14 @@ alt searchType == Types.SearchType.KEYWORD
             ref over SearchParser
                 handle input error
             end ref
+            SearchParser --> User
         end
         SearchParser -> SearchCommand ** :
         SearchParser -> SearchCommand ++ : run()
         ref over SearchCommand
             SearchCommand runs
         end ref
-        SearchCommand -> SearchParser
+        SearchCommand --> SearchParser
         deactivate SearchCommand
         destroy SearchCommand
 else
@@ -28,13 +29,14 @@ else
             ref over SearchParser
                 handle input error
             end ref
+            SearchParser --> User
         end
         SearchParser -> SearchCommand ** :
         SearchParser -> SearchCommand ++ : run()
         ref over SearchCommand
             SearchCommand runs
         end ref
-        SearchCommand -> SearchParser
+        SearchCommand --> SearchParser
         deactivate SearchCommand
         destroy SearchCommand
 end

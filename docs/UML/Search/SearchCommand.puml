@@ -20,7 +20,7 @@ group sd [SearchCommand running]
                 print empty search message
             end ref
             return
-            SearchCommand -> SearchCommand: null
+            SearchCommand --> SearchCommand: null
         end
         ref over SearchCommand
             place all items with the keyword in an ArrayList
@@ -44,7 +44,7 @@ group sd [SearchCommand running]
                 print empty search message
             end ref
             return
-            SearchCommand -> SearchCommand: null
+            SearchCommand --> SearchCommand: null
         end
         ref over SearchCommand
             return item from upcCodes
