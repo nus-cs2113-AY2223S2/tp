@@ -36,6 +36,26 @@ The `UI` component,
 - Allows the user to check that a value added is correct
 - Informs the user whenever there is an invalid input
 
+### Storage Component
+
+![storage-class-diagram](./uml/storage-class-diagram.png)
+
+The `Storage` is the base class which all `Storage` components inherit from. There are currently four storages:
+
+1. `FoodStorage`: For parsing and storing all of the foods supported by _LifeTracker_
+2. `UserStorage`: For storing the user's profile
+3. `MealStorage`: For storing the meals that the user ate
+4. `ExerciseStorage`: For storing the exercises that the user did
+
+#### Interfaces
+
+To ensure that each `Storage` component only implements methods for writing and reading when needed, we created two interfaces
+
+1. `FileReadable`: Has `load()` method for `Storage` component to be able to read from a database
+2. `FileWritable`: Has `write()` method for `Storage` component to be able to write to a database
+
+For example, `FoodStorage` is not meant to be edited by user, hence it does not implement `FileWritable`
+
 # Implementation
 This section describes some noteworthy details on how certain features are implemented.  
 <p>&nbsp;</p>

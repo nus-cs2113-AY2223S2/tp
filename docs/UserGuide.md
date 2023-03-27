@@ -10,79 +10,183 @@ The app also allows users to keep track of their daily exercises to compute thei
 
 ## Quick Start
 
-{Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+2. Down the latest version of `LifeTracker` from [here](https://github.com/AY2223S2-CS2113-W15-1/tp).
 
 ## Features v1.0
 
-{Give detailed description of each feature}
+* View and Update user profile
 * Add meal
-* View today's meal
 * Delete meal
+* Add Exercise
 * Calculate caloric needs
 * Calculate amount of calories left in the day
+* Track Calorie Intake
 
-### Adding a meal: `add`
-Adds a new item to the list of todo items.
+### Viewing User Profile: `view`
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+To view user's profile
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+Format: `view`
 
-Example of usage: 
+Menu Output:
+![view-menu](./UG-images/view-menu.png)
 
-`todo n/Write the rest of the User Guide d/next week`
+User can input **1 - 8** to view their current profile
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+1. Name
+2. Weight
+3. Height
+4. Age
+5. Gender
+6. Daily Caloric Limit
+7. Calories Remaining for today
+8. Exit
 
-### Updating user's information: `update`
+Example:
+![view-example](./UG-images/view-example.png)
+
+User then can input **1** to continue viewing their profile or **2** to exit
+
+### Updating User Profile: `update`
+
 Allows the user to update any of their information.
 User will come across a menu that shows them what information they can choose to update, they will need
 to input the number in order to update the specific information they want to change.
 
 Format: `update`
 
-* The `update` must be in lower case and cannot contain punctuations.
+Menu Output:
+![update-menu](./UG-images/update-menu.png)
+
+User can input **1 - 5** to customise their profile
+
+1. Name
+2. Weight
+3. Height
+4. Age
+5. Gender
+
+Example:
+![update-example](./UG-images/update-example.png)
+
+User then can input **1** to continue updating their profile or **2** to exit
+
+### Adding a meal: `add`
+
+Adds a new meal to database
+
+Format: `add /on [date] /type [MealType] /foods [foods]`
+
+* The `date` should be in `d/m/yyyy` format
+* The `MealType` can be one of the following
+  * Breakfast
+  * Lunch
+  * Dinner
+* The `foods` is a list of foods seperated by `, ` (Comma with a space after)
 
 Example of usage:
 
-`todo n/Write the rest of the User Guide d/next week`
+`add /on 3/3/2023 /type Lunch /foods Spaghetti, Alfredo (Small)`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+![add-example](./UG-images/add-example.png)
 
-### Viewing user's information: `view`
-Allows the user to view any of their information as well as their calories.
-User will come across a menu that shows them what information they can choose to view, they will need
-to input the number in order to view the specific information they want to see.
+#### Alternative
 
-Format: `view`
-* The `view` must be in lower case and cannot contain punctuations.
+For Users who are not experienced with typing fast on keyboards, *LifeTracker* offers a menu option to add meal
 
-Example of menu:
+Format: `add`
 
-    ------------------------------------------------------------
-    View user settings
-    1. View Name
-    2. View Weight
-    3. View Height
-    4. View Age      
-    5. View Gender
-    6. View Daily Caloric limit
-    7. View Calories left today
+![add-alt-example](./UG-images/add-example2.png)
 
+### Listing foods: `list`
 
+For uses to view all foods currently supported in the *LifeTracker* database
+
+Format: `list foods`
+
+Example:
+![list-foods-example](./UG-images/list-foods-example.png)
+
+### Listing meals: `list`
+
+For users to view previously added meals
+
+Format: `list meals`
+
+Example:
+![list-meals-example](./UG-images/list-meals-example.png)
+
+### Deleting meals: `delete`
+
+For users to remove previously added meals
+
+Format: `delete [index]`
+
+* The `index` should be a positive integer and must be less than number of meals added
+* It is recommended to run `list meals` beforehand to get the index of the meal you want to delete
+
+Example:
+![delete-example](./UG-images/delete-example.png)
+
+### Filtering foods: `filter`
+
+For users to filter the foods by their calorie content. The user needs to input the lower and higher bound that they want to filter by.
+
+Format: `filter`
+
+* The lower and upper limit should be a `float`
+
+Example:
+![filter-example](./UG-images/filter-example.png)
+
+### View Nutrition Content of food: `nutrition`
+
+For users to view the nutrition content of the food. The user first needs to search for the food, then the nutrition content of the food will be printed.
+
+Format: `nutrition`
+
+* The first food search should be in English
+* To select the particular food filtered, an integer should be inputted
+* To continue searching for more food, **1** should be inputted when prompted after, else input any number to exit
+
+Example:
+![nutrition-example](./UG-images/nutrition-example.png)
+
+### Add Exercise: `exercise`
+
+For user to input the exercise done previously
+
+Format: `exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date]`
+
+* The `exercise name` and `exercise description` accepts any input
+* The `calories` should be in `float` format
+* The `date` should be in `d/m/yyyy` format
+
+Example:
+![exercise-example](./UG-images/exercise-example.png)
+
+### Track net calorie intake: `track`
+
+For user to track their previous net calorie intake
+
+Format: `track`
+
+Output:
+![track-example](./UG-images/track-example.png)
 
 ### Exiting the program: `bye`
 Allows user to exit program.
+
+Output:
+![bye-example](./UG-images/bye-example.png)
 
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: Do copy the `data` folder and its contents to the new computer
 
 ## Command Summary
 
