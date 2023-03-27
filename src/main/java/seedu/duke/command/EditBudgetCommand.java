@@ -17,7 +17,7 @@ public class EditBudgetCommand extends BudgetCommand {
         int initialBudget = budgetPlanner.getBudget();
         budgetPlanner.setBudget(budget);
         if (initialBudget == budgetPlanner.getBudget()) {
-            System.out.println("Budget has not been changed");
+            UI.printBudgetNoChangeMessage();
             return;
         }
         UI.printEditBudgetMessage(budgetPlanner.getBudget());
