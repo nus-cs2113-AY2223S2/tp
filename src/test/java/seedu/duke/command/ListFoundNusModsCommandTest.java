@@ -15,10 +15,11 @@ import seedu.duke.University;
 import seedu.duke.DataReader;
 
 
-public class ListFoundNusModsCommandTest {
+class ListFoundNusModsCommandTest {
     private static final String LINE = "____________________________________________________________";
     private static final String FOUND_LIST_MESSAGE = "Here is/are the list/s of modules that can map "
                                                         + "this NUS module code: ";
+    DataReader dataReader = new DataReader();
     private final PrintStream standardOutput = System.out;
     private final ByteArrayOutputStream outputStreamCatcher = new ByteArrayOutputStream();
 
@@ -26,8 +27,6 @@ public class ListFoundNusModsCommandTest {
     public void setUp() {
         System.setOut(new PrintStream(outputStreamCatcher));
     }
-
-    DataReader dataReader = new DataReader();
 
     @Test
     void listFoundNusModsCommand_correctFormatSuccess() {
