@@ -2,7 +2,6 @@ package seedu.duke.storage;
 
 import seedu.duke.event.Event;
 import seedu.duke.exception.InvalidIndexException;
-import seedu.duke.ui.Ui;
 import seedu.duke.venue.VenueList;
 
 import java.io.File;
@@ -11,12 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
-/**
- * Format of event details in txt file:
- * Event Name|Venue Index
- * where venue index is the index of the venue inside the pre-determined venue list
- */
 
 /**
  * Storage that handles the data from the event details text file

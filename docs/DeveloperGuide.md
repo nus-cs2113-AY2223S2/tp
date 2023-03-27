@@ -2,23 +2,22 @@
 
 ## Acknowledgements
 
-The CS2113 Team (Professor Akshay <3) For his guidance in teaching us concepts of Software Engineering and OOP
+The CS2113 Team (Professor Akshay <3) for the guidance and teaching us concepts of Software Engineering and OOP
 
 ## Design & implementation
 
 ### Main overview of the system:
 
 * Main Components
-  * Main: 
   * Ui: Deals with user input/output
-  * Storage: Deals with data management on disk
+  * Storage: Deals with data management on hard disk
   * Parser: Deals with parsing user input
   * Command: Deals with handling command input logic
 
-<code>architecture diagram</code>
+![broadOverview.png](UML%2FImage%2FbroadOverview.png)
 
-![eventus.png](UML%2FImage%2Feventus.png)
-![test.png](UML%2FImage%2Ftest.png)
+Fig 1
+
 
 ### Ui 
 
@@ -71,7 +70,14 @@ String contactEmail</code>. Using this information, <code>CompanyList.add</code>
 at the end of the company list. After successfully executing the command, it will show successful addition message using
 the related method in the <code>Ui</code>.
 
-(Implementation feature: venue list, event )
+### [Proposed] Storing event details feature
+#### Proposed Implementation
+The proposed eventDetailStorage feature will allow users to save the event details of the current session to hard disk. 
+A text file will be created to store information such as event name and venue information. This text file will be 
+overwritten everytime the user makes changes to the stored information, such as renaming the event name or changing the 
+venue of the event. When relaunching EventUS, the program will check if there is a text file which contains the 
+information of an event. If the text file exists, the information of the Event instance will be updated with the event 
+details. If there is no text file, a text file will be created.
 
 ## Product scope
 ### Target user profile
@@ -79,8 +85,6 @@ the related method in the <code>Ui</code>.
 EveNtUS targets career fair event managers who are looking to better manage the companies attending the career fair, as well as managing the venue and crowd size. 
 
 ### Value proposition
-
-{Describe the value proposition: what problem does it solve?}
 
 EveNtUS is a desktop application designed for career fair managers to manage career fairs, with a focus on efficient operation through the Command-Line Interface(CLI).
 
@@ -92,20 +96,27 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 | v1.0    | new user   | see usage instructions                | refer to them when I forget how to use the application       |
 | v1.0    | basic user | be able to delete company information | keep track of only the companies who are attending the event |
 | v2.0    | user       | find a to-do item by name             | locate a to-do without having to go through the entire list  |
+| v2.0    | basic user | load some sample data                 | so that I can get familiar with the application              |
+| v2.0    | basic user | select a venue for the event          | keep track of the venue information                          |
 | v2.0    | basic user | purge the sample data                 | so that I can start to input my data                         |
+
 
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. The programme should run even without the existence of the text file at the start
+2. The programme should be able to handle user changing the text files
+3. The programme should run on different Operating System
 
 ## Glossary
 
-* *glossary item* - Definition
+* *EveNtUS* - Name of our application
+* *Ui* - Name of the class that deals with user input/output
 
 ## Instructions for manual testing
 
-1. To load sample company data, run "load samples" to load some companies into company list. 
-2. To purge all company list data, run "purge".
-3. To choose a venue for the event, run "choose venue (index)".
-4. To delete company information, run "delete (index)".
+1. To load sample company data, run <code>load samples</code> to load some companies into company list
+2. Type <code>help</code> for more information on the commands
+2. To reset the company list and purge all company list data, run <code>purge</code>
+3. To choose a venue for the event, run <code>choose venue (index)</code>.
+4. To delete company information, run <code>delete (index)</code>.

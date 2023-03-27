@@ -1,0 +1,29 @@
+@startuml
+!include Style.puml
+left to right direction
+skinparam componentStyle rectangle
+
+component User_Input
+
+component EveNtUS {
+component main COLOR1
+component Parser COLOR1
+component Ui COLOR1
+component Command COLOR1
+component Storage COLOR1
+component Parser COLOR1
+}
+
+component "TextFile"
+
+[User_Input]..>[Ui]
+[Ui]-->[main]
+[main]-->[Storage]
+[TextFile]..>[Storage]
+[main]-->[Command]
+[main]->[Ui]
+[main]->[Parser]
+[Parser]-->[main]
+[Command]..>[main]
+[Storage]-->[TextFile]
+@enduml
