@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import model.Card;
 import model.CardList;
 import model.CardUUID;
+import model.DeckList;
 import model.Tag;
 import model.TagList;
 import utils.UserInterface;
@@ -46,7 +47,7 @@ public class ListCardsUnderTagCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage)
+    public void execute(CardList cardList, TagList tagList, DeckList deckList,UserInterface ui, IDataStorage storage)
             throws InkaException {
         CardList foundCardList = findCardsUnderTag(cardList, tagList);
         ui.printCardList(foundCardList);

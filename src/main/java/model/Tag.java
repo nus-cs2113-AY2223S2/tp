@@ -7,6 +7,7 @@ public class Tag {
     private TagUUID uuid;
     private String tagName;
     private ArrayList<CardUUID> cards = new ArrayList<>();
+    private ArrayList<DeckUUID> decks = new ArrayList<>();
 
     public Tag(String tagName, CardUUID cardUUID) {
         this.tagName = tagName;
@@ -32,6 +33,13 @@ public class Tag {
 
     public void addCard(CardUUID cardUUID) {
         cards.add(cardUUID);
+    }
+    public void removeDecks(DeckUUID deckUUID) {
+        decks.remove(deckUUID);
+    }
+
+    public void addDeck(DeckUUID deckUUID) {
+        decks.add(deckUUID);
     }
 
     @Override

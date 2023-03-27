@@ -2,31 +2,31 @@ package utils.command;
 
 import model.CardList;
 import model.DeckList;
-import model.Tag;
 import model.TagList;
 import utils.UserInterface;
 import utils.exceptions.InkaException;
 import utils.exceptions.TagNotFoundException;
 import utils.storage.IDataStorage;
+import model.Deck;
 
-public class EditTagNameCommand extends Command {
-    String oldTagName;
-    String newTagName;
+public class EditDeckNameCommand extends Command{
+    private String oldDeckName;
+    private String newDeckName;
 
-    public EditTagNameCommand(String oldTagName, String newTagName) {
-        this.oldTagName = oldTagName;
-        this.newTagName = newTagName;
+    public EditDeckNameCommand(String oldDeckName, String newDeckName) {
+        this.oldDeckName = oldDeckName;
+        this.newDeckName = newDeckName;
     }
 
     @Override
     public void execute(CardList cardList, TagList tagList, DeckList deckList,UserInterface ui, IDataStorage storage)
             throws InkaException {
-        Tag tag = tagList.findTagFromName(oldTagName);
-        if (tag == null) {
+        Deck deck = deckList.findDeckFromName(oldDeckName);
+        if (deck == null) {
             throw new TagNotFoundException();
         }
 
-        tag.editTagName(newTagName);
-        ui.printEditTagNameSuccess(oldTagName, tag);
+        deck.editDeckName(newDeckName);
+        ui.printEditDeckNameSuccess(oldDeckName, deck);
     }
 }

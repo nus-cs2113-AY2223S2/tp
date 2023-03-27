@@ -2,6 +2,7 @@ package utils.command;
 
 import model.Card;
 import model.CardList;
+import model.DeckList;
 import model.TagList;
 import utils.UserInterface;
 import utils.exceptions.InkaException;
@@ -15,7 +16,7 @@ public class AddCardCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage)
+    public void execute(CardList cardList, TagList tagList, DeckList deckList,UserInterface ui, IDataStorage storage)
             throws InkaException {
         cardList.addCard(card);
         ui.printAddQuestionSuccess();

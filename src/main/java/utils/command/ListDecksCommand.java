@@ -7,10 +7,10 @@ import utils.UserInterface;
 import utils.exceptions.InkaException;
 import utils.storage.IDataStorage;
 
-public class ListCardCommand extends Command {
+public class ListDecksCommand extends Command{
     @Override
-    public void execute(CardList cardList, TagList tagList, DeckList deckList,UserInterface ui, IDataStorage storage)
+    public void execute(CardList cardList, TagList tagList, DeckList deckList, UserInterface ui, IDataStorage storage)
             throws InkaException {
-        ui.printCardList(cardList);
+        ui.printDeckList(deckList);
     }
 }

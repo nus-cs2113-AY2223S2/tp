@@ -10,6 +10,8 @@ public class Card {
     private String answer;
     private ArrayList<TagUUID> tags = new ArrayList<>();
 
+    private ArrayList<DeckUUID> decks = new ArrayList<>();
+
     // Temporary constructor for Card, to be revised later to also consider uuid and tag etc
     public Card(String question, String answer) {
         this.question = question;
@@ -51,6 +53,9 @@ public class Card {
     public ArrayList<TagUUID> getTagsUUID() {
         return this.tags;
     }
+    public ArrayList<DeckUUID> getDecksUUID() {
+        return this.decks;
+    }
 
     public String getQuestion() {
         return question;
@@ -63,9 +68,16 @@ public class Card {
     public void addTag(TagUUID tagUUID) {
         tags.add(tagUUID);
     }
+    public void addDeck(DeckUUID deckUUID) {
+        decks.add(deckUUID);
+    }
 
     public void removeTag(TagUUID tagUUID) {
         tags.remove(tagUUID);
+    }
+
+    public void removeDecks(DeckUUID deckUUID) {
+        decks.remove(deckUUID);
     }
 
     @Override

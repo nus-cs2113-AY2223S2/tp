@@ -1,4 +1,5 @@
 import model.CardList;
+import model.DeckList;
 import model.TagList;
 import utils.UserInterface;
 import utils.command.Command;
@@ -15,12 +16,13 @@ public class Inka {
 
     private CardList cardList;
     private TagList tagList;
+    private DeckList deckList;
 
     public Inka(String filePath) {
         storage = new JsonStorage(filePath);
         ui = new UserInterface();
         parser = new Parser();
-
+        deckList = new DeckList();
         cardList = loadSaveFile();
         tagList = new TagList();
     }
@@ -60,7 +62,7 @@ public class Inka {
             String userInput = ui.getUserInput();
             try {
                 Command command = parser.parseCommand(userInput);
-                command.execute(cardList, tagList, ui, storage);
+                command.execute(cardList, tagList, deckList,ui, storage);
             } catch (InkaException e) {
                 ui.printException(e);
             }
