@@ -90,16 +90,16 @@ public class EditCommand extends Command {
 
         index -= 1;
 
-        int previousStatementCount = financialReport.getStatementCount();
-        assert (index < financialReport.getStatementCount() && index >= 0) : "invalid index provided for edit";
+        int previousStatementCount = userData.getStatementCount();
+        assert (index < userData.getStatementCount() && index >= 0) : "invalid index provided for edit";
 
         if (flag.isEmpty()) {
-            financialReport.deleteStatement(index);
+            userData.deleteStatement(index);
             FinancialStatement newStatement = new FinancialStatement(description, flowDirection, value, category, date);
-            financialReport.addStatementAtIndex(newStatement, index);
+            userData.addStatementAtIndex(newStatement, index);
         } else {
-            FinancialStatement editedStatement = financialReport.getFinancialStatement(index);
-            financialReport.removeFromMonthlyExpenditure(editedStatement);
+            FinancialStatement editedStatement = userData.getStatement(index);
+            userData.removeFromMonthlyExpenditure(editedStatement);
             if (flag.equals("-d")) {
                 editedStatement.setDescription(fieldToChange);
             } else if (flag.equals("-c")) {
@@ -113,14 +113,14 @@ public class EditCommand extends Command {
             } else if (flag.equals("-date")) {
                 editedStatement.setDate(dateToChange);
             }
-            financialReport.addToMonthlyExpenditure(editedStatement);
+            userData.addToMonthlyExpenditure(editedStatement);
             Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         }
 
         String output = "Done, edited entry " + (index + 1)
                 + " from the financial report";
 
-        assert previousStatementCount == financialReport.getStatementCount() : "statement count mismatch";
+        assert previousStatementCount == userData.getStatementCount() : "statement count mismatch";
 
         logger.log(Level.INFO, "deleted from financial report");
 

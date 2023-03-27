@@ -45,12 +45,10 @@ public class FinancialReport {
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
-    public FinancialStatement deleteStatement(int statementNumber) {
-        FinancialStatement oldStatement = financialReport.get(statementNumber);
-        financialReport.remove(financialReport.get(statementNumber));
-        removeFromMonthlyExpenditure(oldStatement);
+    public void deleteStatement(int statementNumber) {
+        removeFromMonthlyExpenditure(financialReport.get(statementNumber));
+        financialReport.remove(statementNumber);
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
-        return oldStatement;
     }
 
     public String getFullStatement(int statementNumber) {

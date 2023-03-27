@@ -8,9 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import static seedu.rainyDay.RainyDay.userData;
-
 //@@author lil1n
+
 /**
  * Represents a command that add statement to the financial report
  */
@@ -55,11 +54,11 @@ public class AddCommand extends Command {
         setupLogger();
         logger.log(Level.INFO, "starting AddCommand.execute()");
 
-        int totalStatementCount = financialReport.getStatementCount();
+        int totalStatementCount = userData.getStatementCount();
         FinancialStatement newStatement = new FinancialStatement(description, flowDirection, value, category, date);
-        financialReport.addStatement(newStatement);
+        userData.addStatement(newStatement);
 
-        assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";
+        assert totalStatementCount + 1 == userData.getStatementCount() : "statement count mismatch";
 
         //To fix, due to Junit Test failing
         String budgetInfo;
@@ -69,7 +68,7 @@ public class AddCommand extends Command {
             budgetInfo = "";
         }
 
-        String output = "Done! Added: " + financialReport.getFinancialStatement(totalStatementCount).getFullStatement()
+        String output = "Done! Added: " + userData.getStatement(totalStatementCount).getFullStatement()
                 + budgetInfo;
 
         logger.log(Level.INFO, " end of AddCommand.execute()");
