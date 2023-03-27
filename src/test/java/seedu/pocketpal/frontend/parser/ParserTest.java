@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.pocketpal.frontend.constants.MessageConstants;
 import seedu.pocketpal.frontend.exceptions.InvalidArgumentsException;
-import seedu.pocketpal.frontend.exceptions.InvalidCategoryException;
 import seedu.pocketpal.frontend.exceptions.InvalidCommandException;
 import seedu.pocketpal.frontend.exceptions.MissingArgumentsException;
 
