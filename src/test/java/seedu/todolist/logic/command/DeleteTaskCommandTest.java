@@ -18,9 +18,9 @@ public class DeleteTaskCommandTest {
     private TaskList testList;
     private Ui ui = new Ui();
 
-    private HashMap<Flags, String> generateInputArguments(String index) {
+    private HashMap<Flags, String> generateInputArguments(String id) {
         HashMap<Flags, String> args = new HashMap<>();
-        args.put(Flags.COMMAND_ADD, index);
+        args.put(Flags.COMMAND_ADD, id);
         return args;
     }
 
@@ -36,27 +36,27 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void deleteTask_emptyIndex_throwsException() {
+    public void deleteTask_emptyId_throwsException() {
         try {
             Command testDelete = new DeleteTaskCommand(generateInputArguments(""));
             testDelete.execute(testList, ui);
         } catch (ToDoListException e) {
             return;
         }
-        fail("A delete command was successfully constructed with missing index");
+        fail("A delete command was successfully constructed with missing id");
     }
 
     @Test
-    public void deleteTask_invalidIndex_throwsException() {
-        final String[] invalidIndex = {"1000", "-1", "52.1"};
-        for (String index : invalidIndex) {
+    public void deleteTask_invalidId_throwsException() {
+        final String[] invalidId = {"1000", "-1", "52.1"};
+        for (String id : invalidId) {
             try {
-                Command testDelete = new DeleteTaskCommand(generateInputArguments(index));
+                Command testDelete = new DeleteTaskCommand(generateInputArguments(id));
                 testDelete.execute(testList, ui);
             } catch (ToDoListException e) {
                 continue;
             }
-            fail("A delete command was successfully constructed with invalid index: " + index);
+            fail("A delete command was successfully constructed with invalid id: " + id);
         }
     }
 }

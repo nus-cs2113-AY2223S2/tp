@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 public class TaskList implements Serializable {
     private int id = 1;
     private HashMap<Integer, Task> tasks = new HashMap<>();
-    private HashSet<String> tags = new HashSet<>();
 
     /**
      * Checks if the provided id is valid, which is when it is from 0 to task list size - 1.
@@ -24,7 +23,7 @@ public class TaskList implements Serializable {
      * @param id The id being checked.
      * @throws InvalidIdException If the provided id is invalid.
      */
-    private void validateIndex(int id) throws InvalidIdException {
+    private void validateId(int id) throws InvalidIdException {
         if (!tasks.containsKey(id)) {
             throw new InvalidIdException(id);
         }
@@ -37,7 +36,7 @@ public class TaskList implements Serializable {
      * @return The task at the given id of the task list.
      */
     private Task getTask(int id) throws InvalidIdException {
-        validateIndex(id);
+        validateId(id);
         return tasks.get(id);
     }
 
@@ -45,7 +44,6 @@ public class TaskList implements Serializable {
                           int repeatDuration) {
         Task task = new Task(id, description, deadline, email, tags, repeatDuration);
         tasks.put(id++, task);
-        tags.addAll(task.getTags());
         return task.toString();
     }
 
@@ -139,7 +137,13 @@ public class TaskList implements Serializable {
         return getTask(id).isDone();
     }
 
+    public String getFullInfo(int id) throws InvalidIdException {
+        return getTask(id).getFullInfo();
+    }
+
     public HashSet<String> getAllTags() {
+        HashSet<String> tags = new HashSet<>();
+        tasks.values().forEach(task -> tags.addAll(task.getTags()));
         return tags;
     }
 
@@ -155,42 +159,8 @@ public class TaskList implements Serializable {
         return getTask(id).setDeadline(deadline);
     }
 
-    /**
-     * Sets the tags of the task at the given id of task list to the provided tags.
-     *
-     * @param id The id of the task whose tags are being set.
-     * @param tags The tags being set to.
-     * @return The string representation of the task.
-     * @throws InvalidIdException If there is no task with the given id.
-     */
     public String setTags(int id, HashSet<String> tags) throws InvalidIdException {
         return getTask(id).setTags(tags);
-    }
-
-    /**
-     * Adds the given tags to the task at the given id of the task list.
-     * No effect if the task already has the given tags.
-     *
-     * @param id The id of the task that tags are being added to.
-     * @param tags The tags being added.
-     * @return The string representation of the task.
-     * @throws InvalidIdException If there is no task with the given id.
-     */
-    public String addTags(int id, HashSet<String> tags) throws InvalidIdException {
-        return getTask(id).addTags(tags);
-    }
-
-    /**
-     * Deletes the given tags from the task at the given id of the task list.
-     * No effect if the task does not have the given tags.
-     *
-     * @param id The id of the task that tags are being added to.
-     * @param tags The tags being added.
-     * @return The string representation of the task.
-     * @throws InvalidIdException If there is no task with the given id.
-     */
-    public String deleteTags(int id, HashSet<String> tags) throws InvalidIdException {
-        return getTask(id).deleteTags(tags);
     }
 
     public String setDone(int id, boolean isDone) throws InvalidIdException {
@@ -198,6 +168,10 @@ public class TaskList implements Serializable {
     }
 
     //@@author clement559
+    public String setRepeatDuration(int id, int repeatDuration) throws InvalidIdException {
+        return getTask(id).setRepeatDuration(repeatDuration);
+    }
+
     public void checkRepeatingTasks() {
         for (Task task : tasks.values()) {
             int repeatDuration = task.getRepeatDuration();

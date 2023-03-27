@@ -6,27 +6,35 @@ import java.util.HashMap;
  * Enum that holds all the flags allowed in commands.
  */
 public enum Flags {
-    // Command flags
+    // Command flags that do not take arguments
     COMMAND_EXIT("exit", true),
     COMMAND_LIST("list", true),
+    COMMAND_TAG_LIST("taglist", true),
     COMMAND_PROGRESS("progress", true),
     COMMAND_CHECK("check", true),
-    COMMAND_TAGS("tags", true),
 
+    // Command flags that take arguments
     COMMAND_ADD("add", false),
     COMMAND_MARK("mark", false),
     COMMAND_UNMARK("unmark", false),
-    COMMAND_EDIT("edit", false),
     COMMAND_DELETE("delete", false),
-    COMMAND_GET_EMAIL("get_email", false),
-    COMMAND_SET_EMAIL("set_email", false),
+    COMMAND_FULL_INFO("info", false),
+
+    // Flags for commands that edit task parameters
+    COMMAND_EDIT_DESCRIPTION("desc", false),
+    COMMAND_EDIT_DEADLINE("due", false),
+    COMMAND_EDIT_EMAIL("email", false),
+    COMMAND_EDIT_TAGS("tags", false),
+    COMMAND_EDIT_REPEAT("rep", false),
 
     // Argument flags
     DESCRIPTION("-desc", false),
     DEADLINE("-due", false),
     EMAIL("-email", false),
     REPEAT("-rep", false),
-    TAG("-tag", false);
+    TAG("-tag", false),
+    EDIT("-edit", false),
+    EDIT_DELETE("-del", true);
 
     private static final HashMap<String, Flags> map = new HashMap<>();
     private final String name;

@@ -1,6 +1,7 @@
 package seedu.todolist.task;
 
 import seedu.todolist.constants.Formats;
+import seedu.todolist.logic.FormatterUtil;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.StringJoiner;
 import java.util.function.Predicate;
 
 public class Task implements Serializable {
@@ -51,9 +53,27 @@ public class Task implements Serializable {
             return String.format(Formats.TASK_STRING_NO_DEADLINE.getFormat(), id, isDoneString, description);
         }
 
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_OUT.getFormat());
-        String deadlineString = deadline.format(outputFormatter);
+        String deadlineString = FormatterUtil.getDeadlineAsString(deadline);
         return String.format(Formats.TASK_STRING.getFormat(), id, isDoneString, description, deadlineString);
+    }
+
+    public String getFullInfo() {
+        StringJoiner infoString = new StringJoiner(System.lineSeparator());
+        infoString.add("ID: " + id);
+        infoString.add("Description: " + description);
+        if (deadline != null) {
+            infoString.add("Due: " + FormatterUtil.getDeadlineAsString(deadline));
+        }
+        if (email != null) {
+            infoString.add("Email: " + email);
+        }
+        if (!tags.isEmpty()) {
+            infoString.add("Tags: " + FormatterUtil.getTagsAsString(tags));
+        }
+        if (repeatDuration > 0) {
+            infoString.add("Repeat duration: " + repeatDuration);
+        }
+        return infoString.toString();
     }
 
     public String getDescription() {
@@ -80,6 +100,11 @@ public class Task implements Serializable {
         return this.repeatDuration;
     }
 
+    public String setDone(boolean isDone) {
+        this.isDone = isDone;
+        return toString();
+    }
+
     public String setDescription(String description) {
         this.description = description;
         return toString();
@@ -92,11 +117,6 @@ public class Task implements Serializable {
 
     public String setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
-        return toString();
-    }
-
-    public String setDone(boolean isDone) {
-        this.isDone = isDone;
         return toString();
     }
 

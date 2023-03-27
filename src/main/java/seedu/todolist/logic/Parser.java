@@ -9,13 +9,17 @@ import seedu.todolist.logic.command.AddTaskCommand;
 import seedu.todolist.logic.command.CheckRepeatingTaskCommand;
 import seedu.todolist.logic.command.Command;
 import seedu.todolist.logic.command.DeleteTaskCommand;
-import seedu.todolist.logic.command.EditCommand;
+import seedu.todolist.logic.command.EditDeadlineCommand;
+import seedu.todolist.logic.command.EditDescriptionCommand;
+import seedu.todolist.logic.command.EditEmailCommand;
+import seedu.todolist.logic.command.EditRepeatCommand;
 import seedu.todolist.logic.command.ExitCommand;
-import seedu.todolist.logic.command.GetEmailCommand;
+import seedu.todolist.logic.command.ListFullInfoCommand;
+import seedu.todolist.logic.command.ListTagsCommand;
 import seedu.todolist.logic.command.ListTasksCommand;
 import seedu.todolist.logic.command.MarkTaskCommand;
 import seedu.todolist.logic.command.ProgressBarCommand;
-import seedu.todolist.logic.command.TagCommand;
+import seedu.todolist.logic.command.EditTagsCommand;
 import seedu.todolist.logic.command.UnmarkTaskCommand;
 
 import java.util.Arrays;
@@ -98,24 +102,32 @@ public class Parser {
             return new ExitCommand();
         case COMMAND_LIST:
             return new ListTasksCommand();
+        case COMMAND_TAG_LIST:
+            return new ListTagsCommand();
         case COMMAND_PROGRESS:
             return new ProgressBarCommand();
         case COMMAND_CHECK:
             return new CheckRepeatingTaskCommand();
-        case COMMAND_TAGS:
-            return new TagCommand();
         case COMMAND_ADD:
             return new AddTaskCommand(getArguments(splitInput, AddTaskCommand.EXPECTED_FLAGS));
         case COMMAND_MARK:
             return new MarkTaskCommand(getArguments(splitInput, MarkTaskCommand.EXPECTED_FLAGS));
         case COMMAND_UNMARK:
             return new UnmarkTaskCommand(getArguments(splitInput, UnmarkTaskCommand.EXPECTED_FLAGS));
-        case COMMAND_EDIT:
-            return new EditCommand(getArguments(splitInput, EditCommand.EXPECTED_FLAGS));
         case COMMAND_DELETE:
             return new DeleteTaskCommand(getArguments(splitInput, DeleteTaskCommand.EXPECTED_FLAGS));
-        case COMMAND_GET_EMAIL:
-            return new GetEmailCommand(getArguments(splitInput, GetEmailCommand.EXPECTED_FLAGS));
+        case COMMAND_EDIT_DESCRIPTION:
+            return new EditDescriptionCommand(getArguments(splitInput, EditDescriptionCommand.EXPECTED_FLAGS));
+        case COMMAND_EDIT_DEADLINE:
+            return new EditDeadlineCommand(getArguments(splitInput, EditDeadlineCommand.EXPECTED_FLAGS));
+        case COMMAND_EDIT_EMAIL:
+            return new EditEmailCommand(getArguments(splitInput, EditEmailCommand.EXPECTED_FLAGS));
+        case COMMAND_EDIT_TAGS:
+            return new EditTagsCommand(getArguments(splitInput, EditTagsCommand.EXPECTED_FLAGS));
+        case COMMAND_EDIT_REPEAT:
+            return new EditRepeatCommand(getArguments(splitInput, EditRepeatCommand.EXPECTED_FLAGS));
+        case COMMAND_FULL_INFO:
+            return new ListFullInfoCommand(getArguments(splitInput, ListFullInfoCommand.EXPECTED_FLAGS));
         default:
             throw new InvalidCommandException();
         }

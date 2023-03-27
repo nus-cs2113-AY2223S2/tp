@@ -22,5 +22,4 @@ skinparam ParticipantPadding 10
 skinparam Shadowing false
 
 hide footbox
-hide members
 hide circle

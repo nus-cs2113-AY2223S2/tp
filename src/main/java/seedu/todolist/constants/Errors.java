@@ -11,10 +11,11 @@ public enum Errors {
     INVALID_COMMAND("You need to provide a valid command."),
     INVALID_FLAGS("Unknown or duplicate flags are not allowed: "),
     INVALID_ID("Invalid task id: "),
-    INVALID_DATE("Invalid date format: "),
+    INVALID_DATE("Invalid date: "),
     INVALID_EMAIL("Invalid email address: "),
     INVALID_DURATION("Invalid repeat duration: "),
-    INVALID_EDIT("At least one new parameter must be provided when editing a task."),
+    INVALID_EDIT("Task edit commands must have a " + Flags.EDIT.getName() + " or "
+            + Flags.EDIT_DELETE.getName() + " flag."),
 
     FAILED_SAVE("Error when saving your data, please check that you have write permissions for "
             + Storage.DEFAULT_SAVE_PATH),

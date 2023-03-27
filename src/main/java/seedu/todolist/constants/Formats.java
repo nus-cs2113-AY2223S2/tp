@@ -7,7 +7,8 @@ public enum Formats {
     // Format for task string: id, isDone, description, deadline
     TASK_STRING("[ID:%d]\t[%s][%s][Due: %s]"),
     TASK_STRING_NO_DEADLINE("[ID:%d]\t[%s][%s]"),
-    TIME_IN("[d-M-uuuu H:m][d/M/uuuu H:m]"),
+    TIME_IN_1("[d-M-uuuu H:m]"),
+    TIME_IN_2("[d/M/uuuu H:m]"),
     TIME_OUT("dd LLL uuuu HH:mm");
 
     private final String format;

@@ -1,5 +1,6 @@
 @startuml
 !include Style.puml
+hide members
 
 class ToDoListManager COLOR_MAIN
 class Ui COLOR_UI
