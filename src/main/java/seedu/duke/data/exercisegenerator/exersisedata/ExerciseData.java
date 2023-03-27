@@ -39,6 +39,10 @@ public class ExerciseData {
     public String getId () {
         return id;
     }
+    //see whether this helps
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName () {
         return name;
