@@ -6,7 +6,19 @@ import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.recipe.Recipe;
 import seedu.mealcompanion.recipe.RecipeList;
 
+//@@author jingyaaa
+/**
+ * Represents the "recipe almost" command.
+ */
+
 public class RecipeAlmostCommand extends RecipePossibleCommand{
+
+    /**
+     * Check the number of missing ingredients to make a recipe in the ingredient list.
+     * @param recipe target recipe to check
+     * @param indredients ingredient list containing
+     * @return return number of missing ingredients to make a recipe
+     */
 
     private int almostCanMakeRecipe(Recipe recipe, IngredientList indredients) {
         IngredientList recipeIngredients = recipe.getIngredients();
@@ -18,6 +30,11 @@ public class RecipeAlmostCommand extends RecipePossibleCommand{
         }
         return missingIngredientCount;
     }
+
+    /**
+     * List all recipes that almost can be made using the ingredients available.
+     * @param mealCompanionSession the MealCompanionSession containing the list of recipes and ingredients
+     */
 
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
