@@ -32,7 +32,20 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 
 ## Setting up, getting started
 
-Refer to the guide {insert guide here}
+1. Java 11 is required for Meal Companion to function. Please ensure it is installed and functional on the device you are using, otherwise you may download it [here](https://www.oracle.com/sg/java/technologies/downloads/#java11).
+
+2. Once you have ascertained that your device has Java 11 installed, you may download the `.jar file` [here](https://github.com/AY2223S2-CS2113T-T09-3/tp/releases/tag/v1.0). 
+![jar1.png](images/jar1.png)
+
+Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
+
+3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file path>` commands as necessary.
+4. Ensure the terminal is within the correct folder.
+5. Use the command `java -jar mealcompanion.jar` to launch Meal Companion.
+![startup1.png](images/startup1.png)
+6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
+
+###### [Back to table of contents](#table-of-contents)
 
 ## Design
 
