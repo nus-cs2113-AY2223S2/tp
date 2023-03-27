@@ -13,6 +13,9 @@ import chching.record.TargetStorage;
 
 import java.util.HashMap;
 
+/**
+ * Models a class to handle the EditIncome command. Inherited from Command class.
+ */
 public class EditIncomeCommand extends Command {
     private int index;
     private HashMap<String, String> argumentsByField;
