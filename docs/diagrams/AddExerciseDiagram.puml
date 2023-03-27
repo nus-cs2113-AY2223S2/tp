@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+actor User
+participant ":AddCommand" as add
+participant ":Parser" as parser
+participant ":Exercise" as exercise
+participant ":WorkoutList" as list
+participant ":Workout" as workout
+
+User -> add: UserInput
+add -> parser: processCommand(UserInput)
+parser -> exercise: processAdd(arguments)
+add <-- exercise: toAdd:Exercise
+add -> list: execute()
+list -> workout: getCurrentWorkout()
+list <-- workout: currentWorkout:Workout
+list -> workout: addExercise(toAdd)
+@enduml

@@ -3,7 +3,7 @@
 
 
 
-Fitness Tracker is for users who are active and trying to keep fit or hit a fitness goal. This app will be 
+Fitz is a fitness tracker for users who are active and trying to keep fit or hit a fitness goal. This app will be 
 displayed and used in CLI format. It is targeted toward those who prefer to use CLI over GUI.
 The product will be able to keep track of the user's progress, daily exercises, and workouts. This helps with 
 planning future exercises.
