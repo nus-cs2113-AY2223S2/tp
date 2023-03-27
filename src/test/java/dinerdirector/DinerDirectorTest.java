@@ -15,6 +15,7 @@ import commands.deadline.DeleteDeadlineCommand;
 import commands.deadline.ViewDeadlineCommand;
 
 import commands.menu.AddDishCommand;
+import commands.menu.FindDishCommand;
 import commands.menu.ViewDishCommand;
 import commands.staff.AddStaffCommand;
 import commands.staff.DeleteStaffCommand;
@@ -229,6 +230,52 @@ public class DinerDirectorTest {
             } else if (listOfCommand.equals(TEST_CASE_OUT_OF_BOUNDS_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals((TEST_CASE_VALID_INDEX))) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            }
+        }
+    }
+
+    @Test
+    void runCommandLoopUntilExit_userInput_findDishCommand() {
+
+        ArrayList<String> listOfCommands = new ArrayList<>();
+
+        final String TEST_CASE_VALID_INPUT = "find_dish Burger";
+
+        final String TEST_CASE_NO_WORD = "find_dish";
+        final String TEST_CASE_JUST_ONE_SPACE = "find_dish ";
+        final String TEST_CASE_JUST_SPACES = "find_dish   ";
+        final String TEST_CASE_WORD_WITH_SPACES_IN_BETWEEN = "find_dish   Burger";
+        final String TEST_CASE_VALID_INPUT_WORD_WITH_TRAILING_SPACE = "find_dish Burger  ";
+        final String TEST_CASE_WORD_WITH_MULTIPLE_KEYWORDS = "find_dish fish Burger";
+        final String TEST_CASE_VALID_INPUT_WORD_WITH_MULTIPLE_KEYWORDS_WITH_SPACES_IN_BETWEEN
+                = "find_dish fish   Burger";
+
+        listOfCommands.add(TEST_CASE_VALID_INPUT);
+        listOfCommands.add(TEST_CASE_VALID_INPUT_WORD_WITH_MULTIPLE_KEYWORDS_WITH_SPACES_IN_BETWEEN);
+        listOfCommands.add(TEST_CASE_VALID_INPUT_WORD_WITH_TRAILING_SPACE);
+
+        listOfCommands.add(TEST_CASE_NO_WORD);
+        listOfCommands.add(TEST_CASE_JUST_ONE_SPACE);
+        listOfCommands.add(TEST_CASE_JUST_SPACES);
+        listOfCommands.add(TEST_CASE_WORD_WITH_SPACES_IN_BETWEEN);
+        listOfCommands.add(TEST_CASE_WORD_WITH_MULTIPLE_KEYWORDS);
+
+        for (String listOfCommand : listOfCommands) {
+            Command deleteCommand = new Parser().parseCommand(listOfCommand);
+            if (listOfCommand.equals(TEST_CASE_VALID_INPUT)) {
+                assertTrue(deleteCommand instanceof FindDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_WORD_WITH_SPACES_IN_BETWEEN)) {
+                assertTrue(deleteCommand instanceof FindDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_VALID_INPUT_WORD_WITH_TRAILING_SPACE)) {
+                assertTrue(deleteCommand instanceof FindDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_NO_WORD)) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_JUST_ONE_SPACE)) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_JUST_SPACES)) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals((TEST_CASE_WORD_WITH_MULTIPLE_KEYWORDS))) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             }
         }

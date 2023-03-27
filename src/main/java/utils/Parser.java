@@ -335,13 +335,10 @@ public class Parser {
 
         try {
             String[] keywords;
-            try {
-                keywords = userInputNoCommand.substring(1).split(" ");
-            } catch (IndexOutOfBoundsException e) {
-                throw new DinerDirectorException("Your keyword cannot be blank or a space.");
-            }
-
-            if (keywords.length > 1) {
+            keywords = userInputNoCommand.trim().split(" ");
+            if (keywords[0].isEmpty()) {
+                throw new DinerDirectorException("Please key in 1 keyword");
+            } else if (keywords.length > 1) {
                 throw new DinerDirectorException("Please key in only 1 keyword.");
             } else if (keywords.length == 1) {
                 stringToFind = keywords[0];
