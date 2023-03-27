@@ -5,6 +5,7 @@ import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import java.util.HashMap;
 
+import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 
 
@@ -44,6 +45,7 @@ public class AddAlertCommand extends Command  {
             if (isMinValueValid(alert.getStock(), alert.getUpc(), alertList.getMaxAlertUpcs())) {
                 alertList.setMinAlertUpcs(alert.getUpc(), alert.getStock());
                 Ui.printSuccessAddAlert();
+                SessionManager.writeSession(alertList);
 
             } else {
                 Ui.printInvalidMinAlert();
@@ -59,6 +61,7 @@ public class AddAlertCommand extends Command  {
             if (isMaxValueValid(alert.getStock(), alert.getUpc(), alertList.getMinAlertUpcs())) {
                 alertList.setMaxAlertUpcs(alert.getUpc(), alert.getStock());
                 Ui.printSuccessAddAlert();
+                SessionManager.writeSession(alertList);
             } else {
                 Ui.printInvalidMaxAlert();
             }

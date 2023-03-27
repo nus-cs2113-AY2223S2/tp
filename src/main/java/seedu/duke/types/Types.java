@@ -6,6 +6,7 @@ public class Types {
         UPC
     }
     public static final String SESSIONFILEPATH = "./data/InventoryData.csv";
+    public static final String ALERTFILEPATH = "./data/AlertData.csv";
     public enum FileHealth {
         OK,
         CORRUPT,

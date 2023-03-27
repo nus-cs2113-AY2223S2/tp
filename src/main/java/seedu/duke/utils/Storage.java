@@ -1,5 +1,7 @@
 package seedu.duke.utils;
 
+import seedu.duke.objects.Alert;
+import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.types.Types;
@@ -13,6 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,6 +33,10 @@ public class Storage {
     private static final Integer QUANTITY_INDEX = 3;
     private static final Integer PRICE_INDEX = 4;
     private static final Integer DATE_INDEX = 6;
+    private static final Integer ALERT_FIELDS = 3;
+    private static final Integer ALERT_UPC_INDEX = 0;
+    private static final Integer ALERT_QTY_INDEX = 1;
+    private static final Integer ALERT_MINMAX_INDEX = 2;
 
     private static final String VALID_DATAROW_REGEX =
             "^\\d+,[^,]+,\\d+,\\d+,\\d+(?:\\.\\d+)?,[^,]+,\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{9}$";
@@ -122,6 +129,85 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("Critical: An error occurred when writing to the file.");
         }
+    }
+
+    public static void writeCSV(final AlertList alertList) {
+        try {
+            File dataFolder = new File("./data");
+            if (!dataFolder.exists()) {
+                dataFolder.mkdir();
+            }
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(Types.ALERTFILEPATH));
+            int counter = 0;
+
+            for (Map.Entry<String, Integer> entry : alertList.getMinAlertUpcs().entrySet()) {
+                String key = entry.getKey();
+                Integer value = entry.getValue();
+                writer.write(key + "," + Integer.toString(value) + "," + "min" + "\n");
+            }
+
+            for (Map.Entry<String, Integer> entry : alertList.getMaxAlertUpcs().entrySet()) {
+                String key = entry.getKey();
+                Integer value = entry.getValue();
+                writer.write(key + "," + Integer.toString(value) + "," + "max" + "\n");
+            }
+
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("Critical: An error occurred when writing to the file.");
+        }
+
+    }
+
+    public static AlertList readAlertCSV() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(Types.ALERTFILEPATH));
+            String line = reader.readLine();
+            if (line == null) {
+                Ui.printEmptySessionFile();
+                return new AlertList();
+            }
+
+            AlertList tempAlertList = new AlertList(); //can set min and max hash maps in here
+            while (line != null) {
+                String[] fields = line.split(",");
+                if (fields.length != ALERT_FIELDS) {
+                    System.out.println("INFO: A Session Inventory file was found but it is corrupted. \" +\n" +
+                            "            \"Please delete the corrupt .csv file");
+                    return new AlertList();
+                }
+
+                Alert alert = new Alert(fields[ALERT_UPC_INDEX], fields[ALERT_MINMAX_INDEX], fields[ALERT_QTY_INDEX]);
+
+                if (fields[ALERT_MINMAX_INDEX].equals("min")) {
+                    tempAlertList.setMinAlertUpcs(fields[ALERT_UPC_INDEX], Integer.parseInt(fields[ALERT_QTY_INDEX]));
+                } else if (fields[ALERT_MINMAX_INDEX].equals("max")) {
+                    tempAlertList.setMaxAlertUpcs(fields[ALERT_UPC_INDEX], Integer.parseInt(fields[ALERT_QTY_INDEX]));
+                }
+
+                line = reader.readLine();
+            }
+
+            for (Map.Entry<String, Integer> entry : tempAlertList.getMinAlertUpcs().entrySet()) {
+                inventory.getAlertList().setMinAlertUpcs(entry.getKey(), entry.getValue());
+            }
+
+            for (Map.Entry<String, Integer> entry : tempAlertList.getMaxAlertUpcs().entrySet()) {
+                inventory.getAlertList().setMaxAlertUpcs(entry.getKey(), entry.getValue());
+            }
+
+            reader.close();
+
+        } catch (IOException | NumberFormatException e) {
+            //Ui.printEmptySessionFile();
+            System.out.println("no active alerts to load");
+            return new AlertList();
+        }
+        System.out.println("recovered active alerts");
+        return inventory.getAlertList();
+
     }
 
     /**
