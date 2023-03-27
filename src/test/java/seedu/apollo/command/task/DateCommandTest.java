@@ -2,6 +2,7 @@ package seedu.apollo.command.task;
 
 import org.junit.jupiter.api.Test;
 import seedu.apollo.calendar.Calendar;
+
 import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.exception.task.InvalidDateTime;
 import seedu.apollo.module.ModuleList;
@@ -16,10 +17,12 @@ import java.time.format.DateTimeParseException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class DateCommandTest {
 
     TaskList taskList = new TaskList();
     Ui ui = new Ui();
+
     Storage storage = new Storage("test.txt", "testModuleData.txt");
     ModuleList moduleList = new ModuleList();
     ModuleList allModules = storage.loadModuleData();
@@ -31,10 +34,12 @@ class DateCommandTest {
     @Test
     void testExecute_emptyTaskList_expectsNoException() throws InvalidDateTime {
         DateCommand newDateCommand = new DateCommand("2023-10-10");
+
         assertDoesNotThrow(() -> newDateCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
 
     @Test
+
 
     void testExecute_populatedTaskList_expectsNoException() throws InvalidDateTime, DateOverException {
         DateCommand newDateCommand = new DateCommand("2023-10-10");
@@ -43,3 +48,4 @@ class DateCommandTest {
     }
 
 }
+

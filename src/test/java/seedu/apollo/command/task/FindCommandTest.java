@@ -2,6 +2,7 @@ package seedu.apollo.command.task;
 
 import org.junit.jupiter.api.Test;
 import seedu.apollo.calendar.Calendar;
+
 import seedu.apollo.exception.utils.EmptyKeywordException;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.storage.Storage;
@@ -13,10 +14,12 @@ import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class FindCommandTest {
 
     TaskList taskList = new TaskList();
     Ui ui = new Ui();
+
     Storage storage = new Storage("test.txt", "testModuleData.txt");
     ModuleList moduleList = new ModuleList();
     ModuleList allModules = storage.loadModuleData();
@@ -38,3 +41,4 @@ class FindCommandTest {
     }
 
 }
+
