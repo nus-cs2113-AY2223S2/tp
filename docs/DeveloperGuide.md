@@ -73,20 +73,28 @@ The **API** of this component is specified in the super abstract class `Expendit
 
 `AcademicExpenditure`: 
 - Fields: `date`, `amount`, `description`
+
 `AccommodationExpenditure`:
 - Fields: `date`, `amount`, `description`, `isPaid`
+
 `BorrowExpenditure`:
 - Fields: `date`, `borrowerName`, `amount`, `deadline`, `description`
+
 `EntertainmentExpenditure`
 - Fields: `date`, `amount`, `description`
+
 `FoodExpenditure`: 
 - Fields: `date`, `amount`, `description`
+
 `LendExpenditure`:
 - Fields: `date`, `borrowerName`, `amount`, `deadline`, `description`
+
 `OtherExpenditure`:
 - Fields: `date`, `amount`, `description`
+
 `TransportExpenditure`:
 - Fields: `date`, `amount`, `description`
+
 `TuitionExpenditure`:
 - Fields: `date`, `amount`, `description`, `isPaid`
 
