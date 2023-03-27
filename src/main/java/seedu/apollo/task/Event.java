@@ -48,7 +48,7 @@ public class Event extends Task {
             throw new DateOverException(getType(), description, null, from, to);
         }
 
-        if(checkClashingEvent();)
+
     }
 
     /**
@@ -107,60 +107,6 @@ public class Event extends Task {
                 " (from: " + getFrom(printPattern) + " to: " + getTo(printPattern) + ")";
     }
 
-    public ArrayList<Event> eventClashByDay (TaskList taskList, LocalDateTime from, LocalDateTime to){
-        LocalDate fromDate = from.toLocalDate();
-        LocalDate toDate = to.toLocalDate();
-        ArrayList<Event>eventList = new ArrayList();
-        for(Task task: taskList){
-        if(task instanceof Event){
-            Event event = (Event) task;
-            LocalDate eventFromDate = event.from.toLocalDate();
-            LocalDate eventToDate = event.to.toLocalDate();
-            if(!eventToDate.isBefore(fromDate) && !eventFromDate.isAfter(toDate)) {
-                eventList.add(event);
-            }
-        }
-        }
-        return eventList;
 
-    }
-
-    public void checkClashingEvent(TaskList taskList, LocalDateTime from, LocalDateTime to,Ui ui){
-        ArrayList<Event> eventsDayClash = eventClashByDay(taskList,from,to);
-        LocalTime newEventFrom = from.toLocalTime();
-        LocalTime newEventTo = to.toLocalTime();
-        for(Event event:eventsDayClash){
-            LocalTime existingEventFrom = event.from.toLocalTime();
-            LocalTime existingEventTo = event.to.toLocalTime();
-            if(isClashing(existingEventFrom,existingEventTo,newEventFrom,newEventTo)){
-                ui.printClashingEvent();
-                break;
-            }
-        }
-
-
-    }
-
-
-    public boolean isClashing(LocalTime existingEventFrom,LocalTime existingEventTo,LocalTime from, LocalTime to){
-
-
-
-
-            if (existingEventFrom.equals(from) || existingEventTo.equals(to)) {
-                return true;
-            }
-
-            if (existingEventFrom.isAfter(from) && existingEventFrom.isBefore(to)) {
-                return true;
-            }
-
-            if (from.isAfter(existingEventFrom) && from.isBefore(existingEventTo)) {
-                return true;
-            }
-
-
-        return false;
-    }
 }
 
