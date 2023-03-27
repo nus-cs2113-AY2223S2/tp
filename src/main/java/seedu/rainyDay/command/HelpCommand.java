@@ -198,7 +198,7 @@ public class HelpCommand extends Command {
 
     private final String description;
 
-    public HelpCommand (String description) {
+    public HelpCommand(String description) {
         this.description = description;
     }
 
@@ -215,34 +215,34 @@ public class HelpCommand extends Command {
      */
     @Override
     public CommandResult execute() {
-        if(description.equals("add")) {
+        if (description.equals("add")) {
             return new CommandResult(HELP_ADD_COMMAND);
         }
-        if(description.equals("delete")) {
+        if (description.equals("delete")) {
             return new CommandResult(HELP_DELETE_COMMAND);
         }
-        if(description.equals("view")) {
+        if (description.equals("view")) {
             return new CommandResult(HELP_VIEW_COMMAND);
         }
-        if(description.equals("filter")) {
+        if (description.equals("filter")) {
             return new CommandResult(HELP_FILTER_COMMAND);
         }
-        if(description.equals("edit")) {
+        if (description.equals("edit")) {
             return new CommandResult(HELP_EDIT_COMMAND);
         }
-        if(description.equals("help")) {
+        if (description.equals("help")) {
             return new CommandResult(HELP_HELP_COMMAND);
         }
-        if(description.equals("export")) {
+        if (description.equals("export")) {
             return new CommandResult(HELP_EXPORT_COMMAND);
         }
-        if(description.equals("setbudget")) {
+        if (description.equals("setbudget")) {
             return new CommandResult(HELP_SET_BUDGET_COMMAND);
         }
-        if(description.equals("shortcut")) {
+        if (description.equals("shortcut")) {
             return new CommandResult(HELP_SHORTCUT_COMMAND);
         }
-        if(description.equals("ignore") || description.equalsIgnoreCase("unignore")) {
+        if (description.equals("ignore") || description.equalsIgnoreCase("unignore")) {
             return new CommandResult(HELP_IGNORE_COMMAND);
         }
         return new CommandResult(HELP_COMMAND);
