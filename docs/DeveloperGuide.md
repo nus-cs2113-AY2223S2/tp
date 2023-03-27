@@ -232,7 +232,7 @@ to use regular expressions, which is a more tidy and logical way to parse the in
   conditions will be printed.
 - Information will be presented in a table format to help improve clarity for users.
 
-The sequence diagram for the implementation of delete is as shown below:
+The sequence diagram for the implementation of filter is as shown below:
 
 ![FilterCommand.png](\images\DeveloperGuide\FilterCommand.png)
 
