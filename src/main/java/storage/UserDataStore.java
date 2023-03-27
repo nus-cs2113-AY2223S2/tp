@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserDataStore { //my attempt to user map, don't need to use for now
+    // This class is a singleton. Call getInstance() instead.
+    private UserDataStore(){}
 
     private static UserDataStore instance = new UserDataStore();
 
@@ -34,7 +36,6 @@ public class UserDataStore { //my attempt to user map, don't need to use for now
 
         return password.equals(storedPassword);
     }
-    // This class is a singleton. Call getInstance() instead.
-    private UserDataStore(){}
+
 
 }
