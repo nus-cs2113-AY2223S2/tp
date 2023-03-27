@@ -41,6 +41,9 @@ public class Storage {
     private static final String VALID_DATAROW_REGEX =
             "^\\d+,[^,]+,\\d+,\\d+,\\d+(?:\\.\\d+)?,[^,]+,\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{9}$";
 
+  //  private static final String VALID_ALERT_REGEX = "^\\d+,\\s*\\d+,\\s*(min|max),.*";
+    private static final String VALID_ALERT_REGEX =  "^[^,]+,\\s*\\d+,\\s*(min|max),.*";
+
     /**
      * Reads the CSV file from Types.SESSIONFILEPATH and
      * returns an Inventory object.
@@ -174,8 +177,7 @@ public class Storage {
             while (line != null) {
                 String[] fields = line.split(",");
                 if (fields.length != ALERT_FIELDS) {
-                    System.out.println("INFO: A Session Inventory file was found but it is corrupted. \" +\n" +
-                            "            \"Please delete the corrupt .csv file");
+                    Ui.printInvalidAlertFile();
                     return new AlertList();
                 }
 
@@ -197,15 +199,12 @@ public class Storage {
             for (Map.Entry<String, Integer> entry : tempAlertList.getMaxAlertUpcs().entrySet()) {
                 inventory.getAlertList().setMaxAlertUpcs(entry.getKey(), entry.getValue());
             }
-
             reader.close();
-
         } catch (IOException | NumberFormatException e) {
-            //Ui.printEmptySessionFile();
-            System.out.println("no active alerts to load");
+            Ui.printEmptyAlertFile();
             return new AlertList();
         }
-        System.out.println("recovered active alerts");
+        Ui.printRecoveredAlertFile();
         return inventory.getAlertList();
 
     }
@@ -216,7 +215,7 @@ public class Storage {
      * @param path File path
      * @return FileHealth enum that indicates the state of the file (MISSING/CORRUPT/OK)
      */
-    public static Types.FileHealth checkFileValid(final String path) {
+    public static Types.FileHealth checkFileValid(final String path, String validRow) {
         File file = new File(path);
 
         if (!file.exists()) {
@@ -227,7 +226,7 @@ public class Storage {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                Pattern pattern = Pattern.compile(VALID_DATAROW_REGEX);
+                Pattern pattern = Pattern.compile(validRow);
                 Matcher matcher = pattern.matcher(line);
 
                 if (!matcher.matches()) {
@@ -251,7 +250,23 @@ public class Storage {
      */
     public static String inventoryDataFileExist() {
         String path = Types.SESSIONFILEPATH;
-        Types.FileHealth fileHealth = checkFileValid(path);
+        Types.FileHealth fileHealth = checkFileValid(path, VALID_DATAROW_REGEX);
+
+        switch (fileHealth) {
+        case OK:
+            return ANSI_GREEN + "VALID" + ANSI_RESET;
+        case CORRUPT:
+            return ANSI_RED + "CORRUPTED" + ANSI_RESET;
+        case MISSING:
+            return ANSI_ORANGE + "MISSING (Will be created if AutoSave is TRUE)" + ANSI_RESET;
+        default:
+            return "UNKNOWN";
+        }
+    }
+
+    public static String alertDataFileExist() {
+        String path = Types.ALERTFILEPATH;
+        Types.FileHealth fileHealth = checkFileValid(path, VALID_ALERT_REGEX);
 
         switch (fileHealth) {
         case OK:

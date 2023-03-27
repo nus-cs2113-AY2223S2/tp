@@ -39,4 +39,10 @@ public class SessionManager {
     public static String inventoryDataFileExist() {
         return Storage.inventoryDataFileExist();
     }
+
+    public static String alertDataFileExist() {
+        return Storage.alertDataFileExist();
+    }
+
+
 }
