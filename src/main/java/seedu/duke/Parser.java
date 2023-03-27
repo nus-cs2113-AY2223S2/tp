@@ -37,7 +37,6 @@ public class Parser {
         ArrayList<String> userInputWords = parseCommand(userInput.trim());
         String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
-        String userCommandThirdKeyword = "";
         if (userInputWords.size() > 1) {
             userCommandSecondKeyword = userInputWords.get(1);
         }
@@ -45,20 +44,6 @@ public class Parser {
         try {
             switch (inputIgnoringCase) {
             case "list":
-                /*if (userInputWords.size() == 1) {
-                    throw new InvalidCommandException(ui.getCommandInputError());
-                }
-                if (userCommandSecondKeyword.equalsIgnoreCase("pu")) {
-                    return new ListPuCommand();
-                } else if (userCommandSecondKeyword.equalsIgnoreCase("current")) {
-                    if (userInputWords.size() == 3) {
-                        userCommandThirdKeyword = userInputWords.get(2);
-                        return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
-                    }
-                    return new ListCurrentCommand(modules);
-                } else {  // list PU name case
-                    return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
-                }*/
                 return prepareListCommands(userInputWords, universities, modules);
             case "search":
                 assert userInputWords.size() > 1 : "No Nus Module Code Read";
