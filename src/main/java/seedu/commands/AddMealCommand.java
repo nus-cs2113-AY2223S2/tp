@@ -76,11 +76,6 @@ public class AddMealCommand extends Command {
 
         System.out.println(System.lineSeparator() + "Enter type of meal:");
         mealTypeString = ui.readLine();
-        dateString = ui.readLine();
-        date = DateParser.parse(dateString, dtf);
-
-        System.out.println(System.lineSeparator() + "Enter type of meal:");
-        mealTypeString = ui.readLine();
         if ((mealType = MealTypes.fromString(mealTypeString)) == null) {
             throw new InvalidMealException(mealTypeString);
         }
