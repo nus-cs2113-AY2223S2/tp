@@ -74,13 +74,7 @@ public class RemoveCommand extends Command {
                 }
             }
 
-            AlertList alertList = inventory.getAlertList();
-            if (alertList.getMinAlertUpcs().containsKey(upcCode)) {
-                alertList.getMinAlertUpcs().remove(upcCode);
-            }
-            if (alertList.getMaxAlertUpcs().containsKey(upcCode)) {
-                alertList.getMaxAlertUpcs().remove(upcCode);
-            }
+           removeAlert(upcCode);
             Ui.printSuccessRemove(itemToRemove);
             break;
         case "N":
@@ -117,13 +111,7 @@ public class RemoveCommand extends Command {
             } else {
                 itemNameHash.get(itemName).remove(itemToRemove);
             }
-            AlertList alertList = inventory.getAlertList();
-            if (alertList.getMinAlertUpcs().containsKey(upcCode)) {
-                alertList.getMinAlertUpcs().remove(upcCode);
-            }
-            if (alertList.getMaxAlertUpcs().containsKey(upcCode)) {
-                alertList.getMaxAlertUpcs().remove(upcCode);
-            }
+            removeAlert(upcCode);
             Ui.printSuccessRemove(itemToRemove);
             break;
         case "N":
@@ -132,6 +120,16 @@ public class RemoveCommand extends Command {
         default:
             Ui.printInvalidReply();
             break;
+        }
+    }
+
+    private void removeAlert(String upcCode) {
+        AlertList alertList = inventory.getAlertList();
+        if (alertList.getMinAlertUpcs().containsKey(upcCode)) {
+            alertList.getMinAlertUpcs().remove(upcCode);
+        }
+        if (alertList.getMaxAlertUpcs().containsKey(upcCode)) {
+            alertList.getMaxAlertUpcs().remove(upcCode);
         }
     }
 

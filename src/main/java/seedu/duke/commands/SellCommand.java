@@ -3,6 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.SellErrorException;
+import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.SessionManager;
@@ -110,6 +111,10 @@ public class SellCommand extends Command{
             upcCodes.remove(oldItem.getUpc());
             upcCodes.put(updatedItem.getUpc(), updatedItem);
             Ui.printSellDetails(oldItem, updatedItem);
+
+            inventory.getAlertList().checkAlerts(updatedItem.getUpc(), updatedItem.getName(),
+                    upcCodes.get(updatedItem.getUpc()).getQuantity().intValue());
+
             inventory.getUpcCodesHistory().get(oldItem.getUpc()).add(itemForHistory);
             if (SessionManager.getAutoSave()) {
                 SessionManager.writeSession(inventory);
@@ -122,7 +127,7 @@ public class SellCommand extends Command{
             Ui.printInvalidDeductQuantityInput();
         }
     }
-
+    
     /**
      * Executes the Sell Command
      */
