@@ -11,11 +11,12 @@ import java.util.List;
 
 public class FilterCaloriesCommand extends Command {
 
+
+    int choice;
+
     private float caloriesLowerLimit;
 
     private float caloriesUpperLimit;
-
-    int choice;
 
     private void showCaloriesFilteredFoods(FoodStorage foodStorage, List<Food> caloriesFilteredFoods)
             throws LifeTrackerException {
