@@ -70,6 +70,7 @@ public class Storage {
             boolean isFileCreated = createFile();
             if (isFileCreated) {
                 expenseList = new ExpenseList();
+                System.out.println("File created");
             } else {
                 FileInputStream fis = new FileInputStream("expenselist.dat");
                 ObjectInputStream ois = new ObjectInputStream(fis);
@@ -77,6 +78,7 @@ public class Storage {
                 System.out.println(READ_STORAGE_SUCCESSFUL);
             }
         } catch (EOFException e) {
+            e.printStackTrace();
             expenseList = new ExpenseList();
         } catch (IOException | ClassNotFoundException e) {
             System.out.println(READ_EXPENSELIST_ERROR);

@@ -3,6 +3,7 @@ package command;
 import data.Expense;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 import static common.MessageList.MESSAGE_DIVIDER;
@@ -96,9 +97,9 @@ public class CommandCategory extends Command {
 
         for (String categoryStored : categorySet) {
             expensesByCategorySum.add(new Expense(categoryStored,
-                    new CommandTotal(categoryGroup.get(categoryStored)).calculateTotal()));
+                    new CommandTotal(categoryGroup.get(categoryStored))
+                            .calculateTotal().setScale(2, RoundingMode.HALF_UP)));
         }
-
         return expensesByCategorySum;
     }
 

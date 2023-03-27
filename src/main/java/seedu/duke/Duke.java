@@ -72,9 +72,7 @@ public class Duke {
                 break;
             }
             storage.saveExpenseList();
-            if (in.hasNextLine()) {
-                input = in.nextLine();
-            }
+            input = in.nextLine();
         }
         in.close();
     }
