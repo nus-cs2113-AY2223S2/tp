@@ -65,7 +65,7 @@ The following activity diagram summarises what happens when a user executes edit
     * Cons: Not any easier than having the user to just delete and add new expense/income.
 
 ### ListExpenseCommand
-The listExpenseCommand is facilitated by ```System```, ```Parser``` and ```ExpenseList```.
+The listExpenseCommand is facilitated by ```Parser```, ```ListExpenseCommand``` and ```ExpenseList```.
 
 1. The user inputs the command top list expense. This input is handled by```Parser``` which returns the
    ```listExpenseCommand``` if successful.
@@ -74,6 +74,8 @@ The listExpenseCommand is facilitated by ```System```, ```Parser``` and ```Expen
 3. The ```expenseList``` method ```printExpenseList```
    is called, which iterates through the expenseList, ```expenses``` and prints the index as well as a completed string of
    expenses in ```expenses```.
+
+![ListExpenseCommand](../images/ListExpenseCommand_Sequence_Diagram.png)
 ### SetTargetCommand
 The setTargetCommand is facilitated by ```ChChing```, ```Parser```, ```TargetParser```, ```TargetStorage```.
 When the command receives to set target, the ```parse()``` method of the ```Parser``` object will read in the command and call the ```parseTarget()``` method from the TargetParser class 
