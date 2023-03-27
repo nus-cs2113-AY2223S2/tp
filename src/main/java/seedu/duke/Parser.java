@@ -235,11 +235,19 @@ public class Parser {
             if (!information[4].equals("")) {
                 String endTime = information[3];
                 String endDate = information[4];
-                eventList.addEvent(eventName, startTime, startDate, endTime, endDate);
+                if (information[5].equals("")) {
+                    eventList.addEvent(eventName, startTime, startDate, endTime, endDate);
+                } else {
+                    eventList.addEvent(eventName, startTime, startDate, endTime, endDate, information[5]);
+                }
+    
             } else {
-                eventList.addEvent(eventName, startTime, startDate);
+                if (information[5].equals("")) {
+                    eventList.addEvent(eventName, startTime, startDate);
+                } else {
+                    eventList.addEvent(eventName, startTime, startDate,information[5]);
+                }
             }
-            Ui.addSuccessMsg(eventList.getLastTaskDescription());
         }
     }
 
