@@ -1,6 +1,9 @@
-package seedu.workouttracker.workout;
+package seedu.workout;
+
+import seedu.workouttracker.workout.Workout;
 
 import java.util.ArrayList;
+
 
 
 public class WorkoutList {

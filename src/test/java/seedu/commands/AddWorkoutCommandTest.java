@@ -12,12 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class AddWorkoutCommandTest {
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private static final Date date;
 
     static {
         try {
-            date = dateFormat.parse("10/11/22");
+            date = dateFormat.parse("10/11/2022");
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
