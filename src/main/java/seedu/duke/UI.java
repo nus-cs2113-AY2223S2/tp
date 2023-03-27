@@ -25,7 +25,8 @@ public class UI {
     private static final String INVALID_BUDGET_MESSAGE = "Please type in the correct budget command";
     private static final String CURRENT_MOD_LIST_EMPTY = "The current module list is empty";
     private static final String CURRENT_DEADLINES_LIST_EMPTY = "The current deadlines list is empty";
-    private static final String FOUND_LIST_MESSAGE = "Here is the list of modules that can map this NUS module code: ";
+    private static final String FOUND_LIST_MESSAGE = "Here is/are the list/s of modules that can map "
+                                                        + "this NUS module code: ";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
@@ -100,27 +101,32 @@ public class UI {
         System.out.println(FOUND_LIST_MESSAGE + nusModCode);
         System.out.println(LINE);
         int foundModIndex = 0;
+        int printIndex = 1;
+        int prevModulePuId = 0;
         for (Module modToPrint : foundNusModList) {
-            foundModIndex++;
             String moduleCode = modToPrint.getModuleCode();
             String moduleName = modToPrint.getModuleName();
             int moduleMCs = modToPrint.getModuleMCs();
-            int modulePuId = modToPrint.getUnivId();
-            String puName = getPuAbbr(universities, modulePuId);
-            System.out.print(foundModIndex + ". " + puName + ": ");
-            System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
-        }
-    }
-
-    public String getPuAbbr(ArrayList<University> universities, int univID) {
-        String puAbbr = "";
-        for (University university : universities) {
-            int puUnivId = university.getUnivId();
-            if (puUnivId == univID) {
-                puAbbr = university.getUnivAbbName();
+            int currModulePuId = modToPrint.getUnivId();
+            int puIndex= currModulePuId - 1;
+            String currPuAbbr = universities.get(puIndex).getUnivAbbName();
+            if (foundModIndex >= 1) {
+                prevModulePuId = foundNusModList.get(foundModIndex - 1).getUnivId();
             }
+            if (currModulePuId == prevModulePuId) {
+                printIndex++;
+                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+            } else {
+                printIndex = 1;
+                if (printIndex == 1) {
+                    System.out.println(LINE);
+                    System.out.println(currPuAbbr);
+                    System.out.println(LINE);
+                }
+                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+            }
+            foundModIndex++;
         }
-        return puAbbr;
     }
 
     public void printPUModules(int univID) {
