@@ -36,19 +36,15 @@ public class Menu {
         while (true) {
             if (name.equals("")) {
                 System.out.println("---------------------------------------------------");
-                //@@JeraldChen
                 System.out.println("Please enter your name: ");
                 name = scanner.nextLine();
                 if (name.equals("")) {
                     System.out.println("---------------------------------------------------");
-                    //@@JeraldChen
                     System.out.println("Registration failed! Name cannot be empty.");
                     continue;
                 }
             }
-            //@@Geeeetxyx
             System.out.println("---------------------------------------------------");
-            //@@JeraldChen
             System.out.println("Please enter your password: ");
             String password = scanner.nextLine();
 
@@ -73,7 +69,7 @@ public class Menu {
                     Information.storePatientInfo(hash, new Patient(name, hash, diagnosisHistory, medicineHistory));
                     break;
                 } else {
-                    //@@author Geeeetxyx
+                    //@@author Geeeetyx
                     System.out.println("---------------------------------------------------");
                     System.out.println("Registration failed! Passwords do not match.");
                 }
@@ -94,7 +90,7 @@ public class Menu {
         int hash = Information.hashPassword(password);
         if (Information.checkHash(hash) && Information.getPatientInfo(hash).getName().equals(name)) {
             Duke.setPassword(hash);
-            //@@author Geeeetxyx
+            //@@author Geeeetyx
             System.out.println("---------------------------------------------------");
             System.out.println("Login successful!");
             System.out.println("Welcome " + name + "!");
@@ -104,7 +100,7 @@ public class Menu {
         }
     }
 
-    //@@author Geeeetxyx
+    //@@author Geeeetyx
     public static void exit() {
         System.out.println("---------------------------------------------------");
         System.out.println("Thank you for using");
@@ -118,6 +114,7 @@ public class Menu {
         Storage.saveData();
         System.exit(0);
     }
+    //@@author
 
     //@@author Thunderdragon221
     public static void showAccountMenu() {
@@ -127,11 +124,12 @@ public class Menu {
         System.out.println("2. View diagnosis history");
         System.out.println("3. Reset diagnosis history");
         System.out.println("4. View symptoms History");
-        System.out.println("5. Reset symptoms");
-        System.out.println("6. View Medicine history");
-        System.out.println("7. List available medicines");
-        System.out.println("8. Find available medicine");
-        System.out.println("9. Exit");
+        System.out.println("5. Delete symptom choice");
+        System.out.println("6. Reset symptoms");
+        System.out.println("7. View Medicine history");
+        System.out.println("8. List available medicines");
+        System.out.println("9. Find available medicine");
+        System.out.println("0. Exit");
         System.out.println("---------------------------------------------------");
     }
 

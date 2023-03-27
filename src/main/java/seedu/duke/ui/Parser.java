@@ -83,16 +83,19 @@ public class Parser {
             Information.viewSymptomHistory(Menu.symptoms);
             break;
         case "5":
+            Information.deleteSymptom(Menu.symptoms);
+            break;
+        case "6":
             Information.resetSymptomChoice(Menu.symptoms);
             break;
         //@@author tanyizhe
-        case "6":
+        case "7":
             user.printPatientMedicineHistory();
             break;
-        case "7":
+        case "8":
             medicineManager.listMedicines();
             break;
-        case "8":
+        case "9":
             Scanner phraseScanner = new Scanner(System.in);
             Menu.displayFindMedicinePrompt();
             String phrase = phraseScanner.nextLine();
@@ -100,7 +103,7 @@ public class Parser {
             medicineManager.findMedicine(phrase);
             break;
         //@@author Geeeetyx
-        case "9":
+        case "0":
             Menu.exit();
             break;
         default:

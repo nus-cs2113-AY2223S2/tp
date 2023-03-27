@@ -6,6 +6,7 @@ import seedu.duke.patient.Patient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,6 +33,10 @@ public class Information {
     }
 
     //@@Geeeetyx
+    /**
+     * Prints the diagnosis history of the Patient.
+     * @param hash The key to access the patient's details.
+     */
     public static void printDiagnosisHistory(int hash) {
         logger.log(Level.INFO, "Printing diagnosis history");
 
@@ -106,12 +111,12 @@ public class Information {
     public static void resetSymptomChoice(ArrayList<Symptom> symptoms) {
         if (symptoms.size() != 0) {
             symptoms.clear();
-            //@@Geeetyx
+            //@@Geeeetyx
             System.out.println("---------------------------------------------------");
             //@@JeraldChen
             System.out.println("Your symptom choice has been reset.");
         } else {
-            //@@Geeetyx
+            //@@Geeeetyx
             System.out.println("---------------------------------------------------");
             //@@JeraldChen
             System.out.println("You have not entered any symptoms. No symptoms to reset.");
@@ -120,7 +125,7 @@ public class Information {
     //@@author JeraldChen
     /**
      * Prints the symptom history of the patient.
-     * @param symptoms
+     * @param symptoms The patient's array of symptoms to print.
      */
     public static void viewSymptomHistory(ArrayList<Symptom> symptoms) {
         if (symptoms.size() == 0) {
@@ -129,6 +134,44 @@ public class Information {
             for (int i = 0; i < symptoms.size(); i++) {
                 System.out.println(symptoms.get(i));
             }
+        }
+    }
+
+    //@@author Geeeetyx
+    /**
+     * Deletes a set of selected symptoms from an array containing symptoms
+     * previously selected by the patient.
+     *
+     * @param symptoms The array of symptoms to delete the chosen symptoms from.
+     */
+    //@@author JeraldChen
+    public static void deleteSymptom(ArrayList<Symptom> symptoms) {
+        if (symptoms.size() == 0) {
+            System.out.println("You have not entered any symptoms.");
+            return;
+        }
+        System.out.println("---------------------------------------------------");
+        System.out.println("Here is the list of your symptoms:");
+        for (int i = 0; i < symptoms.size(); i++) {
+            System.out.println((i + 1) + ". " + symptoms.get(i));
+        }
+        System.out.println("Please enter the number of the symptom you want to delete.");
+        System.out.println("---------------------------------------------------");
+        Scanner scanner = new Scanner(System.in);
+        try {
+            int index = Integer.parseInt(scanner.nextLine());
+            if (index > 0 && index <= symptoms.size()) {
+                symptoms.remove(index - 1);
+                System.out.println("Successfully deleted symptom!");
+                System.out.println("Here is the updated list of your symptoms:");
+                for (int i = 0; i < symptoms.size(); i++) {
+                    System.out.println((i + 1) + ". " + symptoms.get(i));
+                }
+            } else {
+                System.out.println("Invalid command! Please enter a valid symptom.");
+            }
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            System.out.println("Invalid number! Please enter a valid symptom number.");
         }
     }
 }

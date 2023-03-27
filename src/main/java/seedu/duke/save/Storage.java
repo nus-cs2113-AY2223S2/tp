@@ -123,7 +123,7 @@ public class Storage {
             throws CorruptedDataException {
 
         int numberOfMedicineEntries = Integer.parseInt(scanner.nextLine());
-        Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable();
+        Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable<>();
 
         for (int entry = 0; entry < numberOfMedicineEntries; entry++) {
             String dateMedicineString = scanner.nextLine();
