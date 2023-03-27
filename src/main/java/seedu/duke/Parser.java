@@ -23,6 +23,7 @@ import seedu.duke.command.ListFoundNusModsCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidPuException;
 import seedu.duke.exceptions.InvalidModuleException;
+import seedu.duke.command.ListCurrentPuCommand;
 
 import java.util.ArrayList;
 
@@ -36,6 +37,7 @@ public class Parser {
         ArrayList<String> userInputWords = parseCommand(userInput);
         String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
+        String userCommandThirdKeyword = "";
         if (userInputWords.size() > 1) {
             userCommandSecondKeyword = userInputWords.get(1);
         }
@@ -49,6 +51,10 @@ public class Parser {
                 if (userCommandSecondKeyword.equalsIgnoreCase("pu")) {
                     return new ListPuCommand();
                 } else if (userCommandSecondKeyword.equalsIgnoreCase("current")) {
+                    if (userInputWords.size() == 3) {
+                        userCommandThirdKeyword = userInputWords.get(2);
+                        return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
+                    }
                     return new ListCurrentCommand(modules);
                 } else {  // list PU name case
                     return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
@@ -83,13 +89,18 @@ public class Parser {
     }
 
     public static ArrayList<String> parseCommand(String userInput) {
-        String[] input = userInput.split((" "), 2);
+        String[] input = userInput.split((" "), 3);
         ArrayList<String> commandWords = new ArrayList<>();
         String commandInput = input[0];
         commandWords.add(commandInput);
-        if (input.length > 1) {
-            String commandSpecifics = input[1];
-            commandWords.add(commandSpecifics);
+        if (input.length == 2) {
+            String commandSpecificFirstWord = input[1];
+            commandWords.add(commandSpecificFirstWord);
+        } else if (input.length == 3) {
+            String commandSpecificFirstWord = input[1];
+            commandWords.add(commandSpecificFirstWord);
+            String commandSpecificsSecondWord = input[2];
+            commandWords.add(commandSpecificsSecondWord);
         }
         return commandWords;
     }
@@ -255,6 +266,41 @@ public class Parser {
         default:
             throw new InvalidCommandException(ui.getInvalidBudgetMessage());
         }
+    }
+
+    private Command prepareListCurrentPUModulesCommand(String univAbbNameOrIndex, ArrayList<University> universities,
+                                                       ArrayList<Module> modules) {
+        char digitChecker = univAbbNameOrIndex.charAt(0);
+        String universityAbbName = "";
+        int univIndex = -1;
+        // remember handle exception for numberformatexception use stringtoint instead?
+        if (Character.isDigit(digitChecker)) {
+            univIndex = Integer.parseInt(univAbbNameOrIndex) - 1;
+        } else {
+            universityAbbName = univAbbNameOrIndex;
+        }
+        try {
+            return handleListCurrentPuModulesCommand(universities, universityAbbName, univIndex, modules);
+        } catch (InvalidPuException e) {
+            return new ExceptionHandleCommand(e);
+        }
+    }
+
+    private Command handleListCurrentPuModulesCommand(ArrayList<University> universities, String universityAbbName,
+                                                      int univIndex, ArrayList<Module> modules)
+            throws InvalidPuException {
+        int univID = 0;
+        if (univIndex == -1) {
+            for (University university : universities) {
+                if (universityAbbName.equalsIgnoreCase(university.getUnivAbbName())) {
+                    univID = university.getUnivId();
+                }
+            }
+        }
+        if (univID == 0) {
+            throw new InvalidPuException(ui.getInvalidPuMessage());
+        }
+        return new ListCurrentPuCommand(modules, univID);
     }
 
     /**
