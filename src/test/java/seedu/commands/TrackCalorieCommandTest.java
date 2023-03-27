@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.constants.DateConstants;
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
@@ -17,7 +18,7 @@ import seedu.storage.MealStorage;
 public class TrackCalorieCommandTest {
     private final FoodStorage foodStorage = new FoodStorage();
     private final MealStorage mealStorage = new MealStorage("./data/mealData.csv", foodStorage);
-    private final DateTimeFormatter dtf = mealStorage.getDateTimeFormatter();
+    private final DateTimeFormatter dtf = DateConstants.DATABASE_DTF;
     private ArrayList<Food> foodList;
 
     @Test

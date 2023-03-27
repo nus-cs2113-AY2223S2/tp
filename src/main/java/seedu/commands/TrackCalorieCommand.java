@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import seedu.constants.DateConstants;
 import seedu.entities.Meal;
 import seedu.exceptions.LifeTrackerException;
 import seedu.storage.ExerciseStorage;
@@ -19,7 +20,7 @@ public class TrackCalorieCommand extends Command {
         ArrayList<Meal> meals = mealStorage.getMeals();
         LocalDate date;
         double totalCalories = 0;
-        DateTimeFormatter dtf = mealStorage.getDateTimeFormatter();
+        DateTimeFormatter dtf = DateConstants.PARSE_DTF;
 
         if (meals.size() == 0) {
             System.out.println("No Meals Added thus far!");
