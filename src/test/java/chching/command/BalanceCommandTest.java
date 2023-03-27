@@ -2,18 +2,22 @@ package chching.command;
 
 import chching.Storage;
 import chching.Ui;
-import chching.record.Expense;
 import chching.record.ExpenseList;
-import chching.record.Income;
 import chching.record.IncomeList;
+import chching.record.TargetStorage;
+import chching.record.Target;
+import chching.record.Expense;
+import chching.record.Income;
 import chching.currency.Selector;
 import chching.currency.Converter;
-import chching.record.TargetStorage;
 import org.junit.jupiter.api.BeforeEach;
-
+import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 class BalanceCommandTest {
@@ -39,12 +43,17 @@ class BalanceCommandTest {
     @BeforeEach
     void setup() {
         ui = new Ui();
+        converter = new Converter();
+        
+        Target target = new Target(100);
+        targetStorage = new TargetStorage();
+        targetStorage.addTarget(target);
+        
+        selector = new Selector();
+        selector.setCurrency("SGD");
         
         salary = new Income(INCOME_DESCRIPTION, INCOME_DATE, INCOME_VALUE);
         groceries = new Expense(EXPENSE_CATEGORY, EXPENSE_DESCRIPTION, EXPENSE_DATE, EXPENSE_VALUE);
-        selector = new Selector();
-        converter = new Converter();
-        targetStorage = new TargetStorage();
 
         
         ArrayList<Income> incomeList = new ArrayList<Income>();
@@ -54,5 +63,18 @@ class BalanceCommandTest {
         ArrayList<Expense> expenseList = new ArrayList<Expense>();
         expenseList.add(groceries);
         defaultExpenseList = new ExpenseList(expenseList);
+    }
+    
+    @Test
+    void execute_normalScenario_success() {
+        String expectedOutput = "4500.00";
+        try {
+            Command command = new BalanceCommand();
+            command.execute(defaultIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
+            assertEquals(expectedOutput, ((BalanceCommand) command).showBalance(), "Balance calculation is right");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            fail(); // test should not reach this line
+        }
     }
 }
