@@ -8,7 +8,7 @@ public class FindDishCommand extends Command {
 
     private String stringToFind;
     public FindDishCommand(String stringToFind) {
-       this.stringToFind = stringToFind;
+        this.stringToFind = stringToFind;
     }
 
     @Override
