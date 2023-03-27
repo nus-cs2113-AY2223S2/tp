@@ -16,4 +16,8 @@ public class Meeting {
     public String getIssue() {
         return this.issue;
     }
+
+    public String savableString() {
+        return this.issue + "~|~" + this.time;
+    }
 }
