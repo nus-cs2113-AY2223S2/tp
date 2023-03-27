@@ -7,6 +7,7 @@ import seedu.duke.objects.Item;
 import seedu.duke.types.Types;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -169,7 +170,15 @@ public class Ui {
 
     private static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove " +
             "does not exist.";
-
+    public static final String SUCCESS_CATEGORY = "Successfully categorised the following item:";
+    public static final String INVALID_CATEGORY_FORMAT = "Wrong/Incomplete Format! Please enter category commands " +
+            "as shown below.\n" + "List all categories: cat list\n" + "List all items in a category: cat [Category]\n"+
+            "Edit an item's category: cat upc/[UPC] c/[Category]";
+    public static final String INVALID_EDIT_CATEGORY_FORMAT = "Wrong/Incomplete Format! Please edit category in the " +
+            "following format:\n cat upc/[UPC] c/[Category]";
+    public static final String BLANK_CATEGORY = "Category cannot be left blank!";
+    public static final int CATEGORY_COL_WIDTH = 15;
+    public static final int ITEMS_COL_WIDTH = 25;
 
     public Ui() {
         greetUser();
@@ -290,6 +299,19 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public static String printTable(HashMap<String, ArrayList<Item>> categoryHash) {
+        int[] columnWidths = {CATEGORY_COL_WIDTH, ITEMS_COL_WIDTH};
+
+        StringBuilder table = new StringBuilder();
+
+        table.append(printTableSeparator(columnWidths));
+        table.append(printHeadings(columnWidths));
+        table.append(printTableSeparator(columnWidths));
+        categoryHash.forEach((category, items)
+                -> table.append((printRow(category, items, columnWidths))));
+        return table.toString();
+    }
+
     public static String printTable() {
         HashMap<String, String> commandsHashMap = new HashMap<>();
         CommandFormat commandFormat = new CommandFormat(commandsHashMap);
@@ -346,6 +368,8 @@ public class Ui {
         String[] headings = {};
         if (columnWidths.length == INVENTORY_ATTRIBUTE_COUNT) {
             headings = new String[]{NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
+        } else if (Arrays.stream(columnWidths).allMatch(CATEGORY_COL_WIDTH, ITEMS_COL_WIDTH) ){
+
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT) {
             headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
@@ -392,6 +416,37 @@ public class Ui {
             row.append(printAttribute(descriptionLines, COMMAND_COL_WIDTH, i));
             row.append(TABLE_MIDDLE);
             row.append(printAttribute(formatLines, FORMAT_COL_WIDTH, i));
+            row.append(TABLE_RIGHT);
+            row.append(System.lineSeparator());
+
+            if (i == rowHeight - 1) {
+                row.append(printTableSeparator(columnWidths));
+            }
+        }
+        return row.toString();
+    }
+
+    private static String printRow(String category, ArrayList<Item> items, int[] columnWidths) {
+        String[] categoryLines = wrapText(category, CATEGORY_COL_WIDTH);
+
+        //String[] formatLines = wrapText(format, FORMAT_COL_WIDTH);
+        String[] itemListLines = wrapText(items.get(0).getName() + ": " + items.get(0).getUpc(), ITEMS_COL_WIDTH);
+        StringBuilder row = new StringBuilder();
+        for (Item item : items) {
+            if (item == items.get(0)) {
+                continue;
+            }
+            String name = item.getName();
+            String upc = item.getUpc();
+            itemListLines = wrapText(name + ", " + upc, ITEMS_COL_WIDTH);
+        }
+        int rowHeight = findRowHeight(categoryLines, itemListLines);
+
+        for (int i = 0; i < rowHeight; i += 1) {
+            row.append(TABLE_LEFT);
+            row.append(printAttribute(categoryLines, COMMAND_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(itemListLines, FORMAT_COL_WIDTH, i));
             row.append(TABLE_RIGHT);
             row.append(System.lineSeparator());
 
@@ -940,6 +995,40 @@ public class Ui {
     }
 
 
+    public static void printCategoryDetails(Item oldItem, Item updatedItem) {
+        System.out.println(LINE);
+        System.out.println(ANSI_BLUE + SUCCESS_CATEGORY + ANSI_RESET);
+        System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
+                "Category: " + ANSI_RED + oldItem.getCategory() + ANSI_RESET + "\n");
+        System.out.println(ANSI_BLUE + CATEGORY_CHANGED_TO +
+                updatedItem.getCategory() + ANSI_RESET);
+        System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
+                "Category: " + ANSI_GREEN + updatedItem.getCategory() + ANSI_RESET);
+        System.out.println(LINE);
+    }
 
+    public static void printInvalidCategoryCommand() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_CATEGORY_FORMAT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidEditCategoryCommand() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_EDIT_CATEGORY_FORMAT + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printBlankCategory() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + BLANK_CATEGORY + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printAllCategory(HashMap<String, ArrayList<Item>> categoryHash) {
+        Ui.printLine();
+        System.out.println(ANSI_GREEN + printTable(categoryHash) + ANSI_RESET);
+        Ui.printLine();
+    }
 }
 

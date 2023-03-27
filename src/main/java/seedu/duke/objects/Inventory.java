@@ -14,7 +14,7 @@ public class Inventory {
     private final HashMap<String, ArrayList<Item>> upcCodesHistory = new HashMap<>();
 
     private final AlertList alertList = new AlertList();
-
+    private final HashMap<String, ArrayList<Item>> categoryHash = new HashMap<>();
 
     /**
      * Retrieves all the UPC Codes in the inventory currently.
@@ -85,6 +85,9 @@ public class Inventory {
     }
     public HashMap<String, ArrayList<Item>> getUpcCodesHistory() {
         return upcCodesHistory;
+    }
+    public HashMap<String, ArrayList<Item>> getCategoryHash() {
+        return categoryHash;
     }
 
 }

@@ -6,14 +6,15 @@ import seedu.duke.types.Types;
 import seedu.duke.utils.parsers.AddParser;
 import seedu.duke.utils.parsers.AlertParser;
 import seedu.duke.utils.parsers.AutoSaveParser;
+import seedu.duke.utils.parsers.CategoryParser;
 import seedu.duke.utils.parsers.EditParser;
 import seedu.duke.utils.parsers.FilterParser;
 import seedu.duke.utils.parsers.HelpParser;
 import seedu.duke.utils.parsers.HistoryParser;
 import seedu.duke.utils.parsers.ListParser;
 import seedu.duke.utils.parsers.RemoveParser;
-import seedu.duke.utils.parsers.SearchParser;
 import seedu.duke.utils.parsers.RestockParser;
+import seedu.duke.utils.parsers.SearchParser;
 import seedu.duke.utils.parsers.SellParser;
 
 import java.util.Scanner;
@@ -98,6 +99,10 @@ public class ParserHandler {
         case "history":
             HistoryParser historyParser = new HistoryParser(commandInfo, inventory);
             historyParser.run();
+            break;
+        case "cat":
+            CategoryParser categoryParser = new CategoryParser(commandInfo, inventory);
+            categoryParser.run();
             break;
         default:
             Ui.printUnknownCommand();
