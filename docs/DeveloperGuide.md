@@ -1,7 +1,7 @@
 # MyLedger - Developer Guide
 
 <p align="center">
-    <img src="team/images/MyLedger.png" width="30%">
+    <img src="team/images/MyLedger.jpeg" width="30%">
 </p>
 
 - [1. Preface](#1-preface)
