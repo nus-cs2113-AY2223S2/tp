@@ -1,12 +1,8 @@
 package parser;
 
 import data.Account;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class ParserPassword {
     public static void caseLogIn() {

@@ -15,9 +15,6 @@ public class UserDataStore { //my attempt to user map, don't need to use for now
         return instance;
     }
 
-    // This class is a singleton. Call getInstance() instead.
-    private UserDataStore(){}
-
     public boolean isUsernameTaken(String username){
         return userMap.containsKey(username);
     }
@@ -37,5 +34,7 @@ public class UserDataStore { //my attempt to user map, don't need to use for now
 
         return password.equals(storedPassword);
     }
+    // This class is a singleton. Call getInstance() instead.
+    private UserDataStore(){}
 
 }

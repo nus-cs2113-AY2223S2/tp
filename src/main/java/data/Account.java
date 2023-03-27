@@ -1,18 +1,23 @@
 package data;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class Account {
-    protected String accountName;
-    protected ArrayList<Expense> account;
-    protected int accountSize;
-    private String passwordHash;
     public static int accountNumber = 1;
     //private static final String ACCOUNTS_FILE = accountName + ".txt";
     private static final int MIN_PASSWORD_LENGTH = 8;
     private static final Pattern USERNAME_PATTERN = Pattern.compile("[a-zA-Z0-9]+");
+    protected String accountName;
+    protected ArrayList<Expense> account;
+    protected int accountSize;
+    private String passwordHash;
 
     public Account(String accountName, String password) {
         this.account = new ArrayList<>();
@@ -58,22 +63,18 @@ public class Account {
         } else if (passwordHash.length() < MIN_PASSWORD_LENGTH) {
             System.out.println("Password must be at least " + MIN_PASSWORD_LENGTH + " characters long.");
             return;
-        }
-        // Check if username is taken
-        else if (isUsernameTaken()) {
+        } else if (isUsernameTaken()) {  // Check if username is taken
             System.out.println("The username is taken, please use another username.");
             return;
-        }
-        // Save the account to the "accountName.txt" file
-        try (PrintWriter pw = new PrintWriter(new FileWriter(
+        } try (PrintWriter pw = new PrintWriter(new FileWriter(
                 "./src/main/java/storage/" + accountName + ".txt", true))) {
+            // Save the account to the "accountName.txt" file
             pw.println(accountName);
             pw.close();
         } catch (IOException e) {
             System.out.println("Error: Failed to create username file.");
             return;
         }
-
         try (PrintWriter pw = new PrintWriter(new FileWriter("./src/main/java/storage/" + accountName + ".txt"))) {
             pw.println(accountName + "," + passwordHash);
             pw.close();
@@ -123,12 +124,12 @@ public class Account {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.equals(accountName)) {
-                usernameTaken = true;
-                break;
+                    usernameTaken = true;
+                    break;
                 }
             }
         } catch (FileNotFoundException e) {
-        // Username file not found, which means the username is not taken
+            // Username file not found, which means the username is not taken
             usernameTaken = false;
             //return false;
         } catch (IOException e) {
