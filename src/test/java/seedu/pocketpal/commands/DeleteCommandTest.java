@@ -29,8 +29,8 @@ public class DeleteCommandTest extends BackendTestUtil {
     @DisplayName("Test constructor for DeleteCommand")
     void testDeleteCommand() {
         try {
-            DeleteCommand deleteCommand = new DeleteCommand(new Integer[]{1});
-            assertEquals(1, deleteCommand.getEntryId(0));
+            DeleteCommand testCommand = new DeleteCommand(new Integer[]{1});
+            assertEquals(1, testCommand.getEntryId(0));
         } catch (Exception e) {
             fail("Unexpected exception");
         }
