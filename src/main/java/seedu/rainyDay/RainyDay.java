@@ -69,7 +69,7 @@ public class RainyDay {
     }
 
     private void executeCommand(Command command) {
-        command.setData(userData.getFinancialReport());
+        command.setData(userData);
         CommandResult result = command.execute();
         if (result != null) {
             result.printResult();

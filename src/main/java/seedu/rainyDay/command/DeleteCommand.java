@@ -7,9 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import static seedu.rainyDay.RainyDay.userData;
-
 //@@author lil1n
+
 /**
  * Represents a command that delete statement from the financial report
  */
@@ -49,11 +48,12 @@ public class DeleteCommand extends Command {
 
         index -= 1;
 
-        int previousStatementCount = financialReport.getStatementCount();
-        assert (index < financialReport.getStatementCount() && index >= 0) : "invalid index provided for delete";
+        int previousStatementCount = userData.getStatementCount();
+        assert (index < userData.getStatementCount() && index >= 0) : "invalid index provided for delete";
 
-        FinancialStatement oldStatement = financialReport.deleteStatement(index);
-        assert previousStatementCount - 1 == financialReport.getStatementCount() : "statement count mismatch";
+        FinancialStatement oldStatement = userData.getStatement(index);
+        userData.deleteStatement(index);
+        assert previousStatementCount - 1 == userData.getStatementCount() : "statement count mismatch";
 
         //To fix, due to Junit Test failing
         String budgetInfo;

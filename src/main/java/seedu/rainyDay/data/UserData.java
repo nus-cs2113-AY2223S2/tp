@@ -54,4 +54,36 @@ public class UserData {
         }
         return String.format("\nYou have spent $%.2f/$%.2f, Keep it up!", currentSpending, budgetLimit);
     }
+
+    public int getStatementCount() {
+        return financialReport.getStatementCount();
+    }
+
+    public FinancialStatement getStatement(int statementIndex) {
+        return financialReport.getFinancialStatement(statementIndex);
+    }
+
+    public void deleteStatement(int statementIndex) {
+        financialReport.deleteStatement(statementIndex);
+    }
+
+    public void addStatementAtIndex(FinancialStatement newStatement, int index) {
+        financialReport.addStatementAtIndex(newStatement, index);
+    }
+
+    public void removeFromMonthlyExpenditure(FinancialStatement statement) {
+        financialReport.removeFromMonthlyExpenditure(statement);
+    }
+
+    public void addToMonthlyExpenditure(FinancialStatement statement) {
+        financialReport.addToMonthlyExpenditure(statement);
+    }
+
+    public LocalDate getStatementDate(int statementIndex) {
+        return financialReport.getStatementDate(statementIndex);
+    }
+
+    public void addStatement(FinancialStatement statement) {
+        financialReport.addStatement(statement);
+    }
 }

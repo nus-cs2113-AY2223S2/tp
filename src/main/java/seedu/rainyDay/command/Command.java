@@ -1,6 +1,7 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialReport;
+import seedu.rainyDay.data.UserData;
 
 //@@author lil1n
 
@@ -25,14 +26,15 @@ public abstract class Command {
     public static final String COMMAND_UNIGNORE = "unignore";
 
     protected FinancialReport financialReport;
+    protected UserData userData;
 
     /**
      * Sets the attribute to reference the financial report for execution of commands
      *
-     * @param financialReport financial report for the commands to be performed on
+     * @param userData userData provided for the commands to be performed on
      */
-    public void setData(FinancialReport financialReport) {
-        this.financialReport = financialReport;
+    public void setData(UserData userData) {
+        this.userData = userData;
     }
 
     /**
