@@ -32,4 +32,38 @@ public class Exercise {
                 "Calories Burnt: " + caloriesBurnt + System.lineSeparator() +
                 "Date of Exercise: " + date + System.lineSeparator();
     }
+
+
+    public String getExerciseName() {
+        return this.exerciseName;
+    }
+
+    public void setExerciseName(String exerciseName) {
+        this.exerciseName = exerciseName;
+    }
+
+    public float getCaloriesBurnt() {
+        return this.caloriesBurnt;
+    }
+
+    public void setCaloriesBurnt(float caloriesBurnt) {
+        this.caloriesBurnt = caloriesBurnt;
+    }
+
+    public String getExerciseDescription() {
+        return this.exerciseDescription;
+    }
+
+    public void setExerciseDescription(String exerciseDescription) {
+        this.exerciseDescription = exerciseDescription;
+    }
+
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
 }
