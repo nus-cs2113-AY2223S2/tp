@@ -65,17 +65,11 @@ public class RemoveCommand extends Command {
             upcCodes.remove(upcCode);
             inventory.getUpcCodesHistory().remove(upcCode);
             itemInventory.remove(indexOfItem);
-            categoryHash.get(category).remove(itemToRemove);
+            removeItemFromCategoryHash(itemToRemove, category);
             String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
             for (String itemName : itemNames) {
-                if (itemNameHash.get(itemName).size() == 1) {
-                    itemNameHash.remove(itemName);
-                    itemsTrie.remove(itemName);
-                } else {
-                    itemNameHash.get(itemName).remove(itemToRemove);
-                }
+                removeItemFromHashTrie(itemToRemove, itemName);
             }
-
             removeAlert(upcCode);
             Ui.printSuccessRemove(itemToRemove);
             break;
@@ -108,13 +102,8 @@ public class RemoveCommand extends Command {
             upcCodes.remove(upcCode);
             inventory.getUpcCodesHistory().remove(upcCode);
             itemInventory.remove(i);
-            categoryHash.get(category).remove(itemToRemove);
-            if (itemNameHash.get(itemName).size() == 1) {
-                itemNameHash.remove(itemName);
-                itemsTrie.remove(itemName);
-            } else {
-                itemNameHash.get(itemName).remove(itemToRemove);
-            }
+            removeItemFromCategoryHash(itemToRemove, category);
+            removeItemFromHashTrie(itemToRemove, itemName);
             removeAlert(upcCode);
             Ui.printSuccessRemove(itemToRemove);
             break;
@@ -124,6 +113,24 @@ public class RemoveCommand extends Command {
         default:
             Ui.printInvalidReply();
             break;
+        }
+    }
+
+    private void removeItemFromHashTrie(Item itemToRemove, String itemName) {
+        if (itemNameHash.get(itemName).size() == 1) {
+            itemNameHash.remove(itemName);
+            itemsTrie.remove(itemName);
+        } else {
+            itemNameHash.get(itemName).remove(itemToRemove);
+        }
+    }
+
+    private void removeItemFromCategoryHash(Item itemToRemove, String category) {
+        if (categoryHash.get(category).size() == 1) {
+            categoryHash.get(category).remove(itemToRemove);
+            categoryHash.remove(category);
+        } else {
+            categoryHash.get(category).remove(itemToRemove);
         }
     }
 

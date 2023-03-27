@@ -50,7 +50,7 @@ public class Ui {
     public static final String GREET_MESSAGE = "Welcome to MagusStock. How may I assist you today?";
     public static final String EXIT_MESSAGE = "Hope you had an enjoyable experience. See you next time!";
     public static final String UNKNOWN_COMMAND = "I don't understand that command, please refer to the user guide " +
-            "for all available commands";
+            "or enter 'help' for all available commands";
     public static final String INVALID_ADD = "Wrong/Incomplete Format! Please add new items in the following format: " +
             "add n/[name] upc/[UPC] qty/[quantity] p/[price]\nTip: Ensure that your UPC, quantity and price are all " +
             "in numbers and within valid range";
@@ -169,16 +169,19 @@ public class Ui {
 
     private static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove " +
             "does not exist.";
-    public static final String SUCCESS_CATEGORY = "Successfully categorised the following item:";
-    public static final String INVALID_CATEGORY_FORMAT = "Wrong/Incomplete Format! Please enter category commands " +
+    private static final String SUCCESS_CATEGORY = "Successfully categorised the following item:";
+    private static final String INVALID_CATEGORY_FORMAT = "Wrong/Incomplete Format! Please enter category commands " +
             "as shown below.\n" + "List all categories: cat list\n" + "List all items in a category: cat [Category]\n"+
-            "Edit an item's category: cat upc/[UPC] c/[Category]";
-    public static final String INVALID_EDIT_CATEGORY_FORMAT = "Wrong/Incomplete Format! Please edit category in the " +
-            "following format:\n cat upc/[UPC] c/[Category]";
-    public static final String BLANK_CATEGORY = "Category cannot be left blank!";
-    public static final int CATEGORY_COL_WIDTH = 15;
-    public static final int ITEMS_COL_WIDTH = 30;
+            "Edit an item's category: cat upc/[UPC] [Category]";
+    private static final String INVALID_EDIT_CATEGORY_FORMAT = "Wrong/Incomplete Format! Please edit category in the " +
+            "following format:\n cat upc/[UPC] [Category]";
+    private static final String BLANK_CATEGORY = "Category cannot be left blank!";
+    private static final int CATEGORY_COL_WIDTH = 15;
+    private static final int ITEMS_COL_WIDTH = 30;
     private static final String CATEGORY_HEADING = "Category";
+    private static final String NO_CATEGORY_LIST = "Category list is empty. There are no items in the inventory.";
+    private static final String INVALID_CATEGORY_FIND = "The category you are looking for does not exist.";
+
 
     public Ui() {
         greetUser();
@@ -189,15 +192,15 @@ public class Ui {
     }
 
     public static void printDoubleNeeded() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + MISSING_PRICE + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printEmptySearch() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + NO_SEARCH_RESULTS + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printSearchUPCItem(Item item) {
@@ -216,87 +219,87 @@ public class Ui {
     }
 
     public static void printExitMessage() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(EXIT_MESSAGE);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void greetUser() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(
                 ANSI_RED + LOGO1 + ANSI_ORANGE + LOGO2 + ANSI_YELLOW + LOGO3 +
                         ANSI_GREEN + LOGO4 + ANSI_CYAN + LOGO5 + ANSI_RESET);
         System.out.println(GREET_MESSAGE);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidSessionFile() {
         System.out.println(ANSI_YELLOW + INVALID_SESSION_FILE + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printRecoveredSessionFile() {
         System.out.println(ANSI_GREEN + RECOVERED_SESSION_FILE + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printEmptySessionFile() {
         System.out.println(ANSI_YELLOW + EMPTY_SESSION_FILE + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printUnknownCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + UNKNOWN_COMMAND + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidAddCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_ADD + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidAutoSaveInput() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_AUTO_SAVE_INPUT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printAutoSaveEnabled() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_GREEN + AUTOSAVE_ON + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printAutoSaveDisabled() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + AUTOSAVE_OFF + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printDuplicateAdd() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + DUPLICATE_ADD + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printSuccessAdd() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_GREEN + SUCCESS_ADD + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printSuccessList() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_CYAN + INVENTORYLOGO + ANSI_CYAN);
         System.out.println(ANSI_GREEN + SUCCESS_LIST + ANSI_RESET);
     }
 
     public static void printEmptyList() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + EMPTY_LIST + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static String printTable(HashMap<String, ArrayList<Item>> categoryHash) {
@@ -557,10 +560,8 @@ public class Ui {
 
         for (int i = 0; i < words.length; i += 1) {
             if (line.length() + words[i].length() <= width) {
-                System.out.println("add word w/o wrap");
                 line = addWordWithoutWrap(line, words, lines, i, width);
             } else if (words[i].length() > width) {
-                System.out.println("add word w wrap");
                 addWordWithWrap(words, lines, i, width);
             } else {
                 lines.add(line.toString());
@@ -620,18 +621,18 @@ public class Ui {
      * format instead.
      */
     public static void printInvalidEditCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_EDIT_FORMAT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
      * Prints a string to inform the user that the item with the specified UPC code cannot be found inside the database.
      */
     public static void printItemNotFound() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + ITEM_NOT_FOUND + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
@@ -663,7 +664,7 @@ public class Ui {
      * @param updatedItem The same item but with new attributes as defined by the user.
      */
     private static void printUpdatedItemDetails(Item oldItem, Item updatedItem) {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_BLUE + SUCCESS_EDIT + ANSI_RESET + "\n");
         System.out.println(ANSI_RED + "Before Update: " + ANSI_RESET);
         System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
@@ -671,7 +672,7 @@ public class Ui {
         System.out.println("\n" + ANSI_GREEN + "After Update: " + ANSI_RESET);
         System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
                 "Quantity Available: " + updatedItem.getQuantity() + "\n" + "Item Price: " + updatedItem.getPrice());
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
@@ -682,7 +683,7 @@ public class Ui {
      * @param updatedItem The same item but with new attributes as defined by the user.
      */
     public static void printRestockDetails(Item oldItem, Item updatedItem) {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_BLUE + SUCCESS_RESTOCK + ANSI_RESET + "\n");
         System.out.println(ANSI_RED + "Before Restocking: " + ANSI_RESET);
         System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
@@ -690,7 +691,7 @@ public class Ui {
         System.out.println("\n" + ANSI_GREEN + "After Restocking: " + ANSI_RESET);
         System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
                 "Quantity Available: " + ANSI_GREEN + updatedItem.getQuantity() + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
@@ -701,7 +702,7 @@ public class Ui {
      * @param updatedItem The same item but with new attributes as defined by the user.
      */
     public static void printSellDetails(Item oldItem, Item updatedItem) {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_BLUE + SUCCESS_SELL + ANSI_RESET + "\n");
         System.out.println(ANSI_RED + "Before Selling: " + ANSI_RESET);
         System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
@@ -712,38 +713,38 @@ public class Ui {
         System.out.println("\n" + ANSI_BLUE + "Sold " + ANSI_CYAN + (oldItem.getQuantity() - updatedItem.getQuantity())
                 + " " + ANSI_BLUE + updatedItem.getName() + " at a price of $" + ANSI_CYAN + updatedItem.getPrice() +
                 "." + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
      * Prints an error message to inform the user that the item is not updated.
      */
     private static void printItemNotUpdatedError() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + ITEM_NOT_EDITED + ANSI_RESET);
         System.out.println(ANSI_RED + "REASON: Item's name/price/quantity is the same as user's input." + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
      * Prints an error message to inform the user that item is not updated due to wrong quantity/price input type.
      */
     public static void printInvalidPriceOrQuantityEditInput() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + ITEM_NOT_EDITED + ANSI_RESET);
         System.out.println(ANSI_RED + "REASON:" + ANSI_RESET);
         System.out.println(ANSI_RED + WRONG_QUANTITY_INPUT + ANSI_RESET);
         System.out.println(ANSI_RED + WRONG_PRICE_INPUT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
      * Prints an error message to inform the user that the user command for restock is invalid.
      */
     public static void printInvalidRestockCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_RESTOCK_FORMAT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
 
     }
 
@@ -751,57 +752,57 @@ public class Ui {
      * Prints an error message to inform the user that the "restock" command contains negative values or strings.
      */
     public static void printInvalidAddQuantityInput() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_ADD_QUANTITY_FORMAT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
      * Prints an error message to inform the user that the "sell" command contains negative values or strings.
      */
     public static void printInvalidDeductQuantityInput() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_DEDUCT_QUANTITY_FORMAT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
      * Prints an error message to inform the user that the user command for selling is invalid.
      */
     public static void printInvalidSellCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_SELL_FORMAT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidReply() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_REPLY + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printNotRemoving() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_GREEN + NOT_REMOVING + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printSuccessRemove(Item itemToRemove) {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_BLUE + SUCCESS_REMOVE + ANSI_RESET);
         System.out.println(itemToRemove.toString());
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printConfirmMessage(Item itemToRemove) {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_BLUE + CONFIRM_MESSAGE + ANSI_RESET);
         System.out.println(itemToRemove.toString());
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidIndex(Inventory inventory) {
-        System.out.println(LINE);
+        printLine();
         int listSize = inventory.getItemInventory().size();
         switch (listSize) {
         case 0:
@@ -815,11 +816,11 @@ public class Ui {
                     " to remove item successfully." + ANSI_RESET);
             break;
         }
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidUpc(Inventory inventory) {
-        System.out.println(LINE);
+        printLine();
         int listSize = inventory.getItemInventory().size();
         switch (listSize) {
         case 0:
@@ -829,7 +830,7 @@ public class Ui {
             System.out.println(ANSI_RED + "This UPC is invalid. Try again." + ANSI_RESET);
             break;
         }
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printExistingMinAlert() {
@@ -841,51 +842,51 @@ public class Ui {
     }
 
     public static void printInvalidAddAlertCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_ADD_ALERT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidMinAlert() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_MIN_ALERT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidMaxAlert() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_MAX_ALERT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printSuccessAddAlert() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_GREEN + SUCCESS_ADD_ALERT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidAlertKeyword() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_ALERT_KEYWORD + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidRemoveAlertCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_REMOVE_ALERT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printSuccessRemoveAlertCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_GREEN + SUCCESS_REMOVE_ALERT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printNonExistentRemoveAlert() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + NONEXISTENT_REMOVE_ALERT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     private static String printAlerts(Inventory inventory, AlertList alertList) {
@@ -923,10 +924,10 @@ public class Ui {
     public static void printDashboard(Inventory inventory, AlertList alertList) {
         Item mostQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithMostQuantity());
         Item leastQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithLeastQuantity());
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_YELLOW + DASHBOARDLOGO + ANSI_RESET);
         System.out.println("Overview:");
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_ORANGE + "Total number of items: " + ANSI_WHITE +
                 inventory.getItemInventory().size() + ANSI_RESET);
         System.out.println(ANSI_ORANGE + "Total number of active alerts: " + ANSI_WHITE +
@@ -940,22 +941,22 @@ public class Ui {
             System.out.println(ANSI_ORANGE + "Item with least quantity: " + ANSI_RED + leastQuantityItem.getName() +
                     " (" + leastQuantityItem.getQuantity() + ") " + ANSI_RESET);
         }
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_CYAN + "Current Session Configurations:" + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
         if (SessionManager.getAutoSave()) {
             System.out.println("AutoSave Mode: " + ANSI_GREEN + "TRUE" + ANSI_RESET);
         } else {
             System.out.println("AutoSave Mode: " + ANSI_RED + "FALSE" + ANSI_RESET);
         }
         System.out.println("Inventory Data File Status: " + SessionManager.inventoryDataFileExist());
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_GREEN + "List of active alerts:" + ANSI_RESET);
 
         String alertTable = printAlerts(inventory, alertList);
 
         System.out.println(alertTable);
-        System.out.println(LINE);
+        printLine();
     }
     public static void printHistory(ArrayList<Item> results){
         System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
@@ -1016,18 +1017,18 @@ public class Ui {
     public static void printMinAlertWarning(String name, int alertLevel) {
         System.out.println(ANSI_YELLOW + "ALERT: The quantity of " + ANSI_RED + name + ANSI_RESET + ANSI_YELLOW +
                 " is below the minimum level of " + ANSI_RED + alertLevel + ANSI_YELLOW + "." + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printMaxAlertWarning(String name, int alertLevel) {
         System.out.println(ANSI_YELLOW + "ALERT: The quantity of " + ANSI_RED + name + ANSI_RESET + ANSI_YELLOW +
                 " is above the maximum level of " + ANSI_RED + alertLevel + ANSI_YELLOW + "." + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
 
     public static void printCategoryDetails(Item oldItem, Item updatedItem) {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_BLUE + SUCCESS_CATEGORY + ANSI_RESET);
         System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
                 "Category: " + ANSI_RED + oldItem.getCategory() + ANSI_RESET + "\n");
@@ -1035,31 +1036,43 @@ public class Ui {
                 updatedItem.getCategory() + ANSI_RESET);
         System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
                 "Category: " + ANSI_GREEN + updatedItem.getCategory() + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidCategoryCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_CATEGORY_FORMAT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidEditCategoryCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + INVALID_EDIT_CATEGORY_FORMAT + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printBlankCategory() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ANSI_RED + BLANK_CATEGORY + ANSI_RESET);
-        System.out.println(LINE);
+        printLine();
     }
 
-    public static void printAllCategory(HashMap<String, ArrayList<Item>> categoryHash) {
-        Ui.printLine();
+    public static void printCategory(HashMap<String, ArrayList<Item>> categoryHash) {
+        printLine();
         System.out.println(ANSI_GREEN + printTable(categoryHash) + ANSI_RESET);
-        Ui.printLine();
+        printLine();
+    }
+
+    public static void printNoCategoryList() {
+        printLine();
+        System.out.println(ANSI_RED + NO_CATEGORY_LIST + ANSI_RESET);
+        printLine();
+    }
+
+    public static void printInvalidCategory() {
+        printLine();
+        System.out.println(ANSI_RED + INVALID_CATEGORY_FIND + ANSI_RESET);
+        printLine();
     }
 }
 

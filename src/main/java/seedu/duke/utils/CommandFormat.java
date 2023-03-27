@@ -18,6 +18,7 @@ public class CommandFormat {
     public static final String ALERT_REMOVE_FORMAT = "alert remove upc/[UPC] level/[Min or Max]";
     public static final String CATEGORY_FORMAT = "cat n/[Name] c/[Category]";
     public static final String TAG_FORMAT = "tag a/[Add/Remove] n/[Name] [Tag]";
+    public static final String HISTORY_FORMAT = "history [UPC]";
 
     public static final String ADD_DESCRIPTION = "add:\nadds an item to the inventory list";
     public static final String EDIT_DESCRIPTION = "edit:\nedits relevant information of an item";
@@ -34,6 +35,7 @@ public class CommandFormat {
     public static final String ALERT_REMOVE_DESCRIPTION = "alert remove:\nremoves existing alert for an item";
     public static final String CATEGORY_DESCRIPTION = "cat:\nputs an item into the specified category";
     public static final String TAG_DESCRIPTION = "tag:\nadds or removes a tag of an existing item";
+    public static final String HISTORY_DESCRIPTION = "history:\nshows the historical commands executed for an item";
 
     protected HashMap<String, String> commandsHashMap;
     public CommandFormat(HashMap<String, String> commandsHashMap) {
@@ -55,6 +57,7 @@ public class CommandFormat {
         commands.put(ALERT_ADD_FORMAT, ALERT_ADD_DESCRIPTION);
         commands.put(ALERT_REMOVE_FORMAT, ALERT_REMOVE_DESCRIPTION);
         commands.put(HELP_FORMAT, HELP_DESCRIPTION);
+        commands.put(HISTORY_FORMAT, HISTORY_DESCRIPTION);
         return commands;
     }
 }
