@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.budget.Accommodation;
 import seedu.duke.budget.AirplaneTicket;
+import seedu.duke.budget.BudgetPlanner;
 import seedu.duke.budget.Entertainment;
 import seedu.duke.budget.Food;
 import seedu.duke.budget.GoodsAndServices;
@@ -249,6 +250,18 @@ public class UI {
         System.out.println("Cost remains unchanged, please check input amount");
         System.out.println(LINE);
     }
+
+    public static void printViewBudget(BudgetPlanner budgetPlanner) {
+        System.out.println(LINE);
+        System.out.println("Total budget: " + budgetPlanner.getBudget());
+        System.out.println("Accommodation cost: " + budgetPlanner.getAccommodationTotalCost());
+        System.out.println("Airplane Ticket cost: " + budgetPlanner.getAirplaneTicketTotalCost());
+        System.out.println("Food cost: " + budgetPlanner.getFoodTotalCost());
+        System.out.println("Entertainment cost: " + budgetPlanner.getEntertainmentTotalCost());
+        System.out.println("Surplus/Deficit: " + budgetPlanner.getSurplus());
+        System.out.println(LINE);
+    }
+
     public static void printExceptionErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }
