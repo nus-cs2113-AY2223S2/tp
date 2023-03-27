@@ -85,13 +85,18 @@ public class Parser {
     }
 
     public static ArrayList<String> parseCommand(String userInput) {
-        String[] input = userInput.split((" "), 2);
+        String[] input = userInput.split((" "), 3);
         ArrayList<String> commandWords = new ArrayList<>();
         String commandInput = input[0];
         commandWords.add(commandInput);
-        if (input.length > 1) {
-            String commandSpecifics = input[1];
-            commandWords.add(commandSpecifics);
+        if (input.length == 2) {
+            String commandSpecificFirstWord = input[1];
+            commandWords.add(commandSpecificFirstWord);
+        } else if (input.length == 3) {
+            String commandSpecificFirstWord = input[1];
+            commandWords.add(commandSpecificFirstWord);
+            String commandSpecificsSecondWord = input[2];
+            commandWords.add(commandSpecificsSecondWord);
         }
         return commandWords;
     }

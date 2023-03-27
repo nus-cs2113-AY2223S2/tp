@@ -1,10 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.DataReader;
 import seedu.duke.Module;
-import seedu.duke.University;
-
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 public class ListCurrentPuCommand extends Command {
