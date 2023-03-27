@@ -181,13 +181,6 @@ public class ParserTest {
         assertDoesNotThrow(() -> parser.parseUserInput("/view -c food"));
     }
 
-//    @Test
-//    public void parseViewCommand_countNotSpecified_maxIntReturned() {
-//        Parser parser = new Parser();
-//
-//    }
-
-
     @Test
     public void parseEditCommand_validEditCommand_parsedSuccessfully() {
         Parser parser = new Parser();
