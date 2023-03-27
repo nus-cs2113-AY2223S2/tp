@@ -927,5 +927,19 @@ public class Ui {
         }
     }
 
+    public static void printMinAlertWarning(String name, int alertLevel) {
+        System.out.println(ANSI_YELLOW + "ALERT: The quantity of " + ANSI_RED + name + ANSI_RESET + ANSI_YELLOW +
+                " is below the minimum level of " + ANSI_RED + alertLevel + ANSI_YELLOW + "." + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printMaxAlertWarning(String name, int alertLevel) {
+        System.out.println(ANSI_YELLOW + "ALERT: The quantity of " + ANSI_RED + name + ANSI_RESET + ANSI_YELLOW +
+                " is above the maximum level of " + ANSI_RED + alertLevel + ANSI_YELLOW + "." + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+
+
 }
 

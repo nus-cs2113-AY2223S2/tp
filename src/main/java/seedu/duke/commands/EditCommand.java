@@ -110,6 +110,10 @@ public class EditCommand extends Command {
             upcCodes.remove(oldItem.getUpc());
             upcCodes.put(updatedItem.getUpc(), updatedItem);
             Ui.printEditDetails(oldItem, updatedItem);
+
+            inventory.getAlertList().checkAlerts(updatedItem.getUpc(), updatedItem.getName(),
+                    upcCodes.get(updatedItem.getUpc()).getQuantity().intValue());
+
             inventory.getUpcCodesHistory().get(oldItem.getUpc()).add(itemForHistory);
             if (SessionManager.getAutoSave()) {
                 SessionManager.writeSession(inventory);
