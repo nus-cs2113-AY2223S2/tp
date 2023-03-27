@@ -5,6 +5,8 @@ import seedu.duke.objects.Inventory;
 import seedu.duke.utils.parsers.AddParser;
 import seedu.duke.utils.parsers.EditParser;
 import seedu.duke.types.Types;
+import seedu.duke.utils.parsers.RestockParser;
+import seedu.duke.utils.parsers.SellParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,7 +18,7 @@ import java.util.ArrayList;
 public class SearchCommandTest {
     Inventory inventory;
     @Test
-    public void searchByKeywordTest(){
+    public void searchByKeywordAddEditTest(){
         inventory = new Inventory();
         AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
         addParser.run();
@@ -30,12 +32,20 @@ public class SearchCommandTest {
         searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
         searchResults = searchCommand.searchKeyword();
         assertEquals(searchResults.size(),1);
+    }
+    @Test
+    public void searchByKeywordRemoveTest(){
+        inventory = new Inventory();
+        AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
+        addParser.run();
+        addParser = new AddParser("n/laptops upc/2 qty/5 p/5",inventory);
+        addParser.run();
         Command removeCommand = new RemoveCommand(inventory, "2", "Y");
         removeCommand.run();
         removeCommand = new RemoveCommand(inventory, "1", "Y");
         removeCommand.run();
-        searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
-        searchResults = searchCommand.searchKeyword();
+        SearchCommand searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
+        ArrayList<Item> searchResults = searchCommand.searchKeyword();
         assertEquals(searchResults,null);
         addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
         addParser.run();
@@ -46,34 +56,63 @@ public class SearchCommandTest {
         searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
         searchResults = searchCommand.searchKeyword();
         assertEquals(searchResults.size(),1);
-        removeCommand = new RemoveCommand(inventory, "1", "Y");
-        removeCommand.run();
-        addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
+    }
+
+    @Test
+    public void searchByKeywordsEdgeCasesTest(){
+        inventory = new Inventory();
+        AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
         addParser.run();
         addParser = new AddParser("n/orange upc/2 qty/5 p/5",inventory);
         addParser.run();
-        searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
-        searchResults = searchCommand.searchKeyword();
-        assertEquals(searchResults.size(),2);
-        editParser = new EditParser("upc/2 n/laptops", inventory);
+        EditParser editParser = new EditParser("upc/2 n/laptops", inventory);
         editParser.run();
-        searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
-        searchResults = searchCommand.searchKeyword();
-        assertEquals(searchResults.size(),1);
-        removeCommand = new RemoveCommand(inventory, "2", "Y");
+        RemoveCommand removeCommand = new RemoveCommand(inventory, "2", "Y");
         removeCommand.run();
         addParser = new AddParser("n/orange upc/2 qty/5 p/5",inventory);
         addParser.run();
         removeCommand = new RemoveCommand(inventory, "2", "Y");
         removeCommand.run();
-        searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
-        searchResults = searchCommand.searchKeyword();
+        SearchCommand searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
+        ArrayList<Item> searchResults = searchCommand.searchKeyword();
         assertEquals(searchResults.size(),1);
         editParser = new EditParser("upc/1 n/laptops", inventory);
         editParser.run();
         searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
         searchResults = searchCommand.searchKeyword();
         assertEquals(null, searchResults);
+    }
+
+    @Test
+    public void searchByKeywordSellRestockTest(){
+        inventory = new Inventory();
+        AddParser addParser = new AddParser("n/orange upc/123 qty/5 p/5",inventory);
+        addParser.run();
+        SearchCommand searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
+        ArrayList<Item> searchResults = searchCommand.searchKeyword();
+        assertEquals(searchResults.size(),1);
+        SellParser sellParser = new SellParser("upc/123 qty/1", inventory);
+        sellParser.run();
+        searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
+        searchResults = searchCommand.searchKeyword();
+        assertEquals(searchResults.size(),1);
+        RestockParser restockParser = new RestockParser("upc/123 qty/5", inventory);
+        restockParser.run();
+        searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
+        searchResults = searchCommand.searchKeyword();
+        assertEquals(searchResults.size(),1);
+        addParser = new AddParser("n/orange upc/2 qty/5 p/5",inventory);
+        addParser.run();
+        sellParser = new SellParser("upc/2 qty/1", inventory);
+        sellParser.run();
+        searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
+        searchResults = searchCommand.searchKeyword();
+        assertEquals(searchResults.size(),2);
+        restockParser = new RestockParser("upc/2 qty/5", inventory);
+        restockParser.run();
+        searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
+        searchResults = searchCommand.searchKeyword();
+        assertEquals(searchResults.size(),2);
     }
 
     @Test

@@ -1,0 +1,7 @@
+@startuml
+object HistoryParser{
+    - rawInput = "0123241"
+    - Inventory = inventory
+}
+
+@enduml

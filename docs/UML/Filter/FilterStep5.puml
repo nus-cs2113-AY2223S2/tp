@@ -1,15 +1,15 @@
 @startuml
 object FilterParser{
-    rawInput = "f/price p/gt 23.50"
-    Inventory = inventory
+    - rawInput = "f/price p/gt 23.50"
+    - Inventory = inventory
 }
 object FilterCommand{
-    Inventory = inventory
-    price = 23.50
-    FilterPriceMode = "p/gt"
+    - Inventory = inventory
+    - price = 23.50
+    - FilterPriceMode = "p/gt"
 }
 object Ui{
-    ArrayList<Item> items = items
+    - ArrayList<Item> items = items
 }
 FilterParser -> FilterCommand
 FilterCommand -> Ui

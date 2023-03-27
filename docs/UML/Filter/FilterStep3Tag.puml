@@ -1,12 +1,12 @@
 @startuml
 object FilterParser{
-    rawInput = "f/category perishables"
-    Inventory = inventory
+    - rawInput = "f/category perishables"
+    - Inventory = inventory
 }
 object FilterCommand{
-    Inventory = inventory
-    value = "perishables"
-    filterMode = "f/category"
+    - Inventory = inventory
+    - value = "perishables"
+    - filterMode = "f/category"
 }
 FilterParser -> FilterCommand
 @enduml
