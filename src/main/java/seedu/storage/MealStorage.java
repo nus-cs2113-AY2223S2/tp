@@ -11,7 +11,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 import seedu.entities.Meal;
@@ -25,8 +24,7 @@ import com.opencsv.CSVWriter;
 public class MealStorage extends Storage implements FileReadable, FileWritable {
     private static final String CSV_DELIMITER = ",";
     private static final String FOODS_DELIMITER = "-";
-    private static final DateTimeFormatter DTF = 
-            DateTimeFormatter.ofPattern(DateConstants.DATABASE_FORMAT, Locale.ENGLISH);
+    private static final DateTimeFormatter DTF = DateConstants.DATABASE_DTF;
     private ArrayList<Meal> meals;
     private FoodStorage foodStorage;
     private BufferedReader br;
@@ -143,9 +141,5 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
 
     public Meal deleteMeal(int index) throws IndexOutOfBoundsException {
         return meals.remove(index);
-    }
-
-    public DateTimeFormatter getDateTimeFormatter() {
-        return DTF;
     }
 }

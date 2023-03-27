@@ -1,17 +1,24 @@
 package seedu.storage;
 
 import com.opencsv.CSVWriter;
+
+import seedu.constants.DateConstants;
 import seedu.entities.Exercise;
+import seedu.exceptions.LifeTrackerException;
+import seedu.exceptions.UnableToSaveDatabaseException;
 import seedu.logger.LogFileHandler;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ExerciseStorage extends Storage implements FileReadable, FileWritable{
     private static final String CSV_DELIMITER = ",";
+    private static final DateTimeFormatter DTF = DateConstants.DATABASE_DTF;
     private ArrayList<Exercise> exercises;
     private BufferedReader br;
 
@@ -38,7 +45,8 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
                 String exerciseName = exerciseLine[0];
                 String exerciseDescription = exerciseLine[1];
                 float calorieBurnt = Float.parseFloat(exerciseLine[2]);
-                exercises.add(new Exercise(exerciseName, exerciseDescription, calorieBurnt));
+                LocalDate date = LocalDate.parse(exerciseLine[3], DTF);
+                exercises.add(new Exercise(exerciseName, exerciseDescription, calorieBurnt, date));
             } catch (Exception e) {
                 LogFileHandler.logError("Invalid exercise format!");
             }
@@ -57,8 +65,31 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
         String[] header = { "Exercise Name", "Exercise Description", "Calories Burnt" };
         writer.writeNext(header);
         for (Exercise exercise : exercises) {
-            writer.writeNext(exercise.toWriteFormat(CSV_DELIMITER));
+            writer.writeNext(exercise.toWriteFormat(CSV_DELIMITER, DTF));
         }
         writer.close();
+    }
+
+    public void saveExercise(Exercise exercise) throws LifeTrackerException {
+        exercises.add(exercise);
+        try {
+            this.write();
+        } catch (IOException e) {
+            throw new UnableToSaveDatabaseException("Exercise");
+        }
+    }
+
+    public void resetStorage() {
+        exercises = new ArrayList<Exercise>();
+        try {
+            this.write();
+            System.out.println("ExerciseStorage was successfully resetted!");
+        } catch (IOException e) {
+            System.out.println("Could not reset ExerciseStorage!");
+        }
+    }
+
+    public ArrayList<Exercise> getExercises() {
+        return this.exercises;
     }
 }

@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.constants.DateConstants;
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
@@ -23,7 +24,7 @@ public class MealStorageTest {
     @DisplayName("Test Read Write Functionalities")
     class ReadWriteTest {
         private final MealStorage mealStorage = new MealStorage(FILE_PATH, foodStorage);
-        private final DateTimeFormatter dtf = mealStorage.getDateTimeFormatter();
+        private final DateTimeFormatter dtf = DateConstants.DATABASE_DTF;
         private ArrayList<Food> foodList = new ArrayList<Food>();
         // private final Meal meal1 = new Meal();
 

@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.constants.DateConstants;
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
@@ -46,7 +47,7 @@ public class AddMealCommand extends Command {
                         ExerciseStorage exerciseStorage)
                 throws LifeTrackerException {
         foods = new ArrayList<Food>();
-        dtf = mealStorage.getDateTimeFormatter();
+        dtf = DateConstants.PARSE_DTF;
         dateString = "";
         mealTypeString = "";
         mealType = null;
