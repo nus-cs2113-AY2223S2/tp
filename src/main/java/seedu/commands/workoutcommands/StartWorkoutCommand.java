@@ -9,8 +9,14 @@ import java.util.Date;
 public class StartWorkoutCommand extends Command {
 
     private Date date;
+<<<<<<< HEAD:src/main/java/seedu/commands/workoutcommands/StartWorkoutCommand.java
     public StartWorkoutCommand(Date date) {
+=======
+    public StartCommand(Date date) {
+        super();
+>>>>>>> 7ac8556 (Refactor the code edit Junit Test for list and delete calss):src/main/java/seedu/commands/StartCommand.java
         this.date = date;
+        setData(workoutList);
     }
 
     @Override

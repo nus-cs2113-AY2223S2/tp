@@ -9,16 +9,16 @@ import java.text.SimpleDateFormat;
 
 public class WorkoutList {
     public static final int NO_CURRENT_WORKOUT = -1;
-    public ArrayList<Workout> workoutList;
+    public ArrayList<Workout> workoutArrayList;
     public int currentWorkoutIndex;
 
     public WorkoutList() {
-        workoutList = new ArrayList<>();
+        workoutArrayList = new ArrayList<>();
         currentWorkoutIndex = NO_CURRENT_WORKOUT;
     }
 
     public void addWorkout(Workout workout) {
-        workoutList.add(workout);
+        workoutArrayList.add(workout);
         currentWorkoutIndex = getLastIndex();
     }
 
@@ -26,6 +26,7 @@ public class WorkoutList {
         this.currentWorkoutIndex = currentWorkoutIndex;
     }
 
+<<<<<<< HEAD:src/main/java/seedu/workouttracker/workout/WorkoutList.java
     public void removeWorkout(Date date) {
         for (Workout workout : workoutList) {
             if (workout.getDate().equals(date)) {
@@ -71,11 +72,13 @@ public class WorkoutList {
             }
         }
     }
+=======
+>>>>>>> 7ac8556 (Refactor the code edit Junit Test for list and delete calss):src/main/java/seedu/workout/WorkoutList.java
     public int getLastIndex() {
-        return workoutList.size() - 1;
+        return workoutArrayList.size() - 1;
     }
 
     public Workout getCurrentWorkout() {
-        return workoutList.get(currentWorkoutIndex);
+        return workoutArrayList.get(currentWorkoutIndex);
     }
 }

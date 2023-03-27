@@ -29,8 +29,18 @@ public class Duke {
         do {
             String userInput = Ui.getUserInput();
             command = new Parser().processCommand(userInput);
+<<<<<<< HEAD
             command.setData(workoutList, calorieTracker);
             command.execute();
+=======
+            try {
+                command.setData(workoutList);
+                command.execute();
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+                // handle the exception in the appropriate way for your application
+            }
+>>>>>>> 7ac8556 (Refactor the code edit Junit Test for list and delete calss)
         } while (!ExitCommand.isExit(command));
     }
 }
