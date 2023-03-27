@@ -1,25 +1,14 @@
 package seedu.duke.utils.parsers;
 
+import seedu.duke.commands.HistoryCommand;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.objects.Inventory;
-import seedu.duke.objects.Item;
-import seedu.duke.utils.Ui;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class HistoryParser extends Parser{
     public HistoryParser(String rawInput, Inventory inventory){
         super(rawInput, inventory);
     }
-    public ArrayList<Item> getHistoryResults(){
-        if(!inventory.getUpcCodesHistory().containsKey(rawInput)){
-            return null;
-        }
-        ArrayList<Item> results = inventory.getUpcCodesHistory().get(rawInput);
-        Collections.sort(results);
-        return results;
-    }
+
     @Override
     public void run() {
         rawInput = rawInput.trim();
@@ -31,11 +20,7 @@ public class HistoryParser extends Parser{
             e.missingHistoryItemParameters();
             return;
         }
-        ArrayList<Item> results = getHistoryResults();
-        if(results!=null) {
-            Ui.printHistory(results);
-        }else{
-            Ui.printItemNotFound();
-        }
+        HistoryCommand historyCommand = new HistoryCommand(inventory, rawInput);
+        historyCommand.run();
     }
 }

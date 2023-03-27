@@ -58,11 +58,14 @@ The remove command is mainly handled by the `RemoveCommand` class, which extends
 The search command is mainly handled by the `SearchCommand` class, which extends the `Command` class. It is parsed by 
 the `SearchParser` class, which extends the `Parser` class.
 
+![SearchSequence.png](UML%2FSearch%2FSearchSequence.png)
+![SearchCommand.png](UML%2FSearch%2FSearchCommand.png)
+
 **Step 1**. When the user executes the command `search [keyword]` or `searchupc [keyword]`, the `ParserHandler` will create a 
 new `SearchParser` object and pass to it the appropriate `input`, the `SearchType`, and the appropriate `Inventory` in 
 which the items are stored.
+![SearchStep1.png](UML%2FSearch%2FSearchStep1.png)
 
-![img.png](UML%2FSearch%2Fimg.png)
 
 **Step 2**. The `run` method in `SearchParser` is called which overrides the `run` method in `Parser`. This leads the 
 `SearchParser` to call either the `parseSearch` or `parseSearchUPC` method, depending on whether the `SearchType` is
@@ -72,21 +75,20 @@ which the items are stored.
 is valid, both will create a new `SearchCommand` object, passing to it the relevant `Inventory`, `SearchType`, and 
 the `input`. If the input is not valid, an error message will be printed out and method execution will halt.
 
-![img3.png](UML%2FSearch%2Fimg3.png)
+![SearchStep3.png](UML%2FSearch%2FSearchStep3.png)
 
-**Step 4**. The `run` method in the `SearchCommand` class is called which overrides the `run` method in the
-`Command` class. This calls either the `searchKeyword` method which returns `ArrayList<Item>`, or the `searchUPC`
+**Step 4**. The `run` method in the `SearchCommand` object is called which overrides the `run` method in the
+`Command` object. This calls either the `searchKeyword` method which returns `ArrayList<Item>`, or the `searchUPC`
 method which returns an `Item` if there are found item(s), depending on whether the `SearchType` is 
 `Types.SearchType.KEYWORD` or `Types.SearchType.UPC` respectively. Else, the methods will return `null`.
 
 **Step 5**. The object(s) are returned to the `run` method. If the returned object is `null`, then the method
 will inform the user that no search results were found. Otherwise, the `printSearchItems` or the 
-`printSearchUPCItems` from the `Ui` class is called, depending on whether the `SearchType` is
+`printSearchUPCItems` from the `Ui` object is called, depending on whether the `SearchType` is
 `Types.SearchType.KEYWORD` or `Types.SearchType.UPC` respectively.
 
-![img5.png](UML%2FSearch%2Fimg5.png)
-
-![img5upc.png](UML%2FSearch%2Fimg5upc.png)
+![SearchStep5UPC.png](UML%2FSearch%2FSearchStep5UPC.png)
+![SearchStep5.png](UML%2FSearch%2FSearchStep5.png)
 
 **Step 6**. If the `printSearchItems` method is called, it takes in an `ArrayList<Item> items` as a parameter and
 prints out a table showing the name, UPC, quantity and price of all search results. Otherwise, the `printSearchUPCItems`
@@ -95,6 +97,10 @@ method takes in an `Item item` and prints it out in a table showing the name, UP
 ### Filter
 The filter command is mainly handled by the `FilterCommand` class, which extends the `Command` class. It is parsed by
 the `FilterParser` class, which extends the `Parser` class.
+
+![FilterSequence.png](UML%2FFilter%2FFilterSequence.png)
+![FilterPrice.png](UML%2FFilter%2FFilterPrice.png)
+![FilterTagCategory.png](UML%2FFilter%2FFilterTagCategory.png)
 
 **Step 1**. When the user executes the command `filter f/[filtertype] p/[price type] [category/price/tag]`, the 
 `ParserHandler` will create a new `FilterParser` object and pass to it the appropriate `input` and the appropriate
@@ -108,29 +114,62 @@ the `FilterParser` class, which extends the `Parser` class.
 instead.
 
 **Step 3**. The method `parseFilterCategoryOrTag` will take the keyword from the user input, create a new `FilterCommand`
-class and pass to it the relevant `Inventory`, `value` and `filterMode`. The `filterMode` is the `f` flag. The method 
+object and pass to it the relevant `Inventory`, `value` and `filterMode`. The `filterMode` is the `f` flag. The method 
 `parseFilterPrice` will check if the `p` flag is set correctly. If it is not set correctly, an error message will be 
-printed out and execution of the method will halt. Otherwise, a new `FilterCommand` class is created and passed the 
+printed out and execution of the method will halt. Otherwise, a new `FilterCommand` object is created and passed the 
 `Inventory`, `Price`, and `FilterPriceMode`.
 
+![FilterStep3Tag.png](UML%2FFilter%2FFilterStep3Tag.png)
 ![FilterStep3.png](UML%2FFilter%2FFilterStep3.png)
 
-![FilterStep3Tag.png](UML%2FFilter%2FFilterStep3Tag.png)
-
-**Step 4**. The `run` method in the `FilterCommand` class is called which overrides the `run` method in the
-`Command` class. This calls either the `filterCategory` method, `filterTags` method, or `filterPrice` which returns 
+**Step 4**. The `run` method in the `FilterCommand` object is called which overrides the `run` method in the
+`Command` object. This calls either the `filterCategory` method, `filterTags` method, or `filterPrice` which returns 
 `ArrayList<Item>`, depending on the `filterMode`, which is set to either `filterMode` or `FilterPriceMode`. If there are no
 filtered items, the methods will return `null`.
 
 **Step 5**. The objects are returned to the `run` method. If the returned object is `null`, then the method
-will inform the user that no filtered results were found. Otherwise, the `printSearchItems` from the `Ui` class is 
+will inform the user that no filtered results were found. Otherwise, the `printSearchItems` from the `Ui` object is 
 called.
 
 ![FilterStep5.png](UML%2FFilter%2FFilterStep5.png)
 
 **Step 6**. If the `printSearchItems` method is called, it takes in an `ArrayList<Item> items` as a parameter and
-prints out a table showing the name, UPC, quantity and price of all search results. Otherwise, the `printSearchUPCItems`
-method takes in an `Item item` and prints it out in a table showing the name, UPC, quantity and price of the item.
+prints out a table showing the name, UPC, quantity and price of all search results. 
+
+### History
+The history command is mainly handled by the `HistoryCommand` class, which extends the `Command` class. It is parsed by
+the `HistoryParser` class, which extends the `Parser` class.
+
+![HistoryParser.png](UML%2FHistory%2FHistoryParser.png)
+
+**Step 1**. When the user executes the command `history [upc]`, the
+`ParserHandler` will create a new `HistoryParser` object and pass to it the appropriate `input` and the appropriate
+`Inventory` in which the items are stored.
+
+![HistoryStep1.png](UML%2FHistory%2FHistoryStep1.png)
+
+**Step 2**. The `run` method in `HistoryParser` is called which overrides the `run` method in `Parser`. The 
+`HistoryParser` will check if the `input` is a word. If not, an error is shown and the method will halt execution. 
+Otherwise, the `HistoryParser` will create a new `HistoryCommand` object and pass it the relevant inventory and 
+user input.
+
+![HistoryStep2.png](UML%2FHistory%2FHistoryStep2.png)
+
+**Step 3**. The `run` method in the `HistoryCommand` object is called which overrides the `run` method in the
+`Command` object. The `HistoryCommand` object will call the `getHistoryResults` function which will return `null`
+if the input specified by the user does not fit any UPC code of any item. Else, the `getHistoryResults` will return
+a sorted `ArrayList<Item>` which represents the item's history.
+
+**Step 4**. The objects are returned to the `run` method. If the returned object is `null`, then the method
+will inform the user that no filtered results were found. Otherwise, the `printHistory` function from the `Ui` object is
+called.
+
+![HistoryStep3.png](UML%2FHistory%2FHistoryStep3.png)
+
+**Step 5**. The `printHistory` function will first state the time at which the first instance of the item was added,
+followed by printing the details of this first instance. It will then go through the following items in the list and 
+print the differences, if any. If there is more than 1 item in the list provided to the function, it will then print
+the details of the last and most current instant of the item.
 
 ## Product scope
 ### Target user profile

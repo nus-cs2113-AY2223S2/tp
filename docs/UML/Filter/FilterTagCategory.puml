@@ -1,0 +1,58 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant FilterParser
+group sd [filter category or tag]
+    FilterParser -> FilterCommand ** : run() with parameters set for category or tag
+    activate FilterCommand
+    FilterCommand -> FilterCommand: getFilteredItems()
+    activate FilterCommand #lightgreen
+    alt mode is "f/category"
+        FilterCommand -> FilterCommand: filterCategory()
+        activate FilterCommand #cyan
+        loop through all items
+            alt item has the same category as user keyword
+                ref over FilterCommand
+                    add to filteredItems
+                end ref
+            end
+        end
+        alt filteredItems is empty
+            FilterCommand -> FilterCommand: null
+        end
+        return filteredItems
+    else mode is "f/tag"
+        FilterCommand -> FilterCommand: filterTags()
+        activate FilterCommand #pink
+        loop through all items
+            alt user specified tag is in item tags
+                ref over FilterCommand
+                    add to filteredItems
+                end ref
+            end
+        end
+        alt filteredItems is empty
+            FilterCommand -> FilterCommand: null
+        end
+        return filteredItems
+    end
+    return null or filteredItems
+    alt filteredItems is not null
+        FilterCommand -> Ui: printSearchItems()
+        activate Ui
+        ref over Ui
+            print items in table
+        end ref
+        return
+    else
+        FilterCommand -> Ui: printEmptySearch()
+        activate Ui
+        ref over Ui
+            print empty search message
+        end ref
+        return
+    end
+    return
+    destroy FilterCommand
+end
+@enduml
