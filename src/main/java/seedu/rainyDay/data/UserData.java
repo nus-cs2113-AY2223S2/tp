@@ -1,5 +1,8 @@
 package seedu.rainyDay.data;
 
+import seedu.rainyDay.RainyDay;
+import seedu.rainyDay.modules.Storage;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 
@@ -24,6 +27,7 @@ public class UserData {
 
     public void setBudgetGoal(double goal) {
         this.budgetGoal = goal;
+        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public double getBudgetGoal() {
