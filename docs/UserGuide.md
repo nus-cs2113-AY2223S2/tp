@@ -362,6 +362,7 @@ all you have to do is input the name of the shortcut as follows.
 `FavLunch`
 
 Using the shortcut will allow you to add the same entry for noodles with a shorter command!
+
 ![shortcutusage](images/UserGuide/shortcutusage.png)
 
 ### Viewing a shortcut
