@@ -42,8 +42,8 @@ public class JsonUserCareerStorage implements UserCareerStorage {
      */
     @Override
     public void writeToJson (UserCareerData userCareerData) throws DukeError {
-        boolean writeStatus = jsonUserDataWriter.saveToJson(userFilePath, userCareerData);
-        assert writeStatus : "An exception should be thrown, this part of code should not be run";
+        boolean isSaved = jsonUserDataWriter.saveToJson(userFilePath, userCareerData);
+        assert isSaved : "An exception should be thrown, this part of code should not be run";
         logger.log(Level.INFO, "User Data has been written to file");
     }
 
