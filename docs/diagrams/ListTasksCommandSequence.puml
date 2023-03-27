@@ -1,0 +1,53 @@
+@startuml
+!include Style.puml
+
+actor User
+
+box Manager COLOR_MAIN_LIGHT
+participant ":ToDoListManager" as ToDoListManager COLOR_MAIN
+end box
+
+box Logic COLOR_LOGIC_LIGHT
+participant ":Parser" as Parser COLOR_LOGIC
+participant ":ListTasksCommand" as ListTasksCommand COLOR_LOGIC
+end box
+
+box TaskList COLOR_TASK_LIST_LIGHT
+participant ":TaskList" as TaskList COLOR_TASK_LIST
+end box
+
+box Ui COLOR_UI_LIGHT
+participant ":Ui" as Ui COLOR_UI
+end box
+
+box Storage COLOR_STORAGE_LIGHT
+participant ":Storage" as Storage COLOR_STORAGE
+end box
+
+User -> ToDoListManager: input("list")
+activate ToDoListManager
+ToDoListManager -> Parser : parseCommand("list")
+activate Parser
+create ListTasksCommand
+Parser -> ListTasksCommand
+activate ListTasksCommand
+ListTasksCommand -> ListTasksCommand : execute(TaskList, ui)
+activate ListTasksCommand
+ListTasksCommand -> TaskList : sortByDeadline()
+activate TaskList
+TaskList --> ListTasksCommand
+deactivate TaskList
+ListTasksCommand -> Ui : printTaskList(taskList.size(), taskList.toString())
+activate Ui
+Ui --> ListTasksCommand
+deactivate Ui
+ListTasksCommand --> ListTasksCommand
+deactivate ListTasksCommand
+ListTasksCommand --> Parser
+deactivate ListTasksCommand
+Parser --> ToDoListManager : command
+deactivate Parser
+deactivate ListTasksCommand
+ToDoListManager --> User : list of tasks
+deactivate ToDoListManager
+@enduml

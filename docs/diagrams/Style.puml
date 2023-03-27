@@ -1,0 +1,26 @@
+!define COLOR_UI #3FC71B
+!define COLOR_UI_LIGHT #BFFCC6
+
+!define COLOR_MAIN #949494
+!define COLOR_MAIN_LIGHT #BFD1D0
+
+!define COLOR_LOGIC #6A6ADC
+!define COLOR_LOGIC_LIGHT #85E3FF
+
+!define COLOR_TASK_LIST #E41F36
+!define COLOR_TASK_LIST_LIGHT #FFABAB
+
+!define COLOR_STORAGE #EDC520
+!define COLOR_STORAGE_LIGHT #FFFFD1
+
+!define COLOR_USER #F8C8DC
+
+skinparam BoxPadding 0
+skinparam DefaultTextAlignment center
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+
+hide footbox
+hide members
+hide circle

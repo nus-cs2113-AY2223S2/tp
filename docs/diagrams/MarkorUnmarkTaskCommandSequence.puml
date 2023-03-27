@@ -1,0 +1,62 @@
+@startuml
+!include Style.puml
+
+actor User
+
+box Manager COLOR_MAIN_LIGHT
+participant ":ToDoListManager" as ToDoListManager COLOR_MAIN
+end box
+
+box Logic COLOR_LOGIC_LIGHT
+participant ":Parser" as Parser COLOR_LOGIC
+participant ":Mark/UnmarkTaskCommand" as MarkTaskCommand COLOR_LOGIC
+end box
+
+box TaskList COLOR_TASK_LIST_LIGHT
+participant ":TaskList" as TaskList COLOR_TASK_LIST
+end box
+
+box Ui COLOR_UI_LIGHT
+participant ":Ui" as Ui COLOR_UI
+end box
+
+box Storage COLOR_STORAGE_LIGHT
+participant ":Storage" as Storage COLOR_STORAGE
+end box
+
+User -> ToDoListManager: input("mark <index>")
+activate ToDoListManager
+ToDoListManager -> Parser : parseCommand("mark <index>")
+activate Parser
+create MarkTaskCommand
+Parser -> MarkTaskCommand
+activate MarkTaskCommand
+MarkTaskCommand -> Parser : HashMap
+deactivate MarkTaskCommand
+Parser -> MarkTaskCommand : parse("<index>")
+activate MarkTaskCommand
+MarkTaskCommand --> Parser
+deactivate MarkTaskCommand
+Parser --> ToDoListManager : command
+deactivate Parser
+ToDoListManager -> MarkTaskCommand : execute(taskList, ui)
+activate MarkTaskCommand
+MarkTaskCommand -> TaskList: setDone(<index>, isDone)
+activate TaskList
+TaskList --> MarkTaskCommand
+deactivate TaskList
+MarkTaskCommand -> Ui : print Mark/UnmarkTaskMessage(taskString)
+activate Ui
+Ui --> MarkTaskCommand
+deactivate Ui
+MarkTaskCommand --> ToDoListManager : result
+ToDoListManager --> User : Notify user task has been marked/unmarked
+deactivate MarkTaskCommand
+destroy MarkTaskCommand
+ToDoListManager ->Storage : saveData(taskList)
+activate Storage
+Storage -> Storage : updates data
+Storage --> ToDoListManager
+deactivate Storage
+
+@enduml

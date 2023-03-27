@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor User
+participant "controller:ToDoListManager" as ToDoListManager
+participant "parser:Parser" as Parser
+participant ":ListTasksCommand" as ListTasksCommand
+participant "ui:Ui" as Ui
+participant "storage:Storage" as Storage
+participant "taskList:TaskList" as TaskList
+
+
+title Step 2
+activate ToDoListManager
+activate Parser
+activate Ui
+activate Storage
+activate TaskList
+User -> ToDoListManager:input("list")
+ToDoListManager -> Parser:parseCommand("list")
+
+Parser -> ListTasksCommand
+activate ListTasksCommand
+Parser <-- ListTasksCommand
+ToDoListManager <-- Parser:command
+ToDoListManager -> ListTasksCommand:execute(taskList,ui)
+ListTasksCommand -> TaskList:sortByDeadline()
+ListTasksCommand -> TaskList:size()
+ListTasksCommand -> TaskList:toString()
+ListTasksCommand -> Ui:printTaskList(taskList.size(), taskList.toString())
+Ui --> User:Show the loaded task list to the user
+
+ToDoListManager <-- ListTasksCommand
+ToDoListManager -> Storage:saveData(taskList)
+ToDoListManager -> ListTasksCommand:shouldExit()
+ToDoListManager <-- ListTasksCommand:isRunning
+destroy ListTasksCommand
+
+@enduml

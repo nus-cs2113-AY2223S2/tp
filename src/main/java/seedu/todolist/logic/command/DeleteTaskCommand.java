@@ -1,31 +1,26 @@
 package seedu.todolist.logic.command;
 
-import seedu.todolist.exception.InvalidIndexException;
+import seedu.todolist.constants.Flags;
+import seedu.todolist.exception.InvalidIdException;
+import seedu.todolist.logic.ParserUtil;
 import seedu.todolist.ui.Ui;
 import seedu.todolist.task.TaskList;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 
 //@@author RuiShengGit
 public class DeleteTaskCommand extends Command {
-    public static final String KEYWORD = "delete";
-    public static final HashSet<String> FLAGS = new HashSet<>(Arrays.asList(KEYWORD));
+    public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_DELETE};
 
     private int index;
 
-    public DeleteTaskCommand(HashMap<String, String> args) throws InvalidIndexException {
-        try {
-            index = Integer.parseInt(args.get(KEYWORD)) - 1;
-        } catch (NumberFormatException e) {
-            throw new InvalidIndexException();
-        }
+    public DeleteTaskCommand(HashMap<Flags, String> args) throws InvalidIdException {
+        index = ParserUtil.parseId(args.get(Flags.COMMAND_DELETE));
         assert index >= 0: "Invalid index contained in variable";
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) throws InvalidIndexException {
+    public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
         String taskString = taskList.deleteTask(index);
         ui.printDeleteTaskMessage(taskString);
     }

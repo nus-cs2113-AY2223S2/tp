@@ -7,8 +7,6 @@ import seedu.todolist.task.TaskList;
  * Command for terminating the program.
  */
 public class ExitCommand extends Command {
-    public static final String KEYWORD = "exit";
-
     /**
      * Displays the program's shutdown message.
      */

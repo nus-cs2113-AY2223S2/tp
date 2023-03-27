@@ -4,6 +4,7 @@ import seedu.todolist.exception.FailedLoadException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Parser;
 import seedu.todolist.logic.command.Command;
+import seedu.todolist.logic.command.ProgressBarCommand;
 import seedu.todolist.storage.Storage;
 import seedu.todolist.task.TaskList;
 import seedu.todolist.ui.Ui;
@@ -24,7 +25,9 @@ public class ToDoListManager {
         }
         try {
             taskList = storage.loadData();
+            taskList.checkRepeatingTasks();
             ui.printLoadSaveMessage(taskList.size());
+            new ProgressBarCommand().execute(taskList, ui);
         } catch (FailedLoadException e) {
             ui.printError(e);
         }
