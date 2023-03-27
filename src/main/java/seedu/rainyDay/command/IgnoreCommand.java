@@ -40,13 +40,13 @@ public class IgnoreCommand extends Command {
         String output;
         index -= 1;
 
-        FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
-        int previousStatementCount = financialReport.getStatementCount();
-        assert (index < financialReport.getStatementCount() && index >= 0) : "invalid index provided for ignore";
+        FinancialStatement currentStatement = userData.getStatement(index);
+        int previousStatementCount = userData.getStatementCount();
+        assert (index < userData.getStatementCount() && index >= 0) : "invalid index provided for ignore";
         if (this.command.equalsIgnoreCase("unignore") && currentStatement.isIgnored()) {
             currentStatement.setIgnore(false);
             output = "Done, Entry " + (index + 1) + " included in overview calculations";
-            financialReport.addToMonthlyExpenditure(currentStatement);
+            userData.addToMonthlyExpenditure(currentStatement);
             logger.log(Level.INFO, "Ignore status updated in financial report");
             Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         } else if (this.command.equalsIgnoreCase("unignore") && !currentStatement.isIgnored()) {
@@ -54,14 +54,14 @@ public class IgnoreCommand extends Command {
         } else if (this.command.equalsIgnoreCase("ignore") && !currentStatement.isIgnored()) {
             currentStatement.setIgnore(true);
             output = "Done, Entry " + (index + 1) + " ignored from overview calculations";
-            financialReport.removeFromMonthlyExpenditure(currentStatement);
+            userData.removeFromMonthlyExpenditure(currentStatement);
             logger.log(Level.INFO, "Ignore status updated in financial report");
             Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         } else {
             output = "Entry " + (index + 1) + " is already ignored from overview calculations";
         }
 
-        assert previousStatementCount == financialReport.getStatementCount() : "statement count mismatch";
+        assert previousStatementCount == userData.getStatementCount() : "statement count mismatch";
         return new CommandResult(output);
     }
 }

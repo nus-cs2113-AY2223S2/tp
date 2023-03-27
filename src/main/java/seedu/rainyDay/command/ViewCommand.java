@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 //@@author BenjaminPoh
+
 /**
  * Represents a command to view the financial report
  */
@@ -52,8 +53,8 @@ public class ViewCommand extends Command {
      */
     private ArrayList<Integer> filterBeforeSpecificDate() {
         ArrayList<Integer> filteredIndexes = new ArrayList<>();
-        for (int index = 0; index < financialReport.getStatementCount(); index++) {
-            FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
+        for (int index = 0; index < userData.getStatementCount(); index++) {
+            FinancialStatement currentStatement = userData.getStatement(index);
             LocalDate statementDate = currentStatement.getDate();
             if (statementDate.isAfter(timeLimit)) {
                 filteredIndexes.add(index);
@@ -72,10 +73,10 @@ public class ViewCommand extends Command {
      * @return ArrayList of indexes which passed the check
      */
     private ArrayList<Integer> filterBeforeSpecificDateSorted() {
-        Map<Double, ArrayList<Integer>> sortedIndexesInflows = new TreeMap<>();
-        Map<Double, ArrayList<Integer>> sortedIndexesOutflows = new TreeMap<>();
-        for (int index = 0; index < financialReport.getStatementCount(); index++) {
-            FinancialStatement currentStatement = financialReport.getFinancialStatement(index);
+            Map<Double, ArrayList<Integer>> sortedIndexesInflows = new TreeMap<>();
+            Map<Double, ArrayList<Integer>> sortedIndexesOutflows = new TreeMap<>();
+        for (int index = 0; index < userData.getStatementCount(); index++) {
+            FinancialStatement currentStatement = userData.getStatement(index);
             double statementValue = currentStatement.getValue();
             String direction = currentStatement.getFlowSymbol();
             LocalDate statementDate = currentStatement.getDate();
@@ -128,12 +129,12 @@ public class ViewCommand extends Command {
             validIndexes = filterBeforeSpecificDate();
         }
         if (validIndexes.size() == 0) {
-            assert financialReport.getStatementCount() == 0 : "statement count mismatch";
+            assert userData.getStatementCount() == 0 : "statement count mismatch";
             logger.log(Level.INFO, "empty financial report");
             String output = "Your financial report is empty";
             return new CommandResult(output);
         }
-        assert financialReport.getStatementCount() != 0 : "statement count mismatch";
+        assert userData.getStatementCount() != 0 : "statement count mismatch";
         ViewResult.printReport(validIndexes);
         return null;
     }

@@ -9,6 +9,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author KN-CY
+
 /**
  * Represents a command that exports the financial statements into a CSV file.
  */
@@ -34,15 +35,15 @@ public class ExportCommand extends Command {
         logger.log(Level.INFO, "starting ExportCommand.execute()");
 
         String output;
-        if (financialReport.getStatementCount() == 0) {
+        if (userData.getStatementCount() == 0) {
             logger.log(Level.INFO, "empty financial report, export aborted.");
             output = EMPTY_STATEMENT;
             return new CommandResult(output);
         }
-        assert financialReport.getStatementCount() > 0 : "Should have at least 1 financial statement to export";
+        assert userData.getStatementCount() > 0 : "Should have at least 1 financial statement to export";
 
         try {
-            Storage.writeToCSV(financialReport);
+            Storage.writeToCSV(userData.getFinancialReport());
             output = CSV_EXPORT_SUCCESS;
             logger.log(Level.INFO, "Export to CSV successful");
         } catch (IOException e) {
