@@ -86,4 +86,8 @@ public class UserData {
     public void addStatement(FinancialStatement statement) {
         financialReport.addStatement(statement);
     }
+
+    public String getReportOwner() {
+        return financialReport.getReportOwner();
+    }
 }

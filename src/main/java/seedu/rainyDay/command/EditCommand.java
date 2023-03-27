@@ -90,8 +90,8 @@ public class EditCommand extends Command {
 
         index -= 1;
 
-        int previousStatementCount = financialReport.getStatementCount();
-        assert (index < financialReport.getStatementCount() && index >= 0) : "invalid index provided for edit";
+        int previousStatementCount = userData.getStatementCount();
+        assert (index < userData.getStatementCount() && index >= 0) : "invalid index provided for edit";
 
         if (flag.isEmpty()) {
             userData.deleteStatement(index);

@@ -44,12 +44,12 @@ public class RainyDay {
     private void run() {
         showStartingMessage();
         runCommand();
-        ui.sayFarewellToUser(userData.getFinancialReport().getReportOwner());
+        ui.sayFarewellToUser(userData.getReportOwner());
     }
 
     private void showStartingMessage() {
         ui.printLogo();
-        ui.greetUser(userData.getFinancialReport().getReportOwner());
+        ui.greetUser(userData.getReportOwner());
     }
 
     private void runCommand() {
