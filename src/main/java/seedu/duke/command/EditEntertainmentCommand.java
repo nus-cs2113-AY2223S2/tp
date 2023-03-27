@@ -1,6 +1,8 @@
 package seedu.duke.command;
 
+import seedu.duke.UI;
 import seedu.duke.budget.BudgetPlanner;
+import seedu.duke.budget.Entertainment;
 
 public class EditEntertainmentCommand extends EditCostCommand {
 
@@ -13,10 +15,9 @@ public class EditEntertainmentCommand extends EditCostCommand {
         int initialCost = budgetPlanner.getEntertainmentTotalCost();
         budgetPlanner.setEntertainmentTotalCost(cost);
         if (initialCost == budgetPlanner.getEntertainmentTotalCost()) {
-            System.out.println("Budget has not been changed");
-        } else {
-            System.out.println("Entertainment budget has been changed to: "
-                    + budgetPlanner.getEntertainmentTotalCost());
+            UI.printCostNoChangeMessage();
+            return;
         }
+        UI.printEditCostMessage(budgetPlanner.getEntertainmentTotalCost(), new Entertainment(cost));
     }
 }

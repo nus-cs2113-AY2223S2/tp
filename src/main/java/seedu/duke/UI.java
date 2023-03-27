@@ -1,5 +1,11 @@
 package seedu.duke;
 
+import seedu.duke.budget.Accommodation;
+import seedu.duke.budget.AirplaneTicket;
+import seedu.duke.budget.Entertainment;
+import seedu.duke.budget.Food;
+import seedu.duke.budget.GoodsAndServices;
+
 import java.util.ArrayList;
 
 public class UI {
@@ -208,6 +214,41 @@ public class UI {
         System.out.println(LINE);
     }
 
+    public static void printEditBudgetMessage(int amount) {
+        System.out.println(LINE);
+        System.out.println("Budget has been changed to: " + amount);
+        System.out.println(LINE);
+    }
+
+    public static void printEditCostMessage(int amount, GoodsAndServices goods) {
+        String goodsAndServicesType;
+        if (goods instanceof Accommodation) {
+            goodsAndServicesType = "Accommodation";
+        } else if (goods instanceof AirplaneTicket) {
+            goodsAndServicesType = "Airplane Ticket";
+        } else if (goods instanceof Entertainment) {
+            goodsAndServicesType = "Entertainment";
+        } else if (goods instanceof Food) {
+            goodsAndServicesType = "Food";
+        } else {
+            return;
+        }
+        System.out.println(LINE);
+        System.out.println(goodsAndServicesType + " cost has been changed to: " + amount);
+        System.out.println(LINE);
+    }
+
+    public static void printBudgetNoChangeMessage() {
+        System.out.println(LINE);
+        System.out.println("Budget remains unchanged, please check input amount");
+        System.out.println(LINE);
+    }
+
+    public static void printCostNoChangeMessage() {
+        System.out.println(LINE);
+        System.out.println("Cost remains unchanged, please check input amount");
+        System.out.println(LINE);
+    }
     public static void printExceptionErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }
