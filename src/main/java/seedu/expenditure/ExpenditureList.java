@@ -90,29 +90,35 @@ public class ExpenditureList {
         return stringOfExpenditures.toString().stripTrailing();
     }
 
-    public static String printSpecificDate(LocalDate date) {
+    public static String specificDateString(LocalDate date) {
         StringBuilder stringOfExpenditures = new StringBuilder();
         int counter = 1;
+        double totalValue = 0;
         for (int i = 0; i < expenditures.size(); i++) {
             Expenditure expenditure = expenditures.get(i);
             if (date.equals(expenditure.getDate())) {
+                totalValue += expenditure.getValue();
                 stringOfExpenditures.append(String.format("%d. %s\n", counter, expenditure));
                 counter += 1;
             }
         }
+        stringOfExpenditures.append("Total amount: " + String.format("%.2f", totalValue));
         return stringOfExpenditures.toString().stripTrailing();
     }
 
-    public static String printSpecificType(String expenditureType) {
+    public static String specificTypeString(String expenditureType) {
         StringBuilder stringOfExpenditures = new StringBuilder();
         int counter = 1;
+        double totalValue = 0;
         for (int i = 0; i < expenditures.size(); i++) {
             Expenditure expenditure = expenditures.get(i);
             if (expenditureType.equals(expenditure.getExpenditureType())) {
+                totalValue += expenditure.getValue();
                 stringOfExpenditures.append(String.format("%d. %s\n", counter, expenditure));
                 counter += 1;
             }
         }
+        stringOfExpenditures.append("Total amount: " + String.format("%.2f", totalValue));
         return stringOfExpenditures.toString().stripTrailing();
     }
 
