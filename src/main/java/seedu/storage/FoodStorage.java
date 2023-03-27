@@ -1,10 +1,11 @@
-package seedu.database;
+package seedu.storage;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import seedu.database.FoodData;
 import seedu.definitions.FoodTypes;
 import seedu.entities.Dish;
 import seedu.entities.Food;

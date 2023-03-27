@@ -1,8 +1,8 @@
 package seedu.ui;
 
-import seedu.database.FoodStorage;
-import seedu.database.MealStorage;
 import seedu.entities.Meal;
+import seedu.storage.FoodStorage;
+import seedu.storage.MealStorage;
 
 import java.util.Scanner;
 

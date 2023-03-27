@@ -1,9 +1,10 @@
 package seedu.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.database.FoodStorage;
-import seedu.database.MealStorage;
+
 import seedu.exceptions.InvalidArgumentsException;
+import seedu.storage.FoodStorage;
+import seedu.storage.MealStorage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

@@ -1,12 +1,14 @@
 package seedu.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.database.FoodStorage;
-import seedu.database.MealStorage;
+
+import seedu.constants.DateConstants;
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
 import seedu.exceptions.InvalidArgumentsException;
+import seedu.storage.FoodStorage;
+import seedu.storage.MealStorage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class AddMealCommandTest {
     private final FoodStorage foodStorage = new FoodStorage();
     private final MealStorage mealStorage = new MealStorage("./data/mealData.csv", foodStorage);
-    private final DateTimeFormatter dtf = mealStorage.getDateTimeFormatter();
+    private final DateTimeFormatter dtf = DateConstants.DATABASE_DTF;
     private ArrayList<Food> foodList = new ArrayList<>();
 
     @Test

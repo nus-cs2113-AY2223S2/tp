@@ -1,4 +1,4 @@
-package seedu.database;
+package seedu.storage;
 
 import java.io.BufferedReader;
 // import java.io.File;
@@ -10,7 +10,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Locale;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.entities.Meal;
 import seedu.exceptions.InvalidMealException;
@@ -23,8 +24,7 @@ import com.opencsv.CSVWriter;
 public class MealStorage extends Storage implements FileReadable, FileWritable {
     private static final String CSV_DELIMITER = ",";
     private static final String FOODS_DELIMITER = "-";
-    private static final DateTimeFormatter DTF = 
-            DateTimeFormatter.ofPattern(DateConstants.DATABASE_FORMAT, Locale.ENGLISH);
+    private static final DateTimeFormatter DTF = DateConstants.DATABASE_DTF;
     private ArrayList<Meal> meals;
     private FoodStorage foodStorage;
     private BufferedReader br;
@@ -124,8 +124,15 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         return this.meals.size();
     }
 
-    public ArrayList<Meal> getMeal() {
+    public ArrayList<Meal> getMeals() {
         return this.meals;
+    }
+
+    public List<Meal> getMealByDate(LocalDate date) {
+        List<Meal> filteredMeals = meals.stream()
+                .filter(m -> m.getDate().equals(date))
+                .collect(Collectors.toList());
+        return filteredMeals;
     }
 
     public Meal getMealById(int id) {
@@ -134,9 +141,5 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
 
     public Meal deleteMeal(int index) throws IndexOutOfBoundsException {
         return meals.remove(index);
-    }
-
-    public DateTimeFormatter getDateTimeFormatter() {
-        return DTF;
     }
 }
