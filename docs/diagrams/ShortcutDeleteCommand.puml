@@ -1,0 +1,27 @@
+@startuml
+participant ":ShortcutDeleteCommand" as ShortcutDeleteCommand
+participant "shortcutCommands:HashMap" as shortcutCommands
+
+[-> ShortcutDeleteCommand : execute()
+activate ShortcutDeleteCommand
+
+ShortcutDeleteCommand -> shortcutCommands : containsKey(key)
+activate shortcutCommands
+shortcutCommands --> ShortcutDeleteCommand
+
+deactivate shortcutCommands
+
+
+opt contains key
+
+
+ShortcutDeleteCommand -> shortcutCommands : remove(key, value)
+activate shortcutCommands
+deactivate shortcutCommands
+
+end
+[<--ShortcutDeleteCommand
+deactivate ShortcutDeleteCommand
+
+
+@enduml
