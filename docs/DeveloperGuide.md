@@ -108,7 +108,7 @@ updated with all the current expenditures in the expenditure array list.
 
 ![](team/images/saveList.png)
 
-The following shows the sequence diagram of detailing the process for saveExpenditureList.
+The following sequence diagram shows the details of the process for saveExpenditureList.
 
 Likewise when MyLedger first runs, it instantiates ExpenditureList and stores a reference to it.
 MyLedger then checks if the text file exists, else it gets created. Recorded expenditure stored 
@@ -140,6 +140,19 @@ The sequence diagram below shows the interactions of a successful execution of t
     <i>Figure 3: Sequence Diagram for edit Command</i>
 </p>
 
+### 4.3. View Command
+
+The view command filters and lists the expenditures of a specified date or type.
+At the end of the list, the total amount of the filtered expenditures are tabulated.
+For viewing expenditures of specific date, the command is ```viewdate DATE```.
+For viewing expenditures of specific type, the command is ```viewtype EXPENDITURE_TYPE```.
+
+The sequence diagram below shows the details of the process for viewdate.
+
+![](team/images/viewDate.png)
+
+The process for viewtype is similar as viewdate with an additional step within ViewTypeExpenditureCommand
+that converts the input string into a string recognisable for comparison in the opt block. 
 
 ## Product scope
 ### Target user profile
