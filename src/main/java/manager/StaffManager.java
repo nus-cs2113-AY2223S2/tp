@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class StaffManager {
-    private static ArrayList<Staff> staffs = new ArrayList<Staff>();
+    private static ArrayList<Staff> staffs = new ArrayList<>();
 
     public StaffManager(ArrayList<Staff> staffs) {
         StaffManager.staffs = staffs;
