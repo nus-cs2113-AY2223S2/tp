@@ -9,7 +9,7 @@ public class DeleteMeetingCommand extends Command {
     private int indexToDelete;
 
     public DeleteMeetingCommand(int index) {
-        this.indexToDelete=index;
+        this.indexToDelete = index;
     }
 
     @Override
@@ -19,6 +19,6 @@ public class DeleteMeetingCommand extends Command {
 
     @Override
     public void execute(TextUi ui) {
-        MeetingManager.deleteMeeting(indexToDelete);
+        MeetingManager.deleteMeeting(indexToDelete, ui);
     }
 }

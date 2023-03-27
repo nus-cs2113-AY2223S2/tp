@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import commands.Command;
 import commands.IncorrectCommand;
+import commands.deadline.FindDeadlineCommand;
 import commands.meeting.AddMeetingCommand;
 import commands.meeting.DeleteMeetingCommand;
 import commands.meeting.ViewMeetingCommand;
@@ -15,6 +16,7 @@ import commands.deadline.DeleteDeadlineCommand;
 import commands.deadline.ViewDeadlineCommand;
 
 import commands.menu.AddDishCommand;
+import commands.menu.FindDishCommand;
 import commands.menu.ViewDishCommand;
 import commands.staff.AddStaffCommand;
 import commands.staff.DeleteStaffCommand;
@@ -83,6 +85,8 @@ public class DinerDirectorTest {
         listOfCommands.add("view_deadlines dsjfnskldf");
         listOfCommands.add("delete_deadline");
         listOfCommands.add("delete_deadline 1");
+        listOfCommands.add("find_deadline");
+        listOfCommands.add("find_deadline hi");
 
         for (String listOfCommand : listOfCommands) {
             Command command = new Parser().parseCommand(listOfCommand);
@@ -90,7 +94,8 @@ public class DinerDirectorTest {
                     listOfCommand.equals("add_deadline n/add command") ||
                     listOfCommand.equals("add_deadline t/when to command") ||
                     listOfCommand.equals("view_deadline dsjfnskldf") ||
-                    listOfCommand.equals("delete_deadline")) {
+                    listOfCommand.equals("delete_deadline") ||
+                    listOfCommand.equals("find_deadline")) {
                 assertTrue(command instanceof IncorrectCommand);
             } else if (listOfCommand.equals("view_deadlines")) {
                 assertTrue(command instanceof ViewDeadlineCommand);
@@ -98,6 +103,8 @@ public class DinerDirectorTest {
                 assertTrue(command instanceof AddDeadlineCommand);
             } else if (listOfCommand.equals("delete_deadline 1")) {
                 assertTrue(command instanceof DeleteDeadlineCommand);
+            } else if (listOfCommand.equals("find_deadline hi")) {
+                assertTrue(command instanceof FindDeadlineCommand);
             }
         }
     }
@@ -218,9 +225,12 @@ public class DinerDirectorTest {
         listOfCommands.add(TEST_CASE_OUT_OF_BOUNDS_INDEX);
         listOfCommands.add(TEST_CASE_VALID_INDEX);
 
+
         for (String listOfCommand : listOfCommands) {
             Command deleteCommand = new Parser().parseCommand(listOfCommand);
-            if (listOfCommand.equals(TEST_CASE_NO_INDEX)) {
+            if (listOfCommand.equals(dishSetup)) {
+                assertTrue(deleteCommand instanceof AddDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_NO_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_DECIMAL_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
@@ -229,6 +239,54 @@ public class DinerDirectorTest {
             } else if (listOfCommand.equals(TEST_CASE_ZERO_INDEX)) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             } else if (listOfCommand.equals(TEST_CASE_OUT_OF_BOUNDS_INDEX)) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals((TEST_CASE_VALID_INDEX))) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            }
+        }
+    }
+
+    @Test
+    void runCommandLoopUntilExit_userInput_findDishCommand() {
+
+        ArrayList<String> listOfCommands = new ArrayList<>();
+
+        final String TEST_CASE_VALID_INPUT = "find_dish Burger";
+
+        final String TEST_CASE_NO_WORD = "find_dish";
+        final String TEST_CASE_JUST_ONE_SPACE = "find_dish ";
+        final String TEST_CASE_JUST_SPACES = "find_dish   ";
+        final String TEST_CASE_WORD_WITH_SPACES_IN_BETWEEN = "find_dish   Burger";
+        final String TEST_CASE_VALID_INPUT_WORD_WITH_TRAILING_SPACE = "find_dish Burger  ";
+        final String TEST_CASE_WORD_WITH_MULTIPLE_KEYWORDS = "find_dish fish Burger";
+        final String TEST_CASE_VALID_INPUT_WORD_WITH_MULTIPLE_KEYWORDS_WITH_SPACES_IN_BETWEEN
+                = "find_dish fish   Burger";
+
+        listOfCommands.add(TEST_CASE_VALID_INPUT);
+        listOfCommands.add(TEST_CASE_VALID_INPUT_WORD_WITH_MULTIPLE_KEYWORDS_WITH_SPACES_IN_BETWEEN);
+        listOfCommands.add(TEST_CASE_VALID_INPUT_WORD_WITH_TRAILING_SPACE);
+
+        listOfCommands.add(TEST_CASE_NO_WORD);
+        listOfCommands.add(TEST_CASE_JUST_ONE_SPACE);
+        listOfCommands.add(TEST_CASE_JUST_SPACES);
+        listOfCommands.add(TEST_CASE_WORD_WITH_SPACES_IN_BETWEEN);
+        listOfCommands.add(TEST_CASE_WORD_WITH_MULTIPLE_KEYWORDS);
+
+        for (String listOfCommand : listOfCommands) {
+            Command deleteCommand = new Parser().parseCommand(listOfCommand);
+            if (listOfCommand.equals(TEST_CASE_VALID_INPUT)) {
+                assertTrue(deleteCommand instanceof FindDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_WORD_WITH_SPACES_IN_BETWEEN)) {
+                assertTrue(deleteCommand instanceof FindDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_VALID_INPUT_WORD_WITH_TRAILING_SPACE)) {
+                assertTrue(deleteCommand instanceof FindDishCommand);
+            } else if (listOfCommand.equals(TEST_CASE_NO_WORD)) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_JUST_ONE_SPACE)) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals(TEST_CASE_JUST_SPACES)) {
+                assertTrue(deleteCommand instanceof IncorrectCommand);
+            } else if (listOfCommand.equals((TEST_CASE_WORD_WITH_MULTIPLE_KEYWORDS))) {
                 assertTrue(deleteCommand instanceof IncorrectCommand);
             }
         }
