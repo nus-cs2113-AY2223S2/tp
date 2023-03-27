@@ -1,5 +1,7 @@
 package seedu.duke.command;
 
+import seedu.duke.UI;
+import seedu.duke.budget.AirplaneTicket;
 import seedu.duke.budget.BudgetPlanner;
 
 public class EditAirplaneTicketCommand extends EditCostCommand {
@@ -13,9 +15,9 @@ public class EditAirplaneTicketCommand extends EditCostCommand {
         int initialCost = budgetPlanner.getAirplaneTicketTotalCost();
         budgetPlanner.setAirplaneTicketTotalCost(cost);
         if (initialCost == budgetPlanner.getAirplaneTicketTotalCost()) {
-            System.out.println("Budget has not been changed");
-        } else {
-            System.out.println("Airplane budget has been changed to: " + budgetPlanner.getAirplaneTicketTotalCost());
+            UI.printCostNoChangeMessage();
+            return;
         }
+        UI.printEditCostMessage(budgetPlanner.getAirplaneTicketTotalCost(), new AirplaneTicket(cost));
     }
 }
