@@ -109,16 +109,16 @@ public class Parser {
                                         ArrayList<University> universities, ArrayList<Module> modules) {
         String userCommandIgnoreCase = userCommandSecondKeyword.toLowerCase();
         switch (userCommandIgnoreCase) {
-            case "pu":
-                return new ListPuCommand();
-            case "current":
-                if (userInputWords.size() == 3) {
-                    String userCommandThirdKeyword = userInputWords.get(2);
-                    return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
-                }
-                return new ListCurrentCommand(modules);
-            default:
-                return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
+        case "pu":
+            return new ListPuCommand();
+        case "current":
+            if (userInputWords.size() == 3) {
+                String userCommandThirdKeyword = userInputWords.get(2);
+                return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
+            }
+            return new ListCurrentCommand(modules);
+        default:
+            return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
         }
     }
 
@@ -171,7 +171,8 @@ public class Parser {
     }
 
     private Command handleListPuModulesCommand(ArrayList<University> universities,
-                                               String universityAbbName, int univIndex, boolean isUnivAbbr) throws InvalidPuException {
+                                                  String universityAbbName, int univIndex, boolean isUnivAbbr)
+                                                      throws InvalidPuException {
         String universityName = "";
         int univID = 0;
         if (isUnivAbbr) { //list [Univ Abbr]
