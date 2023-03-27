@@ -1,12 +1,13 @@
-package seedu.commands;
+package seedu.commands.workoutcommands;
 
-import seedu.workout.Exercise;
-import seedu.workout.WorkoutList;
+import seedu.commands.Command;
+import seedu.workouttracker.workout.Exercise;
+import seedu.workouttracker.workout.WorkoutList;
 
-public class AddCommand extends Command {
+public class AddWorkoutCommand extends Command {
     private Exercise toAdd;
 
-    public AddCommand(Exercise toAdd) {
+    public AddWorkoutCommand(Exercise toAdd) {
         this.toAdd = toAdd;
     }
 

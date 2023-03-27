@@ -1,5 +1,6 @@
 package seedu.commands;
 
+
 public class IncorrectCommand extends Command {
 
     public IncorrectCommand() {

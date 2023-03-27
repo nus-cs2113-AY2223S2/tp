@@ -1,8 +1,8 @@
-package seedu.command;
+package seedu.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.workout.Workout;
-import seedu.workout.WorkoutList;
+import seedu.workouttracker.workout.Workout;
+import seedu.workouttracker.workout.WorkoutList;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ListCommandTest {
+public class ListWorkoutCommandTest {
 
     //@@ author ZIZI-czh
     @Test

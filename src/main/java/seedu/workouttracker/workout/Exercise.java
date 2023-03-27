@@ -1,4 +1,4 @@
-package seedu.workout;
+package seedu.workouttracker.workout;
 
 public class Exercise {
 

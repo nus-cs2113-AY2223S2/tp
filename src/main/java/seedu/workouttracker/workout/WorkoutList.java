@@ -1,4 +1,4 @@
-package seedu.workout;
+package seedu.workouttracker.workout;
 
 import seedu.ui.Ui;
 
@@ -31,7 +31,7 @@ public class WorkoutList {
             if (workout.getDate().equals(date)) {
                 workoutList.remove(workout);
                 System.out.println("Workout deleted successfully.");
-                Ui.showseperator();
+                Ui.showSeparator();
                 return;
             }
         }
@@ -51,7 +51,7 @@ public class WorkoutList {
                     String formattedDate = dateFormat.format(workout.getDate());
                     System.out.println(formattedDate);
                 }
-                Ui.showseperator();
+                Ui.showSeparator();
             } else {
                 //if there is no workout have been done
                 System.out.println("Haven't start your workout, please enter your workout");
@@ -66,7 +66,7 @@ public class WorkoutList {
         for (Workout workout : workoutList) {
             if (workout.getDate().equals(date)) {
                 System.out.println(workout.getExercises());
-                Ui.showseperator();
+                Ui.showSeparator();
                 return;
             }
         }

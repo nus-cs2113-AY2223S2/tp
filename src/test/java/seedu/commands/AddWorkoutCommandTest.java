@@ -1,8 +1,8 @@
 package seedu.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.workout.Exercise;
-import seedu.workout.Workout;
+import seedu.workouttracker.workout.Exercise;
+import seedu.workouttracker.workout.Workout;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,7 +11,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class AddCommandTest {
+public class AddWorkoutCommandTest {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
     private static final Date date;
 
