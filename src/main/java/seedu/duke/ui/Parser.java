@@ -9,6 +9,7 @@ import seedu.duke.patient.Patient;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
 
 import static seedu.duke.save.Storage.saveData;
@@ -88,8 +89,18 @@ public class Parser {
         case "6":
             user.printPatientMedicineHistory();
             break;
-        //@@author Geeeetyx
         case "7":
+            medicineManager.listMedicines();
+            break;
+        case "8":
+            Scanner phraseScanner = new Scanner(System.in);
+            Menu.displayFindMedicinePrompt();
+            String phrase = phraseScanner.nextLine();
+            Menu.displayFindMedicineMessage(phrase);
+            medicineManager.findMedicine(phrase);
+            break;
+        //@@author Geeeetyx
+        case "9":
             Menu.exit();
             break;
         default:

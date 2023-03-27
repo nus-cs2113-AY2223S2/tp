@@ -4,8 +4,10 @@ import seedu.duke.diagnosis.Diagnosis;
 import seedu.duke.diagnosis.IllnessMatch;
 import seedu.duke.diagnosis.symptoms.Symptom;
 
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 //@@author tanyizhe
@@ -85,6 +87,7 @@ public class MedicineManager {
         medicineDosages.put(EYE_DROPS.toString(), EYE_DROPS.getDosage());
         medicineDosages.put(ULTRACARBON.toString(), ULTRACARBON.getDosage());
         medicineDosages.put(DULCOLAX.toString(), DULCOLAX.getDosage());
+        medicineDosages.put(GUAIFENESIN.toString(), GUAIFENESIN.getDosage());
         assert medicineDosages.isEmpty() == false : "Medicine dosage hashtable must not be empty";
     }
 
@@ -144,5 +147,37 @@ public class MedicineManager {
      */
     public String getMedicineDosages (String name) {
         return medicineDosages.get(name);
+    }
+
+    /**
+     * List all medicines available.
+     */
+    public void listMedicines() {
+        System.out.println("---------------------------------------------------");
+        System.out.println("List of available medications:");
+        List<String> medicationKeys = Collections.list(medicineDosages.keys());
+        Collections.sort(medicationKeys);
+        for (String medicationKey : medicationKeys) {
+            System.out.println(medicationKey);
+        }
+    }
+
+    /**
+     * Looks for medicine using a keyword or phrase.
+     * @param phrase String user has inputted to find medicine.
+     */
+    public void findMedicine(String phrase) {
+        List<String> medicationKeys = Collections.list(medicineDosages.keys());
+        Collections.sort(medicationKeys);
+        int count = 0;
+        for (String medicationKey : medicationKeys) {
+            if (medicationKey.toLowerCase().contains(phrase.toLowerCase())) {
+                System.out.println(medicationKey);
+                count++;
+            }
+        }
+        if (count == 0) {
+            System.out.println("No results found.");
+        }
     }
 }

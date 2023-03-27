@@ -129,7 +129,9 @@ public class Menu {
         System.out.println("4. View symptoms History");
         System.out.println("5. Reset symptoms");
         System.out.println("6. View Medicine history");
-        System.out.println("7. Exit");
+        System.out.println("7. List available medicines");
+        System.out.println("8. Find available medicine");
+        System.out.println("9. Exit");
         System.out.println("---------------------------------------------------");
     }
 
@@ -442,5 +444,20 @@ public class Menu {
             System.out.println("------------------------------------------------------------");
         }
     }
-
+    //@@author tanyizhe
+    /**
+     * Displays prompt for user to input keyword when finding medicines.
+     */
+    public static void displayFindMedicinePrompt() {
+        System.out.println("---------------------------------------------------");
+        System.out.println("Please enter a keyword:");
+        System.out.println("---------------------------------------------------");
+    }
+    /**
+     * Displays message of results found when using find medicine features.
+     */
+    public static void displayFindMedicineMessage(String phrase) {
+        System.out.println("---------------------------------------------------");
+        System.out.println("Results for \"" + phrase + "\":");
+    }
 }
