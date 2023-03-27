@@ -54,10 +54,6 @@ public class CategoryCommand extends Command {
     }
 
     private void checkExistingCategory(String categoryToAdd, Item item) {
-        // check if item already has a category
-//        if (item.getCategory().equalsIgnoreCase("Uncategorized")) {
-//            addItemToCategory(categoryToAdd, item);
-//        } else { // already has a category
         String oldCategory = item.getCategory();
         categoryHash.get(oldCategory).remove(item);
         if (categoryHash.get(oldCategory).isEmpty()) {
