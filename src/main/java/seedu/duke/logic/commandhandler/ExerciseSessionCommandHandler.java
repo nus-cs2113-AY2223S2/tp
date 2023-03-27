@@ -1,12 +1,9 @@
 package seedu.duke.logic.commandhandler;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.commons.exceptions.OngoingExGenerationError;
-import seedu.duke.commons.exceptions.OngoingExHelpError;
-import seedu.duke.commons.exceptions.OngoingExHistoryError;
-import seedu.duke.commons.exceptions.OngoingExProgressError;
 
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
+import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.data.userdata.UserExerciseData;
@@ -69,11 +66,12 @@ public class ExerciseSessionCommandHandler implements CommandList {
         try {
             switch (userCommands[0]) {
             case GENERATE_COMMAND:
-                throw new OngoingExGenerationError();
+                throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_GENERATE_COMMAND.toString());
             case HELP_COMMAND:
             case FILTERS_COMMAND:
             case FIND_COMMAND:
-                throw new OngoingExHelpError();
+                throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_HELP_COMMAND.toString());
+            case BYE_COMMAND:
             case EXIT_COMMAND:
                 boolean exit = confirmExitDuringWorkout();
                 if (exit) {
@@ -84,7 +82,7 @@ public class ExerciseSessionCommandHandler implements CommandList {
                 }
                 break;
             case START_COMMAND:
-                throw new OngoingExProgressError();
+                throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_START_COMMAND.toString());
             case CURRENT_COMMAND:
                 exerciseStateHandler.printCurrentWorkout();
                 break;
@@ -95,7 +93,7 @@ public class ExerciseSessionCommandHandler implements CommandList {
                 exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData);
                 break;
             case HISTORY_COMMAND:
-                throw new OngoingExHistoryError();
+                throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_HISTORY_COMMAND.toString());
             case EXERCISE_DATA_COMMAND:
                 HashMap<String, Integer> userExerciseDataMap = UserExerciseData
                     .addUserExerciseHistory(userCareerData);
