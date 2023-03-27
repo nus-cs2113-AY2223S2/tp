@@ -104,7 +104,6 @@ public class Parser {
             description = matcher.group(0);
             arguments = arguments.replaceFirst(description, "").trim();
         }
-        System.out.print(arguments);
         matcher = categoryPattern.matcher(arguments);
         if (matcher.find()) {
             category = matcher.group(2);
@@ -148,12 +147,8 @@ public class Parser {
             throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_ARGS_ADD);
         }
         double priceDouble;
-        try {
-            priceDouble = Double.parseDouble(price);
-        } catch (NumberFormatException e) {
-            logger.warning("Price not in numerical format: " + MessageConstants.MESSAGE_INVALID_PRICE);
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
-        }
+        checkIfPriceContainLetters(price);
+        priceDouble = Double.parseDouble(price);
         logger.exiting(Parser.class.getName(), "parseAddCommand()");
         return new AddCommand(description, priceDouble, category);
     }
@@ -283,10 +278,7 @@ public class Parser {
         }
 
         if (!price.isEmpty()) {
-            boolean has_letters = price.matches(".*[a-zA-Z]+.*");
-            if (has_letters) {
-                throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
-            }
+            checkIfPriceContainLetters(price);
             Double.parseDouble(price);
         }
 
@@ -328,12 +320,12 @@ public class Parser {
         assert argumentsArray.length >= 1 : "User input must contain at least 1 argument";
         Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
         Pattern viewCountPattern = Pattern.compile("\\S+");
-        Pattern priceRangePattern = Pattern.compile("(?:-p|-price)\\s+(\\d+\\.*\\d*)\\s+" +
-                                                    "(?:-p|-price)\\s+(\\d+\\.*\\d*)");
+        Pattern priceRangePattern = Pattern.compile("(-p|-price)\\s+(\\w+(\\s+\\w+)*)");
         Matcher matcher = viewCountPattern.matcher(arguments);
         matcher.find();
         viewCount = matcher.group(0);
-        if (viewCount.equals("-c") || viewCount.equals("-category")) { //only category specified
+        if (viewCount.equals("-c") || viewCount.equals("-category") || viewCount.equals("-p") || viewCount.equals(
+                "-price")) { //only category or price specified
             viewCount = Integer.toString(Integer.MAX_VALUE);
         }
         matcher = categoryPattern.matcher(arguments);
@@ -342,14 +334,20 @@ public class Parser {
             category = CategoryUtil.convertStringToCategory(StringUtil.toTitleCase(categoryStr));
         }
         matcher = priceRangePattern.matcher(arguments);
-        if (matcher.find()) {
-            priceMinStr = matcher.group(1);
-            priceMaxStr = matcher.group(2);
-            viewCount = Integer.toString(Integer.MAX_VALUE);
-        } else{
+        if (matcher.find()) { //look for starting price range
+            priceMinStr = matcher.group(2);
+            checkIfPriceContainLetters(priceMinStr);
+            if (matcher.find()) { //look for ending price range
+                priceMaxStr = matcher.group(2);
+                checkIfPriceContainLetters(priceMaxStr);
+            } else { //ending price range not specified
+                priceMaxStr = Integer.toString(Integer.MAX_VALUE);
+            }
+        } else {
             priceMinStr = "0.0";
             priceMaxStr = Double.toString(Double.MAX_VALUE);
         }
+
         try {
             viewCountInt = Integer.parseInt(viewCount);
 
@@ -362,12 +360,17 @@ public class Parser {
         }
         logger.info("User entered count:" + viewCount);
         logger.info("User entered category:" + categoryStr);
-        logger.exiting(Parser.class.getName(), "parseViewCommand()");
-
-
         priceMinDble = Double.parseDouble(priceMinStr);
         priceMaxDble = Double.parseDouble(priceMaxStr);
+        logger.exiting(Parser.class.getName(), "parseViewCommand()");
         return new ViewCommand(viewCountInt, category, priceMinDble, priceMaxDble);
+    }
+
+    private void checkIfPriceContainLetters(String string) throws InvalidArgumentsException {
+        boolean has_letters = string.matches(".*[a-zA-Z]+.*");
+        if (has_letters) {
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
+        }
     }
 }
 // @@author

@@ -266,4 +266,16 @@ public class ParserTest {
         Parser parser = new Parser();
         assertDoesNotThrow(() -> parser.parseUserInput("/view 10"));
     }
+
+    @Test
+    public void parseViewCommand_validPriceStartEnd_parsedSuccessfully() {
+        Parser parser = new Parser();
+        assertDoesNotThrow(() -> parser.parseUserInput("/view -p 300 -p 500"));
+    }
+
+    @Test
+    public void parseViewCommand_validPriceStart_parsedSuccessfully() {
+        Parser parser = new Parser();
+        assertDoesNotThrow(() -> parser.parseUserInput("/view -p 300"));
+    }
 }
