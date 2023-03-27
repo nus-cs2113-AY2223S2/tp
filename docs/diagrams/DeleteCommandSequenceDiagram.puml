@@ -1,0 +1,48 @@
+@startuml
+participant ":DeleteCommand" as DeleteCommand
+participant ":UserData" as UserData
+participant ":FinancialReport" as FinancialReport
+
+[-> DeleteCommand : execute()
+activate DeleteCommand
+
+DeleteCommand -> UserData : getStatement(statementIndex : int)
+activate UserData
+
+UserData -> FinancialReport : getFinancialStatement(statementNumber : int)
+activate UserData
+
+FinancialReport --> UserData : : FinancialStatement
+deactivate FinancialReport
+
+UserData --> DeleteCommand : : FinancialStatement
+deactivate DeleteCommand
+
+DeleteCommand -> UserData : deleteStatement(statementIndex : int)
+activate UserData
+
+UserData -> FinancialReport : deleteStatement(statementNumber : int)
+activate FinancialReport
+
+FinancialReport -> FinancialReport : removeFromMonthlyExpenditure(statement : FinancialStatement)
+activate FinancialReport
+
+FinancialReport --> FinancialReport
+deactivate FinancialReport
+
+FinancialReport --> UserData
+deactivate FinancialReport
+
+UserData --> DeleteCommand
+deactivate UserData
+
+DeleteCommand -> UserData : checkUserBudgetLimit(newStatement : Financial Statement)
+activate UserData
+
+UserData --> DeleteCommand : :String
+deactivate UserData
+
+[<--DeleteCommand : : CommandResult
+deactivate DeleteCommand
+
+@enduml
