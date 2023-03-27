@@ -99,6 +99,49 @@ makes the deletion process simple even if the user does not remember the index o
     - Cons: Cumbersome to delete if user forgets the flashcard's index and has to search
             through the whole list of flashcards.
 
+### Update Flashcard Feature
+
+#### Current implementation
+
+The current update flashcard feature allows users search for a specific flashcard and update the contents of this
+flashcard.
+It is implemented through the following steps:
+
+Step 1:
+The input of user is collected by `getUserCommand()` inside class `Ui`.
+
+Step 2:
+The input string will be converted into a `Command` object by being passed through
+`parseCommand(String userInput)` inside `Parser`.
+
+In this case, an `UpdateCommand` will be created and returned.
+
+Step 3:
+The `execute()` function of `UpdateCommand` will run, creating an ArrayList of flashcards. Then
+`findFlashcard(flashcards, query)` is called to find flashcards that contain questions or answers that match `query`,
+after which it will call `printFlashCards(matchingFlashcards)` in `UpdateCommand` class to display the flashcards
+found.
+
+The index of the flashcard to be updated is taken from the user input, which is collected by `getUserCommand()`.
+`implementUpdate(flashcards, userText)` is then called to update the question or answer of the flashcard. Finally,
+`printFlashCard(flashcards.get(index))` will be called which prints the flashcard that was updated with its new content.
+
+At this point, the update flashcard process is completed and the program is read to take another command.
+
+#### Reason for current implementation
+
+Implementing the update flashcard in an `UpdateCommand` class makes it easier during the debugging process related to
+update flashcard feature alone as most of the methods and attributes are within this `UpdateCommand` class.
+
+#### Alternative implementation
+
+- Alternative 1: Instead of creating a new arrayList `matchingFlashcards` that store flashcards containing the
+  `query` and then printing the list of flashcards, directly print the flashcards when there is a match with the query`
+    - Pros: Easier to implement
+    - Cons: Harder to track the total number of flashcards that has `query` and will need to have another way to track
+      the index of the matching flashcards. it will also be more confusing as the index of the user input is not
+      aligned with the index of the arrayList that contains all the flashcards
+
 ## Product scope
 
 ### Target user profile
