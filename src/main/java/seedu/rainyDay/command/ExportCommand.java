@@ -43,7 +43,7 @@ public class ExportCommand extends Command {
         assert userData.getStatementCount() > 0 : "Should have at least 1 financial statement to export";
 
         try {
-            Storage.writeToCSV(financialReport);
+            Storage.writeToCSV(userData.getFinancialReport());
             output = CSV_EXPORT_SUCCESS;
             logger.log(Level.INFO, "Export to CSV successful");
         } catch (IOException e) {
