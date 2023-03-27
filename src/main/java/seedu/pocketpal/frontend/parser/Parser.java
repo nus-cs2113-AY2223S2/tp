@@ -328,7 +328,8 @@ public class Parser {
         assert argumentsArray.length >= 1 : "User input contains at least 1 argument";
         Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
         Pattern viewCountPattern = Pattern.compile("\\d+");
-        Pattern priceRangePattern = Pattern.compile("(?:-p|-price)\\s+(\\d+\\.*\\d*)\\s+(?:-p|-price)\\s+(\\d+\\.*\\d*)");
+        Pattern priceRangePattern = Pattern.compile("(?:-p|-price)\\s+(\\d+\\.*\\d*)\\s+" +
+                                                    "(?:-p|-price)\\s+(\\d+\\.*\\d*)");
         Matcher matcher = viewCountPattern.matcher(arguments);
         if (matcher.find()) {
             viewCount = matcher.group(0);
