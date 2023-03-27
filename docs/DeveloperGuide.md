@@ -485,6 +485,7 @@ The following expenditure has been added:
 Description: McDonalds
 Price: $10.50
 Category: Food
+28 Mar 2023, 01:04:42
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
@@ -534,9 +535,26 @@ Expected output:
 ```
 ________________________________________________
 These are the latest 3 entries.
-<1>: McDonalds (Food) - $10.50
-<2>: Air Jordan 1 (Clothing) - $200.00
-<3>: Birthday Dinner (Food) - $150.00
+<1>: McDonalds (Food) - $10.50 <<28 Mar 2023, 01:03:39>>
+<2>: Air Jordan 1 (Clothing) - $200.00 <<28 Mar 2023, 01:04:30>>
+<3>: Birthday Dinner (Food) - $150.00 <<28 Mar 2023, 01:04:42>>
+________________________________________________
+
+Enter a command or /help to see the list of commands available.
+```
+#### Test case 3 (View entries in price range)
+
+**Prerequisites:** At least **1** existing expense.
+
+```/view -p 120.50 -p 210.00```
+
+Expected output:
+
+```
+________________________________________________
+These are the latest 2 entries.
+<1>: Air Jordan 1 (Clothing) - $200.00 <<28 Mar 2023, 01:04:30>>
+<2>: Birthday Dinner (Food) - $150.00 <<28 Mar 2023, 01:04:42>>
 ________________________________________________
 
 Enter a command or /help to see the list of commands available.
@@ -564,6 +582,7 @@ The following expenditure has been deleted:
 Description: Birthday Dinner
 Price: $150.00
 Category: Food
+28 Mar 2023, 01:03:39
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
@@ -582,6 +601,25 @@ Please enter a valid numerical index!
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
+#### Test case 3:
+
+**Prerequisites:** At least **2** expenses pre-added into the program
+> /delete 1 2
+________________________________________________
+The following expenditure has been deleted:
+Description: Light bulb
+Price: $10.20
+Category: Utilities
+28 Mar 2023, 01:04:42
+________________________________________________
+The following expenditure has been deleted:
+Description: Pizza
+Price: $8.30
+Category: Food
+28 Mar 2023, 01:04:30
+________________________________________________
+Enter a command or /help to see the list of commands available.
 
 ## Edit expense: /edit
 
