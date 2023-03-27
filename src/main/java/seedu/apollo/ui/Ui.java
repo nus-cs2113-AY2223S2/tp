@@ -632,4 +632,8 @@ public class Ui {
     public void printClashingLesson() {
         System.out.println("This lesson clashes with another lesson in your timetable!");
     }
+
+    public void printClashingEventMessage() {
+        System.out.println("This event clashes with another event in your timetable!");
+    }
 }

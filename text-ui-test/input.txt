@@ -45,6 +45,5 @@ delmod 2
 delmod cs2040c
 listmod
 addmod st2334 -lec 1
-week
 hello
 bye
