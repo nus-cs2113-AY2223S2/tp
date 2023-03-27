@@ -15,6 +15,6 @@ public class ViewDateExpenditureCommand extends Command {
     @Override
     public CommandResult execute(ExpenditureList expenditures) {
         return new CommandResult("Here are the specified expenditures: \n"
-                + ExpenditureList.printSpecificDate(date));
+                + ExpenditureList.specificDateString(date));
     }
 }

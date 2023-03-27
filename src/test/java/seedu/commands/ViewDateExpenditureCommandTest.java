@@ -33,7 +33,8 @@ public class ViewDateExpenditureCommandTest {
     @Test
     public void test_viewDateExpenditureCommand_onNoDate() {
         ViewDateExpenditureCommand testViewDateNoDate = new ViewDateExpenditureCommand("2023-05-01");
-        assertEquals("Here are the specified expenditures: \n",
+        assertEquals("Here are the specified expenditures: \n" +
+                        "Total amount: 0.00",
                 testViewDateNoDate.execute(testExpenditures).getCommandResult());
     }
 
@@ -41,7 +42,8 @@ public class ViewDateExpenditureCommandTest {
     public void test_viewDateExpenditureCommand_onOneDate() {
         ViewDateExpenditureCommand testViewDateOneDate = new ViewDateExpenditureCommand("2023-01-01");
         assertEquals("Here are the specified expenditures: \n" +
-                        "1. [Academic] || Date: 1 Jan 2023 || Value: 2.1 || Description: pen",
+                        "1. [Academic] || Date: 1 Jan 2023 || Value: 2.1 || Description: pen\n" +
+                        "Total amount: 2.10",
                 testViewDateOneDate.execute(testExpenditures).getCommandResult());
     }
 
@@ -50,7 +52,8 @@ public class ViewDateExpenditureCommandTest {
         ViewDateExpenditureCommand testViewDateTwoDate = new ViewDateExpenditureCommand("2023-02-02");
         assertEquals("Here are the specified expenditures: \n" +
                         "1. [Accommodation] || [ ] || Date: 2 Feb 2023 || Value: 3000.0 || Description: rc\n" +
-                        "2. [Academic] || Date: 2 Feb 2023 || Value: 2.2 || Description: NUS",
+                        "2. [Academic] || Date: 2 Feb 2023 || Value: 2.2 || Description: NUS\n" +
+                        "Total amount: 3002.20",
                 testViewDateTwoDate.execute(testExpenditures).getCommandResult());
     }
 }
