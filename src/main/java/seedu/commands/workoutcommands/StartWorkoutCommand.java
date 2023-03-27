@@ -9,8 +9,12 @@ import java.util.Date;
 public class StartWorkoutCommand extends Command {
 
     private Date date;
+
+
     public StartWorkoutCommand(Date date) {
+        super();
         this.date = date;
+        setData(workoutList);
     }
 
     @Override
