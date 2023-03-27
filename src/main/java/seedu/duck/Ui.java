@@ -92,7 +92,7 @@ public class Ui {
         ArrayList<Integer> indexOfMediumPriority = new ArrayList<Integer>();
         int taskCount = Task.getTaskCount();
         for (int i = 0; i < taskCount; i++) {
-            if (tasks.get(i).returnPriority() == 3) {
+            if (tasks.get(i).returnPriority() == 2) {
                 indexOfMediumPriority.add(i);
             }
         }
@@ -122,7 +122,7 @@ public class Ui {
             }
         }
         if (!indexOfLowPriority.isEmpty()) {
-            System.out.println("\t quack!");
+            System.out.println("\t Quack!");
             System.out.println("\t You have " + indexOfLowPriority.size() + " tasks that are low in priority!");
             for (int i = 0; i < indexOfLowPriority.size(); i++) {
                 System.out.println("\t" + (i + 1) + "." + tasks.get(indexOfLowPriority.get(i)));
@@ -175,6 +175,7 @@ public class Ui {
      *
      * @param matchingResults The array list of tasks that contain the keywords
      * @param matchCount      The number of tasks in the list that contain the keywords
+     * @param matchingResultsIndex The index of the task in the main list
      */
     static void printMatchingList(ArrayList<Task> matchingResults, int matchCount, ArrayList<Integer> matchingResultsIndex) {
         borderLine();

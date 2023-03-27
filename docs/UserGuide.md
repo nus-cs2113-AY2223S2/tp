@@ -67,6 +67,87 @@ Here are the tasks in your list:
 	 4.	 [C][ ] CS2113: Class (from: 2023-03-25 1100 to: 2023-03-25 1200) (No priority established.)
 ```
 
+## **Listing all low priority tasks : `low_priority`**
+Displays all tasks that have been assigned low priority  
+If there are no tasks in the low priority list, another message will be shown
+
+**Input:** `low_priority`  
+**Output: Demonstrated with 1 of each data type currently in the stored data array**
+```
+Quack!
+	 You have 3 tasks that are low in priority!
+	1.	 [T][ ] Water plants (Low priority.)
+	2.	 [D][ ] Submit CS2113 quiz (by: 2023-03-31 2359) (Low priority.)
+	3.	 [E][ ] CS2113 lecture (from: 2023-03-30 1100 to: 2023-03-30 1200) (Low priority.)
+```
+**If no tasks in low priority list:**
+```
+There are no tasks that are low in priority!
+	____________________________________________________________
+```
+
+## **Listing all medium priority tasks : `medium_priority`**
+Displays all tasks that have been assigned medium priority  
+If there are no tasks in the medium priority list, another message will be shown
+
+**Input:** `medium_priority`  
+**Output: Demonstrated with 1 of each data type currently in the stored data array**
+```
+QUACK QUACK!!
+	 You have 3 tasks that are medium in priority!
+	1.	 [T][ ] Water plants (Medium priority.)
+	2.	 [D][ ] Submit CS2113 quiz (by: 2023-03-31 2359) (Medium priority.)
+	3.	 [E][ ] CS2113 lecture (from: 2023-03-30 1100 to: 2023-03-30 1200) (Medium priority.)
+	____________________________________________________________
+```
+**If no tasks in medium priority list:**
+```
+There are no tasks that are medium in priority!
+	____________________________________________________________
+```
+
+## **Listing all high priority tasks : `high_priority`**
+Displays all tasks that have been assigned high priority  
+If there are no tasks in the high priority list, another message will be shown
+
+**Input:** `high_priority`  
+**Output: Demonstrated with 1 of each data type currently in the stored data array**
+```
+QUACK QUACK QUACK!!!
+	 You have 3 tasks that are high in priority!
+	1.	 [T][ ] Water plants (High priority.)
+	2.	 [D][ ] Submit CS2113 quiz (by: 2023-03-31 2359) (High priority.)
+	3.	 [E][ ] CS2113 lecture (from: 2023-03-30 1100 to: 2023-03-30 1200) (High priority.)
+	____________________________________________________________
+```
+**If no tasks in high priority list:**
+```
+There are no tasks that are high in priority!
+	____________________________________________________________
+```
+
+## **Listing all tasks arranged by priority : `priority_list`**
+Displays all tasks arranged by priority
+
+**Input:** `priority_list`  
+**Output: Demonstrated with 1 task in each priority list**
+```
+____________________________________________________________
+	 Here are the tasks in your list arranged by priority:
+	____________________________________________________________
+	 QUACK QUACK QUACK!!!
+	 You have 1 tasks that are high in priority!
+	1.	 [E][ ] CS2113 lecture (from: 2023-03-30 1100 to: 2023-03-30 1200) (High priority.)
+	____________________________________________________________
+	 QUACK QUACK!!
+	 You have 1 tasks that are medium in priority!
+	1.	 [T][ ] Water plants (Medium priority.)
+	____________________________________________________________
+	 Quack!
+	 You have 1 tasks that are low in priority!
+	1.	 [D][ ] Submit CS2113 quiz (by: 2023-03-31 2359) (Low priority.)
+	____________________________________________________________
+```
 
 
 ## **Listing all tasks up to X days in the future : `list X`**
