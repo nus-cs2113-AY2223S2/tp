@@ -28,7 +28,6 @@ public class CategoryCommand extends Command {
             updateItemCategory(updatedItem, categoryCommandType[1]);
             Item itemForHistory = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
                     updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
-//            itemToCategorise()
             Ui.printCategoryDetails(oldItem, updatedItem);
             inventory.getUpcCodesHistory().get(itemForHistory.getUpc()).add(itemForHistory);
         } catch (EditErrorException e) {

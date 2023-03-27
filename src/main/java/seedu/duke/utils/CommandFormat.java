@@ -36,11 +36,9 @@ public class CommandFormat {
     public static final String ALERT_REMOVE_DESCRIPTION = "alert remove:\nremoves existing alert for an item";
     public static final String CATEGORY_DESCRIPTION = "cat:\nputs an item into the specified category";
     public static final String TAG_DESCRIPTION = "tag:\nadds or removes a tag of an existing item";
-<<<<<<< HEAD
     public static final String HISTORY_DESCRIPTION = "history:\nshows the historical commands executed for an item";
-=======
     public static final String DASHBOARD_DESCRIPTION = "db:\nDisplays the dashboard of Magus-Stock";
->>>>>>> f7b454ae02bb9cf82ee0241c1de200c3b4f9b348
+
 
     protected HashMap<String, String> commandsHashMap;
 
@@ -63,11 +61,8 @@ public class CommandFormat {
         commands.put(ALERT_ADD_FORMAT, ALERT_ADD_DESCRIPTION);
         commands.put(ALERT_REMOVE_FORMAT, ALERT_REMOVE_DESCRIPTION);
         commands.put(HELP_FORMAT, HELP_DESCRIPTION);
-<<<<<<< HEAD
         commands.put(HISTORY_FORMAT, HISTORY_DESCRIPTION);
-=======
         commands.put(DASHBOARD_FORMAT, DASHBOARD_DESCRIPTION);
->>>>>>> f7b454ae02bb9cf82ee0241c1de200c3b4f9b348
         return commands;
     }
 }

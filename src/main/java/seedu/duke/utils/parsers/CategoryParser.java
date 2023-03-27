@@ -14,9 +14,8 @@ public class CategoryParser extends Parser {
     @Override
     public void run() {
         // upc/[UPC] c/[Category] to edit category
-        // list to list all categories
+        // 'list' to list all categories
         // [Category] to list all items in a specific category
-        // System.out.println(rawInput);
         try {
             String[] categoryCommandType = rawInput.split(" ", 2);
             if (categoryCommandType[0].equals("list") || categoryCommandType[0].startsWith("upc/") ||
