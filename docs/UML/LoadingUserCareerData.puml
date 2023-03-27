@@ -1,47 +1,42 @@
 @startuml
 hide footbox
-":duke" -> ":StorageHandler" : loadUserData()
-activate ":StorageHandler"
-create ":UserDataLoader"
+":duke" -> ":Storage" : loadUserData()
+activate ":Storage"
 
-":StorageHandler" -> ":UserDataLoader" : <<create>>
-activate ":UserDataLoader"
-":UserDataLoader" --> ":StorageHandler"
-deactivate ":UserDataLoader"
 
-    ":StorageHandler" -> ":UserDataLoader": loadFromJson()
-    activate ":UserDataLoader"
-        ":UserDataLoader"-> ":UserCareerData": UserCareerData()
+    ":Storage" -> ":UserCareerStorage": loadFromJson()
+    activate ":UserCareerStorage"
+        ":UserCareerStorage"-> ":UserCareerData": UserCareerData()
         activate ":UserCareerData"
             loop sessions in file times
-                ":UserDataLoader" -> ":UserCareerData" : addWorkoutSession()
+                ":UserCareerStorage" -> ":UserCareerData" : addWorkoutSession()
             end
-            ":UserCareerData" --> ":UserDataLoader" : :UserCareerData
-        ":UserDataLoader" --> ":StorageHandler" : :UserCareerData
+            ":UserCareerData" --> ":UserCareerStorage" : :UserCareerData
+        ":UserCareerStorage" --> ":Storage" : :UserCareerData
     deactivate ":UserCareerData"
-    deactivate ":UserDataLoader"
-    ":StorageHandler" --> ":duke" : :UserCareerData
-deactivate ":StorageHandler"
-":duke" -> ":StorageHandler" : loadUserPlans()
-    activate ":StorageHandler"
+    deactivate ":UserCareerStorage"
+    ":Storage" --> ":duke" : :UserCareerData
+deactivate ":Storage"
+":duke" -> ":Storage" : loadUserPlans()
+    activate ":Storage"
 
-    ":StorageHandler" -> ":UserDataLoader" : loadPlansFromJson()
-    activate ":UserDataLoader"
-    ":UserDataLoader" -> ":UserPlan" : UserPlan()
+    ":Storage" -> ":UserCareerStorage" : loadPlanFromJson()
+    activate ":UserCareerStorage"
+    ":UserCareerStorage" -> ":UserPlan" : UserPlan()
     activate ":UserPlan"
     loop days in a week times
             loop plans from file in a day times
-                ":UserDataLoader" -> ":UserPlan" : addDayPlan()
+                ":UserCareerStorage" -> ":UserPlan" : addDayPlan()
             end
     end
-    ":UserPlan" --> ":UserDataLoader" : :UserPlan
+    ":UserPlan" --> ":UserCareerStorage" : :UserPlan
     deactivate ":UserPlan"
-    ":UserDataLoader" --> ":StorageHandler" : :UserPlan
-    deactivate ":UserDataLoader"
-    ":StorageHandler" --> ":duke" : :UserPlan
-    destroy ":UserDataLoader"
+    ":UserCareerStorage" --> ":Storage" : :UserPlan
+    deactivate ":UserCareerStorage"
+    ":Storage" --> ":duke" : :UserPlan
+    destroy ":UserCareerStorage"
 
-deactivate ":StorageHandler"
+deactivate ":Storage"
 
 
 @enduml

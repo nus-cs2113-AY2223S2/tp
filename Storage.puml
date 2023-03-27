@@ -1,0 +1,51 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+class storage.StorageManager {
+}
+interface storage.Storage <<interface>> {
+writeToJson(UserCareerData) : void
+loadUserData() : UserCareerData
+
+
+writeToJson(UserPlan) : void
+loadUserPlans() : UserPlan
+}
+class storage.JsonUserPlansStorage {
+
+}
+interface storage.UserPlansStorage <<interface>> {
+
+}
+
+class storage.JsonUserCareerStorage {
+}
+abstract class storage.TextDataUtility {
+}
+class storage.JsonUserPlansWriter {
+}
+interface storage.UserCareerStorage <<interface>> {
+}
+class storage.JsonUserDataWriter {
+}
+class storage.JsonUserPlansLoader {
+}
+class storage.JsonUserDataLoader {
+}
+
+storage.StorageManager .d.|> storage.Storage
+storage.StorageManager --> storage.UserCareerStorage
+storage.StorageManager --> storage.UserPlansStorage
+storage.UserCareerStorage <|-l- storage.Storage
+storage.UserPlansStorage <|-r- storage.Storage
+storage.UserPlansStorage <|.. storage.JsonUserPlansStorage
+
+storage.UserCareerStorage <|.. storage.JsonUserCareerStorage
+
+storage.JsonUserCareerStorage -d--> storage.JsonUserDataLoader
+storage.JsonUserCareerStorage -d--> storage.JsonUserDataWriter
+storage.JsonUserPlansStorage -d--> storage.JsonUserPlansLoader
+storage.JsonUserPlansStorage -d--> storage.JsonUserPlansWriter
+
+@enduml
