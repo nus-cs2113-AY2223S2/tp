@@ -40,7 +40,8 @@ public class Messages {
     public static final String MESSAGE_MEETING_ADDED = "Got it! You have successfully added a meeting:";
     public static final String MESSAGE_MEETING_VIEW_LIST = "Meeting list:";
     public static final String MESSAGE_FINISHED_LOADING = "Loading done. Starting Dinerdirector...\n";
-
+    public static final String MESSAGE_STAFF_FOUND = "Here's the matching staff:";
+    public static final String MESSAGE_STAFF_NOT_FOUND  ="There's no such staff in the staff list!";
     /**
      * Errors for programs to print.
      */
@@ -59,6 +60,7 @@ public class Messages {
     public static final String ERROR_STAFF_ADD_EXCESS_PARAM = "Excess information when adding a staff";
     public static final String ERROR_STAFF_DELETE_MISSING_PARAM = "Insufficient information when deleting a staff";
     public static final String ERROR_STAFF_DELETE_EXCESS_PARAM = "Excess information when deleting a staff";
+    public static final String ERROR_STAFF_FIND_MISSING_PARAM = "Insufficient information when finding a staff";
     public static final String ERROR_MEETING_MISSING_PARAM = "Missing meeting parameter!";
     public static final String ERROR_MEETING_EXCESS_ADD_PARAM = "You cannot have multiple name/time for your meeting!";
     public static final String ERROR_MEETING_EXCESS_VIEW_PARAM =

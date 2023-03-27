@@ -55,4 +55,20 @@ public class StaffManager {
         }
         return -1;
     }
+    public static void findStaff(String name,TextUi ui) {
+        ArrayList<Staff> staffFound=new ArrayList<>();
+        for(Staff m:staffs){
+            if( m.getName().contains(name)){
+                staffFound.add(m);
+            }
+        }
+        if(staffFound.isEmpty()){
+            ui.printMessage(Messages.MESSAGE_STAFF_NOT_FOUND);
+        } else{
+            ui.printMessage(Messages.MESSAGE_STAFF_FOUND);
+            for(Staff n:staffFound){
+                ui.printMessage(n.toString());
+            }
+        }
+    }
 }

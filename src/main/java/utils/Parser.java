@@ -2,6 +2,7 @@ package utils;
 
 import commands.menu.FindDishCommand;
 import commands.staff.AddStaffCommand;
+import commands.staff.FindStaffCommand;
 import commands.staff.ViewStaffCommand;
 import commands.staff.DeleteStaffCommand;
 import commands.HelpCommand;
@@ -54,13 +55,15 @@ public class Parser {
         case DeleteMeetingCommand.COMMAND_WORD:
             return prepareDeleteMeetingCommand(userInputNoCommand);
         case ViewMeetingCommand.COMMAND_WORD:
-            return prepareViewMeetingCommand(commandWord);
+            return prepareViewMeetingCommand(userInputNoCommand);
         case AddStaffCommand.COMMAND_WORD:
             return prepareAddStaffCommand(userInputNoCommand);
         case DeleteStaffCommand.COMMAND_WORD:
             return prepareDeleteStaffCommand(userInputNoCommand);
         case ViewStaffCommand.COMMAND_WORD:
             return prepareViewStaffCommand();
+        case FindStaffCommand.COMMAND_WORD:
+            return prepareFindStaffCommand(userInputNoCommand);
         case AddDeadlineCommand.COMMAND_WORD:
             return prepareAddDeadlineCommand(userInputNoCommand);
         case DeleteDeadlineCommand.COMMAND_WORD:
@@ -104,7 +107,7 @@ public class Parser {
 
     private Command prepareViewMeetingCommand(String userInput) {
         try {
-            if (!userInput.trim().equals("view_meetings")) {
+            if (!userInput.isEmpty()) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_EXCESS_VIEW_PARAM);
             }
         } catch (DinerDirectorException e) {
@@ -184,7 +187,18 @@ public class Parser {
             return new IncorrectCommand();
         }
     }
+    private Command prepareFindStaffCommand(String description){
+        try {
+            if ((description.trim()).isEmpty()) {
+                throw new DinerDirectorException(Messages.ERROR_STAFF_FIND_MISSING_PARAM);
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e);
+            return new IncorrectCommand();
+        }
+        return new FindStaffCommand(description.trim());
 
+    }
     private Command prepareHelpCommand() {
         return new HelpCommand();
     }
