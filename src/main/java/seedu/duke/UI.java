@@ -115,7 +115,8 @@ public class UI {
             }
             if (currModulePuId == prevModulePuId) {
                 printIndex++;
-                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]"
+                                        + "[" + moduleMCs + "]");
             } else {
                 printIndex = 1;
                 if (printIndex == 1) {
@@ -123,7 +124,8 @@ public class UI {
                     System.out.println(currPuAbbr);
                     System.out.println(LINE);
                 }
-                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+                System.out.println(printIndex + ". [" + moduleCode + "]"
+                                        + "[" + moduleName + "]" + "[" + moduleMCs + "]");
             }
             foundModIndex++;
         }
