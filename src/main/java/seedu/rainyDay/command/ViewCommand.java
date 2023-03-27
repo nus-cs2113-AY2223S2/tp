@@ -73,25 +73,43 @@ public class ViewCommand extends Command {
      * @return ArrayList of indexes which passed the check
      */
     private ArrayList<Integer> filterBeforeSpecificDateSorted() {
-        Map<Double, Integer> sortedIndexesInflows = new TreeMap<>();
-        Map<Double, Integer> sortedIndexesOutflows = new TreeMap<>();
+        Map<Double, ArrayList<Integer>> sortedIndexesInflows = new TreeMap<>();
+        Map<Double, ArrayList<Integer>> sortedIndexesOutflows = new TreeMap<>();
         for (int index = 0; index < userData.getStatementCount(); index++) {
             FinancialStatement currentStatement = userData.getStatement(index);
             double statementValue = currentStatement.getValue();
             String direction = currentStatement.getFlowSymbol();
             LocalDate statementDate = currentStatement.getDate();
             if (statementDate.isAfter(timeLimit) && direction.equals("+")) {
-                sortedIndexesInflows.put(statementValue, index);
+                if (!sortedIndexesInflows.containsKey(statementValue)) {
+                    ArrayList<Integer> list = new ArrayList<>();
+                    sortedIndexesInflows.put(statementValue, list);
+                }
+                sortedIndexesInflows.get(statementValue).add(index);
             } else if (statementDate.isAfter(timeLimit) && direction.equals("-")) {
-                sortedIndexesOutflows.put(statementValue, index);
+                if (!sortedIndexesInflows.containsKey(statementValue)) {
+                    ArrayList<Integer> list = new ArrayList<>();
+                    sortedIndexesOutflows.put(statementValue, list);
+                }
+                sortedIndexesOutflows.get(statementValue).add(index);
             }
         }
         ArrayList<Integer> filteredIndexes = new ArrayList<>();
-        for (Map.Entry<Double, Integer> currentEntry : sortedIndexesInflows.entrySet()) {
-            filteredIndexes.add(currentEntry.getValue());
+
+        for (Map.Entry<Double, ArrayList<Integer>> currentEntry : sortedIndexesInflows.entrySet()) {
+            ArrayList<Integer> currentList = currentEntry.getValue();
+            while (!currentList.isEmpty()) {
+                filteredIndexes.add(currentList.get(0));
+                currentList.remove(0);
+            }
         }
-        for (Map.Entry<Double, Integer> currentEntry : sortedIndexesOutflows.entrySet()) {
-            filteredIndexes.add(currentEntry.getValue());
+
+        for (Map.Entry<Double, ArrayList<Integer>> currentEntry : sortedIndexesOutflows.entrySet()) {
+            ArrayList<Integer> currentList = currentEntry.getValue();
+            while (!currentList.isEmpty()) {
+                filteredIndexes.add(currentList.get(0));
+                currentList.remove(0);
+            }
         }
         return filteredIndexes;
     }
