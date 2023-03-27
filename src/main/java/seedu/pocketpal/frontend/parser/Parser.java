@@ -102,6 +102,7 @@ public class Parser {
         Matcher matcher = descriptionPattern.matcher(arguments);
         if (matcher.find()) {
             description = matcher.group(0);
+            arguments = arguments.replaceFirst(description, "").trim();
         }
 
         matcher = categoryPattern.matcher(arguments);
@@ -185,7 +186,7 @@ public class Parser {
         int expenseIdInt;
         Integer[] expenseIds = new Integer[argumentsArray.length];
         try {
-            for(int i = 0; i < argumentsArray.length; i++){
+            for (int i = 0; i < argumentsArray.length; i++) {
                 expenseIdInt = Integer.parseInt(argumentsArray[i]);
                 assert argumentsArray[i].matches("\\d+") : "Expense ID must be an integer";
                 logger.log(Level.INFO, "Removing specified expense id {0} from list", argumentsArray[i]);
@@ -240,6 +241,7 @@ public class Parser {
         matcher = pricePattern.matcher(arguments);
         if (matcher.find()) {
             price = matcher.group(2);
+            System.out.println(price);
         }
         argumentsArray[0] = expenseId;
         argumentsArray[1] = description;
@@ -274,13 +276,17 @@ public class Parser {
         logger.info("User input price: " + price);
 
         try {
-            Integer.parseInt(argumentsArray[0]);
+            Integer.parseInt(expenseId);
         } catch (NumberFormatException e) {
             logger.warning("Expense ID is not an integer: " + MessageConstants.MESSAGE_INVALID_ID);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
 
         if (!price.isEmpty()) {
+            boolean has_letters = price.matches(".*[a-zA-Z]+.*");
+            if (has_letters) {
+                throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
+            }
             try {
                 Double.parseDouble(price);
             } catch (NumberFormatException e) {
