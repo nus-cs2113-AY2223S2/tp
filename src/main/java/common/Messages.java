@@ -39,6 +39,8 @@ public class Messages {
     public static final String MESSAGE_NUMBER_OF_DEADLINES = "\nNow you have %d deadlines in the deadline list.";
     public static final String MESSAGE_MEETING_ADDED = "Got it! You have successfully added a meeting:";
     public static final String MESSAGE_MEETING_VIEW_LIST = "Meeting list:";
+    public static final String MESSAGE_MEETING_FOUND = "Here's the matching meeting list:";
+    public static final String MESSAGE_MEETING_NOT_FOUND  ="There's no such meeting in the meeting list!";
     public static final String MESSAGE_FINISHED_LOADING = "Loading done. Starting Dinerdirector...\n";
     public static final String MESSAGE_STAFF_FOUND = "Here's the matching staff:";
     public static final String MESSAGE_STAFF_NOT_FOUND  ="There's no such staff in the staff list!";

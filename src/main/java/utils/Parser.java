@@ -1,5 +1,6 @@
 package utils;
 
+import commands.meeting.FindMeetingCommand;
 import commands.menu.FindDishCommand;
 import commands.staff.AddStaffCommand;
 import commands.staff.FindStaffCommand;
@@ -56,6 +57,9 @@ public class Parser {
             return prepareDeleteMeetingCommand(userInputNoCommand);
         case ViewMeetingCommand.COMMAND_WORD:
             return prepareViewMeetingCommand(userInputNoCommand);
+            return prepareViewMeetingCommand(commandWord);
+        case FindMeetingCommand.COMMAND_WORD:
+            return prepareFindMeetingCommand(userInputNoCommand);
         case AddStaffCommand.COMMAND_WORD:
             return prepareAddStaffCommand(userInputNoCommand);
         case DeleteStaffCommand.COMMAND_WORD:
@@ -133,6 +137,17 @@ public class Parser {
         }
         assert index >= 0 : "Index of meeting should be 0 or greater.";
         return new DeleteMeetingCommand(index);
+    }
+    private Command prepareFindMeetingCommand(String description){
+        try {
+            if ((description.trim()).isEmpty()) {
+                throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e);
+            return new IncorrectCommand();
+        }
+        return new FindMeetingCommand(description.trim());
     }
 
     private Command prepareAddStaffCommand(String userInputNoCommand) {
