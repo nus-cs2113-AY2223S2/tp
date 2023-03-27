@@ -81,7 +81,7 @@ public class ViewResult {
     /**
      * Used to format the summary of inflows and outflows
      *
-     * @param inflow the total inflow
+     * @param inflow  the total inflow
      * @param outflow the total outflow
      * @return a string with the formatted summary
      */
@@ -110,7 +110,7 @@ public class ViewResult {
 
         for (int index : indexArray) {
             logger.log(Level.INFO, "starting statement " + index);
-            FinancialStatement currentStatement = userData.getFinancialReport().getFinancialStatement(index - 1);
+            FinancialStatement currentStatement = userData.getStatement(index - 1);
             output = formatFinancialStatement(index, currentStatement);
 
             System.out.print(output);
@@ -136,7 +136,7 @@ public class ViewResult {
         System.out.print(TABLE_FORMAT);
         for (Integer index : validIndexes) {
             logger.log(Level.INFO, "starting statement " + index);
-            FinancialStatement currentStatement = userData.getFinancialReport().getFinancialStatement(index);
+            FinancialStatement currentStatement = userData.getStatement(index);
             if (currentStatement.getFlowDirectionWord().equals("in") && !currentStatement.isIgnored()) {
                 totalInflow += currentStatement.getValue();
             } else if (currentStatement.getFlowDirectionWord().equals("out") && !currentStatement.isIgnored()) {
