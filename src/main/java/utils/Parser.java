@@ -73,7 +73,7 @@ public class Parser {
             return prepareDeleteDishCommand(userInputNoCommand);
         case ViewDishCommand.COMMAND_WORD:
             return prepareViewDishCommand(userInputNoCommand);
-        case "find_dish":
+        case FindDishCommand.COMMAND_WORD:
             return prepareFindDishCommand(userInputNoCommand);
         default:
             return new IncorrectCommand();

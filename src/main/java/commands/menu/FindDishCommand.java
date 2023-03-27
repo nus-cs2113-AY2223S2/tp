@@ -6,6 +6,7 @@ import ui.TextUi;
 
 public class FindDishCommand extends Command {
 
+    public static final String COMMAND_WORD = "find_dish";
     private String stringToFind;
     public FindDishCommand(String stringToFind) {
         this.stringToFind = stringToFind;
