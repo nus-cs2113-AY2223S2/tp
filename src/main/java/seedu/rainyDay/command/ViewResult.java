@@ -14,14 +14,14 @@ import static seedu.rainyDay.RainyDay.userData;
 //@@author BenjaminPoh
 public class ViewResult {
     private static final String ACKNOWLEDGE_VIEW_COMMAND = "" +
-            "|Here is your financial report!                                                                   |\n";
+            "|Here is your financial report!                                                                      |\n";
     private static final String ACKNOWLEDGE_FILTER_COMMAND = "" +
-            "|Here is your filtered financial report!                                                          |\n";
+            "|Here is your filtered financial report!                                                             |\n";
     private static final String TABLE_FORMAT = "" +
-            "+-----+---------------------------------------------+------------+---------------------+----------+\n" +
-            "|Index|Description                                  |Amount      |Category             |Date      |\n";
+            "+------+---------------------------------------------+--------------+---------------------+----------+\n" +
+            "|Index |Description                                  |Amount        |Category             |Date      |\n";
     private static final String TABLE_BORDER = "" +
-            "+-----+---------------------------------------------+------------+---------------------+----------+\n";
+            "+------+---------------------------------------------+--------------+---------------------+----------+\n";
 
     private static final Logger logger = Logger.getLogger(ViewResult.class.getName());
 
@@ -42,7 +42,13 @@ public class ViewResult {
 
     /**
      * Used to format the information shown to the user such that it fits the table.
-     *
+     * The current table displays from left to right order:
+     * The index, as a string of length 6
+     * The description, as a string of length 45
+     * The value, in 2dp, as a string of length 12, or "Ignored" if it is to be ignored.
+     * The category, as a string of length 21
+     * If category/description strings exceed their length, they will be truncated and appended with ... instead.
+     * If value is ignored, "Ignored" will replace it.
      * @param statementIndex   1-based indexing to be shown to the user
      * @param currentStatement the FinancialStatement
      * @return A formatted string
@@ -53,26 +59,41 @@ public class ViewResult {
         double statementValue = currentStatement.getValue();
         String statementCategory = currentStatement.getCategory();
         String statementDirection = currentStatement.getFlowSymbol();
-        String date;
+        String value;
         String description;
+        String category;
+        String date;
+
+        String index = String.format("000000%d", statementIndex);
+        index = index.substring(index.length() - 6);
+
+        if (currentStatement.isIgnored()) {
+            value = " Ignored      ";
+        } else {
+            value = String.format(" %s$%.2f              ", statementDirection, statementValue);
+            value = value.substring(0, 14);
+        }
+
+        if(statementName.length() > 45) {
+            description = statementName.substring(0,42) + "...";
+        } else {
+            description = String.format("%s                                              ", statementName);
+            description = description.substring(0, 45);
+        }
+
+        if(statementCategory.length() > 21) {
+            category = statementCategory.substring(0, 18) + "...";
+        } else {
+            category = String.format("%s                     ", statementCategory);
+            category = category.substring(0, 21);
+        }
+
         if (currentStatement.getDate() == null) {
             date = "no date   ";
         } else {
             date = currentStatement.getDate().format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
         }
-        String index = String.format("00000%d", statementIndex);
-        index = index.substring(index.length() - 5);
-        String value = String.format(" %s$%.2f            ", statementDirection, statementValue);
-        value = value.substring(0, 12);
-        String desc;
-        if (currentStatement.isIgnored()) {
-            desc = String.format("%s (I)                                          ", statementName);
-        } else {
-            desc = String.format("%s                                              ", statementName);
-        }
-        description = desc.substring(0, 45);
-        String category = String.format("%s                     ", statementCategory);
-        category = category.substring(0, 21);
+
         statementOutput = "|" + index + "|" + description + "|" + value + "|" + category + "|" + date + "|"
                 + System.lineSeparator();
         return statementOutput;
