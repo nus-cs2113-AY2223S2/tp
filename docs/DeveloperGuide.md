@@ -67,8 +67,38 @@ The `Parser` component,
 * depends on `CategoryList.java`, `CategoryCommand.java`, `Event.java`, `Command.java` to execute the commands.
 
 ## Implementation
-This section describes some noteworthy details on how certain features are implemented.
-  
+
+### Parser component
+
+The Parser class contains several private methods, each of which is responsible for creating a specific type of Command
+object based on the user input. Each method takes in an array of strings as an argument, which contains 
+the user input split into keyword and the content. The method then checks the first word in the array to determine which
+type of Command object to create. If the first word matches a specific keyword (e.g. "bye"), the corresponding Command
+object is created and returned. If the keyword is not recognized, an InvalidCommandException is thrown. Some methods 
+also perform additional checks on the input string to ensure that it is formatted correctly. If the input is in correct
+format, the corresponding Command object is created and returned. Otherwise, an InvalidCommandException is thrown.
+
+### Commands component
+
+The Command class is an interface that is implemented by all the different types of Command objects. It contains methods
+that are common to all Command objects, such as execute() and isExit(). The execute() method contains the logic to
+perform certain tasks and is called when the Command object is to be executed. The isExit() method is called to 
+check if the Command object is an ExitCommand object, which signals the end of the program.
+
+### Exceptions component
+
+The Exceptions class contains several types of custom Exception objects that are thrown when the user input is not
+in the correct format. 
+
+### Category component
+
+The components use arraylist to store events for each category and 
+store all categories in a category list.
+
+### Event component
+
+The components implement event class to store the information of each event.
+
 ## Appendix A: Product Scope
 ### Target user profile
 
@@ -138,6 +168,96 @@ frequency is set to monthly.
 
 ## Appendix E: Instructions for Manual Testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+First type 
+```
+category food b/200
+```
+
+Expected: 
+```
+New category added: food
+```
+
+Then type 
+```
+event buy salad e/12
+```
+
+Expected: 
+```
+Please select the category you want to add the event to: 
+```
+
+Then type 
+```
+1
+```
+
+Expected: 
+```
+New event added: buy salad
+```
+
+Then type 
+```
+edit c/food e/1
+```
+
+Expected: 
+```
+The current event expense for buy salad is: 12
+Your new expense would be: 
+```
+
+Then type 
+```
+100
+```
+
+Expected: 
+```
+Ok, the new expense is now changed to: 100
+```
+
+Then type 
+```
+view
+```
+
+Expected: 
+```
+1.food (budget: 200)
+buy salad [expense]100
+```
+
+Then type 
+```
+delete c/food
+```
+
+Expected: 
+```
+Category deleted: food
+```
+
+Then type 
+```
+view
+```
+
+Expected: 
+```
+There are no categories to view
+```
+
+Then type 
+```
+bye
+```
+
+Expected: 
+```
+Bye. Hope to see you again soon!
+```
 
 </div>
