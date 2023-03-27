@@ -26,7 +26,7 @@ public class RecipeAlmostCommand extends RecipePossibleCommand{
         mealCompanionSession.getUi().printMessage("These are the recipes that you almost can make: ");
         for (Recipe recipe : recipeList.getRecipes()) {
             int numberOfMissingIngredients = almostCanMakeRecipe(recipe, mealCompanionSession.getIngredients());
-            if (numberOfMissingIngredients > 0 && numberOfMissingIngredients <= 2) {
+            if (numberOfMissingIngredients > 0 && numberOfMissingIngredients <= 3) {
                 mealCompanionSession.getUi().printMessage(indexCount + ". " + recipe.getName()
                         + " (number of missing ingredients: "
                         + numberOfMissingIngredients + ")");
