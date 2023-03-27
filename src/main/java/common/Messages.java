@@ -86,4 +86,6 @@ public class Messages {
             "Please check your file permissions.";
     public static final String ERROR_STORAGE_DELETE_FAILED = "There is an error deleting trying " +
             "to delete from the file. Please check your file permissions.";
+
+    public static final String ERROR_STAFF_INVALID_INDEX = "Invalid staff index number";
 }
