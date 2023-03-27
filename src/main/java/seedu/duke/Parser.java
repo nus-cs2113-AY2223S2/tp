@@ -54,6 +54,7 @@ public class Parser {
                     return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
                 }
             case "search":
+                assert userInputWords.size() > 1 : "No Nus Module Code Read";
                 return prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities);
             case "exit":
                 return new ExitCommand();
