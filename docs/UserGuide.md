@@ -50,7 +50,7 @@ Example:
 delete_meeting n/meeting with boss
 ```
 
-```
+
 ### Deadlines
 
 #### Add a deadline to the deadline list:
