@@ -74,7 +74,7 @@ public class RemoveCommand extends Command {
                 }
             }
 
-           removeAlert(upcCode);
+            removeAlert(upcCode);
             Ui.printSuccessRemove(itemToRemove);
             break;
         case "N":

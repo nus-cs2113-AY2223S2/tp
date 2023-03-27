@@ -3,7 +3,6 @@ package seedu.duke.commands;
 import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.SellErrorException;
-import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.SessionManager;
