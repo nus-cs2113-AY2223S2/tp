@@ -79,13 +79,13 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
-            "| view -1d                    | View entries starting from yesterday, including today                |\n" +
-            "| view -18d                   | View entries starting from the past 18 days                          |\n" +
-            "| view -18d -sort             | View entries starting from the past 18 days in sorted order          |\n" +
-            "| view -3w                    | View entries starting from the past 3 weeks                          |\n" +
-            "| view -6m                    | View entries starting from the past 6 months                         |\n" +
-            "| view -12m                   | View entries starting from the past 12 months / 1 year               |\n" +
-            "| view -3y                    | View entries starting from the past 3 years                          |\n" +
+            "| view 1d                     | View entries starting from yesterday, including today                |\n" +
+            "| view 18d                    | View entries starting from the past 18 days                          |\n" +
+            "| view 18d -sort              | View entries starting from the past 18 days in sorted order          |\n" +
+            "| view 3w                     | View entries starting from the past 3 weeks                          |\n" +
+            "| view 6m                     | View entries starting from the past 6 months                         |\n" +
+            "| view 12m                    | View entries starting from the past 12 months / 1 year               |\n" +
+            "| view 3y                     | View entries starting from the past 3 years                          |\n" +
             "+====================================================================================================+\n";
     private static final String HELP_FILTER_COMMAND = "" +
             "+====================================================================================================+\n" +
