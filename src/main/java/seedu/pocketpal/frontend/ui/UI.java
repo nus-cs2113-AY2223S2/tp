@@ -17,6 +17,7 @@ public class UI {
      * @param entryID ID of the entry Object
      * @return String of details about the entry
      */
+    // @@author leonghuenweng
     public String formatViewEntries(Entry entry, int entryID) {
         String description = entry.getDescription();
         double price = entry.getAmount();
@@ -66,6 +67,7 @@ public class UI {
      *
      * @param entries EntryLog with entries requested by the user
      */
+    // @@author leonghuenweng
     public void printEntriesToBeViewed(EntryLog entries) {
         printEntriesToBeViewed(entries, null);
     }
@@ -77,27 +79,33 @@ public class UI {
      * @param entries  EntryLog with entries requested by the user
      * @param category Category selected by the user
      */
+    // @@author leonghuenweng
     public void printEntriesToBeViewed(EntryLog entries, Category category) {
+        double totalPrice = 0;
         assert entries != null;
         if (entries.getSize() == 0) {
             print(MessageConstants.MESSAGE_NO_ENTRIES);
             printLine();
             return;
         }
-
+        for (int index = 1; index <= entries.getSize(); index++) {
+            totalPrice += entries.getEntry(index).getAmount();
+        }
         StringBuilder finalString = new StringBuilder();
         finalString.append("These are the latest ")
-                   .append(entries.getSize())
-                   .append(" entries")
-                   .append(category != null
-                           ? " from the " + category + " category."
-                           : ".")
-                   .append(System.lineSeparator());
+                .append(entries.getSize())
+                .append(" entries")
+                .append(category != null
+                        ? " from the " + category + " category."
+                        : ".")
+                .append(System.lineSeparator());
+
+        finalString.append("Total expenditure: $" + totalPrice).append(System.lineSeparator());
 
         for (int index = 1; index <= entries.getSize(); index++) {
             String formattedEntry = formatViewEntries(entries.getEntry(index), index);
             finalString.append(formattedEntry)
-                       .append(System.lineSeparator());
+                    .append(System.lineSeparator());
         }
         print(finalString.toString());
         printLine();
@@ -132,6 +140,7 @@ public class UI {
      *
      * @param entry Expenditure to be printed
      */
+    // @@author leonghuenweng
     public void printExpenditureEdited(Entry entry) {
         print(MessageConstants.MESSAGE_EXPENDITURE_EDITED
                 + UIUtil.formatExpenditure(entry.getDescription(), entry.getAmount(), entry.getCategoryString(),

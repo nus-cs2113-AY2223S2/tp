@@ -1,3 +1,4 @@
+// @@author leonghuenweng
 package seedu.pocketpal.frontend.commands;
 
 import seedu.pocketpal.backend.Backend;
@@ -16,5 +17,4 @@ public class HelpCommand extends Command {
         ui.printHelp();
     }
 }
-
-
+// @@author
