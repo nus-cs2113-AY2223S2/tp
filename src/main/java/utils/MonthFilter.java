@@ -10,6 +10,7 @@ public class MonthFilter {
     private ArrayList<Expense> monthlyExpenses = new ArrayList<>();
     private String month; // English month name
 
+
     public MonthFilter(ArrayList<Expense> expenses, String month) {
         this.expenses = expenses;
         this.month = month;
@@ -21,7 +22,7 @@ public class MonthFilter {
      * @param monthName English month name
      * @return numeric month as String in 2 char
      */
-    private String convertMonthName(String monthName) {
+    private String convertMonthName(String monthName) throws IllegalArgumentException {
         int numericMonth = Month.valueOf(monthName.toUpperCase()).getValue();
         if (numericMonth < 10) {
             return "0" + numericMonth;
@@ -35,7 +36,7 @@ public class MonthFilter {
         return date[1];
     }
 
-    private void filter() {
+    private void filter() throws IllegalArgumentException {
         for (Expense e : expenses) {
             if (getMonthFromExpenseTime(e.getExpenseTime()).equals(convertMonthName(month))) {
                 monthlyExpenses.add(e);
@@ -43,7 +44,7 @@ public class MonthFilter {
         }
     }
 
-    public ArrayList<Expense> getMonthlyExpenses() {
+    public ArrayList<Expense> getMonthlyExpenses() throws IllegalArgumentException {
         filter();
         return monthlyExpenses;
     }

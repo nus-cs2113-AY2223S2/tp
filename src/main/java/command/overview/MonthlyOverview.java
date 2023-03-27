@@ -4,14 +4,16 @@ import command.CommandCategory;
 import command.CommandSort;
 import command.CommandTotal;
 import data.Expense;
+import exception.FutureDateException;
 import utils.MonthFilter;
 import utils.YearFilter;
 
-import javax.annotation.processing.SupportedSourceVersion;
+import java.awt.*;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.ArrayList;
+
 import static common.MessageList.TAB;
-import static common.MessageList.MESSAGE_DIVIDER;
 
 public class MonthlyOverview {
 
@@ -25,15 +27,17 @@ public class MonthlyOverview {
     private static final String MONTHLY_OVERVIEW_TOTAL = "Total expenses: ";
     private static final String CATEGORY_TITLE = "Breakdown of expenses by category: ";
     private static final String CATEGORY_DIVIDER = "----------------------------";
+    private static final String EMPTY_MONTH = "No expenses tracked in ";
 
-    public MonthlyOverview(ArrayList<Expense> expenses, String month, String year) {
+
+    public MonthlyOverview(ArrayList<Expense> expenses, String month, String year) throws IllegalArgumentException {
         this.expenses = expenses;
         this.month = month;
         this.year = year;
         obtainFilteredExpenses();
     }
 
-    private void obtainFilteredExpenses() {
+    private void obtainFilteredExpenses() throws IllegalArgumentException {
         YearFilter yearFilter = new YearFilter(expenses, year);
         MonthFilter monthFilter = new MonthFilter(yearFilter.getYearlyExpenses(), month);
         filteredExpenses = monthFilter.getMonthlyExpenses();
@@ -41,22 +45,26 @@ public class MonthlyOverview {
 
     private void printCategoryBreakdown(ArrayList<Expense> filteredExpenses) {
         ArrayList<Expense> expensesByCategorySum = new CommandSort(filteredExpenses).sortByCategorySum();
-        System.out.println(TAB + TAB + CATEGORY_DIVIDER);
+        System.out.println(TAB + CATEGORY_DIVIDER);
         for (Expense e : expensesByCategorySum) {
-            System.out.println(TAB + TAB + WHITE_SPACE + e.getDescription() + WHITE_SPACE + e.getExpenseAmount() + "SGD");
-            System.out.println(TAB + TAB + CATEGORY_DIVIDER);
+            System.out.println(TAB + WHITE_SPACE + e.getDescription() + WHITE_SPACE + e.getExpenseAmount() + "SGD");
+            System.out.println(TAB + CATEGORY_DIVIDER);
         }
     }
 
-    public void printOverview() {
-        CommandTotal commandTotal = new CommandTotal(filteredExpenses);
-        System.out.println(TITLE + month.toUpperCase() + WHITE_SPACE + year);
-        System.out.println();
-        System.out.println(TAB + MONTHLY_OVERVIEW_TOTAL +
-                commandTotal.calculateTotal().setScale(2, RoundingMode.HALF_UP) + "SGD");
-        System.out.println();
-        System.out.println(TAB + CATEGORY_TITLE);
-        printCategoryBreakdown(filteredExpenses);
+    public void printOverview() throws NullPointerException {
+        if (filteredExpenses.isEmpty()) {
+            System.out.println(EMPTY_MONTH + month.toUpperCase() + WHITE_SPACE + year);
+        } else {
+            CommandTotal commandTotal = new CommandTotal(filteredExpenses);
+            System.out.println(TITLE + month.toUpperCase() + WHITE_SPACE + year);
+            System.out.println();
+            System.out.println(TAB + MONTHLY_OVERVIEW_TOTAL +
+                    commandTotal.calculateTotal().setScale(2, RoundingMode.HALF_UP) + "SGD");
+            System.out.println();
+            System.out.println(TAB + CATEGORY_TITLE);
+            printCategoryBreakdown(filteredExpenses);
+        }
     }
 
 

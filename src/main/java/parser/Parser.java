@@ -7,7 +7,8 @@ public class Parser implements Serializable {
 
     public static final String WHITESPACE = " ";
     private static final int EXTRACT_INDEX_LENGTH = 2;
-
+    private static final String NO_SPECIFIC_MONTH_ERROR =
+            "Please specify the month and year of the overview you intend to view.";
     protected ParserAdd parserAdd = new ParserAdd();
 
     public String extractCommandKeyword(String userInput) {
@@ -93,11 +94,13 @@ public class Parser implements Serializable {
 
     public String extractYear(String userInput) {
         String[] input = userInput.split(WHITESPACE);
+        String year;
         if (isMonthlyOverview(userInput)) {
-            return input[2].toLowerCase().trim();
+            year = input[2].toLowerCase().trim();
         } else {
-            return input[1].toLowerCase().trim();
+            year = input[1].toLowerCase().trim();
         }
+        return year;
     }
 
 
