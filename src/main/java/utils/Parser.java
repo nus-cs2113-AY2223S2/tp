@@ -337,9 +337,9 @@ public class Parser {
             String[] keywords;
             keywords = userInputNoCommand.trim().split(" ");
             if (keywords[0].isEmpty()) {
-                throw new DinerDirectorException("Please key in 1 keyword");
+                throw new DinerDirectorException(Messages.ERROR_DISH_MISSING_KEYWORD);
             } else if (keywords.length > 1) {
-                throw new DinerDirectorException("Please key in only 1 keyword.");
+                throw new DinerDirectorException(Messages.ERROR_DISH_MULTIPLE_KEYWORDS);
             } else if (keywords.length == 1) {
                 stringToFind = keywords[0];
             }

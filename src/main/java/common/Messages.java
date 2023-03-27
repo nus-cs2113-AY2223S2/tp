@@ -66,4 +66,6 @@ public class Messages {
     public static final String ERROR_DISH_NEGATIVE_PRICE_COMMAND = "Price of dish cannot be negative!";
     public static final String ERROR_DISH_MISSING_INGREDIENT = "Ingredient list cannot be empty!";
     public static final String ERROR_DISH_EMPTY_INDEX = "Index cannot be empty!";
+    public static final String ERROR_DISH_MISSING_KEYWORD = "Please key in 1 keyword";
+    public static final String ERROR_DISH_MULTIPLE_KEYWORDS = "Please key in only 1 keyword.";
 }
