@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.UI;
 import seedu.duke.budget.BudgetPlanner;
 
 public class EditBudgetCommand extends BudgetCommand {
@@ -17,8 +18,8 @@ public class EditBudgetCommand extends BudgetCommand {
         budgetPlanner.setBudget(budget);
         if (initialBudget == budgetPlanner.getBudget()) {
             System.out.println("Budget has not been changed");
-        } else {
-            System.out.println("Budget has been changed to: " + budgetPlanner.getBudget());
+            return;
         }
+        UI.printEditBudgetMessage(budgetPlanner.getBudget());
     }
 }
