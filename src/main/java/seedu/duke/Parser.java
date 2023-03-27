@@ -67,8 +67,7 @@ public class Parser {
             case "add":
                 return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
             case "remove":
-                int indexModToRemove = stringToInt(userCommandSecondKeyword);
-                return new DeleteModuleCommand(storage, indexModToRemove, modules);
+                return prepareRemoveModuleCommand(storage, userCommandSecondKeyword, universities);
             case "/help":
                 return new HelpCommand();
             case "/budget":
@@ -301,6 +300,41 @@ public class Parser {
             throw new InvalidPuException(ui.getInvalidPuMessage());
         }
         return new ListCurrentPuCommand(modules, univID);
+    }
+
+    private Command handleRemoveModuleCommand(Storage storage, String abbreviationAndIndex,
+                                              ArrayList<University> universities)
+            throws InvalidCommandException, InvalidPuException {
+        String[] stringSplit = abbreviationAndIndex.split("/");
+        if (stringSplit.length != 2) {
+            throw new InvalidCommandException(ui.getCommandInputError());
+        }
+        String abbreviation = stringSplit[0];
+        String indexToDeleteString = stringSplit[1];
+        int indexToDelete = stringToInt(indexToDeleteString);
+
+        int univID = -1;
+        for (int i = 0; i < universities.size(); ++i) {
+            if (universities.get(i).getUnivAbbName().equalsIgnoreCase(abbreviation)) {
+                univID = universities.get(i).getUnivId();
+                break;
+            }
+        }
+        if (univID == -1) {
+            throw new InvalidPuException(ui.getInvalidPuMessage());
+        }
+        return new DeleteModuleCommand(storage, indexToDelete, univID);
+    }
+
+    private Command prepareRemoveModuleCommand(Storage storage, String abbreviationAndIndex,
+                                               ArrayList<University> universities) {
+        try {
+            return handleRemoveModuleCommand(storage, abbreviationAndIndex, universities);
+        } catch (InvalidPuException e) {
+            return new ExceptionHandleCommand(e);
+        } catch (InvalidCommandException e) {
+            return new ExceptionHandleCommand(e);
+        }
     }
 
     /**

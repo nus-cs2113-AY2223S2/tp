@@ -107,27 +107,42 @@ public class Storage implements DatabaseInterface {
 
     /**
      * Deletes the module corresponding to the uni specified by user. Module will the removed from user's
-     * saved list of modules.
+     * saved list of modules. Uses Index relative to specific PU list.
      *
-     * @param indexToDelete Index of that module that is given in user input.
-     * @param uniModuleList The corresponding ArrayList of that specified uni.
-     * @param database      Database of the user's saved list of modules.
+     * @param indexToDeletePuSpecificList Index of that module that is given in user input, relative to PU list.
+     * @param modules The ArrayList of all modules user saved.
+     * @param database Database of the user's saved list of modules.
+     * @param uniID Partner University's ID number.
      * @return True if successfully deleted the module, false if unsuccessful.
      */
-    public static boolean deleteModule(int indexToDelete, ArrayList<Module> uniModuleList,
-                                       Storage database) {
-        if (indexToDelete == -1) {
+    public static boolean deleteModule(int indexToDeletePuSpecificList, ArrayList<Module> modules,
+                                       Storage database, int uniID) {
+
+        if (indexToDeletePuSpecificList == -1) {
             return false;
         }
-        int indexToZeroBased = indexToDelete - 1;
+        int indexToDeletePuSpecificListToZeroBased = indexToDeletePuSpecificList - 1;
+        int counterUpToIndexToDelete = 0;
+        int indexToDelete = -1;
+        for (int i = 0; i < modules.size(); i++) {
+            Module currentModule = modules.get(i);
+            if (currentModule.getUnivId() == uniID) {
+                if (counterUpToIndexToDelete == indexToDeletePuSpecificListToZeroBased) {
+                    indexToDelete = i;
+                    break;
+                }
+                counterUpToIndexToDelete++;
+            }
+        }
+
         try {
-            uniModuleList.remove(indexToZeroBased);
+            modules.remove(indexToDelete);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Index out of bounds");
             return false;
         }
         try {
-            database.writeModListToFile(uniModuleList);
+            database.writeModListToFile(modules);
         } catch (IOException e) {
             System.out.println("Unable to save to database");
             return false;

@@ -168,28 +168,12 @@ public class UI {
         System.out.println(LINE);
     }
 
-    public void printCurrentModList(ArrayList<Module> modules) {
-        int listIndex = 0;
-        if (modules.size() < 1) {
-            System.out.println(CURRENT_MOD_LIST_EMPTY);
-            System.out.println(LINE);
-        } else {
-            System.out.println(LIST_CURRENT_MESSAGE);
-            System.out.println(LINE);
-            for (Module module : modules) {
-                listIndex++;
-                String moduleCode = module.getModuleCode();
-                String moduleName = module.getModuleName();
-                int moduleMCs = module.getModuleMCs();
-                String nusModuleCode = module.getNusModuleCode();
-                String nusModuleName = module.getNusModuleName();
-                int nusModuleMCs = module.getNusModuleMCs();
-                System.out.print(listIndex + ".");
-                System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
-                System.out.print("   maps to ----> ");
-                System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
-            }
-            System.out.println(LINE);
+    public void printAllCurrentModList(ArrayList<Module> modules) {
+        for (int i = 0; i < universities.size(); i++) {
+            University currentUniversity = universities.get(i);
+            int uniID = currentUniversity.getUnivId();
+            printCurrentPuModList(modules, uniID);
+            System.out.println();
         }
     }
 
@@ -255,7 +239,23 @@ public class UI {
         System.out.println(LINE);
     }
 
+    /**
+     * Prints out user added modules of a specified partner university using uniID as identity.
+     * The function first picks out all modules specified to the university selected, and prints out module
+     * information to the user afterwards.
+     *
+     * @param modules ArrayList of all modules that user has selected.
+     * @param uniID Unique partner university ID
+     */
     public void printCurrentPuModList(ArrayList<Module> modules, int uniID) {
+        ArrayList<Module> puModulesToPrint = new ArrayList<>();
+        for (int i = 0; i < modules.size(); i++) {
+            Module currentModule = modules.get(i);
+            int currentModuleUnivId = currentModule.getUnivId();
+            if (currentModuleUnivId == uniID) {
+                puModulesToPrint.add(currentModule);
+            }
+        }
         String universityName = "";
         for (int i = 0; i < universities.size(); i++) {
             University currentUniversity = universities.get(i);
@@ -264,14 +264,14 @@ public class UI {
             }
         }
         int listIndex = 0;
-        if (modules.size() < 1) {
+        if (puModulesToPrint.size() < 1) {
             System.out.println(CURRENT_LIST_PU_EMPTY + universityName);
             System.out.println(LINE);
             System.out.println(LINE);
         } else {
             System.out.println(LIST_CURRENT_PU_MESSAGE + universityName);
             System.out.println(LINE);
-            for (Module module : modules) {
+            for (Module module : puModulesToPrint) {
                 listIndex++;
                 String moduleCode = module.getModuleCode();
                 String moduleName = module.getModuleName();
