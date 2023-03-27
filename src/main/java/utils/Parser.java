@@ -1,6 +1,5 @@
 package utils;
 
-
 import commands.menu.FindDishCommand;
 import commands.staff.AddStaffCommand;
 import commands.staff.ViewStaffCommand;
@@ -10,6 +9,7 @@ import commands.ExitCommand;
 import commands.deadline.AddDeadlineCommand;
 import commands.deadline.ViewDeadlineCommand;
 import commands.deadline.DeleteDeadlineCommand;
+import commands.deadline.FindDeadlineCommand;
 import commands.menu.AddDishCommand;
 import commands.menu.DeleteDishCommand;
 import commands.menu.ViewDishCommand;
@@ -67,6 +67,8 @@ public class Parser {
             return prepareDeleteDeadlineCommand(userInputNoCommand);
         case ViewDeadlineCommand.COMMAND_WORD:
             return prepareViewDeadlineCommand(userInputNoCommand);
+        case FindDeadlineCommand.COMMAND_WORD:
+            return prepareFindDeadlineCommand(userInputNoCommand);
         case AddDishCommand.COMMAND_WORD:
             return prepareAddDishCommand(userInputNoCommand);
         case DeleteDishCommand.COMMAND_WORD:
@@ -267,7 +269,27 @@ public class Parser {
         return new DeleteDeadlineCommand(index);
     }
 
+    /**
+     * Checks for error in the find deadline command, then returns
+     * a find deadline command.
+     *
+     * @param keyword the keyword to search for.
+     * @return the find deadline command.
+     */
+    private Command prepareFindDeadlineCommand(String keyword) {
+        try {
+            if ((keyword.trim()).isEmpty()) {
+                throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_KEYWORD);
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e);
+            return new IncorrectCommand();
+        }
+        return new FindDeadlineCommand((keyword.trim()));
+    }
+    
     private Command prepareDeleteDishCommand(String userInputNoCommand) {
+    
         int indexToRemove = 0;
 
         try {
