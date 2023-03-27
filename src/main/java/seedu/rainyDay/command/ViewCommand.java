@@ -73,23 +73,23 @@ public class ViewCommand extends Command {
      * @return ArrayList of indexes which passed the check
      */
     private ArrayList<Integer> filterBeforeSpecificDateSorted() {
-            Map<Double, ArrayList<Integer>> sortedIndexesInflows = new TreeMap<>();
-            Map<Double, ArrayList<Integer>> sortedIndexesOutflows = new TreeMap<>();
+        Map<Double, ArrayList<Integer>> sortedIndexesInflows = new TreeMap<>();
+        Map<Double, ArrayList<Integer>> sortedIndexesOutflows = new TreeMap<>();
         for (int index = 0; index < userData.getStatementCount(); index++) {
             FinancialStatement currentStatement = userData.getStatement(index);
             double statementValue = currentStatement.getValue();
             String direction = currentStatement.getFlowSymbol();
             LocalDate statementDate = currentStatement.getDate();
             if (statementDate.isAfter(timeLimit) && direction.equals("+")) {
-                if(!sortedIndexesInflows.containsKey(statementValue)) {
+                if (!sortedIndexesInflows.containsKey(statementValue)) {
                     ArrayList<Integer> list = new ArrayList<>();
-                    sortedIndexesInflows.put(statementValue,list);
+                    sortedIndexesInflows.put(statementValue, list);
                 }
                 sortedIndexesInflows.get(statementValue).add(index);
             } else if (statementDate.isAfter(timeLimit) && direction.equals("-")) {
-                if(!sortedIndexesInflows.containsKey(statementValue)) {
+                if (!sortedIndexesInflows.containsKey(statementValue)) {
                     ArrayList<Integer> list = new ArrayList<>();
-                    sortedIndexesOutflows.put(statementValue,list);
+                    sortedIndexesOutflows.put(statementValue, list);
                 }
                 sortedIndexesOutflows.get(statementValue).add(index);
             }
@@ -97,16 +97,16 @@ public class ViewCommand extends Command {
         ArrayList<Integer> filteredIndexes = new ArrayList<>();
 
         for (Map.Entry<Double, ArrayList<Integer>> currentEntry : sortedIndexesInflows.entrySet()) {
-           ArrayList<Integer> currentList = currentEntry.getValue();
-            while(!currentList.isEmpty()) {
+            ArrayList<Integer> currentList = currentEntry.getValue();
+            while (!currentList.isEmpty()) {
                 filteredIndexes.add(currentList.get(0));
                 currentList.remove(0);
             }
         }
-        
+
         for (Map.Entry<Double, ArrayList<Integer>> currentEntry : sortedIndexesOutflows.entrySet()) {
             ArrayList<Integer> currentList = currentEntry.getValue();
-            while(!currentList.isEmpty()) {
+            while (!currentList.isEmpty()) {
                 filteredIndexes.add(currentList.get(0));
                 currentList.remove(0);
             }
