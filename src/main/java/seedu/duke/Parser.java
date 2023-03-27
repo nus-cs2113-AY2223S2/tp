@@ -168,41 +168,47 @@ public class Parser {
 
 
     private Command prepareListPuModulesCommand(String univAbbNameOrIndex, ArrayList<University> universities) {
-        char digitChecker = univAbbNameOrIndex.charAt(0);
+        //char digitChecker = univAbbNameOrIndex.charAt(0);
         String universityAbbName = "";
-        int univIndex = -1;
-        // remember handle exception for numberformatexception use stringtoint instead?
-        if (Character.isDigit(digitChecker)) {
+        int univIndex = 0;
+        boolean isUnivAbbr = false;
+        try {
             univIndex = Integer.parseInt(univAbbNameOrIndex) - 1;
-        } else {
+        } catch (NumberFormatException nfe) {
             universityAbbName = univAbbNameOrIndex;
+            isUnivAbbr = true;
         }
         try {
-            return handleListPuModulesCommand(universities, universityAbbName, univIndex);
+            return handleListPuModulesCommand(universities, universityAbbName, univIndex, isUnivAbbr);
         } catch (InvalidPuException e) {
             return new ExceptionHandleCommand(e);
         }
     }
 
     private Command handleListPuModulesCommand(ArrayList<University> universities,
-                                               String universityAbbName, int univIndex) throws InvalidPuException {
+                                               String universityAbbName, int univIndex, boolean isUnivAbbr) throws InvalidPuException {
         String universityName = "";
         int univID = 0;
-        if (univIndex == -1) {
+        if (isUnivAbbr) { //list [Univ Abbr]
             for (University university : universities) {
                 if (universityAbbName.equalsIgnoreCase(university.getUnivAbbName())) {
                     univID = university.getUnivId();
                     universityName = university.getUnivName();
                 }
             }
+            if (universityName.equals("")) {
+                throw new InvalidPuException(ui.getInvalidPuMessage());
+            }
+            return new ListPuModulesCommand(univID, universityName);
         } else {
-            univID = universities.get(univIndex).getUnivId();
-            universityName = universities.get(univIndex).getUnivName();
+            if (univIndex >= universities.size() || univIndex < 0) {
+                throw new InvalidPuException(ui.getInvalidPuMessage());
+            } else { // list [UnivID]
+                univID = universities.get(univIndex).getUnivId();
+                universityName = universities.get(univIndex).getUnivName();
+            }
+            return new ListPuModulesCommand(univID, universityName);
         }
-        if (univID == 0 && universityName.equals("")) {
-            throw new InvalidPuException(ui.getInvalidPuMessage());
-        }
-        return new ListPuModulesCommand(univID, universityName);
     }
 
     private Command prepareAddModuleCommand(Storage storage, String abbreviationAndCode, ArrayList<Module> allModules,
