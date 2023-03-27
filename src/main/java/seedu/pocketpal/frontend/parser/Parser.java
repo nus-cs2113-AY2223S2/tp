@@ -367,8 +367,8 @@ public class Parser {
     }
 
     private void checkIfPriceContainLetters(String string) throws InvalidArgumentsException {
-        boolean has_letters = string.matches(".*[a-zA-Z]+.*");
-        if (has_letters) {
+        boolean hasLetters = string.matches(".*[a-zA-Z]+.*");
+        if (hasLetters) {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
         }
     }
