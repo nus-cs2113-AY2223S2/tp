@@ -94,6 +94,12 @@ public class EventList {
 
         Event newEvent =
                 new Event(description, startInfo.time, endInfo.time, startInfo.hasInfo, endInfo.hasInfo);
+
+        if (!canAddNewEvent(newEvent)) {
+            throw new NPExceptions(
+                    "Slot " + startTime + " - " + endTime + " on " +
+                            startDay + " is already occupied. You can't attend this class.");
+        }
         taskList.add(newEvent);
         listSize++;
     }
@@ -182,6 +188,18 @@ public class EventList {
     public void deleteAll() {
         this.taskList = new ArrayList<Schedule>();
         this.listSize = 0;
+    }
+
+    public boolean canAddNewEvent(Event newEvent) {
+        boolean overlap = false;
+        for (Schedule event : taskList) {
+            if (newEvent.getStartTime().isBefore(event.getEndTime())
+                    && newEvent.getEndTime().isAfter(event.getStartTime())) {
+                overlap = true;
+                break;
+            }
+        }
+        return !overlap;
     }
 }
 
