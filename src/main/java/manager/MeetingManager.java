@@ -50,5 +50,22 @@ public class MeetingManager {
         }
 
     }
+    public static void findMeeting(String keyword, TextUi ui){
+        ArrayList<Meeting> meetingFound=new ArrayList<>();
+        for(Meeting m:meetings){
+            if( m.getIssue().contains(keyword)){
+                meetingFound.add(m);
+            }
+        }
+        if(meetingFound.isEmpty()){
+            ui.printMessage(Messages.MESSAGE_MEETING_NOT_FOUND);
+        }
+        else{
+            ui.printMessage(Messages.MESSAGE_MEETING_FOUND);
+            for(Meeting n:meetingFound){
+                ui.printMessage(n.getIssue());
+            }
+        }
 
+    }
 }
