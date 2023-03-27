@@ -3,11 +3,13 @@ package data;
 
 import parser.Parser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ExpenseList {
-    public ArrayList<Expense> expenseList = new ArrayList<>();
+public class ExpenseList implements Serializable {
+
     protected Parser parser = new Parser();
+    private ArrayList<Expense> expenseList = new ArrayList<>();
 
 
     public ArrayList<Expense> getExpenseList() {

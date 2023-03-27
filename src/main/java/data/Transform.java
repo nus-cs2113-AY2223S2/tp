@@ -37,7 +37,7 @@ public class Transform {
             return (T) amountValue;
 
         case "cur":
-            return (T) Currency.checkCurrency(description);
+            //return (T) Currency.checkCurrency(description);
 
         default:
             return (T) description;

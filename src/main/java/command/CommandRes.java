@@ -2,6 +2,7 @@ package command;
 
 import data.Expense;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 
@@ -43,6 +44,11 @@ public class CommandRes {
     public CommandRes(String actionDone, Expense expense, String numberOfExpenses) {
         System.out.println(MESSAGE_DIVIDER + '\n' + actionDone + '\n' +
                 TAB + expense.toString() + '\n' + numberOfExpenses + '\n' + MESSAGE_DIVIDER);
+    }
+
+    public CommandRes(BigDecimal total) {
+        System.out.println(MESSAGE_DIVIDER + '\n' + "Your total expenses add up to:" + '\n' +
+                TAB + "SGD" + total.toString() + '\n' + MESSAGE_DIVIDER);
     }
 
     /**

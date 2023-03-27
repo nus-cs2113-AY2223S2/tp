@@ -8,16 +8,34 @@ participant "parserAdd:ParserAdd" as ParserAdd
 participant "expenseList:ExpenseList" as ExpenseList
 participant ":CommandAdd" as CommandAdd
  -> Duke: input
+Activate Duke
 Duke -> Parser: extractCommandKeyword(input)
+Activate Parser
 Parser --> Duke
-Duke -> CommandAdd: execute()
-CommandAdd -> Parser: extractAddParameters(input)
-Parser -> ParserAdd: parseInput(input)
-ParserAdd --> Parser: parsedInput
-Parser --> CommandAdd: parsedInput
-CommandAdd -> ExpenseList: getExpenseList()
-ExpenseList --> CommandAdd: expenseList
-CommandAdd -> ExpenseList: add(Expense)
-ExpenseList --> CommandAdd
+Deactivate Parser
+Duke -> CommandAdd**:
+Activate CommandAdd
 CommandAdd --> Duke
+Deactivate CommandAdd
+Duke -> CommandAdd: execute()
+Activate CommandAdd
+CommandAdd -> Parser: extractAddParameters(input)
+Activate Parser
+Parser -> ParserAdd: parseInput(input)
+Activate ParserAdd
+ParserAdd --> Parser: parsedInput
+Deactivate ParserAdd
+Parser --> CommandAdd: parsedInput
+Deactivate Parser
+CommandAdd -> ExpenseList: getExpenseList()
+Activate ExpenseList
+ExpenseList --> CommandAdd: expenseList
+Deactivate ExpenseList
+CommandAdd -> ExpenseList: add(Expense)
+Activate ExpenseList
+ExpenseList --> CommandAdd
+Deactivate ExpenseList
+CommandAdd --> Duke
+Deactivate CommandAdd
+Destroy CommandAdd
 @enduml

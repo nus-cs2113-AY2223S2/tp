@@ -19,4 +19,13 @@ class ParserTest {
         assertEquals(3, index);
     }
 
+    @Test
+    void extractSortBy_successful() {
+        String sortBy = parser.extractSortBy("delete C");
+        assertEquals("C", sortBy);
+        sortBy = parser.extractSortBy("delete");
+        assertEquals("", sortBy);
+
+    }
+
 }
