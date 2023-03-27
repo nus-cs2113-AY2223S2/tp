@@ -20,5 +20,4 @@ For more information on how to use Magnus Stock, please refer to the following d
 
 We are a team of CS2113 developers dedicated to creating high-quality software. For more information on our team and our projects, please refer to the [About Us](AboutUs.md) document.
 
-<link rel="stylesheet" type="text/css" href="style.css">
 ---
