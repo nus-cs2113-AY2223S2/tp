@@ -173,7 +173,7 @@ public class Ui {
     private static final String INVALID_CATEGORY_FORMAT = "Wrong/Incomplete Format! Please enter category commands " +
             "as shown below.\n" + "List all categories: cat list\n" + "List all items in a category: cat [Category]\n"+
             "Edit an item's category: cat upc/[UPC] [Category]";
-    private static final String INVALID_EDIT_CATEGORY_FORMAT = "Wrong/Incomplete Format! Please edit category in the " +
+    private static final String INVALID_EDIT_CATEGORY_FORMAT = "Please edit category in the " +
             "following format:\n cat upc/[UPC] [Category]";
     private static final String BLANK_CATEGORY = "Category cannot be left blank!";
     private static final int CATEGORY_COL_WIDTH = 15;
@@ -432,32 +432,12 @@ public class Ui {
     private static String printRow(String category, ArrayList<Item> items, int[] columnWidths) {
         String[] categoryLines = wrapText(category, CATEGORY_COL_WIDTH);
         ArrayList<String> itemLines = new ArrayList<>();
-        //String[] itemListLines = wrapText(items.get(0).getName() + ": " + items.get(0).getUpc(), ITEMS_COL_WIDTH);
-        //int stringArrLength = itemListLines.length;
         StringBuilder row = new StringBuilder();
-        //stringArrLength = itemListLines.length;
+
         for (Item item : items) {
             String name = item.getName();
             String upc = item.getUpc();
             itemLines.add(name + ":" + upc);
-//            String[] newItemLine = wrapText(name + ": " + upc, ITEMS_COL_WIDTH);
-//            for (String x : newItemLine) {
-//                itemListLines[stringArrLength] = x;
-//                stringArrLength += 1;
-//                itemListLines[stringArrLength] = "\n";
-//                stringArrLength += 1;
-//            }
-//            String oldItemsString = Arrays.toString(itemListLines).replace("\\[", "");
-//            oldItemsString = oldItemsString.replace("]", "");
-//            //oldItemsString = oldItemsString.replaceAll(",", "");
-//            String newItemString = Arrays.toString(newItemLine); //.replaceAll("\\[", "");
-//            //newItemString = newItemString.replaceAll("]", "");
-//            itemListLines = new String[]{oldItemsString, newItemString};
-//            System.out.println(itemListLines.length);
-//            System.out.println(newItemLine.length);
-//            System.arraycopy(newItemLine, 0, itemListLines, itemListLines.length,
-//                    itemListLines.length+newItemLine.length-2);//new String[] {oldItemsString, newItemString};
-
         }
         String[] itemListLines = wrapText(itemLines.toString(), ITEMS_COL_WIDTH);
         int rowHeight = findRowHeight(categoryLines, itemListLines);
@@ -958,47 +938,48 @@ public class Ui {
         System.out.println(alertTable);
         printLine();
     }
-    public static void printHistory(ArrayList<Item> results){
+
+    public static void printHistory(ArrayList<Item> results) {
         System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
         System.out.println(ITEM_ADDED_AT + results.get(0).getDateTimeString());
         System.out.println(results.get(0).toString());
         System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
-        for(int i = 1; i<results.size(); i++){
+        for (int i = 1; i < results.size(); i++) {
             System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
             System.out.println(AT + results.get(i).getDateTimeString() + ANSI_CYAN);
-            ArrayList<Types.EditType> edits = results.get(i-1).getEditTypes(results.get(i));
-            for(Types.EditType editType: edits){
-                switch(editType){
+            ArrayList<Types.EditType> edits = results.get(i - 1).getEditTypes(results.get(i));
+            for (Types.EditType editType : edits) {
+                switch (editType) {
                 case RECATEGORIZE:
                     System.out.println(CATEGORY_CHANGED_TO + results.get(i).getCategory());
                     break;
                 case SOLD:
-                    System.out.print(SOLD + (results.get(i-1).getQuantity()-results.get(i).getQuantity()));
+                    System.out.print(SOLD + (results.get(i - 1).getQuantity() - results.get(i).getQuantity()));
                     System.out.println(ITEMS);
                     break;
                 case BOUGHT:
-                    System.out.print(BOUGHT + (results.get(i).getQuantity()-results.get(i-1).getQuantity()));
+                    System.out.print(BOUGHT + (results.get(i).getQuantity() - results.get(i - 1).getQuantity()));
                     System.out.println(ITEMS);
                     break;
                 case RENAME:
                     System.out.println(RENAMED_TO + results.get(i).getName());
                     break;
                 case PRICE_DECREASE:
-                    System.out.print(PRICE_DECREASED_FROM + results.get(i-1).getPrice());
+                    System.out.print(PRICE_DECREASED_FROM + results.get(i - 1).getPrice());
                     System.out.println(TO_DOLLAR_SIGN + results.get(i).getPrice());
                     break;
                 case PRICE_INCREASE:
-                    System.out.print(PRICE_INCREASED_FROM + results.get(i-1).getPrice());
+                    System.out.print(PRICE_INCREASED_FROM + results.get(i - 1).getPrice());
                     System.out.println(TO_DOLLAR_SIGN + results.get(i).getPrice());
                     break;
                 case CHANGE_TAG:
-                    ArrayList<String> tags = results.get(i-1).getTags();
-                    if(!tags.isEmpty()){
+                    ArrayList<String> tags = results.get(i - 1).getTags();
+                    if (!tags.isEmpty()) {
                         System.out.print(TAGS_CHANGED_TO);
-                        for(int j = 0; j < tags.size()-1; j++){
+                        for (int j = 0; j < tags.size() - 1; j++) {
                             System.out.print(tags.get(j) + ", ");
                         }
-                        System.out.println(tags.get(tags.size()-1));
+                        System.out.println(tags.get(tags.size() - 1));
                     }
                     break;
                 default:
@@ -1007,7 +988,7 @@ public class Ui {
             }
             System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
         }
-        if(results.size()>1){
+        if (results.size() > 1) {
             System.out.println(ANSI_ORANGE + LINE);
             System.out.println(ANSI_RESET + results.get(results.size() - 1).toString());
             System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
@@ -1025,7 +1006,6 @@ public class Ui {
                 " is above the maximum level of " + ANSI_RED + alertLevel + ANSI_YELLOW + "." + ANSI_RESET);
         printLine();
     }
-
 
     public static void printCategoryDetails(Item oldItem, Item updatedItem) {
         printLine();
@@ -1045,15 +1025,9 @@ public class Ui {
         printLine();
     }
 
-    public static void printInvalidEditCategoryCommand() {
-        printLine();
-        System.out.println(ANSI_RED + INVALID_EDIT_CATEGORY_FORMAT + ANSI_RESET);
-        printLine();
-    }
-
     public static void printBlankCategory() {
         printLine();
-        System.out.println(ANSI_RED + BLANK_CATEGORY + ANSI_RESET);
+        System.out.println(ANSI_RED + BLANK_CATEGORY + "\n" + INVALID_EDIT_CATEGORY_FORMAT + ANSI_RESET);
         printLine();
     }
 

@@ -9,7 +9,7 @@ alt rawInput length is not one
     ref over HistoryParser
         handle input error
     end ref
-    HistoryParser -> User
+    HistoryParser --> User
 end
 HistoryParser -> HistoryCommand**
 activate HistoryCommand
@@ -17,7 +17,7 @@ HistoryParser -> HistoryCommand: run()
 HistoryCommand -> HistoryCommand: getHistoryResults()
 activate HistoryCommand #cyan
 alt upcCode does not belong to any item
-    HistoryCommand -> HistoryParser: null
+    HistoryCommand --> HistoryCommand: null
 end
 ref over HistoryCommand
     retrieve history from inventory
@@ -75,6 +75,7 @@ end
 return
 end
 return
+destroy HistoryCommand
 return
 destroy HistoryParser
 @enduml

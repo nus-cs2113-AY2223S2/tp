@@ -28,7 +28,7 @@ group sd [filter price]
         end ref
     end
     alt no filtered items
-        FilterCommand -> FilterCommand: null
+        FilterCommand --> FilterCommand: null
     end
     return filteredItems
     return null or filteredItems

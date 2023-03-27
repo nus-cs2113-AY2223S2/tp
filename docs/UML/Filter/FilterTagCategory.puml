@@ -18,7 +18,7 @@ group sd [filter category or tag]
             end
         end
         alt filteredItems is empty
-            FilterCommand -> FilterCommand: null
+            FilterCommand --> FilterCommand: null
         end
         return filteredItems
     else mode is "f/tag"
@@ -32,7 +32,7 @@ group sd [filter category or tag]
             end
         end
         alt filteredItems is empty
-            FilterCommand -> FilterCommand: null
+            FilterCommand --> FilterCommand: null
         end
         return filteredItems
     end

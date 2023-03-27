@@ -1,6 +1,7 @@
 package seedu.duke.utils.parsers;
 
 import seedu.duke.objects.Inventory;
+import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 
 public class AutoSaveParser extends Parser {
@@ -11,11 +12,11 @@ public class AutoSaveParser extends Parser {
 
     public void run() {
         if (rawInput.equals("on")) {
-            session.setAutoSave(true);
-            session.writeSession(inventory);
+            SessionManager.setAutoSave(true);
+            SessionManager.writeSession(inventory);
             Ui.printAutoSaveEnabled();
         } else if (rawInput.equals("off")) {
-            session.setAutoSave(false);
+            SessionManager.setAutoSave(false);
             Ui.printAutoSaveDisabled();
         } else {
             Ui.printInvalidAutoSaveInput();

@@ -45,7 +45,6 @@ public class CategoryCommand extends Command {
             }
             String categoryToAdd = category.toLowerCase();
             checkExistingCategory(item);
-            System.out.println("updating item cat");
             addItemToCategory(categoryToAdd, item);
             item.setCategory(categoryToAdd);
         } catch (CategoryFormatException cfe) {
@@ -55,17 +54,19 @@ public class CategoryCommand extends Command {
 
     private void checkExistingCategory(Item item) {
         String oldCategory = item.getCategory().toLowerCase();
-        categoryHash.get(oldCategory).remove(item);
-        if (categoryHash.get(oldCategory).isEmpty()) {
-            categoryHash.remove(oldCategory);
+        try {
+            categoryHash.get(oldCategory).remove(item);
+            if (categoryHash.get(oldCategory).isEmpty()) {
+                categoryHash.remove(oldCategory);
+            }
+        } catch (NullPointerException e) {
+            Ui.printInvalidCategory();
         }
-        System.out.println("check cat existinggg");
     }
 
 
 
     private void addItemToCategory(String categoryToAdd, Item item) {
-        System.out.println("here comes adding");
         if (!categoryHash.containsKey(categoryToAdd)) {
             ArrayList<Item> newCategoryItemList = new ArrayList<>();
             newCategoryItemList.add(item);
@@ -113,7 +114,6 @@ public class CategoryCommand extends Command {
             if (categoryCommandType[0].startsWith("list")) {
                 listAllCategory();
             } else if (categoryCommandType[0].startsWith("upc/")) {
-                System.out.println("running categorising");
                 categoriseItem();
             } else {
                 findCategory(categoryCommandType[0]);

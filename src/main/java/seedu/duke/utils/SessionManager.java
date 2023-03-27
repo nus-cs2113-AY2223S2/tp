@@ -2,13 +2,16 @@ package seedu.duke.utils;
 
 import seedu.duke.objects.Inventory;
 
+/**
+ * Class to manage the session of the program and its storage features.
+ */
 public class SessionManager {
     private static boolean isAutoSaveActive = true;
 
     public SessionManager() {
     }
 
-    public static void writeSession(Inventory inventory) {
+    public static void writeSession(final Inventory inventory) {
         Storage.writeCSV(inventory);
     }
 
@@ -20,8 +23,8 @@ public class SessionManager {
         return isAutoSaveActive;
     }
 
-    public void setAutoSave(boolean isAutoSaveActive) {
-        this.isAutoSaveActive = isAutoSaveActive;
+    public static void setAutoSave(final boolean isAutoSaveActive) {
+        SessionManager.isAutoSaveActive = isAutoSaveActive;
     }
 
     public static String inventoryDataFileExist() {
