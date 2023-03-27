@@ -2,7 +2,7 @@ package seedu.apollo.command.task;
 
 import org.junit.jupiter.api.Test;
 import seedu.apollo.calendar.Calendar;
-import seedu.apollo.exception.task.InvalidDeadline;
+
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.task.TaskList;
@@ -10,11 +10,10 @@ import seedu.apollo.task.ToDo;
 import seedu.apollo.ui.Ui;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.rmi.UnexpectedException;
 
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ModifyCommandTest {
 
