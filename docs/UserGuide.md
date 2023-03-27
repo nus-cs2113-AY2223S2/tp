@@ -13,6 +13,8 @@ Duck is a **desktop app for managing tasks and deadlines, optimised for use via 
     * [Deleting a task :](#deleting-a-task--delete) `delete <task number> `
     * [Designate a priority to a given task :](#designate-a-task-priority--priority-task_number-priority) 
             * `priority <task number> <priority>`   
+    * [List tasks of low/medium/high priority :](#listing-all-low-priority-tasks--low_priority) `low_priority`/`medium_priority`/`high_priority`
+    * [List tasks in priority order:](#listing-all-tasks-arranged-by-priority--priority_list) `priority_list`
     * [Purge expired tasks :](#purge-expired-tasks--purge) `purge`
     * [Clearing all tasks (including datafile) :](#clearing-tasks-from-storage-clear) `clear `
     * Designate a given task to be recurring **[TO BE ADDED]** : 
