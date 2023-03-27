@@ -1,6 +1,7 @@
 package seedu.duke.logic.commandhandler;
 
 //@@author ChubbsBunns
+
 /**
  * Contains all the possible commands that the user can input
  */
@@ -10,8 +11,6 @@ public interface CommandList {
     String FILTERS_COMMAND = "filters";
     String EXIT_COMMAND = "exit";
     String BYE_COMMAND = "bye";
-    String READ_SAMPLE_COMMAND = "readSample";
-    String WRITE_SAMPLE_COMMAND = "writeSample";
     String START_COMMAND = "start";
     String CURRENT_COMMAND = "current";
     String FINISH_COMMAND = "finish";

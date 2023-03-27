@@ -17,6 +17,7 @@ public class ExerciseSessionCommandHandler implements CommandList {
     private static final boolean INCOMPLETE_EXERCISE = false;
 
     //@@ChubbsBunns
+
     /**
      * This checks with the user whether they wish to exit a Fitness Duke
      * session while an exercise is ongoing.
@@ -24,9 +25,9 @@ public class ExerciseSessionCommandHandler implements CommandList {
      *
      * @return Returns true if the user wants to exit, false otherwise
      */
-    private static boolean confirmExitDuringWorkout() {
+    private static boolean confirmExitDuringWorkout () {
         System.out.println("Are you sure you want to exit? You have a workout session ongoing." +
-                "\n You will lose your progress!" + "\n Type in 'y' for yes or 'n' for no");
+                               "\n You will lose your progress!" + "\n Type in 'y' for yes or 'n' for no");
         Scanner in = new Scanner(System.in);
         while (true) {
             String input = in.nextLine();
@@ -41,8 +42,8 @@ public class ExerciseSessionCommandHandler implements CommandList {
         }
     }
 
-
     //@@ChubbsBunns
+
     /**
      * This class takes in parsed user input and handles all user commands when an
      * exercise is ongoing
@@ -51,17 +52,17 @@ public class ExerciseSessionCommandHandler implements CommandList {
      * This is due to the motive of pushing the user to focus and complete their
      * exercise
      *
-     * @param userCommands         This refers to the commands given by the user
-     * @param ui                   This allows us to output messages
-     * @param userCareerData       This keeps track and allows logging of all user
-     *                             data
+     * @param userCommands This refers to the commands given by the user
+     * @param ui This allows us to output messages
+     * @param userCareerData This keeps track and allows logging of all user
+     *     data
      * @param exerciseStateHandler This allows us to know whether an exercise is
-     *                             ongoing or not
+     *     ongoing or not
      */
 
-    public void handleExerciseSessionUserCommands(String[] userCommands, Ui ui,
-                                                  UserCareerData userCareerData,
-                                                  ExerciseStateHandler exerciseStateHandler) {
+    public void handleExerciseSessionUserCommands (String[] userCommands, Ui ui,
+                                                   UserCareerData userCareerData,
+                                                   ExerciseStateHandler exerciseStateHandler) {
         try {
             switch (userCommands[0]) {
             case GENERATE_COMMAND:
@@ -80,9 +81,6 @@ public class ExerciseSessionCommandHandler implements CommandList {
                     System.out.println("You got this! Finish your exercise session!");
                 }
                 break;
-            case READ_SAMPLE_COMMAND:
-            case WRITE_SAMPLE_COMMAND:
-                throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_TEST_SAMPLE.toString());
             case START_COMMAND:
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_START_COMMAND.toString());
             case CURRENT_COMMAND:
@@ -98,7 +96,7 @@ public class ExerciseSessionCommandHandler implements CommandList {
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_HISTORY_COMMAND.toString());
             case EXERCISE_DATA_COMMAND:
                 HashMap<String, Integer> userExerciseDataMap = UserExerciseData
-                        .addUserExerciseHistory(userCareerData);
+                    .addUserExerciseHistory(userCareerData);
                 ui.printUserExerciseHistory(userExerciseDataMap);
                 break;
             default:

@@ -42,8 +42,8 @@ public class JsonUserPlansStorage implements UserPlansStorage {
      */
     @Override
     public void writeToJson (UserPlan userPlan) throws DukeError {
-        boolean writeStatus = jsonUserPlansWriter.saveToJson(userPlansFilePath, userPlan);
-        assert writeStatus : "An exception should be thrown, this part of code should not be run";
+        boolean isSaved = jsonUserPlansWriter.saveToJson(userPlansFilePath, userPlan);
+        assert isSaved : "An exception should be thrown, this part of code should not be run";
         logger.log(Level.INFO, "User Plan has been written to file");
 
     }

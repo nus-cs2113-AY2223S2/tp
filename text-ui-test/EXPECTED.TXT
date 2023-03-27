@@ -15,9 +15,12 @@ These are some commands available:
 	Show all plans
 [planner]
 	Enter workout plan editor
+[quick]
+	Generate a planned exercise: quick PLAN_NAME x
+	PLAN_NAME needs has to be in your planner, and x is the number of exercises
 [find]
 	finds all relevant exercises based on the keyword : find [keyword]
-[bye]
+[exit]
 	End the program
 ________________________________________
     ____             __

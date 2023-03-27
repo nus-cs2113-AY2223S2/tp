@@ -9,6 +9,7 @@ import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.Session;
 
 import java.util.ArrayList;
+//@@author ChubbsBunns
 
 /**
  * This class handles the functions of the Fitness Duke
