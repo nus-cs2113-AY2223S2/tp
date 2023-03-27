@@ -11,39 +11,41 @@ rainyDay, from people who are just starting out to advanced users looking for ex
 ## Content Page
 
 <!-- TOC -->
+
 * [rainyDay User Guide](#rainyday-user-guide)
-  * [Introduction](#introduction)
-  * [Content Page](#content-page)
-  * [Acknowledgement](#acknowledgement)
-  * [How to use the user guide](#how-to-use-the-user-guide)
-  * [Quick Start](#quick-start)
-  * [Features Overview](#features-overview)
-  * [Features](#features)
-    * [Viewing help](#viewing-help)
-    * [Adding a transaction](#adding-a-transaction)
-      * [Simple Usage](#simple-usage)
-      * [Advanced Usage](#advanced-usage)
-    * [Viewing the transactions](#viewing-the-transactions)
-    * [Deleting a transaction](#deleting-a-transaction)
-    * [Filter statements](#filter-statements)
-    * [Editing a transaction](#editing-a-transaction)
-    * [Setting a Monthly Budget](#setting-a-monthly-budget)
-    * [Adding a shortcut](#adding-a-shortcut)
-    * [Using a shortcut](#using-a-shortcut)
-    * [Viewing a shortcut](#viewing-a-shortcut)
-    * [Deleting a shortcut](#deleting-a-shortcut)
-    * [Ignoring an entry](#ignoring-an-entry)
-    * [Saving the data](#saving-the-data)
-      * [Where is my saved file located?](#where-is-my-saved-file-located)
-    * [Loading saved data](#loading-saved-data)
-    * [Exporting to CSV](#exporting-to-csv)
-      * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
-      * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
-    * [Exiting the application](#exiting-the-application)
-  * [FAQ](#faq)
-  * [Command Summary](#command-summary)
-  * [An Example Usage of rainyDay](#an-example-usage-of-rainyday)
-  * [Glossary](#glossary)
+    * [Introduction](#introduction)
+    * [Content Page](#content-page)
+    * [Acknowledgement](#acknowledgement)
+    * [How to use the user guide](#how-to-use-the-user-guide)
+    * [Quick Start](#quick-start)
+    * [Features Overview](#features-overview)
+    * [Features](#features)
+        * [Viewing help](#viewing-help)
+        * [Adding a transaction](#adding-a-transaction)
+            * [Simple Usage](#simple-usage)
+            * [Advanced Usage](#advanced-usage)
+        * [Viewing the transactions](#viewing-the-transactions)
+        * [Deleting a transaction](#deleting-a-transaction)
+        * [Filter statements](#filter-statements)
+        * [Editing a transaction](#editing-a-transaction)
+        * [Setting a Monthly Budget](#setting-a-monthly-budget)
+        * [Adding a shortcut](#adding-a-shortcut)
+        * [Using a shortcut](#using-a-shortcut)
+        * [Viewing a shortcut](#viewing-a-shortcut)
+        * [Deleting a shortcut](#deleting-a-shortcut)
+        * [Ignoring an entry](#ignoring-an-entry)
+        * [Saving the data](#saving-the-data)
+            * [Where is my saved file located?](#where-is-my-saved-file-located)
+        * [Loading saved data](#loading-saved-data)
+        * [Exporting to CSV](#exporting-to-csv)
+            * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
+            * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
+        * [Exiting the application](#exiting-the-application)
+    * [FAQ](#faq)
+    * [Command Summary](#command-summary)
+    * [An Example Usage of rainyDay](#an-example-usage-of-rainyday)
+    * [Glossary](#glossary)
+
 <!-- TOC -->
 
 ## Acknowledgement
@@ -85,15 +87,15 @@ Please note the following about the format of commands given under each [feature
 3. Move the "rainyDay.jar" file to the folder of your choice by doing the following steps:
     1. Locate the "rainyDay.jar" file in your "Downloads" folder
     2. Right-click the "rainyDay.jar" file and select cut from the table that appears <br>
-       ![cut.png](cut.png)
+       ![cut.png](images/UserGuide/cut.png)
     3. Go to the folder of your choice
     4. Right-click in the file window and select paste as seen below <br>
-       ![paste.png](paste.png)
+       ![paste.png](images/UserGuide/paste.png)
 4. In order to run "rainyDay.jar" on the command line, we have to do the following:
     1. Open the folder containing "rainyDay.jar" and click on the address bar <br>
-       ![folderpath.png](folderpath.png)
+       ![folderpath.png](images/UserGuide/folderpath.png)
     2. Type the words "cmd" in the folder path in the address bar <br>
-       ![cmd.png](cmd.png)
+       ![cmd.png](images/UserGuide/cmd.png)
     3. Hit the "enter" key. Your Command Prompt should now be open in the folder containing "rainyDay.jar".
 5. Type `java -jar rainyDay.jar` and press Enter on your keyboard to start the application
 
@@ -126,7 +128,7 @@ the possible commands and their respective structures!
 Format: `help`
 
 The table below will be shown: <br>
-![help.png](help.png)
+![help.png](images/UserGuide/help.png)
 
 For more information on each individual command, the help command can also provide a more detailed guide, including
 details such as input constraints and examples for you to refer to
@@ -134,7 +136,7 @@ details such as input constraints and examples for you to refer to
 Format: `help {COMMAND}`
 
 For instance, the table below are details for the add command: <br>
-![detailedhelp.png](detailedhelp.png)
+![detailedhelp.png](images/UserGuide/detailedhelp.png)
 
 ### Adding a transaction
 
@@ -209,7 +211,7 @@ Format: `view {TIMESPAN} {-sort}`
 
 > 💡**Tip:** To view all entries you can use -all in place of a specific time in TIMESPAN
 
-![view.png](view.png)
+![view.png](images/UserGuide/view.png)
 
 ### Deleting a transaction
 
@@ -224,14 +226,14 @@ Format: `delete [INDEX]`
 Example of usage:
 
 After requesting to view the transactions from rainyDay, the following is shown to you: <br>
-![delete.png](delete.png)
+![delete.png](images/UserGuide/delete.png)
 To delete the transaction with the description "lunch at hawker centre", provide the command:
 
 * `delete 2`
 
 The transaction with the description "lunch at hawker centre" will be deleted, and the transactions shown to you
 subsequently after requesting to view the transactions will be as such: <br>
-![delete1.png](delete1.png)
+![delete1.png](images/UserGuide/delete1.png)
 
 ### Filter statements
 
@@ -251,17 +253,17 @@ Format : `filter [FLAG] {FIELD}`
 Example of usage:
 
 After requesting to view the transactions from rainyDay, the following is shown to you:
-![viewForFilter.png](viewForFilter.png)
+![viewForFilter.png](images/UserGuide/viewForFilter.png)
 
 Suppose you want to find out transactions related to chicken, you can use this command:
 
 - `filter -d chicken`
-  ![filterChicken.png](filterChicken.png)
+  ![filterChicken.png](images/UserGuide/filterChicken.png)
 
 Suppose you want to check your outflows only, you can use this command:
 
 - `filter -out`
-  ![filterOutflow.png](filterOutflow.png)
+  ![filterOutflow.png](images/UserGuide/filterOutflow.png)
 
 > 💡**Tip:** Multiple flags may be used at once but must be in this order:
 >
@@ -271,7 +273,7 @@ Suppose you want to check your outflows only, you can use this command:
 >
 > `filter -c Food and Drinks -date 26/03/2023`
 >
-> ![FilterMultipleFlags.png](FilterMultipleFlags.png)
+> ![FilterMultipleFlags.png](images/UserGuide/FilterMultipleFlags.png)
 
 ### Editing a transaction
 
@@ -293,17 +295,17 @@ Format : `edit [INDEX] [ADDCOMMAND]` or `edit [INDEX] [FLAG] {NEWFIELD}`
 Example of usage:
 
 After requesting to view the transactions from rainyDay, the following is shown to you:
-![viewForFilter.png](viewForFilter.png)
+![viewForFilter.png](images/UserGuide/viewForFilter.png)
 
 For example, you realised you made a mistake in the category of entry 1 and want to replace the category of entry 1 with
 'Food and Drinks' instead of 'Food', you can use this command:
 `edit 1 -c Food and Drinks`
-![EditCategory.png](EditCategory.png)
+![EditCategory.png](images/UserGuide/EditCategory.png)
 
 However, if you want to edit multiple fields of an entry, and instead of deleting and adding a new entry, you can use
 this command:
 `edit 2 add -out Beef noodles $15 -c Food -date 22/03/2023`
-![EditMultipleEntries.png](EditMultipleEntries.png)
+![EditMultipleEntries.png](images/UserGuide/EditMultipleEntries.png)
 
 ### Setting a Monthly Budget
 
@@ -317,16 +319,16 @@ Format : `setbudget GOAL`
 For example, if you would like to set a monthly budget goal of $1000, use the command below:<br>
 `setbudget 1000`
 
-![setbudgetgoal.png](setbudgetgoal.png)
+![setbudgetgoal.png](images/UserGuide/setbudgetgoal.png)
 
 An additional message will accompany new expenses on how much you have spent for the month!
 
-![messgewithsetbudget.png](messgewithsetbudget.png)
+![messgewithsetbudget.png](images/UserGuide/messgewithsetbudget.png)
 
 If at any point of time you would like to remove this feature, simply set the goal to $0<br>
 `setbudget 0`
 
-![unsetbudgetgoal.png](unsetbudgetgoal.png)
+![unsetbudgetgoal.png](images/UserGuide/unsetbudgetgoal.png)
 
 ### Adding a shortcut
 
@@ -360,7 +362,7 @@ all you have to do is input the name of the shortcut as follows.
 `FavLunch`
 
 Using the shortcut will allow you to add the same entry for noodles with a shorter command!
-![shortcutusage](shortcutusage.png)
+![shortcutusage](images/UserGuide/shortcutusage.png)
 
 ### Viewing a shortcut
 
@@ -373,7 +375,7 @@ Example of Usage:
 
 The output will look something like this:
 
-![viewshortcut.png](viewshortcut.png)
+![viewshortcut.png](images/UserGuide/viewshortcut.png)
 
 ### Deleting a shortcut
 
@@ -409,13 +411,13 @@ Example of Usage:
 
 You have received a one-time payment from government GST refunds. You would like to keep track of it however do not want
 to include it in your budget calculations. After executing the add command, input view to find its index.
-![ignore_view.png](ignore_view.png)
+![ignore_view.png](images/UserGuide/ignore_view.png)
 
 You can then execute the following command to ignore the entry:
 
 `ignore 6`
 
-![ignore.png](ignore.png)
+![ignore.png](images/UserGuide/ignore.png)
 
 ### Saving the data
 
@@ -449,13 +451,14 @@ been configured in step 3 of the [Quick Start section](#quick-start). The CSV fi
 #### How to view the CSV file using Microsoft Excel?
 
 1. Open your Microsoft Excel application and open a blank workbook.
-2. Click on the *Data* tab found at the top and click on *From Text/CSV*.![csvtoexcel.csv](csvtoexcel.png)
+2. Click on the *Data* tab found at the top and click on *From
+   Text/CSV*.![csvtoexcel.csv](images/UserGuide/csvtoexcel.png)
 3. Navigate to the CSV file as directed in
    the [where to locate exported CSV file section](#where-to-locate-exported-csv-file).
 4. Double-click on the CSV file and click the *load* button.
 5. With steps 1-4, your financial statements should be viewable in a nicely formatted table as shown
    below.
-   ![statementstable.png](statementstable.png)
+   ![statementstable.png](images/UserGuide/statementstable.png)
 
 ### Exiting the application
 
