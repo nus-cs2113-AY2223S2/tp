@@ -12,11 +12,20 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * Format of event details in txt file:
+ * Event Name|Venue Index
+ * where venue index is the index of the venue inside the pre-determined venue list
+ */
+
+/**
+ * Storage that handles the data from the event details text file
+ */
 public class EventDetailsStorage extends Storage{
 
     private static final String filePath = "data/eventDetails.txt";
 
-    public static void eventDetailsInit(Event event, VenueList venueList, Ui ui) {
+    public static void eventDetailsInit(Event event, VenueList venueList) {
         try {
             checkFileAccess(filePath);
             load(event, venueList);
@@ -31,6 +40,15 @@ public class EventDetailsStorage extends Storage{
             updateFile(event);
         }
     }
+
+    /**
+     * Loads event details with data from event details save file if it exists
+     *
+     * @throws FileNotFoundException if error occurs due to no access to the text file
+     * @throws NoSuchElementException if error occurs due to no next line found
+     * @throws InvalidIndexException if error occurred due to invalid index
+     * @throws NumberFormatException if error occurred due to the not reading a number when expected
+     */
     public static void load(Event event, VenueList venueList) throws FileNotFoundException,
             NoSuchElementException, InvalidIndexException, NumberFormatException {
         File file = new File(filePath);
@@ -46,6 +64,11 @@ public class EventDetailsStorage extends Storage{
         s.close();
     }
 
+    /**
+     * Updates event details text file with both event name and venue index
+     *
+     * @throws IOException if error occurred during file writing
+     */
     public static void updateFile(Event event, int indexOfVenue) {
         try {
             String eventName = event.getEventName();
@@ -56,6 +79,11 @@ public class EventDetailsStorage extends Storage{
         }
     }
 
+    /**
+     * Updates event details text file with event name only
+     *
+     * @throws IOException if error occurred during file writing
+     */
     public static void updateFile(Event event){
         try {
             String eventName = event.getEventName();

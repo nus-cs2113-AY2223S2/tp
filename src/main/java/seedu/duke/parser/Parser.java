@@ -19,6 +19,16 @@ import seedu.duke.exception.WrongFormatException;
 
 public interface Parser {
 
+    /**
+     * Handles the various command type and parse accordingly
+     *
+     * @param input the information that requires parsing
+     * @throws WrongFormatException if error occurs when the input is in the wrong format
+     * @throws NumberFormatException if error occurred due to user not providing a number where expected
+     * @throws NullPointerException if error occurred due to null pointers
+     * @throws IndexOutOfBoundsException if error occurred due to an index being out of bounds
+     * @return command type that would represent what to execute
+     */
     static Command parse(String input) throws WrongFormatException,
             NumberFormatException, NullPointerException, IndexOutOfBoundsException {
         Ui ui = new Ui();

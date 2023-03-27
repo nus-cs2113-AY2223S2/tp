@@ -21,6 +21,11 @@ public class Event {
         this.ui = ui;
     }
 
+    /**
+     * Updates the venue chosen for the event
+     *
+     * @throws InvalidIndexException if error occurred due to invalid index
+     */
     public void updateVenue(VenueList venueList, int venueNum) throws InvalidIndexException {
         if (venueNum < 0 | venueNum >= venueList.getVenueListSize()) {
             throw new InvalidIndexException();

@@ -4,6 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 
+/**
+ * Storage that handles the data from the various text file
+ */
 public class Storage {
     private static final String dirPath = "data";
     public static void checkFileAccess(String filePath) throws IOException {

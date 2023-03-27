@@ -15,6 +15,9 @@ import seedu.duke.exception.WrongFormatException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Main class to manage all operations
+ */
 public class Eventus {
     private Storage storage;
     private CompanyList companyList;
@@ -22,6 +25,9 @@ public class Eventus {
     private Event event;
     private Ui ui;
 
+    /**
+     * Initialise the storage, ui, company list, venue list, event, and executes the program
+     */
     public Eventus() {
         storage = new Storage();
         ui = new Ui();
@@ -30,7 +36,6 @@ public class Eventus {
         venueList = new VenueList(VenueListData.returnVenueList(), ui);
         run();
     }
-
     public void run() {
         ui.showWelcome();
         loadSavedInformation();
@@ -55,8 +60,11 @@ public class Eventus {
         }
     }
 
+    /**
+     * Loads the data from text files
+     */
     public void loadSavedInformation() {
-        EventDetailsStorage.eventDetailsInit(event, venueList, ui);
+        EventDetailsStorage.eventDetailsInit(event, venueList);
         CompanyListDecoder.read(companyList);
     }
 

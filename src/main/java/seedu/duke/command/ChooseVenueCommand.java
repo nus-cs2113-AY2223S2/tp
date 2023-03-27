@@ -14,6 +14,13 @@ public class ChooseVenueCommand extends Command{
         this.venueNum = venueNum;
     }
 
+    /**
+     * Updates the venue chosen for the event
+     *
+     * @param event which contains an event
+     * @param venueList which contains a list of venues
+     * @throws InvalidIndexException if error occurred due to invalid index
+     */
     @Override
     public void execute(Event event, VenueList venueList) {
         try{
