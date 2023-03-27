@@ -20,11 +20,11 @@ import seedu.apollo.utils.LoggerInterface;
 import java.io.File;
 import java.io.IOException;
 import java.rmi.UnexpectedException;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
+
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
