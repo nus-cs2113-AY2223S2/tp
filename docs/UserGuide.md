@@ -137,7 +137,10 @@ What would you like to do? Please enter the number:
 5. Delete symptom choice
 6. Reset symptoms
 7. View Medicine history
-8. Exit---------------------------------------------------
+8. List available medicines
+9. Find available medicine
+0. Exit
+---------------------------------------------------
 ~~~
 
 ### 1. Report Symptoms
@@ -153,11 +156,19 @@ What would you like to do? Please enter the number:
 1. Report symptoms
 2. View diagnosis history
 3. Reset diagnosis history
+<<<<<<< HEAD
+4. Reset symptoms
+5. View Medicine history
+7. List available medicines
+8. Find available medicines
+9. Exit
+=======
 4. View symptoms history
 5. Delete symptom choice
 6. Reset symptoms
 7. View Medicine history
 8. Exit
+>>>>>>> upstream/master
 ---------------------------------------------------
 1
 ---------------------------------------------------
@@ -259,7 +270,9 @@ What would you like to do? Please enter the number:
 5. Delete symptom choice
 6. Reset symptoms
 7. View Medicine history
-8. Exit
+8. List available medicines
+9. Find available medicine
+0. Exit
 ---------------------------------------------------
 2
 ---------------------------------------------------
@@ -288,7 +301,9 @@ What would you like to do? Please enter the number:
 5. Delete symptom choice
 6. Reset symptoms
 7. View Medicine history
-8. Exit
+8. List available medicines
+9. Find available medicine
+0. Exit
 ---------------------------------------------------
 3
 ---------------------------------------------------
@@ -302,7 +317,9 @@ What would you like to do? Please enter the number:
 5. Delete symptom choice
 6. Reset symptoms
 7. View Medicine history
-8. Exit
+8. List available medicines
+9. Find available medicine
+0. Exit
 ---------------------------------------------------
 2
 ---------------------------------------------------
@@ -392,10 +409,12 @@ What would you like to do? Please enter the number:
 5. Delete symptom choice
 6. Reset symptoms
 7. View Medicine history
-8. Exit
+8. List available medicines
+9. Find available medicine
+0. Exit
 ---------------------------------------------------
 6
---------------------------------------------------------
+--------------------------------------------------
 You have not entered any symptoms. No symptoms to reset.
 ~~~
 
@@ -410,7 +429,9 @@ What would you like to do? Please enter the number:
 5. Delete symptom choice
 6. Reset symptoms
 7. View Medicine history
-8. Exit
+8. List available medicines
+9. Find available medicine
+0. Exit
 ---------------------------------------------------
 6
 ---------------------------------------------------
@@ -423,6 +444,7 @@ The patient can choose to view his/her medicine history.
 
 Format: Enter `7` to view past medicine history.
 
+
 Expected outcome:
 ~~~
 ---------------------------------------------------
@@ -434,7 +456,9 @@ What would you like to do? Please enter the number:
 5. Delete symptom choice
 6. Reset symptoms
 7. View Medicine history
-8. Exit
+8. List available medicines
+9. Find available medicine
+0. Exit
 ---------------------------------------------------
 7
 ---------------------------------------------------
@@ -442,11 +466,11 @@ Medication History:
 2023/03/22: [Paracetamol]
 ---------------------------------------------------
 ~~~
+[comment]: <> (//@@author tanyizhe)
+### 8. List all medicines
+The patient can view all available medicines.
 
-### 8. Exiting Doctor Duke
-Once the patient is done with the program, he/she can exit the program.
-
-Format: Enter `8` to exit Doctor Duke.
+Format: enter `8` to list medicines.
 
 Expected outcome:
 ~~~
@@ -459,9 +483,84 @@ What would you like to do? Please enter the number:
 5. Delete symptom choice
 6. Reset symptoms
 7. View Medicine history
-8. Exit
+8. List available medicines
+9. Find available medicine
+0. Exit
 ---------------------------------------------------
 8
+---------------------------------------------------
+List of available medications:
+Aspirin
+Dulcolax
+Eye Drops
+Guaifenesin
+Ibuprofen
+Lozenges
+Magnesium
+Paracetamol
+Robitussin
+Ultracarbon
+---------------------------------------------------
+~~~
+### 9. Find medicine
+The patient can find an available medicine.
+
+Format: enter `9` to find a medicine. 
+The program will prompt the patient for a keyword.
+
+Expected outcome:
+~~~
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1. Report symptoms
+2. View diagnosis history
+3. Reset diagnosis history
+4. View symptoms History
+5. Delete symptom choice
+6. Reset symptoms
+7. View Medicine history
+8. List available medicines
+9. Find available medicine
+0. Exit
+---------------------------------------------------
+9
+---------------------------------------------------
+Please enter a keyword:
+---------------------------------------------------
+a
+---------------------------------------------------
+Results for "a":
+Aspirin
+Dulcolax
+Guaifenesin
+Magnesium
+Paracetamol
+Ultracarbon
+---------------------------------------------------
+~~~
+
+[comment]: <> (//@@author Geeeetyx)
+### 0. Exiting Doctor Duke
+Once the patient is done with the program, he/she can exit the program.
+
+Format: Enter `0` to exit Doctor Duke.
+
+Expected outcome:
+~~~
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1. Report symptoms
+2. View diagnosis history
+3. Reset diagnosis history
+4. View symptoms History
+5. Delete symptom choice
+6. Reset symptoms
+7. View Medicine history
+8. List available medicines
+9. Find available medicine
+0. Exit
+---------------------------------------------------
+0
 ---------------------------------------------------
 Thank you for using
  ____         ____        _        
