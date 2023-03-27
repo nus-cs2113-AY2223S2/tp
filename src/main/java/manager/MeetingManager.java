@@ -38,10 +38,10 @@ public class MeetingManager {
             }
         }
         if(meetingFound.isEmpty()){
-            ui.printMessage("There's no such meeting in the meeting list!");
+            ui.printMessage(Messages.MESSAGE_MEETING_NOT_FOUND);
         }
         else{
-            ui.printMessage("Here's the matching meeting list:");
+            ui.printMessage(Messages.MESSAGE_MEETING_FOUND);
             for(Meeting n:meetingFound){
                 ui.printMessage(n.getIssue());
             }

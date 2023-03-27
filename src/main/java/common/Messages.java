@@ -36,7 +36,8 @@ public class Messages {
     public static final String MESSAGE_NUMBER_OF_DEADLINES = "\nNow you have %d tasks in the list.";
     public static final String MESSAGE_MEETING_ADDED = "Got it! You have successfully added a meeting:";
     public static final String MESSAGE_MEETING_VIEW_LIST = "Meeting list:";
-
+    public static final String MESSAGE_MEETING_FOUND="Here's the matching meeting list:";
+    public static final String MESSAGE_MEETING_NOT_FOUND="There's no such meeting in the meeting list!";
     /**
      * Errors for programs to print.
      */
