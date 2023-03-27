@@ -7,9 +7,10 @@ Actor User as user #crimson
 participant MoneyMind as mm #lightblue
 participant UI as ui #lightpink
 participant Parser as ps #orange
-participant Command as cmd #lightgreen
+participant EventCommand as event #lightgreen
 participant Data as data #lightyellow
 participant Storage as storage #lightgrey
+
 
 
 user -[#crimson]> mm : event  buy lunch e/10
@@ -20,6 +21,35 @@ activate ps #orange
 
 ps -[#orange]> ps : createEventCommand()
 activate ps #orange
+ps -[#orange]> event : <<create>>
+activate event #lightgreen
+event --[#lightgreen]> ps
+deactivate event #lightgreen
+ps --[#orange]> ps
+deactivate ps #orange
+ps --[#orange]> mm
+deactivate ps #orange
+
+mm -[#lightblue]> event : isExit()
+activate event #lightgreen
+event --[#lightgreen]> mm
+deactivate event #lightgreen
+
+mm -[#lightblue]> event : execute()
+activate event #lightgreen
+event -[#lightgreen]> data : <<create>>
+activate data #lightyellow
+data --[#lightyellow]> event
+deactivate data #lightyellow
+event --[#lightgreen]> mm
+
+mm -[#lightblue]> storage : save()
+activate storage #lightgrey
+storage --[#lightgrey]> mm
+deactivate storage #lightgrey
+
+
+
 
 
 
