@@ -305,7 +305,9 @@ public class TestUi {
                     "\r\n" +
                     "Exercise: 3/4 Sit-Up" + "\tFrequency of Completion: 1\r\n";
         } else {
-            expectedOutput = "Exercise: 3/4 Sit-Up" + "\tFrequency of Completion: 1\n";
+            expectedOutput = "Here is a list of all the exercises you have completed:\n" +
+                    "\n" +
+                    "Exercise: 3/4 Sit-Up" + "\tFrequency of Completion: 1\n";
         }
         assertEquals(expectedOutput,actualOutput.toString());
     }
