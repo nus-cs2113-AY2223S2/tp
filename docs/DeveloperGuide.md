@@ -2,14 +2,49 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+The CS2113 Team (Professor Akshay <3) For his guidance in teaching us concepts of Software Engineering and OOP
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-<br
+### Main overview of the system:
 
-<img src="eventus.png">
+* Main Components
+  * Main: 
+  * Ui: Deals with user input/output
+  * Storage: Deals with data management on disk
+  * Parser: Deals with parsing user input
+  * Command: Deals with handling command input logic
+
+<code>architecture diagram</code>
+
+![eventus.png](UML%2FImage%2Feventus.png)
+![test.png](UML%2FImage%2Ftest.png)
+
+### Ui 
+
+Ui class involves all the methods
+
+Types of methods:
+
+<code>seq of 1 ui</code>
+
+
+### Storage
+
+
+<code>sequence diagram</code>
+
+### Parser
+
+
+
+### Command
+
+Commands are the way we execute the programme features, based on parsed user input
+
+<code>List of commands</code>
+
+<code> Seq of 1 command</code>
 
 ### [Proposed] Duplication checker feature
 #### Proposed Implementation
@@ -36,12 +71,12 @@ String contactEmail</code>. Using this information, <code>CompanyList.add</code>
 at the end of the company list. After successfully executing the command, it will show successful addition message using
 the related method in the <code>Ui</code>.
 
+(Implementation feature: venue list, event )
+
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
-
-EveNtus targets career fair event managers who are looking to better manage the companies attending the career fair, as well as managing the venue and crowd size. 
+EveNtUS targets career fair event managers who are looking to better manage the companies attending the career fair, as well as managing the venue and crowd size. 
 
 ### Value proposition
 
@@ -69,8 +104,6 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 * *glossary item* - Definition
 
 ## Instructions for manual testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
 1. To load sample company data, run "load samples" to load some companies into company list. 
 2. To purge all company list data, run "purge".
