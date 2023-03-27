@@ -7,7 +7,6 @@ import seedu.duke.objects.Item;
 import seedu.duke.types.Types;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -178,7 +177,8 @@ public class Ui {
             "following format:\n cat upc/[UPC] c/[Category]";
     public static final String BLANK_CATEGORY = "Category cannot be left blank!";
     public static final int CATEGORY_COL_WIDTH = 15;
-    public static final int ITEMS_COL_WIDTH = 25;
+    public static final int ITEMS_COL_WIDTH = 30;
+    private static final String CATEGORY_HEADING = "Category";
 
     public Ui() {
         greetUser();
@@ -368,13 +368,13 @@ public class Ui {
         String[] headings = {};
         if (columnWidths.length == INVENTORY_ATTRIBUTE_COUNT) {
             headings = new String[]{NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
-        } else if (Arrays.stream(columnWidths).allMatch(CATEGORY_COL_WIDTH, ITEMS_COL_WIDTH) ){
-
-        } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT) {
+        } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == COMMAND_COL_WIDTH) {
             headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
             //repeat format like above
             headings = new String[]{"Name", "UPC", "Stock"};
+        } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == CATEGORY_COL_WIDTH) {
+            headings = new String[]{CATEGORY_HEADING, NAME_HEADING + ": " + UPC_HEADING};
         }
         StringBuilder allHeadings = new StringBuilder();
 
@@ -428,25 +428,42 @@ public class Ui {
 
     private static String printRow(String category, ArrayList<Item> items, int[] columnWidths) {
         String[] categoryLines = wrapText(category, CATEGORY_COL_WIDTH);
-
-        //String[] formatLines = wrapText(format, FORMAT_COL_WIDTH);
-        String[] itemListLines = wrapText(items.get(0).getName() + ": " + items.get(0).getUpc(), ITEMS_COL_WIDTH);
+        ArrayList<String> itemLines = new ArrayList<>();
+        //String[] itemListLines = wrapText(items.get(0).getName() + ": " + items.get(0).getUpc(), ITEMS_COL_WIDTH);
+        //int stringArrLength = itemListLines.length;
         StringBuilder row = new StringBuilder();
+        //stringArrLength = itemListLines.length;
         for (Item item : items) {
-            if (item == items.get(0)) {
-                continue;
-            }
             String name = item.getName();
             String upc = item.getUpc();
-            itemListLines = wrapText(name + ", " + upc, ITEMS_COL_WIDTH);
+            itemLines.add(name + ":" + upc);
+//            String[] newItemLine = wrapText(name + ": " + upc, ITEMS_COL_WIDTH);
+//            for (String x : newItemLine) {
+//                itemListLines[stringArrLength] = x;
+//                stringArrLength += 1;
+//                itemListLines[stringArrLength] = "\n";
+//                stringArrLength += 1;
+//            }
+//            String oldItemsString = Arrays.toString(itemListLines).replace("\\[", "");
+//            oldItemsString = oldItemsString.replace("]", "");
+//            //oldItemsString = oldItemsString.replaceAll(",", "");
+//            String newItemString = Arrays.toString(newItemLine); //.replaceAll("\\[", "");
+//            //newItemString = newItemString.replaceAll("]", "");
+//            itemListLines = new String[]{oldItemsString, newItemString};
+//            System.out.println(itemListLines.length);
+//            System.out.println(newItemLine.length);
+//            System.arraycopy(newItemLine, 0, itemListLines, itemListLines.length,
+//                    itemListLines.length+newItemLine.length-2);//new String[] {oldItemsString, newItemString};
+
         }
+        String[] itemListLines = wrapText(itemLines.toString(), ITEMS_COL_WIDTH);
         int rowHeight = findRowHeight(categoryLines, itemListLines);
 
         for (int i = 0; i < rowHeight; i += 1) {
             row.append(TABLE_LEFT);
-            row.append(printAttribute(categoryLines, COMMAND_COL_WIDTH, i));
+            row.append(printAttribute(categoryLines, CATEGORY_COL_WIDTH, i));
             row.append(TABLE_MIDDLE);
-            row.append(printAttribute(itemListLines, FORMAT_COL_WIDTH, i));
+            row.append(printAttribute(itemListLines, ITEMS_COL_WIDTH, i));
             row.append(TABLE_RIGHT);
             row.append(System.lineSeparator());
 
@@ -528,14 +545,22 @@ public class Ui {
     /* Method below adapted from https://stackoverflow.com/questions/4055430/java-
     code-for-wrapping-text-lines-to-a-max-line-width */
     private static String[] wrapText(String input, int width) {
+        if (input.contains("[")) {
+            input = input.replace("[", "");
+        }
+        if (input.contains("]")) {
+            input = input.replace("]", "");
+        }
         String[] words = input.split("\\s+");
         ArrayList<String> lines = new ArrayList<>();
         StringBuilder line = new StringBuilder();
 
         for (int i = 0; i < words.length; i += 1) {
             if (line.length() + words[i].length() <= width) {
+                System.out.println("add word w/o wrap");
                 line = addWordWithoutWrap(line, words, lines, i, width);
             } else if (words[i].length() > width) {
+                System.out.println("add word w wrap");
                 addWordWithWrap(words, lines, i, width);
             } else {
                 lines.add(line.toString());
@@ -555,6 +580,12 @@ public class Ui {
 
         if (line.length() < width) {
             line.append(" ");
+        }
+
+        if (words[current].equals(",")) {
+            for (int i = 0; i < width-line.length(); i++) {
+                line.append(" ");
+            }
         }
 
         if (current + 1 != words.length && line.length() + words[current + 1].length() > width) {

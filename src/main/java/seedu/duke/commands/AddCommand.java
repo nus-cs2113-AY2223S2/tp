@@ -34,6 +34,13 @@ public class AddCommand extends Command {
         } else {
             upcCodes.put(item.getUpc(), item);
             itemInventory.add(item);
+            if (categoryHash.containsKey("Uncategorized")) {
+                categoryHash.get("Uncategorized").add(item);
+            } else {
+                ArrayList<Item> categoryItems = new ArrayList<>();
+                categoryItems.add(item);
+                categoryHash.put("Uncategorized", categoryItems);
+            }
             Ui.printSuccessAdd();
             String[] itemNames = item.getName().toLowerCase().split(" ");
             for (String itemName : itemNames) {

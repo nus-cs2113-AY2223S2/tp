@@ -36,7 +36,7 @@ public class CategoryCommand extends Command {
         }
     }
 
-    private void updateItemCategory(Item item, String category) throws CategoryFormatException {
+    public void updateItemCategory(Item item, String category) throws CategoryFormatException {
         if (category.isBlank() || !category.contains("c/")) {
             throw new CategoryFormatException();
         }
@@ -46,14 +46,29 @@ public class CategoryCommand extends Command {
                 throw new CategoryFormatException();
             }
             String categoryToAdd = category.toLowerCase();
-            updateExistingCategory(categoryToAdd, item);
+            checkExistingCategory(categoryToAdd, item);
             item.setCategory(categoryToAdd);
         } catch (CategoryFormatException cfe) {
             throw new CategoryFormatException();
         }
     }
 
-    private void updateExistingCategory(String categoryToAdd, Item item) {
+    private void checkExistingCategory(String categoryToAdd, Item item) {
+        // check if item already has a category
+//        if (item.getCategory().equalsIgnoreCase("Uncategorized")) {
+//            addItemToCategory(categoryToAdd, item);
+//        } else { // already has a category
+        String oldCategory = item.getCategory();
+        categoryHash.get(oldCategory).remove(item);
+        if (categoryHash.get(oldCategory).isEmpty()) {
+            categoryHash.remove(oldCategory);
+        }
+        addItemToCategory(categoryToAdd, item);
+    }
+
+
+
+    private void addItemToCategory(String categoryToAdd, Item item) {
         if (!categoryHash.containsKey(categoryToAdd)) {
             ArrayList<Item> newCategoryItemList = new ArrayList<>();
             newCategoryItemList.add(item);
