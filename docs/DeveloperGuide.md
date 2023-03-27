@@ -112,7 +112,8 @@ The value proposition of ChChing is its ability to track income and expenses on 
 | v2.0    | user      | find specific entries                   | refer to specific entries when necessary                                                |
 | v2.0    | foreigner | view my entries in a different currency | read my incomes and expenses in a currency I am familiar with                           |
 | v2.0    | user      | set a target for my balance             | improve my financial management                                                         |
-
+| v2.0    | user      | see the target i have set               | remind myself of my target                                                              |
+| v2.0    | user      | reset my income/expense lists or both   | have a fresh list                                                                       |
 ## Non-Functional Requirements
 
 {Give non-functional requirements}
