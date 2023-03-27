@@ -24,6 +24,7 @@ import commands.Command;
 import common.Messages;
 import exceptions.DinerDirectorException;
 import entity.Deadline;
+import manager.StaffManager;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -187,19 +188,21 @@ public class Parser {
     }
 
     private Command prepareDeleteStaffCommand(String userInputNoCommand) {
-        String[] userInputNoCommandSplitBySlash = userInputNoCommand.split("/");
+        int indexToRemove = 0;
+
         try {
-            if (userInputNoCommandSplitBySlash.length < 2 || !userInputNoCommand.contains("n/")) {
-                throw new DinerDirectorException(Messages.ERROR_STAFF_DELETE_MISSING_PARAM);
-            } else if (userInputNoCommandSplitBySlash.length > 2) {
-                throw new DinerDirectorException(Messages.ERROR_STAFF_DELETE_EXCESS_PARAM);
+            indexToRemove = Integer.parseInt(userInputNoCommand.trim()) - 1;
+            if (indexToRemove < 0 || indexToRemove >= StaffManager.getStaffs().size()) {
+                throw new DinerDirectorException(Messages.ERROR_STAFF_INVALID_INDEX);
             }
-            String staffName = userInputNoCommandSplitBySlash[1];
-            return new DeleteStaffCommand(staffName);
+            assert indexToRemove >= 0 : "indexToRemove should be 0 or greater";
+        } catch (NumberFormatException e) {
+            return new IncorrectCommand();
         } catch (DinerDirectorException e) {
             System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
+        return new DeleteStaffCommand(indexToRemove);
     }
     private Command prepareFindStaffCommand(String description){
         try {
