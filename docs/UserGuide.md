@@ -74,7 +74,7 @@ Examples:
 
 <h2 id="deleting-a-recipe-delete"> Deleting a recipe: <code class="language-plaintext highlighter-rouge">delete</code></h2>
 
-Deletes a recipe from the recipe manager.
+Deletes a recipe from the recipe list.
 Format: `delete INDEX`
 Examples:
 * `delete 1`
@@ -82,8 +82,8 @@ Examples:
 
 <h2 id="viewing-a-recipe-view"> Viewing a recipe: <code class="language-plaintext highlighter-rouge">view</code></h2>
 
-Views a detailed recipe from the recipe manager if INDEX is entered. 
-Searches recipe list for recipes with matching names if NAME is entered.
+<div>Views a detailed recipe from the recipe manager if INDEX is entered.</div>
+<div>Searches recipe list for recipes with matching names if NAME is entered.</div>
 Format: `view NAME` or `view INDEX`
 Examples:
 * `view Hotpot`
