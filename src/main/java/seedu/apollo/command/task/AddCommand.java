@@ -182,7 +182,7 @@ public class AddCommand extends Command implements LoggerInterface {
 
 
     /**
-     * Checks if a event user wants to add clashes with existing events 
+     * Checks if a event user wants to add clashes with existing events
      * @param taskList The ArrayList containing the tasks
      * @param from The time that event starts
      * @param to The time that event ends
