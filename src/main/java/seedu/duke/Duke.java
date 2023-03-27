@@ -18,6 +18,9 @@ import static common.MessageList.COMMAND_LIST_MESSAGE;
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.NAME_QUESTION;
 import static data.ExpenseList.showToUser;
+import static parser.ParserPassword.caseLogIn;
+import static parser.ParserPassword.caseSignUp;
+
 
 public class Duke {
 
@@ -42,10 +45,29 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         if (in.hasNextLine()) {
             System.out.println("Hello " + in.nextLine());
-        }
+        } do {
+            System.out.println("Enter \"login\", \"register\", or \"exit\"");
+            String input = in.nextLine();
+            if (input.equals("login")) {
+                // get login details
+                caseLogIn();
+            } else if (input.equals("signup")) {
+                // get register details
+                caseSignUp();
+            } else if (input.equals("exit")) {
+                break; // exit the loop
+            } else {
+                // invalid input, tell them to try again
+                System.out.println("invild option, chose login or regiser!");
+                input = in.nextLine();
+            }
+        } while (true);
         String input = "";
         if (in.hasNextLine()) {
             input = in.nextLine();
+        }
+        while (input.equals("login")) {
+            
         }
         while (!input.equals("exit")) {
             switch (parser.extractCommandKeyword(input)) {
