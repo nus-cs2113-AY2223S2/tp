@@ -23,6 +23,7 @@ import chching.command.SetCurrencyCommand;
 import chching.command.ShowTargetCommand;
 import chching.command.UnsetCurrencyCommand;
 import chching.command.FindCommand;
+import chching.command.EditIncomeCommand;
 import chching.record.Expense;
 import chching.record.ExpenseList;
 import chching.record.Income;
@@ -76,6 +77,9 @@ public class Parser {
                 break;
             case "list":
                 command = new ListCommand();
+                break;
+            case "edit income":
+                command = new EditIncomeCommand(argumentsByField);
                 break;
             case "edit expense":
                 command = new EditExpenseCommand(argumentsByField);

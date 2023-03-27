@@ -1,8 +1,13 @@
 package chching.record;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+
+import chching.ChChingException;
 import chching.currency.Converter;
 import chching.currency.Selector;
+
+import static chching.parser.Incomes.parseDate;
 
 /**
  * Models a class that act as list of incomes. Inherited from RecordList Class
@@ -35,8 +40,36 @@ public class IncomeList extends RecordList {
         incomeList.add(income);
 
     }
-
-
+    
+    public void editIncome(int index, String field, String value) throws ChChingException {
+    
+        // change from 1-based indexing to 0-based indexing
+        int indexZeroBased = index - 1;
+        Income income = incomeList.get(indexZeroBased);
+        
+        // edit the according field
+        switch(field) {
+        case "de":
+            income.setDescription(value);
+            break;
+        case "da":
+            LocalDate date = parseDate(value);
+            income.setDate(date);
+            break;
+        case "v":
+            try {
+                double amount = Float.parseFloat(value);
+                income.setValue(amount);
+            } catch (Exception e) {
+                throw new ChChingException("Trouble adding income value");
+            }
+            break;
+        default:
+            assert false: "No such field to enter here";
+            throw new ChChingException("No such field in income");
+        }
+    }
+    
     /**
      * Deletes income from an IncomeList
      *
