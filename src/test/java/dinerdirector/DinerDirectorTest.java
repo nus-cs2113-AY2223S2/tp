@@ -20,6 +20,7 @@ import commands.menu.FindDishCommand;
 import commands.menu.ViewDishCommand;
 import commands.staff.AddStaffCommand;
 import commands.staff.DeleteStaffCommand;
+import commands.staff.FindStaffCommand;
 import commands.staff.ViewStaffCommand;
 import org.junit.jupiter.api.Test;
 import utils.Parser;
@@ -300,6 +301,8 @@ public class DinerDirectorTest {
         listOfCommands.add("add_staff p/123-456-7890 d/1990-01-01 w/Monday");
         listOfCommands.add("add_staff n/John Doe p/123-456-7890 w/Monday d/1990-01-01");
         listOfCommands.add("view_staff");
+        listOfCommands.add("find_staff John");
+        listOfCommands.add("find_staff");
         listOfCommands.add("delete_staff n/John");
         listOfCommands.add("delete_staff John");
 
@@ -308,7 +311,8 @@ public class DinerDirectorTest {
             if (listOfCommand.equals("add_staff") ||
                     listOfCommand.equals("add_staff n/John Doe") ||
                     listOfCommand.equals("add_staff p/123-456-7890 d/1990-01-01 w/Monday") ||
-                    listOfCommand.equals("delete_staff John")) {
+                    listOfCommand.equals("delete_staff John") ||
+                    listOfCommand.equals("find_staff")){
                 assertTrue(command instanceof IncorrectCommand);
             } else if (listOfCommand.equals("view_deadlines")) {
                 assertTrue(command instanceof ViewStaffCommand);
@@ -316,6 +320,8 @@ public class DinerDirectorTest {
                 assertTrue(command instanceof AddStaffCommand);
             } else if (listOfCommand.equals("delete_deadline n/John")) {
                 assertTrue(command instanceof DeleteStaffCommand);
+            } else if(listOfCommand.equals("find_staff John")){
+                assertTrue(command instanceof FindStaffCommand);
             }
         }
     }
