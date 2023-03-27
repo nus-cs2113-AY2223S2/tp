@@ -36,7 +36,7 @@ public class Backend {
 
         try {
             savedEntries = storage.readFromDatabase();
-        } catch (InvalidReadFileException | InvalidCategoryException e) {
+        } catch (InvalidReadFileException e) {
             logger.log(Level.SEVERE, "Save data is invalid.", e);
             throw new RuntimeException(e);
         } catch (IOException e) {

@@ -55,7 +55,7 @@ public class Storage {
      * @param line String of text to be converted to an Entry instance
      * @return An Entry instance that represents the read line
      */
-    private Entry readEntryLine(String line) throws InvalidReadFileException, InvalidCategoryException {
+    private Entry readEntryLine(String line) throws InvalidReadFileException {
         try {
             String[] lineArray = line.split(this.delimiter);
             String description = lineArray[0];
@@ -74,7 +74,7 @@ public class Storage {
             throw new InvalidReadFileException(
                     String.format("Amount is not valid for line: %s", line)
             );
-        } catch (IllegalArgumentException e) {
+        } catch (InvalidCategoryException e) {
             throw new InvalidReadFileException(
                     String.format("Category is not valid for line: %s", line)
             );
@@ -89,7 +89,7 @@ public class Storage {
      * @return An Entry[] List that represents all the entries that have been read from the stored text file
      * @throws IOException If an error occurs in the reading from the file
      */
-    public List<Entry> readFromDatabase() throws IOException, InvalidReadFileException, InvalidCategoryException {
+    public List<Entry> readFromDatabase() throws IOException, InvalidReadFileException {
         List<Entry> entries = new ArrayList<>();
         makeFileIfNotExists();
         BufferedReader csvReader = new BufferedReader(
