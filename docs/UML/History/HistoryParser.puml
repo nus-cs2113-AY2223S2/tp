@@ -75,6 +75,7 @@ end
 return
 end
 return
+destroy HistoryCommand
 return
 destroy HistoryParser
 @enduml
