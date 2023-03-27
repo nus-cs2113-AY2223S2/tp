@@ -22,6 +22,7 @@ import seedu.duke.command.ViewBudgetCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidPuException;
 import seedu.duke.exceptions.InvalidModuleException;
+import seedu.duke.command.ListCurrentPuCommand;
 
 import java.util.ArrayList;
 
