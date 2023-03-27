@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class UI {
     private static final String LIST_PU_MESSAGE = "This is the list of PUs:";
+    private static final String LIST_CURRENT_PU_MESSAGE = "List of Added Modules for: ";
+    private static final String CURRENT_LIST_PU_EMPTY = "The current module list is empty for: ";
     private static final String LIST_CURRENT_MESSAGE = "List of Added modules:";
     private static final String LIST_DEADLINES_MESSAGE = "List of Deadlines:";
     private static final String LINE = "____________________________________________________________";

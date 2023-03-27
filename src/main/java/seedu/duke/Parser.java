@@ -35,6 +35,7 @@ public class Parser {
         ArrayList<String> userInputWords = parseCommand(userInput);
         String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
+        String userCommandThirdKeyword = "";
         if (userInputWords.size() > 1) {
             userCommandSecondKeyword = userInputWords.get(1);
         }
@@ -48,6 +49,10 @@ public class Parser {
                 if (userCommandSecondKeyword.equalsIgnoreCase("pu")) {
                     return new ListPuCommand();
                 } else if (userCommandSecondKeyword.equalsIgnoreCase("current")) {
+                    if (userInputWords.size() == 3) {
+                        userCommandThirdKeyword = userInputWords.get(2);
+                        return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
+                    }
                     return new ListCurrentCommand(modules);
                 } else {  // list PU name case
                     return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
