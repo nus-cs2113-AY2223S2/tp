@@ -74,7 +74,13 @@ The listExpenseCommand is facilitated by ```System```, ```Parser``` and ```Expen
 3. The ```expenseList``` method ```printExpenseList```
    is called, which iterates through the expenseList, ```expenses``` and prints the index as well as a completed string of
    expenses in ```expenses```.
+### SetTargetCommand
+The setTargetCommand is facilitated by ```ChChing```, ```Parser```, ```TargetParser```, ```TargetStorage```.
+When the command receives to set target, the ```parse()``` method of the ```Parser``` object will read in the command and call the ```parseTarget()``` method from the TargetParser class 
+to instantiate a Target object and initializes a target value. Afterwards, ```parse()``` method calls the ```AddTargetCommand``` and  instantiate a ```SetTargetCommand``` object and returns to the ```Parser``` object.
+The ```Parser``` object then returns to ```ChChing```. ```ChChing``` object then runs the ```execute()``` method of the SetTargetCommand object. The method then calls the ```setTarget()``` method of the ```TargetStorage``` object to store the previously initialized ```Target``` object.
 
+![SetTargetCommand UML](../images/SetTargetCommand.png)
 ### SetCurrencyCommand
 The setCurrencyCommand is facilitated by ```System```, ```Selector```,  ```UI``` and ```ExpenseList```.
 The command receives the instruction from ```UI``` and will call the ```execute``` method.
