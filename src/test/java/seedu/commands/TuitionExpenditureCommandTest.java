@@ -18,9 +18,9 @@ class TuitionExpenditureCommandTest {
                 8500.5,
                 LocalDate.parse("2021-01-27"));
         assertEquals("Added tuition expenditure: " +
-                        "[Tuition] || [ ] || Date: 2021-01-27 || Value: 8500.5 || Description: NUS Y2S2",
+                        "[Tuition] || [ ] || Date: 27 Jan 2021 || Value: 8500.5 || Description: NUS Y2S2",
                 testTuitionExpenditureCommand.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Tuition] || [ ] || Date: 2021-01-27 || Value: 8500.5 || Description: NUS Y2S2",
+        assertEquals("1. [Tuition] || [ ] || Date: 27 Jan 2021 || Value: 8500.5 || Description: NUS Y2S2",
                 testExpenditures.toString());
     }
 
@@ -34,10 +34,10 @@ class TuitionExpenditureCommandTest {
                 8500.5,
                 LocalDate.parse("2021-01-27"));
         assertEquals("Added tuition expenditure: " +
-                        "[Tuition] || [ ] || Date: 2021-01-27 || Value: 8500.5 || Description: NUS Y2S2",
+                        "[Tuition] || [ ] || Date: 27 Jan 2021 || Value: 8500.5 || Description: NUS Y2S2",
                 testTuitionExpenditureCommand.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Academic] || Date: 2021-08-01 || Value: 1500.0 || Description: laptop\n" +
-                        "2. [Tuition] || [ ] || Date: 2021-01-27 || Value: 8500.5 || Description: NUS Y2S2",
+        assertEquals("1. [Academic] || Date: 1 Aug 2021 || Value: 1500.0 || Description: laptop\n" +
+                        "2. [Tuition] || [ ] || Date: 27 Jan 2021 || Value: 8500.5 || Description: NUS Y2S2",
                 testExpenditures.toString());
     }
 }

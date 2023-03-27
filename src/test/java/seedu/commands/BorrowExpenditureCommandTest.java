@@ -17,11 +17,11 @@ public class BorrowExpenditureCommandTest {
                 20000,
                 LocalDate.parse("2021-08-01"),
                 LocalDate.parse("2025-05-05"));
-        assertEquals("Added borrow expenditure: [Borrow] || Borrowed from: DBS || Date: 2021-08-01 " +
-                        "|| Value: 20000.0 || Description: loan || By: 2025-05-05",
+        assertEquals("Added borrow expenditure: [Borrow] || Borrowed from: DBS || Date: 1 Aug 2021 " +
+                        "|| Value: 20000.0 || Description: loan || By: 5 May 2025",
                 testBorrowExpenditureCommand.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Borrow] || Borrowed from: DBS || Date: 2021-08-01 || Value: 20000.0 " +
-                        "|| Description: loan || By: 2025-05-05", testExpenditures.toString());
+        assertEquals("1. [Borrow] || Borrowed from: DBS || Date: 1 Aug 2021 || Value: 20000.0 " +
+                        "|| Description: loan || By: 5 May 2025", testExpenditures.toString());
     }
 
     @Test
@@ -35,12 +35,12 @@ public class BorrowExpenditureCommandTest {
                 20000,
                 LocalDate.parse("2021-08-01"),
                 LocalDate.parse("2025-05-05"));
-        assertEquals("Added borrow expenditure: [Borrow] || Borrowed from: DBS || Date: 2021-08-01 " +
-                        "|| Value: 20000.0 || Description: loan || By: 2025-05-05",
+        assertEquals("Added borrow expenditure: [Borrow] || Borrowed from: DBS || Date: 1 Aug 2021 " +
+                        "|| Value: 20000.0 || Description: loan || By: 5 May 2025",
                 testBorrowExpenditureCommand.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Academic] || Date: 2021-08-01 || Value: 1500.0 || Description: laptop\n" +
-                        "2. [Borrow] || Borrowed from: DBS || Date: 2021-08-01 || Value: 20000.0 || " +
-                        "Description: loan || By: 2025-05-05",
+        assertEquals("1. [Academic] || Date: 1 Aug 2021 || Value: 1500.0 || Description: laptop\n" +
+                        "2. [Borrow] || Borrowed from: DBS || Date: 1 Aug 2021 || Value: 20000.0 || " +
+                        "Description: loan || By: 5 May 2025",
                 testExpenditures.toString());
     }
 }

@@ -39,13 +39,13 @@ class MarkCommandTest {
     public void test_markCommand_onThreeIndex() {
         MarkCommand testMarkThreeIndex = new MarkCommand(3);
         assertEquals("Marked your expenditure!\n" +
-                        "[Tuition] || [X] || Date: 2023-01-27 || Value: 8100.0 || Description: school",
+                        "[Tuition] || [X] || Date: 27 Jan 2023 || Value: 8100.0 || Description: school",
                 testMarkThreeIndex.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Academic] || Date: 2023-01-01 || Value: 2.1 || Description: pen\n" +
-                "2. [Food] || Date: 2023-03-21 || Value: 4.5 || Description: chicken rice\n" +
-                "3. [Transport] || Date: 2023-03-21 || Value: 2.1 || Description: circle line\n" +
-                "4. [Tuition] || [X] || Date: 2023-01-27 || Value: 8100.0 || Description: school\n" +
-                "5. [Accommodation] || [ ] || Date: 2023-01-28 || Value: 3000.0 || Description: rc",
+        assertEquals("1. [Academic] || Date: 1 Jan 2023 || Value: 2.1 || Description: pen\n" +
+                "2. [Food] || Date: 21 Mar 2023 || Value: 4.5 || Description: chicken rice\n" +
+                "3. [Transport] || Date: 21 Mar 2023 || Value: 2.1 || Description: circle line\n" +
+                "4. [Tuition] || [X] || Date: 27 Jan 2023 || Value: 8100.0 || Description: school\n" +
+                "5. [Accommodation] || [ ] || Date: 28 Jan 2023 || Value: 3000.0 || Description: rc",
                 testExpenditures.toString());
     }
 
@@ -53,14 +53,23 @@ class MarkCommandTest {
     public void test_markCommand_onFourIndex() {
         MarkCommand testMarkFourIndex = new MarkCommand(4);
         assertEquals("Marked your expenditure!\n" +
-                        "[Accommodation] || [X] || Date: 2023-01-28 || Value: 3000.0 || Description: rc",
+                        "[Accommodation] || [X] || Date: 28 Jan 2023 || Value: 3000.0 || Description: rc",
                 testMarkFourIndex.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Academic] || Date: 2023-01-01 || Value: 2.1 || Description: pen\n" +
-                        "2. [Food] || Date: 2023-03-21 || Value: 4.5 || Description: chicken rice\n" +
-                        "3. [Transport] || Date: 2023-03-21 || Value: 2.1 || Description: circle line\n" +
-                        "4. [Tuition] || [ ] || Date: 2023-01-27 || Value: 8100.0 || Description: school\n" +
-                        "5. [Accommodation] || [X] || Date: 2023-01-28 || Value: 3000.0 || Description: rc",
+        assertEquals("1. [Academic] || Date: 1 Jan 2023 || Value: 2.1 || Description: pen\n" +
+                        "2. [Food] || Date: 21 Mar 2023 || Value: 4.5 || Description: chicken rice\n" +
+                        "3. [Transport] || Date: 21 Mar 2023 || Value: 2.1 || Description: circle line\n" +
+                        "4. [Tuition] || [ ] || Date: 27 Jan 2023 || Value: 8100.0 || Description: school\n" +
+                        "5. [Accommodation] || [X] || Date: 28 Jan 2023 || Value: 3000.0 || Description: rc",
                 testExpenditures.toString());
+    }
+
+    @Test
+    public void test_markCommand_onFourIndexAgain() {
+        MarkCommand testMarkFourIndex = new MarkCommand(4);
+        testMarkFourIndex.execute(testExpenditures);
+        MarkCommand testMarkFourIndexAgain = new MarkCommand(4);
+        assertEquals("Sorry! This expenditure is already marked!",
+                testMarkFourIndexAgain.execute(testExpenditures).getCommandResult());
     }
 
     @Test

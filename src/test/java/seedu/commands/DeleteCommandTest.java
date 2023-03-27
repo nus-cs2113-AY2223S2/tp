@@ -27,8 +27,8 @@ public class DeleteCommandTest {
         DeleteCommand testDeleteZeroIndex = new DeleteCommand(0);
         assertEquals("Entry has been deleted\n" +
                 "Here is your updated list: \n" +
-                "1. [Food] || Date: 2023-03-21 || Value: 4.5 || Description: chicken rice\n" +
-                "2. [Transport] || Date: 2023-03-21 || Value: 2.1 || Description: circle line",
+                "1. [Food] || Date: 21 Mar 2023 || Value: 4.5 || Description: chicken rice\n" +
+                "2. [Transport] || Date: 21 Mar 2023 || Value: 2.1 || Description: circle line",
                 testDeleteZeroIndex.execute(testExpenditures).getCommandResult());
     }
 
@@ -37,8 +37,8 @@ public class DeleteCommandTest {
         DeleteCommand testDeleteOneIndex = new DeleteCommand(1);
         assertEquals("Entry has been deleted\n" +
                         "Here is your updated list: \n" +
-                        "1. [Academic] || Date: 2023-01-01 || Value: 2.1 || Description: pen\n" +
-                        "2. [Transport] || Date: 2023-03-21 || Value: 2.1 || Description: circle line",
+                        "1. [Academic] || Date: 1 Jan 2023 || Value: 2.1 || Description: pen\n" +
+                        "2. [Transport] || Date: 21 Mar 2023 || Value: 2.1 || Description: circle line",
                 testDeleteOneIndex.execute(testExpenditures).getCommandResult());
     }
 
@@ -47,8 +47,8 @@ public class DeleteCommandTest {
         DeleteCommand testDeleteTwoIndex = new DeleteCommand(2);
         assertEquals("Entry has been deleted\n" +
                         "Here is your updated list: \n" +
-                        "1. [Academic] || Date: 2023-01-01 || Value: 2.1 || Description: pen\n" +
-                        "2. [Food] || Date: 2023-03-21 || Value: 4.5 || Description: chicken rice",
+                        "1. [Academic] || Date: 1 Jan 2023 || Value: 2.1 || Description: pen\n" +
+                        "2. [Food] || Date: 21 Mar 2023 || Value: 4.5 || Description: chicken rice",
                 testDeleteTwoIndex.execute(testExpenditures).getCommandResult());
     }
 

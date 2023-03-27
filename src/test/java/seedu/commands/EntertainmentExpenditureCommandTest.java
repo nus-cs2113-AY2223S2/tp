@@ -16,10 +16,10 @@ public class EntertainmentExpenditureCommandTest {
                 "darts",
                 10,
                 LocalDate.parse("2023-03-01"));
-        assertEquals("Added entertainment expenditure: [Entertainment] || Date: 2023-03-01 || Value: 10.0 " +
+        assertEquals("Added entertainment expenditure: [Entertainment] || Date: 1 Mar 2023 || Value: 10.0 " +
                         "|| Description: darts",
                 testEntertainmentExpenditureCommand.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Entertainment] || Date: 2023-03-01 || Value: 10.0 || Description: darts",
+        assertEquals("1. [Entertainment] || Date: 1 Mar 2023 || Value: 10.0 || Description: darts",
                 testExpenditures.toString());
     }
 
@@ -32,11 +32,11 @@ public class EntertainmentExpenditureCommandTest {
                 "darts",
                 10,
                 LocalDate.parse("2023-03-01"));
-        assertEquals("Added entertainment expenditure: [Entertainment] || Date: 2023-03-01 || Value: 10.0 " +
+        assertEquals("Added entertainment expenditure: [Entertainment] || Date: 1 Mar 2023 || Value: 10.0 " +
                         "|| Description: darts",
                 testEntertainmentExpenditureCommand.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Academic] || Date: 2021-08-01 || Value: 1500.0 || Description: laptop\n" +
-                        "2. [Entertainment] || Date: 2023-03-01 || Value: 10.0 || Description: darts",
+        assertEquals("1. [Academic] || Date: 1 Aug 2021 || Value: 1500.0 || Description: laptop\n" +
+                        "2. [Entertainment] || Date: 1 Mar 2023 || Value: 10.0 || Description: darts",
                 testExpenditures.toString());
     }
 }

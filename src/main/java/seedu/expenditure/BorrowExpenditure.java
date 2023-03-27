@@ -1,13 +1,15 @@
 package seedu.expenditure;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class BorrowExpenditure extends Expenditure {
+    public static final String expenditureType = "B";
     private LocalDate deadline;
     private String borrowerName;
 
     public BorrowExpenditure(String description, String borrowerName, double borrowValue, LocalDate date,
-                             LocalDate deadline) {
+            LocalDate deadline) {
         super(description, borrowValue, date);
         setBorrowerName(borrowerName);
         setDeadline(deadline);
@@ -29,15 +31,25 @@ public class BorrowExpenditure extends Expenditure {
         this.borrowerName = borrowerName;
     }
 
+    public void setBorrowerNameAndDeadline(String lenderName, LocalDate deadline) {
+        this.borrowerName = lenderName;
+        this.deadline = deadline;
+    }
+
+    public String getFullDeadline() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
+        return getDeadline().format(formatter);
+    }
+
     @Override
     public String toString() {
         return String.format("[Borrow] || Borrowed from: %s || %s || By: %s",
-                getBorrowerName(), super.toString(), getDeadline());
+                getBorrowerName(), super.toString(), getFullDeadline());
     }
 
     @Override
     public String getExpenditureType() {
-        return "B";
+        return expenditureType;
     }
 
     @Override

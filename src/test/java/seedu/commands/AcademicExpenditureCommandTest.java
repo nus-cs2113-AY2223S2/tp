@@ -16,9 +16,9 @@ public class AcademicExpenditureCommandTest {
                 1500.5,
                 LocalDate.parse("2023-02-01"));
         assertEquals("Added academic expenditure: " +
-                        "[Academic] || Date: 2023-02-01 || Value: 1500.5 || Description: new laptop",
+                        "[Academic] || Date: 1 Feb 2023 || Value: 1500.5 || Description: new laptop",
                 testAcademicExpenditureCommand.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Academic] || Date: 2023-02-01 || Value: 1500.5 || Description: new laptop",
+        assertEquals("1. [Academic] || Date: 1 Feb 2023 || Value: 1500.5 || Description: new laptop",
                 testExpenditures.toString());
     }
 
@@ -32,10 +32,10 @@ public class AcademicExpenditureCommandTest {
                 1500.5,
                 LocalDate.parse("2023-02-01"));
         assertEquals("Added academic expenditure: " +
-                        "[Academic] || Date: 2023-02-01 || Value: 1500.5 || Description: new laptop",
+                        "[Academic] || Date: 1 Feb 2023 || Value: 1500.5 || Description: new laptop",
                 testAcademicExpenditureCommand.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Academic] || Date: 2021-08-01 || Value: 1500.0 || Description: laptop\n" +
-                        "2. [Academic] || Date: 2023-02-01 || Value: 1500.5 || Description: new laptop",
+        assertEquals("1. [Academic] || Date: 1 Aug 2021 || Value: 1500.0 || Description: laptop\n" +
+                        "2. [Academic] || Date: 1 Feb 2023 || Value: 1500.5 || Description: new laptop",
                 testExpenditures.toString());
     }
 }

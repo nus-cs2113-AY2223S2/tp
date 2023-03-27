@@ -9,7 +9,7 @@ package seedu.commands;
 // import java.time.LocalDate;
 // import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ViewExpenditureCommandTest {
+class ListExpenditureCommandTest {
         // ExpenditureList testExpenditures = new ExpenditureList();
 
         // @BeforeEach

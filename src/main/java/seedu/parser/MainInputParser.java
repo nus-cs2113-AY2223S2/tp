@@ -5,7 +5,10 @@ import seedu.commands.EditCommand;
 import seedu.commands.HelpCommand;
 import seedu.commands.DeleteCommand;
 import seedu.commands.ExitCommand;
-import seedu.commands.ViewExpenditureCommand;
+import seedu.commands.FindCommand;
+import seedu.commands.ListExpenditureCommand;
+import seedu.commands.ViewDateExpenditureCommand;
+import seedu.commands.ViewTypeExpenditureCommand;
 import seedu.commands.AcademicExpenditureCommand;
 import seedu.commands.AccommodationExpenditureCommand;
 import seedu.commands.EntertainmentExpenditureCommand;
@@ -19,6 +22,12 @@ import seedu.commands.InvalidCommand;
 import seedu.commands.UnmarkCommand;
 import seedu.commands.MarkCommand;
 import seedu.commands.SortCommand;
+import seedu.exceptions.WrongInputException;
+import seedu.commands.DuplicateCommand;
+import seedu.commands.SetBudgetCommand;
+import seedu.commands.CheckBudgetCommand;
+
+import java.time.format.DateTimeParseException;
 
 public class MainInputParser {
     public static final int LIMIT = 2;
@@ -53,8 +62,12 @@ public class MainInputParser {
                 ParseSort prepareSort;
                 prepareSort = new ParseSort(splitValues[INDEX_USERSTRING]);
                 return prepareSort.sortExpenditures();
-            case ViewExpenditureCommand.COMMAND_WORD:
-                return new ViewExpenditureCommand();
+            case ListExpenditureCommand.COMMAND_WORD:
+                return new ListExpenditureCommand();
+            case ViewDateExpenditureCommand.COMMAND_WORD:
+                return new ViewDateExpenditureCommand(splitValues[INDEX_USERSTRING]);
+            case ViewTypeExpenditureCommand.COMMAND_WORD:
+                return new ViewTypeExpenditureCommand(splitValues[INDEX_USERSTRING]);
             case AcademicExpenditureCommand.COMMAND_WORD:
             case AccommodationExpenditureCommand.COMMAND_WORD:
             case EntertainmentExpenditureCommand.COMMAND_WORD:
@@ -70,12 +83,28 @@ public class MainInputParser {
                 ParseLendBorrow prepareLendBorrowExpenditure;
                 prepareLendBorrowExpenditure = new ParseLendBorrow(splitValues[INDEX_USERSTRING]);
                 return prepareLendBorrowExpenditure.addItem(command);
+            case DuplicateCommand.COMMAND_WORD:
+                ParseDuplicate prepareDuplicate = new ParseDuplicate(splitValues[INDEX_USERSTRING]);
+                return prepareDuplicate.duplicateItem();
+            case SetBudgetCommand.COMMAND_WORD:
+                ParseSetBudget prepareBudget = new ParseSetBudget(splitValues[INDEX_USERSTRING]);
+                return prepareBudget.setBudget();
+            case CheckBudgetCommand.COMMAND_WORD:
+                return new CheckBudgetCommand();
+            case FindCommand.COMMAND_WORD:
+                ParseFind prepareFind;
+                prepareFind = new ParseFind(splitValues[INDEX_USERSTRING]);
+                return prepareFind.findExpenditure();
             default:
                 // Commands that are not listed above
                 return new InvalidCommand("Command not recognised. Please try again");
             }
         } catch (IndexOutOfBoundsException e) {
             return new InvalidCommand("Input command does not have required parameters! Please try again");
+        } catch (DateTimeParseException d) {
+            return new InvalidCommand("date time error");
+        } catch (WrongInputException e) {
+            return new InvalidCommand("invalid expenditure type");
         }
     }
 }

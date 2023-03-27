@@ -3,6 +3,7 @@ package seedu.expenditure;
 import java.time.LocalDate;
 
 public class TransportExpenditure extends Expenditure {
+    public static final String expenditureType = "Tr";
     public TransportExpenditure(String description, double value, LocalDate date) {
         super(description, value, date);
     }
@@ -13,7 +14,7 @@ public class TransportExpenditure extends Expenditure {
 
     @Override
     public String getExpenditureType() {
-        return "Tr";
+        return expenditureType;
     }
 
     @Override
