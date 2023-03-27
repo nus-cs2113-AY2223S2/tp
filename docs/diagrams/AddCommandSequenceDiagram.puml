@@ -1,0 +1,44 @@
+@startuml
+participant ":AddCommand" as AddCommand
+participant ":FinancialStatement" as FinancialStatement
+participant ":UserData" as UserData
+participant ":FinancialReport" as FinancialReport
+
+[-> AddCommand : execute()
+activate AddCommand
+
+create FinancialStatement
+AddCommand -> FinancialStatement : new FinancialStatement
+activate FinancialStatement
+
+FinancialStatement --> AddCommand : :FinancialStatement
+deactivate FinancialStatement
+
+AddCommand -> UserData: addStatement(statement : Financial Statement)
+activate UserData
+
+UserData -> FinancialReport : addStatement(statement : Financial Statement)
+activate FinancialReport
+
+FinancialReport -> FinancialReport : addToMonthlyExpenditure(statement : Financial Statement)
+activate FinancialReport
+
+FinancialReport --> FinancialReport
+deactivate FinancialReport
+
+FinancialReport --> UserData
+deactivate FinancialReport
+
+UserData --> AddCommand
+deactivate UserData
+
+AddCommand -> UserData : checkUserBudgetLimit(newStatement : Financial Statement)
+activate UserData
+
+UserData --> AddCommand : :String
+deactivate UserData
+
+[<--AddCommand : : CommandResult
+deactivate AddCommand
+
+@enduml

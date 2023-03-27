@@ -38,12 +38,14 @@ Components:
 - Monthly expenditures are stored in the form of a Hash Table, mapping the Year and Month to the expenditures
 
 #### Design considerations
+
 - To prevent slow processing of the program when there are many entries, a Hash Table is used.
 - An additional storage was specifically created as we believe that the Set Budget feature will be commonly
-used as it is 1 of the key aspects a Financial Tracker. Hence, it would be more feasible to implement indexing such that
-add operations and retrieval of information to be done in Amortised O(1).
+  used as it is 1 of the key aspects a Financial Tracker. Hence, it would be more feasible to implement indexing such
+  that
+  add operations and retrieval of information to be done in Amortised O(1).
 - The Key used is the number of months from the Year 0000, or more precisely calculated by (Year * 12 + Month). This is
-to allow fast processing and collision-free information collection.
+  to allow fast processing and collision-free information collection.
 
 ### Command component
 
@@ -79,6 +81,10 @@ to allow fast processing and collision-free information collection.
   will be created with the relevant attributes
 - `RainyDay` will then call `execute` method in `Command`, where the transaction will be added into the financial report
 
+The sequence diagram for the implementation of add is as shown below:
+
+![AddCommandSequenceDiagram.png](\images\DeveloperGuide\AddCommandSequenceDiagram.png)
+
 #### Design considerations
 
 Format of add command
@@ -101,6 +107,10 @@ Format of add command
   be created with the relevant attribute information
 - `RainyDay` will then call `execute` method in `Command`, where the indicated transaction will be deleted from the
   financial report
+
+The sequence diagram for the implementation of delete is as shown below:
+
+![DeleteCommandSequenceDiagram.png](\images\DeveloperGuide\DeleteCommandSequenceDiagram.png)
 
 #### Design considerations
 
@@ -195,7 +205,7 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 
 - The command `setbudget` is used to set the user's monthly budget goal
 - Once a goal is present, user's will be reminded of how close they are to sticking to their budget, or how
-much they have exceeded it by
+  much they have exceeded it by
 - This can be seen at start-up and when the user makes any changes to their expenses for the month.
 
 ### Editing an entry `edit`
@@ -206,7 +216,8 @@ much they have exceeded it by
   command.
 - Otherwise, methods specific to the flags will be used to validate the remaining fields using regex pattern
 - Commands in the correct format will then be used to create a FilterCommand object.
-- `RainyDay` will then call `execute` method in `Command`, where the transaction's specific field be edited or deleted then added
+- `RainyDay` will then call `execute` method in `Command`, where the transaction's specific field be edited or deleted
+  then added
   into the financial report.
 
 ### Filtering your data `filter`
