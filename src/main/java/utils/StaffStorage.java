@@ -21,7 +21,7 @@ public class StaffStorage {
      *
      * @throws FileNotFoundException If file is not found, throw an exception. But file will be created if not found.
      */
-    public StaffManager readAndLoadFromStaffFile() throws FileNotFoundException {
+    public void readAndLoadFromStaffFile() throws FileNotFoundException {
         File file = new File(FILEPATH_STAFF_LIST);
         Scanner in = new Scanner(file);
         ArrayList<Staff> listOfStaffs = new ArrayList<>();
@@ -42,7 +42,7 @@ public class StaffStorage {
             }
         }
 
-        return new StaffManager(listOfStaffs);
+        new StaffManager(listOfStaffs);
     }
 
     /**

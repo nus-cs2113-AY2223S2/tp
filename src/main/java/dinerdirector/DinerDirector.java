@@ -22,10 +22,6 @@ import java.util.ArrayList;
 public class DinerDirector {
     private TextUi ui;
     private Storage storage;
-    private DeadlineManager deadlineList;
-    private MeetingManager meetingList;
-    private DishManager dishList;
-    private StaffManager staffList;
 
 
     //Solution below adopted from:
@@ -59,31 +55,27 @@ public class DinerDirector {
         }
 
         try {
-            deadlineList = deadlineStorage.readAndLoadFromDeadlineFile();
+            deadlineStorage.readAndLoadFromDeadlineFile();
         } catch (FileNotFoundException e) {
             ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, DeadlineStorage.FILENAME_DEADLINE));
-            deadlineList = new DeadlineManager(new ArrayList<>());
         }
 
         try {
-            meetingList = meetingStorage.readAndLoadFromMeetingFile();
+            meetingStorage.readAndLoadFromMeetingFile();
         } catch (FileNotFoundException e) {
             ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, MeetingStorage.FILENAME_MEETING));
-            meetingList = new MeetingManager(new ArrayList<>());
         }
 
         try {
-            dishList = dishStorage.readAndLoadFromDishFile();
+            dishStorage.readAndLoadFromDishFile();
         } catch (FileNotFoundException e) {
             ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, DishStorage.FILENAME_DISH));
-            dishList = new DishManager(new ArrayList<>());
         }
 
         try {
-            staffList = staffStorage.readAndLoadFromStaffFile();
+            staffStorage.readAndLoadFromStaffFile();
         } catch (FileNotFoundException e) {
             ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, StaffStorage.FILENAME_STAFF));
-            staffList = new StaffManager(new ArrayList<>());
         }
 
         ui.printMessage(Messages.MESSAGE_FINISHED_LOADING);

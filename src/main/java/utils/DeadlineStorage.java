@@ -21,7 +21,7 @@ public class DeadlineStorage {
      *
      * @throws FileNotFoundException If file is not found, throw an exception. But file will be created if not found.
      */
-    public DeadlineManager readAndLoadFromDeadlineFile() throws FileNotFoundException {
+    public void readAndLoadFromDeadlineFile() throws FileNotFoundException {
         File file = new File(FILEPATH_DEADLINE_LIST);
         Scanner in = new Scanner(file);
         ArrayList<Deadline> listOfDeadlines = new ArrayList<>();
@@ -42,7 +42,7 @@ public class DeadlineStorage {
             }
         }
 
-        return new DeadlineManager(listOfDeadlines);
+        new DeadlineManager(listOfDeadlines);
     }
 
     /**

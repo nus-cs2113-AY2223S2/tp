@@ -21,7 +21,7 @@ public class MeetingStorage {
      *
      * @throws FileNotFoundException If file is not found, throw an exception. But file will be created if not found.
      */
-    public MeetingManager readAndLoadFromMeetingFile() throws FileNotFoundException {
+    public void readAndLoadFromMeetingFile() throws FileNotFoundException {
         File file = new File(FILEPATH_MEETING_LIST);
         Scanner in = new Scanner(file);
         ArrayList<Meeting> listOfMeetings = new ArrayList<>();
@@ -42,7 +42,7 @@ public class MeetingStorage {
             }
         }
 
-        return new MeetingManager(listOfMeetings);
+        new MeetingManager(listOfMeetings);
     }
 
     /**

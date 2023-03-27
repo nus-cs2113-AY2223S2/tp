@@ -22,7 +22,7 @@ public class DishStorage {
      *
      * @throws FileNotFoundException If file is not found, throw an exception. But file will be created if not found.
      */
-    public DishManager readAndLoadFromDishFile() throws FileNotFoundException {
+    public void readAndLoadFromDishFile() throws FileNotFoundException {
         File file = new File(FILEPATH_DISH_LIST);
         Scanner in = new Scanner(file);
         ArrayList<Dish> listOfDishes = new ArrayList<>();
@@ -44,7 +44,7 @@ public class DishStorage {
             }
         }
 
-        return new DishManager(listOfDishes);
+        new DishManager(listOfDishes);
     }
 
     /**
