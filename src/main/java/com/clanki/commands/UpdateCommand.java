@@ -57,13 +57,22 @@ public class UpdateCommand extends Command {
     public void execute(FlashcardList flashcardList, Ui display) {
         ArrayList<Flashcard> flashcards = flashcardList.getFlashCards();
         findFlashcard(flashcards, query);
-        System.out.println(
-                "Found " + matchingFlashcards.size() + " cards with the query \"" + query + "\":");
-        printFlashCards(matchingFlashcards);
-        System.out.println("Which flashcard do you want to update?");
-        String userText = display.getUserCommand();
-        int index = implementUpdate(flashcards, userText);
-        System.out.println("Understood. The card has been updated to");
-        printFlashCard(flashcards.get(index));
+        if (matchingFlashcards.size() > 0) {
+            System.out.println(
+                    "Found " + matchingFlashcards.size() + " cards with the query \"" + query + "\":");
+            printFlashCards(matchingFlashcards);
+            System.out.println("Which flashcard do you want to update?");
+            String userText = display.getUserCommand();
+            int index = 0;
+            try {
+                index = implementUpdate(flashcards, userText);
+                System.out.println("Understood. The card has been updated to");
+                printFlashCard(flashcards.get(index));
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Please enter the input in the correct format as shown in the user guide.");
+            }
+        } else {
+            System.out.println("There are no flashcards with the query \"" + query + "\".");
+        }
     }
 }
