@@ -19,6 +19,7 @@ import seedu.duke.command.ListDeadlinesCommand;
 import seedu.duke.command.ListPuCommand;
 import seedu.duke.command.ListPuModulesCommand;
 import seedu.duke.command.ViewBudgetCommand;
+import seedu.duke.command.ListFoundNusModsCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidPuException;
 import seedu.duke.exceptions.InvalidModuleException;
@@ -52,6 +53,8 @@ public class Parser {
                 } else {  // list PU name case
                     return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
                 }
+            case "search":
+                return prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities);
             case "exit":
                 return new ExitCommand();
             case "add":
@@ -89,6 +92,35 @@ public class Parser {
         }
         return commandWords;
     }
+
+    private Command prepareSearchByNusModCode(String nusModCode, ArrayList<Module> allModules,
+                                              ArrayList<University> universities) {
+        String searchModCode = nusModCode;
+        ArrayList<Module> foundModulesToPrint = new ArrayList<>();
+        try {
+            return handleSearchByNusModCode(foundModulesToPrint, searchModCode, allModules, universities);
+        } catch (InvalidModuleException e) {
+            return new ExceptionHandleCommand(e);
+        }
+    }
+
+    private Command handleSearchByNusModCode(ArrayList<Module> foundModulesToPrint, String searchModCode,
+                                             ArrayList<Module> allModules,
+                                             ArrayList<University> universities) throws InvalidModuleException {
+        for (Module module : allModules) {
+            String nusModuleCode = module.getNusModuleCode();
+            if (nusModuleCode.equalsIgnoreCase(searchModCode)) {
+                foundModulesToPrint.add(module);
+            }
+        }
+        int numOfFoundModules = foundModulesToPrint.size();
+        if (numOfFoundModules == 0) {
+            throw new InvalidModuleException(ui.getInvalidSearchModuleMessage());
+        } else {
+            return new ListFoundNusModsCommand(searchModCode, foundModulesToPrint, universities);
+        }
+    }
+
 
     private Command prepareListPuModulesCommand(String univAbbNameOrIndex, ArrayList<University> universities) {
         char digitChecker = univAbbNameOrIndex.charAt(0);
