@@ -1,0 +1,53 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant FilterParser
+group sd [filter price]
+    FilterParser -> FilterCommand ** : run() with parameters set for price
+    activate FilterCommand
+    FilterCommand -> FilterCommand: getFilteredItems()
+    activate FilterCommand #lightgreen
+    FilterCommand -> FilterCommand: filterPrice()
+    activate FilterCommand #cyan
+    participant Ui
+    alt mode == "p/lt"
+        ref over FilterCommand
+            place all items with price less than input to filteredItems
+        end ref
+    else mode == "p/gt"
+        ref over FilterCommand
+            place all items with price more than input to filteredItems
+        end ref
+    else mode == "p/let"
+        ref over FilterCommand
+            place all items with price less than or equal to input to filteredItems
+        end ref
+    else mode == "p/get"
+        ref over FilterCommand
+            place all items with price more than or equal to input to filteredItems
+        end ref
+    end
+    alt no filtered items
+        FilterCommand -> FilterCommand: null
+    end
+    return filteredItems
+    return null or filteredItems
+    alt filteredItems is not null
+        FilterCommand -> Ui: printSearchItems()
+        activate Ui
+        ref over Ui
+            print items in table
+        end ref
+        return
+    else
+        FilterCommand -> Ui: printEmptySearch()
+        activate Ui
+        ref over Ui
+            print empty search message
+        end ref
+        return
+    end
+    return
+    destroy FilterCommand
+end
+@enduml
