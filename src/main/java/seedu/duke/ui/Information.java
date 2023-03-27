@@ -6,6 +6,7 @@ import seedu.duke.patient.Patient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -129,6 +130,37 @@ public class Information {
             for (int i = 0; i < symptoms.size(); i++) {
                 System.out.println(symptoms.get(i));
             }
+        }
+    }
+
+    //@@author JeraldChen
+    public static void deleteSymptom(ArrayList<Symptom> symptoms) {
+        if (symptoms.size() == 0) {
+            System.out.println("You have not entered any symptoms.");
+            return;
+        }
+        System.out.println("---------------------------------------------------");
+        System.out.println("Here is the list of your symptoms:");
+        for (int i = 0; i < symptoms.size(); i++) {
+            System.out.println((i + 1) + ". " + symptoms.get(i));
+        }
+        System.out.println("Please enter the number of the symptom you want to delete.");
+        System.out.println("---------------------------------------------------");
+        Scanner scanner = new Scanner(System.in);
+        try {
+            int index = Integer.parseInt(scanner.nextLine());
+            if (index > 0 && index <= symptoms.size()) {
+                symptoms.remove(index - 1);
+                System.out.println("Successfully deleted symptom!");
+                System.out.println("Here is the updated list of your symptoms:");
+                for (int i = 0; i < symptoms.size(); i++) {
+                    System.out.println((i + 1) + ". " + symptoms.get(i));
+                }
+            } else {
+                System.out.println("Invalid command! Please enter a valid symptom.");
+            }
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            System.out.println("Invalid number! Please enter a valid symptom number.");
         }
     }
 }

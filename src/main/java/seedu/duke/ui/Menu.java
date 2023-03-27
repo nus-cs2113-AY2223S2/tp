@@ -19,6 +19,7 @@ public class Menu {
     /**
      * Shows the welcome menu.
      */
+    //@@Geeeetyx
     public static void showWelcomeMenu() {
         System.out.println("---------------------------------------------------");
         System.out.println("What would you like to do? Please enter the number:");
@@ -34,13 +35,11 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             if (name.equals("")) {
-                //@@Geeeetxyx
                 System.out.println("---------------------------------------------------");
                 //@@JeraldChen
                 System.out.println("Please enter your name: ");
                 name = scanner.nextLine();
                 if (name.equals("")) {
-                    //@@Geeeetxyx
                     System.out.println("---------------------------------------------------");
                     //@@JeraldChen
                     System.out.println("Registration failed! Name cannot be empty.");
@@ -49,7 +48,7 @@ public class Menu {
             }
             //@@Geeeetxyx
             System.out.println("---------------------------------------------------");
-            //@@author eraldChen
+            //@@JeraldChen
             System.out.println("Please enter your password: ");
             String password = scanner.nextLine();
 
@@ -57,32 +56,24 @@ public class Menu {
             int hash = Information.hashPassword(password);
 
             if (password.equals("")) {
-                //@@Geeeetxyx
                 System.out.println("---------------------------------------------------");
-                //@@JeraldChen
                 System.out.println("Registration failed! Password cannot be empty.");
             } else if (Information.checkHash(hash)) {
-                //@@Geeeetxyx
                 System.out.println("--------------------------------------------------------");
-                //@@JeraldChen
                 System.out.println("Password is already used. Please enter another password.");
             } else {
-                //@@Geeeetxyx
                 System.out.println("---------------------------------------------------");
-                //@@JeraldChen
                 System.out.println("Please re-enter your password: ");
                 String password2 = new Scanner(System.in).nextLine();
                 if (password.equals(password2)) {
-                    //@@Geeeetxyx
                     System.out.println("---------------------------------------------------");
-                    //@@JeraldChen
                     System.out.println("Registration successful!");
                     ArrayList<String> diagnosisHistory = new ArrayList<>();
                     Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable<>();
                     Information.storePatientInfo(hash, new Patient(name, hash, diagnosisHistory, medicineHistory));
                     break;
                 } else {
-                    //@@Geeeetxyx
+                    //@@author Geeeetxyx
                     System.out.println("---------------------------------------------------");
                     System.out.println("Registration failed! Passwords do not match.");
                 }
@@ -93,22 +84,17 @@ public class Menu {
     //@@author JeraldChen
     public static void login() {
         Scanner scanner = new Scanner(System.in);
-        //@@Geeeetxyx
         System.out.println("---------------------------------------------------");
-        //@@JeraldChen
         System.out.println("Please enter your name: ");
         String name = new Scanner(System.in).nextLine();
-
-        //@@Geeeetxyx
         System.out.println("---------------------------------------------------");
-        //@@author JeraldChen
         System.out.println("Please enter your password: ");
         String password = scanner.nextLine();
         password = password.replaceAll("\\s", "");
         int hash = Information.hashPassword(password);
         if (Information.checkHash(hash) && Information.getPatientInfo(hash).getName().equals(name)) {
             Duke.setPassword(hash);
-            //@@Geeeetxyx
+            //@@author Geeeetxyx
             System.out.println("---------------------------------------------------");
             System.out.println("Login successful!");
             System.out.println("Welcome " + name + "!");
@@ -118,7 +104,7 @@ public class Menu {
         }
     }
 
-    //@@Geeeetxyx
+    //@@author Geeeetxyx
     public static void exit() {
         System.out.println("---------------------------------------------------");
         System.out.println("Thank you for using");
@@ -133,24 +119,22 @@ public class Menu {
         System.exit(0);
     }
 
-    //@@Thunderdragon221
+    //@@author Thunderdragon221
     public static void showAccountMenu() {
-        //@@Geeeetxyx
         System.out.println("---------------------------------------------------");
-        //@@Thunderdragon221
         System.out.println("What would you like to do? Please enter the number:");
         System.out.println("1. Report symptoms");
         System.out.println("2. View diagnosis history");
         System.out.println("3. Reset diagnosis history");
         System.out.println("4. View symptoms History");
-        System.out.println("5. Reset symptoms");
-        System.out.println("6. View Medicine history");
-        System.out.println("7. Exit");
-        //@@Geeeetxyx
+        System.out.println("5. Delete symptom choice");
+        System.out.println("6. Reset symptoms");
+        System.out.println("7. View Medicine history");
+        System.out.println("8. Exit");
         System.out.println("---------------------------------------------------");
     }
 
-    //@@Thunderdragon221
+    //@@author Thunderdragon221
     /**
      * Reads in a list of symptoms the user experiences.
      *
