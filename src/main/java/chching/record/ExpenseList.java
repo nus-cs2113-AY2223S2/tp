@@ -40,6 +40,15 @@ public class ExpenseList extends RecordList {
         expenseList.add(expense);
     }
     
+    /**
+     * Method to edit an expense in the expense list.
+     * Edits a specific field of an expense based on the parameters field to value.
+     *
+     * @param index Index of expense to be edited.
+     * @param field Field to be edited.
+     * @param value Updated value desired.
+     * @throws ChChingException If value value is not a non-numeric input.
+     */
     public void editExpense(int index, String field, String value) throws ChChingException {
     
         // change from 1-based indexing to 0-based indexing
