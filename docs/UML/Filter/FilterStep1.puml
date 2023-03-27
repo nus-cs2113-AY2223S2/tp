@@ -1,7 +1,7 @@
 @startuml
 object FilterParser{
-    rawInput = "f/price p/gt 23.50"
-    Inventory = inventory
+    - rawInput = "f/price p/gt 23.50"
+    - Inventory = inventory
 }
 
 @enduml

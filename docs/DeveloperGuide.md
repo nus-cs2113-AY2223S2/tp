@@ -61,8 +61,8 @@ the `SearchParser` class, which extends the `Parser` class.
 **Step 1**. When the user executes the command `search [keyword]` or `searchupc [keyword]`, the `ParserHandler` will create a 
 new `SearchParser` object and pass to it the appropriate `input`, the `SearchType`, and the appropriate `Inventory` in 
 which the items are stored.
+![SearchStep1.png](UML%2FSearch%2FSearchStep1.png)
 
-![img.png](UML%2FSearch%2Fimg.png)
 
 **Step 2**. The `run` method in `SearchParser` is called which overrides the `run` method in `Parser`. This leads the 
 `SearchParser` to call either the `parseSearch` or `parseSearchUPC` method, depending on whether the `SearchType` is
@@ -72,7 +72,7 @@ which the items are stored.
 is valid, both will create a new `SearchCommand` object, passing to it the relevant `Inventory`, `SearchType`, and 
 the `input`. If the input is not valid, an error message will be printed out and method execution will halt.
 
-![img3.png](UML%2FSearch%2Fimg3.png)
+![SearchStep3.png](UML%2FSearch%2FSearchStep3.png)
 
 **Step 4**. The `run` method in the `SearchCommand` class is called which overrides the `run` method in the
 `Command` class. This calls either the `searchKeyword` method which returns `ArrayList<Item>`, or the `searchUPC`
@@ -84,9 +84,8 @@ will inform the user that no search results were found. Otherwise, the `printSea
 `printSearchUPCItems` from the `Ui` class is called, depending on whether the `SearchType` is
 `Types.SearchType.KEYWORD` or `Types.SearchType.UPC` respectively.
 
-![img5.png](UML%2FSearch%2Fimg5.png)
-
-![img5upc.png](UML%2FSearch%2Fimg5upc.png)
+![SearchStep5UPC.png](UML%2FSearch%2FSearchStep5UPC.png)
+![SearchStep5.png](UML%2FSearch%2FSearchStep5.png)
 
 **Step 6**. If the `printSearchItems` method is called, it takes in an `ArrayList<Item> items` as a parameter and
 prints out a table showing the name, UPC, quantity and price of all search results. Otherwise, the `printSearchUPCItems`
@@ -113,9 +112,8 @@ class and pass to it the relevant `Inventory`, `value` and `filterMode`. The `fi
 printed out and execution of the method will halt. Otherwise, a new `FilterCommand` class is created and passed the 
 `Inventory`, `Price`, and `FilterPriceMode`.
 
-![FilterStep3.png](UML%2FFilter%2FFilterStep3.png)
-
 ![FilterStep3Tag.png](UML%2FFilter%2FFilterStep3Tag.png)
+![FilterStep3.png](UML%2FFilter%2FFilterStep3.png)
 
 **Step 4**. The `run` method in the `FilterCommand` class is called which overrides the `run` method in the
 `Command` class. This calls either the `filterCategory` method, `filterTags` method, or `filterPrice` which returns 

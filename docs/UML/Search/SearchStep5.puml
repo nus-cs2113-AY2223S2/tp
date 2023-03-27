@@ -2,19 +2,19 @@
 'https://plantuml.com/object-diagram
 
 object SearchParser{
-    rawInput = "apple"
-    Inventory = inventory
-    searchType = Types.SearchType.KEYWORD
+    - rawInput = "apple"
+    - Inventory = inventory
+    - searchType = Types.SearchType.KEYWORD
 }
 
 object SearchCommand{
-    rawInput = "apple"
-    Inventory = inventory
-    searchType = Types.SearchType.KEYWORD
+    - rawInput = "apple"
+    - Inventory = inventory
+    - searchType = Types.SearchType.KEYWORD
 }
 
 object Ui{
-    ArrayList<Item> items = items
+    - ArrayList<Item> items = items
 }
 
 SearchParser -> SearchCommand
