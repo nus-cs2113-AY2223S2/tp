@@ -50,7 +50,7 @@ public class ClearCommandTest {
         defaultIncomeList = new IncomeList(incomeList);
     }
     @Test
-    public void execute_clearAll_success() {
+    public void execute_ClearAllCommand_success() {
         try {
             Command command = new ClearAllCommand();
             command.execute(defaultIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
@@ -60,7 +60,7 @@ public class ClearCommandTest {
         }
     }
     @Test
-    public void execute_clearExpense_success() {
+    public void execute_ClearExpenseCommand_success() {
         try {
             Command command = new ClearExpenseCommand();
             command.execute(defaultIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
@@ -70,7 +70,7 @@ public class ClearCommandTest {
         }
     }
     @Test
-    public void execute_clearIncome_success() {
+    public void executeClear_IncomeCommand_success() {
         try {
             Command command = new ClearIncomeCommand();
             command.execute(defaultIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
