@@ -21,7 +21,8 @@ public class Messages {
     public static final String MESSAGE_DEADLINE_COMMANDS = "add_deadline n/<name> t/<time>\n" +
             "delete_deadline <integer>\n" +
             "view_deadlines\n";
-    public static final String MESSAGE_RECIPE_COMMANDS = "add_dish\n" +
+    public static final String MESSAGE_RECIPE_COMMANDS = "add_dish n/<name> pc/<price in cents> " +
+            "[<ingredient 1>;<ingredients 2>;<ingredient 3>; ... ]\n" +
             "delete_dish <integer>\n" +
             "view_dish\n";
     public static final String MESSAGE_WORKER_COMMANDS =
@@ -36,6 +37,7 @@ public class Messages {
     public static final String MESSAGE_NUMBER_OF_DEADLINES = "\nNow you have %d tasks in the list.";
     public static final String MESSAGE_MEETING_ADDED = "Got it! You have successfully added a meeting:";
     public static final String MESSAGE_MEETING_VIEW_LIST = "Meeting list:";
+    public static final String MESSAGE_FINISHED_LOADING = "Loading done. Starting Dinerdirector...\n";
 
     /**
      * Errors for programs to print.
@@ -66,4 +68,14 @@ public class Messages {
     public static final String ERROR_DISH_NEGATIVE_PRICE_COMMAND = "Price of dish cannot be negative!";
     public static final String ERROR_DISH_MISSING_INGREDIENT = "Ingredient list cannot be empty!";
     public static final String ERROR_DISH_EMPTY_INDEX = "Index cannot be empty!";
+    public static final String ERROR_CREATE_DIRECTORY = "Unable to create directory at\n%s";
+    public static final String ERROR_STORAGE_FILE_NOT_FOUND = "The following file was not found:\n%s\n" +
+            "A new file will be created when a new task is added.\n";
+    public static final String ERROR_STORAGE_INVALID_READ_LINE = "There is an error reading this line.\n%s\n" +
+            "Skipping line...\n";
+    public static final String ERROR_STORAGE_INVALID_WRITE_LINE = "There is an error writing this line.\n%s\n" +
+            "Please check your file permissions.";
+    public static final String ERROR_STORAGE_DELETE_FAILED = "There is an error deleting trying " +
+            "to delete from the file. Please check your file permissions.";
+
 }
