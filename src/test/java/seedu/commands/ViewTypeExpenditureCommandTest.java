@@ -34,7 +34,8 @@ public class ViewTypeExpenditureCommandTest {
     @Test
     public void test_viewTypeExpenditureCommand_onNoType() throws WrongInputException {
         ViewTypeExpenditureCommand testViewTypeOneType = new ViewTypeExpenditureCommand("lend");
-        assertEquals("Here are the specified expenditures: \n",
+        assertEquals("Here are the specified expenditures: \n" +
+                        "Total amount: 0.00",
                 testViewTypeOneType.execute(testExpenditures).getCommandResult());
     }
 
@@ -42,7 +43,8 @@ public class ViewTypeExpenditureCommandTest {
     public void test_viewTypeExpenditureCommand_onOneType() throws WrongInputException {
         ViewTypeExpenditureCommand testViewTypeOneType = new ViewTypeExpenditureCommand("food");
         assertEquals("Here are the specified expenditures: \n" +
-                        "1. [Food] || Date: 21 Mar 2023 || Value: 4.5 || Description: chicken rice",
+                        "1. [Food] || Date: 21 Mar 2023 || Value: 4.5 || Description: chicken rice\n" +
+                        "Total amount: 4.50",
                 testViewTypeOneType.execute(testExpenditures).getCommandResult());
     }
 
@@ -51,7 +53,8 @@ public class ViewTypeExpenditureCommandTest {
         ViewTypeExpenditureCommand testViewTypeOneType = new ViewTypeExpenditureCommand("academic");
         assertEquals("Here are the specified expenditures: \n" +
                         "1. [Academic] || Date: 1 Jan 2023 || Value: 2.1 || Description: pen\n" +
-                        "2. [Academic] || Date: 2 Feb 2023 || Value: 2.2 || Description: NUS",
+                        "2. [Academic] || Date: 2 Feb 2023 || Value: 2.2 || Description: NUS\n" +
+                        "Total amount: 4.30",
                 testViewTypeOneType.execute(testExpenditures).getCommandResult());
     }
 }
