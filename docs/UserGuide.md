@@ -62,7 +62,7 @@ The filters are shown here:
 | [upper]  | exercises that train your upper body          |
 | [core]   | exercises that train your core                |
 | [legs]   | exercises that train your legs                |
-_____________________________________________________________
+ ____________________________________________________________
 
 ### Searching for a workout ```find```
 

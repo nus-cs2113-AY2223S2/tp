@@ -85,7 +85,7 @@ Key Aspects:
 
 The class diagram as shown in *Figure X.1* illustrates the structure of the different classes in Storage.
 <div align="center">
-<img src="UML/Images/StorageHandlerClass.png"/>
+<img src="UML/Images/Storage.png"/>
 <p>
 Figure X.1
 </p>
