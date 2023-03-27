@@ -84,7 +84,9 @@ public class Ui {
                 "- Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n" +
                 "- Enter \"addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a lesson\n" +
                 "- Enter \"showmod [MODULE_CODE]\" to see more information about the module\n" +
-                "- Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added\n\n" +
+                "- Enter \"showmod [MODULE_CODE] -[FLAG]\" to see schedule of specific lesson type for a module\n" +
+                "- Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added\n" +
+                "- Enter \"delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a task to a lesson\n\n" +
 
                 "Common Commands:\n" +
                 "- Enter \"week\" to see your schedule for the week\n" +
@@ -622,5 +624,16 @@ public class Ui {
             System.out.println("   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
                     timetable.getEndTime());
         }
+    }
+
+    /**
+     * Prints message when the user tries to add a lesson that clashes with another lesson in the timetable.
+     */
+    public void printClashingLesson() {
+        System.out.println("This lesson clashes with another lesson in your timetable!");
+    }
+
+    public void printClashingEventMessage() {
+        System.out.println("This event clashes with another event in your timetable!");
     }
 }

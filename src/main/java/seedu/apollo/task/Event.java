@@ -3,10 +3,16 @@ package seedu.apollo.task;
 import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.exception.task.DateOrderException;
 
+
+
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+
 
 /**
  * Events are a type of Task that have a set start date and end date,
@@ -41,6 +47,8 @@ public class Event extends Task {
         if (to.isBefore(LocalDateTime.now())) {
             throw new DateOverException(getType(), description, null, from, to);
         }
+
+
     }
 
     /**
@@ -98,4 +106,7 @@ public class Event extends Task {
         return "[" + EVENT_LABEL + "][" + getStatus() + "] " + description +
                 " (from: " + getFrom(printPattern) + " to: " + getTo(printPattern) + ")";
     }
+
+
 }
+

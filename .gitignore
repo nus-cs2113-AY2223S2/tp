@@ -19,6 +19,8 @@ save.txt
 test.txt
 moduleData.txt
 testModuleData.txt
+test1.txt
 
 *.log
 *.lck
+*.log.*
