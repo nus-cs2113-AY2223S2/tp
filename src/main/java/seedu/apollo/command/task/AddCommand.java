@@ -169,11 +169,11 @@ public class AddCommand extends Command implements LoggerInterface {
             taskList.add(new Deadline(desc, by));
             break;
         case COMMAND_EVENT_WORD:
-            Event event = new Event(desc, to, from);
+            Event event = new Event(desc, from, to);
             if (isClashingEvent(taskList, event.getToDate(), event.getFromDate())) {
                 ui.printClashingEventMessage();
             }
-            taskList.add(new Event(desc, from, to));
+            taskList.add(event);
             break;
         default:
             throw new UnexpectedException("Adding Task");
