@@ -6,7 +6,6 @@ import seedu.todolist.logic.FormatterUtil;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.StringJoiner;
