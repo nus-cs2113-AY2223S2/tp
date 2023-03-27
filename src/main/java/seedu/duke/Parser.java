@@ -229,6 +229,41 @@ public class Parser {
         }
     }
 
+    private Command prepareListCurrentPUModulesCommand(String univAbbNameOrIndex, ArrayList<University> universities,
+                                                       ArrayList<Module> modules) {
+        char digitChecker = univAbbNameOrIndex.charAt(0);
+        String universityAbbName = "";
+        int univIndex = -1;
+        // remember handle exception for numberformatexception use stringtoint instead?
+        if (Character.isDigit(digitChecker)) {
+            univIndex = Integer.parseInt(univAbbNameOrIndex) - 1;
+        } else {
+            universityAbbName = univAbbNameOrIndex;
+        }
+        try {
+            return handleListCurrentPuModulesCommand(universities, universityAbbName, univIndex, modules);
+        } catch (InvalidPuException e) {
+            return new ExceptionHandleCommand(e);
+        }
+    }
+
+    private Command handleListCurrentPuModulesCommand(ArrayList<University> universities, String universityAbbName,
+                                                      int univIndex, ArrayList<Module> modules)
+            throws InvalidPuException {
+        int univID = 0;
+        if (univIndex == -1) {
+            for (University university : universities) {
+                if (universityAbbName.equalsIgnoreCase(university.getUnivAbbName())) {
+                    univID = university.getUnivId();
+                }
+            }
+        }
+        if (univID == 0) {
+            throw new InvalidPuException(ui.getInvalidPuMessage());
+        }
+        return new ListCurrentPuCommand(modules, univID);
+    }
+
     /**
      * Converts given string to int type.
      *
