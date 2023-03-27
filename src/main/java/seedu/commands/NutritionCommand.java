@@ -2,13 +2,13 @@ package seedu.commands;
 
 import java.util.List;
 
-import seedu.database.ExerciseStorage;
-import seedu.database.FoodStorage;
-import seedu.database.MealStorage;
-import seedu.database.UserStorage;
 import seedu.entities.Food;
 import seedu.exceptions.InvalidIndexException;
 import seedu.exceptions.LifeTrackerException;
+import seedu.storage.ExerciseStorage;
+import seedu.storage.FoodStorage;
+import seedu.storage.MealStorage;
+import seedu.storage.UserStorage;
 import seedu.ui.GeneralUi;
 
 public class NutritionCommand extends Command {
