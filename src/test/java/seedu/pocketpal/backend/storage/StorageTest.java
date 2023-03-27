@@ -12,7 +12,6 @@ import seedu.pocketpal.data.entrylog.EntryLog;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
 import seedu.pocketpal.frontend.constants.EntryConstants;
-import seedu.pocketpal.frontend.exceptions.InvalidCategoryException;
 import seedu.pocketpal.backend.exceptions.InvalidReadFileException;
 
 import java.util.List;
