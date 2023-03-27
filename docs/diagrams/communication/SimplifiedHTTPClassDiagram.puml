@@ -1,22 +1,15 @@
 @startuml
 title Simplified HTTP Model Class Diagram
 
-interface Requestable
 class Request
 enum RequestMethod
 enum RequestParams
 class Response
 enum ResponseStatus
 
-Requestable ..> Request
-Requestable ..> Response
 Request *-- "1" RequestMethod
 Request o-- "0..." RequestParams
 Response *-- "1" ResponseStatus
-
-interface Requestable {
-    handleRequest(request : Request) : Response
-}
 
 class Request {
 - body : String

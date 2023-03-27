@@ -2,14 +2,18 @@
 title Backend Class Diagram
 
 class Backend
+class EntryLog
 class Response
 class Request
+class Storage
+
 Backend ..> Request
 Backend ..> Response
+Backend --> "1" Storage
+Backend --> "1" EntryLog
 
 class Backend {
 - {static} logger : Logger
-- {static} storage : Storage
 
 + Backend()
 + Backend(isTest : boolean)

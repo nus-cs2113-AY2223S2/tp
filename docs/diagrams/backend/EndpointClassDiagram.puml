@@ -9,15 +9,20 @@ class EntryEndpoint
 class EntriesEndpoint
 class EntryLog
 
-Endpoint ..|> Requestable
+Request <.. Endpoint
+Request <.. EntryEndpoint
+Request <.. EntriesEndpoint
+Request <.. Requestable
+
+Requestable <|.. Endpoint
 Endpoint --|> EntryEndpoint
 Endpoint --|> EntriesEndpoint
-EntryEndpoint o-- "1" EntryLog
-EntriesEndpoint o-- "1" EntryLog
-EntryEndpoint ...> Request
+EntryLog "1" --o EntryEndpoint
+EntryLog "1" --o EntriesEndpoint
+Endpoint ...> Response
 EntryEndpoint ...> Response
-EntriesEndpoint ...> Request
 EntriesEndpoint ...> Response
+Requestable ...> Response
 
 abstract class Endpoint {
 + handleRequest(request : Request) : Response
@@ -41,6 +46,10 @@ class EntriesEndpoint {
 - handleGetSize() : Response
 - handleGetEntries(request : Request) : Response
 - handleGetEntriesFilter(request : Request) : EntryLog
+}
+
+interface Requestable {
+    handleRequest(request : Request) : Response
 }
 
 @enduml

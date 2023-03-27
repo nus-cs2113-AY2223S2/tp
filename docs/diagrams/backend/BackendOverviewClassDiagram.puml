@@ -6,18 +6,16 @@ interface Requestable
 class Request
 class Response
 abstract class Endpoint
-class EntryEndpoint
-class EntriesEndpoint
+class Endpoint
 class Storage
+class EntryLog
 
-Endpoint <|.. Requestable
-EntryEndpoint <|-- Endpoint
-EntriesEndpoint <|-- Endpoint
-
-Backend --> Storage
-Backend --> EntryEndpoint
-Backend --> EntriesEndpoint
+Endpoint ..|> Requestable
+Backend --> "1.." Endpoint : handle request
 Backend ..> Request
 Backend ..> Response
+Backend --> "1" Storage : read/write
+Backend --> "1" EntryLog
+Endpoint *-- "1" EntryLog : retrieve/store
 
 @enduml

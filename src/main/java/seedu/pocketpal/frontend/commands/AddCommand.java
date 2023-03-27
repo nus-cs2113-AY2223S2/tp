@@ -1,3 +1,4 @@
+// @@author kaceycsn
 package seedu.pocketpal.frontend.commands;
 
 import seedu.pocketpal.backend.Backend;
@@ -107,3 +108,4 @@ public class AddCommand extends Command {
         return this.entryObj;
     }
 }
+// @@author

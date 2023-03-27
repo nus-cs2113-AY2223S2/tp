@@ -23,13 +23,13 @@ public final class MessageConstants {
             + NEWLINE;
     public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes a specified expense from your expenditure."
             + NEWLINE
-            + "Usage: /delete <EXPENSE_ID>" + NEWLINE + NEWLINE;
+            + "Usage: /delete <EXPENSE_ID> [ADDITIONAL_EXPENSE_ID...]" + NEWLINE + NEWLINE;
     public static final String MESSAGE_EDIT_COMMAND = "Edit - Edits a specified expense in your current expenditure."
             + NEWLINE
             + "Usage: /edit <EXPENSE_ID> [FLAG...]" + NEWLINE + NEWLINE;
     public static final String MESSAGE_VIEW_COMMAND = "View - Displays a list of your current expenditure."
             + NEWLINE
-            + "Usage: /view [COUNT]" + NEWLINE + NEWLINE;
+            + "Usage: /view [COUNT] [-c | -category CATEGORY]" + NEWLINE + NEWLINE;
     public static final String MESSAGE_HELP_COMMAND = "Help - Displays the help menu." + NEWLINE
             + "Usage: /help" + NEWLINE + NEWLINE;
     public static final String MESSAGE_BYE_COMMAND = "Exit - Terminates PocketPal." + NEWLINE
@@ -47,7 +47,7 @@ public final class MessageConstants {
     public static final String MESSAGE_INVALID_COMMAND = "Please enter a valid command!";
     public static final String MESSAGE_INVALID_CATEGORY = "Please specify a valid category!";
     public static final String MESSAGE_INVALID_ID = "Please enter a valid numerical index!";
-    public static final String MESSAGE_INVALID_PRICE = "Please enter the price in numeric or decimal form!";
+    public static final String MESSAGE_INVALID_PRICE = "Price should only contain numerical digits!";
     public static final String MESSAGE_MISSING_ARGS_ADD = "Please specify the description, category and price!";
     public static final String MESSAGE_MISSING_ARGS_EDIT = "Please specify the ID of the expense you would like to " +
             "edit!";

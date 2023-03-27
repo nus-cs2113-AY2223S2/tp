@@ -57,6 +57,24 @@ public class EntryLog implements Serialisable {
     }
 
     /**
+     * Compare to another EntryLog. Ignores DateTime in both entries.
+     *
+     * @param entries EntryLog to compare
+     * @return true if both have the same entries, false otherwise
+     */
+    public boolean equals(EntryLog entries) {
+        if (getSize() != entries.getSize()) {
+            return false;
+        }
+        for (int i = 1; i <= getSize(); ++i) {
+            if (!getEntry(i).equals(entries.getEntry(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Filter items by amount.
      * Can be chained with other filter* methods to filter multiple entries.
      *
@@ -140,7 +158,7 @@ public class EntryLog implements Serialisable {
     /**
      * This method is called in execute method to improve code readability.
      *
-     * @param  numEntries The number of recent entries to view
+     * @param numEntries The number of recent entries to view
      * @return trimmed list containing the latest "N" number of entries, where N is specified in the view command
      */
     public EntryLog getLatestEntries(int numEntries) {
