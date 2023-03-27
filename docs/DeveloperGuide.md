@@ -34,9 +34,8 @@ internal reference to the list of expenses `expenseList` to be added to.
 The `CommandAdd#execute()` operation is exposed in the main `Duke` class, while the operations in `ParserAdd` are
 exposed in the `Parser` class.
 
-![](/docs/diagrams/AddFeature.puml)
-
 Given below is an example usage of the feature.
+![](./diagrams/AddFeature.png)
 
 Step 1. The user executes `add amt/24 t/02-02-2012` as the `userInput` to add a new `Expense` into the the list of 
 expenses. `Duke` calls `Parser#extractCommandKeyword(userInput)` to parse the input and determines that the `add` command is called.

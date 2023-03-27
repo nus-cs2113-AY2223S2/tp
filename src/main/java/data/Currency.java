@@ -63,7 +63,6 @@ public class Currency implements Serializable {
      * Instantiates the key and API key pairs of the types of currency available and stores them in a HashMap
      *
      * @param currencies the HashMap of currencies available stored by ISO4217 and JSON key respectively
-     * @throws IOException
      */
     public static void getCurrencyAvailable(HashMap<String, String> currencies) {
         currencies.put("EUR", "eur_sgd");
@@ -141,6 +140,10 @@ public class Currency implements Serializable {
         assert false;
         return null;
     }
+
+    /**
+     * Creates an array list which stores a preset exchange rate for the respective API currency keys.
+     */
     public static void generateOfflineRates() {
         offlineExchangeRate.put("eur_sgd", new BigDecimal(1.5395));
         offlineExchangeRate.put("gbp_sgd", new BigDecimal(1.8278));

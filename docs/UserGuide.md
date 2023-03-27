@@ -22,19 +22,39 @@ Some example commands you can try:
 ### Adding an expense: `add`
 Adds a new item to the list of todo items.
 
-Format: `add amt/EXPENSE_AMOUNT t/TIME cat/EXPENSE_DESCRIPTION`
+Format: `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_DESCRIPTION] [cur/EXPENSE_CURRENCY]`
 
 * The `TIME` must be in the DD-MM-YYYY format.
 * The `EXPENSE_AMOUNT` must be an integer or decimal number.  
-* The `EXPENSE_DESCRIPTION' can be any word or phrase that does not contain the backdash symbol`/` or whitespace symbol.
-* The `EXPENSE_DESCRIPTION` may be ommited.
-* The command parameters may be entered in any order. If multiple of the same parameter type is inputted, such as in `add amt/10 amt/100 t/11-11-2023` only the first parameter `amt/10` of its kind is used.
+* The `EXPENSE_DESCRIPTION` can be any word or phrase that does not contain the backdash symbol`/` or whitespace symbol.
+* The `EXPENSE_CURRENCY` has 22 currencies to choose from. If the input currency is not found in the list of currencies
+available, the currency will default to SGD.
+* The command parameters may be entered in any order. If multiple of the same parameter type is inputted, such as in 
+`add amt/10 amt/100 t/11-11-2023` only the first parameter `amt/10` of its kind is used.
 
 Example of usage: 
 
-`add amt/10 t/11-11-2023`
+`add amt/10 t/11-11-2022`
 
-`add amt/9.5 t/01-11-2023 cat/food`
+`add amt/9.5 t/01-11-2022 cat/food cur/USD`
+
+Expected output:
+
+```
+____________________________________________________________
+The following expense is successfully added:
+SGD10.00 cat:uncategorized date:11/11/2022
+Now you have 1 expense in the list.
+____________________________________________________________
+```
+```
+____________________________________________________________
+The following expense is successfully added:
+    USD9.50 cat:food date:01/11/2022
+Now you have 2 expenses in the list.
+____________________________________________________________
+```
+
 
 ### Listing all expenses: `list`
 List all tracked expenses in the expense list.
@@ -46,6 +66,7 @@ Format: `list`
 Example of usage:
 
 `list`
+
 
 ### Deleting an expense entry: `delete`
 Delete expense entry with index X in the expense list.
@@ -60,6 +81,30 @@ Example of usage:
 `delete 1`
 
 `delete 7`
+
+### Calculating total expenses: `total`
+Calculates the total expenses in the expense list in `SGD`.
+
+Format `total`
+
+* Whenever an entry is added into the expense list, the exchange rate for the date before the input date is recorded. As
+exchange rate data is unavailable on weekends and public holidays, the exchange rate of the previous working day is
+taken instead.
+* If no internet access is available, a preset exchange rate is taken instead.
+
+Example of usage:
+
+`total`
+
+Expected output:
+```
+____________________________________________________________
+Your total expenses add up to:
+    SGD23.41
+____________________________________________________________
+```
+
+
 
 ### Exiting the program: `exit`
 Exits the programn without saving expense list.
