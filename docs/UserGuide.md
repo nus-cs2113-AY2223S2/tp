@@ -11,39 +11,39 @@ rainyDay, from people who are just starting out to advanced users looking for ex
 ## Content Page
 
 <!-- TOC -->
-
 * [rainyDay User Guide](#rainyday-user-guide)
-    * [Introduction](#introduction)
-    * [Content Page](#content-page)
-    * [Acknowledgement](#acknowledgement)
-    * [How to use the user guide](#how-to-use-the-user-guide)
-    * [Quick Start](#quick-start)
-    * [Features Overview](#features-overview)
-    * [Features](#features)
-        * [Viewing help](#viewing-help)
-        * [Adding a transaction](#adding-a-transaction)
-            * [Simple Usage](#simple-usage)
-            * [Advanced Usage](#advanced-usage)
-        * [Viewing the transactions](#viewing-the-transactions)
-        * [Deleting a transaction](#deleting-a-transaction)
-        * [Filter statements](#filter-statements)
-        * [Editing a transaction](#editing-a-transaction)
-        * [Adding a shortcut](#adding-a-shortcut)
-        * [Using a shortcut](#using-a-shortcut)
-        * [Viewing a shortcut](#viewing-a-shortcut)
-        * [Deleting a shortcut](#deleting-a-shortcut)
-        * [Saving the data](#saving-the-data)
-            * [Where is my saved file located?](#where-is-my-saved-file-located)
-        * [Loading saved data](#loading-saved-data)
-        * [Exporting to CSV](#exporting-to-csv)
-            * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
-            * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
-        * [Exiting the application](#exiting-the-application)
-    * [FAQ](#faq)
-    * [Command Summary](#command-summary)
-    * [An Example Usage of rainyDay](#an-example-usage-of-rainyday)
-    * [Glossary](#glossary)
-
+  * [Introduction](#introduction)
+  * [Content Page](#content-page)
+  * [Acknowledgement](#acknowledgement)
+  * [How to use the user guide](#how-to-use-the-user-guide)
+  * [Quick Start](#quick-start)
+  * [Features Overview](#features-overview)
+  * [Features](#features)
+    * [Viewing help](#viewing-help)
+    * [Adding a transaction](#adding-a-transaction)
+      * [Simple Usage](#simple-usage)
+      * [Advanced Usage](#advanced-usage)
+    * [Viewing the transactions](#viewing-the-transactions)
+    * [Deleting a transaction](#deleting-a-transaction)
+    * [Filter statements](#filter-statements)
+    * [Editing a transaction](#editing-a-transaction)
+    * [Setting a Monthly Budget](#setting-a-monthly-budget)
+    * [Adding a shortcut](#adding-a-shortcut)
+    * [Using a shortcut](#using-a-shortcut)
+    * [Viewing a shortcut](#viewing-a-shortcut)
+    * [Deleting a shortcut](#deleting-a-shortcut)
+    * [Ignoring an entry](#ignoring-an-entry)
+    * [Saving the data](#saving-the-data)
+      * [Where is my saved file located?](#where-is-my-saved-file-located)
+    * [Loading saved data](#loading-saved-data)
+    * [Exporting to CSV](#exporting-to-csv)
+      * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
+      * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
+    * [Exiting the application](#exiting-the-application)
+  * [FAQ](#faq)
+  * [Command Summary](#command-summary)
+  * [An Example Usage of rainyDay](#an-example-usage-of-rainyday)
+  * [Glossary](#glossary)
 <!-- TOC -->
 
 ## Acknowledgement
@@ -105,10 +105,12 @@ Please note the following about the format of commands given under each [feature
 * [Deleting a transaction](#deleting-a-transaction)
 * [Filter statements](#filter-statements)
 * [Editing a transaction](#editing-a-transaction)
+* [Setting a Monthly Budget](#setting-a-monthly-budget)
 * [Adding a shortcut](#adding-a-shortcut)
 * [Using a shortcut](#using-a-shortcut)
 * [Viewing a shortcut](#viewing-a-shortcut)
 * [Deleting a shortcut](#deleting-a-shortcut)
+* [Ignoring an entry](#ignoring-an-entry)
 * [Saving the data](#saving-the-data)
 * [Loading saved data](#loading-saved-data)
 * [Exporting to CSV](#exporting-to-csv)
@@ -125,6 +127,14 @@ Format: `help`
 
 The table below will be shown: <br>
 ![help.png](help.png)
+
+For more information on each individual command, the help command can also provide a more detailed guide, including
+details such as input constraints and examples for you to refer to
+
+Format: `help {COMMAND}`
+
+For instance, the table below are details for the add command: <br>
+![detailedhelp.png](detailedhelp.png)
 
 ### Adding a transaction
 
@@ -186,11 +196,18 @@ to rainyDay:
 ### Viewing the transactions
 
 An important aspect to track your finances is to view all the transactions that you have already done before. The "view"
-command of rainyDay will list all the transaction added, the resultant amount of all your inflows and outflows.
+command of rainyDay can list all the transaction added, and the resultant amount of all your inflows and outflows.
 
-Format: `view`
+Format: `view {TIMESPAN} {-sort}`
 
-The output will look something similar to below
+* `TIMESPAN` is used to denote how much history to show.
+    * `1d - 31d` is used to view 1 to 31 days of history
+    * `1w - 4w`  is used to view 1 to 4 weeks of history
+    * `1m - 12m` is used to view 1 to 12 months of history
+    * `1y - 10y` is used to view 1 to 10 years of history
+* `-sort` can be included to sort entries in ascending order, with inflows displayed before outflows.
+
+> 💡**Tip:** To view all entries you can use -all in place of a specific time in TIMESPAN
 
 ![view.png](view.png)
 
@@ -221,7 +238,7 @@ subsequently after requesting to view the transactions will be as such: <br>
 To ease your time searching through all the entries in the financial report, the "filter" function of rainyDay
 will help you extract certain transactions based on a specific criteria
 
-Format : `filter FLAG FIELD`
+Format : `filter [FLAG] {FIELD}`
 
 * The `FLAG` must be one of the following:
     * `-d` to filter by description
@@ -261,7 +278,7 @@ Suppose you want to check your outflows only, you can use this command:
 Should you need to update details in a previous transaction, rainyDay's "edit" function supports changing the details of
 a past transaction
 
-Format : `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG`
+Format : `edit [INDEX] [ADDCOMMAND]` or `edit [INDEX] [FLAG] {NEWFIELD}`
 
 * The `FLAG` must be one of the following:
     * `-d` to edit the description
@@ -288,12 +305,35 @@ this command:
 `edit 2 add -out Beef noodles $15 -c Food -date 22/03/2023`
 ![EditMultipleEntries.png](EditMultipleEntries.png)
 
+### Setting a Monthly Budget
+
+In the process of keeping track of your expenses, you might feel inclined to stick to a budget. RainyDay can help
+to give you reminders, and encourage you to stick to your budget!
+With a set monthly budget, RainyDay will remind you how much you have spent for the month with
+every new expense in the same month.
+
+Format : `setbudget GOAL`
+
+For example, if you would like to set a monthly budget goal of $1000, use the command below:<br>
+`setbudget 1000`
+
+![setbudgetgoal.png](setbudgetgoal.png)
+
+An additional message will accompany new expenses on how much you have spent for the month!
+
+![messgewithsetbudget.png](messgewithsetbudget.png)
+
+If at any point of time you would like to remove this feature, simply set the goal to $0<br>
+`setbudget 0`
+
+![unsetbudgetgoal.png](unsetbudgetgoal.png)
+
 ### Adding a shortcut
 
-If you happen to have certain commands that you find yourself frequently using, rainyDay's shortcuts can make it much easier 
-to execute those commands!
+If you happen to have certain commands that you find yourself frequently using, rainyDay's shortcuts can make it much
+easier to execute those commands!
 
-Format: `shortcut SHORTCUTNAME -maps ACTUALCOMMAND`
+Format: `shortcut [SHORTCUTNAME] -maps [ACTUALCOMMAND]`
 
 * `SHORTCUTNAME` can be any single word of your choice to save a reference to the actual command
 * `ACTUALCOMMAND` is the actual command which you want your shortcut to perform
@@ -303,25 +343,24 @@ Example of usage:
 You often eat the same noodle dish from your favourite coffee shop. To save yourself the trouble of typing the same
 command in full everytime, you could configure the shortcut as follows.
 
-`shortcut FavouriteLunch -maps add -out noodles $4 -c food`
+`shortcut FavLunch -maps add -out noodles $4 -c food`
 
 ### Using a shortcut
 
-After you have configuring your shortcuts, you would like to use the shortcut to save yourself the trouble of typing the full command.
-This can be done by providing an input according to the following format:
+After you have configuring your shortcuts, you would like to use the shortcut to save yourself the trouble of typing the
+full command. This can be done by providing an input according to the following format:
 
-Format: `SHORTCUTNAME`
+Format: `[SHORTCUTNAME]`
 
 Example of Usage:
 
 You have configured the shortcut according to the example in the [adding a shortcut](#adding-a-shortcut) section. Now
 all you have to do is input the name of the shortcut as follows.
 
-`FavouriteLunch`
+`FavLunch`
 
 Using the shortcut will allow you to add the same entry for noodles with a shorter command!
-
-![shortcutusage.png](shortcutusage.png)
+![shortcutusage](shortcutusage.png)
 
 ### Viewing a shortcut
 
@@ -338,10 +377,11 @@ The output will look something like this:
 
 ### Deleting a shortcut
 
-At some point, you may discover that the shortcut you configured is no longer useful, or you may have misconfigured a 
-previously added shortcut. In such a situation, the delete_shortcut command provided by rainyDay can prove to be quite handy.
+At some point, you may discover that the shortcut you configured is no longer useful, or you may have misconfigured a
+previously added shortcut. In such a situation, the delete_shortcut command provided by rainyDay can prove to be quite
+handy.
 
-Format: `delete_shortcut SHORTCUTCOMMAND`
+Format: `delete_shortcut [SHORTCUTCOMMAND]`
 
 * `SHORTCUTCOMMAND` The shortcut command that you want deleted
 
@@ -352,12 +392,13 @@ Unfortunately, your favourite coffee shop has closed down, and you are no longer
 dish. Now the shortcut you previously configured is no longer useful. All you have to do is delete the shortcut as
 follows:
 
-`delete_shortcut myshortcut`
+`delete_shortcut FavLunch`
 
 ### Ignoring an entry
 
-Due to potential certain one-time payments or receivables that you encounter, rainyDay's ignore function can help you 
-keep a more accurate track of your finances by allowing you to ignore certain transactions from the overall calculation of your inflow and outflow.
+Due to potential certain one-time payments or receivables that you encounter, rainyDay's ignore function can help you
+keep a more accurate track of your finances by allowing you to ignore certain transactions from the overall calculation
+of your inflow and outflow.
 Conversely, the unignore function is to include a transaction that was previously ignored.
 
 Format: `ignore [index]` or `unignore [index]`
@@ -366,8 +407,8 @@ Format: `ignore [index]` or `unignore [index]`
 
 Example of Usage:
 
-You have received a one-time payment from government GST refunds. You would like to keep track of it however do not want to
-include it in your budget calculations.  After executing the add command, input view to find its index.
+You have received a one-time payment from government GST refunds. You would like to keep track of it however do not want
+to include it in your budget calculations. After executing the add command, input view to find its index.
 ![ignore_view.png](ignore_view.png)
 
 You can then execute the following command to ignore the entry:
@@ -418,7 +459,8 @@ been configured in step 3 of the [Quick Start section](#quick-start). The CSV fi
 
 ### Exiting the application
 
-After you have completed updating your transactions and would like to close the application, input the following command:
+After you have completed updating your transactions and would like to close the application, input the following
+command:
 
 Format: `bye`
 
@@ -435,10 +477,11 @@ that "rainyDay.jar" is going to be stored in
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Add             | For beginner users: <br> `add -DIRECTION DESCRIPTION $VALUE` <br><br> **Example:** <br> `add -in angpao $300` <br> `add -out ipad $120` <br><br> For advanced users: <br> `add -DIRECTION $VALUE -c CATEGORY -date DD/MM/YYYY` <br><br> **Example:** <br> `add -in income $2000 -c pay -date 05/03/2023` <br> `add -out hawker food $6 -c food and drinks -date 10/03/2023` |
 | Delete          | `delete INDEX` <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                                                                                                                                                                                                                                                                                        |
-| View            | `view`                                                                                                                                                                                                                                                                                                                                                                      |
-| Help            | `help`                                                                                                                                                                                                                                                                                                                                                                      |
+| View            | `view TIMESPAN -sort`                                                                                                                                                                                                                                                                                                                                                       |
+| Help            | `help` or `help COMMAND`                                                                                                                                                                                                                                                                                                                                                    |
 | Filter          | `filter DESCRIPTION` or `filter FLAG FIELD` <br><br> **Example:** <br> `filter school` <br> `filter -d school` <br>`filter -date 22/03/2023`                                                                                                                                                                                                                                |
 | Edit            | `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -add -in Beef noodles $15 -c Food` <br> `edit -d school` <br> `edit -in`                                                                                                                                                                                      |
+| Set Budget      | `setbudget VALUE`                                                                                                                                                                                                                                                                                                                                                           |   
 | Add Shortcut    | `shortcut SHORTCUTCOMMAND -maps ACTUALCOMMAND`<br><br> **Example:** <br> `shortcut myshortcut -maps add -out noodles $4`                                                                                                                                                                                                                                                    |   
 | Use Shortcut    | `SHORTCUTCOMMAND`                                                                                                                                                                                                                                                                                                                                                           |
 | View Shortcuts  | `view_shortcut`                                                                                                                                                                                                                                                                                                                                                             |
@@ -466,7 +509,7 @@ Command Line Interface
 CSV
 
 - Stands for Comma Separated Value, a type of file format that can be imported to other statistical software such as
-  Microsoft Excel or R Commander.
+  Microsoft Excel, R Commander or Google Sheets.
 
 Filter
 

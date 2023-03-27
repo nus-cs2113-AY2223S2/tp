@@ -38,7 +38,7 @@ public class SetBudgetCommand extends Command {
     }
 
     /**
-     * Executes the command and prints the relevant output message
+     * Executes the command and prints the monthly budget goal set, or if the goal is removed.
      */
     @Override
     public CommandResult execute() {

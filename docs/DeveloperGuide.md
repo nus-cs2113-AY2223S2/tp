@@ -35,6 +35,16 @@ Components:
 
 - stores the financial report data, such as financial statement objects
 
+- Monthly expenditures are stored in the form of a Hash Table, mapping the Year and Month to the expenditures
+
+#### Design considerations
+- To prevent slow processing of the program when there are many entries, a Hash Table is used.
+- An additional storage was specifically created as we believe that the Set Budget feature will be commonly
+used as it is 1 of the key aspects a Financial Tracker. Hence, it would be more feasible to implement indexing such that
+add operations and retrieval of information to be done in Amortised O(1).
+- The Key used is the number of months from the Year 0000, or more precisely calculated by (Year * 12 + Month). This is
+to allow fast processing and collision-free information collection.
+
 ### Command component
 
 {insert diagrams}
@@ -67,9 +77,6 @@ Components:
     - Details on implementation for parsing and command fields are documented below
 - Commands in the correct format will then be parsed to extract the relevant information, and an `AddCommand` object
   will be created with the relevant attributes
-- `RainyDay` will then call `execute` method in `Command`, where the transaction will be added into the financial report
-- Commands in the correct format will then be parsed to extract the relevant information, and an AddCommand object will
-  be created with the relevant information passed to it
 - `RainyDay` will then call `execute` method in `Command`, where the transaction will be added into the financial report
 
 #### Design considerations
@@ -177,14 +184,21 @@ the commands grew more complex, the .split() function became very messy and inco
 us needing to do more exceptions and error handling, which just made the entire process very complicated. Thus, we opted
 to use regular expressions, which is a more tidy and logical way to parse the inputs.
 
-### Viewing your data
+### Viewing your data `view`
 
 - The command `view` is used to view all statements, and a ViewCommand object will be created.
     - Any other characters after `view` are automatically ignored
 - RainyDay will then call Command.execute(), where every entry in the financial report will be printed.
 - Information will be presented in a table format to help improve clarity for users.
 
-### Editing an entry
+### Setting your monthly Budget Goal `setbudget`
+
+- The command `setbudget` is used to set the user's monthly budget goal
+- Once a goal is present, user's will be reminded of how close they are to sticking to their budget, or how
+much they have exceeded it by
+- This can be seen at start-up and when the user makes any changes to their expenses for the month.
+
+### Editing an entry `edit`
 
 - When a command is given to edit a statement, the command is first parsed to check whether it follows the format of an
   edit command: `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` with the use of regex.
@@ -192,10 +206,10 @@ to use regular expressions, which is a more tidy and logical way to parse the in
   command.
 - Otherwise, methods specific to the flags will be used to validate the remaining fields using regex pattern
 - Commands in the correct format will then be used to create a FilterCommand object.
-- rainyDay will then call Command.execute(), where the transaction's specific field be edited or deleted then added
+- `RainyDay` will then call `execute` method in `Command`, where the transaction's specific field be edited or deleted then added
   into the financial report.
 
-### Filtering your data
+### Filtering your data `filter`
 
 - When a command is given to filter a report by certain conditions, the command is first parsed to check whether it
   follows the format of a filter command with the use of regex pattern

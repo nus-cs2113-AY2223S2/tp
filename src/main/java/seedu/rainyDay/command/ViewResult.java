@@ -78,6 +78,13 @@ public class ViewResult {
         return statementOutput;
     }
 
+    /**
+     * Used to format the summary of inflows and outflows
+     *
+     * @param inflow the total inflow
+     * @param outflow the total outflow
+     * @return a string with the formatted summary
+     */
     private static String formatSummary(double inflow, double outflow) {
         assert (inflow != 0 || outflow != 0);
         String inflowInformation = String.format("|Total Inflow: $%.2f", inflow);

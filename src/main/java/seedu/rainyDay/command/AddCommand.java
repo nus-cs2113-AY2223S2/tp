@@ -58,14 +58,13 @@ public class AddCommand extends Command {
         int totalStatementCount = financialReport.getStatementCount();
         FinancialStatement newStatement = new FinancialStatement(description, flowDirection, value, category, date);
         financialReport.addStatement(newStatement);
-        double updatedMonthlyExpenditure = financialReport.getMonthlyExpenditure(newStatement);
 
         assert totalStatementCount + 1 == financialReport.getStatementCount() : "statement count mismatch";
 
         //To fix, due to Junit Test failing
         String budgetInfo;
         try {
-            budgetInfo = userData.checkUserBudgetLimit(updatedMonthlyExpenditure, newStatement);
+            budgetInfo = userData.checkUserBudgetLimit(newStatement);
         } catch (Exception e) {
             budgetInfo = "";
         }
