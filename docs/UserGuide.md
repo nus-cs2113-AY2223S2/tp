@@ -97,8 +97,36 @@ Example of usage:
 <br>`delete expense /in 1`
 <br>`delete income /in 2`
 
+### Clear entire income list: `clear expense`
+Clear the entire list of incomes.
+
+Format:
+<br> `clear income`
+
+### Clear entire expense list: `clear income`
+Clear the entire list of expenses.
+
+Format:
+<br> `clear expense`
+
+### Clear entire both income and expense lists: `clear all`
+Clear the entire list of incomes and expenses.
+
+Format:
+<br> `clear all`
+### Set a target for balance of finances: `add target`
+Allows users to set a target for their balance.
+
+Format:
+<br> `add target /v VALUE`
+
+Use case:
+* VALUE is more than or equal to zero
+
+Example of usage:
+<br> `add target 350`
 ### Finding balance of finances: `balance`
-Shows users the balance after calculating the difference between income and expenses
+Shows users the balance after calculating the difference between income and expenses and informs users on whether they have reached their target.
 
 Format:
 <br> `balance`
@@ -126,8 +154,12 @@ When reading from the file, entries for income and expenses are stored in their 
 * Edit expense list: `edit expense i/INDEX  c/CATEGORY de/DESCRIPTION da/DATE v/VALUE`
 * Find income entry: `find income c/CATEGORY de/DESCRIPTION`
 * Find expense entry: `find expense c/CATEGORY de/DESCRIPTION`
-* Show balance: `balance`
 * Delete Expense: `delete expense /in INDEX`
 * Delete Income: `delete income /in INDEX`
+* Clear income list: `clear income`
+* Clear expense list: `clear expense`
+* Clear both income and expense lists: `clear all`
+* Set Target: `add target /v Value`
+* Show Target: `show target`
 * Show Balance: `balance`
 * Show help: `help`
