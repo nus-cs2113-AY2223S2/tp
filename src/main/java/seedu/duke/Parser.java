@@ -34,7 +34,7 @@ public class Parser {
                                     ArrayList<Module> puModules, Storage storage, BudgetPlanner budgetPlanner,
                                     ArrayList<Deadline> deadlines) {
 
-        ArrayList<String> userInputWords = parseCommand(userInput);
+        ArrayList<String> userInputWords = parseCommand(userInput.trim());
         String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
         String userCommandThirdKeyword = "";
@@ -45,7 +45,7 @@ public class Parser {
         try {
             switch (inputIgnoringCase) {
             case "list":
-                if (userInputWords.size() == 1) {
+                /*if (userInputWords.size() == 1) {
                     throw new InvalidCommandException(ui.getCommandInputError());
                 }
                 if (userCommandSecondKeyword.equalsIgnoreCase("pu")) {
@@ -58,7 +58,8 @@ public class Parser {
                     return new ListCurrentCommand(modules);
                 } else {  // list PU name case
                     return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
-                }
+                }*/
+                return prepareListCommands(userInputWords, universities, modules);
             case "search":
                 assert userInputWords.size() > 1 : "No Nus Module Code Read";
                 return prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities);
@@ -104,6 +105,38 @@ public class Parser {
         }
         return commandWords;
     }
+
+    private Command prepareListCommands(ArrayList<String> userInputWords, ArrayList<University> universities,
+                                        ArrayList<Module> modules) {
+        try {
+            if (userInputWords.size() == 1) {
+                throw new InvalidCommandException(ui.getCommandInputError());
+            } else {
+                String userCommandSecondKeyword = userInputWords.get(1);
+                return handleListCommands(userInputWords, userCommandSecondKeyword, universities, modules);
+            }
+        } catch (InvalidCommandException e) {
+            return new ExceptionHandleCommand(e);
+        }
+    }
+
+    private Command handleListCommands(ArrayList<String> userInputWords, String userCommandSecondKeyword,
+                                        ArrayList<University> universities, ArrayList<Module> modules) {
+        String userCommandIgnoreCase = userCommandSecondKeyword.toLowerCase();
+        switch (userCommandIgnoreCase) {
+            case "pu":
+                return new ListPuCommand();
+            case "current":
+                if (userInputWords.size() == 3) {
+                    String userCommandThirdKeyword = userInputWords.get(2);
+                    return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
+                }
+                return new ListCurrentCommand(modules);
+            default:
+                return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
+        }
+    }
+
 
     private Command prepareSearchByNusModCode(String nusModCode, ArrayList<Module> allModules,
                                               ArrayList<University> universities) {
