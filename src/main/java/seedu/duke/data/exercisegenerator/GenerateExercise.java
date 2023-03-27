@@ -63,7 +63,7 @@ public class GenerateExercise {
         }
     }
 
-    //@@author Khulon
+    //@@author L-K-Chng
 
     /**
      * Parse the user input to return the corresponding workout type within the data file.
@@ -148,6 +148,7 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
+    //@@author L-K-Chng
     /**
      * Returns an exercise list which is filtered according to the workout type
      * chosen by the user.
