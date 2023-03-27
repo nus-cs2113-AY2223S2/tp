@@ -2,9 +2,13 @@ package chching.command;
 
 import chching.Ui;
 import chching.Storage;
-import chching.record.*;
+import chching.record.Income;
+import chching.record.Expense;
+import chching.record.ExpenseList;
+import chching.record.IncomeList;
 import chching.currency.Converter;
 import chching.currency.Selector;
+import chching.record.TargetStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -50,7 +54,7 @@ public class ClearCommandTest {
         defaultIncomeList = new IncomeList(incomeList);
     }
     @Test
-    public void execute_ClearAllCommand_success() {
+    public void execute_clearAllCommand_success() {
         try {
             Command command = new ClearAllCommand();
             command.execute(defaultIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
@@ -60,7 +64,7 @@ public class ClearCommandTest {
         }
     }
     @Test
-    public void execute_ClearExpenseCommand_success() {
+    public void execute_clearExpenseCommand_success() {
         try {
             Command command = new ClearExpenseCommand();
             command.execute(defaultIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
@@ -70,7 +74,7 @@ public class ClearCommandTest {
         }
     }
     @Test
-    public void executeClear_IncomeCommand_success() {
+    public void execute_clearIncomeCommand_success() {
         try {
             Command command = new ClearIncomeCommand();
             command.execute(defaultIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
