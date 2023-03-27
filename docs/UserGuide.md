@@ -90,7 +90,7 @@ To display all stored recipes including default recipes, you may use the command
 ![recipeall.png](images/recipeall.png)
 
 ### Recipe Details
-To go into details about a certain recipe, use the command `recipe <index number>`, using the `<index number` from the generated list. 
+To go into details about a certain recipe, use the command `recipe <index number>`, using the `<index number>` from the generated list. 
 
 For example, to view the recipe for Hainanese Chicken Rice, use the command `recipe 6`.
 ![recipedetails.png](images/recipedetails.png)
