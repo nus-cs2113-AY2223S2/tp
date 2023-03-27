@@ -3,7 +3,7 @@ package seedu.commands.workoutcommands;
 
 import seedu.commands.Command;
 import seedu.ui.Ui;
-import seedu.workouttracker.workout.Workout;
+import seedu.workouttracker.Workout;
 
 
 /**

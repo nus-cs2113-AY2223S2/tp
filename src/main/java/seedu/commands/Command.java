@@ -1,7 +1,7 @@
 package seedu.commands;
 
 import seedu.calorietracker.CalorieTracker;
-import seedu.workouttracker.workout.WorkoutList;
+import seedu.workouttracker.WorkoutList;
 
 public class Command {
 

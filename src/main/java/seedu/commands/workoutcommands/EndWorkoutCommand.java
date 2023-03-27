@@ -1,7 +1,7 @@
 package seedu.commands.workoutcommands;
 
 import seedu.commands.Command;
-import seedu.workouttracker.workout.WorkoutList;
+import seedu.workouttracker.WorkoutList;
 
 public class EndWorkoutCommand extends Command {
     public EndWorkoutCommand() {

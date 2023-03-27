@@ -1,7 +1,6 @@
-package seedu.workouttracker.workout;
+package seedu.workouttracker;
 
-
-import seedu.DateFormat;
+import seedu.parser.DateFormat;
 
 import java.util.ArrayList;
 import java.util.Date;

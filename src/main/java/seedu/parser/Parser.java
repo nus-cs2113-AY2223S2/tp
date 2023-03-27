@@ -1,6 +1,5 @@
 package seedu.parser;
 
-
 import seedu.commands.Command;
 import seedu.commands.workoutcommands.EndWorkoutCommand;
 import seedu.commands.ExitCommand;
@@ -42,6 +41,8 @@ public class Parser {
             return new HelpWorkoutCommand();
         case "/cadd":
             return CheckCaloriesInput.processAddCalories(arguments);
+        case "/cview":
+            return CheckCaloriesInput.processViewCalories(arguments);
         default:
             return new IncorrectCommand();
         }

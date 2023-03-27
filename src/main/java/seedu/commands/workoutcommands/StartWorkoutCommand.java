@@ -1,8 +1,8 @@
 package seedu.commands.workoutcommands;
 
 import seedu.commands.Command;
-import seedu.workouttracker.workout.Workout;
-import seedu.workouttracker.workout.WorkoutList;
+import seedu.workouttracker.Workout;
+import seedu.workouttracker.WorkoutList;
 
 import java.util.Date;
 

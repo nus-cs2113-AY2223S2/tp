@@ -1,7 +1,6 @@
-package seedu.workouttracker.workout;
+package seedu.workouttracker;
 
 import java.util.ArrayList;
-
 
 public class WorkoutList {
     public static final int NO_CURRENT_WORKOUT = -1;

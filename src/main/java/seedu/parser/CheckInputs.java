@@ -8,8 +8,7 @@ import seedu.commands.workoutcommands.StartWorkoutCommand;
 import seedu.commands.workoutcommands.ViewWorkoutCommand;
 import seedu.commands.Command;
 import seedu.commands.IncorrectCommand;
-import seedu.workouttracker.workout.Exercise;
-import java.text.DateFormat;
+import seedu.workouttracker.Exercise;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -83,7 +82,7 @@ public class CheckInputs {
     //@@ author ZIZI-czh
     private static Date parseDate(String arguments) {
         try {
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
             Date enteredDate = dateFormat.parse(arguments);
             Date currentDate = new Date();
             if (enteredDate.compareTo(currentDate) > 0) {
@@ -98,7 +97,7 @@ public class CheckInputs {
     }
 
     /**
-     * This methods used to check the input command based on the format and the date
+     * This method is used to check the input command based on the format and the date
      * @param arguments input
      * @return return false if the input does not follow the format
      */

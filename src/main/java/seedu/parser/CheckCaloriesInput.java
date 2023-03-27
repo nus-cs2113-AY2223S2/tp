@@ -3,9 +3,12 @@ package seedu.parser;
 import seedu.commands.Command;
 import seedu.commands.IncorrectCommand;
 import seedu.commands.caloriecommands.AddCalorieCommand;
+import seedu.commands.caloriecommands.ViewCaloriesCommand;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import static seedu.commands.caloriecommands.AddCalorieCommand.CALORIES_NOT_GIVEN;
 
 public class CheckCaloriesInput {
@@ -13,7 +16,7 @@ public class CheckCaloriesInput {
     private static final int FOOD_INDEX = 1;
     private static final int CALORIES_INDEX = 2;
 
-    //public static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
 
     public static Command processAddCalories(String arguments) {
@@ -24,7 +27,7 @@ public class CheckCaloriesInput {
 
         try {
             String[] addCaloriesArguments = arguments.trim().split("\\s+", 3);
-            date = new SimpleDateFormat("dd/MM/yyyy").parse(addCaloriesArguments[DATE_INDEX].trim());
+            date = DATE_FORMAT.parse (addCaloriesArguments[DATE_INDEX].trim());
             food = addCaloriesArguments[FOOD_INDEX].trim();
 
             if (addCaloriesArguments.length == 3) {
@@ -44,5 +47,17 @@ public class CheckCaloriesInput {
         }
 
         return new AddCalorieCommand(date, food, calories);
+    }
+
+    public static Command processViewCalories(String arguments) {
+        Date date;
+        try {
+            date = DATE_FORMAT.parse(arguments.trim());
+        } catch (ParseException e) {
+            System.out.println("Invalid date format.");
+            return new IncorrectCommand();
+        }
+
+        return new ViewCaloriesCommand(date);
     }
 }

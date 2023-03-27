@@ -1,10 +1,10 @@
 package seedu.commands.workoutcommands;
 
-import seedu.DateFormat;
 import seedu.commands.Command;
 
+import seedu.parser.DateFormat;
 import seedu.ui.Ui;
-import seedu.workouttracker.workout.Workout;
+import seedu.workouttracker.Workout;
 
 import java.util.Date;
 

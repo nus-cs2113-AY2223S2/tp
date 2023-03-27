@@ -2,7 +2,7 @@ package seedu.workout;
 
 import org.junit.jupiter.api.Test;
 import seedu.DateFormat;
-import seedu.workouttracker.workout.Workout;
+import seedu.workouttracker.Workout;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

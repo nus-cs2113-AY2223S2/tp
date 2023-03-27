@@ -7,6 +7,7 @@ import java.util.HashMap;
 import static seedu.commands.caloriecommands.AddCalorieCommand.CALORIES_NOT_GIVEN;
 
 public class CalorieTracker {
+    public static final int CALORIES_NOT_TRACKED = -1;
     private final HashMap<Date, Integer> totalCaloriesConsumedInDay;
     private FoodList foodList;
 
@@ -36,17 +37,18 @@ public class CalorieTracker {
             return;
         }
 
-        System.out.println("Consumed additional " + caloriesInFood + "kcal.");
-
         if (totalCaloriesConsumedInDay.containsKey(date)) {
             totalCaloriesConsumedInDay.compute(date, (key, value) -> value + caloriesInFood);
         } else {
             totalCaloriesConsumedInDay.put(date, caloriesInFood);
         }
+
+        System.out.println("Consumed additional " + caloriesInFood + "kcal." + System.lineSeparator() +
+                "Total calories consumed: " + getCalories(date) + "kcal");
     }
 
     public int getCalories(Date date) {
-        return totalCaloriesConsumedInDay.get(date);
+        return totalCaloriesConsumedInDay.getOrDefault(date, -1);
     }
 
     private static boolean isValidCalories(int calories) {
