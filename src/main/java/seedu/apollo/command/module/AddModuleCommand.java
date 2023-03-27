@@ -5,6 +5,7 @@ import seedu.apollo.exception.module.DuplicateModuleException;
 import seedu.apollo.exception.module.LessonAddedException;
 import seedu.apollo.exception.utils.IllegalCommandException;
 import seedu.apollo.exception.utils.InvalidSaveFile;
+import seedu.apollo.module.CalendarModule;
 import seedu.apollo.module.LessonType;
 import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
@@ -18,13 +19,17 @@ import seedu.apollo.utils.LoggerInterface;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import static seedu.apollo.utils.DayTypeUtil.determineDay;
 import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
 
@@ -113,7 +118,7 @@ public class AddModuleCommand extends Command implements LoggerInterface {
                         Calendar calendar) {
         try {
             if (args.length == 3) {
-                handleMultiCommand(moduleList, allModules, args);
+                handleMultiCommand(moduleList, allModules, args, ui, calendar);
                 ui.printClassAddedMessage(args[0].toUpperCase(), getCommand(args[1]), args[2]);
             } else {
                 if (isAdded(moduleList, module)) {
@@ -156,8 +161,9 @@ public class AddModuleCommand extends Command implements LoggerInterface {
      * @throws ClassNotFoundException If the lesson type is invalid.
      * @throws LessonAddedException If the lesson already exists.
      */
-    private void handleMultiCommand(ModuleList moduleList, ModuleList allModules, String[] args)
-            throws IllegalCommandException, ClassNotFoundException, LessonAddedException {
+    private void handleMultiCommand(ModuleList moduleList, ModuleList allModules, String[] args, Ui ui,
+                                    Calendar calendar) throws IllegalCommandException, ClassNotFoundException,
+            LessonAddedException {
 
         LessonType lessonType = this.getCommand(args[1]);
         Module searchModule = null;
@@ -182,16 +188,17 @@ public class AddModuleCommand extends Command implements LoggerInterface {
                 throw new LessonAddedException();
             }
 
-            addTimetable(searchModule, lessonType, args[2]);
+            addTimetable(searchModule, lessonType, args[2], ui, calendar);
             moduleList.get(index).setTimetable(module.getModuleTimetable());
         } else {
             module.createNewTimeTable();
-            addTimetable(searchModule, lessonType, args[2]);
+            addTimetable(searchModule, lessonType, args[2], ui, calendar);
             moduleList.add(module);
         }
     }
 
-    private void addTimetable(Module searchModule, LessonType lessonType, String args) throws ClassNotFoundException {
+    private void addTimetable(Module searchModule, LessonType lessonType, String args, Ui ui, Calendar calendar)
+            throws ClassNotFoundException {
         Boolean isFound = false;
         ArrayList<Timetable> copyList = new ArrayList<>(searchModule.getModuleTimetable());
         for (Timetable timetable: copyList){
@@ -202,6 +209,7 @@ public class AddModuleCommand extends Command implements LoggerInterface {
                     module.createNewTimeTable();
                 }
                 module.getModuleTimetable().add(timetable);
+                checkClashingLesson(calendar, timetable, ui);
                 isFound = true;
             }
         }
@@ -228,6 +236,67 @@ public class AddModuleCommand extends Command implements LoggerInterface {
         return lessonTypes;
     }
 
+    /**
+     * Checks if the lesson clashes with another lesson.
+     *
+     * @param calendar The calendar of the user containing timetable information.
+     * @param timetable The timetable of the lesson to be checked.
+     * @param ui The ui of the user for message printing.
+     */
+    private void checkClashingLesson(Calendar calendar, Timetable timetable, Ui ui) {
+        String day = timetable.getDay();
+        int index = determineDay(day);
+
+        if (index == -1) {
+            return;
+        }
+
+        if (calendar.get(index).size() == 0) {
+            return;
+        }
+
+        for (CalendarModule lessonModule: calendar.get(index)) {
+            Timetable schedule = lessonModule.getSchedule();
+            if (isClashing(schedule, timetable)) {
+                ui.printClashingLesson();
+                break;
+            }
+        }
+    }
+
+    /**
+     * Checks if a lesson clashes with another lesson.
+     *
+     * @param schedule The lesson to be checked.
+     * @param timetable The lesson to be checked against.
+     * @return True if the timetable clashes with another timetable.
+     */
+    private boolean isClashing(Timetable schedule, Timetable timetable) {
+
+        SimpleDateFormat format = new SimpleDateFormat("HHmm");
+        try {
+            Date start1 = format.parse(schedule.getStartTime());
+            Date start2 = format.parse(timetable.getStartTime());
+            Date end1 = format.parse(schedule.getEndTime());
+            Date end2 = format.parse(timetable.getEndTime());
+
+            if (start1.equals(start2) || end1.equals(end2)) {
+                return true;
+            }
+
+            if (start1.after(start2) && start1.before(end2)) {
+                return true;
+            }
+
+            if (start2.after(start1) && start2.before(end1)) {
+                return true;
+            }
+
+        } catch (ParseException e) {
+            return false;
+        }
+        return false;
+    }
 
 
 }
