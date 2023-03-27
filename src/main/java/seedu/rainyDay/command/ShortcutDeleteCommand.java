@@ -10,8 +10,8 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author KN-CY
-public class DeleteShortcutCommand extends Command {
-    private static final Logger logger = Logger.getLogger(ShortcutCommand.class.getName());
+public class ShortcutDeleteCommand extends Command {
+    private static final Logger logger = Logger.getLogger(ShortcutAddCommand.class.getName());
 
     private static String keyToDelete;
     private static HashMap<String, String> shortcutCommands;
@@ -19,7 +19,7 @@ public class DeleteShortcutCommand extends Command {
     private static final String SHORTCUT_DOES_NOT_EXIST = "The shortcut does not exist.";
 
 
-    public DeleteShortcutCommand(String key) {
+    public ShortcutDeleteCommand(String key) {
         this.keyToDelete = key;
         shortcutCommands = RainyDay.userData.getShortcutCommands();
     }
