@@ -127,7 +127,7 @@ public class SellCommand extends Command{
             Ui.printInvalidDeductQuantityInput();
         }
     }
-    
+
     /**
      * Executes the Sell Command
      */
