@@ -36,14 +36,16 @@ public class EditExpenseCommand extends Command {
     }
 
     /**
-     * Executes edit of ExpenseList
+     * Executes edit of expenses.
+     * Based on the fields the user wants to edit, the corresponding fields will be edited.
      *
      * @param incomes       ArrayList of income.
      * @param expenses      ArrayList of income.
-     * @param ui        User interface
-     * @param storage       Storage of data
-     * @param converter     Convert value
-     * @param targetStorage store target
+     * @param ui        User interface.
+     * @param storage       Storage of data.
+     * @param converter     Convert value.
+     * @param targetStorage store target.
+     * @throws ChChingException if the index is invalid or if there is no field to edit.
      */
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,

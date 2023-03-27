@@ -41,6 +41,15 @@ public class IncomeList extends RecordList {
 
     }
     
+    /**
+     * Method to edit an income in the income list.
+     * Edits a specific field of an income based on the parameters field to value.
+     *
+     * @param index Index of income to be edited.
+     * @param field Field to be edited.
+     * @param value Updated value desired.
+     * @throws ChChingException If value value is not a non-numeric input.
+     */
     public void editIncome(int index, String field, String value) throws ChChingException {
     
         // change from 1-based indexing to 0-based indexing
