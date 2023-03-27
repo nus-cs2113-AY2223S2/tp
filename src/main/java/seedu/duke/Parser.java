@@ -226,7 +226,6 @@ public class Parser {
                     }
                 }
             }
-            Ui.addSuccessMsg("Added "+ count +" classes of Module: " + moduleCode);
         } else {
             String eventName = information[0];
             String startTime = information[1];
@@ -248,6 +247,7 @@ public class Parser {
                     eventList.addEvent(eventName, startTime, startDate,information[5]);
                 }
             }
+            Ui.addSuccessMsg(eventList.getLastTaskDescription());
         }
     }
 

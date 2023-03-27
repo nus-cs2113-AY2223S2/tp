@@ -65,7 +65,22 @@ public class Schedule {
     public String getTime() {
         String recur = " not recurring";
         if(isRecurring) {
-            recur = " recurring, time intervel: " + timeInterval;
+            String[] details = timeInterval.split(" ");
+            String interval = "";
+            switch(details[1].trim()) {
+            case("D"):
+                interval = "Day(s)";
+                break;
+            case("W"):
+                interval = "Week(s)";
+                break;                
+            case("M"):
+                interval = "Month(s)";
+                break;
+            default:
+                break;
+            }
+            recur = " | recurring, time intervel: " + details[0]+ " " +interval;
         }
 
         if (hasEndInfo) {
@@ -111,11 +126,14 @@ public class Schedule {
             break;
         }
         
+        LocalDateTime stTime = startTime;
+        LocalDateTime edTime = endTime;
+
         for(int i =0; i <n; i++) {
-            startTime =  startTime.plusDays(actualDays);
-            endTime = startTime.plusDays(actualDays);
+            stTime =  stTime.plusDays(actualDays);
+            edTime = edTime.plusDays(actualDays);
             
-            
+            list.add(new Schedule(stTime,edTime,true,true,timeInterval));
         }
         
         return list;
