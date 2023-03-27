@@ -68,6 +68,8 @@ public class Messages {
     public static final String ERROR_DISH_NEGATIVE_PRICE_COMMAND = "Price of dish cannot be negative!";
     public static final String ERROR_DISH_MISSING_INGREDIENT = "Ingredient list cannot be empty!";
     public static final String ERROR_DISH_EMPTY_INDEX = "Index cannot be empty!";
+    public static final String ERROR_DISH_MISSING_KEYWORD = "Please key in 1 keyword";
+    public static final String ERROR_DISH_MULTIPLE_KEYWORDS = "Please key in only 1 keyword.";
     public static final String ERROR_CREATE_DIRECTORY = "Unable to create directory at\n%s";
     public static final String ERROR_STORAGE_FILE_NOT_FOUND = "The following file was not found:\n%s\n" +
             "A new file will be created when a new task is added.\n";
@@ -77,5 +79,4 @@ public class Messages {
             "Please check your file permissions.";
     public static final String ERROR_STORAGE_DELETE_FAILED = "There is an error deleting trying " +
             "to delete from the file. Please check your file permissions.";
-
 }
