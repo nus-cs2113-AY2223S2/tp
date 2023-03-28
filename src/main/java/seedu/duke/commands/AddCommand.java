@@ -38,17 +38,14 @@ public class AddCommand extends Command {
             try {
                 if (!item.getCategory().isEmpty()) {
                     String category = item.getCategory().replaceFirst("c/", "");
-                    //System.out.println("category is " + category);
                     item.setCategory(category);
                 }
             } catch (NullPointerException e) {
                 item.setCategory("uncategorized");
-                //System.out.println("Set item category to uncategorized: " + item.getCategory());
             }
             try {
                 CategoryCommand.updateItemCategory(item, item.getCategory());
             } catch (CategoryFormatException e) {
-                //Ui.printInvalidCategory();
                 Ui.printNewCategory();
             }
             Ui.printSuccessAdd();

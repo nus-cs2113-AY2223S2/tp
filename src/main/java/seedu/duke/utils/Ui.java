@@ -1058,5 +1058,12 @@ public class Ui {
         System.out.println(ANSI_BLUE + INVALID_CATEGORY + NEW_CATEGORY_ADDED + ANSI_RESET);
         printLine();
     }
+
+    public static void printCategoryList(HashMap<String, ArrayList<Item>> categoryHash) {
+        Ui.printLine();
+        System.out.println(ANSI_BLUE + "Here is the list of categories you have: " + ANSI_RESET);
+        categoryHash.forEach((cat, items) -> System.out.println(cat));
+        Ui.printLine();
+    }
 }
 
