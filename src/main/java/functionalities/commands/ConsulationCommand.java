@@ -15,7 +15,6 @@ public class ConsulationCommand extends Command {
     private final Owner owner;
     private final LocalDate date;
     private final LocalTime time;
-    protected boolean isDone;
 
     public ConsulationCommand(String animalType, String animalName,
                               String ownerName, String contactNumber, LocalDate date,
@@ -28,7 +27,7 @@ public class ConsulationCommand extends Command {
 
     @Override
     public void executeCommand(SniffTasks tasks) throws SniffException {
-        tasks.addConsultation(animal, owner, date, time, isDone);
+        tasks.addConsultation(animal, owner, date, time);
         Ui.showUserMessage(" Consultation added successfully!");
     }
 }

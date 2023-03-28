@@ -20,7 +20,7 @@ public class SniffTasks {
     private static int appointmentCount = 0;
 
     public void addConsultation(Animal animal, Owner owner,
-                                LocalDate date, LocalTime time, boolean isDone) throws SniffException {
+                                LocalDate date, LocalTime time) throws SniffException {
         try {
             String uid = Uid.uidGenerator("C");
             while (UIDS.contains(uid)) { // this loop checks for duplicate appointment ids
