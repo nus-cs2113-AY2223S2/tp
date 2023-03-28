@@ -76,33 +76,81 @@ The add command is mainly handled by the `AddCommand` class, which extends the `
 The "edit" command is mainly handled by the `EditCommand` class, which extends the `Command` class. It is parsed
 by the `EditParser` class, which extends the `Parser` class.
 
+**Step 1**.
+
+**Step 2**.
+
+Included below is a UML Sequence Diagram for the `EditParser` and `EditCommand` respectively:
+
 ### Restock
 The `restock` command is mainly handled by the `RestockCommand` class, which extends the `Command` class. It is parsed 
 by the `RestockParser` class, which extends the `Parser` class. Included below is a sequence diagram for the `restock`
 command:
 
-![RestockParser.png](UML/Restock/RestockParser.png)
-![RestockCommand.png](UML/Restock/RestockCommand.png)
-
 **Step 1**. When the user executes the command `restock upc/[UPC Code] qty/[Quantity]`, the
 `ParserHandler` will create a new `RestockParser` object and pass the appropriate `input` and `Inventory` in which
 the items are stored.
 
-**Step 2**. 
+**Step 2**. The `RestockParser` object checks for the validity of the user inputs. If user inputs were determined to
+be invalid due to lack of a UPC call `upc/` or wrong command length of `1` or below, an exception will be thrown for 
+error handling. If both conditions as mentioned earlier are satisfied, a `RestockCommand` object will be created to 
+handle the next step of user input processing.
+
+**Step 3**. In the `RestockCommand` object, method `restockItem()` is called to begin item quantity addition process.
+Two `Item` objects, `updatedItem` and `oldItem`, will be created for ease of passing information on the quantity of
+the item before and after the update to other classes. Should `updatedItem` fail to retrieve item information from the
+hashmap, possibly due to a non-existent UPC code, `Exception` will be thrown for error handling.
+
+**Step 4**. The method `restockItem` calls the methods `checkRestockCommandLength()` and `updateItemQuantity()` for 
+quantity addition. `checkRestockCommandLength()` checks whether the there are two string inputs and throws an 
+`Exception` if the input is not exactly 2 strings long, before allowing `updateItemQuantity()` to perform the actual
+addition. However, even within `updateItemQuantity()`, checks are also performed to detect for negative values, or
+strings in place of actual integers. These checks will also throw an `Exception` for error handling.
+
+**Step 5**. Hashmap and Tree data structures containing information about the Item will be updated, by taking
+reference from the `oldItem` and `updatedItem` objects. The `UI` class will be called to handle output of strings
+to inform the user on the status of the program, based on whether quantity addition has been done successfully or
+if an `Exception` has been thrown.
+
+Included below is a sequence diagram for the `RestockParser` and `RestockCommand` respectively:
+
+![RestockParser.png](UML/Restock/RestockParser.png)
+![RestockCommand.png](UML/Restock/RestockCommand.png)
+
 
 ### Sell
 The "sell" command is mainly handled by the `SellCommand` class, which extends the `Command` class. It is parsed
-by the `SellParser` class, which extends the `Parser` class. Included below is a sequence diagram for the `sell`
-command:
-
-![SellParser.png](UML/Sell/SellParser.png)
+by the `SellParser` class, which extends the `Parser` class. 
 
 **Step 1**. When the user executes the command `sell upc/[UPC Code] qty/[Quantity]`, the
 `ParserHandler` will create a new `SellParser` object and pass to it the appropriate `input` and the appropriate
 `Inventory` in which the items are stored.
 
-**Step 2**. 
+**Step 2**. The `SellParser` object checks for the validity of the user inputs. If user inputs were determined to
+be invalid due to lack of a UPC code or wrong command length of `1` or below, an exception will be thrown for error 
+handling. If both conditions as mentioned earlier are satisfied, a `SellCommand` object will be created to handle
+the next step of user input processing.
 
+**Step 3**. In the `SellCommand` object, method `sellItem()` is called to begin item quantity deduction process.
+Two `Item` objects, `updatedItem` and `oldItem`, will be created for ease of passing information on the quantity of
+the item before and after the update to other classes. Should `updatedItem` fail to retrieve item information from the
+hashmap, `Exception` will be thrown for error handling.
+
+**Step 4**. The method `sellItem` calls the methods `checkSellCommandLength()` and `updateItemQuantity()` for quantity
+deduction. `checkSellCommandLength()` checks whether the there are two string inputs and throws an `Exception` if the
+input is not exactly 2 strings long, before allowing `updateItemQuantity()` to perform the actual deduction. However,
+even within `updateItemQuantity()`, checks are also performed to detect for negative values, strings as quantities, or
+values exceeding the total available quantity. These checks will also throw an `Exception` for error handling.
+
+**Step 5**. Hashmap and Tree data structures containing information about the Item will be updated, by taking
+reference from the `oldItem` and `updatedItem` objects. The `UI` class will be called to handle output of strings
+to inform the user on the status of the program, based on whether quantity deduction has been done successfully or
+if an `Exception` has been thrown.
+
+Included below is a sequence diagram for the `SellParser` and the `SellCommand` respectively:
+
+![SellParser.png](UML/Sell/SellParser.png)
+![SellCommand.png](UML/Sell/SellCommand.png)
 
 ### Remove
 The remove command is mainly handled by the `RemoveCommand` class, which extends the `Command` class.
