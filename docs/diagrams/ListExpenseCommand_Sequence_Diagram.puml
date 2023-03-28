@@ -1,0 +1,8 @@
+@startuml
+class chching.command.ListExpenseCommand {
++ void execute(IncomeList,ExpenseList,Ui,Storage,Selector,Converter,TargetStorage)
+}
+
+
+chching.command.Command <|-- chching.command.ListExpenseCommand
+@enduml
