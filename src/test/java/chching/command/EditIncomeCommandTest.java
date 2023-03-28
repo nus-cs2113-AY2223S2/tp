@@ -19,6 +19,9 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * Junit Test for EditIncomeCommand
+ */
 public class EditIncomeCommandTest {
     public static final String SALARY_DESCRIPTION = "salary";
     public static final int SALARY_VALUE = 5000;
@@ -40,6 +43,12 @@ public class EditIncomeCommandTest {
     private IncomeList incomes;
     private ExpenseList expenseList;
     private Income salary;
+    
+    /**
+     * Set up the test environment.
+     * creates IncomeList incomes with one Income salary.
+     * salary has description SALARY_DESCRIPTION, date SALARY_DATE, value SALARY_VALUE.
+     */
     @BeforeEach
     void setUp() {
         ui = new Ui();
@@ -51,6 +60,10 @@ public class EditIncomeCommandTest {
         incomes = new IncomeList(incomeList);
     }
     
+    /**
+     * JUnit Test for EditIncomeCommand.execute() when the command is valid.
+     * The description, date and value of the income should be updated.
+     */
     @Test
     void execute_normalScenario_success() {
         try {
@@ -72,6 +85,10 @@ public class EditIncomeCommandTest {
         }
     }
     
+    /**
+     * JUnit Test for EditIncomeCommand.execute() when there is no index given.
+     * ChChingException should be thrown indicating "Missing/Invalid index".
+     */
     @Test
     void execute_noIndex_exceptionThrown() {
         try {
@@ -89,6 +106,10 @@ public class EditIncomeCommandTest {
         }
     }
     
+    /**
+     * JUnit Test for EditIncomeCommand.execute() when the index given is negative.
+     * ChChingException should be thrown indicating "Negative/Zero index".
+     */
     @Test
     void execute_negativeIndex_exceptionThrown() {
         try {
@@ -107,6 +128,10 @@ public class EditIncomeCommandTest {
         }
     }
     
+    /**
+     * JUnit Test for EditIncomeCommand.execute() when the index given more than size of incomes.
+     * ChChingException should be thrown indicating "The index is too big".
+     */
     @Test
     void execute_indexOutOfBounds_exceptionThrown() {
         try {
@@ -125,6 +150,10 @@ public class EditIncomeCommandTest {
         }
     }
     
+    /**
+     * JUnit Test for EditIncomeCommand.execute() when there are no fields given to be edited.
+     * ChChingException should be thrown indicating "No fields to edit".
+     */
     @Test
     void execute_noFields_exceptionThrown() {
         try {

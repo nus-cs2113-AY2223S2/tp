@@ -47,6 +47,12 @@ public class EditExpenseCommandTest {
     private ExpenseList expenses;
     private Expense groceries;
     
+    /**
+     * Set up the test environment.
+     * creates ExpenseList expenses with one Expense groceries.
+     * groceries has category GROCERIES_CATEGORY, description GROCERIES_DESCRIPTION,
+     * date GROCERIES_DATE, value GROCERIES_VALUE.
+     */
     @BeforeEach
     void setUp() {
         ui = new Ui();
@@ -59,7 +65,8 @@ public class EditExpenseCommandTest {
     }
 
     /**
-     * Junit Test for normal expected edit scenario
+     * Junit Test for EditExpenseCommand.execute() when the command is valid.
+     * The category, description, date and value of groceries should be updated.
      */
     @Test
     void execute_normalScenario_success() {

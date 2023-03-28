@@ -22,6 +22,11 @@ class IncomeListTest {
     private Income income;
     private IncomeList incomes;
     
+    /**
+     * Set up the test environment.
+     * creates IncomeList incomes with one Income income.
+     * income has description DESCRIPTION, date DATE, value INCOME_VALUE.
+     */
     @BeforeEach
     void setUp() {
         income = new Income(DESCRIPTION, DATE, INCOME_VALUE);
@@ -42,6 +47,10 @@ class IncomeListTest {
         assertEquals(1, list.getRecordCount());
     }
 
+    /**
+     * Junit Test to test if editIncome method can edit description of income.
+     * income should only have its description changed to "bonus"
+     */
     @Test
     void editIncome_editDescription_success() {
         String expectedOutputDescription = "bonus";
@@ -56,6 +65,10 @@ class IncomeListTest {
         }
     }
     
+    /**
+     * Junit Test to test if editIncome method can edit date of income.
+     * income should only have its date changed to 05-04-2024.
+     */
     @Test
     void editIncome_editDate_success() {
         LocalDate expectedOutputDate = LocalDate.parse("05-04-2024", FORMATTER);
@@ -70,6 +83,10 @@ class IncomeListTest {
         }
     }
     
+    /**
+     * Junit Test to test if editIncome method can edit value of income.
+     * income should only have its value changed to 200000.
+     */
     @Test
     void editIncome_editValue_success() {
         float expectedOutputValue = (float) 200000;
