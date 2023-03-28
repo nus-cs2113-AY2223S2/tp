@@ -55,7 +55,7 @@ public class RecipeList {
      */
     public Recipe getRecipe(String recipeName) throws MealCompanionException {
         for (Recipe recipe : recipes) {
-            if (recipeName.equals(recipe.getName())) {
+            if (recipeName.equalsIgnoreCase(recipe.getName())) {
                 return recipe;
             }
         }
