@@ -83,7 +83,9 @@ For example, `remove ground chicken /qty 100`.
 
 ### List Ingredients
 In order to show a list of all ingredients currently stored in Meal Companion, use the command `ingredients list`.
-![ingredientlist.png](images/ingredientlist.png)
+
+![ingredientlist1.png](images/ingredientlist1.png)  
+<sub>Fig 5: Sample of Ingredients List command with user input highlighted</sub>
 
 ### Search Ingredients
 If you would like to search for a specific ingredient that Meal Companion recognizes as valid, use the command `ingredients search <keyword>`.
