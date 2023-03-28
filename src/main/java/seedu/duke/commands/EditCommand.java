@@ -15,10 +15,10 @@ import java.util.ArrayList;
  */
 public class EditCommand extends Command {
 
-   private static final String NAME_LABEL = "n/";
-   private static final String QUANTITY_LABEL = "qty/";
-   private static final String PRICE_LABEL = "p/";
-   private final String[] editInfo;
+    private static final String NAME_LABEL = "n/";
+    private static final String QUANTITY_LABEL = "qty/";
+    private static final String PRICE_LABEL = "p/";
+    private final String[] editInfo;
   
     public EditCommand(Inventory inventory, String[] editInfo) {
         super(inventory);
