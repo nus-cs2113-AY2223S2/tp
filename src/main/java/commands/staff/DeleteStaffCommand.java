@@ -1,21 +1,23 @@
 package commands.staff;
 
 import commands.Command;
+import entity.Staff;
 import manager.StaffManager;
 import ui.TextUi;
 
 public class DeleteStaffCommand extends Command {
     public static final String COMMAND_WORD = "delete_staff";
-    private String staffName;
+    private final int staffIndex;
 
-    public DeleteStaffCommand(String staffName) {
-        this.staffName = staffName;
+    public DeleteStaffCommand(int staffIndex) {
+        this.staffIndex = staffIndex;
     }
 
     @Override
     public void execute(TextUi ui) {
-        StaffManager.deleteStaffByName(this.staffName, ui);
-        ui.printMessage(staffName + " removed");
+        Staff deletedStaff = StaffManager.getStaffs().get(staffIndex);
+        StaffManager.deleteStaff(this.staffIndex, ui);
+        ui.printMessage((staffIndex + 1) + " " + deletedStaff.toString() + " removed");
 
     }
 
