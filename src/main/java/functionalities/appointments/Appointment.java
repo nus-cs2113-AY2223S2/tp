@@ -10,11 +10,10 @@ public abstract class Appointment {
     protected Owner owner;
     public boolean isDone;
 
-    public Appointment(String uid, Animal animal, Owner owner, boolean isDone) {
+    public Appointment(String uid, Animal animal, Owner owner) {
         this.uid = uid;
         this.animal = animal;
         this.owner = owner;
-        this.isDone = isDone;
     }
 
     public abstract String toString();

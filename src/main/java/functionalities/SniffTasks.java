@@ -27,7 +27,7 @@ public class SniffTasks {
                 uid = Uid.uidGenerator("C");
             }
             UIDS.add(uid);
-            Appointment newAppointment = new Consultation(uid, animal, owner, date, time, false);
+            Appointment newAppointment = new Consultation(uid, animal, owner, date, time);
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
@@ -44,7 +44,7 @@ public class SniffTasks {
                 uid = Uid.uidGenerator("C");
             }
             UIDS.add(uid);
-            Appointment newAppointment = new Vaccination(uid, animal, owner, date, time, vaccine, false);
+            Appointment newAppointment = new Vaccination(uid, animal, owner, date, time, vaccine);
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
@@ -63,7 +63,7 @@ public class SniffTasks {
             }
             UIDS.add(uid);
             Appointment newAppointment =
-                    new Surgery(uid, animal, owner, priority, startDate, startTime, endDate, endTime, false);
+                    new Surgery(uid, animal, owner, priority, startDate, startTime, endDate, endTime);
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
@@ -171,7 +171,6 @@ public class SniffTasks {
             }
             APPOINTMENTS.get(index).setIsDone(true);
             Ui.printAppointmentMarkMessage();
-            appointmentCount--;
             assert appointmentCount >= 0 : "Appointment count cannot be less than 0";
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The mark command entry is invalid!");
@@ -191,11 +190,10 @@ public class SniffTasks {
                 }
             }
             APPOINTMENTS.get(index).setIsDone(false);
-            Ui.printAppointmentMarkMessage();
-            appointmentCount--;
+            Ui.printAppointmentUnMarkMessage();
             assert appointmentCount >= 0 : "Appointment count cannot be less than 0";
         } catch (IndexOutOfBoundsException e) {
-            throw new SniffException(" The mark command entry is invalid!");
+            throw new SniffException(" The unmark command entry is invalid!");
         }
 
     }
