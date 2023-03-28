@@ -44,10 +44,11 @@ public class AddCommand extends Command {
                 item.setCategory("uncategorized");
             }
             try {
-                CategoryCommand.updateItemCategory(item, item.getCategory());
+                CategoryCommand.updateItemCategory(item, item.getCategory(), item.getCategory());
             } catch (CategoryFormatException e) {
-                Ui.printNewCategory();
+                //Ui.printNewCategory();
             }
+
             Ui.printSuccessAdd();
             String[] itemNames = item.getName().toLowerCase().split(" ");
             for (String itemName : itemNames) {

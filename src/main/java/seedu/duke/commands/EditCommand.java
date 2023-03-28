@@ -58,6 +58,8 @@ public class EditCommand extends Command {
             throw new MissingParametersException();
         } catch (NumberFormatException nfe) {
             throw new NumberFormatException();
+        } catch (CategoryFormatException e) {
+            Ui.printInvalidCategory();
         }
     }
 
@@ -71,7 +73,7 @@ public class EditCommand extends Command {
      * @throws NumberFormatException      Exception related to all invalid number formats inputted.
      */
     private void handleUserEditCommands(Item item, String[] data) throws
-            MissingParametersException, NumberFormatException {
+            MissingParametersException, NumberFormatException, CategoryFormatException {
         String currentLabel = "null";
         for (int dataSequence = 1; dataSequence < data.length; dataSequence += 1) {
             if (data[dataSequence].contains("n/")) {
@@ -89,6 +91,7 @@ public class EditCommand extends Command {
             } else if (data[dataSequence].contains("c/")) {
                 String updatedCategory = data[dataSequence].replaceFirst("c/", "");
                 updatedCategory = updatedCategory.toLowerCase();
+                //CategoryCommand.updateItemCategory(item, item.getCategory(), updatedCategory);
                 item.setCategory(updatedCategory);
                 currentLabel = CATEGORY_LABEL;
             } else {
@@ -155,7 +158,8 @@ public class EditCommand extends Command {
 
             inventory.getUpcCodesHistory().get(oldItem.getUpc()).add(itemForHistory);
 
-            CategoryCommand.updateItemCategory(oldItem, updatedItem.getCategory());
+            CategoryCommand.updateItemCategory(oldItem, oldItem.getCategory(),updatedItem.getCategory());
+
 
             if (SessionManager.getAutoSave()) {
                 SessionManager.writeSession(inventory);

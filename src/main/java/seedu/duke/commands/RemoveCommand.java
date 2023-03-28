@@ -57,6 +57,7 @@ public class RemoveCommand extends Command {
             Ui.printItemNotFound();
             return;
         }
+
         Item itemToRemove = new Item(upcCodes.get(upcCode));
         switch (userConfirmation.toUpperCase()) {
         case "Y":
