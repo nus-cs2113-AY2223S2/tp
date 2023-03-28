@@ -54,7 +54,7 @@ public class AddCommand extends Command {
         setupLogger();
         logger.log(Level.INFO, "starting AddCommand.execute()");
 
-        int totalStatementCount = userData.getStatementCount();
+        int totalStatementCount = userData.getStatementCount(); // only used for assertion
         FinancialStatement newStatement = new FinancialStatement(description, flowDirection, value, category, date);
         userData.addStatement(newStatement);
 

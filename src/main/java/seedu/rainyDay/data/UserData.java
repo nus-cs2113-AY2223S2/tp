@@ -1,8 +1,5 @@
 package seedu.rainyDay.data;
 
-import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.modules.Storage;
-
 import java.time.LocalDate;
 import java.util.HashMap;
 
@@ -27,7 +24,6 @@ public class UserData {
 
     public void setBudgetGoal(double goal) {
         this.budgetGoal = goal;
-        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public double getBudgetGoal() {
@@ -40,14 +36,14 @@ public class UserData {
      * The progress is show if and only if a budget is present, and the changed entry is in the same
      * month and year as the user. Otherwise, an empty string is returned
      *
-     * @param newStatement The statement added or removed from the FinancialReport
+     * @param statement The statement added or removed from the FinancialReport
      * @return A string denoting the progress if applicable
      */
-    public String checkUserBudgetLimit(FinancialStatement newStatement) {
+    public String checkUserBudgetLimit(FinancialStatement statement) {
         double budgetLimit = getBudgetGoal();
-        double currentSpending = financialReport.getMonthlyExpenditure(newStatement);
+        double currentSpending = financialReport.getMonthlyExpenditure(statement);
         int currentMonthYear = LocalDate.now().getMonthValue() + LocalDate.now().getYear() * 12;
-        if (newStatement.getMonthAndYear() != currentMonthYear) {
+        if (statement.getMonthAndYear() != currentMonthYear) {
             return "";
         }
         if (budgetLimit == 0) {

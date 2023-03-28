@@ -32,7 +32,7 @@ deactivate FinancialReport
 UserData --> AddCommand
 deactivate UserData
 
-AddCommand -> UserData : checkUserBudgetLimit(newStatement : Financial Statement)
+AddCommand -> UserData : checkUserBudgetLimit(statement : Financial Statement)
 activate UserData
 
 UserData --> AddCommand : :String

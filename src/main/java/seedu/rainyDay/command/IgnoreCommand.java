@@ -1,8 +1,6 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.data.FinancialStatement;
-import seedu.rainyDay.modules.Storage;
 
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -48,7 +46,6 @@ public class IgnoreCommand extends Command {
             output = "Done, Entry " + (index + 1) + " included in overview calculations";
             userData.addToMonthlyExpenditure(currentStatement);
             logger.log(Level.INFO, "Ignore status updated in financial report");
-            Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         } else if (this.command.equalsIgnoreCase("unignore") && !currentStatement.isIgnored()) {
             output = "Entry " + (index + 1) + " already included in overview calculations";
         } else if (this.command.equalsIgnoreCase("ignore") && !currentStatement.isIgnored()) {
@@ -56,7 +53,6 @@ public class IgnoreCommand extends Command {
             output = "Done, Entry " + (index + 1) + " ignored from overview calculations";
             userData.removeFromMonthlyExpenditure(currentStatement);
             logger.log(Level.INFO, "Ignore status updated in financial report");
-            Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         } else {
             output = "Entry " + (index + 1) + " is already ignored from overview calculations";
         }

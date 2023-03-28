@@ -50,6 +50,7 @@ public class RainyDay {
     private void showStartingMessage() {
         ui.printLogo();
         ui.greetUser(userData.getReportOwner());
+        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     private void runCommand() {
@@ -74,6 +75,7 @@ public class RainyDay {
         if (result != null) {
             result.printResult();
         }
+        Storage.writeToFile(userData, filePath);
     }
 
     private static void setupLogger() {
