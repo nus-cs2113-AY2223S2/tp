@@ -102,8 +102,9 @@ public class Parser {
         Matcher matcher = descriptionPattern.matcher(arguments);
         if (matcher.find()) {
             description = matcher.group(0);
+            arguments = arguments.replaceFirst(description, "").trim();
         }
-
+        System.out.print(arguments);
         matcher = categoryPattern.matcher(arguments);
         if (matcher.find()) {
             category = matcher.group(2);
@@ -185,7 +186,7 @@ public class Parser {
         int expenseIdInt;
         Integer[] expenseIds = new Integer[argumentsArray.length];
         try {
-            for(int i = 0; i < argumentsArray.length; i++){
+            for (int i = 0; i < argumentsArray.length; i++) {
                 expenseIdInt = Integer.parseInt(argumentsArray[i]);
                 assert argumentsArray[i].matches("\\d+") : "Expense ID must be an integer";
                 logger.log(Level.INFO, "Removing specified expense id {0} from list", argumentsArray[i]);
@@ -240,6 +241,7 @@ public class Parser {
         matcher = pricePattern.matcher(arguments);
         if (matcher.find()) {
             price = matcher.group(2);
+            System.out.println(price);
         }
         argumentsArray[0] = expenseId;
         argumentsArray[1] = description;
@@ -274,19 +276,18 @@ public class Parser {
         logger.info("User input price: " + price);
 
         try {
-            Integer.parseInt(argumentsArray[0]);
+            Integer.parseInt(expenseId);
         } catch (NumberFormatException e) {
             logger.warning("Expense ID is not an integer: " + MessageConstants.MESSAGE_INVALID_ID);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
 
         if (!price.isEmpty()) {
-            try {
-                Double.parseDouble(price);
-            } catch (NumberFormatException e) {
-                logger.warning("Price not in numerical format: " + MessageConstants.MESSAGE_INVALID_PRICE);
+            boolean has_letters = price.matches(".*[a-zA-Z]+.*");
+            if (has_letters) {
                 throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
             }
+            Double.parseDouble(price);
         }
 
         if (!category.isEmpty()) {
@@ -313,21 +314,26 @@ public class Parser {
         logger.info("Parsing view command with arguments: " + arguments);
         Category category = null;
         String categoryStr = "";
+        String priceMinStr;
+        String priceMaxStr;
         String viewCount;
         int viewCountInt;
+        Double priceMinDble;
+        Double priceMaxDble;
         if (arguments.isEmpty()) {
             logger.info("No count specified. Listing all expenses");
-            // list all commands;
             return new ViewCommand(Integer.MAX_VALUE);
         }
-        String[] argumentsArray = arguments.split(" ", 3);
-        assert argumentsArray.length >= 1 : "User input contains at least 1 argument";
+        String[] argumentsArray = arguments.split(" ");
+        assert argumentsArray.length >= 1 : "User input must contain at least 1 argument";
         Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
-        Pattern viewCountPattern = Pattern.compile("\\d+");
+        Pattern viewCountPattern = Pattern.compile("\\S+");
+        Pattern priceRangePattern = Pattern.compile("(?:-p|-price)\\s+(\\d+\\.*\\d*)\\s+" +
+                                                    "(?:-p|-price)\\s+(\\d+\\.*\\d*)");
         Matcher matcher = viewCountPattern.matcher(arguments);
-        if (matcher.find()) {
-            viewCount = matcher.group(0);
-        } else { //count not specified
+        matcher.find();
+        viewCount = matcher.group(0);
+        if (viewCount.equals("-c") || viewCount.equals("-category")) { //only category specified
             viewCount = Integer.toString(Integer.MAX_VALUE);
         }
         matcher = categoryPattern.matcher(arguments);
@@ -335,8 +341,18 @@ public class Parser {
             categoryStr = matcher.group(2);
             category = CategoryUtil.convertStringToCategory(StringUtil.toTitleCase(categoryStr));
         }
+        matcher = priceRangePattern.matcher(arguments);
+        if (matcher.find()) {
+            priceMinStr = matcher.group(1);
+            priceMaxStr = matcher.group(2);
+            viewCount = Integer.toString(Integer.MAX_VALUE);
+        } else{
+            priceMinStr = "0.0";
+            priceMaxStr = Double.toString(Double.MAX_VALUE);
+        }
         try {
             viewCountInt = Integer.parseInt(viewCount);
+
         } catch (NumberFormatException e) {
             logger.warning("Expense ID is not an integer: " + MessageConstants.MESSAGE_INVALID_ID);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
@@ -347,7 +363,11 @@ public class Parser {
         logger.info("User entered count:" + viewCount);
         logger.info("User entered category:" + categoryStr);
         logger.exiting(Parser.class.getName(), "parseViewCommand()");
-        return new ViewCommand(viewCountInt, category);
+
+
+        priceMinDble = Double.parseDouble(priceMinStr);
+        priceMaxDble = Double.parseDouble(priceMaxStr);
+        return new ViewCommand(viewCountInt, category, priceMinDble, priceMaxDble);
     }
 }
 // @@author
