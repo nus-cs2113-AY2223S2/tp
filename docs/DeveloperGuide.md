@@ -113,19 +113,26 @@ The following class diagrams illustrates the relationship between the Parser cla
 
 ### Help Command
 
-The help command provides a list of commands and the commands' respective input format for the user.
+The help command provides a list of commands and the commands' respective input format for the user.  
+> Syntax: /help
 
 The following sequence diagram shows the relationship between the classes involved when the delete command is called.
+
+![HelpCommandSequenceDiagram.png](diagrams%2FHelpCommandSequenceDiagram.png)
 
 ### Delete Command
 
-The delete command removes a module from the user's saved list of modules that is specified by the user.
+The delete command removes a module from the user's saved list of modules that is specified by the user.  
+> Syntax: delete [_uniAbbreviation_]/[_index_]
 
 The following sequence diagram shows the relationship between the classes involved when the delete command is called.
+
+![DeleteModuleCommandSequenceDiagram.png](diagrams%2FDeleteModuleCommandSequenceDiagram.png)
 
 ### List Current Command
 
 Lists out all of current modules that user has added.
+
 
 > Syntax: list current
 

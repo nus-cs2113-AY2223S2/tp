@@ -86,7 +86,7 @@ public class Storage implements DatabaseInterface {
     }
 
     public void addModuleToModuleList(Module moduleToAdd) {
-        assert (moduleToAdd != null) : "error line 53";
+        assert (moduleToAdd != null) : "error line 89";
         if (moduleToAdd == null) {
             UI.printAddModuleFailureMessage();
             return;
@@ -117,10 +117,6 @@ public class Storage implements DatabaseInterface {
      */
     public static boolean deleteModule(int indexToDeletePuSpecificList, ArrayList<Module> modules,
                                        Storage database, int uniID) {
-
-        if (indexToDeletePuSpecificList == -1) {
-            return false;
-        }
         int indexToDeletePuSpecificListToZeroBased = indexToDeletePuSpecificList - 1;
         int counterUpToIndexToDelete = 0;
         int indexToDelete = -1;
@@ -138,13 +134,13 @@ public class Storage implements DatabaseInterface {
         try {
             modules.remove(indexToDelete);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index out of bounds");
+            UI.printDeleteNumError();
             return false;
         }
         try {
             database.writeModListToFile(modules);
         } catch (IOException e) {
-            System.out.println("Unable to save to database");
+            UI.printWriteToDatabaseFailureMessage();
             return false;
         }
         return true;
@@ -161,20 +157,17 @@ public class Storage implements DatabaseInterface {
      */
     public static boolean deleteDeadline(int indexToDelete, ArrayList<Deadline> deadlines,
                                          Storage database) {
-        if (indexToDelete == -1) {
-            return false;
-        }
         int indexToZeroBased = indexToDelete - 1;
         try {
             deadlines.remove(indexToZeroBased);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index out of bounds");
+            UI.printDeleteNumError();
             return false;
         }
         try {
             database.writeDeadlinesToFile(deadlines);
         } catch (IOException e) {
-            System.out.println("Unable to save to database");
+            UI.printWriteToDatabaseFailureMessage();
             return false;
         }
         return true;

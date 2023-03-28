@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":DeleteModuleCommand"
+
+":DeleteModuleCommand" -> "<<class>>\nstorage:Storage" : deleteModule(indexToRemove, modules, storage, uniID)
+activate "<<class>>\nstorage:Storage"
+
+alt indexToRemove == -1
+"<<class>>\nstorage:Storage" --> ":DeleteModuleCommand" : return false
+else else
+    loop for each Module in Modules
+
+        "<<class>>\nstorage:Storage" -> "modules: ArrayList<Module>"
+         activate "modules: ArrayList<Module>"
+         create ":Module"
+         "modules: ArrayList<Module>" -> ":Module"
+         activate ":Module"
+         "modules: ArrayList<Module>" <-- ":Module"
+         deactivate ":Module"
+
+         "<<class>>\nstorage:Storage" <-- "modules: ArrayList<Module>"
+         deactivate "modules: ArrayList<Module>"
+
+        "<<class>>\nstorage:Storage" -> ":Module" : "getUnivId()"
+        "<<class>>\nstorage:Storage" <-- ":Module" : univID
+
+        alt univID == uniID
+            alt counterUpToIndexToDelete == indexToDeletePuSpecificListToZeroBased
+            end
+        end
+    end
+   "<<class>>\nstorage:Storage" -> "modules: ArrayList<Module>" : remove(indexToDelete)
+    activate "modules: ArrayList<Module>"
+    deactivate "modules: ArrayList<Module>"
+    "<<class>>\nstorage:Storage" --> ":DeleteModuleCommand" : return true
+
+end
+":DeleteModuleCommand" -> "<<class>>\nui:UI" : printDeleteModMessage()
+activate "<<class>>\nui:UI"
+
+"<<class>>\nui:UI" -> UserConsole : Print Delete Mod Message
+"<<class>>\nui:UI" <-- UserConsole
+@enduml
