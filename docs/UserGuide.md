@@ -6,6 +6,7 @@
 their calorie intake history.
 
 The app also allows users to keep track of their daily exercises to compute their calorie loss.
+
 Their net calorie gain/loss can then be viewed.
 
 
