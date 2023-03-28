@@ -35,7 +35,7 @@ to display text indicating the successful adding function to the user.
 At this point, the adding process is completed and the program is ready to take another
 command.
 
-The following sequence diagram show how the add operation work:
+The following sequence diagram show how the add operation works:
 ![AddFlashcard-0.png](umlDiagrams%2FAddFlashcard-0.png)
 
 #### Reason for current implementation
@@ -51,13 +51,13 @@ coupling in the program as the `AddCommand` will not have access to the inner st
 #### Alternative implementation
 
 - Alternative 1: Have the add command function directly in `FlashcardList`
-    - Pros: Easy to implement
-    - Cons: Will require another function in another program to differentiate it from other
-      commands
+  - Pros: Easy to implement
+  - Cons: Will require another function in another program to differentiate it from other
+    commands
 - Alternative 2: Have the constructor of `Flashcard` include adding the card to list of flashcards
-    - Pros: Simplifies code
-    - Cons: Will cause trouble when temporary flashcard (that need not be stored) are
-      created
+  - Pros: Simplifies code
+  - Cons: Will cause trouble when temporary flashcard (that need not be stored) are
+    created
 
 ### Delete Flashcard Feature
 
@@ -78,10 +78,13 @@ Then `findFlashcards(flashcards, query)` is called to find the flashcards with q
 before calling `printFlashcardList(matchingFlashcards)` to display the found flashcards.
 
 User input is taken to get the index of the flashcard to be removed. `deleteFlashcard` is called from
-class `flashcardList` to remove the flashcard from the original list of flashcards. Finally 
+class `flashcardList` to remove the flashcard from the original list of flashcards. Finally
 `printSuccessfulDelete` is called from class `Ui` to indicate a successful removal of the flashcard.
 
 The deletion process is now completed and the program will await another command.
+
+An overview of how the Delete operation works is shown with the following sequence diagram
+![DeleteFlashcard.png](umlDiagrams%2FDeleteFlashcard.png)
 
 #### Reason for current implementation
 
@@ -95,9 +98,9 @@ makes the deletion process simple even if the user does not remember the index o
 #### Alternative implementation
 
 - Alternative 1: Delete flashcard by index from the start
-    - Pros: Easy to implement and simplifies code
-    - Cons: Cumbersome to delete if user forgets the flashcard's index and has to search
-            through the whole list of flashcards.
+  - Pros: Easy to implement and simplifies code
+  - Cons: Cumbersome to delete if user forgets the flashcard's index and has to search
+    through the whole list of flashcards.
 
 ### Update Flashcard Feature
 
@@ -137,10 +140,50 @@ update flashcard feature alone as most of the methods and attributes are within 
 
 - Alternative 1: Instead of creating a new arrayList `matchingFlashcards` that store flashcards containing the
   `query` and then printing the list of flashcards, directly print the flashcards when there is a match with the query`
-    - Pros: Easier to implement
-    - Cons: Harder to track the total number of flashcards that has `query` and will need to have another way to track
-      the index of the matching flashcards. it will also be more confusing as the index of the user input is not
-      aligned with the index of the arrayList that contains all the flashcards
+  - Pros: Easier to implement
+  - Cons: Harder to track the total number of flashcards that has `query` and will need to have another way to track
+    the index of the matching flashcards. it will also be more confusing as the index of the user input is not
+    aligned with the index of the arrayList that contains all the flashcards
+
+### Parser
+
+#### Current implementation
+
+The parser mostly relies on the `ParsedInput` class, which can parse any user provided string input in the format of Windows command prompt commands (`command body /opt-key opt-value`).
+
+##### `ParsedInput`
+
+Initiated with a string `input`, it splits the input to sections that are of use. From there it splits each section further to a "title" (denoted with `=` below) and a "body" (denoted with `-` below) part.
+
+```
+command blah blah /opt1 hello /opt2 world blah bleh
+|    Part 1     |  | Part 2 |  |      Part 3      |
+|=====| |-------|  |==| |---|  |==| |-------------|
+```
+
+Then these small subparts are grouped together to a format where the command part of the command, the body part and the options can be retrieved programmatically.
+
+The command and body can be read with `getCommand()` and `getBody()` respectively. `getCommand()` is guaranteed to be non-null.
+
+The options can be read with `getOptionByName(optionKeyName)`. The reason we don't have specific `getDate` or `getQuestion` command is because we don't know what the user will input and what options we will require for each command. So depending on the command, we retrieve the option accordingly with e.g.
+
+```java
+"command blah blah /opt1 hello /opt2 world blah bleh"
+getOptionByName("opt2") // -> "world blah bleh"
+getOptionByName("opt3") // -> null
+```
+
+##### `Parser`
+
+This is now just a matter of wrapping `ParsedInput` with suitable error handling and logic such that each command will be used to initiated a corresponding command class (e.g. `AddCommand`), while errors are handled gracefully.
+
+#### Reason for current implementation
+
+We need an intuitive, safe and declarative way to parse the user input. Alternative implementations that can only parse specific commands with specific options are more imperative, less readable, less maintainable and overall just a pain to handle. That's why the two classes are here.
+
+#### Alternative implementation
+
+No.
 
 ## Product scope
 
@@ -155,7 +198,7 @@ update flashcard feature alone as most of the methods and attributes are within 
 ## User Stories
 
 | Version | As a ... | I want to ...             | So that I can ...                                           |
-|---------|----------|---------------------------|-------------------------------------------------------------|
+| ------- | -------- | ------------------------- | ----------------------------------------------------------- |
 | v1.0    | new user | see usage instructions    | refer to them when I forget how to use the application      |
 | v2.0    | user     | find a to-do item by name | locate a to-do without having to go through the entire list |
 
@@ -165,7 +208,7 @@ update flashcard feature alone as most of the methods and attributes are within 
 
 ## Glossary
 
-* *glossary item* - Definition
+- _glossary item_ - Definition
 
 ## Instructions for manual testing
 
