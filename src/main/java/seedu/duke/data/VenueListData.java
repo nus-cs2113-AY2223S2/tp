@@ -6,6 +6,12 @@ import java.util.ArrayList;
 
 public class VenueListData {
 
+
+    /**
+     * Creates an array list of venues for the user
+     *
+     * @return a venueList which contains a list of venues
+     */
     public static ArrayList<Venue> returnVenueList() {
         ArrayList<Venue> venues = new ArrayList<>();
         venues.add(new Venue("Engineering Auditorium", "9 Engineering Drive 1 (S) 117576", 100));

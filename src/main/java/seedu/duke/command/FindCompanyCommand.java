@@ -11,6 +11,11 @@ public class FindCompanyCommand extends Command{
         this.targetCompany = targetCompany;
     }
 
+    /**
+     * Finds the companies by the company name within the company list
+     *
+     * @param companyList which contains a list of all the companies
+     */
     @Override
     public void execute(CompanyList companyList){
         companyList.findCompany(targetCompany);

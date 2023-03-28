@@ -14,6 +14,13 @@ public class DeleteCommand extends Command{
         this.taskNum = taskNum;
     }
 
+    /**
+     * Deletes a company from the list of companies
+     *
+     * @param companyList which contains a list of all the companies
+     * @throws InvalidIndexException if error occurred due to invalid index
+     * @throws IOException if error occurred during file writing
+     */
     @Override
     public void execute(CompanyList companyList) {
         try {

@@ -15,7 +15,12 @@ public class VenueList {
         this.venueList = venueList;
         this.ui = ui;
     }
-    
+
+    /**
+     * Prints the current venue list
+     *
+     * @throws EmptyListException if error occurred due to having an empty list
+     */
     public static void printVenueInformation() throws EmptyListException {
         if (venueList.isEmpty()) {
             throw new EmptyListException();

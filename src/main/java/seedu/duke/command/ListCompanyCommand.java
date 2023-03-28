@@ -8,6 +8,12 @@ public class ListCompanyCommand extends Command {
         super(commandType);
     }
 
+    /**
+     * Prints out the list of companies to the user
+     *
+     * @param companyList which contains a list of all the companies
+     * @throws EmptyListException if error occurred due to empty list
+     */
     @Override
     public void execute(CompanyList companyList) {
         try {
