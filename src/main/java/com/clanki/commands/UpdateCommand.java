@@ -46,6 +46,9 @@ public class UpdateCommand extends Command {
         int indexInMatchList = Integer.parseInt(userTexts[0]) - 1;
         Flashcard flashcardToChange = matchingFlashcards.get(indexInMatchList);
         int index = flashcards.indexOf(flashcardToChange);
+        if (!userTexts[1].equals("/a") && !userTexts[1].equals("/q") && !userTexts[1].equals("/d")) {
+            throw new InvalidInputException();
+        }
         if (userTexts[1].contains("q")) {
             flashcards.get(index).setQuestion(userTexts[2].substring(0, 1).toUpperCase()
                     + userTexts[2].substring(1));
@@ -58,9 +61,6 @@ public class UpdateCommand extends Command {
             String date = userTexts[2];
             LocalDate dateToChange = LocalDate.parse(date);
             flashcards.get(index).setDueDate(dateToChange);
-        }
-        if (!userTexts[1].contains("a") && !userTexts[1].contains("q") && !userTexts[1].contains("d")) {
-            throw new InvalidInputException();
         }
         return index;
     }

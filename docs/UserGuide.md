@@ -121,9 +121,11 @@ Found 2 cards with the query "fruit":
 [1]
 Q: What is the worst fruit?
 A: Durian
+D: 2023-02-29
 [2]
 Q: What is the Japanese word for "fruit"?
 A: 果物
+D: 2023-02-29
 Which flashcard do you want to update? 1 /q What is the best fruit?
 Understood. The card has been updated to
 Q: What is the best fruit?
