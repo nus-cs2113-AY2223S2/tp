@@ -26,8 +26,7 @@ public class ShortcutViewCommand extends Command {
         shortcutCommands = RainyDay.userData.getShortcutCommands();
     }
 
-
-    private static void printBodyRow(String key, String value) {
+    private static void printShortcutMapping(String key, String value) {
 
         String formattedKey = String.format("%s                                   ", key);
         formattedKey = formattedKey.substring(0, 35);
@@ -41,7 +40,7 @@ public class ShortcutViewCommand extends Command {
         System.out.print(HEADERS);
         for (String key : shortcutCommands.keySet()) {
             String value = shortcutCommands.get(key);
-            printBodyRow(key, value);
+            printShortcutMapping(key, value);
         }
         System.out.print(TABLE_BORDER);
     }
