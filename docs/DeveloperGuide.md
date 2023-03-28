@@ -7,13 +7,11 @@
 
 ## Design & implementation
 
-==UML HERE==
-
 All commands will be fetched by the getUserCommand() method in the TextUi class. The parseCommand() method in the Parser class will then parse the command and pass it to the respective command classes. The command classes will be responsible for executing the relevant features.
 
 ### [Proposed] Search book by title
 
-![](search.puml)
+![](images/Search%20class%20diagram.png)
 Description: Searches for a book using the title  
 Format: search -title TITLE
 Example:
@@ -70,6 +68,7 @@ For successful returns of books, the program will output a string showing that t
 
 
 ### [Proposed] Add book
+![](images/Inventory%20class%20diagram.png)
 Description: Add new books into the system  
 Format: librarian -title TITLE -topic TOPIC -author AUTHOR -isbn ISBN -action add
 Example:

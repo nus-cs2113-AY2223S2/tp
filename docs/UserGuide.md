@@ -2,38 +2,49 @@
 
 ## Introduction
 
-{Give a product intro}
+Product Name: Duke of Books
+
+### Target user profile:
+NUS computer science (CS) students who wish to borrow and read CS related books.
+
+### Problem addressed:
+CS students are incredibly busy and hence having a command line interface (CLI) program without GUI makes finding the books they want quick and efficient. This software will also help them track loans and return dates.
+
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Down the latest version of `DukeOfBooks` from [here](https://github.com/AY2223S2-CS2113-F10-4/tp).
 
 ## Features 
 
-{Give detailed description of each feature}
+### Searching for book: `search`
+Search for a book with matching title or topic. Only strings with exact match will be returned.
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+Format:
+- search -title TITLE
+- search -topic TOPIC
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Examples:
+- search -title Introduction to OOP
+- search -topic java
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+### Adding/Deleting book: `librarian`
+Adds a new book to the library for users. This is a superuser method and should only be used by the librarian.
 
-Example of usage: 
+Format:
+- librarian -title TITLE -topic TOPIC -author AUTHOR -isbn ISBN -action add
+- librarian -title TITLE -topic TOPIC -author AUTHOR -isbn ISBN -action delete
 
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+Examples:
+- librarian -title Introduction to OOP -topic java -author Java legends -isbn 1234567890123 -action -add
+- librarian -title Introduction to OOP -topic java -author Java legends -isbn 1234567890123 -action -delete
 
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: Currently data is not stored and there is no way to transfer data at the moment
 
 ## Command Summary
 

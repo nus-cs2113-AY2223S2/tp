@@ -1,0 +1,25 @@
+@startuml search diagram
+abstract class Command{
+    + {abstract} CommandResult execute()
+    + void setData()
+}
+class SearchController{
+    - {static} Inventory inventory
+    + {static} <T> void setData(T dataPoint)
+    + {static} boolean checkDataExists()
+    + {static} Book searchBookByTitle(String titleString)
+    + {static} Book searchBookByTopic(String topic)
+}
+class SearchCommand{
+    - String command
+    - String action
+    + CommandResult execute()
+}
+class Inventory{}
+class Book{}
+
+SearchController --> Inventory
+SearchController ..> Book
+Command <|-- SearchCommand
+SearchCommand ..> SearchController
+SearchCommand ..> Book
