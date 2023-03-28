@@ -14,9 +14,12 @@ public class PrintHelpMessage {
         System.out.println("\tShow all plans");
         System.out.println("[planner]");
         System.out.println("\tEnter workout plan editor");
+        System.out.println("[quick]");
+        System.out.println("\tGenerate a planned exercise: quick PLAN_NAME x");
+        System.out.println("\tPLAN_NAME needs has to be in your planner, and x is the number of exercises");
         System.out.println("[find]");
         System.out.println("\tfinds all relevant exercises based on the keyword : find [keyword]");
-        System.out.println("[bye]");
+        System.out.println("[exit]");
         System.out.println("\tEnd the program");
     }
 
