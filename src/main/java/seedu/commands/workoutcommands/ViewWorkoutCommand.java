@@ -4,7 +4,7 @@ import seedu.DateFormat;
 import seedu.commands.Command;
 
 import seedu.ui.Ui;
-import seedu.workouttracker.workout.Workout;
+import seedu.workout.Workout;
 
 import java.util.Date;
 
@@ -22,7 +22,7 @@ public class ViewWorkoutCommand extends Command {
         for (Workout workout : workoutList.workoutArrayList) {
             DateFormat dateFormat = new DateFormat(workoutToViewDate);
             String formattedDate = dateFormat.formatDate();
-            if (workout.getDate().equals(workoutToViewDate)) {
+            if (workout.getStringDate().equals(workoutToViewDate)) {
                 System.out.println(workout.getExercises());
                 Ui.showSeparator();
                 return;

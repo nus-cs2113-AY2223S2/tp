@@ -1,10 +1,10 @@
-package seedu.commands;
+package seedu.commands.workoutcommands;
 
 import org.junit.jupiter.api.Test;
 import seedu.DateFormat;
-import seedu.commands.workoutcommands.DeleteWorkoutCommand;
-import seedu.workouttracker.workout.Workout;
-import seedu.workouttracker.workout.WorkoutList;
+import seedu.commands.Command;
+import seedu.workout.Workout;
+import seedu.workout.WorkoutList;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,7 +45,7 @@ public class DeleteCommandTest {
         assertEquals(1, workoutLists.workoutArrayList.size());
         DateFormat dateFormat = new DateFormat(date2);
         String formattedDate = dateFormat.formatDate();
-        assertEquals(formattedDate, workoutLists.workoutArrayList.get(0).getDate());
+        assertEquals(formattedDate, workoutLists.workoutArrayList.get(0).getStringDate());
 
         // Try to remove workout1 again (should not be in the list)
         delete.execute();

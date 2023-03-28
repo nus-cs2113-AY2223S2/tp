@@ -18,6 +18,7 @@ planning future exercises.
   - [Display workout list: /list](#display-workout-list--list)
   - [Display a workout: /view](#display-workout-view--list)
   - [Delete a workout: /delete](#delete-a-workout--delete)
+  - [Count Sets and reps over a week: /count](#count-sets-and-reps--count)
   - [Exit app: /exit](#exit-app--exit)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
@@ -109,6 +110,23 @@ Example of usage:
 Expected output:
 ```
 Workout deleted successfully.
+```
+### Counting sets and reps over a week: `/count`
+Displays the list of distinct exercises over a week and the associated total number of sets and reps for each one
+
+Format: `/count <DD/MM/YY>`
+
+Example of usage:
+
+`/count 21/03/23`
+
+Expected output:
+```
+Exercises and number of sets and reps for the week of Tue Mar 21 00:00:00 SGT 2023
+----------------------------------
+Bench Press - 4 sets - 48 reps
+Squats - 5 sets - 60 reps
+----------------------------------
 ```
 ### Exit the App: `/exit`
 Delete the specified workout

@@ -1,8 +1,8 @@
 package seedu.commands.workoutcommands;
 
 import seedu.commands.Command;
-import seedu.workouttracker.workout.Exercise;
-import seedu.workouttracker.workout.WorkoutList;
+import seedu.workout.Exercise;
+import seedu.workout.WorkoutList;
 
 public class AddWorkoutCommand extends Command {
     private Exercise toAdd;

@@ -5,7 +5,7 @@ import seedu.commands.Command;
 import seedu.commands.ExitCommand;
 import seedu.parser.Parser;
 import seedu.ui.Ui;
-import seedu.workouttracker.workout.WorkoutList;
+import seedu.workout.WorkoutList;
 
 
 public class Duke {

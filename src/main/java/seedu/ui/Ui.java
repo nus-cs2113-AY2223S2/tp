@@ -1,5 +1,9 @@
 package seedu.ui;
 
+import seedu.workout.Exercise;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Ui {
@@ -43,5 +47,20 @@ public class Ui {
         showLogo();
         showLine();
         showGreeting();
+    }
+
+    //@@ author guillaume-grn
+    public static void displayCountSetsReps(ArrayList<Exercise> distinctExercisesList, Date dayInSpecificWeekDate) {
+        if (distinctExercisesList.isEmpty()) {
+            System.out.println("There are no workouts reported during this week !");
+            return;
+        }
+        System.out.println("Exercises and number of sets and reps for the week of " + dayInSpecificWeekDate);
+        Ui.showSeparator();
+        for (Exercise exercise : distinctExercisesList) {
+            System.out.println(exercise.getName() + " - " + exercise.getSetsCount() + " sets" + " - "
+                    + exercise.getRepsCount() + " reps");
+        }
+        Ui.showSeparator();
     }
 }
