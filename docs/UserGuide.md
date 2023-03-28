@@ -43,7 +43,7 @@ Within the `markdown text` you may see segments of text wrapped in `<chevrons>`.
 2. Once you have ascertained that your device has Java 11 installed, you may download the `.jar file` [here](https://github.com/AY2223S2-CS2113T-T09-3/tp/releases/tag/v1.0). 
 
 ![jar.png](images/jar.png)
-<sub>Fig 1: Version release page with download links for Meal Companion</sub>
+<sub>Fig 1: Version release page with download links for Meal Companion.</sub>
 
 Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
 
@@ -52,7 +52,7 @@ Click on `mealcompanion.jar` to automatically download the file. Place the file 
 5. Use the command `java -jar mealcompanion.jar` to launch Meal Companion.
 
 ![startup.png](images/startup.png)  
-<sub>Fig 2: Command to start using Meal Companion</sub>
+<sub>Fig 2: Command to start using Meal Companion.</sub>
 
 6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
 
@@ -72,31 +72,31 @@ The `/qty` portion of the command is necessary for Meal Companion to distinguish
 For example, `add ground chicken /qty 300`.
 
 ![add1.png](images/add1.png)  
-<sub>Fig 3: Sample of Add Ingredients command with user input highlighted</sub>
+<sub>Fig 3: Sample of Add Ingredients command with user input highlighted.</sub>
 
 ### Remove Ingredients
 To remove an ingredient of a certain quantity from Meal Companion's storage, use the command `remove <ingredient> /qty <quantity>`. The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command.
 For example, `remove ground chicken /qty 100`.
 
 ![remove1.png](images/remove1.png)  
-<sub>Fig 4: Sample of Remove Ingredients command with user input highlighted</sub>
+<sub>Fig 4: Sample of Remove Ingredients command with user input highlighted.</sub>
 
 ### List Ingredients
 In order to show a list of all ingredients currently stored in Meal Companion, use the command `ingredients list`.
 
 ![ingredientlist1.png](images/ingredientlist1.png)  
-<sub>Fig 5: Sample of Ingredients List command with user input highlighted</sub>
+<sub>Fig 5: Sample of Ingredients List command with user input highlighted.</sub>
 
 ### Search Ingredients
 If you would like to search for a specific ingredient that Meal Companion recognizes as valid, use the command `ingredients search <keyword>`.
 
 ![search11.png](images/search11.png)  
-<sub>Fig 6: Sample of Ingredients Search command with user input highlighted</sub>
+<sub>Fig 6: Sample of Ingredients Search command with user input highlighted.</sub>
 
 Omitting the keyword will return a list of all valid ingredients.
 
 ![search22.png](images/search22.png)  
-<sub>Fig 7: Sample of Ingredients Search command with keyword omitted and user input highlighted</sub>
+<sub>Fig 7: Sample of Ingredients Search command with keyword omitted and user input highlighted.</sub>
 
 ### Clear Ingredients
 To remove all ingredients from Meal Companion's storage, use the `clear` command.
@@ -120,13 +120,15 @@ This segment will go into detail about the recipe features that Meal Companion c
 To display all stored recipes including default recipes, you may use the command `recipe all` to list them.
 
 ![recipeall1.png](images/recipeall1.png)  
-<sub>Fig 8: Sample of Recipe All command with user input highlighted</sub>
+<sub>Fig 8: Sample of Recipe All command with user input highlighted.</sub>
 
 ### Recipe Details
 To go into details about a certain recipe, use the command `recipe <index_number>`, using the `<index_number>` from the generated list. 
 
 For example, to view the recipe for Hainanese Chicken Rice, use the command `recipe 6`.
-![recipedetails.png](images/recipedetails.png)
+
+![recipedetails1.png](images/recipedetails1.png)  
+<sub>Fig 9: Sample of Recipe Details command showing the output of</sub> `recipe 6` <sub>, the recipe for Hainanese Chicken Rice, with user input highlighted.</sub>
 
 ### Possible Recipes
 Meal Companion includes the functionality to suggest recipes based on ingredient availability. Simply use the command `recipe possible`, and Meal Companion will list out the recipes that can be made with the ingredients you currently have.
