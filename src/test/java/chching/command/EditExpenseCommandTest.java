@@ -19,6 +19,9 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * Junit Test for EditExpenseCommand
+ */
 public class EditExpenseCommandTest {
     static final String GROCERIES_CATEGORY = "grocery";
     static final String GROCERIES_DESCRIPTION = "too much groceries";
@@ -54,7 +57,10 @@ public class EditExpenseCommandTest {
         expenseList.add(groceries);
         expenses = new ExpenseList(expenseList);
     }
-    
+
+    /**
+     * Junit Test for normal expected edit scenario
+     */
     @Test
     void execute_normalScenario_success() {
         try {
@@ -77,7 +83,10 @@ public class EditExpenseCommandTest {
             fail(); // test should not reach this line
         }
     }
-    
+
+    /**
+     * Negative Junit Test for when index is not present
+     */
     @Test
     void execute_noIndex_exceptionThrown() {
         try {
@@ -95,7 +104,10 @@ public class EditExpenseCommandTest {
             assertEquals("Missing/invalid index", e.getMessage());
         }
     }
-    
+
+    /**
+     * Negative Junit Test for when index is negative
+     */
     @Test
     void execute_negativeIndex_exceptionThrown() {
         try {
@@ -114,7 +126,10 @@ public class EditExpenseCommandTest {
             assertEquals("Negative/Zero index", e.getMessage());
         }
     }
-    
+
+    /**
+     * Negative Junit Test for when index is out of bounds
+     */
     @Test
     void execute_indexOutOfBounds_exceptionThrown() {
         try {
@@ -133,7 +148,10 @@ public class EditExpenseCommandTest {
             assertEquals("The index is too big", e.getMessage());
         }
     }
-    
+
+    /**
+     * Negative Junit Test for when there are no fields
+     */
     @Test
     void execute_noFields_exceptionThrown() {
         try {

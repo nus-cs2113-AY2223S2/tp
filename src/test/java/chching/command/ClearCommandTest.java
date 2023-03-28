@@ -18,6 +18,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Junit Test for various Clear commands
+ */
 public class ClearCommandTest {
     static final String CATEGORY = "transport";
     static final String EXPENSE_DESCRIPTION = "public transport";
@@ -53,16 +56,24 @@ public class ClearCommandTest {
         incomeList.add(incomeDemo);
         defaultIncomeList = new IncomeList(incomeList);
     }
+
+    /**
+     * Junit Test for clearIncome command to clear income list
+     */
     @Test
-    public void execute_clearAllCommand_success() {
+    public void execute_clearIncomeCommand_success() {
         try {
-            Command command = new ClearAllCommand();
+            Command command = new ClearIncomeCommand();
             command.execute(defaultIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
-            assertTrue(defaultExpenseList.size() == 0 && defaultIncomeList.size() == 0);
+            assertTrue(defaultIncomeList.size() == 0);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     * Junit Test for clearExpense command to clear expense list
+     */
     @Test
     public void execute_clearExpenseCommand_success() {
         try {
@@ -73,12 +84,16 @@ public class ClearCommandTest {
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     * Junit Test for clearAll command to clear both income and expense lists
+     */
     @Test
-    public void execute_clearIncomeCommand_success() {
+    public void execute_clearAllCommand_success() {
         try {
-            Command command = new ClearIncomeCommand();
+            Command command = new ClearAllCommand();
             command.execute(defaultIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
-            assertTrue(defaultIncomeList.size() == 0);
+            assertTrue(defaultExpenseList.size() == 0 && defaultIncomeList.size() == 0);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
