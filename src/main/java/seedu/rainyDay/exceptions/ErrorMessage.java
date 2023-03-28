@@ -22,7 +22,7 @@ public enum ErrorMessage {
     MISSING_DETAILS("Please include some details for your command!"),
     WRONG_SET_BUDGET_FORMAT("Wrong format to set budget goal!"),
     WRONG_SHORTCUT_FORMAT("Sorry, your shortcut command is invalid. Shortcut format is as follows: \n" +
-            "shortcut [SHORTCUTNAME -maps ACTUALCOMMAND] \n" +
+            "shortcut [SHORTCUTNAME -maps ACTUALCOMMAND] \n" + "The shortcut should also be a single word.\n" +
             "Please refer to 'help' for more information!");
 
 
