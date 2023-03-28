@@ -71,7 +71,9 @@ public class UpdateCommand extends Command {
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please enter the input in the correct format as shown in the user guide.");
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("You have selected an index out of the list. There are only " + matchingFlashcards.size() + " flashcards that match the query.");
+                System.out.println(
+                        "You have selected an index out of the list. There are only " + matchingFlashcards.size() +
+                        " flashcards that match the query.");
             }
         } else {
             System.out.println("There are no flashcards with the query \"" + query + "\".");
