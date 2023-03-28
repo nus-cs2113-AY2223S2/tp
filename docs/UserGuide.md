@@ -29,6 +29,11 @@ Example of usage:
 
 `todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
+### `help` - Shows help guide
+Shows the help guide that contains the features that are available for use, as well as the features' corresponding 
+syntax for user input
+
+
 ### `list companies` - Shows all current stored companies
 Shows all tasks currently stored in the company list.
 
