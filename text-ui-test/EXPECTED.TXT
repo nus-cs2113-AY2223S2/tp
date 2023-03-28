@@ -5,29 +5,31 @@ A: A1
 You have added the following card:
 Q: Q1
 A: A1
-Found 3 cards with the query "q1":
+Found 2 cards with the query "q1":
 [1]
 Q: Q1
 A: A1
+D: 2023-03-28
 [2]
 Q: Q1
 A: A1
-[3]
-Q: Q1
-A: A1
+D: 2023-03-28
 Which flashcard do you want to update?
 Understood. The card has been updated to
 Q: Q2
 A: A1
-There are 3 cards available for review today.
+D: 2023-03-28
+There are 2 cards available for review today.
 ---
-Q: Q2 (ENTER to view answer)A: A1
+Q: Q1 (ENTER to view answer)A: A1
 Did you get it right? (y/n) Great, you got it right!
 ---
 Q: Q2 (ENTER to view answer)A: A1
 Did you get it right? (y/n) No worries, we will try again later today.
 ---
-Q: Q1 (ENTER to view answer)A: A1
-Did you get it right? (y/n) The input is in an incorrect format.
+Q: Q2 (ENTER to view answer)A: A1
+Did you get it right? (y/n) Great, you got it right!
 ---
-Q: Q2 (ENTER to view answer)
+Congrats! You have reviewed all the flashcards due today!
+The input is in an incorrect format.
+Bye. Don't forget to come back later to study!
