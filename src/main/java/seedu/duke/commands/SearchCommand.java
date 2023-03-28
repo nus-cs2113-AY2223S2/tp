@@ -68,7 +68,7 @@ public class SearchCommand extends Command {
             if(searchResults != null){
                 Ui.printSearchItems(searchResults);
             }
-        }else{
+        } else{
             Item searchResult = searchUPC();
             if(searchResult != null){
                 Ui.printSearchUPCItem(searchResult);
