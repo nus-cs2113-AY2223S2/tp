@@ -31,7 +31,7 @@ test {
 }
 
 application {
-    mainClass = "seedu.pocketpal.PocketPal"
+    mainClass = "pocketpal.PocketPal"
 }
 
 shadowJar {

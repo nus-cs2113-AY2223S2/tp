@@ -280,7 +280,7 @@ Each endpoint is a child class `Endpoint`. Currently, there are 2 endpoints avai
 
 ##### Creating a request
 
-- To create a request, simply instantiate `seedu.pocketpal.communication.Request`
+- To create a request, simply instantiate `pocketpal.communication.pocketpal.Request`
   with the desired request method.
 - If there are any parameters associated with the request, you may add them using `addParam()`
 
