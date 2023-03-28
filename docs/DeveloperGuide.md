@@ -10,8 +10,9 @@
   * [3.1. Architecture](#31-architecture)
   * [3.2. Parser Component](#32-parser)
   * [3.3. Expenditures Component](#33-expenditure-categories)
-  * [3.4. Storage Component](#34-storage)
-  * [3.5. UI Component](#35-ui)
+  * [3.4 Command Component](#)
+  * [3.5. Storage Component](#35-storage)
+  * [3.6. UI Component](#36-ui)
 - [4. Command List](#4-command-list)
   - Adding a Todo: [```todo```](#adding-a-todo-todo)
   - Adding a Deadline: [```deadline```](#adding-a-deadline-deadline)
@@ -66,42 +67,92 @@ parseLendBorrow. The only difference is the condition, with the loop happening o
 
 
 ### 3.3. Expenditure Categories
-The **API** of this component is specified in the super abstract class `Expenditure.java` and its sub-classes. Its sub-classes represent the different expenditure categories. When users create a new expenditure record, one of these different expenditure categories are instantiated. The expenditure types and fields are as shown below.
+The **[API](https://github.com/AY2223S2-CS2113-T14-3/tp/blob/master/src/main/java/seedu/expenditure/Expenditure.java)** of this component is specified in the super abstract class `Expenditure.java` and its sub-classes. Its sub-classes represent the different expenditure categories. When users create a new expenditure record, one of these different expenditure categories are instantiated. After which, the expenditure is added to the expenditure list.
+
+The **[API](https://github.com/AY2223S2-CS2113-T14-3/tp/blob/master/src/main/java/seedu/expenditure/ExpenditureList.java)** of the expenditure list is specified in the `ExpenditureList.java` class.
+
+The `ExpenditureList` class description is as follows:
+- A representation of a list of expenditures. It is an `ArrayList<Expenditure>` container
+- The list is instantiated at the start of the program and stores expenditures of type `Expenditure`.
+
+As for the expenditure types, their fields are as shown below.
 
 `Expenditure`:
 - Fields: `date`, `amount`, `description`
 
-`AcademicExpenditure`: 
+`AcademicExpenditure`**`: 
 - Fields: `date`, `amount`, `description`
+
 `AccommodationExpenditure`:
 - Fields: `date`, `amount`, `description`, `isPaid`
+
 `BorrowExpenditure`:
 - Fields: `date`, `borrowerName`, `amount`, `deadline`, `description`
-`EntertainmentExpenditure`
+
+`EntertainmentExpenditure`:
 - Fields: `date`, `amount`, `description`
+
 `FoodExpenditure`: 
 - Fields: `date`, `amount`, `description`
+
 `LendExpenditure`:
 - Fields: `date`, `borrowerName`, `amount`, `deadline`, `description`
+
 `OtherExpenditure`:
 - Fields: `date`, `amount`, `description`
+
 `TransportExpenditure`:
 - Fields: `date`, `amount`, `description`
+
 `TuitionExpenditure`:
 - Fields: `date`, `amount`, `description`, `isPaid`
 
-`ExpenditureList`:
-- Instantiated at the start of the program and stores expenditures of type `Expenditure`.
-
 The following shows the UML diagram used for the Expenditure Categories component implemented in MyLedger.
 
-![](team/images/umlClassDiagramExpenditure.png)
+<p align="center">
+    <img src="team/images/UMLClassDiagramExpenditure.png" width="80%">
+</p>
 
 In the diagram, the aforementioned expenditure categories inherit from the `Expenditure` class. The `ExpenditureList` class is a composition of expenditures of `Expenditure` type. 
 
 `Expenditure` has a multiplicity of `*` to `ExpenditureList` as an empty expenditure list is instantiated at the beginning of the program, and any number of expenditures can be added to the expenditure list. Thus, it is also observed that the `ExpenditureList` class is an *composition* of `Expenditure`.
 
-### 3.4. Storage
+### 3.4. Command Component
+
+The `Command` component is represented by the `command` package. The `command` package contains all the available user commands supported by the application. These commands are utilised by the user to interact with the expenditure types and the expenditure list. 
+
+The `AcademicExpenditureCommand`, `AccommodationExpenditureCommand`, `BorrowExpenditureCommand`, `EntertainmentExpenditureCommand`, `FoodExpenditureCommand`, `LendExpenditureCommand`, `OtherExpenditureCommand`, `TransportExpenditureCommand`, `TuitionExpenditureCommand` commands contain the operations pertaining to adding a new expenditure into the list of expenditures.
+
+The `CheckBudgetCommand` class class contains the operations pertaining to comparing the total expenditure amount with a budget set by the user. The budget is set with the `SetBudgetCommand`.
+
+The `DeleteCommand` class contains the operations pertaining to deleting a specific expenditure from the list of expenditures.
+
+The `DuplicateCommand` class contains the operations pertaining to duplicating a specific expenditure from the list of expenditures.
+
+The `EditCommand` class contains the operations pertaining to editing a expenditure from the list of expenditures.
+
+The `ExitCommand` class contains the operation that safely closes the application.
+
+The `FindCommand`class contains the operations pertaining to searching the list of expenditures for expenditures that match the keyword entered by the user.
+
+The `HelpCommand` class contains the operation pertaining to providing the user a user interface to the instructions on the use of the application.
+
+The `InvalidCommand` class is instantiated when an unrecognised command is entered by the user.
+
+The `SetBudgetCommand` class contains the operations in setting an amount of money users would like to budget.
+
+The `SortCommand` class contains the operations pertaining to sorting the list of expenditures by amount or by date.
+
+The `ViewDateExpenditureCommand` and `ViewTypeExpenditureCommand` classes contain the operations pertaining to displaying a filtered expenditure list by the expenditure date and type respectively.
+
+Below shows the UML diagram representing the `command` package.
+<p align="center">
+    <img src="team/images/umlCommandClassDiagram.png" width="100%">
+</p>
+
+A more detailed coverage is explored in [Command List](#4-command-list).
+
+### 3.5. Storage
 The class `TxtFileStatus` and `ExpenditureList` are involved in storing the expenditure list.
 After every user input is completed, saveExpenditureList is called, and the text file will be
 updated with all the current expenditures in the expenditure array list.
@@ -118,7 +169,7 @@ the expenditure into the array list.
 
 ![](team/images/initializeList.png)
 
-### 3.5. UI 
+### 3.6. UI 
 
 ## 4. Command List
 

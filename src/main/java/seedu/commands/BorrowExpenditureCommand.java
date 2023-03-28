@@ -11,20 +11,20 @@ public class BorrowExpenditureCommand extends Command {
     private final String borrowExpenditureName;
     private final double borrowExpenditureValue;
     private final LocalDate borrowExpenditureDate;
-    private final LocalDate borrowDeadline;
+    private final LocalDate borrowExpenditureDeadline;
 
     public BorrowExpenditureCommand(String description, String borrowerName, double value, LocalDate date,
-                                    LocalDate borrowDeadline) {
+                                    LocalDate borrowExpenditureDeadline) {
         this.borrowExpenditureDescription = description;
         this.borrowExpenditureName = borrowerName;
         this.borrowExpenditureValue = value;
         this.borrowExpenditureDate = date;
-        this.borrowDeadline = borrowDeadline;
+        this.borrowExpenditureDeadline = borrowExpenditureDeadline;
     }
 
     public CommandResult execute(ExpenditureList expenditures) {
         BorrowExpenditure borrowExpenditure = new BorrowExpenditure(borrowExpenditureDescription,
-                borrowExpenditureName, borrowExpenditureValue, borrowExpenditureDate, borrowDeadline);
+                borrowExpenditureName, borrowExpenditureValue, borrowExpenditureDate, borrowExpenditureDeadline);
         expenditures.addExpenditure(borrowExpenditure);
         return new CommandResult(String.format("Added %s expenditure: %s", COMMAND_WORD, borrowExpenditure.toString()));
     }
