@@ -55,27 +55,27 @@ loop filterFlagAndField.size()
             activate FilterCommand
             FilterCommand -> UserData :getStatementCount()
             activate UserData
-            UserData -> FilterCommand :statementCount
+            UserData -> FilterCommand :statementCount : int
             deactivate UserData
 
             loop statementCount
                 FilterCommand -> UserData : getStatement()
                 activate UserData
-                UserData -> FinancialStatement : getCategory
+                UserData -> FinancialStatement : getCategory()
                 activate FinancialStatement
-                FinancialStatement -> UserData : String
+                FinancialStatement -> UserData : :String
                 deactivate FinancialStatement
-                UserData -> FilterCommand : FinancialStatement
+                UserData -> FilterCommand : :FinancialStatement
                 deactivate UserData
 
                 FilterCommand -> FilterCommand : filterFlagAndField.get()
                 activate FilterCommand
-                FilterCommand -> FilterCommand : category
+                FilterCommand -> FilterCommand : category : String
                 deactivate FilterCommand
 
-                opt FinancialStatement contains category
-                    FilterCommand -> FilterCommand : add:filteredList
-                    FilterCommand -> FilterCommand : add:FinancialStatement
+                opt financialStatement contains category
+                    FilterCommand -> FilterCommand : add(financialStatement :FinancialStatement)
+                    FilterCommand -> FilterCommand : add(statementIndex : int)
                 end
                 deactivate FilterCommand
         end
@@ -120,7 +120,8 @@ activate ViewResult
 ViewResult -> :Print to user
 deactivate ViewResult
 end
-<- FilterCommand
+
+[<--FilterCommand : : CommandResult
 deactivate FilterCommand
 
 @enduml
