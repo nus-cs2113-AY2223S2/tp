@@ -1,0 +1,14 @@
+@startuml
+
+class User {
+ -semester
+ +getSemester()
+ +setSemester()
+}
+
+class UserUtility {
+ -user
+ +getUser()
+}
+
+@enduml

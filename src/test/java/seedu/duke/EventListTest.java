@@ -22,7 +22,7 @@ class EventListTest {
     }
     @Test
     void getDetails() {
-        String expected = "[E] test (2023/03/14 20:00)";
+        String expected = "[E] test (2023/03/14 20:00 not recurring)";
         String ouput = eventList.getDetails(0);
         assert(eventList.getDetails(0).equals(expected));
     }

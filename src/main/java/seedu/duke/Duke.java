@@ -25,6 +25,7 @@ public class Duke {
     }
     public void run(){
         ui.showWelcome();
+        ui.getSemester();
         ui.getUserCommand(eventTracker);
         storage.saveToFile(eventTracker); //Will only save to file on exit
     }
