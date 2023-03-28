@@ -20,6 +20,7 @@ FitnessDuke is a **Command Line Application for tracking and managing workouts, 
   * [Getting into a workout ```start```](#getting-into-a-workout-start)
   * [Getting into the fitness planner ```planner```](#getting-into-the-fitness-planner-planner)
 * [Saving the data](#saving-the-data)
+* [Editing the data file](#editing-the-data-file)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -226,6 +227,12 @@ Click [here](UG_features/planner.md) to learn more about using our planner featu
 ### Saving the data
 
 FitnessDuke data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. :-)
+
+### Editing the data file
+
+FitnessDuke data are saved as a JSON file [JAR file location]/resources/data.json. Advanced users are welcome to update data directly by editing that data file.
+
+**Caution: If your changes to the data file makes its format invalid, FitnessDuke will discard all data and start with an empty data file at the next run.**
 
 ## FAQ
 
