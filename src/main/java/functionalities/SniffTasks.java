@@ -104,7 +104,7 @@ public class SniffTasks {
             Ui.showUserMessage("No entries found!");
         }
         for (Appointment appointment : APPOINTMENTS) {
-            Ui.formatPrintList(counter, appointment.toString());
+            Ui.formatPrintList(counter, appointment.toString(), appointment.getStatus());
             counter++;
         }
     }
@@ -114,7 +114,7 @@ public class SniffTasks {
         for (Appointment appointment : APPOINTMENTS) {
             assert appointment.uid != null;
             if (uId.equalsIgnoreCase(appointment.uid)) {
-                Ui.formatPrintList(counter, appointment.toString());
+                Ui.formatPrintList(counter, appointment.toString(), appointment.getStatus());
                 counter++;
             }
         }
@@ -134,7 +134,7 @@ public class SniffTasks {
         for (Appointment appointment : APPOINTMENTS) {
             assert appointment.animal.type != null;
             if (animal.equalsIgnoreCase(appointment.animal.type)) {
-                Ui.formatPrintList(counter, appointment.toString());
+                Ui.formatPrintList(counter, appointment.toString(), appointment.getStatus());
                 counter++;
             }
         }
@@ -148,7 +148,7 @@ public class SniffTasks {
         for (Appointment appointment : APPOINTMENTS) {
             assert appointment != null;
             if (type.equalsIgnoreCase(appointment.getDescription())) {
-                Ui.formatPrintList(counter, appointment.toString());
+                Ui.formatPrintList(counter, appointment.toString(), appointment.getStatus());
                 counter++;
             }
         }
@@ -156,4 +156,47 @@ public class SniffTasks {
             Ui.showUserMessage(" There are no appointments of this type!");
         }
     }
+
+    public void markAppointment(String uid) throws SniffException {
+        try {
+            if (!UIDS.contains(uid)) {
+                throw new SniffException(" There are no appointments with this ID.");
+            }
+            int index = 0;
+            for (int i = 0; i < appointmentCount; i++) {
+                if (uid.equals(APPOINTMENTS.get(i).uid)) {
+                    index = i;
+                    break;
+                }
+            }
+            APPOINTMENTS.get(index).setIsDone(true);
+            Ui.printAppointmentMarkMessage();
+            assert appointmentCount >= 0 : "Appointment count cannot be less than 0";
+        } catch (IndexOutOfBoundsException e) {
+            throw new SniffException(" The mark command entry is invalid!");
+        }
+
+    }
+    public void unmarkAppointment(String uid) throws SniffException{
+        try {
+            if (!UIDS.contains(uid)) {
+                throw new SniffException(" There are no appointments with this ID.");
+            }
+            int index = 0;
+            for (int i = 0; i < appointmentCount; i++) {
+                if (uid.equals(APPOINTMENTS.get(i).uid)) {
+                    index = i;
+                    break;
+                }
+            }
+            APPOINTMENTS.get(index).setIsDone(false);
+            Ui.printAppointmentUnMarkMessage();
+            assert appointmentCount >= 0 : "Appointment count cannot be less than 0";
+        } catch (IndexOutOfBoundsException e) {
+            throw new SniffException(" The unmark command entry is invalid!");
+        }
+
+    }
+
+
 }

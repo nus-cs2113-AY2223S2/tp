@@ -24,7 +24,7 @@ public class Consultation extends Appointment {
 
     @Override
     public String toString() {
-        return " UID: " + uid + '\n'
+        return " UID: " + uid + " [" + getStatus() + "]" +'\n'
                 + " Date: " + date + " | Time: " + time + '\n'
                 + " Animal Name: " + animal.toString() + '\n'
                 + " Owner Name: " + owner.toString();

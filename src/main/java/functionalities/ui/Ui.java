@@ -36,8 +36,8 @@ public class Ui {
         System.out.println(dividerLine);
     }
 
-    public static void formatPrintList(int count, String description) {
-        System.out.println(count + DOT_THEN_SPACE + description);
+    public static void formatPrintList(int count, String description, String status) {
+        System.out.println(count + DOT_THEN_SPACE + "[" + status + "]"+ description);
     }
 
     public static void printAppointmentAddedMessage(Appointment appointment) {
@@ -48,5 +48,13 @@ public class Ui {
     public static void printAppointmentRemovedMessage(Appointment appointment) {
         System.out.println(" This appointment has been removed your appointment manager: ");
         System.out.println(appointment.toString());
+    }
+
+    public static void printAppointmentMarkMessage(){
+        System.out.println("The appointment has been marked successfully");
+    }
+
+    public static void printAppointmentUnMarkMessage(){
+        System.out.println("The appointment has been unmarked successfully");
     }
 }

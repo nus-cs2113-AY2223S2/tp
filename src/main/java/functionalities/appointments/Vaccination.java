@@ -12,7 +12,7 @@ public class Vaccination extends Appointment {
     protected String vaccine;
     protected String description = "vaccination";
 
-    public Vaccination(String uid, Animal animal, Owner owner, LocalDate date, LocalTime time, String vaccine) {
+    public Vaccination(String uid, Animal animal, Owner owner, LocalDate date, LocalTime time, String vaccine){
         super(uid, animal, owner);
         this.uid = uid;
         this.animal = animal;
@@ -24,7 +24,7 @@ public class Vaccination extends Appointment {
 
     @Override
     public String toString() {
-        return " UID: " + uid + " | vaccine: " + vaccine + '\n'
+        return " UID: " + uid + " [" + getStatus() +"]"+" | vaccine: " + vaccine + '\n'
                 + " Date: " + date + " | Time: " + time + '\n'
                 + " Animal Name: " + animal.toString() + '\n'
                 + " Owner Name: " + owner.toString();
