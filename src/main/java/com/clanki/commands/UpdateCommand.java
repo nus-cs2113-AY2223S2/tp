@@ -5,6 +5,7 @@ import com.clanki.objects.Flashcard;
 import com.clanki.objects.FlashcardList;
 import com.clanki.ui.Ui;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class UpdateCommand extends Command {
@@ -19,6 +20,7 @@ public class UpdateCommand extends Command {
     public void printFlashCard(Flashcard flashcard) {
         System.out.println("Q: " + flashcard.getQuestion());
         System.out.println("A: " + flashcard.getAnswer());
+        System.out.println("D: " + flashcard.getDueDate());
     }
 
     public void printFlashCards(ArrayList<Flashcard> flashcards) {
@@ -51,7 +53,12 @@ public class UpdateCommand extends Command {
             flashcards.get(index).setAnswer(userTexts[2].substring(0, 1).toUpperCase()
                     + userTexts[2].substring(1));
         }
-        if (!userTexts[1].contains("a") && !userTexts[1].contains("q")) {
+        if (userTexts[1].contains("d")) {
+            String date = userTexts[2];
+            LocalDate dateToChange = LocalDate.parse(date);
+            flashcards.get(index).setDueDate(dateToChange);
+        }
+        if (!userTexts[1].contains("a") && !userTexts[1].contains("q") && !userTexts[1].contains("d")) {
             throw new InvalidInputException();
         }
         return index;
