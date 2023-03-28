@@ -90,6 +90,10 @@ public class SniffTasks {
             UIDS.add(uid);
             Appointment newAppointment = new Surgery(uid, animal, owner, priority, startDate, startTime, endDate,
                     endTime);
+            assert newAppointment.uid == uid : "surgery uid is incorrectly initialized.";
+            assert newAppointment.isDone == false : "surgery isDone should be false when initialized.";
+            assert newAppointment.animal.type == animal.type : "surgery animal type is incorrectly initialized.";
+            assert newAppointment.animal.name == animal.name : "surgery animal name is incorrectly initialized.";
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
