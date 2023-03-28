@@ -13,16 +13,17 @@ public class CategoryParser extends Parser {
 
     @Override
     public void run() {
-        // upc/[UPC] c/[Category] to edit category
+        // 'table' to show categories with all items in it
         // 'list' to list all categories
-        // [Category] to list all items in a specific category
+        // [Category] to list all items (name and upc) in a specific category for quick lookup
         try {
             String[] categoryCommandType = rawInput.split(" ", 2);
             if (categoryCommandType[0].equals("list") || categoryCommandType[0].equals("table") ||
                     !categoryCommandType[0].isBlank()) {
                 Command categoryCommand = new CategoryCommand(inventory, rawInput, categoryCommandType);
                 categoryCommand.run();
-            } else if (!categoryCommandType[0].equals("list") && categoryCommandType.length < 1) {
+            } else if (!categoryCommandType[0].equals("list") && !categoryCommandType[0].equals("table") ||
+                    categoryCommandType.length < 1) {
                 assert categoryCommandType[0].equals("list") : "Keyword 'list' is not present in user category command";
                 throw new CategoryFormatException();
             }

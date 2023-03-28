@@ -1,8 +1,6 @@
 package seedu.duke.commands;
 
 import seedu.duke.exceptions.CategoryFormatException;
-import seedu.duke.exceptions.EditErrorException;
-import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
@@ -19,25 +17,6 @@ public class CategoryCommand extends Command {
         super(inventory);
         this.categoryCommandType = categoryCommandType;
         this.rawInput = rawInput;
-    }
-
-    private void categoriseItem() {
-        try {
-            EditCommand itemToCategorise = new EditCommand(inventory, categoryCommandType);
-            Item updatedItem = itemToCategorise.retrieveItemFromHashMap(categoryCommandType);
-            Item oldItem = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
-                    updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
-            checkCategoryCommandLength(categoryCommandType);
-            updateItemCategory(updatedItem, categoryCommandType[1]);
-            Item itemForHistory = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
-                    updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
-            Ui.printCategoryDetails(oldItem, updatedItem);
-            inventory.getUpcCodesHistory().get(itemForHistory.getUpc()).add(itemForHistory);
-        } catch (EditErrorException e) {
-            Ui.printItemNotFound();
-        } catch (MissingParametersException | CategoryFormatException e) {
-            Ui.printBlankCategory();
-        }
     }
 
     public static void updateItemCategory(Item item, String category) throws CategoryFormatException {
@@ -71,12 +50,6 @@ public class CategoryCommand extends Command {
         }
     }
 
-    private void checkCategoryCommandLength(String[] categoryInfo) throws MissingParametersException {
-        if (categoryInfo.length != 2) {
-            throw new MissingParametersException();
-        }
-    }
-
     private void listCategoryAndItems() throws NullPointerException {
         if (categoryHash.isEmpty()) {
             throw new NullPointerException();
@@ -104,13 +77,6 @@ public class CategoryCommand extends Command {
     }
 
     private void listAllCategories() {
-//        for (Map.Entry<String, ArrayList<Item>> category : categoryHash.entrySet()) {
-//
-//        }
-//        Ui.printLine();
-//        System.out.println(ANSI_BLUE + "Here is the list of categories you have: " + ANSI_RESET);
-//        categoryHash.forEach((cat, items) -> System.out.println(cat));
-//        Ui.printLine();
         Ui.printCategoryList(categoryHash);
     }
 

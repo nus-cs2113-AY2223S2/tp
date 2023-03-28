@@ -48,7 +48,7 @@ public class FilterCommand extends Command {
     private ArrayList<Item> filterCategory(String category) {
         ArrayList<Item> filteredItems = new ArrayList<>();
         for (Item item : itemInventory) {
-            if (item.getCategory().equals(category)) {
+            if (item.getCategory().toLowerCase().equals(category)) {
                 filteredItems.add(item);
             }
         }

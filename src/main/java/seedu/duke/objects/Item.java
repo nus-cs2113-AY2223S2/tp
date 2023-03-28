@@ -57,6 +57,14 @@ public class Item implements Comparable<Item> {
         this.category = category;
         this.dateTime = LocalDateTime.now();
     }
+    public Item(final String name, final String upc, final Integer qty,
+                final Double price, final LocalDateTime dateTime) {
+        this.name = name;
+        this.upc = upc;
+        this.price = price;
+        this.quantity = qty;
+        this.dateTime = dateTime;
+    }
 
     public Item(Item item) {
         this.name = item.getName();
