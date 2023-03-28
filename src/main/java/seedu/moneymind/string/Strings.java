@@ -28,8 +28,8 @@ public class Strings {
             "delete c/<category name> [(optional) e/<event index>]\n" +
             "Example: delete c/food e/1\n" + "Example: delete c/food\n";
     public static final String BYE_INSTRUCTION = "7. bye - exit the app\n" + "Format: bye\n" + "Example: bye\n";
-    public static final String SELECTING_CATEGORY_MESSAGE = "Please select the category you want to add the event to: ";
-    public static final String GO_BACK_MESSAGE = "Please enter back to go back to the main program";
+    public static final String SELECTING_CATEGORY_MESSAGE = "Please select the category you want to add the event to:";
+    public static final String GO_BACK_MESSAGE = "Please try again or enter back to go back to the main program";
     public static final String BACK = "back";
     public static final String EVENT_ADDED_MESSAGE = "New event added: ";
     public static final String REMINDING_MESSAGE_TO_GIVE_A_NUMBER = "Please enter a number.";
@@ -55,7 +55,7 @@ public class Strings {
             "inside the brackets empty!";
     public static final String EMPTY_DELETION = "☹ OOPS!!! The description of a delete cannot be empty.";
     public static final String SUBTLE_BUG_MESSAGE = "☹ OOPS!!! Something went wrong, please report to the developer.";
-    public static final String EVENT_REGEX = "^(?<name>.*?) e\\/(?<expense>.*?)(?: +t\\/(?<time>.*))?$";
+    public static final String EVENT_REGEX = "^(?<name>.*?)(?:\\s+e\\/(?<expense>\\S+))(?: +t\\/(?<time>.*))?$";
     public static final String CATEGORY_REGEX = "^(?!b\\/\\d)(?<name>.*?)(?:\\s+b\\/(?<budget>\\S+))?$";
     public static final String EDIT_REGEX = "c\\/(.+) e\\/(.+)";
     public static final String DELETE_REGEX = "^c/(?=\\S)(.*?)(?:\\s+e/(.*))?\\s*$";
