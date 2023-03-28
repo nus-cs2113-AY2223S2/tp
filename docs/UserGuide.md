@@ -11,22 +11,9 @@ If you can type fast, Apollo can get your timetable management done faster than 
 
 1. [Quick Start](#quick-start)
 2. [Features](#features)
-    + [`help` - Viewing help](#help---viewing-help)
-    + [`list` - Listing all saved tasks](#list---listing-all-saved-tasks)
-    + [`todo` - Adding a ToDo](#todo---adding-a-todo)
-    + [`deadline` - Adding a Deadline](#deadline---adding-a-deadline)
-    + [`event` - Adding an Event](#event---adding-an-event)
-    + [`mark` - Marking done](#mark---marking-done)
-    + [`unmark` - Marking not done](#unmark---marking-not-done)
-    + [`delete` - Deleting a task](#delete---deleting-a-task)
-    + [`find` - Finding a task](#find---finding-a-task)
-    + [`date` - Find tasks on date](#date---find-tasks-on-date)
-    + [`addmod` - Adding a module](#addmod---adding-a-module)
-      + [`addmod` flags](#addmod-flags)
-    + [`delmod` - Deleting a module](#delmod---deleting-a-module)
-    + [`listmod` - Listing all modules](#listmod---listing-all-modules)
-    + [`week` - Viewing weekly schedule](#week---viewing-weekly-schedule)
-    + [`bye` - Exiting the program](#bye---exiting-the-program)
+    + [Task Commands](#task-commands)
+    + [Module Commands](#module-commands)
+    + [Common Commands](#common-commands)
     + [Loading and saving of data](#loading-and-saving-of-data)
 
 3. [Command summary](#command-summary)
@@ -55,56 +42,57 @@ ____________________________________________________________
 
 ## Command Summary
 
-|     Action      |              Format              |
-|:---------------:|:--------------------------------:|
-|      Help       |              `help`              |
-|   List Tasks    |              `list`              |
-|      Todo       |           `todo TASK`            |
-|    Deadline     |     `deadline TASK /by DATE`     |
-|      Event      | `event TASK /from DATE /to DATE` |
-|      Mark       |            `mark IDX`            |
-|     Unmark      |           `unmark IDX`           |
-|   Delete Task   |           `delete IDX`           |
-|      Find       |          `find KEYWORD`          |
-|      Date       |           `date DATE`            |
-|       Bye       |              `bye`               |
-|   Add Module    |       `addmod MODULE_CODE`       |
-|  Delete Module  |           `delmod IDX`           |
-|  List Modules   |            `listmod`             |
- | Weekly Schedule |              `week`              |
+|         Action          |              Format              |
+|:-----------------------:|:--------------------------------:|
+|       List Tasks        |              `list`              |
+|          Todo           |           `todo TASK`            |
+|        Deadline         |     `deadline TASK /by DATE`     |
+|          Event          | `event TASK /from DATE /to DATE` |
+|          Mark           |            `mark IDX`            |
+|         Unmark          |           `unmark IDX`           |
+|       Delete Task       |           `delete IDX`           |
+| Find Tasks with Keyword |          `find KEYWORD`          |
+|   Find Tasks on Date    |           `date DATE`            |
+|      List Modules       |            `listmod`             |
+|       Add Module        |       `addmod MODULE_CODE`       |
+|      Delete Module      |           `delmod IDX`           |
+| Show Module Information |            `showmod`             |
+|          Help           |              `help`              |
+ |     Weekly Schedule     |              `week`              |
+|           Bye           |              `bye`               |
 
 > Notes about the command format:
 > + Words in `UPPER_CASE` are the parameters to be supplied by the user.
 > > e.g. in 'todo TASK', `TASK` is a parameter that can be used as `todo read book`.
-> + The `date` command only considers tasks when `DATE` is input in the format `yyyy-MM-ddThh:mm`.
+> + `DATE`s should be input in the format `yyyy-MM-ddThh:mm`.
 > > e.g. `deadline read book /by 2023-10-30T23:59` sets a deadline for Oct 20 2023, 11:59PM
+> + Tasks that have occurred prior to the current date cannot be added. 
+> + `IDX` can be obtained by using `list` for tasks or `listmod` for modules.  
 > + By default, all newly added tasks are not completed.
 
 ## Features
 
-### `help` - Viewing help
-
-Shows a menu of commands available in Apollo and their usage, as well as their required format/parameters.
-
-Format: `help`
+## *Task Commands*
 
 ### `list` - Listing all saved tasks
 
-Shows a numbered list of all tasks (Todos, Events, Deadlines) in Apollo.
+Shows a numbered list of all tasks (Todos, Events, Deadlines) in Apollo. `list` automatically sorts the tasks by type, 
+then date within each type.
 
 Format: `list`
 
-Sample output:
-
 ```
 >> list
-You have a total of 4 tasks in your tasklist.
+You have a total of 7 tasks in your tasklist.
 Here are the tasks in your list:
-1.[T][ ] Eat Lunch
-2.[E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
-3.[D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
-4.[T][ ] Feed the fish
-There are 4 unmarked tasks in your tasklist.
+1.[D][ ] submit tutorial (by: Apr 01 2023, 11:59PM)
+2.[D][ ] submit tutorial (by: May 01 2023, 11:59PM)
+3.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
+4.[E][ ] lecture (from: Apr 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+5.[E][ ] lecture (from: Apr 04 2023, 09:00AM to: May 03 2023, 11:00AM)
+6.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+7.[T][ ] eat lunch
+There are 7 unmarked tasks in your tasklist.
 ```
 
 ### `todo` - Adding a ToDo
@@ -112,8 +100,6 @@ There are 4 unmarked tasks in your tasklist.
 Adds a normal task to Apollo.
 
 Format: `todo TASK`
-
-Example input:
 
 ```
 >> todo Feed the fish
@@ -123,11 +109,13 @@ Got it. I've added this todo:
 
 ### `deadline` - Adding a Deadline
 
-Adds a task with a due date to Apollo.
+Adds a task with a due date to Apollo. 
+If deadline clashes with any event or lesson type you will be alerted through a warning message. 
+However, you will still be able to add it into the tasklist. 
 
 Format: `deadline TASK /by DATE`
 
-- Enter `DATE` in `yyyy-MM-ddThh:mm` format to use `date` on this task.
+> Note: `DATE` must be entered in the format `yyyy-MM-ddThh:mm`.
 
 ```
 >> deadline submit tutorial /by 2023-03-30T23:59
@@ -138,10 +126,12 @@ Got it. I've added this deadline:
 ### `event` - Adding an Event
 
 Adds a task with a start and end date to Apollo.
+If there is an event in the tasklist that is clashing with any event added previously a warning message will be printed. 
+However, you will still be able to add it. 
 
 Format: `event TASK /from DATE /to DATE`
 
-- Enter `DATE` in `yyyy-MM-ddThh:mm` format to use `date` on this task.
+> Note: `DATE` must be entered in the format `yyyy-MM-ddThh:mm`.
 
 ```
 >> event holiday /from 2023-03-25T00:00 /to 2023-03-30T23:59
@@ -155,7 +145,7 @@ Marks the specified task as completed.
 
 Format: `mark IDX`
 
-- `IDX` can be obtained by using `list` to find the task's index.
+> Note: `IDX` can be obtained by using `list` to find the task's index.
 
 ```
 >> mark 4
@@ -165,10 +155,11 @@ Nice!, I've marked this task as done:
 
 ### `unmark` - Marking not done
 
-Marks the specified task as not completed.
+Marks the specified task as not completed.  
+
 Format: `unmark IDX`
 
-- `IDX` can be obtained by using `list` to find the task's index.
+> Note: `IDX` can be obtained by using `list` to find the task's index.
 
 ```
 >> unmark 4
@@ -179,9 +170,10 @@ OK, I've marked this task as not done yet:
 ### `delete` - Deleting a task
 
 Deletes the specified task from Apollo.
+
 Format: `delete IDX`
 
-- `IDX` can be obtained by using `list` to find the task's index.
+> Note: `IDX` can be obtained by using `list` to find the task's index.
 
 ```
 >> delete 4
@@ -208,7 +200,7 @@ Shows all tasks in Apollo that occur on the specified date.
 
 Format: `date DATE`
 
-- `DATE` should be entered in the format `yyyy-MM-dd`.
+> Note: `DATE` should be entered in the format `yyyy-MM-dd`.
 
 ```
 >> date 2023-03-30
@@ -217,14 +209,29 @@ Here are the tasks happening on Mar 30 2023:
 2.[D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
 ```
 
+## *Module Commands*
+
+### `listmod` - Listing all modules
+
+Shows a list of all modules in Apollo. It will also show the total number of modular credits you have in this semester.
+The list will be automatically sorted in alphabetical order according to EduRec standards.
+Format: `listmod`
+
+```
+>> listmod
+You are taking 3 module(s) this semester:
+1.CG1111A: Engineering Principles and Practice I (4 MCs)
+2.CS2113: Software Engineering & Object-Oriented Programming (4 MCs)
+3.DTK1234: Design Thinking (4 MCs)
+Total modular credits you have in this semester: 12
+```
+
 ### `addmod` - Adding a module
 
 Adds a module to Apollo.
 
 Format: `addmod MODULE_CODE`
-> Note: `MODULE_CODE` can be either uppercase or lowercase. However, if the module code is not found in NUSMods,
-> Apollo will not add the invalid module into the list.
-
+> Note: `MODULE_CODE` can be either uppercase or lowercase. 
 ```
 >> addmod cs2113
 Got it. I've added this module:
@@ -253,42 +260,91 @@ There are many lesson options and types, the below is a list of all the flags an
 ```
 
 To add a lesson, use the following format:
-`addmod MODULE_CODE -FLAG [LESSON NUMBER]`
+`addmod MODULE_CODE -FLAG LESSON_NUMBER`
 
 Example:
 ```
 addmod CS1010 -st 1
 ```
 This will add the first section teaching lesson of CS1010 to your module list.
+If this lesson clashes with any of your other lessons a warning message will be displayed but you will still be able to add it.
 
 ### `delmod` - Deleting a module
 
-Removes a module from Apollo.
-Format: `delmod IDX`
+Removes a module from Apollo. Can be done using either IDX or MODULE_CODE. 
 
-- `IDX` can be obtained by using `list` to find the task's index.
+#### `delmod` IDX
+> Note: `IDX` can be obtained by using `listmod` to find the module's index.
+
+Format: `delmod IDX`
 
 ```
 >> delmod 1
 Got it, removed CS2113 from your Module list.
 ```
 
-### `listmod` - Listing all modules
-
-Shows a list of all modules in Apollo.
-Format: `listmod`
+#### `delmod` MODULE_CODE
+Format: `delmod MODULE_CODE`
 
 ```
->> listmod
-You are taking 3 module(s) this semester:
-1.CDE2000: Creating Narratives
-2.CG2023: Signals and Systems
-3.CS2040C: Data Structures and Algorithms
+>> delmod dtk1234
+Got it, removed DTK1234 from your Module list.
+Total modular credits you have in this semester: 8
 ```
+
+#### `delmod` flags
+The lesson types and their corresponding guide are the same as `addmod` flags.
+
+To delete a lesson, use the following format:
+`delmod MODULE_CODE -FLAG LESSON NUMBER`
+
+```
+>> delmod CS1010 -st 1
+Deleting lessons for module: CS1010
+Lessons deleted: SECTIONAL TEACHING - 1
+```
+
+### `showmod` - Show information of a module
+
+Shows the information of a module.
+Format: `showmod MODULE_CODE`
+
+```
+>> showmod cs1231
+Here are the lesson types for this module:
+Sectional Teaching (-st)
+Tutorial (-tut)
+Number of MC: 4
+```
+#### `showmod` flags
+The lesson types and their corresponding guide are the same as `addmod` flags.
+To show the information on a lesson, use the following format:
+`showmod MODULE_CODE -FLAG`
+
+```
+>> showmod CS1010 -st
+Here are all available lessons of type: SECTIONAL_TEACHING for CS1010:
+Class Number: 1
+   Monday 1200 - 1400
+```
+
+The ordering of lessons in the list are sorted as follows:
+
+1. Lesson Type
+2. Lesson Number (lexicographically)
+3. Lesson Day and time
+
+## *Common Commands*
+
+### `help` - Viewing help
+
+Shows a menu of commands available in Apollo and their usage, as well as their required format/parameters.
+
+Format: `help`
 
 ### `week` - Viewing weekly schedule
 
-Shows a list of all lessons and tasks occuring during the current week (Mon to Sun).   
+Shows a list of all lessons and tasks occurring during the current week (Mon to Sun).   
 Format: `week`
 
 ### `bye` - Exiting the program
@@ -300,7 +356,8 @@ Format: `exit`
 Bye. Hope to see you again soon!
 ```
 
-### Loading and saving of data
+
+## *Loading and saving of data*
 
 Apollo automatically loads up your todo and module lists on start-up.
 

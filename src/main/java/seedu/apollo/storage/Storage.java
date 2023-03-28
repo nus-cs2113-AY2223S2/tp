@@ -18,6 +18,7 @@ import seedu.apollo.task.Event;
 import seedu.apollo.task.Task;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.task.ToDo;
+import seedu.apollo.utils.LoggerInterface;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,7 +40,7 @@ import java.util.logging.Logger;
 /**
  * Storage class that initialises the task list and updates the save file.
  */
-public class Storage implements seedu.apollo.utils.Logger {
+public class Storage implements LoggerInterface {
     // Location of save file
     protected static String filePath;
     protected static String moduleDataFilePath;
@@ -71,6 +72,7 @@ public class Storage implements seedu.apollo.utils.Logger {
      *
      * @throws IOException If logger file cannot be created.
      */
+    @Override
     public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
@@ -166,6 +168,12 @@ public class Storage implements seedu.apollo.utils.Logger {
         overwrite.close();
     }
 
+    /**
+     * Reads all lines in the moduleData file, initialises them as an ModuleList of Modules.
+     * @param overwrite
+     * @param module
+     * @throws IOException
+     */
     private void writeModules(FileWriter overwrite, Module module) throws IOException {
         ArrayList<Timetable> timetableList = module.getModuleTimetable();
         if (timetableList != null) {
@@ -275,6 +283,7 @@ public class Storage implements seedu.apollo.utils.Logger {
         }
         return newModuleList;
     }
+
 
     private static void addLessons(Module module, Module searchModule, String[] moduleInfo) {
         module.createNewTimeTable();

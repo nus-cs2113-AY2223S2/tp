@@ -7,6 +7,7 @@ import seedu.apollo.exception.task.InvalidDateTime;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
+import seedu.apollo.utils.LoggerInterface;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.util.logging.Logger;
 /**
  * Date Command class that shortlists Tasks that occur on the given date.
  */
-public class DateCommand extends Command {
+public class DateCommand extends Command implements LoggerInterface {
     private static Logger logger = Logger.getLogger("DateCommand");
     LocalDate date;
 
@@ -32,22 +33,21 @@ public class DateCommand extends Command {
      * @throws InvalidDateTime If the input date does not fit the above format.
      */
     public DateCommand (String dateString) throws InvalidDateTime {
+        setUpLogger();
         assert dateString != null : "DateCommand: dateString should not be null!";
-        assert dateString.matches("\\d{4}-\\d{2}-\\d{2}") : "Date string should be in format yyyy-MM-dd";
         try {
             this.date = LocalDate.parse(dateString);
+            assert dateString.matches("\\d{4}-\\d{2}-\\d{2}") : "Date string should be in format yyyy-MM-dd";
         } catch (DateTimeParseException e) {
             throw new InvalidDateTime();
         }
-        DateCommand.setUpLogger();
     }
 
     /**
      * Sets up logger for DateCommand class.
-     *
-     * @throws IOException If logger file cannot be created.
      */
-    public static void setUpLogger() {
+    @Override
+    public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
         ConsoleHandler logConsole = new ConsoleHandler();
@@ -56,7 +56,7 @@ public class DateCommand extends Command {
         try {
 
             if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
+                assert(new File("apollo.log").createNewFile()) : "Error in creating save file";
             }
 
             FileHandler logFile = new FileHandler("apollo.log", true);
