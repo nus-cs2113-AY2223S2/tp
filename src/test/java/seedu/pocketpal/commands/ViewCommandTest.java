@@ -16,7 +16,12 @@ import seedu.pocketpal.frontend.ui.UI;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
+
+
 
 @DisplayName("Test view command")
 public class ViewCommandTest extends EntryTestUtil {
@@ -63,13 +68,14 @@ public class ViewCommandTest extends EntryTestUtil {
             }
             expectedString.append(UIConstants.LINE);
             assertEquals(expectedString.toString(), outContent.toString());
-        } catch (Exception e){
+        } catch (Exception e) {
             fail("Unexpected exception");
         }
     }
+
     @Test
     @DisplayName("Positive test for execute method for viewCommand")
-    void testExecuteMethod() {
+    void testExecuteMethod(){
         ViewCommand viewCommand1 = new ViewCommand(10, Category.ENTERTAINMENT, 0.0, Double.MAX_VALUE,
                 "20/11/19 23:30", "20/11/20 23:30");
         assertDoesNotThrow(() -> viewCommand1.execute(TEST_UI, TEST_BACKEND));

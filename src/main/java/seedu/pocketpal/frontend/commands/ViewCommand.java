@@ -58,9 +58,10 @@ public class ViewCommand extends Command {
         if (numberOfEntriesToView <= 0) {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_NUMBER_OF_ENTRIES);
         }
-        assert (!(startDateString.isEmpty() ^ endDateString.isEmpty())) : "Both start and end dates must be present";
-        request.addParam(RequestParams.FILTER_BY_TIME_START, startDateString);
-        request.addParam(RequestParams.FILTER_BY_TIME_END, endDateString);
+        if (!startDateString.isEmpty() && !endDateString.isEmpty()){
+            request.addParam(RequestParams.FILTER_BY_TIME_START, startDateString);
+            request.addParam(RequestParams.FILTER_BY_TIME_END, endDateString);
+        }
 
         request.addParam(RequestParams.FILTER_BY_AMOUNT_START, String.valueOf(priceToViewMin));
         request.addParam(RequestParams.FILTER_BY_AMOUNT_END, String.valueOf(priceToViewMax));
