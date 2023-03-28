@@ -77,6 +77,12 @@ String contactEmail</code>. Using this information, <code>CompanyList.add</code>
 at the end of the company list. After successfully executing the command, it will show successful addition message using
 the related method in the <code>Ui</code>.
 
+### [DONE] Delete feature
+#### Implementation
+The proposed <code>CompanyList.deleteCompanyInformation(index)</code> is facilitated by <code>DeleteCommand</code>. 
+It will delete the company at the specified index in the list of companies. After successfully executing the command, 
+it will show successful deletion message using the related method in the <code>Ui</code>.
+
 ### [DONE] Storing event details feature
 #### Implementation
 The proposed eventDetailStorage feature will allow users to save the event details of the current session to hard disk. 
