@@ -7,7 +7,7 @@ import seedu.dukeofbooks.data.user.UserRecords;
 public class AccessController {
     public static User createAccount(UserRecords userRecords, String username, String password, String name)
             throws IllegalValueException {
-            return userRecords.createAccount(username, password, name);
+        return userRecords.createAccount(username, password, name);
     }
 
     public static User createAccount(UserRecords userRecords, String username, String password, String name, int phone)
