@@ -190,7 +190,7 @@ Output:
 ### Exiting the program: `bye`
 Allows user to exit the program.
 
-Format: 'bye'
+Format: `bye`
 
 Output:
 ![bye-example](./UG-images/bye-example.png)
