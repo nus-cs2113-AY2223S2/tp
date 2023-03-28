@@ -20,6 +20,8 @@ public class Schedule {
     private String location;
     private boolean hasLocation;
 
+
+
     public Schedule(LocalDateTime start, boolean hasSt) {
         this.startTime = start;
         this.hasEndTime = false;
@@ -59,7 +61,7 @@ public class Schedule {
         this.hasEndInfo = true;
         this.hasStartTime = hasSt;
         this.hasEndTime = hasEd;
-        this.isRecurring = false;
+        this.isRecurring = true;
         this.timeInterval = recurringTime;
         this.hasLocation = false;
         this.location = "";
@@ -119,7 +121,9 @@ public class Schedule {
         }
         return formatter.format(timeInfo);
     }
-
+    public boolean isRecurring() {
+        return isRecurring;
+    }
     public String getTime() {
         String recur = " not recurring";
         if(isRecurring) {
@@ -138,7 +142,7 @@ public class Schedule {
             default:
                 break;
             }
-            recur = " | recurring, time intervel: " + details[0]+ " " +interval;
+            recur = " | recurring, time interval: " + details[0]+ " " +interval;
         }
 
         if (hasEndInfo) {
