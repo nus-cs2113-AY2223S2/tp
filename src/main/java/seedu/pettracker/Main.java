@@ -33,7 +33,7 @@ public class Main {
         storage = new Storage(PET_STORAGE_FILE_PATH, TASK_STORAGE_FILE_PATH);
         storage.createPetFile(ui);
         storage.createTaskFile(ui);
-
+        storage.loadPetFile(ui);
     }
 
     /**
