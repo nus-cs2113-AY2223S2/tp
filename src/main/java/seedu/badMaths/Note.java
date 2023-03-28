@@ -1,5 +1,6 @@
 package seedu.badMaths;
 
+//@@author ZiqiuZeng
 public class Note {
     private String text; // the note information
     private int reviewCount; // how many times the note has been reviewed
