@@ -50,6 +50,7 @@ find industry <INDUSTRY>
 To choose a venue, type:
 choose venue <INDEX>
 ____________________________________________________________
+____________________________________________________________
 ```
 
 
@@ -61,6 +62,7 @@ Example of usage:
 Expected outcome: 
 
 ```
+____________________________________________________________
 1
 Company name: APPLE
 Company contact number: 89934125
@@ -79,6 +81,7 @@ Company contact number: 82920010
 Company contact email: IBANKING@GMAIL.COM
 Company industry: BANKING AND FINANCE
 [Confirmed]
+____________________________________________________________
 ```
 
 ### `list venues` - Shows all venues
@@ -89,11 +92,13 @@ Example of usage:
 Expected outcome:
 
 ```
+____________________________________________________________
 1. Engineering Auditorium 9 Engineering Drive 1 (S) 117576 100
 2. Hon Sui Sen Auditorium 1 Hon Sui Sen Drive (S) 117588 100
 3. LT1 10 Kent Ridge Crescent (S) 119260 100
 4. LT6 1 Hon Sui Sen Drive (S) 119260 100
 5. University Cultural Centre 50 Kent Ridge Crescent (S) 119279 50
+____________________________________________________________
 ```
 
 ### `confirm` - Marks a specific company's attendance as confirmed
@@ -105,8 +110,9 @@ Example of usage:
 Expected outcome:
 
 ```
+____________________________________________________________
 Company has been successfully confirmed/uncomfirmed!
-
+____________________________________________________________
 ```
 
 ### `unconfirm` - Marks a specific company's attendance as unconfirmed
@@ -118,8 +124,9 @@ Example of usage:
 Expected outcome:
 
 ```
+____________________________________________________________
 Company has been successfully confirmed/uncomfirmed!
-
+____________________________________________________________
 ```
 ### `list unconfirmed` - Shows all stored companies marked with unconfirmed attendance
 Shows all the unconfirmed companies that are stored in the company list.
@@ -129,6 +136,7 @@ Example of usage:
 Expected outcome:
 
 ```
+____________________________________________________________
 2
 Company name: KFC
 Company contact number: 81213999
@@ -141,6 +149,7 @@ Company contact number: 82920010
 Company contact email: IBANKING@GMAIL.COM
 Company industry: BANKING AND FINANCE
 [Unconfirmed]
+____________________________________________________________
 ```
 
 ### `add ` - Add a company to the company list
@@ -151,7 +160,9 @@ Example of usage:
 Expected outcome:
 
 ```
+____________________________________________________________
 TESLA added successfully!
+____________________________________________________________
 ```
 
 ### `delete ` - Delete a company from the company list
@@ -162,7 +173,9 @@ Example of usage:
 Expected outcome:
 
 ```
+____________________________________________________________
 Company information successfully deleted!
+____________________________________________________________
 ```
 
 ### `load samples` - load samples company data for manual testing
@@ -173,10 +186,18 @@ Example of usage:
 Expected outcome:
 
 ```
+____________________________________________________________
 HUAWEI added successfully!
+____________________________________________________________
+____________________________________________________________
 GOOGLE added successfully!
+____________________________________________________________
+____________________________________________________________
 TIKTOK added successfully!
+____________________________________________________________
+____________________________________________________________
 Sample data has been loaded into the list!
+____________________________________________________________
 ```
 ### `purge ` - delete the company list data
 delete the company list data, and updates the company list text file
@@ -186,7 +207,9 @@ Example of usage:
 Expected outcome:
 
 ```
+____________________________________________________________
 Data has been deleted successfully!
+____________________________________________________________
 ```
 
 ### `find companies ` - find the companies based on a company name
@@ -197,6 +220,7 @@ Example of usage:
 Expected outcome:
 
 ```
+____________________________________________________________
 The company is found in the company list.
 1
 Company name: HUAWEI
@@ -211,6 +235,7 @@ Company contact number: 91002500
 Company contact email: GOOGLE@GOOGLE.COM
 Company industry: TECH
 [Unconfirmed]
+____________________________________________________________
 ```
 
 ### `find industry <INDUSTRY>  ` - find the companies within an industry
@@ -221,6 +246,7 @@ Example of usage:
 Expected outcome:
 
 ```
+____________________________________________________________
 Here are the companies in <TECH> field.
 1.
 Company name: HUAWEI
@@ -234,6 +260,7 @@ Company contact number: 91002500
 Company contact email: GOOGLE@GOOGLE.COM
 Company industry: TECH
 [Unconfirmed]
+____________________________________________________________
 ```
 
 ### `choose venue ` - updates the venue of the event
@@ -244,7 +271,9 @@ Example of usage:
 Expected outcome:
 
 ```
+____________________________________________________________
 Engineering Auditorium is your venue!
+____________________________________________________________
 ```
 
 ### `exit ` - Exit the application

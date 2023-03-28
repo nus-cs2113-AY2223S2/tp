@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.exception.EmptyListException;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.company.CompanyList;
 import seedu.duke.storage.CompanyListEncoder;
@@ -29,6 +30,8 @@ public class ConfirmCommand extends Command {
             CompanyListEncoder.write(companyList);
         } catch (InvalidIndexException | IOException err) {
             System.out.println("Invalid index provided! Please try again");
+        } catch (EmptyListException e) {
+            System.out.println("Nothing inside company list");
         }
     }
 
