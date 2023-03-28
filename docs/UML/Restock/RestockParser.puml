@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+actor User
+participant RestockParser
+User->RestockParser:run()
+activate RestockParser
+
+alt Contains "upc/" and input length > 1
+RestockParser->RestockCommand: RestockCommand()
+activate RestockCommand
+ref over RestockCommand,UI: Increases quantity of the Item \n and print series of strings \n to inform of its success \n or failure to do so
+RestockCommand-->RestockParser:
+deactivate RestockCommand
+RestockParser-->User:
+
+destroy RestockCommand
+else No "upc/" or input length <= 1
+RestockParser->RestockParser: EditErrorException()
+activate RestockParser
+RestockParser->UI:printInvalidSellCommand()
+activate UI
+UI-->RestockParser:
+deactivate UI
+destroy UI
+RestockParser-->RestockParser:
+deactivate RestockParser
+RestockParser-->User:
+deactivate RestockParser
+end
+deactivate RestockParser
+destroy RestockParser
+@enduml

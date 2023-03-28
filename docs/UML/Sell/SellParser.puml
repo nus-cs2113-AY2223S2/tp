@@ -1,0 +1,32 @@
+@startuml
+
+actor User
+participant SellParser
+User->SellParser:run()
+activate SellParser
+
+alt Contains "upc/" and input length > 1
+SellParser->SellCommand: SellCommand()
+activate SellCommand
+ref over SellCommand,UI: Deduct quantity of the Item \nand print series of strings \nto inform of its success\nor failure to do so
+SellCommand-->SellParser:
+deactivate SellCommand
+SellParser-->User:
+
+destroy SellCommand
+else No "upc/" or input length <= 1
+SellParser->SellParser: EditErrorException()
+activate SellParser
+SellParser->UI:printInvalidSellCommand()
+activate UI
+UI-->SellParser:
+deactivate UI
+destroy UI
+SellParser-->SellParser:
+deactivate SellParser
+SellParser-->User:
+deactivate SellParser
+end
+deactivate SellParser
+destroy SellParser
+@enduml
