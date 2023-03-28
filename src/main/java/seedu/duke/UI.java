@@ -19,10 +19,12 @@ public class UI {
     private static final String ADD_MOD_MESSAGE = "This module has been added to the current module list!";
     private static final String ADD_DEADLINE_MESSAGE = "This deadline has been added to the current deadlines";
     private static final String DELETE_MOD_MESSAGE = "This module has been deleted from the current module list!";
+    private static final String DELETE_NUM_ERROR = "Deletion failed :( Please check the index to be removed again";
 
     private static final String ADD_MOD_FAILURE_MESSAGE = "Save Module Failed";
     private static final String ADD_DEADLINE_FAILURE_MESSAGE = "Save Deadline task Failed";
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
+    private static final String WRITE_TO_DATABASE_ERROR = "Unable to write to database :(";
     private static final String WELCOME_MESSAGE = "~Welcome to SEP Helper~";
     private static final String READ_COMMAND_INPUT = "What can I do for you?";
     private static final String HELP_MESSAGE = "\nType /help if you need help getting started :)";
@@ -80,6 +82,11 @@ public class UI {
 
     public String getCommandInputError() {
         return COMMAND_INPUT_ERROR;
+    }
+
+    public static void printDeleteNumError() {
+        System.out.println(DELETE_NUM_ERROR);
+        System.out.println(LINE);
     }
 
     public String getInvalidBudgetMessage() {
@@ -224,6 +231,11 @@ public class UI {
 
     public static void printAddDeadlineFailureMessage() {
         System.out.println(ADD_DEADLINE_FAILURE_MESSAGE);
+        System.out.println(LINE);
+    }
+
+    public static void printWriteToDatabaseFailureMessage() {
+        System.out.println(WRITE_TO_DATABASE_ERROR);
         System.out.println(LINE);
     }
 
