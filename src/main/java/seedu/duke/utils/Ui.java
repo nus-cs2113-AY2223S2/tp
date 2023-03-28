@@ -189,10 +189,6 @@ public class Ui {
     private static final String NEW_CATEGORY_ADDED = "A new category has been added.";
 
 
-    public Ui() {
-        greetUser();
-    }
-
     public static void printLine() {
         System.out.println(LINE);
     }
