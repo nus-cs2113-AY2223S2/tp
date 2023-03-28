@@ -213,7 +213,44 @@ the expenditure into the array list.
 
 ## 4. Command List
 
-### 4.1. Add Command 
+### 4.1. Add Expenditure Command 
+
+The `AcademicExpenditureCommand`, `AccommodationExpenditureCommand`, `EntertainmentExpenditureCommand`, `FoodExpenditureCommand`, `OtherExpenditureCommand`, `TransportExpenditureCommand`, `TuitionExpenditureCommand` commands contain the operations to add an expenditure of a fixed category into the list of expenditures. As these expenditure types take in the same fields, the `BorrowExpenditureCommand` and `LendExpenditureCommand` have been isolated from these commands. 
+
+This is due to the fact that the 7 formerly stated commands all take in the same fields, and hence can be parsed in a similar fashion to instantiate the **Expenditure Command**, and later the **Expenditure** itself. In other words, the 7 stated commands are instantiated in the same way and will be explained altogether in this section.
+
+To instantiate the commands, the full commands are the following: 
+`AcademicExpenditureCommand`: `academic d/<date> a/<amount> s/<description>`
+- To create an academic expenditure.
+
+`AccommodationExpenditureCommand`: `accommodation d/<date> a/<amount> s/<description>`
+- To create an accommodation expenditure.
+
+`EntertainmentExpenditureCommand`: `entertainment d/<date> a/<amount> s/<description>`
+- To create an entertainment expenditure.
+
+`FoodExpenditureCommand`: `food d/<date> a/<amount> s/<description>`
+- To create a food expenditure.
+
+`OtherExpenditureCommand`: `other d/<date> a/<amount> s/<description>`
+- To create an expenditure with a category of "other".
+
+`TransportExpenditureCommand`: `transport d/<date> a/<amount> s/<description>`
+- To create a transport expenditure.
+
+`TuitionExpenditureCommand`: `tuition d/<date> a/<amount> s/<description>`
+- To create a tuition expenditure.
+
+When the user inputs one of the 7 expenditure commands into the application, the `MainInputParser.java` takes in the input and determines the command's operations via switch statements. Next, the `ParseIndividualValue.java` class contains the operation to split the valid input given by the user. This splits the inputs into fields to instantiate the **Expenditure Commands**. In this instance, the 7 stated commands will be referred to `ExpenditureCommand`. After splitting, `MainInputParser.java` calls operations from `ParseAdd.java`. `ParseAdd.java` prepares the split inputs for the `ExpenditureCommand` as fields, and instantiates one of its seven commands based on the user's specified expenditure category. 
+
+Below shows the sequence diagram for the aforementioned logic:
+
+<p align="center">
+    <img src="team/images/parseAddSequenceDiagram.png">
+    <br />
+    <i>Figure 7: Sequence Diagram for edit Command</i>
+</p>
+
 
 ### 4.2. Edit Command
 
