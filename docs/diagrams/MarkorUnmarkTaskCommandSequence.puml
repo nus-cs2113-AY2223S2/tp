@@ -20,43 +20,29 @@ box Ui COLOR_UI_LIGHT
 participant ":Ui" as Ui COLOR_UI
 end box
 
-box Storage COLOR_STORAGE_LIGHT
-participant ":Storage" as Storage COLOR_STORAGE
-end box
-
-User -> ToDoListManager: input("mark <index>")
+User -> ToDoListManager: input("mark <id>")
 activate ToDoListManager
-ToDoListManager -> Parser : parseCommand("mark <index>")
+ToDoListManager -> Parser : parseCommand("mark <id>")
 activate Parser
 create MarkTaskCommand
 Parser -> MarkTaskCommand
 activate MarkTaskCommand
-MarkTaskCommand -> Parser : HashMap
-deactivate MarkTaskCommand
-Parser -> MarkTaskCommand : parse("<index>")
-activate MarkTaskCommand
-MarkTaskCommand --> Parser
+MarkTaskCommand -> Parser
 deactivate MarkTaskCommand
 Parser --> ToDoListManager : command
 deactivate Parser
 ToDoListManager -> MarkTaskCommand : execute(taskList, ui)
 activate MarkTaskCommand
-MarkTaskCommand -> TaskList: setDone(<index>, isDone)
+MarkTaskCommand -> TaskList: setDone(<id>, isDone)
 activate TaskList
-TaskList --> MarkTaskCommand
+TaskList --> MarkTaskCommand : taskString
 deactivate TaskList
-MarkTaskCommand -> Ui : print Mark/UnmarkTaskMessage(taskString)
+MarkTaskCommand -> Ui : printMark/UnmarkTaskMessage(taskString)
 activate Ui
 Ui --> MarkTaskCommand
 deactivate Ui
 MarkTaskCommand --> ToDoListManager : result
-ToDoListManager --> User : Notify user task has been marked/unmarked
 deactivate MarkTaskCommand
 destroy MarkTaskCommand
-ToDoListManager ->Storage : saveData(taskList)
-activate Storage
-Storage -> Storage : updates data
-Storage --> ToDoListManager
-deactivate Storage
-
+ToDoListManager --> User : Notify user task has been marked/unmarked
 @enduml

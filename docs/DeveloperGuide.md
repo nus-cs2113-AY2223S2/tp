@@ -97,7 +97,7 @@ back into a TaskList object.
 
 ### Delete task feature
 
-The DeleteTaskCommand extends NUS To-do List with a delete feature for the removal of tasks from the task list.
+The DeleteTaskCommand extends NUS To-Do List with a delete feature for the removal of tasks from the task list.
 It is facilitated by ToDoListManager, Parser, exception, TaskList and Storage classes.
 It implements the `TaskList#deleteTask()` operation.
 
@@ -106,12 +106,12 @@ Given below is an example usage scenario and how the DeleteTaskCommand mechanism
 Step 1: The user launches the program for the first time. The ToDoListManager will be initialised. This in turn will
 then initialise the Parser, TaskList and Storage. Take it as there are no existing tasks read/stored by the program.
 
-Step 2: The user executes `add survey -d 20/03/2023 23:59` command to add a task for the To-do List.
+Step 2: The user executes `add survey -due 20/03/2023 23:59` command to add a task for the To-Do List.
 The add command calls `TaskList#addTask()`, which causes a new Task to be added to the existing TaskList.
 
 Step 3: The user now then decides that adding this task was a mistake, and decides to remove the task from the
-To-do List. The user does this by inputting the command `delete 1` into the terminal to delete a task in the task list.
-The command will then call the `TaskList#deleteTask()`, which removes the task at index 1 of the TaskList.
+To-Do List. The user does this by inputting the command `delete 1` into the terminal to delete a task in the task list.
+The command will then call the `TaskList#deleteTask()`, which removes the task at id 1 of the TaskList.
 
 The following sequence diagram shows how the delete task operation works:
 
@@ -125,15 +125,15 @@ Thus, the TaskList will return to its initial state where there are no tasks sto
 Step 1: The user launches the program for the first time. The ToDoListManager will be initialised. This in turn will
 then initialise the Parser, TaskList and Storage. Take it as there are no existing tasks read/stored by the program.
 
-Step 2: The user executes `add survey -d 20/03/2023 23:59` command to add a task for the To-do List.
+Step 2: The user executes `add survey -due 20/03/2023 23:59` command to add a task for the To-Do List.
 The add command calls `TaskList#addTask()`, which causes a new Task to be added to the existing TaskList.
 
 Step 3: The user wants to mark the task as completed by inputting the command `mark 1` into the terminal
-to mark the task as done. The command will then call the `TaskList#setDone`, which marks the task at index 1
+to mark the task as done. The command will then call the `TaskList#setDone`, which marks the task at id 1
 of the TaskList as done.
 
 For the unmark command, the user can instead input the command `unmark 1` to set the task as incomplete.
-The command also calls `TaskList#setDone` which sets the task at index 1 to be not done.
+The command also calls `TaskList#setDone` which sets the task at id 1 to be not done.
 
 The following sequence diagram shows how the mark/unmark task operation works:
 
@@ -141,21 +141,21 @@ The following sequence diagram shows how the mark/unmark task operation works:
 
 ### Edit task deadline feature
 
-The edit deadline function extends NUS To-do List with an edit feature for the deadlines assigned to tasks.
+The edit deadline function extends NUS To-Do List with an edit feature for the deadlines assigned to tasks.
 It is facilitated by the TaskList and Command classes. It implements the `TaskList#editDeadline()` operation,
-which edits deadline of task at assigned index.
+which edits deadline of task at assigned id.
 
 
 Given below is an example usage scenario and how the edit deadline mechanism will behave at each step.
 
 Step 1. The user launches the application for the first time. There are no existing tasks read by the program.
 
-Step 2. The user executes `add survey -d 20/03/2023 23:59` command to add a task to the To-do List.
+Step 2. The user executes `add survey -due 20/03/2023 23:59` command to add a task to the To-Do List.
 The `add` command calls `TaskList#addTask()`, which causes a new Task to be added to the existing TaskList.
 
 Step 3. The user has received an update about an extension to the deadline for the task, and decides to change
-the deadline by executing the `edit 1 -d 25/03/2023 15:00` command. The `edit` will call `TaskList#EditDeadline()`,
-which updates the value of deadline for the Task item saved at index 1 to the new updated deadline.
+the deadline by executing the `edit 1 -due 25/03/2023 15:00` command. The `edit` will call `TaskList#setDeadline()`,
+which updates the value of deadline for the Task item saved at id 1 to the new updated deadline.
 
 The following sequence diagram shows how the edit operations works:
 
@@ -163,23 +163,23 @@ The following sequence diagram shows how the edit operations works:
 
 ### List tasks sorted by deadline feature
 
-This ListTasksCommand extends NUS To-do List with an automatic sorting feature that sorts all tasks in an ascending
-deadline order and displays the To-do List to users. It is facilitated by the TaskList, Command class, and ui class.
-It implements the `TaskList#sortByDeadline()` and  `ui#printTaskList()`operation.
+This ListTasksCommand extends NUS To-Do List with an automatic sorting feature that sorts all tasks in an ascending
+deadline order and displays the To-Do List to users. It is facilitated by the TaskList, Command class, and UI class.
+It implements the `TaskList#toString()` and  `ui#printTaskList()`operation.
 
 Given below is an example usage scenario and how the ListTasksCommand mechanism will behave at each step.
 
 Step 1. The user launches the application for the first time. There are no existing tasks read by the program.
 
-Step 2. The user executes `add survey -d 20/03/2023 12:00` and `add survey -d 21/03/2023 12:00` command to add 2 task
-to the To-do List. The `add` command calls `TaskList#addTask()` once for each task, which causes 2 new Tasks to
+Step 2. The user executes `add survey -due 20/03/2023 12:00` and `add survey -due 21/03/2023 12:00` command to add 2
+tasks to the To-Do List. The `add` command calls `TaskList#addTask()` once for each task, which causes 2 new Tasks to
 be added to the existing TaskList.
 
 Step 3. The user wants to view the entire list of deadlines that he/she has added. The user can do this by using the
-command `list` into the terminal. By doing so,`TaskList#sortByDeadline()` will be executed, which will sort the list
-in an ascending deadline order, where the deadline that is closest to date will be at the top and the deadline furthest
-to date will be at the bottom. Next, `ui#printTaskList()` will be executed, which will display the list of deadlines to
-the user in the terminal.
+command `list` into the terminal. By doing so,`TaskList#toString()` will be executed, which will sort
+the list in an ascending deadline order, where the deadline that is closest to date will be at the top and the deadline
+furthest to date will be at the bottom. Next, `ui#printTaskList()` will be executed, which will display the list of
+deadlines to the user in the terminal.
 
 The following sequence diagram shows how the list operation works:
 
@@ -205,7 +205,7 @@ task list. `ToDoListManager` calls `storage#saveData()`, so the task list is sav
 
 ![Step2](images/StorageSequenceDiagramStep2-Step_2.png)
 
-Step 3. The user executes `add cg2023 assignment -d 18/12/2023` command. The `add` command calls `TaskList#addTask()`, 
+Step 3. The user executes `add cg2023 assignment -due 18/12/2023` command. The `add` command calls `TaskList#addTask()`, 
 which adds a new Task to the existing task list. `ToDoListManager` calls `storage#saveData()`, so the task list is saved
 into `'./data.txt'`.
 
@@ -242,14 +242,14 @@ be 2 task lists stored - `completedTasks` and `uncompletedTasks`. There will be 
 works, a removal of the operation `TaskList#setDone()` and a new command for users to input to the CLI: `history`.
 
 There will be 2 new operations:
-* `TaskList#markTask(index i)` - Moves the task at index i of `uncompletedTasks` to `completedTasks`.  
-* `TaskList#unmarkTask(index i)` - Moves the task at index i of `completedTasks` to `uncompletedTasks`.
+* `TaskList#markTask(id i)` - Moves the task at id i of `uncompletedTasks` to `completedTasks`.  
+* `TaskList#unmarkTask(id i)` - Moves the task at id i of `completedTasks` to `uncompletedTasks`.
 
 Given below is an example usage scenario and how the history mechanism works.
 
 Step 1. The user launches the application for the first time. Both `completedTasks` and `uncompletedTasks` are empty.
 
-Step 2. The user executes `add cg2023 assignment -d 18/12/2023` command to add a task that (s)he has to complete. The
+Step 2. The user executes `add cg2023 assignment -due 18/12/2023` command to add a task that (s)he has to complete. The
 `add` command causes the task to be added to `uncompletedTasks`.
 
 Step 3. The user executes `mark` command to mark a task that (s)he has completed. The `mark` command causes the task to

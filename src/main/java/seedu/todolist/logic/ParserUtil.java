@@ -22,7 +22,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses the id string.
+     * Parses the id string into an integer. Does not check if id is in task list.
      *
      * @param id The id string.
      * @return The id, as an integer.
@@ -37,7 +37,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses the description string.
+     * Parses (returns) the description string. Does not check if description is null or empty.
      *
      * @param description The description string.
      * @return The description of the task.
@@ -65,8 +65,8 @@ public class ParserUtil {
         }
 
         try {
-            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN.getFormat())
-                    .withResolverStyle(ResolverStyle.STRICT);
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN_1.getFormat()
+                            + Formats.TIME_IN_2.getFormat()).withResolverStyle(ResolverStyle.STRICT);
             return LocalDateTime.parse(deadline, inputFormatter);
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(deadline);

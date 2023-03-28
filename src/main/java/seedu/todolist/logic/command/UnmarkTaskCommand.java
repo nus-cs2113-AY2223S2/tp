@@ -12,16 +12,16 @@ import java.util.HashMap;
 public class UnmarkTaskCommand extends Command{
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_UNMARK};
 
-    private int index;
+    private int id;
 
     public UnmarkTaskCommand(HashMap<Flags, String> args) throws InvalidIdException {
-        index = ParserUtil.parseId(args.get(Flags.COMMAND_UNMARK));
-        assert index >= 0 : "Invalid index contained in variable";
+        id = ParserUtil.parseId(args.get(Flags.COMMAND_UNMARK));
+        assert id >= 0 : "Invalid id contained in variable";
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
-        String taskString = taskList.setDone(index, false);
+        String taskString = taskList.setDone(id, false);
         ui.printUnmarkTaskMessage(taskString);
     }
 }
