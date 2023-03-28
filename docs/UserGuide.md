@@ -17,6 +17,13 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 3. Move the `.jar` file to an empty folder.
 4. Run the file with the command `java -jar magusstock.jar`.
 
+### For BEST experience please run the java file in Terminal App (Not CMD)
+Reason: The UI Color is designed to be used in Terminal App as CMD does not support ANSI Escape Code.
+
+![img_3.png](img_3.png)
+
+Where to get it if you don't have one? (Go to Windows Store)
+![img_4.png](img_4.png)
 ## Features 
 - [Adding an item: `add`](#adding-an-item--add)
 - [Editing an item: `edit`](#editting-an-item--edit)
