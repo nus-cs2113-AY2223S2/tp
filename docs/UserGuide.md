@@ -93,6 +93,7 @@ Shows a list of filters available and their description
 
 The filters are shown here:
 
+
 | Filter   | Description                                   |
 |----------|-----------------------------------------------|
 | [gym]    | exercises that can be done with gym equipment |
@@ -103,7 +104,7 @@ The filters are shown here:
 | [upper]  | exercises that train your upper body          |
 | [core]   | exercises that train your core                |
 | [legs]   | exercises that train your legs                |
- ____________________________________________________________
+
 
 ### Searching for a workout ```find [keyword]```
 
