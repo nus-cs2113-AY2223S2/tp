@@ -12,7 +12,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.duke.ui.StringLib.MISSING_KEYWORD;
 
 public class FindTest {
     ByteArrayOutputStream output;
