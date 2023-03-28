@@ -101,7 +101,8 @@ public class Ui {
         System.out.println("    list");
         System.out.println();
         System.out.println("    EDIT RECORDS:");
-        System.out.println("    edit expense /in <index> [/c <category>] [/de <description>] [/da <date>] [/v <value>]");
+        System.out.println("    edit expense /in <index> [/c <category>] [/de <description>] [/da <date>] " +
+                "[/v <value>]");
         System.out.println("    edit income /in <index> [/de <description>] [/da <date>] [/v <value>]");
         System.out.println();
         System.out.println("    DELETE RECORDS:");
