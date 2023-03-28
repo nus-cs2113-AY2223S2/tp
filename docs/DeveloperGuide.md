@@ -9,6 +9,8 @@
   - [Remove](#remove)
   - [Search](#search)
   - [Filter](#filter)
+  - [History](#history)
+  - [Category](#category)
 - [Product Scope](#product-scope)
   - [Target User Profile](#target-user-profile)
   - [Value Proposition](#value-proposition)
@@ -21,8 +23,9 @@
 
 The documentation and organisation of our project follows the recommended format as shown in [SE-Education](http://se-education.org/addressbook-level3/DeveloperGuide.html)
 
-## Design
-### Architecture Design Diagram
+## 1. Design
+
+### 1.1. Architecture Design Diagram
 ![Architecture Diagram](ArchitectureDiagram.png)
 
 Breakdown of each component and its role in the application:
@@ -41,10 +44,12 @@ Breakdown of each component and its role in the application:
 
 Overall, the architecture diagram shows how the different components of the MagusStock application work together to provide the user with a command-line interface for managing an inventory of items. The components are designed to be modular and loosely coupled, allowing for easy modification and extension of the application.
 
-### UML Design Diagram
+### 1.2. UML Sequence Diagram
 
-## Implementation
-### List
+![Sequence Diagram](SequenceDiagram.png)
+
+## 2. Implementation
+### 2.1. List
 The list command is mainly handled by the `ListCommand` class, which extends the `Command` class.
 ![ListCommand.png](UML%2FList%2FListCommand.png)
 
@@ -69,12 +74,41 @@ The list command is mainly handled by the `ListCommand` class, which extends the
 
 
 
-### Add
-The add command is mainly handled by the `AddCommand` class, which extends the `Command` class.
+### 2.2. Add
+The add command is mainly handled by the `AddCommand` and `AddParser` classes, which extends the `Command` and `Parser` 
+class respectively.
+#### 2.2.1. AddParser Class
+The `AddParser` class is a parser class that extends the `Parser` abstract class. It handles the "add" command by parsing 
+the user's input into separate input parameters using regular expressions. It then creates a new `Item` object with the 
+parsed parameters and creates a new `AddCommand` object with the `Inventory` object and `Item` object as parameters.
 
-### Edit
+The `AddParser` class has a constructor that takes in a `String` object representing the raw input from the user and an 
+`Inventory` object representing the inventory. It passes these parameters to the constructor of the `Parser` abstract class.
+
+The class contains an overridden `run()` method that first checks if the raw input is null or not. If it is null, it 
+throws a `MissingParametersException`. Otherwise, it uses a regular expression matcher to match the raw input to a 
+specific pattern. If the input doesn't match the pattern, it prints an error message and returns. If the input matches 
+the pattern, it creates a new `Item` object using the parsed parameters and creates a new `AddCommand` object using the 
+`Inventory` object and `Item` object. It then calls the `run()` method of the `AddCommand` object to execute the add command.
+![AddParser.png](UML%2FAdd%2FAddParser.png)
+
+#### 2.2.2. AddCommand Class
+The `AddCommand` class is a command class that extends the `Command` abstract class. It represents the command to add an 
+item to the inventory. It contains a constructor that takes in an `Inventory` object and an `Item` object as parameters. 
+The constructor sets the `Inventory` object to be the inventory of the `Command` class, and the `Item` object to be the item 
+to be added to the inventory. The class also contains a private method called `addItem()` that adds the `Item` object to 
+the inventory. The `addItem()` method checks if the item already exists in the inventory using its unique UPC 
+(Universal Product Code) code. If the item already exists, it prints a message stating that the item is a duplicate. 
+Otherwise, it adds the item to the inventory, updates the item name hash, and adds the item to the UPC code history. 
+If the `SessionManager`'s `autoSave` flag is enabled, it writes the current inventory to a file using the `SessionManager`.
+
+The `run()` method of the `AddCommand` class calls the `addItem()` method to execute the add command.
+![AddCommand.png](UML%2FAdd%2FAddCommand.png)
+
+### 2.3. Edit
 The "edit" command is mainly handled by the `EditCommand` class, which extends the `Command` class. It is parsed
 by the `EditParser` class, which extends the `Parser` class.
+
 
 **Step 1**.
 
@@ -82,7 +116,8 @@ by the `EditParser` class, which extends the `Parser` class.
 
 Included below is a UML Sequence Diagram for the `EditParser` and `EditCommand` respectively:
 
-### Restock
+
+### 2.4. Restock
 The `restock` command is mainly handled by the `RestockCommand` class, which extends the `Command` class. It is parsed 
 by the `RestockParser` class, which extends the `Parser` class. Included below is a sequence diagram for the `restock`
 command:
@@ -118,7 +153,7 @@ Included below is a sequence diagram for the `RestockParser` and `RestockCommand
 ![RestockCommand.png](UML/Restock/RestockCommand.png)
 
 
-### Sell
+### 2.5. Sell
 The "sell" command is mainly handled by the `SellCommand` class, which extends the `Command` class. It is parsed
 by the `SellParser` class, which extends the `Parser` class. 
 
@@ -152,10 +187,40 @@ Included below is a sequence diagram for the `SellParser` and the `SellCommand` 
 ![SellParser.png](UML/Sell/SellParser.png)
 ![SellCommand.png](UML/Sell/SellCommand.png)
 
-### Remove
-The remove command is mainly handled by the `RemoveCommand` class, which extends the `Command` class.
 
-### Search
+### 2.6. Remove
+
+The remove command is mainly handled by the `RemoveCommand` class, which extends the `Command` class. It is parsed by the 
+`RemoveParser` class, which extends the `Parser` class.
+
+![RemoveParser.png](UML/Remove/RemoveParser.png)
+![RemoveCommand.png](UML/Remove/RemoveCommand.png)
+
+**Step 1**. When the user executes the command `remove f/index [Index]` or `remove f/item upc/[UPC]`, the `ParserHandler` will
+create a new `RemoveParser` object and pass to it the appropriate `input`, and `inventory` in which the items are stored.
+
+**Step 2**. The `run` method in the `RemoveParser` is called which overrides the `run` method in `Parser`. This leads the
+`RemoveParser` to call either `parseRemoveByIndex` or `parseRemoveByUpc` method, depending on whether the `f/` is `f/index`
+or `f/item` respectively. 
+
+**Step 3**. The methods `parseRemoveByIndex` or `parseRemoveByUpc` will check the validity of the input. If user input is invalid,
+an error message will be printed out and method execution will halt. Otherwise, both methods will print a confirmation message to 
+the user, where the user will have to enter `Y` or `N` for the method to create a new `RemoveCommand` object to execute the removal. 
+
+![RemoveStep3.png](UML/Remove/RemoveStep3.png)
+
+**Step 4**. The `run` method in `RemoveCommand` is called which overrides the `run` method in the `Command` object.
+This calls either `removeByUpcCode` or `removeByIndex` method depending on the type identified earlier. Now, both functions
+will check if the UPC or index input by user is valid/exists in the list. If not, an error message will be printed and method
+will halt.
+
+**Step 5**. The `removeByUpcCode` or `removeByIndex` method will check the confirmation input by user earlier. If user confirmation
+is `Y`, the specified item will be removed from the inventory, remove any alerts for the item and `printSuccessRemove` 
+from the `Ui` object will be called. If user confirmation is `N`, `printNotRemoving` from the `Ui` object will be called and method
+will halt. If user confirmation is not valid, `printInvalidReply` from the `Ui` object will be called and method will halt. 
+
+
+### 2.7. Search
 The search command is mainly handled by the `SearchCommand` class, which extends the `Command` class. It is parsed by 
 the `SearchParser` class, which extends the `Parser` class.
 
@@ -166,7 +231,6 @@ the `SearchParser` class, which extends the `Parser` class.
 new `SearchParser` object and pass to it the appropriate `input`, the `SearchType`, and the appropriate `Inventory` in 
 which the items are stored.
 ![SearchStep1.png](UML%2FSearch%2FSearchStep1.png)
-
 
 **Step 2**. The `run` method in `SearchParser` is called which overrides the `run` method in `Parser`. This leads the 
 `SearchParser` to call either the `parseSearch` or `parseSearchUPC` method, depending on whether the `SearchType` is
@@ -195,7 +259,7 @@ will inform the user that no search results were found. Otherwise, the `printSea
 prints out a table showing the name, UPC, quantity and price of all search results. Otherwise, the `printSearchUPCItems`
 method takes in an `Item item` and prints it out in a table showing the name, UPC, quantity and price of the item.
 
-### Filter
+### 2.8. Filter
 The filter command is mainly handled by the `FilterCommand` class, which extends the `Command` class. It is parsed by
 the `FilterParser` class, which extends the `Parser` class.
 
@@ -237,7 +301,7 @@ called.
 **Step 6**. If the `printSearchItems` method is called, it takes in an `ArrayList<Item> items` as a parameter and
 prints out a table showing the name, UPC, quantity and price of all search results. 
 
-### History
+### 2.9. History
 The history command is mainly handled by the `HistoryCommand` class, which extends the `Command` class. It is parsed by
 the `HistoryParser` class, which extends the `Parser` class.
 
@@ -271,6 +335,30 @@ called.
 followed by printing the details of this first instance. It will then go through the following items in the list and 
 print the differences, if any. If there is more than 1 item in the list provided to the function, it will then print
 the details of the last and most current instant of the item.
+
+### Category
+The category command is mainly handled by the `CategoryCommand` class, which extends the `Command` class. It is parsed by
+the `CategoryParser` class, which extends the `Parser` class.
+
+![CategoryParser.png](UML/Category/CategoryParser.png)
+
+**Step 1** When the user executes the command `cat {list/function/[Category]}`, the `ParserHandler` will create a new 
+`CategoryParser` object and pass to it the appropriate `input` and the appropriate `Inventory` in which the items are
+stored.
+
+**Step 2**. The `run` method in `CategoryParser` is called which overrides the `run` method in `Parser`. 
+`CategoryParser` checks if the `input` is not empty. If not, an error is shown and the method halts execution. 
+Otherwise, the `CategoryParser` will create a new `CategoryCommand` object and pass it the relevant inventory and 
+user input.
+
+**Step 3**. The `run` method in the `CategoryParser` object is called which overrides the `run` method in the `Command` 
+object. The `CategoryCommand` object will call either `listAllCategories` or `listCategoriesAndItems` or `findCategory` 
+method, depending on the user input (`list`, `table`, `[Category]` respectively).
+
+**Step 4**. `listAllCategories` and `listCategoriesAndItems` will call the `printCategory` function from the `Ui` object
+if the category hashmap is not empty. Otherwise, the methods will inform the user that the inventory list is empty and there
+is no category hashmap available. Whereas `findCategory` will call the `printCategory` function from the `Ui` object if 
+the category that user input is found. Otherwise, the method will inform user that the category cannot be found.
 
 ## Product scope
 ### Target user profile

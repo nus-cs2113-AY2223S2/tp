@@ -1,0 +1,48 @@
+
+@startuml
+title AddParser Class
+
+participant ParserHandler
+participant AddParser
+ParserHandler -> AddParser: run()
+
+activate AddParser
+participant Ui
+opt rawInput == null
+AddParser -> MissingParametersException:throw missingAddItemParameters
+    
+end
+
+opt !matcher.matches
+AddParser -> Ui:printInvalidAddCommand()
+Ui --> User:
+end
+AddParser -> Item: Item()
+activate Item
+Item -->AddParser:
+deactivate Item
+
+AddParser -> AddCommand: AddCommand(inventory, newItem)
+activate AddCommand
+AddCommand -->AddParser:
+deactivate AddCommand
+
+AddParser -> AddCommand: run()
+activate AddCommand
+
+AddCommand -> Command:Command(inventory)
+activate Command
+Command -->AddCommand:
+deactivate Command
+
+AddCommand -->AddParser:
+deactivate AddCommand
+
+AddParser -> Command: run()
+activate Command
+Command -->AddParser:
+deactivate Command
+
+AddParser --> ParserHandler:
+destroy AddParser
+@enduml

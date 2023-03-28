@@ -39,6 +39,25 @@ public class Item implements Comparable<Item> {
     }
 
     public Item(final String name, final String upc, final Integer qty,
+                final Double price, final String category, final LocalDateTime dateTime) {
+        this.name = name;
+        this.upc = upc;
+        this.price = price;
+        this.quantity = qty;
+        this.category = category;
+        this.dateTime = dateTime;
+    }
+
+    public Item(final String name, final String upc, final Integer qty,
+                final Double price, final String category) {
+        this.name = name;
+        this.upc = upc;
+        this.price = price;
+        this.quantity = qty;
+        this.category = category;
+        this.dateTime = LocalDateTime.now();
+    }
+    public Item(final String name, final String upc, final Integer qty,
                 final Double price, final LocalDateTime dateTime) {
         this.name = name;
         this.upc = upc;
@@ -127,6 +146,9 @@ public class Item implements Comparable<Item> {
             itemsChanged += 1;
         }
         if (!Objects.equals(oldItem.getPrice(), this.getPrice())) {
+            itemsChanged += 1;
+        }
+        if (!Objects.equals(oldItem.getCategory(), this.getCategory())) {
             itemsChanged += 1;
         }
         return itemsChanged != 0;

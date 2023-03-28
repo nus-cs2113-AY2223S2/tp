@@ -19,7 +19,7 @@ public class ListCommand extends Command {
             Ui.printSuccessList();
             String table = Ui.printTable(itemInventory);
             System.out.println(table);
-            Ui.printLine();
+            System.out.println(Ui.LINE);
         } else {
             Ui.printEmptyList();
         }
