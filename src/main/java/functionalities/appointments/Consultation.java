@@ -24,10 +24,15 @@ public class Consultation extends Appointment {
 
     @Override
     public String toString() {
-        return " UID: " + uid + " [" + getStatus() + "]" +'\n'
+        return " UID: " + uid + " [" + getStatus() + "]" + '\n'
                 + " Date: " + date + " | Time: " + time + '\n'
                 + " Animal Name: " + animal.toString() + '\n'
                 + " Owner Name: " + owner.toString();
+    }
+
+    public String retrieveStorageInfo() {
+        return uid + " | " + date + " | " + time + " | " + animal.getAnimalName() + " | " + animal.getAnimalType()
+                + " | " + owner.getName() + " | " + owner.getContactNumber();
     }
 
     @Override
