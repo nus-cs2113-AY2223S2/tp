@@ -145,8 +145,8 @@ public class UserInterface {
         System.out.println("Successfully added tag " + tagUUID + " to deck " + deckUUID);
     }
 
-    public void printTagCreationSuccess() {
-        System.out.println("Tag does not exist.. creating a new one");
+    public void printTagCreationSuccess(String tagName) {
+        System.out.println("Tag does not exist.. creating a new tag: " + tagName);
     }
 
     public void printDeckCreationSuccess() {

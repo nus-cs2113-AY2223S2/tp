@@ -42,7 +42,7 @@ public class AddCardToTagCommand extends Command {
         assert cardToAdd != null;
 
         if (tagToAdd == null) {
-            ui.printTagCreationSuccess();
+            ui.printTagCreationSuccess(tagName);
             tagToAdd = new Tag(tagName, cardUUID);
             tagList.addTag(tagToAdd);
         } else {
