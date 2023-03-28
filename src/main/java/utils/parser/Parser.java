@@ -13,6 +13,7 @@ public class Parser {
 
     public static final String CARD_KEYWORD = "card";
     public static final String TAG_KEYWORD = "tag";
+    public static final String DECK_KEYWORD = "deck";
     public static final String EXPORT_KEYWORD = "export";
     public static final String EXIT_KEYWORD = "bye";
     public static final String HELP_KEYWORD = "help";
@@ -20,6 +21,8 @@ public class Parser {
     // Keyword-specific parsers
     private final CardKeywordParser cardKeywordParser = new CardKeywordParser();
     private final TagKeywordParser tagKeywordParser = new TagKeywordParser();
+
+    private final DeckKeywordParser deckKeywordParser = new DeckKeywordParser();
 
     private boolean isExecuting;
 
@@ -52,6 +55,9 @@ public class Parser {
         List<String> optionTokens = userInputTokens.subList(1, userInputTokens.size());
 
         switch (keyword) {
+        case DECK_KEYWORD:
+            return deckKeywordParser.parseTokens(optionTokens);
+
         case CARD_KEYWORD:
             return cardKeywordParser.parseTokens(optionTokens);
 
@@ -94,11 +100,11 @@ public class Parser {
     }
 
     private String formatHelpLine(String keyword, String description) {
-        final int PAD_LENGTH = 12;
+        final int padLength = 12;
 
         String formatted = keyword;
         // Right-pad to PAD_LENGTH
-        formatted += " ".repeat(PAD_LENGTH - formatted.length());
+        formatted += " ".repeat(padLength - formatted.length());
         formatted += " - ";
         formatted += description;
         formatted += System.lineSeparator();

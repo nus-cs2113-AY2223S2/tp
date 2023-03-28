@@ -6,6 +6,7 @@ import java.util.UUID;
 import model.Card;
 import model.CardList;
 import model.CardUUID;
+import model.DeckList;
 import model.Tag;
 import model.TagList;
 import model.TagUUID;
@@ -45,7 +46,7 @@ public class ViewCardCommand extends Command {
         return tags;
     }
 
-    public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage)
+    public void execute(CardList cardList, TagList tagList, DeckList deckList,UserInterface ui, IDataStorage storage)
             throws InkaException {
         List<Card> cards = cardList.getCards();
         ArrayList<Tag> tags;

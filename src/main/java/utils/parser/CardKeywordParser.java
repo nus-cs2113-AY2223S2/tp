@@ -8,6 +8,7 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import utils.command.AddCardCommand;
+import utils.command.AddCardToDeckCommand;
 import utils.command.AddCardToTagCommand;
 import utils.command.Command;
 import utils.command.DeleteCardCommand;
@@ -25,6 +26,8 @@ public class CardKeywordParser extends KeywordParser {
     public static final String LIST_ACTION = "list";
     public static final String TAG_ACTION = "tag";
     public static final String VIEW_ACTION = "view";
+
+    public static final String DECK_ACTION = "deck";
 
     private DefaultParser parser;
 
@@ -67,6 +70,14 @@ public class CardKeywordParser extends KeywordParser {
         return options;
     }
 
+    private static Options buildDeckOptions() {
+        Options options = new Options();
+        options.addRequiredOption("c", "card", true, "card UUID");
+        options.addRequiredOption("d", "deck", true, "deck name");
+
+        return options;
+    }
+
     private static Options buildViewOptions() {
         Options options = new Options();
         options.addRequiredOption("c", "card", true, "card UUID");
@@ -75,6 +86,7 @@ public class CardKeywordParser extends KeywordParser {
     }
 
     @Override
+    //TODO: add a card to the deck command
     protected Command handleAction(String action, List<String> tokens)
             throws ParseException, InkaException {
         switch (action) {
@@ -82,6 +94,8 @@ public class CardKeywordParser extends KeywordParser {
             return handleAdd(tokens);
         case DELETE_ACTION:
             return handleDelete(tokens);
+        case DECK_ACTION:
+            return handleDeck(tokens);
         case HELP_ACTION:
             return handleHelp();
         case LIST_ACTION:
@@ -113,16 +127,14 @@ public class CardKeywordParser extends KeywordParser {
         return new DeleteCardCommand(deleteIndex);
     }
 
+    //TODO: Fix issue here
     private Command handleHelp() {
-        // Combine all actions
-        // @formatter:off
-        String[] actionList = {ADD_ACTION, DELETE_ACTION, LIST_ACTION, TAG_ACTION,
-            VIEW_ACTION};
-        // @formatter:on
-        String[] headerList = {"Adding cards", "Deleting cards", "List all cards", "Tagging cards", "View cards"};
+        // Combine all action
+        String[] actionList = {ADD_ACTION, DELETE_ACTION, LIST_ACTION, TAG_ACTION, VIEW_ACTION, DECK_ACTION};
+        String[] headerList = new String[]{"Adding cards",
+            "Deleting cards", "List all cards", "Tagging cards", "View cards", "Adding cards to Deck"};
         Options[] optionsList = {buildAddOptions(), buildDeleteOptions(), new Options(), buildTagOptions(),
-                buildViewOptions()};
-
+                buildViewOptions(), buildDeckOptions()};
         String helpMessage = formatHelpMessage("card", actionList, headerList, optionsList);
         return new PrintHelpCommand(helpMessage);
     }
@@ -138,6 +150,15 @@ public class CardKeywordParser extends KeywordParser {
         String tagName = cmd.getOptionValue("t");
 
         return new AddCardToTagCommand(tagName, cardUUID);
+    }
+
+    private Command handleDeck(List<String> tokens) throws ParseException, InkaException {
+        CommandLine cmd = parser.parse(buildDeckOptions(), tokens.toArray(new String[0]));
+
+        String cardUUID = cmd.getOptionValue("c");
+        String deckName = cmd.getOptionValue("d");
+
+        return new AddCardToDeckCommand(deckName, cardUUID);
     }
 
     private Command handleView(List<String> tokens) throws ParseException, InkaException {

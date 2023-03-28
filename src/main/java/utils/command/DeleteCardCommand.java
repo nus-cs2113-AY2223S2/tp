@@ -1,6 +1,7 @@
 package utils.command;
 
 import model.CardList;
+import model.DeckList;
 import model.TagList;
 import utils.UserInterface;
 import utils.exceptions.UnknownItem;
@@ -16,7 +17,7 @@ public class DeleteCardCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cardList, TagList tagList, UserInterface ui, IDataStorage storage)
+    public void execute(CardList cardList, TagList tagList, DeckList deckList,UserInterface ui, IDataStorage storage)
             throws InkaException {
         try {
             // if the input is delete 1, this will delete the first element of the array which is element 0.

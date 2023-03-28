@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import model.Card;
 import model.CardList;
+import model.DeckList;
 import model.TagList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,7 @@ public class CardParserTest {
     private UserInterface ui;
     private Storage storage;
     private Parser parser;
+    private DeckList deckList;
 
     /**
      * Each test should have a new instance of all these
@@ -36,6 +38,7 @@ public class CardParserTest {
         ui = new UserInterface();
         storage = new FakeStorage();
         parser = new Parser();
+        deckList = new DeckList();
     }
 
     //region `card add` tests
@@ -43,7 +46,7 @@ public class CardParserTest {
     public void parse_card_add() throws InkaException {
         Command cmd = parser.parseCommand("card add -q QUESTION -a ANSWER");
         assert cmd instanceof AddCardCommand;
-        cmd.execute(cardList, tagList, ui, storage);
+        cmd.execute(cardList, tagList, deckList , ui, storage);
 
         Card card = cardList.get(0);
         assert card.getQuestion().equals("QUESTION") : "Unexpected question parsed";
@@ -54,7 +57,7 @@ public class CardParserTest {
     public void parse_card_addLongFlag() throws InkaException {
         Command cmd = parser.parseCommand("card add --question QUESTION --answer ANSWER");
         assert cmd instanceof AddCardCommand;
-        cmd.execute(cardList, tagList, ui, storage);
+        cmd.execute(cardList, tagList, deckList ,ui, storage);
 
         Card card = cardList.get(0);
         assert card.getQuestion().equals("QUESTION") : "Unexpected question parsed";
@@ -65,7 +68,7 @@ public class CardParserTest {
     public void parse_card_addWithWhitespaces() throws InkaException {
         Command cmd = parser.parseCommand("card add -q MULTI WORD QUESTION -a MULTI WORD ANSWER");
         assert cmd instanceof AddCardCommand;
-        cmd.execute(cardList, tagList, ui, storage);
+        cmd.execute(cardList, tagList, deckList ,ui, storage);
 
         Card card = cardList.get(0);
         assert card.getQuestion().equals("MULTI WORD QUESTION") : "Unexpected question parsed";
@@ -99,7 +102,7 @@ public class CardParserTest {
 
         Command cmd = parser.parseCommand("card delete -i 1");
         assert cmd instanceof DeleteCardCommand;
-        cmd.execute(cardList, tagList, ui, storage);
+        cmd.execute(cardList, tagList, deckList, ui, storage);
 
         assert cardList.isEmpty() : "Should have deleted Card";
     }
@@ -110,7 +113,7 @@ public class CardParserTest {
 
         Command cmd = parser.parseCommand("card delete --index 1");
         assert cmd instanceof DeleteCardCommand;
-        cmd.execute(cardList, tagList, ui, storage);
+        cmd.execute(cardList, tagList, deckList,ui, storage);
 
         assert cardList.isEmpty() : "Should have deleted Card";
     }
@@ -118,7 +121,7 @@ public class CardParserTest {
     @Test
     public void parse_card_deleteEmpty() throws InkaException {
         Command cmd = parser.parseCommand("card delete -i 1");
-        assertThrows(UnknownItem.class, () -> cmd.execute(cardList, tagList, ui, storage),
+        assertThrows(UnknownItem.class, () -> cmd.execute(cardList, tagList, deckList,ui, storage),
                 "Should fail to delete nothing");
     }
 
@@ -127,7 +130,7 @@ public class CardParserTest {
         cardList.addCard(new Card("QUESTION", "ANSWER"));
 
         Command cmd = parser.parseCommand("card delete -i 0");
-        assertThrows(UnknownItem.class, () -> cmd.execute(cardList, tagList, ui, storage),
+        assertThrows(UnknownItem.class, () -> cmd.execute(cardList, tagList, deckList,ui, storage),
                 "Should fail to delete nothing");
     }
 

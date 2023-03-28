@@ -5,6 +5,9 @@ import java.util.Scanner;
 import model.Card;
 import model.CardList;
 import model.CardUUID;
+import model.Deck;
+import model.DeckList;
+import model.DeckUUID;
 import model.Tag;
 import model.TagList;
 import model.TagUUID;
@@ -109,6 +112,17 @@ public class UserInterface {
         }
     }
 
+    public void printDeckList(DeckList deckList) {
+        if (deckList.isEmpty()) {
+            System.out.println("Your current list of decks is empty.");
+        } else {
+            System.out.println("Here is your current list of decks:");
+            for (int i = 0; i < deckList.size(); ++i) {
+                System.out.println((i + 1) + "." + deckList.get(i));
+            }
+        }
+    }
+
     public void printTags(ArrayList<Tag> tags) {
         if (tags.isEmpty()) {
             System.out.println("There is currently no tags");
@@ -124,20 +138,49 @@ public class UserInterface {
         System.out.println("Successfully added tag " + tagUUID + " to card " + cardUUID);
     }
 
+    public void printAddCardToDeckSuccess(CardUUID cardUUID, DeckUUID deckUUID) {
+        System.out.println("Successfully added card " + cardUUID + " to deck " + deckUUID);
+    }
+    public void printAddTagToDeckSuccess(TagUUID tagUUID, DeckUUID deckUUID) {
+        System.out.println("Successfully added tag " + tagUUID + " to deck " + deckUUID);
+    }
+
     public void printTagCreationSuccess() {
         System.out.println("Tag does not exist.. creating a new one");
+    }
+
+    public void printDeckCreationSuccess() {
+        System.out.println("Deck does not exist.. creating a new one");
     }
 
     public void printRemoveTagFromCard(CardUUID cardUUID, TagUUID tagUUID) {
         System.out.println("Successfully removed tag " + tagUUID + " from card " + cardUUID);
     }
+    public void printRemoveDeckFromCard(CardUUID cardUUID, DeckUUID deckUUID) {
+        System.out.println("Successfully removed deck " + deckUUID + " from card " + cardUUID);
+    }
+
+    public void printRemoveDeckFromTag(TagUUID tagUUID, DeckUUID deckUUID) {
+        System.out.println("Successfully removed deck " + deckUUID + " from tag " + tagUUID);
+    }
+
 
     public void printRemoveTagFromTagList(TagUUID tagUUID) {
         System.out.println("Successfully removed tag " + tagUUID + " from the tag list.");
     }
 
+    public void printRemoveDeckFromDeckList(DeckUUID deckUUID) {
+        System.out.println("Successfully removed deck " + deckUUID + " from the deck list.");
+    }
+
     public void printEditTagNameSuccess(String oldTagName, Tag tag) {
         System.out.println(
                 "Tag " + tag.getUUID() + "tag name has been changed from " + oldTagName + " to " + tag.getTagName());
+    }
+
+    public void printEditDeckNameSuccess(String oldDeckName, Deck deck) {
+        System.out.println(
+                "Deck " + deck.getDeckUUID() + "deck name has been changed from " + oldDeckName
+                        + " to " + deck.getDeckName());
     }
 }
