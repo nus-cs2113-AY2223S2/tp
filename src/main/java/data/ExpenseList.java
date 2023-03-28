@@ -31,7 +31,7 @@ public class ExpenseList implements Serializable {
         return ((count == 1) ? "expense" : "expenses");
     }
 
-    public static void showToUser(String... message) {
+    private static void showToUser(String... message) {
         for (String i : message) {
             System.out.println(i);
         }
@@ -43,4 +43,3 @@ public class ExpenseList implements Serializable {
     }
 
 }
-
