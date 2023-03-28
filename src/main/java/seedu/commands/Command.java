@@ -1,16 +1,17 @@
 package seedu.commands;
 
+
 import seedu.calorietracker.CalorieTracker;
-import seedu.workouttracker.WorkoutList;
+import seedu.workout.WorkoutList;
 
 public class Command {
 
-    public WorkoutList workoutList = new WorkoutList();
+    protected WorkoutList workoutList = new WorkoutList();
     protected CalorieTracker calorieTracker;
-    protected Command() {
+    public Command() {
     }
 
-    public void setData(WorkoutList workoutList, CalorieTracker calorieTracker) {
+    public void setData(WorkoutList workoutList, CalorieTracker calorieTracker) throws IllegalArgumentException{
         if (workoutList == null || calorieTracker == null) {
             throw new IllegalArgumentException("WorkoutList cannot be null.");
         }

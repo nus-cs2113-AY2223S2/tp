@@ -1,5 +1,6 @@
 package seedu.commands.caloriecommands;
 
+
 import seedu.commands.Command;
 import seedu.parser.DateFormatter;
 
@@ -9,7 +10,7 @@ import static seedu.calorietracker.CalorieTracker.CALORIES_NOT_TRACKED;
 
 public class ViewCaloriesCommand extends Command {
 
-    Date dateToView;
+    private final Date dateToView;
     public ViewCaloriesCommand(Date dateToView) {
         this.dateToView = dateToView;
     }

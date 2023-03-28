@@ -1,8 +1,9 @@
 package seedu.commands.workoutcommands;
 
+
 import seedu.commands.Command;
-import seedu.workouttracker.Workout;
-import seedu.workouttracker.WorkoutList;
+import seedu.workout.Workout;
+import seedu.workout.WorkoutList;
 
 import java.util.Date;
 
@@ -11,12 +12,9 @@ public class StartWorkoutCommand extends Command {
             + "Use add command to add exercises to your workout!";
     private static final String ONGOING_WORKOUT_MESSAGE = "End your current workout before starting a new " +
             "one!";
-
     private final Date date;
 
-
     public StartWorkoutCommand(Date date) {
-        super();
         this.date = date;
     }
 
@@ -27,7 +25,6 @@ public class StartWorkoutCommand extends Command {
             workoutList.addWorkout(toStart);
             return START_WORKOUT_MESSAGE;
         }
-
         return ONGOING_WORKOUT_MESSAGE;
     }
 }

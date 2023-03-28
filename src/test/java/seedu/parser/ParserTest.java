@@ -1,7 +1,7 @@
 package seedu.parser;
 
-import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.Test;
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
 import seedu.commands.IncorrectSyntaxCommand;

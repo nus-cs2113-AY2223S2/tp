@@ -1,12 +1,13 @@
 package seedu.commands.workoutcommands;
 
+
 import org.junit.jupiter.api.Test;
 import seedu.calorietracker.CalorieTracker;
 import seedu.commands.Command;
 import seedu.commands.InvalidCommand;
 import seedu.parser.DateFormatter;
-import seedu.workouttracker.Workout;
-import seedu.workouttracker.WorkoutList;
+import seedu.workout.Workout;
+import seedu.workout.WorkoutList;
 
 import java.util.Date;
 

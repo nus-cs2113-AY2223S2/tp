@@ -20,6 +20,5 @@ public class ListWorkoutCommand extends Command {
     public String execute() {
         return workoutList.toString();
     }
-
 }
 

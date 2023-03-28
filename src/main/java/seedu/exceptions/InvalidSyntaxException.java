@@ -1,14 +1,14 @@
 package seedu.exceptions;
 
-public class InvalidSyntaxException extends Exception {
 
-    String error;
-    public InvalidSyntaxException(String error) {
-        this.error = error;
+public class InvalidSyntaxException extends Exception {
+    private final String syntaxError;
+    public InvalidSyntaxException(String syntaxError) {
+        this.syntaxError = syntaxError;
     }
 
     @Override
     public String toString() {
-        return error;
+        return syntaxError;
     }
 }

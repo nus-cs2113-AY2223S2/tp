@@ -1,5 +1,6 @@
 package seedu.duke;
 
+
 import seedu.calorietracker.CalorieTracker;
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
@@ -7,8 +8,7 @@ import seedu.commands.IncorrectSyntaxCommand;
 import seedu.exceptions.InvalidSyntaxException;
 import seedu.parser.Parser;
 import seedu.ui.Ui;
-import seedu.workouttracker.WorkoutList;
-
+import seedu.workout.WorkoutList;
 
 public class Duke {
     private WorkoutList workoutList;
@@ -35,7 +35,7 @@ public class Duke {
                 command = new IncorrectSyntaxCommand(ise.toString());
             }
             command.setData(workoutList, calorieTracker);
-            command.execute();
+            System.out.println(command.execute());
         } while (!ExitCommand.isExit(command));
     }
 }

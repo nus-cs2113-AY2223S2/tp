@@ -1,12 +1,14 @@
 package seedu.commands.workoutcommands;
 
+
 import org.junit.jupiter.api.Test;
 import seedu.calorietracker.CalorieTracker;
-import seedu.workouttracker.Workout;
-import seedu.workouttracker.WorkoutList;
+import seedu.workout.Workout;
+import seedu.workout.WorkoutList;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,7 +37,6 @@ public class ListWorkoutCommandTest {
                         + "1. 11/11/23" + System.lineSeparator()
                         + "2. 11/10/23" + System.lineSeparator(),
                 testList.execute());
-
     }
 }
 

@@ -1,8 +1,9 @@
 package seedu.commands.workoutcommands;
 
+
 import org.junit.jupiter.api.Test;
-import seedu.workouttracker.Exercise;
-import seedu.workouttracker.Workout;
+import seedu.workout.Exercise;
+import seedu.workout.Workout;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

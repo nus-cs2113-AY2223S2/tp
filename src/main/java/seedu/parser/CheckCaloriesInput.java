@@ -1,12 +1,12 @@
 package seedu.parser;
 
+
 import seedu.commands.Command;
 import seedu.commands.IncorrectSyntaxCommand;
 import seedu.commands.caloriecommands.AddCalorieCommand;
 import seedu.commands.caloriecommands.ViewCaloriesCommand;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static seedu.commands.caloriecommands.AddCalorieCommand.CALORIES_NOT_GIVEN;
@@ -16,18 +16,14 @@ public class CheckCaloriesInput {
     private static final int FOOD_INDEX = 1;
     private static final int CALORIES_INDEX = 2;
 
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
-
-
     public static Command processAddCalories(String arguments) {
-
         Date date;
         String food;
         int calories;
 
         try {
             String[] addCaloriesArguments = arguments.trim().split("\\s+", 3);
-            date = DATE_FORMAT.parse (addCaloriesArguments[DATE_INDEX].trim());
+            date = DateFormatter.stringToDate(addCaloriesArguments[DATE_INDEX].trim());
             food = addCaloriesArguments[FOOD_INDEX].trim();
 
             if (addCaloriesArguments.length == 3) {
@@ -48,8 +44,9 @@ public class CheckCaloriesInput {
 
     public static Command processViewCalories(String arguments) {
         Date date;
+
         try {
-            date = DATE_FORMAT.parse(arguments.trim());
+            date = DateFormatter.stringToDate(arguments.trim());
         } catch (ParseException e) {
             return new IncorrectSyntaxCommand("date");
         }

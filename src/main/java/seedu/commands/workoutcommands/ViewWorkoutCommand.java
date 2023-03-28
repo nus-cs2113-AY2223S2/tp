@@ -1,5 +1,6 @@
 package seedu.commands.workoutcommands;
 
+
 import seedu.commands.Command;
 import seedu.parser.DateFormatter;
 
@@ -14,6 +15,7 @@ public class ViewWorkoutCommand extends Command {
         this.workoutToViewDate = workoutToViewDate;
     }
 
+    @Override
     public String execute() {
         try {
             int index = workoutList.getWorkoutArrayList().indexOf(workoutToViewDate);

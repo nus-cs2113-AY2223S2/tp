@@ -1,8 +1,10 @@
 package seedu.commands.workoutcommands;
 
+
 import seedu.commands.Command;
-import seedu.workouttracker.Exercise;
-import seedu.workouttracker.WorkoutList;
+import seedu.workout.Exercise;
+import seedu.workout.WorkoutList;
+
 
 public class AddWorkoutCommand extends Command {
     private final Exercise toAdd;
@@ -15,9 +17,9 @@ public class AddWorkoutCommand extends Command {
     public String execute() {
         if (workoutList.getCurrentWorkoutIndex() == WorkoutList.NO_CURRENT_WORKOUT) {
             return "Start a workout first!";
-
         }
-        return workoutList.getCurrentWorkout().addExercise(toAdd);
-    }
 
+        workoutList.getCurrentWorkout().addExercise(toAdd);
+        return "Added " + toAdd.getName();
+    }
 }

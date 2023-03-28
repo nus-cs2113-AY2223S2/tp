@@ -1,5 +1,7 @@
-package seedu.workouttracker;
+package seedu.workout;
 
+
+import seedu.parser.DateFormatter;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,9 +19,12 @@ public class Workout {
         workoutExercises = new ArrayList<>();
     }
 
-    public String addExercise(Exercise exercise) {
+    public void addExercise(Exercise exercise) {
         workoutExercises.add(exercise);
-        return "Added " + exercise;
+    }
+
+    public String getDateToString() {
+        return DateFormatter.dateToString(date);
     }
 
     public Date getDate() {
@@ -33,7 +38,6 @@ public class Workout {
         return workoutExercises;
     }
 
-    @Override
     public String toString() {
         if (workoutExercises.size() == EMPTY) {
             return EMPTY_EXERCISE_LIST_MESSAGE;

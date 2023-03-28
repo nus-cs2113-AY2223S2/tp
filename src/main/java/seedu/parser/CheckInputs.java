@@ -1,20 +1,20 @@
 package seedu.parser;
 
 
+import seedu.commands.Command;
+import seedu.commands.IncorrectSyntaxCommand;
+import seedu.commands.countcommands.CountSetsRepsCommand;
 import seedu.commands.workoutcommands.AddWorkoutCommand;
 import seedu.commands.workoutcommands.DeleteWorkoutCommand;
 import seedu.commands.workoutcommands.ListWorkoutCommand;
 import seedu.commands.workoutcommands.StartWorkoutCommand;
 import seedu.commands.workoutcommands.ViewWorkoutCommand;
-import seedu.commands.Command;
-import seedu.commands.IncorrectSyntaxCommand;
-import seedu.workouttracker.Exercise;
+import seedu.workout.Exercise;
+
 import java.text.ParseException;
 import java.util.Date;
 
-
 public class CheckInputs {
-
     private static final int EXERCISE_NAME_INDEX = 0;
     private static final int WEIGHT_INDEX = 1;
     private static final int REPS_PER_SET_INDEX = 2;
@@ -76,6 +76,18 @@ public class CheckInputs {
                 new IncorrectSyntaxCommand("/view command");
     }
 
+    //@@ author guillaume-grn
+    static Command processSetsRepsCount(String arguments) {
+        Date date;
+
+        try {
+            date = DateFormatter.stringToDate(arguments);
+        } catch (ParseException e) {
+            return new IncorrectSyntaxCommand("date");
+        }
+        return new CountSetsRepsCommand(date);
+    }
+
 
     /**
      * This method is used to check the input date format
@@ -87,6 +99,7 @@ public class CheckInputs {
         try {
             Date enteredDate = DateFormatter.stringToDate(arguments);
             Date currentDate = new Date();
+
             if (enteredDate.compareTo(currentDate) > 0) {
                 System.out.println("Date cannot be after the current date.");
                 return null;

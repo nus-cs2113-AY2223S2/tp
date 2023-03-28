@@ -1,9 +1,10 @@
 package seedu.parser;
 
+
 import seedu.commands.Command;
+import seedu.commands.ExitCommand;
 import seedu.commands.InvalidCommand;
 import seedu.commands.workoutcommands.EndWorkoutCommand;
-import seedu.commands.ExitCommand;
 import seedu.commands.workoutcommands.HelpWorkoutCommand;
 import seedu.exceptions.InvalidSyntaxException;
 
@@ -29,14 +30,16 @@ public class Parser {
             return CheckInputs.processStart(arguments);
         case "/add":
             return CheckInputs.processAdd(arguments);
+        case "/end":
+            return new EndWorkoutCommand();
         case "/delete":
             return CheckInputs.processDelete(arguments);
         case "/list":
             return CheckInputs.processList(arguments);
         case "/view":
             return CheckInputs.processView(arguments);
-        case "/end":
-            return new EndWorkoutCommand();
+        case "/count":
+            return CheckInputs.processSetsRepsCount(arguments);
         case "/exit":
             return new ExitCommand();
         case "/help":
