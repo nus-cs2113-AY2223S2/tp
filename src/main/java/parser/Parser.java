@@ -78,8 +78,11 @@ public class Parser implements Serializable {
      * @return true if user requires a monthly overview, false if yearly overview requested.
      */
 
-    boolean isMonthlyOverview(String userInput) {
+    boolean isMonthlyOverview(String userInput) throws ArrayIndexOutOfBoundsException {
         String[] input = userInput.split(WHITESPACE);
+//        if (input.length == 1) {
+//            throw new ArrayIndexOutOfBoundsException();
+//        }
         return input.length == 3;
     }
 
@@ -92,14 +95,17 @@ public class Parser implements Serializable {
         }
     }
 
-    public String extractYear(String userInput) {
-        String[] input = userInput.split(WHITESPACE);
-        String year;
+    public String extractYear(String userInput){
+        String[] input = userInput.split(WHITESPACE,3);
+        String year = "-1";
         if (isMonthlyOverview(userInput)) {
             year = input[2].toLowerCase().trim();
-        } else {
+        } else if (input.length == 2) {
             year = input[1].toLowerCase().trim();
         }
+//        } else {
+//            year = input[1].toLowerCase().trim();
+//        }
         return year;
     }
 

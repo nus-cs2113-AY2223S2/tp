@@ -4,7 +4,6 @@ import data.Expense;
 import data.Time;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 import static common.MessageList.MESSAGE_DIVIDER;
@@ -125,7 +124,7 @@ public class CommandSort extends Command {
 
     /* @@Ju Can
      */
-    
+
     public ArrayList<Expense> sortByCategorySum() {
         CommandCategory commandCategory = new CommandCategory(expenseList);
         ArrayList<Expense> expensesByCategorySum = commandCategory.sumByCategory();

@@ -1,16 +1,12 @@
 package command.overview;
 
-import command.CommandCategory;
 import command.CommandSort;
 import command.CommandTotal;
 import data.Expense;
-import exception.FutureDateException;
 import utils.MonthFilter;
 import utils.YearFilter;
 
-import java.awt.*;
 import java.math.RoundingMode;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static common.MessageList.TAB;
@@ -25,7 +21,8 @@ public class MonthlyOverview {
     private static final String WHITE_SPACE = " ";
     private static final String TITLE = "Overview for ";
     private static final String MONTHLY_OVERVIEW_TOTAL = "Total expenses: ";
-    private static final String CATEGORY_TITLE = "Breakdown of expenses by category: ";
+    private static final String CATEGORY_TITLE =
+            "Breakdown of expenses by category in descending order by category sum ";
     private static final String CATEGORY_DIVIDER = "----------------------------";
     private static final String EMPTY_MONTH = "No expenses tracked in ";
 

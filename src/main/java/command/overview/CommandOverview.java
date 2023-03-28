@@ -60,6 +60,9 @@ public class CommandOverview extends Command {
             if (isFutureYear() | isFutureMonth()) {
                 throw new FutureDateException();
             }
+            if (year.equals("-1")) {
+                throw new Exception();
+            }
             if (isMonthlyOverview()) {
                 new MonthlyOverview(expenses, month, year).printOverview();
             } else { // yearly overview
@@ -67,11 +70,14 @@ public class CommandOverview extends Command {
             }
         } catch (IllegalArgumentException | NullPointerException e) {
             System.out.println(MONTH_NAME_ERROR);
+            e.printStackTrace();
         } catch (FutureDateException e) {
             System.out.println(FUTURE_MONTH_ERROR + Month.of(getCurrentMonth() + 1) +
                     WHITE_SPACE + getCurrentYear());
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(NO_SPECIFIC_MONTH_ERROR);
+        } catch (Exception e) {
+            System.out.println("ERROR");
         }
         return null;
     }
