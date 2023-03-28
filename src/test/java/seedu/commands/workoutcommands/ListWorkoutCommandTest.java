@@ -1,6 +1,7 @@
-package seedu.commands;
+package seedu.commands.workoutcommands;
 
 import org.junit.jupiter.api.Test;
+import seedu.commands.Command;
 import seedu.commands.workoutcommands.ListWorkoutCommand;
 import seedu.workouttracker.workout.Workout;
 import seedu.workouttracker.workout.WorkoutList;

@@ -1,7 +1,8 @@
-package seedu.commands;
+package seedu.commands.workoutcommands;
 
 import org.junit.jupiter.api.Test;
 import seedu.DateFormat;
+import seedu.commands.Command;
 import seedu.commands.workoutcommands.DeleteWorkoutCommand;
 import seedu.workouttracker.workout.Workout;
 import seedu.workouttracker.workout.WorkoutList;

@@ -1,4 +1,4 @@
-package seedu.workout;
+package seedu.workouttracker.workout;
 
 import org.junit.jupiter.api.Test;
 import seedu.DateFormat;
