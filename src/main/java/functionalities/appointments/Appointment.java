@@ -14,7 +14,7 @@ public abstract class Appointment {
         this.uid = uid;
         this.animal = animal;
         this.owner = owner;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     public abstract String toString();

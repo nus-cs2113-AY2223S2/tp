@@ -12,7 +12,8 @@ public class Vaccination extends Appointment {
     protected String vaccine;
     protected String description = "vaccination";
 
-    public Vaccination(String uid, Animal animal, Owner owner, LocalDate date, LocalTime time, String vaccine,boolean isDone) {
+    public Vaccination(String uid, Animal animal, Owner owner, LocalDate date, LocalTime time, String vaccine,
+                       boolean isDone){
         super(uid, animal, owner, isDone);
         this.uid = uid;
         this.animal = animal;
