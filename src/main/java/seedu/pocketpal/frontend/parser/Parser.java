@@ -1,6 +1,8 @@
 // @@author adenteo
 package seedu.pocketpal.frontend.parser;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -14,11 +16,13 @@ import seedu.pocketpal.frontend.commands.ExitCommand;
 import seedu.pocketpal.frontend.commands.HelpCommand;
 import seedu.pocketpal.frontend.commands.ViewCommand;
 import seedu.pocketpal.data.entry.Category;
-import seedu.pocketpal.frontend.exceptions.InvalidArgumentsException;
-import seedu.pocketpal.frontend.exceptions.InvalidCategoryException;
 import seedu.pocketpal.frontend.exceptions.InvalidCommandException;
+import seedu.pocketpal.frontend.exceptions.InvalidArgumentsException;
 import seedu.pocketpal.frontend.exceptions.MissingArgumentsException;
+import seedu.pocketpal.frontend.exceptions.InvalidCategoryException;
 import seedu.pocketpal.frontend.constants.MessageConstants;
+import seedu.pocketpal.frontend.exceptions.MissingDateException;
+import seedu.pocketpal.frontend.exceptions.InvalidDateException;
 import seedu.pocketpal.frontend.util.CategoryUtil;
 import seedu.pocketpal.frontend.util.StringUtil;
 
@@ -40,9 +44,8 @@ public class Parser {
      *                                   incorrect format.
      * @throws MissingArgumentsException If required arguments are missing.
      */
-    public Command parseUserInput(String userInput) throws
-            InvalidCommandException, InvalidArgumentsException,
-            MissingArgumentsException, InvalidCategoryException {
+    public Command parseUserInput(String userInput) throws InvalidCommandException, InvalidArgumentsException,
+            MissingArgumentsException, InvalidCategoryException, InvalidDateException, MissingDateException {
         logger.entering(Parser.class.getName(), "parseUserInput()");
         userInput = userInput.trim();
         if (userInput.isEmpty()) {
@@ -104,7 +107,6 @@ public class Parser {
             description = matcher.group(0);
             arguments = arguments.replaceFirst(description, "").trim();
         }
-        System.out.print(arguments);
         matcher = categoryPattern.matcher(arguments);
         if (matcher.find()) {
             category = matcher.group(2);
@@ -148,12 +150,8 @@ public class Parser {
             throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_ARGS_ADD);
         }
         double priceDouble;
-        try {
-            priceDouble = Double.parseDouble(price);
-        } catch (NumberFormatException e) {
-            logger.warning("Price not in numerical format: " + MessageConstants.MESSAGE_INVALID_PRICE);
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
-        }
+        checkIfPriceContainLetters(price);
+        priceDouble = Double.parseDouble(price);
         logger.exiting(Parser.class.getName(), "parseAddCommand()");
         return new AddCommand(description, priceDouble, category);
     }
@@ -188,6 +186,9 @@ public class Parser {
         try {
             for (int i = 0; i < argumentsArray.length; i++) {
                 expenseIdInt = Integer.parseInt(argumentsArray[i]);
+                if(expenseIdInt < 1){
+                    throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+                }
                 assert argumentsArray[i].matches("\\d+") : "Expense ID must be an integer";
                 logger.log(Level.INFO, "Removing specified expense id {0} from list", argumentsArray[i]);
                 expenseIds[i] = expenseIdInt;
@@ -241,7 +242,6 @@ public class Parser {
         matcher = pricePattern.matcher(arguments);
         if (matcher.find()) {
             price = matcher.group(2);
-            System.out.println(price);
         }
         argumentsArray[0] = expenseId;
         argumentsArray[1] = description;
@@ -283,10 +283,7 @@ public class Parser {
         }
 
         if (!price.isEmpty()) {
-            boolean has_letters = price.matches(".*[a-zA-Z]+.*");
-            if (has_letters) {
-                throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
-            }
+            checkIfPriceContainLetters(price);
             Double.parseDouble(price);
         }
 
@@ -309,14 +306,15 @@ public class Parser {
      * @throws InvalidArgumentsException If user specified a non-integer for expense
      *                                   ID.
      */
-    private Command parseViewCommand(String arguments) throws InvalidArgumentsException, InvalidCategoryException {
+    private Command parseViewCommand(String arguments) throws InvalidArgumentsException, InvalidCategoryException,
+            InvalidDateException, MissingDateException {
         logger.entering(Parser.class.getName(), "parseViewCommand()");
         logger.info("Parsing view command with arguments: " + arguments);
         Category category = null;
         String categoryStr = "";
         String priceMinStr;
         String priceMaxStr;
-        String viewCount;
+        String viewCount = "";
         int viewCountInt;
         Double priceMinDble;
         Double priceMaxDble;
@@ -327,28 +325,63 @@ public class Parser {
         String[] argumentsArray = arguments.split(" ");
         assert argumentsArray.length >= 1 : "User input must contain at least 1 argument";
         Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
-        Pattern viewCountPattern = Pattern.compile("\\S+");
-        Pattern priceRangePattern = Pattern.compile("(?:-p|-price)\\s+(\\d+\\.*\\d*)\\s+" +
-                                                    "(?:-p|-price)\\s+(\\d+\\.*\\d*)");
-        Matcher matcher = viewCountPattern.matcher(arguments);
-        matcher.find();
-        viewCount = matcher.group(0);
-        if (viewCount.equals("-c") || viewCount.equals("-category")) { //only category specified
-            viewCount = Integer.toString(Integer.MAX_VALUE);
-        }
-        matcher = categoryPattern.matcher(arguments);
+        Pattern priceRangePattern = Pattern.compile("(-p|-price)\\s+(\\w+(\\s+\\w+)*)");
+        Matcher matcher = categoryPattern.matcher(arguments);
         if (matcher.find()) {
             categoryStr = matcher.group(2);
             category = CategoryUtil.convertStringToCategory(StringUtil.toTitleCase(categoryStr));
+            arguments = arguments.replaceFirst(matcher.group(), "").trim();
         }
         matcher = priceRangePattern.matcher(arguments);
-        if (matcher.find()) {
-            priceMinStr = matcher.group(1);
-            priceMaxStr = matcher.group(2);
-            viewCount = Integer.toString(Integer.MAX_VALUE);
-        } else{
+        if (matcher.find()) { //look for starting price range
+            priceMinStr = matcher.group(2);
+            checkIfPriceContainLetters(priceMinStr);
+            arguments = arguments.replaceFirst(matcher.group(), "").trim();
+            if (matcher.find()) { //look for ending price range
+                priceMaxStr = matcher.group(2);
+                checkIfPriceContainLetters(priceMaxStr);
+                arguments = arguments.replaceFirst(matcher.group(), "").trim();
+            } else { //ending price range not specified
+                priceMaxStr = Integer.toString(Integer.MAX_VALUE);
+            }
+        } else {
             priceMinStr = "0.0";
             priceMaxStr = Double.toString(Double.MAX_VALUE);
+        }
+
+        String startDateString = "";
+        String endDateString = "";
+        Pattern startDatePattern = Pattern.compile("(-sd|-startdate)\\s+(0*\\d+/0*\\d+/\\d{2,})");
+        Pattern endDatePattern = Pattern.compile("(-ed|-enddate)\\s+(0*\\d+/0*\\d+/\\d{2,})");
+        matcher = startDatePattern.matcher(arguments);
+        if (matcher.find()) {
+            startDateString = matcher.group(2);
+            logger.info("start date identified as: " + startDateString);
+            isValidDate(startDateString);
+            logger.info("start date verified");
+            arguments = arguments.replaceFirst(matcher.group(), "").trim();
+            startDateString = startDateString + " 00:00";
+        }
+        matcher = endDatePattern.matcher(arguments);
+        if (matcher.find()) {
+            endDateString = matcher.group(2);
+            logger.info("end date identified as: " + endDateString);
+            isValidDate(endDateString);
+            logger.info("end date verified");
+            arguments = arguments.replaceFirst(matcher.group(), "").trim();
+            endDateString = endDateString + " 23:59";
+        }
+        if (startDateString.isEmpty() ^ endDateString.isEmpty()) {
+            logger.info("Missing at least one date as view command request parameter");
+            throw new MissingDateException(MessageConstants.MESSAGE_MISSING_DATE);
+        }
+        Pattern viewCountPattern = Pattern.compile("\\S+");
+        matcher = viewCountPattern.matcher(arguments);
+        if(matcher.find()){
+            viewCount = matcher.group(0);
+        }
+        if (viewCount.isEmpty()) {
+            viewCount = Integer.toString(Integer.MAX_VALUE);
         }
         try {
             viewCountInt = Integer.parseInt(viewCount);
@@ -357,17 +390,35 @@ public class Parser {
             logger.warning("Expense ID is not an integer: " + MessageConstants.MESSAGE_INVALID_ID);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
-        if (viewCountInt < 0) {
+        if (viewCountInt <= 0) {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
         logger.info("User entered count:" + viewCount);
         logger.info("User entered category:" + categoryStr);
-        logger.exiting(Parser.class.getName(), "parseViewCommand()");
-
-
+        logger.info("User entered start date: " + startDateString);
+        logger.info("User entered end date: " + endDateString);
         priceMinDble = Double.parseDouble(priceMinStr);
         priceMaxDble = Double.parseDouble(priceMaxStr);
-        return new ViewCommand(viewCountInt, category, priceMinDble, priceMaxDble);
+        logger.exiting(Parser.class.getName(), "parseViewCommand()");
+        return new ViewCommand(viewCountInt, category, priceMinDble, priceMaxDble, startDateString, endDateString);
     }
+
+    private void checkIfPriceContainLetters(String string) throws InvalidArgumentsException {
+        boolean hasLetters = string.matches(".*[a-zA-Z]+.*");
+        if (hasLetters) {
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
+        }
+    }
+    private void isValidDate(String dateString) throws InvalidDateException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yy");
+        try {
+            simpleDateFormat.setLenient(false);
+            Date testDate = simpleDateFormat.parse(dateString);
+        } catch (java.text.ParseException e) {
+            logger.warning("Invalid date entered: " + MessageConstants.MESSAGE_INVALID_DATE);
+            throw new InvalidDateException(MessageConstants.MESSAGE_INVALID_DATE);
+        }
+    }
+
 }
 // @@author

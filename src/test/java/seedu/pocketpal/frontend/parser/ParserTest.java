@@ -9,7 +9,10 @@ import org.junit.jupiter.api.Test;
 import seedu.pocketpal.frontend.constants.MessageConstants;
 import seedu.pocketpal.frontend.exceptions.InvalidArgumentsException;
 import seedu.pocketpal.frontend.exceptions.InvalidCommandException;
+import seedu.pocketpal.frontend.exceptions.InvalidDateException;
 import seedu.pocketpal.frontend.exceptions.MissingArgumentsException;
+import seedu.pocketpal.frontend.exceptions.MissingDateException;
+
 
 
 public class ParserTest {
@@ -266,4 +269,52 @@ public class ParserTest {
         Parser parser = new Parser();
         assertDoesNotThrow(() -> parser.parseUserInput("/view 10"));
     }
+
+    @Test
+    public void parseViewCommand_validPriceStartEnd_parsedSuccessfully() {
+        Parser parser = new Parser();
+        assertDoesNotThrow(() -> parser.parseUserInput("/view -p 300 -p 500"));
+    }
+
+    @Test
+    public void parseViewCommand_validPriceStart_parsedSuccessfully() {
+        Parser parser = new Parser();
+        assertDoesNotThrow(() -> parser.parseUserInput("/view -p 300"));
+    }
+
+    // @@author leonghuenweng
+    @Test
+    public void isValidDate_invalidDateException() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidDateException.class, () -> {
+            parser.parseUserInput("/view -sd 31/11/19 -ed 29/2/24");
+        });
+        assertEquals(exception.getMessage(), MessageConstants.MESSAGE_INVALID_DATE);
+
+
+        assertDoesNotThrow(() -> parser.parseUserInput("/view -sd 20/11/19 -ed 29/2/24"));
+    }
+
+    @Test
+    public void parseViewCommand_missingDateException_givenDatesOnly() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(MissingDateException.class, () -> {
+            parser.parseUserInput("/view -sd 30/11/19");
+        });
+        assertEquals(exception.getMessage(), MessageConstants.MESSAGE_MISSING_DATE);
+
+        assertDoesNotThrow(() -> parser.parseUserInput("/view -sd 30/11/19 -ed 30/11/20"));
+    }
+
+    @Test
+    public void parseViewCommand_missingDateException() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(MissingDateException.class, () -> {
+            parser.parseUserInput("/view -c food-sd 30/11/19");
+        });
+        assertEquals(exception.getMessage(), MessageConstants.MESSAGE_MISSING_DATE);
+
+        assertDoesNotThrow(() -> parser.parseUserInput("/view -sd 30/11/19 10-ed 30/11/20"));
+    }
+    // @@author
 }
