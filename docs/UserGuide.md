@@ -14,14 +14,17 @@ Doctor Duke can diagnose illnesses and suggest medicine accordingly faster than 
 2. Down the latest version of **Dr Duke** from [this GitHub repo](https://github.com/AY2223S2-CS2113-W13-1/tp/releases/tag/v1.0).
 3. Download the jar file from the latest release, labelled as **Tp.main.jar**.
 4. Place the file in the folder you want to use as the home folder for your Duke.
-5. Run the jar file via double-clicking on the JAR file, or by copying the file path and entering the following
-   command into your terminal:
+5. Run the jar file via double-clicking on the JAR file, or by copying the file path and entering the copied
+   filepath command into your terminal:
 
-   ~~~
-   java -jar "C:\Users\Albert\Desktop\Tp.main.jar"
-   ~~~
+Example:
+
+~~~
+java -jar "C:\Users\Albert\Desktop\Tp.main.jar"
+~~~
 
 # Features Guide
+
 Upon starting Dr Duke, you will be greeted with a welcome message, 
 
 A menu with options for registering and/or logging in will be shown.
@@ -46,6 +49,7 @@ What would you like to do? Please enter the number:
 ## Register, Log In, Exiting
 
 ### 1. Registering
+
 A new patient can register him/herself into Doctor Duke, by keying in his/her name and a password.
 
 Format: Enter ``1`` to register.
@@ -74,6 +78,7 @@ Registration successful!
 ~~~
 
 ### Logging In
+
 Format: Press ``2`` to register.
 
 Expected outcome: 
@@ -156,19 +161,13 @@ What would you like to do? Please enter the number:
 1. Report symptoms
 2. View diagnosis history
 3. Reset diagnosis history
-<<<<<<< HEAD
-4. Reset symptoms
-5. View Medicine history
-7. List available medicines
-8. Find available medicines
-9. Exit
-=======
-4. View symptoms history
+4. View symptoms History
 5. Delete symptom choice
 6. Reset symptoms
 7. View Medicine history
-8. Exit
->>>>>>> upstream/master
+8. List available medicines
+9. Find available medicine
+0. Exit
 ---------------------------------------------------
 1
 ---------------------------------------------------
@@ -204,6 +203,8 @@ Please enter a symptom.
 ~~~
 The patient will then key in his/her symptoms accordingly, by keying in 'a' for fever, 'b' for Dry cough, 
 so on and so forth, in one string or with spaces.
+
+DO NOT spell out the symptom, just choose the option.
 
 Both forms yield the same expected result.
 

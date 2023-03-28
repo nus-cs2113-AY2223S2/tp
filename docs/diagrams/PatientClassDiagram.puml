@@ -1,3 +1,5 @@
+[comment]: <> (//@@author Geeeetyx)
+
 @startuml
 'https://plantuml.com/sequence-diagram
 
@@ -22,8 +24,10 @@ class Patient{
 +getPatientMedicineHistory()
 +setPatientMedicineHistory(patientMedicineHistory: Hashtable<String, ArrayList<String>>)
 +updatePatientMedicineHistory(date: String, medicines: ArrayList<String>)
--appendMedicineToSameDate(date: String, medicines: ArrayList<String>)
 +printPatientMedicineHistory()
+
+-appendMedicineToSameDate(date: String, medicines: ArrayList<String>)
+
 }
 
 @enduml
