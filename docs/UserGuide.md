@@ -13,8 +13,12 @@ The app also allows users to keep track of their daily exercises to compute thei
 
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of `LifeTracker` from [here](https://github.com/AY2223S2-CS2113-W15-1/tp).
+3. Copy the file to the folder you want ot use as the home folder for your LifeTracker.
+4. Open a command terminal, cd into the folder you put the jar file in, and use the java -jar lifetracker.jar command to run the application.
+5. Type the command in the command box and press Enter to execute it. 
+6. Refer to the features below for details of each command.
 
-## Features v1.0
+## Features v2.0
 
 * View and Update user profile
 * Add meal
@@ -22,6 +26,8 @@ The app also allows users to keep track of their daily exercises to compute thei
 * Add Exercise
 * Calculate caloric needs
 * Calculate amount of calories left in the day
+* Find the nutrition of a certain kind of food
+* Filter foods based on calories
 * Track Calorie Intake
 
 ### Viewing User Profile: `view`
@@ -67,6 +73,7 @@ User can input **1 - 5** to customise their profile
 3. Height
 4. Age
 5. Gender
+6. Exit
 
 Example:
 ![update-example](./UG-images/update-example.png)
@@ -79,7 +86,7 @@ Adds a new meal to database
 
 Format: `add /on [date] /type [MealType] /foods [foods]`
 
-* The `date` should be in `d/m/yyyy` format
+* The `date` should be in `dd/mm/yy` format
 * The `MealType` can be one of the following
   * Breakfast
   * Lunch
@@ -162,7 +169,7 @@ Format: `exercise /type [exercise name] /description [exercise description] /cal
 
 * The `exercise name` and `exercise description` accepts any input
 * The `calories` should be in `float` format
-* The `date` should be in `d/m/yyyy` format
+* The `date` should be in `dd/mm/yy` format
 
 Example:
 ![exercise-example](./UG-images/exercise-example.png)
@@ -188,8 +195,22 @@ Output:
 
 **A**: Do copy the `data` folder and its contents to the new computer
 
+**Q**: Where do you get the data for the food from?
+
+**A**: The nutrition data is based on food from NUS TechnoEdge canteen, as this application would be mainly targeted at NUS Engineering students who would eat there regularly. 
+
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
+| Action  | Format, Examples |
+| ------------- | ------------- |
+| View | view  |
+| Update  | update  |
+| add  | add /on [date] /type [MealType] /foods [foods]  |
+| list  | list foods or list meals  |
+| delete  | delete INDEX e.g delete 3  |
+| filter  | filter  |
+| nutrition  | nutrition  |
+| exercise  | exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date]  |
+| track  | track  |
+| bye  | bye  |
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
