@@ -1,10 +1,8 @@
-package seedu.mealcompanion.command.misc;
+package seedu.mealcompanion.command.recipe;
 
 import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
-import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.recipe.Recipe;
-import seedu.mealcompanion.recipe.RecipeList;
 
 //@@author ngyida
 /**

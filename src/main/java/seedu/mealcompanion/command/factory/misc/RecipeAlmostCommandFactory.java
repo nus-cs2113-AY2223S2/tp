@@ -3,7 +3,7 @@ package seedu.mealcompanion.command.factory.misc;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.command.factory.ExecutableCommandFactory;
-import seedu.mealcompanion.command.misc.RecipeAlmostCommand;
+import seedu.mealcompanion.command.recipe.RecipeAlmostCommand;
 import seedu.mealcompanion.parser.CommandArguments;
 
 /**

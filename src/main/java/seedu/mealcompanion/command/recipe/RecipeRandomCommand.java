@@ -1,13 +1,7 @@
-package seedu.mealcompanion.command.misc;
+package seedu.mealcompanion.command.recipe;
 
 import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
-import seedu.mealcompanion.command.ExecutableCommand;
-import seedu.mealcompanion.ingredient.Ingredient;
-import seedu.mealcompanion.ingredient.IngredientList;
-import seedu.mealcompanion.recipe.IngredientMetadata;
-import seedu.mealcompanion.recipe.Instruction;
-import seedu.mealcompanion.recipe.InstructionList;
 import seedu.mealcompanion.recipe.Recipe;
 import seedu.mealcompanion.recipe.RecipeList;
 import java.util.Random;

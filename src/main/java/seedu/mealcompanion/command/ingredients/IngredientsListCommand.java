@@ -16,10 +16,11 @@ public class IngredientsListCommand extends ExecutableCommand {
         int index = 0;
 
         mealCompanionSession.getUi().printMessage("You have the following ingredients:");
+        mealCompanionSession.getUi().printMessage(fridgeIngredients.toString());
 
-        for (Ingredient ingredient : fridgeIngredients.getIngredients()) {
-            index += 1;
-            mealCompanionSession.getUi().printMessage(index + ". " + ingredient.toString());
-        }
+//        for (Ingredient ingredient : fridgeIngredients.getIngredients()) {
+//            index += 1;
+//            mealCompanionSession.getUi().printMessage(index + ". " + ingredient.toString());
+//        }
     }
 }
