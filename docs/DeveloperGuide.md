@@ -14,8 +14,8 @@
 3. The class imports the **`SniffException`** class from the exception package and utilizes it in the **`showErrorMessage()`** method to display an error message to the user.
 
 ### Command - Class Implementation
-![img_16.png](Updated Command UML.png) <br>
-**Figure 2: UML Diagram of Command Class**
+![img_16.png](Updated%20Command%20UML.png) <br>
+**Figure 2: UML Diagram of Command Class** <br>
 1. The **`Command class`** named `Command` belongs to the package functionalities.commands. The class is an abstract class that provides a basic template for implementing commands in the command-line interface. This class is designed to be extended by subclasses that implement specific commands, such as **`ListCommand`** and **`ConsultationCommand`**.
 2. The **`Command class`** has a boolean isExit field that can be set to true to exit the entire programme, or remain as false to continue running the programme. It has a **`isExit()`** method that sets that field to false initially. It also has a **`executeCommand()`** method that takes an instance of SniffTasks as a parameter and throws a SniffException if an error occurs during execution. Subclasses override this method in order to run other commands.
 
@@ -97,14 +97,49 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 2. The **`Appointment class`** named `Appointment` takes in input such as uid, name, type of appointment, animal type, and date of appointment. This appointment will then  be added to the list.
 3. If the user inputs omits any entry or adds any extra entry then an error message will be displayed. An error message will also be displayed if the input type is of the wrong the format.
 
+##### UID Generation
+The UID is generated to produce a 10 character string representing the Appointment ID tagged to each appointment.
+The UID string generated consists of 3 substrings that are concatenated together:
+- The first substring is a one-character string that represents the appointment type the UID is generated to.  
+  For example, an appointment type of `Surgery` will be denoted as `"S"`.
+- The second substring is an eight character long string with each character representing a digit from 0-9.  
+  Each digit is chosen at random by using Java's inbuilt `Random` class. An example of this substring 
+  will be `"01234567"`.
+- The third substring is a one-character string representing a random letter chosen from A-Z.  
+  This letter is also chosen using Java's inbuilt `Random` class.
+- The UID string is concatenated together using Java's inbuilt `StringBuilder` class. The `StringBuilder` class provides
+  a faster way to concatenate strings as compared to using the `+` operator.   
+  An example of a randomly generated UID string for each appointment type is shown below:
+  - Consultation: `C82739812B`
+  - Vaccination: `V71829748S`
+  - Surgery: `S23847989T`
+
+
+###### Alternatives
+Other alternatives that was considered are:
+- Using the Java inbuilt UUID class.
+   - Pros: Do not need to implement the class itself. Easy to use.
+   - Cons: Overkill as it generates a 128 bit String. Cannot customise to fit our custom uid format.
+- Asking the user to manually key in a UID string themselves.
+   - Pros: Do not need to implement the feature itself.
+   - Cons: We felt that this is counter-intuitive as it increases workload and human error. Automating
+     this process will reduce potential errors.
+
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+Veterinarians in Vet Clinics around Singapore who
+* prefer typing over using a mouse.
+* need to keep track a large number of appointments.
+* prefer Command Line Interface(CLI) over other interfaces.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+Veterinary Clinics have a large number of appointments for the veterinarians and their admin staff to handle.
+
+Sniff is a
+appointment manager that helps clinics keep track of their appointments. This eases the workload of the clinic staff
+and helps improve efficiency in running a Vet clinic, while reducing human errors occurring in the workplace.
 
 ## User Stories
 

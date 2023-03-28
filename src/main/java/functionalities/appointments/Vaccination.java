@@ -24,7 +24,7 @@ public class Vaccination extends Appointment {
 
     @Override
     public String toString() {
-        return " UID: " + uid + " | vaccine: " + vaccine + '\n'
+        return " UID: " + uid + " [" + getStatus() + "]" + " | vaccine: " + vaccine + '\n'
                 + " Date: " + date + " | Time: " + time + '\n'
                 + " Animal Name: " + animal.toString() + '\n'
                 + " Owner Name: " + owner.toString();
@@ -33,5 +33,11 @@ public class Vaccination extends Appointment {
     @Override
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public String retrieveStorageInfo() {
+        return uid + " | " + vaccine + " | " + date + " | " + time + " | " + animal.getAnimalName() + " | " +
+                animal.getAnimalType() + " | " + owner.getName() + " | " + owner.getContactNumber();
     }
 }
