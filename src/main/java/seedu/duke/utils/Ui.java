@@ -372,7 +372,6 @@ public class Ui {
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT) {
             headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
-            //repeat format like above
             headings = new String[]{"Name", "UPC", "Stock"};
         }
         StringBuilder allHeadings = new StringBuilder();
