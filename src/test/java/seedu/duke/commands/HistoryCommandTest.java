@@ -58,4 +58,28 @@ public class HistoryCommandTest {
         results = historyCommand.getHistoryResults();
         assertEquals(null, results);
     }
+
+    /**
+     * Integration tests with edit category
+     */
+    @Test
+    public void historyCategoryTest(){
+        inventory = new Inventory();
+        AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5", inventory);
+        addParser.run();
+        HistoryCommand historyCommand = new HistoryCommand(inventory, "1");
+        ArrayList<Item> results = historyCommand.getHistoryResults();
+        assertTrue(results.get(0).getCategory().equals("uncategorized"));
+        EditParser editParser = new EditParser("upc/1 c/fruits",inventory);
+        editParser.run();
+        historyCommand = new HistoryCommand(inventory, "1");
+        results = historyCommand.getHistoryResults();
+        assertTrue(results.get(0).getCategory().equals("uncategorized"));
+        assertTrue(results.get(1).getCategory().equals("fruits"));
+        addParser = new AddParser("n/orange upc/2 qty/5 p/5 c/fruits", inventory);
+        addParser.run();
+        historyCommand = new HistoryCommand(inventory, "2");
+        results = historyCommand.getHistoryResults();
+        assertTrue(results.get(0).getCategory().equals("fruits"));
+    }
 }

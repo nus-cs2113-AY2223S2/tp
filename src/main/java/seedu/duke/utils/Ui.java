@@ -194,9 +194,7 @@ public class Ui {
     }
 
     public static void printDoubleNeeded() {
-        System.out.println(LINE);
         System.out.println(ANSI_RED + MISSING_PRICE + ANSI_RESET);
-        System.out.println(LINE);
     }
 
     public static void printEmptySearch() {

@@ -57,14 +57,14 @@ public class RemoveCommand extends Command {
             Ui.printItemNotFound();
             return;
         }
-        Item itemToRemove = upcCodes.get(upcCode);
+        Item itemToRemove = new Item(upcCodes.get(upcCode));
         switch (userConfirmation.toUpperCase()) {
         case "Y":
             int indexOfItem = itemInventory.indexOf(itemToRemove);
             String category = itemToRemove.getCategory();
-            upcCodes.remove(upcCode);
             inventory.getUpcCodesHistory().remove(upcCode);
             itemInventory.remove(indexOfItem);
+            upcCodes.remove(upcCode);
             String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
             for (String itemName : itemNames) {
                 removeItemFromHashTrie(itemToRemove, itemName);
@@ -88,7 +88,7 @@ public class RemoveCommand extends Command {
     public void removeByIndex() {
         Item itemToRemove;
         try {
-            itemToRemove = itemInventory.get(itemIndex);
+            itemToRemove = new Item(itemInventory.get(itemIndex));
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printItemNotFound();
             return;
@@ -129,6 +129,7 @@ public class RemoveCommand extends Command {
     }
 
     private void removeItemFromCategoryHash(Item itemToRemove, String category) {
+        category = category.toLowerCase();
         if (categoryHash.get(category).size() == 1) {
             categoryHash.get(category).remove(itemToRemove);
             categoryHash.remove(category);
