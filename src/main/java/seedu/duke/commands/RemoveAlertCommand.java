@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
+import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 
 import java.util.HashMap;
@@ -38,9 +39,11 @@ public class RemoveAlertCommand extends Command {
         if (minmax.equals(MIN_KEYWORD) && hasUpcInAlerts(alertList.getMinAlertUpcs())) {
             alertList.getMinAlertUpcs().remove(upc);
             Ui.printSuccessRemoveAlertCommand();
+            SessionManager.writeSession(alertList);
         } else if (minmax.equals(MAX_KEYWORD) && hasUpcInAlerts(alertList.getMaxAlertUpcs())) {
             alertList.getMaxAlertUpcs().remove(upc);
             Ui.printSuccessRemoveAlertCommand();
+            SessionManager.writeSession(alertList);
         } else {
             Ui.printNonExistentRemoveAlert();
         }

@@ -1,5 +1,6 @@
 package seedu.duke.utils;
 
+import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 
 /**
@@ -15,8 +16,16 @@ public class SessionManager {
         Storage.writeCSV(inventory);
     }
 
+    public static void writeSession(final AlertList alertList) {
+        Storage.writeCSV(alertList);
+    }
+
     public static Inventory getSession() {
         return Storage.readCSV();
+    }
+
+    public static AlertList getSessionAlerts() {
+        return Storage.readAlertCSV();
     }
 
     public static boolean getAutoSave() {
@@ -30,4 +39,10 @@ public class SessionManager {
     public static String inventoryDataFileExist() {
         return Storage.inventoryDataFileExist();
     }
+
+    public static String alertDataFileExist() {
+        return Storage.alertDataFileExist();
+    }
+
+
 }
