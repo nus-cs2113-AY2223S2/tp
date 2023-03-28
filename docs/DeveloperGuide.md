@@ -14,7 +14,7 @@
 
 The main class in our program is the ```Record``` and ```RecordList``` abstract classes, in which ```Income```, ```Expense``` will inherit from ```Record``` and ```IncomeList``` and ```ExpenseList``` will inherit from ```RecordList```. Most commands will act on instances of the ```Income```, ```Expense```,```IncomeList``` and ```ExpenseList``` classes.  
 
-![Record Class](../images/Record_RecordList_UML_class.png)
+![Record Class](images/Record_RecordList_UML_class.png)
 
 ### DeleteIncomeCommand 
 
@@ -26,13 +26,13 @@ Entering any of these optional lines will result in early termination of the com
 Or else, the command will continue to delete the entry at the particular index.  
 Afterwards, the ```execute()``` method will print ```"Income deleted, here is the updated list:"``` and prints the entries in the income list.
 
-![Record Class](../images/DeleteIncomeCommand_sequence_diagram.png)
+![Record Class](images/DeleteIncomeCommand_sequence_diagram.png)
 
 ### Target and TargetStorage
 
 The `Target` and `TargetStorage` class allows users to set a target for their ideal balance.
 
-![Target Class](../images/Target_UML.png)
+![Target Class](images/Target_UML.png)
 
 ### [Proposed] EditIncomeCommand/EditExpenseCommand
 The proposed edit income command is facilitated by `Parser`, `EditIncomeCommand`, `IncomeList`, while the proposed edit expense command is facilitated by `Parser`, `EditExpenseCommand` and `ExpenseList`. 
@@ -45,13 +45,13 @@ Given below is how the edit income mechanism works at each step:
 3. `EditIncomeCommand` will then perform its `execute` method, where for each field to be edited, it will call `editIncome` method from the `ExpenseList` class. This would then update the required income record accordingly.
 
 The following sequence diagram shows how the edit income command works:
-<br> ![edit income sequence diagram](../images/EditIncomeCommand_sequence_diagram.png)
+<br> ![edit income sequence diagram](images/EditIncomeCommand_sequence_diagram.png)
 
 The edit expense command works in a similar way, with its sequence diagram as shown:
-<br> ![edit expense sequence diagram](../images/EditExpenseCommand_sequence_diagram.png)
+<br> ![edit expense sequence diagram](images/EditExpenseCommand_sequence_diagram.png)
 
 The following activity diagram summarises what happens when a user executes edit income command:
-<br> ![edit income activity diagram](../images/EditIncomeCommand_activity_diagram.png)
+<br> ![edit income activity diagram](images/EditIncomeCommand_activity_diagram.png)
 <br> Note that edit expense command produces the same activity diagram.
 
 **Design Considerations**
@@ -72,7 +72,7 @@ which calls the ```IncomeList``` method ```addIncome``` to add the input into ``
 3. ```execute``` then calls the ```Ui``` method ```showAdded``` which makes use of  ```System```
 to print the ```Income``` added.
 
-![AddIncomeCommand](../images/AddIncomeCommand_Sequence_Diagram.png)
+![AddIncomeCommand](images/AddIncomeCommand_Sequence_Diagram.png)
 ### ListExpenseCommand
 The listExpenseCommand is facilitated by ```Parser```, ```ListExpenseCommand``` and ```ExpenseList```.
 
@@ -84,14 +84,14 @@ The listExpenseCommand is facilitated by ```Parser```, ```ListExpenseCommand``` 
    is called, which iterates through the expenseList, ```expenses``` and prints the index as well as a completed string of
    expenses in ```expenses```.
 
-![ListExpenseCommand](../images/ListExpenseCommand_Sequence_Diagram.png)
+![ListExpenseCommand](images/ListExpenseCommand_Sequence_Diagram.png)
 ### SetTargetCommand
 The setTargetCommand is facilitated by ```ChChing```, ```Parser```, ```TargetParser```, ```TargetStorage```.
 When the command receives to set target, the ```parse()``` method of the ```Parser``` object will read in the command and call the ```parseTarget()``` method from the TargetParser class 
 to instantiate a Target object and initializes a target value. Afterwards, ```parse()``` method calls the ```AddTargetCommand``` and  instantiate a ```SetTargetCommand``` object and returns to the ```Parser``` object.
 The ```Parser``` object then returns to ```ChChing```. ```ChChing``` object then runs the ```execute()``` method of the SetTargetCommand object. The method then calls the ```setTarget()``` method of the ```TargetStorage``` object to store the previously initialized ```Target``` object.
 
-![SetTargetCommand UML](../images/SetTargetCommand.png)
+![SetTargetCommand UML](images/SetTargetCommand.png)
 ### SetCurrencyCommand
 The setCurrencyCommand is facilitated by ```System```, ```Selector```,  ```UI``` and ```ExpenseList```.
 The command receives the instruction from ```UI``` and will call the ```execute``` method.
@@ -102,8 +102,7 @@ Afterwards, the ```execute()``` method will call the ```printSelector()``` metho
 The ```printSelector()``` method will print all the available currencies in the selector hashmap.
 The selected currencies will be marked with a ```[X]``` and the unselected currencies will be marked with a ```[ ]```.
 
-<br> ![Set Currency Sequence Diagram](../images/SetCurrencyCommand_sequence_diagram.png)
-
+![SetCurrencyCommand_sequence_diagram.png](images%2FSetCurrencyCommand_sequence_diagram.png)
 
 ## Product scope
 
