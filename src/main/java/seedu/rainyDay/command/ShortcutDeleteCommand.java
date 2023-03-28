@@ -1,7 +1,6 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.modules.Storage;
 
 import java.util.HashMap;
 import java.util.logging.FileHandler;
@@ -28,7 +27,6 @@ public class ShortcutDeleteCommand extends Command {
     public CommandResult execute() {
         if (shortcutCommands.containsKey(keyToDelete)) {
             shortcutCommands.remove(keyToDelete);
-            Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
             return new CommandResult(SHORTCUT_SUCCESSFULLY_DELETED);
         }
         return new CommandResult(SHORTCUT_DOES_NOT_EXIST);

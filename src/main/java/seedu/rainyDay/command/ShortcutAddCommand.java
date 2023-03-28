@@ -2,7 +2,6 @@ package seedu.rainyDay.command;
 
 
 import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.modules.Storage;
 
 import java.util.HashMap;
 import java.util.logging.FileHandler;
@@ -30,7 +29,6 @@ public class ShortcutAddCommand extends Command {
     public CommandResult execute() {
         if (!shortcutCommands.containsKey(key)) {
             shortcutCommands.put(key, value);
-            Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
             return new CommandResult(SHORTCUT_SUCCESSFULLY_ADDED);
         }
         return new CommandResult(SHORTCUT_ALREADY_EXISTS);

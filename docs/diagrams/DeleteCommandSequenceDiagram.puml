@@ -10,13 +10,13 @@ DeleteCommand -> UserData : getStatement(statementIndex : int)
 activate UserData
 
 UserData -> FinancialReport : getFinancialStatement(statementNumber : int)
-activate UserData
+activate FinancialReport
 
 FinancialReport --> UserData : : FinancialStatement
 deactivate FinancialReport
 
 UserData --> DeleteCommand : : FinancialStatement
-deactivate DeleteCommand
+deactivate UserData
 
 DeleteCommand -> UserData : deleteStatement(statementIndex : int)
 activate UserData
@@ -24,7 +24,7 @@ activate UserData
 UserData -> FinancialReport : deleteStatement(statementNumber : int)
 activate FinancialReport
 
-FinancialReport -> FinancialReport : removeFromMonthlyExpenditure(statement : FinancialStatement)
+FinancialReport -> FinancialReport : removeFromMonthlyExpenditure\n(statement : FinancialStatement)
 activate FinancialReport
 
 FinancialReport --> FinancialReport
@@ -36,8 +36,20 @@ deactivate FinancialReport
 UserData --> DeleteCommand
 deactivate UserData
 
-DeleteCommand -> UserData : checkUserBudgetLimit(newStatement : Financial Statement)
+DeleteCommand -> UserData : checkUserBudgetLimit(statement \n: Financial Statement)
 activate UserData
+
+UserData -> FinancialReport : getMonthlyExpenditure\n(currentStatement : FinancialStatement)
+activate FinancialReport
+
+FinancialReport -> FinancialStatement : getMonthAndYear()
+activate FinancialStatement
+
+FinancialStatement --> FinancialReport : : int
+deactivate FinancialStatement
+
+FinancialReport -> UserData : : double
+deactivate FinancialReport
 
 UserData --> DeleteCommand : :String
 deactivate UserData
