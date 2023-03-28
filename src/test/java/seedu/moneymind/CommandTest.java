@@ -8,6 +8,7 @@ import seedu.moneymind.command.CategoryCommand;
 import seedu.moneymind.command.Command;
 import seedu.moneymind.command.Parser;
 import seedu.moneymind.event.Event;
+import seedu.moneymind.exceptions.InvalidCommandException;
 import seedu.moneymind.string.Strings;
 import seedu.moneymind.ui.Ui;
 
@@ -37,22 +38,91 @@ public class CommandTest {
     }
 
     @Test
-    void addCategory_oneCategory_expectThreeCategoryInCategoryList() {
+    void addCategory_oneCategoryAndNoBudget_expectThreeCategoryInCategoryList() {
         setup();
-        String input = "category travel";
-        executeInput(input);
+        executeInput("category travel");
         assertEquals(3, CategoryList.categories.size());
         assertEquals("travel", CategoryList.categories.get(2).getName());
+        assertEquals(0, CategoryList.categories.get(2).getBudget());
+        clear();
+    }
+
+    @Test
+    void addCategory_sameCategory_expectCategoryExistsMessage() {
+        setup();
+        String terminalOutput = executeInput("category food").toString();
+        assertEquals("Category already exists" + System.lineSeparator(), terminalOutput);
+        assertEquals(2, CategoryList.categories.size());
+        assertEquals("food", CategoryList.categories.get(0).getName());
+        clear();
+    }
+
+    @Test
+    void addCategory_dummyBudget_expectGivingPositiveIntegerMessage() {
+        setup();
+        String terminalOutput = executeInput("category travel b/ad").toString();
+        assertEquals("Please give a positive integer for budget" + System.lineSeparator(), terminalOutput);
+        assertEquals(2, CategoryList.categories.size());
+        assertEquals("food", CategoryList.categories.get(0).getName());
+        clear();
+    }
+
+    @Test
+    void addCategory_negativeBudget_expectGivingPositiveIntegerMessage() {
+        setup();
+        String terminalOutput = executeInput("category travel b/-12").toString();
+        assertEquals("Please give a positive integer for budget" + System.lineSeparator(), terminalOutput);
+        assertEquals(2, CategoryList.categories.size());
+        clear();
+    }
+
+    @Test
+    void addCategory_oneCategoryWithBudget_expectThreeCategoryInCategoryList() {
+        setup();
+        executeInput("category travel b/100");
+        assertEquals(3, CategoryList.categories.size());
+        assertEquals("travel", CategoryList.categories.get(2).getName());
+        assertEquals(100, CategoryList.categories.get(2).getBudget());
+        clear();
+    }
+
+    @Test
+    void addCategory_emptyDescription_expectEmptyDescriptionMessage() {
+        setup();
+        String terminalOutput = executeInput("category").toString();
+        assertEquals("☹ OOPS!!! The description of a category cannot be empty."
+                + System.lineSeparator(), terminalOutput);
+        assertEquals(2, CategoryList.categories.size());
+        clear();
+    }
+
+    @Test
+    void addCategory_emptyCategoryName_expectCorrectFormatMessage() {
+        setup();
+        String terminalOutput = executeInput("category b/100").toString();
+        assertEquals("Please following the correct format: category NAME [(optional) b/<budget number>]\n" +
+                "Remember do not leave any things inside the brackets empty!"
+                + System.lineSeparator(), terminalOutput);
+        assertEquals(2, CategoryList.categories.size());
+        clear();
+    }
+
+    @Test
+    void addCategory_twoBudgetSpecifiers_expectMatchingTheLastSpecifier() {
+        setup();
+        String terminalOutput = executeInput("category travel b/12 b/12").toString();
+        assertEquals(3, CategoryList.categories.size());
+        assertEquals("travel b/12", CategoryList.categories.get(2).getName());
+        assertEquals(12, CategoryList.categories.get(2).getBudget());
         clear();
     }
 
     @Test
     void addEvent_oneFoodEvent_expectThreeEventsInFoodCategory() {
         setup();
-        String input = "event banana e/20";
         String categoryIndex = "1" + Strings.NEW_LINE; // replace with the correct input string
         Moneymind.in = new Scanner(categoryIndex);
-        executeInput(input);
+        executeInput("event banana e/20");
         Moneymind.in = new Scanner(System.in);
         assertEquals("banana", food.events.get(2).getDescription(),
                 "expected: banana, actual: " + food.events.get(2).getDescription());
@@ -64,10 +134,9 @@ public class CommandTest {
     @Test
     void editEvent_oneEvent_expectEventEdited() {
         setup();
-        String input = "edit c/food e/1";
         String newExpense = "12" + Strings.NEW_LINE;
         Moneymind.in = new Scanner(newExpense);
-        executeInput(input);
+        executeInput("edit c/food e/1");
         Moneymind.in = new Scanner(System.in);
         assertEquals(12, food.events.get(0).getExpense());
         clear();
@@ -76,8 +145,7 @@ public class CommandTest {
     @Test
     void deleteWholeCategory_oneCategory_expectOneCategoryInList() {
         setup();
-        String input = "delete c/food";
-        executeInput(input);
+        executeInput("delete c/food");
         assertEquals(1, CategoryList.categories.size());
         assertEquals("book", CategoryList.categories.get(0).getName());
         clear();
@@ -86,8 +154,7 @@ public class CommandTest {
     @Test
     void deleteEvent_oneBookEvent_expectOneEventInBookCategory() {
         setup();
-        String input = "delete c/book e/1";
-        executeInput(input);
+        executeInput("delete c/book e/1");
         assertEquals(1, book.events.size());
         assertEquals("Lord of the Rings", book.events.get(0).getDescription());
         clear();
@@ -96,64 +163,42 @@ public class CommandTest {
     @Test
     void viewAll_expectEverythingToBePrintedOut() {
         setup();
-        String input = "view";
-        Parser parser = new Parser();
-        // Get help from chatGPT for the next 2 lines
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-
-        try {
-            Command command = parser.parseNextCommand(input);
-            command.execute(new Ui());
-        } catch (Exception e) {
-            System.exit(-1);
-        }
-
-        String actual = outputStream.toString();
+        String terminalOutput = executeInput("view").toString();
         String expected = "1.food (budget: 0)" + System.lineSeparator()
                 + "salad [expense]100" + System.lineSeparator()
                 + "pizza [expense]200" + System.lineSeparator()
                 + "2.book (budget: 0)" + System.lineSeparator()
                 + "Harry Potter [expense]70" + System.lineSeparator()
                 + "Lord of the Rings [expense]90" + System.lineSeparator();
-        assertEquals(expected, actual);
+        assertEquals(expected, terminalOutput);
         clear();
     }
 
     @Test
     void viewCategory_expectCategoryToBePrintedOut() {
         setup();
-        String input = "view food";
-        Parser parser = new Parser();
-        // Get help from chatGPT for the next 2 lines
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-
-        try {
-            Command command = parser.parseNextCommand(input);
-            command.execute(new Ui());
-        } catch (Exception e) {
-            System.exit(-1);
-        }
-
-        String actual = outputStream.toString();
+        String terminalOutput = executeInput("view food").toString();
         String expected = "1. salad [expense]100" + System.lineSeparator()
                 + "2. pizza [expense]200" + System.lineSeparator();
-        assertEquals(expected, actual);
+        assertEquals(expected, terminalOutput);
         clear();
     }
 
-    private static void executeInput(String input) {
+    private ByteArrayOutputStream executeInput(String input) {
+        Ui ui = new Ui();
         Parser parser = new Parser();
         // Get help from chatGPT for the next 2 lines
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         try {
             Command command = parser.parseNextCommand(input);
-            command.execute(new Ui());
+            command.execute(ui);
+        } catch (InvalidCommandException error) {
+            error.showErrorMessage();
         } catch (Exception e) {
-            System.exit(-1);
+            // no code needed here
         }
+        return outputStream;
     }
 
     /**
@@ -163,4 +208,5 @@ public class CommandTest {
         CategoryList.categories.clear();
         CategoryCommand.categoryMap.clear();
     }
+
 }
