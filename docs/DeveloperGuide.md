@@ -9,6 +9,7 @@
   - [Remove](#remove)
   - [Search](#search)
   - [Filter](#filter)
+  - [Alert](#alert)
 - [Product Scope](#product-scope)
   - [Target User Profile](#target-user-profile)
   - [Value Proposition](#value-proposition)
@@ -46,13 +47,18 @@ Overall, the architecture diagram shows how the different components of the Magu
 ## Implementation
 ### List
 The list command is mainly handled by the `ListCommand` class, which extends the `Command` class.
+
 ![ListCommand.png](UML%2FList%2FListCommand.png)
 
 
 **Step 1**. When the user executes the command `list`, the `ParserHandler` will create a new `ListParser` object and pass to it the `Inventory` where the items to be listed are stored.
+
 ![ListStep1.png](UML%2FList%2FListStep1.png)
+
 **Step 2**. The `run` method in `ListParser` overrides the `run` method in `Parser` to create a new `ListCommand` object, passing to it the relevant `Inventory`.
+
 ![ListStep2.png](UML%2FList%2FListStep2.png)
+
 **Step 3**. The `run` method in `ListCommand` overrides the `run` method in `Command` and calls the `listItems` method. The `listItems` method checks if the inventory is empty. If the inventory is empty, the method prints a message to inform the user that there are no items in the inventory. Otherwise, the `printTable` method from the `Ui` object is called.
 ![ListStep3.png](UML%2FList%2FListStep3.png)
 **Step 4.**. If the `printTable` method is called, it takes in an `ArrayList<Item> items` aas a parameter and prints out a table showing the name, UPC, quantity and price of all items in the inventory.
@@ -218,6 +224,11 @@ followed by printing the details of this first instance. It will then go through
 print the differences, if any. If there is more than 1 item in the list provided to the function, it will then print
 the details of the last and most current instant of the item.
 
+
+### Alert
+The alert command is mainly handled by the `AddAlertCommand` class and `RemoveAlertCommand` class, both of which extend the `Command` class. It is parsed bu the `AlertParser` class, which extends the `Parser` class.
+
+When the user executes a command that begins with the word `alert`, the ParserHandler will create a new `AlertParser` object and pass in the appropriate `input`, as well as the corresponding `inventory` where the 
 ## Product scope
 ### Target user profile
 

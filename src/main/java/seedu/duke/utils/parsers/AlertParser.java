@@ -13,11 +13,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AlertParser extends Parser {
-    private AlertList alertList;
 
     public AlertParser(String rawInput, Inventory inventory) {
         super(rawInput, inventory);
-        this.alertList = inventory.getAlertList();
     }
 
     private void parseAddAlert(String rawInput, Inventory inventory) {
