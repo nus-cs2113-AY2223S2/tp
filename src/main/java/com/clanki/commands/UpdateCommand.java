@@ -6,6 +6,7 @@ import com.clanki.objects.FlashcardList;
 import com.clanki.ui.Ui;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class UpdateCommand extends Command {
@@ -79,15 +80,15 @@ public class UpdateCommand extends Command {
                 index = implementUpdate(flashcards, userText);
                 System.out.println("Understood. The card has been updated to");
                 printFlashCard(flashcards.get(index));
-            } catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException | InvalidInputException e) {
                 System.out.println("Please enter the input in the correct format as shown in the user guide.");
             } catch (NumberFormatException e) {
                 System.out.println("Please enter the index of the flashcard you want to update.");
             } catch (IndexOutOfBoundsException e) {
                 System.out.print("You have selected an index out of the list. ");
                 System.out.println("There are only " + matchingFlashcards.size() + " flashcards that match the query.");
-            } catch (InvalidInputException e) {
-                System.out.println("Please enter the input in the correct format as shown in the user guide.");
+            } catch (DateTimeParseException e) {
+                System.out.println("Please enter the date in the format: yyyy-mm-dd");
             }
         } else {
             System.out.println("There are no flashcards with the query \"" + query + "\".");
