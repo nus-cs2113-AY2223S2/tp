@@ -32,7 +32,7 @@ This guide will introduce you to the basics of using Meal Companion and its curr
 
 `Markdown text` like this indicates a command you can input, or a file name. For example, `this is a command you can enter` or `this_is_a_file.exe`. 
 
-Within the `markdown text` you may see segments of text wrapped in `<chevrons>`. These chevrons indicate that this field in the command is to be replaced with your input. For example, a command `add <ingredient>` means you should enter the command `add apples`. 
+Within the `markdown text` you may see segments of text wrapped in `<chevrons>`. These chevrons indicate that this field in the command is a placeholder, to be replaced with your input. For example, a command `add <ingredient>` means you should enter the command `add apples`. 
 
 #### [Back to table of contents](#table-of-contents)
 
@@ -45,11 +45,13 @@ Within the `markdown text` you may see segments of text wrapped in `<chevrons>`.
 
 Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
 
-3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file path>` commands as necessary.
+3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file_path>` commands as necessary.
 4. Ensure the terminal is within the correct folder.
 5. Use the command `java -jar mealcompanion.jar` to launch Meal Companion.
 ![startup1.png](images/startup1.png)
 6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
+
+Meal Companion uses a Command Line Interface (CLI), as the current version is just a proof of concept. We have plans to further develop Meal Companion to include a Graphical User Interface (GUI), or even to a mobile application platform. However as we have not yet reached that stage in our development, the CLI will suffice as the input method to operate Meal Companion. We apologize for any inconvenience caused.
 
 #### [Back to table of contents](#table-of-contents)
 
@@ -107,7 +109,7 @@ To display all stored recipes including default recipes, you may use the command
 ![recipeall.png](images/recipeall.png)
 
 ### Recipe Details
-To go into details about a certain recipe, use the command `recipe <index number>`, using the `<index number>` from the generated list. 
+To go into details about a certain recipe, use the command `recipe <index_number>`, using the `<index_number>` from the generated list. 
 
 For example, to view the recipe for Hainanese Chicken Rice, use the command `recipe 6`.
 ![recipedetails.png](images/recipedetails.png)
@@ -146,6 +148,7 @@ Please see the below table for the list of available commands.
 | Remove ingredients from your list | `remove <ingredient> /qty <quantity>` | `remove ground chicken /qty 100` |
 | List all stored ingredients | `ingredients list` | `ingredients list` |
 | Search for a valid ingredient | `ingredients search <keyword>` | `ingredients search salt` |
+| Return all valid ingredients | `ingredients search` | `ingredients search` |
 | List all stored recipes | `recipe all` | `recipe all` |
 | List details of a specific recipe | `recipe <index of recipe>` | `recipe 6` (recipe for Hainanese Chicken Rice) |
 | List recipes that can be made with current list of stored ingredients | `recipe possible` | `recipe possible` |
