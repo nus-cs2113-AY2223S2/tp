@@ -13,6 +13,12 @@ public class HistoryCommand extends Command{
         super(inventory);
         this.input = input;
     }
+
+    /**
+     * Gets a list of history results for an item.
+     *
+     * @return ArrayList Item of history results. If no results are found, returns null instead.
+     */
     public ArrayList<Item> getHistoryResults(){
         if(!inventory.getUpcCodesHistory().containsKey(input)){
             return null;
@@ -21,6 +27,11 @@ public class HistoryCommand extends Command{
         Collections.sort(results);
         return results;
     }
+
+    /**
+     * Executes function to find results. If there are results, prints them. Else it prints that there are no items.
+     *
+     */
     @Override
     public void run() {
         ArrayList<Item> results = getHistoryResults();
