@@ -50,11 +50,17 @@ The list command is mainly handled by the `ListCommand` class, which extends the
 
 
 **Step 1**. When the user executes the command `list`, the `ParserHandler` will create a new `ListParser` object and pass to it the `Inventory` where the items to be listed are stored.
+
 ![ListStep1.png](UML%2FList%2FListStep1.png)
+
 **Step 2**. The `run` method in `ListParser` overrides the `run` method in `Parser` to create a new `ListCommand` object, passing to it the relevant `Inventory`.
+
 ![ListStep2.png](UML%2FList%2FListStep2.png)
+
 **Step 3**. The `run` method in `ListCommand` overrides the `run` method in `Command` and calls the `listItems` method. The `listItems` method checks if the inventory is empty. If the inventory is empty, the method prints a message to inform the user that there are no items in the inventory. Otherwise, the `printTable` method from the `Ui` object is called.
+
 ![ListStep3.png](UML%2FList%2FListStep3.png)
+
 **Step 4.**. If the `printTable` method is called, it takes in an `ArrayList<Item> items` aas a parameter and prints out a table showing the name, UPC, quantity and price of all items in the inventory.
 
 
