@@ -1,11 +1,19 @@
 package seedu.duke.ui;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.data.userdata.userplan.UserPlan;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class TestUi {
+    private static final String OPEN_BRACE = "[";
+    private static final String CLOSE_BRACE = "]";
+    //@@author L-K-Chng
     /**
      * Checks if the ui.splitLine() method prints the correct output.
      */
@@ -28,6 +36,7 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    //@@author L-K-Chng
     /**
      * Checks if the ui.printFilters() method prints the correct output.
      */
@@ -70,6 +79,7 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    //@@author L-K-Chng
     /**
      * Checks if the ui.unknownCommand() method prints the correct output.
      */
@@ -92,6 +102,7 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    //@@author L-K-Chng
     /**
      * Checks if the ui.printHelp() method prints the correct output.
      */
@@ -117,9 +128,12 @@ public class TestUi {
                     "\tShow all plans\r\n" +
                     "[planner]\r\n" +
                     "\tEnter workout plan editor\r\n" +
+                    "[quick]\r\n" +
+                    "\tGenerate a planned exercise: quick PLAN_NAME x\r\n" +
+                    "\tPLAN_NAME needs has to be in your planner, and x is the number of exercises\r\n" +
                     "[find]\r\n" +
                     "\tfinds all relevant exercises based on the keyword : find [keyword]\r\n" +
-                    "[bye]\r\n" +
+                    "[exit]\r\n" +
                     "\tEnd the program\r\n";
         } else {
             expectedOutput = "These are some commands available:\n" +
@@ -132,14 +146,18 @@ public class TestUi {
                     "\tShow all plans\n" +
                     "[planner]\n" +
                     "\tEnter workout plan editor\n" +
+                    "[quick]\n" +
+                    "\tGenerate a planned exercise: quick PLAN_NAME x\n" +
+                    "\tPLAN_NAME needs has to be in your planner, and x is the number of exercises\n" +
                     "[find]\n" +
                     "\tfinds all relevant exercises based on the keyword : find [keyword]\n" +
-                    "[bye]\n" +
+                    "[exit]\n" +
                     "\tEnd the program\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    //@@author L-K-Chng
     /**
      * Checks if the ui.greetUser() method prints the correct output.
      */
@@ -174,6 +192,8 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+
+    //@@author L-K-Chng
     /**
      * Checks if the ui.byeUser() method prints the correct output.
      */
@@ -214,6 +234,7 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    //@@author L-K-Chng
     /**
      * Checks if the ui.printPlannerHelp() method prints the correct output.
      */
@@ -258,63 +279,164 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
-    //To be completed
-    /*@Test
+    //@@author L-K-Chng
+    /**
+     * Checks if printUserExerciseHistory() method prints the correct output.
+     */
+    @Test
+    void testPrintUserExerciseHistory() {
+        //add one value then compare.
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+        HashMap<String,Integer> userExerciseDataMap = new HashMap<>();
+        String exerciseName = "3/4 Sit-Up";
+        String exerciseNameTwo = "90/90 Hamstring";
+        userExerciseDataMap.put(exerciseName, 1);
+        userExerciseDataMap.put(exerciseName, 1);
+        userExerciseDataMap.put(exerciseNameTwo,1);
+
+        if (userExerciseDataMap.containsKey(exerciseName)) {
+            int count = userExerciseDataMap.get(exerciseName);
+            userExerciseDataMap.put(exerciseName, count + 1);
+        } else {
+            userExerciseDataMap.put(exerciseName, 1);
+        }
+
+        Ui ui = new Ui();
+        ui.printUserExerciseHistory(userExerciseDataMap);
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "Here is a list of all the exercises you have completed:\r\n" +
+                    "\r\n" +
+                    "Exercise: 3/4 Sit-Up" + "\tFrequency of Completion: 2\r\n" +
+                    "Exercise: 90/90 Hamstring" + "\tFrequency of Completion: 1\r\n";
+        } else {
+            expectedOutput = "Here is a list of all the exercises you have completed:\n" +
+                    "\n" +
+                    "Exercise: 3/4 Sit-Up" + "\tFrequency of Completion: 2\n" +
+                    "Exercise: 90/90 Hamstring" + "\tFrequency of Completion: 1\n";
+        }
+        assertEquals(expectedOutput,actualOutput.toString());
+    }
+
+    //@author Khulon
+    @Test
+    void testPrintPlans() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        UserPlan planner = new UserPlan();
+        Ui ui = new Ui();
+        ui.showPlan(planner);
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "YOUR WORKOUT PLAN:\r\n" +
+                    "_________\r\n" +
+                    "MONDAY\r\n" +
+                    "_________\r\n" +
+                    "TUESDAY\r\n" +
+                    "_________\r\n" +
+                    "WEDNESDAY\r\n" +
+                    "_________\r\n" +
+                    "THURSDAY\r\n" +
+                    "_________\r\n" +
+                    "FRIDAY\r\n" +
+                    "_________\r\n" +
+                    "SATURDAY\r\n" +
+                    "_________\r\n" +
+                    "SUNDAY\r\n";
+        } else {
+            expectedOutput = "YOUR WORKOUT PLAN:\n" +
+                    "_________\n" +
+                    "MONDAY\n" +
+                    "_________\n" +
+                    "TUESDAY\n" +
+                    "_________\n" +
+                    "WEDNESDAY\n" +
+                    "_________\n" +
+                    "THURSDAY\n" +
+                    "_________\n" +
+                    "FRIDAY\n" +
+                    "_________\n" +
+                    "SATURDAY\n" +
+                    "_________\n" +
+                    "SUNDAY\n";
+        }
+        assertEquals(expectedOutput,actualOutput.toString());
+    }
+
+    //@author L-K-Chng
+
+    /**
+     * Checks if printExerciseFromList() method prints the correct output.
+     */
+    @Test
     void testPrintExerciseFromList() {
-        String OPEN_BRACE = "[";
-        String CLOSE_BRACE = "]";
+
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
+        ExerciseData exerciseData = new ExerciseData();
+        exerciseData.setId("0");
+        exerciseData.setName("3/4 Sit-Up");
+        exerciseData.setLevel("beginner");
+        List<String> workoutType = new ArrayList<String>();
+        workoutType.add("core");
+        exerciseData.setWorkoutType(workoutType);
+        List<String> instructions = new ArrayList<String>();
+        instructions.add("Lie down on the floor and secure your feet. Your legs should be bent" +
+                " at the knees.");
+        instructions.add("Place your hands behind or to the side of your head. You will begin " +
+                "with your back on the ground. This will be your starting position.");
+        instructions.add("Flex your hips and spine to raise your torso toward your knees.");
+        instructions.add("At the top of the contraction your torso should be perpendicular to " +
+                "the ground. Reverse the motion, going only Â¾ of the way down.");
+        instructions.add("Repeat for the recommended amount of repetitions.");
+        exerciseData.setInstructions(instructions);
 
-        ArrayList<ExerciseData> exerciseData;
-        List<String>myList = new ArrayList<>();
-        myList.add("core");
-
-        ExerciseData dummy1 = new ExerciseData();
-        dummy1.setName("3/4 Sit-Up");
-        dummy1.setWorkoutType(myList);
-        dummy1.setLevel("beginner");
-        dummy1.getId() = "1";
+        ArrayList<ExerciseData> exercises = new ArrayList<>();
+        exercises.add(exerciseData);
 
         Ui ui = new Ui();
-        ui.printExerciseFromList(exerciseData);
+        ui.printExerciseFromList(exercises);
+
         if (os.contains("Windows")) {
-            for (ExerciseData exercise : exerciseData) {
-                String getWorkoutType = exercise.getWorkoutType().toString();
-                String getInstructions = exercise.getInstructions().toString();
-                int start = getWorkoutType.indexOf(OPEN_BRACE);
-                int end = getWorkoutType.indexOf(CLOSE_BRACE);
-                int startInstructions = getInstructions.indexOf(OPEN_BRACE);
-                int endInstructions = getInstructions.indexOf(CLOSE_BRACE);
-                String getWorkoutTypeFinal = getWorkoutType.substring(start + 1, end);
-                String getInstructionsFinal = getInstructions.substring(startInstructions + 1, endInstructions);
-                expectedOutput = "Exercise ID: " + exercise.getId() + ". \r\n" +
-                        "Name: " + exercise.getName() + "\r\n" +
-                        "Difficulty Level: " + exercise.getLevel() + "\r\n" +
-                        "Workout Type: " + getWorkoutTypeFinal + "\r\n" +
-                        getInstructionsFinal + "\r\n";
-                assertEquals(expectedOutput, actualOutput.toString());
-            }
+            expectedOutput = "Exercise ID: 0. \r\n" +
+                    "Name: 3/4 Sit-Up\r\n" +
+                    "Difficulty Level: beginner\r\n" +
+                    "Workout Type: core\r\n" +
+                    "Lie down on the floor and secure your feet. Your legs should be bent" +
+                    " at the knees., " +
+                    "Place your hands behind or to the side of your head. You will begin " +
+                    "with your back on the ground. This will be your starting position., " +
+                    "Flex your hips and spine to raise your torso toward your knees., " +
+                    "At the top of the contraction your torso should be perpendicular to " +
+                    "the ground. Reverse the motion, going only Â¾ of the way down., " +
+                    "Repeat for the recommended amount of repetitions.\r\n" +
+                    "\r\n";
         } else {
-            for (ExerciseData exercise : exerciseData) {
-                String getWorkoutType = exercise.getWorkoutType().toString();
-                String getInstructions = exercise.getInstructions().toString();
-                int start = getWorkoutType.indexOf(OPEN_BRACE);
-                int end = getWorkoutType.indexOf(CLOSE_BRACE);
-                int startInstructions = getInstructions.indexOf(OPEN_BRACE);
-                int endInstructions = getInstructions.indexOf(CLOSE_BRACE);
-                String getWorkoutTypeFinal = getWorkoutType.substring(start + 1, end);
-                String getInstructionsFinal = getInstructions.substring(startInstructions + 1, endInstructions);
-                expectedOutput = "Exercise ID: " + exercise.getId() + ". \n" +
-                        "Name: " + exercise.getName() + "\n" +
-                        "Difficulty Level: " + exercise.getLevel() + "\n" +
-                        "Workout Type: " + getWorkoutTypeFinal + "\n" +
-                        getInstructionsFinal + "\n";
-                assertEquals(expectedOutput, actualOutput.toString());
-            }
+            expectedOutput = "Exercise ID: 0. \n" +
+                    "Name: 3/4 Sit-Up\n" +
+                    "Difficulty Level: beginner\n" +
+                    "Workout Type: core\n" +
+                    "Lie down on the floor and secure your feet. Your legs should be bent" +
+                    " at the knees., " +
+                    "Place your hands behind or to the side of your head. You will begin " +
+                    "with your back on the ground. This will be your starting position., " +
+                    "Flex your hips and spine to raise your torso toward your knees., " +
+                    "At the top of the contraction your torso should be perpendicular to " +
+                    "the ground. Reverse the motion, going only Â¾ of the way down., " +
+                    "Repeat for the recommended amount of repetitions.\n" +
+                    "\n";
         }
-    }*/
+        assertEquals(expectedOutput,actualOutput.toString());
+    }
 }

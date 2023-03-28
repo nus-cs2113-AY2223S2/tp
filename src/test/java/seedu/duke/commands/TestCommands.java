@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.logic.commands.GenerateFilterCommand;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
+import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.ui.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -49,5 +50,37 @@ public class TestCommands {
             generateFilterCommand.executeCommand(ui, generateExercise);
         });
     }
+
+    //@author Khulon
+    @Test
+    public void testAddPlanCommand () {
+        String[] invalidCommands = {"add", "invalid", "command",};
+        new UserPlan();
+        assertThrows(DukeError.class, () -> {
+            UserPlan.addPlan(invalidCommands);
+        });
+        String[] validCommands = {"add", "monday", "home", "static"};
+        assertDoesNotThrow(() -> {
+            UserPlan.addPlan(validCommands);
+        });
+    }
+
+    //@author Khulon
+    @Test
+    public void testDeletePlanCommand () throws DukeError {
+        new UserPlan();
+        String[] dummyCommand = {"add", "monday", "home", "static"};
+        UserPlan.addPlan(dummyCommand);
+
+        String[] invalidCommands = {"delete", "invalid", "command",};
+        assertThrows(DukeError.class, () -> {
+            UserPlan.deletePlan(invalidCommands);
+        });
+        String[] validCommands = {"delete", "monday", "home"};
+        assertDoesNotThrow(() -> {
+            UserPlan.deletePlan(validCommands);
+        });
+    }
+
 
 }
