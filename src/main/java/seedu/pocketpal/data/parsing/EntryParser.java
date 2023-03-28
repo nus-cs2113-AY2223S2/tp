@@ -1,14 +1,21 @@
 package seedu.pocketpal.data.parsing;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import seedu.pocketpal.data.entry.Entry;
 
+import java.time.LocalDateTime;
+
 public class EntryParser {
-    private static final Gson gson = new Gson();
+    private static final GsonBuilder GSON_BUILDER = new GsonBuilder()
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter());
+    private static final Gson GSON = GSON_BUILDER.create();
+
     public static String serialise(Entry entry) {
-        return gson.toJson(entry);
+        return GSON.toJson(entry);
     }
+
     public static Entry deserialise(String json) {
-        return gson.fromJson(json, Entry.class);
+        return GSON.fromJson(json, Entry.class);
     }
 }
