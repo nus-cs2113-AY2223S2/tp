@@ -5,10 +5,10 @@
 -> ":Storage" : addModuleToModuleList(Module moduleToAdd)
 activate ":Storage"
 opt moduleToAdd == null
-":Storage" -> ":UI" : UI.printAddModuleFailureMessage()
-activate ":UI"
-":Storage" <- ":UI"
-deactivate ":UI"
+":Storage" -> "<<class>>\n:UI" : UI.printAddModuleFailureMessage()
+activate "<<class>>\n:UI"
+":Storage" <- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
 <- ":Storage"
 end
 
