@@ -14,6 +14,7 @@
     + [Add Module](#add-module)
     + [Delete Module](#delete-module)
     + [List Modules](#list-modules)
+    + [Show Module](#show-module)
     + [Add Task](#add-task)
     + [Delete Task](#delete-task)
     + [Mark Task As Done](#mark-task-as-done)
@@ -204,11 +205,9 @@ is printed by calling the `printModuleLessonDeleteMessage()` method of the `Ui` 
 the message is printed by calling the `printModuleNotFoundMessage()` method of the `Ui` class. If the 
 argument is invalid, the message is printed by calling the `printInvalidCommand()` method of the `Ui` class.
 
-
-
 ### List Modules
 
-The ListModule functionality allows users to list the modules that are in the ModuleList. It is facilitated by          
+The ListModule functionality allows users to list the modules that are in the ModuleList. It is facilitated by 
 ListModuleCommand class which is an extension of the Command class. 
 
 Given below is an example usage scenario of how to list the modules in the ModuleList and how the mechanism behaves 
@@ -231,6 +230,66 @@ is printed to the user indicating that there are no modules in the list.
 Step 4. Print the confirmation message: A confirmation message is printed to the user indicating the list of modules 
 in `ModuleList` that the user updated. The message includes the module code and name, modular credits for each module 
 and  total modular credits the user is taking this semester.
+
+### Show Module
+
+The ShowModule functionality allows users to see all the information of a specific module. The information includes 
+LessonTypes, ClassNumbers and the Day and Time of the lessons, sorted lexicographically. The use of flags, for eg. `-lec`, `-st` etc., allows 
+users to view specific LessonType information instead of all the information for the whole module.
+
+ShowModule is facilitated by ShowModuleCommand class which is an extension of the Command class.
+
+Given below is an example usage scenario of how to view the information of a specific module using the moduleCode and 
+how the mechanism behaves at each step.
+
+#### For when a user request to show the module (e.g. CS2113):
+
+Step 1. Define the Constructor: When user executes the command `showmod cs2113`, the Parser class calls the
+`ShowModuleCommand()` method of the ShowModuleCommand class. The constructor of the ShowModuleCommand class takes
+in a parameter of type `String`, which will be split into `moduleCode` and `-FLAG`. In this case, only `cs2113` is 
+parsed in as the parameter. This is then used to find `cs2113` from the module information. If the moduleCode, 
+`cs2113`, is not found, an `InvalidModule()` is thrown.
+
+Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand 
+class. It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the Show Module functionality.
+It takes in the necessary parameters, including the ModuleList, Ui, Storage, Tasklist and Calendar.
+
+Step 4. Find the module to display information: The first step in the `execute()` method is to find the module from 
+`Module` class using the module code parameter `cs2113` by using the `findModule()` function of the `Module` class.
+
+Step 5. Print the confirmation message: A confirmation message is printed to the user indicating the information
+of the module requested by the user. The message includes the `ModuleCode`, `LessonTypes` of the module, `Classnumber` 
+of each `lessonTypes` and `Day` and `Time` of the existing `Classnumber`.
+
+#### For when a user request to show a specific lessonType of the module (e.g. CS2113 -st):
+
+Step 1. Define the Constructor: When user executes the command `showmod cs2113`, the Parser class calls the
+`ShowModuleCommand()` method of the ShowModuleCommand class. The constructor of the ShowModuleCommand class takes
+in a parameter of type `String`, which will be split into `moduleCode`, `cs2113`, and `-FLAG`, `-st`. In this case, only `cs2113` is
+parsed in as the parameter. This is stored in the `args` array field of the `ShowModuleCommand` class.
+
+Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand
+class. It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the Show Module functionality.
+It takes in the necessary parameters, including the ModuleList, Ui, Storage, Tasklist and Calendar objects. The lesson 
+type is determined by calling the `getLessonType()` method of the `lessonType` class and parsing in `args[1]` while 
+the moduleCode is set by `args[0]`. If the lessonType is not valid, an `InvalidCommandException` is thrown.
+
+Step 4. Calls the `handleMultiCommand()` method: The `handleMultiCommand()` method is called to handle the command. 
+It takes ini `moduleList`, `lessonType` and `args` as parameters.
+
+Step 5. Find the module to display information: The first step in the `execute()` method is to find the module from
+`Module` class using the module code parameter `cs2113` by using the `findModule()` function of the `Module` class.
+To find the lessonType of the module, `getLessonType()` is called to return the lessonType for the Show Module
+functionality.
+
+Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the information
+of the module requested by the user. The message includes the `ModuleCode`, the specific `LessonType` of the module, 
+`Classnumber`of requested `lessonTypes` and `Day` and `Time` of the existing `Classnumber`.
+
 
 ### Add Task
 
@@ -413,9 +472,21 @@ Step 2. Override the `execute()` method: The `execute()` method is overridden to
 functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
-Step 3. Iterate through the list of tasks: The `execute()` method will iterate through `TaskList` and call
-`printList()` method in the Ui class that takes in the list of tasks, `TaskList` that the user has updated,
-as a parameter. During the iteration, the `printList()` method will check the `taskStatus` of each task and calculate
+Step 3. Iterate through the list of tasks and perform sorting: The `execute()` method will iterate through `TaskList` 
+and first calls the
+`sortTaskByDay()` method in the TaskList class that takes in the list of tasks, `TaskList` that the user has updated 
+as a parameter. During the iteration, this method will first sort the task in the list by type with the method 
+`clusterByType()`, then by date with `deterministicSortForDeadline()` method for deadline type tasks sublist or 
+`deterministicSortForEvent()` for event type tasks sublist. The `clusterByType()` and deterministic sort 
+methods belong to the TaskList class. The `clusterByType()` method takes in the list of tasks, `TaskList` that the
+user has updated, as a parameter and returns a list of tasks sorted by type. The `deterministicSortForDeadline()` takes
+in two LocalDateTime objects which correspond to the dates of two deadlines being compared, whereas 
+the `deterministicSortForEvent()`takes in four LocalDateTime objects which correspond to the start and end dates of two 
+events being compared.
+
+Step 4. Iterate through the list of sorted tasks and print it:The `execute()` method then calls the `printList()` method 
+in the Ui class that takes in the list of tasks,`TaskList` that the user has updated, as a parameter. 
+During the iteration, the `printList()` method will check the `taskStatus` of each task and calculate
 the total number of unmarked tasks. If the list is empty, a message is printed to the user indicating that there are 
 no tasks in the list.
 
