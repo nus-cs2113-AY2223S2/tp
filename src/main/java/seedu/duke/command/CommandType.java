@@ -40,6 +40,7 @@ public enum CommandType {
      * Terminates the programme and exit without saving.
      */
     EXIT,
+    FIND,
     /**
      * Command not recognized.
      */

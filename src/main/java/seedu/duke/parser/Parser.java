@@ -55,6 +55,9 @@ public class Parser {
         case "view":
             type = CommandType.VIEW;
             break;
+        case "find":
+            type = CommandType.FIND;
+            break;
         case "delete":
             type = CommandType.DELETE;
             break;
