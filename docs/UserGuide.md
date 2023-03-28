@@ -114,16 +114,26 @@ Example of usage:
 
 Displays a list of your current expenditure.
 
-Format: `/view [COUNT] [-c | -category CATEGORY]`
+Format: `/view [COUNT] [-c | -category CATEGORY] [-p | -price PRICE_MIN] [-p | -price PRICE_MAX]
+[-sd | -startdate dd/MM/yy] [-ed | -enddate dd/MM/yy]`
 
 - `COUNT` must be a whole number. If not specified, all the expenditures will be listed.
 - `CATEGORY` must be a supported category. If not specified, expenditures from all categories will be listed.
+- `PRICE` must be more than 0. If max price not specified, all entries with higher price than min price will be displayed.
+The first price entered (starting from the left) must be less than that on the right. ie. **MIN_PRICE should be entered
+before MAX_PRICE.**
+- `DATES` this filter only works if BOTH dates are entered. Both dates should be valid dates and start date should be 
+earlier than end date.
 
 Example of usage:
 
 `/view 10`
 
 `/view -c food`
+
+`/view -c food -sd 12/03/23 -ed 11/04/23`
+
+`/view -c food -p 2 -sd 12/03/23 -ed 11/04/23`
 
 ### Show help menu: `/help`
 
