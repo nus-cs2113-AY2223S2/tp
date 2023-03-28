@@ -142,13 +142,12 @@ Example:
 
 For users to filter the foods by their calorie content. The user inputs the lower and higher bound that they want to filter the food by,
 in terms of the calorie content of the food.
-* The lower bound and higher bound should be in 'float' format
 
 The list of food within the range will then be displayed, from which the user can choose from.
 
 Format: `filter`
 
-* The lower and upper limit should be a `float`
+* The lower and upper bound should be a `float`
 
 Example:
 ![filter-example](./UG-images/filter-example.png)
@@ -189,7 +188,9 @@ Output:
 ![track-example](./UG-images/track-example.png)
 
 ### Exiting the program: `bye`
-Allows user to exit program.
+Allows user to exit the program.
+
+Format: 'bye'
 
 Output:
 ![bye-example](./UG-images/bye-example.png)
@@ -202,7 +203,7 @@ Output:
 
 **Q**: Where do you get the data for the food from?
 
-**A**: The nutrition data is based on food from NUS TechnoEdge canteen, as this application would be mainly targeted at NUS Engineering students who would eat there regularly. 
+**A**: The nutrition data is based on food from NUS TechnoEdge canteen, as this application would be mainly targeted at NUS Engineering students who eats there regularly. 
 
 ## Command Summary
 
