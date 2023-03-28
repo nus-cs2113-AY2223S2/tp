@@ -34,6 +34,7 @@ public class ShortcutViewCommand extends Command {
         formattedValue = formattedValue.substring(0, 61);
         System.out.println('|' + formattedKey + '|' + formattedValue + '|');
     }
+
     private static void printCommandsTable() {
         System.out.print(TABLE_BORDER);
         System.out.print(ACKNOWLEDGE_VIEW_SHORTCUT_COMMAND);
@@ -47,10 +48,15 @@ public class ShortcutViewCommand extends Command {
 
     @Override
     public CommandResult execute() {
+        setupLogger();
+        logger.log(Level.INFO, "starting ShortcutViewCommand.execute()");
         if (shortcutCommands.size() == 0) {
+            logger.log(Level.INFO, "ShortcutViewCommand.execute() will not print a table as there is no configured"
+                    + " shortcuts");
             return new CommandResult(NO_SHORTCUTS);
         }
         printCommandsTable();
+        logger.log(Level.INFO, "ShortcutViewCommand.execute() has printed the table of shortcuts");
         return null;
     }
 
@@ -62,10 +68,10 @@ public class ShortcutViewCommand extends Command {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("ViewShortcutCommand.log", true);
+            FileHandler fileHandler = new FileHandler("ShortcutViewCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
-            System.out.println("unable to log ViewShortcutCommand class");
+            System.out.println("unable to log ShortcutViewCommand class");
             logger.log(Level.SEVERE, "File logger not working.", e);
         }
     }
