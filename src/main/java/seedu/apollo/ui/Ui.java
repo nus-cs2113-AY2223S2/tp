@@ -671,4 +671,7 @@ public class Ui {
         System.out.println("This event clashes with another event in your timetable!");
     }
 
+    public void printClashingEventModuleMessage() {
+        System.out.println("This event clashes with a lesson in your timetable!");
+    }
 }
