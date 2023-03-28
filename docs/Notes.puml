@@ -1,0 +1,17 @@
+@startuml
+title Notes Sequence Diagram for Notes.Java
+'https://plantuml.com/sequence-diagram
+
+actor User
+
+User -> Notes : setToDo()
+activate Notes
+
+Notes -> Ui : printNotes()
+activate Ui
+deactivate Ui
+destroy Ui
+ArrayList --> Notes : cache
+deactivate Notes
+
+@enduml
