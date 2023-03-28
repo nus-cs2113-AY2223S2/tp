@@ -34,11 +34,17 @@ Their net calorie gain/loss can then be viewed.
 
 ### Viewing User Profile: `view`
 
-To view user's profile
+To view user's profile. 
+User will come across a menu that shows them what information they can choose to view
+,and they will input the number in order to view the information they want to see.
+
+User can also choose to back out of the menu in the event that they have entered the view 
+command by accident. They can do so by inputting the number 8.
 
 Format: `view`
 
 Menu Output:
+
 ![view-menu](./UG-images/view-menu.png)
 
 User can input a value from **1 to 8** to view their current profile:
@@ -49,9 +55,10 @@ User can input a value from **1 to 8** to view their current profile:
 5. Gender
 6. Daily Caloric Limit
 7. Calories Remaining for today
-8. Exit
+8. Back
 
 Example:
+
 ![view-example](./UG-images/view-example.png)
 
 User then can input **1** to continue viewing their profile or **2** to exit
@@ -65,6 +72,7 @@ to input the number in order to update the specific information they want to cha
 Format: `update`
 
 Menu Output:
+
 ![update-menu](./UG-images/update-menu.png)
 
 User can input a value from **1 to 5** to customise their profile:
@@ -76,6 +84,7 @@ User can input a value from **1 to 5** to customise their profile:
 6. Exit
 
 Example:
+
 ![update-example](./UG-images/update-example.png)
 
 User then can input **1** to continue updating their profile or **2** to exit
