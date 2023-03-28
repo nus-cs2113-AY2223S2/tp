@@ -188,6 +188,8 @@ followed by printing the details of this first instance. It will then go through
 print the differences, if any. If there is more than 1 item in the list provided to the function, it will then print
 the details of the last and most current instant of the item.
 
+### Category
+
 ## Product scope
 ### Target user profile
 
