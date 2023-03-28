@@ -1,7 +1,7 @@
 package seedu.parser;
 
 import seedu.commands.Command;
-import seedu.commands.IncorrectCommand;
+import seedu.commands.IncorrectSyntaxCommand;
 import seedu.commands.caloriecommands.AddCalorieCommand;
 import seedu.commands.caloriecommands.ViewCaloriesCommand;
 
@@ -36,14 +36,11 @@ public class CheckCaloriesInput {
                 calories = CALORIES_NOT_GIVEN;
             }
         } catch (ParseException e) {
-            System.out.println("Invalid date format. Please enter the date in the format dd/mm/yy.");
-            return new IncorrectCommand();
+            return new IncorrectSyntaxCommand("date");
         } catch (NumberFormatException e) {
-            System.out.println("Invalid calories format. Please enter an integer");
-            return new IncorrectCommand();
+            return new IncorrectSyntaxCommand("calories");
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Invalid command format.");
-            return new IncorrectCommand();
+            return new IncorrectSyntaxCommand("/cadd command");
         }
 
         return new AddCalorieCommand(date, food, calories);
@@ -54,8 +51,7 @@ public class CheckCaloriesInput {
         try {
             date = DATE_FORMAT.parse(arguments.trim());
         } catch (ParseException e) {
-            System.out.println("Invalid date format.");
-            return new IncorrectCommand();
+            return new IncorrectSyntaxCommand("date");
         }
 
         return new ViewCaloriesCommand(date);

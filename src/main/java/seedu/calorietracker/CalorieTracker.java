@@ -9,7 +9,7 @@ import static seedu.commands.caloriecommands.AddCalorieCommand.CALORIES_NOT_GIVE
 public class CalorieTracker {
     public static final int CALORIES_NOT_TRACKED = -1;
     private final HashMap<Date, Integer> totalCaloriesConsumedInDay;
-    private FoodList foodList;
+    private final FoodList foodList;
 
     public CalorieTracker() {
         totalCaloriesConsumedInDay = new HashMap<>();
@@ -20,10 +20,9 @@ public class CalorieTracker {
         this.foodList = foodlist;
     }
 
-    public void addCalories(Date date, String food, int calories) {
+    public String addCalories(Date date, String food, int calories) {
         if (calories == CALORIES_NOT_GIVEN && !foodList.contains(food)) {
-            System.out.println(food + " has not been added previously. Please also indicate calorie count.");
-            return;
+            return food + " has not been added previously. Please also indicate calorie count.";
         }
 
         int caloriesInFood;
@@ -33,8 +32,7 @@ public class CalorieTracker {
             foodList.addFood(food, calories);
             caloriesInFood = calories;
         } else {
-            System.out.println("Calories count is invalid");
-            return;
+            return "Calories count is invalid";
         }
 
         if (totalCaloriesConsumedInDay.containsKey(date)) {
@@ -43,8 +41,8 @@ public class CalorieTracker {
             totalCaloriesConsumedInDay.put(date, caloriesInFood);
         }
 
-        System.out.println("Consumed additional " + caloriesInFood + "kcal." + System.lineSeparator() +
-                "Total calories consumed: " + getCalories(date) + "kcal");
+        return "Consumed additional " + caloriesInFood + "kcal." + System.lineSeparator() +
+                "Total calories consumed: " + getCalories(date) + "kcal";
     }
 
     public int getCalories(Date date) {

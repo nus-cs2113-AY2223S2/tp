@@ -1,7 +1,7 @@
 package seedu.commands.caloriecommands;
 
 import seedu.commands.Command;
-import seedu.parser.DateFormat;
+import seedu.parser.DateFormatter;
 
 import java.util.Date;
 
@@ -15,15 +15,13 @@ public class ViewCaloriesCommand extends Command {
     }
 
     @Override
-    public void execute() {
-        DateFormat dateFormat = new DateFormat(dateToView);
-        String formattedDate = dateFormat.formatDate();
-        System.out.println("test");
+    public String execute() {
+        String formattedDate = DateFormatter.dateToString(dateToView);
         if (calorieTracker.getCalories(dateToView) == CALORIES_NOT_TRACKED) {
-            System.out.println("Calories not tracked on " + formattedDate);
+            return "Calories not tracked on " + formattedDate;
         } else {
-            System.out.println("Calories consumed on " + formattedDate + ": "
-                    + calorieTracker.getCalories(dateToView) + "kcal.");
+            return "Calories consumed on " + formattedDate + ": " + calorieTracker.getCalories(dateToView)
+                    + "kcal.";
         }
     }
 }

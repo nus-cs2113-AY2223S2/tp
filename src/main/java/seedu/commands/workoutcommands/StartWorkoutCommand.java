@@ -7,8 +7,12 @@ import seedu.workouttracker.WorkoutList;
 import java.util.Date;
 
 public class StartWorkoutCommand extends Command {
+    private static final String START_WORKOUT_MESSAGE = "Started new workout." + System.lineSeparator()
+            + "Use add command to add exercises to your workout!";
+    private static final String ONGOING_WORKOUT_MESSAGE = "End your current workout before starting a new " +
+            "one!";
 
-    private Date date;
+    private final Date date;
 
 
     public StartWorkoutCommand(Date date) {
@@ -17,14 +21,13 @@ public class StartWorkoutCommand extends Command {
     }
 
     @Override
-    public void execute() {
-        if (workoutList.currentWorkoutIndex == WorkoutList.NO_CURRENT_WORKOUT) {
+    public String execute() {
+        if (workoutList.getCurrentWorkoutIndex() == WorkoutList.NO_CURRENT_WORKOUT) {
             Workout toStart = new Workout(date);
             workoutList.addWorkout(toStart);
-            System.out.println("Started new workout.");
-            System.out.println("Use add command to add exercises to your workout!");
-            return;
+            return START_WORKOUT_MESSAGE;
         }
-        System.out.println("End your current workout before starting a new one!");
+
+        return ONGOING_WORKOUT_MESSAGE;
     }
 }

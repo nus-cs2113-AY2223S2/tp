@@ -3,6 +3,8 @@ package seedu.duke;
 import seedu.calorietracker.CalorieTracker;
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
+import seedu.commands.IncorrectSyntaxCommand;
+import seedu.exceptions.InvalidSyntaxException;
 import seedu.parser.Parser;
 import seedu.ui.Ui;
 import seedu.workouttracker.WorkoutList;
@@ -21,14 +23,17 @@ public class Duke {
         Ui.showWelcomeMessage();
 
         executeCommandUntilExit();
-        Ui.showExit();
     }
 
     private void executeCommandUntilExit() {
         Command command;
         do {
             String userInput = Ui.getUserInput();
-            command = new Parser().processCommand(userInput);
+            try {
+                command = new Parser().processCommand(userInput);
+            } catch (InvalidSyntaxException ise) {
+                command = new IncorrectSyntaxCommand(ise.toString());
+            }
             command.setData(workoutList, calorieTracker);
             command.execute();
         } while (!ExitCommand.isExit(command));

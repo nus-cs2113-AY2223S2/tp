@@ -19,7 +19,7 @@ public class Command {
         this.calorieTracker = calorieTracker;
     }
 
-    public void execute() {
+    public String execute() {
         throw new UnsupportedOperationException("This method is to be implemented by child classes");
     }
 }
