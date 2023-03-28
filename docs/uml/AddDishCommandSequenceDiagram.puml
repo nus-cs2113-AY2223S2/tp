@@ -1,0 +1,22 @@
+@startuml
+title Add Dish Sequence Diagram
+
+'actor User
+participant AddDishCommand
+participant Dish
+participant DishManager
+
+-> AddDishCommand: AddDishCommand("dish name", price, ["ingredient 1", "ingredient 2", ...])
+'AddDishCommand -> AddDishCommand: AddDishCommand("dish name", price, ["ingredient 1", "ingredient 2", ...])
+Activate AddDishCommand
+
+-> AddDishCommand: execute("dish name", price, ["ingredient 1", "ingredient 2", ...])
+AddDishCommand -> DishManager: execute("dish name", price, ["ingredient 1", "ingredient 2", ...])
+'DishManager -> DishManager: DishManager()
+Activate DishManager
+Dish <- DishManager: create new Dish("dish name", price, ["ingredient 1", "ingredient 2", ...])
+Activate Dish
+Dish --> DishManager:
+AddDishCommand <-- DishManager
+<-- AddDishCommand: ui.printMessage("added dish")
+@enduml
