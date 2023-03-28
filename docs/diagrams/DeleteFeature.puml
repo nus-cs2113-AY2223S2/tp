@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+autonumber
+
 box Delete
 
 participant ":Duke" as Duke
