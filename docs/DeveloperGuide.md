@@ -55,6 +55,8 @@ stored inside the list.
 1. This is step 1.
 2. This is step 2.
 
+![img.png](img.png)
+
 ### Help
 The Help feature allows users to view possible options by calling `Help.` which reads the content stored in the HelpManual.txt.
 
