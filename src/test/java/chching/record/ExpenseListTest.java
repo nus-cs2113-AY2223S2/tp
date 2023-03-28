@@ -98,7 +98,7 @@ class ExpenseListTest {
             assertEquals(expectedOutputDate, expenses.get(0).getDate());
             assertEquals(EXPENSE_VALUE, expenses.get(0).getValue());
         } catch (Exception e) {
-            fail(); // test should not fail
+            fail(); // test should not reach this line
         }
     }
     
