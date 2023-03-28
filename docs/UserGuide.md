@@ -71,9 +71,11 @@ Example of usage:
 ### Finding an entry: `find`
 Find an existing expense/income that is currently in the list.
 
+* CATEGORY is either `income` or `expense`
+
 Format:
-<br> `find expense /c CATEGORY /de DESCRIPTION`
-<br> `find income /de DESCRIPTION`
+<br> `find /c CATEGORY /k DESCRIPTION`
+
 
 Use case:
 * Shows user the entry that they are looking for.

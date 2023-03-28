@@ -91,6 +91,30 @@ public class Ui {
         }
 
     }
+    public void showMatchedIncome(IncomeList incomes) {
+        if (incomes.size() > 0) {
+            System.out.println("    Here are the matching records in your list:");
+
+            for (int i = 0; i < incomes.size(); i++) {
+                System.out.println("    " + (i+1) + ". "  + incomes.get(i));
+            }
+        } else {
+            System.out.println("    No matching records for those keyword");
+        }
+
+    }
+    public void showMatchedExpense(ExpenseList expenses) {
+        if (expenses.size() > 0) {
+            System.out.println("    Here are the matching records in your list:");
+
+            for (int i = 0; i < expenses.size(); i++) {
+                System.out.println("    " + (i+1) + ". "  + expenses.get(i));
+            }
+        } else {
+            System.out.println("    No matching records for those keyword");
+        }
+
+    }
 
     public static void showHelp() {
         System.out.println("    ADD RECORDS:");
