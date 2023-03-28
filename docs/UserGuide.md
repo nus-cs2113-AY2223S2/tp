@@ -2,33 +2,100 @@
 
 ## Introduction
 
-{Give a product intro}
+SEP Helper is a desktop application for Mechanical Engineering students, studying at the
+National University of Singapore (NUS), intending to go to Korea for a Student Exchange Programme (SEP).
 
 ## Quick Start
 
-{Give steps to get started quickly}
+1. Ensure that you have Java 11 or above installed in your computer, if not proceed to download from the link:
+   https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html
+2. Download the latest version of `SEPHelper.jar` from [here](http://link.to/duke).
+3. Double-click the file to start the app.
+4. Type the command in the terminal and press enter to execute it. E.g. entering `/help` will show the help page
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
 
-## Features
+## Features Overview
 
-{Give detailed description of each feature}
+### Notes:
+* **Command words**:
+  * Command words are not case-sensitive.
+    * E.g. `eXIT` will be accepted as the `exit` command.
 
-### Adding a todo: `todo`
 
-Adds a new item to the list of todo items.
+### List: `list` command
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+All List commands start with `list`.
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.
+****
 
-Example of usage:
+**PU Module List** - Get a list of all the modules provided by the specific PU
 
-`todo n/Write the rest of the User Guide d/next week`
+Format: `list [PU Abbreviation Name]` or `list [PU Index]`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+* The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
+* The `PU Index` is the university index of the PU as shown in the universities list.
+
+Example of usage: `list ku` or `list 1`
+
+Expected outcome:
+* A list of modules under Korea University appears
+
+Description of outcome:
+```
+KOREA UNIVERSITY Modules
+____________________________________________________________
+1. [AMSE216][Introduction to biomaterials][3]
+   maps to ----> [ME4253][Biomaterials Engineering][4]
+2. [IWC311][Heat Transfer][3]
+   maps to ----> [ME3122][Heat Transfer][4]
+3. [AE320][Aerodynamics II][3]
+   maps to ----> [ME4231][Aerodynamics][4]
+4. [IWC109][Engineering Design][3]
+   maps to ----> [ME4661][Exchange Elective][4]
+____________________________________________________________
+```
+
+### Search by NUS module Code: `search`
+****
+Search for PU modules that can be mapped to the user's specific NUS module code.
+
+Format: `search [NUS MODULE CODE]`
+* The `NUS MODULE CODE` is the module that the user wants to map overseas.
+
+Example of usage: `search ME4661`
+
+Expected outcome:
+* A list of PU's modules that can be mapped to the user's specific NUS module code will appear under its respective PU
+heading
+
+Description of outcome:
+```
+Here is/are the list/s of modules that can map this NUS module code: ME4661
+____________________________________________________________
+____________________________________________________________
+KU
+____________________________________________________________
+1. [IWC109][Engineering Design][3]
+____________________________________________________________
+KAIST
+____________________________________________________________
+1. [AE405][Satellite Systems][3]
+2. [ENGME203][Mechatronics system design][3]
+____________________________________________________________
+POSTECH
+____________________________________________________________
+1. [MECH441][METAL FORMING][3]
+____________________________________________________________
+SNU
+____________________________________________________________
+1. [406.752][VEHICLE ERGONOMICS][3]
+2. [ZXX4582.503][FUNCTIONAL POLYMER NANOMATERIALS][0]
+3. [M2794.008600][INVISCID FLOW][0]
+4. [M2795.006500][AIR BREATHING PROPULSION THEORY][0]
+5. [457.206][SOIL MECHANICS][0]
+6. [M2795.00400][HIGH ENERGY THERMOFLUID DYNAMICS][0]
+
+```
 
 ### Budget Planner: `/budget`
 
