@@ -7,25 +7,26 @@ import data.Time;
 import exception.FutureDateException;
 import exception.OverviewInputFormatException;
 
-import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 
 public class CommandOverview extends Command {
 
-    private String month;
-    private String year;
-    private ArrayList<Expense> expenses;
-
     private static final String COMMAND_NAME = "overview";
-    private static final String MONTH_NAME_ERROR = "Incorrect month name. Please key in the full english month name.";
+    private static final String MONTH_NAME_ERROR =
+            "Incorrect month name. Please key in the full english month name.";
     private static final String FUTURE_MONTH_ERROR = "Invalid month. Please input a month before ";
     private static final String NO_SPECIFIC_MONTH_ERROR =
             "Please specify the month and year of the overview you intend to view.";
     private static final String WHITE_SPACE = " ";
 
+    private String month;
+    private String year;
+    private ArrayList<Expense> expenses;
 
-    public CommandOverview(ArrayList<Expense> expenses, String month, String year) throws ArrayIndexOutOfBoundsException {
+
+    public CommandOverview(ArrayList<Expense> expenses, String month, String year)
+            throws ArrayIndexOutOfBoundsException {
         super(COMMAND_NAME);
         this.expenses = expenses;
         this.month = month;

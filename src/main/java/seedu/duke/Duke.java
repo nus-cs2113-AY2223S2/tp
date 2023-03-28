@@ -65,7 +65,8 @@ public class Duke {
                 new CommandCategory(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
                 break;
             case "overview":
-                new CommandOverview(expenseList.getExpenseList(), parser.extractMonth(input), parser.extractYear(input)).execute();
+                new CommandOverview(expenseList.getExpenseList(),
+                        parser.extractMonth(input), parser.extractYear(input)).execute();
                 break;
             default:
                 System.out.println("Unknown command.");

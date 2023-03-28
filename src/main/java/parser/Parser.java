@@ -103,9 +103,6 @@ public class Parser implements Serializable {
         } else if (input.length == 2) {
             year = input[1].toLowerCase().trim();
         }
-//        } else {
-//            year = input[1].toLowerCase().trim();
-//        }
         return year;
     }
 

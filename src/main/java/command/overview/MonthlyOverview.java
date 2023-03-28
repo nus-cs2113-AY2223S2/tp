@@ -13,10 +13,6 @@ import static common.MessageList.TAB;
 
 public class MonthlyOverview {
 
-    private String month;
-    private String year;
-    private ArrayList<Expense> expenses;
-    private ArrayList<Expense> filteredExpenses;
 
     private static final String WHITE_SPACE = " ";
     private static final String TITLE = "Overview for ";
@@ -25,6 +21,11 @@ public class MonthlyOverview {
             "Breakdown of expenses by category in descending order by category sum:";
     private static final String CATEGORY_DIVIDER = "----------------------------";
     private static final String EMPTY_MONTH = "No expenses tracked in ";
+
+    private String month;
+    private String year;
+    private ArrayList<Expense> expenses;
+    private ArrayList<Expense> filteredExpenses;
 
 
     public MonthlyOverview(ArrayList<Expense> expenses, String month, String year) throws IllegalArgumentException {
