@@ -29,6 +29,7 @@ public class CommandTotal extends Command{
     public CommandRes execute() {
         total = new BigDecimal(0);
         for(Expense i : expenseList) {
+            BigDecimal rate = i.getRate();
             total = total.add(i.getExpenseAmount().multiply(i.getRate()));
         }
         return new CommandRes(total.setScale(2, RoundingMode.HALF_UP));
