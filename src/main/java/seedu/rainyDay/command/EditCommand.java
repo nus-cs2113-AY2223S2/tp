@@ -1,9 +1,7 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.FlowDirection;
-import seedu.rainyDay.modules.Storage;
 
 import java.time.LocalDate;
 import java.util.logging.FileHandler;

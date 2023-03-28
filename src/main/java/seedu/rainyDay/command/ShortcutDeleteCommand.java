@@ -1,7 +1,6 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.modules.Storage;
 
 import java.util.HashMap;
 import java.util.logging.FileHandler;
