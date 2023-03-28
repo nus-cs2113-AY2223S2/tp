@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.objects.Inventory;
 import seedu.duke.utils.parsers.AddParser;
 import seedu.duke.utils.parsers.EditParser;
-import seedu.duke.utils.parsers.SellParser;
 
 public class EditCommandTest {
     Inventory inventory;
