@@ -49,7 +49,7 @@ public class ViewCommand extends Command {
      *
      * @return ArrayList of indexes which passed the check
      */
-    private ArrayList<Integer> filterAndSort (boolean needsSorting) {
+    private ArrayList<Integer> filterIndexes () {
         ArrayList<Integer> filteredIndexes = new ArrayList<>();
         for (int index = 0; index < userData.getStatementCount(); index++) {
             FinancialStatement currentStatement = userData.getStatement(index);
@@ -57,9 +57,6 @@ public class ViewCommand extends Command {
             if (statementDate.isAfter(timeLimit) && !statementDate.isAfter(LocalDate.now())) {
                 filteredIndexes.add(index);
             }
-        }
-        if(needsSorting) {
-            filteredIndexes.sort(new customSort());
         }
         return filteredIndexes;
     }
@@ -93,7 +90,7 @@ public class ViewCommand extends Command {
         logger.log(Level.INFO, "starting ViewCommand.execute()");
         ArrayList<Integer> validIndexes;
         boolean viewAll = timeLimit.equals(LocalDate.of(1800, 1, 1));
-        validIndexes = filterAndSort(sortByValue);
+        validIndexes = filterIndexes();
         if (validIndexes.size() == 0) {
             assert userData.getStatementCount() == 0 : "statement count mismatch";
             logger.log(Level.INFO, "empty financial report");
@@ -101,6 +98,9 @@ public class ViewCommand extends Command {
             return new CommandResult(output);
         }
         assert userData.getStatementCount() != 0 : "statement count mismatch";
+        if(sortByValue) {
+            validIndexes.sort(new customSort());
+        }
         ViewResult.printReport(validIndexes, timeLimit, sortByValue, viewAll);
         return null;
     }
