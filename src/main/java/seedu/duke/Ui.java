@@ -1,5 +1,6 @@
 package seedu.duke;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.Scanner;
 
 public class Ui {
     private static final List<String> PERMITTED_SEMESTER_VALUES = Arrays.asList("1", "2", "3", "4");
+
     /**
      * Prints a line of dashes for better readability
      */
@@ -20,7 +22,6 @@ public class Ui {
      */
     public static void getUserCommand(EventList eventList) {
         Scanner in = new Scanner(System.in);
-
         String cmd;
         cmd = in.nextLine();
 

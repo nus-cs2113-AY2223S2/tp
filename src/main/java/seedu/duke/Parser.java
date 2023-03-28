@@ -1,6 +1,6 @@
 package seedu.duke;
 
-import seedu.duke.storage.NusmodConverter;
+import seedu.duke.storage.JsonNusModuleLoader;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -18,7 +18,7 @@ public class Parser {
             4, LocalDate.of(2023, 6, 19)
     );
     private static final int OFFSET = 1;
-    private static final NusmodConverter converter = new NusmodConverter();
+    private static final JsonNusModuleLoader converter = new JsonNusModuleLoader();
     private final Ui ui;
 
     public Parser() {

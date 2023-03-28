@@ -6,7 +6,13 @@ package seedu.duke;
 //import seedu.duke.parser.Parser;
 
 
+import seedu.duke.storage.EventListStorage;
+import seedu.duke.storage.NusModuleLoader;
+import seedu.duke.storage.JsonEventListStorage;
+import seedu.duke.storage.JsonNusModuleLoader;
 import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageManager;
+
 
 public class Duke {
     /**
@@ -15,11 +21,14 @@ public class Duke {
     private final EventList eventTracker;
     private final Ui ui;
     private final Parser parser;
+    private final EventListStorage eventListStorage;
+    private final NusModuleLoader nusModuleLoader;
     private final Storage storage;
-
     public Duke (){
         ui = new Ui();
-        storage = new Storage();
+        eventListStorage = new JsonEventListStorage();
+        nusModuleLoader = new JsonNusModuleLoader();
+        storage = new StorageManager(eventListStorage, nusModuleLoader);
         eventTracker = new EventList(storage.loadEvents());
         parser = new Parser();
     }
