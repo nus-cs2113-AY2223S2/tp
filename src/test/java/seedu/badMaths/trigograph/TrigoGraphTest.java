@@ -16,11 +16,11 @@ class TrigoGraphTest {
     @Test
     void validEqn_returnsCorrectDetails() {
         String eqn = "2*tan(2*pi*x+1)-9";
-        TrigoGraph graphTest = new TrigoGraph(eqn);
-        graphTest.startGraphAnalysis();
+        TrigoGraphAnalyser graphTest = new TrigoGraphAnalyser(eqn);
+        graphTest.canStartAnalyser();
         assertEquals(2.0,graphTest.getAmplitude());
-        assertEquals("tan",graphTest.getTrig());
-        assertEquals(1.0,graphTest.getFrequency());
+        assertEquals("tan",graphTest.getTrigonometry());
+        assertEquals(1.0,graphTest.getFreq());
         assertEquals(1.0,graphTest.getPhase());
         assertEquals(-9.0,graphTest.getVerticalShift());
     }

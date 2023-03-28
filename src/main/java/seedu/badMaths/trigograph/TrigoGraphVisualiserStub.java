@@ -13,7 +13,6 @@ public class TrigoGraphVisualiserStub {
     }
 
     public boolean startVisualiser() {
-        JFrame frame = new JFrame("Trigonometric Graph");
         try {
             switch (trig) {
             case ("sin"):
