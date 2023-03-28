@@ -61,19 +61,15 @@ public class RemoveCommand extends Command {
         switch (userConfirmation.toUpperCase()) {
         case "Y":
             int indexOfItem = itemInventory.indexOf(itemToRemove);
+            String category = itemToRemove.getCategory();
             upcCodes.remove(upcCode);
             inventory.getUpcCodesHistory().remove(upcCode);
             itemInventory.remove(indexOfItem);
             String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
             for (String itemName : itemNames) {
-                if (itemNameHash.get(itemName).size() == 1) {
-                    itemNameHash.remove(itemName);
-                    itemsTrie.remove(itemName);
-                } else {
-                    itemNameHash.get(itemName).remove(itemToRemove);
-                }
+                removeItemFromHashTrie(itemToRemove, itemName);
             }
-
+            removeItemFromCategoryHash(itemToRemove, category);
             removeAlert(upcCode);
             Ui.printSuccessRemove(itemToRemove);
             break;
@@ -101,16 +97,16 @@ public class RemoveCommand extends Command {
         case "Y":
             String itemName = itemToRemove.getName().toLowerCase();
             String upcCode = itemToRemove.getUpc();
+            String category = itemToRemove.getCategory();
             int i = itemInventory.indexOf(itemToRemove);
             upcCodes.remove(upcCode);
             inventory.getUpcCodesHistory().remove(upcCode);
             itemInventory.remove(i);
-            if (itemNameHash.get(itemName).size() == 1) {
-                itemNameHash.remove(itemName);
-                itemsTrie.remove(itemName);
-            } else {
-                itemNameHash.get(itemName).remove(itemToRemove);
+            String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
+            for (String name : itemNames) {
+                removeItemFromHashTrie(itemToRemove, name);
             }
+            removeItemFromCategoryHash(itemToRemove, category);
             removeAlert(upcCode);
             Ui.printSuccessRemove(itemToRemove);
             break;
@@ -120,6 +116,24 @@ public class RemoveCommand extends Command {
         default:
             Ui.printInvalidReply();
             break;
+        }
+    }
+
+    private void removeItemFromHashTrie(Item itemToRemove, String itemName) {
+        if (itemNameHash.get(itemName).size() == 1) {
+            itemNameHash.remove(itemName);
+            itemsTrie.remove(itemName);
+        } else {
+            itemNameHash.get(itemName).remove(itemToRemove);
+        }
+    }
+
+    private void removeItemFromCategoryHash(Item itemToRemove, String category) {
+        if (categoryHash.get(category).size() == 1) {
+            categoryHash.get(category).remove(itemToRemove);
+            categoryHash.remove(category);
+        } else {
+            categoryHash.get(category).remove(itemToRemove);
         }
     }
 

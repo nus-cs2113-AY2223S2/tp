@@ -1,0 +1,65 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+actor User
+User -> CategoryParser**
+activate CategoryParser
+User -> CategoryParser: run()
+alt categoryCommandType is not 'list'
+else categoryCommandType is not 'table'
+else categoryCommandType length is 0
+    ref over CategoryParser
+        Handle input error
+    end ref
+    CategoryParser --> User
+else rawInput is valid
+
+CategoryParser -> CategoryCommand**
+activate CategoryCommand
+CategoryParser -> CategoryCommand: run()
+activate CategoryCommand #cyan
+ref over CategoryCommand
+    retrieve categoryHash from inventory and process rawInput
+end ref
+participant Ui
+alt rawInput equals 'list'
+    CategoryCommand --> CategoryCommand: listAllCategories()
+    CategoryCommand --> Ui: printCategoryList(categoryHash)
+    activate Ui
+    ref over Ui
+        print list of categories
+    end ref
+    return
+else rawInput equals 'table'
+    CategoryCommand --> CategoryCommand: listCategoriesAndItems()
+    alt categoryHash is empty
+        CategoryCommand --> CategoryCommand: null
+    else categoryHash is not empty
+        CategoryCommand --> Ui : printCategory(categoryHash)
+        activate Ui
+        ref over Ui
+            print all categories and its items
+        end ref
+        return
+    end
+else find category from rawInput
+    CategoryCommand --> CategoryCommand: findCategory(rawInput)
+    alt categoryHash contains category
+        CategoryCommand --> Ui : printCategory(filteredCategoryHash)
+        activate Ui
+        ref over Ui
+            print all categories and its items
+        end ref
+        return
+    else
+        CategoryCommand --> CategoryCommand: error
+    end
+end
+return
+end
+return
+destroy CategoryCommand
+return
+destroy CategoryParser
+@enduml

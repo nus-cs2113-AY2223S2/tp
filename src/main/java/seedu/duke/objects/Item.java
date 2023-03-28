@@ -39,6 +39,25 @@ public class Item implements Comparable<Item> {
     }
 
     public Item(final String name, final String upc, final Integer qty,
+                final Double price, final String category, final LocalDateTime dateTime) {
+        this.name = name;
+        this.upc = upc;
+        this.price = price;
+        this.quantity = qty;
+        this.category = category;
+        this.dateTime = dateTime;
+    }
+
+    public Item(final String name, final String upc, final Integer qty,
+                final Double price, final String category) {
+        this.name = name;
+        this.upc = upc;
+        this.price = price;
+        this.quantity = qty;
+        this.category = category;
+        this.dateTime = LocalDateTime.now();
+    }
+    public Item(final String name, final String upc, final Integer qty,
                 final Double price, final LocalDateTime dateTime) {
         this.name = name;
         this.upc = upc;
@@ -129,8 +148,19 @@ public class Item implements Comparable<Item> {
         if (!Objects.equals(oldItem.getPrice(), this.getPrice())) {
             itemsChanged += 1;
         }
+        if (!Objects.equals(oldItem.getCategory(), this.getCategory())) {
+            itemsChanged += 1;
+        }
         return itemsChanged != 0;
     }
+
+    /**
+     * Compares the current item to another item and returns what edits have to be made to get the item to the state
+     * of the item passed in the parameter
+     *
+     * @param item Item to check the current item against
+     * @return EditType of the changes made
+     */
 
     public ArrayList<Types.EditType> getEditTypes(final Item item) {
         ArrayList<Types.EditType> results = new ArrayList<>();
@@ -158,9 +188,23 @@ public class Item implements Comparable<Item> {
         return results;
     }
 
+    /**
+     * Gets a formatted date string from a LocalDate object.
+     *
+     * @param date Date to format
+     * @return Formatted date string.
+     */
+
     private static String getDateString(final LocalDate date) {
         return date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear();
     }
+
+    /**
+     * Adjusts 24 hour time to 12 hour time.
+     *
+     * @param hour 24 hour time
+     * @return integer of 12 hour time.
+     */
 
     private static int adjustHour(final int hour) {
         if (hour % 12 == 0) {
@@ -169,11 +213,24 @@ public class Item implements Comparable<Item> {
         return hour % 12;
     }
 
+    /**
+     * Gets a formatted time string from a LocalTime object.
+     *
+     * @param time Time to format
+     * @return Formatted time string
+     */
+
     private static String getTimeString(final LocalTime time) {
         LocalTime noon = LocalTime.parse("12:00");
         return adjustHour(time.getHour()) + ":" + (time.getMinute() < 10 ? "0" : "") + time.getMinute()
                 + " " + (time.isBefore(noon) ? "AM" : "PM");
     }
+
+    /**
+     * Gets the dateTime of the current item in a formatted string.
+     *
+     * @return Formatted String of the dateTime.
+     */
 
     public String getDateTimeString() {
         LocalDate date = dateTime.toLocalDate();

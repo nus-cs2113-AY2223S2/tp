@@ -14,6 +14,7 @@ import java.util.HashMap;
 public abstract class Command {
     protected static final String MIN_KEYWORD = "min";
     protected static final String MAX_KEYWORD = "max";
+    protected static HashMap<String, ArrayList<Item>> categoryHash;
     protected final Inventory inventory;
     protected ArrayList<Item> itemInventory;
     protected HashMap<String, ArrayList<Item>> itemNameHash;
@@ -26,6 +27,7 @@ public abstract class Command {
         this.itemNameHash = inventory.getItemNameHash();
         this.upcCodes = inventory.getUpcCodes();
         this.itemsTrie = inventory.getTrie();
+        this.categoryHash = inventory.getCategoryHash();
     }
     public abstract void run();
 }

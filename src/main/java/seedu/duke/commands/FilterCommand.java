@@ -48,7 +48,7 @@ public class FilterCommand extends Command {
     private ArrayList<Item> filterCategory(String category) {
         ArrayList<Item> filteredItems = new ArrayList<>();
         for (Item item : itemInventory) {
-            if (item.getCategory().equals(category)) {
+            if (item.getCategory().toLowerCase().equals(category)) {
                 filteredItems.add(item);
             }
         }
@@ -124,6 +124,12 @@ public class FilterCommand extends Command {
         }
         return filteredItems;
     }
+
+    /**
+     * Gets a list on filtered items based on the filter mode.
+     *
+     * @return ArrayList Item of filtered items. If no items are found, returns null instead.
+     */
 
     public ArrayList<Item> getFilteredItems(){
         ArrayList<Item> filteredItems = new ArrayList<>();

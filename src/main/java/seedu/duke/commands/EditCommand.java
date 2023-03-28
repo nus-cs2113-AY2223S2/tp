@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.exceptions.CategoryFormatException;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
@@ -87,6 +88,10 @@ public class EditCommand extends Command {
             } catch (NumberFormatException nfe) {
                 throw new NumberFormatException();
             }
+        } else if (data.contains("c/")) {
+            String updatedCategory = data.replaceFirst("c/", "");
+            updatedCategory = updatedCategory.toLowerCase();
+            item.setCategory(updatedCategory);
         } else {
             throw new MissingParametersException();
         }
@@ -115,6 +120,9 @@ public class EditCommand extends Command {
                     upcCodes.get(updatedItem.getUpc()).getQuantity().intValue());
 
             inventory.getUpcCodesHistory().get(oldItem.getUpc()).add(itemForHistory);
+
+            CategoryCommand.updateItemCategory(oldItem, updatedItem.getCategory());
+
             if (SessionManager.getAutoSave()) {
                 SessionManager.writeSession(inventory);
             }
@@ -124,6 +132,8 @@ public class EditCommand extends Command {
             Ui.printInvalidEditCommand();
         } catch (NumberFormatException nfe) {
             Ui.printInvalidPriceOrQuantityEditInput();
+        } catch (CategoryFormatException e) {
+            Ui.printInvalidCategory();
         }
     }
 

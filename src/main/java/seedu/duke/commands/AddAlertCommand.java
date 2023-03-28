@@ -15,7 +15,7 @@ public class AddAlertCommand extends Command  {
 
 
 
-    public AddAlertCommand(Inventory inventory, Alert alert) {
+    public AddAlertCommand(final Inventory inventory, final Alert alert) {
         super(inventory);
         this.alert = alert;
         this.alertList = inventory.getAlertList();
@@ -71,14 +71,14 @@ public class AddAlertCommand extends Command  {
 
     }
 
-    private boolean isMinValueValid(int minStock, String upc, HashMap<String, Integer> maxUpcMap) {
+    private boolean isMinValueValid(final int minStock, final String upc, final HashMap<String, Integer> maxUpcMap) {
         if (maxUpcMap.containsKey(upc) && maxUpcMap.get(upc) <= minStock) {
             return false;
         }
         return true;
     }
 
-    private boolean isMaxValueValid(int maxStock, String upc, HashMap<String, Integer> minUpcMap) {
+    private boolean isMaxValueValid(final int maxStock, final String upc, final HashMap<String, Integer> minUpcMap) {
         if (minUpcMap.containsKey(upc) && minUpcMap.get(upc) >= maxStock) {
             return false;
         }

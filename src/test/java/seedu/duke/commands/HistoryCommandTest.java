@@ -12,6 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HistoryCommandTest {
     Inventory inventory;
+
+    /**
+     * Integration tests with add and edit functions.
+     */
     @Test
     public void historyAddEditTest() {
         inventory = new Inventory();
@@ -36,6 +40,10 @@ public class HistoryCommandTest {
         assertTrue(results.get(1).getName().equals("Laptops"));
         assertTrue(results.get(2).getName().equals("TV"));
     }
+
+    /**
+     * Integration tests with remove function.
+     */
     @Test
     public void historyRemoveTest(){
         inventory = new Inventory();

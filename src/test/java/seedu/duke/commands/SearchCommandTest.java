@@ -17,6 +17,10 @@ import java.util.ArrayList;
 
 public class SearchCommandTest {
     Inventory inventory;
+
+    /**
+     * Search integration tests with add and edit functions.
+     */
     @Test
     public void searchByKeywordAddEditTest(){
         inventory = new Inventory();
@@ -33,6 +37,10 @@ public class SearchCommandTest {
         searchResults = searchCommand.searchKeyword();
         assertEquals(searchResults.size(),1);
     }
+
+    /**
+     * Integration tests with remove function.
+     */
     @Test
     public void searchByKeywordRemoveTest(){
         inventory = new Inventory();
@@ -58,6 +66,9 @@ public class SearchCommandTest {
         assertEquals(searchResults.size(),1);
     }
 
+    /**
+     * Edge case test that happens when add, edit and remove are called.
+     */
     @Test
     public void searchByKeywordsEdgeCasesTest(){
         inventory = new Inventory();
@@ -82,6 +93,10 @@ public class SearchCommandTest {
         searchResults = searchCommand.searchKeyword();
         assertEquals(null, searchResults);
     }
+
+    /**
+     * Integration tests with sell and restock functions.
+     */
 
     @Test
     public void searchByKeywordSellRestockTest(){
@@ -114,6 +129,10 @@ public class SearchCommandTest {
         searchResults = searchCommand.searchKeyword();
         assertEquals(searchResults.size(),2);
     }
+
+    /**
+     * Test for searchUPC function.
+     */
 
     @Test
     public void searchByUPCTest(){
