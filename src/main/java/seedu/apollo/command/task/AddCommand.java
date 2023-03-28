@@ -25,6 +25,7 @@ import java.rmi.UnexpectedException;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ import static seedu.apollo.ui.Parser.COMMAND_DEADLINE_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_EVENT_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_TODO_WORD;
 import static seedu.apollo.utils.DayTypeUtil.determineDay;
+
 
 /**
  * Add Command class that adds a Task to the existing TaskList.
@@ -129,7 +131,6 @@ public class AddCommand extends Command implements LoggerInterface {
         int initialSize = taskList.size();
         try {
             addTask(taskList, calendar, ui);
-
         } catch (DateTimeParseException e) {
             ui.printInvalidDateTime();
             return;
@@ -156,7 +157,7 @@ public class AddCommand extends Command implements LoggerInterface {
      *
      * @param taskList The TaskList to be added to.
      * @param calendar The lesson schedule of the user.
-     * @param ui For printing messages in event of clashes.
+     * @param ui       For printing messages in event of clashes.
      * @throws DateTimeParseException If any date is entered in the wrong format.
      * @throws DateOverException      If any date of the task occurs before the current date.
      * @throws DateOrderException     If an Event's end date occurs before its start date.
@@ -178,6 +179,7 @@ public class AddCommand extends Command implements LoggerInterface {
             if (isClashingEvent(taskList, event.getToDate(), event.getFromDate())) {
                 ui.printClashingEventMessage();
             }
+            warnEventModuleClash(ui, calendar, event);
             taskList.add(event);
             break;
         default:
@@ -189,10 +191,10 @@ public class AddCommand extends Command implements LoggerInterface {
      * Prints warning message to user with all tasks and lessons that clash with the deadline.
      * Will not print anything if there are no clashes.
      *
-     * @param ui For printing warning message.
+     * @param ui       For printing warning message.
      * @param taskList Existing tasks.
      * @param calendar Existing lessons.
-     * @param by Due date of the deadline being added.
+     * @param by       Due date of the deadline being added.
      */
     public void warnDeadlineClash(Ui ui, TaskList taskList, Calendar calendar, LocalDateTime by) {
         TaskList clashTasks = taskList.getTasksOnDate(by.toLocalDate());
@@ -204,12 +206,13 @@ public class AddCommand extends Command implements LoggerInterface {
 
     /**
      * Checks if an event user wants to add clashes with existing events.
+     *
      * @param taskList The ArrayList containing the tasks.
-     * @param from The time that event starts.
-     * @param to The time that event ends.
+     * @param from     The time that event starts.
+     * @param to       The time that event ends.
      * @return {@code true} if there is a clash, {@code false} otherwise.
      */
-    public boolean isClashingEvent(TaskList taskList, LocalDateTime from, LocalDateTime to) {
+    private boolean isClashingEvent(TaskList taskList, LocalDateTime from, LocalDateTime to) {
         for (Task task : taskList) {
             if (task instanceof Event) {
                 Event event = (Event) task;
@@ -221,8 +224,97 @@ public class AddCommand extends Command implements LoggerInterface {
             }
         }
         return false;
+    }
 
+    /**
+     * Checks if an event user wants to add clashes with existing lessons.
+     *
+     * @param ui       For printing warning message.
+     * @param calendar The timetable of lessons stored in an ArrayList.
+     * @param event    The event to be added.
+     * @return true if there is a clash, false otherwise.
+     */
+    private void warnEventModuleClash(Ui ui, Calendar calendar, Event event) {
+        LocalDateTime eventStart = event.getFromDate();
+        LocalDateTime eventEnd = event.getToDate();
+        LocalDateTime currentDay = eventStart;
 
+        DayOfWeek startDay = eventStart.getDayOfWeek();
+        DayOfWeek endDay = eventEnd.getDayOfWeek();
+
+        int startIndex = determineDay(startDay);
+        int endIndex = determineDay(endDay);
+
+        int index = startIndex;
+        do {
+            String currentDayString = currentDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            if (isClashingEventModule(calendar.get(index), eventStart, eventEnd, currentDayString)) {
+                ui.printClashingEventModuleMessage();
+                return;
+            }
+            index = (index + 1) % 7;
+            currentDay = currentDay.plusDays(1);
+        } while (index != endIndex);
+    }
+
+    /**
+     * Checks if an event user wants to add clashes with existing lessons.
+     *
+     * @param calendarModule The ArrayList containing the lessons.
+     * @param eventStart     The time that event starts.
+     * @param eventEnd       The time that event ends.
+     * @param currentDate    The date of which being checked.
+     * @return true if there is a clash, false otherwise.
+     */
+    private boolean isClashingEventModule(ArrayList<CalendarModule> calendarModule, LocalDateTime eventStart,
+                                          LocalDateTime eventEnd, String currentDate) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        for (CalendarModule module : calendarModule) {
+            if (module.getSchedule() == null) {
+                continue;
+            }
+            String moduleStartString = currentDate + " " + module.getSchedule().getStartTime();
+            String moduleEndString = currentDate + " " + module.getSchedule().getEndTime();
+            LocalDateTime lessonStart = LocalDateTime.parse(moduleStartString, formatter);
+            LocalDateTime lessonEnd = LocalDateTime.parse(moduleEndString, formatter);
+
+            if (isOverlap(eventStart, eventEnd, lessonStart, lessonEnd)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if an event and lesson overlap.
+     *
+     * @param eventStart The start time of the event.
+     * @param eventEnd   The end time of the event.
+     * @param lessonStart The start time of the lesson.
+     * @param lessonEnd   The end time of the lesson.
+     * @return true if there is a clash, false otherwise.
+     */
+    private boolean isOverlap(LocalDateTime eventStart, LocalDateTime eventEnd, LocalDateTime lessonStart,
+                              LocalDateTime lessonEnd) {
+
+        if (eventStart.isEqual(lessonStart) && eventEnd.isEqual(lessonEnd)) {
+            return true;
+        }
+
+        if (eventStart.isBefore(lessonStart) && eventEnd.isAfter(lessonEnd)) {
+            return true;
+        }
+
+        if (eventStart.isAfter(lessonStart) && eventEnd.isBefore(lessonEnd)) {
+            return true;
+        }
+
+        if (eventStart.isBefore(lessonStart) && eventEnd.isBefore(lessonEnd)) {
+            return true;
+        }
+
+        return eventStart.isAfter(lessonStart) && eventEnd.isAfter(lessonEnd);
     }
 
 }
