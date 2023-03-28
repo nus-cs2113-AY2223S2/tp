@@ -1,0 +1,76 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+hide footbox
+ -> ":CompanyListEncoder": write()
+    activate ":CompanyListEncoder"
+        ":CompanyListEncoder" -> "fw:FileWriter":
+        activate "fw:FileWriter"
+            "fw:FileWriter" --> ":CompanyListEncoder"
+
+            ":CompanyListEncoder" -> ":CompanyList": getNumberOfCompanies()
+            activate ":CompanyList"
+            ":CompanyList" --> ":CompanyListEncoder"
+            deactivate ":CompanyList"
+            alt numberOfCompanies == 0
+                ":CompanyList" <- ":CompanyListEncoder":
+                activate ":CompanyList"
+                deactivate ":CompanyList"
+                "fw:FileWriter" -> "fw:FileWriter": write("")
+                "fw:FileWriter" -> "fw:FileWriter": close()
+            end
+            loop companies in companyList times
+                ":CompanyListEncoder" -> ":CompanyList": getCompany()
+                activate ":CompanyList"
+                ":CompanyListEncoder" <-- ":CompanyList":
+                deactivate ":CompanyList"
+                ":CompanyListEncoder" -> ":CompanyListEncoder": parseAndWriteToFile(company, fw)
+
+                ":CompanyListEncoder" -> ":Company": getCompanyName()
+                activate ":Company"
+                ":CompanyListEncoder" <-- ":Company":
+                deactivate ":Company"
+
+                ":CompanyListEncoder" -> ":Company": getContactNumber()
+                activate ":Company"
+                ":CompanyListEncoder" <-- ":Company":
+                deactivate ":Company"
+
+                ":CompanyListEncoder" -> ":Company": getContactEmail()
+                activate ":Company"
+                ":CompanyListEncoder" <-- ":Company":
+                deactivate ":Company"
+
+                ":CompanyListEncoder" -> ":CompanyListEncoder": convertConfirmStatusToBinary(confirmStatus)
+                ":CompanyListEncoder" -> ":Company": getIndustry()
+                activate ":Company"
+                ":CompanyListEncoder" <-- ":Company":
+                deactivate ":Company"
+
+                ":CompanyListEncoder" -> "fw:FileWriter": write(companyName, contactNumber, contactEmail, confirmStatus, industry)
+            end
+            ":CompanyListEncoder" -> "fw:FileWriter": close()
+            ":CompanyListEncoder" <-- "fw:FileWriter"
+        deactivate "fw:FileWriter"
+
+
+
+'-> "AddCommand" <<create>>
+
+
+'activate ":AddCommand"
+'
+'    ":AddCommand" -> ":CompanyList": add()
+'    activate ":CompanyList"
+'        ":CompanyList"-> ":CompanyListEncoder": write()
+'        activate ":CompanyListEncoder"
+'            loop sessions in file times
+'                ":CompanyList" -> ":CompanyListEncoder" : addWorkoutSession()
+'            end
+'            ":CompanyListEncoder" --> ":CompanyList" : :dwdw
+'        ":CompanyList" --> ":AddCommand" : :UserCareerData
+'    deactivate ":CompanyListEncoder"
+'    deactivate ":CompanyList"
+'deactivate ":AddCommand"
+@enduml
