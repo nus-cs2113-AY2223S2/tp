@@ -117,33 +117,42 @@ will be suggested to the user. This information is then printed, and stored in t
 The Patient class is responsible for creating a patient object, which is required to store a user's information.
 
 The method for creating a new Patient object is as follows:
+
 ~~~
 new Patient(name, hash, diagnosisHistory, medicineHistory);
 ~~~
 
 Once key information about the patient is obtained from the Menu class, the new patient object is created via:
+
 ~~~
 Information.storePatientInfo(hash, new Patient(name, hash, diagnosisHistory, medicineHistory));
 ~~~
+
 which is found in the Menu class.
 
-The methods contained in the Patient Class are primarily used in the Information, Parser and Strorage class.
-
 #### Patient Class Methods:
+
+The methods contained in the Patient Class are primarily used in the Information, Parser and Storage class.
 
 The Patient class contains important getters and setters, allowing different classes to access the patient object and
 the patient's information via the following methods:
 
-`getName()` returns the name of the patient.\
-`getPassword()` returns the password of the patient's account.\
-`getPatientDiagnosisHistory()` allows for access to the array where past diagnoses are stored.\
-`getPatientMedicineHistory()` allows for access to the array where past prescribed medications are stored.\
-`setName()` and `setPassword()` allow the programme to set the patient's name and password.\
+`getName()` returns the name of the patient.
+
+`getPassword()` returns the password of the patient's account.
+
+`getPatientDiagnosisHistory()` allows for access to the array where past diagnoses are stored.
+
+`getPatientMedicineHistory()` allows for access to the array where past prescribed medications are stored.
+
+`setName()` and `setPassword()` allow the programme to set the patient's name and password.
+
 `setPatientDiagnosisHistory()` and `setPatientMedicineHistory()` allow the programme to read data from a storage file,
-and then set the stored data into the Patient object.\
+and then set the stored data into the Patient object.
 
 `updatePatientMedicineHistory()` and `updatePatientDiagnosisHistory()` allow us to add new diagnoses and medications
-prescribed to the Patient object.\
+prescribed to the Patient object.
+
 `appendMedicineToSameDate()` appends medicine patient is prescribed if additional medicine is prescribed on the same
 day, allowing us to keep track of multiple prescriptions to one patient in one session.
 
