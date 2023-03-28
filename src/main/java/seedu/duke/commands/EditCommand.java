@@ -19,6 +19,8 @@ public class EditCommand extends Command {
     private static final String NAME_LABEL = "n/";
     private static final String QUANTITY_LABEL = "qty/";
     private static final String PRICE_LABEL = "p/";
+    private static final String CATEGORY_LABEL = "c/";
+
 
     public EditCommand(Inventory inventory, String[] editInfo) {
         super(inventory);
@@ -47,7 +49,7 @@ public class EditCommand extends Command {
      * @param item The target item in which the user wants to edit.
      * @param data The user input which contains the information to be used to update the item attributes.
      * @throws MissingParametersException Exception related to all errors due to missing parameters.
-     * @throws NumberFormatException Exception related to all invalid number formats inputted.
+     * @throws NumberFormatException      Exception related to all invalid number formats inputted.
      */
     public void updateItemInfo(final Item item, final String[] data) throws
             MissingParametersException, NumberFormatException {
@@ -67,7 +69,7 @@ public class EditCommand extends Command {
      * @param item The target item in which the user wants to edit.
      * @param data The user input which contains the information to be used to update the item attributes.
      * @throws MissingParametersException Exception related to all errors due to missing parameters.
-     * @throws NumberFormatException Exception related to all invalid number formats inputted.
+     * @throws NumberFormatException      Exception related to all invalid number formats inputted.
      */
     private void handleUserEditCommands(Item item, String[] data) throws
             MissingParametersException, NumberFormatException {
@@ -85,14 +87,13 @@ public class EditCommand extends Command {
                 String updatedPrice = data[dataSequence].replaceFirst("p/", "");
                 setItemPrice(item, updatedPrice);
                 currentLabel = PRICE_LABEL;
-            } else if (data.contains("c/")) {
-              String updatedCategory = data.replaceFirst("c/", "");
-              updatedCategory = updatedCategory.toLowerCase();
-              item.setCategory(updatedCategory);
+            } else if (data[dataSequence].contains("c/")) {
+                String updatedCategory = data[dataSequence].replaceFirst("c/", "");
+                updatedCategory = updatedCategory.toLowerCase();
+                item.setCategory(updatedCategory);
+                currentLabel = CATEGORY_LABEL;
             } else {
                 if (currentLabel.equals(NAME_LABEL)) {
-                    System.out.println(dataSequence);
-                    System.out.println(data[dataSequence]);
                     item.setName(item.getName() + " " + data[dataSequence]);
                 } else {
                     throw new MissingParametersException();
@@ -104,11 +105,11 @@ public class EditCommand extends Command {
     /**
      * Sets the item price to a specific value according to the user input.
      *
-     * @param item The target item in which the user wants to edit.
+     * @param item         The target item in which the user wants to edit.
      * @param updatedPrice The new price of the item.
      * @throws NumberFormatException Exception related to all number conversion errors.
      */
-    private static void setItemPrice(Item item, String updatedPrice) throws NumberFormatException{
+    private static void setItemPrice(Item item, String updatedPrice) throws NumberFormatException {
         try {
             Double newPrice = Double.valueOf(updatedPrice);
             item.setPrice(newPrice);
@@ -120,16 +121,16 @@ public class EditCommand extends Command {
     /**
      * Sets the item quantity to a specific value according to the user input.
      *
-     * @param item The target item in which the user wants to edit.
+     * @param item            The target item in which the user wants to edit.
      * @param updatedQuantity The new quantity of the item.
      * @throws NumberFormatException Exception related to all number conversion errors.
      */
-    private static void setItemQuantity(Item item, String updatedQuantity) throws NumberFormatException{
+    private static void setItemQuantity(Item item, String updatedQuantity) throws NumberFormatException {
         try {
             Integer newQuantity = Integer.valueOf(updatedQuantity);
             item.setQuantity(newQuantity);
         } catch (NumberFormatException nfe) {
-            throw new NumberFormatException();        
+            throw new NumberFormatException();
         }
     }
 
@@ -142,9 +143,7 @@ public class EditCommand extends Command {
             Item updatedItem = retrieveItemFromHashMap(editInfo);
             Item oldItem = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
                     updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
-            //for (int data = 1; data < editInfo.length; data += 1) {
-                updateItemInfo(updatedItem, editInfo);
-            //}
+            updateItemInfo(updatedItem, editInfo);
             Item itemForHistory = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
                     updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
             handleTrie(updatedItem, oldItem);
@@ -176,7 +175,7 @@ public class EditCommand extends Command {
     public void handleTrie(Item updatedItem, Item oldItem) {
         String[] oldItemNames = oldItem.getName().toLowerCase().split(" ");
         String newItemNamesFull = updatedItem.getName().toLowerCase();
-        for(String oldItemName: oldItemNames) {
+        for (String oldItemName : oldItemNames) {
             if (!newItemNamesFull.contains(oldItemName) && itemNameHash.get(oldItemName).size() == 1) {
                 itemNameHash.remove(oldItemName);
                 itemsTrie.remove(oldItemName);
@@ -185,8 +184,8 @@ public class EditCommand extends Command {
             }
         }
         String[] newItemNames = newItemNamesFull.split(" ");
-        for(String newItemName: newItemNames){
-            if(!itemNameHash.containsKey(newItemName)){
+        for (String newItemName : newItemNames) {
+            if (!itemNameHash.containsKey(newItemName)) {
                 itemNameHash.put(newItemName, new ArrayList<>());
             }
             itemNameHash.get(newItemName).add(updatedItem);
