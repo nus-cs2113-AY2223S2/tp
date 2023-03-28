@@ -51,7 +51,7 @@ Click on `mealcompanion.jar` to automatically download the file. Place the file 
 4. Ensure the terminal is within the correct folder.
 5. Use the command `java -jar mealcompanion.jar` to launch Meal Companion.
 
-![startup.png](images/startup.png)
+![startup.png](images/startup.png)  
 <sub>Fig 2: Command to start using Meal Companion</sub>
 
 6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
