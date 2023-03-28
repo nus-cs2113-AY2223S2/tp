@@ -78,7 +78,6 @@ public class Storage {
                 System.out.println(READ_STORAGE_SUCCESSFUL);
             }
         } catch (EOFException e) {
-            e.printStackTrace();
             expenseList = new ExpenseList();
         } catch (IOException | ClassNotFoundException e) {
             System.out.println(READ_EXPENSELIST_ERROR);

@@ -4,6 +4,7 @@ import command.Command;
 import command.CommandRes;
 import data.Expense;
 import exception.FutureDateException;
+import exception.OverviewInputFormatException;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -23,9 +24,7 @@ public class CommandOverview extends Command {
     private static final String WHITE_SPACE = " ";
 
 
-
-
-    public CommandOverview(ArrayList<Expense> expenses, String month, String year) throws ArrayIndexOutOfBoundsException{
+    public CommandOverview(ArrayList<Expense> expenses, String month, String year) throws ArrayIndexOutOfBoundsException {
         super(COMMAND_NAME);
         this.expenses = expenses;
         this.month = month;
@@ -61,7 +60,7 @@ public class CommandOverview extends Command {
                 throw new FutureDateException();
             }
             if (year.equals("-1")) {
-                throw new Exception();
+                throw new OverviewInputFormatException();
             }
             if (isMonthlyOverview()) {
                 new MonthlyOverview(expenses, month, year).printOverview();
@@ -70,14 +69,11 @@ public class CommandOverview extends Command {
             }
         } catch (IllegalArgumentException | NullPointerException e) {
             System.out.println(MONTH_NAME_ERROR);
-            e.printStackTrace();
         } catch (FutureDateException e) {
             System.out.println(FUTURE_MONTH_ERROR + Month.of(getCurrentMonth() + 1) +
                     WHITE_SPACE + getCurrentYear());
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (OverviewInputFormatException e) {
             System.out.println(NO_SPECIFIC_MONTH_ERROR);
-        } catch (Exception e) {
-            System.out.println("ERROR");
         }
         return null;
     }

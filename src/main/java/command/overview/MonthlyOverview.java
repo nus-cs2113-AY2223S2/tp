@@ -22,7 +22,7 @@ public class MonthlyOverview {
     private static final String TITLE = "Overview for ";
     private static final String MONTHLY_OVERVIEW_TOTAL = "Total expenses: ";
     private static final String CATEGORY_TITLE =
-            "Breakdown of expenses by category in descending order by category sum ";
+            "Breakdown of expenses by category in descending order by category sum:";
     private static final String CATEGORY_DIVIDER = "----------------------------";
     private static final String EMPTY_MONTH = "No expenses tracked in ";
 
