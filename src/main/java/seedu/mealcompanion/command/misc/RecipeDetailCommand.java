@@ -26,25 +26,6 @@ public class RecipeDetailCommand extends ExecutableCommand {
         return argument.matches("[0-9]+");  //match a number with optional '-' and decimal.
     }
 
-    /**
-     * Find the index of a recipe in dukeSession list of recipes.
-     * @param name the name of the recipe to look for
-     * @param dukeSession the dukeSession containing the list of recipes to look in
-     * @return index of recipe if recipe is found, else return -1
-     */
-    private int findIndex(String name, MealCompanionSession dukeSession) throws MealCompanionException {
-        RecipeList recipes = dukeSession.getRecipes();
-        int index = 1;
-        for (Recipe recipe : recipes.getRecipes()) {
-            if (recipe.getName().equals(name)) {
-                return index;
-            }
-            index++;
-        }
-        throw new MealCompanionException("Recipe not found!");
-    }
-
-
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
@@ -53,10 +34,11 @@ public class RecipeDetailCommand extends ExecutableCommand {
             }
 
             int index;
+
             if (!isNum(this.argument)) {
-                index = findIndex(this.argument, mealCompanionSession) - 1;
+                index = mealCompanionSession.getRecipes().findIndex(this.argument);
             } else {
-                index = Integer.parseInt(this.argument) - 1;
+                index = Integer.parseInt(this.argument) - 1; // 1-based user index decremented for 0-based index
             }
             
             if (index < 0 || index >= mealCompanionSession.getRecipes().size()) {

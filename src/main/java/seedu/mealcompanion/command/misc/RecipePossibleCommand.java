@@ -11,44 +11,7 @@ import seedu.mealcompanion.recipe.RecipeList;
 /**
  * Represents the "recipe possible" command.
  */
-public class RecipePossibleCommand extends ExecutableCommand {
-
-    /**
-     * Check if an ingredientList has a sufficient amount of an ingredient.
-     *
-     * @param recipeIngredient  the ingredient to look for
-     * @param fridgeIngredients the list of ingredients to check in
-     * @return true if the list of ingredients have sufficient quantity of that ingredient, false otherwise
-     */
-    public boolean hasEnoughIngredient(Ingredient recipeIngredient, IngredientList fridgeIngredients) {
-        String recipeIngredientName = recipeIngredient.getMetadata().getName();
-        double recipeIngredientQty = recipeIngredient.getQuantity();
-        for (Ingredient fridgeIngredient : fridgeIngredients.getIngredients()) {
-            if (fridgeIngredient.getMetadata().getName().equals(recipeIngredientName)
-                    && fridgeIngredient.getQuantity() >= recipeIngredientQty) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Check if a recipe can be made using a list of ingredients given.
-     *
-     * @param recipe            the recipe to be made
-     * @param fridgeIngredients the list of ingredients used to make the recipe
-     * @return true if the recipe can be made using the list of ingredients, false otherwise
-     */
-    private boolean canMakeRecipe(Recipe recipe, IngredientList fridgeIngredients) {
-        IngredientList recipeIngredients = recipe.getIngredients();
-        for (Ingredient recipeIngredient : recipeIngredients.getIngredients()) {
-            if (!hasEnoughIngredient(recipeIngredient, fridgeIngredients)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
+public class RecipePossibleCommand extends RecipeCommand {
     /**
      * List all recipes that can be made using ingredients that are available.
      *

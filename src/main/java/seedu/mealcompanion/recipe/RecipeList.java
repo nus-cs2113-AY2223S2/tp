@@ -9,6 +9,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import seedu.mealcompanion.MealCompanionException;
+import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.serde.SerializableRecipe;
 
 //@@author ngyida
@@ -60,6 +61,23 @@ public class RecipeList {
             }
         }
         throw new MealCompanionException("Oops, recipe not found.");
+    }
+
+    //@@author ngyida
+    /**
+     * Find the index (0-based) of a recipe by its specified name.
+     * @param name the name of the recipe to look for
+     * @return index of recipe if recipe is found, else return -1
+     */
+    public int findIndex(String name) throws MealCompanionException {
+        int index = 0;
+        for (Recipe recipe : this.recipes) {
+            if (recipe.getName().equals(name)) {
+                return index;
+            }
+            index++;
+        }
+        throw new MealCompanionException("Recipe not found!");
     }
     
     public int size() {
