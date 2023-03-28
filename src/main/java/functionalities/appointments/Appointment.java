@@ -7,8 +7,8 @@ public abstract class Appointment {
 
     public String uid;
     public Animal animal;
-    protected Owner owner;
     public boolean isDone;
+    protected Owner owner;
 
     public Appointment(String uid, Animal animal, Owner owner) {
         this.uid = uid;
