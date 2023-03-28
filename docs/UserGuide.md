@@ -20,6 +20,9 @@ Meal Companion is designed by computing students, for computing students, especi
        - [All Recipes](#all-recipes)
        - [Recipe Details](#recipe-details)
        - [Possible Recipes](#possible-recipes)
+       - [Random Recipe](#random-recipe)
+       - [Check Ingredients for Recipe](#check-ingredients-for-recipe)
+       - [Almost Completed Recipe](#almost-completed-recipe)
    3. [Saving Data](#saving-data)
        - [Transferring Saved Data to other devices](#transferring-saved-data-to-other-devices) 
    5. [Help](#help)
@@ -135,8 +138,14 @@ Meal Companion includes the functionality to suggest recipes based on ingredient
 ![recipepossible1.png](images/recipepossible1.png)  
 <sub>Fig 10: Sample of Recipe Possible command showing the list of ingredients and the recipes that can be made with those ingredients, with user input highlighted.</sub>
 
+### Random Recipe
+Meal Companion allows you to get a random recipe as suggestion for your next meal using the command `recipe random`.
+
 ### Check Ingredients for Recipe
 To check if you have sufficient ingredients to make a recipe, you can run the command `recipe need <recipe_name>`. Ingredients that you are missing will be listed along with the quantity needed.
+
+### Almost Completed Recipe
+To check for recipes that you almost can make, you can run the command `recipe almost`. Such recipes have at most 3 lacking ingredients.
 
 #### [Back to table of contents](#table-of-contents)
 
