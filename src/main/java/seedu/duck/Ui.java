@@ -162,7 +162,8 @@ public class Ui {
      * @param matchingResults The array list of tasks that contain the keywords
      * @param matchCount      The number of tasks in the list that contain the keywords
      */
-    private static void printFindResults(ArrayList<Task> matchingResults, int matchCount, ArrayList<Integer> matchingResultsIndex) {
+    private static void printFindResults(ArrayList<Task> matchingResults, int matchCount,
+                                         ArrayList<Integer> matchingResultsIndex) {
         if (matchingResults.isEmpty()) {
             noMatchMessage();
         } else {
@@ -177,11 +178,13 @@ public class Ui {
      * @param matchCount      The number of tasks in the list that contain the keywords
      * @param matchingResultsIndex The index of the task in the main list
      */
-    static void printMatchingList(ArrayList<Task> matchingResults, int matchCount, ArrayList<Integer> matchingResultsIndex) {
+    static void printMatchingList(ArrayList<Task> matchingResults, int matchCount,
+                                  ArrayList<Integer> matchingResultsIndex) {
         borderLine();
         System.out.println("\t Here are the matching tasks in your list:");
         for (int i = 0; i < matchCount; i++) {
-            System.out.println("\t " + (i + 1) + "." + matchingResults.get(i) + "   || The index of this item is " + matchingResultsIndex.get(i));
+            System.out.println("\t " + (i + 1) + "." + matchingResults.get(i) +
+                    "   || The index of this item is " + matchingResultsIndex.get(i));
         }
         borderLine();
     }
@@ -379,7 +382,10 @@ public class Ui {
         System.out.println("\t （`･v･´ ）: Here are the commands you can give me:");
         System.out.println("\t - list: I'll list out all the tasks you have recorded.");
         System.out.println("\t - list <number_of_days>: I'll list out all the tasks in that number of days.");
-        System.out.println("\t - priority_list: I'll list out all the tasks you have recorded arranged by their priority.");
+        System.out.println("\t - list classes: I'll list out the classes you have on your schedule.");
+        System.out.println("\t - refresh: I'll refresh your task list and class schedule.");
+        System.out.println("\t - priority_list: " +
+                "I'll list out all the tasks you have recorded arranged by their priority.");
         System.out.println("\t - low_priority: I'll list out all the tasks you have that are low in priority.");
         System.out.println("\t - medium_priority: I'll list out all the tasks you have that are medium in priority.");
         System.out.println("\t - high_priority: I'll list out all the tasks you have that are high in priority.");
@@ -387,7 +393,8 @@ public class Ui {
         System.out.println("\t - mark <task_number>: I'll mark that task as done.");
         System.out.println("\t - unmark <task_number>: I'll mark that task as undone.");
         System.out.println("\t - delete <task_number>: I'll delete that task from your list.");
-        System.out.println("\t - remove class /class <class_name> /description <description /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>");
+        System.out.println("\t - remove class /class <class_name> /description <description> " +
+                "/day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>");
         System.out.println("\t   : I'll remove this class from your class schedule.");
         System.out.println("\t - purge: I'll delete all expired tasks from your list after a confirmation.");
         System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
@@ -410,14 +417,14 @@ public class Ui {
 
     static void addedTaskMessage(Task currentTask) {
         borderLine();
-        System.out.println("\t Alright, I have added this task: \n\t\t" + currentTask);
+        System.out.println("\t Alright, I have added this task: \n\t" + currentTask);
         System.out.println("\t You now have " + (Task.getTaskCount() + 1) + " tasks in your list.");
         borderLine();
     }
 
     static void addedSchoolClassMessage(SchoolClass currentClass, PriorityQueue<SchoolClass> classes) {
         borderLine();
-        System.out.println("\t Alright, I have added this class: \n\t\t" + currentClass);
+        System.out.println("\t Alright, I have added this class: \n\t" + currentClass);
         System.out.println("\t You now have " + (classes.size()) + " classes in your schedule.");
         borderLine();
     }
@@ -425,8 +432,14 @@ public class Ui {
     static void deleteTaskMessage(Task taskToDelete) {
         borderLine();
         System.out.println("\t Understood. I have removed this task:");
-        System.out.println("\t\t" + taskToDelete);
+        System.out.println("\t" + taskToDelete);
         System.out.println("\t You now have " + Task.getTaskCount() + " tasks in your list.");
+        borderLine();
+    }
+
+    static void refreshedMessage() {
+        borderLine();
+        System.out.println("\t Your task list and class schedule have been refreshed!");
         borderLine();
     }
 
