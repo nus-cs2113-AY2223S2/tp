@@ -13,6 +13,6 @@ public class ListCurrentCommand extends Command {
 
     @Override
     public void execute() {
-        ui.printCurrentModList(modules);
+        ui.printAllCurrentModList(modules);
     }
 }

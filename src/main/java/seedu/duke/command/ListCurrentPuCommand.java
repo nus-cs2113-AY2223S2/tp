@@ -15,7 +15,6 @@ public class ListCurrentPuCommand extends Command {
             if (currentModuleUnivId == univId) {
                 puModulesToPrint.add(currentModule);
             }
-
         }
         this.modules = puModulesToPrint;
         this.univId = univId;
