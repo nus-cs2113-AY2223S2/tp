@@ -3,7 +3,7 @@ package seedu.commands.workoutcommands;
 
 import seedu.commands.Command;
 import seedu.ui.Ui;
-import seedu.workouttracker.workout.Workout;
+import seedu.workout.Workout;
 
 
 /**
@@ -26,7 +26,7 @@ public class ListWorkoutCommand extends Command {
             if (!workoutList.workoutArrayList.isEmpty()) {
                 System.out.println("Here are the list of dates for your workout: ");
                 for (Workout workout : workoutList.workoutArrayList) {
-                    System.out.println(workout.getDate());
+                    System.out.println(workout.getStringDate());
                 }
                 Ui.showSeparator();
             } else {

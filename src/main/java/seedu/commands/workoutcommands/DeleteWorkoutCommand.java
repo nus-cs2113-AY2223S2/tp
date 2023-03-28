@@ -3,7 +3,7 @@ package seedu.commands.workoutcommands;
 import seedu.DateFormat;
 import seedu.commands.Command;
 import seedu.ui.Ui;
-import seedu.workouttracker.workout.Workout;
+import seedu.workout.Workout;
 
 import java.util.Date;
 
@@ -32,7 +32,7 @@ public class DeleteWorkoutCommand extends Command {
         for (Workout workout : workoutList.workoutArrayList) {
             DateFormat dateFormat = new DateFormat(workoutToDeleteDate);
             String formattedDate = dateFormat.formatDate();
-            if (workout.getDate().equals(formattedDate)) {
+            if (workout.getStringDate().equals(formattedDate)) {
                 workoutList.workoutArrayList.remove(workout);
                 System.out.println("Workout deleted successfully.");
                 Ui.showSeparator();
