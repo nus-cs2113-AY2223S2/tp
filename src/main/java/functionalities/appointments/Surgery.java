@@ -17,7 +17,7 @@ public class Surgery extends Appointment {
     protected LocalTime startTime;
     protected LocalDate endDate;
     protected LocalTime endTime;
-
+    protected char priorityType;
     protected String description = "surgery";
 
     public Surgery(String uid, Animal animal, Owner owner, String priority,
@@ -26,6 +26,7 @@ public class Surgery extends Appointment {
         this.uid = uid;
         this.animal = animal;
         this.owner = owner;
+        this.priorityType = priority.charAt(0);
         this.priority = setPriority(priority);
         this.startDate = startDate;
         this.startTime = startTime;
@@ -58,5 +59,12 @@ public class Surgery extends Appointment {
     @Override
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public String retrieveStorageInfo() {
+        return uid + " | " + priorityType + " | " + animal.getAnimalName() + " | " + animal.getAnimalType() + " | "
+                + owner.getName() + " | " + owner.getContactNumber() + " | " + startDate + " | " + startTime + " | "
+                + endDate + " | " + endTime;
     }
 }

@@ -7,6 +7,8 @@ import functionalities.appointments.Surgery;
 import functionalities.appointments.Vaccination;
 import functionalities.ui.Ui;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -16,8 +18,32 @@ public class SniffTasks {
 
     private static final ArrayList<Appointment> APPOINTMENTS = new ArrayList<>();
     private static final HashSet<String> UIDS = new HashSet<>();
-
     private static int appointmentCount = 0;
+
+    public static void setAppointmentCount(int count) {
+        appointmentCount = count;
+    }
+
+    public static void addAppointmentUID(String UID) {
+        UIDS.add(UID);
+    }
+
+    public static void addAppointment(Appointment appointment) {
+        APPOINTMENTS.add(appointment);
+    }
+
+    public static int getAppointmentCount() {
+        return appointmentCount;
+    }
+
+    public static void retrieveTask(FileWriter savedFile) throws IOException {
+        for (int index = 0; index < SniffTasks.getAppointmentCount(); index++) {
+            if (APPOINTMENTS.get(index).getStatus().equals(" ")) {
+                savedFile.write(APPOINTMENTS.get(index).retrieveStorageInfo());
+                savedFile.write(System.getProperty("line.separator"));
+            }
+        }
+    }
 
     public void addConsultation(Animal animal, Owner owner,
                                 LocalDate date, LocalTime time) throws SniffException {
@@ -62,8 +88,8 @@ public class SniffTasks {
                 uid = Uid.uidGenerator("C");
             }
             UIDS.add(uid);
-            Appointment newAppointment =
-                    new Surgery(uid, animal, owner, priority, startDate, startTime, endDate, endTime);
+            Appointment newAppointment = new Surgery(uid, animal, owner, priority, startDate, startTime, endDate,
+                    endTime);
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
@@ -104,7 +130,7 @@ public class SniffTasks {
             Ui.showUserMessage("No entries found!");
         }
         for (Appointment appointment : APPOINTMENTS) {
-            Ui.formatPrintList(counter, appointment.toString(), appointment.getStatus());
+            Ui.formatPrintList(counter, appointment.toString());
             counter++;
         }
     }
@@ -114,7 +140,7 @@ public class SniffTasks {
         for (Appointment appointment : APPOINTMENTS) {
             assert appointment.uid != null;
             if (uId.equalsIgnoreCase(appointment.uid)) {
-                Ui.formatPrintList(counter, appointment.toString(), appointment.getStatus());
+                Ui.formatPrintList(counter, appointment.toString());
                 counter++;
             }
         }
@@ -134,7 +160,7 @@ public class SniffTasks {
         for (Appointment appointment : APPOINTMENTS) {
             assert appointment.animal.type != null;
             if (animal.equalsIgnoreCase(appointment.animal.type)) {
-                Ui.formatPrintList(counter, appointment.toString(), appointment.getStatus());
+                Ui.formatPrintList(counter, appointment.toString());
                 counter++;
             }
         }
@@ -148,7 +174,7 @@ public class SniffTasks {
         for (Appointment appointment : APPOINTMENTS) {
             assert appointment != null;
             if (type.equalsIgnoreCase(appointment.getDescription())) {
-                Ui.formatPrintList(counter, appointment.toString(), appointment.getStatus());
+                Ui.formatPrintList(counter, appointment.toString());
                 counter++;
             }
         }
@@ -177,7 +203,8 @@ public class SniffTasks {
         }
 
     }
-    public void unmarkAppointment(String uid) throws SniffException{
+
+    public void unmarkAppointment(String uid) throws SniffException {
         try {
             if (!UIDS.contains(uid)) {
                 throw new SniffException(" There are no appointments with this ID.");
