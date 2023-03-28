@@ -9,7 +9,7 @@ activate ViewCommand
 loop sizeOfFinancialReport
     ViewCommand -> UserData : getStatement(i)
     activate UserData
-    UserData -> ViewCommand: FinancialStatement[i]
+    UserData --> ViewCommand: FinancialStatement[i]
     deactivate UserData
     end
         opt sortingRequired
@@ -23,15 +23,16 @@ ViewResult ->] : Print Table Header to User
 loop sizeOfArrayList
     ViewResult -> UserData : getStatement(i)
     activate UserData
-    UserData -> ViewResult: FinancialStatement[i]
+    UserData --> ViewResult: FinancialStatement[i]
     deactivate UserData
     ViewResult -> ViewResult : Convert to Valid String
     ViewResult ->] : Print Statement to User
     end
     ViewResult ->] : Print Summary to User
+    ViewResult --> ViewCommand
     deactivate ViewResult
 
-ViewCommand ->[ : null
+ViewCommand -->[ : null
 deactivate ViewCommand
 
 
