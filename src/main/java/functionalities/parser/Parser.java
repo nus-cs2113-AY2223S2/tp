@@ -9,6 +9,8 @@ import functionalities.commands.SurgeryCommand;
 import functionalities.commands.FindCommand;
 import functionalities.commands.ListCommand;
 import functionalities.commands.ExitCommand;
+import functionalities.commands.MarkCommand;
+import functionalities.commands.UnMarkCommand;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -34,6 +36,10 @@ public class Parser {
             parseListCommand();
         } else if (task.toLowerCase().startsWith("remove")) {
             parseRemoveCommand(task);
+        } else if (task.toLowerCase().startsWith("mark")) {
+            parseMarkCommand(task);
+        } else if (task.toLowerCase().startsWith("unmark")) {
+            parseUnmarkCommand(task);
         } else if (task.equalsIgnoreCase("bye")) {
             parseByeCommand();
         } else {
@@ -179,6 +185,26 @@ public class Parser {
         } catch (IndexOutOfBoundsException e) {
             logger.warning("Out of Range appointment ID provided for remove command.");
             throw new SniffException(" The remove command index is invalid!");
+        }
+    }
+
+    private static void parseMarkCommand(String task) throws SniffException{
+        try {
+            int markIndex = task.indexOf("uID/");
+            String markTask = task.substring(markIndex+4);
+            command = new MarkCommand(markTask);
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new SniffException(" The mark description is invalid!");
+        }
+    }
+
+    private static void parseUnmarkCommand(String task) throws SniffException {
+        try {
+            int unmarkIndex = task.indexOf("uID/");
+            String unmarkTask = task.substring(unmarkIndex+4);
+            command = new UnMarkCommand(unmarkTask);
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new SniffException(" The unmark description is invalid!");
         }
     }
 
