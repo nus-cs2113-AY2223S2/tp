@@ -2,6 +2,7 @@ package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.FileHandler;
@@ -106,8 +107,10 @@ public class ViewResult {
      * @param outflow the total outflow
      * @return a string with the formatted summary
      */
-    private static String formatSummary(double inflow, double outflow) {
+    private static String formatSummary(double inflow, double outflow, LocalDate startDate, boolean isSorted) {
         assert (inflow != 0 || outflow != 0);
+        LocalDate endDate = LocalDate.now();
+        String timespanInformation= "|Viewing all entries from " + startDate + "till today!";
         String inflowInformation = String.format("|Total Inflow: $%.2f", inflow);
         String outflowInformation = String.format("|Total Outflow: $%.2f", outflow);
 
@@ -148,7 +151,7 @@ public class ViewResult {
      *
      * @param validIndexes ArrayList of Integers with the indices of the entries to print from financialReport
      */
-    public static void printReport(ArrayList<Integer> validIndexes) {
+    public static void printReport(ArrayList<Integer> validIndexes, LocalDate startDate, boolean isSorted) {
         double totalInflow = 0;
         double totalOutflow = 0;
 
@@ -168,7 +171,7 @@ public class ViewResult {
             logger.log(Level.INFO, "passed statement " + index);
         }
         System.out.print(TABLE_BORDER);
-        System.out.print(formatSummary(totalInflow, totalOutflow));
+        System.out.print(formatSummary(totalInflow, totalOutflow, startDate, isSorted));
     }
 }
 
