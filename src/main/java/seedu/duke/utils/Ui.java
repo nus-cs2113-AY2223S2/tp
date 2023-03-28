@@ -50,7 +50,7 @@ public class Ui {
     public static final String GREET_MESSAGE = "Welcome to MagusStock. How may I assist you today?";
     public static final String EXIT_MESSAGE = "Hope you had an enjoyable experience. See you next time!";
     public static final String UNKNOWN_COMMAND = "I don't understand that command, please refer to the user guide " +
-            "for all available commands";
+            "or enter 'help' for all available commands";
     public static final String INVALID_ADD = "Wrong/Incomplete Format! Please add new items in the following format: " +
             "add n/[name] upc/[UPC] qty/[quantity] p/[price]\nTip: Ensure that your UPC, quantity and price are all " +
             "in numbers and within valid range";
@@ -93,7 +93,7 @@ public class Ui {
     public static final int COMMAND_COL_WIDTH = 25;
     public static final int FORMAT_COL_WIDTH = 25;
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
-            "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
+            "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price] c/[Category]}";
     public static final String ITEM_NOT_FOUND = "Command failed! Reason: Item not found in database. Please add item " +
             "first!";
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
@@ -177,6 +177,16 @@ public class Ui {
 
     private static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove " +
             "does not exist.";
+    private static final String INVALID_CATEGORY_FORMAT = "Wrong/Incomplete Format! Please enter category commands " +
+            "as shown below.\n" + "List all categories: cat list\n" + "List all items in a category: cat [Category]\n"+
+            "List all items and all categories: cat table";
+    private static final int CATEGORY_COL_WIDTH = 15;
+    private static final int ITEMS_COL_WIDTH = 30;
+    private static final String CATEGORY_HEADING = "Category";
+    private static final String NO_CATEGORY_LIST = "Category list is empty. There are no items in the inventory.";
+    private static final String INVALID_CATEGORY_FIND = "The category you are looking for does not exist.";
+    private static final String INVALID_CATEGORY = "The category does not exist.";
+    private static final String NEW_CATEGORY_ADDED = "A new category has been added.";
 
 
     public static void printLine() {
@@ -196,18 +206,18 @@ public class Ui {
     }
 
     public static void printSearchUPCItem(Item item) {
-        Ui.printLine();
+        System.out.println(LINE);
         System.out.println(ANSI_GREEN + "Here is your item: ");
         ArrayList<Item> singleItem = new ArrayList<>();
         singleItem.add(item);
         System.out.println(printTable(singleItem) + ANSI_RESET);
-        Ui.printLine();
+        System.out.println(LINE);
     }
 
     public static void printSearchItems(ArrayList<Item> items) {
-        Ui.printLine();
+        System.out.println(LINE);
         System.out.println(ANSI_GREEN + printTable(items) + ANSI_RESET);
-        Ui.printLine();
+        System.out.println(LINE);
     }
 
     public static void printExitMessage() {
@@ -309,6 +319,19 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public static String printTable(HashMap<String, ArrayList<Item>> categoryHash) {
+        int[] columnWidths = {CATEGORY_COL_WIDTH, ITEMS_COL_WIDTH};
+
+        StringBuilder table = new StringBuilder();
+
+        table.append(printTableSeparator(columnWidths));
+        table.append(printHeadings(columnWidths));
+        table.append(printTableSeparator(columnWidths));
+        categoryHash.forEach((category, items)
+                -> table.append((printRow(category, items, columnWidths))));
+        return table.toString();
+    }
+
     public static String printTable() {
         HashMap<String, String> commandsHashMap = new HashMap<>();
         CommandFormat commandFormat = new CommandFormat(commandsHashMap);
@@ -365,10 +388,12 @@ public class Ui {
         String[] headings = {};
         if (columnWidths.length == INVENTORY_ATTRIBUTE_COUNT) {
             headings = new String[]{NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
-        } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT) {
+        } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == COMMAND_COL_WIDTH) {
             headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
             headings = new String[]{"Name", "UPC", "Stock"};
+        } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == CATEGORY_COL_WIDTH) {
+            headings = new String[]{CATEGORY_HEADING, NAME_HEADING + ": " + UPC_HEADING};
         }
         StringBuilder allHeadings = new StringBuilder();
 
@@ -410,6 +435,34 @@ public class Ui {
             row.append(printAttribute(descriptionLines, COMMAND_COL_WIDTH, i));
             row.append(TABLE_MIDDLE);
             row.append(printAttribute(formatLines, FORMAT_COL_WIDTH, i));
+            row.append(TABLE_RIGHT);
+            row.append(System.lineSeparator());
+
+            if (i == rowHeight - 1) {
+                row.append(printTableSeparator(columnWidths));
+            }
+        }
+        return row.toString();
+    }
+
+    private static String printRow(String category, ArrayList<Item> items, int[] columnWidths) {
+        String[] categoryLines = wrapText(category, CATEGORY_COL_WIDTH);
+        ArrayList<String> itemLines = new ArrayList<>();
+        StringBuilder row = new StringBuilder();
+
+        for (Item item : items) {
+            String name = item.getName();
+            String upc = item.getUpc();
+            itemLines.add(name + ":" + upc);
+        }
+        String[] itemListLines = wrapText(itemLines.toString(), ITEMS_COL_WIDTH);
+        int rowHeight = findRowHeight(categoryLines, itemListLines);
+
+        for (int i = 0; i < rowHeight; i += 1) {
+            row.append(TABLE_LEFT);
+            row.append(printAttribute(categoryLines, CATEGORY_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(itemListLines, ITEMS_COL_WIDTH, i));
             row.append(TABLE_RIGHT);
             row.append(System.lineSeparator());
 
@@ -491,6 +544,12 @@ public class Ui {
     /* Method below adapted from https://stackoverflow.com/questions/4055430/java-
     code-for-wrapping-text-lines-to-a-max-line-width */
     private static String[] wrapText(String input, int width) {
+        if (input.contains("[")) {
+            input = input.replace("[", "");
+        }
+        if (input.contains("]")) {
+            input = input.replace("]", "");
+        }
         String[] words = input.split("\\s+");
         ArrayList<String> lines = new ArrayList<>();
         StringBuilder line = new StringBuilder();
@@ -518,6 +577,12 @@ public class Ui {
 
         if (line.length() < width) {
             line.append(" ");
+        }
+
+        if (words[current].equals(",")) {
+            for (int i = 0; i < width-line.length(); i++) {
+                line.append(" ");
+            }
         }
 
         if (current + 1 != words.length && line.length() + words[current + 1].length() > width) {
@@ -598,11 +663,9 @@ public class Ui {
         System.out.println(LINE);
         System.out.println(ANSI_BLUE + SUCCESS_EDIT + ANSI_RESET + "\n");
         System.out.println(ANSI_RED + "Before Update: " + ANSI_RESET);
-        System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
-                "Quantity Available: " + oldItem.getQuantity() + "\n" + "Item Price: " + oldItem.getPrice());
+        System.out.println(oldItem.toString());
         System.out.println("\n" + ANSI_GREEN + "After Update: " + ANSI_RESET);
-        System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
-                "Quantity Available: " + updatedItem.getQuantity() + "\n" + "Item Price: " + updatedItem.getPrice());
+        System.out.println(updatedItem.toString());
         System.out.println(LINE);
     }
 
@@ -753,13 +816,10 @@ public class Ui {
     public static void printInvalidUpc(Inventory inventory) {
         System.out.println(LINE);
         int listSize = inventory.getItemInventory().size();
-        switch (listSize) {
-        case 0:
+        if (listSize == 0) {
             System.out.println(ANSI_RED + EMPTY_LIST + ANSI_RESET);
-            break;
-        default:
+        } else {
             System.out.println(ANSI_RED + "This UPC is invalid. Try again." + ANSI_RESET);
-            break;
         }
         System.out.println(LINE);
     }
@@ -959,6 +1019,41 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public static void printInvalidCategoryCommand() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_CATEGORY_FORMAT + ANSI_RESET);
+        System.out.println(LINE);
+    }
 
+    public static void printCategory(HashMap<String, ArrayList<Item>> categoryHash) {
+        System.out.println(LINE);
+        System.out.println(ANSI_GREEN + printTable(categoryHash) + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printNoCategoryList() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + NO_CATEGORY_LIST + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printInvalidCategory() {
+        System.out.println(LINE);
+        System.out.println(ANSI_RED + INVALID_CATEGORY_FIND + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printNewCategory() {
+        System.out.println(LINE);
+        System.out.println(ANSI_BLUE + INVALID_CATEGORY + NEW_CATEGORY_ADDED + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printCategoryList(HashMap<String, ArrayList<Item>> categoryHash) {
+        System.out.println(LINE);
+        System.out.println(ANSI_BLUE + "Here is the list of categories you have: " + ANSI_RESET);
+        categoryHash.forEach((cat, items) -> System.out.println(cat));
+        System.out.println(LINE);
+    }
 }
 

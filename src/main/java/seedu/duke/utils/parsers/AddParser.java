@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 public class AddParser extends Parser {
 
+
     public AddParser(final String rawInput, final Inventory inventory) {
         super(rawInput, inventory);
     }
@@ -31,7 +32,8 @@ public class AddParser extends Parser {
                 return;
             }
             Item newItem = new Item(matcher.group(NAME_INDEX), matcher.group(UPC_INDEX),
-                    Integer.parseInt(matcher.group(QTY_INDEX)), Double.parseDouble(matcher.group(PRICE_INDEX)));
+                    Integer.parseInt(matcher.group(QTY_INDEX)), Double.parseDouble(matcher.group(PRICE_INDEX)),
+                    matcher.group(CAT_INDEX));
             Command addCommand = new AddCommand(inventory, newItem);
             addCommand.run();
         } catch (MissingParametersException e) {

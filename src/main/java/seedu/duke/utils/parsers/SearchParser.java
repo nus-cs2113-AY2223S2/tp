@@ -17,7 +17,7 @@ public class SearchParser extends Parser{
 
     /**
      * Handles the "searchUPC" command by checking the validity of search term provided before passing to
-     * the searchUPC function
+     * the relevant command
      *
      * @param rawInput The user input string to be validated.
      * @param inventory The inventory in which the search is done
@@ -42,7 +42,7 @@ public class SearchParser extends Parser{
 
     /**
      * Handles the "search" command by checking the validity of search term provided before passing to
-     * the search function
+     * the relevant command
      *
      * @param rawInput The user input string to be validated.
      * @param inventory The inventory in which the search is done
@@ -59,6 +59,11 @@ public class SearchParser extends Parser{
             e.missingSearchItemParameters();
         }
     }
+
+    /**
+     * Delegates the executes the correct parser method.
+     *
+     */
     @Override
     public void run(){
         if(searchType == Types.SearchType.KEYWORD){

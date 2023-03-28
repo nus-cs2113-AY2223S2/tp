@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+object RemoveParser{
+    - rawInput = "f/item upc/123"
+    - Inventory = inventory
+    - alertList = alertList
+}
+
+object RemoveParser1{
+    - rawInput = "f/index 2"
+    - Inventory = inventory
+    - alertList = alertList
+}
+
+object RemoveCommand{
+    - userConfirmation = "Y"
+    - Inventory = inventory
+    - upcCode = 123
+}
+
+object RemoveCommand1{
+    - userConfirmation = "Y"
+    - Inventory = inventory
+    - itemIndex = 2
+}
+
+RemoveParser -> RemoveCommand
+RemoveParser1 -> RemoveCommand1
+@enduml

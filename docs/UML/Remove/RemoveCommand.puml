@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor User
+participant RemoveParser
+User -> RemoveParser: run()
+
+group sd [check confirmation and execute accordingly]
+    activate RemoveParser
+        RemoveParser -> User: printConfirmMessage()
+        User --> RemoveParser: confirmation
+        RemoveParser -> RemoveCommand: run()
+        activate RemoveCommand
+            RemoveCommand -> RemoveCommand: removeByUpcCode() or removeByIndex()
+            activate RemoveCommand #cyan
+            ref over RemoveCommand
+                remove item only if confirmation == 'Y'
+            end ref
+            alt confirmation == 'Y'
+                RemoveCommand -> Ui: printSuccessRemove(item)
+                activate Ui
+                ref over Ui
+                    print item removed successfully
+                end ref
+                return
+            else confirmation == 'N'
+                RemoveCommand -> Ui: printNotRemoving()
+                activate Ui
+                ref over Ui
+                    print not removing item
+                end ref
+                return
+            else confirmation is not 'Y' or 'N'
+                RemoveCommand -> Ui: printInvalidReply()
+                activate Ui
+                ref over Ui
+                    print invalid reply
+                end ref
+                return
+                return
+                return
+                destroy RemoveCommand
+            end
+end
+return
+destroy RemoveParser
+
+@enduml
