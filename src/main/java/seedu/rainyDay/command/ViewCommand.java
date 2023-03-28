@@ -18,11 +18,11 @@ public class ViewCommand extends Command {
     private static final Logger logger = Logger.getLogger(ViewCommand.class.getName());
 
     private final LocalDate timeLimit;
-    private final boolean sortByValue;
+    private final boolean sortingRequired;
 
-    public ViewCommand(LocalDate timeLimit, boolean sortByValue) {
+    public ViewCommand(LocalDate timeLimit, boolean sortingRequired) {
         this.timeLimit = timeLimit;
-        this.sortByValue = sortByValue;
+        this.sortingRequired = sortingRequired;
     }
 
     /**
@@ -63,9 +63,9 @@ public class ViewCommand extends Command {
 
     /**
      * Helper function used to sort the indexes
-     * Sorts in non-decreasing order of absolute value, with inflows prioritised over outflows
+     * Sorts in non-decreasing order of absolute value, with inflows always prioritised over outflows
      */
-    class customSort implements Comparator<Integer> {
+    class sortByValue implements Comparator<Integer> {
         public int compare (Integer firstIndex, Integer secondIndex) {
             FinancialStatement firstStatement = userData.getStatement(firstIndex);
             FinancialStatement secondStatement = userData.getStatement(secondIndex);
@@ -98,10 +98,10 @@ public class ViewCommand extends Command {
             return new CommandResult(output);
         }
         assert userData.getStatementCount() != 0 : "statement count mismatch";
-        if(sortByValue) {
-            validIndexes.sort(new customSort());
+        if(sortingRequired) {
+            validIndexes.sort(new sortByValue());
         }
-        ViewResult.printReport(validIndexes, timeLimit, sortByValue, viewAll);
+        ViewResult.printReport(validIndexes, timeLimit, sortingRequired, viewAll);
         return null;
     }
 }
