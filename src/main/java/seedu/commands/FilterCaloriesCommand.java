@@ -1,7 +1,6 @@
 package seedu.commands;
 
 import seedu.entities.Food;
-import seedu.exceptions.InvalidArgumentsException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
