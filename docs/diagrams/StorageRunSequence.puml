@@ -1,0 +1,40 @@
+@startuml StorageRunSequenceDiagram
+title Storage Run Sequence Diagram
+
+-> Moneymind : run()
+activate Moneymind
+critical try
+Moneymind -> Storage : load()
+activate Storage
+Storage -> ReadFromFile : readFromFile(textFile : File)
+ReadFromFile --> Storage : String fileString
+Storage -> StringToCategory : stringToCategory(fileString : String)
+StringToCategory --> Storage : categories : ArrayList<Category>
+Storage -> GenerateCategoryHashMap : generateCategoryHashMap(categories : ArrayList<Category>)
+GenerateCategoryHashMap --> Storage : categoryHashMap : HashMap<String, Category>
+Storage --> Moneymind
+deactivate Storage
+
+Moneymind -> Storage : getSavedCategories()
+activate Storage
+Storage --> Moneymind : savedCategories : ArrayList<Category>
+deactivate Storage
+
+Moneymind -> Storage : getSavedCategoryHashMap()
+activate Storage
+Storage --> Moneymind : savedCategoryHashMap : HashMap<String, Category>
+deactivate Storage
+end
+Moneymind -> Storage : save(ArrayList<Category> categories)
+activate Storage
+Storage -> CategoriesToString : categoriesToString(categories : ArrayList<Category>)
+CategoriesToString --> Storage : String categoriesString
+Storage -> Storage : moneymindWrite(textToWrite : String)
+activate Storage
+Storage --> Storage
+deactivate Storage
+Storage --> Moneymind
+deactivate Storage
+<-- Moneymind
+deactivate Moneymind
+destroy Moneymind
