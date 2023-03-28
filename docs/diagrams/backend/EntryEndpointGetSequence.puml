@@ -1,0 +1,14 @@
+@startuml
+mainframe sd Endpoint /entry - Handle GET
+
+-> EntryEndpoint : handleGet(Request)
+
+EntryEndpoint -> EntryLog : getEntry()
+EntryEndpoint <-- EntryLog : Entry
+
+group opt [Entry is null]
+    <-- EntryEndpoint : Response(NOT_FOUND)
+end
+
+<-- EntryEndpoint : Response(OK)
+@enduml
