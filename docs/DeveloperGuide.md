@@ -37,7 +37,27 @@
 
 ### 3.1. Architecture
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+![](team/images/Architecture.png)
+
+
+The Architecture Diagram shown above is a high-level components within MyLedger. The ```MyLedger``` class contains the main method which
+is responsible for:
+
+1. When MyLedger is launched, it will initialize the ```Storage``` to load the saved expenditures from the textfile and  ```Ui``` to print
+   the welcome message.
+2. When MyLedger is executing, it receives input for the user and sends it to ```Storage``` then ```Command``` which carries out the various
+   commands. 
+3. After the command has been carried out ```Command``` sends the result back to ```MyLedger.main()``` which would print the message back to the user.
+
+The other components of MyLedger include:
+
+* ```Ui```: The user interface that prints the welcome and help message.
+* ```Parser```: Parser which process the user's command and calls the specific command.
+* ```Command```: Executes the command given.
+* ```Expenditure```: Constructs an expenditure and is added to ```ExpenditureList```.
+* ```ExpenditureList```: An ArrayList of the current expenditures.
+* ```Storage```: Uses ```MyLedger_inputs.txt``` to initialize ```ExpenditureList```, updates ```MyLedger_inputs.txt``` whenever ```ExpenditureList```
+  changed.
 
 ### Main Components of MyLedger
 `Parser:` Processes the inputs made by the user and converts into a sensible form for further processing.
