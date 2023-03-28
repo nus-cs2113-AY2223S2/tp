@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -72,8 +73,8 @@ public class ViewCommand extends Command {
      * @return ArrayList of indexes which passed the check
      */
     private ArrayList<Integer> filterBeforeSpecificDateSorted() {
-        Map<Double, ArrayList<Integer>> sortedIndexesInflows = new TreeMap<>();
-        Map<Double, ArrayList<Integer>> sortedIndexesOutflows = new TreeMap<>();
+        Map<Double, LinkedList<Integer>> sortedIndexesInflows = new TreeMap<>();
+        Map<Double, LinkedList<Integer>> sortedIndexesOutflows = new TreeMap<>();
         LocalDate today = LocalDate.now();
         for (int index = 0; index < userData.getStatementCount(); index++) {
             FinancialStatement currentStatement = userData.getStatement(index);
@@ -82,13 +83,13 @@ public class ViewCommand extends Command {
             LocalDate statementDate = currentStatement.getDate();
             if (statementDate.isAfter(timeLimit) && !statementDate.isAfter(today) && direction.equals("+")) {
                 if (!sortedIndexesInflows.containsKey(statementValue)) {
-                    ArrayList<Integer> list = new ArrayList<>();
+                    LinkedList<Integer> list = new LinkedList<>();
                     sortedIndexesInflows.put(statementValue, list);
                 }
                 sortedIndexesInflows.get(statementValue).add(index);
             } else if (statementDate.isAfter(timeLimit) && !statementDate.isAfter(today) && direction.equals("-")) {
-                if (!sortedIndexesInflows.containsKey(statementValue)) {
-                    ArrayList<Integer> list = new ArrayList<>();
+                if (!sortedIndexesOutflows.containsKey(statementValue)) {
+                    LinkedList<Integer> list = new LinkedList<>();
                     sortedIndexesOutflows.put(statementValue, list);
                 }
                 sortedIndexesOutflows.get(statementValue).add(index);
@@ -96,18 +97,18 @@ public class ViewCommand extends Command {
         }
         ArrayList<Integer> filteredIndexes = new ArrayList<>();
 
-        for (Map.Entry<Double, ArrayList<Integer>> currentEntry : sortedIndexesInflows.entrySet()) {
-            ArrayList<Integer> currentList = currentEntry.getValue();
+        for (Map.Entry<Double, LinkedList<Integer>> currentEntry : sortedIndexesInflows.entrySet()) {
+            LinkedList<Integer> currentList = currentEntry.getValue();
             while (!currentList.isEmpty()) {
-                filteredIndexes.add(currentList.get(0));
-                currentList.remove(0);
+                filteredIndexes.add(currentList.getFirst());
+                currentList.removeFirst();
             }
         }
-        for (Map.Entry<Double, ArrayList<Integer>> currentEntry : sortedIndexesOutflows.entrySet()) {
-            ArrayList<Integer> currentList = currentEntry.getValue();
+        for (Map.Entry<Double, LinkedList<Integer>> currentEntry : sortedIndexesOutflows.entrySet()) {
+            LinkedList<Integer> currentList = currentEntry.getValue();
             while (!currentList.isEmpty()) {
-                filteredIndexes.add(currentList.get(0));
-                currentList.remove(0);
+                filteredIndexes.add(currentList.getFirst());
+                currentList.removeFirst();
             }
         }
         return filteredIndexes;
@@ -134,7 +135,7 @@ public class ViewCommand extends Command {
             return new CommandResult(output);
         }
         assert userData.getStatementCount() != 0 : "statement count mismatch";
-        ViewResult.printReport(validIndexes);
+        ViewResult.printReport(validIndexes, timeLimit, sortByValue);
         return null;
     }
 }
