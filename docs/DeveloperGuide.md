@@ -16,7 +16,7 @@
 <p style="text-align:center">
     <img src="images/ArchitectureDiagram.png" alt="Architecture Diagram">
     <br />
-    <i>Figure 1: Sequence Diagram for Bye Command</i>
+    <i>Figure 1: Architecture Diagram for Pet Tracker</i>
 </p>
 
 The **Architecture Diagram** given above explains the high-level design of the App. Given below is a quick overview of each component.
@@ -83,7 +83,7 @@ the command via `ui.getUserInput()` and parses it through `commandParser.parseCo
 <p align="center">
     <img src="images/ExitCommandSequenceDiagram.png">
     <br />
-    <i>Figure 1: Sequence Diagram for Bye Command</i>
+    <i>Figure 2: Sequence Diagram for Bye Command</i>
 </p>
 
 ### List Pet Command
@@ -111,7 +111,7 @@ This is how the ListPetCommand works:
 <p align="center">
     <img src="images/ListPetCommand.png">
     <br />
-    <i>Figure 2: Sequence Diagram for List Pet Command</i>
+    <i>Figure 3: Sequence Diagram for List Pet Command</i>
 </p>
 
 ### [Added] Add Pet Stat Feature
@@ -130,7 +130,7 @@ These operations are exposed in the `PetList` class as `PetList#addStat()` and `
 <p align="center">
     <img src="images/AddPetStatFeatureClassDiagram.png">
     <br />
-    <i>Figure 3: Class Diagram for Add Pet Stat Feature</i>
+    <i>Figure 4: Class Diagram for Add Pet Stat Feature</i>
 </p>
 
 Given below is an example usage scenario and how the add pet stat mechanism behaves.
@@ -140,7 +140,7 @@ Step 1. After the user launches the application and added a pet named "Bob", a `
 <p align="center">
     <img src="images/AddPetStatFeatureObjectDiagram (1).png">
     <br />
-    <i>Figure 4: Object Diagram for Add Pet Stat Feature After Step 1</i>
+    <i>Figure 5: Object Diagram for Add Pet Stat Feature After Step 1</i>
 </p>
 
 Step 2. The user executes `add-stat Bob weight 5` command to add a weight stat of 5kg in the `Pet` object. The `add-stat` command calls `AddStatCommand#execute()` then `PetList#addStat()`, causing the `Pet` object's `weight` variable to be modified and saved.
@@ -148,7 +148,7 @@ Step 2. The user executes `add-stat Bob weight 5` command to add a weight stat o
 <p align="center">
     <img src="images/AddPetStatFeatureObjectDiagram (2).png">
     <br />
-    <i>Figure 5: Object Diagram for Add Pet Stat Feature After Step 2</i>
+    <i>Figure 6: Object Diagram for Add Pet Stat Feature After Step 2</i>
 </p>
 
 ### Remove Pet Stat Command
@@ -178,15 +178,28 @@ This feature was implemented like this in order to maximize use of the OOP parad
 <p align="center">
     <img src="images/RemoveStatCommand.png">
     <br />
-    <i>Figure 6: Sequence Diagram for Remove Pet Stat Command</i>
+    <i>Figure 7: Sequence Diagram for Remove Pet Stat Command</i>
 </p>
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ...         | I want to ...                                           | So that I can ...                                        |
+|---------|------------------|---------------------------------------------------------|----------------------------------------------------------|
+| v1.0    | basic user       | add new pets                                            | track more pets                                          |
+| v1.0    | basic user       | record my pet's weight                                  | track if the weight is healthy                           |
+| v1.0    | basic user       | record my pet's age                                     | track how old my pet is                                  |
+| v1.0    | basic user       | remove a pet from my list                               | declutter the petlist from pets I no longer take care of |
+| v1.0    | large-scale user | see basic info on all my pets in one place              | get an overview of all my pets                           |
+| v2.0    | basic user       | save my pet list                                        | save my pet list data when i close the program           |
+| v2.0    | basic user       | load my saved pet list                                  | resume where i left off previously                       |
+| v2.0    | basic user       | add task                                                | remind myself to carry out a task                        |
+| v2.0    | basic user       | mark uncompleted tasks as done                          | check off tasks that i complete                          |
+| v2.0    | basic user       | unmark completed tasks                                  | uncheck off tasks that i did not complete                |
+| v2.0    | basic user       | see all my tasks in one place                           | get an overview of all my tasks                          |
+| v2.0    | basic user       | edit my pet information                                 | modify my pet information when i need to update it       |
+| v2.0    | basic user       | edit my task information                                | modify my task information when i need to update it      |
+| v2.0    | basic user       | get a schedule of what time tasks must be done          | better meet my pets need by carrying out the task        |
+| v2.0    | forgetful user   | receive reminders about what task should have been done | complete due tasks that i forgot to do                   |
 
 ## Non-Functional Requirements
 
