@@ -72,6 +72,14 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
             writer.endObject();
             writer.endObject();
         }
+        if (event.hasLocation()){
+            writer.name("location").value(event.getLocation());
+            writer.name("hasLocation").value(event.hasLocation());
+        }
+        if (event.isRecurring()){
+            writer.name("isRecurring").value(event.isRecurring());
+            writer.name("timeInterval").value(event.getTimeInterval());
+        }
         writer.name("hasEndInfo").value(event.hasEndInfo());
         writer.name("hasStartTime").value(event.hasStartTime());
         writer.name("hasEndTime").value(event.hasEndTime());
@@ -108,6 +116,12 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
         boolean hasEndInfo = false;
         boolean hasStartTime = false;
         boolean hasEndTime = false;
+        //Additions start here
+        boolean hasLocation = false;
+        boolean isRecurring = false;
+        String timeInterval = null;
+        String location = null;
+
         reader.beginObject();
         while(reader.hasNext()){
             String name = reader.nextName();
@@ -149,13 +163,48 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
                 hasStartTime = reader.nextBoolean();
             } else if (name.equals("hasEndTime")){
                 hasEndTime = reader.nextBoolean();
+            } else if (name.equals("hasLocation")){
+                hasLocation = reader.nextBoolean();
+            } else if (name.equals("isRecurring")){
+                isRecurring = reader.nextBoolean();
+            } else if (name.equals("timeInterval")){
+                timeInterval = reader.nextString();
+            } else if (name.equals("location")){
+                location = reader.nextString();
             } else{
                 reader.skipValue();
             }
         }
         reader.endObject();
-        if (hasEndTime == true) {
+        return createEvent(description, startTime, endTime, hasStartTime, hasEndTime, hasLocation,
+                isRecurring, timeInterval, location);
+    }
+
+    private static Event createEvent(String description, LocalDateTime startTime, LocalDateTime endTime,
+                                     boolean hasStartTime, boolean hasEndTime, boolean hasLocation, boolean isRecurring,
+                                     String timeInterval, String location) {
+        if (hasEndTime && isRecurring && hasLocation){
+            Event temp = new Event(description, startTime, endTime, hasStartTime, hasEndTime, timeInterval);
+            temp.changeLocation(location);
+            return temp;
+        } else if (hasEndTime && isRecurring){
+            return new Event(description, startTime, endTime, hasStartTime, hasEndTime, timeInterval);
+        } else if (hasEndTime && hasLocation){
+            Event temp = new Event(description, startTime, endTime, hasStartTime, hasEndTime);
+            temp.changeLocation(location);
+            return temp;
+        } else if (isRecurring && hasLocation){
+            Event temp = new Event(description, startTime,hasStartTime);
+            temp.changeLocation(location);
+            return temp;
+        } else if (hasEndTime){
             return new Event(description, startTime, endTime, hasStartTime, hasEndTime);
+        } else if (hasLocation){
+            Event temp = new Event(description, startTime, hasStartTime);
+            temp.changeLocation(location);
+            return temp;
+        } else if (isRecurring){
+            return new Event(description, startTime, hasStartTime, timeInterval);
         } else{
             return new Event(description, startTime, hasStartTime);
         }
