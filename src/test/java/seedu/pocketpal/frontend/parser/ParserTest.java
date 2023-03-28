@@ -20,7 +20,7 @@ public class ParserTest {
             parser.parseUserInput("/add -p 100 -c food");
         });
 
-        String expectedMessage = MessageConstants.MESSAGE_MISSING_ARGS_ADD;
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_DESCRIPTION_ADD;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -32,7 +32,7 @@ public class ParserTest {
             parser.parseUserInput("/add expense1 -c food");
         });
 
-        String expectedMessage = MessageConstants.MESSAGE_MISSING_ARGS_ADD;
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_PRICE_ADD;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -44,7 +44,7 @@ public class ParserTest {
             parser.parseUserInput("/add expense1 -p 100");
         });
 
-        String expectedMessage = MessageConstants.MESSAGE_MISSING_ARGS_ADD;
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_CATEGORY_ADD;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }

@@ -89,31 +89,35 @@ public class Parser {
      * @param arguments User arguments entered after the add command.
      * @return String[] Array containing description, category and price respectively.
      */
-    private String[] parseAddArguments(String arguments) {
+    private String[] parseAddArguments(String arguments) throws MissingArgumentsException, InvalidArgumentsException {
         logger.entering(Parser.class.getName(), "parseAddArguments()");
         String description = "";
         String category = "";
         String price = "";
         String[] argumentsArray = new String[3];
-        Pattern descriptionPattern = Pattern.compile("(\\w+(\\s+\\w+)*)");
-        Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
-        Pattern pricePattern = Pattern.compile("(-p|-price)\\s+(\\S+)");
-
-        Matcher matcher = descriptionPattern.matcher(arguments);
-        if (matcher.find()) {
-            description = matcher.group(0);
-            arguments = arguments.replaceFirst(description, "").trim();
+        description = arguments.split("-c|-p|-price|-category")[0];
+        if (description.isEmpty()) {
+            logger.warning("Missing description: " + MessageConstants.MESSAGE_MISSING_DESCRIPTION_ADD);
+            throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_DESCRIPTION_ADD);
         }
-        matcher = categoryPattern.matcher(arguments);
+        arguments = arguments.replaceFirst(description, "").trim();
+        Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\S+)");
+        Pattern pricePattern = Pattern.compile("(-p|-price)\\s+(\\S+)");
+        Matcher matcher = categoryPattern.matcher(arguments);
         if (matcher.find()) {
             category = matcher.group(2);
+        } else {
+            logger.warning("Missing category: " + MessageConstants.MESSAGE_MISSING_CATEGORY_ADD);
+            throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_CATEGORY_ADD);
         }
-
         matcher = pricePattern.matcher(arguments);
         if (matcher.find()) {
             price = matcher.group(2);
+            checkIfPriceIsValid(price);
+        } else {
+            logger.warning("Missing price: " + MessageConstants.MESSAGE_MISSING_PRICE_ADD);
+            throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_PRICE_ADD);
         }
-
         argumentsArray[0] = description;
         argumentsArray[1] = category;
         argumentsArray[2] = price;
@@ -142,12 +146,8 @@ public class Parser {
         logger.info("User input description: " + description);
         logger.info("User input category: " + category);
         logger.info("User input price: " + price);
-        if (description.isEmpty() || category.isEmpty() || price.isEmpty()) {
-            logger.warning("Missing description/category/price: " + MessageConstants.MESSAGE_MISSING_ARGS_ADD);
-            throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_ARGS_ADD);
-        }
         double priceDouble;
-        checkIfPriceContainLetters(price);
+        checkIfPriceIsValid(price);
         priceDouble = Double.parseDouble(price);
         logger.exiting(Parser.class.getName(), "parseAddCommand()");
         return new AddCommand(description, priceDouble, category);
@@ -239,7 +239,6 @@ public class Parser {
         matcher = pricePattern.matcher(arguments);
         if (matcher.find()) {
             price = matcher.group(2);
-            System.out.println(price);
         }
         argumentsArray[0] = expenseId;
         argumentsArray[1] = description;
@@ -281,7 +280,7 @@ public class Parser {
         }
 
         if (!price.isEmpty()) {
-            checkIfPriceContainLetters(price);
+            checkIfPriceIsValid(price);
             Double.parseDouble(price);
         }
 
@@ -323,7 +322,7 @@ public class Parser {
         assert argumentsArray.length >= 1 : "User input must contain at least 1 argument";
         Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
         Pattern viewCountPattern = Pattern.compile("\\S+");
-        Pattern priceRangePattern = Pattern.compile("(-p|-price)\\s+(\\w+(\\s+\\w+)*)");
+        Pattern priceRangePattern = Pattern.compile("(-p|-price)\\s+(\\S+)");
         Matcher matcher = viewCountPattern.matcher(arguments);
         matcher.find();
         viewCount = matcher.group(0);
@@ -339,10 +338,10 @@ public class Parser {
         matcher = priceRangePattern.matcher(arguments);
         if (matcher.find()) { //look for starting price range
             priceMinStr = matcher.group(2);
-            checkIfPriceContainLetters(priceMinStr);
+            checkIfPriceIsValid(priceMinStr);
             if (matcher.find()) { //look for ending price range
                 priceMaxStr = matcher.group(2);
-                checkIfPriceContainLetters(priceMaxStr);
+                checkIfPriceIsValid(priceMaxStr);
             } else { //ending price range not specified
                 priceMaxStr = Integer.toString(Integer.MAX_VALUE);
             }
@@ -359,19 +358,24 @@ public class Parser {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
         if (viewCountInt < 0) {
+            logger.warning("Negative expense ID provided: " + MessageConstants.MESSAGE_INVALID_ID);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
         logger.info("User entered count:" + viewCount);
         logger.info("User entered category:" + categoryStr);
         priceMinDble = Double.parseDouble(priceMinStr);
         priceMaxDble = Double.parseDouble(priceMaxStr);
+        if (priceMaxDble < priceMinDble) {
+            logger.warning("Maximum price range higher than minimum: " + MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
+        }
         logger.exiting(Parser.class.getName(), "parseViewCommand()");
         return new ViewCommand(viewCountInt, category, priceMinDble, priceMaxDble);
     }
 
-    private void checkIfPriceContainLetters(String string) throws InvalidArgumentsException {
-        boolean hasLetters = string.matches(".*[a-zA-Z]+.*");
-        if (hasLetters) {
+    private void checkIfPriceIsValid(String string) throws InvalidArgumentsException {
+        boolean isValid = string.matches("[0-9.]*");
+        if (!isValid) {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
         }
     }
