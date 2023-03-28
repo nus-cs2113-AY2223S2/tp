@@ -2,7 +2,7 @@
 
 ## About
 
-Our workouts feature is designed to help you complete a workout and log your progress
+Our workouts feature is designed to help you complete a workout and log your progress.
 
 ## Commands
 

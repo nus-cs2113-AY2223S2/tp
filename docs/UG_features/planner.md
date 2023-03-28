@@ -2,7 +2,7 @@
 
 ## About
 
-Our planner feature is designed to help you plan your coming week's schedule in achieving your workout goals
+Our planner feature is designed to help you plan your coming week's schedule in achieving your workout goals.
 
 ## Commands
 
