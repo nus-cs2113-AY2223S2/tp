@@ -11,12 +11,7 @@ public class Command {
     }
 
     public void setData(WorkoutList workoutList, CalorieTracker calorieTracker) {
-
-
-    }
-
-    public void setData(WorkoutList workoutList) {
-        if (workoutList == null) {
+        if (workoutList == null || calorieTracker == null) {
             throw new IllegalArgumentException("WorkoutList cannot be null.");
         }
 

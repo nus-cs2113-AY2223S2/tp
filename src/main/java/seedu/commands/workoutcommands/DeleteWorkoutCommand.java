@@ -15,8 +15,6 @@ public class DeleteWorkoutCommand extends Command {
     public DeleteWorkoutCommand(Date workoutToDeleteDate) {
         super();
         this.workoutToDeleteDate = workoutToDeleteDate;
-        setData(workoutList);
-
     }
 
     @Override

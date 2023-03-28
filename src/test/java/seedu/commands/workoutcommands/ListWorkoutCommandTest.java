@@ -1,7 +1,7 @@
-package seedu.commands;
+package seedu.commands.workoutcommands;
 
 import org.junit.jupiter.api.Test;
-import seedu.commands.workoutcommands.ListWorkoutCommand;
+import seedu.calorietracker.CalorieTracker;
 import seedu.workouttracker.Workout;
 import seedu.workouttracker.WorkoutList;
 
@@ -29,14 +29,14 @@ public class ListWorkoutCommandTest {
         // Call the method to be tested
         // WorkoutList addList = new WorkoutList();
         WorkoutList workoutList = new WorkoutList();
+        CalorieTracker calorieTracker = new CalorieTracker();
         workoutList.addWorkout(new Workout(format.parse("11/11/2023")));
         workoutList.addWorkout(new Workout(format.parse("11/10/2023")));
-        Command command = new Command();
-        command.setData(workoutList);
         ListWorkoutCommand testList = new ListWorkoutCommand();
+        testList.setData(workoutList, calorieTracker);
         assertEquals(2, workoutList.workoutArrayList.size());
 
-        testList.setData(workoutList);
+        testList.setData(workoutList, calorieTracker);
         testList.execute();
 
         // Assert that the console output matches the expected output

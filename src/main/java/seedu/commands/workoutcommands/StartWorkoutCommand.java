@@ -14,7 +14,6 @@ public class StartWorkoutCommand extends Command {
     public StartWorkoutCommand(Date date) {
         super();
         this.date = date;
-        setData(workoutList);
     }
 
     @Override

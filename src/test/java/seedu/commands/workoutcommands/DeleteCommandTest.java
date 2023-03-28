@@ -1,12 +1,16 @@
-package seedu.commands;
+package seedu.commands.workoutcommands;
 
 import org.junit.jupiter.api.Test;
-import seedu.DateFormat;
-import seedu.commands.workoutcommands.DeleteWorkoutCommand;
+import seedu.calorietracker.CalorieTracker;
+import seedu.commands.Command;
+import seedu.commands.IncorrectCommand;
+import seedu.parser.DateFormat;
 import seedu.workouttracker.Workout;
 import seedu.workouttracker.WorkoutList;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeleteCommandTest {
@@ -18,7 +22,8 @@ public class DeleteCommandTest {
     @Test
     public void testRemoveWorkout() throws Exception {
         WorkoutList workoutLists = new WorkoutList();
-        Command command = new Command();
+        CalorieTracker calorieTracker = new CalorieTracker();
+        Command command = new IncorrectCommand();
 
         String stringDate1 = "01/11/2022";
         String stringDate2 = "02/11/2022";
@@ -28,7 +33,7 @@ public class DeleteCommandTest {
         Workout workout2 = new Workout(date2);
         workoutLists.addWorkout(workout1);
         workoutLists.addWorkout(workout2);
-        command.setData(workoutLists);
+        command.setData(workoutLists, calorieTracker);
 
         // Check that both workouts are in the list
         assertEquals(2, workoutLists.workoutArrayList.size());
@@ -37,7 +42,7 @@ public class DeleteCommandTest {
 
 
         DeleteWorkoutCommand delete = new DeleteWorkoutCommand(date1);
-        delete.setData(workoutLists);
+        delete.setData(workoutLists, calorieTracker);
         // Remove workout1 from the list
         delete.execute();
 
