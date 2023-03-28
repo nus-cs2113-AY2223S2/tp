@@ -53,6 +53,43 @@ input as a string of words `parsedInput[]`.
 Step 4. `CommandAdd#execute` instantiates a new `Expense` object with the returned `parsedInput[]` and adds it to
 `expenseList`.
 
+### "Delete" feature
+
+This mechanism is facilitated by `CommandDelete`, which extends `Command`. It makes use of the output from `Parser`,
+which takes in the user input as string and returns the index of the expense to be deleted, and the `CommandDelete`
+proceeds to remove the respective expense from the list of expenses stored in `expenseList`.
+
+`CommandDelete` implements the following operation:
+- `CommandDelete#execute()` -- Removes expense based on the index specified by user.
+
+`Parser` implements the following operation:
+- `Parser#extractIndex(userInput)` -- Extracts the index of the expense to be deleted, as specified by the user.
+
+The `CommandDelete#execute()` operation is exposed in the main `Duke` class. The `Parser#extractIndex(userInput)`
+is exposed in the `parser` class.
+
+Given below is an example usage scenario and how the 'delete' mechanism behaves at each step.
+
+![](./diagrams/DeleteFeature.png)
+
+Step 1. The user executes `delete 1` command to delete the 1st expense in the expense list. `Duke#run()` calls
+`Parser#extractCommandKeyword(userInput)` to parse the input and determine that the `delete` command is called.
+
+Step 2. `Duke` instantiates a new `CommandDelete` and calls `CommandDelete#execute()`, which then calls
+`expenseList.getExpenseList()` and `parser.extractIndex(input)`.
+
+Step 3. `CommandDelete#execute()` removes the expense at index specified by the user.
+
+### Monthly Overview
+
+This mechanism is facilitated by `CommandOverview`, which extends `Command`. It makes use of output from `Parser`
+to extract `month` and `year` from user input. It then calls on `Monthly Overview` if both `month` and 'year' 
+are not null, which makes use of `MonthFilter` to filter out expenses in that specific month and returns sum by 
+category sorted in descending order before printing out the final overview in the intended format.
+
+
+
+
 ## Product scope
 ### Target user profile
 
@@ -67,17 +104,18 @@ Step 4. `CommandAdd#execute` instantiates a new `Expense` object with the return
 
 ## User Stories
 
-| Version | As a ... | I want to ...                          | So that I can ...                                                |
-|---------|------|----------------------------------------|------------------------------------------------------------------|
-| v1.0    | new user | add a new entry for my expenses        | -                                                                |
-| v1.0    | user | delete entries                         | -                                                                |
-| v1.0    | user | add expenses with dates                | track how much I spend each day                                  |
-| v1.0    | user | add expenses of different categories   | keep track of what I spend on                                    |
-| v1.0    | user | see all my past expenses               | plan my budget accordingly                                       |
-| v2.0    | user | add expenses with specified currencies | know the exact amount I spent in different currencies            |
-| v2.0    | user | sort my expenses by category/date      | better keep track of my expenses through either date or category |
-| v2.0    | user | -                                      | -                                                                |
-| v2.0    | user | -                                      | -                                                                |
+| Version | As a ... | I want to ...                                        | So that I can ...                                                                        |
+|---------|----------|------------------------------------------------------|------------------------------------------------------------------------------------------|
+| v1.0    | new user | add a new entry for my expenses                      | -                                                                                        |
+| v1.0    | user     | delete specific expenses                             | -                                                                                        |
+| v1.0    | user     | add expenses with dates                              | track how much I spend each day                                                          |
+| v1.0    | user     | add expenses of different categories                 | keep track of what I spend on                                                            |
+| v1.0    | user     | see all my past expenses                             | plan my budget accordingly                                                               |
+| v2.0    | user     | save all expenses added                              | -                                                                                        |
+| v2.0    | user     | add expenses with specified currencies               | know the exact amount I spent in different currencies                                    |
+| v2.0    | user     | sort my expenses by category/date                    | better keep track of my expenses through either date or category                         |
+| v2.0    | user     | see an overview of my expenses in a particular month | understand what categories I like to spend on and better plan my spending in the future. |
+| v2.0    | user     | -                                                    | -                                                                                        |
 
 
 ## Non-Functional Requirements
