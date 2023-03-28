@@ -6,6 +6,7 @@ import chching.currency.Converter;
 import chching.currency.Selector;
 import chching.record.ExpenseList;
 import chching.record.IncomeList;
+import chching.record.Target;
 import chching.record.TargetStorage;
 
 public class ChChing {
@@ -15,6 +16,7 @@ public class ChChing {
     private Selector selector;
     private Converter converter;
     private TargetStorage targetStorage;
+    private Target target = new Target(0);
     private Ui ui;
 
     /**
@@ -30,6 +32,7 @@ public class ChChing {
             this.selector = new Selector();
             this.converter = new Converter();
             this.targetStorage = new TargetStorage();
+            this.targetStorage.addTarget(target);
         } catch (Exception e) {
             ui.showError(e.getMessage());
             this.incomes = new IncomeList();

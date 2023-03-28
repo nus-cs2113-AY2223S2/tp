@@ -5,38 +5,35 @@ import chching.Storage;
 import chching.Ui;
 import chching.currency.Converter;
 import chching.currency.Selector;
-import chching.parser.Expenses;
-import chching.record.Expense;
+import chching.parser.Incomes;
 import chching.record.ExpenseList;
+import chching.record.Income;
 import chching.record.IncomeList;
 import chching.record.TargetStorage;
 
 import java.util.HashMap;
 
 /**
- * Models a class to handle the EditExpense command. Inherited from Command class.
+ * Models a class to handle the EditIncome command. Inherited from Command class.
  */
-public class EditExpenseCommand extends Command {
+public class EditIncomeCommand extends Command {
     private int index;
     private HashMap<String, String> argumentsByField;
-    private boolean hasCategory;
     private boolean hasDescription;
     private boolean hasDate;
     private boolean hasValue;
-
-
-    public EditExpenseCommand(HashMap<String, String> argumentsByField) throws ChChingException {
-        this.argumentsByField = argumentsByField;
     
-        index = Expenses.getIndex(argumentsByField);
-        hasCategory = argumentsByField.containsKey("c");
+    public EditIncomeCommand(HashMap<String, String> argumentsByField) throws ChChingException {
+        this.argumentsByField = argumentsByField;
+        
+        index = Incomes.getIndex(argumentsByField);
         hasDescription = argumentsByField.containsKey("de");
         hasDate = argumentsByField.containsKey("da");
         hasValue = argumentsByField.containsKey("v");
     }
-
+    
     /**
-     * Executes edit of expenses.
+     * Executes edit of incomes.
      * Based on the fields the user wants to edit, the corresponding fields will be edited.
      *
      * @param incomes       ArrayList of income.
@@ -53,37 +50,33 @@ public class EditExpenseCommand extends Command {
         // check if the index is valid
         if (index <= 0) {
             throw new ChChingException("Negative/Zero index");
-        } else if (index > expenses.size()) {
+        } else if (index > incomes.size()) {
             throw new ChChingException("The index is too big");
         }
         assert index > 0 : "Index must be a positive integer";
         
-        if (!hasCategory && !hasDescription && !hasDate && !hasValue) {
+        if (!hasDescription && !hasDate && !hasValue) {
             throw new ChChingException("No fields to edit");
         }
         // change from 1-based indexing to 0-based indexing
         int indexZeroBased = index - 1;
-        Expense expense = expenses.get(indexZeroBased);
+        Income income = incomes.get(indexZeroBased);
         
         // edit the fields accordingly
-        if (hasCategory) {
-            String value = argumentsByField.get("c");
-            expenses.editExpense(index, "c", value);
-        }
         if (hasDescription) {
             String value = argumentsByField.get("de");
-            expenses.editExpense(index, "de", value);
+            incomes.editIncome(index, "de", value);
         }
         if (hasDate) {
             String value = argumentsByField.get("da");
-            expenses.editExpense(index, "da", value);
+            incomes.editIncome(index, "da", value);
         }
         if (hasValue) {
             String value = argumentsByField.get("v");
-            expenses.editExpense(index, "v", value);
+            incomes.editIncome(index, "v", value);
         }
         
-        boolean isExpense = true;
-        ui.showEdited(index, expense, isExpense);
+        boolean isExpense = false;
+        ui.showEdited(index, income, isExpense);
     }
 }

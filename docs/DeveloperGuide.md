@@ -28,6 +28,12 @@ Afterwards, the ```execute()``` method will print ```"Income deleted, here is th
 
 ![Record Class](../images/DeleteIncomeCommand_sequence_diagram.png)
 
+### Target and TargetStorage
+
+The `Target` and `TargetStorage` class allows users to set a target for their ideal balance.
+
+![Target Class](../images/Target_UML.png)
+
 ### [Proposed] EditIncomeCommand/EditExpenseCommand
 The proposed edit income command is facilitated by `Parser`, `EditIncomeCommand`, `IncomeList`, while the proposed edit expense command is facilitated by `Parser`, `EditExpenseCommand` and `ExpenseList`. 
 
@@ -59,7 +65,7 @@ The following activity diagram summarises what happens when a user executes edit
     * Cons: Not any easier than having the user to just delete and add new expense/income.
 
 ### ListExpenseCommand
-The listExpenseCommand is facilitated by ```System```, ```Parser``` and ```ExpenseList```.
+The listExpenseCommand is facilitated by ```Parser```, ```ListExpenseCommand``` and ```ExpenseList```.
 
 1. The user inputs the command top list expense. This input is handled by```Parser``` which returns the
    ```listExpenseCommand``` if successful.
@@ -69,6 +75,14 @@ The listExpenseCommand is facilitated by ```System```, ```Parser``` and ```Expen
    is called, which iterates through the expenseList, ```expenses``` and prints the index as well as a completed string of
    expenses in ```expenses```.
 
+![ListExpenseCommand](../images/ListExpenseCommand_Sequence_Diagram.png)
+### SetTargetCommand
+The setTargetCommand is facilitated by ```ChChing```, ```Parser```, ```TargetParser```, ```TargetStorage```.
+When the command receives to set target, the ```parse()``` method of the ```Parser``` object will read in the command and call the ```parseTarget()``` method from the TargetParser class 
+to instantiate a Target object and initializes a target value. Afterwards, ```parse()``` method calls the ```AddTargetCommand``` and  instantiate a ```SetTargetCommand``` object and returns to the ```Parser``` object.
+The ```Parser``` object then returns to ```ChChing```. ```ChChing``` object then runs the ```execute()``` method of the SetTargetCommand object. The method then calls the ```setTarget()``` method of the ```TargetStorage``` object to store the previously initialized ```Target``` object.
+
+![SetTargetCommand UML](../images/SetTargetCommand.png)
 ### SetCurrencyCommand
 The setCurrencyCommand is facilitated by ```System```, ```Selector```,  ```UI``` and ```ExpenseList```.
 The command receives the instruction from ```UI``` and will call the ```execute``` method.
@@ -83,6 +97,7 @@ The selected currencies will be marked with a ```[X]``` and the unselected curre
 
 
 ## Product scope
+
 ### Target user profile
 
 Target users are people who are keen on improving their financial accountability
@@ -93,15 +108,20 @@ The value proposition of ChChing is its ability to track income and expenses on 
 
 ## User Stories
 
-| Version | As a ... | I want to ...                  | So that I can ...                                      |
-|---------|----------|--------------------------------|--------------------------------------------------------|
-| v1.0    |new user| see usage instructions         | refer to them when I forget how to use the application |
-| v1.0    |user| add new expense to the records | record all my expenses                                 |
-| v1.0    |user| add new income to the records  | record all my incomes                                  |
-| v1.0    |user| view all the records           | refer to them when I forgot my expenses and incomes    |
-| v1.0    |user| edit the records               | modify/fix if the records is changed/wrong             |
-| v1.0    |user| know current balance           | aware how much money do I have left                    |
-
+| Version | As a ...  | I want to ...                           | So that I can ...                                                                       |
+|---------|-----------|-----------------------------------------|-----------------------------------------------------------------------------------------|
+| v1.0    | new user  | see usage instructions                  | refer to them when I forget how to use the application                                  |
+| v1.0    | user      | add new expense to the records          | record all my expenses                                                                  |
+| v1.0    | user      | add new income to the records           | record all my incomes                                                                   |
+| v1.0    | user      | view all the records                    | refer to them when I forgot my expenses and incomes                                     |
+| v1.0    | user      | edit the records                        | modify/fix if the records is changed/wrong                                              |
+| v1.0    | user      | know current balance                    | aware how much money do I have left                                                     |
+| v2.0    | user      | edit my existing entries                | rectify or update any entries without having to enter another entry and delete an entry |
+| v2.0    | user      | find specific entries                   | refer to specific entries when necessary                                                |
+| v2.0    | foreigner | view my entries in a different currency | read my incomes and expenses in a currency I am familiar with                           |
+| v2.0    | user      | set a target for my balance             | improve my financial management                                                         |
+| v2.0    | user      | see the target i have set               | remind myself of my target                                                              |
+| v2.0    | user      | reset my income/expense lists or both   | have a fresh list                                                                       |
 ## Non-Functional Requirements
 
 {Give non-functional requirements}
