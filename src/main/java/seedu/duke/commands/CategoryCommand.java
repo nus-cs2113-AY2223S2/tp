@@ -20,34 +20,80 @@ public class CategoryCommand extends Command {
     }
 
     public static void updateItemCategory(Item item, String category) throws CategoryFormatException {
+        //for add function (updated for every csv read)
         try {
             if (category.isEmpty() || category.isBlank()) {
                 throw new CategoryFormatException();
             }
-            checkExistingCategory(item);
+
+            checkExistingCategory(item, item.getCategory(), category);
+
         } catch (CategoryFormatException cfe) {
             throw new CategoryFormatException();
         }
     }
 
-    private static void checkExistingCategory(Item item) {
-        String category = item.getCategory().toLowerCase();
+    public static void updateItemCategory(Item item, String oldCategory, String newCategory) throws CategoryFormatException {
+        //for edit function
         try {
-            addItemToCategory(category, item);
+            if (oldCategory.isBlank() || newCategory.isBlank()) {
+                throw new CategoryFormatException();
+            }
+            checkExistingCategory(item, oldCategory, newCategory);
+        } catch (CategoryFormatException cfe) {
+            throw new CategoryFormatException();
+        }
+    }
+
+    private static void checkExistingCategory(Item item, String oldCategory, String newCategory) {
+        try {
+            removeItemFromCategory(item, oldCategory);
+            System.out.println("oldcat: " + oldCategory + " newcat: " + newCategory);
+            item.setCategory(newCategory);
+            addItemToCategory(newCategory, item);
         } catch (NullPointerException e) {
             Ui.printNewCategory();
         }
     }
 
+    private static void removeItemFromCategory(Item item, String oldCategory) {
+        System.out.println("now editing: " + item.toString());
+        if (oldCategory.equals("uncategorized")) {
+            //System.out.println("contains item");
+            return;
+        }
+        if (categoryHash.get(oldCategory).size() == 1) {
+            categoryHash.get(oldCategory).remove(item);
+            System.out.println("old category is " + oldCategory + " now removing item from categoryHash and removing category");
+            System.out.println(categoryHash.get(oldCategory).size());
+            categoryHash.remove(oldCategory);
+            System.out.println("category map contains " + oldCategory + "? " + categoryHash.containsKey(oldCategory));
+        } else {
+            System.out.println("old category is " + oldCategory + " now removing item from categoryHash");
+            categoryHash.get(oldCategory).remove(item);
+        }
+    }
+
+//    private static void checkExistingCategory(Item item, String oldCategory) {
+//        String category = item.getCategory().toLowerCase();
+//        try {
+//            System.out.println("after reading csv: ");
+//            addItemToCategory(category, item);
+//        } catch (NullPointerException e) {
+//            Ui.printNewCategory();
+//        }
+//    }
+
 
     private static void addItemToCategory(String categoryToAdd, Item item) {
-        if (!categoryHash.containsKey(categoryToAdd)) {
-            ArrayList<Item> newCategoryItemList = new ArrayList<>();
-            newCategoryItemList.add(item);
-            categoryHash.put(categoryToAdd, newCategoryItemList);
-        } else {
-            categoryHash.get(categoryToAdd).add(item);
+        //item.setCategory(categoryToAdd);
+        System.out.println("now adding: " + item.toString());
+        if (!categoryHash.containsKey(categoryToAdd.toLowerCase())) {
+//            ArrayList<Item> newCategoryItemList = new ArrayList<>();
+//            newCategoryItemList.add(item);
+            categoryHash.put(categoryToAdd, new ArrayList<>());
         }
+        categoryHash.get(categoryToAdd).add(item);
     }
 
     private void listCategoryAndItems() throws NullPointerException {
@@ -77,7 +123,11 @@ public class CategoryCommand extends Command {
     }
 
     private void listAllCategories() {
-        Ui.printCategoryList(categoryHash);
+        if (categoryHash.isEmpty()) {
+            throw new NullPointerException();
+        } else {
+            Ui.printCategoryList(categoryHash);
+        }
     }
 
     @Override

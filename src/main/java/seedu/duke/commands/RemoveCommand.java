@@ -58,12 +58,13 @@ public class RemoveCommand extends Command {
             return;
         }
         Item itemToRemove = upcCodes.get(upcCode);
+        String upc = upcCode;
         switch (userConfirmation.toUpperCase()) {
         case "Y":
             int indexOfItem = itemInventory.indexOf(itemToRemove);
             String category = itemToRemove.getCategory();
-            upcCodes.remove(upcCode);
-            inventory.getUpcCodesHistory().remove(upcCode);
+            upcCodes.remove(upc);
+            inventory.getUpcCodesHistory().remove(upc);
             itemInventory.remove(indexOfItem);
             String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
             for (String itemName : itemNames) {
@@ -129,6 +130,10 @@ public class RemoveCommand extends Command {
     }
 
     private void removeItemFromCategoryHash(Item itemToRemove, String category) {
+        if (!categoryHash.containsKey(category)) {
+            return;
+        }
+
         if (categoryHash.get(category).size() == 1) {
             categoryHash.get(category).remove(itemToRemove);
             categoryHash.remove(category);
