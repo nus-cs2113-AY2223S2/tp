@@ -72,6 +72,8 @@ Knowing this, each child object of `Illness` will be created and stored in `Arra
 
 #### Diagnosis algorithm
 
+![DiagnosisSequenceDiagram.png](diagrams%2FDiagnosisSequenceDiagram.png)
+
 After the patient has entered all their symptoms, it will be passed to the `getPossibleIllnesses()` function
 in `Diagnosis` where it will match each symptom the patient has to each symptom of all possible
 illnesses `ALL_ILLNESSES`.
