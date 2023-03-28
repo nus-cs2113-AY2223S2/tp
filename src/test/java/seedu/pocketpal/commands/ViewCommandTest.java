@@ -3,23 +3,23 @@ package seedu.pocketpal.commands;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import seedu.pocketpal.backend.BackendTestUtil;
+import seedu.pocketpal.data.EntryTestUtil;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
 import seedu.pocketpal.data.entrylog.EntryLog;
 import seedu.pocketpal.frontend.commands.ViewCommand;
+import seedu.pocketpal.frontend.constants.MessageConstants;
 import seedu.pocketpal.frontend.constants.UIConstants;
+import seedu.pocketpal.frontend.exceptions.InvalidArgumentsException;
 import seedu.pocketpal.frontend.ui.UI;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Test view command")
-public class ViewCommandTest extends BackendTestUtil {
+public class ViewCommandTest extends EntryTestUtil {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     private final Entry testEntry1 = new Entry("Macdonalds", 7.50, Category.FOOD);
@@ -44,7 +44,8 @@ public class ViewCommandTest extends BackendTestUtil {
     @DisplayName("Test view by price range")
     void testViewByPriceRange(){
         try{
-            ViewCommand testCommand = assertDoesNotThrow(() -> new ViewCommand(Integer.MAX_VALUE, null, 7.00, 10.50));
+            ViewCommand testCommand =
+                    assertDoesNotThrow(() -> new ViewCommand(Integer.MAX_VALUE, null, 7.00, 10.50,"",""));
             testCommand.execute(TEST_UI, TEST_BACKEND);
             double expectedTotalPrice = 0;
             for (int index = 1; index <= 2; index++) {
@@ -66,4 +67,22 @@ public class ViewCommandTest extends BackendTestUtil {
             fail("Unexpected exception");
         }
     }
+    @Test
+    @DisplayName("Positive test for execute method for viewCommand")
+    void testExecuteMethod() {
+        ViewCommand viewCommand1 = new ViewCommand(10, Category.ENTERTAINMENT, 0.0, Double.MAX_VALUE,
+                "20/11/19 23:30", "20/11/20 23:30");
+        assertDoesNotThrow(() -> viewCommand1.execute(TEST_UI, TEST_BACKEND));
+    }
+
+    @Test
+    @DisplayName("Test execute method with invalid number of entries to view")
+    void testExecuteMethod_invalidNumber() {
+        ViewCommand viewCommand2 = new ViewCommand(0, Category.ENTERTAINMENT, 0.0, Double.MAX_VALUE,
+                "20/11/19 23:30", "20/11/20 23:30");
+        Exception invalidArgumentsException = assertThrows(InvalidArgumentsException.class,
+                () -> viewCommand2.execute(TEST_UI, TEST_BACKEND));
+        assertEquals(invalidArgumentsException.getMessage(), MessageConstants.MESSAGE_INVALID_NUMBER_OF_ENTRIES);
+    }
+
 }

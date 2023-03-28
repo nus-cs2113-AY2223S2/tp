@@ -4,7 +4,10 @@ import seedu.pocketpal.communication.Serialisable;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
 import seedu.pocketpal.data.parsing.EntryLogParser;
+import seedu.pocketpal.frontend.constants.MessageConstants;
+import seedu.pocketpal.frontend.exceptions.InvalidDateException;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -133,6 +136,20 @@ public class EntryLog implements Serialisable {
         List<Entry> filteredEntries = entries
                 .stream()
                 .filter((entry -> entry.getCategory() == category))
+                .collect(Collectors.toList());
+        return new EntryLog(filteredEntries);
+    }
+
+    public EntryLog filterBetweenDates(LocalDateTime startDateTime, LocalDateTime endDateTime)
+            throws InvalidDateException {
+        assert startDateTime != null && endDateTime != null;
+        if (startDateTime.isAfter(endDateTime)) {
+            throw new InvalidDateException(MessageConstants.MESSAGE_MIXED_DATE);
+        }
+        List<Entry> filteredEntries = entries
+                .stream()
+                .filter((entry -> startDateTime.isBefore(entry.getDateTime()) &&
+                        endDateTime.isAfter(entry.getDateTime())))
                 .collect(Collectors.toList());
         return new EntryLog(filteredEntries);
     }

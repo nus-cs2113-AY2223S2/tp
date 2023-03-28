@@ -55,6 +55,12 @@ public final class MessageConstants {
     public static final String MESSAGE_MISSING_CATEGORY_ADD = "Please specify the category using the '-c' flag!";
     public static final String MESSAGE_MISSING_ARGS_EDIT = "Please specify the ID of the expense you would like to " +
             "edit!";
+    public static final String MESSAGE_INVALID_DATE = "Please enter date in dd/MM/yy format" +
+            " and make sure the date exists! eg. 12/01/99 or 12/12/00";
+    public static final String MESSAGE_MIXED_DATE = "start date should be before end date!";
+    public static final String MESSAGE_MISSING_DATE = "Please enter BOTH the start and end date!";
+    public static final String MESSAGE_INVALID_NUMBER_OF_ENTRIES = "Please enter a positive integer more than zero!";
+
 
     private MessageConstants() {
     }

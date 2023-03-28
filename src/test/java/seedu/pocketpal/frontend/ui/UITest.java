@@ -104,12 +104,12 @@ public class UITest {
         void testAddExpenditure() {
             ui.printExpenditureAdded(testEntry.getDescription(),
                     testEntry.getAmount(),
-                    testEntry.getCategoryString(), testEntry.getDateTime());
+                    testEntry.getCategoryString(), testEntry.getDateTimeString());
             assertEquals(MessageConstants.MESSAGE_EXPENDITURE_ADDED
                             + UIUtil.formatExpenditure(testEntry.getDescription(),
                             testEntry.getAmount(),
                             testEntry.getCategoryString(),
-                            testEntry.getDateTime())
+                            testEntry.getDateTimeString())
                             + UIConstants.LINE,
                     outContent.toString());
         }
@@ -119,12 +119,12 @@ public class UITest {
             ui.printExpenditureDeleted(testEntry.getDescription(),
                     testEntry.getAmount(),
                     testEntry.getCategoryString(),
-                    testEntry.getDateTime());
+                    testEntry.getDateTimeString());
             assertEquals(MessageConstants.MESSAGE_EXPENDITURE_DELETED
                             + UIUtil.formatExpenditure(testEntry.getDescription(),
                             testEntry.getAmount(),
                             testEntry.getCategoryString(),
-                            testEntry.getDateTime())
+                            testEntry.getDateTimeString())
                             + UIConstants.LINE,
                     outContent.toString());
         }
@@ -136,7 +136,7 @@ public class UITest {
                             + UIUtil.formatExpenditure(testEntry.getDescription(),
                             testEntry.getAmount(),
                             testEntry.getCategoryString(),
-                            testEntry.getDateTime())
+                            testEntry.getDateTimeString())
                             + UIConstants.LINE,
                     outContent.toString());
         }
