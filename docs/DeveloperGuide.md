@@ -254,7 +254,7 @@ to use regular expressions, which is a more tidy and logical way to parse the in
     - Valid patterns are `filter -in`, `filter -out` , `filter -c <category>`,
       `filter -d <description>` and `filter -date <DD/MM/YYYY>`
 - Commands in the correct format will then be parsed to create a FilterCommand object.
-- RainyDay will then call Command,execute(), where every entry in the financial report with the matching
+- RainyDay will then call Command.execute(), where every entry in the financial report with the matching
   conditions will be printed.
 - Information will be presented in a table format to help improve clarity for users.
 
@@ -271,25 +271,44 @@ The sequence diagram for the implementation of filter is as shown below:
     - Furthermore, the `[SHORTCUTNAME]` should be given without spaces.
 - Commands in the correct format will then be parsed to create a `ShortcutAddCommand` object with a constructor.
     - A call will be made to the `userData` object which returns a reference to the `shortcutCommands` hashmap.
-    - the given `[SHORTCUTNAME]` and `[ACTUALCOMMAND]` will be the key value pair of the hashmap.
-- If the key does not already exist in the `shortcutCommands` hashmap, the new shortcut mapping will be added into the
-  hashmap.
-  ![ShortcutAddCommand.png](images/DeveloperGuide/ShortcutAddCommand.png)
+    - The given `[SHORTCUTNAME]` and `[ACTUALCOMMAND]` will be the key value pair of the hashmap.
+- `RainyDay` will then call the `execute` method in `ShortcutAddCommand`.
+    - If the key does not already exist in the `shortcutCommands` hashmap, the new shortcut mapping will be added into
+      the hashmap.
+
+The sequence diagram for the implementation of adding a shortcut is as shown below:
+
+![ShortcutAddCommand.png](images/DeveloperGuide/ShortcutAddCommand.png)
 
 ### Deleting a shortcut `shortcut_delete`
 
 - When a command is given to delete a shortcut, the command is first parsed to check if it follows the format of a
-  delete
-  shortcut command: `shortcut_delete [SHORTCUTNAME]`.
+  delete shortcut command: `shortcut_delete [SHORTCUTNAME]`.
 - Commands in the correct format will then be parsed to create a `ShortcutDeleteCommand` object with a constructor.
     - A call will be made to the `userData` object which returns a reference to the `shortcutCommands` hashmap.
-    - the given `[SHORTCUTNAME]` will be the key of the hashmap.
-- If the shortcut key exists in the `shortcutCommands` hashmap, it will be added from the hashmap.
-  ![ShortcutDeleteCommand.png](images%2FDeveloperGuide%2FShortcutDeleteCommand.png)
+    - The given `[SHORTCUTNAME]` will be the key of the hashmap.
+- `RainyDay` will then call the `execute` method in `ShortcutDeleteCommand`.
+    - If the shortcut key exists in the `shortcutCommands` hashmap, it will be deleted from the hashmap.
+
+The sequence diagram for the implementation of deleting a shortcut is as shown below:
+
+![ShortcutDeleteCommand.png](images%2FDeveloperGuide%2FShortcutDeleteCommand.png)
 
 ### Viewing a shortcut `shortcut_view`
 
-- {TODO}
+- The command `shortcut_view` is used to view all currently configured shortcuts.
+- The command will create a `ShortcutViewCommand` object with a constructor.
+    - A call will be made to the `userData` object which returns a reference to the `shortcutCommands` hashmap.
+- `RainyDay` will then call the `execute` method in `ShortcutViewCommand`.
+    - For each shortcut in the hashmap, the corresponding actual command will be obtained from the
+      `shortcutCommands` hashmap with the `get()` method.
+    - The mapping between the shortcut and actual command will then be printed to the user by calling
+      the `printShortcutMapping()` method.
+- Information will be presented in a table format to help improve clarity for users.
+
+The sequence diagram for the implementation of viewing a shortcut is as shown below:
+
+![ShortcutViewCommand.png](images%2FDeveloperGuide%2FShortcutViewCommand.png)
 
 ### Saving Data
 

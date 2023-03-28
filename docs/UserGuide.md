@@ -343,14 +343,14 @@ Format: `shortcut [SHORTCUTNAME] -maps [ACTUALCOMMAND]`
 Example of usage:
 
 You often eat the same noodle dish from your favourite coffee shop. To save yourself the trouble of typing the same
-command in full everytime, you could configure the shortcut as follows.
+command in full, you could configure the shortcut as follows.
 
 `shortcut FavLunch -maps add -out noodles $4 -c food`
 
 ### Using a shortcut
 
-After you have configuring your shortcuts, you would like to use the shortcut to save yourself the trouble of typing the
-full command. This can be done by providing an input according to the following format:
+After configuring your shortcuts, you may want to use the shortcut to save yourself the trouble of typing the
+full command. This can be done by simply inputting the name of the configured shortcut.
 
 Format: `[SHORTCUTNAME]`
 
@@ -367,24 +367,24 @@ Using the shortcut will allow you to add the same entry for noodles with a short
 
 ### Viewing a shortcut
 
-After configuring all your shortcuts, the `view_shortcut` command can be used to keep track of all your shortcuts
-that you have configured
+After configuring all your shortcuts, the `shortcut_view` command can be used to keep track of all your shortcuts
+that you have configured.
 
 Example of Usage:
 
-`view_shortcut`
+`shortcut_view`
 
 The output will look something like this:
 
-![viewshortcut.png](images/UserGuide/viewshortcut.png)
+![shortcutview.png](images/UserGuide/shortcutview.png)
 
 ### Deleting a shortcut
 
 At some point, you may discover that the shortcut you configured is no longer useful, or you may have misconfigured a
-previously added shortcut. In such a situation, the delete_shortcut command provided by rainyDay can prove to be quite
+previously added shortcut. In these situations, the `shortcut_delete` command provided by rainyDay can prove to be quite
 handy.
 
-Format: `delete_shortcut [SHORTCUTCOMMAND]`
+Format: `shortcut_delete [SHORTCUTCOMMAND]`
 
 * `SHORTCUTCOMMAND` The shortcut command that you want deleted
 
@@ -395,7 +395,7 @@ Unfortunately, your favourite coffee shop has closed down, and you are no longer
 dish. Now the shortcut you previously configured is no longer useful. All you have to do is delete the shortcut as
 follows:
 
-`delete_shortcut FavLunch`
+`shortcut_delete FavLunch`
 
 ### Ignoring an entry
 
@@ -488,8 +488,8 @@ that "rainyDay.jar" is going to be stored in
 | Set Budget      | `setbudget VALUE`                                                                                                                                                                                                                                                                                                                                                           |   
 | Add Shortcut    | `shortcut SHORTCUTCOMMAND -maps ACTUALCOMMAND`<br><br> **Example:** <br> `shortcut myshortcut -maps add -out noodles $4`                                                                                                                                                                                                                                                    |   
 | Use Shortcut    | `SHORTCUTCOMMAND`                                                                                                                                                                                                                                                                                                                                                           |
-| View Shortcuts  | `view_shortcut`                                                                                                                                                                                                                                                                                                                                                             |
-| Delete Shortcut | `delete_shortcut SHORTCUTCOMMAND`<br><br> **Example:** <br> `delete_shortcut myshortcut`                                                                                                                                                                                                                                                                                    |
+| View Shortcuts  | `shortcut_view`                                                                                                                                                                                                                                                                                                                                                             |
+| Delete Shortcut | `shortcut_delete SHORTCUTCOMMAND`<br><br> **Example:** <br> `shortcut_delete myshortcut`                                                                                                                                                                                                                                                                                    |
 | Export to CSV   | `export`                                                                                                                                                                                                                                                                                                                                                                    |              
 | Exit            | `bye`                                                                                                                                                                                                                                                                                                                                                                       |
 

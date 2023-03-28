@@ -1,0 +1,35 @@
+@startuml
+participant ":ShortcutViewCommand" as ShortcutViewCommand
+participant "shortcutCommands:HashMap" as shortcutCommands
+
+[-> ShortcutViewCommand : execute()
+activate ShortcutViewCommand
+
+
+
+
+loop for each key
+
+
+
+
+ShortcutViewCommand -> shortcutCommands : get(key)
+activate shortcutCommands
+
+shortcutCommands --> ShortcutViewCommand : value
+deactivate shortcutCommands
+ShortcutViewCommand -> ShortcutViewCommand : printShortcutMapping(key, value)
+activate ShortcutViewCommand
+ShortcutViewCommand --> ShortcutViewCommand
+
+deactivate ShortcutViewCommand
+
+end
+
+[<--ShortcutViewCommand
+
+deactivate ShortcutViewCommand
+
+
+
+@enduml
