@@ -23,11 +23,13 @@ public abstract class Appointment {
 
     public abstract String getDescription();
 
-    public String getStatus(){
+    public String getStatus() {
         return (isDone ? "X" : " ");
     }
 
-    public void setIsDone(boolean status){
+    public abstract String retrieveStorageInfo();
+
+    public void setIsDone(boolean status) {
         this.isDone = status;
     }
 
