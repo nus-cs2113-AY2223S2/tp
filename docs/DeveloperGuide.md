@@ -108,6 +108,12 @@ If the text file exists, this method iterates through the list of company inform
 stores the companies' information in the text file. Prior to writing the company information to this text file, all 
 previously saved text in this file is overwritten.
 
+### [DONE] Load Company information from text file feature
+#### Implementation
+The proposed <code>CompanyListDecoder.load()</code> feature checks if a text file of name "companyList.txt" exists.
+If the text file does not exist, a message is printed to the user indicating that the file is not found.
+If the text file exists, this method iterates through the text file line by line and parses the input. Then the parsed
+input is added to the list of companies using the method <code>CompanyList.add</code>.
 
 ## Product scope
 ### Target user profile
