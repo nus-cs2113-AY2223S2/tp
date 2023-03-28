@@ -20,6 +20,7 @@ bin/
 **/fitness_duke.*
 *.log
 *.log.*
+logging.xml
 
 # UserData files
 **/testData.json
