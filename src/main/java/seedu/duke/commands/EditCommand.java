@@ -85,8 +85,8 @@ public class EditCommand extends Command {
                 String updatedPrice = data[dataSequence].replaceFirst("p/", "");
                 setItemPrice(item, updatedPrice);
                 currentLabel = PRICE_LABEL;
-            } else if (data.contains("c/")) {
-              String updatedCategory = data.replaceFirst("c/", "");
+            } else if (data[dataSequence].contains("c/")) {
+              String updatedCategory = data[dataSequence].replaceFirst("c/", "");
               updatedCategory = updatedCategory.toLowerCase();
               item.setCategory(updatedCategory);
             } else {
