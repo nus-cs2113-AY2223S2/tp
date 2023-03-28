@@ -20,6 +20,8 @@ public class Schedule {
     private String location;
     private boolean hasLocation;
 
+
+
     public Schedule(LocalDateTime start, boolean hasSt) {
         this.startTime = start;
         this.hasEndTime = false;
@@ -37,6 +39,8 @@ public class Schedule {
         this.hasEndInfo = false;
         this.isRecurring = true;
         this.timeInterval = recurringTime;
+        this.hasLocation = false;
+        this.location = "";
     }
 
     public Schedule(LocalDateTime start, LocalDateTime end, boolean hasSt, boolean hasEd) {
@@ -46,6 +50,8 @@ public class Schedule {
         this.hasStartTime = hasSt;
         this.hasEndTime = hasEd;
         this.isRecurring = false;
+        this.hasLocation = false;
+        this.location = "";
     }
 
     public Schedule(LocalDateTime start, LocalDateTime end, boolean hasSt, boolean hasEd,
@@ -55,8 +61,57 @@ public class Schedule {
         this.hasEndInfo = true;
         this.hasStartTime = hasSt;
         this.hasEndTime = hasEd;
+        this.isRecurring = true;
+        this.timeInterval = recurringTime;
+        this.hasLocation = false;
+        this.location = "";
+    }
+        
+    public Schedule(LocalDateTime start, String location, boolean hasSt, boolean hasLocation) {
+        this.startTime = start;
+        this.hasEndTime = false;
+        this.hasStartTime = hasSt;
+        this.hasEndInfo = false;
+        this.isRecurring = false;
+        this.hasLocation = hasLocation;
+        this.location = location;
+    }
+
+    public Schedule(LocalDateTime start, String location, boolean hasSt, boolean hasLocation, 
+            String recurringTime) {
+        this.startTime = start;
+        this.hasEndTime = false;
+        this.hasStartTime = hasSt;
+        this.hasEndInfo = false;
+        this.isRecurring = true;
+        this.timeInterval = recurringTime;
+        this.hasLocation = hasLocation;
+        this.location = location;
+    }
+
+    public Schedule(LocalDateTime start, LocalDateTime end, String location, boolean hasSt, boolean hasEd, 
+            boolean hasLocation) {
+        this.startTime = start;
+        this.endTime = end;
+        this.hasEndInfo = true;
+        this.hasStartTime = hasSt;
+        this.hasEndTime = hasEd;
+        this.isRecurring = false;
+        this.hasLocation = hasLocation;
+        this.location = location;
+    }
+
+    public Schedule(LocalDateTime start, LocalDateTime end, String location, boolean hasSt, boolean hasEd,
+            boolean hasLocation, String recurringTime) {
+        this.startTime = start;
+        this.endTime = end;
+        this.hasEndInfo = true;
+        this.hasStartTime = hasSt;
+        this.hasEndTime = hasEd;
         this.isRecurring = false;
         this.timeInterval = recurringTime;
+        this.hasLocation = hasLocation;
+        this.location = location;
     }
 
     private String getOutputFormat(LocalDateTime timeInfo, boolean hasTimeDetail) {
@@ -66,7 +121,9 @@ public class Schedule {
         }
         return formatter.format(timeInfo);
     }
-
+    public boolean isRecurring() {
+        return isRecurring;
+    }
     public String getTime() {
         String recur = " not recurring";
         if(isRecurring) {
@@ -85,7 +142,7 @@ public class Schedule {
             default:
                 break;
             }
-            recur = " | recurring, time intervel: " + details[0]+ " " +interval;
+            recur = " | recurring, time interval: " + details[0]+ " " +interval;
         }
 
         if (hasEndInfo) {
