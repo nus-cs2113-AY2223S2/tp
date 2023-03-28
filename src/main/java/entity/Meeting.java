@@ -4,7 +4,7 @@ public class Meeting {
     private String time;
     private String issue;
 
-    public Meeting(String time, String issue) {
+    public Meeting(String issue, String time) {
         this.time = time;
         this.issue = issue;
     }

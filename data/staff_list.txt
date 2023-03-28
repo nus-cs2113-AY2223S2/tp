@@ -1,7 +1,3 @@
 john~|~thursday~|~234~|~1234
-
-
-ursday~|~234~|~1234ursday~|~234~|~1234
-ursday~|~234~|~1234
-ursday~|~234~|~1234
-ursday~234~|~1234
+jane~|~thursday~|~12356~|~1007
+name~|~thus~|~1007~|~1235
