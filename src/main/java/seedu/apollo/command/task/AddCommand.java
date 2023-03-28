@@ -229,6 +229,7 @@ public class AddCommand extends Command implements LoggerInterface {
     private void warnEventModuleClash(Ui ui, Calendar calendar, Event event) {
         LocalDateTime eventStart = event.getFromDate();
         LocalDateTime eventEnd = event.getToDate();
+        LocalDateTime currentDay = eventStart;
 
         DayOfWeek startDay = eventStart.getDayOfWeek();
         DayOfWeek endDay = eventEnd.getDayOfWeek();
@@ -238,15 +239,25 @@ public class AddCommand extends Command implements LoggerInterface {
 
         int index = startIndex;
         do {
-            String currentDate = eventStart.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            if (isClashingEventModule(calendar.get(index), eventStart, eventEnd, currentDate)) {
+            String currentDayString = currentDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            if (isClashingEventModule(calendar.get(index), eventStart, eventEnd, currentDayString)) {
                 ui.printClashingEventModuleMessage();
                 return;
             }
             index = (index + 1) % 7;
+            currentDay = currentDay.plusDays(1);
         } while (index != endIndex);
     }
 
+    /**
+     * Checks if an event user wants to add clashes with existing lessons.
+     *
+     * @param calendarModule The ArrayList containing the lessons.
+     * @param eventStart     The time that event starts.
+     * @param eventEnd       The time that event ends.
+     * @param currentDate    The date of which being checked.
+     * @return true if there is a clash, false otherwise.
+     */
     private boolean isClashingEventModule(ArrayList<CalendarModule> calendarModule, LocalDateTime eventStart,
                                           LocalDateTime eventEnd, String currentDate) {
 
@@ -257,36 +268,45 @@ public class AddCommand extends Command implements LoggerInterface {
             }
             String moduleStartString = currentDate + " " + module.getSchedule().getStartTime();
             String moduleEndString = currentDate + " " + module.getSchedule().getEndTime();
-            LocalDateTime moduleStart = LocalDateTime.parse(moduleStartString, formatter);
-            LocalDateTime moduleEnd = LocalDateTime.parse(moduleEndString, formatter);
+            LocalDateTime lessonStart = LocalDateTime.parse(moduleStartString, formatter);
+            LocalDateTime lessonEnd = LocalDateTime.parse(moduleEndString, formatter);
 
-            if (isOverlap(eventStart, eventEnd, moduleStart, moduleEnd)) {
+            if (isOverlap(eventStart, eventEnd, lessonStart, lessonEnd)) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean isOverlap(LocalDateTime eventStart, LocalDateTime eventEnd, LocalDateTime moduleStart,
-                              LocalDateTime moduleEnd) {
+    /**
+     * Checks if an event and lesson overlap.
+     *
+     * @param eventStart The start time of the event.
+     * @param eventEnd   The end time of the event.
+     * @param lessonStart The start time of the lesson.
+     * @param lessonEnd   The end time of the lesson.
+     * @return true if there is a clash, false otherwise.
+     */
+    private boolean isOverlap(LocalDateTime eventStart, LocalDateTime eventEnd, LocalDateTime lessonStart,
+                              LocalDateTime lessonEnd) {
 
-        if (eventStart.isEqual(moduleStart) && eventEnd.isEqual(moduleEnd)) {
+        if (eventStart.isEqual(lessonStart) && eventEnd.isEqual(lessonEnd)) {
             return true;
         }
 
-        if (eventStart.isBefore(moduleStart) && eventEnd.isAfter(moduleEnd)) {
+        if (eventStart.isBefore(lessonStart) && eventEnd.isAfter(lessonEnd)) {
             return true;
         }
 
-        if (eventStart.isAfter(moduleStart) && eventEnd.isBefore(moduleEnd)) {
+        if (eventStart.isAfter(lessonStart) && eventEnd.isBefore(lessonEnd)) {
             return true;
         }
 
-        if (eventStart.isBefore(moduleStart) && eventEnd.isBefore(moduleEnd)) {
+        if (eventStart.isBefore(lessonStart) && eventEnd.isBefore(lessonEnd)) {
             return true;
         }
 
-        return eventStart.isAfter(moduleStart) && eventEnd.isAfter(moduleEnd);
+        return eventStart.isAfter(lessonStart) && eventEnd.isAfter(lessonEnd);
     }
 
 }
