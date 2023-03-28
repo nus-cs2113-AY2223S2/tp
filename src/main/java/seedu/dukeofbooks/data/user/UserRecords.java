@@ -52,12 +52,11 @@ public class UserRecords {
         internalRecord.put(username, newUser);
         return newUser;
     }
+
     public boolean deleteAccount(String username, String password) {
+        assert internalRecord.containsKey(username);
         if (username.equals("root")) {
             return false;  // root user cannot be deleted
-        }
-        if (!internalRecord.containsKey(username)) {
-            return false;  // if the username is not in the database
         }
         if (!internalRecord.get(username).verifyPassword(password)) {
             return false;

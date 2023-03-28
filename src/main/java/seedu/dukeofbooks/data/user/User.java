@@ -39,9 +39,7 @@ public class User extends Person {
     }
 
     public boolean changePassword(String prevPassword, String newPassword) {
-        if (!verifyPassword(prevPassword)) {
-            return false;
-        }
+        assert verifyPassword(prevPassword) : "Wrong password!";
         if (prevPassword.equals(newPassword)) {
             return false;
         } else {
