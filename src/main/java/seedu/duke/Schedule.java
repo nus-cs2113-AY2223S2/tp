@@ -85,7 +85,7 @@ public class Schedule {
             default:
                 break;
             }
-            recur = " | recurring, time intervel: " + details[0]+ " " +interval;
+            recur = " | recurring, time interval: " + details[0]+ " " +interval;
         }
 
         if (hasEndInfo) {
