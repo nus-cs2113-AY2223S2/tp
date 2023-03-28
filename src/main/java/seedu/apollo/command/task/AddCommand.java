@@ -226,6 +226,14 @@ public class AddCommand extends Command implements LoggerInterface {
         return false;
     }
 
+    /**
+     * Checks if an event user wants to add clashes with existing lessons.
+     *
+     * @param ui       For printing warning message.
+     * @param calendar The timetable of lessons stored in an ArrayList.
+     * @param event    The event to be added.
+     * @return true if there is a clash, false otherwise.
+     */
     private void warnEventModuleClash(Ui ui, Calendar calendar, Event event) {
         LocalDateTime eventStart = event.getFromDate();
         LocalDateTime eventEnd = event.getToDate();
