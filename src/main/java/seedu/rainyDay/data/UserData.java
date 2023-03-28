@@ -1,8 +1,5 @@
 package seedu.rainyDay.data;
 
-import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.modules.Storage;
-
 import java.time.LocalDate;
 import java.util.HashMap;
 
