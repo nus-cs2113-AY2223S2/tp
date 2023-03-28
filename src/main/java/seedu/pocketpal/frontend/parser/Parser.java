@@ -236,7 +236,6 @@ public class Parser {
         matcher = pricePattern.matcher(arguments);
         if (matcher.find()) {
             price = matcher.group(2);
-            System.out.println(price);
         }
         argumentsArray[0] = expenseId;
         argumentsArray[1] = description;
