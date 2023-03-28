@@ -59,8 +59,7 @@ public class MeetingManager {
         }
         if(meetingFound.isEmpty()){
             ui.printMessage(Messages.MESSAGE_MEETING_NOT_FOUND);
-        }
-        else{
+        } else{
             ui.printMessage(Messages.MESSAGE_MEETING_FOUND);
             for(Meeting n:meetingFound){
                 ui.printMessage(n.getIssue());
