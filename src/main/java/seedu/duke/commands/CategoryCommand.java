@@ -19,7 +19,8 @@ public class CategoryCommand extends Command {
         this.rawInput = rawInput;
     }
 
-    public static void updateItemCategory(Item item, String oldCategory, String newCategory) throws CategoryFormatException {
+    public static void updateItemCategory(Item item, String oldCategory, String newCategory)
+            throws CategoryFormatException {
         try {
             if (oldCategory.isBlank() || newCategory.isBlank()) {
                 throw new CategoryFormatException();

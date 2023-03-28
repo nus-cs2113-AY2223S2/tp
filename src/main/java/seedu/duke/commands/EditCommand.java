@@ -170,8 +170,7 @@ public class EditCommand extends Command {
             Ui.printInvalidEditCommand();
         } catch (NumberFormatException nfe) {
             Ui.printInvalidPriceOrQuantityEditInput();
-        }
-        catch (CategoryFormatException e) {
+        } catch (CategoryFormatException e) {
             Ui.printInvalidCategory();
         }
     }
