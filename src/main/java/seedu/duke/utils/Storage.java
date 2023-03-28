@@ -173,7 +173,7 @@ public class Storage {
             BufferedReader reader = new BufferedReader(new FileReader(Types.ALERTFILEPATH));
             String line = reader.readLine();
             if (line == null) {
-                Ui.printEmptySessionFile();
+                Ui.printEmptyAlertFile();
                 return new AlertList();
             }
 

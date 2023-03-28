@@ -96,8 +96,9 @@ Example of usage:
 
 `list`
 
-Sample output:
+Sample output:  
 ![img_2.png](img_2.png)
+
 ### Search for an item in the inventory: `search`
 Search for item(s) in the inventory list using keywords or UPC.
 
@@ -299,19 +300,37 @@ Example of usage:
 Sample output:
 
 ### Alert for an item: `alert`
-* insert description here
+Add alerts that will display when the quantity of an item falls below a set minimum or exceeds a maximum level.
 
-Format: 
-`alert ...`: ...
-``: ...
+Format:
+`alert add upc/{upc} min/{quantity} ` to set an alert when quantity falls below a minimum
+`alert add upc/{upc} max/{quantity}` to set an alert when quantity exceeds a maximum
+`alert remove upc/{upc} level/min` to remove an alert for the minimum quantity of an item
+`alert remove upc/{upc} level/max` to remove an alert for the maximum quantity of an item
 
-Example of usage:
-
-``
-
-``
+Examples of usage:  
+`alert add upc/1234 min/55`  
+`alert add upc/1234 max/100`
 
 Sample output:
+```
+____________________________________________________________
+Successfully added a new alert.
+____________________________________________________________
+```
+
+Examples of usage:
+`alert remove upc/1234 level/min`
+`alert remove upc/1234 level/max`
+
+
+Sample output:
+```
+____________________________________________________________
+Successfully removed the alert.
+____________________________________________________________
+```
+
 
 ### Exiting the program: `exit`
 Exits the MagusStock program.
@@ -319,23 +338,30 @@ Exits the MagusStock program.
 Format: `exit` or `bye`
 
 Sample output:
+```
+____________________________________________________________
+Hope you had an enjoyable experience. See you next time!
+____________________________________________________________
+```
 
 
-## FAQ (TBC/WIP)
-
-**Q**: TBC
-
-**A**: {your answer here}
 
 ## Command Summary
-| Action  | Command |
-|---------|-------|
-| Add an item to the inventory |       |
-| Remove an item from the inventory | |
+| Action                          |
+|---------------------------------|
+| Add item (`add`)                |
+| Remove item (`remove`)          |
+| Edit item (`edit`)              |
+| List all items (`list`)         |
+| Search items (`search`)         |
+| Filter items (`filter`)         |
+| Sell items (`sell`)             |
+| Restock items (`restock`)       |
+| Add and remove alerts (`alert`) |
+| View item categories (`cat`)    |
+| View history (`history`)        |
+| View dashboard (`db`) |
+| View all commands (`help`) |
+| Exit the program (`exit`) |
 
 
-
-
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
