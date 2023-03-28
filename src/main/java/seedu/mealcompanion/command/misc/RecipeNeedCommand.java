@@ -69,7 +69,7 @@ public class RecipeNeedCommand extends ExecutableCommand{
                 mealCompanionSession.getUi().printMessage("You have all the ingredients to make this recipe!");
             }
         } catch (MealCompanionException e) {
-            mealCompanionSession.getUi().printMessage("Please input a valid recipe name!");
+            mealCompanionSession.getUi().printMessage(String.valueOf(e));
         } catch (NullPointerException e) {
             mealCompanionSession.getUi().
                     printMessage("Oops, recipe name cannot be empty, please input a valid recipe name!");
