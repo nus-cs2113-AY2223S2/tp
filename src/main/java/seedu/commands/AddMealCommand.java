@@ -66,7 +66,7 @@ public class AddMealCommand extends Command {
 
     private void getDetails(GeneralUi ui, FoodStorage foodStorage) throws LifeTrackerException {
         boolean toContinue = true;
-        System.out.println("Enter date of meal:");
+        System.out.println("Enter date of meal (d/m/yyyy):");
         try {
             dateString = ui.readLine();
             date = LocalDate.parse(dateString, dtf);
@@ -74,7 +74,7 @@ public class AddMealCommand extends Command {
             throw new InvalidDateException(dateString);
         }
 
-        System.out.println(System.lineSeparator() + "Enter type of meal:");
+        System.out.println(System.lineSeparator() + "Enter type of meal (Breakfast/Lunch/Dinner):");
         mealTypeString = ui.readLine();
         if ((mealType = MealTypes.fromString(mealTypeString)) == null) {
             throw new InvalidMealException(mealTypeString);
