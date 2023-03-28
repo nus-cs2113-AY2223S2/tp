@@ -1,14 +1,27 @@
 package seedu.commands;
 
+import seedu.calorietracker.CalorieTracker;
 import seedu.workout.WorkoutList;
 
 public class Command {
-    protected WorkoutList workoutList;
-    protected Command() {
+
+    public WorkoutList workoutList = new WorkoutList();
+    protected CalorieTracker calorieTracker;
+    public Command() {
+    }
+
+    public void setData(WorkoutList workoutList, CalorieTracker calorieTracker) {
+
+
     }
 
     public void setData(WorkoutList workoutList) {
+        if (workoutList == null) {
+            throw new IllegalArgumentException("WorkoutList cannot be null.");
+        }
+
         this.workoutList = workoutList;
+        this.calorieTracker = calorieTracker;
     }
 
     public void execute() {

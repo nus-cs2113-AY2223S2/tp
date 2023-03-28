@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.calorietracker.CalorieTracker;
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
 import seedu.parser.Parser;
@@ -8,20 +9,16 @@ import seedu.workout.WorkoutList;
 
 
 public class Duke {
-
-    private Ui ui;
     private WorkoutList workoutList;
+    private CalorieTracker calorieTracker;
     public static void main(String[] args) {
         new Duke().run();
     }
 
     private void run() {
-        ui = new Ui();
         workoutList = new WorkoutList();
-        Ui.showLine();
-        Ui.showLogo();
-        Ui.showLine();
-        Ui.showGreeting();
+        calorieTracker = new CalorieTracker();
+        Ui.showWelcomeMessage();
 
         executeCommandUntilExit();
         Ui.showExit();
@@ -30,10 +27,19 @@ public class Duke {
     private void executeCommandUntilExit() {
         Command command;
         do {
-            String userInput = ui.getUserInput();
+            String userInput = Ui.getUserInput();
             command = new Parser().processCommand(userInput);
-            command.setData(workoutList);
+
+            command.setData(workoutList, calorieTracker);
             command.execute();
+
+            try {
+                command.setData(workoutList);
+                command.execute();
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+                // handle the exception in the appropriate way for your application
+            }
         } while (!ExitCommand.isExit(command));
     }
 }

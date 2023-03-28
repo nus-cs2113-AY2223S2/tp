@@ -1,24 +1,22 @@
 package seedu.workout;
 
-import seedu.ui.Ui;
-
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
-import java.text.SimpleDateFormat;
-
+import seedu.ui.Ui;
 
 public class WorkoutList {
     public static final int NO_CURRENT_WORKOUT = -1;
-    public ArrayList<Workout> workoutList;
+    public ArrayList<Workout> workoutArrayList;
     public int currentWorkoutIndex;
 
     public WorkoutList() {
-        workoutList = new ArrayList<>();
+        workoutArrayList = new ArrayList<>();
         currentWorkoutIndex = NO_CURRENT_WORKOUT;
     }
 
     public void addWorkout(Workout workout) {
-        workoutList.add(workout);
+        workoutArrayList.add(workout);
         currentWorkoutIndex = getLastIndex();
     }
 
@@ -26,56 +24,61 @@ public class WorkoutList {
         this.currentWorkoutIndex = currentWorkoutIndex;
     }
 
-    public void removeWorkout(Date date) {
-        for (Workout workout : workoutList) {
-            if (workout.getDate().equals(date)) {
-                workoutList.remove(workout);
-                System.out.println("Workout deleted successfully.");
-                Ui.showseperator();
-                return;
-            }
-        }
-        System.out.println("No workout found with the specified date.");
-    }
-    /**
-     * This method will loop the workout list and print out the date in this list
-     *
-     */
-    //@@ author ZIZI-czh
-    public void showWorkoutList() {
-        try {
-            if (!workoutList.isEmpty()) {
-                System.out.println("Here are the list of dates for your workout: ");
-                for (Workout workout : workoutList) {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
-                    String formattedDate = dateFormat.format(workout.getDate());
-                    System.out.println(formattedDate);
-                }
-                Ui.showseperator();
-            } else {
-                //if there is no workout have been done
-                System.out.println("Haven't start your workout, please enter your workout");
-            }
-
-        } catch (NullPointerException e) {
-            System.out.println("Haven't start your workout, please enter your workout");
-        }
-
-    }
-    public void displayWorkout(Date date) {
-        for (Workout workout : workoutList) {
-            if (workout.getDate().equals(date)) {
-                System.out.println(workout.getExercises());
-                Ui.showseperator();
-                return;
-            }
-        }
-    }
     public int getLastIndex() {
-        return workoutList.size() - 1;
+        return workoutArrayList.size() - 1;
     }
 
     public Workout getCurrentWorkout() {
-        return workoutList.get(currentWorkoutIndex);
+        return workoutArrayList.get(currentWorkoutIndex);
+    }
+
+    //@@ author guillaume-grn
+    public ArrayList<Exercise> countSetsRepsPreparation(Date dayInSpecificWeekDate) {
+        WorkoutList workoutsInSpecificWeek = getWorkoutsInSpecificWeek(dayInSpecificWeekDate);
+        ArrayList<Exercise> distinctExercisesList = new ArrayList<>();
+        for (Workout workout : workoutsInSpecificWeek.workoutArrayList) {
+            for (Exercise exercise : workout.getExercises()) {
+                boolean isExistingExercise = false;
+                for (Exercise distinctExercise : distinctExercisesList) {
+                    if (exercise.getName().equals(distinctExercise.getName())) {
+                        distinctExercise.setRepsPerSet(distinctExercise.getRepsPerSet() + " "
+                                + exercise.getRepsPerSet());
+                        isExistingExercise = true;
+                        break;
+                    }
+                }
+                if (!isExistingExercise) {
+                    Exercise distinctExercise = new Exercise(exercise.getName(), exercise.getWeight(),
+                            exercise.getRepsPerSet());
+                    distinctExercisesList.add(distinctExercise);
+                }
+            }
+        }
+        return distinctExercisesList;
+    }
+
+    //@@ author guillaume-grn
+    public void countSetsReps(Date dayInSpecificWeekDate) {
+        ArrayList<Exercise> distinctExercisesList = countSetsRepsPreparation(dayInSpecificWeekDate);
+        Ui.displayCountSetsReps(distinctExercisesList,dayInSpecificWeekDate);
+    }
+
+
+    //@@ author guillaume-grn
+    public WorkoutList getWorkoutsInSpecificWeek(Date dayInSpecificWeekDate) {
+        WorkoutList workoutsInSpecificWeek = new WorkoutList();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dayInSpecificWeekDate);
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        Date startOfWeekDate = calendar.getTime();
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        Date endOfWeekDate = calendar.getTime();
+        for (Workout workout : workoutArrayList) {
+            Date workoutDate = workout.getDate();
+            if (workoutDate.compareTo(startOfWeekDate) >= 0 && workoutDate.compareTo(endOfWeekDate) <= 0) {
+                workoutsInSpecificWeek.addWorkout(workout);
+            }
+        }
+        return workoutsInSpecificWeek;
     }
 }

@@ -1,9 +1,10 @@
-package seedu.commands;
+package seedu.commands.workoutcommands;
 
+import seedu.commands.Command;
 import seedu.workout.WorkoutList;
 
-public class EndCommand extends Command {
-    public EndCommand() {
+public class EndWorkoutCommand extends Command {
+    public EndWorkoutCommand() {
     }
 
     public void execute() {

@@ -1,9 +1,10 @@
-package seedu.commands;
+package seedu.commands.workoutcommands;
 
+import seedu.commands.Command;
 import seedu.ui.Ui;
 
-public class HelpCommand extends Command {
-    public HelpCommand(){}
+public class HelpWorkoutCommand extends Command {
+    public HelpWorkoutCommand(){}
 
     public void execute() {
         System.out.println("Here are the list of commands that you can use:");

@@ -1,5 +1,6 @@
 package seedu.commands;
 
+
 public class IncorrectCommand extends Command {
 
     public IncorrectCommand() {
@@ -7,6 +8,6 @@ public class IncorrectCommand extends Command {
 
     @Override
     public void execute() {
-        System.out.println("Incorrect command given!");
+        System.out.println("Please enter the command again!");
     }
 }
