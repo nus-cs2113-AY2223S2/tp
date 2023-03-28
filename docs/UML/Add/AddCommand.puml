@@ -1,0 +1,46 @@
+
+@startuml
+title AddCommand Class
+
+actor User
+participant AddCommand
+participant Inventory
+User -> AddCommand: run()
+
+activate AddCommand
+participant Ui
+AddCommand -> AddCommand: addItem()
+alt upcCodes.containsKey(item.getUpc())
+AddCommand -> Ui: printDuplicateAdd()
+activate Ui
+Ui -->AddCommand:
+deactivate Ui
+else
+AddCommand -> Ui: printSuccessAdd()
+activate Ui
+Ui -->AddCommand:
+deactivate Ui
+participant Trie
+loop iterate all item name in itemNames
+AddCommand -> Trie:add
+activate Trie
+Trie --> AddCommand:
+deactivate Trie
+participant SessionManager
+participant Storage
+opt SessionManager.getAutoSave()
+AddCommand ->SessionManager:writeSession(inventory)
+activate SessionManager
+SessionManager->Storage:writeCSV(inventory)
+activate Storage
+Storage -->SessionManager:
+deactivate Storage
+SessionManager -->AddCommand:
+deactivate SessionManager
+end
+end
+end
+
+
+
+@enduml

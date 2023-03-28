@@ -1,0 +1,42 @@
+
+@startuml
+title AddParser Class
+
+actor User
+participant AddParser
+User -> AddParser: run()
+
+activate AddParser
+participant Ui
+alt rawInput == null
+AddParser -> MissingParametersException:throw missingAddItemParameters
+    
+end
+
+alt !matcher.matches
+AddParser -> Ui:printInvalidAddCommand()
+Ui --> User:
+end
+AddParser -> Item: << createRequest >>
+activate Item
+Item -->AddParser:
+deactivate Item
+
+AddParser -> AddCommand: << createRequest >>
+activate AddCommand
+AddCommand -->AddParser:
+
+AddCommand -> Command:<< createRequest >>
+activate Command
+Command -->AddCommand:
+deactivate Command
+
+AddCommand -->AddParser:
+deactivate AddCommand
+
+AddParser -> Command: run()
+activate Command
+Command -->AddParser:
+deactivate Command
+
+@enduml
