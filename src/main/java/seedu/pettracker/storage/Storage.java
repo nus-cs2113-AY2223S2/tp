@@ -6,8 +6,11 @@ import seedu.pettracker.data.Task;
 import seedu.pettracker.ui.Ui;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class Storage {
@@ -87,5 +90,15 @@ public class Storage {
         }
     }
 
+    private ArrayList<String> readFile(String filePath) throws IOException {
+        File file = new File(filePath);
+
+        if (!file.exists()) {
+            throw new FileNotFoundException();
+        }
+
+        ArrayList<String> data = (ArrayList) Files.readAllLines(file.toPath(), Charset.defaultCharset());
+        return data;
+    }
 
 }
