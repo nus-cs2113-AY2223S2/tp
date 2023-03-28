@@ -5,8 +5,8 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 import seedu.duke.NusModule;
 
-class NusmodConverterTest {
-    private final NusmodConverter converter = new NusmodConverter();
+class NusModuleStorageTest {
+    private final JsonNusModuleLoader converter = new JsonNusModuleLoader();
 
     @Test
     public void loadMods(){

@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
-public class NusmodConverter {
+public class JsonNusModuleLoader implements NusModuleLoader{
 
     private static final String nusModFile = System.getProperty("user.dir")+"/src/main/data/nusmods.json";
     GsonBuilder builder = new GsonBuilder().registerTypeAdapter(HashMap.class, new ModuleAdapter())
