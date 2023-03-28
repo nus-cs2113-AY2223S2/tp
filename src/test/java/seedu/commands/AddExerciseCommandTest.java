@@ -7,6 +7,9 @@ import seedu.exceptions.MissingArgumentsException;
 import seedu.storage.ExerciseStorage;
 
 import org.junit.jupiter.api.Test;
+import seedu.storage.FoodStorage;
+import seedu.storage.MealStorage;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -14,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class AddExerciseCommandTest {
     private final ExerciseStorage exerciseStorage = new ExerciseStorage("./data/exerciseData.csv");
+    private final FoodStorage foodStorage = new FoodStorage();
+    private final MealStorage mealStorage = new MealStorage("./data/mealData.csv", foodStorage);
 
     @Test
     void addExercise_invalidDateIncluded_expectInvalidDateException() {
@@ -46,7 +51,7 @@ public class AddExerciseCommandTest {
         String userInput = "exercise /type Running /description 5km /calories 400 /on 3/1/2023";
         AddExerciseCommand command = new AddExerciseCommand(commandWord, userInput);
         assertDoesNotThrow(() -> {
-            command.execute(null, null, null, null, exerciseStorage);
+            command.execute(null, null, mealStorage, null, exerciseStorage);
         });
     }
 

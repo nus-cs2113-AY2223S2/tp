@@ -1,16 +1,6 @@
-Mar 28, 2023 12:29:53 AM seedu.logger.LogFileHandler logInfo
-INFO: Breakfast was consumed on 4/3/2023
-Total Calories are: 320.0
-Here are the foods you ate:
-1) Roasted Chicken Noodles (Egg Noodles) - Regular from Chicken Rice
-
-Mar 28, 2023 12:38:47 AM seedu.logger.LogFileHandler logInfo
+Mar 28, 2023 6:43:16 PM seedu.logger.LogFileHandler logInfo
 INFO: Breakfast was consumed on 1/1/2023
-Total Calories are: 2271.0
+Total Calories are: 12.5
 Here are the foods you ate:
-1) Black Pepper Chicken Chop  from Western
-2) Chicken Cutlet  from Western
-3) Grilled Dory Fish  from Western
+1) White Chicken (1 Pax) from Chicken Rice
 
-Mar 28, 2023 12:53:26 AM seedu.logger.LogFileHandler logInfo
-INFO: User exited the programme.

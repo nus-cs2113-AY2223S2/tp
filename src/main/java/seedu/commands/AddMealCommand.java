@@ -61,6 +61,7 @@ public class AddMealCommand extends Command {
         meal = new Meal(foods, date, mealType);
         mealStorage.saveMeal(meal);
         ui.printNewMealAdded(meal);
+        ui.displayDayCalories(exerciseStorage, date, mealStorage);
         LogFileHandler.logInfo(meal.toString());
     }
 

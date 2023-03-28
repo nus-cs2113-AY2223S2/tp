@@ -50,6 +50,9 @@ public class FilterCaloriesCommand extends Command {
         } catch (NumberFormatException e) {
             System.out.println("Invalid input, input is not a float value");
         }
+        if (caloriesLowerLimit < caloriesUpperLimit) {
+            throw new LifeTrackerException("Please enter valid lower and upper limits!");
+        }
 
         List<Food> caloriesFilteredFoods = foodStorage.getFoodsByCalories(caloriesLowerLimit, caloriesUpperLimit);
         showCaloriesFilteredFoods(foodStorage, caloriesFilteredFoods);
