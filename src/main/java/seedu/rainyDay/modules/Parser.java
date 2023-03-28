@@ -232,8 +232,32 @@ public class Parser {
             startDate = startDate.minusMonths(1);
             return new ViewCommand(startDate, false);
         }
-        Pattern pattern = Pattern.compile("^(\\d{1,2})(d|w|m|y)\\s*(?:((-sort)?))\\s*$");
+        if (input.equals("-sort")) {
+            startDate = startDate.minusMonths(1);
+            return new ViewCommand(startDate, true);
+        }
+        Pattern pattern = Pattern.compile("^(-all)?\\s*((-sort)?)\\s*$");
         Matcher matcher = pattern.matcher(input);
+        if (matcher.matches()) {
+            try {
+                System.out.println(matcher.group(1));
+                System.out.println(matcher.group(2));
+                boolean printEverything = matcher.group(1).equals("-all");
+                boolean sortRequired = matcher.group(2).equals("-sort");
+                if (printEverything) {
+                    startDate = LocalDate.of(1800, 1, 1);
+                    return new ViewCommand(startDate, sortRequired);
+                }
+                startDate = startDate.minusMonths(1);
+                return new ViewCommand(startDate, sortRequired);
+            } catch (Exception e) {
+                logger.warning("view command given by user in the wrong format");
+                return new InvalidCommand(ErrorMessage.WRONG_VIEW_FORMAT.toString());
+            }
+        }
+
+        pattern = Pattern.compile("^(\\d{1,2})([dwmy])\\s*((-sort)?)\\s*$");
+        matcher = pattern.matcher(input);
         if (matcher.matches()) {
             try {
                 logger.info("obtaining relevant data");

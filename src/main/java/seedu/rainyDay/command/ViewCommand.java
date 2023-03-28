@@ -123,6 +123,7 @@ public class ViewCommand extends Command {
         setupLogger();
         logger.log(Level.INFO, "starting ViewCommand.execute()");
         ArrayList<Integer> validIndexes;
+        boolean viewAll = timeLimit.equals(LocalDate.of(1800, 1, 1));
         if (sortByValue) {
             validIndexes = filterBeforeSpecificDateSorted();
         } else {
@@ -135,7 +136,7 @@ public class ViewCommand extends Command {
             return new CommandResult(output);
         }
         assert userData.getStatementCount() != 0 : "statement count mismatch";
-        ViewResult.printReport(validIndexes, timeLimit, sortByValue);
+        ViewResult.printReport(validIndexes, timeLimit, sortByValue, viewAll);
         return null;
     }
 }
