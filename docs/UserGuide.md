@@ -25,10 +25,55 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 ### List: `list` command
 
 All List commands start with `list`.
+1. List Current
+2. List PU
+3. List [PU Abbreviation/PU INDEX]
+4. List Current [PU Abbreviation/PU INDEX]
 
 ****
+#### 1. Listing modules user has selected: `List Current`
 
-**PU Module List** - Get a list of all the modules provided by the specific PU
+Format: `list current`
+
+Example of usage: `list current`
+
+Expected outcome: Modules that user has previously selected will be listed sorted by Partner Universities.
+
+Description of outcome:
+```
+List of Added Modules for: KOREA UNIVERSITY
+____________________________________________________________
+1.[AE320][Aerodynamics II][3]
+maps to ----> [ME4231][Aerodynamics][4]
+____________________________________________________________
+
+List of Added Modules for: KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY
+____________________________________________________________
+1.[IE321][PRODUCTION MANAGEMENT I][0]
+maps to ----> [ME3662][Technical Elective][4]
+____________________________________________________________
+
+The current module list is empty for: POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY
+____________________________________________________________
+____________________________________________________________
+
+The current module list is empty for: SEOUL NATIONAL UNIVERSITY
+____________________________________________________________
+____________________________________________________________
+
+List of Added Modules for: YONSEI UNIVERSITY
+____________________________________________________________
+1.[DAA3250][CHEM ENG THERMODYNAMICS I][0]
+maps to ----> [ME3221][Sustainable Energy Conversion][4]
+2.[MEU3680][MECHANICAL SYSTEM CONTROL][3]
+maps to ----> [ME2142][Feedback Control Systems][4]
+____________________________________________________________
+```
+
+****
+#### 2. Listing out PU Module List: `List [PU Abbreviation/PU INDEX]`
+
+**PU Module List** - Get a list of all the modules provided by the specific PU </span>
 
 Format: `list [PU Abbreviation Name]` or `list [PU Index]`
 
@@ -38,7 +83,7 @@ Format: `list [PU Abbreviation Name]` or `list [PU Index]`
 Example of usage: `list ku` or `list 1`
 
 Expected outcome:
-* A list of modules under Korea University appears
+* A list of modules under Korea University appears.
 
 Description of outcome:
 ```
@@ -54,6 +99,86 @@ ____________________________________________________________
    maps to ----> [ME4661][Exchange Elective][4]
 ____________________________________________________________
 ```
+****
+#### 3. Listing out all Partner Universities: `list pu`
+
+Format: `list pu`
+
+Expected outcome:
+A list of all Partner Universities appears.
+
+Description of outcome:
+```
+This is the list of PUs:
+____________________________________________________________
+1. KOREA UNIVERSITY KU
+2. KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY KAIST
+3. POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY POSTECH
+4. SEOUL NATIONAL UNIVERSITY SNU
+5. YONSEI UNIVERSITY YU
+____________________________________________________________
+```
+****
+#### 4. Listing modules user has selected for specific Partner University: `List Current [PU Abbreviation]`
+
+Format: `List Current [PU Abbreviation]`
+
+* The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
+
+Example of usage: `list current ku` 
+
+Expected outcome: List of modules for Korea University that user has selected will appear.
+
+Description of outcome:
+```
+List of Added Modules for: KOREA UNIVERSITY
+____________________________________________________________
+1.[AE320][Aerodynamics II][3]
+maps to ----> [ME4231][Aerodynamics][4]
+2.[IWC311][Heat Transfer][3]
+maps to ----> [ME3122][Heat Transfer][4]
+____________________________________________________________
+```
+****
+
+### Remove user selected modules from list: `remove`
+
+Format: `remove [PU ABBREVIATION]/[INDEX TO REMOVE]`
+
+* The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
+* The  `INDEX TO REMOVE` is the numbering of the module provided by ` list current`
+or ` list current [PU Abbreviation]` command.
+
+Example of usage: `remove KU/2` 
+
+Expected outcome: Removes module indexed at 2 for Korea University from list of user selected modules.
+
+Description of outcome: 
+
+**Before Command** `remove KU/2`
+```
+List of Added Modules for: KOREA UNIVERSITY
+____________________________________________________________
+1.[AE320][Aerodynamics II][3]
+maps to ----> [ME4231][Aerodynamics][4]
+2.[IWC311][Heat Transfer][3]
+maps to ----> [ME3122][Heat Transfer][4]
+____________________________________________________________
+```
+
+**After Command** `remove KU/2`
+```
+List of Added Modules for: KOREA UNIVERSITY
+____________________________________________________________
+1.[AE320][Aerodynamics II][3]
+maps to ----> [ME4231][Aerodynamics][4]
+____________________________________________________________
+```
+
+Tip: This command is best utilized by executing `list current [PU Abbreviation]` or `list current` beforehand.
+
+****
+
 
 ### Search by NUS module Code: `search`
 ****
