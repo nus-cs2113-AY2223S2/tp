@@ -243,11 +243,11 @@ will help you extract certain transactions based on a specific criteria
 Format : `filter [FLAG] {FIELD}`
 
 * The `FLAG` must be one of the following:
-    * `-d` to filter by description
-    * `-c` to filter by category
-    * `-date` to filter by date
-    * `-in` to filter by inflows
-    * `-out` to filter by outflows
+  * `-in` to filter by inflows
+  * `-out` to filter by outflows
+  * `-d` to filter by description
+  * `-c` to filter by category
+  * `-date` to filter by date
 * date `FIELD` must be in the form DD/MM/YYYY
 
 Example of usage:
@@ -267,7 +267,7 @@ Suppose you want to check your outflows only, you can use this command:
 
 > 💡**Tip:** Multiple flags may be used at once but must be in this order:
 >
-> `-d` -> `-c` -> `-date` -> `-in` or `out`
+> `-in` or `out` -> `-d` -> `-c` -> `-date`
 >
 > Suppose you want to find out what food you ate on a particular day, you can use this command:
 >
@@ -280,7 +280,7 @@ Suppose you want to check your outflows only, you can use this command:
 Should you need to update details in a previous transaction, rainyDay's "edit" function supports changing the details of
 a past transaction
 
-Format : `edit [INDEX] [ADDCOMMAND]` or `edit [INDEX] [FLAG] {NEWFIELD}`
+Format : `edit [INDEX] [FLAG] {NEWFIELD}`
 
 * The `FLAG` must be one of the following:
     * `-d` to edit the description
@@ -306,6 +306,10 @@ However, if you want to edit multiple fields of an entry, and instead of deletin
 this command:
 `edit 2 add -out Beef noodles $15 -c Food -date 22/03/2023`
 ![EditMultipleEntries.png](images/UserGuide/EditMultipleEntries.png)
+
+> 💡**Tip:** Multiple flags may be used at once but must be in this order:
+>
+> `-in` or `out` -> `-d` -> `-v` -> `-c` -> `-date`
 
 ### Setting a Monthly Budget
 
@@ -483,8 +487,8 @@ that "rainyDay.jar" is going to be stored in
 | Delete          | `delete INDEX` <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                                                                                                                                                                                                                                                                                        |
 | View            | `view TIMESPAN -sort`                                                                                                                                                                                                                                                                                                                                                       |
 | Help            | `help` or `help COMMAND`                                                                                                                                                                                                                                                                                                                                                    |
-| Filter          | `filter DESCRIPTION` or `filter FLAG FIELD` <br><br> **Example:** <br> `filter school` <br> `filter -d school` <br>`filter -date 22/03/2023`                                                                                                                                                                                                                                |
-| Edit            | `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -add -in Beef noodles $15 -c Food` <br> `edit -d school` <br> `edit -in`                                                                                                                                                                                      |
+| Filter          | `filter FLAG FIELD` <br><br> **Example:** <br> `filter -d school` <br>`filter -date 22/03/2023`                                                                                                                                                                                                                                                                             |
+| Edit            | `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -add -in Beef noodles $15 -c Food` <br> `edit -d school` <br> `edit -in`                                                                                                                                                                                                                 |
 | Set Budget      | `setbudget VALUE`                                                                                                                                                                                                                                                                                                                                                           |   
 | Add Shortcut    | `shortcut SHORTCUTCOMMAND -maps ACTUALCOMMAND`<br><br> **Example:** <br> `shortcut myshortcut -maps add -out noodles $4`                                                                                                                                                                                                                                                    |   
 | Use Shortcut    | `SHORTCUTCOMMAND`                                                                                                                                                                                                                                                                                                                                                           |

@@ -54,6 +54,12 @@ public class FilterCommand extends Command {
         ArrayList<FinancialStatement> listToFilter = new ArrayList<>();
         ArrayList<Integer> listToFilterStatementIndex = new ArrayList<>();
 
+        if (filterFlagAndField.get(0).equalsIgnoreCase("-in") ||
+                filterFlagAndField.get(0).equalsIgnoreCase("-out")) {
+            filterFlagAndField.add(filterFlagAndField.get(0));
+            filterFlagAndField.remove(0);
+        }
+
         boolean isFirstFlag = true;
         for (int i = 0; i < filterFlagAndField.size(); i += 2) {
             if (filterFlagAndField.get(i).equalsIgnoreCase("-d")) {
