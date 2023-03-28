@@ -93,8 +93,7 @@ Afterwards, the ```execute()``` method will call the ```printSelector()``` metho
 The ```printSelector()``` method will print all the available currencies in the selector hashmap.
 The selected currencies will be marked with a ```[X]``` and the unselected currencies will be marked with a ```[ ]```.
 
-<br> ![Set Currency Sequence Diagram](../images/SetCurrencyCommand_sequence_diagram.png)
-
+![SetCurrencyCommand_sequence_diagram.png](images%2FSetCurrencyCommand_sequence_diagram.png)
 
 ## Product scope
 
