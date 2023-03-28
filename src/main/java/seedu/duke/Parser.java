@@ -237,10 +237,15 @@ public class Parser {
                     }
                 }
             }
+
+            Ui.addSuccessMsg("Added "+ count +" classes of Module: " + moduleCode);
+
         } else {
             String eventName = information[0];
             String startTime = information[1];
             String startDate = information[2];
+
+            boolean hasLocation = duplicity[6];
 
             if (!information[4].equals("")) {
                 String endTime = information[3];
@@ -261,9 +266,6 @@ public class Parser {
 
             // add location(venue)
             int eventNum = eventList.getSize() - 1;
-            if(duplicity[6] == true){
-                eventList.reviseLocation(eventNum, information[6]);
-            }
 
             Ui.addSuccessMsg(eventList.getLastTaskDescription());
         }

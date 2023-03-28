@@ -58,7 +58,7 @@ public class Event extends Schedule {
 
     public String toString() {
         return "[E] " + getDescription() + " (" + super.getTime() + ")"
-             + (hasLocation() ? ("\n    @ " + getLocation()) : "");
+             + (hasLocation() ? ("\n         @ " + getLocation()) : "");
     }
 
 }
