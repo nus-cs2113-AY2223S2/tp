@@ -1,0 +1,19 @@
+@startuml
+participant ":Parser" as Parser
+participant ":SetBudgetCommand" as SetBudgetCommand
+participant ":UserData" as UserData
+
+[-> Parser : parseUserInput(userInput)
+activate Parser
+Parser -> Parser : setUserBudgetGoal(userInput)
+activate Parser
+create SetBudgetCommand
+Parser -> SetBudgetCommand
+activate SetBudgetCommand
+SetBudgetCommand --> Parser : :SetBudgetCommand
+deactivate SetBudgetCommand
+Parser --> Parser : :SetBudgetCommand
+
+deactivate Parser
+
+@enduml
