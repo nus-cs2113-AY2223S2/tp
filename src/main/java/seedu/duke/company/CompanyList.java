@@ -59,7 +59,10 @@ public class CompanyList {
         return companyList.size();
     }
 
-    public void deleteCompanyInformation(int index) throws InvalidIndexException {
+    public void deleteCompanyInformation(int index) throws InvalidIndexException, EmptyListException {
+        if (companyList.isEmpty()){
+            throw new EmptyListException();
+        }
         if (index < 0 | index >= companyList.size()) {
             throw new InvalidIndexException();
         }
@@ -126,7 +129,10 @@ public class CompanyList {
         ui.showSuccessfulPurgingMessage();
     }
 
-    public void markConfirm(int companyNum) throws InvalidIndexException {
+    public void markConfirm(int companyNum) throws InvalidIndexException, EmptyListException {
+        if (companyList.isEmpty()){
+            throw new EmptyListException();
+        }
         if (companyNum < 0 | companyNum >= companyList.size()) {
             throw new InvalidIndexException();
         }
@@ -135,7 +141,10 @@ public class CompanyList {
         ui.showSuccessfulConfirmedMessage();
     }
 
-    public void markUnconfirm(int companyNum) throws InvalidIndexException {
+    public void markUnconfirm(int companyNum) throws InvalidIndexException, EmptyListException {
+        if (companyList.isEmpty()){
+            throw new EmptyListException();
+        }
         if (companyNum < 0 | companyNum >= companyList.size()) {
             throw new InvalidIndexException();
         }
