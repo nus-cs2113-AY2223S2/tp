@@ -30,24 +30,11 @@ public class Storage {
             File fileName = new File(absolutePath);
             if (fileName.createNewFile()) {
                 Ui.printFileCreated(true);
-            } else printFile(fileName);
+            } else extractData(fileName);
         } catch (IOException e) {
             Ui.printFileCreated(false);
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException("\tFile \"SniffAppointments.txt\" saved in incorrect format!");
-        }
-    }
-
-    private static void printFile(File fileName) throws FileNotFoundException, SniffException {
-        try {
-            Scanner s = new Scanner(fileName);
-            if (!s.hasNext()) {
-                Ui.printEmptyFile();
-            } else {
-                extractData(fileName);
-            }
-        } catch (FileNotFoundException a) {
-            throw new SniffException("Save file not found!");
         }
     }
 
