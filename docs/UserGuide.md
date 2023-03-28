@@ -23,7 +23,7 @@ FitnessDuke is a **Command Line Application for tracking and managing workouts, 
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
-## Getting Started
+## Getting Started   
 
 1. Ensure you have Java 11 or later installed in your PC.
 2. Download the latest version of ```duke.jar``` from our GitHub releases
@@ -255,4 +255,4 @@ FitnessDuke data are saved as a JSON file [JAR file location]/resources/data.jso
 | **data**     | ```data```                                                               |
 | **start**    | ```start```                                                              |
 | **quick**    | ```quick [plan_name] [x]``` <br> eg. ```quick home_leg_day 3```          |
-_____________________________________________________________
+
