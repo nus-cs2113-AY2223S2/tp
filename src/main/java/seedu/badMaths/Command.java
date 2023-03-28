@@ -41,6 +41,7 @@ public class Command {
     public void executeCommand(NotesList notes) {
         TrigoGraph trigoGraph = new TrigoGraph(toDo);
         Calculator calculator = new Calculator();
+        Quadratic quadratic = new Quadratic(toDo);
 
         switch (command) {
         case "Bye":
@@ -130,6 +131,9 @@ public class Command {
             break;
         case "Matrix":
             calculator.run(toDo);
+            break;
+        case "Quadratic":
+            quadratic.solveQuadratic();
             break;
         default:
             break;
