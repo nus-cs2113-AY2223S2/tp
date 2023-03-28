@@ -25,7 +25,8 @@ public class Task {
     }
 
     public static void clearCount() {
-        taskCount = 0;}
+        taskCount = 0;
+    }
 
     public void markAsDone() {
         this.isDone = true;
@@ -71,10 +72,6 @@ public class Task {
 
     public static void decrementCount() {
         taskCount--;
-    }
-
-    public static void resetCount() {
-        taskCount = 0;
     }
 
     public static int getTaskCount() {

@@ -279,9 +279,9 @@ public class TaskList {
             String endString = line.substring(line.indexOf("/to") + 3).trim();
             SchoolClass toDelete = new SchoolClass(className, description, day, startString, endString);
             if (classes.remove(toDelete) == true) {
-                System.out.println("class removed");
+                Ui.deleteClassMessage();
             } else {
-                System.out.println("class not removed");
+                Ui.unsuccessfulDeleteClassMessage();
             }
         } catch (IllegalArgumentException e) {
             Ui.invalidDayMessage();
@@ -345,8 +345,8 @@ public class TaskList {
      */
     static void refresh(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) {
         tasks.clear();
+        Task.clearCount();
         classes.clear();
-        Task.resetCount();
         Storage.tryLoad(tasks, classes);
         Ui.refreshedMessage();
     }
