@@ -55,7 +55,7 @@ public class Storage {
      *
      * @throws IOException if createDirectories() is unsuccessful.
      */
-    public static void createDirectory() throws IOException {
+    private static void createDirectory() throws IOException {
         Path path = Paths.get(DIR_PATH);
         Files.createDirectories(path);
     }
@@ -65,7 +65,7 @@ public class Storage {
      *
      * @throws IOException if createNewFile() is unsuccessful.
      */
-    public static void createFile() throws IOException {
+    private static void createFile() throws IOException {
         File file = new File(FILE_PATH);
         file.createNewFile();
     }
@@ -77,7 +77,7 @@ public class Storage {
      * @throws FileNotFoundException if data file does not exist.
      * @throws CorruptedDataException if data file is corrupted.
      */
-    public static void readFile() throws FileNotFoundException, CorruptedDataException {
+    private static void readFile() throws FileNotFoundException, CorruptedDataException {
         File file = new File(FILE_PATH);
         Scanner scanner = new Scanner(file);
 
@@ -197,7 +197,7 @@ public class Storage {
      * @param data Current line being read from the patient-data file.
      * @return true if the line is empty, and false otherwise.
      */
-    public static boolean endOfFile(String data) {
+    private static boolean endOfFile(String data) {
         return data.matches("^ *$");
     }
 }
