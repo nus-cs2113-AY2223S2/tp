@@ -35,8 +35,7 @@ class RecipeAllCommandTest {
         String predictedOutput = "There is no recipe available." + System.lineSeparator();
         if (mealCompanionSession.getRecipes().isEmpty()) {
             assertEquals(predictedOutput, outContent.toString());
-        }
-        else {
+        } else {
             assertNotEquals(predictedOutput, outContent.toString());
         }
     }

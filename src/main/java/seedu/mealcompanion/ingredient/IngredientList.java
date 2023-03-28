@@ -1,7 +1,6 @@
 package seedu.mealcompanion.ingredient;
 
 import seedu.mealcompanion.MealCompanionException;
-import seedu.mealcompanion.recipe.IngredientMetadata;
 
 import java.util.ArrayList;
 

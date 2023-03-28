@@ -1,16 +1,15 @@
 package seedu.mealcompanion.recipe;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import seedu.mealcompanion.MealCompanionException;
+import seedu.mealcompanion.serde.SerializableRecipe;
+
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import seedu.mealcompanion.MealCompanionException;
-import seedu.mealcompanion.MealCompanionSession;
-import seedu.mealcompanion.serde.SerializableRecipe;
 
 //@@author ngyida
 public class RecipeList {

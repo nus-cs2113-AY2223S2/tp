@@ -1,7 +1,5 @@
 package seedu.mealcompanion.recipe;
 
-import seedu.mealcompanion.ingredient.Ingredient;
-
 import java.util.ArrayList;
 
 //@@author ngyida

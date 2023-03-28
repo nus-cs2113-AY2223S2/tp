@@ -1,8 +1,6 @@
 package seedu.mealcompanion.recipe;
 
-import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
-import seedu.mealcompanion.ui.MealCompanionUI;
 
 //@@author ngyida
 public class Recipe {
