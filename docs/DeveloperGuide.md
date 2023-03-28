@@ -10,35 +10,39 @@
   * [3.1. Architecture](#31-architecture)
   * [3.2. Parser Component](#32-parser)
   * [3.3. Expenditures Component](#33-expenditure-categories)
-  * [3.4 Command Component](#)
+  * [3.4 Command Component](#34-command-component)
   * [3.5. Storage Component](#35-storage)
   * [3.6. UI Component](#36-ui)
 - [4. Command List](#4-command-list)
-  - Adding a Todo: [```todo```](#adding-a-todo-todo)
-  - Adding a Deadline: [```deadline```](#adding-a-deadline-deadline)
-  - Adding an Event: [```event```](#adding-an-event-event)
-  - Listing all tasks: All tasks: [```list```](#listing-all-tasks-list) and Tasks on specific date: [```list```](#listing-all-tasks-occurring-on-a-specific-date)
-  - Finding tasks: [```find```](#finding-tasks-find)
-  - Marking a task: [```mark```](#marking-a-task-mark)
-  - Unmarking a task: [```unmark```](#unmarking-a-task-unmark)
-  - Deleting a task: [```delete```](#deleting-a-task-delete)
-  - Exiting the program: [```bye```](#exiting-the-program-exit)
-  - Editing an expenditure: [```edit```](#42-edit-command)
-  - Saving the data
+  * [4.1. Add a transaction](#adding-a-todo-todo)
+  * [4.2. Edit a transaction](#adding-a-todo-todo)
+  * [4.3. Delete a transaction](#adding-a-todo-todo)
+  * [4.4. Find transactions](#adding-a-todo-todo)
+  * [4.5. Duplicate a transaction](#adding-a-todo-todo)
+  * [4.6. Sort transactions](#adding-a-todo-todo)
+  * [4.7. View transactions](#adding-a-todo-todo)
+  * [4.8. Set a budget](#adding-a-todo-todo)
+
 
 ## 1. Preface
 
+MyLedger is a desktop app for managing finances, designed for university students studying locally or on exchange. It is optimized for use via a Command Line Interface (CLI). For students that can type fast, MyLedger can help them record and classify their transactions into categories. Students can expect to get an overview of their transactions at a glance,
+which helps them to monitor their budget and expenses more effciently.
+
+This developer guide provides a detailed view of the overall structure of MyLedger V2.0 and explains how its components and functions are implemented. Additionally, it outlines the specific parameters that were established before feature development began. The aim is to help developers gain a comprehensive understanding of the application's operation and how to maintain it without difficulty.
 
 ## 2. Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+The format of this developer guide was adapted from SE-EDU AddressBook Level 3 Developer Guide. The class and sequence diagrams are styled using draw.io
 
 ## 3. Design & implementation
 
 ### 3.1. Architecture
 
-![](team/images/Architecture.png)
-
+<p align="center">
+    <img src="team/images/Architecture.png">
+    <i>Figure 1: Architecture Diagram for MyLedger</i>
+</p>
 
 The Architecture Diagram shown above is a high-level components within MyLedger. The ```MyLedger``` class contains the main method which
 is responsible for:
@@ -79,7 +83,11 @@ command.
 
 The following shows the UML diagram used for the parser component implemented in MyLedger.
 
-![](team/images/parserOverview.png)
+<p align="center">
+    <img src="team/images/parserOverview.png">
+    <br/>
+    <i>Figure 2: UML diagram for the parser component</i>
+</p>
 
 It must be noted that not all the existing parser commands are included in this sequence diagram for parsing, namely
 the mark, unmark and edit commands. This is because they have a similar sequence diagram as the functions parseAdd and 
@@ -131,6 +139,8 @@ The following shows the UML diagram used for the Expenditure Categories componen
 
 <p align="center">
     <img src="team/images/UMLClassDiagramExpenditure.png" width="80%">
+    <br/>
+    <i>Figure 3: UML diagram for the Expenditure Categories component</i>
 </p>
 
 In the diagram, the aforementioned expenditure categories inherit from the `Expenditure` class. The `ExpenditureList` class is a composition of expenditures of `Expenditure` type. 
@@ -168,6 +178,8 @@ The `ViewDateExpenditureCommand` and `ViewTypeExpenditureCommand` classes contai
 Below shows the UML diagram representing the `command` package.
 <p align="center">
     <img src="team/images/umlCommandClassDiagram.png" width="100%">
+    <br/>
+    <i>Figure 4: UML diagram for the command package</i>
 </p>
 
 A more detailed coverage is explored in [Command List](#4-command-list).
@@ -177,7 +189,11 @@ The class `TxtFileStatus` and `ExpenditureList` are involved in storing the expe
 After every user input is completed, saveExpenditureList is called, and the text file will be
 updated with all the current expenditures in the expenditure array list.
 
-![](team/images/saveList.png)
+<p align="center">
+    <img src="team/images/saveList.png">
+    <br/>
+    <i>Figure 5: Sequence diagram for TxtFileStatus</i>
+</p>
 
 The following sequence diagram shows the details of the process for saveExpenditureList.
 
@@ -187,11 +203,17 @@ as a string in the text file is then added to the array list in ExpenditureList 
 the strings in the text file, instantiating an expenditure using the string received, and adding
 the expenditure into the array list.
 
-![](team/images/initializeList.png)
+<p align="center">
+    <img src="team/images/initializeList.png">
+    <br/>
+    <i>Figure 6: Sequence diagram for the process of saveExpenditureList</i>
+</p>
 
 ### 3.6. UI 
 
 ## 4. Command List
+
+### 4.1. Add Command 
 
 ### 4.2. Edit Command
 
@@ -208,10 +230,18 @@ The sequence diagram below shows the interactions of a successful execution of t
 <p align="center">
     <img src="team/images/parserEdit.png">
     <br />
-    <i>Figure 3: Sequence Diagram for edit Command</i>
+    <i>Figure 7: Sequence Diagram for edit Command</i>
 </p>
 
-### 4.3. View Command
+### 4.3. Delete Command
+
+### 4.4. Find Command
+
+### 4.5. Duplicate Command
+
+### 4.6. Sort Command
+
+### 4.7. View Command
 
 The view command filters and lists the expenditures of a specified date or type.
 At the end of the list, the total amount of the filtered expenditures are tabulated.
@@ -220,10 +250,16 @@ For viewing expenditures of specific type, the command is ```viewtype EXPENDITUR
 
 The sequence diagram below shows the details of the process for viewdate.
 
-![](team/images/viewDate.png)
+<p align="center">
+    <img src="team/images/viewDate.png">
+    <br />
+    <i>Figure 8: Sequence Diagram of the process for viewdate</i>
+</p>
 
 The process for viewtype is similar as viewdate with an additional step within ViewTypeExpenditureCommand
 that converts the input string into a string recognisable for comparison in the opt block. 
+
+### 4.8. Set Budget Command
 
 ## Product scope
 ### Target user profile
