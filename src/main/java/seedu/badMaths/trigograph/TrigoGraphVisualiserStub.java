@@ -3,7 +3,6 @@ package seedu.badMaths.trigograph;
 import seedu.badMaths.ui.Ui;
 
 
-import javax.swing.JFrame;
 
 public class TrigoGraphVisualiserStub {
     private String trig;
