@@ -33,8 +33,8 @@ public class ViewUserCommand extends Command {
             System.out.println("4. View Age");
             System.out.println("5. View Gender");
             System.out.println("6. View Daily Caloric limit");
-            System.out.println("7. View Calories Left Today");
-            System.out.println("8. Back");
+            System.out.println("7. View Calories Remaining Today");
+            System.out.println("8. Exit");
             System.out.println();
 
             choice = ui.readInt();

@@ -39,6 +39,7 @@ public class AddExerciseCommand extends Command {
         Exercise newExercise = new Exercise(exerciseName, exerciseDescription, calorieBurnt, date);
         exerciseStorage.saveExercise(newExercise);
         ExerciseUi.addedExercise(newExercise);
+        ui.displayDayCalories(exerciseStorage, date, mealStorage);
     }
 
     private void parseCommand() throws LifeTrackerException {

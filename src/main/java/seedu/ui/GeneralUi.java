@@ -1,9 +1,13 @@
 package seedu.ui;
 
+import seedu.entities.Exercise;
 import seedu.entities.Meal;
+import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class GeneralUi {
@@ -98,7 +102,6 @@ public class GeneralUi {
     }
 
     public void printNewMealAdded(Meal meal) {
-        System.out.println("You just added this meal");
         System.out.println(meal);
     }
 
@@ -119,5 +122,27 @@ public class GeneralUi {
     public void showDailyCaloricLimit() {
     }
     public void showWellDoneMessage(){
+    }
+    public static void displayDayCalories(ExerciseStorage exerciseStorage, LocalDate date, MealStorage mealStorage) {
+        List<Exercise> exercisesOnSpecificDate = exerciseStorage.getExercisesByDate(date);
+        float caloricDeficit = 0;
+        for (Exercise exercise: exercisesOnSpecificDate){
+            caloricDeficit += exercise.getCaloriesBurnt();
+        }
+        List<Meal> mealsOnSpecificDate = mealStorage.getMealByDate(date);
+        float caloricGain = 0;
+        for (Meal meal: mealsOnSpecificDate){
+            caloricGain += meal.getTotalCalories();
+        }
+        float netCalories = caloricGain - caloricDeficit;
+        System.out.println("Calories Gained on " + date + " : " + caloricGain);
+        System.out.println("Calories Lost on  " + date + " : " + caloricDeficit);
+        if (netCalories > 0) {
+            System.out.println("You have gained " + netCalories + " calories on" + date);
+        } else if (netCalories == 0){
+            System.out.println("Your net calories on " + date + "is zero.");
+        } else {
+            System.out.println("You have lost " + netCalories + " calories on" + date);
+        }
     }
 }
