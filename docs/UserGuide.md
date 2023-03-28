@@ -54,28 +54,34 @@ Format:
 Edit an existing expense/income that is currently in the list.
 
 Format:
-<br> `edit expense i/INDEX  c/CATEGORY de/DESCRIPTION da/DATE v/VALUE`
-
+<br> `edit expense /i INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`
+<br> `edit income /i INDEX [de/DESCRIPTION] [da/DATE] [v/VALUE]`
+<br> where [] indicates optional fields.
 
 Use case:
 * Edits the item at the specified INDEX, where INDEX is a positive integer.
 * At least one of the fields must be provided.
+* User inputs desired fields to be edited.
 * Existing values will be updated to the input values.
 
 Example of usage:
-`edit expense i/1 d/Lunch @Technoedge v/5.20`
+`edit expense /i 1 /de Lunch @Technoedge /v 5.20`
+`edit income /i 2 /da 12-12-2022 /v 100`
 
 ### Finding an entry: `find`
 Find an existing expense/income that is currently in the list.
 
 Format:
-<br> `find expense c/CATEGORY de/DESCRIPTION`
+<br> `find expense /c CATEGORY /de DESCRIPTION`
+<br> `find income /de DESCRIPTION`
 
 Use case:
 * Shows user the entry that they are looking for.
 
 Example of usage:
-<br> `find expense c/Grocery de/Beef`
+<br> `find expense /c Grocery /de Beef`
+<br> `find income /de Salary`
+
 ### Showing the balance: `balance`
 Shows users the balance he has after calculating the difference of income and expense.
 
@@ -143,17 +149,15 @@ When reading from the file, entries for income and expenses are stored in their 
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
 * Add Expense: `add expense /c CATEGORY /de DESCRIPTION /da DATE /v VALUE`
 * Add Income: `add income /de DESCRIPTION /da DATE /v VALUE`
 * List Records: `list`
 * List Expenses: `list expense`
 * List Incomes: `list income`
-* Edit income list: `edit income i/INDEX  c/CATEGORY de/DESCRIPTION da/DATE v/VALUE`
-* Edit expense list: `edit expense i/INDEX  c/CATEGORY de/DESCRIPTION da/DATE v/VALUE`
-* Find income entry: `find income c/CATEGORY de/DESCRIPTION`
-* Find expense entry: `find expense c/CATEGORY de/DESCRIPTION`
+* Edit income list: `edit income /i INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`
+* Edit expense list: `edit expense /i INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`
+* Find income entry: `find income /c CATEGORY /de DESCRIPTION`
+* Find expense entry: `find expense /c CATEGORY /de DESCRIPTION`
 * Delete Expense: `delete expense /in INDEX`
 * Delete Income: `delete income /in INDEX`
 * Clear income list: `clear income`
