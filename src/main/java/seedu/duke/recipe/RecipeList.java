@@ -1,11 +1,13 @@
 package seedu.duke.recipe;
 
 import seedu.duke.exceptions.RecipeListEmptyException;
-import seedu.duke.ui.StringLib;
 
 import java.util.ArrayList;
 
-import static seedu.duke.ui.StringLib.*;
+import static seedu.duke.ui.StringLib.MISSING_KEYWORD;
+import static seedu.duke.ui.StringLib.EMPTY_LIST_MESSAGE;
+import static seedu.duke.ui.StringLib.NO_MATCHES;
+import static seedu.duke.ui.StringLib.MATCHING_ITEMS;
 
 public class RecipeList {
     protected static ArrayList<Recipe> recipeList;
