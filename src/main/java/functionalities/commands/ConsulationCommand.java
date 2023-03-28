@@ -19,12 +19,11 @@ public class ConsulationCommand extends Command {
 
     public ConsulationCommand(String animalType, String animalName,
                               String ownerName, String contactNumber, LocalDate date,
-                              LocalTime time, boolean isDone) {
+                              LocalTime time) {
         this.animal = new Animal(animalType, animalName);
         this.owner = new Owner(ownerName, contactNumber);
         this.date = date;
         this.time = time;
-        this.isDone = isDone;
     }
 
     @Override
