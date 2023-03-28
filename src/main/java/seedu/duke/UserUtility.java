@@ -57,7 +57,8 @@ public class UserUtility {
                 for (Schedule event : events) {
                     LocalDateTime startDateTime = event.getStartTime();
                     LocalDateTime endDateTime = event.getEndTime();
-                    if (event.getStartTime().getDayOfWeek() == day && isValidInterval(time, startDateTime.toLocalTime(), endDateTime.toLocalTime())
+                    if (event.getStartTime().getDayOfWeek() == day
+                            && isValidInterval(time, startDateTime.toLocalTime(), endDateTime.toLocalTime())
                             && event.getStartTime().toLocalDate().isAfter(weekStartDate.minusDays(1))
                             && event.getStartTime().toLocalDate().isBefore(weekEndDate.plusDays(1))) {
                         System.out.print(String.format("%-15s|", event.getDescription()));
