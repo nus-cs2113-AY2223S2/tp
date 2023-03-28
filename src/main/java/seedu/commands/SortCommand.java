@@ -17,6 +17,9 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(ExpenditureList expenditures) {
         ExpenditureList sortedExpenditures;
+        if(expenditures.getSize() == 0) {
+            return new CommandResult("Unable to sort as list is currently empty!");
+        }
         switch (sortType) {
         case AMOUNT_ASCENDING:
             sortedExpenditures = ExpenditureList.sortAmount(sortType);

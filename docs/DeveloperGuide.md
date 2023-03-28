@@ -1,7 +1,7 @@
 # MyLedger - Developer Guide
 
 <p align="center">
-    <img src="team/images/MyLedger.png" width="30%">
+    <img src="team/images/MyLedger.jpeg" width="30%">
 </p>
 
 - [1. Preface](#1-preface)
@@ -37,7 +37,27 @@
 
 ### 3.1. Architecture
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+![](team/images/Architecture.png)
+
+
+The Architecture Diagram shown above is a high-level components within MyLedger. The ```MyLedger``` class contains the main method which
+is responsible for:
+
+1. When MyLedger is launched, it will initialize the ```Storage``` to load the saved expenditures from the textfile and  ```Ui``` to print
+   the welcome message.
+2. When MyLedger is executing, it receives input for the user and sends it to ```Storage``` then ```Command``` which carries out the various
+   commands. 
+3. After the command has been carried out ```Command``` sends the result back to ```MyLedger.main()``` which would print the message back to the user.
+
+The other components of MyLedger include:
+
+* ```Ui```: The user interface that prints the welcome and help message.
+* ```Parser```: Parser which process the user's command and calls the specific command.
+* ```Command```: Executes the command given.
+* ```Expenditure```: Constructs an expenditure and is added to ```ExpenditureList```.
+* ```ExpenditureList```: An ArrayList of the current expenditures.
+* ```Storage```: Uses ```MyLedger_inputs.txt``` to initialize ```ExpenditureList```, updates ```MyLedger_inputs.txt``` whenever ```ExpenditureList```
+  changed.
 
 ### Main Components of MyLedger
 `Parser:` Processes the inputs made by the user and converts into a sensible form for further processing.
@@ -159,7 +179,7 @@ updated with all the current expenditures in the expenditure array list.
 
 ![](team/images/saveList.png)
 
-The following shows the sequence diagram of detailing the process for saveExpenditureList.
+The following sequence diagram shows the details of the process for saveExpenditureList.
 
 Likewise when MyLedger first runs, it instantiates ExpenditureList and stores a reference to it.
 MyLedger then checks if the text file exists, else it gets created. Recorded expenditure stored 
@@ -191,6 +211,19 @@ The sequence diagram below shows the interactions of a successful execution of t
     <i>Figure 3: Sequence Diagram for edit Command</i>
 </p>
 
+### 4.3. View Command
+
+The view command filters and lists the expenditures of a specified date or type.
+At the end of the list, the total amount of the filtered expenditures are tabulated.
+For viewing expenditures of specific date, the command is ```viewdate DATE```.
+For viewing expenditures of specific type, the command is ```viewtype EXPENDITURE_TYPE```.
+
+The sequence diagram below shows the details of the process for viewdate.
+
+![](team/images/viewDate.png)
+
+The process for viewtype is similar as viewdate with an additional step within ViewTypeExpenditureCommand
+that converts the input string into a string recognisable for comparison in the opt block. 
 
 ## Product scope
 ### Target user profile
