@@ -3,6 +3,7 @@ package command.overview;
 import command.Command;
 import command.CommandRes;
 import data.Expense;
+import data.Time;
 import exception.FutureDateException;
 import exception.OverviewInputFormatException;
 
@@ -35,28 +36,11 @@ public class CommandOverview extends Command {
         return month != null;
     }
 
-    // TODO: move over to Time
-    private Integer getCurrentMonth() {
-        return LocalDate.now().getMonthValue();
-    }
-
-    private Integer getCurrentYear() {
-        return LocalDate.now().getYear();
-    }
-
-    private boolean isFutureYear() {
-        return Integer.parseInt(year) > getCurrentYear();
-    }
-
-    private boolean isFutureMonth() {
-        return Integer.parseInt(year) == getCurrentYear()
-                && Month.valueOf(month.toUpperCase()).getValue() > getCurrentMonth();
-    }
 
     @Override
     public CommandRes execute() {
         try {
-            if (isFutureYear() | isFutureMonth()) {
+            if (Time.isFutureMonth(year, month)) {
                 throw new FutureDateException();
             }
             if (year.equals("-1")) {
@@ -70,8 +54,8 @@ public class CommandOverview extends Command {
         } catch (IllegalArgumentException | NullPointerException e) {
             System.out.println(MONTH_NAME_ERROR);
         } catch (FutureDateException e) {
-            System.out.println(FUTURE_MONTH_ERROR + Month.of(getCurrentMonth() + 1) +
-                    WHITE_SPACE + getCurrentYear());
+            System.out.println(FUTURE_MONTH_ERROR + Month.of(Time.getCurrentMonth() + 1) +
+                    WHITE_SPACE + Time.getCurrentMonth());
         } catch (OverviewInputFormatException e) {
             System.out.println(NO_SPECIFIC_MONTH_ERROR);
         }

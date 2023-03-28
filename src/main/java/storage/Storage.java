@@ -21,6 +21,8 @@ public class Storage {
     private static final String CREATE_FILE_ERROR = "Error creating file.";
     private static final String INITIAL_WELCOME_MESSAGE = "";
 
+    private static final String NEW_EXPENSE = "New expense list created.";
+
     private ExpenseList expenseList;
 
 
@@ -78,6 +80,7 @@ public class Storage {
                 System.out.println(READ_STORAGE_SUCCESSFUL);
             }
         } catch (EOFException e) {
+            System.out.print(NEW_EXPENSE);
             expenseList = new ExpenseList();
         } catch (IOException | ClassNotFoundException e) {
             System.out.println(READ_EXPENSELIST_ERROR);
