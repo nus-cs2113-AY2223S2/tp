@@ -13,7 +13,16 @@ activate SetBudgetCommand
 SetBudgetCommand --> Parser : :SetBudgetCommand
 deactivate SetBudgetCommand
 Parser --> Parser : :SetBudgetCommand
+deactivate Parser
+Parser -->[ : :SetBudgetCommand
 
 deactivate Parser
+[-> SetBudgetCommand : execute()
+activate SetBudgetCommand
+activate UserData
+SetBudgetCommand -> UserData : setBudgetGoal(goal)
+UserData --> SetBudgetCommand
+deactivate UserData
+SetBudgetCommand -->[ : :CommandResult(output)
 
 @enduml

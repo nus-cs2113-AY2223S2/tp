@@ -253,6 +253,8 @@ to use regular expressions, which is a more tidy and logical way to parse the in
   much they have exceeded it by.
 - This can be seen at start-up and when the user makes any changes to their expenses for the month.
 
+![SetBudgetCommandSequenceDiagram.png](images\DeveloperGuide\SetBudgetCommandSequenceDiagram.png)
+
 ### Editing an entry `edit`
 
 - When a command is given to edit a statement, the command is first parsed to check whether it follows the format of an
