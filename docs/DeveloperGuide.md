@@ -3,81 +3,73 @@
 
 <!-- omit in toc -->
 ## Table of Contents
-- [Acknowledgements](#acknowledgements)
-    - [Documentation](#documentation)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [Frontend](#frontend)
+    - [Parser](#parser)
+    - [Commands](#commands)
+      - [Add Command](#add-command)
+      - [Delete Command](#delete-command)
+    - [Edit Command](#edit-command)
+      - [Implementation](#implementation)
+      - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
+      - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
+  - [Backend](#backend)
     - [Storage](#storage)
-    - [Unit Tests](#unit-tests)
-- [Design \& implementation](#design--implementation)
-    - [Architecture](#architecture)
-    - [Frontend](#frontend)
-        - [Parser](#parser)
-        - [Commands](#commands)
-            - [Add Command](#add-command)
-        - [UI](#ui)
-    - [Backend](#backend)
-        - [API](#api)
-            - [Endpoints](#endpoints)
-                - [Creating a request](#creating-a-request)
-                - [Making a request](#making-a-request)
-            - [Access all entries available](#access-all-entries-available)
-                - [Get recent or all entries](#get-recent-or-all-entries)
-            - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
-                - [Add an entry](#add-an-entry)
-                - [View a specific entry](#view-a-specific-entry)
-                - [Delete an entry](#delete-an-entry)
-                - [Modify an entry](#modify-an-entry)
+    - [API](#api)
+      - [Endpoints](#endpoints)
+        - [Creating a request](#creating-a-request)
+        - [Making a request](#making-a-request)
+      - [Access all entries available](#access-all-entries-available)
+        - [Get recent or all entries](#get-recent-or-all-entries)
+      - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
+        - [Add an entry](#add-an-entry)
+        - [View a specific entry](#view-a-specific-entry)
+        - [Delete an entry](#delete-an-entry)
+        - [Modify an entry](#modify-an-entry)
+  - [Data Structure](#data-structure)
     - [Communication](#communication)
-    - [Data Structure](#data-structure)
 - [Testing](#testing)
-    - [Unit Tests](#unit-tests-1)
-    - [Integration Testing](#integration-testing)
-    - [System Testing](#system-testing)
-    - [Instructions for manual testing](#instructions-for-manual-testing)
-    - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
+  - [Unit Tests](#unit-tests)
+  - [Instructions for manual testing](#instructions-for-manual-testing)
+    - [Launching of PocketPal](#launching-of-pocketpal)
+    - [Feature Testing](#feature-testing)
+    - [Add expense: /add](#add-expense-add)
+        - [Test Case 1 (All required flags are provided):](#test-case-1-all-required-flags-are-provided)
+        - [Test Case 2 (Missing price flag):](#test-case-2-missing-price-flag)
+    - [View expense: /view](#view-expense-view)
+        - [Test case 1 (No expenses exist):](#test-case-1-no-expenses-exist)
+        - [Test case 2 (Multiple expenses exist):](#test-case-2-multiple-expenses-exist)
+      - [Test case 3 (View entries in price range)](#test-case-3-view-entries-in-price-range)
+    - [Delete expense: /delete](#delete-expense-delete)
+  - [`/view`.](#view)
+        - [Test case 1:](#test-case-1)
+        - [Test case 2:](#test-case-2)
+      - [Test case 3:](#test-case-3)
+    - [Edit expense: /edit](#edit-expense-edit)
+        - [Test case 1 (Editing all flags):](#test-case-1-editing-all-flags)
+        - [Test case 2 (Editing price only):](#test-case-2-editing-price-only)
+    - [Show help menu: /help](#show-help-menu-help)
+        - [Test case:](#test-case)
+    - [Terminate program: /bye](#terminate-program-bye)
+        - [Test case:](#test-case-1)
+  - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
+    - [Exceptions](#exceptions)
 - [Product scope](#product-scope)
-    - [Target user profile](#target-user-profile)
-    - [Value proposition](#value-proposition)
+  - [Target user profile](#target-user-profile)
+  - [Value proposition](#value-proposition)
 - [User Stories](#user-stories)
 - [Non-Functional Requirements](#non-functional-requirements)
-- [Glossary](#glossary)
+- [Acknowledgements](#acknowledgements)
+  - [Documentation](#documentation)
+  - [Storage](#storage-1)
+  - [Unit Tests](#unit-tests-1)
 
-# Acknowledgements
-
-## Documentation
-
-- [Github REST API documentation](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28)
-- [Diagrams.net](https://app.diagrams.net/)
-- PlantUML
-
-## Storage
-
-- [Function `makeFileIfNotExists` - StackOverflow](https://stackoverflow.com/questions/9620683/java-fileoutputstream-create-file-if-not-exists)
-- [Deleting files - w3Schools](https://www.w3schools.com/java/java_files_delete.asp)
-- [BufferedReader - Baeldung](https://www.baeldung.com/java-buffered-reader)
-
-## Unit Tests
-
-- [Assert Exceptions Thrown - Baeldung](https://www.baeldung.com/junit-assert-exception)
-- [Arrange, Act, Assert](https://java-design-patterns.com/patterns/arrange-act-assert)
-
-<div style="text-align: right;">
-   <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
-
-# Design & implementation
+# Design
 
 ## Architecture
 ![PocketPal Architecture](./static/PocketPalArchitecture.png)
 ![Backend Overview](./static/backend/BackendOverviewClassDiagram.png)
-
-
-### Communication
-This project uses a simplified HTTP model, where the frontend sends a `Request` to the backend to perform data-related operations. The backend returns a `Response`, which is then processed by the frontend
-=======
-<div style="text-align: right;">
-   <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
-
 
 ## Frontend
 
@@ -121,8 +113,9 @@ command: `/add McDonalds -c Food -p 10.50`
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
-
+<!-- @@author -->
 <!-- @@author kaceycsn -->
+
 ### Commands
 
 #### Add Command
@@ -221,15 +214,16 @@ acknowledgement message is printed to the user.
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
-
 <!-- @@author -->
-### UI
+
+<!-- ### UI
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
+</div> -->
 
-### Backend
+<!-- @@author jinxuan-owyong -->
+## Backend
 
 The backend uses a simplified RESTful API approach. This allows us to decouple code using the proven industry practices.
 
@@ -238,8 +232,8 @@ The backend uses a simplified RESTful API approach. This allows us to decouple c
 To find out more, visit the following sections:
 - [Storage](#storage)
 - [API](#api)
-- [Add, modify, view or delete an entry - `GET`](#add-modify-view-or-delete-an-entry)
-- [Access all entries available - `DELETE`, `GET`, `PATCH`, `POST`](#access-all-entries-available)
+  - [Add, modify, view or delete an entry - `GET`](#add-modify-view-or-delete-an-entry)
+  - [Access all entries available - `DELETE`, `GET`, `PATCH`, `POST`](#access-all-entries-available)
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -267,12 +261,15 @@ The Sequence Diagram below illustrates the interactions within the `Parser` comp
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
+<!-- @@author -->
 
 <!-- @@author jinxuan-owyong -->
 ### API
 #### Endpoints
 
 ![Endpoints](./static/backend/EndpointClassDiagram.png)
+
+The sequence diagram for specific request handling at each endpoint can be viewed at their respective sections.
 
 Each endpoint is a child class `Endpoint`. Currently, there are 2 endpoints available:
 
@@ -289,7 +286,7 @@ Each endpoint is a child class `Endpoint`. Currently, there are 2 endpoints avai
 
 ```java
 Request req = new Request(RequestMethod.PATCH);
-        req.addParam(RequestParams.EDIT_DESCRIPTION, "mango juice");
+req.addParam(RequestParams.EDIT_DESCRIPTION, "mango juice");
 ```
 
 ##### Making a request
@@ -301,13 +298,13 @@ Request req = new Request(RequestMethod.PATCH);
 
 ```java
 Backend backend = new Backend();
-        Response res = backend.callEntryEndpoint(req);
+Response res = backend.callEntryEndpoint(req);
 
-        if (res.getResponseStatus() != ResponseStatus.OK) {
-// handle status        
-        }
+if (res.getResponseStatus() != ResponseStatus.OK) {
+   // handle status        
+}
 
-        Entry entry = EntryParser.deserialise(res.getData());
+Entry entry = EntryParser.deserialise(res.getData());
 // process entry
 ```
 
@@ -317,6 +314,12 @@ Backend backend = new Backend();
 
 #### Access all entries available
 ##### Get recent or all entries
+
+<details>
+   <summary>Sequence diagram</summary>
+
+   <img alt="Entries Endpoint [GET] Sequence Diagram" src="docs/../static/backend/EntriesEndpointGetSequence.png" />
+</details>
 
 `GET /entries`
 
@@ -365,6 +368,12 @@ __Responses__
 
 `POST /entry`
 
+<details>
+   <summary>Sequence diagram</summary>
+
+   <img alt="Entry Endpoint [POST] Sequence Diagram" src="docs/../static/backend/EntryEndpointGetSequence.png" />
+</details>
+
 __Body__
 
 - Gson-serialised `Entry`, obtained using `Entry::serialise`
@@ -404,6 +413,12 @@ __Responses__
 
 `DELETE /entry`
 
+<details>
+   <summary>Sequence diagram</summary>
+
+   <img alt="Entry Endpoint [DELETE] Sequence Diagram" src="docs/../static/backend/EntryEndpointDeleteSequence.png" />
+</details>
+
 __Body__
 
 - 1-based index of entry to be deleted _Required_
@@ -423,6 +438,12 @@ __Responses__
 ##### Modify an entry
 
 `PATCH /entry`
+
+<details>
+   <summary>Sequence diagram</summary>
+
+   <img alt="Entry Endpoint [PATCH] Sequence Diagram" src="docs/../static/backend/EntryEndpointPatchSequence.png" />
+</details>
 
 __Body__
 
@@ -454,52 +475,6 @@ __Responses__
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-## Communication
-
-1. When a user enters a command, the `Frontend` uses `Parser` to resolve the user input via `parseUserInput()`.
-2. Within `parseUserInput()`, the corresponding `parseXCommand()` (`X` is a placeholder for the various command
-   names[^1] e.g. `parseAddCommand()`, `parseDeleteCommand()`.)  is invoked to validate that the user input is in the
-   correct format. Any exceptions will be thrown and their corresponding error messages will be shown to the user via
-   the `ui` class.
-2. If the user input is valid, an `XCommand` object containing the relevant data is created and returned.
-   E.g. `parseAddCommand()` would create a `AddCommand` object containing the description, price and category.
-3. From there, the `XCommand` is ready to be executed by the program. (All `XCommand` classes inherit from `Command` and
-   have corresponding `execute()` that carry out their specific instructions.)
-
-[^1]: A list of currently supported commands in PocketPal can be found [here](../../UserGuide.html/features/)
-
-The Sequence Diagram below illustrates the interactions within the `Parser` component when a user inputs the following
-command: `/add McDonalds -c Food -p 10.50`
-
-![ParserSequenceDiagram](static/ParserSequenceDiagram.png)
-
-### Storage
-
-The `Storage` class is responsible for the serialization of `Entry` data into a csv-like syntax, as well as the deserialization of that data back into `Entry` objects.
-
-The main callable functions to be used are:
-
-- `readFromDatabase()` - Deserializes data stored in text form back into `Entry` objects. Executed when PocketPal is instantiated
-- `writeToDatabase()` - Serializes `Entry` objects in `EntryLog` into text form.
-- `reset()` - Clears whatever is in the stored text file, without affecting what is in the current `EntryLog`.
-
-The structure of the Storage class is as follows:
-
-![StorageClassDiagram](./static/StorageClassDiagram.png)
-
-The Sequence Diagram below illustrates the interactions within the `Parser` component upon initialization of PocketPal, as well as whenever data is being saved.
-
-![StorageSequenceDiagram](./static/StorageSequenceDiagram.png)
-
-=======
-This project uses a simplified HTTP model, where the frontend sends a `Request` to the backend to perform data-related operations. The backend returns a `Response`, which is then processed by the frontend
-
-![Simplified HTTP Model](static/communication/SimplifiedHTTPClassDiagram.png)
-
-<div style="text-align: right;">
-   <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
-
 ## Data Structure
 
 We use the `EntryLog` data structure to keep track of the entries entered by the user.
@@ -509,6 +484,21 @@ We use the `EntryLog` data structure to keep track of the entries entered by the
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
+
+### Communication
+
+This project uses a simplified HTTP model, where the frontend sends a `Request` to the backend to perform data-related operations. The backend returns a `Response`, which is then processed by the frontend
+
+![Simplified HTTP Model](static/communication/SimplifiedHTTPClassDiagram.png)
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+<!-- @@author -->
+
+<!-- # Implementation -->
+
+<!-- ## [Proposed] Undo/Redo feature -->
 
 # Testing
 
@@ -556,17 +546,20 @@ class TestEntriesGet extends EntryTestUtil {
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-## Integration Testing
+<!-- ## Integration Testing
+
+Integration testing in our application is performed by testing `Frontend` and `Backend`, where we ensure that the relevant features 
+for each major component is working, before they are combined and tested through system testing
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
+</div> -->
 
-## System Testing
+<!-- ## System Testing
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
+</div> -->
 
 <!-- @@author adenteo -->
 ## Instructions for manual testing
@@ -947,9 +940,32 @@ replicated as follows:
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-# Glossary
+<!-- # Glossary
 
 * *glossary item* - Definition
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div> -->
+
+# Acknowledgements
+
+## Documentation
+
+- [Github REST API documentation](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28)
+- [Diagrams.net](https://app.diagrams.net/)
+- PlantUML
+
+## Storage
+
+- [Function `makeFileIfNotExists` - StackOverflow](https://stackoverflow.com/questions/9620683/java-fileoutputstream-create-file-if-not-exists)
+- [Deleting files - w3Schools](https://www.w3schools.com/java/java_files_delete.asp)
+- [BufferedReader - Baeldung](https://www.baeldung.com/java-buffered-reader)
+
+## Unit Tests
+
+- [Assert Exceptions Thrown - Baeldung](https://www.baeldung.com/junit-assert-exception)
+- [Arrange, Act, Assert](https://java-design-patterns.com/patterns/arrange-act-assert)
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>

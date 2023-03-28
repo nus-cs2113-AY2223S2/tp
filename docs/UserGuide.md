@@ -1,20 +1,45 @@
+<!-- omit in toc -->
 # User Guide
 
-# PocketPal
+<!-- omit in toc -->
+## Table of Contents
+- [Getting Started](#getting-started)
+- [Features](#features)
+  - [Adding an expense: `/add` {#add}](#adding-an-expense-add-add)
+  - [Deleting an expense: `/delete` {#delete}](#deleting-an-expense-delete-delete)
+  - [Edit an expense: `/edit` {#edit}](#edit-an-expense-edit-edit)
+  - [View an expense: `/view`](#view-an-expense-view)
+  - [Show help menu: `/help`](#show-help-menu-help)
+  - [Exit Program: `/bye`](#exit-program-bye)
+  - [Supported Categories {#categories}](#supported-categories-categories)
+- [Command Summary](#command-summary)
 
-PocketPal is an expense tracking tool that allows you to record your financial transactions using the command-line interface. It offers several useful features, including automatic saving and loading of data to ensure data persistence. However, it's worth noting that PocketPal is intended for single-user usage only, as it doesn't have any online database functionality.
+## Getting Started
 
-## Quick start
+- Ensure that you have Java `11` and above installed [(Installation Guide)](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
+- Download our latest release of `PocketPal` [here](https://github.com/AY2223S2-CS2113-W15-2/tp/releases)
+- Run the application with `java -jar PocketPal.jar` [(Running JAR Guide)](https://se-education.org/guides/tutorials/jar.html#running-jar-files)
+- You should see the following welcome screen
+   ```
+   Welcome to
+   _____           _        _   _____      _
+   |  __ \         | |      | | |  __ \    | |
+   | |__) |__   ___| | _____| |_| |__) |_ _| |
+   |  ___/ _ \ / __| |/ / _ \ __|  ___/ _` | |
+   | |  | (_) | (__|   <  __/ |_| |  | (_| | |
+   |_|   \___/ \___|_|\_\___|\__|_|   \__,_|_|
 
-1. Ensure that you have Java 11 or above installed. [(Installation Guide)](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
-2. Down the latest version of `PocketPal` from [here]().
-2. Copy the file to the folder you want to use as the home folder for your PocketPal.
-3. Launch `PocketPal` using he `java -jar command`. [(Running JAR Guide)](https://se-education.org/guides/tutorials/jar.html#running-jar-files)
-
+   How may I help you?
+   ________________________________________________
+   Enter a command or /help to see the list of commands available.
+   > 
+   ```
 
 <!-- @@author adenteo -->
 The table below provides a summary of all the currently supported features in PocketPal.
 More detailed explanations on the usage of the commands are provided as well.
+
+## Features 
 
 If you face any problems, do visit the [FAQ](../faq) segment!
 
@@ -27,7 +52,7 @@ If you face any problems, do visit the [FAQ](../faq) segment!
 | [/help](#help)     |               Displays the help menu                |
 | [/bye](#bye)       |               Terminates the program                |
 
-## Adding an expense: `/add` {#add}
+### Adding an expense: `/add` {#add}
 
 Adds an expense to your current expenditure.
 
@@ -45,7 +70,7 @@ Example of usage:
 
 `/add Apple Macbook Air -p 1300 -c Personal`
 
-## Deleting an expense: `/delete` {#delete}
+### Deleting an expense: `/delete` {#delete}
 
 Deletes a specified expense from your current expenditure.
 
@@ -59,7 +84,7 @@ Example of usage:
 
 `/delete 5`
 
-## Edit an expense: `/edit` {#edit}
+### Edit an expense: `/edit` {#edit}
 
 Edits a specified expense in your current expenditure.
 
@@ -85,7 +110,7 @@ Example of usage:
 
 `/edit 5 -description Grab to school -c Transportation`
 
-## View an expense: `/view` {#view}
+### View an expense: `/view`
 
 Displays a list of your current expenditure.
 
@@ -100,23 +125,24 @@ Example of usage:
 
 `/view -c food`
 
-## Show help menu: `/help` {#help}
+### Show help menu: `/help`
 
 Displays the help menu.
 
 Format: `/help`
 
-## Exit Program: `/bye` {#exit}
+### Exit Program: `/bye`
 
 Terminates PocketPal.
 
 Format: `/bye`
 
-## Supported Categories {#categories}
+### Supported Categories {#categories}
 
 These are the categories currently supported by PocketPal:
 
 `Clothing, Entertainment, Food, Medical, Personal, Transportation, Utilities, Income, Others`
+
 ## Command Summary
 
 | Command | Format                                                                                       |

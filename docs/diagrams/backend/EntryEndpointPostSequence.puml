@@ -1,0 +1,10 @@
+@startuml
+mainframe sd Endpoint /entry - Handle POST
+
+-> EntryEndpoint : handlePost(Request)
+
+EntryEndpoint -> EntryLog : addEntry()
+return
+
+<-- EntryEndpoint : Response(CREATED)
+@enduml
