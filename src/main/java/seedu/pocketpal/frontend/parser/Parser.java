@@ -89,31 +89,36 @@ public class Parser {
      * @param arguments User arguments entered after the add command.
      * @return String[] Array containing description, category and price respectively.
      */
-    private String[] parseAddArguments(String arguments) {
+    private String[] parseAddArguments(String arguments) throws MissingArgumentsException, InvalidArgumentsException {
         logger.entering(Parser.class.getName(), "parseAddArguments()");
         String description = "";
         String category = "";
         String price = "";
         String[] argumentsArray = new String[3];
-        Pattern descriptionPattern = Pattern.compile("(\\w+(\\s+\\w+)*)");
-        Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
-        Pattern pricePattern = Pattern.compile("(-p|-price)\\s+(\\S+)");
-
-        Matcher matcher = descriptionPattern.matcher(arguments);
-        if (matcher.find()) {
-            description = matcher.group(0);
-            arguments = arguments.replaceFirst(description, "").trim();
+        description = arguments.split("-c|-p|-price|-category")[0];
+        if (description.isEmpty()) {
+            logger.warning("Missing description: " + MessageConstants.MESSAGE_MISSING_DESCRIPTION_ADD);
+            throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_DESCRIPTION_ADD);
         }
-        matcher = categoryPattern.matcher(arguments);
+        arguments = arguments.replaceFirst(description, "").trim();
+        Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\S+)");
+        Pattern pricePattern = Pattern.compile("(-p|-price)\\s+(\\S+)");
+        Matcher matcher = categoryPattern.matcher(arguments);
         if (matcher.find()) {
             category = matcher.group(2);
+        } else {
+            logger.warning("Missing category: " + MessageConstants.MESSAGE_MISSING_CATEGORY_ADD);
+            throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_CATEGORY_ADD);
         }
-
         matcher = pricePattern.matcher(arguments);
         if (matcher.find()) {
             price = matcher.group(2);
+            System.out.println(price);
+            checkIfPriceContainLetters(price);
+        } else {
+            logger.warning("Missing price: " + MessageConstants.MESSAGE_MISSING_PRICE_ADD);
+            throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_PRICE_ADD);
         }
-
         argumentsArray[0] = description;
         argumentsArray[1] = category;
         argumentsArray[2] = price;
@@ -142,10 +147,6 @@ public class Parser {
         logger.info("User input description: " + description);
         logger.info("User input category: " + category);
         logger.info("User input price: " + price);
-        if (description.isEmpty() || category.isEmpty() || price.isEmpty()) {
-            logger.warning("Missing description/category/price: " + MessageConstants.MESSAGE_MISSING_ARGS_ADD);
-            throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_ARGS_ADD);
-        }
         double priceDouble;
         checkIfPriceContainLetters(price);
         priceDouble = Double.parseDouble(price);

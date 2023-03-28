@@ -49,6 +49,9 @@ public final class MessageConstants {
     public static final String MESSAGE_INVALID_ID = "Please enter a valid numerical index!";
     public static final String MESSAGE_INVALID_PRICE = "Price should only contain numerical digits!";
     public static final String MESSAGE_MISSING_ARGS_ADD = "Please specify the description, category and price!";
+    public static final String MESSAGE_MISSING_PRICE_ADD = "Please specify the price using the '-p' flag!";
+    public static final String MESSAGE_MISSING_DESCRIPTION_ADD = "Please specify the description!";
+    public static final String MESSAGE_MISSING_CATEGORY_ADD = "Please specify the category using the '-c' flag!";
     public static final String MESSAGE_MISSING_ARGS_EDIT = "Please specify the ID of the expense you would like to " +
             "edit!";
 
