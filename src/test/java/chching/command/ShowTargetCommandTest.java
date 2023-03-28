@@ -18,7 +18,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Junit Test for ShowTargetCommand
@@ -35,8 +34,8 @@ public class ShowTargetCommandTest {
 
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    String convertedCurrencies;
-    String EXPECTED_STRING;
+    private String convertedCurrencies;
+    private String EXPECTED_STRING;
 
     @BeforeEach
     void setUp() {
@@ -44,7 +43,7 @@ public class ShowTargetCommandTest {
         converter = new Converter();
         targetStorage = new TargetStorage();
         selector = new Selector();
-        defaultTarget = new Target((double)350);
+        defaultTarget = new Target((double) 350);
         ArrayList<Expense> expenseList = new ArrayList<>();
         ArrayList<Income> incomeList = new ArrayList<>();
         targetStorage.addTarget(defaultTarget);
@@ -55,7 +54,6 @@ public class ShowTargetCommandTest {
     }
 
 
-
     /**
      * Junit Test to show target
      */
@@ -64,7 +62,6 @@ public class ShowTargetCommandTest {
         try {
             Command command = new ShowTargetCommand();
             command.execute(defaultIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
-           // System.out.println("     Current target: " + 350.0 + " SGD" + convertedCurrencies);
             assertEquals(EXPECTED_STRING, outputStreamCaptor.toString().trim());
         } catch (Exception e) {
             System.out.println(e.getMessage());
