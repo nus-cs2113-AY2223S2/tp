@@ -12,12 +12,18 @@
     - [Recipe Manage Feature](#recipe-manage-feature)
       - [Implementation](#implementation)
       - [Example Usage](#example-usage)
-    - [Recipe Search Feature](#recipe-search-feature)
-    - [Recipe View Feature](#recipe-view-feature)
+    - [Recipe Find Feature](#recipe-find-feature)
       - [Implementation](#implementation-1)
       - [Example Usage](#example-usage-1)
+    - [Recipe View Feature](#recipe-view-feature)
+      - [Implementation](#implementation-2)
+      - [Example Usage](#example-usage-2)
     - [Recipe Storage Feature](#recipe-storage-feature)
+      - [Implementation](#implementation-3)
+      - [Example Usage](#example-usage-3)
     - [Help Feature](#help-feature)
+      - [Implementation](#implementation-4)
+      - [Example Usage](#example-usage-4)
   - [Appendix A - Product scope](#appendix-a---product-scope)
     - [Target user profile](#target-user-profile)
     - [Value proposition](#value-proposition)
@@ -148,7 +154,7 @@ Given below is an example usage scenario and how the recipe manage mechanism beh
 
 > The following sequence diagram shows how the recipe manage feature works:
 ![Sequence Diagram for Recipe Manage](./PlantUML/RecipeManage.png)
-### Recipe Search Feature
+### Recipe Find Feature
 #### Implementation
 To-be-released in future versions.
 #### Example Usage

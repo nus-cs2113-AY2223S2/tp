@@ -54,7 +54,7 @@ public class Duke {
                 c.execute(recipes,ui);
                 isExit = c.isExit();
             } catch (Exception e) {
-                ui.showDudeMainError(e);
+                ui.showDukeMainError(e);
             } finally {
                 ui.showLine();
             }
