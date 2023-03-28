@@ -40,8 +40,7 @@ Format: `view`
 Menu Output:
 ![view-menu](./UG-images/view-menu.png)
 
-User can input **1 - 8** to view their current profile
-
+User can input a value from **1 to 8** to view their current profile:
 1. Name
 2. Weight
 3. Height
