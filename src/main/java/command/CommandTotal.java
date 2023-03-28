@@ -31,6 +31,7 @@ public class CommandTotal extends Command {
 
     // TODO: combine calculateTotal and getTotal
     public BigDecimal calculateTotal() {
+        total = BigDecimal.valueOf(0);
         for (Expense i : expenseList) {
             total = total.add(i.getExpenseAmount().multiply(i.getRate()));
         }
