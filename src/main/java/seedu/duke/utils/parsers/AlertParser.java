@@ -5,7 +5,6 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.RemoveAlertCommand;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.objects.Alert;
-import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.utils.Ui;
 
@@ -13,11 +12,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AlertParser extends Parser {
-    private AlertList alertList;
 
     public AlertParser(String rawInput, Inventory inventory) {
         super(rawInput, inventory);
-        this.alertList = inventory.getAlertList();
     }
 
     private void parseAddAlert(String rawInput, Inventory inventory) {
@@ -70,7 +67,6 @@ public class AlertParser extends Parser {
                     break;
                 default:
                     Ui.printInvalidAlertKeyword();
-
                 }
             }
         } catch (MissingParametersException e) {

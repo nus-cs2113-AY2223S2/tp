@@ -9,6 +9,7 @@
   - [Remove](#remove)
   - [Search](#search)
   - [Filter](#filter)
+  - [Alert](#alert)
   - [History](#history)
   - [Category](#category)
 - [Product Scope](#product-scope)
@@ -51,6 +52,7 @@ Overall, the architecture diagram shows how the different components of the Magu
 ## 2. Implementation
 ### 2.1. List
 The list command is mainly handled by the `ListCommand` class, which extends the `Command` class.
+
 ![ListCommand.png](UML%2FList%2FListCommand.png)
 
 
@@ -286,7 +288,47 @@ followed by printing the details of this first instance. It will then go through
 print the differences, if any. If there is more than 1 item in the list provided to the function, it will then print
 the details of the last and most current instant of the item.
 
-### Category
+
+### 2.10 Alert
+The alert command is mainly handled by the `AddAlertCommand` class and `RemoveAlertCommand` class, both of which extend the `Command` class. It is parsed by the `AlertParser` class, which extends the `Parser` class.
+
+![AlertParser.png](UML%2FAlert%2FAlertParser.png)
+
+
+
+**Step 1**. When the user executes a command that begins with the word `alert`, the ParserHandler will create a new `AlertParser` object and pass in the appropriate `input`, as well as the corresponding `inventory` where the list of alerts for inventory items are stored.
+
+![AlertStep1.png](UML%2FAlert%2FAlertStep1.png)
+
+
+**Step 2**. The `run` method in `AlertParser` is called, which overrides the `run` method in `Parser`. The `AlertParser`checks if 
+This leads the `AlertParser` to call either the `parseAddAlert` or `parseRemoveAlert`, depending on whether the `input` begins with the word `add` or `remove`.
+If the `input` does not begin with either `add` or `remove`, an error is shown and the method will halt execution.
+
+**Step 3**. 
+If the input begins with `add`, the `AlertParser` creates a new `AddAlertCommand` object 
+and passes in the relevant inventory, as well as a new `Alert` object.
+If the `input` begins with `remove`, the `AlertParser` creates a new `RemoveAlertCommand` object and passes in the relevant inventory, as well as a new `Alert` object.
+The `Alert` object is constructed using the `input` string. 
+Note that both the `AddAlertCommand` and `RemoveAlertCommand` classes have an `AlertList` as part of their constructors, and that this `AlertList` is obtained from the inventory.
+
+![AlertStep3Add.png](UML%2FAlert%2FAlertStep3Add.png)
+![AlertStep3Remove.png](UML%2FAlert%2FAlertStep3Remove.png)
+
+
+**Step 4**. The `run` method in `AddAlertCommand` overrides the `run` method in `Command`. This calls the `checkAddAlertUpc` method, which checks if the UPC of the alert is one that exists in the inventory.
+If the UPC does not exist in the inventory, an error message is shown. Otherwise, the `addAlert` method is called.
+The `addAlert` method checks if the alert is a minimum or maximum alert, and then adds the alert to the AlertList by calling either the `addMinAlert()` or `addMaxAlert()` method.
+If the `SessionManager`'s `autosave` flag is enabled, it writes the current alert list to a file using the `SessionManager`.
+
+The `run` method in `RemoveAlertCommand` overrides the `run` method in `Command`. This calls the `checkRemoveAlertUpc` method, which checks if the UPC of the alert is one that exists in the inventory.
+If the UPC does not exist in the inventory, an error message is shown. Otherwise, the `removeAlert` method is called.
+The `removeAlert` method checks if the alert is a minimum or maximum alert, and then removes the alert.
+If the `SessionManager`'s `autosave` flag is enabled, it writes the current alert list to a file using the `SessionManager`.
+
+
+
+### 2.11 Category
 The category command is mainly handled by the `CategoryCommand` class, which extends the `Command` class. It is parsed by
 the `CategoryParser` class, which extends the `Parser` class.
 
@@ -309,6 +351,7 @@ method, depending on the user input (`list`, `table`, `[Category]` respectively)
 if the category hashmap is not empty. Otherwise, the methods will inform the user that the inventory list is empty and there
 is no category hashmap available. Whereas `findCategory` will call the `printCategory` function from the `Ui` object if 
 the category that user input is found. Otherwise, the method will inform user that the category cannot be found.
+
 
 ## Product scope
 ### Target user profile

@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object AlertParser{
+    - rawInput = "add upc/012341 min/50"
+    - Inventory = inventory
+}
+
+@enduml
