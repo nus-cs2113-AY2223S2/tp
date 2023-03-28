@@ -342,8 +342,9 @@ public class Parser {
 
             int noOfDashes = 0;
             for (int i = 0; i < tokens[2].length(); i += 1) {
-                if (tokens[2].charAt(i) == '-')
-                    noOfDashes+= 1;
+                if (tokens[2].charAt(i) == '-') {
+                    noOfDashes += 1;
+                }
             }
 
             if (noOfDashes >= 1) {
@@ -366,7 +367,7 @@ public class Parser {
     private ArrayList<String> parseEditMultipleFlags(String input) {
         Pattern pattern = Pattern.compile("(?:(-in|-out)\\s+)?\\s*" +
                 "(?:(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
-                "(?:(-v)\\s+\\$([\\d]+(?:\\.?[\\d]){0,2})\\s*)?"+
+                "(?:(-v)\\s+\\$([\\d]+(?:\\.?[\\d]){0,2})\\s*)?" +
                 "(?:(-c)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
                 "(?:(-date)\\s+(\\d{2}/\\d{2}/\\d{4})\\s*)?\\s*$");
         Matcher matcher = pattern.matcher(input);
