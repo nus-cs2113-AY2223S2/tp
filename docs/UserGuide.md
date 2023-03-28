@@ -3,25 +3,36 @@
 ## Introduction
 Hey there! Thanks for choosing Meal Companion, your one-stop solution to handling meal prep, ingredient tracking and cookbook! This guide will show you how to get started, and take control of your own meal planning!
 
+Meal Companion is designed by computing students, for computing students, especially those staying in hostels on campus, as a means to track ingredients and get started on their cooking and meal prep journey! Meal Companion provides recipes, as well as the ability to filter those recipes based on the ingredients you have, and many more features!
+
 # Table of Contents
+1. [Using this Guide](#using-this-guide)
 1. [Getting Started](#getting-started)
 2. [Features](#features)
-    1. [Ingredients](#ingredients)
-       1. [Add Ingredients](#add-ingredients)
-       2. [Remove Ingredients](#remove-ingredients)
-       3. [List Ingredients](#list-ingredients)
-       4. [Search Ingredients](#search-ingredients)
-       5. [Clear Ingredients](#clear-ingredients)
-    2. [Recipes](#recipes)
-        1. [Default Recipes](#default-recipes)
-        2. [All Recipes](#all-recipes)
-        3. [Recipe Details](#recipe-details)
-        4. [Possible Recipes](#possible-recipes)
-    3. [Saving Data](#saving-data)
-        1. [Transferring Saved Data to other devices](#transferring-saved-data-to-other-devices) 
-    5. [Help](#help)
-    6. [Command List](#command-list)
+   1. [Ingredients](#ingredients)
+      - [Add Ingredients](#add-ingredients)
+      - [Remove Ingredients](#remove-ingredients)
+      - [List Ingredients](#list-ingredients)
+      - [Search Ingredients](#search-ingredients)
+      - [Clear Ingredients](#clear-ingredients)
+   2. [Recipes](#recipes)
+       - [Default Recipes](#default-recipes)
+       - [All Recipes](#all-recipes)
+       - [Recipe Details](#recipe-details)
+       - [Possible Recipes](#possible-recipes)
+   3. [Saving Data](#saving-data)
+       - [Transferring Saved Data to other devices](#transferring-saved-data-to-other-devices) 
+   5. [Help](#help)
+   6. [Command List](#command-list)
 3. [Conclusion](#conclusion)
+
+# Using this Guide
+
+This guide will introduce you to the basics of using Meal Companion and its current set of features. Here we will briefly explain the types of icons and text you can expect to see, and how to interpret them. 
+
+`Markdown text` like this indicates a command you can input, or a file name. For example, `this is a command you can enter` or `this_is_a_file.exe`. 
+
+Within the `markdown text` you may see segments of text wrapped in `<chevrons>`. These chevrons indicate that this field in the command is to be replaced with your input. For example, a command `add <ingredient>` means you should enter the command `add apples`. 
 
 # Getting Started
 
