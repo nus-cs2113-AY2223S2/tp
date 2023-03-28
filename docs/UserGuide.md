@@ -6,8 +6,9 @@ Duck is a **desktop app for managing tasks and deadlines, optimised for use via 
 
 * [**Features**](#features)
     * [Viewing help :](#viewing-help--help) `help`
-    * [Listing all tasks :](#listing-all-tasks--list) `list `
-    * [Listing all tasks up to X days into the future :](#listing-all-tasks-up-to-x-days-in-the-future--list-x) `list X `
+    * [Listing all tasks :](#listing-all-tasks--list) `list`
+    * [Listing all tasks up to X days into the future :](#listing-all-tasks-up-to-x-days-in-the-future--list-x) `list X`
+    * [Listing all School Classes :](#listing-all-School-Classes--list-classes) `list classes`
     * [Mark a specified task as done :](#marking-a-task--mark-task_number) `mark <task number> `
     * [Unmark a specified task as  not done :](#unmarking-a-task--unmark-task_number) `unmark <task number>`
     * [Deleting a task :](#deleting-a-task--delete) `delete <task number> `
@@ -17,8 +18,6 @@ Duck is a **desktop app for managing tasks and deadlines, optimised for use via 
     * [List tasks in priority order:](#listing-all-tasks-arranged-by-priority--priority_list) `priority_list`
     * [Purge expired tasks :](#purge-expired-tasks--purge) `purge`
     * [Clearing all tasks (including datafile) :](#clearing-tasks-from-storage-clear) `clear `
-    * Designate a given task to be recurring **[TO BE ADDED]** : 
-            * `recurrent <task number> <recurrent period> `
     * [Find tasks matching a given keyword :](#finding-tasks-from-storage-that-match-a-keyword-find-keyword) `find <keyword>`
     * [Add tasks that can be broken down into the following 4 types:](#adding-a-todo-task--description)
     
