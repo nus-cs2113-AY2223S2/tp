@@ -28,7 +28,7 @@ public class Parser {
         switch (commandName) {
         case "/start":
             return CheckInputs.processStart(arguments);
-        case "/add":
+        case "/wadd":
             return CheckInputs.processAdd(arguments);
         case "/end":
             return new EndWorkoutCommand();
@@ -36,7 +36,7 @@ public class Parser {
             return CheckInputs.processDelete(arguments);
         case "/list":
             return CheckInputs.processList(arguments);
-        case "/view":
+        case "/wview":
             return CheckInputs.processView(arguments);
         case "/count":
             return CheckInputs.processSetsRepsCount(arguments);

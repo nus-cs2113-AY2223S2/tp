@@ -3,6 +3,7 @@ package seedu.commands.workoutcommands;
 
 import seedu.commands.Command;
 import seedu.parser.DateFormatter;
+import seedu.workout.Workout;
 
 import java.util.Date;
 
@@ -17,11 +18,12 @@ public class ViewWorkoutCommand extends Command {
 
     @Override
     public String execute() {
-        try {
-            int index = workoutList.getWorkoutArrayList().indexOf(workoutToViewDate);
-            return workoutList.getWorkoutArrayList().get(index).toString();
-        } catch (NullPointerException e) {
-            return WORKOUT_NOT_FOUND_MESSAGE + DateFormatter.dateToString(workoutToViewDate);
+        for (Workout workout : workoutList.getWorkoutArrayList()) {
+            if  (workout.getDate().equals(workoutToViewDate)) {
+                return workout.toString();
+            }
         }
+
+        return WORKOUT_NOT_FOUND_MESSAGE + DateFormatter.dateToString(workoutToViewDate);
     }
 }

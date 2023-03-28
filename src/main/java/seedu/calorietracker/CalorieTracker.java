@@ -46,7 +46,7 @@ public class CalorieTracker {
     }
 
     public int getCalories(Date date) {
-        return totalCaloriesConsumedInDay.getOrDefault(date, -1);
+        return totalCaloriesConsumedInDay.getOrDefault(date, CALORIES_NOT_TRACKED);
     }
 
     private static boolean isValidCalories(int calories) {

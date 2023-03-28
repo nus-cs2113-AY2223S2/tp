@@ -15,7 +15,7 @@ public class WorkoutList {
     private static final String WORKOUT_LIST_HEADER =
             "Here are the list of dates of your workouts:" + System.lineSeparator();
 
-    private final ArrayList<Workout> workoutArrayList;
+    private ArrayList<Workout> workoutArrayList;
     private int currentWorkoutIndex;
 
     public WorkoutList() {
@@ -74,11 +74,13 @@ public class WorkoutList {
 
         return workoutListString.toString();
     }
+
     //@@ author guillaume-grn
     public ArrayList<Exercise> countSetsRepsPreparation(Date dayInSpecificWeekDate) {
         WorkoutList workoutsInSpecificWeek = getWorkoutsInSpecificWeek(dayInSpecificWeekDate);
         ArrayList<Exercise> distinctExercisesList = new ArrayList<>();
-        for (Workout workout : workoutsInSpecificWeek.workoutArrayList) {
+
+        for (Workout workout : workoutsInSpecificWeek.getWorkoutArrayList()) {
             for (Exercise exercise : workout.getExercises()) {
                 boolean isExistingExercise = false;
                 for (Exercise distinctExercise : distinctExercisesList) {
@@ -111,9 +113,9 @@ public class WorkoutList {
         WorkoutList workoutsInSpecificWeek = new WorkoutList();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dayInSpecificWeekDate);
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-        Date startOfWeekDate = calendar.getTime();
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        Date startOfWeekDate = calendar.getTime();
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
         Date endOfWeekDate = calendar.getTime();
         for (Workout workout : workoutArrayList) {
             Date workoutDate = workout.getDate();
