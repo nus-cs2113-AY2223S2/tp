@@ -272,6 +272,8 @@ public class UI {
                 + "LIST [PU INDEX]             : Provides the list of all modules available "
                 + "in the specified Partner University\n"
                 + "                              by index of LIST PU\n"
+                + "LIST [PU ABBRV] /filter [filter]\n"
+                + "                            : Provides the list of modules in the specified filters\n"
                 + "LIST CURRENT                : Provides the list of modules that the user has added to his/her "
                 + "list of interest\n"
                 + "LIST CURRENT [PU ABBRV]     : Provides the list of modules that user has added to his list of "
