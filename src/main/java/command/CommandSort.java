@@ -30,6 +30,9 @@ public class CommandSort extends Command {
 
     /**
      * Method allows the user to sort their expenses list based on either categories or date
+     * If it is sorted by category, it will display the category first.
+     * If it is sorted by date, it will display the date first.
+     * The above two is to make it easy for user to see the sorted things.
      */
     @Override
     public CommandRes execute() {
@@ -49,13 +52,13 @@ public class CommandSort extends Command {
                 sortByCategory();
                 for (int i = 0; i < expenseListCategory.size(); i++) {
                     System.out.print((i + 1) + ".");
-                    System.out.println(expenseListCategory.get(i).toString());
+                    System.out.println(expenseListCategory.get(i).sortedDisplay(sortBy));
                 }
             } else {
                 sortByDate();
                 for (int i = 0; i < expenseListDate.size(); i++) {
                     System.out.print((i + 1) + ".");
-                    System.out.println(expenseListDate.get(i).toString());
+                    System.out.println(expenseListDate.get(i).sortedDisplay(sortBy));
                 }
             }
             System.out.println(MESSAGE_DIVIDER);

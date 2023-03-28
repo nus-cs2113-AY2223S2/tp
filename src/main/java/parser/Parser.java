@@ -39,7 +39,15 @@ public class Parser implements Serializable {
     public String extractSortBy(String userInput) {
         try {
             String[] input = userInput.split(WHITESPACE, EXTRACT_INDEX_LENGTH);
-            System.out.println(1);
+            return input[1].trim();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
+    }
+
+    public String extractCategory(String userInput) {
+        try {
+            String[] input = userInput.split(WHITESPACE, EXTRACT_INDEX_LENGTH);
             return input[1].trim();
         } catch (IndexOutOfBoundsException e) {
             return "";
@@ -61,6 +69,7 @@ public class Parser implements Serializable {
     public String[] extractAddParameters(String userInput) {
         return parserAdd.parseInput(userInput);
     }
+
 
 
 }

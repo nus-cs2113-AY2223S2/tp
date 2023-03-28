@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.io.EOFException;
 
 
 // https://kodejava.org/how-do-i-store-objects-in-file/
@@ -75,9 +76,10 @@ public class Storage {
                 expenseList = (ExpenseList) ois.readObject();
                 System.out.println(READ_STORAGE_SUCCESSFUL);
             }
+        } catch (EOFException e) {
+            expenseList = new ExpenseList();
         } catch (IOException | ClassNotFoundException e) {
-            //System.out.println(READ_EXPENSELIST_ERROR);
-            e.printStackTrace();
+            System.out.println(READ_EXPENSELIST_ERROR);
         }
         return expenseList;
     }
