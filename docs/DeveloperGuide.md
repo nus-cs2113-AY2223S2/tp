@@ -247,6 +247,8 @@ to use regular expressions, which is a more tidy and logical way to parse the in
   then added
   into the financial report.
 
+![EditCommand.png](images\DeveloperGuide\EditCommand.png)
+
 ### Filtering your data `filter`
 
 - When a command is given to filter a report by certain conditions, the command is first parsed to check whether it
