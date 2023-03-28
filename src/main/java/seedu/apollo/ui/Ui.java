@@ -153,31 +153,65 @@ public class Ui {
             DayOfWeek day = determineDay(i);
             System.out.println(day + "\n");
 
-            printLessonsOnDay(calendar, i);
-            printTasksOnDay(taskList, curr);
+            if (printLessonsOnDay(calendar, i)) {
+                System.out.println("There are no lessons on this day.");
+            }
+            if (printTasksOnDay(taskList, curr)) {
+                System.out.println("There are no tasks on this day.");
+            }
 
             curr = curr.plusDays(1);
         }
     }
 
-    private static void printLessonsOnDay(Calendar calendar, int i) {
+    private static boolean printLessonsOnDay(Calendar calendar, int i) {
         System.out.println("Lessons:");
-        int count = 1;
+        int count = 0;
         for (CalendarModule module : calendar.get(i)) {
-            System.out.println(count + ". " + module.getCode() + " " + module.getSchedule());
             count++;
+            System.out.println(count + ". " + module.getCode() + " " + module.getSchedule());
         }
+        return (count <= 0);
     }
 
-    private static void printTasksOnDay(TaskList taskList, LocalDate curr) {
+    private static boolean printTasksOnDay(TaskList taskList, LocalDate curr) {
         System.out.println("\nTasks:");
-        int count = 1;
-        for (Task task : taskList) {
-            if (task.isOnDate(curr)) {
-                System.out.println(count + ". " + task);
+        TaskList tasksOnDay = taskList.getTasksOnDate(curr);
+        int count = 0;
+        for (Task task : tasksOnDay) {
+            count++;
+            System.out.println(count + ". " + task);
+        }
+        return (count <= 0);
+    }
+
+    public void printClashingDeadlineMessage(TaskList clashTasks, ArrayList<CalendarModule> clashLessons) {
+        if (clashTasks.size()==0 & clashLessons.size()==0) {
+            return;
+        }
+        System.out.println("Heads up, your deadline occurs on the same day as these!\n" +
+                "______________________");
+
+        if (clashLessons.size()!=0) {
+            System.out.println("Lessons:");
+            int count = 0;
+            for (CalendarModule module : clashLessons) {
                 count++;
+                System.out.println(count + ". " + module.getCode() + " " + module.getSchedule());
+            }
+            System.out.println();
+        }
+
+        if (clashTasks.size()!=0) {
+            System.out.println("Tasks:");
+            int count = 0;
+            for (Task task : clashTasks) {
+                count++;
+                System.out.println(count + ". " + task);
             }
         }
+        System.out.println("______________________");
+
     }
 
     /**
@@ -636,4 +670,5 @@ public class Ui {
     public void printClashingEventMessage() {
         System.out.println("This event clashes with another event in your timetable!");
     }
+
 }

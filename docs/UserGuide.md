@@ -109,7 +109,9 @@ Got it. I've added this todo:
 
 ### `deadline` - Adding a Deadline
 
-Adds a task with a due date to Apollo.
+Adds a task with a due date to Apollo. 
+If deadline clashes with any event or lesson type you will be alerted through a warning message. 
+However, you will still be able to add it into the tasklist. 
 
 Format: `deadline TASK /by DATE`
 
@@ -124,6 +126,8 @@ Got it. I've added this deadline:
 ### `event` - Adding an Event
 
 Adds a task with a start and end date to Apollo.
+If there is an event in the tasklist that is clashing with any event added previously a warning message will be printed. 
+However, you will still be able to add it. 
 
 Format: `event TASK /from DATE /to DATE`
 
@@ -263,6 +267,7 @@ Example:
 addmod CS1010 -st 1
 ```
 This will add the first section teaching lesson of CS1010 to your module list.
+If this lesson clashes with any of your other lessons a warning message will be displayed but you will still be able to add it.
 
 ### `delmod` - Deleting a module
 

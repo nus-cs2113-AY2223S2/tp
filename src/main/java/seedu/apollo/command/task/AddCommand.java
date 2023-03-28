@@ -2,6 +2,7 @@ package seedu.apollo.command.task;
 
 import seedu.apollo.calendar.Calendar;
 import seedu.apollo.exception.task.DateOverException;
+import seedu.apollo.module.CalendarModule;
 import seedu.apollo.task.Task;
 import seedu.apollo.ui.Parser;
 import seedu.apollo.storage.Storage;
@@ -21,10 +22,12 @@ import java.io.File;
 import java.io.IOException;
 import java.rmi.UnexpectedException;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
 import java.time.format.DateTimeParseException;
 
+import java.util.ArrayList;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -34,6 +37,7 @@ import java.util.logging.Logger;
 import static seedu.apollo.ui.Parser.COMMAND_DEADLINE_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_EVENT_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_TODO_WORD;
+import static seedu.apollo.utils.DayTypeUtil.determineDay;
 
 /**
  * Add Command class that adds a Task to the existing TaskList.
@@ -85,8 +89,6 @@ public class AddCommand extends Command implements LoggerInterface {
 
     /**
      * Sets up logger for AddCommand class.
-     *
-     * @throws IOException If logger file cannot be created.
      */
     @Override
     public void setUpLogger() {
@@ -98,7 +100,7 @@ public class AddCommand extends Command implements LoggerInterface {
         try {
 
             if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
+                assert (new File("apollo.log").createNewFile()) : "Error creating logger";
             }
 
             FileHandler logFile = new FileHandler("apollo.log", true);
@@ -126,7 +128,7 @@ public class AddCommand extends Command implements LoggerInterface {
 
         int initialSize = taskList.size();
         try {
-            addTask(taskList, ui);
+            addTask(taskList, calendar, ui);
 
         } catch (DateTimeParseException e) {
             ui.printInvalidDateTime();
@@ -153,20 +155,23 @@ public class AddCommand extends Command implements LoggerInterface {
      * Adds a Task to the TaskList based on data in the class.
      *
      * @param taskList The TaskList to be added to.
+     * @param calendar The lesson schedule of the user.
+     * @param ui For printing messages in event of clashes.
      * @throws DateTimeParseException If any date is entered in the wrong format.
      * @throws DateOverException      If any date of the task occurs before the current date.
      * @throws DateOrderException     If an Event's end date occurs before its start date.
      * @throws UnexpectedException    If the command stored is not recognised.
      */
-    private void addTask(TaskList taskList, Ui ui)
+    private void addTask(TaskList taskList, Calendar calendar, Ui ui)
             throws DateTimeParseException, DateOverException, DateOrderException, UnexpectedException {
         switch (command) {
         case COMMAND_TODO_WORD:
             taskList.add(new ToDo(desc));
             break;
         case COMMAND_DEADLINE_WORD:
-
-            taskList.add(new Deadline(desc, by));
+            Deadline deadline = new Deadline(desc, by);
+            warnDeadlineClash(ui, taskList, calendar, deadline.getByDate());
+            taskList.add(deadline);
             break;
         case COMMAND_EVENT_WORD:
             Event event = new Event(desc, from, to);
@@ -180,13 +185,29 @@ public class AddCommand extends Command implements LoggerInterface {
         }
     }
 
+    /**
+     * Prints warning message to user with all tasks and lessons that clash with the deadline.
+     * Will not print anything if there are no clashes.
+     *
+     * @param ui For printing warning message.
+     * @param taskList Existing tasks.
+     * @param calendar Existing lessons.
+     * @param by Due date of the deadline being added.
+     */
+    public void warnDeadlineClash(Ui ui, TaskList taskList, Calendar calendar, LocalDateTime by) {
+        TaskList clashTasks = taskList.getTasksOnDate(by.toLocalDate());
+        DayOfWeek day = by.getDayOfWeek();
+        int dayNum = determineDay(day);
+        ArrayList<CalendarModule> clashLessons = calendar.get(dayNum);
+        ui.printClashingDeadlineMessage(clashTasks, clashLessons);
+    }
 
     /**
-     * Checks if a event user wants to add clashes with existing events
-     * @param taskList The ArrayList containing the tasks
-     * @param from The time that event starts
-     * @param to The time that event ends
-     * @return
+     * Checks if an event user wants to add clashes with existing events.
+     * @param taskList The ArrayList containing the tasks.
+     * @param from The time that event starts.
+     * @param to The time that event ends.
+     * @return {@code true} if there is a clash, {@code false} otherwise.
      */
     public boolean isClashingEvent(TaskList taskList, LocalDateTime from, LocalDateTime to) {
         for (Task task : taskList) {

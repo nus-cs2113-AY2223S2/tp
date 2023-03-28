@@ -91,7 +91,7 @@ public class ModifyCommand extends Command implements LoggerInterface {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar)
-            throws UnexpectedException {
+            throws UnexpectedException, IndexOutOfBoundsException, NumberFormatException {
         switch(command) {
         case COMMAND_MARK_WORD:
             taskList.get(idx).setDone(true);
