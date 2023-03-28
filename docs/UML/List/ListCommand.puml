@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ListParser
+group sd [ListCommand running]
+        ListParser -> ListCommand: run()
+        ListCommand -> ListCommand: listItems()
+        activate ListCommand
+        participant Ui
+        alt inventory is empty
+            ListCommand -> Ui: printEmptyList()
+            activate Ui
+            ref over Ui
+                print empty inventory storage
+            end ref
+            return
+        end
+        alt inventory is not empty
+            ListCommand -> Ui: printTable()
+            activate Ui
+            ref over Ui
+                print table of items in inventory
+            end ref
+            return
+       end
+       ListCommand --> ListParser
+       deactivate ListCommand
+       destroy ListCommand
+end
+@enduml

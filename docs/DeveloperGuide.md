@@ -45,17 +45,23 @@ Overall, the architecture diagram shows how the different components of the Magu
 
 ## Implementation
 ### List
-The list feature is facilitated by the `ListCommand` class, which extends the `Command` class.
+The list command is mainly handled by the `ListCommand` class, which extends the `Command` class.
+![ListCommand.png](UML%2FList%2FListCommand.png)
 
-**Step 1**. When the user executes the command `list`, the `Parser` class calls the method `parseList`. This creates a new `ListCommand` object.
-The constructor of the `ListCommand` class takes in an Inventory object as a parameter.
 
-**Step 2**. The `run` method in `ListCommand` is called which overrides the `run` method in `Command`. The `listItem` method is called.
+**Step 1**. When the user executes the command `list`, the `ParserHandler` will create a new `ListParser` object and pass to it the `Inventory` where the items to be listed are stored.
+![ListStep1.png](UML%2FList%2FListStep1.png)
+**Step 2**. The `run` method in `ListParser` overrides the `run` method in `Parser` to create a new `ListCommand` object, passing to it the relevant `Inventory`.
+![ListStep2.png](UML%2FList%2FListStep2.png)
+**Step 3**. The `run` method in `ListCommand` overrides the `run` method in `Command` and calls the `listItems` method. The `listItems` method checks if the inventory is empty. If the inventory is empty, the method prints a message to inform the user that there are no items in the inventory. Otherwise, the `printTable` method from the `Ui` object is called.
+![ListStep3.png](UML%2FList%2FListStep3.png)
+**Step 4.**. If the `printTable` method is called, it takes in an `ArrayList<Item> items` aas a parameter and prints out a table showing the name, UPC, quantity and price of all items in the inventory.
 
-**Step 3**. The `listItems` method checks if the inventory is empty. If the inventory is empty, an error message is printed. 
-Otherwise, a success message is printed and the `printTable` method from the `Ui` class is called.
 
-**Step 4**. The `printTable` method takes in the ArrayList `itemInventory` as a parameter and prints out a table showing the name, UPC, quantity and price of all items in `itemInventory`.
+
+
+
+
 
 ### Add
 The add command is mainly handled by the `AddCommand` class, which extends the `Command` class.
