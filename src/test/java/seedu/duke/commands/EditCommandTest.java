@@ -10,7 +10,7 @@ public class EditCommandTest {
     Inventory inventory;
 
     /**
-     * Test for all scenarios of user inputs for the "sell" command.
+     * Test for all scenarios of user inputs for the "edit" command.
      */
     @Test
     public void sellItemTest() {
