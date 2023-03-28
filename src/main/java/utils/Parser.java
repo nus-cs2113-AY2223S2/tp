@@ -1,8 +1,9 @@
 package utils;
 
-
+import commands.meeting.FindMeetingCommand;
 import commands.menu.FindDishCommand;
 import commands.staff.AddStaffCommand;
+import commands.staff.FindStaffCommand;
 import commands.staff.ViewStaffCommand;
 import commands.staff.DeleteStaffCommand;
 import commands.HelpCommand;
@@ -10,6 +11,7 @@ import commands.ExitCommand;
 import commands.deadline.AddDeadlineCommand;
 import commands.deadline.ViewDeadlineCommand;
 import commands.deadline.DeleteDeadlineCommand;
+import commands.deadline.FindDeadlineCommand;
 import commands.menu.AddDishCommand;
 import commands.menu.DeleteDishCommand;
 import commands.menu.ViewDishCommand;
@@ -22,6 +24,7 @@ import commands.Command;
 import common.Messages;
 import exceptions.DinerDirectorException;
 import entity.Deadline;
+import manager.StaffManager;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -54,19 +57,25 @@ public class Parser {
         case DeleteMeetingCommand.COMMAND_WORD:
             return prepareDeleteMeetingCommand(userInputNoCommand);
         case ViewMeetingCommand.COMMAND_WORD:
-            return prepareViewMeetingCommand(commandWord);
+            return prepareViewMeetingCommand(userInputNoCommand);
+        case FindMeetingCommand.COMMAND_WORD:
+            return prepareFindMeetingCommand(userInputNoCommand);
         case AddStaffCommand.COMMAND_WORD:
             return prepareAddStaffCommand(userInputNoCommand);
         case DeleteStaffCommand.COMMAND_WORD:
             return prepareDeleteStaffCommand(userInputNoCommand);
         case ViewStaffCommand.COMMAND_WORD:
             return prepareViewStaffCommand();
+        case FindStaffCommand.COMMAND_WORD:
+            return prepareFindStaffCommand(userInputNoCommand);
         case AddDeadlineCommand.COMMAND_WORD:
             return prepareAddDeadlineCommand(userInputNoCommand);
         case DeleteDeadlineCommand.COMMAND_WORD:
             return prepareDeleteDeadlineCommand(userInputNoCommand);
         case ViewDeadlineCommand.COMMAND_WORD:
             return prepareViewDeadlineCommand(userInputNoCommand);
+        case FindDeadlineCommand.COMMAND_WORD:
+            return prepareFindDeadlineCommand(userInputNoCommand);
         case AddDishCommand.COMMAND_WORD:
             return prepareAddDishCommand(userInputNoCommand);
         case DeleteDishCommand.COMMAND_WORD:
@@ -102,7 +111,7 @@ public class Parser {
 
     private Command prepareViewMeetingCommand(String userInput) {
         try {
-            if (!userInput.trim().equals("view_meetings")) {
+            if (!userInput.isEmpty()) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_EXCESS_VIEW_PARAM);
             }
         } catch (DinerDirectorException e) {
@@ -128,6 +137,17 @@ public class Parser {
         }
         assert index >= 0 : "Index of meeting should be 0 or greater.";
         return new DeleteMeetingCommand(index);
+    }
+    private Command prepareFindMeetingCommand(String description){
+        try {
+            if ((description.trim()).isEmpty()) {
+                throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e);
+            return new IncorrectCommand();
+        }
+        return new FindMeetingCommand(description.trim());
     }
 
     private Command prepareAddStaffCommand(String userInputNoCommand) {
@@ -168,21 +188,34 @@ public class Parser {
     }
 
     private Command prepareDeleteStaffCommand(String userInputNoCommand) {
-        String[] userInputNoCommandSplitBySlash = userInputNoCommand.split("/");
+        int indexToRemove = 0;
+
         try {
-            if (userInputNoCommandSplitBySlash.length < 2 || !userInputNoCommand.contains("n/")) {
-                throw new DinerDirectorException(Messages.ERROR_STAFF_DELETE_MISSING_PARAM);
-            } else if (userInputNoCommandSplitBySlash.length > 2) {
-                throw new DinerDirectorException(Messages.ERROR_STAFF_DELETE_EXCESS_PARAM);
+            indexToRemove = Integer.parseInt(userInputNoCommand.trim()) - 1;
+            if (indexToRemove < 0 || indexToRemove >= StaffManager.getStaffs().size()) {
+                throw new DinerDirectorException(Messages.ERROR_STAFF_INVALID_INDEX);
             }
-            String staffName = userInputNoCommandSplitBySlash[1];
-            return new DeleteStaffCommand(staffName);
+            assert indexToRemove >= 0 : "indexToRemove should be 0 or greater";
+        } catch (NumberFormatException e) {
+            return new IncorrectCommand();
         } catch (DinerDirectorException e) {
             System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
+        return new DeleteStaffCommand(indexToRemove);
     }
+    private Command prepareFindStaffCommand(String description){
+        try {
+            if ((description.trim()).isEmpty()) {
+                throw new DinerDirectorException(Messages.ERROR_STAFF_FIND_MISSING_PARAM);
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e);
+            return new IncorrectCommand();
+        }
+        return new FindStaffCommand(description.trim());
 
+    }
     private Command prepareHelpCommand() {
         return new HelpCommand();
     }
@@ -267,7 +300,27 @@ public class Parser {
         return new DeleteDeadlineCommand(index);
     }
 
+    /**
+     * Checks for error in the find deadline command, then returns
+     * a find deadline command.
+     *
+     * @param keyword the keyword to search for.
+     * @return the find deadline command.
+     */
+    private Command prepareFindDeadlineCommand(String keyword) {
+        try {
+            if ((keyword.trim()).isEmpty()) {
+                throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_KEYWORD);
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e);
+            return new IncorrectCommand();
+        }
+        return new FindDeadlineCommand((keyword.trim()));
+    }
+    
     private Command prepareDeleteDishCommand(String userInputNoCommand) {
+    
         int indexToRemove = 0;
 
         try {

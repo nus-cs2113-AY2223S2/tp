@@ -1,7 +1,2 @@
-john~|~thursday~|~234~|~1234
-
-
-ursday~|~234~|~1234ursday~|~234~|~1234
-ursday~|~234~|~1234
-ursday~|~234~|~1234
-ursday~234~|~1234
+titi~|~12~|~12~|~12
+kristian~|~test~|~12~|~12

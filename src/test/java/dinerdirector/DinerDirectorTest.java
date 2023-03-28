@@ -4,10 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import commands.Command;
 import commands.IncorrectCommand;
+import commands.deadline.FindDeadlineCommand;
 import commands.meeting.AddMeetingCommand;
 import commands.meeting.DeleteMeetingCommand;
 import commands.meeting.ViewMeetingCommand;
-
+import commands.meeting.FindMeetingCommand;
 import commands.ExitCommand;
 import commands.HelpCommand;
 import commands.deadline.AddDeadlineCommand;
@@ -19,6 +20,7 @@ import commands.menu.FindDishCommand;
 import commands.menu.ViewDishCommand;
 import commands.staff.AddStaffCommand;
 import commands.staff.DeleteStaffCommand;
+import commands.staff.FindStaffCommand;
 import commands.staff.ViewStaffCommand;
 import org.junit.jupiter.api.Test;
 import utils.Parser;
@@ -34,7 +36,8 @@ public class DinerDirectorTest {
         listOfCommands.add("view_meetings");
         listOfCommands.add("delete_meeting 1");
         listOfCommands.add("view_meeting");
-
+        listOfCommands.add("find_meeting a");
+        listOfCommands.add("find_meeting");
         for (String listOfCommand : listOfCommands) {
             Command command = new Parser().parseCommand(listOfCommand);
             if (listOfCommand.equals("view_meeting")) {
@@ -45,6 +48,10 @@ public class DinerDirectorTest {
                 assertTrue(command instanceof AddMeetingCommand);
             } else if (listOfCommand.equals("delete_meeting 1")) {
                 assertTrue(command instanceof DeleteMeetingCommand);
+            } else if(listOfCommand.equals("find_meeting a")){
+                assertTrue(command instanceof FindMeetingCommand);
+            } else if(listOfCommand.equals("find_meeting")){
+                assertTrue(command instanceof IncorrectCommand);
             }
         }
     }
@@ -79,6 +86,8 @@ public class DinerDirectorTest {
         listOfCommands.add("view_deadlines dsjfnskldf");
         listOfCommands.add("delete_deadline");
         listOfCommands.add("delete_deadline 1");
+        listOfCommands.add("find_deadline");
+        listOfCommands.add("find_deadline hi");
 
         for (String listOfCommand : listOfCommands) {
             Command command = new Parser().parseCommand(listOfCommand);
@@ -86,7 +95,8 @@ public class DinerDirectorTest {
                     listOfCommand.equals("add_deadline n/add command") ||
                     listOfCommand.equals("add_deadline t/when to command") ||
                     listOfCommand.equals("view_deadline dsjfnskldf") ||
-                    listOfCommand.equals("delete_deadline")) {
+                    listOfCommand.equals("delete_deadline") ||
+                    listOfCommand.equals("find_deadline")) {
                 assertTrue(command instanceof IncorrectCommand);
             } else if (listOfCommand.equals("view_deadlines")) {
                 assertTrue(command instanceof ViewDeadlineCommand);
@@ -94,6 +104,8 @@ public class DinerDirectorTest {
                 assertTrue(command instanceof AddDeadlineCommand);
             } else if (listOfCommand.equals("delete_deadline 1")) {
                 assertTrue(command instanceof DeleteDeadlineCommand);
+            } else if (listOfCommand.equals("find_deadline hi")) {
+                assertTrue(command instanceof FindDeadlineCommand);
             }
         }
     }
@@ -289,22 +301,27 @@ public class DinerDirectorTest {
         listOfCommands.add("add_staff p/123-456-7890 d/1990-01-01 w/Monday");
         listOfCommands.add("add_staff n/John Doe p/123-456-7890 w/Monday d/1990-01-01");
         listOfCommands.add("view_staff");
-        listOfCommands.add("delete_staff n/John");
-        listOfCommands.add("delete_staff John");
+        listOfCommands.add("find_staff John");
+        listOfCommands.add("find_staff");
+        listOfCommands.add("delete_staff 1");
+        listOfCommands.add("delete_staff 100");
 
         for (String listOfCommand : listOfCommands) {
             Command command = new Parser().parseCommand(listOfCommand);
             if (listOfCommand.equals("add_staff") ||
                     listOfCommand.equals("add_staff n/John Doe") ||
                     listOfCommand.equals("add_staff p/123-456-7890 d/1990-01-01 w/Monday") ||
-                    listOfCommand.equals("delete_staff John")) {
+                    listOfCommand.equals("delete_staff 100") ||
+                    listOfCommand.equals("find_staff")){
                 assertTrue(command instanceof IncorrectCommand);
             } else if (listOfCommand.equals("view_deadlines")) {
                 assertTrue(command instanceof ViewStaffCommand);
             } else if (listOfCommand.equals("add_staff n/John Doe p/123-456-7890 w/Monday d/1990-01-01")) {
                 assertTrue(command instanceof AddStaffCommand);
-            } else if (listOfCommand.equals("delete_deadline n/John")) {
+            } else if (listOfCommand.equals("delete_deadline 1")) {
                 assertTrue(command instanceof DeleteStaffCommand);
+            } else if(listOfCommand.equals("find_staff John")){
+                assertTrue(command instanceof FindStaffCommand);
             }
         }
     }

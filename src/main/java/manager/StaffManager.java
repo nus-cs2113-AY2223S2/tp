@@ -27,14 +27,14 @@ public class StaffManager {
 
     public static String getStaffsString() {
         String staffsString = "";
+        int counter = 1;
         for (Staff staff : staffs) {
-            staffsString += staff.toString() + System.lineSeparator();
+            staffsString += (counter++) + ". " + staff.toString() + System.lineSeparator();
         }
         return staffsString;
     }
 
-    public static void deleteStaffByName(String name, TextUi ui) {
-        int staffIndex = findStaffIndexByName(name);
+    public static void deleteStaff(int staffIndex, TextUi ui) {
         if (staffIndex != -1) {
             staffs.remove(staffIndex);
         }
@@ -46,13 +46,23 @@ public class StaffManager {
         }
     }
 
-    public static int findStaffIndexByName(String name) {
-        for (int i = 0; i < staffs.size(); i++) {
-            Staff staff = staffs.get(i);
-            if (name.equals(staff.getName())) {
-                return i;
+    public static void findStaff(String name,TextUi ui) {
+        ArrayList<Staff> staffFound=new ArrayList<>();
+        for(Staff m:staffs){
+            if( m.getName().contains(name)){
+                staffFound.add(m);
             }
         }
-        return -1;
+        if(staffFound.isEmpty()){
+            ui.printMessage(Messages.MESSAGE_STAFF_NOT_FOUND);
+        } else {
+            ui.printMessage(Messages.MESSAGE_STAFF_FOUND);
+            for(Staff n:staffFound){
+                ui.printMessage(n.toString());
+            }
+        }
+    }
+    public static ArrayList<Staff> getStaffs() {
+        return staffs;
     }
 }
