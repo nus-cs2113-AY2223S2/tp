@@ -35,7 +35,7 @@ to display text indicating the successful adding function to the user.
 At this point, the adding process is completed and the program is ready to take another
 command.
 
-The following sequence diagram show how the add operation work:
+The following sequence diagram show how the add operation works:
 ![AddFlashcard-0.png](umlDiagrams%2FAddFlashcard-0.png)
 
 #### Reason for current implementation
@@ -78,10 +78,13 @@ Then `findFlashcards(flashcards, query)` is called to find the flashcards with q
 before calling `printFlashcardList(matchingFlashcards)` to display the found flashcards.
 
 User input is taken to get the index of the flashcard to be removed. `deleteFlashcard` is called from
-class `flashcardList` to remove the flashcard from the original list of flashcards. Finally 
+class `flashcardList` to remove the flashcard from the original list of flashcards. Finally
 `printSuccessfulDelete` is called from class `Ui` to indicate a successful removal of the flashcard.
 
 The deletion process is now completed and the program will await another command.
+
+An overview of how the Delete operation works is shown with the following sequence diagram
+![DeleteFlashcard.png](umlDiagrams%2FDeleteFlashcard.png)
 
 #### Reason for current implementation
 
@@ -97,7 +100,7 @@ makes the deletion process simple even if the user does not remember the index o
 - Alternative 1: Delete flashcard by index from the start
     - Pros: Easy to implement and simplifies code
     - Cons: Cumbersome to delete if user forgets the flashcard's index and has to search
-            through the whole list of flashcards.
+      through the whole list of flashcards.
 
 ### Update Flashcard Feature
 
