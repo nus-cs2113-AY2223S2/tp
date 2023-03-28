@@ -7,20 +7,16 @@ import functionalities.ui.Ui;
 import functionalities.parser.Parser;
 import functionalities.SniffTasks;
 
-import java.io.IOException;
-
 public class Sniff {
     private static SniffTasks tasks;
     private static Ui UI;
-    private static Storage storage;
 
     public Sniff() {
         UI = new Ui();
         tasks = new SniffTasks();
-        storage = new Storage();
     }
 
-    public void run() throws SniffException, IOException {
+    public void run() throws SniffException {
         String absolutePath = getPath();
         Storage.openFile(absolutePath);
         UI.showWelcomeMessage();
@@ -28,15 +24,15 @@ public class Sniff {
         while (!isExit) {
             try {
                 String fullCommand = UI.readUserCommand();
-                UI.showLine();
+                Ui.showLine();
                 Command c = Parser.parse(fullCommand);
                 c.executeCommand(tasks);
                 isExit = c.isExit();
             } catch (SniffException e) {
                 UI.showErrorMessage();
             } finally {
-                storage.saveAppointments(absolutePath);
-                UI.showLine();
+                Storage.saveAppointments(absolutePath);
+                Ui.showLine();
             }
         }
     }
@@ -51,7 +47,7 @@ public class Sniff {
     /**
      * Main entry-point for the java.sniff.Sniff application.
      */
-    public static void main(String[] args) throws SniffException, IOException {
+    public static void main(String[] args) throws SniffException {
         new Sniff().run();
     }
 }

@@ -13,7 +13,7 @@ import functionalities.ui.Ui;
 
 public class Storage {
 
-    public static void saveAppointments(String path) throws IOException, SniffException {
+    public static void saveAppointments(String path) throws SniffException {
         try {
             File fileName = new File(path);
             FileWriter savedFile = new FileWriter(fileName, false);
