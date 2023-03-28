@@ -36,7 +36,7 @@ import seedu.rainyDay.data.UserData;
 
 //@@author KN-CY
 public class Storage {
-    private static Logger logger = Logger.getLogger("Storage.log");
+    private static Logger logger = Logger.getLogger(Storage.class.getName());
     private static Gson gson =
             new GsonBuilder().setPrettyPrinting().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).create();
 
@@ -65,6 +65,8 @@ public class Storage {
      * @param filePath The file path where the FinancialReport will be saved to.
      */
     public static void writeToFile(UserData userData, String filePath) {
+        setupLogger();
+        logger.log(Level.INFO, "starting writeToFile");
         try {
             Files.createDirectories(Paths.get("./data"));
             String jsonUserData = gson.toJson(userData);
@@ -73,9 +75,13 @@ public class Storage {
 
             bufferedWriter.write(jsonUserData);
             bufferedWriter.close();
+            logger.log(Level.INFO, "writeToFile successfully executed");
+
         } catch (IOException e) {
+            logger.log(Level.SEVERE, "writeToFile failed");
             e.printStackTrace();
         }
+
     }
 
     /**
@@ -88,6 +94,8 @@ public class Storage {
      */
     public static UserData loadFromFile(String filePath) throws FileNotFoundException
             , JsonParseException {
+        setupLogger();
+        logger.log(Level.INFO, "starting LoadFromFile");
         Reader reader = new FileReader(filePath);
         UserData userData = gson.fromJson(reader, UserData.class);
         return userData;
@@ -126,6 +134,8 @@ public class Storage {
      * @throws IOException When there is an error writing to the .csv file.
      */
     public static void writeToCSV(FinancialReport report) throws IOException {
+        setupLogger();
+        logger.log(Level.INFO, "starting writeToCSV");
         Files.createDirectories(Paths.get("./data"));
         String CSVFilePath = "./data/report.csv";
 
@@ -146,7 +156,7 @@ public class Storage {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("Storage.log");
+            FileHandler fileHandler = new FileHandler("Storage.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "File logger not working.", e);

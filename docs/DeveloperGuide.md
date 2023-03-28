@@ -9,24 +9,50 @@ original source as well}
 - [OpenCSV](https://opencsv.sourceforge.net/)
 - [gson](https://github.com/google/gson)
 
+## Introduction 
+
+Welcome to rainyDay's developer guide! rainyDay is a desktop application for managing your finances that runs on a Command Line Interface (CLI). rainyDay
+provides a simple solution to track your finances and achieve your financial goals. 
+
+#### Main functions:
+* Adding, deleting and editing transaction entries
+* Viewing your transactions and filtering by certain fields
+* Saving your data into a csv file
+* Setting budgeting goals
+
+#### Purpose and target reader
+
+This guide is designed for potential engineers  and professors who may want to who may want to understand how rainyDay is implemented. 
+We assume that you already have a certain level of technical knowledge as we will be going into detail of the technical aspects
+of rainyDay. <br> If you are a user looking for instructions on how to use rainyDay, please refer to our [UserGuide](https://ay2223s2-cs2113t-t09-1.github.io/tp/UserGuide.html)
+
+#### How to use this guide
+
+{todo, talk about the diagrams, formatting (markdown etc)}
+
 ## Design
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+> 💡**Tip:** The .puml files used to create diagrams in this document can be found [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/tree/master/docs/diagrams). 
+> Refer to the PlantUML Tutorial at se-edu/guides to learn how to create and edit diagrams.
 
 ### Architecture
 
-{to insert image?}
-{insert description of image?}
-Components:
+#### Main components of the architecture
+- `Main`: Initializes the components in the correct sequence, and connects them up with each other
+- `Parser`: breaks down inputs passed from user
+- `Command`: executes the appropriate commands
+- `Userdata`: Data input by the user
+- `UI`: the user interface
+- `Storage`: reads data from and writes data to the hard disk file
 
-- `RainyDay`: the main component to initialize the components and shutting down
-- `Modules`: parts of the product
-- `Data`: holds the data of the app
-- `Command`: carries out the respective commands
-- `Exceptions`: application specific error related information
+The diagram given below explains the high-level design of rainyDay, and how the components are related to one another.
 
-**How the architecture components interact with each other**
-{insert diagram and explain}
+![architecture.png](images%2Farchitecture.png)
+
+The Sequence Diagram below shows the timeline of how the different components will interact with one another, we will
+illustrate a 'delete' command, e.g. `delete 1`.
+
+![ArchitectureSequence.png](images%2FArchitectureSequence.png)
 
 ### Modules component
 
@@ -228,7 +254,7 @@ to use regular expressions, which is a more tidy and logical way to parse the in
     - Valid patterns are `filter -in`, `filter -out` , `filter -c <category>`,
       `filter -d <description>` and `filter -date <DD/MM/YYYY>`
 - Commands in the correct format will then be parsed to create a FilterCommand object.
-- RainyDay will then call Command,execute(), where every entry in the financial report with the matching
+- RainyDay will then call Command.execute(), where every entry in the financial report with the matching
   conditions will be printed.
 - Information will be presented in a table format to help improve clarity for users.
 
@@ -245,25 +271,44 @@ The sequence diagram for the implementation of filter is as shown below:
     - Furthermore, the `[SHORTCUTNAME]` should be given without spaces.
 - Commands in the correct format will then be parsed to create a `ShortcutAddCommand` object with a constructor.
     - A call will be made to the `userData` object which returns a reference to the `shortcutCommands` hashmap.
-    - the given `[SHORTCUTNAME]` and `[ACTUALCOMMAND]` will be the key value pair of the hashmap.
-- If the key does not already exist in the `shortcutCommands` hashmap, the new shortcut mapping will be added into the
-  hashmap.
-  ![ShortcutAddCommand.png](images/DeveloperGuide/ShortcutAddCommand.png)
+    - The given `[SHORTCUTNAME]` and `[ACTUALCOMMAND]` will be the key value pair of the hashmap.
+- `RainyDay` will then call the `execute` method in `ShortcutAddCommand`.
+    - If the key does not already exist in the `shortcutCommands` hashmap, the new shortcut mapping will be added into
+      the hashmap.
+
+The sequence diagram for the implementation of adding a shortcut is as shown below:
+
+![ShortcutAddCommand.png](images/DeveloperGuide/ShortcutAddCommand.png)
 
 ### Deleting a shortcut `shortcut_delete`
 
 - When a command is given to delete a shortcut, the command is first parsed to check if it follows the format of a
-  delete
-  shortcut command: `shortcut_delete [SHORTCUTNAME]`.
+  delete shortcut command: `shortcut_delete [SHORTCUTNAME]`.
 - Commands in the correct format will then be parsed to create a `ShortcutDeleteCommand` object with a constructor.
     - A call will be made to the `userData` object which returns a reference to the `shortcutCommands` hashmap.
-    - the given `[SHORTCUTNAME]` will be the key of the hashmap.
-- If the shortcut key exists in the `shortcutCommands` hashmap, it will be added from the hashmap.
-  ![ShortcutDeleteCommand.png](images%2FDeveloperGuide%2FShortcutDeleteCommand.png)
+    - The given `[SHORTCUTNAME]` will be the key of the hashmap.
+- `RainyDay` will then call the `execute` method in `ShortcutDeleteCommand`.
+    - If the shortcut key exists in the `shortcutCommands` hashmap, it will be deleted from the hashmap.
+
+The sequence diagram for the implementation of deleting a shortcut is as shown below:
+
+![ShortcutDeleteCommand.png](images%2FDeveloperGuide%2FShortcutDeleteCommand.png)
 
 ### Viewing a shortcut `shortcut_view`
 
-- {TODO}
+- The command `shortcut_view` is used to view all currently configured shortcuts.
+- The command will create a `ShortcutViewCommand` object with a constructor.
+    - A call will be made to the `userData` object which returns a reference to the `shortcutCommands` hashmap.
+- `RainyDay` will then call the `execute` method in `ShortcutViewCommand`.
+    - For each shortcut in the hashmap, the corresponding actual command will be obtained from the
+      `shortcutCommands` hashmap with the `get()` method.
+    - The mapping between the shortcut and actual command will then be printed to the user by calling
+      the `printShortcutMapping()` method.
+- Information will be presented in a table format to help improve clarity for users.
+
+The sequence diagram for the implementation of viewing a shortcut is as shown below:
+
+![ShortcutViewCommand.png](images%2FDeveloperGuide%2FShortcutViewCommand.png)
 
 ### Saving Data
 

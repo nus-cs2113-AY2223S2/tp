@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 //@@author KN-CY
 public class ShortcutAddCommand extends Command {
     private static final Logger logger = Logger.getLogger(ShortcutAddCommand.class.getName());
-    private static String key; // for now lets limit key to be a single word with no space.
+    private static String key;
     private static String value;
     private static HashMap<String, String> shortcutCommands;
     private static final String SHORTCUT_SUCCESSFULLY_ADDED = "Shortcut successfully added";
@@ -27,10 +27,15 @@ public class ShortcutAddCommand extends Command {
 
     @Override
     public CommandResult execute() {
+        setupLogger();
+        logger.log(Level.INFO, "starting ShortcutAddCommand.execute()");
         if (!shortcutCommands.containsKey(key)) {
             shortcutCommands.put(key, value);
+            logger.log(Level.INFO, "Successful ShortcutAddCommand.execute()");
             return new CommandResult(SHORTCUT_SUCCESSFULLY_ADDED);
         }
+        logger.log(Level.INFO, "ShortcutAddCommand.execute() did not add any shortcuts as given shortcut already "
+                + "exists.");
         return new CommandResult(SHORTCUT_ALREADY_EXISTS);
     }
 
@@ -42,10 +47,10 @@ public class ShortcutAddCommand extends Command {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("ShortcutCommand.log", true);
+            FileHandler fileHandler = new FileHandler("ShortcutAddCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
-            System.out.println("unable to log ShortcutCommand class");
+            System.out.println("unable to log ShortcutAddCommand class");
             logger.log(Level.SEVERE, "File logger not working.", e);
         }
     }
