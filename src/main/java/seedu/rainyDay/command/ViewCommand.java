@@ -3,16 +3,15 @@ package seedu.rainyDay.command;
 import seedu.rainyDay.data.FinancialStatement;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.TreeMap;
 
 //@@author BenjaminPoh
+
 /**
  * Represents a command to view the financial report
  */
@@ -21,11 +20,11 @@ public class ViewCommand extends Command {
     private static final Logger logger = Logger.getLogger(ViewCommand.class.getName());
 
     private final LocalDate timeLimit;
-    private final boolean sortByValue;
+    private final boolean sortingRequired;
 
-    public ViewCommand(LocalDate timeLimit, boolean sortByValue) {
+    public ViewCommand(LocalDate timeLimit, boolean sortingRequired) {
         this.timeLimit = timeLimit;
-        this.sortByValue = sortByValue;
+        this.sortingRequired = sortingRequired;
     }
 
     /**
@@ -48,10 +47,11 @@ public class ViewCommand extends Command {
      * Helper function used to check if entries in financialReport are before a specific date
      * Indexes of entries with a date equal or after the specific date are stored
      * The lower bound of the date is specified in timeLimit
+     * Sorting is done if required
      *
      * @return ArrayList of indexes which passed the check
      */
-    private ArrayList<Integer> filterBeforeSpecificDate() {
+    private ArrayList<Integer> filterIndexes() {
         ArrayList<Integer> filteredIndexes = new ArrayList<>();
         for (int index = 0; index < userData.getStatementCount(); index++) {
             FinancialStatement currentStatement = userData.getStatement(index);
@@ -64,55 +64,23 @@ public class ViewCommand extends Command {
     }
 
     /**
-     * Helper function used to check if entries in financialReport are before a specific date
-     * Indexes of entries with a date equal or after the specific date are stored
-     * The lower bound of the date is specified in timeLimit
-     * Similar to filterBeforeSpecificDate(), with the additional benefit of sorting the
-     * entries by their absolute value in ascending order, with inflows displayed before outflows
-     *
-     * @return ArrayList of indexes which passed the check
+     * Helper function used to sort the indexes
+     * Sorts in non-decreasing order of absolute value, with inflows always prioritised over outflows
      */
-    private ArrayList<Integer> filterBeforeSpecificDateSorted() {
-        Map<Double, LinkedList<Integer>> sortedIndexesInflows = new TreeMap<>();
-        Map<Double, LinkedList<Integer>> sortedIndexesOutflows = new TreeMap<>();
-        LocalDate today = LocalDate.now();
-        for (int index = 0; index < userData.getStatementCount(); index++) {
-            FinancialStatement currentStatement = userData.getStatement(index);
-            double statementValue = currentStatement.getValue();
-            String direction = currentStatement.getFlowSymbol();
-            LocalDate statementDate = currentStatement.getDate();
-            if (statementDate.isAfter(timeLimit) && !statementDate.isAfter(today) && direction.equals("+")) {
-                if (!sortedIndexesInflows.containsKey(statementValue)) {
-                    LinkedList<Integer> list = new LinkedList<>();
-                    sortedIndexesInflows.put(statementValue, list);
-                }
-                sortedIndexesInflows.get(statementValue).add(index);
-            } else if (statementDate.isAfter(timeLimit) && !statementDate.isAfter(today) && direction.equals("-")) {
-                if (!sortedIndexesOutflows.containsKey(statementValue)) {
-                    LinkedList<Integer> list = new LinkedList<>();
-                    sortedIndexesOutflows.put(statementValue, list);
-                }
-                sortedIndexesOutflows.get(statementValue).add(index);
+    class sortByValue implements Comparator<Integer> {
+        public int compare(Integer firstIndex, Integer secondIndex) {
+            FinancialStatement firstStatement = userData.getStatement(firstIndex);
+            FinancialStatement secondStatement = userData.getStatement(secondIndex);
+            if (firstStatement.getFlowSymbol().equals("+") && secondStatement.getFlowSymbol().equals("-")) {
+                return -1;
             }
-        }
-        ArrayList<Integer> filteredIndexes = new ArrayList<>();
-
-        for (Map.Entry<Double, LinkedList<Integer>> currentEntry : sortedIndexesInflows.entrySet()) {
-            LinkedList<Integer> currentList = currentEntry.getValue();
-            while (!currentList.isEmpty()) {
-                filteredIndexes.add(currentList.getFirst());
-                currentList.removeFirst();
+            if (firstStatement.getFlowSymbol().equals("-") && secondStatement.getFlowSymbol().equals("+")) {
+                return 1;
             }
+            return (int) ((firstStatement.getValue() * 100) - (secondStatement.getValue() * 100));
         }
-        for (Map.Entry<Double, LinkedList<Integer>> currentEntry : sortedIndexesOutflows.entrySet()) {
-            LinkedList<Integer> currentList = currentEntry.getValue();
-            while (!currentList.isEmpty()) {
-                filteredIndexes.add(currentList.getFirst());
-                currentList.removeFirst();
-            }
-        }
-        return filteredIndexes;
     }
+
 
     /**
      * Executes the command and print the relevant statements by calling ViewResult
@@ -123,11 +91,8 @@ public class ViewCommand extends Command {
         setupLogger();
         logger.log(Level.INFO, "starting ViewCommand.execute()");
         ArrayList<Integer> validIndexes;
-        if (sortByValue) {
-            validIndexes = filterBeforeSpecificDateSorted();
-        } else {
-            validIndexes = filterBeforeSpecificDate();
-        }
+        boolean viewAll = timeLimit.equals(LocalDate.of(1800, 1, 1));
+        validIndexes = filterIndexes();
         if (validIndexes.size() == 0) {
             assert userData.getStatementCount() == 0 : "statement count mismatch";
             logger.log(Level.INFO, "empty financial report");
@@ -135,7 +100,10 @@ public class ViewCommand extends Command {
             return new CommandResult(output);
         }
         assert userData.getStatementCount() != 0 : "statement count mismatch";
-        ViewResult.printReport(validIndexes, timeLimit, sortByValue);
+        if (sortingRequired) {
+            validIndexes.sort(new sortByValue());
+        }
+        ViewResult.printReport(validIndexes, timeLimit, sortingRequired, viewAll);
         return null;
     }
 }

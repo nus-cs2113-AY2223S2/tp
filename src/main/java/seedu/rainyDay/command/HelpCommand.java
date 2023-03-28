@@ -74,11 +74,14 @@ public class HelpCommand extends Command {
             "+------------+----------------+----------------------------------------------------------------------+\n" +
             "| TIME       | Optional       | Used to set the timeframe, going back from the current date; With    |\n" +
             "|            |                | timeframes not more than 31 days, 4 weeks, 12 months or 10 years.    |\n" +
-            "| -sort      | Optional       | Sort entries by their value. Statements will be displayed            |\n" +
+            "|            |                | -all can also be used to view all entries                            |\n" +
+            "| -sort      | Optional       | Sort entries by their value, and show them in non-decreasing order.  |\n" +
+            "|            |                | Inflows are shown before Outflows, and statements will be displayed  |\n" +
             "|            |                | in entry order if omitted.                                           |\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
+            "| view -all                   | View all entries                                                     |\n" +
             "| view 1d                     | View entries starting from yesterday, including today                |\n" +
             "| view 18d                    | View entries starting from the past 18 days                          |\n" +
             "| view 18d -sort              | View entries starting from the past 18 days in sorted order          |\n" +
@@ -86,6 +89,7 @@ public class HelpCommand extends Command {
             "| view 6m                     | View entries starting from the past 6 months                         |\n" +
             "| view 12m                    | View entries starting from the past 12 months / 1 year               |\n" +
             "| view 3y                     | View entries starting from the past 3 years                          |\n" +
+            "| view -sort                  | View entries starting from the past 1 month in sorted order          |\n" +
             "+====================================================================================================+\n";
     private static final String HELP_FILTER_COMMAND = "" +
             "+====================================================================================================+\n" +
