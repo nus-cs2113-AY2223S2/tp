@@ -8,6 +8,7 @@ public abstract class Appointment {
     public String uid;
     public Animal animal;
     protected Owner owner;
+    public boolean isDone;
     protected boolean status;
 
     public Appointment(String uid, Animal animal, Owner owner) {
@@ -20,4 +21,13 @@ public abstract class Appointment {
     public abstract String toString();
 
     public abstract String getDescription();
+
+    public String getStatus(){
+        return (isDone ? "X" : " ");
+    }
+
+    public void setIsDone(boolean status){
+        this.isDone = status;
+    }
+
 }
