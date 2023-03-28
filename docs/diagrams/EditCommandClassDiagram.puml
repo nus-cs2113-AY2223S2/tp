@@ -9,7 +9,7 @@
 'List <|-- AbstractList
 'Collection <|-- AbstractCollection
 '
-UI <.. EditCommand
+UI <... EditCommand
 Backend <.. EditCommand
 EditCommand *-- Request
 EditCommand *-- Response
@@ -25,15 +25,19 @@ class EditCommand {
 }
 
 class Request {
++addParam(RequestParams : enum, parameterValue : String)
 }
 
 class UI {
++printExpenditureEdited(newEntry : Entry)
 }
 
 class Response{
++getData() : String
 }
 
 class Backend{
++requestEndpointEntry(request : Request) : Response
 }
 
 @enduml

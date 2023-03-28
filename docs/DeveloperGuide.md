@@ -177,7 +177,10 @@ The following activity diagram summarizes what happens when a user executes a de
 
 ![DeleteCommandActivityDiagram](./static/DeleteCommandActivityDiagram.png)
 
+<!-- @@author leonghuenweng -->
 ### Edit Command
+#### Overall class diagram for editing an Entry
+![EditCommandClassDiagram](./static/EditCommandClassDiagram.png)
 
 #### Implementation
 
@@ -189,13 +192,13 @@ fields.
 **Step 3.** The execute method of the EditCommand is called and a Request object is created. This request object specifies
 the modifications of the various fields.
 
-**Step 4.** The Request object is then parsed as an argument to the Backend Class, which parses this request as an argument
+**Step 4.** The Request object is then parsed as an argument to the Backend Class, which feeds this request as an argument
 to a method in the EntryEndpoint class.
 
 **Step 5.** The EntryEndpoint class then finds and modifies the entry as specified by the user.
 
-**Step 6.** Upon successful completion of the modification, the EntryEndpoint class returns a Response object to the Backend
-class. The Response object contains the updated fields of the entry.
+**Step 6.** Upon successful completion of the modification, the EntryEndpoint class returns a Response object to the 
+Backend class. The Response object contains the updated fields of the entry.
 
 **Step 7.** The Backend class calls the save() method to update the Storage class with the edited entry.It then returns
 the Response object to the execute function in the EditCommand object.
@@ -203,13 +206,55 @@ the Response object to the execute function in the EditCommand object.
 **Step 8.** The printExpenditureEdited method under the UI class is then called in the execute function and an
 acknowledgement message is printed to the user.
 
-#### Overall class diagram for editing an Entry
-
-![img.png](EditCommandClassDiagram.png)
-
 #### Overall sequence diagram for editing an Entry
 
-![img_1.png](EditCommandSequenceDiagram.png)
+![img_1.png](static/EditCommandSequenceDiagram.png)
+
+### View Command
+#### Class diagram of view command 
+![ViewCommandClassDiagram.png](./static/viewCommandClassDiagram.png)
+Class diagram above shows the methods called in the execute method of the 
+View Command object.
+
+#### Implementation
+![ViewCommandSequenceDiagram.png](./static/ViewCommandSequenceDiagram.png)
+
+**Step 1.** String of user arguments is fed into the parseViewCommand method in Parser object.
+
+**Step 2.** The various filters such as price and dateTime are extracted from the argument String and fed into the 
+            constructor of viewCommand.
+
+**Step 3.** A request object is instantiated, with all the query parameters (eg price) as its attributes.
+
+**Step 4.** The request is fed into the backend method requestEndpointEntries, which then sends this request to the
+            EntriesEndpoint class.
+
+**Step 5.** A response object is then returned from EntriesEndpoint. This response contains the serialised form of all 
+            relevant entries.
+
+**Step 6.** The entries are then deserialised and fed into the ui printEntriesToBeViewed method, which prints the 
+            details of each entry to the user.
+
+### Help Command
+
+#### Implementation
+
+**Step 1.** The Parser extracts the help command from the user input and calls the parseHelpCommand method.
+
+**Step 2.** The execute method of the returned HelpCommand object is then called.
+
+**Step 3.** In the execute method, the printHelp method of the UI Class is called and a fixed string displaying all 
+            available commands is called.
+
+
+### Exit/Bye Command
+
+#### Implementation
+
+**Step 1.** The Parser extracts the bye command from the user input and calls the parseHelpCommand method.
+
+**Step 2.** An ExitCommand is returned and since this command is the only command object with the isExit attribute set
+            as "true", the while loop of the program will terminate since !isExit is the loop condition.
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -280,7 +325,7 @@ Each endpoint is a child class `Endpoint`. Currently, there are 2 endpoints avai
 
 ##### Creating a request
 
-- To create a request, simply instantiate `seedu.pocketpal.communication.Request`
+- To create a request, simply instantiate `pocketpal.communication.pocketpal.Request`
   with the desired request method.
 - If there are any parameters associated with the request, you may add them using `addParam()`
 
