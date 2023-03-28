@@ -109,6 +109,33 @@ the user has inputted match the illness as explained in the "Diagnosis" section 
 Each illness will be analysed in the analyseIllness() method, and the medications that cure that illness
 will be suggested to the user. This information is then printed, and stored in the user's account.
 
+[comment]: <> (//@@Thunderdragon221)
+### Storage
+
+![StorageClassDiagram.png](diagrams%2FStorageClassDiagram.png)
+
+The Storage class is responsible for loading information from and writing information to a designated data file.
+
+Upon each start up of the application, Dr Duke will call `loadData()`. If Dr Duke is started for the very first time 
+on a device, the designated directory and file for all subsequent use will be created via `createDirectory()` and 
+`createFile()`, which are part of the `loadData()` method. `readFile()` will then be called under `loadData()` to read
+the data previously stored in the data file (if any). `readFile()` also calls `readMedicineHistoryFromFile()`, which 
+reads in any past medicine dispensing records of the patient stored in the data file. `readFile()` throws
+`CorruptedDataException` if any corruption in the data file is found in the process of reading from it, which is 
+facilitated by the `endOfFile()` method.
+
+During use of Dr Duke, if the patient decides to reset his/her diagnosis history, `resetDiagnosisHistory()` will be
+called, which will call `saveData()` after resetting the patient's diagnosis history. After the patient has been
+diagnosed with possible illnesses and dispensed appropriate medication, these records will also be saved by called
+`saveData()`. Finally, before exiting Dr Duke, `saveData()` will also be called to write all existing data to the data
+file.
+
+### Implementation of loadData() in Storage Class
+![loadDataSequenceDiagram.png](diagrams%2FloadDataSequenceDiagram.png)
+
+### Implementation of saveData() in Storage Class
+![saveDataSequenceDiagram.png](diagrams%2FsaveDataSequenceDiagram.png)
+
 [comment]: <> (//@@Geeeetyx)
 
 ### Patient

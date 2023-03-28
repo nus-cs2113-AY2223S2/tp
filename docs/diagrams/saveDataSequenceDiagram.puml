@@ -1,0 +1,36 @@
+[comment]: <> (//@@author Thunderdragon221)
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Style.puml
+autonumber
+
+@startuml
+participant User
+
+User -> Storage: saveData()
+activate Storage
+Storage -> Information: getAllPatientData()
+activate Information
+Information --> Storage: patientsList
+deactivate Information
+Storage -> Patient: getPatient()
+activate Patient
+Patient --> Storage: patient
+Storage -> Patient: getName()
+Patient --> Storage: name
+Storage -> Patient: getPassword()
+Patient --> Storage: password
+Storage -> Patient: getPatientDiagnosisHistory()
+Patient --> Storage: diagnosisHistory
+Storage -> Patient: getPatientMedicineHistory()
+Patient --> Storage: medicineHistory
+deactivate Patient
+Storage -> Storage: writeMedicineHistory()
+activate Storage
+Storage --> Storage: write medicine history to file
+Storage --> Storage: finished writing to file
+deactivate Storage
+User <-- Storage: data saved
+deactivate Storage
+
+@enduml
