@@ -4,6 +4,8 @@ import seedu.pocketpal.data.EntryTestUtil;
 import seedu.pocketpal.data.entry.Category;
 import seedu.pocketpal.data.entry.Entry;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import seedu.pocketpal.frontend.constants.MessageConstants;
+import seedu.pocketpal.frontend.exceptions.InvalidDateException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class EntryLogTest extends EntryTestUtil {
     private EntryLog entryLog;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
 
     @BeforeEach
     void init() {
@@ -175,5 +180,32 @@ public class EntryLogTest extends EntryTestUtil {
             EntryLog filteredEntries = entryLog.filterByCategory(Category.FOOD);
             assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
+
+        // @@author leonghuenweng
+        @Test
+        void filterBetweenDates_startDateAfterEndDate() {
+            LocalDateTime startDateTime = LocalDateTime.parse("21/12/99 23:30", formatter);
+            LocalDateTime endDateTime = LocalDateTime.parse("21/12/80 23:30", formatter);
+            Exception invalidDateException = assertThrows(InvalidDateException.class,
+                    () -> entryLog.filterBetweenDates(startDateTime, endDateTime));
+            assertEquals(invalidDateException.getMessage(), MessageConstants.MESSAGE_MIXED_DATE);
+        }
+
+        @Test
+        void filterBetweenDates_noEntriesBetweenDates() throws InvalidDateException {
+            LocalDateTime startDateTime = LocalDateTime.parse("21/11/24 23:30", formatter);
+            LocalDateTime endDateTime = LocalDateTime.parse("30/11/26 23:30", formatter);
+            EntryLog filteredEntries = entryLog.filterBetweenDates(startDateTime, endDateTime);
+            assertEquals(filteredEntries.getEntriesList(), new EntryLog().getEntriesList());
+        }
+
+        @Test
+        void filterBetweenDates() throws InvalidDateException {
+            LocalDateTime startDateTime = LocalDateTime.parse("28/03/23 10:53", formatter);
+            LocalDateTime endDateTime = LocalDateTime.parse("30/11/26 23:30", formatter);
+            EntryLog filteredEntries = entryLog.filterBetweenDates(startDateTime, endDateTime);
+            assertEquals(filteredEntries.getEntriesList(), entryLog.getEntriesList());
+        }
+        // @@author
     }
 }

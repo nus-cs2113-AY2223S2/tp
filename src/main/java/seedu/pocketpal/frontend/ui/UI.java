@@ -22,7 +22,7 @@ public class UI {
         String description = entry.getDescription();
         double price = entry.getAmount();
         String category = entry.getCategoryString();
-        String dateTime = entry.getDateTime();
+        String dateTime = entry.getDateTimeString();
         return "<" + entryID + ">: " + description +
                 " (" + category + ") - $" + UIUtil.formatPrice(price) +
                 " <<" + dateTime + ">>";
@@ -132,7 +132,7 @@ public class UI {
      */
     public void printExpenditureAdded(Entry entry) {
         printExpenditureAdded(entry.getDescription(), entry.getAmount(), entry.getCategoryString(),
-                entry.getDateTime());
+                entry.getDateTimeString());
     }
 
     /**
@@ -144,7 +144,7 @@ public class UI {
     public void printExpenditureEdited(Entry entry) {
         print(MessageConstants.MESSAGE_EXPENDITURE_EDITED
                 + UIUtil.formatExpenditure(entry.getDescription(), entry.getAmount(), entry.getCategoryString(),
-                entry.getDateTime()));
+                entry.getDateTimeString()));
         printLine();
     }
 
@@ -169,7 +169,7 @@ public class UI {
      */
     public void printExpenditureDeleted(Entry entry) {
         printExpenditureDeleted(entry.getDescription(), entry.getAmount(), entry.getCategoryString(),
-                entry.getDateTime());
+                entry.getDateTimeString());
     }
 
     /**

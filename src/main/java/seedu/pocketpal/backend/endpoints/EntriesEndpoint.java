@@ -7,8 +7,11 @@ import seedu.pocketpal.communication.ResponseStatus;
 import seedu.pocketpal.data.entrylog.EntryLog;
 import seedu.pocketpal.frontend.constants.MessageConstants;
 import seedu.pocketpal.frontend.exceptions.InvalidCategoryException;
+import seedu.pocketpal.frontend.exceptions.InvalidDateException;
 import seedu.pocketpal.frontend.util.CategoryUtil;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 public class EntriesEndpoint extends Endpoint {
@@ -66,6 +69,9 @@ public class EntriesEndpoint extends Endpoint {
         } catch (InvalidCategoryException e) {
             logger.warning("/entries [GET]: unknown filter category" + request.getBody());
             return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, MessageConstants.MESSAGE_INVALID_CATEGORY);
+        } catch (InvalidDateException e){
+            logger.warning("/entries [GET]: invalid date");
+            return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, MessageConstants.MESSAGE_MIXED_DATE);
         }
     }
 
@@ -77,10 +83,13 @@ public class EntriesEndpoint extends Endpoint {
      *                - param?: FILTER_BY_AMOUNT_END
      *                - param?: FILTER_BY_CATEGORY
      *                - param?: FILTER_BY_QUERY
+     *                - param?: FILTER_BY_TIME_START
+     *                - param?: FILTER_BY_TIME_END
      * @return Filtered entries if parameters exist, otherwise all entries
      * @throws InvalidCategoryException If category parameter is invalid
      */
-    private EntryLog handleGetEntriesFilter(Request request, EntryLog entries) throws InvalidCategoryException {
+    private EntryLog handleGetEntriesFilter(Request request, EntryLog entries) throws InvalidCategoryException,
+            InvalidDateException {
         logger.info("/entries [GET]: filtering entries");
         EntryLog filteredEntries = entries;
         String category = request.getParam(RequestParams.FILTER_BY_CATEGORY);
@@ -102,6 +111,9 @@ public class EntriesEndpoint extends Endpoint {
 
         boolean hasAmountStart = request.hasParam(RequestParams.FILTER_BY_AMOUNT_START);
         boolean hasAmountEnd = request.hasParam(RequestParams.FILTER_BY_AMOUNT_END);
+        boolean hasStartDate = request.hasParam(RequestParams.FILTER_BY_TIME_START);
+        boolean hasEndDate = request.hasParam(RequestParams.FILTER_BY_TIME_END);
+        boolean isFilterBetweenDates = hasStartDate && hasEndDate;
         boolean isFilterAmountRange = hasAmountStart && hasAmountEnd;
         boolean isFilterMinAmount = hasAmountStart && !hasAmountEnd;
         boolean isFilterMaxAmount = !hasAmountStart && hasAmountEnd;
@@ -121,6 +133,17 @@ public class EntriesEndpoint extends Endpoint {
             double amountEnd = Double.parseDouble(request.getParam(RequestParams.FILTER_BY_AMOUNT_END));
             logger.info("/entries [GET]: filter by amount <= " + amountEnd);
             filteredEntries = filteredEntries.filterByAmount(0, amountEnd);
+        }
+        if (isFilterBetweenDates){
+            String startDateString = request.getParam(RequestParams.FILTER_BY_TIME_START);
+            String endDateString = request.getParam(RequestParams.FILTER_BY_TIME_END);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
+            LocalDateTime startDateTime = LocalDateTime.parse(startDateString, formatter);
+            LocalDateTime endDateTime = LocalDateTime.parse(endDateString, formatter);
+
+            logger.info(
+                    "/entries [GET]: filter by date (start: " + startDateString + ", end: " + endDateString + ")");
+            filteredEntries = filteredEntries.filterBetweenDates(startDateTime,endDateTime);
         }
 
         return filteredEntries;
