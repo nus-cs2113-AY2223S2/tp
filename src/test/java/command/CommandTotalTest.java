@@ -36,6 +36,6 @@ class CommandTotalTest {
         commandTotal.execute();
         assertEquals(commandTotal.getTotal(), new BigDecimal(8.55).setScale(2, RoundingMode.HALF_UP));
 
-        expenseList.clear();
+
     }
 }
