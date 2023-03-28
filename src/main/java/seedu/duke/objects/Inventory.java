@@ -12,8 +12,8 @@ public class Inventory {
     private final Trie trie = new Trie();
     private final HashMap<String, ArrayList<Item>> itemNameHash = new HashMap<>();
     private final HashMap<String, ArrayList<Item>> upcCodesHistory = new HashMap<>();
-
     private AlertList alertList = new AlertList();
+    private final HashMap<String, ArrayList<Item>> categoryHash = new HashMap<>();
 
 
     /**
@@ -89,6 +89,9 @@ public class Inventory {
     }
     public HashMap<String, ArrayList<Item>> getUpcCodesHistory() {
         return upcCodesHistory;
+    }
+    public HashMap<String, ArrayList<Item>> getCategoryHash() {
+        return categoryHash;
     }
 
 }
