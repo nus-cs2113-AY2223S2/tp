@@ -14,7 +14,7 @@ public class BadMaths {
 
     private static final Set<String> VALID_COMMANDS = new HashSet<>(Arrays.asList(
             "Graph", "Bye", "List", "Store", "Matrix", "Help", "FindInfo", "FindPrior", "FindMark", "FindUnmark", "Low",
-            "Medium", "High", "Delete", "Mark", "Unmark", "Clear", "Rank"
+            "Medium", "High", "Delete", "Mark", "Unmark", "Clear", "Rank", "Quadratic"
     ));
     public static void commandChecker(String command) {
         try {
