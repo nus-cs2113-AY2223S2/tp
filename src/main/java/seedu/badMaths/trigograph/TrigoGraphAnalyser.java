@@ -220,7 +220,7 @@ public class TrigoGraphAnalyser {
         return false;
     }
 
-    private void findFreq(String freqWithX, boolean isFreqNeg) throws NumberFormatException {
+    public void findFreq(String freqWithX, boolean isFreqNeg) throws NumberFormatException {
         try {
             String freqComponents;
             if (freqWithX.equals("x")) {
