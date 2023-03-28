@@ -28,7 +28,7 @@ class ListCurrentCommandTest {
     public void restoreStream() {
         System.setOut(originalOut);
     }
-    //@@ author dfa
+    //@@author dfa
 
     //Solution below adapted from https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
     @Test
@@ -42,13 +42,31 @@ class ListCurrentCommandTest {
         modules.add(module2);
         ListCurrentCommand listCurrentCommand = new ListCurrentCommand(modules);
         listCurrentCommand.execute();
-        assertEquals(LIST_CURRENT_MESSAGE + System.lineSeparator()
-                + LINE + System.lineSeparator() +
-                "1.[AE320][Aerodynamics II][3]" + System.lineSeparator() +
-                "   maps to ----> [ME4231][Aerodynamics][4]" + System.lineSeparator() +
-                "2.[M2794.0073][Finite Element Analysis][3]" + System.lineSeparator() +
-                "   maps to ----> [ME4291][Finite Element Analysis][4]" + System.lineSeparator() +
-                "____________________________________________________________".stripTrailing()
+        assertEquals("List of Added Modules for: KOREA UNIVERSITY" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        "1.[AE320][Aerodynamics II][3]" + System.lineSeparator() +
+                        "   maps to ----> [ME4231][Aerodynamics][4]" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        System.lineSeparator() +
+                        "The current module list is empty for: KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY"
+                        + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        System.lineSeparator() +
+                        "The current module list is empty for: POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY"
+                        + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        System.lineSeparator() +
+                        "List of Added Modules for: SEOUL NATIONAL UNIVERSITY" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        "1.[M2794.0073][Finite Element Analysis][3]" + System.lineSeparator() +
+                        "   maps to ----> [ME4291][Finite Element Analysis][4]" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        System.lineSeparator() +
+                        "The current module list is empty for: YONSEI UNIVERSITY" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        "____________________________________________________________".stripTrailing()
                 , outContent.toString().stripTrailing());
         outContent.reset();
     }

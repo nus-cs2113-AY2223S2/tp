@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.DataReader;
 import seedu.duke.Deadline;
 import seedu.duke.Module;
 import seedu.duke.Parser;
@@ -15,11 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DeleteModuleCommandTest {
     Storage storage = new Storage();
-
+    DataReader dataReader = new DataReader();
     @Test
     void userInput_remove_correctVariableTypeSuccess() {
-        String userInput = "remove 1";
-        ArrayList<University> universities = new ArrayList<>();
+        String userInput = "remove KU/1";
+        ArrayList<University> universities = dataReader.getUniversities();
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Module> puModules = new ArrayList<>();
         ArrayList<Deadline> deadlines = new ArrayList<>();
@@ -38,7 +39,7 @@ public class DeleteModuleCommandTest {
         Module module = new Module(1, "AE320", "Aerodynamics II", 3,
                 "ME4231", "Aerodynamics", 4);
         uniList1.add(module);
-        Storage.deleteModule(1, uniList1, storage);
+        Storage.deleteModule(1, uniList1, storage,1);
         assertEquals(0, uniList1.size());
     }
 }

@@ -19,9 +19,11 @@ import seedu.duke.command.ListDeadlinesCommand;
 import seedu.duke.command.ListPuCommand;
 import seedu.duke.command.ListPuModulesCommand;
 import seedu.duke.command.ViewBudgetCommand;
+import seedu.duke.command.ListFoundNusModsCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidPuException;
 import seedu.duke.exceptions.InvalidModuleException;
+import seedu.duke.command.ListCurrentPuCommand;
 
 import java.util.ArrayList;
 
@@ -35,6 +37,7 @@ public class Parser {
         ArrayList<String> userInputWords = parseCommand(userInput);
         String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
+        String userCommandThirdKeyword = "";
         if (userInputWords.size() > 1) {
             userCommandSecondKeyword = userInputWords.get(1);
         }
@@ -48,17 +51,23 @@ public class Parser {
                 if (userCommandSecondKeyword.equalsIgnoreCase("pu")) {
                     return new ListPuCommand();
                 } else if (userCommandSecondKeyword.equalsIgnoreCase("current")) {
+                    if (userInputWords.size() == 3) {
+                        userCommandThirdKeyword = userInputWords.get(2);
+                        return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
+                    }
                     return new ListCurrentCommand(modules);
                 } else {  // list PU name case
                     return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
                 }
+            case "search":
+                assert userInputWords.size() > 1 : "No Nus Module Code Read";
+                return prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities);
             case "exit":
                 return new ExitCommand();
             case "add":
                 return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
             case "remove":
-                int indexModToRemove = stringToInt(userCommandSecondKeyword);
-                return new DeleteModuleCommand(storage, indexModToRemove, modules);
+                return prepareRemoveModuleCommand(storage, userCommandSecondKeyword, universities);
             case "/help":
                 return new HelpCommand();
             case "/budget":
@@ -79,16 +88,50 @@ public class Parser {
     }
 
     public static ArrayList<String> parseCommand(String userInput) {
-        String[] input = userInput.split((" "), 2);
+        String[] input = userInput.split((" "), 3);
         ArrayList<String> commandWords = new ArrayList<>();
         String commandInput = input[0];
         commandWords.add(commandInput);
-        if (input.length > 1) {
-            String commandSpecifics = input[1];
-            commandWords.add(commandSpecifics);
+        if (input.length == 2) {
+            String commandSpecificFirstWord = input[1];
+            commandWords.add(commandSpecificFirstWord);
+        } else if (input.length == 3) {
+            String commandSpecificFirstWord = input[1];
+            commandWords.add(commandSpecificFirstWord);
+            String commandSpecificsSecondWord = input[2];
+            commandWords.add(commandSpecificsSecondWord);
         }
         return commandWords;
     }
+
+    private Command prepareSearchByNusModCode(String nusModCode, ArrayList<Module> allModules,
+                                              ArrayList<University> universities) {
+        String searchModCode = nusModCode;
+        ArrayList<Module> foundModulesToPrint = new ArrayList<>();
+        try {
+            return handleSearchByNusModCode(foundModulesToPrint, searchModCode, allModules, universities);
+        } catch (InvalidModuleException e) {
+            return new ExceptionHandleCommand(e);
+        }
+    }
+
+    private Command handleSearchByNusModCode(ArrayList<Module> foundModulesToPrint, String searchModCode,
+                                             ArrayList<Module> allModules,
+                                             ArrayList<University> universities) throws InvalidModuleException {
+        for (Module module : allModules) {
+            String nusModuleCode = module.getNusModuleCode();
+            if (nusModuleCode.equalsIgnoreCase(searchModCode)) {
+                foundModulesToPrint.add(module);
+            }
+        }
+        int numOfFoundModules = foundModulesToPrint.size();
+        if (numOfFoundModules == 0) {
+            throw new InvalidModuleException(ui.getInvalidSearchModuleMessage());
+        } else {
+            return new ListFoundNusModsCommand(searchModCode, foundModulesToPrint, universities);
+        }
+    }
+
 
     private Command prepareListPuModulesCommand(String univAbbNameOrIndex, ArrayList<University> universities) {
         char digitChecker = univAbbNameOrIndex.charAt(0);
@@ -221,6 +264,76 @@ public class Parser {
             return new EditEntertainmentCommand(amount, budgetPlanner);
         default:
             throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+        }
+    }
+
+    private Command prepareListCurrentPUModulesCommand(String univAbbNameOrIndex, ArrayList<University> universities,
+                                                       ArrayList<Module> modules) {
+        char digitChecker = univAbbNameOrIndex.charAt(0);
+        String universityAbbName = "";
+        int univIndex = -1;
+        // remember handle exception for numberformatexception use stringtoint instead?
+        if (Character.isDigit(digitChecker)) {
+            univIndex = Integer.parseInt(univAbbNameOrIndex) - 1;
+        } else {
+            universityAbbName = univAbbNameOrIndex;
+        }
+        try {
+            return handleListCurrentPuModulesCommand(universities, universityAbbName, univIndex, modules);
+        } catch (InvalidPuException e) {
+            return new ExceptionHandleCommand(e);
+        }
+    }
+
+    private Command handleListCurrentPuModulesCommand(ArrayList<University> universities, String universityAbbName,
+                                                      int univIndex, ArrayList<Module> modules)
+            throws InvalidPuException {
+        int univID = 0;
+        if (univIndex == -1) {
+            for (University university : universities) {
+                if (universityAbbName.equalsIgnoreCase(university.getUnivAbbName())) {
+                    univID = university.getUnivId();
+                }
+            }
+        }
+        if (univID == 0) {
+            throw new InvalidPuException(ui.getInvalidPuMessage());
+        }
+        return new ListCurrentPuCommand(modules, univID);
+    }
+
+    private Command handleRemoveModuleCommand(Storage storage, String abbreviationAndIndex,
+                                              ArrayList<University> universities)
+            throws InvalidCommandException, InvalidPuException {
+        String[] stringSplit = abbreviationAndIndex.split("/");
+        if (stringSplit.length != 2) {
+            throw new InvalidCommandException(ui.getCommandInputError());
+        }
+        String abbreviation = stringSplit[0];
+        String indexToDeleteString = stringSplit[1];
+        int indexToDelete = stringToInt(indexToDeleteString);
+
+        int univID = -1;
+        for (int i = 0; i < universities.size(); ++i) {
+            if (universities.get(i).getUnivAbbName().equalsIgnoreCase(abbreviation)) {
+                univID = universities.get(i).getUnivId();
+                break;
+            }
+        }
+        if (univID == -1) {
+            throw new InvalidPuException(ui.getInvalidPuMessage());
+        }
+        return new DeleteModuleCommand(storage, indexToDelete, univID);
+    }
+
+    private Command prepareRemoveModuleCommand(Storage storage, String abbreviationAndIndex,
+                                               ArrayList<University> universities) {
+        try {
+            return handleRemoveModuleCommand(storage, abbreviationAndIndex, universities);
+        } catch (InvalidPuException e) {
+            return new ExceptionHandleCommand(e);
+        } catch (InvalidCommandException e) {
+            return new ExceptionHandleCommand(e);
         }
     }
 

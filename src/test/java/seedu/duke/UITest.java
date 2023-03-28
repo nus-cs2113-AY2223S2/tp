@@ -29,6 +29,8 @@ class UITest {
     private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name";
     private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name";
     private static final String CURRENT_LIST_EMPTY = "The current module list is empty";
+    private static final String INVALID_SEARCH_MODULE_MESSAGE = "There is no matching module code found.\n"
+            + "Please ensure that you have typed in the correct NUS Module Code";
 
     /*
         Testing below sets up an ByteArrayOutputStream where prints to System.out would go to.
@@ -50,6 +52,7 @@ class UITest {
         System.setOut(originalOut);
     }
 
+    //@@author MuxPotato
     //Solution below adapted from https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
     /*
         In the tests below, stripTrailing is used as Git Actions automatically strips trailing spaces in their checks
@@ -113,6 +116,14 @@ class UITest {
         UI ui = new UI();
         String invalidModuleMessage = ui.getInvalidModuleMessage();
         assertEquals(INVALID_MODULE_MESSAGE, invalidModuleMessage.stripTrailing());
+        outContent.reset();
+    }
+
+    @Test
+    void getInvalidSearchModuleMessage_correctLines_success() {
+        UI ui = new UI();
+        String invalidSearchModule = ui.getInvalidSearchModuleMessage();
+        assertEquals(INVALID_SEARCH_MODULE_MESSAGE, invalidSearchModule.stripTrailing());
         outContent.reset();
     }
 
@@ -499,18 +510,37 @@ class UITest {
         ArrayList<Module> modules = new ArrayList<>();
         Module module1 = new Module(1, "AE320", "Aerodynamics II", 3,
                 "ME4231", "Aerodynamics", 4);
-        Module module2 = new Module(4, "M2794.0073", "Finite Element Analysis", 3,
+        Module module2 = new Module(4, "M2794.0073", "Finite Element Analysis",
+                3,
                 "ME4291", "Finite Element Analysis", 4);
         modules.add(module1);
         modules.add(module2);
-        ui.printCurrentModList(modules);
-        assertEquals(LIST_CURRENT_MESSAGE + System.lineSeparator()
-                        + "____________________________________________________________" + System.lineSeparator() +
+        ui.printAllCurrentModList(modules);
+        assertEquals("List of Added Modules for: KOREA UNIVERSITY" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
                         "1.[AE320][Aerodynamics II][3]" + System.lineSeparator() +
-                "   maps to ----> [ME4231][Aerodynamics][4]" + System.lineSeparator() +
-                "2.[M2794.0073][Finite Element Analysis][3]" + System.lineSeparator() +
-                "   maps to ----> [ME4291][Finite Element Analysis][4]" + System.lineSeparator() +
-                "____________________________________________________________".stripTrailing()
+                        "   maps to ----> [ME4231][Aerodynamics][4]" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        System.lineSeparator() +
+                        "The current module list is empty for: KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY"
+                        + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        System.lineSeparator() +
+                        "The current module list is empty for: POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY"
+                        + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        System.lineSeparator() +
+                        "List of Added Modules for: SEOUL NATIONAL UNIVERSITY" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        "1.[M2794.0073][Finite Element Analysis][3]" + System.lineSeparator() +
+                        "   maps to ----> [ME4291][Finite Element Analysis][4]" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        System.lineSeparator() +
+                        "The current module list is empty for: YONSEI UNIVERSITY" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        "____________________________________________________________".stripTrailing()
                 , outContent.toString().stripTrailing());
         outContent.reset();
     }
@@ -542,6 +572,8 @@ class UITest {
                 + "                              by index of LIST PU\n"
                 + "LIST CURRENT                : Provides the list of modules that the user has added to his/her " +
                 "list of interest\n"
+                + "LIST CURRENT [PU ABBRV]     : Provides the list of modules that user has added to his list of " +
+                "list of interest for the specified PU\n"
                 + "ADD [PU ABBRV]/[MODULE CODE]: Adds the specified module into user's current list of modules\n"
                 + "REMOVE [INDEX]              : Removes the specified module by index from user's current list\n"
                 + "EXIT                        : Exits the program\n\n"
