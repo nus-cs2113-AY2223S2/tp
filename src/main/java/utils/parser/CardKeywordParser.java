@@ -130,7 +130,7 @@ public class CardKeywordParser extends KeywordParser {
         // Combine all action
         String[] actionList = {ADD_ACTION, DELETE_ACTION, LIST_ACTION, TAG_ACTION, VIEW_ACTION, DECK_ACTION};
         String[] headerList = new String[]{"Adding cards",
-                "Deleting cards", "List all cards", "Tagging cards", "View cards", "Adding cards to Deck"};
+            "Deleting cards", "List all cards", "Tagging cards", "View cards", "Adding cards to Deck"};
         Options[] optionsList = {buildAddOptions(), buildDeleteOptions(), new Options(), buildTagOptions(),
                 buildViewOptions(), buildDeckOptions()};
         String helpMessage = formatHelpMessage("card", actionList, headerList, optionsList);
