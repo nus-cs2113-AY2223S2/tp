@@ -37,8 +37,12 @@ public class Parser {
         ArrayList<String> userInputWords = parseCommand(userInput.trim());
         String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
+        String userCommandThirdKeyword = "";
         if (userInputWords.size() > 1) {
             userCommandSecondKeyword = userInputWords.get(1);
+        }
+        if (userInputWords.size() > 2) {
+            userCommandThirdKeyword = userInputWords.get(2);
         }
         String inputIgnoringCase = userCommandFirstKeyword.toLowerCase();
         try {
@@ -57,7 +61,7 @@ public class Parser {
             case "/help":
                 return new HelpCommand();
             case "/budget":
-                return prepareBudgetCommand(userCommandSecondKeyword,budgetPlanner);
+                return prepareBudgetCommand(userInput, budgetPlanner);
             case "/deadline/list":
                 return new ListDeadlinesCommand(deadlines);
             case "/deadline/add":
@@ -105,7 +109,7 @@ public class Parser {
     }
 
     private Command handleListCommands(ArrayList<String> userInputWords, String userCommandSecondKeyword,
-                                        ArrayList<University> universities, ArrayList<Module> modules) {
+                                       ArrayList<University> universities, ArrayList<Module> modules) {
         String userCommandIgnoreCase = userCommandSecondKeyword.toLowerCase();
         switch (userCommandIgnoreCase) {
         case "pu":
@@ -170,7 +174,7 @@ public class Parser {
     }
 
     private Command handleListPuModulesCommand(ArrayList<University> universities, String universityAbbName,
-                                                    int univIndex, boolean isUnivAbbr) throws InvalidPuException {
+                                               int univIndex, boolean isUnivAbbr) throws InvalidPuException {
         String universityName = "";
         int univID = 0;
         if (isUnivAbbr) { //list [Univ Abbr]
@@ -263,9 +267,8 @@ public class Parser {
         return new AddDeadlineCommand(deadlineTypeToAdd, storage);
     }
 
-    // /budget accommodation 200
-    // /budget budget 5000
     private Command prepareBudgetCommand(String userInput, BudgetPlanner budgetPlanner) throws InvalidCommandException {
+        userInput = userInput.replaceFirst("/budget ", "").trim();
         String[] commandWords = userInput.split((" "), 2);
         if (userInput.trim().equalsIgnoreCase("view")) {
             return new ViewBudgetCommand(budgetPlanner);
