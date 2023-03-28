@@ -84,7 +84,7 @@ Components:
 
 The sequence diagram for the implementation of add is as shown below:
 
-![AddCommandSequenceDiagram.png](\images\DeveloperGuide\AddCommandSequenceDiagram.png)
+![AddCommandSequenceDiagram.png](images\DeveloperGuide\AddCommandSequenceDiagram.png)
 
 #### Design considerations
 
@@ -111,7 +111,7 @@ Format of add command
 
 The sequence diagram for the implementation of delete is as shown below:
 
-![DeleteCommandSequenceDiagram.png](\images\DeveloperGuide\DeleteCommandSequenceDiagram.png)
+![DeleteCommandSequenceDiagram.png](images\DeveloperGuide\DeleteCommandSequenceDiagram.png)
 
 #### Design considerations
 
@@ -234,7 +234,7 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 
 The sequence diagram for the implementation of filter is as shown below:
 
-![FilterCommand.png](\images\DeveloperGuide\FilterCommand.png)
+![FilterCommand.png](images\DeveloperGuide\FilterCommand.png)
 
 {TODO: Mention file path after implementing issue #137}
 
