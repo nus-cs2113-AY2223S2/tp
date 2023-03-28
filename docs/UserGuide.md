@@ -56,7 +56,7 @@ COMMAND_FORMAT : COMMAND_FUNCTIONALITY EXPLANATION
 
 Displays all tasks currently stored in the application.
 
-**Input:** `list `
+**Input:** `list`
 
 **Output: Demonstrated with 1 of each type currently in the stored data array**
 
@@ -67,6 +67,24 @@ Here are the tasks in your list:
 	 2.	 [D][ ] deadline (by: 2023-03-25 2359) (No priority established.)
 	 3.	 [E][ ] event (from: 2023-03-25 1200 to: 2023-03-26 2359) (No priority established.)
 	 4.	 [C][ ] CS2113: Class (from: 2023-03-25 1100 to: 2023-03-25 1200) (No priority established.)
+```
+
+## **Displaying class schedule : `list classes`**
+
+Displays all School Classes currently stored in the application.
+
+**Input:** `list classes`
+
+**Output: Demonstrated with classes with different names and start/end times, with some already past their end time**
+
+
+```
+Here is your class schedule:
+
+[MONDAY][X] eg2501 (from: 1600 to: 1800)
+[TUESDAY][X] ee2026 (from: 0900 to: 1200)
+[TUESDAY][ ] cs2113 (from: 1600 to: 1700)
+
 ```
 
 ## **Listing all low priority tasks : `low_priority`**
