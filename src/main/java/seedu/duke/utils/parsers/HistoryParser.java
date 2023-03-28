@@ -9,9 +9,21 @@ public class HistoryParser extends Parser{
         super(rawInput, inventory);
     }
 
+    /**
+     * Trims the input and then runs the history parser.
+     */
     @Override
     public void run() {
         rawInput = rawInput.trim();
+        parseHistory();
+    }
+
+    /**
+     * Handles the "history" command by checking the validity of search term provided before passing to
+     * the relevant command.
+     *
+     */
+    private void parseHistory() {
         try{
             if(rawInput.split(" ").length!=1){
                 throw new MissingParametersException();

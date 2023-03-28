@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FilterCommandTest {
     Inventory inventory;
+
+    /**
+     * Tests the filter price function.
+     */
     @Test
     public void filterPriceTest(){
         inventory = new Inventory();
