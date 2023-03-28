@@ -94,7 +94,9 @@ If you would like to search for a specific ingredient that Meal Companion recogn
 <sub>Fig 6: Sample of Ingredients Search command with user input highlighted</sub>
 
 Omitting the keyword will return a list of all valid ingredients.
-![search2.png](images/search2.png)
+
+![search22.png](images/search22.png)  
+<sub>Fig 7: Sample of Ingredients Search command with keyword omitted and user input highlighted</sub>
 
 ### Clear Ingredients
 To remove all ingredients from Meal Companion's storage, use the `clear` command.
