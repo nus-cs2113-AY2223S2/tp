@@ -15,7 +15,7 @@ import static seedu.brokeMan.entry.expense.ExpenseList.getExpensesMadeInMonth;
 import static seedu.brokeMan.parser.StringToTime.createDateString;
 
 public class Budget {
-    private static HashMap<Integer, HashMap<Month, Double>> budgetEachMonth = new HashMap<>();
+    public static HashMap<Integer, HashMap<Month, Double>> budgetEachMonth = new HashMap<>();
 
     // will remove when read write function works
     static {
