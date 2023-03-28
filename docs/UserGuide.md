@@ -155,6 +155,12 @@ Example of usage:
 
 **A**: spend more time on this module
 
+---
+
+**Q**: Am I able to keep my data after I exit the program?
+
+**A**: Yes. Your data will be saved automatically after you exit the program, and loaded the next time you use the program.
+
 ## Command Summary
 
 * `event` - Add an event to Moneymind

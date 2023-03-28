@@ -41,7 +41,7 @@ The following sections will explain the architecture in more detail.
 
 **API**: `Storage.java`
 
-{UML class diagram}
+<img src="images\Storage.png" width="500">
 
 The `Storage` component,
 * can save category and event data in txt format, and read it back. (txt format is chosen because it is human readable)

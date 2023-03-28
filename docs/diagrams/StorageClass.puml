@@ -1,0 +1,62 @@
+@startuml Storage
+scale 2
+skinparam packageStyle rectangle
+package seedu.moneymind.storage {
+    class Storage
+    class CategoriesToString
+    class GenerateCategoryHashMap
+    class ReadFromFile
+    class StringToCategories
+}
+class moneymind
+moneymind "1" *--> "1" Storage : storage
+class Storage {
+    -File textFile
+    -ArrayList<Category> savedCategories
+    -HashMap<String, Integer> savedCategoryHashMap
+    +Storage(String filePath)
+    +void save(ArrayList<Category> categories)
+    -void moneymindWrite(String textToWrite)
+    +void load()
+    +ArrayList<Category> getSavedCategories()
+    +HashMap<String, Integer> getSavedCategoryHashMap()
+}
+Storage ..> Category
+Storage ..> CategoriesToString : <<import>> categoriesToString()
+Storage ..> StringToCategories : <<import>> stringToCategories()
+Storage ..> GenerateCategoryHashMap : <<import>> generateCategoryHashMap()
+Storage .right.> ReadFromFile : <<import>> readFromFile()
+class StringToCategories {
+    +{static} ArrayList<Category> stringToCategories(String savedCategories)
+    -{static} Event loadEvent(String savedLine)
+    -{static} Category loadCategory(String savedLine)
+}
+StringToCategories ..> Category
+StringToCategories ..> Event
+StringToCategories ..> Strings
+StringToCategories ..> UserDate
+StringToCategories -up[hidden]- GenerateCategoryHashMap
+class CategoriesToString {
+    +{static} String categoriesToString(ArrayList<Category> categories)
+    -{static} String eventsToString(ArrayList<Event> event)
+}
+CategoriesToString ..> Category
+CategoriesToString ..> Event
+CategoriesToString ..> Strings
+class GenerateCategoryHashMap {
+    +{static} HashMap<String, Category> generateCategoryHashMap(ArrayList<Category> categories)
+}
+GenerateCategoryHashMap ..> Category
+class ReadFromFile {
+    +{static} String readFromFile(File file)
+}
+ReadFromFile ..> Strings : <<import>> NEW_LINE
+class Strings {
+    +{static} final String NEW_LINE
+    +{static} final String STORAGE_CATEGORY_NAME
+    +{static} final String STORAGE_NEXT_VARIABLE
+}
+class UserDate {
+    +{static} String updateDate(String oldDate)
+}
+@enduml
