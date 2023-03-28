@@ -49,14 +49,14 @@ public class BalanceCommand extends Command {
         assert balance <= totalIncome : "Wrong calculations";
         String convertedBalance = converter.printConverter(balance, selector);
         ui.showBalance(totalExpense, totalIncome, balance, convertedBalance);
-        System.out.println("    Current target:" + currentTarget);
         System.out.println();
+        System.out.println("    Current target:");
         System.out.println("    SGD " + String.format("%.02f", currentTarget));
 
         if (balance >= currentTarget) {
-            System.out.println("Great work! You have met your target goal.");
+            System.out.println("    Great work! You have met your target goal.");
         } else {
-            System.out.println("Balance has not reached your target goal. Keep on pushing!");
+            System.out.println("    Balance has not reached your target goal. Keep on pushing!");
         }
     }
 }
