@@ -72,6 +72,7 @@ public class Duke {
             case "find":
                 // Use the same parser function as category as it also need the input string from user
                 new CommandFind(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
+                break;
             default:
                 System.out.println("Unknown command.");
                 break;

@@ -38,10 +38,8 @@ public class CommandList extends Command {
 
     /**
      * Execution of the list command
-     *
+     * All the expenses are displayed in the order in which it was added.
      * @return printing the list of expenses
-     * All the expenses are displayed in the order in which it was added
-     *
      */
     @Override
     public CommandRes execute() {
