@@ -21,4 +21,13 @@ class TrigoGraphAnalyserTest {
         analyser.findAmplitude(input);
         assertEquals(1.0,analyser.getAmplitude());
     }
+
+    @Test
+    void wrongFreqFormat_withMinus_expectsNumberFormatException(){
+        String eqn = "2*cos(-*x+5)-2";
+        TrigoGraphAnalyser test = new TrigoGraphAnalyser(eqn);
+        assertThrows(NumberFormatException.class,()->{
+            test.findFreq("-*x",true);
+        });
+    }
 }
