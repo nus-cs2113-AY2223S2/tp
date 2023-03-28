@@ -75,7 +75,15 @@ The following section describes the implementation of certain features.
 #### Processing an input
 The main parser component `MainInputParser` is called whenever the user inputs a command line that requires action from 
 the application. The command word will be read and further processed into further components depending on the type of 
-command. 
+command, such as `ParseAdd`, `ParseDelete`, `ParseIndividualValue` etc. 
+
+How the parsing works: 
+
+  `MainInputParser`:
+- The `MainInputParser` is called and is expected to return an object with the `Command` class.
+- The respective classes (eg `ParseAdd`, `ParseSort`) will be called.
+- For commands that requires an additional input after the command work (excludes commands like `list`, `help` etc), the
+  `ParseIndividualValue` class will be called to parse all the input fields by the user.
 
 The following shows the UML diagram used for the parser component implemented in MyLedger.
 
@@ -267,4 +275,65 @@ Manage finances more efficiently than a typical mouse/GUI driven app
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+The following are instructions for testers to manual test:
+
+### Launch and shutdown
+#### Initial Launch
+- Ensure that Java 11 is installed on your device.
+- Download the JAR file and copy into an empty folder
+- Open the command terminal on your device.
+- Navigate to the folder in command terminal and run the command `java -jar [filename].jar`
+- Alternatively, double click on the JAR file to run the app.
+#### Adding a record
+1. Adding an expenditure
+- Test case : `academic d/2023-02-02 a/25.10 s/NUS`
+- Expected : `Added academic expenditure: [Academic] || Date: 2 Feb 2023 || Value: 25.1 || Description: NUS`
+<br /> An expenditure will be added with the type : `academic` if all inputs are added in the correct format. 
+<br /> Otherwise, error messages will be printed.
+
+
+- Test case : `food d/2023-03-03 a/5.30 s/Fish Soup`
+- Expected : `Added food expenditure: [Food] || Date: 3 Mar 2023 || Value: 5.3 || Description: Fish Soup`
+
+
+- Test case : `transport d/2023-03-13 a/2 s/Bus`
+- Expected : `Added transport expenditure: [Transport] || Date: 13 Mar 2023 || Value: 2.0 || Description: Bus`
+
+- Test case : `transport d/13-03-2023 a/2 s/Bus`
+- Expected : `date time error`
+
+- Test case : `transport d/2023-03-13 a/two dollars s/Bus`
+- Expected : `number format problem`
+
+2. Adding a lend/borrow spending
+- Test case : `lend d/2023-02-02 n/Bob a/25.10 b/2023-04-02 s/CS2113`
+- Expected : `Added lend expenditure: [Lend] || Lent to: Bob || Date: 2 Feb 2023 || Value: 25.1 || 
+Description: CS2113 || by: 2 Apr 2023`
+
+
+- Test case : `borrow d/2023-02-02 n/Mandy a/25.10 b/2023-04-02 s/payment for notes`
+- Expected : `Added borrow expenditure: [Borrow] || Borrowed from: Mandy || Date: 2 Feb 2023 || Value: 25.1 
+|| Description: payment for notes || By: 2 Apr 2023`
+<br /> Similar to add an expenditure, adding a lend/borrow will add the expenditure to the list. However, the 
+parameters required are different.
+
+#### Deleting a record
+1. Deleting a record from the list of inputs.
+- Prerequisite: There should be at least one expenditure in the list for `delete` to work. The list can be checked
+using the `list` command
+
+
+- Test case : `delete 1`
+- Expected : <br/> `Entry has been deleted `<br />
+`  Here is your updated list: `
+
+
+- Test case : `delete -1`
+- Expected : `Index is out of bounds or negative`
+
+
+- Test case : `delete 1.1`
+- Expected : `Invalid`
+
+
+
