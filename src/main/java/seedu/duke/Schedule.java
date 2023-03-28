@@ -20,6 +20,10 @@ public class Schedule {
     private String location;
     private boolean hasLocation;
 
+    public boolean isRecurring() {
+        return isRecurring;
+    }
+
     public Schedule(LocalDateTime start, boolean hasSt) {
         this.startTime = start;
         this.hasEndTime = false;
