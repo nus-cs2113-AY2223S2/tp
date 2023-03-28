@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+-> ":Storage" : addModuleToModuleList(Module moduleToAdd)
+activate ":Storage"
+opt moduleToAdd == null
+":Storage" -> ":UI" : UI.printAddModuleFailureMessage()
+activate ":UI"
+":Storage" <- ":UI"
+deactivate ":UI"
+<- ":Storage"
+end
+
+":Storage" -> ":ArrayList<Module>" : modules.add(moduleToAdd)
+activate ":ArrayList<Module>"
+":Storage" <- ":ArrayList<Module>"
+deactivate ":ArrayList<Module>"
+
+":Storage" -> ":Module" : moduleToAdd.toString()
+activate ":Module"
+":Storage" <- ":Module" : tempString:String
+deactivate ":Module"
+":Storage" -> ":Storage" : saveModuleToStorage(tempString)
+activate ":Storage"
+create ":FileWriter"
+":Storage" -> ":FileWriter" : FileWriter(SAVED_MODULES_FILE_PATH, true)
+activate ":FileWriter"
+":Storage" <- ":FileWriter"
+deactivate ":FileWriter"
+":Storage" -> ":DatabaseInterface" : writeTaskPreparation(saveModuleString)
+activate ":DatabaseInterface"
+":Storage" <- ":DatabaseInterface" : tempString:String
+deactivate ":DatabaseInterface"
+":Storage" -> ":FileWriter" : fw.write(tempString)
+activate ":FileWriter"
+":Storage" <- ":FileWriter"
+deactivate ":FileWriter"
+":Storage" -> ":FileWriter" : fw.close()
+activate ":FileWriter"
+":Storage" <- ":FileWriter"
+deactivate ":FileWriter"
+deactivate ":Storage"
+<- ":Storage"
+@enduml
