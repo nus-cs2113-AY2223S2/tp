@@ -72,11 +72,6 @@ MaLaXiangGuo
 Spaghetti
 __________________________________________________________
 
-OOPS!!! I'm sorry, but I don't know what that means
-Try typing "help" to see the valid commands you can use!
-
-__________________________________________________________
-
 Got it. I've added this recipe:
   [Italian] Carbonara
 Now you have 4 recipes in the list.
@@ -175,6 +170,8 @@ Beijing Duck
 XiaoLongBao
 __________________________________________________________
 
+Please enter the description of step 1:
+
 Got it. I've added this recipe:
   [Chinese] Guilinggao
 Now you have 5 recipes in the list.
@@ -184,16 +181,6 @@ Spaghetti
 Beijing Duck
 XiaoLongBao
 Guilinggao
-__________________________________________________________
-
-OOPS!!! I'm sorry, but I don't know what that means
-Try typing "help" to see the valid commands you can use!
-
-__________________________________________________________
-
-OOPS!!! I'm sorry, but I don't know what that means
-Try typing "help" to see the valid commands you can use!
-
 __________________________________________________________
 
 RECIPE LIST

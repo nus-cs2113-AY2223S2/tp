@@ -51,8 +51,11 @@ e.g. if the command specifies <code class="language-plaintext highlighter-rouge"
 
 <h2 id="viewing-help-help"> Viewing help:<code class="language-plaintext highlighter-rouge">help</code></h2>
 
-Shows a message explaining how to access the help page.
-Format: `help`
+Shows a message explaining how to access the help page.<br>
+Format: `help`<br>
+Examples:
+```
+```
 
 <h2 id="adding-a-recipe-add"> Adding a recipe: <code class="language-plaintext highlighter-rouge">add</code></h2>
 

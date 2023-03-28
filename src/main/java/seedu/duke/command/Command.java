@@ -104,12 +104,6 @@ public class Command {
             break;
         case VIEW:
             try {
-                Integer.parseInt(fullDescription);
-            } catch (NumberFormatException e) {
-                RecipeList.searchRecipeList(fullDescription);
-                break;
-            }
-            try {
                 if (fullDescription.isEmpty()) {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
@@ -119,6 +113,9 @@ public class Command {
             } catch (Exception e) {
                 ui.showViewingRecipeErrorMessage(e);
             }
+            break;
+        case FIND:
+            RecipeList.searchRecipeList(fullDescription);
             break;
         case HELP:
             ui.showHelp();
