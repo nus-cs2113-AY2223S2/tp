@@ -1,13 +1,13 @@
 package seedu.commands;
 
 import seedu.calorietracker.CalorieTracker;
-import seedu.workouttracker.workout.WorkoutList;
+import seedu.workout.WorkoutList;
 
 public class Command {
 
     public WorkoutList workoutList = new WorkoutList();
     protected CalorieTracker calorieTracker;
-    protected Command() {
+    public Command() {
     }
 
     public void setData(WorkoutList workoutList, CalorieTracker calorieTracker) {
