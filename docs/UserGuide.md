@@ -94,7 +94,7 @@ ____________________________________________________________
 
 Edits the current Airplane Ticket planned cost to a new amount the user plans to spend on his/her SEP trip
 
-Format: `/budget accommodation [AMOUNT]`
+Format: `/budget airplane [AMOUNT]`
 
 - The `AMOUNT` is the user's input airplane ticket cost for his/her SEP trip in SGD.
 - Initial airplane ticket cost is set to 0 when user has not set any airplane ticket cost before.
