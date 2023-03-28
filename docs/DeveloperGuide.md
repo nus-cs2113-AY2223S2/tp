@@ -107,6 +107,7 @@ If the text file does not exist, it is created when the programme boots up.
 If the text file exists, this method iterates through the list of company information in the list of companies and 
 stores the companies' information in the text file. Prior to writing the company information to this text file, all 
 previously saved text in this file is overwritten.
+![Encoder.png](UML%2FImage%2FEncoder.png)
 
 ### [DONE] Load Company information from text file feature
 #### Implementation
