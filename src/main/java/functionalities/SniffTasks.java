@@ -27,7 +27,7 @@ public class SniffTasks {
                 uid = Uid.uidGenerator("C");
             }
             UIDS.add(uid);
-            Appointment newAppointment = new Consultation(uid, animal, owner, date, time);
+            Appointment newAppointment = new Consultation(uid, animal, owner, date, time, false);
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
@@ -44,7 +44,7 @@ public class SniffTasks {
                 uid = Uid.uidGenerator("C");
             }
             UIDS.add(uid);
-            Appointment newAppointment = new Vaccination(uid, animal, owner, date, time, vaccine);
+            Appointment newAppointment = new Vaccination(uid, animal, owner, date, time, vaccine, false);
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
@@ -63,7 +63,7 @@ public class SniffTasks {
             }
             UIDS.add(uid);
             Appointment newAppointment =
-                    new Surgery(uid, animal, owner, priority, startDate, startTime, endDate, endTime);
+                    new Surgery(uid, animal, owner, priority, startDate, startTime, endDate, endTime, false);
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;

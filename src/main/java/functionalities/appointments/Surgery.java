@@ -21,8 +21,8 @@ public class Surgery extends Appointment {
     protected String description = "surgery";
 
     public Surgery(String uid, Animal animal, Owner owner, String priority,
-                   LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime) {
-        super(uid, animal, owner);
+                   LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime, boolean isDone) {
+        super(uid, animal, owner, isDone);
         this.uid = uid;
         this.animal = animal;
         this.owner = owner;

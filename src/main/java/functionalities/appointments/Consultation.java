@@ -13,8 +13,8 @@ public class Consultation extends Appointment {
 
     protected String description = "consultation";
 
-    public Consultation(String uid, Animal animal, Owner owner, LocalDate date, LocalTime time) {
-        super(uid, animal, owner);
+    public Consultation(String uid, Animal animal, Owner owner, LocalDate date, LocalTime time, boolean isDone) {
+        super(uid, animal, owner, isDone);
         this.uid = uid;
         this.animal = animal;
         this.owner = owner;
