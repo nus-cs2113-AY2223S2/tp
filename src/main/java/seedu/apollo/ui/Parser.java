@@ -148,6 +148,9 @@ public class Parser {
             return new ListCommand();
 
         case COMMAND_WEEK_WORD:
+            if (!isOneWord(split)) {
+                throw new IllegalCommandException();
+            }
             return new WeekCommand();
 
         case COMMAND_DATE_WORD:
