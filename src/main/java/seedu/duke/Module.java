@@ -1,5 +1,8 @@
 package seedu.duke;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Module {
     private int univId;
     private String moduleCode;
@@ -52,5 +55,26 @@ public class Module {
 
     public String getNusModuleName() {
         return nusModuleName;
+    }
+
+    public boolean isInFilter(String filter) {
+        if (filter == null) {
+            return true;
+        }
+        String[] conditions = filter.split(", ");
+        for (String condition : conditions) {
+            if (condition.toLowerCase().startsWith("mc == ")) {
+                int credits = Integer.parseInt(condition.substring(6));
+                if (moduleMCs != credits) {
+                    return false;
+                }
+            } else if (condition.toLowerCase().contains(" in name")) {
+                String keyword = condition.substring(0, condition.indexOf(" in name"));
+                if (!moduleName.toLowerCase().contains(keyword)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

@@ -31,8 +31,8 @@ public class Duke {
         storage.compareDeadlines(deadlines);
         while (isContinue) {
             userInput = in.nextLine();
-            Command command = parser.parseUserCommand(userInput, universities, modules, allModules, storage,
-                    budgetPlanner, deadlines);
+            Command command = parser.parseUserCommand(userInput, universities, modules, allModules,
+                    storage, budgetPlanner, deadlines);
             command.execute();
             isContinue = !command.getIsExit();
         }
