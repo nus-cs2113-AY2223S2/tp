@@ -142,9 +142,13 @@ Sequence Diagram of List Current Command.
 
 **Explanation**
 
-1. ListCurrentCommand calls printCurrentModList() of UI class, passing an ArrayList<Module> modules.
-2. UI accesses Module object in the ArrayList<Module> to receive information using getter functions.
-3. UI prints out to userConsole the various information.
+1. ListCurrentCommand calls printCurrentPuModList() of UI class, passing an ArrayList<Module> modules.
+2. UI object calls ListCurrentPu Command for all universities stored in the class-level object _universities_.
+3. UI prints out to userConsole the modules user has added to his list in order of the Partner Universities.
+
+See ListCurrentPuCommand for further explanation: 
+[ListCurrentPuCommand](#list-current-pu-command) 
+
 
 ### List Pu Command
 
@@ -153,6 +157,7 @@ Lists out all of Partner Universities.
 > Syntax: list pu
 
 Sequence Diagram of List Pu Command.
+
 
 ![ListPuCommandSequenceDiagram.png](diagrams%2FListPuCommandSequenceDiagram.png)
 
@@ -170,7 +175,7 @@ Prints out list of modules available at a given Partner University
 
 > Syntax: list [_uniAbbreviation_]
 
-Partner Universities Abbreviations can be found using List Pu command
+**Note: Partner Universities Abbreviations can be found using List Pu command**
 
 Sequence Diagram of List Pu Modules Command.
 ![ListPuModulesCommandSequenceDiagram.png](diagrams%2FListPuModulesCommandSequenceDiagram.png)
@@ -209,6 +214,29 @@ Sequence Diagram of Add Module Command.
 The UI class currently holds an instance all available PUs and their modules.
 This can and will be further refactored into other class to adhere to Single Responsbility Principle.
 Possible Solution: Store the PUs and modules in DataReader and use a getter function when needed.
+
+
+### List Current Pu Command
+
+Prints out modules selected by user specific to a Partner University.
+
+> Syntax: list current [_uniAbbreviation_]
+
+Sequence Diagram of List Current Pu Command
+![ListCurrentPuCommandSequenceDiagram.png](diagrams%2FListCurrentPuCommandSequenceDiagram.png)
+
+**Explanation**
+
+1. ListCurrentPuCommand object is initialized with ArrayList<Modules> modules containing all user selected modules
+and Integer univId which is the Partner University unique ID that user has inputted.
+2. ListCurrentPuCommand calls PrintCurrentPuModList() of UI Class passing these two objects as arguments.
+3. PrintCurrentPuModList first filters out modules of the specific Partner University using uniID from the 
+ArrayList<Module> modules.
+4. PrintCurrentPuModList loops through the class level object universities to retrieve the Partner university name
+corresponding to the uniID.
+5. Loops through filtered modules retrieving module information and printing it out to User Console.
+
+
 
 ## Product scope
 
