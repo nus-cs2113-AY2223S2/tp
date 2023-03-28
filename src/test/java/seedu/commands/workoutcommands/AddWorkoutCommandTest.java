@@ -1,5 +1,6 @@
 package seedu.commands.workoutcommands;
 
+
 import org.junit.jupiter.api.Test;
 import seedu.workout.Exercise;
 import seedu.workout.Workout;

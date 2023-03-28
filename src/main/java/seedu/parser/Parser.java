@@ -2,10 +2,12 @@ package seedu.parser;
 
 
 import seedu.commands.Command;
-import seedu.commands.workoutcommands.EndWorkoutCommand;
 import seedu.commands.ExitCommand;
+import seedu.commands.InvalidCommand;
+import seedu.commands.workoutcommands.EndWorkoutCommand;
 import seedu.commands.workoutcommands.HelpWorkoutCommand;
-import seedu.commands.IncorrectCommand;
+import seedu.exceptions.InvalidSyntaxException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,10 +16,10 @@ public class Parser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandName>\\S+)(?<arguments>" +
             ".*)");
 
-    public Command processCommand(String userInput) {
+    public Command processCommand(String userInput) throws InvalidSyntaxException {
         Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand();
+            throw new InvalidSyntaxException("user input");
         }
 
         String commandName = matcher.group("commandName");
@@ -26,26 +28,28 @@ public class Parser {
         switch (commandName) {
         case "/start":
             return CheckInputs.processStart(arguments);
-        case "/add":
+        case "/wadd":
             return CheckInputs.processAdd(arguments);
+        case "/end":
+            return new EndWorkoutCommand();
         case "/delete":
             return CheckInputs.processDelete(arguments);
         case "/list":
             return CheckInputs.processList(arguments);
-        case "/view":
+        case "/wview":
             return CheckInputs.processView(arguments);
-        case "/end":
-            return new EndWorkoutCommand();
+        case "/count":
+            return CheckInputs.processSetsRepsCount(arguments);
         case "/exit":
             return new ExitCommand();
         case "/help":
             return new HelpWorkoutCommand();
         case "/cadd":
             return CheckCaloriesInput.processAddCalories(arguments);
-        case "/count":
-            return CheckInputs.processSetsRepsCount(arguments);
+        case "/cview":
+            return CheckCaloriesInput.processViewCalories(arguments);
         default:
-            return new IncorrectCommand();
+            return new InvalidCommand(commandName);
         }
     }
 }

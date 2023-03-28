@@ -1,13 +1,13 @@
 package seedu.workout;
 
+
 import org.junit.jupiter.api.Test;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WorkoutListTest {
-    public SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
 
     //@@ author guillaume-grn
     @Test
@@ -28,13 +28,13 @@ public class WorkoutListTest {
 
         // Get the workouts for the week of January 01, 2023 using any day in the week
         Calendar calendar3 = Calendar.getInstance();
-        calendar3.set(2022, Calendar.DECEMBER, 30); // Friday
+        calendar3.set(2023, Calendar.JANUARY, 03); // Tuesday
         WorkoutList workoutsInSpecificWeek = workoutList.getWorkoutsInSpecificWeek(calendar3.getTime());
 
         // Check that the correct workouts are returned
-        assertEquals(2, workoutsInSpecificWeek.workoutArrayList.size());
-        assertEquals(calendar0.getTime(), workoutsInSpecificWeek.workoutArrayList.get(0).getDate());
-        assertEquals(calendar1.getTime(), workoutsInSpecificWeek.workoutArrayList.get(1).getDate());
+        assertEquals(2, workoutsInSpecificWeek.getWorkoutArrayList().size());
+        assertEquals(calendar1.getTime(), workoutsInSpecificWeek.getWorkoutArrayList().get(0).getDate());
+        assertEquals(calendar2.getTime(), workoutsInSpecificWeek.getWorkoutArrayList().get(1).getDate());
     }
 
     //@@ guillaume-grn
@@ -44,9 +44,9 @@ public class WorkoutListTest {
         Exercise exercise1 = new Exercise("Bench press", "100", "8 6 4");
         Exercise exercise2 = new Exercise("Bench press", "150", "5 5 5 5");
         Calendar cal0 = Calendar.getInstance();
-        cal0.set(2023, 3, 4); // April 4th, 2023.Tuesday
+        cal0.set(2023, Calendar.MARCH, 1); // March 4th, 2023.Wednesday
         Workout workout1 = new Workout(cal0.getTime());
-        cal0.set(2023,3,6);
+        cal0.set(2023, Calendar.MARCH, 3);
         Workout workout2 = new Workout(cal0.getTime());
         workout1.addExercise(exercise1);
         workout2.addExercise(exercise2);

@@ -1,5 +1,6 @@
 package seedu.calorietracker;
 
+
 import java.util.HashMap;
 
 public class FoodList {

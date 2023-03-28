@@ -1,5 +1,6 @@
 package seedu.commands.countcommands;
 
+
 import seedu.commands.Command;
 import seedu.workout.WorkoutList;
 
@@ -13,11 +14,11 @@ public class CountSetsRepsCommand extends Command {
     }
 
     @Override
-    public void execute() {
-        if (workoutList.currentWorkoutIndex == WorkoutList.NO_CURRENT_WORKOUT) {
+    public String execute() {
+        if (workoutList.getCurrentWorkoutIndex() == WorkoutList.NO_CURRENT_WORKOUT) {
             workoutList.countSetsReps(dayInSpecificWeekDate);
-            return;
+            return "";
         }
-        System.out.println("End your current workout before asking for Count command");
+        return "End your current workout before asking for Count command";
     }
 }

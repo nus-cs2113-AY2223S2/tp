@@ -1,9 +1,12 @@
 package seedu.parser;
 
-import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.Test;
 import seedu.commands.Command;
-import seedu.commands.IncorrectCommand;
+import seedu.commands.ExitCommand;
+import seedu.commands.IncorrectSyntaxCommand;
+import seedu.exceptions.InvalidSyntaxException;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ParserTest {
@@ -17,9 +20,14 @@ public class ParserTest {
     public void testProcessCommandIncorrectArguments() {
         String userInput = "/list 556";
         Parser testList = new Parser();
-        Command result = testList.processCommand(userInput);
+        Command result;
+        try {
+            result = testList.processCommand(userInput);
+        } catch (InvalidSyntaxException e) {
+            result = new ExitCommand();
+        }
         //show error, if the result satisfy the condition in IncorrectCommand
-        assertTrue(result instanceof IncorrectCommand);
+        assertTrue(result instanceof IncorrectSyntaxCommand);
     }
 
 }
