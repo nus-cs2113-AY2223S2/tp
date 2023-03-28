@@ -50,7 +50,7 @@ public class Strings {
     public static final String SEARCH = "search";
     public static final String INVALID_INPUT = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
     public static final String DELETE_FORMAT = "Please following the correct format: " +
-            "delete c/<category name> [(optional) e/<event name>]";
+            "delete c/<category name> [(optional) e/<event index>]";
     public static final String REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY = "Remember do not leave any things " +
             "inside the brackets empty!";
     public static final String EMPTY_DELETION = "☹ OOPS!!! The description of a delete cannot be empty.";

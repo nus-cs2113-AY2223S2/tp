@@ -268,6 +268,54 @@ public class CommandTest {
     }
 
     @Test
+    void deleteWholeCategory_nonExistedCategory_expectCategoryDoesNotExistMessage() {
+        setup();
+        String terminalOutput = executeInput("delete c/travel").toString();
+        assertEquals("Category does not exist" + System.lineSeparator(), terminalOutput);
+        assertEquals(2, CategoryList.categories.size());
+        clear();
+    }
+
+    @Test
+    void deleteCommand_emptyDescription_expectEmptyDeleteMessage() {
+        setup();
+        String terminalOutput = executeInput("delete").toString();
+        assertEquals("☹ OOPS!!! The description of a delete cannot be empty." +
+                System.lineSeparator(), terminalOutput);
+        assertEquals(2, food.events.size());
+        clear();
+    }
+
+    @Test
+    void deleteEvent_emptyCategory_expectCorrectFormatMessage() {
+        setup();
+        String terminalOutput = executeInput("delete e/1").toString();
+        assertEquals("Please following the correct format: delete c/<category name> [(optional) e/<event index>]\n"
+                + "Remember do not leave any things inside the brackets empty!"
+                + System.lineSeparator(), terminalOutput);
+        assertEquals(2, food.events.size());
+        clear();
+    }
+
+    @Test
+    void deleteEvent_outOfBoundEventIndex_expectEventDoesNotExist() {
+        setup();
+        String terminalOutput = executeInput("delete c/food e/3").toString();
+        assertEquals("Event does not exist" + System.lineSeparator(), terminalOutput);
+        assertEquals(2, food.events.size());
+        clear();
+    }
+
+    @Test
+    void deleteEvent_dummyInputForEventIndex_expectPositiveIntegerForEventIndexMessage() {
+        setup();
+        String terminalOutput = executeInput("delete c/food e/abc").toString();
+        assertEquals("Please give a positive integer for event index" + System.lineSeparator(), terminalOutput);
+        assertEquals(2, food.events.size());
+        clear();
+    }
+
+    @Test
     void viewAll_expectEverythingToBePrintedOut() {
         setup();
         String terminalOutput = executeInput("view").toString();
