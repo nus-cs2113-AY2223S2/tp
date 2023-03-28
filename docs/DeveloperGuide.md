@@ -61,13 +61,37 @@ Otherwise, a success message is printed and the `printTable` method from the `Ui
 The add command is mainly handled by the `AddCommand` class, which extends the `Command` class.
 
 ### Edit
-The "edit" command is mainly handled by the `EditCommand` class, which extends the `Command` class.
+The "edit" command is mainly handled by the `EditCommand` class, which extends the `Command` class. It is parsed
+by the `EditParser` class, which extends the `Parser` class.
 
 ### Restock
-The "restock" command is mainly handled by the `RestockCommand` class, which extends the `Command` class.
+The `restock` command is mainly handled by the `RestockCommand` class, which extends the `Command` class. It is parsed 
+by the `RestockParser` class, which extends the `Parser` class. Included below is a sequence diagram for the `restock`
+command:
+
+![RestockParser.png](UML/Restock/RestockParser.png)
+![RestockCommand.png](UML/Restock/RestockCommand.png)
+
+**Step 1**. When the user executes the command `restock upc/[UPC Code] qty/[Quantity]`, the
+`ParserHandler` will create a new `RestockParser` object and pass the appropriate `input` and `Inventory` in which
+the items are stored.
+
+**Step 2**. 
 
 ### Sell
-The "sell" command is mainly handled by the `SellCommand` class, which extends the `Command` class. 
+The "sell" command is mainly handled by the `SellCommand` class, which extends the `Command` class. It is parsed
+by the `SellParser` class, which extends the `Parser` class. Included below is a sequence diagram for the `sell`
+command:
+
+![SellParser.png](UML/Sell/SellParser.png)
+
+**Step 1**. When the user executes the command `sell upc/[UPC Code] qty/[Quantity]`, the
+`ParserHandler` will create a new `SellParser` object and pass to it the appropriate `input` and the appropriate
+`Inventory` in which the items are stored.
+
+**Step 2**. 
+
+
 ### Remove
 The remove command is mainly handled by the `RemoveCommand` class, which extends the `Command` class.
 
