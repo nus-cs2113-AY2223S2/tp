@@ -1,5 +1,6 @@
 package com.clanki.commands;
 
+import com.clanki.exceptions.InvalidInputException;
 import com.clanki.objects.Flashcard;
 import com.clanki.objects.FlashcardList;
 import com.clanki.ui.Ui;
@@ -37,7 +38,7 @@ public class UpdateCommand extends Command {
         }
     }
 
-    public int implementUpdate(ArrayList<Flashcard> flashcards, String userText) {
+    public int implementUpdate(ArrayList<Flashcard> flashcards, String userText) throws InvalidInputException {
         String[] userTexts = userText.split(" ", 3);
         int indexInMatchList = Integer.parseInt(userTexts[0]) - 1;
         Flashcard flashcardToChange = matchingFlashcards.get(indexInMatchList);
@@ -49,6 +50,9 @@ public class UpdateCommand extends Command {
         if (userTexts[1].contains("a")) {
             flashcards.get(index).setAnswer(userTexts[2].substring(0, 1).toUpperCase()
                     + userTexts[2].substring(1));
+        }
+        if (!userTexts[1].contains("a") && !userTexts[1].contains("q")) {
+            throw new InvalidInputException();
         }
         return index;
     }
@@ -70,9 +74,13 @@ public class UpdateCommand extends Command {
                 printFlashCard(flashcards.get(index));
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please enter the input in the correct format as shown in the user guide.");
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter the index of the flashcard you want to update.");
             } catch (IndexOutOfBoundsException e) {
                 System.out.print("You have selected an index out of the list. ");
                 System.out.println("There are only " + matchingFlashcards.size() + " flashcards that match the query.");
+            } catch (InvalidInputException e) {
+                System.out.println("Please enter the input in the correct format as shown in the user guide.");
             }
         } else {
             System.out.println("There are no flashcards with the query \"" + query + "\".");
