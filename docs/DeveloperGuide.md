@@ -110,7 +110,7 @@ As for the expenditure types, their fields are as shown below.
 The following shows the UML diagram used for the Expenditure Categories component implemented in MyLedger.
 
 <p align="center">
-    <img src="team/images/umlClassDiagramExpenditure.png" width="30%">
+    <img src="team/images/UMLClassDiagramExpenditure.png" width="80%">
 </p>
 
 In the diagram, the aforementioned expenditure categories inherit from the `Expenditure` class. The `ExpenditureList` class is a composition of expenditures of `Expenditure` type. 
@@ -146,7 +146,9 @@ The `SortCommand` class contains the operations pertaining to sorting the list o
 The `ViewDateExpenditureCommand` and `ViewTypeExpenditureCommand` classes contain the operations pertaining to displaying a filtered expenditure list by the expenditure date and type respectively.
 
 Below shows the UML diagram representing the `command` package.
-![](team/images/umlCommandClassDiagram.png)
+<p align="center">
+    <img src="team/images/umlCommandClassDiagram.png" width="100%">
+</p>
 
 A more detailed coverage is explored in [Command List](#4-command-list).
 
