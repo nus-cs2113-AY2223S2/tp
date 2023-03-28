@@ -15,11 +15,11 @@ import java.util.ArrayList;
  */
 public class EditCommand extends Command {
 
-    private final String[] editInfo;
-    private static final String NAME_LABEL = "n/";
-    private static final String QUANTITY_LABEL = "qty/";
-    private static final String PRICE_LABEL = "p/";
-
+   private static final String NAME_LABEL = "n/";
+   private static final String QUANTITY_LABEL = "qty/";
+   private static final String PRICE_LABEL = "p/";
+   private final String[] editInfo;
+  
     public EditCommand(Inventory inventory, String[] editInfo) {
         super(inventory);
         this.editInfo = editInfo;
@@ -86,9 +86,9 @@ public class EditCommand extends Command {
                 setItemPrice(item, updatedPrice);
                 currentLabel = PRICE_LABEL;
             } else if (data[dataSequence].contains("c/")) {
-              String updatedCategory = data[dataSequence].replaceFirst("c/", "");
-              updatedCategory = updatedCategory.toLowerCase();
-              item.setCategory(updatedCategory);
+                String updatedCategory = data[dataSequence].replaceFirst("c/", "");
+                updatedCategory = updatedCategory.toLowerCase();
+                item.setCategory(updatedCategory);
             } else {
                 if (currentLabel.equals(NAME_LABEL)) {
                     System.out.println(dataSequence);
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
             Item oldItem = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
                     updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
             //for (int data = 1; data < editInfo.length; data += 1) {
-                updateItemInfo(updatedItem, editInfo);
+            updateItemInfo(updatedItem, editInfo);
             //}
             Item itemForHistory = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
                     updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
