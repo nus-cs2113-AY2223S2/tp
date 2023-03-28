@@ -79,6 +79,16 @@ venue of the event. When relaunching EventUS, the program will check if there is
 information of an event. If the text file exists, the information of the Event instance will be updated with the event 
 details. If there is no text file, a text file will be created.
 
+### [Proposed] List companies feature
+#### Proposed Implementation
+The proposed <code>CompanyList.printCompanyInformation</code> is facilitated by <code>ListCompanyCommand</code>. It will
+print out the companies that are stored in an ArrayList called companyList. The Company object is then printed out with 
+an integer denoting its index, four parameters, <code>String companyName </code>, <code>String industry </code>, 
+<code>Int contactNumber </code>, and <code>String contactEmail </code>, and its confirmation status. It will print out 
+each company from the entire companyList from index 0 to the final index of the last company stored in companyList.
+
+
+
 ## Product scope
 ### Target user profile
 
