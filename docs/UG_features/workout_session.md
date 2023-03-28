@@ -4,8 +4,6 @@
 
 Our workouts feature is designed to help you complete a workout and log your progress
 
-[todo]
-
 ## Commands
 
 ### Getting help ```help```

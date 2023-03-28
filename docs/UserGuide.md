@@ -1,8 +1,27 @@
+
 # User Guide
 
 ## Introduction
 
 FitnessDuke is a **Command Line Application for tracking and managing workouts, optimised for use via the command-line interface (CLI)**.
+
+## Table of contents
+* [Getting started](#getting-started)
+* [FitnessDuke's Features](#fitnessdukes-features)
+  * [Viewing help: ```help```](#viewing-help-help)
+  * [Exiting the program: ```exit```](#exiting-the-program--exit)
+  * [Getting a list of specific workouts: ```generate [arguments] [number]```](#getting-a-list-of-specific-workouts--generate-arguments-number)
+  * [Getting the filters to generate workout ```filters```](#getting-the-filters-to-generate-workout-filters)
+  * [Searching for a workout ```find [keyword]```](#searching-for-a-workout-find-keyword)
+  * [Viewing plans ```plans```](#viewing-plans-plans)
+  * [Seeing your workout history ```history```](#seeing-your-workout-history-history)
+  * [Seeing your workout summary ```data```](#seeing-your-workout-summary-data)
+  * [Generating a list of planned exercises ```quick [plan_name] [x]```](#generating-a-list-of-planned-exercises-quick-planname-x)
+  * [Getting into a workout ```start```](#getting-into-a-workout-start)
+  * [Getting into the fitness planner ```planner```](#getting-into-the-fitness-planner-planner)
+* [Saving the data](#saving-the-data)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
 ## Getting Started
 
@@ -18,9 +37,9 @@ Some example commands you can try:
    * ```exit```: Exits the app.
    * ```filters```: Displays available filters for users to customise their workout.
    * ```history```: Lists all finished exercises.
-8. Refer to the [Features](#features) below for details of each command.
+8. Refer to [FitnessDuke's Features](#fitnessdukes-features) below for details of each command.
 
-## Features
+## FitnessDuke's Features
 
 ## *General*
 
@@ -86,11 +105,11 @@ The filters are shown here:
 | [legs]   | exercises that train your legs                |
 _____________________________________________________________
 
-### Searching for a workout ```find```
+### Searching for a workout ```find [keyword]```
 
 Finds existing exercises whose names contain the input keyword.
 
-Format: ```find KEYWORD```
+Format: ```find [keyword]```
 
 Examples:
 ```
@@ -130,11 +149,11 @@ completion of each exercise.
 
 Format: ```data```
 
-### Generating a list of planned exercises ```quick```
+### Generating a list of planned exercises ```quick [plan_name] [x]```
 
 Generates a list of exercises planned by the user.
 
-Format: ```quick PLAN_NAME x```, PLAN_NAME has to be present under "plans" and x refers to the number of exercises the user intends to do.
+Format: ```quick home_legs_day 3```, plan_name has to be present under "plans" and x refers to the number of exercises the user intends to do.
 
 Examples:
 ```
@@ -180,12 +199,6 @@ Begin in a pushup position on the floor. This will be your starting position., U
 ________________________________________
 ```
 
-### Getting into the fitness planner ```planner```
-
-Enters workout planner where users can plan their workouts for each day of the week.
-
-Format: ```planner```
-
 ## *Starting a workout session*
 
 ### Getting into a workout ```start```
@@ -201,11 +214,18 @@ Click [here](UG_features/workout_session.md) to learn more about using our worko
 
 
 ## *Configuring plans*
+
+### Getting into the fitness planner ```planner```
+
 Enters another interface where you can configure your workout plans and save them for the week
 
 Format: ```planner```
 
 Click [here](UG_features/planner.md) to learn more about using our planner feature.
+
+### Saving the data
+
+FitnessDuke data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. :-)
 
 ## FAQ
 
@@ -214,9 +234,21 @@ Click [here](UG_features/planner.md) to learn more about using our planner featu
 **A**: This is a very intuitive feature, but we have not implemented it yet.
 
 ## Command Summary
-* Finding specific workouts based on keyword(s): ```find```
-* Viewing help: ```help```
-* Quick Start Workout: ```quick```
-* Generate specific Workout set: ```generate```
-* Exiting the program: ```exit```,```bye```
-[todo]
+
+| Action       | Format, Examples                                                         |
+|--------------|--------------------------------------------------------------------------|
+| **help**     | ```help```                                                               |
+| **exit**     | ```exit```                                                               |
+| **generate** | ```generate [arguments] [number]``` <br> eg. ```generate hard upper 4``` |
+| **filters**  | ```filters```                                                            |
+| **find**     | ```find [keyword]```<br> eg. ```find arms```                             |
+| **plans**    | ```plans```                                                              |
+| **planner**  | ```planner```                                                            |
+| **history**  | ```history```                                                            |
+| **data**     | ```data```                                                               |
+| **start**    | ```start```                                                              |
+| **quick**    | ```quick [plan_name] [x]``` <br> eg. ```quick home_leg_day 3```          |
+_____________________________________________________________
+
+
+
