@@ -154,6 +154,14 @@ public class Item implements Comparable<Item> {
         return itemsChanged != 0;
     }
 
+    /**
+     * Compares the current item to another item and returns what edits have to be made to get the item to the state
+     * of the item passed in the parameter
+     *
+     * @param item Item to check the current item against
+     * @return EditType of the changes made
+     */
+
     public ArrayList<Types.EditType> getEditTypes(final Item item) {
         ArrayList<Types.EditType> results = new ArrayList<>();
         if (quantity < item.getQuantity()) {
@@ -180,9 +188,23 @@ public class Item implements Comparable<Item> {
         return results;
     }
 
+    /**
+     * Gets a formatted date string from a LocalDate object.
+     *
+     * @param date Date to format
+     * @return Formatted date string.
+     */
+
     private static String getDateString(final LocalDate date) {
         return date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear();
     }
+
+    /**
+     * Adjusts 24 hour time to 12 hour time.
+     *
+     * @param hour 24 hour time
+     * @return integer of 12 hour time.
+     */
 
     private static int adjustHour(final int hour) {
         if (hour % 12 == 0) {
@@ -191,11 +213,24 @@ public class Item implements Comparable<Item> {
         return hour % 12;
     }
 
+    /**
+     * Gets a formatted time string from a LocalTime object.
+     *
+     * @param time Time to format
+     * @return Formatted time string
+     */
+
     private static String getTimeString(final LocalTime time) {
         LocalTime noon = LocalTime.parse("12:00");
         return adjustHour(time.getHour()) + ":" + (time.getMinute() < 10 ? "0" : "") + time.getMinute()
                 + " " + (time.isBefore(noon) ? "AM" : "PM");
     }
+
+    /**
+     * Gets the dateTime of the current item in a formatted string.
+     *
+     * @return Formatted String of the dateTime.
+     */
 
     public String getDateTimeString() {
         LocalDate date = dateTime.toLocalDate();

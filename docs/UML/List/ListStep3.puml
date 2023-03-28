@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object ListParser{
+    - Inventory = inventory
+}
+
+object ListCommand{
+    - Inventory = inventory
+}
+
+object Ui{
+    - ArrayList<Item> items = items
+}
+ListParser -> ListCommand
+ListCommand -> Ui
+@enduml

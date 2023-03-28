@@ -36,6 +36,13 @@ Example of usage:
 **A**: {your answer here}
 
 ## Command Summary
+| Action  | Command |
+|---------|-------|
+| Add an item to the inventory |       |
+| Remove an item from the inventory | |
+
+
+
 
 {Give a 'cheat sheet' of commands here}
 

@@ -29,6 +29,10 @@ public class ParserHandler {
         this.alertList = inventory.getAlertList();
     }
 
+    /**
+     * Runs the appropriate command based on the commandWord.
+     *
+     */
     public void run() {
         String command = in.nextLine().trim();
         String[] splitCommand = command.split(" ", 2);
