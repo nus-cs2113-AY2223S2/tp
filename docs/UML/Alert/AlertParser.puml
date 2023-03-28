@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor User
+User -> AlertParser
+
+group sd [AddAlertCommand running]
+alt first word of input == "add"
+    AlertParser -> AddAlertCommand: run()
+    activate AddAlertCommand
+    participant AddAlertCommand
+    AddAlertCommand -> AddAlertCommand: run()
+    end
+ alt first word of input == "remove"
+    AlertParser -> RemoveAlertCommand: run()
+    activate RemoveAlertCommand
+    RemoveAlertCommand -> RemoveAlertCommand: run()
+    end
+    participant SessionManager
+    participant Storage
+    opt SessionManager.getAutoSave()
+    AddAlertCommand ->SessionManager:writeSession(alertList)
+    activate SessionManager
+    SessionManager->Storage:writeCSV(alertList)
+    activate Storage
+    Storage --> SessionManager:
+    deactivate Storage
+    SessionManager -->AddAlertCommand:
+    deactivate SessionManager
+    destroy AddAlertCommand
+    destroy RemoveAlertCommand
+end
+
+
+
+@enduml

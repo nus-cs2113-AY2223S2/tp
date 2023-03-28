@@ -228,6 +228,10 @@ the details of the last and most current instant of the item.
 ### Alert
 The alert command is mainly handled by the `AddAlertCommand` class and `RemoveAlertCommand` class, both of which extend the `Command` class. It is parsed by the `AlertParser` class, which extends the `Parser` class.
 
+![AlertParser.png](UML%2FAlert%2FAlertParser.png)
+
+
+
 **Step 1**. When the user executes a command that begins with the word `alert`, the ParserHandler will create a new `AlertParser` object and pass in the appropriate `input`, as well as the corresponding `inventory` where the list of alerts for inventory items are stored.
 
 ![AlertStep1.png](UML%2FAlert%2FAlertStep1.png)
@@ -251,11 +255,12 @@ Note that both the `AddAlertCommand` and `RemoveAlertCommand` classes have an `A
 **Step 4**. The `run` method in `AddAlertCommand` overrides the `run` method in `Command`. This calls the `checkAddAlertUpc` method, which checks if the UPC of the alert is one that exists in the inventory.
 If the UPC does not exist in the inventory, an error message is shown. Otherwise, the `addAlert` method is called.
 The `addAlert` method checks if the alert is a minimum or maximum alert, and then adds the alert to the AlertList by calling either the `addMinAlert()` or `addMaxAlert()` method.
-
+If the `SessionManager`'s `autosave` flag is enabled, it writes the current alert list to a file using the `SessionManager`.
 
 The `run` method in `RemoveAlertCommand` overrides the `run` method in `Command`. This calls the `checkRemoveAlertUpc` method, which checks if the UPC of the alert is one that exists in the inventory.
 If the UPC does not exist in the inventory, an error message is shown. Otherwise, the `removeAlert` method is called.
 The `removeAlert` method checks if the alert is a minimum or maximum alert, and then removes the alert.
+If the `SessionManager`'s `autosave` flag is enabled, it writes the current alert list to a file using the `SessionManager`.
 
 
 
