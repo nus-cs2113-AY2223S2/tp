@@ -16,20 +16,15 @@ Which flashcard do you want to update?
 Understood. The card has been updated to
 Q: Q2
 A: A1
-Let's see the next flashcard!
-Question for the current flashcard is:
-Q1
-Are you ready to view the answer?
-A1
-Have you got this correct?
-Great, you got it right!
-Let's see the next flashcard!
-Question for the current flashcard is:
-Q2
-Are you ready to view the answer?
-A1
-Have you got this correct?
-No worries, we will try it next time.
+There are 2 cards available for review today.
+---
+Q: Q1 (ENTER to view answer)A: A1
+Did you get it right? (y/n) Great, you got it right!
+---
+Q: Q2 (ENTER to view answer)A: A1
+Did you get it right? (y/n) No worries, we will try again later today.
+---
+Q: Q2 (ENTER to view answer)A: A1
+Did you get it right? (y/n) The input is in an incorrect format.
+---
 Congrats! You have reviewed all the flashcards due today!
-The input is in an incorrect format.
-Bye. Don't forget to come back later to study!
