@@ -575,7 +575,7 @@ class UITest {
                 + "LIST CURRENT [PU ABBRV]        : Provides the list of modules that user has added to his list of " +
                 "list of interest for the specified PU\n"
                 + "ADD [PU ABBRV]/[MODULE CODE]   : Adds the specified module into user's current list of modules\n"
-                + "REMOVE [INDEX]                 : Removes the specified module by index from user's current list\n"
+                + "REMOVE [PU ABBRV]/ [INDEX]     : Removes the specified module by index from user's current list\n"
                 + "SEARCH [NUS MOD CODE]          : Search for PU modules that can map the user's targeted module\n"
                 + "/budget budget [AMOUNT]        : Allows the user to input/edit the total amount of budget for "
                 +"his/her SEP trip\n"
@@ -588,6 +588,9 @@ class UITest {
                 + "/budget entertainment [AMOUNT] : Allows the user to input/edit the total amount of entertainment "
                 + "cost for his/her SEP trip\n"
                 + "/budget view                   : Provides an overview of the user's planned budget\n"
+                + "/deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] : Allows the user to add in his/her own "
+                + "personalized deadlines of the key dates for certain SEP requirements\n"
+                + "/deadline/remove [DEADLINE INDEX] : Allows the user to remove the specific deadline from the list\n"
                 + "EXIT                           : Exits the program\n\n"
                 + System.lineSeparator()
                 + READ_COMMAND_INPUT + System.lineSeparator()
