@@ -102,7 +102,10 @@ public class RemoveCommand extends Command {
             upcCodes.remove(upcCode);
             inventory.getUpcCodesHistory().remove(upcCode);
             itemInventory.remove(i);
-            removeItemFromHashTrie(itemToRemove, itemName);
+            String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
+            for (String name : itemNames) {
+                removeItemFromHashTrie(itemToRemove, name);
+            }
             removeItemFromCategoryHash(itemToRemove, category);
             removeAlert(upcCode);
             Ui.printSuccessRemove(itemToRemove);
