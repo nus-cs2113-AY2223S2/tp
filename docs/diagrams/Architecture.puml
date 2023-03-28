@@ -1,0 +1,30 @@
+@startuml
+!include <office/Concepts/globe_internet>
+!include <office/Concepts/documents>
+!include <office/Users/user>
+!include style.puml
+
+Package " "<<Rectangle>>{
+    Class UI UI_COLOR
+    Class Command COMMAND_COLOR
+    Class Storage STORAGE_COLOR
+    Class Userdata USERDATA_COLOR
+    Class Parser #black
+    Class Main #grey
+}
+
+Class "<$user>" as User USERDATA_COLOR_T2
+Class "<$documents>" as File UI_COLOR_T1
+
+UI -[#green]> Userdata
+Command -[COMMAND_COLOR]>Userdata
+Main -[#grey]-> UI
+Main -right[#grey]-> Storage
+Main -[#grey]-> Userdata
+Main -left[#grey]-> Command
+Main -up[#grey]-> Parser
+Parser -[#black]-> Command
+
+Storage -right[STORAGE_COLOR]->File
+User -up-> UI
+@enduml
