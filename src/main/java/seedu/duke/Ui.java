@@ -23,7 +23,8 @@ public class Ui {
 
         String cmd;
         cmd = in.nextLine();
-
+        assert cmd != null;
+        
         while (!(cmd.equals("bye"))) {
             Parser.parseCommand(cmd, eventList);
             cmd = in.nextLine();

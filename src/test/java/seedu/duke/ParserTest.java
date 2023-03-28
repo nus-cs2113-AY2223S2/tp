@@ -27,6 +27,13 @@ class ParserTest {
         parser.parseCommand("delete -s 1", eventList);
         assert (eventList.getSize() == 0);
     }
+
+    @Test
+    void testParserDeleteAllCommand() {
+        parser.parseCommand("delete -all", eventList);
+        assert (eventList.getSize() == 0);
+    }
+
     // @Test
     // void testEditCommand(){
     // parser.parseCommand("edit -i 0 -st 20:00 -sd 2023/03/14", eventList);
