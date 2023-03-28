@@ -11,7 +11,7 @@ import seedu.mealcompanion.recipe.RecipeList;
  * Represents the "recipe almost" command.
  */
 
-public class RecipeAlmostCommand extends RecipeCommand{
+public class RecipeAlmostCommand extends RecipeCommand {
 
     /**
      * Check the number of missing ingredients to make a recipe in the ingredient list.

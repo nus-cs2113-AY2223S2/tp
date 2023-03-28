@@ -10,7 +10,7 @@ import seedu.mealcompanion.recipe.RecipeList;
 /**
  * Represents the "recipe detail" command.
  */
-public class RecipeDetailCommand extends ExecutableCommand {
+public class RecipeDetailCommand extends RecipeCommand {
 
     String argument;
     public RecipeDetailCommand(String argument) {

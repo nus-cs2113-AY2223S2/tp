@@ -9,7 +9,7 @@ import seedu.mealcompanion.recipe.RecipeList;
 /**
  * Represents the "recipe all" command.
  */
-public class RecipeAllCommand extends ExecutableCommand {
+public class RecipeAllCommand extends RecipeCommand {
     /**
      * List all recipes.
      *

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Represents the "recipe need" possible
  */
-public class RecipeNeedCommand extends ExecutableCommand{
+public class RecipeNeedCommand extends RecipeCommand {
 
     String recipeName;
 

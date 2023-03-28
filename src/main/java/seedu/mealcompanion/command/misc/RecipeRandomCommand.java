@@ -13,7 +13,7 @@ import seedu.mealcompanion.recipe.RecipeList;
 import java.util.Random;
 
 //@@author ngyida
-public class RecipeRandomCommand extends ExecutableCommand {
+public class RecipeRandomCommand extends RecipeCommand {
 
     /**
      * Get a random index of RecipeList
