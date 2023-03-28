@@ -53,6 +53,7 @@ Click on `mealcompanion.jar` to automatically download the file. Place the file 
 
 ![startup.png](images/startup.png)
 <sub>Fig 2: Command to start using Meal Companion</sub>
+
 6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
 
 Meal Companion uses a Command Line Interface (CLI), as the current version is just a proof of concept. We have plans to further develop Meal Companion to include a Graphical User Interface (GUI), or even to a mobile application platform. However as we have not yet reached that stage in our development, the CLI will suffice as the input method to operate Meal Companion. We apologize for any inconvenience caused.
