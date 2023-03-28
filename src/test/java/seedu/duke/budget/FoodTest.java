@@ -1,8 +1,6 @@
 package seedu.duke.budget;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.Module;
-import seedu.duke.Storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
