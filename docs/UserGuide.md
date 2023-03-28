@@ -34,7 +34,7 @@ This guide will introduce you to the basics of using Meal Companion and its curr
 
 Within the `markdown text` you may see segments of text wrapped in `<chevrons>`. These chevrons indicate that this field in the command is a placeholder, to be replaced with your input. For example, a command `add <ingredient>` means you should enter the command `add apples`. 
 
-#### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)
 
 # Getting Started
 
@@ -57,7 +57,7 @@ Click on `mealcompanion.jar` to automatically download the file. Place the file 
 
 Meal Companion uses a Command Line Interface (CLI), as the current version is just a proof of concept. We have plans to further develop Meal Companion to include a Graphical User Interface (GUI), or even to a mobile application platform. However as we have not yet reached that stage in our development, the CLI will suffice as the input method to operate Meal Companion. We apologize for any inconvenience caused.
 
-#### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)
 
 # Features
 This section will focus on some of the key features of Meal Companion and explain their usage.
@@ -100,7 +100,7 @@ Omitting the keyword will return a list of all valid ingredients.
 ### Clear Ingredients
 To remove all ingredients from Meal Companion's storage, use the `clear` command.
  
-#### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)
  
 ## Recipes
 This segment will go into detail about the recipe features that Meal Companion contains, and the usage of these features.
@@ -149,7 +149,7 @@ Meal Companion automatically saves the ingredients you add to a text file named 
 ### Transferring Saved Data to Other Devices
 If you would like to access your saved ingredients list on a new instance of Meal Companion on a different device, it is as simple as copying and pasting the `ingredients.txt` text file to the new device. As long as it is saved in the same folder, Meal Companion will be able to detect it and utilize the existing data. 
 
-#### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)
 
 ## Help
 If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use.
@@ -157,7 +157,7 @@ If you are unsure of which commands to use, the `help` command will display a li
 ![help1.png](images/help1.png)  
 <sub>Fig 12: Sample of Help command with listed output of in-built commands.</sub>
 
-#### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)
 
 ## Command List
 Please see the below table for the list of available commands.
@@ -173,9 +173,9 @@ Please see the below table for the list of available commands.
 | List details of a specific recipe | `recipe <index of recipe>` | `recipe 6` (recipe for Hainanese Chicken Rice) |
 | List recipes that can be made with current list of stored ingredients | `recipe possible` | `recipe possible` |
 
-#### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)
 
 # Conclusion
 Congratulations! You have reached the end of this user guide, which means you are ready to make full use of Meal Companion! Of course, you may refer to this guide at any time, and if you have any further questions, feel free to reach out to the Meal Companion team at any of our contact links at the top of the page! Have a good time, and we hope you enjoy using Meal Companion!
 
-#### [Back to top](#user-guide)
+##### [Back to top](#user-guide)
