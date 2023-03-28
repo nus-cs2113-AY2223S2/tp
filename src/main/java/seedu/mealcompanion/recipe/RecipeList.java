@@ -18,8 +18,12 @@ public class RecipeList {
 
     public RecipeList() {
         this.recipes = new ArrayList<>();
+    }
+
+    public RecipeList(String file) {
+        this.recipes = new ArrayList<>();
         Gson gson = new Gson();
-        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/recipes.json"))) {
+        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream(file))) {
             // This is needed for GSON to return the expected instance of List<SerializableRecipe>
             Type recipeListType =
                     TypeToken.getParameterized(List.class, SerializableRecipe.class).getType();
@@ -68,6 +72,7 @@ public class RecipeList {
      * Find the index (0-based) of a recipe by its specified name.
      * @param name the name of the recipe to look for
      * @return index of recipe if recipe is found, else return -1
+     * @exception throws excepton if recipe name does not exist in the recipe list
      */
     public int findIndex(String name) throws MealCompanionException {
         int index = 0;
@@ -82,5 +87,9 @@ public class RecipeList {
     
     public int size() {
         return recipes.size();
+    }
+
+    public boolean isEmpty() {
+        return recipes.isEmpty();
     }
 }

@@ -67,7 +67,7 @@ public class MealCompanionSession {
         this.ui = new MealCompanionUI(new Scanner(System.in));
         this.controlFlow = new MealCompanionControlFlow();
         this.ingredients = new IngredientList();
-        this.recipes = new RecipeList();
+        this.recipes = new RecipeList("/recipes.json");
         this.ingredientStorage = new IngredientStorage();
     }
 
