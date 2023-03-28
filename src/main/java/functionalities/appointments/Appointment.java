@@ -3,6 +3,9 @@ package functionalities.appointments;
 import functionalities.Animal;
 import functionalities.Owner;
 
+/**
+ * Appointment template for other types of appointments
+ */
 public abstract class Appointment {
 
     public String uid;
