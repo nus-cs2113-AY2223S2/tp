@@ -21,10 +21,10 @@ public class CheckBudgetCommand extends Command {
                 totalAmount += individualExpenditure.getValue();
             }
         }
-        return getCommandResult(budget, totalAmount, borrowedAmount);
+        return getCheckCommandResult(budget, totalAmount, borrowedAmount);
     }
 
-    private static CommandResult getCommandResult(double budget, double totalAmount, double borrowedAmount) {
+    private static CommandResult getCheckCommandResult(double budget, double totalAmount, double borrowedAmount) {
         if (budget == 0) {
             return new CommandResult("Your current budget is set at 0, please use the 'set' command to set a budget.");
         } else if (budget >= totalAmount) {
