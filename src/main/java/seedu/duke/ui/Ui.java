@@ -70,6 +70,9 @@ public class Ui {
         System.out.println("To choose a venue, type:");
         System.out.println("                    choose venue <INDEX>");
         System.out.println(" ");
+        System.out.println("To exit the program, type:");
+        System.out.println("                    exit");
+        System.out.println(" ");
     }
 
     public void showSuccessfulDeletionMessage() {
