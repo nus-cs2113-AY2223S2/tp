@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.meal360.exceptions.InvalidNegativeValueException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
+import seedu.meal360.storage.Database;
 
 
 class Meal360Test {
@@ -314,6 +315,6 @@ class Meal360Test {
 
     @Test
     public void testLoadDatabase() {
-        assertDoesNotThrow(database::loadDatabase);
+        assertDoesNotThrow(database::loadRecipesDatabase);
     }
 }

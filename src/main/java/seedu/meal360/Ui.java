@@ -93,6 +93,9 @@ public class Ui {
         printMessage("3. Edit Recipe: edit {index number} or view /r {recipe name}");
         printMessage("4. Delete Recipe: delete {index number} or view /r {recipe name}");
         printMessage("5. List All Recipes: list");
-        printMessage("6. Exit: bye");
+        printMessage("6. Add to Weekly Plan: add /r {recipe name} {quantity}");
+        printMessage("7. Delete from Weekly Plan: delete /r {recipe name}");
+        printMessage("8. View Weekly Plan: weeklyplan");
+        printMessage("9. Exit: bye");
     }
 }
