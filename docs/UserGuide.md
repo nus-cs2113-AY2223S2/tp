@@ -2,14 +2,14 @@
 
 ## Introduction
 
-{Give a product intro}
+MagusStock is a Java command-line interface (CLI) application designed for inventory management.
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Ensure that you have Java 11 or above installed. 
+2. Download the latest version of MagusStock from [here](https://github.com/AY2223S2-CS2113-W12-3/tp/releases).
+3. Move the `.jar` file to an empty folder.
+4. Run the file with the command `java -jar magusstock.jar`.
 
 ## Features 
 
