@@ -1,7 +1,7 @@
 
 ![Magnus Stock Logo](logo.jpg)
 
-Magnus Stock is a Java command-line interface (CLI) application designed for inventory management. With Magnus Stock, you can perform CRUD operations on inventory items, generate history reports, and read/write inventory data in CSV format.
+MagusStock is a Java command-line interface (CLI) application designed for inventory management. With MagusStock, you can perform CRUD operations on inventory items, generate history reports, and read/write inventory data in CSV format.
 
 ## Features
 
@@ -11,7 +11,7 @@ Magnus Stock is a Java command-line interface (CLI) application designed for inv
 
 ## Documentation
 
-For more information on how to use Magnus Stock, please refer to the following documents:
+For more information on how to use MagusStock, please refer to the following documents:
 
 * [User Guide](UserGuide.md)
 * [Developer Guide](DeveloperGuide.md)

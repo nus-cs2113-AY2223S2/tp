@@ -68,10 +68,18 @@ public class Ui {
     public static final String CONFIRM_MESSAGE = "Are you sure you want this item to be permanently deleted?\n(Y/N)";
 
     public static final String INVALID_SESSION_FILE = "INFO: A Session Inventory file was found but it is corrupted. " +
-            "Please delete the corrupt .csv file";
+             "\n" + "      Please delete the corrupt .csv file.";
     public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered." +
             " The inventory has been updated.";
     public static final String EMPTY_SESSION_FILE = "INFO: Empty/No Session Inventory file found.";
+
+    public static final String INVALID_ALERT_FILE = "INFO: A Session Alerts file was found but it is corrupted. " +
+            "\n" + "      Please delete the corrupt .csv file.";
+
+    public static final String EMPTY_ALERT_FILE = "INFO: Empty/No Session Alerts file found.";
+
+    public static final String RECOVERED_ALERT_FILE = "INFO: Session Alert Data recovered." +
+            " The list of active alerts has been updated.";
 
     public static final int INVENTORY_ATTRIBUTE_COUNT = 4;
     public static final int HELP_ATTRIBUTE_COUNT = 2;
@@ -246,6 +254,21 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public static void printInvalidAlertFile() {
+        System.out.println(ANSI_YELLOW + INVALID_ALERT_FILE + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printEmptyAlertFile() {
+        System.out.println(ANSI_YELLOW + EMPTY_ALERT_FILE + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
+    public static void printRecoveredAlertFile() {
+        System.out.println(ANSI_GREEN + RECOVERED_ALERT_FILE + ANSI_RESET);
+        System.out.println(LINE);
+    }
+
     public static void printUnknownCommand() {
         System.out.println(LINE);
         System.out.println(ANSI_RED + UNKNOWN_COMMAND + ANSI_RESET);
@@ -372,7 +395,6 @@ public class Ui {
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == COMMAND_COL_WIDTH) {
             headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
-            //repeat format like above
             headings = new String[]{"Name", "UPC", "Stock"};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == CATEGORY_COL_WIDTH) {
             headings = new String[]{CATEGORY_HEADING, NAME_HEADING + ": " + UPC_HEADING};
@@ -923,6 +945,7 @@ public class Ui {
             System.out.println("AutoSave Mode: " + ANSI_RED + "FALSE" + ANSI_RESET);
         }
         System.out.println("Inventory Data File Status: " + SessionManager.inventoryDataFileExist());
+        System.out.println("Alerts Data File Status: " + SessionManager.alertDataFileExist());
         System.out.println(LINE);
         System.out.println(ANSI_GREEN + "List of active alerts:" + ANSI_RESET);
 

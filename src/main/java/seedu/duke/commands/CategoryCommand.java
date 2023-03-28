@@ -85,7 +85,7 @@ public class CategoryCommand extends Command {
         try {
             if (categoryCommandType[0].equals("list")) {
                 listAllCategories();
-            } else if (categoryCommandType[0].equals("table")){
+            } else if (categoryCommandType[0].equals("table")) {
                 listCategoryAndItems();
             } else {
                 findCategory(rawInput);

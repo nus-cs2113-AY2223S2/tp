@@ -12,9 +12,9 @@ public class Inventory {
     private final Trie trie = new Trie();
     private final HashMap<String, ArrayList<Item>> itemNameHash = new HashMap<>();
     private final HashMap<String, ArrayList<Item>> upcCodesHistory = new HashMap<>();
-
-    private final AlertList alertList = new AlertList();
+    private AlertList alertList = new AlertList();
     private final HashMap<String, ArrayList<Item>> categoryHash = new HashMap<>();
+
 
     /**
      * Retrieves all the UPC Codes in the inventory currently.
@@ -73,6 +73,10 @@ public class Inventory {
 
     public AlertList getAlertList() {
         return alertList;
+    }
+
+    public void setAlertList(AlertList alertList) {
+        this.alertList = alertList;
     }
 
     /**

@@ -23,6 +23,7 @@ public class MagusStock {
         storage = new Storage();
         inventory = new Inventory();
         inventory = currentSession.getSession();
+        inventory.setAlertList(currentSession.getSessionAlerts());
         parserHandler = new ParserHandler(inventory);
     }
 
