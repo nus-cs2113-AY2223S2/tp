@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+
+frame "Duke" {
+  node parser
+  node command
+  node data
+  node common
+  node storage
+}
+
+
+node output
+actor User
+
+
+
+[User] --> [parser]
+[parser] --> [command]
+[common] --> [command]
+[data] --> [command]
+[command] -->[storage]
+[command] -[dashed]-> output
+
+
+@enduml
