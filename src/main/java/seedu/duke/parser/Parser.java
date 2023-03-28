@@ -113,12 +113,16 @@ public interface Parser {
             if(inputWords[1].equals("industry")){
                 String targetIndustry = input.replace("find", "").trim();
                 targetIndustry = targetIndustry.replace("industry", "").trim();
-                if (targetIndustry.equals("")) throw new WrongFormatException();
+                if (targetIndustry.equals("")) {
+                    throw new WrongFormatException();
+                }
                 return new FindIndustryCommand("find industry", targetIndustry.toUpperCase());
             } else if(inputWords[1].equals("company")){
                 String targetCompany = input.replace("find", "").trim();
                 targetCompany = targetCompany.replace("company", "").trim();
-                if (targetCompany.equals("")) throw new WrongFormatException();
+                if (targetCompany.equals("")) {
+                    throw new WrongFormatException();
+                }
                 return new FindCompanyCommand("find company", targetCompany);
             } else {
                 throw new WrongFormatException();
