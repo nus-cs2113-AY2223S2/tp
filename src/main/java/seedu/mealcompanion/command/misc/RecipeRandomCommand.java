@@ -46,28 +46,7 @@ public class RecipeRandomCommand extends ExecutableCommand {
             int index = getRandomIndex(recipes);
             Recipe recipe = recipes.getRecipe(index);
             mealCompanionSession.getUi().printMessage("A random recipe is chosen:");
-            mealCompanionSession.getUi().printMessage("Recipe for " + recipe.getName());
-            mealCompanionSession.getUi().printMessage(""); //print newline for all OS
-            mealCompanionSession.getUi().printMessage("Calories: " + recipe.getCalorieCount());
-            mealCompanionSession.getUi().printMessage(""); //print newline for all OS
-            mealCompanionSession.getUi().printMessage("Ingredients:");
-            IngredientList ingredients = recipe.getIngredients();
-            for (int i = 0; i < ingredients.size(); i++) {
-                Ingredient ingredient = ingredients.get(i);
-                IngredientMetadata metadata = ingredient.getMetadata();
-                String ingredientName = metadata.getName();
-                String unitLabel = metadata.getUnitLabel();
-                double qty = ingredient.getQuantity();
-                mealCompanionSession.getUi().printMessage(Integer.toString(i+1) + ". " + ingredientName + " "
-                        +Double.toString(qty) + " " + unitLabel);
-            }
-            mealCompanionSession.getUi().printMessage(""); //print newline for all OS
-            mealCompanionSession.getUi().printMessage("Instructions:");
-            InstructionList instructions = recipe.getInstructions();
-            for (int i = 0; i < instructions.size(); i++) {
-                Instruction instruction = instructions.get(i);
-                mealCompanionSession.getUi().printMessage(Integer.toString(i+1) + ". " + instruction.getInstruction());
-            }
+            mealCompanionSession.getUi().printMessage(recipe.toString());
         } catch (MealCompanionException e) {
             mealCompanionSession.getUi().printMessage(String.valueOf(e));
         }

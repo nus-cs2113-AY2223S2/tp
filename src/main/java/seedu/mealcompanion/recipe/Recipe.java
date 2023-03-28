@@ -1,6 +1,8 @@
 package seedu.mealcompanion.recipe;
 
+import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
+import seedu.mealcompanion.ui.MealCompanionUI;
 
 //@@author ngyida
 public class Recipe {
@@ -43,5 +45,17 @@ public class Recipe {
 
     public InstructionList getInstructions() {
         return instructions;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder recipeDetails = new StringBuilder();
+        recipeDetails.append("Recipe for " + this.name + System.lineSeparator());
+        recipeDetails.append("Calories: " + this.calorieCount + System.lineSeparator());
+        recipeDetails.append("Ingredients:" + System.lineSeparator());
+        recipeDetails.append(ingredients.toString());
+        recipeDetails.append("Instructions:" + System.lineSeparator());
+        recipeDetails.append(instructions.toString());
+        return String.valueOf(recipeDetails);
     }
 }

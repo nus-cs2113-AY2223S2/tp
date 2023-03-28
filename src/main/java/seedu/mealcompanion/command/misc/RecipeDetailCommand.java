@@ -3,14 +3,8 @@ package seedu.mealcompanion.command.misc;
 import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
-import seedu.mealcompanion.ingredient.Ingredient;
-import seedu.mealcompanion.ingredient.IngredientList;
-import seedu.mealcompanion.recipe.IngredientMetadata;
-import seedu.mealcompanion.recipe.Instruction;
-import seedu.mealcompanion.recipe.InstructionList;
 import seedu.mealcompanion.recipe.Recipe;
 import seedu.mealcompanion.recipe.RecipeList;
-import seedu.mealcompanion.ui.MealCompanionUI;
 
 //@@author ngyida
 /**
@@ -50,53 +44,6 @@ public class RecipeDetailCommand extends ExecutableCommand {
         throw new MealCompanionException("Recipe not found!");
     }
 
-    /**
-     * Print the list of ingredients.
-     * @param ui the UI used for printing
-     * @param ingredients the list of ingredients to be printed
-     */
-    private void printIngredients(MealCompanionUI ui, IngredientList ingredients) {
-        ui.printMessage("Ingredients:");
-        for (int i = 0; i < ingredients.size(); i++) {
-            Ingredient ingredient = ingredients.get(i);
-            IngredientMetadata metadata = ingredient.getMetadata();
-            String ingredientName = metadata.getName();
-            String unitLabel = metadata.getUnitLabel();
-            double qty = ingredient.getQuantity();
-            ui.printMessage(Integer.toString(i+1) + ". " + ingredientName + " "
-                    +Double.toString(qty) + " " + unitLabel);
-        }
-    }
-
-    /**
-     * Print the list of instructions.
-     * @param ui the UI used for printing
-     * @param instructions the list of instructions to be printed
-     */
-    private void printInstructions(MealCompanionUI ui, InstructionList instructions) {
-        ui.printMessage("Instructions:");
-        for (int i = 0; i < instructions.size(); i++) {
-            Instruction instruction = instructions.get(i);
-            ui.printMessage(Integer.toString(i+1) + ". " + instruction.getInstruction());
-        }
-    }
-
-    /**
-     * Print the recipe.
-     * @param ui the UI used for printing
-     * @param recipe the recipe to be printed
-     */
-    private void printRecipe(MealCompanionUI ui, Recipe recipe) {
-        ui.printMessage("Recipe for " + recipe.getName());
-        ui.printMessage(""); //print newline for all OS
-        ui.printMessage("Calories: " + recipe.getCalorieCount());
-        ui.printMessage(""); //print newline for all OS
-        IngredientList ingredients = recipe.getIngredients();
-        printIngredients(ui, ingredients);
-        ui.printMessage(""); //print newline for all OS
-        InstructionList instructions = recipe.getInstructions();
-        printInstructions(ui, instructions);
-    }
 
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
@@ -118,7 +65,7 @@ public class RecipeDetailCommand extends ExecutableCommand {
             assert index >= 0 && index < mealCompanionSession.getRecipes().size();
 
             Recipe recipe = mealCompanionSession.getRecipes().getRecipe(index);
-            printRecipe(mealCompanionSession.getUi(), recipe);
+            mealCompanionSession.getUi().printMessage(recipe.toString());
         } catch (MealCompanionException e) {
             mealCompanionSession.getUi().printMessage(String.valueOf(e));
         }

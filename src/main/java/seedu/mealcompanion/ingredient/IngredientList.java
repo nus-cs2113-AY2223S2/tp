@@ -1,6 +1,7 @@
 package seedu.mealcompanion.ingredient;
 
 import seedu.mealcompanion.MealCompanionException;
+import seedu.mealcompanion.recipe.IngredientMetadata;
 
 import java.util.ArrayList;
 
@@ -50,5 +51,17 @@ public class IngredientList {
 
     public ArrayList<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    //@@author ngyida
+    @Override
+    public String toString() {
+        StringBuilder ingredientListDetails = new StringBuilder();
+        for (int i = 0; i < ingredients.size(); i++) {
+            Ingredient ingredient = ingredients.get(i);
+            String ingredientDetails = ingredient.toString();
+            ingredientListDetails.append((i+1) + ". " + ingredientDetails + System.lineSeparator());
+        }
+        return String.valueOf(ingredientListDetails);
     }
 }
