@@ -9,6 +9,8 @@
   - [Remove](#remove)
   - [Search](#search)
   - [Filter](#filter)
+  - [History](#history)
+  - [Category](#category)
 - [Product Scope](#product-scope)
   - [Target User Profile](#target-user-profile)
   - [Value Proposition](#value-proposition)
@@ -67,7 +69,8 @@ The "edit" command is mainly handled by the `EditCommand` class, which extends t
 The "restock" command is mainly handled by the `RestockCommand` class, which extends the `Command` class.
 
 ### Sell
-The "sell" command is mainly handled by the `SellCommand` class, which extends the `Command` class. 
+The "sell" command is mainly handled by the `SellCommand` class, which extends the `Command` class.
+
 ### Remove
 The remove command is mainly handled by the `RemoveCommand` class, which extends the `Command` class.
 
@@ -189,6 +192,28 @@ print the differences, if any. If there is more than 1 item in the list provided
 the details of the last and most current instant of the item.
 
 ### Category
+The category command is mainly handled by the `CategoryCommand` class, which extends the `Command` class. It is parsed by
+the `CategoryParser` class, which extends the `Parser` class.
+
+![CategoryParser.png](UML/Category/CategoryParser.png)
+
+**Step 1** When the user executes the command `cat {list/function/[Category]}`, the `ParserHandler` will create a new 
+`CategoryParser` object and pass to it the appropriate `input` and the appropriate `Inventory` in which the items are
+stored.
+
+**Step 2**. The `run` method in `CategoryParser` is called which overrides the `run` method in `Parser`. 
+`CategoryParser` checks if the `input` is not empty. If not, an error is shown and the method halts execution. 
+Otherwise, the `CategoryParser` will create a new `CategoryCommand` object and pass it the relevant inventory and 
+user input.
+
+**Step 3**. The `run` method in the `CategoryParser` object is called which overrides the `run` method in the `Command` 
+object. The `CategoryCommand` object will call either `listAllCategories` or `listCategoriesAndItems` or `findCategory` 
+method, depending on the user input (`list`, `table`, `[Category]` respectively).
+
+**Step 4**. `listAllCategories` and `listCategoriesAndItems` will call the `printCategory` function from the `Ui` object
+if the category hashmap is not empty. Otherwise, the methods will inform the user that the inventory list is empty and there
+is no category hashmap available. Whereas `findCategory` will call the `printCategory` function from the `Ui` object if 
+the category that user input is found. Otherwise, the method will inform user that the category cannot be found.
 
 ## Product scope
 ### Target user profile
