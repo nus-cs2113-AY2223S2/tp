@@ -15,19 +15,29 @@
 
 {Give detailed description of each feature}
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+### Store notes:
+Adds a new item to the Notes list.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `Store. <item description>`
+Example of usage: `Store. index`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+### Display all notes: 
+Display a list of all notes stored by user.
 
-Example of usage: 
+Format: `List.`
+Example of usage: `List.`
 
-`todo n/Write the rest of the User Guide d/next week`
+### Display a specific note: 
+Display a particular note in the Notes list.
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+Format: `List. <number>`
+Example of usage: `List. 1`
+
+### Delete a specific note:
+Delete a particular note stored in the Notes list
+
+Format: `Delete. <number>`
+Example of usage: `Delete. 1`
 
 ## FAQ
 
