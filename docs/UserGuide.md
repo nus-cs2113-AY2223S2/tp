@@ -15,7 +15,8 @@
 
 
 ### Graph analyser and visualiser: `Graph. `
-This feature accepts a trigonometry equation (Sinusoidal signal) and outputs the 
+This feature accepts a trigonometry equation (Sinusoidal signal) and outputs the amplitude, frequency, phase, and vertical shift.
+It also displays the image of the corresponding graph.
 
 ## FAQ
 
