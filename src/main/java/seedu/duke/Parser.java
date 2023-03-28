@@ -187,25 +187,25 @@ public class Parser {
         }
         addFormatChecker(information);
 
-        // Harsha - if body executed when user adds a module. Code inside "else" is same as before.
+        // if body executed when user adds a module. Code inside "else" is same as before.
         if (addModuleFlag) {
-            // Harsha - count to store the number of classes added into eventList.
+            // count to store the number of classes added into eventList.
             int count = 0;
 
-            // Harsha - fetching information
+            // fetching information
             String moduleCode = information[0];
             String classNumber = information[1];
             String lectureType = information[2];
 
-            // Harsha - loading modules. Need to update when singleton design is utilized.
+            // loading modules. Need to update when singleton design is utilized.
             HashMap<String, NusModule> nusmods = converter.loadModules();
-            // Harsha - Fetch NusModule from module code
+            // Fetch NusModule from module code
             NusModule nusModule = nusmods.get(moduleCode);
             if (nusModule == null) {
                 throw new NPExceptions("Module "+ moduleCode +" does not exist!");
             }
 
-            // Harsha - Fetch lessons from module
+            // Fetch lessons from module
             List<Lesson> lessons = nusModule.getLesson(UserUtility.getUser().getSemester(), lectureType, classNumber);
             if (lessons == null || lessons.isEmpty()) {
                 Ui.printErrorMsg("Selected module is not available for semester " +
@@ -213,15 +213,15 @@ public class Parser {
                 return;
             }
 
-            // Harsha - Create event for each day of module
+            // Create event for each day of module
             for(Lesson lesson: lessons) {
                 String venue = lesson.getVenue();
                 for(Integer week: lesson.getWeeks()) {
 
-                    // Harsha - Method to get date on the lesson's day in a given week number.
+                    // Method to get date on the lesson's day in a given week number.
                     String startDate = findDateOfWeek(UserUtility.getUser().getSemester(), week, lesson.getDay());
 
-                    // Harsha - Converting time to HH:mm format.
+                    // Converting time to HH:mm format.
                     StringBuilder sb = new StringBuilder(lesson.getStartTime());
                     String startTime = sb.insert(2, ':').toString();
                     sb = new StringBuilder(lesson.getEndTime());
