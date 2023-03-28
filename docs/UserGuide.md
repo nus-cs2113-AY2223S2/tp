@@ -38,19 +38,23 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 ### Adding an item: `add`
 Adds a new item to the inventory list.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price]`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+Required parameters:
+* The `n/` parameter where `[item_name]`  must be alphanumeric. 
+* The `upc/` parameter for `[UPC]` must be a numerical value.
+* The `qty/` parameter for `[quantity]` must be a numerical value.
+* The `p/` parameter for `[price]` must be a numerical value (decimals accepted).
 
 Example of usage: 
 
-`todo n/Write the rest of the User Guide d/next week`
+`add n/HP Laptop upc/2142535453 qty/10 p/1299.99`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+`add n/iPhone 11 Pro Max Max upc/2987654323 qty/11 p/1099.99`
 
 Sample output:
 
+![img.png](img.png)
 ### Editing an item: `edit`
 Edit an item's details in the inventory list.
 
@@ -67,7 +71,7 @@ Example of usage:
 
 Sample output:
 
-### Removing an item: `remove`
+### Removing an item from the inventory: `remove`
 Removes an item from the inventory list using either its UPC or index in list.
 
 Format: `remove f/item upc/[UPC]` or `remove f/index [Index]`
@@ -83,7 +87,7 @@ Example of usage:
 
 Sample output:
 
-### List all items: `list`
+### List all items in the inventory: `list`
 Lists all items in the inventory list.
 
 Format: `list`
@@ -93,8 +97,8 @@ Example of usage:
 `list`
 
 Sample output:
-
-### Searching an item: `search`
+![img_2.png](img_2.png)
+### Search for an item in the inventory: `search`
 Search for item(s) in the inventory list using keywords or UPC.
 
 Format: `search [Keywords]` or `searchupc [UPC]`
@@ -105,6 +109,7 @@ Example of usage:
 
 Sample output:
 
+<<<<<<< HEAD
 ```
 ____________________________________________________________
 +-----------------+--------------+----------+----------+
@@ -135,6 +140,9 @@ ____________________________________________________________
 ```
 
 ### Filtering by type: `filter`
+
+### Filtering inventory list by type: `filter`
+
 Filters items from the inventory list by price or category.
 
 Format: `filter f/{price/category} {p/[gt/get/lt/let] [Price] or [Category keywords]`
@@ -180,7 +188,7 @@ ____________________________________________________________
 
 ```
 
-### List all commands: `help`
+### List all available commands: `help`
 Lists all commands available and the command formats.
 
 Format: `help`
@@ -263,16 +271,17 @@ Example of usage:
 Sample output:
 
 ### Dashboard: `db`
-Shows a dashboard of information related to the inventory.
+Shows a dashboard of information related to the system's inventory, user insights and 
+session configurations.
 
 Format: `db`
 
 Example of usage:
 
-`db`
+`db` - It's that simple
 
 Sample output:
-
+![img_1.png](img_1.png)
 ### Category: `cat`
 Shows list of categories, and/or its items, or a specified category of items.
 
@@ -313,9 +322,9 @@ Format: `exit` or `bye`
 Sample output:
 
 
-## FAQ
+## FAQ (TBC/WIP)
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: TBC
 
 **A**: {your answer here}
 
