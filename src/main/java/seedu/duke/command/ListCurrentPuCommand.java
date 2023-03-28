@@ -8,15 +8,7 @@ public class ListCurrentPuCommand extends Command {
     private int univId;
 
     public ListCurrentPuCommand(ArrayList<Module> modules, int univId) {
-        ArrayList<Module> puModulesToPrint = new ArrayList<>();
-        for (int i = 0; i < modules.size(); i++) {
-            Module currentModule = modules.get(i);
-            int currentModuleUnivId = currentModule.getUnivId();
-            if (currentModuleUnivId == univId) {
-                puModulesToPrint.add(currentModule);
-            }
-        }
-        this.modules = puModulesToPrint;
+        this.modules = modules;
         this.univId = univId;
     }
 
