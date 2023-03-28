@@ -66,7 +66,8 @@ public class Storage {
                     return new Inventory();
                 }
                 Item item = new Item(fields[NAME_INDEX], fields[UPC_INDEX], Integer.parseInt(fields[QUANTITY_INDEX]),
-                        Double.parseDouble(fields[PRICE_INDEX]), fields[CAT_INDEX],LocalDateTime.parse(fields[DATE_INDEX]));
+                        Double.parseDouble(fields[PRICE_INDEX]), fields[CAT_INDEX],
+                        LocalDateTime.parse(fields[DATE_INDEX]));
                 if (tempInventory.getUpcCodes().containsKey(fields[UPC_INDEX])) {
                     if (tempInventory.getUpcCodes().get(fields[UPC_INDEX]).compareTo(item) == -1) {
                         tempInventory.getItemInventory().remove(tempInventory.getUpcCodes().get(fields[UPC_INDEX]));
@@ -98,7 +99,6 @@ public class Storage {
                 if (!inventory.getCategoryHash().containsKey(item.getCategory().toLowerCase())) {
                     inventory.getCategoryHash().put(item.getCategory().toLowerCase(), new ArrayList<>());
                 }
-                //System.out.println("category is now " + item.getCategory().toLowerCase());
                 inventory.getCategoryHash().get(item.getCategory().toLowerCase()).add(item);
             }
             reader.close();

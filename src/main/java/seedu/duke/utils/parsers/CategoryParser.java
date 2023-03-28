@@ -24,7 +24,8 @@ public class CategoryParser extends Parser {
                 categoryCommand.run();
             } else if (!categoryCommandType[0].equals("list") && !categoryCommandType[0].equals("table")
                     || categoryCommandType.length < 1) {
-                //assert categoryCommandType[0].equals("list") : "Keyword 'list' is not present in user category command";
+                //assert categoryCommandType[0].equals("list") : "Keyword 'list' is not present in
+                //user category command";
                 throw new CategoryFormatException();
             }
         } catch (CategoryFormatException e) {
