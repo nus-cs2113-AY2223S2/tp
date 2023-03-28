@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object AlertParser{
+     - rawInput = "add upc/012341 min/50"
+     - Inventory = inventory
+ }
+
+ object RemoveAlertCommand {
+     - Inventory = inventory
+     - Alert = newAlert
+     - AlertList = inventory.getAlertList()
+ }
+
+ AlertParser -> RemoveAlertCommand
+@enduml

@@ -24,13 +24,13 @@ public class AddAlertCommand extends Command  {
     private void checkAddAlertUpc() {
 
         if (upcCodes.containsKey(alert.getUpc())) {
-            addAlertCommand();
+            addAlert();
         } else {
             Ui.printItemNotFound();
         }
     }
 
-    private void addAlertCommand() {
+    private void addAlert() {
         if (alert.getMinmax().equals(MIN_KEYWORD)) {
             addMinAlert();
         }

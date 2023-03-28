@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object AlertParser{
+     - rawInput = "add upc/012341 min/50"
+     - Inventory = inventory
+ }
+
+ object AddAlertCommand {
+     - Inventory = inventory
+     - Alert = newAlert
+     - AlertList = inventory.getAlertList()
+ }
+
+ AlertParser -> AddAlertCommand
+
+@enduml

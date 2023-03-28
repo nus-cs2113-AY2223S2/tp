@@ -5,7 +5,6 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.RemoveAlertCommand;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.objects.Alert;
-import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.utils.Ui;
 
@@ -68,7 +67,6 @@ public class AlertParser extends Parser {
                     break;
                 default:
                     Ui.printInvalidAlertKeyword();
-
                 }
             }
         } catch (MissingParametersException e) {
