@@ -183,6 +183,9 @@ public class Parser {
         try {
             for (int i = 0; i < argumentsArray.length; i++) {
                 expenseIdInt = Integer.parseInt(argumentsArray[i]);
+                if(expenseIdInt < 1){
+                    throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+                }
                 assert argumentsArray[i].matches("\\d+") : "Expense ID must be an integer";
                 logger.log(Level.INFO, "Removing specified expense id {0} from list", argumentsArray[i]);
                 expenseIds[i] = expenseIdInt;
