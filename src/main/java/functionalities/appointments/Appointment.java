@@ -9,13 +9,12 @@ public abstract class Appointment {
     public Animal animal;
     protected Owner owner;
     public boolean isDone;
-    protected boolean status;
 
-    public Appointment(String uid, Animal animal, Owner owner) {
+    public Appointment(String uid, Animal animal, Owner owner, boolean isDone) {
         this.uid = uid;
         this.animal = animal;
         this.owner = owner;
-        this.status = false;
+        this.isDone = false;
     }
 
     public abstract String toString();
