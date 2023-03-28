@@ -1,6 +1,7 @@
 package seedu.commands;
 
 import seedu.entities.Food;
+import seedu.exceptions.InvalidArgumentsException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
@@ -49,6 +50,9 @@ public class FilterCaloriesCommand extends Command {
             caloriesUpperLimit = Float.parseFloat(upper);
         } catch (NumberFormatException e) {
             System.out.println("Invalid input, input is not a float value");
+        }
+        if (caloriesLowerLimit < caloriesUpperLimit) {
+            throw new LifeTrackerException("Please enter valid lower and upper limits!");
         }
 
         List<Food> caloriesFilteredFoods = foodStorage.getFoodsByCalories(caloriesLowerLimit, caloriesUpperLimit);

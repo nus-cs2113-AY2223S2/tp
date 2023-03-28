@@ -1,0 +1,4 @@
+Mar 28, 2023 7:10:34 PM seedu.logger.LogFileHandler logInfo
+INFO: User exited the programme.
+Mar 28, 2023 7:10:34 PM seedu.logger.LogFileHandler logInfo
+INFO: Error saving databases!
