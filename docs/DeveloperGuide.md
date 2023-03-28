@@ -146,7 +146,7 @@ The `ViewDateExpenditureCommand` and `ViewTypeExpenditureCommand` classes contai
 Below shows the UML diagram representing the `command` package.
 ![](team/images/umlCommandClassDiagram.png)
 
-A more detailed coverage is explored in [Section 4](#4-command-list).
+A more detailed coverage is explored in [Command List](#4-command-list).
 
 ### 3.5. Storage
 The class `TxtFileStatus` and `ExpenditureList` are involved in storing the expenditure list.
