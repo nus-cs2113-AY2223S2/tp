@@ -69,8 +69,12 @@ public class AlertParser extends Parser {
                     Ui.printInvalidAlertKeyword();
                 }
             }
+
+            else {
+                throw new MissingParametersException();
+            }
         } catch (MissingParametersException e) {
-            e.missingAddItemParameters();
+            e.missingAlertParameters();
         }
 
     }
