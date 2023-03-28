@@ -4,7 +4,8 @@ import functionalities.Animal;
 import functionalities.Owner;
 
 /**
- * Appointment template for other types of appointments
+ * The Appointment class represents an appointment for an animal with its owner.
+ * This class is abstract and provides methods for retrieving and setting appointment information.
  */
 public abstract class Appointment {
 
@@ -13,6 +14,13 @@ public abstract class Appointment {
     public boolean isDone;
     protected Owner owner;
 
+    /**
+     * Constructs an appointment with the specified unique identifier, animal, and owner.
+     *
+     * @param uid    The unique identifier for the appointment.
+     * @param animal The animal associated with the appointment.
+     * @param owner  The owner of the animal associated with the appointment.
+     */
     public Appointment(String uid, Animal animal, Owner owner) {
         this.uid = uid;
         this.animal = animal;
@@ -29,8 +37,12 @@ public abstract class Appointment {
 
     public abstract String retrieveStorageInfo();
 
+    /**
+     * Sets the status of the appointment.
+     *
+     * @param status The status of the appointment.
+     */
     public void setIsDone(boolean status) {
         this.isDone = status;
     }
-
 }
