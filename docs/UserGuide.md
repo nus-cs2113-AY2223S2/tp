@@ -14,7 +14,8 @@
 ## Features 
 
 
-### Graph 
+### Graph analyser and visualiser: `Graph. `
+This feature accepts a trigonometry equation (Sinusoidal signal) and outputs the 
 
 ## FAQ
 
