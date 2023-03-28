@@ -8,9 +8,8 @@ import seedu.moneymind.ui.Ui;
 
 import static seedu.moneymind.command.DeleteCommand.NON_EXISTENT_EVENT;
 import static seedu.moneymind.string.Strings.SUBTLE_BUG_MESSAGE;
-import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_TO_GIVE_A_NUMBER;
+import static seedu.moneymind.string.Strings.ENTERING_POSITIVE_NUMBER_MESSAGE;
 import static seedu.moneymind.string.Strings.NO_CATEGORY_MESSAGE;
-import static seedu.moneymind.string.Strings.GO_BACK_MESSAGE;
 import static seedu.moneymind.string.Strings.BACK;
 
 public class EditCommand implements Command {
@@ -37,7 +36,7 @@ public class EditCommand implements Command {
         String eventName = category.getEvents().get(eventIndex).getDescription();
         System.out.println("The current event expense for " + eventName + " is: " +
                 category.getEvents().get(eventIndex).getExpense());
-        System.out.println("Your new expense would be: ");
+        System.out.println("Your new expense would be:");
         isReady = true;
     }
 
@@ -57,10 +56,8 @@ public class EditCommand implements Command {
             int newExpense = Integer.parseInt(userInput);
             checkNegative(newExpense);
             return true;
-        } catch (NumberFormatException error) {
-            System.out.println(REMINDING_MESSAGE_TO_GIVE_A_NUMBER);
-        } catch (NegativeNumberException error) {
-            System.out.println();
+        } catch (NumberFormatException | NegativeNumberException error) {
+            System.out.println(ENTERING_POSITIVE_NUMBER_MESSAGE);
         } catch (Exception error) {
             System.out.println(SUBTLE_BUG_MESSAGE);
         }
@@ -74,7 +71,6 @@ public class EditCommand implements Command {
             String userInput;
             userInput = Moneymind.in.nextLine();
             while (!isEditSuccessful(userInput)) {
-                System.out.println(GO_BACK_MESSAGE);
                 userInput = Moneymind.in.nextLine();
                 if (userInput.equals(BACK)) {
                     break;

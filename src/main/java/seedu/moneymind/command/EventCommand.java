@@ -12,11 +12,13 @@ import static seedu.moneymind.string.Strings.SUBTLE_BUG_MESSAGE;
 import static seedu.moneymind.string.Strings.SELECTING_CATEGORY_MESSAGE;
 import static seedu.moneymind.string.Strings.GO_BACK_MESSAGE;
 import static seedu.moneymind.string.Strings.BACK;
+import static seedu.moneymind.string.Strings.CATEGORY_DOES_NOT_EXIST_MESSAGE;
 
 /**
  * A class to add an event
  */
 public class EventCommand implements Command {
+
     private String eventName;
     private String time;
     private int expense;
@@ -75,7 +77,7 @@ public class EventCommand implements Command {
             }
             return true;
         } catch (NullPointerException error) {
-            System.out.println("Category does not exist!");
+            System.out.println(CATEGORY_DOES_NOT_EXIST_MESSAGE);
         } catch (Exception error) {
             System.out.println(SUBTLE_BUG_MESSAGE);
         }

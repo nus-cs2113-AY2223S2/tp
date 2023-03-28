@@ -81,8 +81,11 @@ public class Strings {
     public static final String NO_DESCRIPTION_FOR_HELP = "Help command should not have any description";
     public static final String POSITIVE_INTEGER_FOR_EVENT_INDEX = "Please give a positive integer for event index";
     public static final String POSITIVE_INTEGER_FOR_EXPENSE = "Please give a positive integer for expense";
-    public static final String EMPTY_DESCRIPTION_FOR_EDIT = "OOPS!!! The description of a edit cannot be empty.";
+    public static final String EMPTY_DESCRIPTION_FOR_EDIT = "OOPS!!! The description of an edit cannot be empty.";
     public static final String EMPTY_STRING = "";
     public static final String POSITIVE_INTEGER_FOR_BUDGET = "Please give a positive integer for budget";
     public static final String EDIT = "edit";
+    public static final String CATEGORY_DOES_NOT_EXIST_MESSAGE = "Category does not exist!";
+    public static final String ENTERING_POSITIVE_NUMBER_MESSAGE =
+            "Please enter a positive number or enter back to go back to the main program";
 }
