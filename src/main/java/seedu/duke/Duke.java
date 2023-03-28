@@ -1,6 +1,11 @@
 package seedu.duke;
 
-import command.*;
+import command.CommandAdd;
+import command.CommandCategory;
+import command.CommandDelete;
+import command.CommandList;
+import command.CommandSort;
+import command.CommandTotal;
 import command.overview.CommandOverview;
 import data.ExpenseList;
 import data.Currency;

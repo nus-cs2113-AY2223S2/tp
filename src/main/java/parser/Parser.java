@@ -80,9 +80,6 @@ public class Parser implements Serializable {
 
     boolean isMonthlyOverview(String userInput) throws ArrayIndexOutOfBoundsException {
         String[] input = userInput.split(WHITESPACE);
-//        if (input.length == 1) {
-//            throw new ArrayIndexOutOfBoundsException();
-//        }
         return input.length == 3;
     }
 
