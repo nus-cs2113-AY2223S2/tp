@@ -136,12 +136,28 @@ __________________________________________________________
 
 <div>Views a detailed recipe from the recipe manager if INDEX is entered.</div>
 
-Format: `view INDEX`
-Examples:
-* `view 1`
-
-Constraints:
-* The index must be a positive integer larger than 0.
+**Format**: `view INDEX`
+**Hint**: If you want to view a recipe **by name**, use the **find** command first to find the index of the recipe, then use the view command to view the recipe.
+**Constraints**: The index must be a positive integer larger than 0.
+**Examples**:
+```
+__________________________________________________________
+view 1
+Here is the recipe you requested, which is a Chinese flavour:
+name: Hotpot
+__________________________________________________________
+Here are 3 ingredients in the list:
+1. Beef
+2. Potatoes
+3. Carrots
+__________________________________________________________
+There are 4 steps in the list
+1. chop beef
+2. add potatoes
+3. add carrots
+4. cook 5 minutes
+__________________________________________________________
+```
 
 <h2 id="listing-all-recipes-list"> Listing all recipes: <code class="language-plaintext highlighter-rouge">list</code></h2>
 
@@ -170,10 +186,24 @@ The recipe manager data are saved in the hard disk automatically after any comma
 <h2 id="edit-data"> Editing the data file </h2>
 
 The recipe data are saved as a text file `[JAR file location]/data/[dish name].txt`. 
-
-<h3> Warning </h3>
-    <div>Do <strong>NOT</strong> modify the save data.</div>
-    If you change the data file <strong>in a wrong way</strong>, the recipe manager will not start up correctly.
+Here is an example of a valid file, `data/Hotpot.txt`:
+```
+Hotpot
+Chinese
+Ingredient list
+Beef
+Potatoes
+Carrots
+Step list
+chop beef
+add potatoes
+add carrots
+cook 5 minutes
+```
+The first line is the name of the dish. And the second line is the tag of the dish. The third line is the ingredient list. The following lines are the ingredients until the line "Step list". The following lines are the steps until the end of the file.
+***warning***:
+* Do **NOT** modify the save data easily.
+If you change the data file **in a wrong way**, the recipe manager will not start up correctly.
 
 
 <!-- <h2 id="upcoming-features"> Upcoming Features </h2>
@@ -224,7 +254,7 @@ Examples:
 | **help**  | [`help`](#viewing-help-help) | |
 | **add**  | [`add n/NAME i/INGREDIENTS t/TAG`](#adding-a-recipe-add)| `add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese` |
 | **delete**  | [`delete n/NAME`](#deleting-a-recipe-delete)| `delete INDEX` |
-| **view**  | [`view n/NAME`](#viewing-a-recipe-view) [`view INDEX`](#viewing-a-recipe-view) | `view n/Hotpot` or `view 1`  |
+| **view**  | [`view INDEX`](#viewing-a-recipe-view) | `view 1`  |
 | **list**  | [`list`](#listing-all-recipes-list)| |
 | **clear**  | [`clear`](#clearing-all-entries-clear)| |
 | **exit**  | [`exit`](#exiting-the-program-exit)| |
