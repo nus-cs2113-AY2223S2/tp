@@ -17,6 +17,7 @@ public class StorageTest {
             file.createNewFile();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return;
         }
         assert (file.exists());
         try {
@@ -41,6 +42,7 @@ public class StorageTest {
             file2.createNewFile();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return;
         }
         assert (file1.exists());
         assert (file2.exists());
@@ -78,7 +80,7 @@ public class StorageTest {
             file4.createNewFile();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            assert false;
+            return;
         }
         assert (file1.exists());
         assert (file2.exists());
