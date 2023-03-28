@@ -319,7 +319,7 @@ public class Parser {
         assert argumentsArray.length >= 1 : "User input must contain at least 1 argument";
         Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\w+(\\s+\\w+)*)");
         Pattern viewCountPattern = Pattern.compile("\\S+");
-        Pattern priceRangePattern = Pattern.compile("(-p|-price)\\s+(\\w+(\\s+\\w+)*)");
+        Pattern priceRangePattern = Pattern.compile("(-p|-price)\\s+(\\S+)");
         Matcher matcher = viewCountPattern.matcher(arguments);
         matcher.find();
         viewCount = matcher.group(0);
@@ -355,12 +355,17 @@ public class Parser {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
         if (viewCountInt < 0) {
+            logger.warning("Negative expense ID provided: " + MessageConstants.MESSAGE_INVALID_ID);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
         logger.info("User entered count:" + viewCount);
         logger.info("User entered category:" + categoryStr);
         priceMinDble = Double.parseDouble(priceMinStr);
         priceMaxDble = Double.parseDouble(priceMaxStr);
+        if (priceMaxDble < priceMinDble) {
+            logger.warning("Maximum price range higher than minimum: " + MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
+        }
         logger.exiting(Parser.class.getName(), "parseViewCommand()");
         return new ViewCommand(viewCountInt, category, priceMinDble, priceMaxDble);
     }
