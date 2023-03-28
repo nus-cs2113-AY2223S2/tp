@@ -20,9 +20,7 @@ public class Schedule {
     private String location;
     private boolean hasLocation;
 
-    public boolean isRecurring() {
-        return isRecurring;
-    }
+
 
     public Schedule(LocalDateTime start, boolean hasSt) {
         this.startTime = start;
@@ -70,7 +68,9 @@ public class Schedule {
         }
         return formatter.format(timeInfo);
     }
-
+    public boolean isRecurring() {
+        return isRecurring;
+    }
     public String getTime() {
         String recur = " not recurring";
         if(isRecurring) {
