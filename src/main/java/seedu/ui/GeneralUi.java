@@ -1,9 +1,13 @@
 package seedu.ui;
 
+import seedu.entities.Exercise;
 import seedu.entities.Meal;
+import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class GeneralUi {
@@ -119,5 +123,19 @@ public class GeneralUi {
     public void showDailyCaloricLimit() {
     }
     public void showWellDoneMessage(){
+    }
+    public static void displayDayCalories(ExerciseStorage exerciseStorage, LocalDate date, MealStorage mealStorage) {
+        List<Exercise> exercisesOnSpecificDate = exerciseStorage.getExercisesByDate(date);
+        float caloricDeficit = 0;
+        for (Exercise exercise: exercisesOnSpecificDate){
+            caloricDeficit += exercise.getCaloriesBurnt();
+        }
+        List<Meal> mealsOnSpecificDate = mealStorage.getMealByDate(date);
+        float caloricGain = 0;
+        for (Meal meal: mealsOnSpecificDate){
+            caloricGain += meal.getTotalCalories();
+        }
+        float netCalories = caloricGain - caloricDeficit;
+
     }
 }
