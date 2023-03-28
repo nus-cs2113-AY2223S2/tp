@@ -14,7 +14,7 @@ public abstract class RecipeCommand extends ExecutableCommand {
      * @param fridgeIngredients the list of ingredients to check in
      * @return true if the list of ingredients have sufficient quantity of that ingredient, false otherwise
      */
-    protected boolean hasEnoughIngredient(Ingredient recipeIngredient, IngredientList fridgeIngredients) {
+    public boolean hasEnoughIngredient(Ingredient recipeIngredient, IngredientList fridgeIngredients) {
         String recipeIngredientName = recipeIngredient.getMetadata().getName();
         double recipeIngredientQty = recipeIngredient.getQuantity();
         for (Ingredient fridgeIngredient : fridgeIngredients.getIngredients()) {
@@ -33,7 +33,7 @@ public abstract class RecipeCommand extends ExecutableCommand {
      * @param fridgeIngredients the list of ingredients used to make the recipe
      * @return true if the recipe can be made using the list of ingredients, false otherwise
      */
-    protected boolean canMakeRecipe(Recipe recipe, IngredientList fridgeIngredients) {
+    public boolean canMakeRecipe(Recipe recipe, IngredientList fridgeIngredients) {
         IngredientList recipeIngredients = recipe.getIngredients();
         for (Ingredient recipeIngredient : recipeIngredients.getIngredients()) {
             if (!hasEnoughIngredient(recipeIngredient, fridgeIngredients)) {
