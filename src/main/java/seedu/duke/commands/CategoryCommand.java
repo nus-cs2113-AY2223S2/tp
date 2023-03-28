@@ -11,11 +11,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CategoryCommand extends Command {
+    private final String rawInput;
     private final String[] categoryCommandType;
 
-    public CategoryCommand(Inventory inventory, String[] categoryCommandType) {
+
+    public CategoryCommand(Inventory inventory, String rawInput, String[] categoryCommandType) {
         super(inventory);
         this.categoryCommandType = categoryCommandType;
+        this.rawInput = rawInput;
     }
 
     private void categoriseItem() {
@@ -43,23 +46,25 @@ public class CategoryCommand extends Command {
                 throw new CategoryFormatException();
             }
             String categoryToAdd = category.toLowerCase();
+            //item.setCategory(categoryToAdd);
             checkExistingCategory(item);
-            addItemToCategory(categoryToAdd, item);
-            item.setCategory(categoryToAdd);
+            //addItemToCategory(categoryToAdd, item);
         } catch (CategoryFormatException cfe) {
             throw new CategoryFormatException();
         }
     }
 
     private static void checkExistingCategory(Item item) {
-        String oldCategory = item.getCategory().toLowerCase();
+        String category = item.getCategory().toLowerCase();
         try {
-            categoryHash.get(oldCategory).remove(item);
-            if (categoryHash.get(oldCategory).isEmpty()) {
-                categoryHash.remove(oldCategory);
-            }
+//            if (categoryHash.get(category).isEmpty()) {
+//                categoryHash.remove(category);
+//            }
+            addItemToCategory(category, item);
         } catch (NullPointerException e) {
-            Ui.printInvalidCategory();
+            //System.out.println("Check existing cat");
+            //Ui.printInvalidCategory();
+            Ui.printNewCategory();
         }
     }
 
@@ -114,7 +119,8 @@ public class CategoryCommand extends Command {
             } else if (categoryCommandType[0].startsWith("upc/")) {
                 categoriseItem();
             } else {
-                findCategory(categoryCommandType[0]);
+                //System.out.println(categoryCommandType.toString());
+                findCategory(rawInput);
             }
         } catch (NullPointerException npe) {
             Ui.printNoCategoryList();

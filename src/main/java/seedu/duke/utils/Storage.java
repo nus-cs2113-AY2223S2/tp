@@ -90,7 +90,7 @@ public class Storage {
                 if (!inventory.getCategoryHash().containsKey(item.getCategory().toLowerCase())) {
                     inventory.getCategoryHash().put(item.getCategory().toLowerCase(), new ArrayList<>());
                 }
-                System.out.println("category is now " + item.getCategory().toLowerCase());
+                //System.out.println("category is now " + item.getCategory().toLowerCase());
                 inventory.getCategoryHash().get(item.getCategory().toLowerCase()).add(item);
             }
             reader.close();

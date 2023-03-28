@@ -20,7 +20,7 @@ public class CategoryParser extends Parser {
             String[] categoryCommandType = rawInput.split(" ", 2);
             if (categoryCommandType[0].equals("list") || categoryCommandType[0].startsWith("upc/") ||
                     !categoryCommandType[0].isBlank()) {
-                Command categoryCommand = new CategoryCommand(inventory, categoryCommandType);
+                Command categoryCommand = new CategoryCommand(inventory, rawInput, categoryCommandType);
                 categoryCommand.run();
             } else if (!categoryCommandType[0].equals("list") &&
                     !categoryCommandType[0].startsWith("upc/") || categoryCommandType.length < 1) {

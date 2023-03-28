@@ -85,7 +85,7 @@ public class Ui {
     public static final int COMMAND_COL_WIDTH = 25;
     public static final int FORMAT_COL_WIDTH = 25;
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
-            "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
+            "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price] c/[Category]}";
     public static final String ITEM_NOT_FOUND = "Command failed! Reason: Item not found in database. Please add item " +
             "first!";
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
@@ -181,6 +181,8 @@ public class Ui {
     private static final String CATEGORY_HEADING = "Category";
     private static final String NO_CATEGORY_LIST = "Category list is empty. There are no items in the inventory.";
     private static final String INVALID_CATEGORY_FIND = "The category you are looking for does not exist.";
+    private static final String INVALID_CATEGORY = "The category does not exist.";
+    private static final String NEW_CATEGORY_ADDED = "A new category has been added.";
 
 
     public Ui() {
@@ -1048,6 +1050,12 @@ public class Ui {
     public static void printInvalidCategory() {
         printLine();
         System.out.println(ANSI_RED + INVALID_CATEGORY_FIND + ANSI_RESET);
+        printLine();
+    }
+
+    public static void printNewCategory() {
+        printLine();
+        System.out.println(ANSI_BLUE + INVALID_CATEGORY + NEW_CATEGORY_ADDED + ANSI_RESET);
         printLine();
     }
 }

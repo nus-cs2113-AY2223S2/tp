@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.exceptions.CategoryFormatException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.SessionManager;
@@ -34,12 +35,21 @@ public class AddCommand extends Command {
         } else {
             upcCodes.put(item.getUpc(), item);
             itemInventory.add(item);
-            if (categoryHash.containsKey("uncategorized")) {
-                categoryHash.get("uncategorized").add(item);
-            } else {
-                ArrayList<Item> categoryItems = new ArrayList<>();
-                categoryItems.add(item);
-                categoryHash.put("uncategorized", categoryItems);
+            try {
+                if (!item.getCategory().isEmpty()) {
+                    String category = item.getCategory().replaceFirst("c/", "");
+                    //System.out.println("category is " + category);
+                    item.setCategory(category);
+                }
+            } catch (NullPointerException e) {
+                item.setCategory("uncategorized");
+                //System.out.println("Set item category to uncategorized: " + item.getCategory());
+            }
+            try {
+                CategoryCommand.updateItemCategory(item, item.getCategory());
+            } catch (CategoryFormatException e) {
+                //Ui.printInvalidCategory();
+                Ui.printNewCategory();
             }
             Ui.printSuccessAdd();
             String[] itemNames = item.getName().toLowerCase().split(" ");
