@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ExerciseStorage extends Storage implements FileReadable, FileWritable{
     private static final String CSV_DELIMITER = ",";
@@ -91,5 +93,12 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
 
     public ArrayList<Exercise> getExercises() {
         return this.exercises;
+    }
+
+    public List<Exercise> getExercisesByDate(LocalDate date) {
+        List<Exercise> filteredExercises = exercises.stream()
+                .filter(e -> e.getDate().equals(date))
+                .collect(Collectors.toList());
+        return filteredExercises;
     }
 }
