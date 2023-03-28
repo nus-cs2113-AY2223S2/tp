@@ -1,0 +1,32 @@
+@startuml
+!include ClassDiagramStyle.puml
+
+class DinerDirector DINERDIRECTOR_COLOR {
+    - ui: TextUi
+    - storage: Storage
+    - start(): void
+}
+
+class Storage STORAGE_COLOR {
+    + FILE_DIRECTORY: String
+    - DATA_DIRECTORY: Path
+    + createDirectory(): void
+}
+
+class XYZStorage STORAGE_COLOR {
+    + FILENAME_XYZ: String
+    + FILEPATH_XYZ_LIST: String
+    + readAndLoadFromXYZFile(): void
+    + writeToXYZFile(listOfXYZ: XYZ): void
+}
+
+class XYZManager MANAGER_COLOR {
+    + addXYZ(xyz: XYZ, ui: TextUi): void
+    + deleteXYZ(index: Integer, ui: TextUi): void
+}
+
+DinerDirector --> Storage: initiate >
+DinerDirector --> XYZStorage: execute >
+XYZManager --> XYZStorage: execute >
+
+@enduml

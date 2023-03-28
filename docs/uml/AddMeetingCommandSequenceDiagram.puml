@@ -1,0 +1,20 @@
+@startuml
+title Add Meeting Sequence Diagram
+participant AddMeetingCommand
+participant Meeting
+participant MeetingManager
+Activate AddMeetingCommand
+->AddMeetingCommand:AddMeetingCommand(time,issue)
+->AddMeetingCommand:execute(ui)
+par
+    AddMeetingCommand->Meeting:m=new Meeting(time,issue)
+    Activate Meeting
+    Meeting-->AddMeetingCommand:new Meeting instance
+end
+par
+    AddMeetingCommand->MeetingManager:addMeeting(m,ui)
+    Activate MeetingManager
+    MeetingManager-->AddMeetingCommand
+end
+<-- AddMeetingCommand: ui.printMessage("Meeting added")
+@enduml
