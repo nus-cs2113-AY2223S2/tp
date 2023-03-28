@@ -109,7 +109,9 @@ As for the expenditure types, their fields are as shown below.
 
 The following shows the UML diagram used for the Expenditure Categories component implemented in MyLedger.
 
-![](team/images/umlClassDiagramExpenditure.png)
+<p align="center">
+    <img src="team/images/umlClassDiagramExpenditure.png" width="30%">
+</p>
 
 In the diagram, the aforementioned expenditure categories inherit from the `Expenditure` class. The `ExpenditureList` class is a composition of expenditures of `Expenditure` type. 
 
