@@ -114,7 +114,6 @@ public class EditCommand extends Command {
                 editedStatement.setDate(dateToChange);
             }
             userData.addToMonthlyExpenditure(editedStatement);
-            Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         }
 
         String output = "Done, edited entry " + (index + 1)
