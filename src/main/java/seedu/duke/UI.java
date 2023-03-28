@@ -229,19 +229,31 @@ public class UI {
 
     public static void printHelpCommandMessage() {
         System.out.println("Here are the list of commands:\n"
-                + "LIST PU                     : Provides the list of Partner Universities available\n"
-                + "LIST [PU ABBRV]             : Provides the list of all modules available " +
+                + "LIST PU                        : Provides the list of Partner Universities available\n"
+                + "LIST [PU ABBRV]                : Provides the list of all modules available " +
                 "in the specified Partner University\n"
-                + "LIST [PU INDEX]             : Provides the list of all modules available " +
+                + "LIST [PU INDEX]                : Provides the list of all modules available " +
                 "in the specified Partner University\n"
                 + "                              by index of LIST PU\n"
-                + "LIST CURRENT                : Provides the list of modules that the user has added to his/her " +
+                + "LIST CURRENT                   : Provides the list of modules that the user has added to his/her " +
                 "list of interest\n"
-                + "LIST CURRENT [PU ABBRV]     : Provides the list of modules that user has added to his list of " +
+                + "LIST CURRENT [PU ABBRV]        : Provides the list of modules that user has added to his list of " +
                 "list of interest for the specified PU\n"
-                + "ADD [PU ABBRV]/[MODULE CODE]: Adds the specified module into user's current list of modules\n"
-                + "REMOVE [INDEX]              : Removes the specified module by index from user's current list\n"
-                + "EXIT                        : Exits the program\n\n");
+                + "ADD [PU ABBRV]/[MODULE CODE]   : Adds the specified module into user's current list of modules\n"
+                + "REMOVE [INDEX]                 : Removes the specified module by index from user's current list\n"
+                + "SEARCH [NUS MOD CODE]          : Search for PU modules that can map the user's targeted module\n"
+                + "/budget budget [AMOUNT]        : Allows the user to input/edit the total amount of budget for "
+                +"his/her SEP trip\n"
+                + "/budget accommodation [AMOUNT] : Allows the user to input/edit the total amount of accommodation "
+                + "cost for his/her SEP trip\n"
+                + "/budget airplane [AMOUNT       : Allows the user to input/edit the total amount of airplane ticket "
+                + "cost for his/her SEP trip\n"
+                + "/budget food [AMOUNT]          : Allows the user to input/edit the total amount of food "
+                + "cost for his/her SEP trip\n"
+                + "/budget entertainment [AMOUNT] : Allows the user to input/edit the total amount of entertainment "
+                + "cost for his/her SEP trip\n"
+                + "/budget view                   : Provides an overview of the user's planned budget\n"
+                + "EXIT                           : Exits the program\n\n");
         System.out.println(READ_COMMAND_INPUT);
         System.out.println(LINE);
     }
