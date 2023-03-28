@@ -15,6 +15,7 @@ import seedu.duck.task.Todo;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -257,6 +258,15 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes a SchoolClass from the priority queue
+     *
+     * @param classes The priority queue of SchoolClasses
+     * @param line The line of user input
+     * @throws IllegalArgumentException
+     * @throws NullPointerException
+     * @throws StringIndexOutOfBoundsException
+     */
     static void deleteClass(PriorityQueue<SchoolClass> classes, String line) throws
             IllegalArgumentException, NullPointerException, StringIndexOutOfBoundsException{
         try {
@@ -282,6 +292,14 @@ public class TaskList {
         }
     }
 
+    /**
+     * Tries to delete a SchoolClass from the priority queue, and throws an error message
+     * if unsuccessful. This method should be used instead of directly invoking
+     * the deleteClass() method.
+     *
+     * @param classes The priority queue of SchoolClasses
+     * @param line The line of user input
+     */
     static void tryDeleteClass(PriorityQueue<SchoolClass> classes, String line) {
         if (!line.contains("/class") || !line.contains("/description") || !line.contains("/day") ||
                 !line.contains("/from") || !line.contains("/to")) {
@@ -289,6 +307,48 @@ public class TaskList {
         } else {
             deleteClass(classes, line);
         }
+    }
+
+    /**
+     * Checks if the current day and time is past the day and end time of the SchoolClass.
+     * If SchoolClass is over, mark as done, otherwise mark as not done.
+     *
+     * @param day The enum for the day of week registered in the current SchoolClass to check
+     * @param endString The end timing for the current SchoolClass to check
+     * @param currSchoolClass The current SchoolClass
+     */
+    static void checkClassOver(DayOfWeek day, String endString, SchoolClass currSchoolClass) {
+        LocalDate today = LocalDate.now();
+        DayOfWeek dayToday = today.getDayOfWeek();
+        if (dayToday.getValue() > day.getValue()) { // day of week passed
+            currSchoolClass.markAsDone();
+        } else if (dayToday.getValue() < day.getValue()) { // day of week not passed
+            currSchoolClass.markAsNotDone();
+        } else { // same day of week
+            DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HHmm");
+            LocalTime classEndTime = LocalTime.parse(endString, timeFormat);
+            LocalTime currTime = LocalTime.now();
+            if (currTime.isAfter(classEndTime)) {
+                currSchoolClass.markAsDone();
+            } else {
+                currSchoolClass.markAsNotDone();
+            }
+        }
+    }
+
+    /**
+     * Clears the task list and SchoolClass priority queue, and reloads from save file.
+     * This function is mainly used to update the done status of SchoolClasses in the schedule.
+     *
+     * @param tasks The ArrayList of tasks
+     * @param classes The priority queue of SchoolClasses
+     */
+    static void refresh(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) {
+        tasks.clear();
+        classes.clear();
+        Task.resetCount();
+        Storage.tryLoad(tasks, classes);
+        Ui.refreshedMessage();
     }
 
     static void purge(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) {
@@ -381,4 +441,5 @@ public class TaskList {
             Ui.borderLine();
         }
     }
+
 }

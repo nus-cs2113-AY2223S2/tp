@@ -379,6 +379,8 @@ public class Ui {
         System.out.println("\t （`･v･´ ）: Here are the commands you can give me:");
         System.out.println("\t - list: I'll list out all the tasks you have recorded.");
         System.out.println("\t - list <number_of_days>: I'll list out all the tasks in that number of days.");
+        System.out.println("\t - list classes: I'll list out the classes you have on your schedule.");
+        System.out.println("\t - refresh: I'll refresh your task list and class schedule.");
         System.out.println("\t - priority_list: I'll list out all the tasks you have recorded arranged by their priority.");
         System.out.println("\t - low_priority: I'll list out all the tasks you have that are low in priority.");
         System.out.println("\t - medium_priority: I'll list out all the tasks you have that are medium in priority.");
@@ -410,14 +412,14 @@ public class Ui {
 
     static void addedTaskMessage(Task currentTask) {
         borderLine();
-        System.out.println("\t Alright, I have added this task: \n\t\t" + currentTask);
+        System.out.println("\t Alright, I have added this task: \n\t" + currentTask);
         System.out.println("\t You now have " + (Task.getTaskCount() + 1) + " tasks in your list.");
         borderLine();
     }
 
     static void addedSchoolClassMessage(SchoolClass currentClass, PriorityQueue<SchoolClass> classes) {
         borderLine();
-        System.out.println("\t Alright, I have added this class: \n\t\t" + currentClass);
+        System.out.println("\t Alright, I have added this class: \n\t" + currentClass);
         System.out.println("\t You now have " + (classes.size()) + " classes in your schedule.");
         borderLine();
     }
@@ -425,8 +427,14 @@ public class Ui {
     static void deleteTaskMessage(Task taskToDelete) {
         borderLine();
         System.out.println("\t Understood. I have removed this task:");
-        System.out.println("\t\t" + taskToDelete);
+        System.out.println("\t" + taskToDelete);
         System.out.println("\t You now have " + Task.getTaskCount() + " tasks in your list.");
+        borderLine();
+    }
+
+    static void refreshedMessage() {
+        borderLine();
+        System.out.println("\t Your task list and class schedule have been refreshed!");
         borderLine();
     }
 
