@@ -66,8 +66,7 @@ Format: `update`
 Menu Output:
 ![update-menu](./UG-images/update-menu.png)
 
-User can input **1 - 5** to customise their profile
-
+User can input a value from **1 to 5** to customise their profile:
 1. Name
 2. Weight
 3. Height
