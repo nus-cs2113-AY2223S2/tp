@@ -42,6 +42,8 @@ public class Parser {
             return new HelpWorkoutCommand();
         case "/cadd":
             return CheckCaloriesInput.processAddCalories(arguments);
+        case "/count":
+            return CheckInputs.processSetsRepsCount(arguments);
         default:
             return new IncorrectCommand();
         }

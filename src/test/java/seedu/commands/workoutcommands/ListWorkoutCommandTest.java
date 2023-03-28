@@ -2,9 +2,8 @@ package seedu.commands.workoutcommands;
 
 import org.junit.jupiter.api.Test;
 import seedu.commands.Command;
-import seedu.commands.workoutcommands.ListWorkoutCommand;
-import seedu.workouttracker.workout.Workout;
-import seedu.workouttracker.workout.WorkoutList;
+import seedu.workout.Workout;
+import seedu.workout.WorkoutList;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

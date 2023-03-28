@@ -1,6 +1,7 @@
 package seedu.parser;
 
 
+import seedu.commands.countcommands.CountSetsRepsCommand;
 import seedu.commands.workoutcommands.AddWorkoutCommand;
 import seedu.commands.workoutcommands.DeleteWorkoutCommand;
 import seedu.commands.workoutcommands.ListWorkoutCommand;
@@ -8,7 +9,7 @@ import seedu.commands.workoutcommands.StartWorkoutCommand;
 import seedu.commands.workoutcommands.ViewWorkoutCommand;
 import seedu.commands.Command;
 import seedu.commands.IncorrectCommand;
-import seedu.workouttracker.workout.Exercise;
+import seedu.workout.Exercise;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -72,6 +73,19 @@ public class CheckInputs {
         Date date = parseDate(arguments);
 
         return date != null && parseInput(arguments) ? new ViewWorkoutCommand(date) : new IncorrectCommand();
+    }
+
+    //@@ author guillaume-grn
+    static Command processSetsRepsCount(String arguments) {
+        Date date;
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+            date = dateFormat.parse(arguments);
+        } catch (ParseException e) {
+            System.out.println("Invalid date format. Please enter the date in the format dd/mm/yy.");
+            return new IncorrectCommand();
+        }
+        return new CountSetsRepsCommand(date);
     }
 
 
