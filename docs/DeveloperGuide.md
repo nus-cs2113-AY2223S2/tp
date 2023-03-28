@@ -25,7 +25,13 @@ Ui class involves all the methods
 
 Types of methods:
 
-<code>seq of 1 ui</code>
+1. Greeting Messages: Messages shown to welcome user and acknowledge their exit
+2. Confirmation Messages: Messages shown to inform user that their desired action has been carried out
+3. Exception Messages: Messages shown to inform user of their invalid actions and its reasons
+
+![img_2.png](img_2.png)
+
+Fig 2
 
 
 ### Storage
