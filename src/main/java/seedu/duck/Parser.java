@@ -65,6 +65,9 @@ public class Parser {
             } else if (line.equals("help")) {
                 // List out all the tasks added
                 Ui.help();
+            } else if (line.equals("refresh")) {
+                // Refresh the task list and class schedule
+                TaskList.refresh(tasks, classes);
             } else if (words[0].equals("list") && (words.length == 2) && (isNumeric(words[1]))) {
                 //list out all tasks in x days in the future specified by the user
                 Ui.printUpcomingTasks(tasks, words[1]);

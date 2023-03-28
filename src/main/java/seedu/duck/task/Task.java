@@ -73,6 +73,10 @@ public class Task {
         taskCount--;
     }
 
+    public static void resetCount() {
+        taskCount = 0;
+    }
+
     public static int getTaskCount() {
         return taskCount;
     }
