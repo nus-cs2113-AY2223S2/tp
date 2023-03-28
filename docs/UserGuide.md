@@ -18,7 +18,17 @@
 This feature accepts a trigonometry equation (Sinusoidal signal) and outputs the amplitude, frequency, phase, and vertical shift.
 It also displays the image of the corresponding graph.
 
-Format: `Graph. [Amplitude]*[sin()]`
+Format: `Graph. [Amplitude]*[Trigo]([Frequency]*x+[PhaseShift])+[VerticalShift]`
+
+* `[Amplitude]` can be any positive number.
+* `[Trigo]` can be sin, cos or tan.
+* `[Frequency],[PhaseShift],[VerticalShift]` can be any number.
+* `[]` is not needed when entering the input.
+
+Example input:
+```
+Graph. 2*sin(5*x+2)-8
+```
 
 ## FAQ
 
