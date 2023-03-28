@@ -32,7 +32,16 @@ public class Storage {
                 file.getParentFile().mkdirs();
             }
             file.createNewFile();
-        } catch (IOException e){
+        } catch (IOException e) {
+            ui.fileIOErrorMessage();
+        }
+    }
+
+    public void loadPetFile(Ui ui)  {
+        try {
+            ArrayList<String> data = readFile(petFilePath);
+            parsePetFile(data);
+        } catch (IOException e) {
             ui.fileIOErrorMessage();
         }
     }
@@ -47,7 +56,7 @@ public class Storage {
                 file.getParentFile().mkdirs();
             }
             file.createNewFile();
-        } catch (IOException e){
+        } catch (IOException e) {
             ui.fileIOErrorMessage();
         }
     }
