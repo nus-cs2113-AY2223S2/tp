@@ -26,7 +26,6 @@ public class FinancialReport {
 
     public void setReportOwner(String name) {
         this.reportOwner = name;
-        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public int getStatementCount() {
@@ -42,13 +41,11 @@ public class FinancialReport {
     public void addStatementAtIndex(FinancialStatement statement, int index) {
         financialReport.add(index, statement);
         addToMonthlyExpenditure(statement);
-        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public void deleteStatement(int statementNumber) {
         removeFromMonthlyExpenditure(financialReport.get(statementNumber));
         financialReport.remove(statementNumber);
-        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
     public String getFullStatement(int statementNumber) {

@@ -48,7 +48,7 @@ public class DeleteCommand extends Command {
 
         index -= 1;
 
-        int previousStatementCount = userData.getStatementCount();
+        int previousStatementCount = userData.getStatementCount(); // only used for assertion
         assert (index < userData.getStatementCount() && index >= 0) : "invalid index provided for delete";
 
         FinancialStatement oldStatement = userData.getStatement(index);

@@ -1,0 +1,27 @@
+@startuml
+participant ":ShortcutAddCommand" as ShortcutAddCommand
+participant "shortcutCommands:HashMap" as shortcutCommands
+
+[-> ShortcutAddCommand : execute()
+activate ShortcutAddCommand
+
+ShortcutAddCommand -> shortcutCommands : containsKey(key)
+activate shortcutCommands
+shortcutCommands --> ShortcutAddCommand
+
+deactivate shortcutCommands
+
+
+opt does not contain key
+
+
+ShortcutAddCommand -> shortcutCommands : puts(key, value)
+activate shortcutCommands
+deactivate shortcutCommands
+
+end
+[<--ShortcutAddCommand
+deactivate ShortcutAddCommand
+
+
+@enduml

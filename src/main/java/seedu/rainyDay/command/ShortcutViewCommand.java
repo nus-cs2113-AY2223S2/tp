@@ -9,8 +9,8 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author KN-CY
-public class ViewShortcutCommand extends Command {
-    private static final Logger logger = Logger.getLogger(ShortcutCommand.class.getName());
+public class ShortcutViewCommand extends Command {
+    private static final Logger logger = Logger.getLogger(ShortcutAddCommand.class.getName());
     private static HashMap<String, String> shortcutCommands;
     private static final String TABLE_BORDER = "" +
             "+-----------------------------------+-------------------------------------------------------------+\n";
@@ -22,7 +22,7 @@ public class ViewShortcutCommand extends Command {
             "|Shortcut                           |Mapped Command                                               |\n";
     private static final String NO_SHORTCUTS = "You do not have any shortcuts configured.";
 
-    public ViewShortcutCommand() {
+    public ShortcutViewCommand() {
         shortcutCommands = RainyDay.userData.getShortcutCommands();
     }
 
