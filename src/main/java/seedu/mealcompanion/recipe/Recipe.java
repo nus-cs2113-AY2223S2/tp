@@ -2,6 +2,7 @@ package seedu.mealcompanion.recipe;
 
 import seedu.mealcompanion.ingredient.IngredientList;
 
+//@@author ngyida
 public class Recipe {
     private String name;
     private int calorieCount;

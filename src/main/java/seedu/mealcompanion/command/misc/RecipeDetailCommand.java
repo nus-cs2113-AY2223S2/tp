@@ -12,6 +12,7 @@ import seedu.mealcompanion.recipe.Recipe;
 import seedu.mealcompanion.recipe.RecipeList;
 import seedu.mealcompanion.ui.MealCompanionUI;
 
+//@@author ngyida
 /**
  * Represents the "recipe detail" command.
  */

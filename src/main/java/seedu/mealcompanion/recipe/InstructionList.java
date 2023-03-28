@@ -2,6 +2,7 @@ package seedu.mealcompanion.recipe;
 
 import java.util.ArrayList;
 
+//@@author ngyida
 public class InstructionList {
     private ArrayList<Instruction> instructions;
 

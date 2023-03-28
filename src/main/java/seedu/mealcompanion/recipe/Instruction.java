@@ -1,5 +1,6 @@
 package seedu.mealcompanion.recipe;
 
+//@@author ngyida
 public class Instruction {
     private String instruction;
 

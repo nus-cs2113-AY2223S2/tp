@@ -11,6 +11,7 @@ import com.google.gson.reflect.TypeToken;
 import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.serde.SerializableRecipe;
 
+//@@author ngyida
 public class RecipeList {
     public ArrayList<Recipe> recipes;
 
