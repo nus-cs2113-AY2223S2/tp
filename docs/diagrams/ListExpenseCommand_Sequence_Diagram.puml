@@ -1,8 +1,22 @@
 @startuml
-class chching.command.ListExpenseCommand {
-+ void execute(IncomeList,ExpenseList,Ui,Storage,Selector,Converter,TargetStorage)
-}
+participant ":Parser" as Parser
+participant ":ListExpenseCommand" as ListExpenseCommand
+participant "expenses:ExpenseList" as ExpenseList
 
+activate Parser
 
-chching.command.Command <|-- chching.command.ListExpenseCommand
+create ListExpenseCommand
+Parser -> ListExpenseCommand : ListExpenseCommand(args)
+ListExpenseCommand -> ListExpenseCommand : execute(incomes, expenses, ui, storage, selector, converter, targetStorage)
+
+activate ListExpenseCommand
+ListExpenseCommand -> ExpenseList : printExpenseList(selector, converter)
+
+activate ExpenseList
+ExpenseList --> ListExpenseCommand
+
+deactivate ExpenseList
+deactivate ListExpenseCommand
+deactivate Parser
+
 @enduml

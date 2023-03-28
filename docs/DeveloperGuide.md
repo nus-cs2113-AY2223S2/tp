@@ -64,6 +64,9 @@ The following activity diagram summarises what happens when a user executes edit
     * Pros: Easier to implement.
     * Cons: Not any easier than having the user to just delete and add new expense/income.
 
+### AddIncomeCommand
+
+
 ### ListExpenseCommand
 The listExpenseCommand is facilitated by ```Parser```, ```ListExpenseCommand``` and ```ExpenseList```.
 
