@@ -27,7 +27,9 @@ public class CompanyList {
             companyList.add(newCompany);
             ui.showSuccessfulAdditionMessage(companyName);
         } else {
+            ui.showLine();
             System.out.println("Company already exists in the list!");
+            ui.showLine();
         }
     }
 
@@ -45,10 +47,12 @@ public class CompanyList {
         if (companyList.isEmpty()) {
             throw new EmptyListException();
         }
+        ui.showLine();
         for (int i = 0; i < companyList.size(); i++) {
             System.out.println(i + 1);
             System.out.println(companyList.get(i));
         }
+        ui.showLine();
     }
 
     public int getNumberOfCompanies() {
@@ -74,6 +78,7 @@ public class CompanyList {
         if (companyList.isEmpty()) {
             throw new EmptyListException();
         }
+        ui.showLine();
         for (int i = 0; i < companyList.size(); i += 1){
             Company company = companyList.get(i);
             if (!company.isConfirmed){
@@ -81,6 +86,7 @@ public class CompanyList {
                 System.out.println(companyList.get(i));
             }
         }
+        ui.showLine();
     }
 
     public void findIndustry(String targetIndustry){
