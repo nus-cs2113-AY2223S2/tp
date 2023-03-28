@@ -1,5 +1,12 @@
 package seedu.duke;
 
+import seedu.duke.budget.Accommodation;
+import seedu.duke.budget.AirplaneTicket;
+import seedu.duke.budget.BudgetPlanner;
+import seedu.duke.budget.Entertainment;
+import seedu.duke.budget.Food;
+import seedu.duke.budget.GoodsAndServices;
+
 import java.util.ArrayList;
 
 public class UI {
@@ -239,6 +246,54 @@ public class UI {
         System.out.println(LINE);
     }
 
+
+    public static void printEditBudgetMessage(int amount) {
+        System.out.println(LINE);
+        System.out.println("Budget has been changed to: " + amount);
+        System.out.println(LINE);
+    }
+
+    public static void printEditCostMessage(int amount, GoodsAndServices goods) {
+        String goodsAndServicesType;
+        if (goods instanceof Accommodation) {
+            goodsAndServicesType = "Accommodation";
+        } else if (goods instanceof AirplaneTicket) {
+            goodsAndServicesType = "Airplane Ticket";
+        } else if (goods instanceof Entertainment) {
+            goodsAndServicesType = "Entertainment";
+        } else if (goods instanceof Food) {
+            goodsAndServicesType = "Food";
+        } else {
+            return;
+        }
+        System.out.println(LINE);
+        System.out.println(goodsAndServicesType + " cost has been changed to: " + amount);
+        System.out.println(LINE);
+    }
+
+    public static void printBudgetNoChangeMessage() {
+        System.out.println(LINE);
+        System.out.println("Budget remains unchanged, please check input amount");
+        System.out.println(LINE);
+    }
+
+    public static void printCostNoChangeMessage() {
+        System.out.println(LINE);
+        System.out.println("Cost remains unchanged, please check input amount");
+        System.out.println(LINE);
+    }
+
+    public static void printViewBudget(BudgetPlanner budgetPlanner) {
+        System.out.println(LINE);
+        System.out.println("Total budget: " + budgetPlanner.getBudget());
+        System.out.println("Accommodation cost: " + budgetPlanner.getAccommodationTotalCost());
+        System.out.println("Airplane Ticket cost: " + budgetPlanner.getAirplaneTicketTotalCost());
+        System.out.println("Food cost: " + budgetPlanner.getFoodTotalCost());
+        System.out.println("Entertainment cost: " + budgetPlanner.getEntertainmentTotalCost());
+        System.out.println("Surplus/Deficit: " + budgetPlanner.getSurplus());
+        System.out.println(LINE);
+    }
+
     /**
      * Prints out user added modules of a specified partner university using uniID as identity.
      * The function first picks out all modules specified to the university selected, and prints out module
@@ -287,6 +342,7 @@ public class UI {
             System.out.println(LINE);
         }
     }
+
     public static void printExceptionErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }
