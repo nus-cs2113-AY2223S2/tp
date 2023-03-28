@@ -34,6 +34,8 @@ This guide will introduce you to the basics of using Meal Companion and its curr
 
 Within the `markdown text` you may see segments of text wrapped in `<chevrons>`. These chevrons indicate that this field in the command is to be replaced with your input. For example, a command `add <ingredient>` means you should enter the command `add apples`. 
 
+#### [Back to table of contents](#table-of-contents)
+
 # Getting Started
 
 1. Java 11 is required for Meal Companion to function properly, please make sure your device has Java 11 installed. If not, you may download it [here](https://www.oracle.com/sg/java/technologies/downloads/#java11)
@@ -49,7 +51,7 @@ Click on `mealcompanion.jar` to automatically download the file. Place the file 
 ![startup1.png](images/startup1.png)
 6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
 
-###### [Back to table of contents](#table-of-contents)
+#### [Back to table of contents](#table-of-contents)
 
 # Features
 This section will focus on some of the key features of Meal Companion and explain their usage.
@@ -85,7 +87,7 @@ Omitting the keyword will return a list of all valid ingredients.
 ### Clear Ingredients
 To remove all ingredients from Meal Companion's storage, use the `clear` command.
  
-###### [Back to table of contents](#table-of-contents)
+#### [Back to table of contents](#table-of-contents)
  
 ## Recipes
 This segment will go into detail about the recipe features that Meal Companion contains, and the usage of these features.
@@ -118,7 +120,7 @@ Meal Companion includes the functionality to suggest recipes based on ingredient
 ### Check Ingredients for Recipe
 To check if you have sufficient ingredients to make a recipe, you can run the command `recipe need <recipe_name>`. Ingredients that you are missing will be listed along with the quantity needed.
 
-###### [Back to table of contents](#table-of-contents)
+#### [Back to table of contents](#table-of-contents)
 
 ## Saving Data
 Meal Companion automatically saves the ingredients you add to a text file named `ingredients.txt`. This text file can be accessed from the same folder where you downloaded the original `mealcompanion.jar` file. 
@@ -127,13 +129,13 @@ Meal Companion automatically saves the ingredients you add to a text file named 
 ### Transferring Saved Data to Other Devices
 If you would like to access your saved ingredients list on a new instance of Meal Companion on a different device, it is as simple as copying and pasting the `ingredients.txt` text file to the new device. As long as it is saved in the same folder, Meal Companion will be able to detect it and utilize the existing data. 
 
-###### [Back to table of contents](#table-of-contents)
+#### [Back to table of contents](#table-of-contents)
 
 ## Help
 If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use.
 ![help.png](images/help.png)
 
-###### [Back to table of contents](#table-of-contents)
+#### [Back to table of contents](#table-of-contents)
 
 ## Command List
 Please see the below table for the list of available commands.
@@ -148,9 +150,9 @@ Please see the below table for the list of available commands.
 | List details of a specific recipe | `recipe <index of recipe>` | `recipe 6` (recipe for Hainanese Chicken Rice) |
 | List recipes that can be made with current list of stored ingredients | `recipe possible` | `recipe possible` |
 
-###### [Back to table of contents](#table-of-contents)
+#### [Back to table of contents](#table-of-contents)
 
 # Conclusion
 Congratulations! You have reached the end of this user guide, which means you are ready to make full use of Meal Companion! Of course, you may refer to this guide at any time, and if you have any further questions, feel free to reach out to the Meal Companion team at any of our contact links at the top of the page! Have a good time, and we hope you enjoy using Meal Companion!
 
-###### [Back to top](#user-guide)
+#### [Back to top](#user-guide)
