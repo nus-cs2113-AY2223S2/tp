@@ -1,0 +1,32 @@
+@startuml librarian diagram
+abstract class Command{
+    + {abstract} CommandResult execute()
+    + {static} void setData()
+}
+class InventoryController{
+    - {static} Inventory inventory
+    + {static} void setData()
+    + {static} void checkDataExists()
+    + {static} Book addBook(String isbn, String title, String author, String topic)
+    + {static} Book addBook(Book newBook)
+    + {static} Book removeAllBooks(String isbn)
+    + {static} Book removeAllBooks(Book book)
+    + {static} Book removeOneBook(String isbn)
+
+}
+class InventoryCommand{
+    - BorrowableItem item
+    - String action
+    + CommandResult execute()
+    - Book checkBook()
+}
+class Inventory{}
+class Book{}
+class BorrowableItem{}
+
+InventoryController --> Inventory
+InventoryController --> BorrowableItem
+InventoryController ..> Book
+Book --|> BorrowableItem
+Command <|-- InventoryCommand
+InventoryCommand ..> InventoryController
