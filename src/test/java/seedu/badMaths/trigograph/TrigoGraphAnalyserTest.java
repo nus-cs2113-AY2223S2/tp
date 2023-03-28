@@ -23,10 +23,11 @@ class TrigoGraphAnalyserTest {
     }
 
     @Test
-    void wrongFreqForMat_withMinus_expects_NumberFormatException(){
+    void wrongFreqFormat_withMinus_expects_NumberFormatException(){
         String eqn = "2*cos(-*x+5)-2";
         TrigoGraphAnalyser test = new TrigoGraphAnalyser(eqn);
-        assertThrows(NumberFormatException.class,()->{test.findFreq("-*x",true);
+        assertThrows(NumberFormatException.class,()->{
+            test.findFreq("-*x",true);
         });
     }
 }
