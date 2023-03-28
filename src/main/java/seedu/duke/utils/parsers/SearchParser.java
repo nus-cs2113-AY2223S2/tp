@@ -2,11 +2,9 @@ package seedu.duke.utils.parsers;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.SearchCommand;
-import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.SearchFilterErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.types.Types;
-import seedu.duke.utils.Ui;
 
 public class SearchParser extends Parser{
     private Types.SearchType searchType;
@@ -25,18 +23,13 @@ public class SearchParser extends Parser{
      */
     public void parseSearchUPC(String rawInput, Inventory inventory, Types.SearchType searchType) {
         try {
-            if (rawInput == null) {
-                throw new MissingParametersException();
-            }
-            if (rawInput.split(" ").length > 1) {
+            if (rawInput.split(" ").length > 1 || rawInput.length() == 0) {
                 throw new SearchFilterErrorException();
             }
             Command searchCommand = new SearchCommand(inventory, rawInput, searchType);
             searchCommand.run();
-        } catch (MissingParametersException e) {
-            e.missingSearchItemParameters();
-        } catch (SearchFilterErrorException se) {
-            Ui.printInvalidEditCommand();
+        } catch (SearchFilterErrorException e) {
+            e.incorrectSearchUPCParameters();
         }
     }
 
@@ -50,13 +43,13 @@ public class SearchParser extends Parser{
      */
     public void parseSearch(String rawInput, Inventory inventory, Types.SearchType searchType) {
         try {
-            if (rawInput == null) {
-                throw new MissingParametersException();
+            if (rawInput == null || rawInput.length() == 0) {
+                throw new SearchFilterErrorException();
             }
             Command searchCommand = new SearchCommand(inventory, rawInput, searchType);
             searchCommand.run();
-        } catch (MissingParametersException e) {
-            e.missingSearchItemParameters();
+        } catch (SearchFilterErrorException e) {
+            e.incorrectSearchParameters();
         }
     }
 

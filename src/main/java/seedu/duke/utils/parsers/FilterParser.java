@@ -2,7 +2,6 @@ package seedu.duke.utils.parsers;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.FilterCommand;
-import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.SearchFilterErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.utils.Ui;
@@ -68,28 +67,28 @@ public class FilterParser extends Parser{
     public void run(){
         try {
             if (rawInput == null) {
-                throw new MissingParametersException();
+                throw new SearchFilterErrorException();
             }
             String[] commands = rawInput.split(" ");
             switch (commands[0]) {
             case "f/price":
                 if (commands.length != 3) {
-                    throw new MissingParametersException();
+                    throw new SearchFilterErrorException();
                 }
                 parseFilterPrice(commands, inventory);
                 break;
             case "f/category":
             case "f/tag":
                 if (commands.length < 2) {
-                    throw new MissingParametersException();
+                    throw new SearchFilterErrorException();
                 }
                 parseFilterCategoryOrTag(commands, commands[0], inventory);
                 break;
             default:
-                throw new MissingParametersException();
+                throw new SearchFilterErrorException();
             }
-        } catch (MissingParametersException e) {
-            e.missingSearchItemParameters();
+        } catch (SearchFilterErrorException e) {
+            e.incorrectFilterParameters();
         }
     }
 }
