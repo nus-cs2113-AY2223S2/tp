@@ -18,6 +18,20 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 4. Run the file with the command `java -jar magusstock.jar`.
 
 ## Features 
+- [Adding an item: `add`](#adding-an-item--add)
+- [Editing an item: `edit`](#editting-an-item--edit)
+- [Removing an item: `remove`](#removing-an-item--remove)
+- [Listing all items: `list`](#list-all-items--list)
+- [Searching for item(s): `search`](#searching-an-item--search)
+- [Filtering item(s) by type: `filter`](#filtering-by-type--filter)
+- [Listing all commands: `help`](#list-all-commands--help)
+- [History of item: `history`](#historical-records-of-item--history)
+- [Selling an item: `sell`](#sell-quantity-of-item--sell)
+- [Restocking an item: `restock`](#restock-an-item--restock)
+- [Dashboard: `db`](#dashboard--db)
+- [Category: `cat`](#category--cat)
+- [Alert for item(s): `alert`](#alert-for-an-item--alert)
+- [Exiting the program: `exit`](#exiting-the-program--exit)
 
 {Give detailed description of each feature}
 
@@ -37,7 +51,7 @@ Example of usage:
 
 Sample output:
 
-### Editting an item: `edit`
+### Editing an item: `edit`
 Edit an item's details in the inventory list.
 
 Format: `todo n/TODO_NAME d/DEADLINE`
@@ -197,6 +211,12 @@ Example of usage:
 
 Sample output:
 
+### Exiting the program: `exit`
+Exits the MagusStock program.
+
+Format: `exit` or `bye`
+
+Sample output:
 
 
 ## FAQ
