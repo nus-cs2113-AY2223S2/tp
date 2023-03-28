@@ -51,6 +51,7 @@ public class ViewResult {
      * The category, as a string of length 21
      * If category/description strings exceed their length, they will be truncated and appended with ... instead.
      * If value is ignored, "Ignored" will replace it.
+     *
      * @param statementIndex   1-based indexing to be shown to the user
      * @param currentStatement the FinancialStatement
      * @return A formatted string
@@ -76,14 +77,14 @@ public class ViewResult {
             value = value.substring(0, 14);
         }
 
-        if(statementName.length() > 45) {
-            description = statementName.substring(0,42) + "...";
+        if (statementName.length() > 45) {
+            description = statementName.substring(0, 42) + "...";
         } else {
             description = String.format("%s                                              ", statementName);
             description = description.substring(0, 45);
         }
 
-        if(statementCategory.length() > 21) {
+        if (statementCategory.length() > 21) {
             category = statementCategory.substring(0, 18) + "...";
         } else {
             category = String.format("%s                     ", statementCategory);
@@ -112,10 +113,10 @@ public class ViewResult {
                                         boolean isSorted, boolean viewAll) {
         assert (inflow != 0 || outflow != 0);
         String timespanInfo = "|Viewing all entries from " + startDate + " till today";
-        if(viewAll) {
+        if (viewAll) {
             timespanInfo = "|Viewing all entries from the start of time";
         }
-        if(isSorted) {
+        if (isSorted) {
             timespanInfo += " in sorted order";
         }
         String inflowInfo = String.format("|Total Inflow: $%.2f", inflow);
@@ -131,12 +132,13 @@ public class ViewResult {
 
     /**
      * Helper function used to pad lines in the summary such that the information fits in the table
+     *
      * @param info The unformatted string
      * @return A formatted string
      */
     private static String padSummaryLines(String info) {
         info += "                                                                                                  ";
-        info = info.substring(0,101);
+        info = info.substring(0, 101);
         info += "|\n";
         return info;
     }

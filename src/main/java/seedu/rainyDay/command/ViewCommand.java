@@ -11,6 +11,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author BenjaminPoh
+
 /**
  * Represents a command to view the financial report
  */
@@ -50,7 +51,7 @@ public class ViewCommand extends Command {
      *
      * @return ArrayList of indexes which passed the check
      */
-    private ArrayList<Integer> filterIndexes () {
+    private ArrayList<Integer> filterIndexes() {
         ArrayList<Integer> filteredIndexes = new ArrayList<>();
         for (int index = 0; index < userData.getStatementCount(); index++) {
             FinancialStatement currentStatement = userData.getStatement(index);
@@ -67,16 +68,16 @@ public class ViewCommand extends Command {
      * Sorts in non-decreasing order of absolute value, with inflows always prioritised over outflows
      */
     class sortByValue implements Comparator<Integer> {
-        public int compare (Integer firstIndex, Integer secondIndex) {
+        public int compare(Integer firstIndex, Integer secondIndex) {
             FinancialStatement firstStatement = userData.getStatement(firstIndex);
             FinancialStatement secondStatement = userData.getStatement(secondIndex);
-            if(firstStatement.getFlowSymbol().equals("+") && secondStatement.getFlowSymbol().equals("-")) {
-               return -1;
+            if (firstStatement.getFlowSymbol().equals("+") && secondStatement.getFlowSymbol().equals("-")) {
+                return -1;
             }
-            if(firstStatement.getFlowSymbol().equals("-") && secondStatement.getFlowSymbol().equals("+")) {
+            if (firstStatement.getFlowSymbol().equals("-") && secondStatement.getFlowSymbol().equals("+")) {
                 return 1;
             }
-            return (int)((firstStatement.getValue() * 100) - (secondStatement.getValue() *100));
+            return (int) ((firstStatement.getValue() * 100) - (secondStatement.getValue() * 100));
         }
     }
 
@@ -99,7 +100,7 @@ public class ViewCommand extends Command {
             return new CommandResult(output);
         }
         assert userData.getStatementCount() != 0 : "statement count mismatch";
-        if(sortingRequired) {
+        if (sortingRequired) {
             validIndexes.sort(new sortByValue());
         }
         ViewResult.printReport(validIndexes, timeLimit, sortingRequired, viewAll);
