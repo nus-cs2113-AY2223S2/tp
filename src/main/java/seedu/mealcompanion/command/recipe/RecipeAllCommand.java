@@ -17,6 +17,10 @@ public class RecipeAllCommand extends RecipeCommand {
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
         RecipeList recipes = mealCompanionSession.getRecipes();
+        if (recipes.isEmpty()) {
+            mealCompanionSession.getUi().printMessage("There is no recipe available.");
+            return;
+        }
         int index = 1;
         mealCompanionSession.getUi().printMessage("Here is the full list of recipes:");
         for (Recipe recipe : recipes.getRecipes()) {
