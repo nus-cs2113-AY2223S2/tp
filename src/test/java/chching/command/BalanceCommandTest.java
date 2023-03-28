@@ -19,7 +19,9 @@ import java.time.format.DateTimeFormatter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-
+/**
+ * Junit Test for BalanceCommand
+ */
 class BalanceCommandTest {
     static final String INCOME_DESCRIPTION = "salary";
     static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -64,7 +66,10 @@ class BalanceCommandTest {
         expenseList.add(groceries);
         defaultExpenseList = new ExpenseList(expenseList);
     }
-    
+
+    /**
+     * Junit Test for when balance is correct
+     */
     @Test
     void execute_normalScenario_success() {
         String expectedOutput = "4500.00";

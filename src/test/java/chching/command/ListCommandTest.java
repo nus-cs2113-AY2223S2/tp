@@ -16,6 +16,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+
+/**
+ * Junit Test for ListCommand
+ */
 public class ListCommandTest {
     static final String CATEGORY = "transport";
     static final String EXPENSE_DESCRIPTION = "public transport";
@@ -34,6 +39,9 @@ public class ListCommandTest {
     private Expense expenseDemo = new Expense(CATEGORY, EXPENSE_DESCRIPTION, DATE, EXPENSE_VALUE);
     private Income incomeDemo = new Income(INCOME_DESCRIPTION, DATE, INCOME_VALUE);
 
+    /**
+     * Junit Test when listing an empty list
+     */
     @Test
     void execute_listCommandEmpty_noException() throws ChChingException {
         Command command = new ListCommand();
@@ -41,6 +49,9 @@ public class ListCommandTest {
                 storage, selector, converter, targetStorage));
     }
 
+    /**
+     * Junit Test when listing an income and expense lists
+     */
     @Test
     void execute_listCommandExpenseAndIncome_noException() throws ChChingException {
         defaultIncomeList.addIncome(incomeDemo);
