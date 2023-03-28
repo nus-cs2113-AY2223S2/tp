@@ -61,7 +61,8 @@ public class Parser {
             case "/deadline/list":
                 return new ListDeadlinesCommand(deadlines);
             case "/deadline/add":
-                return prepareAddDeadlineCommand(storage, userCommandSecondKeyword);
+                String deadlineTaskAndDueDate = userInputWords.get(1) + " " + userInputWords.get(2);
+                return prepareAddDeadlineCommand(storage, deadlineTaskAndDueDate);
             case "/deadline/remove":
                 int indexDeadlineToRemove = stringToInt(userCommandSecondKeyword);
                 return new DeleteDeadlineCommand(storage, indexDeadlineToRemove, deadlines);
