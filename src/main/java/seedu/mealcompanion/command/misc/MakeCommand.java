@@ -20,21 +20,6 @@ public class MakeCommand extends ExecutableCommand {
         this.name = argument;
     }
 
-    /**
-     * Finds the index of a specified recipe name in the recipes list
-     *
-     * @param recipes the list of recipes
-     * @return the index of the recipe in the recipes list and -1 if recipe name does not exist
-     */
-    private int findRecipeName(RecipeList recipes) {
-        for (int i = 0; i < recipes.recipes.size(); i += 1) {
-            if (recipes.getRecipe(i).getName().equalsIgnoreCase(this.name)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     //@@author ngyida
     /**
      * Check if an ingredientList has a sufficient amount of an ingredient.
@@ -75,22 +60,6 @@ public class MakeCommand extends ExecutableCommand {
     //@@author TJW0911
 
     /**
-     * Finds the index of a specified ingredient name in the ingredients list
-     *
-     * @param mealCompanionSession the MealCompanionSession containing the list of ingredients
-     * @param name the name of the ingredient
-     * @return the index of the ingredient in the ingredients list and -1 if ingredient does not exist
-     */
-    public static int findIngredient(MealCompanionSession mealCompanionSession, String name) {
-        for (int i = 0; i < mealCompanionSession.getIngredients().size(); i += 1) {
-            if (mealCompanionSession.getIngredients().get(i).getMetadata().getName().equals(name)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    /**
      * Removes a specified quantity of an ingredient from the ingredient list
      *
      * @param mealCompanionSession the MealCompanionSession containing the list of ingredients
@@ -99,7 +68,7 @@ public class MakeCommand extends ExecutableCommand {
      */
 
     private void removeIngredient(MealCompanionSession mealCompanionSession, Double quantity, String name) {
-        int indexOfExistingIngredient = findIngredient(mealCompanionSession, name);
+        int indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(name);
         double fridgeQuantity = mealCompanionSession.getIngredients().get(indexOfExistingIngredient).getQuantity();
         assert fridgeQuantity >= quantity: "fridgeQuantity should be more than quantity to be removed";
         double newQuantity = fridgeQuantity - quantity;
@@ -139,11 +108,7 @@ public class MakeCommand extends ExecutableCommand {
             if(name == null || name.trim().isEmpty()) {
                 throw new MealCompanionException("recipe name cannot be blank");
             }
-            int index = findRecipeName(recipes);
-            if (index == -1) {
-                throw new MealCompanionException("recipe name not found");
-            }
-            Recipe recipe = recipes.getRecipe(index);
+            Recipe recipe = recipes.getRecipe(name);
             IngredientList fridgeIngredients = mealCompanionSession.getIngredients();
             if (canMakeRecipe(recipe, fridgeIngredients)) {
                 makeRecipe(mealCompanionSession, recipe);

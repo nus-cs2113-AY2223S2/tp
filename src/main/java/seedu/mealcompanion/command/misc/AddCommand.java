@@ -57,22 +57,6 @@ public class AddCommand extends ExecutableCommand {
         mealCompanionSession.getIngredientStorage().writeIngredientToFile(ingredient);
     }
 
-    /**
-     * Finds the index of a specified ingredient name in the ingredients list
-     *
-     * @param mealCompanionSession the MealCompanionSession containing the list of ingredients
-     * @param name the name of the ingredient
-     * @return the index of the ingredient in the ingredients list and -1 if ingredient does not exist
-     */
-
-    public int findIndex(MealCompanionSession mealCompanionSession, String name) {
-        for (int i = 0; i < mealCompanionSession.getIngredients().size(); i += 1) {
-            if (mealCompanionSession.getIngredients().get(i).getMetadata().getName().equalsIgnoreCase(name)) {
-                return i;
-            }
-        }
-        return -1;
-    }
 
     /**
      * Add an ingredient of specified quantity to ingredients list.
@@ -86,7 +70,7 @@ public class AddCommand extends ExecutableCommand {
             if (quantity <= 0) {
                 throw new MealCompanionException("OOPS, quantity must be greater than 0");
             }
-            int indexOfExistingIngredient = findIndex(mealCompanionSession, name);
+            int indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(name);
             if (indexOfExistingIngredient == -1) {
                 addNewIngredient(mealCompanionSession, quantity, name);
             } else {
