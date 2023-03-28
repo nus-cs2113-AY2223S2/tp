@@ -19,6 +19,7 @@ RM(recipe manager) is a <strong>desktop recipe manager application for managing 
     * **[Clearing all entries: `clear`](#clearing-all-entries-clear)**
     * **[Exiting the program: `exit`](#exiting-the-program-exit)**
     * **[Saving the data](#save-data)**
+    * **[Editing the data file](#edit-data)**
     <!-- * **[Editing the data file](#edit-data)** -->
 <!-- * **[Upcoming features(v2.0)](#upcoming-features)**
     * **[Using a recipe: `use`](#using-a-recipe-use)**
