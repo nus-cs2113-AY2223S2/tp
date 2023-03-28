@@ -17,6 +17,8 @@ opt does not contain key
 
 ShortcutAddCommand -> shortcutCommands : puts(key, value)
 activate shortcutCommands
+shortcutCommands --> ShortcutAddCommand
+
 deactivate shortcutCommands
 
 end
