@@ -72,7 +72,7 @@ public class RecipeList {
      * Find the index (0-based) of a recipe by its specified name.
      * @param name the name of the recipe to look for
      * @return index of recipe if recipe is found, else return -1
-     * @exception throws excepton if recipe name does not exist in the recipe list
+     * @throws MealCompanionException if recipe name does not exist in the recipe list
      */
     public int findIndex(String name) throws MealCompanionException {
         int index = 0;
