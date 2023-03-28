@@ -55,7 +55,11 @@ public class UiTest {
     public void showSuccessfulDeletionMessage_afterDeleteCommand_showDeletionMessage() {
         Ui ui = new Ui();
         ui.showSuccessfulDeletionMessage();
-        assertEquals("Company information successfully deleted!",
+        String expected = ("____________________________________________________________\n" +
+                "Company information successfully deleted!" +
+                "\n" + "____________________________________________________________")
+                .replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
+        assertEquals(expected,
                 out.toString().trim());
     }
 
@@ -63,7 +67,11 @@ public class UiTest {
     public void showSuccessfulPurgingMessage_afterPurgeCommand_showPurgeMessage() {
         Ui ui = new Ui();
         ui.showSuccessfulPurgingMessage();
-        assertEquals("Data has been deleted successfully!",
+        String expected = ("____________________________________________________________\n" +
+                "Data has been deleted successfully!" +
+                "\n" + "____________________________________________________________")
+                .replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
+        assertEquals(expected,
                 out.toString().trim());
     }
 
@@ -71,7 +79,11 @@ public class UiTest {
     public void showSampleDataLoadedMessage_afterLoadingSampleData_showDataLoadedMessage() {
         Ui ui = new Ui();
         ui.showSampleDataLoadedMessage();
-        assertEquals("Sample data has been loaded into the list!",
+        String expected = ("____________________________________________________________\n" +
+                "Sample data has been loaded into the list!" +
+                "\n" + "____________________________________________________________")
+                .replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
+        assertEquals(expected,
                 out.toString().trim());
     }
 
