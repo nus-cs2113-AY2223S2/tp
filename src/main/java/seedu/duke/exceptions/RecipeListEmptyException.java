@@ -1,8 +1,8 @@
 package seedu.duke.exceptions;
 
-public class RecipeListEmptyError extends Exception{
+public class RecipeListEmptyException extends Exception{
     /**
      * Class constructor.
      */
-    public RecipeListEmptyError() {}
+    public RecipeListEmptyException() {}
 }

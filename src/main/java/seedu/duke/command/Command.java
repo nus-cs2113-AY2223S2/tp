@@ -81,7 +81,6 @@ public class Command {
             } catch (Exception e) {
                 ui.showAddingRecipeErrorMessage(e);
             }
-            ui.showSave();
             Storage.writeSavedFile();
             break;
         case DELETE:
@@ -96,13 +95,11 @@ public class Command {
             } catch (Exception e) {
                 ui.showDeletingTaskErrorMessage(e, type);
             }
-            ui.showSave();
             Storage.writeSavedFile();
             break;
         case CLEAR:
             recipeList.clearRecipeList();
             ui.showRecipeListCleared();
-            ui.showSave();
             Storage.writeSavedFile();
             break;
         case VIEW:

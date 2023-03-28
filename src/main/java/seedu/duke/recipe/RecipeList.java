@@ -1,6 +1,6 @@
 package seedu.duke.recipe;
 
-import seedu.duke.exceptions.RecipeListEmptyError;
+import seedu.duke.exceptions.RecipeListEmptyException;
 import seedu.duke.ui.StringLib;
 
 import java.util.ArrayList;
@@ -43,9 +43,9 @@ public class RecipeList {
         assert(currRecipeNumber == recipeList.size());
     }
 
-    public static void removeRecipe(int index) throws RecipeListEmptyError {
+    public static void removeRecipe(int index) throws RecipeListEmptyException {
         if (recipeList.isEmpty()) {
-            throw new RecipeListEmptyError();
+            throw new RecipeListEmptyException();
         }
         recipeList.remove(index-1);
         currRecipeNumber--;

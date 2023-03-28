@@ -3,7 +3,7 @@ package seedu.duke.ui;
 import seedu.duke.command.CommandType;
 import seedu.duke.exceptions.FileParseReadingException;
 import seedu.duke.exceptions.IncompleteInputException;
-import seedu.duke.exceptions.RecipeListEmptyError;
+import seedu.duke.exceptions.RecipeListEmptyException;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.StepList;
@@ -120,7 +120,7 @@ public class UI {
         if (e instanceof IncompleteInputException) {
             System.out.println(MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof IndexOutOfBoundsException || e instanceof NullPointerException ||
-                   e instanceof RecipeListEmptyError) {
+                   e instanceof RecipeListEmptyException) {
             System.out.println(PREFIX_EMPTY_LIMIT_LIST_ERROR + type + SUFFIX_EMPTY_LIMIT_LIST_ERROR);
         } else {
             System.out.println(RECIPE_DELETING_DEFAULT_ERROR + e.getMessage());
@@ -140,7 +140,7 @@ public class UI {
         if (e instanceof IncompleteInputException) {
             System.out.println(MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof IndexOutOfBoundsException || e instanceof NullPointerException ||
-                e instanceof RecipeListEmptyError) {
+                e instanceof RecipeListEmptyException) {
             System.out.println(PREFIX_EMPTY_LIMIT_LIST_ERROR + CommandType.VIEW + SUFFIX_EMPTY_LIMIT_LIST_ERROR);
         } else {
             System.out.println(RECIPE_VIEWING_DEFAULT_ERROR + e.getMessage());
