@@ -392,10 +392,13 @@ public class TestUi {
         workoutType.add("core");
         exerciseData.setWorkoutType(workoutType);
         List<String> instructions = new ArrayList<String>();
-        instructions.add("Lie down on the floor and secure your feet. Your legs should be bent at the knees.");
-        instructions.add("Place your hands behind or to the side of your head. You will begin with your back on the ground. This will be your starting position.");
+        instructions.add("Lie down on the floor and secure your feet. Your legs should be bent" +
+                " at the knees.");
+        instructions.add("Place your hands behind or to the side of your head. You will begin " +
+                "with your back on the ground. This will be your starting position.");
         instructions.add("Flex your hips and spine to raise your torso toward your knees.");
-        instructions.add("At the top of the contraction your torso should be perpendicular to the ground. Reverse the motion, going only Â¾ of the way down.");
+        instructions.add("At the top of the contraction your torso should be perpendicular to " +
+                "the ground. Reverse the motion, going only Â¾ of the way down.");
         instructions.add("Repeat for the recommended amount of repetitions.");
         exerciseData.setInstructions(instructions);
 
@@ -410,10 +413,13 @@ public class TestUi {
                     "Name: 3/4 Sit-Up\r\n" +
                     "Difficulty Level: beginner\r\n" +
                     "Workout Type: core\r\n" +
-                    "Lie down on the floor and secure your feet. Your legs should be bent at the knees., " +
-                    "Place your hands behind or to the side of your head. You will begin with your back on the ground. This will be your starting position., " +
+                    "Lie down on the floor and secure your feet. Your legs should be bent" +
+                    " at the knees., " +
+                    "Place your hands behind or to the side of your head. You will begin " +
+                    "with your back on the ground. This will be your starting position., " +
                     "Flex your hips and spine to raise your torso toward your knees., " +
-                    "At the top of the contraction your torso should be perpendicular to the ground. Reverse the motion, going only Â¾ of the way down., " +
+                    "At the top of the contraction your torso should be perpendicular to " +
+                    "the ground. Reverse the motion, going only Â¾ of the way down., " +
                     "Repeat for the recommended amount of repetitions.\r\n" +
                     "\r\n";
         } else {
@@ -421,10 +427,13 @@ public class TestUi {
                     "Name: 3/4 Sit-Up\n" +
                     "Difficulty Level: beginner\n" +
                     "Workout Type: core\n" +
-                    "Lie down on the floor and secure your feet. Your legs should be bent at the knees., " +
-                    "Place your hands behind or to the side of your head. You will begin with your back on the ground. This will be your starting position., " +
+                    "Lie down on the floor and secure your feet. Your legs should be bent" +
+                    " at the knees., " +
+                    "Place your hands behind or to the side of your head. You will begin " +
+                    "with your back on the ground. This will be your starting position., " +
                     "Flex your hips and spine to raise your torso toward your knees., " +
-                    "At the top of the contraction your torso should be perpendicular to the ground. Reverse the motion, going only Â¾ of the way down., " +
+                    "At the top of the contraction your torso should be perpendicular to " +
+                    "the ground. Reverse the motion, going only Â¾ of the way down., " +
                     "Repeat for the recommended amount of repetitions.\n" +
                     "\n";
         }
