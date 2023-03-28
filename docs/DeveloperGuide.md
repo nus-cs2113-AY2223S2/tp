@@ -1,45 +1,52 @@
 # Developer Guide
 
-SEP Helper is a desktop application for Mechanical Engineering students, studying at the 
+SEP Helper is a desktop application for Mechanical Engineering students, studying at the
 National University of Singapore (NUS), intending to go to Korea for a Student Exchange Programme (SEP).
 ---
+
 ## Table of Contents
+
 1. [Acknowledgements](#acknowledgements)
 2. [Design & Implementation](#design--implementation)
-   1. [Architecture](#architecture)
-   2. [Help Command](#help-command)
-   3. [Delete Command](#delete-command)
+    1. [Architecture](#architecture)
+    2. [Help Command](#help-command)
+    3. [Delete Command](#delete-command)
 3. [Product Scope](#product-scope)
-   1. [Target User Profile](#target-user-profile)
-   2. [Value Proposition](#value-proposition)
+    1. [Target User Profile](#target-user-profile)
+    2. [Value Proposition](#value-proposition)
 4. [User Stories](#user-stories)
 5. [Non-Functional Requirements](#non-functional-requirements)
 6. [Glossary](#glossary)
 7. [Instructions for Manual Testing](#instructions-for-manual-testing)
+
 ---
+
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
+original source as well}
 
 ## Design & implementation
 
 # Architecture
+
 ![Architecture.png](diagrams%2FArchitecture.png)
 
-The above _**Architecture**_ diagram gives a high-level overall of the program. 
+The above _**Architecture**_ diagram gives a high-level overall of the program.
 
 **Main Components of system**
+
 1. Duke : Taking user inputs
 2. Parser : Processes and Executes User Commands
 3. UI : Prints out messages to user
-4. Storage : Processes and stores 
+4. Storage : Processes and stores
 5. DataReader
 
 **1. Duke**
 
 Duke holds an instance of each of the component mentioned above.
 It is the starting point of our program and takes in user inputs.
-Duke executes commands based on an object of class "Command" after Parser processes user inputs and 
+Duke executes commands based on an object of class "Command" after Parser processes user inputs and
 returns a Command object back to Duke.
 
 **2. Parser**
@@ -50,14 +57,14 @@ Parser class will return an object of class "Command", which will be used by Duk
 **3. UI**
 
 UI class is in charge of the majority of the print functions present in the program.
-It is instantiated once in both Parser and Duke classes, where it's print functions are utilized 
-to print outputs to the User. 
+It is instantiated once in both Parser and Duke classes, where it's print functions are utilized
+to print outputs to the User.
 
 Future Improvements: UI to handle ALL of the printing functions present in the program.
 
-**4. Storage** 
+**4. Storage**
 
-Storage class holds an ArrayList of modules that the user has selected. 
+Storage class holds an ArrayList of modules that the user has selected.
 It saves the user's modules to an external .txt file every time the module list is altered,
 and reads from the same .txt file when the program is first booted up.
 
@@ -66,7 +73,6 @@ and reads from the same .txt file when the program is first booted up.
 DataReader class reads two external .txt files to acquire the list of Partner Universities and list
 of Modules available in the PUs, and provides this information to other components.
 
-
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 ### Storage
@@ -74,8 +80,8 @@ of Modules available in the PUs, and provides this information to other componen
 The Storage class handles the loading and storing of information into a single text file in the User's computer.
 During the initialisation of the Storage class, which is at the start of the program, loading of data occurs.
 From here on, querying of the Storage class is allowed, where modules saved by the user can be accessed through
-the ListCurrentCommand. There are only two commands that  will cause changes to the text file. They are the AddCommand 
-and DeleteCommand. This involves adding of new modules and deleting of old modules to the Storage. The text file will 
+the ListCurrentCommand. There are only two commands that will cause changes to the text file. They are the AddCommand
+and DeleteCommand. This involves adding of new modules and deleting of old modules to the Storage. The text file will
 be continuously updated every time an Add or Delete command is called.
 
 How module data is stored in text file:
@@ -85,12 +91,19 @@ Module information is stored in one single line separated by commas
 
 Sequence Diagram of Storage initialisation:
 
-![Storage.png](diagrams%2FStorage.png)
+![Storage.png](diagrams%2FStorage%2FStorage.png)
+
+The Storage class also handles the adding of new modules and the deleting of past modules. When any of this occurs, the
+txt file will be updated immediately after the successful adding/deletion of saved modules in the Storage.
+
+- For adding of newly saved modules, they are added through appending to the saved_modules.txt file
+- For deleting of past saved modules, they are deleted, and the txt file is updated by rewriting every module from the
+  ArrayList of saved modules
 
 ### Parser
 
-The parser class is responsible for parsing the user's input commands and returning the appropriate command object. 
-The commands that the parser class will initialise are ListPuCommand(), ListCurrentCommand(modules), 
+The parser class is responsible for parsing the user's input commands and returning the appropriate command object.
+The commands that the parser class will initialise are ListPuCommand(), ListCurrentCommand(modules),
 prepareListPuModulesCommand(userCommandSecondKeyword, universities), ExitCommand(),
 prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities),
 DeleteModuleCommand(storage, indexToRemove, modules), and HelpCommand(). The parser class will handle error checking by
@@ -98,20 +111,21 @@ throwing InvalidCommandException if the user's input command does not match the 
 
 The following class diagrams illustrates the relationship between the Parser class and the Command classes.
 
-
 ### Help Command
-The help command provides a list of commands and the commands' respective input format for the user.  
+
+The help command provides a list of commands and the commands' respective input format for the user.
 
 The following sequence diagram shows the relationship between the classes involved when the delete command is called.
 
 ### Delete Command
-The delete command removes a module from the user's saved list of modules that is specified by the user.  
+
+The delete command removes a module from the user's saved list of modules that is specified by the user.
 
 The following sequence diagram shows the relationship between the classes involved when the delete command is called.
 
+### List Current Command
 
-### List Current Command 
-Lists out all of current modules that user has added. 
+Lists out all of current modules that user has added.
 
 > Syntax: list current
 
@@ -125,10 +139,11 @@ Sequence Diagram of List Current Command.
 2. UI accesses Module object in the ArrayList<Module> to receive information using getter functions.
 3. UI prints out to userConsole the various information.
 
-### List Pu Command 
+### List Pu Command
+
 Lists out all of Partner Universities.
 
-> Syntax: list pu 
+> Syntax: list pu
 
 Sequence Diagram of List Pu Command.
 
@@ -139,8 +154,8 @@ Sequence Diagram of List Pu Command.
 1. ListPuCommand calls printPUListMessage() of UI class, which simply prints out a string of message to user
 2. ListPuCommand calls printPUList() of UI class.
 3. UI class holds an instance of all the possible PUs in an Arraylist<University> object.
-4. UI class loops through ArrayList<University> to receive the various university information and print out 
-to UserConsole
+4. UI class loops through ArrayList<University> to receive the various university information and print out
+   to UserConsole
 
 ### List Pu Modules Command
 
@@ -154,21 +169,42 @@ Sequence Diagram of List Pu Modules Command.
 ![ListPuModulesCommandSequenceDiagram.png](diagrams%2FListPuModulesCommandSequenceDiagram.png)
 
 **Explanation**
-1. ListPuModulesCommand calls printPUModListMessage() of UI class, which prints out PU Name in a message.
-2. ListPuModulesCommand calls printPUModules of UI class, passing the UI class an integer called univID which 
-UI class uses to identify which Partner University to process.
-3. UI class use uniID to loop through the list of modules available, and adds modules of the selected university 
-to an ArrayList<Module> puModulesToPrint.
-4. UI class loops through the modules in puModulesToPrint ArrayList<Module>, retrieving module information and 
-printing it out to userConsole
 
-**Future Development**
+1. ListPuModulesCommand calls printPUModListMessage() of UI class, which prints out PU Name in a message.
+2. ListPuModulesCommand calls printPUModules of UI class, passing the UI class an integer called univID which
+   UI class uses to identify which Partner University to process.
+3. UI class use uniID to loop through the list of modules available, and adds modules of the selected university
+   to an ArrayList<Module> puModulesToPrint.
+4. UI class loops through the modules in puModulesToPrint ArrayList<Module>, retrieving module information and
+   printing it out to userConsole
+
+### Add Module Command
+
+Adds the Module the user has wants to save to the saved modules database.
+
+> Syntax: list [_uniAbbreviation/moduleCode_]
+
+Sequence Diagram of Add Module Command.
+
+![StorageAddModule.png](diagrams%2FStorage%2FStorageAddModule.png)
+
+**Explanation**
+
+1. AddModuleCommand calls addModuleToModuleList(moduleToAdd) of Storage class. moduleToAdd refers to the Module that
+   the user has picked to add.
+2. In the circumstance that the moduleToAdd is null, Storage would call the printAddModuleFailureMessage to tell the
+   user that module adding has failed, and stop the operation of AddModuleCommand.
+3. Storage class would then add the module to its ArrayList of saved modules.
+4. Storage class would then initialise an instance of FileWriter to append the newly added module to the txt file.
+5. After saving successfully, AddModuleCommand would call UI to print an AddModMessage and returns to Duke
+   **Future Development**
 
 The UI class currently holds an instance all available PUs and their modules.
 This can and will be further refactored into other class to adhere to Single Responsbility Principle.
 Possible Solution: Store the PUs and modules in DataReader and use a getter function when needed.
 
 ## Product scope
+
 ### Target user profile
 
 {Describe the target user profile}
