@@ -55,7 +55,7 @@ public class Schedule {
         this.hasEndInfo = true;
         this.hasStartTime = hasSt;
         this.hasEndTime = hasEd;
-        this.isRecurring = false;
+        this.isRecurring = true;
         this.timeInterval = recurringTime;
     }
 
