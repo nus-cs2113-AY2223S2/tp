@@ -1,15 +1,16 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-
-
--> ":Storage" : addModuleToModuleList(Module moduleToAdd)
+activate ":Duke"
+":Duke" -> ":AddModuleCommand" : command.execute()
+activate ":AddModuleCommand"
+":AddModuleCommand" -> ":Storage" : addModuleToModuleList(moduleToAdd)
 activate ":Storage"
 opt moduleToAdd == null
 ":Storage" -> "<<class>>\n:UI" : UI.printAddModuleFailureMessage()
 activate "<<class>>\n:UI"
 ":Storage" <- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-<- ":Storage"
+":AddModuleCommand"<- ":Storage"
 end
 
 ":Storage" -> ":ArrayList<Module>" : modules.add(moduleToAdd)
@@ -41,5 +42,20 @@ activate ":FileWriter"
 ":Storage" <- ":FileWriter"
 deactivate ":FileWriter"
 deactivate ":Storage"
-<- ":Storage"
+":AddModuleCommand" <- ":Storage"
+":AddModuleCommand" -> "<<class>>\n:UI" : UI.printAddModMessage()
+activate "<<class>>\n:UI"
+"<<class>>\n:UI" -> PrintStream :  println(ADD_MOD_MESSAGE)
+activate PrintStream
+"<<class>>\n:UI" <- PrintStream
+deactivate PrintStream
+"<<class>>\n:UI" -> PrintStream :  println(LINE)
+activate PrintStream
+"<<class>>\n:UI" <- PrintStream
+deactivate PrintStream
+":AddModuleCommand" <- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+":Duke" <- ":AddModuleCommand"
+
+
 @enduml
