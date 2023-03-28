@@ -8,7 +8,7 @@ Duck is a **desktop app for managing tasks and deadlines, optimised for use via 
     * [Viewing help :](#viewing-help--help) `help`
     * [Listing all tasks :](#listing-all-tasks--list) `list`
     * [Listing all tasks up to X days into the future :](#listing-all-tasks-up-to-x-days-in-the-future--list-x) `list X`
-    * [Listing all School Classes :](#listing-all-School-Classes--list-classes) `list classes`
+    * [Displaying class schedule :](#displaying-class-schedule--list-classes) `list classes`
     * [Mark a specified task as done :](#marking-a-task--mark-task_number) `mark <task number> `
     * [Unmark a specified task as  not done :](#unmarking-a-task--unmark-task_number) `unmark <task number>`
     * [Deleting a task :](#deleting-a-task--delete) `delete <task number> `
