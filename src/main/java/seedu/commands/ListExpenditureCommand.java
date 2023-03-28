@@ -11,6 +11,10 @@ public class ListExpenditureCommand extends Command {
 
     @Override
     public CommandResult execute(ExpenditureList expenditures) {
+        if(expenditures.getSize() == 0) {
+            return new CommandResult("Your list is currently empty. Start adding some transactions now!\n");
+        }
+        
         return new CommandResult("Here is your list of expenditures: \n"
                 + expenditures.toString());
     }

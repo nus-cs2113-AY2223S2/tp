@@ -15,26 +15,34 @@ public class Ui {
     public static final String HELP_PAGE = "Here are the list of commands and their respective functions. "
             + "Please take note of the FORMAT that is stated below\n"
             + HORIZONTAL_LINE +
-            "\n1.add: There are 2 ways to add an expenditure to the record\n" +
-            "Format: EXPENDITURE_TYPE d/DATE a/AMOUNT s/DESCRIPTION\n" +
-            "        LEND/BORROW d/DATE n/(LEND/BORROW)_NAME a/AMOUNT b/DEADLINE s/DESCRIPTION\n" +
+            "\n1. Add an expenditure to the record\n" +
+            "Format: EXPENDITURE_TYPE d/DATE a/AMOUNT s/DESCRIPTION\n" + 
+            "There are 7 EXPENDITURE_TYPE: 'Academic', 'Accomodation', 'Entertainment', 'Food', 'Transport', 'Tuition', 'Other'\n" +
+            "Example: academic d/2023-02-02 a/25.10 s/NUS\n" +
             HORIZONTAL_LINE +
-            "\n2.delete: Deletes the specified expenditure from the record\n" +
+            "\n2. Add a lend/borrow record\n" +
+            "Format: TYPE d/DATE n/NAME a/AMOUNT b/DEADLINE s/DESCRIPTION\n" +
+            "TYPE should be either 'lend' or 'borrow'\n"+
+            "Example: lend d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 s/CS2113\n" +
+             HORIZONTAL_LINE +
+            "\n3. Delete a specified expenditure from the record\n" +
             "Format: delete INDEX\n" +
+            "Example: delete 1 \n" +
             HORIZONTAL_LINE +
-            "\n3.edit: Edits an existing expenditure in the record, edit cannot change an expenditure type\n"
-            +
-            "Format: edit INDEX d/DATE a/AMOUNT s/DESCRIPTION\n" +
-            "        edit INDEX d/DATE n/(LEND/BORROW)_NAME a/AMOUNT b/DEADLINE s/DESCRIPTION\n" +
+            "\n4. Edit an expenditure\n"
+            + "Format: edit INDEX d/DATE a/AMOUNT s/DESCRIPTION\n" +
+            "Cannot change an expenditure type\n" +
+            "Example: edit 2 d/2023-02-15 a/20.00 s/Eat Food\n" +
             HORIZONTAL_LINE +
-            "\n4.list: Shows a list of expenditures and loans in the record based on existing categories\n"
-            +
-            "Format: list /TYPE\n" +
+            "\n4. Edit a Lend/Borrow record\n"
+            + "Format: edit INDEX d/DATE n/NAME a/AMOUNT b/DEADLINE s/DESCRIPTION\n" +
+            "Cannot change a lend record to a borrow record\n" +
+            "Example: edit 17 d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 s/CS2040\n" +
             HORIZONTAL_LINE +
-            "\n5.borrow: Keep a record of an incoming loan\n" +
-            "Format: borrow a/AMOUNT n/LENDER_NAME d/BORROWED_DATE\n" + HORIZONTAL_LINE +
-            "\n6.lend: Add an expenditure to the record\n" +
-            "Format: lend a/AMOUNT n/BORROWER_NAME d/LENT_DATE";
+            "\n5. List all expenditures in the record\n"
+            + "Example: list\n" +
+            HORIZONTAL_LINE;
+        
 
     public static void greetUser() {
         System.out.println(WELCOME_MESSAGE + LOGO + INSTRUCTIONS + HELP_MESSAGE);
