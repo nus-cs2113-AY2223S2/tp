@@ -83,6 +83,10 @@ How module data is stored in text file:
 Module information is stored in one single line separated by commas
 `univID`,`moduleCode`,`moduleName`,`moduleMCs`,`nusModuleCode`,`nusModuleName`,`nusModuleMcs`
 
+Sequence Diagram of Storage initialisation:
+
+![Storage.png](diagrams%2FStorage.png)
+
 ### Parser
 
 The parser class is responsible for parsing the user's input commands and returning the appropriate command object. 
