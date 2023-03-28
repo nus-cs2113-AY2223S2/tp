@@ -83,6 +83,7 @@ public class CommandSort extends Command {
                     minIndex = j;
                 }
             }
+
             Expense tempExpense = new Expense(expenseListDate.get(i).getExpenseAmount(),
                     Time.toTime(expenseListDate.get(i).getExpenseTime()),
                     expenseListDate.get(i).getDescription(),
@@ -124,12 +125,11 @@ public class CommandSort extends Command {
 
     /* @@Ju Can
      */
-
-    // TODO: sort descending
+    
     public ArrayList<Expense> sortByCategorySum() {
         CommandCategory commandCategory = new CommandCategory(expenseList);
         ArrayList<Expense> expensesByCategorySum = commandCategory.sumByCategory();
-        expensesByCategorySum.sort(Comparator.comparing(Expense::getExpenseAmount));
+        expensesByCategorySum.sort(Comparator.comparing(Expense::getExpenseAmount).reversed());
         return expensesByCategorySum;
     }
 

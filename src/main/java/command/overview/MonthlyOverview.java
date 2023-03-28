@@ -47,7 +47,8 @@ public class MonthlyOverview {
         ArrayList<Expense> expensesByCategorySum = new CommandSort(filteredExpenses).sortByCategorySum();
         System.out.println(TAB + CATEGORY_DIVIDER);
         for (Expense e : expensesByCategorySum) {
-            System.out.println(TAB + WHITE_SPACE + e.getDescription() + WHITE_SPACE + e.getExpenseAmount() + "SGD");
+            System.out.println(TAB + WHITE_SPACE + e.getDescription() + WHITE_SPACE +
+                    e.getExpenseAmount() + WHITE_SPACE + "SGD");
             System.out.println(TAB + CATEGORY_DIVIDER);
         }
     }
@@ -60,7 +61,7 @@ public class MonthlyOverview {
             System.out.println(TITLE + month.toUpperCase() + WHITE_SPACE + year);
             System.out.println();
             System.out.println(TAB + MONTHLY_OVERVIEW_TOTAL +
-                    commandTotal.calculateTotal().setScale(2, RoundingMode.HALF_UP) + "SGD");
+                    commandTotal.calculateTotal().setScale(2, RoundingMode.HALF_UP) + WHITE_SPACE + "SGD");
             System.out.println();
             System.out.println(TAB + CATEGORY_TITLE);
             printCategoryBreakdown(filteredExpenses);
