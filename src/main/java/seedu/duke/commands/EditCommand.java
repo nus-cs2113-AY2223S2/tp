@@ -130,6 +130,7 @@ public class EditCommand extends Command {
             item.setQuantity(newQuantity);
         } catch (NumberFormatException nfe) {
             throw new NumberFormatException();        
+        }
     }
 
     /**
