@@ -270,7 +270,7 @@ public class TaskList {
     static void deleteClass(PriorityQueue<SchoolClass> classes, String line) throws
             IllegalArgumentException, NullPointerException, StringIndexOutOfBoundsException{
         try {
-        // Buffer holds the string "remove class" and is redundant
+            // Buffer holds the string "remove class" and is redundant
             String buffer = line.substring(0, line.indexOf("/class")).trim();
             String className = line.substring(line.indexOf("/class") + 6, line.indexOf("/description")).trim();
             String description = line.substring(line.indexOf("/description") + 12, line.indexOf("/day")).trim();
