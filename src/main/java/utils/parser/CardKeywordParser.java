@@ -38,14 +38,10 @@ public class CardKeywordParser extends KeywordParser {
     private static Options buildAddOptions() {
         Options options = new Options();
 
-        Option questionOption = new Option("q", "question", true, "card question");
-        questionOption.setRequired(true);
-        questionOption.setArgs(Option.UNLIMITED_VALUES);
+        Option questionOption = buildMultipleTokenOption("q", "question", true, "card question", true);
         options.addOption(questionOption);
 
-        Option answerOption = new Option("a", "answer", true, "card answer");
-        answerOption.setRequired(true);
-        answerOption.setArgs(Option.UNLIMITED_VALUES);
+        Option answerOption = buildMultipleTokenOption("a", "answer", true, "card answer", true);
         options.addOption(answerOption);
 
         return options;
@@ -65,7 +61,9 @@ public class CardKeywordParser extends KeywordParser {
     private static Options buildTagOptions() {
         Options options = new Options();
         options.addRequiredOption("c", "card", true, "card UUID");
-        options.addRequiredOption("t", "tag", true, "tag name");
+
+        Option tag = buildMultipleTokenOption("t", "tag", true, "tag name", true);
+        options.addOption(tag);
 
         return options;
     }
@@ -132,7 +130,7 @@ public class CardKeywordParser extends KeywordParser {
         // Combine all action
         String[] actionList = {ADD_ACTION, DELETE_ACTION, LIST_ACTION, TAG_ACTION, VIEW_ACTION, DECK_ACTION};
         String[] headerList = new String[]{"Adding cards",
-            "Deleting cards", "List all cards", "Tagging cards", "View cards", "Adding cards to Deck"};
+                "Deleting cards", "List all cards", "Tagging cards", "View cards", "Adding cards to Deck"};
         Options[] optionsList = {buildAddOptions(), buildDeleteOptions(), new Options(), buildTagOptions(),
                 buildViewOptions(), buildDeckOptions()};
         String helpMessage = formatHelpMessage("card", actionList, headerList, optionsList);
@@ -147,9 +145,15 @@ public class CardKeywordParser extends KeywordParser {
         CommandLine cmd = parser.parse(buildTagOptions(), tokens.toArray(new String[0]));
 
         String cardUUID = cmd.getOptionValue("c");
-        String tagName = cmd.getOptionValue("t");
-
-        return new AddCardToTagCommand(tagName, cardUUID);
+        String[] tagNameTokens = cmd.getOptionValues("t");
+        if (tagNameTokens.length > 1) {
+            // Notify user
+            String tagName = String.join("-", tagNameTokens);
+            return new AddCardToTagCommand(tagName, cardUUID);
+        }
+        else {
+            return new AddCardToTagCommand(tagNameTokens[0], cardUUID);
+        }
     }
 
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {

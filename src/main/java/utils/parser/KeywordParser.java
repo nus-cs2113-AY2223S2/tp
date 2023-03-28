@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.MissingArgumentException;
 import org.apache.commons.cli.MissingOptionException;
+import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import utils.command.Command;
@@ -22,6 +23,28 @@ public abstract class KeywordParser {
     protected static final int FORMAT_HELP_WIDTH = 200;
     protected static final int FORMAT_HELP_LEFT_PAD = 0;
     protected static final int FORMAT_HELP_DESC_PAD = 10;
+
+    /**
+     * Wrapper around {@link Option} constructor to set option to accept multiple tokens (whitespace-separated
+     * arguments). The arguments to this option should then be obtained using
+     * {@link org.apache.commons.cli.CommandLine#getOptionValues(char)}.
+     *
+     * @param option      See {@link Option#Option(String, String, boolean, String)}
+     * @param longOption  See {@link Option#Option(String, String, boolean, String)}
+     * @param hasArg      See {@link Option#Option(String, String, boolean, String)}
+     * @param description See {@link Option#Option(String, String, boolean, String)}
+     * @param required    If Option is a required option
+     * @return Configured Option
+     */
+    protected static Option buildMultipleTokenOption(String option, String longOption, boolean hasArg,
+            String description,
+            boolean required) {
+        Option opt = new Option(option, longOption, hasArg, description);
+        opt.setArgs(Option.UNLIMITED_VALUES);
+        opt.setRequired(required);
+
+        return opt;
+    }
 
     @SuppressWarnings("unchecked") // Safe, CLI library just returns List instead of List<String>
     public Command parseTokens(List<String> tokens) throws InkaException {

@@ -3,6 +3,7 @@ package utils.parser;
 import java.util.List;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import utils.command.AddTagToDeckCommand;
@@ -46,14 +47,16 @@ public class TagKeywordParser extends KeywordParser {
     private static Options buildEditOptions() {
         Options options = new Options();
         options.addRequiredOption("o", "old", true, "Old tag name");
-        options.addRequiredOption("n", "new", true, "New tag name");
+
+        Option newTag = buildMultipleTokenOption("n", "new", true, "New tag name", true);
+        options.addOption(newTag);
 
         return options;
     }
 
     private static Options buildListOptions() {
         Options options = new Options();
-        options.addOption("t", "tag", true, "tag name");
+        options.addOption("t", "tag", true, "tag name (optional)");
 
         return options;
     }
