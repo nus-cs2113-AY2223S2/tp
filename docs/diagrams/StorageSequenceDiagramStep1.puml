@@ -1,26 +1,57 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+!include Style.puml
 
-autonumber
-participant "controller:ToDoListManager" as ToDoListManager
-participant "ui:Ui" as Ui
-participant "storage:Storage" as Storage
-participant "taskList:TaskList" as TaskList
+box Manager COLOR_MAIN_LIGHT
+participant ":ToDoListManager" as ToDoListManager COLOR_MAIN
+end box
 
-title Step 1
+box Ui COLOR_UI_LIGHT
+participant ":Ui" as Ui COLOR_UI
+end box
+
+box Storage COLOR_STORAGE_LIGHT
+participant ":Storage" as Storage COLOR_STORAGE
+end box
+
+box TaskList COLOR_TASK_LIST_LIGHT
+participant ":TaskList" as TaskList1 COLOR_TASK_LIST
+participant ":TaskList" as TaskList2 COLOR_TASK_LIST
+end box
+
 activate ToDoListManager
-activate Ui
-activate Storage
-activate TaskList
 
 ToDoListManager -> Ui:printWelcomeMessage()
+activate Ui
+Ui --> ToDoListManager
+deactivate Ui
+
 ToDoListManager -> Storage:isNewSave()
+activate Storage
+Storage --> ToDoListManager
+deactivate Storage
+
 alt storage.isNewSave()
     ToDoListManager -> Ui:printNewSaveMessage()
-else
+    activate Ui
+    Ui --> ToDoListManager
+    deactivate Ui
+else else
     ToDoListManager -> Storage:loadData()
-    ToDoListManager <-- Storage:taskList
-    ToDoListManager -> Ui:printLoadSaveMessage()
-end
+    activate Storage
 
+    create TaskList2
+    Storage -> TaskList2
+    activate TaskList2
+    TaskList2 --> Storage
+    deactivate TaskList2
+    destroy TaskList1
+
+    ToDoListManager <-- Storage:taskList
+    deactivate Storage
+
+    ToDoListManager -> Ui:printLoadSaveMessage()
+    activate Ui
+    Ui --> ToDoListManager
+    deactivate Ui
+end
 @enduml

@@ -1,30 +1,33 @@
 @startuml
-'https://plantuml.com/sequence-diagram
-
-title Sequence Diagram for EditDeadlineCommand
+!include Style.puml
 
 actor User
 
-box Logic
-participant ":ToDoListManager" as ToDoListManager
-participant ":Parser" as Parser
-participant ":EditDeadlineCommand" as EditDeadlineCommand
+box Manager COLOR_MAIN_LIGHT
+participant ":ToDoListManager" as ToDoListManager COLOR_MAIN
 end box
 
-box Model
-participant ":TaskList" as TaskList
-participant ":Task" as Task
-participant ":Ui" as Ui
+box Logic COLOR_LOGIC_LIGHT
+participant ":Parser" as Parser COLOR_LOGIC
+participant ":EditDeadlineCommand" as EditDeadlineCommand COLOR_LOGIC
+end box
 
-User -> ToDoListManager: input("edit <index> -due <deadline>")
+box TaskList COLOR_TASK_LIST_LIGHT
+participant ":TaskList" as TaskList COLOR_TASK_LIST
+participant ":Task" as Task COLOR_TASK_LIST
+end box
+
+box Ui COLOR_UI_LIGHT
+participant ":Ui" as Ui COLOR_UI
+end box
+
+User -> ToDoListManager: input("due <id> -edit <deadline>")
 ToDoListManager -> Parser: parseCommand(inputCommand)
-Parser -> EditDeadlineCommand: new EditDeadlineCommand(getArguments(splitInput, EditDeadlineCommand.FLAGS)
-EditDeadlineCommand -> Parser: formatDateTime(args.get(Flags.DEADLINE.FLAG))
-Parser --> EditDeadlineCommand: LocalDateTime.parse(date, inputFormatter)
+Parser -> EditDeadlineCommand: new EditDeadlineCommand(getArguments(splitInput, EditDeadlineCommand.FLAGS))
 ToDoListManager -> EditDeadlineCommand: execute(taskList, ui)
-EditDeadlineCommand -> TaskList: editDeadline(index, deadline)
-TaskList -> TaskList:ArrayList: get(index)
+EditDeadlineCommand -> TaskList: setDeadline(id, deadline)
+TaskList -> TaskList: getTask(id)
 TaskList -> Task: setDeadline(deadline)
-Task --> TaskList: toString()
+Task --> TaskList: taskString
 TaskList -> Ui: printEditTaskMessage(taskString)
 @enduml

@@ -1,5 +1,6 @@
 package seedu.todolist.logic.command;
 
+import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Parser;
 import seedu.todolist.ui.Ui;
@@ -17,15 +18,15 @@ public class DeleteTaskCommandTest {
     private TaskList testList;
     private Ui ui = new Ui();
 
-    private HashMap<String, String> generateInputArguments(String index) {
-        HashMap<String, String> args = new HashMap<>();
-        args.put(AddTaskCommand.KEYWORD, index);
+    private HashMap<Flags, String> generateInputArguments(String id) {
+        HashMap<Flags, String> args = new HashMap<>();
+        args.put(Flags.COMMAND_ADD, id);
         return args;
     }
 
     @BeforeEach
     void setUp() {
-        String sampleTask = "add something -due 06-04-2000 23:59";
+        String sampleTask = "add something -due 06-04-2030 23:59";
         testList = new TaskList();
         try {
             parser.parseCommand(sampleTask).execute(testList, ui);
@@ -35,27 +36,27 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void deleteTask_emptyIndex_throwsException() {
+    public void deleteTask_emptyId_throwsException() {
         try {
             Command testDelete = new DeleteTaskCommand(generateInputArguments(""));
             testDelete.execute(testList, ui);
         } catch (ToDoListException e) {
             return;
         }
-        fail("A delete command was successfully constructed with missing index");
+        fail("A delete command was successfully constructed with missing id");
     }
 
     @Test
-    public void deleteTask_invalidIndex_throwsException() {
-        final String[] invalidIndex = {"1000", "-1", "52.1"};
-        for (String index : invalidIndex) {
+    public void deleteTask_invalidId_throwsException() {
+        final String[] invalidId = {"1000", "-1", "52.1"};
+        for (String id : invalidId) {
             try {
-                Command testDelete = new DeleteTaskCommand(generateInputArguments(index));
+                Command testDelete = new DeleteTaskCommand(generateInputArguments(id));
                 testDelete.execute(testList, ui);
             } catch (ToDoListException e) {
                 continue;
             }
-            fail("A delete command was successfully constructed with invalid index: " + index);
+            fail("A delete command was successfully constructed with invalid id: " + id);
         }
     }
 }

@@ -1,43 +1,42 @@
 package seedu.todolist.logic.command;
 
-import seedu.todolist.exception.InvalidIndexException;
-import seedu.todolist.exception.InvalidTimeException;
+import seedu.todolist.exception.InvalidEditException;
+import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.constants.Flags;
-import seedu.todolist.logic.Parser;
+import seedu.todolist.logic.FormatterUtil;
+import seedu.todolist.logic.ParserUtil;
 import seedu.todolist.ui.Ui;
 import seedu.todolist.task.TaskList;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 
 //@@author clement559
 public class EditDeadlineCommand extends Command  {
-    public static final String KEYWORD = "edit";
-    public static final HashSet<String> FLAGS = new HashSet<>(Arrays.asList(KEYWORD, Flags.DEADLINE.FLAG));
+    public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_DEADLINE, Flags.EDIT, Flags.EDIT_DELETE};
 
-    public int index;
-    public LocalDateTime deadline;
+    private int id;
+    private LocalDateTime deadline;
 
-    public EditDeadlineCommand(HashMap<String, String> args) throws ToDoListException {
-        try {
-            index = Integer.parseInt(args.get(KEYWORD)) - 1;
-            deadline = Parser.formatDateTime(args.get(Flags.DEADLINE.FLAG));
-        } catch (NumberFormatException e) {
-            throw new InvalidIndexException();
-        } catch (DateTimeParseException e) {
-            throw new InvalidTimeException();
+    public EditDeadlineCommand(HashMap<Flags, String> args) throws ToDoListException {
+        id = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_DEADLINE));
+        if (args.containsKey(Flags.EDIT)) {
+            deadline = ParserUtil.parseDeadline(args.get(Flags.EDIT));
+        } else if (!args.containsKey(Flags.EDIT_DELETE)) {
+            throw new InvalidEditException();
         }
-        assert index >= 0 : "Invalid index contained in variable";
+        assert id >= 0 : "Invalid id contained in variable";
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) throws InvalidIndexException {
-        String taskString = taskList.editDeadline(index, deadline);
-        assert !taskString.isEmpty() : "Conversion of task string failed";
-        ui.printEditTaskMessage(taskString);
+    public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
+        String taskString = taskList.setDeadline(id, deadline);
+        if (deadline == null) {
+            taskList.setRepeatDuration(id, 0);
+            ui.printEditDeleteTaskMessage("deadline", taskString);
+        } else {
+            ui.printEditTaskMessage("deadline", FormatterUtil.getDeadlineAsString(deadline), taskString);
+        }
     }
 }

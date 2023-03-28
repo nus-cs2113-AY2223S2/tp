@@ -4,22 +4,32 @@ package seedu.todolist.constants;
  * Enum that holds all the notification and help messages to be displayed.
  */
 public enum Messages {
-    START("Hello, I am your todo list and I will help you remember the tasks you need to do!"),
+    START("Hello, I am your To-Do list and I will help you remember the tasks you need to do!"),
     NEW_SAVE("No save data found, creating a new task list for you!"),
-    LOAD_SAVE("Your saved task list was successfully loaded!"),
+    LOAD_SAVE("Your saved task list was successfully loaded with "),
     EXIT("See you again, bye!"),
 
     ADD_TASK("Okay, I have added this task:"),
     MARK_TASK("Okay, I have marked this task as complete:"),
     UNMARK_TASK("Okay, I have marked this task as incomplete:"),
-    DELETE_TASK("Okay, I've removed this task:"),
-    EDIT_TASK("Okay, I have edited the parameters of this task:"),
-    LIST_TASKS("Okay, here are the tasks in your list:"),
-    EMPTY_LIST("There are no tasks in your list.");
+    DELETE_TASK("Okay, I have removed this task:"),
+    CHECK_REPEATING("Okay, I have checked for any repeating tasks."),
+    EDIT_TASK("Okay, I have edited the %s of this task to [%s]:"),
+    EDIT_DELETE_TASK("Okay, I have deleted the %s of this task:"),
 
-    public final String MESSAGE;
+    LIST_TASKS("Okay, here is your task list, with "),
+    TAGS_INFO("Okay, here are the tags associated with your task list:"),
+    LIST_EMPTY("There are no tasks in your list."),
+    TAGS_EMPTY("There are no tags associated with your task list."),
+    FULL_INFO("Okay, here is the detailed information of this task:");
+
+    private final String message;
 
     Messages(String message) {
-        MESSAGE = message;
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }
