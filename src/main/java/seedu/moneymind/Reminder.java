@@ -25,7 +25,7 @@ public class Reminder {
         for (Category category : categories) {
             reminder += checkEventReminder(category);
         }
-        return reminder;// TODO: print return String in startup sequence
+        return reminder;
     }
 
     private static String checkEventReminder(Category category) {

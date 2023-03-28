@@ -47,10 +47,10 @@ The `Storage` component,
 * can save category and event data in txt format, and read it back. (txt format is chosen because it is human readable)
 * depended on by `CategoryList.java` and `CategoryCommand.java` to load data to ArrayList and HashMap, and takes in an ArrayList of Category objects as parameter to save data.
 
-When the user first starts the application:
-<img src="images\StorageSequenceDiagram.png" width="500">
-When the program is running:
-<img src="images\StorageRunSequenceDiagram.png" width="500">
+When the user first starts the application:<br>
+<img src="images\StorageSequenceDiagram.png" width="500"><p>
+When the program is running:<br>
+<img src="images\StorageRunSequenceDiagram.png" width="500"><p>
 
 ### Commands component
 
