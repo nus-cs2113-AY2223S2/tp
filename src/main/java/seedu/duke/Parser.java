@@ -34,10 +34,9 @@ public class Parser {
                                     ArrayList<Module> puModules, Storage storage, BudgetPlanner budgetPlanner,
                                     ArrayList<Deadline> deadlines) {
 
-        ArrayList<String> userInputWords = parseCommand(userInput);
+        ArrayList<String> userInputWords = parseCommand(userInput.trim());
         String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
-        String userCommandThirdKeyword = "";
         if (userInputWords.size() > 1) {
             userCommandSecondKeyword = userInputWords.get(1);
         }
@@ -45,20 +44,7 @@ public class Parser {
         try {
             switch (inputIgnoringCase) {
             case "list":
-                if (userInputWords.size() == 1) {
-                    throw new InvalidCommandException(ui.getCommandInputError());
-                }
-                if (userCommandSecondKeyword.equalsIgnoreCase("pu")) {
-                    return new ListPuCommand();
-                } else if (userCommandSecondKeyword.equalsIgnoreCase("current")) {
-                    if (userInputWords.size() == 3) {
-                        userCommandThirdKeyword = userInputWords.get(2);
-                        return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
-                    }
-                    return new ListCurrentCommand(modules);
-                } else {  // list PU name case
-                    return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
-                }
+                return prepareListCommands(userInputWords, universities, modules);
             case "search":
                 assert userInputWords.size() > 1 : "No Nus Module Code Read";
                 return prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities);
@@ -104,6 +90,38 @@ public class Parser {
         return commandWords;
     }
 
+    private Command prepareListCommands(ArrayList<String> userInputWords, ArrayList<University> universities,
+                                        ArrayList<Module> modules) {
+        try {
+            if (userInputWords.size() == 1) {
+                throw new InvalidCommandException(ui.getCommandInputError());
+            } else {
+                String userCommandSecondKeyword = userInputWords.get(1);
+                return handleListCommands(userInputWords, userCommandSecondKeyword, universities, modules);
+            }
+        } catch (InvalidCommandException e) {
+            return new ExceptionHandleCommand(e);
+        }
+    }
+
+    private Command handleListCommands(ArrayList<String> userInputWords, String userCommandSecondKeyword,
+                                        ArrayList<University> universities, ArrayList<Module> modules) {
+        String userCommandIgnoreCase = userCommandSecondKeyword.toLowerCase();
+        switch (userCommandIgnoreCase) {
+        case "pu":
+            return new ListPuCommand();
+        case "current":
+            if (userInputWords.size() == 3) {
+                String userCommandThirdKeyword = userInputWords.get(2);
+                return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
+            }
+            return new ListCurrentCommand(modules);
+        default:
+            return prepareListPuModulesCommand(userCommandSecondKeyword, universities);
+        }
+    }
+
+
     private Command prepareSearchByNusModCode(String nusModCode, ArrayList<Module> allModules,
                                               ArrayList<University> universities) {
         String searchModCode = nusModCode;
@@ -134,41 +152,47 @@ public class Parser {
 
 
     private Command prepareListPuModulesCommand(String univAbbNameOrIndex, ArrayList<University> universities) {
-        char digitChecker = univAbbNameOrIndex.charAt(0);
+        //char digitChecker = univAbbNameOrIndex.charAt(0);
         String universityAbbName = "";
-        int univIndex = -1;
-        // remember handle exception for numberformatexception use stringtoint instead?
-        if (Character.isDigit(digitChecker)) {
+        int univIndex = 0;
+        boolean isUnivAbbr = false;
+        try {
             univIndex = Integer.parseInt(univAbbNameOrIndex) - 1;
-        } else {
+        } catch (NumberFormatException nfe) {
             universityAbbName = univAbbNameOrIndex;
+            isUnivAbbr = true;
         }
         try {
-            return handleListPuModulesCommand(universities, universityAbbName, univIndex);
+            return handleListPuModulesCommand(universities, universityAbbName, univIndex, isUnivAbbr);
         } catch (InvalidPuException e) {
             return new ExceptionHandleCommand(e);
         }
     }
 
-    private Command handleListPuModulesCommand(ArrayList<University> universities,
-                                               String universityAbbName, int univIndex) throws InvalidPuException {
+    private Command handleListPuModulesCommand(ArrayList<University> universities, String universityAbbName,
+                                                    int univIndex, boolean isUnivAbbr) throws InvalidPuException {
         String universityName = "";
         int univID = 0;
-        if (univIndex == -1) {
+        if (isUnivAbbr) { //list [Univ Abbr]
             for (University university : universities) {
                 if (universityAbbName.equalsIgnoreCase(university.getUnivAbbName())) {
                     univID = university.getUnivId();
                     universityName = university.getUnivName();
                 }
             }
+            if (universityName.equals("")) {
+                throw new InvalidPuException(ui.getInvalidPuMessage());
+            }
+            return new ListPuModulesCommand(univID, universityName);
         } else {
-            univID = universities.get(univIndex).getUnivId();
-            universityName = universities.get(univIndex).getUnivName();
+            if (univIndex >= universities.size() || univIndex < 0) {
+                throw new InvalidPuException(ui.getInvalidPuMessage());
+            } else { // list [UnivID]
+                univID = universities.get(univIndex).getUnivId();
+                universityName = universities.get(univIndex).getUnivName();
+            }
+            return new ListPuModulesCommand(univID, universityName);
         }
-        if (univID == 0 && universityName.equals("")) {
-            throw new InvalidPuException(ui.getInvalidPuMessage());
-        }
-        return new ListPuModulesCommand(univID, universityName);
     }
 
     private Command prepareAddModuleCommand(Storage storage, String abbreviationAndCode, ArrayList<Module> allModules,
