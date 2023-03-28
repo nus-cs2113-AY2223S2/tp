@@ -65,11 +65,11 @@ public class RemoveCommand extends Command {
             upcCodes.remove(upcCode);
             inventory.getUpcCodesHistory().remove(upcCode);
             itemInventory.remove(indexOfItem);
-            removeItemFromCategoryHash(itemToRemove, category);
             String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
             for (String itemName : itemNames) {
                 removeItemFromHashTrie(itemToRemove, itemName);
             }
+            removeItemFromCategoryHash(itemToRemove, category);
             removeAlert(upcCode);
             Ui.printSuccessRemove(itemToRemove);
             break;
@@ -102,8 +102,8 @@ public class RemoveCommand extends Command {
             upcCodes.remove(upcCode);
             inventory.getUpcCodesHistory().remove(upcCode);
             itemInventory.remove(i);
-            removeItemFromCategoryHash(itemToRemove, category);
             removeItemFromHashTrie(itemToRemove, itemName);
+            removeItemFromCategoryHash(itemToRemove, category);
             removeAlert(upcCode);
             Ui.printSuccessRemove(itemToRemove);
             break;
