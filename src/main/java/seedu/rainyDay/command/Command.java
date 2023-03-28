@@ -20,8 +20,8 @@ public abstract class Command {
     public static final String COMMAND_EXPORT = "export";
     public static final String COMMAND_SHORTCUT = "shortcut";
     public static final String COMMAND_SET_BUDGET = "setbudget";
-    public static final String COMMAND_DELETE_SHORTCUT = "delete_shortcut";
-    public static final String COMMAND_VIEW_SHORTCUT = "view_shortcut";
+    public static final String COMMAND_DELETE_SHORTCUT = "shortcut_delete";
+    public static final String COMMAND_VIEW_SHORTCUT = "shortcut_view";
     public static final String COMMAND_IGNORE = "ignore";
     public static final String COMMAND_UNIGNORE = "unignore";
 

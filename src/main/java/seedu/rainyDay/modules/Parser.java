@@ -5,15 +5,15 @@ import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.command.AddCommand;
 import seedu.rainyDay.command.DeleteCommand;
-import seedu.rainyDay.command.DeleteShortcutCommand;
+import seedu.rainyDay.command.ShortcutDeleteCommand;
 import seedu.rainyDay.command.EditCommand;
 import seedu.rainyDay.command.ExportCommand;
-import seedu.rainyDay.command.ShortcutCommand;
+import seedu.rainyDay.command.ShortcutAddCommand;
 import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.command.FilterCommand;
 import seedu.rainyDay.command.InvalidCommand;
-import seedu.rainyDay.command.ViewShortcutCommand;
+import seedu.rainyDay.command.ShortcutViewCommand;
 import seedu.rainyDay.command.SetBudgetCommand;
 import seedu.rainyDay.command.IgnoreCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
@@ -72,10 +72,10 @@ public class Parser {
                 return setUserBudgetGoal(action[1].trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE_SHORTCUT)) {
                 logger.info("delete_shortcut command executing");
-                return new DeleteShortcutCommand(action[1].trim());
+                return new ShortcutDeleteCommand(action[1].trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW_SHORTCUT)) {
                 logger.info("view_shortcut command executing");
-                return new ViewShortcutCommand();
+                return new ShortcutViewCommand();
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_IGNORE)) {
                 logger.info("ignore command executing");
                 return ignoreStatement(userInput);
@@ -232,8 +232,32 @@ public class Parser {
             startDate = startDate.minusMonths(1);
             return new ViewCommand(startDate, false);
         }
-        Pattern pattern = Pattern.compile("^(\\d{1,2})(d|w|m|y)\\s*(?:((-sort)?))\\s*$");
+        if (input.equals("-sort")) {
+            startDate = startDate.minusMonths(1);
+            return new ViewCommand(startDate, true);
+        }
+        Pattern pattern = Pattern.compile("^(-all)?\\s*((-sort)?)\\s*$");
         Matcher matcher = pattern.matcher(input);
+        if (matcher.matches()) {
+            try {
+                System.out.println(matcher.group(1));
+                System.out.println(matcher.group(2));
+                boolean printEverything = matcher.group(1).equals("-all");
+                boolean sortRequired = matcher.group(2).equals("-sort");
+                if (printEverything) {
+                    startDate = LocalDate.of(1800, 1, 1);
+                    return new ViewCommand(startDate, sortRequired);
+                }
+                startDate = startDate.minusMonths(1);
+                return new ViewCommand(startDate, sortRequired);
+            } catch (Exception e) {
+                logger.warning("view command given by user in the wrong format");
+                return new InvalidCommand(ErrorMessage.WRONG_VIEW_FORMAT.toString());
+            }
+        }
+
+        pattern = Pattern.compile("^(\\d{1,2})([dwmy])\\s*((-sort)?)\\s*$");
+        matcher = pattern.matcher(input);
         if (matcher.matches()) {
             try {
                 logger.info("obtaining relevant data");
@@ -457,7 +481,7 @@ public class Parser {
         if (key.contains(" ")) {
             return new InvalidCommand(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
         }
-        return new ShortcutCommand(key, value);
+        return new ShortcutAddCommand(key, value);
     }
 
 

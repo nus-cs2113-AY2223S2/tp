@@ -1,9 +1,7 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.FlowDirection;
-import seedu.rainyDay.modules.Storage;
 
 import java.time.LocalDate;
 import java.util.logging.FileHandler;
@@ -114,7 +112,6 @@ public class EditCommand extends Command {
                 editedStatement.setDate(dateToChange);
             }
             userData.addToMonthlyExpenditure(editedStatement);
-            Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
         }
 
         String output = "Done, edited entry " + (index + 1)

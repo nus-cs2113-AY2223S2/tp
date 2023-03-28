@@ -2,7 +2,6 @@ package seedu.rainyDay.command;
 
 
 import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.modules.Storage;
 
 import java.util.HashMap;
 import java.util.logging.FileHandler;
@@ -11,8 +10,8 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author KN-CY
-public class ShortcutCommand extends Command {
-    private static final Logger logger = Logger.getLogger(ShortcutCommand.class.getName());
+public class ShortcutAddCommand extends Command {
+    private static final Logger logger = Logger.getLogger(ShortcutAddCommand.class.getName());
     private static String key; // for now lets limit key to be a single word with no space.
     private static String value;
     private static HashMap<String, String> shortcutCommands;
@@ -20,7 +19,7 @@ public class ShortcutCommand extends Command {
     private static final String SHORTCUT_ALREADY_EXISTS = "Shortcut already exists";
 
 
-    public ShortcutCommand(String key, String value) {
+    public ShortcutAddCommand(String key, String value) {
         this.key = key;
         this.value = value;
         shortcutCommands = RainyDay.userData.getShortcutCommands();
@@ -30,7 +29,6 @@ public class ShortcutCommand extends Command {
     public CommandResult execute() {
         if (!shortcutCommands.containsKey(key)) {
             shortcutCommands.put(key, value);
-            Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
             return new CommandResult(SHORTCUT_SUCCESSFULLY_ADDED);
         }
         return new CommandResult(SHORTCUT_ALREADY_EXISTS);
