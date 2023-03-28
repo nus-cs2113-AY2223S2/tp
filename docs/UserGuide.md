@@ -70,6 +70,8 @@ View the deadline list.
 
 Format: `view_deadline`
 
+Note: The price of dishes will be shown in dollars.
+
 #### Delete a deadline:
 
 Format: `delete_deadline n/<name>`
@@ -80,30 +82,87 @@ Example:
 delete_deadline n/need to buy more potatoes
 ```
 
-### Menu
+### Dish
 
-#### Add a recipe to the menu:
+#### Add a Dish to the list of dishes:
 
-Successfully adds menu only if the name is unique, otherwise it informs the user to key in a unique menu name
+Successfully adds Dish only if all the arguments are correct.
 
-Format: `add_recipe n/<name>`
+Format: `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]`
+
+- Name of dish cannot be blank or start with spaces, it also cannot contain only spaces.
+- Price of dish must be an non negative integer value; i.e.: Price cannot be negative, in decimal, etc.
+- Ingredient list is encased betwen two square brackets and separated by a semi-colon. The ingredient list can contain any non negative number of items.
+
+Example 1: 
+```
+add_dish n/Chicken Burger pc/1099 [tomatoes;chicken fillet;cheese;bread with sesame seeds]
+```
+Outcome 1: 
+```
+<index_number>. Chicken Burger; $10.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
+```
+You can also omit the ingredient list like such:
+
+Example 2:
+```
+add_dish n/Chicken Burger pc/1099 []
+```
+Outcome 2:
+```
+<index_number>. Chicken Burger; $10.99; []
+```
+
+#### View the list of dishes added:
+
+It shows the list of dishes currently stored in the program in order.
+
+- The price of dishes are shown in dollars.
+
+Format: `view_dish`
+
+#### Delete a dish from the list of dishes:
+
+Deletes the dish in the list based on the index given, if a dish exists at that index.
+
+Format: `delete_dish <index_number>`
 
 Example: 
+
+Supposed that we have the following list of dishes:
 ```
-add_recipe n/Chicken rice
+1. Chicken Burger; $4.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
+2. McSpicy Burger; $8.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
 ```
+When the `delete_recipe 1` is entered as a command:
 
-#### View the list of recipes:
-
-Format: `view_recipe`
-
-#### Delete a recipe from the menu:
-
-Format: `delete_recipe n/<name>`
-
-Example: 
+Outcome:
 ```
-delete_recipe n/Chicken rice
+1. McSpicy Burger; $8.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
+```
+#### Find dishes containing a keyword from the list of dishes
+
+Finds a list of dishes containing a given keyword, if any at all.
+
+Format: `find_dish <keyword>`
+
+- The keyword cannot contain any spaces. 
+- Only 1 keyword can be entered per find_dish command.
+
+Example:
+
+Supposed we have the following list of dishes:
+
+```
+1. McSpicy Burger; $8.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
+2. Chicken Burger; $10.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
+```
+When `find_dish Chicken` is entered in as a command:
+
+Outcome:
+
+```
+2. Chicken Burger; $10.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
 ```
 
 ### Workers
@@ -152,5 +211,10 @@ delete_worker n/Patrick Parker
 | view_meetings   | view_meetings                 |
 | delete_meeting  | delete_meeting n/<name>       |
 | find_meeting    | find_meeting s/<string>       |
+| add_dish        | `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]` |
+| view_dish       | `view_dish`                    |
+| delete_dish     | `delete_dish <index_number>`    |
+| find_dish       | `find_dish <keyword>`           |
+
 
 
