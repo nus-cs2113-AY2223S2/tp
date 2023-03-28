@@ -44,15 +44,22 @@ public class CompanyListDecoder extends Storage {
         return parsedline;
     }
 
-    private static void writeToCompanyList(CompanyList companyList, String[] parsedInput) throws InvalidIndexException {
-        String companyName = parsedInput[0];
-        int contactNumber = Integer.parseInt(parsedInput[1]);
-        String contactEmail = parsedInput[2];
-        int status = Integer.parseInt(parsedInput[3]);
-        String industry = parsedInput[4];
-        Company company = new Company(companyName, industry,
-                contactNumber, contactEmail, (status == 1 ? true : false ));
-        ArrayList<Company> companyList1 = companyList.getCompanyList();
-        companyList1.add(company);
+    private static void writeToCompanyList(CompanyList companyList, String[] parsedInput)
+            throws InvalidIndexException, java.io.IOException{
+        try {
+            String companyName = parsedInput[0];
+            int contactNumber = Integer.parseInt(parsedInput[1]);
+            String contactEmail = parsedInput[2];
+            int status = Integer.parseInt(parsedInput[3]);
+            String industry = parsedInput[4];
+            Company company = new Company(companyName, industry,
+                    contactNumber, contactEmail, (status == 1 ? true : false ));
+            ArrayList<Company> companyList1 = companyList.getCompanyList();
+            companyList1.add(company);
+        } catch (ArrayIndexOutOfBoundsException| NumberFormatException e) {
+            System.out.println("Skipped line with error. To prevent this error, please do not edit the text file.");
+        } finally {
+            CompanyListEncoder.write(companyList);
+        }
     }
 }
