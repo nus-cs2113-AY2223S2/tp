@@ -74,6 +74,16 @@ The class diagram below illustrates the structure of the EventList component.
 
 <img src="UML\Images\EventListUML.png" />
 
+And below is a sequential diagram showing a event being added, revised, checked for information and finally deleted.
+
+<img src="UML\Images\EventListSD.png" style="zoom:80%;" />
+
+
+
+
+
+
+
 #### Why implemented in this way:
 
 It is necessary to have a list which contains all the current event/class so that we can show/ batch process events more efficiently. Moreover, this component serves intermediary functions and avoids other classes access deep into the functionality of classes (Event, Schedule e.t.c) inside the ArrayList, thus reduces the coupling of the code base. Additionally, this component also converted all the String parameters parsed by Parser into various Types that required by other classes that the EventList contains, further reducing the coupling.
