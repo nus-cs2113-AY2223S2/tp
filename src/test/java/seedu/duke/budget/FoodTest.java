@@ -23,15 +23,6 @@ class FoodTest {
         food.setPrice(changePrice);
         assertEquals(changePrice, food.getPrice());
     }
-
-    public void addModule_correctFormat_success() {
-        Storage storage = new Storage();
-        Module module = new Module(1, "AE320", "Aerodynamics II", 3,
-                "ME4231", "Aerodynamics", 4);
-        storage.addModuleToModuleList(module);
-        int lastIndex = storage.getModules().size() - 1;
-        assertEquals("1,AE320,Aerodynamics II,3,ME4231,Aerodynamics,4",
-                storage.getModules().get(lastIndex).toString());
-    }
+    
 
 }
