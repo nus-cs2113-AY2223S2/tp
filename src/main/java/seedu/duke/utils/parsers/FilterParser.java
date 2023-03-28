@@ -11,6 +11,14 @@ public class FilterParser extends Parser{
     public FilterParser(String rawInput, Inventory inventory){
         super(rawInput, inventory);
     }
+
+    /**
+     * Handles the "filter f/price" command by checking the validity of search term provided before passing to the
+     * relevant command.
+     *
+     * @param commands filter type and price
+     * @param inventory inventory to sort the items
+     */
     private void parseFilterPrice(String[] commands, Inventory inventory) {
         try {
             double price = Double.parseDouble(commands[2]);
@@ -32,6 +40,14 @@ public class FilterParser extends Parser{
         }
     }
 
+    /**
+     * Handles the "filter f/[category/tag]" command by checking the validity of search term provided before
+     * passing to the relevant command.
+     *
+     * @param commands keywords in a string array
+     * @param mode filter mode
+     * @param inventory inventory to filter items from
+     */
     private void parseFilterCategoryOrTag(String[] commands, String mode, Inventory inventory) {
         String keyword = "";
         for (int i = 1; i < commands.length; i++) {
@@ -42,6 +58,12 @@ public class FilterParser extends Parser{
         Command filterCommand = new FilterCommand(inventory, keyword, mode);
         filterCommand.run();
     }
+
+    /**
+     * First checks if there is actual input.
+     * Next delegates parsing to the correct method.
+     *
+     */
     @Override
     public void run(){
         try {
