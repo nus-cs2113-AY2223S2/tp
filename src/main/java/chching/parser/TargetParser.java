@@ -18,8 +18,8 @@ public class TargetParser {
     public static Target parseTarget(HashMap<String, String> argumentsByField) throws ChChingException {
         Target targ = null;
         try {
-            Double targValue = Double.valueOf(argumentsByField.get("v"));
-            targ = new Target(targValue);
+            Double targetValue = Double.valueOf(argumentsByField.get("v"));
+            targ = new Target(targetValue);
         } catch (Exception e) {
             throw new ChChingException("Trouble adding target value");
         }
