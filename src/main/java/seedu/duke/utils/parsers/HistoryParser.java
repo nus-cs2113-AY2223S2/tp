@@ -1,7 +1,7 @@
 package seedu.duke.utils.parsers;
 
 import seedu.duke.commands.HistoryCommand;
-import seedu.duke.exceptions.MissingParametersException;
+import seedu.duke.exceptions.HistoryErrorException;
 import seedu.duke.objects.Inventory;
 
 public class HistoryParser extends Parser{
@@ -25,11 +25,11 @@ public class HistoryParser extends Parser{
      */
     private void parseHistory() {
         try{
-            if(rawInput.split(" ").length!=1){
-                throw new MissingParametersException();
+            if(rawInput.split(" ").length!=1 || rawInput.length()<1){
+                throw new HistoryErrorException();
             }
-        }catch(MissingParametersException e){
-            e.missingHistoryItemParameters();
+        }catch(HistoryErrorException e){
+            e.incorrectParameters();
             return;
         }
         HistoryCommand historyCommand = new HistoryCommand(inventory, rawInput);
