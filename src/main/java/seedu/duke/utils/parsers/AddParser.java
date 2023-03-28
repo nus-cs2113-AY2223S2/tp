@@ -17,7 +17,7 @@ public class AddParser extends Parser {
     }
 
     /**
-     * Handles the "add" command by parsing the user's input into separate input parameters using regex
+     * Handles the "add" command by parsing the user's input into separate input parameters using regex.
      */
     @Override
     public void run() {

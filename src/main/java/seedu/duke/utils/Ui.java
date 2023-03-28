@@ -179,10 +179,6 @@ public class Ui {
             "does not exist.";
 
 
-    public Ui() {
-        greetUser();
-    }
-
     public static void printLine() {
         System.out.println(LINE);
     }

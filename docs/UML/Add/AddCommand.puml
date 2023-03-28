@@ -2,12 +2,16 @@
 @startuml
 title AddCommand Class
 
-actor User
+participant AddParser
 participant AddCommand
-participant Inventory
-User -> AddCommand: run()
+AddParser -> AddCommand: run()
 
 activate AddCommand
+AddCommand -> Command:Command(inventory)
+activate Command
+Command -->AddCommand:
+deactivate Command
+participant Inventory
 participant Ui
 AddCommand -> AddCommand: addItem()
 alt upcCodes.containsKey(item.getUpc())
@@ -16,16 +20,19 @@ activate Ui
 Ui -->AddCommand:
 deactivate Ui
 else
+ref over AddCommand,Inventory:Store Item's UPC code into upcCodes
+ref over AddCommand,Inventory:Store Item into itemInventory
 AddCommand -> Ui: printSuccessAdd()
 activate Ui
 Ui -->AddCommand:
 deactivate Ui
 participant Trie
 loop iterate all item name in itemNames
-AddCommand -> Trie:add
+AddCommand -> Trie:add(itemName)
 activate Trie
 Trie --> AddCommand:
 deactivate Trie
+end
 participant SessionManager
 participant Storage
 opt SessionManager.getAutoSave()
@@ -39,8 +46,8 @@ SessionManager -->AddCommand:
 deactivate SessionManager
 end
 end
-end
-
+AddCommand --> AddParser:
+destroy AddCommand
 
 
 @enduml
