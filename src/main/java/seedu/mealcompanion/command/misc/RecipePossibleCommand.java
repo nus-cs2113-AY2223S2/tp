@@ -62,8 +62,8 @@ public class RecipePossibleCommand extends ExecutableCommand {
         for (Recipe recipe : recipes.getRecipes()) {
             if (canMakeRecipe(recipe, fridgeIngredients)) {
                 mealCompanionSession.getUi().printMessage(Integer.toString(index) + ". " + recipe.getName());
-                index++;
             }
+            index++;
         }
     }
 }
