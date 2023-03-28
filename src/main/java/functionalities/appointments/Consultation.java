@@ -6,6 +6,11 @@ import functionalities.Owner;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * The Consultation class represents a consultation type appointment for an animal with its owner.
+ * It also includes the date and time of the appointment.
+ * This class extends the abstract Appointment class.
+ */
 public class Consultation extends Appointment {
 
     protected LocalDate date;

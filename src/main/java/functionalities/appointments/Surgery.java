@@ -6,6 +6,12 @@ import functionalities.Owner;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * The Surgery class represents a surgery type appointment for an animal with its owner.
+ * It also includes the start and end dates and start and end time of the appointment.
+ * It also includes the priority level of the surgery.
+ * This class extends the abstract Appointment class.
+ */
 public class Surgery extends Appointment {
 
     public enum priorityLevel {

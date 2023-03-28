@@ -6,6 +6,11 @@ import functionalities.Owner;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * The Vaccination class represents a vaccination type appointment for an animal with its owner
+ * and its specific vaccine type. It also includes the date and time of the appointment.
+ * This class extends the abstract Appointment class.
+ */
 public class Vaccination extends Appointment {
     protected LocalDate date;
     protected LocalTime time;
