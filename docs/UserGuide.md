@@ -125,3 +125,4 @@ Example of usage:
 * Add expense `amt/EXPENSE_AMOUNT t/TIME cat/EXPENSE_DESCRIPTION`
 * List all expenses `list`
 * Delete entry X in list `delete X`
+* List total `total`
