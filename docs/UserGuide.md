@@ -2,32 +2,15 @@
 
 ## Introduction
 
-{Give a product intro}
+EveNtUS is a desktop application designed for career fair managers to manage career fairs, with a focus on efficient operation through the Command-Line Interface(CLI).
+
 
 ## Quick Start
 
-{Give steps to get started quickly}
+1. Ensure that you have Java 11 or above installed. 
+2. Download the latest version of `EvenNtUS` from [here](http://link.to/duke).
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
-
-## Features 
-
-{Give detailed description of each feature}
-
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
-
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+## Features
 
 ### `help` - Shows help guide
 Shows the help guide that contains the features that are available for use, as well as the features' corresponding 
@@ -71,7 +54,7 @@ ____________________________________________________________
 
 
 ### `list companies` - Shows all current stored companies
-Shows all tasks currently stored in the company list.
+Shows all companies currently stored in the company list.
 
 Example of usage:
 `list companies`
@@ -96,6 +79,21 @@ Company contact number: 82920010
 Company contact email: IBANKING@GMAIL.COM
 Company industry: BANKING AND FINANCE
 [Confirmed]
+```
+
+### `list venues` - Shows all venues
+Shows all venues available for the user to choose
+
+Example of usage:
+`list venues`
+Expected outcome:
+
+```
+1. Engineering Auditorium 9 Engineering Drive 1 (S) 117576 100
+2. Hon Sui Sen Auditorium 1 Hon Sui Sen Drive (S) 117588 100
+3. LT1 10 Kent Ridge Crescent (S) 119260 100
+4. LT6 1 Hon Sui Sen Drive (S) 119260 100
+5. University Cultural Centre 50 Kent Ridge Crescent (S) 119279 50
 ```
 
 ### `confirm` - Marks a specific company's attendance as confirmed
@@ -145,14 +143,138 @@ Company industry: BANKING AND FINANCE
 [Unconfirmed]
 ```
 
-## FAQ
+### `add ` - Add a company to the company list
+Add the company to the list of companies, and updates the company list text file.
 
-**Q**: How do I transfer my data to another computer? 
+Example of usage:
+`add n/tesla i/tech c/12308712 e/tesla@gmail.com`
+Expected outcome:
 
-**A**: {your answer here}
+```
+TESLA added successfully!
+```
+
+### `delete ` - Delete a company from the company list
+Delete a company from the company list, and updates the company list text file.
+
+Example of usage:
+`delete 1`
+Expected outcome:
+
+```
+Company information successfully deleted!
+```
+
+### `load samples` - load samples company data for manual testing
+Populate the company list with sample companies, and updates the company list text file
+
+Example of usage:
+`load samples`
+Expected outcome:
+
+```
+HUAWEI added successfully!
+GOOGLE added successfully!
+TIKTOK added successfully!
+Sample data has been loaded into the list!
+```
+### `purge ` - delete the company list data
+delete the company list data, and updates the company list text file
+
+Example of usage:
+`purge`
+Expected outcome:
+
+```
+Data has been deleted successfully!
+```
+
+### `find companies ` - find the companies based on a company name
+find the companies based on a company name, or any of the alphabets in the company name
+
+Example of usage:
+`find company e`
+Expected outcome:
+
+```
+The company is found in the company list.
+1
+Company name: HUAWEI
+Company contact number: 80060114
+Company contact email: APSUPPORT@HUAWEI.COM
+Company industry: TECH
+[Unconfirmed]
+The company is found in the company list.
+2
+Company name: GOOGLE
+Company contact number: 91002500
+Company contact email: GOOGLE@GOOGLE.COM
+Company industry: TECH
+[Unconfirmed]
+```
+
+### `find industry <INDUSTRY>  ` - find the companies within an industry
+find the companies within an industry based on the industry name 
+
+Example of usage:
+`find industry tech`
+Expected outcome:
+
+```
+Here are the companies in <TECH> field.
+1.
+Company name: HUAWEI
+Company contact number: 80060114
+Company contact email: APSUPPORT@HUAWEI.COM
+Company industry: TECH
+[Unconfirmed]
+2.
+Company name: GOOGLE
+Company contact number: 91002500
+Company contact email: GOOGLE@GOOGLE.COM
+Company industry: TECH
+[Unconfirmed]
+```
+
+### `choose venue ` - updates the venue of the event
+Updates the venue of the event, and updates the event details file
+
+Example of usage:
+`choose venue 1`
+Expected outcome:
+
+```
+Engineering Auditorium is your venue!
+```
+
+### `exit ` - Exit the application
+Exit the application
+
+Example of usage:
+`exit`
+Expected outcome:
+
+```
+____________________________________________________________
+Bye!
+____________________________________________________________
+```
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+| Command                                                          | Usage                                             |
+|------------------------------------------------------------------|---------------------------------------------------|
+| help                                                             | display the commands of the application           |
+| list companies                                                   | list the companies                                |
+| list venues                                                      | list the venues                                   |
+| list unconfirmed                                                 | list the companies yet to confirm their attendance |
+| add n/<COMPANY_NAME> i/< INDUSTRY> c/<CONTACT_NUMBER> e/< EMAIL> | add a company to the company list                 |
+| delete <INDEX>                                                   | delete a company in the company list              |
+| confirm <INDEX>                                                  | confirm a companies' attendance                   |
+| unconfirm <INDEX>                                                | unconfirm a companies' attendance                 |
+| load samples                                                     | load samples company data for manual testing      |
+| purge                                                            | delete the company list data                      |
+| find company <COMPANY_NAME>                                      | find the companies based on a company name        |
+| find industry <INDUSTRY>                                         | find the companies within an industry             | 
+| choose venue <INDEX>                                             | updates the venue of the event                    |
+| exit                                                             | exit the application                              |
