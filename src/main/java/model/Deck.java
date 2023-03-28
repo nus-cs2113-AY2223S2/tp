@@ -37,6 +37,11 @@ public class Deck {
         return deckName;
     }
 
+
+    public void setTags(ArrayList<TagUUID> tags) {
+        this.tags = tags;
+    }
+
     public DeckUUID getDeckUUID() {
         return deckUUID;
     }
@@ -57,6 +62,10 @@ public class Deck {
     }
     public void addTag(TagUUID tagUUID) {
         this.tags.add(tagUUID);
+    }
+
+    public void setCards(ArrayList<CardUUID> cards) {
+        this.cards = cards;
     }
 
     @Override

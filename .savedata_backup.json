@@ -1,6 +1,6 @@
 {
   "deckName": "lky deck",
-  "numCards": 6,
+  "numCards": 7,
   "cards": [
     {
       "uuid": "f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454",
@@ -28,9 +28,14 @@
       "answer": "deck test"
     },
     {
-      "uuid": "da243c73-4da1-4f24-b3aa-7a5a7d96d2b8",
-      "question": "rename_checker",
-      "answer": "rename_checker"
+      "uuid": "520f8e00-c6d6-4daa-844f-66566d1f02da",
+      "question": "card_test",
+      "answer": "card_answer"
+    },
+    {
+      "uuid": "39c5c798-092b-4c44-8889-43995b425476",
+      "question": "tag_test",
+      "answer": "tag_answer"
     }
   ]
 }
