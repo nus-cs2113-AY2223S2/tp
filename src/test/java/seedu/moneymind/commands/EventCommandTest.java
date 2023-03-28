@@ -141,7 +141,8 @@ public class EventCommandTest extends CommandTest {
         String terminalOutput = executeInput("event buy tent e/20").toString();
         assertEquals("Please select the category you want to add the event to:" + System.lineSeparator() +
                 "Category does not exist!" + System.lineSeparator() +
-                "Please try again or enter back to go back to the main program" + System.lineSeparator(), terminalOutput);
+                "Please try again or enter back to go back to the main program" +
+                System.lineSeparator(), terminalOutput);
         assertEquals(0, travel.events.size());
         clear();
     }
