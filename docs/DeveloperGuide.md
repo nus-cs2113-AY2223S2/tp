@@ -70,9 +70,14 @@
 ![PocketPal Architecture](./static/PocketPalArchitecture.png)
 ![Backend Overview](./static/backend/BackendOverviewClassDiagram.png)
 
+
+### Communication
+This project uses a simplified HTTP model, where the frontend sends a `Request` to the backend to perform data-related operations. The backend returns a `Response`, which is then processed by the frontend
+=======
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
+
 
 ## Frontend
 
@@ -126,6 +131,7 @@ The add entry mechanism is facilitated by `EntryLog`. Every instance of `AddComm
 The following sequence diagram shows how the add command work:
 
 ![AddCommandSequenceDiagram](./static/AddCommandSequenceDiagram.png)
+![AddCommandSequenceDiagramReference](./static/AddCommandSequenceDiagramReference.png)
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
@@ -157,6 +163,8 @@ Every instance of `DeleteCommand` is created with an Integer, which is the ID of
 The following sequence diagram shows how the delete command work:
 
 ![DeleteCommandSequenceDiagram](./static/DeleteCommandSequenceDiagram.png)
+![DeleteCommandSequenceDiagramGetResponse](./static/DeleteCommandSequenceDiagramDeleteResponse.png)
+![DeleteCommandSequenceDiagramDeleteResponse](./static/DeleteCommandSequenceDiagramDeleteResponse.png)
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
@@ -448,6 +456,42 @@ __Responses__
 
 ## Communication
 
+1. When a user enters a command, the `Frontend` uses `Parser` to resolve the user input via `parseUserInput()`.
+2. Within `parseUserInput()`, the corresponding `parseXCommand()` (`X` is a placeholder for the various command
+   names[^1] e.g. `parseAddCommand()`, `parseDeleteCommand()`.)  is invoked to validate that the user input is in the
+   correct format. Any exceptions will be thrown and their corresponding error messages will be shown to the user via
+   the `ui` class.
+2. If the user input is valid, an `XCommand` object containing the relevant data is created and returned.
+   E.g. `parseAddCommand()` would create a `AddCommand` object containing the description, price and category.
+3. From there, the `XCommand` is ready to be executed by the program. (All `XCommand` classes inherit from `Command` and
+   have corresponding `execute()` that carry out their specific instructions.)
+
+[^1]: A list of currently supported commands in PocketPal can be found [here](../../UserGuide.html/features/)
+
+The Sequence Diagram below illustrates the interactions within the `Parser` component when a user inputs the following
+command: `/add McDonalds -c Food -p 10.50`
+
+![ParserSequenceDiagram](static/ParserSequenceDiagram.png)
+
+### Storage
+
+The `Storage` class is responsible for the serialization of `Entry` data into a csv-like syntax, as well as the deserialization of that data back into `Entry` objects.
+
+The main callable functions to be used are:
+
+- `readFromDatabase()` - Deserializes data stored in text form back into `Entry` objects. Executed when PocketPal is instantiated
+- `writeToDatabase()` - Serializes `Entry` objects in `EntryLog` into text form.
+- `reset()` - Clears whatever is in the stored text file, without affecting what is in the current `EntryLog`.
+
+The structure of the Storage class is as follows:
+
+![StorageClassDiagram](./static/StorageClassDiagram.png)
+
+The Sequence Diagram below illustrates the interactions within the `Parser` component upon initialization of PocketPal, as well as whenever data is being saved.
+
+![StorageSequenceDiagram](./static/StorageSequenceDiagram.png)
+
+=======
 This project uses a simplified HTTP model, where the frontend sends a `Request` to the backend to perform data-related operations. The backend returns a `Response`, which is then processed by the frontend
 
 ![Simplified HTTP Model](static/communication/SimplifiedHTTPClassDiagram.png)
@@ -563,6 +607,7 @@ The following expenditure has been added:
 Description: McDonalds
 Price: $10.50
 Category: Food
+28 Mar 2023, 01:04:42
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
@@ -612,9 +657,26 @@ Expected output:
 ```
 ________________________________________________
 These are the latest 3 entries.
-<1>: McDonalds (Food) - $10.50
-<2>: Air Jordan 1 (Clothing) - $200.00
-<3>: Birthday Dinner (Food) - $150.00
+<1>: McDonalds (Food) - $10.50 <<28 Mar 2023, 01:03:39>>
+<2>: Air Jordan 1 (Clothing) - $200.00 <<28 Mar 2023, 01:04:30>>
+<3>: Birthday Dinner (Food) - $150.00 <<28 Mar 2023, 01:04:42>>
+________________________________________________
+
+Enter a command or /help to see the list of commands available.
+```
+#### Test case 3 (View entries in price range)
+
+**Prerequisites:** At least **1** existing expense.
+
+```/view -p 120.50 -p 210.00```
+
+Expected output:
+
+```
+________________________________________________
+These are the latest 2 entries.
+<1>: Air Jordan 1 (Clothing) - $200.00 <<28 Mar 2023, 01:04:30>>
+<2>: Birthday Dinner (Food) - $150.00 <<28 Mar 2023, 01:04:42>>
 ________________________________________________
 
 Enter a command or /help to see the list of commands available.
@@ -642,6 +704,7 @@ The following expenditure has been deleted:
 Description: Birthday Dinner
 Price: $150.00
 Category: Food
+28 Mar 2023, 01:03:39
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
@@ -661,7 +724,35 @@ ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
 
+
+#### Test case 3:
+
+**Prerequisites:** At least **2** expenses pre-added into the program
+
+`/delete 1 2`
+ 
+Expected output:
+
+```
+________________________________________________
+The following expenditure has been deleted:
+Description: Light bulb
+Price: $10.20
+Category: Utilities
+28 Mar 2023, 01:04:42
+________________________________________________
+The following expenditure has been deleted:
+Description: Pizza
+Price: $8.30
+Category: Food
+28 Mar 2023, 01:04:30
+________________________________________________
+Enter a command or /help to see the list of commands available.
+```
+
+=======
 ### Edit expense: /edit
+
 
 **Usage:** `/edit <EXPENSE_ID> [FLAG...]`
 

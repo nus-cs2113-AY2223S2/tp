@@ -4,11 +4,9 @@
 participant ":Parser" as Parser
 participant "command:DeleteCommand" as DeleteCommand
 participant "requestGet:Request" as RequestGet
-participant "backend:Backend" as Backend
-participant "endpoint:entryEndpoint" as Endpoint
-participant "entries:EntryLog" as EntryLog
-participant "responseGet:Response" as ResponseGet
 participant "requestDelete:Request" as RequestDelete
+participant "backend:Backend" as Backend
+participant "responseGet:Response" as ResponseGet
 participant "responseDelete:Response" as ResponseDelete
 participant "UI" as UI
 
@@ -21,28 +19,21 @@ activate DeleteCommand
 DeleteCommand -> RequestGet ** : Request(GET, entryId)
 RequestGet --> DeleteCommand : requestGet
 DeleteCommand -> Backend : requestEndpointEntry(requestGet)
-Backend -> Endpoint : handRequest(requestGet)
-Endpoint -> Endpoint : handleGet(requestGet)
-Endpoint -> EntryLog : getEntry(entryId)
-EntryLog --> Endpoint : entryObj
-Endpoint -> ResponseGet ** : (ResponseStatus, " ")
-ResponseGet --> Endpoint : responseGet
-Endpoint -->Backend: responseGet
+ref over Backend, ResponseGet
+get Entry and get responseGet
+end ref
 Backend --> DeleteCommand : responseGet
 
 DeleteCommand -> RequestDelete ** : Request(DELETE, entryId)
 RequestDelete --> DeleteCommand
 DeleteCommand -> Backend : requestEndpointEntry(requestDelete)
-Backend -> Endpoint : handRequest(requestDelete)
-Endpoint -> Endpoint : handleGet(requestDelete)
-Endpoint -> EntryLog : deleteEntry(entryId)
-EntryLog -> EntryLog : remove(entryId)
-EntryLog --> Endpoint
-Endpoint -> ResponseDelete ** : Response(responseStatus, " ")
-ResponseDelete --> Endpoint : responseDelete
-Endpoint --> Backend : responseDelete
+
+ref over Backend, ResponseDelete
+delete from EntryLog and get responseDelete
+end ref
 
 
+Backend --> DeleteCommand : responseDelete
 alt responseDelete.getResponseStatus() == ResponseStatus.NOT_FOUND
     DeleteCommand --> Parser : exception
 else else
