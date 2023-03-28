@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+title Parser Sequence Diagram
+
+box "DinerDirector"
+participant ":DinerDirector" as DinerDirector #yellow
+endbox
+box "Parser"
+participant ":Parser" as Parser #orange
+endbox
+
+[-> DinerDirector ++ : runCommandLoopUntilExit()
+create Parser
+DinerDirector -> Parser ++ : Parser()
+return
+
+DinerDirector -> Parser ++ : parseCommand(userInput)
+Parser -> Parser ++ :prepareXYZCommand(userInputNoCommand)
+return Command
+return Command
+
+destroy Parser
+|||
+
+
+
+
+@enduml

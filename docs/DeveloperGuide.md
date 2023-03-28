@@ -10,7 +10,7 @@ for some reused skeleton code and inspiration on OOP implementation.
 
 ## Design 
 ### Architecture
-![Architecture_Diagram](./uml/DinerDirectorArchitectureDiagram.png)
+![Architecture_Diagram](uml/images/DinerDirectorArchitectureDiagram.png)
 The **Architecture Diagram** given above explains the high-level design of DinerDirector. 
 Given below is a quick overview of main components and how they interact with each other. 
 
@@ -24,7 +24,7 @@ request to `Manager` to assist the CRUD operations.
 
 ##### The command component consists of the following:
 
-![Command_Package_Diagram](./uml/CommandPackageDiagram.png)
+![Command_Package_Diagram](uml/images/CommandPackageDiagram.png)
 
 - 4 subcomponents: Command, HelpCommand, ExitCommand, IncorrectCommand
 
@@ -64,19 +64,30 @@ The `TextUi`class performs the following functions:
 
 ### Utils Component (Darren)
 
-(Insert Class Diagram)  
-The Utils Component consists of the Parser class that will handle the parsing and preparing of commands within the DinerDirector application.  
+![UtilsParserClassDiagram](uml/images/UtilsParserClassDiagram.png)    
+The Utils Component consists of the `Parser` class that will handle the parsing and preparing of commands within the DinerDirector application.  
 
 The `Parser` class performs the following functions:  
 * Parse the command given the user input and extracts out the necessary information related to the command.
 * Returns the appropriate Command Class based on the parsed input.
 
+![UtilsStorageClassDiagram](uml/images/UtilsStorageClassDiagram.png)  
+The Utils Component also consists of the `Storage` class and the individual `XYZStorage` that will handle storage related operations within the DinerDirector application.  
+
+The `Storage` class performs the following functions:
+* Create a directory in the root folder of where the application is running.
+
+The `XYZStorage` class performs the following functions:
+* Read and load data from the file.
+* Write to the file if any changes occur to the list.
+
 ## Implementation
 ### Parsing Feature (Darren)
 
-(Insert Sequence Diagram)  
+![ParserSquenceDiagram](./uml/images/ParserSequenceDiagram.png)  
 How the parsing works:
-1. When the `parseCommand()` method is called from `DinerDirector` class, the `parseCommand()` will split the given userInput first.
+1. The `Parser()` class will be called to create a new instance of `Parser`.
+2. Afterwards, when the `parseCommand()` method is called from `DinerDirector` class, the `parseCommand()` will split the given userInput first.
 2. With the `userInputSplit[]`, the `0` index will be extracted out. That will be used as identification for the command the user typed in.
 3. The `commandWord` will be used in the switch statement to select the appropriate command. returning `IncorrectCommand` class is the default behavior.
 4. If the `commandWord` is valid, it will run the appropriate `prepareXYZCommand()`.
@@ -144,7 +155,7 @@ The Dish feature consists of three functions:
 
 ##### Adding dish to list:
 
-![](./uml/AddDishCommandSequenceDiagram-Add_Dish_Sequence_Diagram.png)
+![](uml/images/AddDishCommandSequenceDiagram-Add_Dish_Sequence_Diagram.png)
 
 - When the ```AddDishCommand()``` constructor is called, it stores the dish name, price and the list of ingredients in an entity called Dish.
 - When the ```execute()``` command in ```AddDishCommand``` is called, it calls the ```addDishCommand()``` in ```DishManager``` class that adds the Dish into an arraylist of Dishes.
