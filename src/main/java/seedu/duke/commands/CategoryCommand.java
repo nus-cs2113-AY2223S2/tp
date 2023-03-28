@@ -37,7 +37,7 @@ public class CategoryCommand extends Command {
         }
     }
 
-    public void updateItemCategory(Item item, String category) throws CategoryFormatException {
+    public static void updateItemCategory(Item item, String category) throws CategoryFormatException {
         try {
             if (category.isEmpty() || category.isBlank()) {
                 throw new CategoryFormatException();
@@ -51,7 +51,7 @@ public class CategoryCommand extends Command {
         }
     }
 
-    private void checkExistingCategory(Item item) {
+    private static void checkExistingCategory(Item item) {
         String oldCategory = item.getCategory().toLowerCase();
         try {
             categoryHash.get(oldCategory).remove(item);
@@ -64,8 +64,7 @@ public class CategoryCommand extends Command {
     }
 
 
-
-    private void addItemToCategory(String categoryToAdd, Item item) {
+    private static void addItemToCategory(String categoryToAdd, Item item) {
         if (!categoryHash.containsKey(categoryToAdd)) {
             ArrayList<Item> newCategoryItemList = new ArrayList<>();
             newCategoryItemList.add(item);

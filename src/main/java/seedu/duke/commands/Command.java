@@ -18,7 +18,7 @@ public abstract class Command {
     protected ArrayList<Item> itemInventory;
     protected HashMap<String, ArrayList<Item>> itemNameHash;
     protected HashMap<String, Item> upcCodes;
-    protected HashMap<String, ArrayList<Item>> categoryHash;
+    protected static HashMap<String, ArrayList<Item>> categoryHash;
     protected Trie itemsTrie;
 
     public Command(Inventory inventory) {

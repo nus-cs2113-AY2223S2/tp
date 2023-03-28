@@ -29,6 +29,7 @@ public class Storage {
     private static final Integer UPC_INDEX = 2;
     private static final Integer QUANTITY_INDEX = 3;
     private static final Integer PRICE_INDEX = 4;
+    private static final Integer CAT_INDEX = 5;
     private static final Integer DATE_INDEX = 6;
 
     private static final String VALID_DATAROW_REGEX =
@@ -57,7 +58,7 @@ public class Storage {
                     return new Inventory();
                 }
                 Item item = new Item(fields[NAME_INDEX], fields[UPC_INDEX], Integer.parseInt(fields[QUANTITY_INDEX]),
-                        Double.parseDouble(fields[PRICE_INDEX]), LocalDateTime.parse(fields[DATE_INDEX]));
+                        Double.parseDouble(fields[PRICE_INDEX]), fields[CAT_INDEX],LocalDateTime.parse(fields[DATE_INDEX]));
                 if (tempInventory.getUpcCodes().containsKey(fields[UPC_INDEX])) {
                     if (tempInventory.getUpcCodes().get(fields[UPC_INDEX]).compareTo(item) == -1) {
                         tempInventory.getItemInventory().remove(tempInventory.getUpcCodes().get(fields[UPC_INDEX]));
@@ -86,6 +87,11 @@ public class Storage {
                     inventory.getItemNameHash().get(itemName).add(item);
                     inventory.getTrie().add(itemName);
                 }
+                if (!inventory.getCategoryHash().containsKey(item.getCategory().toLowerCase())) {
+                    inventory.getCategoryHash().put(item.getCategory().toLowerCase(), new ArrayList<>());
+                }
+                System.out.println("category is now " + item.getCategory().toLowerCase());
+                inventory.getCategoryHash().get(item.getCategory().toLowerCase()).add(item);
             }
             reader.close();
         } catch (IOException | NumberFormatException e) {
