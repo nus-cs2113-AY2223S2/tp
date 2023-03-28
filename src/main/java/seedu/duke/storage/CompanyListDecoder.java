@@ -29,7 +29,7 @@ public class CompanyListDecoder extends Storage {
                 writeToCompanyList(companyList, parsedInput);
             }
         } catch (NoSavedInformationException e) {
-            System.out.println("There is no saved data found.");
+            System.out.println("There is no saved data found in company list.");
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
         } catch (InvalidIndexException e) {

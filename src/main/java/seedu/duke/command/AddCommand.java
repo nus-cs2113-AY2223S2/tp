@@ -20,6 +20,13 @@ public class AddCommand extends Command {
         this.contactEmail = contactEmail;
     }
 
+    /**
+     * Adds a new company into the company list
+     *
+     * @param companyList which contains a list of all the companies
+     * @throws InvalidIndexException if error occurred due to invalid index
+     * @throws IOException if error occurred during file writing
+     */
     @Override
     public void execute(CompanyList companyList) {
         try {

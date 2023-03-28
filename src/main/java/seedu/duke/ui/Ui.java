@@ -92,31 +92,30 @@ public class Ui {
         System.out.println("Company has been successfully confirmed/uncomfirmed!");
     }
 
-    public void showSortedCompanyList(String industry, ArrayList<Company> sortedCompanyList){
+    public void showSortedCompanyList(String industry, ArrayList<Company> sortedCompanyList) {
         System.out.println("Here are the companies in <" + industry + "> field.");
-        int i=1;
-        for(Company company : sortedCompanyList){
+        int i = 1;
+        for (Company company : sortedCompanyList) {
             System.out.println(i++ + ".");
             System.out.println(company);
         }
     }
 
-    public void showCompanyFoundMessage(Company company, int idx){
+    public void showCompanyFoundMessage(Company company, int idx) {
         System.out.println("The company is found in the company list.");
         System.out.println(idx + System.lineSeparator() + company);
     }
 
-    public void showCompanyNotFoundMessage(String targetCompany){
+    public void showCompanyNotFoundMessage(String targetCompany) {
         System.out.println("The company <" + targetCompany + "> is not found in the company list.");
     }
 
 
     public void showVenueSelectionMessage(String venue) {
-        System.out.println(venue + " has been successfully updated!");
+        System.out.println(venue + " is your venue!");
     }
 
     public void showEventNameSelectionMessage(String eventName) {
-        System.out.println(eventName + " has been successfully updated!");
+        System.out.println(eventName + " is your event name!");
     }
-
 }
