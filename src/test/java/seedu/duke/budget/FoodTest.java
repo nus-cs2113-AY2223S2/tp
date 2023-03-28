@@ -23,6 +23,6 @@ class FoodTest {
         food.setPrice(changePrice);
         assertEquals(changePrice, food.getPrice());
     }
-    
+
 
 }
