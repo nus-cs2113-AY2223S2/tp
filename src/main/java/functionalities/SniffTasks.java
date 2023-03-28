@@ -54,6 +54,10 @@ public class SniffTasks {
             }
             UIDS.add(uid);
             Appointment newAppointment = new Consultation(uid, animal, owner, date, time);
+            assert newAppointment.uid == uid : "consultation uid is incorrectly initialized.";
+            assert newAppointment.isDone == false : "consultation isDone should be false when initialized.";
+            assert newAppointment.animal.type == animal.type : "consultation animal type is incorrectly initialized.";
+            assert newAppointment.animal.name == animal.name : "consultation animal name is incorrectly initialized.";
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
@@ -71,6 +75,10 @@ public class SniffTasks {
             }
             UIDS.add(uid);
             Appointment newAppointment = new Vaccination(uid, animal, owner, date, time, vaccine);
+            assert newAppointment.uid == uid : "vaccination uid is incorrectly initialized.";
+            assert newAppointment.isDone == false : "vaccination isDone should be false when initialized.";
+            assert newAppointment.animal.type == animal.type : "vaccination animal type is incorrectly initialized.";
+            assert newAppointment.animal.name == animal.name : "vaccination animal name is incorrectly initialized.";
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
