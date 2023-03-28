@@ -110,4 +110,50 @@ public class Storage {
         return data;
     }
 
+    private void parsePetFile(ArrayList<String> data) {
+        for (String line : data) {
+            String petName = getPetName(line);
+            PetList.addPet(petName);
+
+            String petType = getPetType(line);
+            if (!petType.equals("")) {
+                PetList.addStat(petName, "type", petType);
+            }
+
+            String age = getAge(line);
+            if (!age.equals("")) {
+                PetList.addStat(petName, "age", age);
+            }
+
+            String weight = getWeight(line);
+            if (!weight.equals("")) {
+                PetList.addStat(petName, "weight", weight);
+            }
+        }
+    }
+
+    private String getPetName(String line) {
+        String[] words = line.split("\\|", 2);
+        String petName = words[0];
+        return petName;
+    }
+
+    private String getPetType(String line) {
+        String[] words = line.split("\\|", 3);
+        String petType = words[1];
+        return petType;
+    }
+
+    private String getAge(String line) {
+        String[] words = line.split("\\|", 4);
+        String age = words[2];
+        return age;
+    }
+
+    private String getWeight(String line) {
+        String[] words = line.split("\\|", 5);
+        String weight = words[3];
+        return weight;
+    }
+
 }
