@@ -17,7 +17,8 @@ public class Ui {
             + HORIZONTAL_LINE +
             "\n1. Add an expenditure to the record\n" +
             "Format: EXPENDITURE_TYPE d/DATE a/AMOUNT s/DESCRIPTION\n" + 
-            "There are 7 EXPENDITURE_TYPE: 'Academic', 'Accomodation', 'Entertainment', 'Food', 'Transport', 'Tuition', 'Other'\n" +
+            "There are 7 EXPENDITURE_TYPE: 'Academic', 'Accomodation', 'Entertainment'," +
+            "'Food', 'Transport', 'Tuition', 'Other'\n" +
             "Example: academic d/2023-02-02 a/25.10 s/NUS\n" +
             HORIZONTAL_LINE +
             "\n2. Add a lend/borrow record\n" +
