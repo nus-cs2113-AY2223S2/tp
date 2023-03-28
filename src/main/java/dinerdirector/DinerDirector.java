@@ -2,15 +2,22 @@ package dinerdirector;
 
 import commands.Command;
 import common.Messages;
-import manager.DeadlineManager;
+import exceptions.DinerDirectorException;
 import ui.TextUi;
+import utils.DeadlineStorage;
+import utils.DishStorage;
+import utils.MeetingStorage;
 import utils.Parser;
+import utils.StaffStorage;
+import utils.Storage;
 
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class DinerDirector {
     private TextUi ui;
-    private DeadlineManager deadlineList;
+    private Storage storage;
+
 
     //Solution below adopted from:
     //https://github.com/nus-cs2113-AY2223S2/personbook/blob/main/src/main/java/seedu/personbook/Main.java
@@ -31,8 +38,44 @@ public class DinerDirector {
      */
     private void start() {
         this.ui = new TextUi();
+        this.storage = new Storage();
+        DeadlineStorage deadlineStorage = new DeadlineStorage();
+        MeetingStorage meetingStorage = new MeetingStorage();
+        DishStorage dishStorage = new DishStorage();
+        StaffStorage staffStorage = new StaffStorage();
+        try {
+            storage.createDirectory();
+        } catch (IOException | DinerDirectorException e) {
+            ui.printMessage(String.format(Messages.ERROR_CREATE_DIRECTORY, e));
+        }
+
+        try {
+            deadlineStorage.readAndLoadFromDeadlineFile();
+        } catch (FileNotFoundException e) {
+            ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, DeadlineStorage.FILENAME_DEADLINE));
+        }
+
+        try {
+            meetingStorage.readAndLoadFromMeetingFile();
+        } catch (FileNotFoundException e) {
+            ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, MeetingStorage.FILENAME_MEETING));
+        }
+
+        try {
+            dishStorage.readAndLoadFromDishFile();
+        } catch (FileNotFoundException e) {
+            ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, DishStorage.FILENAME_DISH));
+        }
+
+        try {
+            staffStorage.readAndLoadFromStaffFile();
+        } catch (FileNotFoundException e) {
+            ui.printMessage(String.format(Messages.ERROR_STORAGE_FILE_NOT_FOUND, StaffStorage.FILENAME_STAFF));
+        }
+
+        ui.printMessage(Messages.MESSAGE_FINISHED_LOADING);
         ui.printBanner();
-        deadlineList = new DeadlineManager(new ArrayList<>());
+
     }
 
     private void runCommandLoopUntilExit() {
