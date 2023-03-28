@@ -43,7 +43,7 @@ public class FindCommand extends Command {
         } else if(keyword == null) {
             throw new ChChingException("No keyword specified");
         } else if(!category.equals("income") && !category.equals("expense")) {
-            throw new ChChingException("Category must be income or expense");
+            throw new ChChingException("Category specified must be income or expense");
         }
 
         if (category.equals("income")) {
