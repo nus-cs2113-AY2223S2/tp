@@ -47,7 +47,7 @@ public final class MessageConstants {
     public static final String MESSAGE_INVALID_COMMAND = "Please enter a valid command!";
     public static final String MESSAGE_INVALID_CATEGORY = "Please specify a valid category!";
     public static final String MESSAGE_INVALID_ID = "Please enter a valid numerical index!";
-    public static final String MESSAGE_INVALID_PRICE = "Price should only contain numerical digits!";
+    public static final String MESSAGE_INVALID_PRICE = "Please enter a valid price!";
     public static final String MESSAGE_MISSING_ARGS_ADD = "Please specify the description, category and price!";
     public static final String MESSAGE_MISSING_PRICE_ADD = "Please specify the price using the '-p' flag!";
     public static final String MESSAGE_MISSING_DESCRIPTION_ADD = "Please specify the description!";

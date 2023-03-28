@@ -113,8 +113,7 @@ public class Parser {
         matcher = pricePattern.matcher(arguments);
         if (matcher.find()) {
             price = matcher.group(2);
-            System.out.println(price);
-            checkIfPriceContainLetters(price);
+            checkIfPriceIsValid(price);
         } else {
             logger.warning("Missing price: " + MessageConstants.MESSAGE_MISSING_PRICE_ADD);
             throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_PRICE_ADD);
@@ -148,7 +147,7 @@ public class Parser {
         logger.info("User input category: " + category);
         logger.info("User input price: " + price);
         double priceDouble;
-        checkIfPriceContainLetters(price);
+        checkIfPriceIsValid(price);
         priceDouble = Double.parseDouble(price);
         logger.exiting(Parser.class.getName(), "parseAddCommand()");
         return new AddCommand(description, priceDouble, category);
@@ -279,7 +278,7 @@ public class Parser {
         }
 
         if (!price.isEmpty()) {
-            checkIfPriceContainLetters(price);
+            checkIfPriceIsValid(price);
             Double.parseDouble(price);
         }
 
@@ -337,10 +336,10 @@ public class Parser {
         matcher = priceRangePattern.matcher(arguments);
         if (matcher.find()) { //look for starting price range
             priceMinStr = matcher.group(2);
-            checkIfPriceContainLetters(priceMinStr);
+            checkIfPriceIsValid(priceMinStr);
             if (matcher.find()) { //look for ending price range
                 priceMaxStr = matcher.group(2);
-                checkIfPriceContainLetters(priceMaxStr);
+                checkIfPriceIsValid(priceMaxStr);
             } else { //ending price range not specified
                 priceMaxStr = Integer.toString(Integer.MAX_VALUE);
             }
@@ -367,9 +366,9 @@ public class Parser {
         return new ViewCommand(viewCountInt, category, priceMinDble, priceMaxDble);
     }
 
-    private void checkIfPriceContainLetters(String string) throws InvalidArgumentsException {
-        boolean hasLetters = string.matches(".*[a-zA-Z]+.*");
-        if (hasLetters) {
+    private void checkIfPriceIsValid(String string) throws InvalidArgumentsException {
+        boolean isValid = string.matches("[0-9.]*");
+        if (!isValid) {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
         }
     }
