@@ -67,16 +67,16 @@ public class Ui {
     public static final String EMPTY_LIST = "There are no items in your inventory.";
     public static final String CONFIRM_MESSAGE = "Are you sure you want this item to be permanently deleted?\n(Y/N)";
 
-    public static final String INVALID_SESSION_FILE = "INFO: A Session Inventory file was found but it is corrupted. \" +\n" +
-            "            \"Please delete the corrupt .csv file";
+    public static final String INVALID_SESSION_FILE = "INFO: A Session Inventory file was found but it is corrupted. " +
+             "\n" + "      Please delete the corrupt .csv file.";
     public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered." +
             " The inventory has been updated.";
     public static final String EMPTY_SESSION_FILE = "INFO: Empty/No Session Inventory file found.";
 
-    public static final String INVALID_ALERT_FILE = "INFO: A Session Alerts file was found but it is corrupted. \" +\n" +
-            "            \"Please delete the corrupt .csv file";
+    public static final String INVALID_ALERT_FILE = "INFO: A Session Alerts file was found but it is corrupted. " +
+            "\n" + "      Please delete the corrupt .csv file.";
 
-    public static final String EMPTY_ALERT_FILE = "INFO: No Session alerts file found";
+    public static final String EMPTY_ALERT_FILE = "INFO: Empty/No Session Alerts file found.";
 
     public static final String RECOVERED_ALERT_FILE = "INFO: Session Alert Data recovered." +
             " The list of active alerts has been updated.";

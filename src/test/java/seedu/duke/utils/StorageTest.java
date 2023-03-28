@@ -6,7 +6,7 @@ import seedu.duke.objects.Item;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StorageTest {
 

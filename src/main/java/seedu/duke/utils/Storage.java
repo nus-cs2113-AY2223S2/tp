@@ -40,9 +40,7 @@ public class Storage {
 
     private static final String VALID_DATAROW_REGEX =
             "^\\d+,[^,]+,\\d+,\\d+,\\d+(?:\\.\\d+)?,[^,]+,\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{9}$";
-
-  //  private static final String VALID_ALERT_REGEX = "^\\d+,\\s*\\d+,\\s*(min|max),.*";
-    private static final String VALID_ALERT_REGEX =  "^[^,]+,\\s*\\d+,\\s*(min|max),.*";
+    private static final String VALID_ALERT_REGEX =  "(.+),\\d+,(min|max)$";
 
     /**
      * Reads the CSV file from Types.SESSIONFILEPATH and

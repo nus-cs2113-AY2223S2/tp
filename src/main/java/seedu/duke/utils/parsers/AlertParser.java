@@ -20,8 +20,6 @@ public class AlertParser extends Parser {
         this.alertList = inventory.getAlertList();
     }
 
-    //TODO: trim trailing whitespace from input string?
-    //whitespace at the end of the string currently results in successful alert removal
     private void parseAddAlert(String rawInput, Inventory inventory) {
         Pattern pattern = Pattern.compile(ALERT_ADD_REGEX);
         Matcher matcher = pattern.matcher(rawInput);
@@ -36,7 +34,6 @@ public class AlertParser extends Parser {
         } else {
             Ui.printInvalidAddAlertCommand();
         }
-
     }
 
     private void parseRemoveAlert(String rawInput, Inventory inventory) {
