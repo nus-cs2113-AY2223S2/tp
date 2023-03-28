@@ -7,6 +7,7 @@ original source as well}
 
 - [AB3](https://github.com/se-edu/addressbook-level3)
 - [OpenCSV](https://opencsv.sourceforge.net/)
+- [gson](https://github.com/google/gson)
 
 ## Design
 
@@ -38,12 +39,14 @@ Components:
 - Monthly expenditures are stored in the form of a Hash Table, mapping the Year and Month to the expenditures
 
 #### Design considerations
+
 - To prevent slow processing of the program when there are many entries, a Hash Table is used.
 - An additional storage was specifically created as we believe that the Set Budget feature will be commonly
-used as it is 1 of the key aspects a Financial Tracker. Hence, it would be more feasible to implement indexing such that
-add operations and retrieval of information to be done in Amortised O(1).
+  used as it is 1 of the key aspects a Financial Tracker. Hence, it would be more feasible to implement indexing such
+  that
+  add operations and retrieval of information to be done in Amortised O(1).
 - The Key used is the number of months from the Year 0000, or more precisely calculated by (Year * 12 + Month). This is
-to allow fast processing and collision-free information collection.
+  to allow fast processing and collision-free information collection.
 
 ### Command component
 
@@ -79,6 +82,10 @@ to allow fast processing and collision-free information collection.
   will be created with the relevant attributes
 - `RainyDay` will then call `execute` method in `Command`, where the transaction will be added into the financial report
 
+The sequence diagram for the implementation of add is as shown below:
+
+![AddCommandSequenceDiagram.png](\images\DeveloperGuide\AddCommandSequenceDiagram.png)
+
 #### Design considerations
 
 Format of add command
@@ -101,6 +108,10 @@ Format of add command
   be created with the relevant attribute information
 - `RainyDay` will then call `execute` method in `Command`, where the indicated transaction will be deleted from the
   financial report
+
+The sequence diagram for the implementation of delete is as shown below:
+
+![DeleteCommandSequenceDiagram.png](\images\DeveloperGuide\DeleteCommandSequenceDiagram.png)
 
 #### Design considerations
 
@@ -195,7 +206,7 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 
 - The command `setbudget` is used to set the user's monthly budget goal
 - Once a goal is present, user's will be reminded of how close they are to sticking to their budget, or how
-much they have exceeded it by
+  much they have exceeded it by
 - This can be seen at start-up and when the user makes any changes to their expenses for the month.
 
 ### Editing an entry `edit`
@@ -206,7 +217,8 @@ much they have exceeded it by
   command.
 - Otherwise, methods specific to the flags will be used to validate the remaining fields using regex pattern
 - Commands in the correct format will then be used to create a FilterCommand object.
-- `RainyDay` will then call `execute` method in `Command`, where the transaction's specific field be edited or deleted then added
+- `RainyDay` will then call `execute` method in `Command`, where the transaction's specific field be edited or deleted
+  then added
   into the financial report.
 
 ### Filtering your data `filter`
@@ -220,19 +232,52 @@ much they have exceeded it by
   conditions will be printed.
 - Information will be presented in a table format to help improve clarity for users.
 
+The sequence diagram for the implementation of filter is as shown below:
+
+![FilterCommand.png](\images\DeveloperGuide\FilterCommand.png)
+
 {TODO: Mention file path after implementing issue #137}
+
+### Adding a shortcut `shortcut`
+
+- When a command is given to add a shortcut, the command is first parsed to check if it follows the format of an add
+  shortcut command: `shortcut [SHORTCUTNAME] -maps [ACTUALCOMMAND]`.
+    - Furthermore, the `[SHORTCUTNAME]` should be given without spaces.
+- Commands in the correct format will then be parsed to create a `ShortcutAddCommand` object with a constructor.
+    - A call will be made to the `userData` object which returns a reference to the `shortcutCommands` hashmap.
+    - the given `[SHORTCUTNAME]` and `[ACTUALCOMMAND]` will be the key value pair of the hashmap.
+- If the key does not already exist in the `shortcutCommands` hashmap, the new shortcut mapping will be added into the
+  hashmap.
+  ![ShortcutAddCommand.png](images/DeveloperGuide/ShortcutAddCommand.png)
+
+### Deleting a shortcut `shortcut_delete`
+
+- When a command is given to delete a shortcut, the command is first parsed to check if it follows the format of a
+  delete
+  shortcut command: `shortcut_delete [SHORTCUTNAME]`.
+- Commands in the correct format will then be parsed to create a `ShortcutDeleteCommand` object with a constructor.
+    - A call will be made to the `userData` object which returns a reference to the `shortcutCommands` hashmap.
+    - the given `[SHORTCUTNAME]` will be the key of the hashmap.
+- If the shortcut key exists in the `shortcutCommands` hashmap, it will be added from the hashmap.
+  ![ShortcutDeleteCommand.png](images%2FDeveloperGuide%2FShortcutDeleteCommand.png)
+
+### Viewing a shortcut `shortcut_view`
+
+- {TODO}
 
 ### Saving Data
 
-- Whenever a change is made in the `FinancialReport` the updated `FinancialReport` will automatically be saved to
+- The `userData` object will contain all the data of the user, such as the `FinancialReport` and the
+  configured `ShortcutCommands`.
+- Whenever a change is made in the `userData` the updated `userData` will automatically be saved to
   reflect the changes.
-- Saving is done by serializing the `FinancialReport` and writing it into a file.
+- Saving is done by serializing the `userData` into json format and writing it into a file.
 
 #### Design considerations
 
 #### How we should implement the feature of saving data
 
-- Alternative 1 (current choice): Save the entire `FinancialReport` automatically whenever there is a change to its
+- Alternative 1 (current choice): Save the `userData` automatically whenever there is a change to its
   data.
     - Pros:
         - User will never forget to save data.
@@ -249,38 +294,37 @@ much they have exceeded it by
           alternative 1.
         - Process is done automatically and invisible to the user.
     - Cons:
-        - `FinancialReport` may not be saved if application crashes or abnormal exit is performed.
+        - `userData` may not be saved if application crashes or abnormal exit is performed.
 - Alternative 3: Perform save only when user states explicitly, such as with a command to save.
     - Pros:
         - More flexibility to the user to decide when to save or to discard changes.
         - Save only performed when explicitly needed. Performance benefit.
     - Cons:
         - User may forget to save.
-        - `FinancialReport` may not be saved if application crashes or abnormal exit is performed.
+        - `userData` may not be saved if application crashes or abnormal exit is performed.
 
 #### Type of file to save data into
 
-- Alternative 1 (current choice): Make use of serialization in Java to serialize `FinancialReport` object before writing
+- Alternative 1 (current choice): Make use of serialization in gson to serialize `userData` object before writing
   to file.
     - Pros:
-        - Easier to implement. Minimal changes to the code required as new attributes are added to `FinancialReport` as
+        - Easier to implement. Minimal changes to the code required as new attributes are added to `userData` as
           we develop the app incrementally.
         - Less prone to bugs as data does not need to be manually parsed to save/load.
     - Cons:
-        - Saved data is in a byte stream format. Will not be readable by user and is not viewable in other
-          applications.
-- Alternative 2: Make use of plaintext to save the relevant data in the `FinancialReport` object.
+        - Difficult to prevent users from manipulating the json file. May cause errors if corrupted.
+- Alternative 2: Make use of plaintext to save the relevant data in the `userData` object.
     - Pros:
-        - Data will be readable and user can get information about the FinancialReport by viewing the `.txt` file.
+        - Data will be more readable and user can get information about the FinancialReport by viewing the .txt file.
     - Cons:
         - Difficult to implement, changes in implementation will be necessary when new attributes are added
-          to `FinancialReport` as we develop the app incrementally.
+          to `userData` as we develop the app incrementally.
         - Prone to bugs as data must be parsed manually to save/load
 
 ### Loading Data
 
-- Serialized data will be read from file automatically upon startup of the application.
-- Data from file will be deserialized and a FinancialReport object will be created based on the save file.
+- Json Serialized data will be read from file automatically upon startup of the application.
+- Data from file will be deserialized and a `userData` object will be created based on the save file.
 
 #### Design Considerations
 
