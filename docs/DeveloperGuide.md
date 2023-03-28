@@ -288,52 +288,199 @@ The following are instructions for testers to manual test:
 1. Adding an expenditure
 - Test case : `academic d/2023-02-02 a/25.10 s/NUS`
 - Expected : `Added academic expenditure: [Academic] || Date: 2 Feb 2023 || Value: 25.1 || Description: NUS`
-<br /> An expenditure will be added with the type : `academic` if all inputs are added in the correct format. 
+<br /> An expenditure of type : `academic` will be added if all inputs are added in the correct format. 
 <br /> Otherwise, error messages will be printed.
 
 
 - Test case : `food d/2023-03-03 a/5.30 s/Fish Soup`
 - Expected : `Added food expenditure: [Food] || Date: 3 Mar 2023 || Value: 5.3 || Description: Fish Soup`
+<br /> An expenditure of type `food` will be added
 
-
-- Test case : `transport d/2023-03-13 a/2 s/Bus`
-- Expected : `Added transport expenditure: [Transport] || Date: 13 Mar 2023 || Value: 2.0 || Description: Bus`
 
 - Test case : `transport d/13-03-2023 a/2 s/Bus`
-- Expected : `date time error`
+- Expected : A status message highlighting the wrong format for date will be indicated. No expenditure will
+be added. 
+
 
 - Test case : `transport d/2023-03-13 a/two dollars s/Bus`
-- Expected : `number format problem`
+- Expected : Similar to previous, but with a different invalid message.
 
 2. Adding a lend/borrow spending
 - Test case : `lend d/2023-02-02 n/Bob a/25.10 b/2023-04-02 s/CS2113`
 - Expected : `Added lend expenditure: [Lend] || Lent to: Bob || Date: 2 Feb 2023 || Value: 25.1 || 
 Description: CS2113 || by: 2 Apr 2023`
+<br /> Similar to add an expenditure, adding a lend/borrow will add the expenditure to the list. 
+Details of all parameters will be shown to the user.
 
 
 - Test case : `borrow d/2023-02-02 n/Mandy a/25.10 b/2023-04-02 s/payment for notes`
 - Expected : `Added borrow expenditure: [Borrow] || Borrowed from: Mandy || Date: 2 Feb 2023 || Value: 25.1 
 || Description: payment for notes || By: 2 Apr 2023`
-<br /> Similar to add an expenditure, adding a lend/borrow will add the expenditure to the list. However, the 
-parameters required are different.
+<br /> Similar to previous, but with a different expenditure type : `borrow`.
 
-#### Deleting a record
-1. Deleting a record from the list of inputs.
+#### Deleting an expenditure
+1. Deleting an expenditure from the list of inputs.
 - Prerequisite: There should be at least one expenditure in the list for `delete` to work. The list can be checked
 using the `list` command
 
 
 - Test case : `delete 1`
-- Expected : <br/> `Entry has been deleted `<br />
-`  Here is your updated list: `
+- Expected : Message showing that input has been removed will be displayed. First expenditure will be removed from
+the list.
 
 
 - Test case : `delete -1`
-- Expected : `Index is out of bounds or negative`
+- Expected : Message showing that input index is out of bounds or negative will be displayed. No expenditure will
+be deleted.
 
 
 - Test case : `delete 1.1`
-- Expected : `Invalid`
+- Expected : Error message will be shown, and no expenditure will be removed from the list.
+
+#### Editing an expenditure
+1. Editing a current expenditure within the list of inputs.
+- Prerequisite : Similar to delete, an existing expenditure is required. 
 
 
+- Assumption : Test cases provided are for expenditures with the corresponding parameters. Parameters for normal 
+expenditures cannot to edit lend/borrow expenditures
 
+
+- Test case : `edit 1 d/2023-02-12 a/8.00 s/Fast Food` 
+- Expected : Assuming this test case is for a normal expenditure, all the previous parameters will be replaced with
+the new input parameters. An edit message will be shown as well.
+
+
+- Test case : `edit 2 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 s/fishing`
+- Expected : Assuming this test case is for a lend/borrow expenditure, all the previous parameters will be 
+replaced with the new input parameters. An edit message will be shown as well.
+
+
+- Test case : `edit 2 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 s/fishing` on normal expenditures
+- Expected : As the input parameters are different, an invalid message will be returned. Expenditure
+will not be edited.
+
+
+- Test case : `edit 2` 
+- Expected : Invalid message prompting missing inputs will be shown. Expenditures will not be edited. 
+
+
+- Other invalid `edit` commands: eg. `edit -1 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 s/fishing`
+- Expected : Invalid message similar to previous invalid cases will be provided.
+
+#### Duplicate an expenditure
+1. Duplicating an expenditure from the list of inputs.
+- Prerequisite: There should be at least one expenditure in the list for `duplicate` to work. The list can be checked
+  using the `list` command
+
+
+- Test case : `duplicate 1`
+- Expected : The duplicate expenditure will be shown to the user, and will be added to the last index in the list.
+
+
+- Test case : `duplicate 1.2`
+- Expected : Invalid message will be shown, indicating that the index indicated is not in the correct number format.
+
+
+- Other invalid `duplicate` commands: eg. `duplicate`
+- Expected : Similar to previous, an invalid message with the error will be displayed for the user.
+
+#### Sorting the list
+- Prerequisite : A list with more than 2 expenditures are saved, which can be checked with the `list` command
+
+1. Sort amount in ascending order
+- Test case : `sort ascend`
+- Expected : The new list will be shown, where the items are sorted by ascending amount with the smallest 
+amount at index 1
+
+2. Sort amount in descending order
+- Test case : `sort descend`
+- Expected : In contrast to previous test case, item will be sorted in descending order with largest amount
+at index 1
+
+3. Sort amount from earliest date added
+- Test case : `sort earliest`
+- Expected : New list with the earliest date at index 1 
+
+4. Sort amount from latest date added
+- Test case : `sort latest`
+- Expected : In contrast to previous test case, new list with the latest date at index 1
+
+#### Set budget
+1. Setting a temporary budget that the user might be on
+- Test case : `set 1.0`
+- Expected : A message will indicate that a new budget has been set. 
+
+
+- Test case : `set -12.2`
+- Expected : A message stating that the budget set is of a negative value will be returned. Input budget will not
+be stored.
+
+
+- Other invalid `set` commands: eg. `set 3-3`
+- Expected : Similar to previous, an invalid message with the error will be displayed for the user.
+
+#### Check budget
+1. Checking the amount of spending and the intended budget.
+- Prerequisite :  A budget must be set prior to calling `check` and the budget set cannot be of value 0.
+
+
+- Test case : `check` where budget is more than total expenditures in list.
+- Expected : The amount of money away from the set budget will be displayed with other information such as 
+the total spending, budget and borrowed money.
+
+
+- Test case : `check` where budget is less than total expenditures in list.
+- Expected : Similar to previous test case, amount of money exceeded by and other information will be 
+displayed in the message.
+
+#### Find keyword
+1. Finding keywords under the descriptions column in their list of expenditures
+
+- Test case : `find bus`
+- Prerequisite : There are existing expenditures with the description : `bus`
+- Expected : List of items corresponding to the keyword will be displayed. 
+
+
+- Test case : `find taxi`
+- Prerequisite : There are no existing expenditures with the description : `taxi`
+- Expected : Message showing that no matching records are found in the list.
+
+2. View specific date expenditures under the date column
+
+- Test case : `viewdate 2023-02-20`
+- Prerequisite : There are current expenditures dated 20 Feb 2023.
+- Expected : List of all expenditures with the corresponding date value, as well as the total amount spent
+on that specific date
+
+
+- Test case : `viewdate 2023-02-20`
+- Prerequisite : There are no current expenditures dated 20 Feb 2023.
+- Expected : Similar to previous, but there will not be any items shown in the list. The total amount will
+be shown as 0.
+
+
+- Test case : `viewdate 12 Jan 2021`
+- Expected : Invalid message will be shown with the respective error message, in this case being a 
+date time error.
+
+- Other invalid `viewdate` commands: eg. `viewdate`
+- Expected : Similar to previous, an invalid message with the error will be displayed for the user.
+
+3. View specific type of expenditure under the expenditure column
+
+- Test case : `viewtype transport`
+- Prerequisite : There are current expenditures with the `transport` type.
+- Expected : List of all expenditures under transport expenditure, as well as the total amount spent
+  for that type of expenditure
+
+
+- Test case : `viewtype transport`
+- Prerequisite : There are no current expenditures with the `transport` type.
+- Expected : Similar to previous, but there will not be any items shown in the list. The total amount will
+  be shown as 0.
+
+
+- Test case : `viewtype swimming`
+- Expected : Invalid message will be shown with the respective error message, in this case an
+invalid expenditure.
