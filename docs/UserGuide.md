@@ -136,5 +136,6 @@ Thank you and see you next time
 * Add exercise `/add <EXERCISE_NAME> /weight <WEIGHT_USED> /rps <REPS_PER_SET>`
 * End current Workout `/end`
 * Display workout list `/list`
+* Display specific workout list `/view <DD/MM/YY>`
 * Delete a workout `/delete <DD/MM/YY>`
 * Exit app `/exit`
