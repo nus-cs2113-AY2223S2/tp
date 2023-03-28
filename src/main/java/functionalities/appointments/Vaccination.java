@@ -37,7 +37,7 @@ public class Vaccination extends Appointment {
 
     @Override
     public String retrieveStorageInfo() {
-        return uid + " | " + vaccine + " | " + date + " | " + time + " | " + animal.getAnimalName() + " | " + animal.getAnimalType()
-                + " | " + owner.getName() + " | " + owner.getContactNumber();
+        return uid + " | " + vaccine + " | " + date + " | " + time + " | " + animal.getAnimalName() + " | " +
+                animal.getAnimalType() + " | " + owner.getName() + " | " + owner.getContactNumber();
     }
 }

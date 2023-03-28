@@ -88,7 +88,8 @@ public class SniffTasks {
                 uid = Uid.uidGenerator("C");
             }
             UIDS.add(uid);
-            Appointment newAppointment = new Surgery(uid, animal, owner, priority, startDate, startTime, endDate, endTime);
+            Appointment newAppointment = new Surgery(uid, animal, owner, priority, startDate, startTime, endDate,
+                    endTime);
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;

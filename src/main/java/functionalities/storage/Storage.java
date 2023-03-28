@@ -30,7 +30,9 @@ public class Storage {
             File fileName = new File(absolutePath);
             if (fileName.createNewFile()) {
                 Ui.printFileCreated(true);
-            } else extractData(fileName);
+            } else {
+                extractData(fileName);
+            }
         } catch (IOException e) {
             Ui.printFileCreated(false);
         } catch (IndexOutOfBoundsException e) {
