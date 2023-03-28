@@ -19,6 +19,21 @@ public class SniffTasks {
 
     private static int appointmentCount = 0;
 
+    public static void setAppointmentCount(int count) {
+        appointmentCount = count;
+    }
+
+    public static void addAppointmentUID(String UID) {
+        UIDS.add(UID);
+    }
+
+    public static void addAppointment(Appointment appointment) {
+        APPOINTMENTS.add(appointment);
+    }
+
+    public static int getAppointmentCount() {
+        return appointmentCount;
+    }
     public void addConsultation(Animal animal, Owner owner,
                                 LocalDate date, LocalTime time) throws SniffException {
         try {
