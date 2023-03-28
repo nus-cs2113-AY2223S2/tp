@@ -109,12 +109,6 @@ Expected outcome:
 ```
 Company has been successfully confirmed/uncomfirmed!
 
-1
-Company name: APPLE
-Company contact number: 89934125
-Company contact email: STEVENJOBS@APPLE.COM.SG
-Company industry: TECHNOLOGY
-[Confirmed]
 ```
 
 ### `unconfirm` - Marks a specific company's attendance as unconfirmed
@@ -128,12 +122,6 @@ Expected outcome:
 ```
 Company has been successfully confirmed/uncomfirmed!
 
-1
-Company name: APPLE
-Company contact number: 89934125
-Company contact email: STEVENJOBS@APPLE.COM.SG
-Company industry: TECHNOLOGY
-[Unconfirmed]
 ```
 ### `list unconfirmed` - Shows all stored companies marked with unconfirmed attendance
 Shows all the unconfirmed companies that are stored in the company list.
