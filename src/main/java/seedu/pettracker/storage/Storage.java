@@ -1,6 +1,5 @@
 package seedu.pettracker.storage;
 
-
 import seedu.pettracker.data.Pet;
 import seedu.pettracker.data.PetList;
 import seedu.pettracker.data.Task;
@@ -156,5 +155,4 @@ public class Storage {
         String weight = words[3];
         return weight;
     }
-
 }
