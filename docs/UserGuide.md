@@ -71,7 +71,8 @@ To add an ingredient of a certain quantity to Meal Companion's storage, use the 
 The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command. 
 For example, `add ground chicken /qty 300`.
 
-![add.png](images/add.png)
+![add.png](images/add.png)  
+<sub>Fig 3: Sample of Add Ingredients command with user input highlighted</sub>
 
 ### Remove Ingredients
 To remove an ingredient of a certain quantity from Meal Companion's storage, use the command `remove <ingredient> /qty <quantity>`. The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command.
