@@ -31,8 +31,8 @@ public class DeckKeywordParser extends KeywordParser{
         Options options = new Options();
         options.addRequiredOption("d", "deck", true, "deck name");
         // extra stuff down here
-        options.addOption("c", "card", true, "card name");
-        options.addOption("t", "tag", true, "tag name");
+        options.addOption("c", "card", true, "card name (optional)");
+        options.addOption("t", "tag", true, "tag name (optional)");
 
         return options;
     }
@@ -45,8 +45,8 @@ public class DeckKeywordParser extends KeywordParser{
     }
     private static Options buildListOptions() {
         Options options = new Options();
-        options.addOption("c", "cards", true, "deck name");
-        options.addOption("t", "tags", true, "deck name");
+        options.addOption("c", "cards", true, "deck name to list cards from (optional)");
+        options.addOption("t", "tags", true, "deck name to list tags from (optional)");
         return options;
     }
     @Override

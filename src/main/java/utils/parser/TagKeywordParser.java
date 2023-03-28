@@ -53,7 +53,7 @@ public class TagKeywordParser extends KeywordParser {
 
     private static Options buildListOptions() {
         Options options = new Options();
-        options.addOption("t", "tag", true, "tag name");
+        options.addOption("t", "tag", true, "tag name (optional)");
 
         return options;
     }
