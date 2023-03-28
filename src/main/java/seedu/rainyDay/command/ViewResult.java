@@ -23,7 +23,8 @@ public class ViewResult {
             "|Index |Description                                  |Amount        |Category             |Date      |\n";
     private static final String TABLE_BORDER = "" +
             "+------+---------------------------------------------+--------------+---------------------+----------+\n";
-
+    private static final String TABLE_OUTSIDE_BORDER = "" +
+            "+====================================================================================================+\n";
     private static final Logger logger = Logger.getLogger(ViewResult.class.getName());
 
     /**
@@ -109,14 +110,31 @@ public class ViewResult {
      */
     private static String formatSummary(double inflow, double outflow, LocalDate startDate, boolean isSorted) {
         assert (inflow != 0 || outflow != 0);
-        LocalDate endDate = LocalDate.now();
-        String timespanInformation= "|Viewing all entries from " + startDate + "till today!";
-        String inflowInformation = String.format("|Total Inflow: $%.2f", inflow);
-        String outflowInformation = String.format("|Total Outflow: $%.2f", outflow);
+        String timespanInfo = "|Viewing all entries from " + startDate + " till today";
+        if(isSorted) {
+            timespanInfo += " in sorted order";
+        }
+        String inflowInfo = String.format("|Total Inflow: $%.2f", inflow);
+        String outflowInfo = String.format("|Total Outflow: $%.2f", outflow);
+        String remainingValueInfo = String.format("|Remaining value: $%.2f", (inflow - outflow));
+        timespanInfo = padSummaryLines(timespanInfo);
+        inflowInfo = padSummaryLines(inflowInfo);
+        outflowInfo = padSummaryLines(outflowInfo);
+        remainingValueInfo = padSummaryLines(remainingValueInfo);
 
-        String remainingValueInformation = String.format("|Remaining value: $%.2f\n", (inflow - outflow));
-        return String.join(System.lineSeparator(), inflowInformation, outflowInformation,
-                remainingValueInformation);
+        return String.format("%s%s%s%s", timespanInfo, inflowInfo, outflowInfo, remainingValueInfo);
+    }
+
+    /**
+     * Helper function used to pad lines in the summary such that the information fits in the table
+     * @param info The unformatted string
+     * @return A formatted string
+     */
+    private static String padSummaryLines(String info) {
+        info += "                                                                                                  ";
+        info = info.substring(0,101);
+        info += "|\n";
+        return info;
     }
 
     /**
@@ -155,7 +173,7 @@ public class ViewResult {
         double totalInflow = 0;
         double totalOutflow = 0;
 
-        System.out.print(TABLE_BORDER);
+        System.out.print(TABLE_OUTSIDE_BORDER);
         System.out.print(ACKNOWLEDGE_VIEW_COMMAND);
         System.out.print(TABLE_FORMAT);
         for (Integer index : validIndexes) {
@@ -172,6 +190,7 @@ public class ViewResult {
         }
         System.out.print(TABLE_BORDER);
         System.out.print(formatSummary(totalInflow, totalOutflow, startDate, isSorted));
+        System.out.print(TABLE_OUTSIDE_BORDER);
     }
 }
 
