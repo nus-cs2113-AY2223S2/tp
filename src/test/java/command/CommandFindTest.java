@@ -9,17 +9,17 @@ import java.io.PrintStream;
 
 
 import static common.MessageList.MESSAGE_DIVIDER;
-import static common.MessageList.MESSAGE_DIVIDER_CATEGORY;
+import static common.MessageList.MESSAGE_DIVIDER_FIND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CommandCategoryTest {
+public class CommandFindTest {
     public ExpenseList expenseList = new ExpenseList();
     public Parser parser = new Parser();
 
     public Currency currency = new Currency();
 
     @Test
-    public void categoryExpense_successful() {
+    public void findExpense_successful() {
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food"), currency).execute();
         new CommandAdd(expenseList.getExpenseList(),
@@ -35,19 +35,17 @@ public class CommandCategoryTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
-        String input = "food";
-        String expected = "Here are all your expense categories: \n"
-                + "eat food \n"
-                + "Totally there are 2 categories.\n"
-                + MESSAGE_DIVIDER_CATEGORY + "\n"
-                + "1.cat:food SGD2.50 date:02/02/2012\n"
-                + "2.cat:food USD2.50 date:02/02/2012\n"
-                + "3.cat:food USD2.50 date:02/02/2013\n"
+        String input = "fo";
+        String expected = MESSAGE_DIVIDER_FIND + "\n"
+                + "1.SGD2.50 cat:food date:02/02/2012\n"
+                + "2.USD2.50 cat:food date:02/02/2012\n"
+                + "3.USD2.50 cat:food date:02/02/2013\n"
                 + MESSAGE_DIVIDER + "\n";
 
-        new CommandCategory(expenseList.getExpenseList(), input).execute();
+        new CommandFind(expenseList.getExpenseList(), input).execute();
         String actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
         assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
+
 
         input = "fish";
         outContent = new ByteArrayOutputStream();

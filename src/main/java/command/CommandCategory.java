@@ -34,7 +34,7 @@ public class CommandCategory extends Command {
      * It will display all the categories within it.
      * It will also display all the expenses with the specified category.
      *
-     * @return printing the list of command
+     * @return printing the expenses with specified categories
      *
      */
     @Override

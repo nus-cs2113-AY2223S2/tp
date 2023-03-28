@@ -39,7 +39,8 @@ public class CommandList extends Command {
     /**
      * Execution of the list command
      *
-     * @return printing the list of command
+     * @return printing the list of expenses
+     * All the expenses are displayed in the order in which it was added
      *
      */
     @Override

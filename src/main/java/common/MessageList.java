@@ -8,6 +8,8 @@ public class MessageList {
 
     public static final String MESSAGE_DIVIDER_CATEGORY =
             "__________________________CATEGORY__________________________";
+    public static final String MESSAGE_DIVIDER_FIND =
+            "____________________________FIND____________________________";
     public static final int OFFSET = 1;
 
     public static final String SUCCESSFUL_DELETE = "The following expense is successfully deleted:";

@@ -6,6 +6,7 @@ import command.CommandList;
 import command.CommandTotal;
 import command.CommandSort;
 import command.CommandCategory;
+import command.CommandFind;
 import data.ExpenseList;
 import data.Currency;
 import parser.Parser;
@@ -68,6 +69,9 @@ public class Duke {
             case "category":
                 new CommandCategory(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
                 break;
+            case "find":
+                // Use the same parser function as category as it also need the input string from user
+                new CommandFind(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
             default:
                 System.out.println("Unknown command.");
                 break;
