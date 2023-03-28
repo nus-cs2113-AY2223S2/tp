@@ -17,7 +17,7 @@ public class Entry implements Serialisable {
     private Category category;
     private String description;
     private double amount;
-    private final String dateTime;
+    private final LocalDateTime dateTime;
 
     public Entry(String description, double amount, Category category) {
         assert amount >= 0 : "Entry amount must be non-negative!";
@@ -26,8 +26,7 @@ public class Entry implements Serialisable {
         this.description = description;
         this.amount = amount;
         this.category = category;
-        LocalDateTime dateTime = LocalDateTime.now();
-        this.dateTime = dateTime.format(DateTimeFormatter.ofPattern("d MMM uuuu, HH:mm:ss"));
+        this.dateTime = LocalDateTime.now();
     }
 
     /**
@@ -63,8 +62,12 @@ public class Entry implements Serialisable {
         return category;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public String getDateTimeString() {
+        return dateTime.format(DateTimeFormatter.ofPattern("d MMM uuuu, HH:mm"));
+    }
+
+    public LocalDateTime getDateTime() {
+        return this.dateTime;
     }
 
     public String getCategoryString() {
