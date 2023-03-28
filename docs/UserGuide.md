@@ -118,7 +118,9 @@ This segment will go into detail about the recipe features that Meal Companion c
 
 ### All Recipes
 To display all stored recipes including default recipes, you may use the command `recipe all` to list them.
-![recipeall.png](images/recipeall.png)
+
+![recipeall1.png](images/recipeall1.png)  
+<sub>Fig 8: Sample of Recipe All command with user input highlighted</sub>
 
 ### Recipe Details
 To go into details about a certain recipe, use the command `recipe <index_number>`, using the `<index_number>` from the generated list. 
