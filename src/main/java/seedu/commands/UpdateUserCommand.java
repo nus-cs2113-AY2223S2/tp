@@ -28,6 +28,7 @@ public class UpdateUserCommand extends Command {
             System.out.println("3. Update Height");
             System.out.println("4. Update Age");
             System.out.println("5. Update Gender");
+            System.out.println("6. Exit");
             System.out.println();
 
             choice = ui.readInt();
@@ -59,6 +60,8 @@ public class UpdateUserCommand extends Command {
                 user.setCaloricLimit(
                     User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
                 );
+                break;
+            case 6:
                 break;
             default:
                 System.out.println("Invalid Choice!");
