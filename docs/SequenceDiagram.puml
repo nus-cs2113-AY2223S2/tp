@@ -1,0 +1,40 @@
+
+@startuml
+title MagusStock Class
+
+actor User
+participant MagusStock
+participant Ui
+participant SessionManager
+participant Inventory
+participant ParserHandler
+User -> MagusStock: run()
+activate MagusStock
+MagusStock -> Ui: greetUser()
+activate Ui
+Ui --> MagusStock:
+deactivate Ui
+MagusStock -> SessionManager: getSession()
+activate SessionManager
+SessionManager --> MagusStock:
+deactivate SessionManager
+MagusStock -> SessionManager: getSessionAlerts()
+activate SessionManager
+SessionManager --> MagusStock:
+deactivate SessionManager
+MagusStock -> Inventory: setAlertList()
+activate Inventory
+Inventory --> MagusStock:
+deactivate Inventory
+MagusStock -> ParserHandler: <<create>>
+activate ParserHandler
+ParserHandler --> MagusStock:
+deactivate ParserHandler
+MagusStock -> MagusStock: run()
+MagusStock -> ParserHandler: run()
+activate ParserHandler
+ParserHandler --> MagusStock:
+deactivate ParserHandler
+
+
+@enduml
