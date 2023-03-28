@@ -45,31 +45,54 @@ Format: `help`
 
 #### Add a meeting to the meeting list:
 
-Successfully adds meeting only if the name is unique, otherwise it informs the user to key in a unique meeting name
-
 Format: `add_meeting n/<name> t/<time>`
 
 Example: 
 ```
 add_meeting n/meeting with boss t/Sunday, 3PM
 ```
-
+Outcome:
+```
+Got it! You have successfully added a meeting:
+meeting with boss at Sunday, 3PM
+```
 #### View meetings:
 
 View the meeting list.
 
 Format: `view_meetings`
 
+Outcome:
+```
+Meeting list:
+meeting with boss at: Sunday, 3PM
+```
+#### Find a meeting:
+Will return all the meetings if the name of the meeting contains the keyword.
+
+Format: `find_meeting <keyword>`
+
+Example:
+```
+find_meeting meeting with boss
+```
+Outcome:
+```
+Here's the matching meeting list:
+meeting with boss
+```
 #### Delete a meeting:
 
-Format: `delete_meeting n/<meeting>`
+Format: `delete_meeting <index_number>`
 
-Example: 
+Example:
 ```
-delete_meeting n/meeting with boss
+delete_meeting 1
 ```
-
-
+Outcome:
+```
+Meeting meeting with boss deleted!
+```
 ### Deadlines
 
 #### Add a deadline to the deadline list:
