@@ -57,7 +57,7 @@ Click on `mealcompanion.jar` to automatically download the file. Place the file 
 This section will focus on some of the key features of Meal Companion and explain their usage.
 
 ## Ingredients
-Meal Companion will assist you in tracking the items in your refridgerator, and is capable of adding new ingredients, removing used ingredients, as well as listing the available ingredients in your refridgerator. This guide will detail these features below.
+Meal Companion will assist you in tracking the items in your refrigerator, and is capable of adding new ingredients, removing used ingredients, as well as listing the available ingredients in your refrigerator. This guide will detail these features below.
 
 ### Add Ingredients
 To add an ingredient of a certain quantity to Meal Companion's storage, use the command `add <ingredient> /qty <quantity>`.
