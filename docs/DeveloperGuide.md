@@ -472,9 +472,21 @@ Step 2. Override the `execute()` method: The `execute()` method is overridden to
 functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
-Step 3. Iterate through the list of tasks: The `execute()` method will iterate through `TaskList` and call
-`printList()` method in the Ui class that takes in the list of tasks, `TaskList` that the user has updated,
-as a parameter. During the iteration, the `printList()` method will check the `taskStatus` of each task and calculate
+Step 3. Iterate through the list of tasks and perform sorting: The `execute()` method will iterate through `TaskList` 
+and first calls the
+`sortTaskByDay()` method in the TaskList class that takes in the list of tasks, `TaskList` that the user has updated 
+as a parameter. During the iteration, this method will first sort the task in the list by type with the method 
+`clusterByType()`, then by date with `deterministicSortForDeadline()` method for deadline type tasks sublist or 
+`deterministicSortForEvent()` for event type tasks sublist. The `clusterByType()` and deterministic sort 
+methods belong to the TaskList class. The `clusterByType()` method takes in the list of tasks, `TaskList` that the
+user has updated, as a parameter and returns a list of tasks sorted by type. The `deterministicSortForDeadline()` takes
+in two LocalDateTime objects which correspond to the dates of two deadlines being compared, whereas 
+the `deterministicSortForEvent()`takes in four LocalDateTime objects which correspond to the start and end dates of two 
+events being compared.
+
+Step 4. Iterate through the list of sorted tasks and print it:The `execute()` method then calls the `printList()` method 
+in the Ui class that takes in the list of tasks,`TaskList` that the user has updated, as a parameter. 
+During the iteration, the `printList()` method will check the `taskStatus` of each task and calculate
 the total number of unmarked tasks. If the list is empty, a message is printed to the user indicating that there are 
 no tasks in the list.
 
