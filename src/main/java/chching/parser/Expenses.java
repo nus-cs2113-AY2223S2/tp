@@ -55,7 +55,7 @@ public class Expenses {
             String indexString = argumentsByField.get("in");
             index = Integer.parseInt(indexString);
         } catch (Exception e) {
-            throw new ChChingException("Missing/invalid index");
+            throw new ChChingException("Missing/Invalid index");
         }
         return index;
     }

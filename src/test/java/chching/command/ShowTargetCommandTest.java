@@ -35,7 +35,7 @@ public class ShowTargetCommandTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private String convertedCurrencies;
-    private String EXPECTED_STRING;
+    private String expectedString;
 
     @BeforeEach
     void setUp() {
@@ -50,7 +50,7 @@ public class ShowTargetCommandTest {
         System.setOut(new PrintStream(outputStreamCaptor));
         selector.setCurrency("HKD");
         convertedCurrencies = converter.printConverter(350, selector);
-        EXPECTED_STRING = "Current target: " + 350.0 + " SGD" + convertedCurrencies;
+        expectedString = "Current target: " + 350.0 + " SGD" + convertedCurrencies;
     }
 
 
@@ -62,7 +62,7 @@ public class ShowTargetCommandTest {
         try {
             Command command = new ShowTargetCommand();
             command.execute(defaultIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
-            assertEquals(EXPECTED_STRING, outputStreamCaptor.toString().trim());
+            assertEquals(expectedString, outputStreamCaptor.toString().trim());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
