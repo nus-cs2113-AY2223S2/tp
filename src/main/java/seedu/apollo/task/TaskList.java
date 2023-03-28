@@ -63,6 +63,10 @@ public class TaskList extends ArrayList<Task> {
      */
     private int deterministicSortForEvent(LocalDateTime startDay1, LocalDateTime endDay1, LocalDateTime startDay2,
                                           LocalDateTime endDay2) {
+        assert startDay1 != null : "Start day of first event should not be null";
+        assert endDay1 != null : "End day of first event should not be null";
+        assert startDay2 != null : "Start day of second event should not be null";
+        assert endDay2 != null : "End day of second event should not be null";
         //both events have same start time
         if (startDay1.equals(startDay2)) {
             //if event2 ends first
@@ -89,6 +93,7 @@ public class TaskList extends ArrayList<Task> {
      * @param allTasks The TaskList containing different task types to be sorted.
      */
     public void sortTaskByDay(TaskList allTasks) {
+        assert allTasks != null : "TaskList should not be null";
         allTasks.clusterByType();
         //do nothing for todo type tasks
         for (int i = 0; i < allTasks.size(); i++) {
@@ -132,6 +137,8 @@ public class TaskList extends ArrayList<Task> {
      * @return The order of the deadlines.
      */
     private int deterministicSortForDeadline(LocalDateTime deadline1, LocalDateTime deadline2) {
+        assert deadline1 != null : "Deadline should not be null";
+        assert deadline2 != null : "Deadline should not be null";
         if (deadline1.isAfter(deadline2)) {
             return 1;
         } else if (deadline1.isBefore(deadline2)) {
