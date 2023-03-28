@@ -437,6 +437,18 @@ public class Ui {
         borderLine();
     }
 
+    static void deleteClassMessage() {
+        borderLine();
+        System.out.println("\t Class has been deleted successfully.");
+        borderLine();
+    }
+
+    static void unsuccessfulDeleteClassMessage() {
+        borderLine();
+        System.out.println("\t Unsuccessful. No class has been deleted.");
+        borderLine();
+    }
+
     static void refreshedMessage() {
         borderLine();
         System.out.println("\t Your task list and class schedule have been refreshed!");

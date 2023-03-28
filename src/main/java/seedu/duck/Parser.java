@@ -104,6 +104,7 @@ public class Parser {
                     // Find tasks that contain a keyword
                     tasks.clear();
                     Task.clearCount();
+                    classes.clear();
                     Ui.borderLine();
                     System.out.println("\t Got it, all tasks have been cleared.");
                     Ui.borderLine();
