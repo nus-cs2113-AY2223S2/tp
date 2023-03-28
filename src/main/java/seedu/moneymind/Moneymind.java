@@ -32,7 +32,11 @@ public class Moneymind {
             storage.load();
             CategoryList.categories = storage.getSavedCategories();
             CategoryCommand.categoryMap = storage.getSavedCategoryHashMap();
-            // System.out.println(Reminder.checkCategoryReminder(CategoryList.categories));
+        } catch (Exception e) {
+            ui.error(e);
+        }
+        try {
+            System.out.println(Reminder.checkCategoryReminder(CategoryList.categories));
         } catch (Exception e) {
             ui.error(e);
         }
