@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class TestUi {
+public class TestUiManager {
     private static final String OPEN_BRACE = "[";
     private static final String CLOSE_BRACE = "]";
     //@@author L-K-Chng
@@ -22,8 +22,8 @@ public class TestUi {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        Ui ui = new Ui();
-        ui.splitLine();
+        UiManager uiManager = new UiManager();
+        uiManager.splitLine();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -45,8 +45,8 @@ public class TestUi {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        Ui ui = new Ui();
-        ui.printFilters();
+        UiManager uiManager = new UiManager();
+        uiManager.printFilters();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -88,8 +88,8 @@ public class TestUi {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        Ui ui = new Ui();
-        ui.unknownCommand();
+        UiManager uiManager = new UiManager();
+        uiManager.unknownCommand();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -111,8 +111,8 @@ public class TestUi {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        Ui ui = new Ui();
-        ui.printHelp();
+        UiManager uiManager = new UiManager();
+        uiManager.printHelp();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -166,8 +166,8 @@ public class TestUi {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        Ui ui = new Ui();
-        ui.greetUser();
+        UiManager uiManager = new UiManager();
+        uiManager.greetUser();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -202,8 +202,8 @@ public class TestUi {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        Ui ui = new Ui();
-        ui.byeUser();
+        UiManager uiManager = new UiManager();
+        uiManager.byeUser();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -243,8 +243,8 @@ public class TestUi {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        Ui ui = new Ui();
-        ui.printPlannerHelp();
+        UiManager uiManager = new UiManager();
+        uiManager.printPlannerHelp();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -302,8 +302,8 @@ public class TestUi {
             userExerciseDataMap.put(exerciseName, 1);
         }
 
-        Ui ui = new Ui();
-        ui.printUserExerciseHistory(userExerciseDataMap);
+        UiManager uiManager = new UiManager();
+        uiManager.printUserExerciseHistory(userExerciseDataMap);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -329,8 +329,8 @@ public class TestUi {
         System.setOut(new PrintStream(actualOutput));
 
         UserPlan planner = new UserPlan();
-        Ui ui = new Ui();
-        ui.showPlan(planner);
+        UiManager uiManager = new UiManager();
+        uiManager.showPlan(planner);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -405,8 +405,8 @@ public class TestUi {
         ArrayList<ExerciseData> exercises = new ArrayList<>();
         exercises.add(exerciseData);
 
-        Ui ui = new Ui();
-        ui.printExerciseFromList(exercises);
+        UiManager uiManager = new UiManager();
+        uiManager.printExerciseFromList(exercises);
 
         if (os.contains("Windows")) {
             expectedOutput = "Exercise ID: 0. \r\n" +

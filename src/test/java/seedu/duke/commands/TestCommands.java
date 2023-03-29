@@ -5,7 +5,7 @@ import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.logic.commands.GenerateFilterCommand;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.userdata.userplan.UserPlan;
-import seedu.duke.ui.Ui;
+import seedu.duke.ui.UiManager;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -38,16 +38,16 @@ public class TestCommands {
     @Test
     public void testExecuteFilterCommand () {
         String[] invalidCommands = {"An", "invalid", "command", "3"};
-        Ui ui = new Ui();
+        UiManager uiManager = new UiManager();
         GenerateExercise generateExercise = new GenerateExercise();
         assertThrows(DukeError.class, () -> {
             GenerateFilterCommand generateFilterCommand = new GenerateFilterCommand(invalidCommands);
-            generateFilterCommand.executeCommand(ui, generateExercise);
+            generateFilterCommand.executeCommand(uiManager, generateExercise);
         });
         String[] validCommands = {"easy", "upper", "3"};
         assertDoesNotThrow(() -> {
             GenerateFilterCommand generateFilterCommand = new GenerateFilterCommand(validCommands);
-            generateFilterCommand.executeCommand(ui, generateExercise);
+            generateFilterCommand.executeCommand(uiManager, generateExercise);
         });
     }
 

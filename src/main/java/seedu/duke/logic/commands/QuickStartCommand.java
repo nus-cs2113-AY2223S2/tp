@@ -2,14 +2,14 @@ package seedu.duke.logic.commands;
 
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
-import seedu.duke.ui.Ui;
+import seedu.duke.ui.UiManager;
 import seedu.duke.data.userdata.userplan.UserPlan;
 
 import java.util.ArrayList;
 
 //@author Khulon
 public class QuickStartCommand extends Command {
-    public QuickStartCommand (String[] userCommands, Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
+    public QuickStartCommand (String[] userCommands, UiManager uiManager, GenerateExercise exerciseGenerator) throws DukeError {
         if (userCommands.length != 3) {
             System.out.println("invalid quick start command");
             return;
@@ -31,12 +31,12 @@ public class QuickStartCommand extends Command {
         generateExerciseCommand[generateExerciseCommand.length - 1] = userCommands[2];
 
         Command command = new GenerateFilterCommand(generateExerciseCommand);
-        command.executeCommand(ui, exerciseGenerator);
+        command.executeCommand(uiManager, exerciseGenerator);
 
     }
 
     @Override
-    public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
+    public void executeCommand (UiManager uiManager, GenerateExercise exerciseGenerator) throws DukeError {
 
     }
 

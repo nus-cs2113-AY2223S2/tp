@@ -4,7 +4,7 @@ import seedu.duke.commons.exceptions.DukeError;
 
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.ui.ErrorMessages;
-import seedu.duke.ui.Ui;
+import seedu.duke.ui.UiManager;
 import seedu.duke.data.userdata.UserCareerData;
 import java.util.Scanner;
 
@@ -50,14 +50,14 @@ public class ExerciseSessionCommandHandler implements CommandList {
      * exercise
      *
      * @param userCommands This refers to the commands given by the user
-     * @param ui This allows us to output messages
+     * @param uiManager This allows us to output messages
      * @param userCareerData This keeps track and allows logging of all user
      *     data
      * @param exerciseStateHandler This allows us to know whether an exercise is
      *     ongoing or not
      */
 
-    public void handleExerciseSessionUserCommands (String[] userCommands, Ui ui,
+    public void handleExerciseSessionUserCommands (String[] userCommands, UiManager uiManager,
                                                    UserCareerData userCareerData,
                                                    ExerciseStateHandler exerciseStateHandler) {
         //additional error check for whether there's additional description behind single
@@ -73,9 +73,9 @@ public class ExerciseSessionCommandHandler implements CommandList {
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_GENERATE_COMMAND.toString());
             case HELP_COMMAND:
                 if (additionalDescription.length() != 0) {
-                    ui.unknownCommand();
+                    uiManager.unknownCommand();
                 } else {
-                    ui.printExerciseSessionHelp();
+                    uiManager.printExerciseSessionHelp();
                 }
                 break;
             case FILTERS_COMMAND:
@@ -83,11 +83,11 @@ public class ExerciseSessionCommandHandler implements CommandList {
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_HELP_COMMAND.toString());
             case EXIT_COMMAND:
                 if (additionalDescription.length() != 0) {
-                    ui.unknownCommand();
+                    uiManager.unknownCommand();
                 } else {
                     boolean exit = confirmExitDuringWorkout();
                     if (exit) {
-                        ui.byeUser();
+                        uiManager.byeUser();
                         System.exit(0);
                     } else {
                         System.out.println("You got this! Finish your exercise session!");
@@ -98,21 +98,21 @@ public class ExerciseSessionCommandHandler implements CommandList {
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_START_COMMAND.toString());
             case CURRENT_COMMAND:
                 if (additionalDescription.length() != 0) {
-                    ui.unknownCommand();
+                    uiManager.unknownCommand();
                 } else {
                     exerciseStateHandler.printCurrentWorkout();
                 }
                 break;
             case FINISH_COMMAND:
                 if (additionalDescription.length() != 0) {
-                    ui.unknownCommand();
+                    uiManager.unknownCommand();
                 } else {
                     exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData);
                 }
                 break;
             case CANCEL_COMMAND:
                 if (additionalDescription.length() != 0) {
-                    ui.unknownCommand();
+                    uiManager.unknownCommand();
                 } else {
                     exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData);
                 }
@@ -122,7 +122,7 @@ public class ExerciseSessionCommandHandler implements CommandList {
             case EXERCISE_DATA_COMMAND:
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_DATA_COMMAND.toString());
             default:
-                ui.unknownCommand();
+                uiManager.unknownCommand();
                 break;
             }
         } catch (DukeError e) {

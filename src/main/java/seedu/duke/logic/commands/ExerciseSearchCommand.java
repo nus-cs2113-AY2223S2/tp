@@ -4,7 +4,7 @@ import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.ui.ErrorMessages;
-import seedu.duke.ui.Ui;
+import seedu.duke.ui.UiManager;
 
 import java.util.ArrayList;
 
@@ -37,10 +37,10 @@ public class ExerciseSearchCommand extends Command {
      * Filters the whole list of available exercises based off the
      * input from the user.
      *
-     * @param ui Prints out the respective exercises for a given keyword
+     * @param uiManager Prints out the respective exercises for a given keyword
      * @param exerciseGenerator Generates Exercise List with the relevant keyword
      */
-    public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) {
+    public void executeCommand (UiManager uiManager, GenerateExercise exerciseGenerator) {
         ArrayList<ExerciseData> exercisesList = new GenerateExercise().generateSetAll();
         assert exercisesList != null : "exercisesList should not be null.";
         int index = 1;
