@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 //@@ Author Richardtok
 public class WorkoutViewTest {
     @Test
-    public void ViewFUnctionTest (){
+    public void viewFunctionTest (){
 
         WorkoutList workoutList = new WorkoutList();
         Calendar calendar0 = Calendar.getInstance();
