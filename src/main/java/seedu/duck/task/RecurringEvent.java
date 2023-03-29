@@ -10,6 +10,10 @@ public class RecurringEvent extends Event {
         this.day = day;
     }
 
+    public DayOfWeek getDay() {
+        return this.day;
+    }
+
     @Override
     public String toSaveString() {
         return getDoneConditionString() + " " + getDescription() + " /from " + getStart() + " /to " + getEnd() +
@@ -18,7 +22,7 @@ public class RecurringEvent extends Event {
 
     @Override
     public String toString() {
-        return "\t [E]" + "[" + getStatusIcon() + "] " + getDescription() + " (from: " + super.start
-                + " to: " + super.end + ")" + " (every " + day + ") (" + getPriority() + ")";
+        return "\t [E]" + "[" + getStatusIcon() + "] " + getDescription() + " (from: " + super.getStart()
+                + " to: " + super.getEnd() + ")" + " (every " + day + ") (" + getPriority() + ")";
     }
 }

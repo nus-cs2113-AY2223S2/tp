@@ -1,8 +1,8 @@
 package seedu.duck.task;
 
 public class Event extends Task {
-    protected String start; // Start date/time
-    protected String end;   // End date/time
+    private String start; // Start date/time
+    private String end;   // End date/time
 
     public Event(String description, String start, String end) {
         super(description);
