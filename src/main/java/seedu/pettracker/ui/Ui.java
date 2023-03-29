@@ -118,6 +118,13 @@ public class Ui {
     }
 
     /**
+     * Message that prints before listing a schedule.
+     */
+    public void scheduleCommandMessage() {
+        System.out.println("Here is your schedule: ");
+    }
+
+    /**
      * Message that prints when a task is marked as done.
      */
     public void markTaskCommandMessage() {

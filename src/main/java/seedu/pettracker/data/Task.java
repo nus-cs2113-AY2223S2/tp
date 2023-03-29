@@ -7,11 +7,6 @@ public class Task {
     protected boolean isDone;
     protected LocalDate deadline;
 
-    public Task(String description) {
-        this.description = description;
-        this.isDone = false;
-    }
-
     public Task(String description, LocalDate deadline) {
         this.description = description;
         this.isDone = false;
@@ -21,7 +16,6 @@ public class Task {
     public String getStatusIcon() {
         return '[' + (isDone ? "X" : " ") + ']';
     }
-
 
     public String saveFormat() {
         String toSave = "0";

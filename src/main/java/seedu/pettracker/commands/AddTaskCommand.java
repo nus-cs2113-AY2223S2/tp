@@ -18,7 +18,7 @@ public class AddTaskCommand extends Command {
                 this.todoDescription = args[0];
                 this.deadline = LocalDate.parse(args[1]);
             } catch (Exception e) {
-                this.todoDescription = commandArgs;
+                this.todoDescription = args[0];
                 this.deadline = null;
             }
         } else {
@@ -51,7 +51,8 @@ public class AddTaskCommand extends Command {
      */
     @Override
     public String[] parseArgs(String commandArgs) {
-        return new String[0];
+        return commandArgs.split("\\at");
+
     }
 
     /**

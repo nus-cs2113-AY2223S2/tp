@@ -4,17 +4,32 @@ import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
 
+import java.time.LocalDate;
+
+
 public class EditTaskCommand extends Command {
 
     protected int taskNumber;
     protected String newDescription;
+    protected LocalDate deadline;
 
 
     public EditTaskCommand(String commandArgs) {
         super();
-        assert parseArgs(commandArgs).length > 0 : "no arguments";
-        this.taskNumber = Integer.parseInt(parseArgs(commandArgs)[0]);
-        this.newDescription = parseArgs(commandArgs)[1];
+        String[] parsed = parseArgs(commandArgs);
+        assert parsed.length > 0 : "no arguments";
+        this.taskNumber = Integer.parseInt(parsed[0]);
+        this.newDescription = parsed[1];
+        if(parsed.length > 2) {
+            try {
+                this.deadline = LocalDate.parse(parsed[2]);
+            } catch (Exception e) {
+                this.deadline = null;
+            }
+        }
+        else {
+            this.deadline = null;
+        }
     }
 
     // TODO: Implement this method
@@ -26,7 +41,7 @@ public class EditTaskCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) {
-        TaskList.editTask(taskNumber, newDescription);
+        TaskList.editTask(taskNumber, newDescription, deadline);
         TaskList.saveTasksToStorage(storage, ui);
         ui.editTaskCommandMessage(taskNumber, newDescription);
     }
@@ -39,7 +54,14 @@ public class EditTaskCommand extends Command {
      */
     @Override
     public String[] parseArgs(String commandArgs) {
-        return commandArgs.split(" ", 2);
+        String[] split = commandArgs.split(" ", 2);
+        String[] timeSplit = split[1].split("/by");
+        if (timeSplit.length > 1) {
+            return new String[] {split[0], timeSplit[0], timeSplit[1]};
+        } else {
+            return new String[] {split[0], split[1]};
+        }
+
     }
 
     /**

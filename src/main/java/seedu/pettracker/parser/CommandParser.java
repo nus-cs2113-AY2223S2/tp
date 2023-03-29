@@ -15,6 +15,7 @@ import seedu.pettracker.commands.RemovePetCommand;
 import seedu.pettracker.commands.RemoveStatCommand;
 import seedu.pettracker.commands.RemoveTaskCommand;
 import seedu.pettracker.commands.UnMarkTaskCommand;
+import seedu.pettracker.commands.ScheduleCommand;
 //import seedu.pettracker.exceptions.UnknownKeywordException;
 
 import java.util.logging.Logger;
@@ -35,6 +36,7 @@ public class CommandParser {
     final String KEYWORD_LIST_TASKS = "list-tasks";
     final String KEYWORD_MARK_TASK = "mark-task";
     final String KEYWORD_UNMARK_TASK = "unmark-task";
+    final String KEYWORD_SCHEDULE_TASKS = "schedule";
 
     public CommandParser() {
     }
@@ -149,6 +151,13 @@ public class CommandParser {
                 return new UnMarkTaskCommand(parseArgs(commandString));
             } catch (ArrayIndexOutOfBoundsException e) {
                 logger.log(Level.INFO,"bounds error");
+                break;
+            }
+        case KEYWORD_SCHEDULE_TASKS: 
+            try {
+                return new ScheduleCommand();
+            } catch (ArrayIndexOutOfBoundsException e) {
+                logger.log(Level.INFO, "bounds error");
                 break;
             }
         default:
