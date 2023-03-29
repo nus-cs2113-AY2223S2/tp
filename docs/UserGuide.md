@@ -302,11 +302,11 @@ Sample output:
 ### Alert for an item: `alert`
 Add alerts that will display when the quantity of an item falls below a set minimum or exceeds a maximum level.
 
-Format:
-`alert add upc/{upc} min/{quantity} ` to set an alert when quantity falls below a minimum
-`alert add upc/{upc} max/{quantity}` to set an alert when quantity exceeds a maximum
-`alert remove upc/{upc} level/min` to remove an alert for the minimum quantity of an item
-`alert remove upc/{upc} level/max` to remove an alert for the maximum quantity of an item
+Format:  
+`alert add upc/{upc} min/{quantity} ` to set an alert when quantity falls below a minimum  
+`alert add upc/{upc} max/{quantity}` to set an alert when quantity exceeds a maximum  
+`alert remove upc/{upc} level/min` to remove an alert for the minimum quantity of an item  
+`alert remove upc/{upc} level/max` to remove an alert for the maximum quantity of an item  
 
 Examples of usage:  
 `alert add upc/1234 min/55`  
@@ -320,7 +320,7 @@ ____________________________________________________________
 ```
 
 Examples of usage:
-`alert remove upc/1234 level/min`
+`alert remove upc/1234 level/min`  
 `alert remove upc/1234 level/max`
 
 
