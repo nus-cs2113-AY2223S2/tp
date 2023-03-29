@@ -280,6 +280,46 @@ public class TestUi {
     }
 
     //@@author L-K-Chng
+
+    /**
+     * Checks if the ui.printExerciseSessionHelp() method prints the correct output.
+     */
+    @Test
+    void testPrintExerciseSessionHelp() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printExerciseSessionHelp();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "These are some commands available: \r\n" +
+                    "[current]\r\n" +
+                    "\tShows you the list of exercises that you have in your current workout session.\r\n" +
+                    "[finish]\r\n" +
+                    "\tComplete your current workout session!\r\n" +
+                    "[cancel]\r\n" +
+                    "\tTerminate your current workout session.\r\n" +
+                    "[exit]\r\n" +
+                    "\tTerminate FitnessDuke program.\r\n";
+        } else {
+            expectedOutput = "These are some commands available: \n" +
+                    "[current]\n" +
+                    "\tShows you the list of exercises that you have in your current workout session.\n" +
+                    "[finish]\n" +
+                    "\tComplete your current workout session!\n" +
+                    "[cancel]\n" +
+                    "\tTerminate your current workout session.\n" +
+                    "[exit]\n" +
+                    "\tTerminate FitnessDuke program.\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    //@@author L-K-Chng
     /**
      * Checks if printUserExerciseHistory() method prints the correct output.
      */
