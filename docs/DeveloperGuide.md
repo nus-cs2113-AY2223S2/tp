@@ -51,13 +51,13 @@ coupling in the program as the `AddCommand` will not have access to the inner st
 #### Alternative implementation
 
 - Alternative 1: Have the add command function directly in `FlashcardList`
-  - Pros: Easy to implement
-  - Cons: Will require another function in another program to differentiate it from other
-    commands
+    - Pros: Easy to implement
+    - Cons: Will require another function in another program to differentiate it from other
+      commands
 - Alternative 2: Have the constructor of `Flashcard` include adding the card to list of flashcards
-  - Pros: Simplifies code
-  - Cons: Will cause trouble when temporary flashcard (that need not be stored) are
-    created
+    - Pros: Simplifies code
+    - Cons: Will cause trouble when temporary flashcard (that need not be stored) are
+      created
 
 ### Delete Flashcard Feature
 
@@ -98,9 +98,9 @@ makes the deletion process simple even if the user does not remember the index o
 #### Alternative implementation
 
 - Alternative 1: Delete flashcard by index from the start
-  - Pros: Easy to implement and simplifies code
-  - Cons: Cumbersome to delete if user forgets the flashcard's index and has to search
-    through the whole list of flashcards.
+    - Pros: Easy to implement and simplifies code
+    - Cons: Cumbersome to delete if user forgets the flashcard's index and has to search
+      through the whole list of flashcards.
 
 ### Update Flashcard Feature
 
@@ -140,20 +140,22 @@ update flashcard feature alone as most of the methods and attributes are within 
 
 - Alternative 1: Instead of creating a new arrayList `matchingFlashcards` that store flashcards containing the
   `query` and then printing the list of flashcards, directly print the flashcards when there is a match with the query`
-  - Pros: Easier to implement
-  - Cons: Harder to track the total number of flashcards that has `query` and will need to have another way to track
-    the index of the matching flashcards. it will also be more confusing as the index of the user input is not
-    aligned with the index of the arrayList that contains all the flashcards
+    - Pros: Easier to implement
+    - Cons: Harder to track the total number of flashcards that has `query` and will need to have another way to track
+      the index of the matching flashcards. it will also be more confusing as the index of the user input is not
+      aligned with the index of the arrayList that contains all the flashcards
 
 ### Parser
 
 #### Current implementation
 
-The parser mostly relies on the `ParsedInput` class, which can parse any user provided string input in the format of Windows command prompt commands (`command body /opt-key opt-value`).
+The parser mostly relies on the `ParsedInput` class, which can parse any user provided string input in the format of
+Windows command prompt commands (`command body /opt-key opt-value`).
 
 ##### `ParsedInput`
 
-Initiated with a string `input`, it splits the input to sections that are of use. From there it splits each section further to a "title" (denoted with `=` below) and a "body" (denoted with `-` below) part.
+Initiated with a string `input`, it splits the input to sections that are of use. From there it splits each section
+further to a "title" (denoted with `=` below) and a "body" (denoted with `-` below) part.
 
 ```
 command blah blah /opt1 hello /opt2 world blah bleh
@@ -161,25 +163,32 @@ command blah blah /opt1 hello /opt2 world blah bleh
 |=====| |-------|  |==| |---|  |==| |-------------|
 ```
 
-Then these small subparts are grouped together to a format where the command part of the command, the body part and the options can be retrieved programmatically.
+Then these small subparts are grouped together to a format where the command part of the command, the body part and the
+options can be retrieved programmatically.
 
-The command and body can be read with `getCommand()` and `getBody()` respectively. `getCommand()` is guaranteed to be non-null.
+The command and body can be read with `getCommand()` and `getBody()` respectively. `getCommand()` is guaranteed to be
+non-null.
 
-The options can be read with `getOptionByName(optionKeyName)`. The reason we don't have specific `getDate` or `getQuestion` command is because we don't know what the user will input and what options we will require for each command. So depending on the command, we retrieve the option accordingly with e.g.
+The options can be read with `getOptionByName(optionKeyName)`. The reason we don't have specific `getDate`
+or `getQuestion` command is because we don't know what the user will input and what options we will require for each
+command. So depending on the command, we retrieve the option accordingly with e.g.
 
 ```java
 "command blah blah /opt1 hello /opt2 world blah bleh"
-getOptionByName("opt2") // -> "world blah bleh"
-getOptionByName("opt3") // -> null
+        getOptionByName("opt2") // -> "world blah bleh"
+        getOptionByName("opt3") // -> null
 ```
 
 ##### `Parser`
 
-This is now just a matter of wrapping `ParsedInput` with suitable error handling and logic such that each command will be used to initiated a corresponding command class (e.g. `AddCommand`), while errors are handled gracefully.
+This is now just a matter of wrapping `ParsedInput` with suitable error handling and logic such that each command will
+be used to initiated a corresponding command class (e.g. `AddCommand`), while errors are handled gracefully.
 
 #### Reason for current implementation
 
-We need an intuitive, safe and declarative way to parse the user input. Alternative implementations that can only parse specific commands with specific options are more imperative, less readable, less maintainable and overall just a pain to handle. That's why the two classes are here.
+We need an intuitive, safe and declarative way to parse the user input. Alternative implementations that can only parse
+specific commands with specific options are more imperative, less readable, less maintainable and overall just a pain to
+handle. That's why the two classes are here.
 
 #### Alternative implementation
 
@@ -214,7 +223,7 @@ will be called to review the card.
 First, the `Ui` will display the question of the current card by calling the `getQuestion()` method of
 class `Flashcard`, and ask user if user is ready to view the answer. After user enters any keyboard input, the answer of
 the current card will be shown by calling the `getAnswer()` method of class `Flashcard`, and `Ui` will ask the user if
-he/she has got the card correct. If the user inputs "y"  or "yes", then the current `Flashcard` is considered to be
+he/she has got the card correct. If the user inputs "y", then the current `Flashcard` is considered to be
 cleared and `updateDueDateAfterCorrectAnswer()` of `Flashcard` will be called to update its `dueDate`. Then Clanki will
 let user review the next `Flashcard`. If the user inputs "n", then the card is considered to be not cleared
 and `updateDueDateAfterIncorrectAnswer()` will be called to update its `dueDate`. Then Clanki will let user review the
@@ -226,7 +235,7 @@ the reviewing task will be displayed.
 At this point, the reviewing process is completed and the program is ready to take another command.
 
 The following sequence diagram show how the review operation work:
-![ReviewFlashcard-0.png](umlDiagrams%2FReviewFlashcard-0.png)
+![ReviewFlashcard-0.png](umlDiagrams%2FReviewFlashcard-1.png)
 
 #### Reason for current implementation
 
@@ -261,7 +270,7 @@ coupling in the program as the `ReviewCommand` will not have access to the inner
 ## User Stories
 
 | Version | As a ... | I want to ...             | So that I can ...                                           |
-| ------- | -------- | ------------------------- | ----------------------------------------------------------- |
+|---------|----------|---------------------------|-------------------------------------------------------------|
 | v1.0    | new user | see usage instructions    | refer to them when I forget how to use the application      |
 | v2.0    | user     | find a to-do item by name | locate a to-do without having to go through the entire list |
 
