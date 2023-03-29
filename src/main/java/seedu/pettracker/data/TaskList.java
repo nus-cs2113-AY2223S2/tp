@@ -22,35 +22,18 @@ public class TaskList {
      *
      * @param todoDescription Description of task to be added
      */
-    public static void addTask(String todoDescription) {
-        Task newTask = new Task(todoDescription);
+
+    public static void addTask(String todoDescription, LocalDate time) {
+        Task newTask = new Task(todoDescription, time);
         logger.log(Level.INFO, "New task added: " + todoDescription);
         taskList.add(newTask);
         numberOfTasks += 1;
     }
-    
-    public static void addTask(String todoDescription, String time) {
-        Task newTask = new Task(todoDescription, time);
-        logger.log(Level.INFO, "New task added: " + todoDescription + " with time: " + time);
-        taskList.add(newTask);
-        numberOfTasks += 1;
-    }
 
-<<<<<<< HEAD
-    public static void editTask(int taskNumber, String newDescription, String newTime) {
-=======
-    public static void addTask(String todoDescription, LocalDate deadline) {
-        Task newTask = new Task(todoDescription, deadline);
-        logger.log(Level.INFO, "New task added with deadline: " + todoDescription);
-        taskList.add(newTask);
-        numberOfTasks += 1;
-    }
-
-    public static void editTask(int taskNumber, String newDescription) {
->>>>>>> 843cf9ef0cd85a75d055b94a47381e0ea991e2b5
+    public static void editTask(int taskNumber, String newDescription, LocalDate newTime) {
         Task task = taskList.get(taskNumber - 1);
         task.description = newDescription;
-        task.time = newTime;
+        task.deadline = newTime;
     }
 
     /**
@@ -69,7 +52,8 @@ public class TaskList {
      */
     public static void listTasks() {
         for (int i = 0; i < numberOfTasks; i++) {
-            System.out.println((i + 1) + ". " + taskList.get(i).getStatusIcon() + " " + taskList.get(i).description);
+            System.out.print((i + 1) + ". " + taskList.get(i).getStatusIcon() + " " + taskList.get(i).description);
+
             if (taskList.get(i).deadline != null) {
                 System.out.println(" (Deadline: " + taskList.get(i).deadline + ")");
             }
@@ -80,19 +64,18 @@ public class TaskList {
      * Marks a task as done or not done
      *
      * @param taskNumber Number of task to be marked as done
-     * @param isDone Boolean value to mark task as done or not done
+     * @param isDone     Boolean value to mark task as done or not done
      */
     public static void markTask(int taskNumber, boolean isDone) {
         taskList.get(taskNumber - 1).isDone = isDone;
         logger.log(Level.INFO, "Task marked as " + isDone + " : " + taskNumber);
     }
 
-    public static void saveTasksToStorage(Storage storage, Ui ui){
-        storage.saveTasks(taskList,ui);
+    public static void saveTasksToStorage(Storage storage, Ui ui) {
+        storage.saveTasks(taskList, ui);
     }
 
     public static int getNumberOfTasks() {
         return numberOfTasks;
     }
-
 }
