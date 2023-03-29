@@ -1,8 +1,8 @@
-# GitHub User Guide for MathHelp ➕➖✖️➗
+# GitHub User Guide for BadMaths ➕➖✖️➗
 
 ## Introduction 🧮
 
-Hello! Welcome to MathHelp! MathHelp is a quick lookup tool for 
+Hello! Welcome to BadMaths! BadMaths is a quick lookup tool for 
 trigonometry graphs and basic matrix operations that aims to help students save
 time when performing Mathematical Operations. 
 
