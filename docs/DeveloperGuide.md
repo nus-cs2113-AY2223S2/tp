@@ -10,10 +10,17 @@
     - [Commands](#commands)
       - [Add Command](#add-command)
       - [Delete Command](#delete-command)
-      - [Edit Command](#edit-command)
-        - [Implementation](#implementation)
-        - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
-        - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
+    - [Edit Command](#edit-command)
+      - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
+      - [Implementation](#implementation)
+      - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
+    - [View Command](#view-command)
+      - [Class diagram of view command](#class-diagram-of-view-command)
+      - [Implementation](#implementation-1)
+    - [Help Command](#help-command)
+      - [Implementation](#implementation-2)
+    - [Exit/Bye Command](#exitbye-command)
+      - [Implementation](#implementation-3)
   - [Backend](#backend)
     - [Storage](#storage)
     - [API](#api)
@@ -55,7 +62,29 @@
 
 ## Architecture
 ![PocketPal Architecture](./static/PocketPalArchitecture.png)
-![Backend Overview](./static/backend/BackendOverviewClassDiagram.png)
+
+The diagram above illustrates the high-level overview of `PocketPal`.
+
+__Main Components of PocketPal__
+- The entry point to our application is `pocketpal.PocketPal`, which creates the `Frontnend` and `Backend` instances at launch.
+- `PocketPal` also sets up logging for the application, which outputs the logs to `logs/logging.txt`.
+
+__Frontend__
+`Frontend` is made up of the following components
+- `UI`: Handles display of user interface
+- `Parser`: Converts text entered by users into `Command` if valid
+- `Command`: Contains the instructions to be executed as input by the user
+
+__Backend__
+`Backend` is made up of the following components
+- `Endpoint`: The parent component used by various endpoints (`EntryEndpoint` and `EntriesEndpoint`), where the frontend can send a `Request` 
+- `EntryLog`: The main data structure used for temporarily storing multiple `Entry` objects
+- `Storage`: Reads data from, and writes data to the disk, which can be found at `data/storage.txt`
+
+__Communication between `Frontend` and `Backend`__
+- PocketPal uses the `Gson` library to serialise and deserialise objects where applicable, such as `Entry` and `EntryLog`.
+- This allows us to standardise the communication framework between `Frontend` and `Backend`, by using a simplified HTTP model.
+- Each endpoint takes in a `Request`, and returns a `Response` based on the requested data.
 
 ## Frontend
 
@@ -258,6 +287,7 @@ View Command object.
 
 The backend uses a simplified RESTful API approach. This allows us to decouple code using the proven industry practices.
 
+![Backend Overview](./static/backend/BackendOverviewClassDiagram.png)
 ![Backend](./static/backend/BackendClassDiagram.png)
 
 To find out more, visit the following sections:
