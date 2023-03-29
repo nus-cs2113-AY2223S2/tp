@@ -14,10 +14,31 @@ import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
+
 /**
  * Deals with interactions with the user
  */
 public class Ui {
+    static void printDuck(){
+        System.out.println("           ,-.\n"+
+                "       ,--' ~.).\n"+
+                "     ,'         `.\n"+
+                "    ; (((__   __)))\n"+
+                "    ;  ( (#) ( (#)\n"+
+                "    |   \\_/___\\_/\n"+
+                "   ,\"  ,-'    `__\".\n"+
+                "  (   ( ._   ____`.)--._        _\n"+
+                "   `._ `-.`-' \\(`-'  _  `-. _,-' `-/`.\n"+
+                "    ,')   `.`._))  ,' `.   `.  ,','  ;\n"+
+                "  .'  .     `--'  /     ).   `.      ;\n"+
+                " ;     `-        /     '  )         ;\n"+
+                " \\                       ')       ,'\n"+
+                "  \\                     ,'       ;\n"+
+                "   \\               `~~~'       ,'\n"+
+                "    `.                      _,'\n"+
+                "      `-._________,--'");
+    }
+
     /**
      * Prints out all currently stored tasks in the list
      *
@@ -536,6 +557,7 @@ public class Ui {
      * Prints the startup message, includes instructions on available commands
      */
     static void greetingMessage() {
+        printDuck();
         borderLine();
         borderLine();
         System.out.println("\t （`･v･´ ）: Quack. Nice to meet you human. As you can see,  I'm a Duck.");
@@ -567,6 +589,7 @@ public class Ui {
      * Prints the exiting message when closing the program
      */
     static void exitMessage() {
+        printDuck();
         borderLine();
         System.out.println("\t Bye. Hope to see you again soon!");
         borderLine();
