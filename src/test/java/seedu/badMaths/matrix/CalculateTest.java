@@ -1,8 +1,6 @@
 package seedu.badMaths.matrix;
 
 import org.junit.jupiter.api.Test;
-import seedu.badMaths.matrix.Calculate;
-import seedu.badMaths.matrix.Tensor2D;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
