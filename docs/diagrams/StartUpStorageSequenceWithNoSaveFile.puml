@@ -26,8 +26,12 @@ activate ToDoListManager
 ToDoListManager -> Storage: isNewSave()
 activate Storage
 Storage --> ToDoListManager: false
+deactivate Storage
+
 ToDoListManager -> Storage: loadData()
+activate Storage
 Storage --> ToDoListManager: taskList
+deactivate Storage
 ToDoListManager -> TaskList: size()
 activate TaskList
 TaskList --> ToDoListManager: x
