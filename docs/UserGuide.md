@@ -11,11 +11,11 @@
     - [Adding an expense: `/add` {#add}](#adding-an-expense-add-add)
     - [Deleting an expense: `/delete` {#delete}](#deleting-an-expense-delete-delete)
     - [Edit an expense: `/edit` {#edit}](#edit-an-expense-edit-edit)
-    - [View an expense: `/view`](#view-an-expense-view)
-    - [Show help menu: `/help`](#show-help-menu-help)
-    - [Exit Program: `/bye`](#exit-program-bye)
+    - [View an expense: `/view` {#view}](#view-an-expense-view)
+    - [Show help menu: `/help` {#help}](#show-help-menu-help)
+    - [Exit Program: `/bye` {#bye}](#exit-program-bye)
     - [Supported Categories {#categories}](#supported-categories-categories)
-- [Command Summary](#command-summary)
+- [Command Summary {#summary}](#command-summary)
 
 ## Getting Started
 
@@ -119,7 +119,7 @@ Example of usage:
 
 `/edit 5 -description Grab to school -c Transportation`
 
-### View an expense: `/view`
+### View an expense: `/view` {#view}
 
 Displays a list of your current expenditure.
 
@@ -144,13 +144,13 @@ Example of usage:
 
 `/view -c food -p 2 -sd 12/03/23 -ed 11/04/23`
 
-### Show help menu: `/help`
+### Show help menu: `/help` {#help}
 
 Displays the help menu.
 
 Format: `/help`
 
-### Exit Program: `/bye`
+### Exit Program: `/bye` {#summary}
 
 Terminates PocketPal.
 
@@ -162,7 +162,7 @@ These are the categories currently supported by PocketPal:
 
 `Clothing, Entertainment, Food, Medical, Personal, Transportation, Utilities, Income, Others`
 
-## Command Summary
+## Command Summary {#summary}
 
 | Command | Format                                                                                                                                                                     |
 |--------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

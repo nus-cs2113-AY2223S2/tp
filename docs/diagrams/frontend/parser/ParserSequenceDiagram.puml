@@ -8,7 +8,7 @@ participant "command:AddCommand" as AddCommand
 Parser -> Parser ++: parseAddCommand("McDonalds -c Food -p 10.50")
 Parser -> Parser ++: parseAddArguments("McDonalds -c Food -p 10.50")
 return arguments[]
-Parser -> AddCommand ** : create new AddCommand
+Parser -> AddCommand ** :
 AddCommand --> Parser : command
 return command
 return command
