@@ -10,17 +10,17 @@
     - [Commands](#commands)
       - [Add Command](#add-command)
       - [Delete Command](#delete-command)
-    - [Edit Command](#edit-command)
-      - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
-      - [Implementation](#implementation)
-      - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
-    - [View Command](#view-command)
-      - [Class diagram of view command](#class-diagram-of-view-command)
-      - [Implementation](#implementation-1)
-    - [Help Command](#help-command)
-      - [Implementation](#implementation-2)
-    - [Exit/Bye Command](#exitbye-command)
-      - [Implementation](#implementation-3)
+      - [Edit Command](#edit-command)
+        - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
+        - [Implementation](#implementation)
+        - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
+      - [View Command](#view-command)
+        - [Class diagram of view command](#class-diagram-of-view-command)
+        - [Implementation](#implementation-1)
+      - [Help Command](#help-command)
+        - [Implementation](#implementation-2)
+      - [Exit/Bye Command](#exitbye-command)
+        - [Implementation](#implementation-3)
   - [Backend](#backend)
     - [Storage](#storage)
     - [API](#api)
@@ -193,11 +193,11 @@ The following activity diagram summarizes what happens when a user executes a de
 ![DeleteCommandActivityDiagram](./static/DeleteCommandActivityDiagram.png)
 
 <!-- @@author leonghuenweng -->
-### Edit Command
-#### Overall class diagram for editing an Entry
+#### Edit Command
+##### Overall class diagram for editing an Entry
 ![EditCommandClassDiagram](./static/EditCommandClassDiagram.png)
 
-#### Implementation
+##### Implementation
 
 **Step 1.** User runs Edit command, specifying the ID of the entry to edit, as well as the new attributes of the respective
 fields.
@@ -221,17 +221,17 @@ the Response object to the execute function in the EditCommand object.
 **Step 8.** The printExpenditureEdited method under the UI class is then called in the execute function and an
 acknowledgement message is printed to the user.
 
-#### Overall sequence diagram for editing an Entry
+##### Overall sequence diagram for editing an Entry
 
 ![img_1.png](static/EditCommandSequenceDiagram.png)
 
-### View Command
-#### Class diagram of view command 
+#### View Command
+##### Class diagram of view command 
 ![ViewCommandClassDiagram.png](./static/viewCommandClassDiagram.png)
 Class diagram above shows the methods called in the execute method of the 
 View Command object.
 
-#### Implementation
+##### Implementation
 ![ViewCommandSequenceDiagram.png](./static/ViewCommandOverallSequenceDiagram.png)
 
 **Step 1.** String of user arguments is fed into the parseViewCommand method in Parser object.
@@ -250,9 +250,9 @@ View Command object.
 **Step 6.** The entries are then deserialised and fed into the ui printEntriesToBeViewed method, which prints the 
             details of each entry to the user.
 
-### Help Command
+#### Help Command
 
-#### Implementation
+##### Implementation
 
 **Step 1.** The Parser extracts the help command from the user input and calls the parseHelpCommand method.
 
@@ -262,9 +262,9 @@ View Command object.
             available commands is called.
 
 
-### Exit/Bye Command
+#### Exit/Bye Command
 
-#### Implementation
+##### Implementation
 
 **Step 1.** The Parser extracts the bye command from the user input and calls the parseHelpCommand method.
 
@@ -285,10 +285,10 @@ View Command object.
 <!-- @@author jinxuan-owyong -->
 ## Backend
 
-The backend uses a simplified RESTful API approach. This allows us to decouple code using the proven industry practices.
+The backend uses a simplified RESTful API approach. This allows us to decouple code using the proven industry practices. The following diagram illustrates the relationship between various classes involved in `Backend` as described in the [application architecture](#architecture)
 
-![Backend Overview](./static/backend/BackendOverviewClassDiagram.png)
 ![Backend](./static/backend/BackendClassDiagram.png)
+
 
 To find out more, visit the following sections:
 - [Storage](#storage)
