@@ -68,4 +68,7 @@ public class TaskList {
         storage.saveTasks(taskList,ui);
     }
 
+    public static int getNumberOfTasks() {
+        return numberOfTasks;
+    }
 }
