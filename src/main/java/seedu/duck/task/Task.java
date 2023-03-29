@@ -25,7 +25,8 @@ public class Task {
     }
 
     public static void clearCount() {
-        taskCount = 0;}
+        taskCount = 0;
+    }
 
     public void markAsDone() {
         this.isDone = true;

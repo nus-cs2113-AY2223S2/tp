@@ -13,7 +13,6 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -107,6 +106,8 @@ public class Storage {
         String startString = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
         String endString = line.substring(line.indexOf("/to") + 3).trim();
         SchoolClass currSchoolClass = new SchoolClass(className, description, day, startString, endString);
+
+        TaskList.checkClassOver(day, endString, currSchoolClass);
         classes.add(currSchoolClass);
     }
 
