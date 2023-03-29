@@ -137,9 +137,26 @@ Example of usage:
 
 `category clothes`
 
+### Generating a monthly overview: `overview`
+Generate a monthly overview consisting of total expenses of the month in SGD and a 
+breakdown of expenses based on category, from the most spent to the least.
+
+Format: `overview MONTH YEAR`
+- `MONTH` must be the standard English Month Name
+
+Example of usage:
+`overview June 2021`
+
+Expected output:
+```
+
+```
+
+
+
 
 ### Exiting the program: `exit`
-Exits the programn without saving expense list.
+Exits the program without saving expense list.
 
 Format: `exit`
 
