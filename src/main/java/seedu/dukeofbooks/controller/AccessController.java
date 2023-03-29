@@ -15,12 +15,13 @@ public class AccessController {
         return userRecords.createAccount(username, password, name, phone);
     }
 
-    public static User loginAccount(UserRecords userRecords, String username, String password) {
+    public static User loginAccount(UserRecords userRecords, String username, String password)
+            throws IllegalValueException {
         User toCheck = userRecords.getUser(username);
         if (toCheck == null) {
-            return null;
-        } else if (!toCheck.verifyPassword(password)){
-            return null;
+            throw new IllegalValueException("Cannot find username!");
+        } else if (!toCheck.verifyPassword(password)) {
+            throw new IllegalValueException("Username and password doesn't match!");
         } else {
             return userRecords.getUser(username);
         }

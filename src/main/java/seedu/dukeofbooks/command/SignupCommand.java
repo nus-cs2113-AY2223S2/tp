@@ -7,7 +7,7 @@ import seedu.dukeofbooks.data.user.UserRecords;
 
 public class SignupCommand extends AccessCommand {
     public static final String COMMAND_WORD = "signup";
-    public static final String USAGE = "signup -username [username] -password [password] -name [name]";
+    public static final String COMMAND_USAGE = "signup -username [username] -password [password] -name [name]";
 
     private final String username;
     private final String name;

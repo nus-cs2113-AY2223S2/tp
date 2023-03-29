@@ -1,8 +1,7 @@
 package seedu.dukeofbooks;
 
-import seedu.dukeofbooks.command.Command;
-import seedu.dukeofbooks.command.CommandResult;
-import seedu.dukeofbooks.command.ExitCommand;
+import seedu.dukeofbooks.command.*;
+import seedu.dukeofbooks.controller.AccessController;
 import seedu.dukeofbooks.controller.InventoryController;
 import seedu.dukeofbooks.controller.SearchController;
 import seedu.dukeofbooks.data.book.Book;
@@ -16,7 +15,10 @@ import seedu.dukeofbooks.data.loan.LoanRecords;
 import seedu.dukeofbooks.data.person.Person;
 import seedu.dukeofbooks.data.person.PersonName;
 import seedu.dukeofbooks.data.person.Phone;
-import seedu.dukeofbooks.parser.Parser;
+import seedu.dukeofbooks.data.user.User;
+import seedu.dukeofbooks.data.user.UserRecords;
+import seedu.dukeofbooks.parser.AccessCommandParser;
+import seedu.dukeofbooks.parser.UserCommandParser;
 import seedu.dukeofbooks.ui.TextUi;
 
 /**
@@ -26,9 +28,9 @@ public class DukeOfBooks {
 
     public static final String VERSION = "DukeOfBooks - Version 1.0";
     private LoanRecords allLoanRecords;
-    private InventoryController inventoryController = new InventoryController();
+    private UserRecords userRecords;
     private SearchController searchController = new SearchController();
-    private Person currentUser;
+    private User currentUser;
     private TextUi ui;
 
     public static void main(String[] args) {
@@ -39,14 +41,14 @@ public class DukeOfBooks {
 
     public void run() {
         start();
-        runCommandLoopUntilExitCommand();
+        runCommandLoopUntilSystemExit();
         exit();
     }
 
     private void start() {
         this.allLoanRecords = new LoanRecords();
+        this.userRecords = new UserRecords();
         try {
-            this.currentUser = new Person("a user");
             Isbn isbn = new Isbn("testIsbn");
             Title title = new Title("testTitle");
             Topic topic = new Topic("testTopic");
@@ -70,22 +72,48 @@ public class DukeOfBooks {
         System.exit(0);
     }
 
-    private void runCommandLoopUntilExitCommand() {
-        Command command;
-        do {
-            String userCommandText = ui.getUserCommand();
-            command = new Parser(currentUser, allLoanRecords, searchController).parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            ui.showResultToUser(result);
+    private void runCommandLoopUntilSystemExit() {
+        AccessCommand accessCommand;
+        do{
+            ui.showLoginMessage();
+            String commandText = ui.getUserCommand();
+            accessCommand = new AccessCommandParser(userRecords).parseCommand(commandText);
 
-        } while (!ExitCommand.isExit(command));
+            currentUser = login(accessCommand);
+            if (currentUser != null) {
+                ui.showGreetingMessage(currentUser.getName().toString());
+                runCommandLoopUntilUserLogout(currentUser);
+            }
+        } while (!ExitCommand.isExit(accessCommand));
     }
 
-    private CommandResult executeCommand(Command command) {
+    private void runCommandLoopUntilUserLogout(User user) {
+        UserCommand userCommand;
+        do {
+            String userCommandText = ui.getUserCommand();
+            userCommand = new UserCommandParser(currentUser, allLoanRecords, searchController)
+                    .parseCommand(userCommandText);
+            CommandResult result = executeUserCommand(userCommand);
+            ui.showResultToUser(result);
+        } while (!LogoutCommand.isLogout(userCommand));
+    }
+
+    private User login(AccessCommand accessCommand) {
+        try {
+            return accessCommand.execute();
+        } catch (IllegalValueException ive) {
+            ui.showToUser(ive.getMessage());
+            return null;
+        } catch (Exception e) {
+            ui.showToUser(e.getMessage());
+            throw new RuntimeException();
+        }
+    }
+
+    private CommandResult executeUserCommand(UserCommand command) {
         try {
             // command.setData(#placeholder);
-            CommandResult result = command.execute();
-            return result;
+            return command.execute();
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);

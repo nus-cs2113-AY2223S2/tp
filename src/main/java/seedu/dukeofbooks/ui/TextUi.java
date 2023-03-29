@@ -8,6 +8,8 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 import seedu.dukeofbooks.command.CommandResult;
+import seedu.dukeofbooks.command.LoginCommand;
+import seedu.dukeofbooks.command.SignupCommand;
 import seedu.dukeofbooks.data.book.BorrowableItem;
 
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ public class TextUi {
     private static final String LS = System.lineSeparator();
     private static final String DIVIDER = "===================================================";
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
+    private static final String LOGIN_PROMPT = "Welcome! Please login or signup.";
+    private static final String GREETINGS_FORMAT = "Welcome %s!";
 
     private final Scanner in;
     private final PrintStream out;
@@ -55,7 +59,15 @@ public class TextUi {
     }
 
     public void showWelcomeMessage(String version) {
-        showToUser(DIVIDER, WELCOME_STRING, version, DIVIDER);
+        showToUser(DIVIDER, WELCOME_STRING, version);
+    }
+
+    public void showLoginMessage() {
+        showToUser(LOGIN_PROMPT, LoginCommand.COMMAND_USAGE, SignupCommand.COMMAND_USAGE, DIVIDER);
+    }
+
+    public void showGreetingMessage(String name) {
+        showToUser(DIVIDER, String.format(GREETINGS_FORMAT, name), DIVIDER);
     }
 
     public void showExitMessage() {

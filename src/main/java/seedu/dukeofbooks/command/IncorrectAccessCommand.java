@@ -12,7 +12,7 @@ public class IncorrectAccessCommand extends AccessCommand {
     }
 
     @Override
-    User execute() throws IllegalValueException {
+    public User execute() throws IllegalValueException {
         throw new IllegalValueException(feedbackToUser);
     }
 
