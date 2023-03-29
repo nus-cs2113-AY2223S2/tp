@@ -478,6 +478,11 @@ public class Parser {
             throw new IllegalArgumentException("Please ensure the number of recipes and quantities match.");
         }
 
+        if (startIndices.size() == 0) {
+            throw new IllegalArgumentException(
+                    "Please ensure that the command is entered in the correct format.");
+        }
+
         // Building the recipe names
         for (int i = 0; i < startIndices.size(); i++) {
             int nameStartIndex = startIndices.get(i) + 1;
@@ -569,8 +574,8 @@ public class Parser {
                     ingredientCount = Integer.parseInt(command[++i]);
                     break;
                 default:
-                    throw new IllegalArgumentException("Missing required information. Please provide "
-                            + "ingredient name and count.");
+                    throw new IllegalArgumentException(
+                            "Missing required information. Please provide " + "ingredient name and count.");
                 }
             }
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
