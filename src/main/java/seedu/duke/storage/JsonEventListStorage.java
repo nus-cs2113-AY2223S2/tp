@@ -15,6 +15,9 @@ import java.io.FileInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+/**
+ * A class to access EventList data stored as a json file on the physical drive.
+ */
 public class JsonEventListStorage implements EventListStorage{
 
     private static final String fileLocation = System.getProperty("user.dir") + "/save.json";
@@ -52,7 +55,7 @@ public class JsonEventListStorage implements EventListStorage{
      * @return ArrayList of Event class containing information of previous load state
      */
     @SuppressWarnings("unchecked")
-    //I revised the type here temporaliy to avoid failed building
+    //I revised the type here temporarily to avoid failed building
     public ArrayList<Schedule> loadEvents() {                     
         File saveFile = new File(fileLocation);
         ArrayList<Schedule> savedList = new ArrayList<>();

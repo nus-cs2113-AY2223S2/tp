@@ -7,11 +7,15 @@ import seedu.duke.Schedule;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Manages storage of EventList data and loading of NusMods data.
+ */
 public class StorageManager implements Storage{
     private EventListStorage eventListStorage;
     private NusModuleLoader nusModuleLoader;
     private boolean modulesLoaded = false;
     private HashMap<String, NusModule> nusMods;
+
     public StorageManager(EventListStorage eventListStorage, NusModuleLoader nusModuleLoader) {
         this.eventListStorage = eventListStorage;
         this.nusModuleLoader = nusModuleLoader;

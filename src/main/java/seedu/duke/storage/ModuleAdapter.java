@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * A deserializer to deserialize NusMods data from its Json format
+ */
 public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
 
     @Override

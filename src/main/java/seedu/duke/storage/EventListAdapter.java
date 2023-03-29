@@ -180,6 +180,19 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
                 isRecurring, timeInterval, location);
     }
 
+    /**
+     * Helper method to deserialize Json object into Event object
+     * @param description Description field of event
+     * @param startTime startTime field of event
+     * @param endTime endTime field of event
+     * @param hasStartTime Boolean - Must be true always
+     * @param hasEndTime Boolean - if there is endTime, this must be true
+     * @param hasLocation Boolean - if there is location, this must to true
+     * @param isRecurring Boolean - if object is recurring (ie has a non-null timeInterval field), this must be true
+     * @param timeInterval Time interval between each event.
+     * @param location Venue field of event
+     * @return
+     */
     private static Event createEvent(String description, LocalDateTime startTime, LocalDateTime endTime,
                                      boolean hasStartTime, boolean hasEndTime, boolean hasLocation, boolean isRecurring,
                                      String timeInterval, String location) {
@@ -210,6 +223,12 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
         }
     }
 
+    /**
+     * readDate is used to parse timeandflag objects in events
+     * @param reader JsonReader to be used
+     * @return String representing date
+     * @throws IOException
+     */
     private String readDate(JsonReader reader) throws IOException {
         int day = 1;
         int month = 1;
@@ -240,6 +259,12 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
 
     }
 
+    /**
+     * ReadTime is used to parse timeandflag objects
+     * @param reader JsonReader to be used
+     * @return String representing time
+     * @throws IOException
+     */
     private String readTime(JsonReader reader) throws IOException {
         int hour = 0;
         int minute = 0;
