@@ -27,6 +27,11 @@ brew tea
 list
 view 1
 no
+editstep 1
+1
+go to haidilao
+view 1
+no
 add n/IceLemonTea i/Lemon, Tea, Ice t/Western s/4
 brew tea
 add lemon
@@ -39,6 +44,9 @@ yes
 .
 .
 .
+editstep 7
+3
+stir drink
 clear
 list
 exit

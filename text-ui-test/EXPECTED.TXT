@@ -205,6 +205,34 @@ Type yes if so
 There are 1 steps in the list
 1. chop beef
 __________________________________________________________
+There are 1 steps in the list
+1. chop beef
+Which step do you want to edit?
+Type 'quit' to exit the edit view
+Enter the description of the step:
+Step has been edited:
+1. go to haidilao
+MaLaXiangGuo
+Spaghetti
+Carbonara
+Beijing Duck
+XiaoLongBao
+Guilinggao
+__________________________________________________________
+Here is the recipe you requested, which is a Chinese flavour:
+name: MaLaXiangGuo
+__________________________________________________________
+Here are 3 ingredients in the list:
+1. Beef
+2. Mutton
+3. Mushrooms
+__________________________________________________________
+There are 1 steps in the list
+Do you want to view step-by-step?
+Type yes if so
+There are 1 steps in the list
+1. go to haidilao
+__________________________________________________________
 
 Please enter the description of step 1:
 
@@ -255,6 +283,24 @@ Otherwise, enter any key to continue to the next step
 2. add lemon
 3. add ice
 4. drink
+__________________________________________________________
+There are 4 steps in the list
+1. brew tea
+2. add lemon
+3. add ice
+4. drink
+Which step do you want to edit?
+Type 'quit' to exit the edit view
+Enter the description of the step:
+Step has been edited:
+3. stir drink
+MaLaXiangGuo
+Spaghetti
+Carbonara
+Beijing Duck
+XiaoLongBao
+Guilinggao
+IceLemonTea
 __________________________________________________________
 
 All recipes have been cleared!
