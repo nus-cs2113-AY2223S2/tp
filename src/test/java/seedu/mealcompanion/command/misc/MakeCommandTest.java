@@ -17,7 +17,7 @@ public class MakeCommandTest {
         Ingredient ingredient = new Ingredient("water", 2000.0);
         mealCompanionSession.getIngredients().add(ingredient);
         assertEquals(2000, mealCompanionSession.getIngredients().get(0).getQuantity());
-        new MakeCommand("cup of water").execute(mealCompanionSession);
+        new MakeCommand("2").execute(mealCompanionSession);
         assertEquals(1700, mealCompanionSession.getIngredients().get(0).getQuantity());
     }
 
@@ -45,7 +45,7 @@ public class MakeCommandTest {
         assertEquals(2000, mealCompanionSession.getIngredients().get(4).getQuantity());
         assertEquals(20, mealCompanionSession.getIngredients().get(5).getQuantity());
 
-        new MakeCommand("beef burger").execute(mealCompanionSession);
+        new MakeCommand("1").execute(mealCompanionSession);
 
         assertEquals(50, mealCompanionSession.getIngredients().get(0).getQuantity());
         assertEquals(1998, mealCompanionSession.getIngredients().get(1).getQuantity());

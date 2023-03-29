@@ -7,31 +7,30 @@ import seedu.mealcompanion.recipe.Recipe;
 import seedu.mealcompanion.recipe.RecipeList;
 
 //@@author TJW0911
+
 /**
  * Represents the "make" command.
  */
 public class MakeCommand extends RecipeCommand {
 
-    String name;
+    String recipeNumber;
 
     public MakeCommand(String argument) {
-        this.name = argument;
+        this.recipeNumber = argument;
     }
-
-    //@@author TJW0911
 
     /**
      * Removes a specified quantity of an ingredient from the ingredient list
      *
      * @param mealCompanionSession the MealCompanionSession containing the list of ingredients
-     * @param quantity the quantity of ingredient to be removed
-     * @param name the name of the ingredient to be removed
+     * @param quantity             the quantity of ingredient to be removed
+     * @param name                 the name of the ingredient to be removed
      */
 
     private void removeIngredient(MealCompanionSession mealCompanionSession, Double quantity, String name) {
         int indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(name);
         double fridgeQuantity = mealCompanionSession.getIngredients().get(indexOfExistingIngredient).getQuantity();
-        assert fridgeQuantity >= quantity: "fridgeQuantity should be more than quantity to be removed";
+        assert fridgeQuantity >= quantity : "fridgeQuantity should be more than quantity to be removed";
         double newQuantity = fridgeQuantity - quantity;
         mealCompanionSession.getIngredients().get(indexOfExistingIngredient).setQuantity(newQuantity);
         if (newQuantity == 0) {
@@ -45,7 +44,7 @@ public class MakeCommand extends RecipeCommand {
      * Removes the ingredients needed to make the specified recipe from inventory
      *
      * @param mealCompanionSession the MealCompanionSession containing the list of ingredients
-     * @param recipe the recipe that is to be made
+     * @param recipe               the recipe that is to be made
      */
     private void makeRecipe(MealCompanionSession mealCompanionSession, Recipe recipe) {
         IngredientList recipeIngredients = recipe.getIngredients();
@@ -66,16 +65,19 @@ public class MakeCommand extends RecipeCommand {
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
             RecipeList recipes = mealCompanionSession.getRecipes();
-            if(name == null || name.trim().isEmpty()) {
-                throw new MealCompanionException("recipe name cannot be blank");
+            if (recipeNumber == null || recipeNumber.trim().isEmpty()) {
+                throw new MealCompanionException("OOPS, recipe number cannot be empty");
             }
-            Recipe recipe = recipes.getRecipe(name);
+            int recipeIndex = Integer.parseInt(recipeNumber) - 1;
+            Recipe recipe = recipes.getRecipe(recipeIndex);
             IngredientList fridgeIngredients = mealCompanionSession.getIngredients();
             if (canMakeRecipe(recipe, fridgeIngredients)) {
                 makeRecipe(mealCompanionSession, recipe);
             } else {
                 throw new MealCompanionException("Ingredients in inventory is insufficient");
             }
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            mealCompanionSession.getUi().printMessage("Oops, please input a valid recipe number!");
         } catch (Exception e) {
             mealCompanionSession.getUi().printMessage(String.valueOf(e));
         }
