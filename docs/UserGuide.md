@@ -122,7 +122,7 @@ Example of usage: `FindInfo. index`
 Find all notes stored in the list based on its respective priority rankings
 
 Format: `Rank. Priority`
-Example of usage: `Rank. Priority
+Example of usage: `Rank. Priority`
 
 ### 13) Display all notes of a certain priority type:
 Find all notes stored in the list based on priority that users are searching for
@@ -132,13 +132,13 @@ Example of usage: `FindPrior. <LOW>`
 Example of usage: `FindPrior. <MEDIUM>`
 Example of usage: `FindPrior. <HIGH>`
 
-### 13) Clear all notes stored in Notes List:
+### 14) Clear all notes stored in Notes List:
 Delete all notes stored in the list
 
 Format: `Clear.`
 Example of usage: `Clear.`
 
-### 14) Exit MathHelp:
+### 15) Exit MathHelp:
 Exit and leave MathHelp:
 
 Format: `Bye.`
