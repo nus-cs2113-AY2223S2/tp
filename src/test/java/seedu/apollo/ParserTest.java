@@ -11,6 +11,7 @@ import seedu.apollo.ui.Ui;
 
 import java.rmi.UnexpectedException;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -265,6 +266,14 @@ class ParserTest {
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertNull(newCommand);
+    }
+
+    @Test
+    void parseShowMod_emptyDescription_expectsNoException() {
+        String userCommand = "showmod";
+        Ui ui = new Ui();
+        int size = 0;
+        assertDoesNotThrow(() -> Parser.getCommand(userCommand, ui, size, null));
     }
 
 
