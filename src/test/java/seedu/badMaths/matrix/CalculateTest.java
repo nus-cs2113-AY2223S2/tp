@@ -1,4 +1,4 @@
-package seedu.badMaths;
+package seedu.badMaths.matrix;
 
 import org.junit.jupiter.api.Test;
 import seedu.badMaths.matrix.Calculate;
