@@ -102,6 +102,12 @@ class CommandParserTest {
     }
 
     @Test
+    void parseAddTaskWithDeadline () {
+        CommandParser cp = new CommandParser();
+        assertAll(() -> assertTrue(cp.newCommand("add-task test /by 2024-04-02") instanceof AddTaskCommand));
+    }
+
+    @Test
     void parseRemoveTask() {
         CommandParser cp = new CommandParser();
         assertAll(() -> assertTrue(cp.newCommand("remove-task 1") instanceof RemoveTaskCommand));
@@ -160,4 +166,5 @@ class CommandParserTest {
         CommandParser cp = new CommandParser();
         assertAll(() -> assertTrue(cp.newCommand("nonsense 1") instanceof InvalidCommand));
     }
+    
 }
