@@ -23,6 +23,7 @@ public class Information {
     private static final Logger logger = Logger.getLogger(Information.class.getName());
 
     public static void storePatientInfo(int hash, Patient patient) {
+        logger.setLevel(Level.SEVERE);
         logger.log(Level.INFO, "Storing patient information");
         patientsList.put(hash, patient);
     }

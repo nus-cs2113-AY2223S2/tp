@@ -58,7 +58,7 @@ public class StorageTest {
     }
 
     @Test
-    public void endOfFile() {
+    public void emptyField() {
         String data = "";
         Assertions.assertTrue(data.matches("^ *$"));
     }
