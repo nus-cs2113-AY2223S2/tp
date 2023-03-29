@@ -25,10 +25,16 @@ public class ShortcutDeleteCommand extends Command {
 
     @Override
     public CommandResult execute() {
+        setupLogger();
+        logger.log(Level.INFO, "starting ShortcutDeleteCommand.execute()");
         if (shortcutCommands.containsKey(keyToDelete)) {
             shortcutCommands.remove(keyToDelete);
+            logger.log(Level.INFO, "Successful ShortcutDeleteCommand.execute()");
             return new CommandResult(SHORTCUT_SUCCESSFULLY_DELETED);
         }
+        logger.log(Level.INFO, "ShortcutDeleteCommand.execute() did not delete any shortcuts as given shortcut " +
+                "does not exist");
+
         return new CommandResult(SHORTCUT_DOES_NOT_EXIST);
     }
 
@@ -40,10 +46,10 @@ public class ShortcutDeleteCommand extends Command {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("DeleteShortcutCommand.log", true);
+            FileHandler fileHandler = new FileHandler("ShortcutDeleteCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
-            System.out.println("unable to log DeleteShortcutCommand class");
+            System.out.println("unable to log ShortcutDeleteCommand class");
             logger.log(Level.SEVERE, "File logger not working.", e);
         }
     }

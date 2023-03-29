@@ -66,13 +66,14 @@ illustrate a 'delete' command, e.g. `delete 1`.
 
 #### Design considerations
 
-- To prevent slow processing of the program when there are many entries, a Hash Table is used.
-- An additional storage was specifically created as we believe that the Set Budget feature will be commonly
-  used as it is 1 of the key aspects a Financial Tracker. Hence, it would be more feasible to implement indexing such
-  that
-  add operations and retrieval of information to be done in Amortised O(1).
-- The Key used is the number of months from the Year 0000, or more precisely calculated by (Year * 12 + Month). This is
-  to allow fast processing and collision-free information collection.
+- To prevent slow processing of the program when there are many entries, a Hash Table is used to keep track of the
+  expenditures for the month.
+  - We believe that the "Set Budget" feature will be commonly used as it is 1 of the key aspects of a Financial Tracker. 
+    Hence, it would be feasible to implement an additional storage 
+    such that common addition operations and retrieval of information can be done in Amortised O(1).
+  - The Key used is the number of months from the Year 0000, or more precisely calculated by (Year * 12 + Month). 
+    This is to allow for fast processing and collision-free information collection.
+
 
 ### Command component
 
@@ -224,16 +225,35 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 ### Viewing your data `view`
 
 - The command `view` is used to view all statements, and a ViewCommand object will be created.
-    - Any other characters after `view` are automatically ignored
-- RainyDay will then call Command.execute(), where every entry in the financial report will be printed.
-- Information will be presented in a table format to help improve clarity for users.
+    - The format for the command is `view TIMESPAN -sort`
+    - Any other characters after any valid view command are automatically ignored
+- Information is presented in a table format to help improve clarity for users.
+    - The table includes information in the summary such as whether it is sorted and the amount of history shown. 
+    - This was deliberate as presenting this information at the bottom makes it easier for users to spot, 
+      as placing them at the top may cause users to miss it if they have a large table
+
+![ViewCommandSequenceDiagram.png](images\DeveloperGuide\ViewCommandSequenceDiagram.png)
+
+### Design considerations
+- The limit for the timespans are deliberately set to cover common timespans
+    - One can view up to 31 days / 4 weeks, as they each make up a month
+    - Similarly, one can view up to 12 months, as they make up a year
+    - In line with the average user of the target audience, the limit for 10 years was set as a soft limit
+- The setting of hiding the value of transactions that are ignored is deliberate, as it is the most prominent and
+  direct way for users to see this.
+    - In line with the purpose of the Ignore Command, -all flag will also not show this. Instead, users can view the
+      value via the export command, as elaborated below
 
 ### Setting your monthly Budget Goal `setbudget`
 
 - The command `setbudget` is used to set the user's monthly budget goal
+    - Format: `setbudget VALUE` 
+    - Users can also turn off the feature at any time by setting `VALUE` to 0
 - Once a goal is present, user's will be reminded of how close they are to sticking to their budget, or how
-  much they have exceeded it by
+  much they have exceeded it by.
 - This can be seen at start-up and when the user makes any changes to their expenses for the month.
+
+![SetBudgetCommandSequenceDiagram.png](images\DeveloperGuide\SetBudgetCommandSequenceDiagram.png)
 
 ### Editing an entry `edit`
 
@@ -247,6 +267,8 @@ to use regular expressions, which is a more tidy and logical way to parse the in
   then added
   into the financial report.
 
+![EditCommand.png](images\DeveloperGuide\EditCommand.png)
+
 ### Filtering your data `filter`
 
 - When a command is given to filter a report by certain conditions, the command is first parsed to check whether it
@@ -254,7 +276,7 @@ to use regular expressions, which is a more tidy and logical way to parse the in
     - Valid patterns are `filter -in`, `filter -out` , `filter -c <category>`,
       `filter -d <description>` and `filter -date <DD/MM/YYYY>`
 - Commands in the correct format will then be parsed to create a FilterCommand object.
-- RainyDay will then call Command,execute(), where every entry in the financial report with the matching
+- RainyDay will then call Command.execute(), where every entry in the financial report with the matching
   conditions will be printed.
 - Information will be presented in a table format to help improve clarity for users.
 
@@ -271,25 +293,44 @@ The sequence diagram for the implementation of filter is as shown below:
     - Furthermore, the `[SHORTCUTNAME]` should be given without spaces.
 - Commands in the correct format will then be parsed to create a `ShortcutAddCommand` object with a constructor.
     - A call will be made to the `userData` object which returns a reference to the `shortcutCommands` hashmap.
-    - the given `[SHORTCUTNAME]` and `[ACTUALCOMMAND]` will be the key value pair of the hashmap.
-- If the key does not already exist in the `shortcutCommands` hashmap, the new shortcut mapping will be added into the
-  hashmap.
-  ![ShortcutAddCommand.png](images/DeveloperGuide/ShortcutAddCommand.png)
+    - The given `[SHORTCUTNAME]` and `[ACTUALCOMMAND]` will be the key value pair of the hashmap.
+- `RainyDay` will then call the `execute` method in `ShortcutAddCommand`.
+    - If the key does not already exist in the `shortcutCommands` hashmap, the new shortcut mapping will be added into
+      the hashmap.
+
+The sequence diagram for the implementation of adding a shortcut is as shown below:
+
+![ShortcutAddCommand.png](images/DeveloperGuide/ShortcutAddCommand.png)
 
 ### Deleting a shortcut `shortcut_delete`
 
 - When a command is given to delete a shortcut, the command is first parsed to check if it follows the format of a
-  delete
-  shortcut command: `shortcut_delete [SHORTCUTNAME]`.
+  delete shortcut command: `shortcut_delete [SHORTCUTNAME]`.
 - Commands in the correct format will then be parsed to create a `ShortcutDeleteCommand` object with a constructor.
     - A call will be made to the `userData` object which returns a reference to the `shortcutCommands` hashmap.
-    - the given `[SHORTCUTNAME]` will be the key of the hashmap.
-- If the shortcut key exists in the `shortcutCommands` hashmap, it will be added from the hashmap.
-  ![ShortcutDeleteCommand.png](images%2FDeveloperGuide%2FShortcutDeleteCommand.png)
+    - The given `[SHORTCUTNAME]` will be the key of the hashmap.
+- `RainyDay` will then call the `execute` method in `ShortcutDeleteCommand`.
+    - If the shortcut key exists in the `shortcutCommands` hashmap, it will be deleted from the hashmap.
+
+The sequence diagram for the implementation of deleting a shortcut is as shown below:
+
+![ShortcutDeleteCommand.png](images%2FDeveloperGuide%2FShortcutDeleteCommand.png)
 
 ### Viewing a shortcut `shortcut_view`
 
-- {TODO}
+- The command `shortcut_view` is used to view all currently configured shortcuts.
+- The command will create a `ShortcutViewCommand` object with a constructor.
+    - A call will be made to the `userData` object which returns a reference to the `shortcutCommands` hashmap.
+- `RainyDay` will then call the `execute` method in `ShortcutViewCommand`.
+    - For each shortcut in the hashmap, the corresponding actual command will be obtained from the
+      `shortcutCommands` hashmap with the `get()` method.
+    - The mapping between the shortcut and actual command will then be printed to the user by calling
+      the `printShortcutMapping()` method.
+- Information will be presented in a table format to help improve clarity for users.
+
+The sequence diagram for the implementation of viewing a shortcut is as shown below:
+
+![ShortcutViewCommand.png](images%2FDeveloperGuide%2FShortcutViewCommand.png)
 
 ### Saving Data
 
