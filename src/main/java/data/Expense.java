@@ -21,6 +21,11 @@ public class Expense implements Serializable {
         this.rate = rate;
     }
 
+    public Expense(String description, BigDecimal expenseAmount) {
+        this.expenseAmount = expenseAmount;
+        this.description = description;
+    }
+
     private BigDecimal formatExpenseAmount(BigDecimal originalExpenseAmount) {
         BigDecimal roundedExpense = originalExpenseAmount.setScale(2, RoundingMode.HALF_UP);
         return roundedExpense;
