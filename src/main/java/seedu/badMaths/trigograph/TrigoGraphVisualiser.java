@@ -36,8 +36,8 @@ public class TrigoGraphVisualiser extends JPanel {
         this.verticalShift = verticalShift;
         xMin = (-2 * Math.PI) / freqInHz;
         xMax = (2 * Math.PI) / freqInHz;
-        yMin = -10;
-        yMax = 10;
+        yMin = -(amplitude+verticalShift)*2;
+        yMax = (amplitude+verticalShift)*2;
     }
 
     @Override
@@ -84,7 +84,7 @@ public class TrigoGraphVisualiser extends JPanel {
     public void createXAxis(Graphics g, double xScale, double yScale) {
         g.setColor(Color.BLACK);
         g.drawLine((int) (xMin * xScale), 0, (int) (xMax * xScale), 0);
-        g.drawString("Freq",(int)((xMax*xScale)-xMax*4),0);
+        g.drawString("time",(int)((xMax*xScale)-xMax*4),0);
     }
 
     public void drawSinCurve(Graphics g, double xScale, double yScale) {

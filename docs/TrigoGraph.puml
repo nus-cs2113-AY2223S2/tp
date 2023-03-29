@@ -1,0 +1,73 @@
+@startuml
+
+
+[->TrigoGraph: startGraphAnalysis()
+activate TrigoGraph
+
+TrigoGraph-->>TrigoGraphAnalyser: TrigoGraphAnalyser(trigoEqn)
+
+activate TrigoGraphAnalyser
+TrigoGraphAnalyser --> TrigoGraph
+deactivate TrigoGraphAnalyser
+opt analyser.canStartAnalyser
+TrigoGraph -> TrigoGraph :getGraphDetails(analyser)
+activate TrigoGraph
+
+TrigoGraph -> TrigoGraphAnalyser: getAmplitude()
+activate TrigoGraphAnalyser
+deactivate TrigoGraphAnalyser
+
+TrigoGraph -> TrigoGraphAnalyser: getFreq()
+activate TrigoGraphAnalyser
+deactivate TrigoGraphAnalyser
+
+TrigoGraph -> TrigoGraphAnalyser: getPhase()
+activate TrigoGraphAnalyser
+deactivate TrigoGraphAnalyser
+
+TrigoGraph -> TrigoGraphAnalyser: getVerticalShift()
+activate TrigoGraphAnalyser
+deactivate TrigoGraphAnalyser
+
+TrigoGraph -> TrigoGraphAnalyser: getTrigonometry()
+activate TrigoGraphAnalyser
+deactivate TrigoGraphAnalyser
+
+TrigoGraph -> TrigoGraph
+deactivate TrigoGraph
+
+TrigoGraph -> TrigoGraph: printGraphDetails()
+activate TrigoGraph
+
+TrigoGraph -> Ui: printAmplitude(amplitude)
+activate Ui
+deactivate Ui
+
+TrigoGraph -> Ui: printFrequency(frequency)
+activate Ui
+deactivate Ui
+
+TrigoGraph -> Ui: printPhase(phase)
+activate Ui
+deactivate Ui
+
+TrigoGraph -> Ui: printVerticalShift(verticalShift)
+activate Ui
+deactivate Ui
+
+TrigoGraph -> TrigoGraph
+deactivate TrigoGraph
+
+TrigoGraph -->> TrigoGraphVisualiser: TrigoGraphVisualiser(amplitude,phase,frequency,verticalShift,trig)
+activate TrigoGraphVisualiser
+deactivate TrigoGraphVisualiser
+
+TrigoGraph -> TrigoGraphVisualiser: startVisualiser()
+activate TrigoGraphVisualiser
+deactivate TrigoGraphVisualiser
+end opt
+
+
+deactivate TrigoGraph
+
+@enduml

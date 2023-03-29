@@ -36,11 +36,12 @@ would identify a, b and c from toDo.
 
 Step 3. To solve the quadratic equation, a, b and c are put into the formula `x = (-b±√(b^2-4ac))/2a`.
 
-
 ### Store and Display Notes
 The Store and Display Notes functionality allows users to input notes 
 which will be stored in a list, and to display a list of all notes
 stored by users. This functionality is achieved through the `Store.` and `List.` commands.
+
+![img_2.png](img_2.png)
 
 The syntax for the commands of this functionality is as follows:
 1. `Store. <item>` For storing of notes into the list, where `<item>` represents the note that 
@@ -54,8 +55,6 @@ users to input notes to a list and to display a list of all notes that are
 stored inside the list.
 1. This is step 1.
 2. This is step 2.
-
-![img.png](img.png)
 
 ### Help
 The Help feature allows users to view possible options by calling `Help.` which reads the content stored in the HelpManual.txt.
@@ -103,6 +102,7 @@ The command class creates a new instance of `TrigoGraph` and pass in `toDo` as a
 then executes `trigoGraph.startGraphAnalysis()`based on `command` using switch-case statements.
 
 #### TrigoGraph class:
+![img_1.png](img_1.png)
 Step 2. Constructor for the TrigoGraph class takes in `2*sin(2*x+5)-1` and assigns it to `trigoEqn` of type String. When `startGraphAnalysis()`
 is called from the command class, a new instance of `TrigoGraphAnalyser` called `analyser` is created in TrigoGraph, which accepts `trigoEqn`
 as the parameter.
