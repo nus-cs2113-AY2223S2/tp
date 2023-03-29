@@ -2,28 +2,8 @@
 
 ## Table of Contents
 
-- [Developer Guide](#developer-guide)
-  - [Acknowledgements](#acknowledgements)
-  - [Setup](#setup)
-    - [Setting up the project on your computer](#setting-up-the-project-on-your-computer)
-  - [Design](#design)
-    - [Architecture](#architecture)
-    - [ToDoListManager](#manager-component)
-    - [UI](#ui-component)
-    - [Logic](#logic-component)
-    - [TaskList](#tasklist-component)
-    - [Storage](#storage-component)
-  - [Implementation](#implementation)
-    - [Delete task feature](#delete-task-feature)
-    - [Edit task deadline feature](#edit-task-deadline-feature)
-    - [List tasks sorted by deadline feature](#list-tasks-sorted-by-deadline-feature)
-    - [Storage feature](#storage-feature)
-  - [Appendix: Requirements](#appendix--requirements)
-    - [Product Scope](#product-scope)
-    - [User Stories](#user-stories)
-    - [Non-functional Requirements](#non-functional-requirements)
-    - [Glossary](#glossary)
-  - [Appendix: Instructions for manual testing](#instructions-for-manual-testing)
+* Table of Contents
+{:toc}
 
 ## Acknowledgements
 
@@ -38,12 +18,12 @@ First, **fork** this repo, and **clone** the fork into your computer.
 If you plan to use Intellij IDEA (highly recommended):
 1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to ensure Intellij is configured to use **JDK 11**.
 1. **Import the project as a Gradle project**: Follow the guide [_[se-edu/guides] IDEA: Importing a Gradle project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html) to import the project into IDEA.<br>
-   :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
+   - Note: Importing a Gradle project is slightly different from importing a normal Java project.
 1. **Verify the setup**: Run `Main` and try a few commands.
 
 ## Design
 
-> **Tip:** The `.puml` files used to create the diagrams in this guide can be found in the [diagrams](diagrams) folder.
+> The `.puml` files used to create the diagrams in this guide can be found in the [diagrams](diagrams) folder.
 
 ### Architecture
 
@@ -80,6 +60,16 @@ The code for this component is found in [`Ui.java`](../src/main/java/seedu/todol
 
 The main code for this component is found in [`Parser.java`](../src/main/java/seedu/todolist/logic/Parser.java).
 
+![LogicClassDiagram](images/LogicClassDiagram.png)
+
+The `Logic` component contains the `Parser`, `Command`, `ParserUtil`, and `FormatterUtil` classes, as well as
+extensions of the `Command` class like the `AddTaskCommand`, `ListTagsCommand`, and `EditEmailCommand` subclasses.
+
+When the `ToDoListManager` component passes user input to the `Parser`, a `Command` object (such as an
+`AddTaskCommand`) is created and returned to the `ToDoListManager`. The `ToDoListManager` executes the returned
+`Command` object, which will act on the `TaskList` if needed and output the result of the command through the `Ui`
+component.
+
 ### TaskList component
 
 The code for this component is found in [`TaskList.java`](../src/main/java/seedu/todolist/task/TaskList.java).
@@ -93,7 +83,7 @@ back into a TaskList object.
 
 ## Implementation
 
-> **Note:** The lifeline of the sequence diagrams in this section should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+> The lifeline of the sequence diagrams in this section should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 ### Delete task feature
 

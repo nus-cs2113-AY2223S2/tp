@@ -70,6 +70,7 @@ public class ParserUtil {
         }
     }
 
+    //@@author RuiShengGit
     /**
      * Parses the email string, checking that is a valid email address.
      * The email is allowed to be null as it is an optional parameter.
@@ -78,7 +79,6 @@ public class ParserUtil {
      * @return The email address, if it was not null, null otherwise.
      * @throws InvalidEmailFormatException If the email address is invalid.
      */
-    //@@author RuiShengGit
     public static String parseEmail(String email) throws InvalidEmailFormatException {
         if (email == null) {
             return null;
@@ -106,6 +106,7 @@ public class ParserUtil {
         return new HashSet<>(Arrays.asList(tags.split(" ")));
     }
 
+    //@@author clement559
     /**
      * Parses the repeat duration of the task, which is in number of weeks.
      * A repeat duration can be specified only if deadline is not null.

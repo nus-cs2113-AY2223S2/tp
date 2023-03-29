@@ -34,7 +34,7 @@ public enum Flags {
     EMAIL("-email", false),
     PRIORITY("-priority", false),
     REPEAT("-rep", false),
-    TAG("-tag", false),
+    TAG("-tags", false),
     EDIT("-edit", false),
     EDIT_DELETE("-del", true);
 
