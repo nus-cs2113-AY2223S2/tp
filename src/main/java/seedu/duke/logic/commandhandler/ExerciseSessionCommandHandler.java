@@ -68,6 +68,8 @@ public class ExerciseSessionCommandHandler implements CommandList {
             case GENERATE_COMMAND:
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_GENERATE_COMMAND.toString());
             case HELP_COMMAND:
+                ui.printExerciseSessionHelp();
+                break;
             case FILTERS_COMMAND:
             case FIND_COMMAND:
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_HELP_COMMAND.toString());

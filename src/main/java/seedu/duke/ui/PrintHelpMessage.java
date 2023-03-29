@@ -54,6 +54,16 @@ public class PrintHelpMessage {
         //System.out.println(ErrorMessages.ERROR_GLOBAL_INVALID_COMMAND.toString());
     }
 
+    public static void showAvailableExerciseSessionCommands() {
+        System.out.println("These are some commands available: ");
+        System.out.println("[current]");
+        System.out.println("\tShows you the list of exercises that you have in your current workout session.");
+        System.out.println("[finish]");
+        System.out.println("\tComplete your current workout session!");
+        System.out.println("[cancel]");
+        System.out.println("\tTerminate your current workout session.");
+    }
+
     public static void unknownCommandMessage() {
         System.out.println("Unknown command! Type [help] to see what we can do!");
     }

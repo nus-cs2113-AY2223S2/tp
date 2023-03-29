@@ -70,6 +70,7 @@ Types of pre-defined messages:
    user. (`ErrorMessages` class)
 
 The class diagram as shown in Figure *1.3* illustrates the structure of the different classes in Ui.
+
 <div align="center">
 <img src="UML/Images/Ui.png"/>
 <p>
