@@ -269,7 +269,9 @@ public class UI {
                 + "LIST [PU INDEX]                  : Provides the list of all modules available "
                 + "in the specified Partner University\n"
                 + "                                   by index of LIST PU\n"
-                + "LIST [PU ABBRV] /filter [filter] : Provides the list of modules in the specified filters\n"
+                + "LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters\n"
+                + "                                  [FILTER] Format 1: mc == [num of MCs]\n"
+                + "                                  [FILTER] Format 2: [description] in name\n"
                 + "LIST CURRENT                     : Provides the list of modules that the user has added to his/her "
                 + "list of interest\n"
                 + "LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list of\n"
@@ -373,6 +375,7 @@ public class UI {
         }
         int listIndex = 0;
         if (puModulesToPrint.size() < 1) {
+            assert puModulesToPrint.size() < 1: "size of puModulesToPrint array should be < 1";
             System.out.println(CURRENT_LIST_PU_EMPTY + universityName);
             System.out.println(LINE);
             System.out.println(LINE);
