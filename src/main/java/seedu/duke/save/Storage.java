@@ -179,7 +179,7 @@ public class Storage {
      * @throws IOException Exception thrown when file cannot be written on or found.
      */
     private static void writeMedicineHistory(FileWriter writer, Hashtable<String,
-                ArrayList<String>> medicineHistory) throws IOException {
+            ArrayList<String>> medicineHistory) throws IOException {
         List<String> dates = Collections.list(medicineHistory.keys());
         Collections.sort(dates);
         for (String date : dates) {
