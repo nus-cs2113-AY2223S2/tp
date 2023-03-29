@@ -1,4 +1,6 @@
 @startuml
+!include ../Style.puml
+
 title Backend Class Diagram
 
 class Backend
@@ -6,11 +8,16 @@ class EntryLog
 class Response
 class Request
 class Storage
+interface Requestable <<interface>>
+abstract class Endpoint
 
-Backend ..> Request
-Backend ..> Response
-Backend --> "1" Storage
+Endpoint ..|> Requestable
+Backend --> "1.." Endpoint : handle request
+Backend .> Request
+Backend .> Response
+Backend --> "1" Storage : read/write
 Backend --> "1" EntryLog
+Endpoint *-- "1" EntryLog : retrieve/store
 
 class Backend {
 - {static} logger : Logger
@@ -22,4 +29,5 @@ class Backend {
 + clearData() : void
 - save() : void
 }
+
 @enduml

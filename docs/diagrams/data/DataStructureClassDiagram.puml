@@ -1,12 +1,14 @@
 @startuml
+!include ../Style.puml
+
 title Data Structure Class Diagram
 
 class Entry
 class EntryLog
 class EntryParser
 class EntryLogParser
-enum Category
-interface Serialisable
+enum Category <<enumeration>>
+class Serialisable <<interface>>
 
 Entry ...|> Serialisable
 Entry *--- "1" Category
@@ -23,14 +25,7 @@ class Entry {
 - dateTime : String
 
 + Entry(description : String, amount : double, category : Category)
-+ getAmount() : double
-+ getCategory() : Category
-+ getDateTime() : String
 + getCategoryString() : String
-+ getDescription() : String
-+ setAmount(amount : double) : void
-+ setCategory(category : Category) : void
-+ setDescription(description : String) : void
 + serialise() : String
 }
 
@@ -48,11 +43,10 @@ class EntryLog {
 + getEntry(entryId : int) : Entry
 + getEntriesList() : List<Entry>
 + getLatestEntries(numEntries : int) : EntryLog
-+ getSize() : int
 + serialise() : String
 }
 
-enum Category {
+enum Category <<enumeration>> {
 CLOTHING
 ENTERTAINMENT
 FOOD
@@ -64,7 +58,7 @@ TRANSPORTATION
 UTILITIES
 }
 
-interface Serialisable {
+class Serialisable <<interface>> {
 serialise() : String
 }
 

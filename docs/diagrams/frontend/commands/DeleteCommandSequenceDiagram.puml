@@ -1,0 +1,44 @@
+@startuml
+!include ../../Style.puml
+
+participant ":Parser" as Parser
+participant "command:DeleteCommand" as DeleteCommand
+participant "requestGet:Request" as RequestGet
+participant "requestDelete:Request" as RequestDelete
+participant "backend:Backend" as Backend
+participant "responseGet:Response" as ResponseGet
+participant "responseDelete:Response" as ResponseDelete
+participant "UI" as UI
+
+Parser -> DeleteCommand ** : DeleteCommand(entryId)
+activate DeleteCommand
+return command
+
+-> DeleteCommand :execute()
+activate DeleteCommand
+DeleteCommand -> RequestGet ** : Request(GET, entryId)
+RequestGet --> DeleteCommand : requestGet
+DeleteCommand -> Backend : requestEndpointEntry(requestGet)
+ref over Backend, ResponseGet
+get Entry and get responseGet
+end ref
+Backend --> DeleteCommand : responseGet
+
+DeleteCommand -> RequestDelete ** : Request(DELETE, entryId)
+RequestDelete --> DeleteCommand
+DeleteCommand -> Backend : requestEndpointEntry(requestDelete)
+
+ref over Backend, ResponseDelete
+delete from EntryLog and get responseDelete
+end ref
+
+
+Backend --> DeleteCommand : responseDelete
+alt responseDelete.getResponseStatus() == ResponseStatus.NOT_FOUND
+    DeleteCommand --> Parser : exception
+else else
+    DeleteCommand -> UI:printExpenditureDeleted(deletedEntry)
+    UI --> DeleteCommand
+    deactivate DeleteCommand
+end
+@enduml

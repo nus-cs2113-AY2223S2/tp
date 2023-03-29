@@ -1,0 +1,14 @@
+@startuml
+!include ../../Style.puml
+
+mainframe sd Endpoint /entry - Handle POST
+participant ":EntryEndpoint" as EntryEndpoint
+participant ":EntryLog" as EntryLog
+
+-> EntryEndpoint : handlePost(Request)
+
+EntryEndpoint -> EntryLog : addEntry()
+return
+
+<-- EntryEndpoint : Response(CREATED)
+@enduml
