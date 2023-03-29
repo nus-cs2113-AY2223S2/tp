@@ -6,11 +6,7 @@ import seedu.duck.exception.IllegalEventException;
 import seedu.duck.exception.IllegalDeadlineException;
 import seedu.duck.exception.IllegalTodoException;
 import seedu.duck.exception.startAfterEndException;
-import seedu.duck.task.Deadline;
-import seedu.duck.task.Event;
-import seedu.duck.task.SchoolClass;
-import seedu.duck.task.Task;
-import seedu.duck.task.Todo;
+import seedu.duck.task.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.DayOfWeek;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.PriorityQueue;
@@ -31,15 +28,28 @@ public class TaskList {
     static void addTask(String line, ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) {
         if (line.contains("/by")) {
             // Adding a Deadline
-            try {
-                addDeadline(line, tasks);
-                Task.incrementCount();
-            } catch (IllegalDeadlineException e) {
-                Ui.deadlineErrorMessage();
-            } catch (expiredDateException e) {
-                Ui.expiredErrorMessage();
-            } catch (DateTimeException e) {
-                Ui.invalidDateTimeMessage();
+            if (line.contains("/re")) {
+                try {
+                    addRecurrDeadline(line, tasks);
+                    Task.incrementCount();
+                } catch(IllegalDeadlineException | StringIndexOutOfBoundsException e) {
+                    Ui.deadlineErrorMessage();
+                } catch (IllegalArgumentException e) {
+                    Ui.invalidDayMessage();
+                } catch (DateTimeParseException e) {
+                    Ui.invalidDateTimeMessage();
+                }
+            }else {
+                try {
+                    addDeadline(line, tasks);
+                    Task.incrementCount();
+                } catch (IllegalDeadlineException e) {
+                    Ui.deadlineErrorMessage();
+                } catch (expiredDateException e) {
+                    Ui.expiredErrorMessage();
+                } catch (DateTimeException e) {
+                    Ui.invalidDateTimeMessage();
+                }
             }
         } else if (line.contains("/class")) {
             // Adding a SchoolClass
@@ -56,17 +66,30 @@ public class TaskList {
             }
         } else if (line.contains("/from") || line.contains("/to")) {
             // Adding an Event
-            try {
-                addEvent(line, tasks);
-                Task.incrementCount();
-            } catch (IllegalEventException | IndexOutOfBoundsException e) {
-                Ui.eventErrorMessage();
-            } catch (expiredDateException e) {
-                Ui.expiredErrorMessage();
-            } catch (startAfterEndException e) {
-                Ui.startAfterEndErrorMessage();
-            } catch (DateTimeException e) {
-                Ui.invalidDateTimeMessage();
+            if (line.contains("/re")) {
+                try {
+                    addRecurrEvent(line, tasks);
+                    Task.incrementCount();
+                } catch (IllegalEventException | StringIndexOutOfBoundsException e) {
+                    Ui.eventErrorMessage();
+                } catch (IllegalArgumentException e) {
+                    Ui.invalidDayMessage();
+                } catch (DateTimeParseException e) {
+                    Ui.invalidDateTimeMessage();
+                }
+            } else{
+                try {
+                    addEvent(line, tasks);
+                    Task.incrementCount();
+                } catch (IllegalEventException | IndexOutOfBoundsException e) {
+                    Ui.eventErrorMessage();
+                } catch (expiredDateException e) {
+                    Ui.expiredErrorMessage();
+                } catch (startAfterEndException e) {
+                    Ui.startAfterEndErrorMessage();
+                } catch (DateTimeException e) {
+                    Ui.invalidDateTimeMessage();
+                }
             }
         } else {
             // Adding a _Todo_
@@ -138,6 +161,24 @@ public class TaskList {
         }
     }
 
+    static void addRecurrEvent(String line, ArrayList<Task> tasks) throws IllegalEventException{
+        String description = line.substring(4, line.indexOf("/from")).trim();
+        String start = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
+        String end = line.substring(line.indexOf("/to") + 3, line.indexOf("/day")).trim();
+        DayOfWeek day = DayOfWeek.valueOf(line.substring(line.indexOf("/day") + 4).trim());
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HHmm");
+        //check whether start and end are in the correct format
+        LocalTime.parse(start, timeFormat);
+        LocalTime.parse(end, timeFormat);
+        if (description.isBlank() || start.isBlank() || end.isBlank()) {
+            throw new IllegalEventException();
+        } else {
+            RecurringEvent currEvent = new RecurringEvent(description, start, end, day);
+            tasks.add(currEvent);
+            Ui.addedTaskMessage(currEvent);
+        }
+    }
+
     /**
      * Adds a schoolClass to the list
      *
@@ -189,6 +230,28 @@ public class TaskList {
             throw new expiredDateException();
         } else {
             Deadline currDeadline = new Deadline(description, deadlineString);
+            tasks.add(currDeadline);
+            Ui.addedTaskMessage(currDeadline);
+        }
+    }
+
+    /**
+     * adds a recurringDeadline to the list
+     *
+     * @param line the line of input from the user
+     * @param tasks the array list of tasks
+     */
+    static void addRecurrDeadline(String line, ArrayList<Task> tasks) throws IllegalDeadlineException,
+            IllegalArgumentException {
+        String description = line.substring(4, line.indexOf("/by")).trim();
+        String deadline = line.substring(line.indexOf("/by") + 3, line.indexOf("/day")).trim();
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HHmm");
+        LocalTime.parse(deadline, timeFormat);
+        DayOfWeek day = DayOfWeek.valueOf(line.substring(line.indexOf("/day") + 4).trim());
+        if (description.isBlank() || deadline.isBlank()) {
+            throw new IllegalDeadlineException();
+        } else {
+            RecurringDeadline currDeadline = new RecurringDeadline(description, deadline, day);
             tasks.add(currDeadline);
             Ui.addedTaskMessage(currDeadline);
         }
@@ -359,7 +422,7 @@ public class TaskList {
             int expiredCount = 0;
             ArrayList<Task> expiredTasks = new ArrayList<>();
             for (Task task : tasks) {
-                if (task instanceof Deadline) {
+                if (task instanceof Deadline && !(task instanceof RecurringDeadline)) {
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
                     String deadline = ((Deadline) task).getDeadline();
                     Date d = null;
@@ -376,7 +439,7 @@ public class TaskList {
                         System.out.println(task);
                         expiredTasks.add(task);
                     }
-                } else if (task instanceof Event) {
+                } else if (task instanceof Event && !(task instanceof RecurringEvent)) {
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
                     String end = ((Event) task).getEnd();
                     Date d = null;

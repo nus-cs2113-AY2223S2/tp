@@ -1,9 +1,6 @@
 package seedu.duck;
 
-import seedu.duck.task.Deadline;
-import seedu.duck.task.Event;
-import seedu.duck.task.SchoolClass;
-import seedu.duck.task.Task;
+import seedu.duck.task.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -198,7 +195,7 @@ public class Ui {
         System.out.println("\t Here are the upcoming deadline:  ");
         int count = 0;
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i) instanceof Deadline) {
+            if (tasks.get(i) instanceof Deadline && !(tasks.get(i) instanceof RecurringDeadline)) {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
                 String deadline = ((Deadline) tasks.get(i)).getDeadline();
                 Date d;
@@ -386,13 +383,17 @@ public class Ui {
         System.out.println("\t Here are the following ways to input tasks/classes:");
         System.out.println("\t Deadlines: <description> /by <yyyy-MM-dd HHmm>");
         System.out.println("\t            (eg. Eat bread /by 2023-03-15 2015)");
+        System.out.println("\t Recurring deadlines: /re <description> /by <HHmm> /day <DAY_OF_WEEK>");
+        System.out.println("\t            (eg. /re Eat bread /by 2015 /day MONDAY)");
         System.out.println("\t Events   : <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>");
         System.out.println("\t            (eg. Meeting /from 2023-03-15 2015 /to 2023-03-15 2215)");
-        System.out.println("\t            (eg. Bring laptop /class CS2113 /day TUESDAY /from 1100 /to 1200)");
+        System.out.println("\t Recurring events: /re <description> /from <HHmm> /to <HHmm> /day <DAY_OF_WEEK>");
+        System.out.println("\t            (eg. /re Meeting /from 2015 /to 2215 /day MONDAY)");
         System.out.println("\t Todo     : <description>");
         System.out.println("\t            (eg. Water the plants)");
         System.out.println("\t Classes  : <description> /class <class_name> /day <DAY_OF_WEEK>" +
                 "/from <HHmm> /to <HHmm> \n");
+        System.out.println("\t            (eg. Bring laptop /class CS2113 /day TUESDAY /from 1100 /to 1200)");
         System.out.println("\t （`･v･´ ）: How else may I assist you today, human?");
         borderLine();
     }

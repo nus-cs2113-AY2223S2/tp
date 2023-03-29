@@ -1,7 +1,7 @@
 package seedu.duck.task;
 
 public class Deadline extends Task {
-    private String by;
+    protected String by;
 
     public Deadline(String description, String deadline) {
         super(description);

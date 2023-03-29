@@ -1,11 +1,7 @@
 package seedu.duck;
 
 
-import seedu.duck.task.Deadline;
-import seedu.duck.task.Event;
-import seedu.duck.task.SchoolClass;
-import seedu.duck.task.Task;
-import seedu.duck.task.Todo;
+import seedu.duck.task.*;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -31,13 +27,21 @@ public class Storage {
      */
     static void loadTask(String line, ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes, String doneStatus) {
         if (line.contains("/by")) {
-            loadDeadline(line, tasks);
+            if (line.contains("/day")) {
+                loadRecurrDeadline(line, tasks);
+            } else {
+                loadDeadline(line, tasks);
+            }
             loadTaskStatus(tasks, doneStatus);
             Task.incrementCount();
         } else if (line.contains("/class")) {
             loadSchoolClass(line, classes);
         } else if (line.contains("/from") || line.contains("/to")) {
-            loadEvent(line, tasks);
+            if (line.contains("/day")) {
+                loadRecurrEvent(line, tasks);
+            } else {
+                loadEvent(line, tasks);
+            }
             loadTaskStatus(tasks, doneStatus);
             Task.incrementCount();
         } else {
@@ -92,6 +96,17 @@ public class Storage {
         tasks.add(currEvent);
     }
 
+    static void loadRecurrEvent(String line, ArrayList<Task> tasks) {
+        String description = line.substring(0, line.indexOf("/from")).trim();
+        String start = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
+        String end = line.substring(line.indexOf("/to") + 3, line.indexOf("<p>")).trim();
+        String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("/day")).trim();
+        DayOfWeek day = DayOfWeek.valueOf(line.substring(line.indexOf("/day") + 4).trim());
+        RecurringEvent currEvent = new RecurringEvent(description, start, end, day);
+        currEvent.setPriority(priority);
+        tasks.add(currEvent);
+    }
+
     /**
      * Adds a schoolClass to the list without generating messages,
      * to be used when loading from save data.
@@ -123,6 +138,22 @@ public class Storage {
         String deadline = line.substring(line.indexOf("/by") + 3, line.indexOf("<p>")).trim();
         String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("<p>") + 4).trim();
         Deadline currDeadline = new Deadline(description, deadline);
+        currDeadline.setPriority(priority);
+        tasks.add(currDeadline);
+    }
+
+    /**
+     * Adds a RecurringDeadline to the list when loading from save data
+     *
+     * @param line The line of input from save file
+     * @param tasks the array list of tasks
+     */
+    static void loadRecurrDeadline(String line, ArrayList<Task> tasks) {
+        String description = line.substring(0, line.indexOf("/by")).trim();
+        String deadline = line.substring(line.indexOf("/by") + 3, line.indexOf("<p>")).trim();
+        String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("/day")).trim();
+        DayOfWeek day = DayOfWeek.valueOf(line.substring(line.indexOf("/day") + 4).trim());
+        RecurringDeadline currDeadline = new RecurringDeadline(description, deadline, day);
         currDeadline.setPriority(priority);
         tasks.add(currDeadline);
     }
