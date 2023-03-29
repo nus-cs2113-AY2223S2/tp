@@ -10,10 +10,10 @@
     - [Commands](#commands)
       - [Add Command](#add-command)
       - [Delete Command](#delete-command)
-    - [Edit Command](#edit-command)
-      - [Implementation](#implementation)
-      - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
-      - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
+      - [Edit Command](#edit-command)
+        - [Implementation](#implementation)
+        - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
+        - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
   - [Backend](#backend)
     - [Storage](#storage)
     - [API](#api)
@@ -28,31 +28,17 @@
         - [Delete an entry](#delete-an-entry)
         - [Modify an entry](#modify-an-entry)
   - [Data Structure](#data-structure)
-    - [Communication](#communication)
+  - [Communication](#communication)
 - [Testing](#testing)
   - [Unit Tests](#unit-tests)
   - [Instructions for manual testing](#instructions-for-manual-testing)
-    - [Launching of PocketPal](#launching-of-pocketpal)
     - [Feature Testing](#feature-testing)
     - [Add expense: /add](#add-expense-add)
-        - [Test Case 1 (All required flags are provided):](#test-case-1-all-required-flags-are-provided)
-        - [Test Case 2 (Missing price flag):](#test-case-2-missing-price-flag)
     - [View expense: /view](#view-expense-view)
-        - [Test case 1 (No expenses exist):](#test-case-1-no-expenses-exist)
-        - [Test case 2 (Multiple expenses exist):](#test-case-2-multiple-expenses-exist)
-      - [Test case 3 (View entries in price range)](#test-case-3-view-entries-in-price-range)
     - [Delete expense: /delete](#delete-expense-delete)
-  - [`/view`.](#view)
-        - [Test case 1:](#test-case-1)
-        - [Test case 2:](#test-case-2)
-      - [Test case 3:](#test-case-3)
     - [Edit expense: /edit](#edit-expense-edit)
-        - [Test case 1 (Editing all flags):](#test-case-1-editing-all-flags)
-        - [Test case 2 (Editing price only):](#test-case-2-editing-price-only)
     - [Show help menu: /help](#show-help-menu-help)
-        - [Test case:](#test-case)
     - [Terminate program: /bye](#terminate-program-bye)
-        - [Test case:](#test-case-1)
   - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
     - [Exceptions](#exceptions)
 - [Product scope](#product-scope)
@@ -177,9 +163,9 @@ The following activity diagram summarizes what happens when a user executes a de
 
 ![DeleteCommandActivityDiagram](./static/DeleteCommandActivityDiagram.png)
 
-### Edit Command
+#### Edit Command
 
-#### Implementation
+##### Implementation
 
 **Step 1.** User runs Edit command, specifying the ID of the entry to edit, as well as the new attributes of the respective
 fields.
@@ -203,11 +189,11 @@ the Response object to the execute function in the EditCommand object.
 **Step 8.** The printExpenditureEdited method under the UI class is then called in the execute function and an
 acknowledgement message is printed to the user.
 
-#### Overall class diagram for editing an Entry
+##### Overall class diagram for editing an Entry
 
 ![img.png](EditCommandClassDiagram.png)
 
-#### Overall sequence diagram for editing an Entry
+##### Overall sequence diagram for editing an Entry
 
 ![img_1.png](EditCommandSequenceDiagram.png)
 
@@ -485,7 +471,7 @@ We use the `EntryLog` data structure to keep track of the entries entered by the
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-### Communication
+## Communication
 
 This project uses a simplified HTTP model, where the frontend sends a `Request` to the backend to perform data-related operations. The backend returns a `Response`, which is then processed by the frontend
 
@@ -507,7 +493,9 @@ We adopt the Arrange, Act, Assert pattern for unit tests in this project.
 This allows us to achieve a structured unit tests while balancing code readability and maintainability, and allowing a clear separation of the setup, operations and results.
 For backend testing, we use utility classes such as `EntryTestUtil` and `BackendTestUtil` to reduce code repetition and to simplify the testing process.
 
-__Example:__
+<details>
+<summary>Example</summary>
+
   ```java
   @DisplayName("Test /entries [GET]")
 class TestEntriesGet extends EntryTestUtil {
@@ -542,6 +530,8 @@ class TestEntriesGet extends EntryTestUtil {
 }
   ```
 
+  </details>
+
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
@@ -564,12 +554,7 @@ for each major component is working, before they are combined and tested through
 <!-- @@author adenteo -->
 ## Instructions for manual testing
 
-### Launching of PocketPal
-
-First, place the downloaded *PocketPal.jar* into an empty folder. Launch Windows Powershell in the
-directory of *PocketPal.jar* and run the following command to launch PocketPal.
-
-`java -jar PocketPal.jar`
+Refer to the [user guide](/docs/UserGuide.md#getting-started) on launching PocketPal.
 
 ### Feature Testing
 
@@ -586,13 +571,13 @@ in PocketPal.
 
 **Usage:** `/add <DESCRIPTION> <-c | -category CATEGORY> <-p | -price PRICE>`
 
-##### Test Case 1 (All required flags are provided):
+__Test Case 1 (All required flags are provided):__
 
-**Prerequisites:** None
+- **Prerequisites:** None
+- __Input:__ `/add McDonalds -c Food -p 10.50`
 
-`/add McDonalds -c Food -p 10.50`
-
-Expected output:
+<details>
+<summary>Expected output:</summary>
 
 ```
 ________________________________________________
@@ -604,14 +589,16 @@ Category: Food
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+</details>
 
-##### Test Case 2 (Missing price flag):
 
-**Prerequisites:** None
+__Test Case 2 (Missing price flag):__
 
-`/add McDonalds -c Food`
+- **Prerequisites:** None
+- __Input:__ `/add McDonalds -c Food`
 
-Expected output:
+<details>
+<summary>Expected output:</summary>
 
 ```
 ________________________________________________
@@ -619,18 +606,20 @@ Please specify the description, category and price!
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+</details>
+
 
 ### View expense: /view
 
 **Usage:** `/view [COUNT] [-c | -category CATEGORY]`
 
-##### Test case 1 (No expenses exist):
+__Test case 1 (No expenses exist):__
 
-**Prerequisites:** None.
+- **Prerequisites:** None.
+- __Input:__ `/view`
 
-`/view`
-
-Expected output:
+<details>
+<summary>Expected output:</summary>
 
 ```
 ________________________________________________
@@ -639,13 +628,14 @@ ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
 
-##### Test case 2 (Multiple expenses exist):
 
-**Prerequisites:** At least **3** existing expenses.
+__Test case 2 (Multiple expenses exist):__
 
-```/view 3```
+- **Prerequisites:** At least **3** existing expenses.
+- __Input:__ ```/view 3```
 
-Expected output:
+<details>
+<summary>Expected output:</summary>
 
 ```
 ________________________________________________
@@ -657,13 +647,15 @@ ________________________________________________
 
 Enter a command or /help to see the list of commands available.
 ```
-#### Test case 3 (View entries in price range)
+</details>
 
-**Prerequisites:** At least **1** existing expense.
+__Test case 3 (View entries in price range)__
 
-```/view -p 120.50 -p 210.00```
+- **Prerequisites:** At least **1** existing expense.
+- __Input:__ ```/view -p 120.50 -p 210.00```
 
-Expected output:
+<details>
+<summary>Expected output:</summary>
 
 ```
 ________________________________________________
@@ -674,22 +666,22 @@ ________________________________________________
 
 Enter a command or /help to see the list of commands available.
 ```
+</details>
 
 ### Delete expense: /delete
 
 **Usage:** `/delete <EXPENSE_ID>`
 
----
-You may view the list of existing expenses along with their corresponding indexes with
-`/view`.
----
+You may view the list of existing expenses along with their corresponding indexes with `/view`.
 
-##### Test case 1:
+__Test case 1:__
 
-**Prerequisites:** At least **3** expenses pre-added into the program, with the 3rd expense matching the one shown
+- **Prerequisites:** At least **3** expenses pre-added into the program, with the 3rd expense matching the one shown
 in the example above.
+- __Input:__ `/delete 3`
 
-`/delete 3`
+<details>
+<summary>Expected output:</summary>
 
 ```
 ________________________________________________
@@ -701,14 +693,15 @@ Category: Food
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+</details>
 
-##### Test case 2:
+__Test case 2__
 
-**Prerequisites:** Fewer than **5** expenses pre-added into the program
+- **Prerequisites:** Fewer than **5** expenses pre-added into the program
+- __Input:__ `/delete 20`
 
-`/delete 20`
-
-Expected output:
+<details>
+<summary>Expected output:</summary>
 
 ```
 ________________________________________________
@@ -716,15 +709,16 @@ Please enter a valid numerical index!
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+</details>
 
 
-#### Test case 3:
+__Test case 3__
 
-**Prerequisites:** At least **2** expenses pre-added into the program
-
-`/delete 1 2`
+- **Prerequisites:** At least **2** expenses pre-added into the program
+- __Input:__ `/delete 1 2`
  
-Expected output:
+<details>
+<summary>Expected output:</summary>
 
 ```
 ________________________________________________
@@ -742,39 +736,20 @@ Category: Food
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+</details>
 
-=======
 ### Edit expense: /edit
 
 
 **Usage:** `/edit <EXPENSE_ID> [FLAG...]`
 
-##### Test case 1 (Editing all flags):
+__Test case 1 (Editing all flags)__
 
-**Prerequisites:** At least **2** expenses pre-added into the program.
+- **Prerequisites:** At least **2** expenses pre-added into the program.
+- __Input:__ `/edit 2 -p 300.50 -c others -d MacBook Air`
 
-`/edit 2 -p 300.50 -c others -d MacBook Air`
-
-Expected output:
-
-```
-________________________________________________
-The following expenditure has been updated:
-Description: MacBook Air
-Price: $300.50
-Category: Others
-________________________________________________
-Enter a command or /help to see the list of commands available.
-```
-
-##### Test case 2 (Editing price only):
-
-**Prerequisites:** At least **2** expenses pre-added into the program, with the 2nd expense matching the one shown
-in the example above.
-
-`/edit 2 -p 300.50`
-
-Expected output:
+<details>
+<summary>Expected output:</summary>
 
 ```
 ________________________________________________
@@ -785,18 +760,38 @@ Category: Others
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+</details>
+
+__Test case 2 (Editing price only)__
+
+- **Prerequisites:** At least **2** expenses pre-added into the program, with the 2nd expense matching the one shown in the example above.
+- __Input:__ `/edit 2 -p 300.50`
+
+<details>
+<summary>Expected output:</summary>
+
+```
+________________________________________________
+The following expenditure has been updated:
+Description: MacBook Air
+Price: $300.50
+Category: Others
+________________________________________________
+Enter a command or /help to see the list of commands available.
+```
+</details>
 
 ### Show help menu: /help
 
 **Usage:** `/help`
 
-##### Test case:
+__Test case__
 
-**Prerequisites:** None.
+- **Prerequisites:** None.
+- __Input:__ `/help`
 
-`/help`
-
-Expected output:
+<details>
+<summary>Expected output:</summary>
 
 ```
 ________________________________________________
@@ -824,24 +819,26 @@ Usage: /bye
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+</details>
 
 ### Terminate program: /bye
 
 **Usage:** `/bye`
 
-##### Test case:
+__Test case__
 
-**Prerequisites:** None.
+- **Prerequisites:** None.
+- __Input:__ `/delete 3`
 
-`/delete 3`
-
-Expected output:
+<details>
+<summary>Expected output:</summary>
 
 ```
 ________________________________________________
 Bye. See you again :)
 ________________________________________________
 ```
+</details>
 
 ---
 More test cases will be added as more features are introduced.
