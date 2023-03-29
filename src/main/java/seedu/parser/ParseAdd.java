@@ -14,6 +14,10 @@ import seedu.exceptions.EmptyStringException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import static seedu.ui.ErrorMessages.ERROR_DATE_TIME_ERROR_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_COMMAND_NOT_RECOGNISED_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_NUMBER_FORMAT_MESSAGE;
+
 public class ParseAdd {
     public static final String BLANK = "";
     public static final String DSLASH = "d/";
@@ -52,13 +56,13 @@ public class ParseAdd {
             case TuitionExpenditureCommand.COMMAND_WORD:
                 return new TuitionExpenditureCommand(descriptionVal, amount, date);
             default:
-                return new InvalidCommand("Invalid");
+                return new InvalidCommand(ERROR_COMMAND_NOT_RECOGNISED_MESSAGE.toString());
             }
 
         } catch (NumberFormatException n) {
-            return new InvalidCommand("number format problem");
+            return new InvalidCommand(ERROR_NUMBER_FORMAT_MESSAGE.toString());
         } catch (DateTimeParseException d) {
-            return new InvalidCommand("date time error");
+            return new InvalidCommand(ERROR_DATE_TIME_ERROR_MESSAGE.toString());
         } catch (StringIndexOutOfBoundsException | EmptyStringException s) {
             return new InvalidCommand(s.getMessage());
         }

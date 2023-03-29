@@ -29,6 +29,11 @@ import seedu.commands.CheckBudgetCommand;
 
 import java.time.format.DateTimeParseException;
 
+import static seedu.ui.ErrorMessages.ERROR_COMMAND_NOT_RECOGNISED_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_LACK_OF_PARAMETERS_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_DATE_TIME_ERROR_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_INVALID_EXPENDITURE_TYPE_MESSAGE;
+
 public class MainInputParser {
     public static final int LIMIT = 2;
     public static final int INDEX_COMMAND = 0;
@@ -96,15 +101,14 @@ public class MainInputParser {
                 prepareFind = new ParseFind(splitValues[INDEX_USERSTRING]);
                 return prepareFind.findExpenditure();
             default:
-                // Commands that are not listed above
-                return new InvalidCommand("Command not recognised. Please try again");
+                return new InvalidCommand(ERROR_COMMAND_NOT_RECOGNISED_MESSAGE.toString());
             }
         } catch (IndexOutOfBoundsException e) {
-            return new InvalidCommand("Input command does not have required parameters! Please try again");
+            return new InvalidCommand(ERROR_LACK_OF_PARAMETERS_MESSAGE.toString());
         } catch (DateTimeParseException d) {
-            return new InvalidCommand("date time error");
+            return new InvalidCommand(ERROR_DATE_TIME_ERROR_MESSAGE.toString());
         } catch (WrongInputException e) {
-            return new InvalidCommand("invalid expenditure type");
+            return new InvalidCommand(ERROR_INVALID_EXPENDITURE_TYPE_MESSAGE.toString());
         }
     }
 }

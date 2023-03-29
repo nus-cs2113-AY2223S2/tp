@@ -1,8 +1,10 @@
 package seedu.exceptions;
 
+import static seedu.ui.ErrorMessages.ERROR_UNMARK_MESSAGE;
+
 public class AlreadyUnmarkException extends Exception {
     @Override
     public String getMessage() {
-        return "Sorry! This expenditure is already unmarked!";
+        return ERROR_UNMARK_MESSAGE.toString();
     }
 }

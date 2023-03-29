@@ -7,6 +7,10 @@ import seedu.exceptions.EmptyStringException;
 import seedu.expenditure.ExpenditureList;
 import java.time.format.DateTimeParseException;
 
+import static seedu.ui.ErrorMessages.ERROR_WRONG_FORMAT_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_NUMBER_FORMAT_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_EMPTY_STRING_MESSAGE;
+
 public class ParseEdit {
     public static final String BLANK = "";
     public static final String DSLASH = "d/";
@@ -26,10 +30,11 @@ public class ParseEdit {
             int targetIndex = Integer.parseInt(displayIndexVal) - ExpenditureList.LIST_OFFSET;
             return new EditCommand(targetIndex, userInput);
         } catch (NumberFormatException | DateTimeParseException e) {
-            return new InvalidCommand(
-                    "Input command cannot be recognised as it is in the wrong format. Please try again");
-        } catch (StringIndexOutOfBoundsException | EmptyStringException s) {
-            return new InvalidCommand("Some inputs are missing! Please try again");
+            return new InvalidCommand(ERROR_WRONG_FORMAT_MESSAGE.toString());
+        } catch (StringIndexOutOfBoundsException s) {
+            return new InvalidCommand(ERROR_NUMBER_FORMAT_MESSAGE.toString());
+        } catch (EmptyStringException a) {
+            return new InvalidCommand(ERROR_EMPTY_STRING_MESSAGE.toString());
         }
     }
 }
