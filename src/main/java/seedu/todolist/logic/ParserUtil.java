@@ -1,10 +1,11 @@
 package seedu.todolist.logic;
 
 import seedu.todolist.constants.Formats;
-import seedu.todolist.exception.InvalidDateException;
-import seedu.todolist.exception.InvalidDurationException;
-import seedu.todolist.exception.InvalidEmailFormatException;
+import seedu.todolist.exception.InvalidPriorityException;
 import seedu.todolist.exception.InvalidIdException;
+import seedu.todolist.exception.InvalidDateException;
+import seedu.todolist.exception.InvalidEmailFormatException;
+import seedu.todolist.exception.InvalidDurationException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -73,6 +74,7 @@ public class ParserUtil {
         }
     }
 
+    //@@author RuiShengGit
     /**
      * Parses the email string, checking that is a valid email address.
      * The email is allowed to be null as it is an optional parameter.
@@ -81,7 +83,6 @@ public class ParserUtil {
      * @return The email address, if it was not null, null otherwise.
      * @throws InvalidEmailFormatException If the email address is invalid.
      */
-    //@@author RuiShengGit
     public static String parseEmail(String email) throws InvalidEmailFormatException {
         if (email == null) {
             return null;
@@ -109,6 +110,7 @@ public class ParserUtil {
         return new HashSet<>(Arrays.asList(tags.split(" ")));
     }
 
+    //@@author clement559
     /**
      * Parses the repeat duration of the task, which is in number of weeks.
      * A repeat duration can be specified only if deadline is not null.
@@ -134,6 +136,21 @@ public class ParserUtil {
             return Integer.parseInt(repeatDuration);
         } catch (NumberFormatException e) {
             throw new InvalidDurationException(repeatDuration);
+        }
+    }
+
+    public static int parsePriority(String priority) throws InvalidPriorityException {
+        if (priority == null) {
+            return 1;
+        }
+
+        try {
+            if (Integer.parseInt(priority) > 3){
+                throw new InvalidPriorityException(priority);
+            }
+            return Integer.parseInt(priority);
+        } catch (NumberFormatException e) {
+            throw new InvalidPriorityException(priority);
         }
     }
 }

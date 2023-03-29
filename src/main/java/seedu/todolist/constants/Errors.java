@@ -13,6 +13,7 @@ public enum Errors {
     INVALID_ID("Invalid task id: "),
     INVALID_DATE("Invalid date: "),
     INVALID_EMAIL("Invalid email address: "),
+    INVALID_PRIORITY("Invalid priority: "),
     INVALID_DURATION("Invalid repeat duration: "),
     INVALID_EDIT("Task edit commands must have a " + Flags.EDIT.getName() + " or "
             + Flags.EDIT_DELETE.getName() + " flag."),

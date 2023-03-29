@@ -1,3 +1,4 @@
+//@@author jeromeongithub
 package seedu.todolist.storage;
 
 import seedu.todolist.exception.FailedLoadException;
@@ -10,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-//@@author jeromeongithub
 /**
  * A class for saving the task list as a text file and loading it.
  */

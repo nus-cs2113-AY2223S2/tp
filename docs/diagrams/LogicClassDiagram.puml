@@ -1,0 +1,24 @@
+@startuml
+!include Style.puml
+hide members
+
+package "\t\t\t\t\t\t\t\tLogic" <<Rectangle>>{
+class Parser COLOR_LOGIC
+class "{abstract}\nCommand" as Command COLOR_LOGIC
+class ABCCommand COLOR_LOGIC
+class ParserUtil COLOR_LOGIC
+}
+class ToDoListManager COLOR_MAIN
+class Ui COLOR_UI
+class TaskList COLOR_TASK_LIST
+
+note top of ABCCommand: AddTaskCommand,\nListTagsCommand,\nEditEmailCommand etc
+
+Parser .> ABCCommand : creates >
+ABCCommand -d-|> Command
+ABCCommand .> ParserUtil
+Command .d.> TaskList
+Command .d.> Ui
+ToDoListManager -d-> Parser
+ToDoListManager .> ABCCommand : executes >
+@enduml

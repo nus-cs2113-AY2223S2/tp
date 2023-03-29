@@ -1,3 +1,4 @@
+//@@author RuiShengGit
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
@@ -10,7 +11,6 @@ import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
 
-//@@author RuiShengGit
 public class EditEmailCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_EMAIL, Flags.EDIT, Flags.EDIT_DELETE};
 
