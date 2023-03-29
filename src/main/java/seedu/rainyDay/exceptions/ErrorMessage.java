@@ -23,8 +23,8 @@ public enum ErrorMessage {
     WRONG_SHORTCUT_FORMAT("Sorry, your shortcut command is invalid. Shortcut format is as follows: \n" +
             "shortcut [SHORTCUTNAME -maps ACTUALCOMMAND] \n" + "The shortcut should also be a single word.\n" +
             "Please refer to 'help' for more information!"),
-    UNSUPPORTED_DATE("Sorry, date before the year 1800 is not supported \n" +
-            "please provide a date on or after the year 1800");
+    UNSUPPORTED_DATE("Sorry, date before the year 1800 and future dates are not supported \n" +
+            "Please provide a date on or after the year 1800");
 
 
     private final String error;

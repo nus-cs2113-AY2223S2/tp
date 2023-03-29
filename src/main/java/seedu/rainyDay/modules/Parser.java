@@ -194,7 +194,7 @@ public class Parser {
                 logger.warning("add command given by user in the wrong format");
                 throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
             }
-            if (this.date.getYear() < 1800) {
+            if (this.date.getYear() < 1800 || this.date.isAfter(LocalDate.now())) {
                 throw new RainyDayException(ErrorMessage.UNSUPPORTED_DATE.toString());
             }
         } else {
