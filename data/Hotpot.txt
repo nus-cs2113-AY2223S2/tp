@@ -1,0 +1,11 @@
+Hotpot
+Chinese
+Ingredient list
+Beef
+Potatoes
+Carrots
+Step list
+chop beef
+add potatoes
+add carrots
+cook 5 minutes

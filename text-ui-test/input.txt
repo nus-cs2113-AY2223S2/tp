@@ -9,12 +9,11 @@ chop beef
 list
 add n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian s/1
 add spaghetti
-end
 add n/Carbonara i/Pasta, Bacon, Egg, Cheese t/Italian s/0
 add n/Beijing Duck i/Duck, Pancakes t/Chinese s/0
-view duck
-view capybara
-view
+find duck
+find capybara
+find
 list
 delete 1
 list
@@ -22,9 +21,8 @@ view 2
 delete 3
 list
 add n/XiaoLongBao i/Pork, Soup, Dumplings t/Chinese s/0
-add n/Guilinggao i/Tea, Milk, Sugar t/Chinese s/0
+add n/Guilinggao i/Tea, Milk, Sugar t/Chinese s/1
 brew tea
-end
 list
 view 1
 clear

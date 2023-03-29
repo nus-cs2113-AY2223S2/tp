@@ -1,0 +1,34 @@
+@startuml Recipe Find
+box Find #White
+Actor User
+participant ":UI" as UI
+participant ":Duke" as Duke
+participant ":Parser" as Parser
+participant ":Command" as Command
+participant ":RecipeList" as RecipeList
+end box
+activate Duke
+Duke -> UI : "readCommand()"
+activate UI
+User -> UI : "Find MaLaXiangGuo"
+UI --> Duke
+deactivate UI
+Duke -> Parser : "parseCommand()"
+activate Parser
+Parser --> Duke
+deactivate Parser
+Duke -> Command : "execute()"
+activate Command
+Command -> RecipeList : "searchRecipeList()"
+activate RecipeList
+RecipeList -> UI : show recipe with index
+activate UI
+UI --> RecipeList
+deactivate UI
+RecipeList --> Command
+deactivate RecipeList
+Command --> Duke
+deactivate Command
+
+
+@enduml

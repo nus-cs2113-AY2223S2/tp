@@ -1,9 +1,13 @@
 package seedu.duke.recipe;
 
-import seedu.duke.exceptions.RecipeListEmptyError;
-import seedu.duke.ui.StringLib;
+import seedu.duke.exceptions.RecipeListEmptyException;
 
 import java.util.ArrayList;
+
+import static seedu.duke.ui.StringLib.MISSING_KEYWORD;
+import static seedu.duke.ui.StringLib.EMPTY_LIST_MESSAGE;
+import static seedu.duke.ui.StringLib.NO_MATCHES;
+import static seedu.duke.ui.StringLib.MATCHING_ITEMS;
 
 public class RecipeList {
     protected static ArrayList<Recipe> recipeList;
@@ -43,9 +47,9 @@ public class RecipeList {
         assert(currRecipeNumber == recipeList.size());
     }
 
-    public static void removeRecipe(int index) throws RecipeListEmptyError {
+    public static void removeRecipe(int index) throws RecipeListEmptyException {
         if (recipeList.isEmpty()) {
-            throw new RecipeListEmptyError();
+            throw new RecipeListEmptyException();
         }
         recipeList.remove(index-1);
         currRecipeNumber--;
@@ -60,11 +64,11 @@ public class RecipeList {
     public static void searchRecipeList(String term) {
         ArrayList<String> matches = new ArrayList<>();
         if (term.equals("")) {
-            System.out.println(StringLib.MISSING_KEYWORD);
+            System.out.println(MISSING_KEYWORD);
             return;
         }
         if (getCurrRecipeNumber() == 0) {
-            System.out.println(StringLib.EMPTY_LIST_MESSAGE);
+            System.out.println(EMPTY_LIST_MESSAGE);
             return;
         }
         for (int i = 1; i <= getCurrRecipeNumber(); i++) {
@@ -74,9 +78,9 @@ public class RecipeList {
             }
         }
         if (matches.isEmpty()) {
-            System.out.println(StringLib.NO_MATCHES);
+            System.out.println(NO_MATCHES);
         } else {
-            System.out.println(StringLib.MATCHING_ITEMS);
+            System.out.println(MATCHING_ITEMS);
             for (String match : matches) {
                 System.out.println("  " + match);
             }
