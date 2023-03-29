@@ -87,7 +87,7 @@ An `ArrayList<IllnessMatch> possibleIllnesses` is then returned to retrieve the 
 
 ### Implementation of MedicineManager class, Medicine class
 
-![img_1.png](MedicineSequenceDiagram.png)
+![img_1.png](diagrams%2FMedicineSequenceDiagram.png)
 *Sequence diagram for medicine class*
 
 #### From the menu to the Medicine Manager
