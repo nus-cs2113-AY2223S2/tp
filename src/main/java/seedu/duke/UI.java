@@ -42,7 +42,9 @@ public class UI {
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
     public UI() {}
-
+    public static void printLine() {
+        System.out.println(LINE);
+    }
     public void printPUListMessage() {
         System.out.println(LIST_PU_MESSAGE);
     }
@@ -235,12 +237,13 @@ public class UI {
         System.out.println(LINE);
     }
 
-    public static void printReminderMessage(Deadline deadline, int counter) {
+    public static void printReminderMessage() {
+        System.out.println("REMINDER! The following task(s) is/are due soon: ");
+    }
+    public static void printReminderDeadline(Deadline deadline, int counter) {
         String deadlineTask = deadline.getTask();
         String deadlineDueDate = deadline.getDueDate();
-        System.out.println("REMINDER! The following task(s) is/are due soon: ");
         System.out.println(counter + ". " + deadlineTask + " [Due by: " + deadlineDueDate + "]");
-        System.out.println(LINE);
     }
 
     public void printInvalidInputMessage() {
@@ -288,6 +291,7 @@ public class UI {
                 + "/budget entertainment [AMOUNT]   : Allows the user to input/edit the total amount of entertainment\n"
                 + "                                   cost for his/her SEP trip\n"
                 + "/budget view                     : Provides an overview of the user's planned budget\n"
+                + "/deadline/list                   : Provides the list of deadlines the user has added\n"
                 + "/deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] : Allows the user to add in his/her own "
                 + "personalized deadlines\n"
                 + "                                    of the key dates for certain SEP requirements\n"

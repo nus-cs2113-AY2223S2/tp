@@ -589,6 +589,7 @@ class UITest {
                 + "/budget entertainment [AMOUNT]   : Allows the user to input/edit the total amount of entertainment\n"
                 + "                                   cost for his/her SEP trip\n"
                 + "/budget view                     : Provides an overview of the user's planned budget\n"
+                + "/deadline/list                   : Provides the list of deadlines the user has added\n"
                 + "/deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] : Allows the user to add in his/her own "
                 + "personalized deadlines\n"
                 + "                                    of the key dates for certain SEP requirements\n"

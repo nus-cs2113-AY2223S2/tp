@@ -243,15 +243,23 @@ public class Storage implements DatabaseInterface {
         String todayDate = formatter.format(date);
         int counter = 1;
         try {
+            boolean hasReminderMsgPrinted = false;
             for (Deadline deadline : deadlines) {
                 Date today = formatter.parse(todayDate);
                 Date deadlineDue = formatter.parse(deadline.getDueDate());
                 long timeDiff = Math.abs(deadlineDue.getTime() - today.getTime());
                 long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
                 if (daysDiff <= 7) {
-                    UI.printReminderMessage(deadline, counter);
+                    if (!hasReminderMsgPrinted) {
+                        UI.printReminderMessage();
+                        hasReminderMsgPrinted = true;
+                    }
+                    UI.printReminderDeadline(deadline, counter);
                     counter++;
                 }
+            }
+            if (hasReminderMsgPrinted) {
+                UI.printLine();
             }
         } catch (Exception e) {
             e.printStackTrace();
