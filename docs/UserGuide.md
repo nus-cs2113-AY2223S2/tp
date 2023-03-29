@@ -1,8 +1,13 @@
-# User Guide
+# GitHub User Guide for MathHelp ➕➖✖️➗
 
-## Introduction
+## Introduction 🧮
 
-{Give a product intro}
+Hello! Welcome to MathHelp! MathHelp is a quick lookup tool for 
+trigonometry graphs and basic matrix operations that aims to help students save
+time when performing Mathematical Operations. 
+
+To help you get started, our team has put together this user guide to guide you on
+the steps to operate MathHelp for your Mathematical woes.
 
 ## Quick Start
 
@@ -13,9 +18,7 @@
 
 ## Features 
 
-
-
-### Graph analyser and visualiser: `Graph. `
+### 1) Graph analyser and visualiser: `Graph. `
 This feature accepts a trigonometry equation (Sinusoidal signal) and outputs the amplitude, frequency, phase, and vertical shift.
 It also displays the image of the corresponding graph.
 
@@ -31,30 +34,35 @@ Example input:
 Graph. 2*sin(5*x+2)-8
 ```
 
-### Store notes:
+### 2) Store notes:
 Adds a new item to the Notes list.
 
 Format: `Store. <item description>`
 Example of usage: `Store. index`
 
-### Display all notes: 
+### 3) Display all notes: 
 Display a list of all notes stored by user.
 
 Format: `List.`
 Example of usage: `List.`
 
-### Display a specific note: 
+### 4) Display a specific note: 
 Display a particular note in the Notes list.
 
 Format: `List. <number>`
 Example of usage: `List. 1`
 
-### Delete a specific note:
+### 5) Delete a specific note:
 Delete a particular note stored in the Notes list
 
 Format: `Delete. <number>`
 Example of usage: `Delete. 1`
 
+### 6) Mark a specific note:
+Delete a particular note stored in the Notes list
+
+Format: `Delete. <number>`
+Example of usage: `Delete. 1`
 
 ## FAQ
 
