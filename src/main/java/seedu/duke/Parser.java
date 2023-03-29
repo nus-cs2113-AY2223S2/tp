@@ -18,13 +18,15 @@ import seedu.duke.command.ListCurrentCommand;
 import seedu.duke.command.ListDeadlinesCommand;
 import seedu.duke.command.ListPuCommand;
 import seedu.duke.command.ListPuModulesCommand;
-import seedu.duke.command.ViewBudgetCommand;
 import seedu.duke.command.ListFoundNusModsCommand;
+import seedu.duke.command.ViewBudgetCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidPuException;
 import seedu.duke.exceptions.InvalidModuleException;
 import seedu.duke.command.ListCurrentPuCommand;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Parser {
@@ -163,7 +165,6 @@ public class Parser {
                 filter = userCommandThirdKeyword.substring(8);
             }
         }
-        // char digitChecker = univAbbNameOrIndex.charAt(0);
         String universityAbbName = "";
         int univIndex = 0;
         boolean isUnivAbbr = false;
@@ -271,8 +272,26 @@ public class Parser {
         if (stringSplit.length != 2) {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
-        String task = stringSplit[0];
-        String dueDate = stringSplit[1];
+        String task = stringSplit[0].trim();
+        String dueDate = stringSplit[1].trim();
+        String[] dueDateFormat = dueDate.split("-");
+        if (dueDateFormat.length != 3) {
+            throw new InvalidCommandException(ui.getCommandInputError());
+        }
+        String dueDateDate = dueDateFormat[0];
+        String dueDateMonth = dueDateFormat[1];
+        String dueDateYear = dueDateFormat[2];
+        if (dueDateDate.length() != 2 ||dueDateMonth.length() != 2 || dueDateYear.length() != 4) {
+            throw new InvalidCommandException(ui.getCommandInputError());
+        }
+        if (stringToInt(dueDateMonth) > 12) {
+            throw new InvalidCommandException(ui.getCommandInputError());
+        }
+        try {
+            LocalDate.of(stringToInt(dueDateYear), stringToInt(dueDateMonth), stringToInt(dueDateDate));
+        } catch (DateTimeException e) {
+            throw new InvalidCommandException(ui.getCommandInputError());
+        }
         Deadline deadlineTypeToAdd = new Deadline(task, dueDate);
         return new AddDeadlineCommand(deadlineTypeToAdd, storage);
     }
@@ -380,7 +399,6 @@ public class Parser {
      * @param stringToConvert String to be converted
      * @return The number in int type
      */
-
     private int stringToInt(String stringToConvert) {
         int intConverted = -1;
         try {
