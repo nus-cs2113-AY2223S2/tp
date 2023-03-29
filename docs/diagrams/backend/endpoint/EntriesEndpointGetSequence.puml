@@ -1,0 +1,40 @@
+@startuml
+!include ../../Style.puml
+
+mainframe sd Endpoint /entries - Handle GET
+participant ":EntriesEndpoint" as EntriesEndpoint
+participant ":EntryLog" as EntryLog
+
+-> EntriesEndpoint : handleGetEntries(Request)
+
+group alt [Get number of entries]
+    EntriesEndpoint -> EntriesEndpoint++ : handleGetSize()
+    EntriesEndpoint -> EntryLog : getSize()
+    EntriesEndpoint <-- EntryLog :
+    return
+else Get entries
+    EntriesEndpoint -> EntriesEndpoint++ : handleGetEntries()
+    group opt [Get recent entries]
+        EntriesEndpoint -> EntryLog : getLatestEntries()
+        EntriesEndpoint <-- EntryLog : EntryLog
+    end
+
+    EntriesEndpoint -> EntriesEndpoint++ : handleGetEntriesFilter()
+    group opt [Filter by category]
+        EntriesEndpoint -> EntryLog : filterByCategory()
+        EntriesEndpoint <-- EntryLog : EntryLog
+    end
+    group opt [Filter by query]
+        EntriesEndpoint -> EntryLog : filterByQuery()
+        EntriesEndpoint <-- EntryLog : EntryLog
+    end
+    group opt [Filter by amount]
+        EntriesEndpoint -> EntryLog : filterByAmount()
+        EntriesEndpoint <-- EntryLog : EntryLog
+    end
+    return
+end
+
+<-- EntriesEndpoint : Response
+
+@enduml

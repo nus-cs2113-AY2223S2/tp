@@ -1,11 +1,13 @@
 @startuml
+!include ../Style.puml
+
 title Simplified HTTP Model Class Diagram
 
 class Request
-enum RequestMethod
-enum RequestParams
+enum RequestMethod <<enumeration>>
+enum RequestParams <<enumeration>>
 class Response
-enum ResponseStatus
+enum ResponseStatus <<enumeration>>
 
 Request *-- "1" RequestMethod
 Request o-- "0..." RequestParams

@@ -10,17 +10,17 @@
     - [Commands](#commands)
       - [Add Command](#add-command)
       - [Delete Command](#delete-command)
-    - [Edit Command](#edit-command)
-      - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
-      - [Implementation](#implementation)
-      - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
-    - [View Command](#view-command)
-      - [Class diagram of view command](#class-diagram-of-view-command)
-      - [Implementation](#implementation-1)
-    - [Help Command](#help-command)
-      - [Implementation](#implementation-2)
-    - [Exit/Bye Command](#exitbye-command)
-      - [Implementation](#implementation-3)
+      - [Edit Command](#edit-command)
+        - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
+        - [Implementation](#implementation)
+        - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
+      - [View Command](#view-command)
+        - [Class diagram of view command](#class-diagram-of-view-command)
+        - [Implementation](#implementation-1)
+      - [Help Command](#help-command)
+        - [Implementation](#implementation-2)
+      - [Exit/Bye Command](#exitbye-command)
+        - [Implementation](#implementation-3)
   - [Backend](#backend)
     - [Storage](#storage)
     - [API](#api)
@@ -104,7 +104,7 @@ Some of its core features include:
 
 Here's a class diagram that shows the core structure of the `Parser` class.
 
-![ParserClassDiagram](static/ParserClassDiagram.png)
+![ParserClassDiagram](static/frontend/parser/ParserClassDiagram.png)
 
 How `Parser` works:
 
@@ -123,7 +123,7 @@ How `Parser` works:
 The Sequence Diagram below illustrates the interactions within the `Parser` component when a user inputs the following
 command: `/add McDonalds -c Food -p 10.50`
 
-![ParserSequenceDiagram](static/ParserSequenceDiagram.png)
+![ParserSequenceDiagram](static/frontend/parser/ParserSequenceDiagram.png)
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -138,8 +138,8 @@ The add entry mechanism is facilitated by `EntryLog`. Every instance of `AddComm
 
 The following sequence diagram shows how the add command work:
 
-![AddCommandSequenceDiagram](./static/AddCommandSequenceDiagram.png)
-![AddCommandSequenceDiagramReference](./static/AddCommandSequenceDiagramReference.png)
+![AddCommandSequenceDiagram](static/frontend/commands/AddCommandSequenceDiagram.png)
+![AddCommandSequenceDiagramReference](static/frontend/commands/AddCommandSequenceDiagramReference.png)
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
@@ -161,7 +161,7 @@ Step 7. A success message is after the new `Entry` is added to the `EntryLog`.
 
 The following activity diagram summarizes what happens when a user executes an add command:
 
-![AddCommandActivityDiagram](./static/AddCommandActivityDiagram.png)
+![AddCommandActivityDiagram](static/frontend/commands/AddCommandActivityDiagram.png)
 
 #### Delete Command
 The 'delete' entry mechanism is facilitated by `EntryLog`.
@@ -170,9 +170,9 @@ Every instance of `DeleteCommand` is created with an Integer, which is the ID of
 
 The following sequence diagram shows how the delete command work:
 
-![DeleteCommandSequenceDiagram](./static/DeleteCommandSequenceDiagram.png)
-![DeleteCommandSequenceDiagramGetResponse](./static/DeleteCommandSequenceDiagramDeleteResponse.png)
-![DeleteCommandSequenceDiagramDeleteResponse](./static/DeleteCommandSequenceDiagramDeleteResponse.png)
+![DeleteCommandSequenceDiagram](static/frontend/commands/DeleteCommandSequenceDiagram.png)
+![DeleteCommandSequenceDiagramGetResponse](static/frontend/commands/DeleteCommandSequenceDiagramDeleteResponse.png)
+![DeleteCommandSequenceDiagramDeleteResponse](static/frontend/commands/DeleteCommandSequenceDiagramDeleteResponse.png)
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
@@ -190,14 +190,14 @@ Step 5. A success message is after the `Entry` is removed from `EntryLog`.
 
 The following activity diagram summarizes what happens when a user executes a delete   command:
 
-![DeleteCommandActivityDiagram](./static/DeleteCommandActivityDiagram.png)
+![DeleteCommandActivityDiagram](static/frontend/commands/DeleteCommandActivityDiagram.png)
 
 <!-- @@author leonghuenweng -->
-### Edit Command
-#### Overall class diagram for editing an Entry
-![EditCommandClassDiagram](./static/EditCommandClassDiagram.png)
+#### Edit Command
+##### Overall class diagram for editing an Entry
+![EditCommandClassDiagram](static/frontend/commands/EditCommandClassDiagram.png)
 
-#### Implementation
+##### Implementation
 
 **Step 1.** User runs Edit command, specifying the ID of the entry to edit, as well as the new attributes of the respective
 fields.
@@ -221,18 +221,18 @@ the Response object to the execute function in the EditCommand object.
 **Step 8.** The printExpenditureEdited method under the UI class is then called in the execute function and an
 acknowledgement message is printed to the user.
 
-#### Overall sequence diagram for editing an Entry
+##### Overall sequence diagram for editing an Entry
 
-![img_1.png](static/EditCommandSequenceDiagram.png)
+![img_1.png](static/frontend/commands/EditCommandSequenceDiagram.png)
 
-### View Command
-#### Class diagram of view command 
+#### View Command
+##### Class diagram of view command 
 ![ViewCommandClassDiagram.png](./static/viewCommandClassDiagram.png)
 Class diagram above shows the methods called in the execute method of the 
 View Command object.
 
-#### Implementation
-![ViewCommandSequenceDiagram.png](./static/ViewCommandSequenceDiagram.png)
+##### Implementation
+![ViewCommandSequenceDiagram.png](static/frontend/commands/ViewCommandOverallSequenceDiagram.png)
 
 **Step 1.** String of user arguments is fed into the parseViewCommand method in Parser object.
 
@@ -250,9 +250,9 @@ View Command object.
 **Step 6.** The entries are then deserialised and fed into the ui printEntriesToBeViewed method, which prints the 
             details of each entry to the user.
 
-### Help Command
+#### Help Command
 
-#### Implementation
+##### Implementation
 
 **Step 1.** The Parser extracts the help command from the user input and calls the parseHelpCommand method.
 
@@ -262,9 +262,9 @@ View Command object.
             available commands is called.
 
 
-### Exit/Bye Command
+#### Exit/Bye Command
 
-#### Implementation
+##### Implementation
 
 **Step 1.** The Parser extracts the bye command from the user input and calls the parseHelpCommand method.
 
@@ -285,10 +285,10 @@ View Command object.
 <!-- @@author jinxuan-owyong -->
 ## Backend
 
-The backend uses a simplified RESTful API approach. This allows us to decouple code using the proven industry practices.
+The backend uses a simplified RESTful API approach. This allows us to decouple code using the proven industry practices. The following diagram illustrates the relationship between various classes involved in `Backend` as described in the [application architecture](#architecture)
 
-![Backend Overview](./static/backend/BackendOverviewClassDiagram.png)
 ![Backend](./static/backend/BackendClassDiagram.png)
+
 
 To find out more, visit the following sections:
 - [Storage](#storage)
@@ -313,11 +313,11 @@ The main callable functions to be used are:
 
 The structure of the Storage class is as follows:
 
-![StorageClassDiagram](./static/StorageClassDiagram.png)
+![StorageClassDiagram](static/backend/storage/StorageClassDiagram.png)
 
 The Sequence Diagram below illustrates the interactions within the `Parser` component upon initialization of PocketPal, as well as whenever data is being saved.
 
-![StorageSequenceDiagram](./static/StorageSequenceDiagram.png) 
+![StorageSequenceDiagram](static/backend/storage/StorageSequenceDiagram.png) 
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -328,7 +328,7 @@ The Sequence Diagram below illustrates the interactions within the `Parser` comp
 ### API
 #### Endpoints
 
-![Endpoints](./static/backend/EndpointClassDiagram.png)
+![Endpoints](static/backend/endpoint/EndpointClassDiagram.png)
 
 The sequence diagram for specific request handling at each endpoint can be viewed at their respective sections.
 
@@ -380,6 +380,7 @@ Entry entry = EntryParser.deserialise(res.getData());
    <summary>Sequence diagram</summary>
 
    <img alt="Entries Endpoint [GET] Sequence Diagram" src="docs/../static/backend/EntriesEndpointGetSequence.png" />
+
 </details>
 
 `GET /entries`
@@ -432,7 +433,8 @@ __Responses__
 <details>
    <summary>Sequence diagram</summary>
 
-   <img alt="Entry Endpoint [POST] Sequence Diagram" src="docs/../static/backend/EntryEndpointGetSequence.png" />
+   <img alt="Entry Endpoint [POST] Sequence Diagram" src="docs/../static/backend/EntryEndpointPostSequence.png" />
+
 </details>
 
 __Body__
@@ -478,6 +480,7 @@ __Responses__
    <summary>Sequence diagram</summary>
 
    <img alt="Entry Endpoint [DELETE] Sequence Diagram" src="docs/../static/backend/EntryEndpointDeleteSequence.png" />
+
 </details>
 
 __Body__
@@ -504,6 +507,7 @@ __Responses__
    <summary>Sequence diagram</summary>
 
    <img alt="Entry Endpoint [PATCH] Sequence Diagram" src="docs/../static/backend/EntryEndpointPatchSequence.png" />
+   
 </details>
 
 __Body__
@@ -664,6 +668,7 @@ Category: Food
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 
@@ -681,6 +686,7 @@ Please specify the description, category and price!
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 
@@ -703,6 +709,8 @@ ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
 
+</details>
+
 
 __Test case 2 (Multiple expenses exist):__
 
@@ -722,6 +730,7 @@ ________________________________________________
 
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 __Test case 3 (View entries in price range)__
@@ -741,6 +750,7 @@ ________________________________________________
 
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 ### Delete expense: /delete
@@ -768,6 +778,7 @@ Category: Food
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 __Test case 2__
@@ -784,6 +795,7 @@ Please enter a valid numerical index!
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 
@@ -811,6 +823,7 @@ Category: Food
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 ### Edit expense: /edit
@@ -835,6 +848,7 @@ Category: Others
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 __Test case 2 (Editing price only)__
@@ -854,6 +868,7 @@ Category: Others
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 ### Show help menu: /help
@@ -894,6 +909,7 @@ Usage: /bye
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 ### Terminate program: /bye
@@ -913,6 +929,7 @@ ________________________________________________
 Bye. See you again :)
 ________________________________________________
 ```
+
 </details>
 
 ---
@@ -931,11 +948,11 @@ delimiter. All of them are in the String format.
 
 An example *storage.txt* file that will be readable by PocketPal is as such:
 
-'''
+```
 Apple Juice,5.50,Food
 Bus Card,50,Transportation
 Paracetamol,10.39,Medical
-'''
+```
 
 which will give us 3 Entries.
 

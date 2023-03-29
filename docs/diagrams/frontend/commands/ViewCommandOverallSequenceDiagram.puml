@@ -1,0 +1,16 @@
+@startuml
+!include ../../Style.puml
+
+autonumber
+
+ref over Parser, ViewCommand : create new ViewCommand
+group Request
+ViewCommand -> Backend : Create and send new request
+end
+group Response
+Backend -> ViewCommand : Create and return response
+end
+ref over ViewCommand: print Entries to user
+
+
+@enduml

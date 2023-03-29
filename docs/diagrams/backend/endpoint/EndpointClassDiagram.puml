@@ -1,0 +1,57 @@
+@startuml
+!include ../../Style.puml
+
+title Endpoint Class Diagram
+
+class Requestable <<interface>>
+class Request
+class Response
+abstract class Endpoint
+class EntryEndpoint
+class EntriesEndpoint
+class EntryLog
+
+Request <.. Endpoint
+Request <.. EntryEndpoint
+Request <.. EntriesEndpoint
+Request <.. Requestable
+
+Requestable <|.. Endpoint
+Endpoint --|> EntryEndpoint
+Endpoint --|> EntriesEndpoint
+EntryLog "1" --o EntryEndpoint
+EntryLog "1" --o EntriesEndpoint
+Endpoint ...> Response
+EntryEndpoint ...> Response
+EntriesEndpoint ...> Response
+Requestable ...> Response
+
+abstract class Endpoint {
++ handleRequest(request : Request) : Response
++ handleDelete(request : Request) : Response
++ handleGet(request : Request) : Response
++ handlePatch(request : Request) : Response
++ handlePost(request : Request) : Response
+}
+
+class EntryEndpoint {
+- {static} logger : Logger
++ handleDelete(request : Request) : Response
++ handleGet(request : Request) : Response
++ handlePatch(request : Request) : Response
++ handlePost(request : Request) : Response
+}
+
+class EntriesEndpoint {
+- {static} logger : Logger
++ handleGet(request : Request) : Response
+- handleGetSize() : Response
+- handleGetEntries(request : Request) : Response
+- handleGetEntriesFilter(request : Request) : EntryLog
+}
+
+class Requestable <<interface>> {
+    handleRequest(request : Request) : Response
+}
+
+@enduml
