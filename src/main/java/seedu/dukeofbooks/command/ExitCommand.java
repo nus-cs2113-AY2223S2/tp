@@ -5,6 +5,7 @@ import seedu.dukeofbooks.data.user.User;
 
 public class ExitCommand extends AccessCommand{
     public static final String COMMAND_WORD = "exit";
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": exits the application";
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting DukeOfBooks as requested ...";
 
     public ExitCommand() {

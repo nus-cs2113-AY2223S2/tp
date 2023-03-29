@@ -1,13 +1,7 @@
 package seedu.dukeofbooks.parser;
 
-import seedu.dukeofbooks.command.AccessCommand;
-import seedu.dukeofbooks.command.IncorrectAccessCommand;
-import seedu.dukeofbooks.command.LoginCommand;
-import seedu.dukeofbooks.command.SignupCommand;
-import seedu.dukeofbooks.command.ExitCommand;
+import seedu.dukeofbooks.command.*;
 import seedu.dukeofbooks.data.user.UserRecords;
-
-import java.nio.file.Path;
 
 
 public class AccessCommandParser implements IParser {
@@ -47,10 +41,14 @@ public class AccessCommandParser implements IParser {
             return parseLoginCommand(args);
         case (SignupCommand.COMMAND_WORD):
             return parseSignupCommand(args);
+        case(PasswordCommand.COMMAND_WORD):
+            return parsePasswordCommand(args);
         case (ExitCommand.COMMAND_WORD):
             return new ExitCommand();
+        case (AccessHelpCommand.COMMAND_WORD):
+            // fallthrough
         default:
-            return new IncorrectAccessCommand("Unknown Command!");
+            return new AccessHelpCommand();
         }
     }
 
@@ -113,7 +111,38 @@ public class AccessCommandParser implements IParser {
         } catch (IndexOutOfBoundsException | AssertionError e) {
             return new IncorrectAccessCommand("Username or password or name is empty!");
         }
+    }
 
-
+    private AccessCommand parsePasswordCommand(String[] args) {
+        assert args[0].equals(PasswordCommand.COMMAND_WORD);
+        int usernameIndex = indexOf(args, "-username");
+        int oldPassIndex = indexOf(args, "-old");
+        int newPassIndex = indexOf(args, "-new");
+        if (usernameIndex == -1 || oldPassIndex == -1 || newPassIndex == -1) {
+            return new IncorrectAccessCommand("Username, old password, new password cannot be found!");
+        }
+        try {
+            StringBuilder usernameBuilder = new StringBuilder();
+            StringBuilder oldPassBuilder = new StringBuilder();
+            StringBuilder newPassBuilder = new StringBuilder();
+            for (int i = 1; i < args.length; ++i) {
+                if (i > usernameIndex && i < oldPassIndex) {
+                    usernameBuilder.append(args[i]).append(" ");
+                } else if (i > oldPassIndex && i < newPassIndex) {
+                    oldPassBuilder.append(args[i]).append(" ");
+                } else if (i > newPassIndex) {
+                    newPassBuilder.append(args[i]).append(" ");
+                }
+            }
+            String username = usernameBuilder.toString().trim();
+            String oldPassword = oldPassBuilder.toString().trim();
+            String newPassword = newPassBuilder.toString().trim();
+            assert !username.isEmpty();
+            assert !oldPassword.isEmpty();
+            assert !newPassword.isEmpty();
+            return new PasswordCommand(userRecords, username,oldPassword, newPassword);
+        } catch (IndexOutOfBoundsException | AssertionError e) {
+            return new IncorrectAccessCommand("Username or password is(are) empty!");
+        }
     }
 }

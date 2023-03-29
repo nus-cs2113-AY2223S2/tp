@@ -99,6 +99,11 @@ public class DukeOfBooks {
     }
 
     private User login(AccessCommand accessCommand) {
+        if (AccessHelpCommand.isHelp(accessCommand)) {
+            ui.showToUser(AccessHelpCommand.getUsage());
+            return null;
+        }
+
         try {
             return accessCommand.execute();
         } catch (IllegalValueException ive) {

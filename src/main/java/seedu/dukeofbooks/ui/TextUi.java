@@ -63,7 +63,7 @@ public class TextUi {
     }
 
     public void showLoginMessage() {
-        showToUser(LOGIN_PROMPT, LoginCommand.COMMAND_USAGE, SignupCommand.COMMAND_USAGE, DIVIDER);
+        showToUser(DIVIDER, LOGIN_PROMPT, DIVIDER);
     }
 
     public void showGreetingMessage(String name) {
