@@ -78,7 +78,8 @@ The `RecipeList` component:
 * allows users to edit the existing recipes
 * allows users to view the entire list of recipes
 * allows users to view the ingredients required for a recipe
-* allows users to tag single or multiple recipes from the recipe list for filtering
+* allows users to add and remove recipes from a tag
+* allows users to random a recipe from all the recipes that users have
 
 ### WeeklyPlan Component
 
@@ -139,31 +140,34 @@ The activity diagram below shows how the `Database` component works at start up:
 * [List Recipes Feature](#list-recipes-feature)
 * [Add Recipes Feature](#add-recipes-feature)
 * [Edit Recipes Feature](#edit-recipes-feature)
+* [Random a Recipe Feature](#random-a-recipe-feature)
 
 ### Categorise/Tag Recipes Feature
 
 The current implementation:
-* add recipes into a tag
-* remove recipes from a tag
+* add single or multiples recipes into a tag
+* remove single or multiples recipes from a tag
 
 It is implemented through the following step:
 1. When the user enters an input with the first word being `tag`, the input is passed to
    the `Parser` component.
-2. In `Parser`, `parseTagRecipe()` is executed to identify whether user want to add recipes 
+2. In `Parser`, `parseTagRecipe()` is executed to identify whether user want to add recipes
    to a tag (`<<`), or remove recipes from a tag(`>>`). Then,
-   * If user want to add recipes to a tag, `parseAddRecipeTag()` will be executed to extract 
-     the all the recipes to be added, separated by `,`. and pass those recipes to `RecipeList` 
-     component.
-   * If user want to remove recipes from a tag, `parseRemoveRecipeTag()` will be executed to 
-     extract the all the recipes to be removed, separated by `,`. and pass those recipes to 
-     `RecipeList` component.
+    * If `isAddTag`, user want to add recipes to a tag, `parseAddRecipeTag()` will be executed to extract
+      the all the recipes to be added, separated by `&&`, and pass those recipes and tag label to `RecipeList`
+      component.
+    * If `isRemoveTag`, user want to remove recipes from a tag, `parseRemoveRecipeTag()` will be executed to
+      extract the all the recipes to be removed, separated by `&&`, and pass those recipes and tag label to
+      `RecipeList` component.
+    * If user enter invalid command, an error message will be thrown.
 3. In `RecipeList`,
-   * If user want to add recipes to a tag, `addRecipeToTag()` is executed to add recipes in 
-     to the tag.
-   * If user want to remove recipes to a tag, `removeRecipeFromTag()` is executed to add recipes 
-     in to the tag.
+    * If user want to add recipes to a tag, `addRecipeToTag()` is executed to add recipes in
+      to the tag.
+    * If user want to remove recipes to a tag, `removeRecipeFromTag()` is executed to remove recipes
+      from the tag.
 
 The sequence diagram below shows how this feature works:
+
 ![](../docs/UML/Implementation/TagFunction/TagFunction.png)
 
 ### List Recipes Feature
@@ -175,13 +179,22 @@ The current implementation:
 It is implemented through the following step:
 1. When the user enters an input with the first word being `list`, the input is passed to
    the `Parser` component.
-2. In `Parser`, `parseListRecipe()` is executed to identify whether user want to filter 
-   by tag (`/t`), otherwise the list is filtered by name and ingredients, and whether 
-   there are many filters (`&`). All the filters is extracted out and passed to `RecipeList`
-   component.
-3. In `RecipeList`, `listRecipes()` is executed to filter all recipes that match the filters,
-   and return the `recipeList`containing all relevant recipes to `ParserRecipe()`.
-
+2. In `Parser`, `parseListRecipe()` is executed to first identify whether user want to filter
+   by tag (`/t`). 
+   * If user filters the recipes by tag (`/t`), `isTag` is set to `true`.
+   * Otherwise, `isTag` is set to `false`.
+   
+   Then, it will extract all the filters separated by `&&`, if any. All the filters are 
+   extracted out and passed to `RecipeList`component.
+3. In `RecipeList`, `listRecipes()` is executed to first identify whether user want to
+   filter by tag.
+   * If `isTag` is true, `listTagRecipes()` is called to filter all recipes that meet
+   all the filters by tag, and return the `recipeList` containing all relevant recipes to `listRecipes()` 
+   and `ParserRecipe()`, respectively.
+   * If user `isTag` is false, it filters all recipes that meet all the filters by name
+   and ingredients, and return `recipeList` containing all relevant recipes to 
+   `ParselistRecipe()`.
+   
 The sequence diagram below shows how this feature works:
 
 ![](../docs/UML/Implementation/ListFunction/ListFunction.png)
@@ -189,16 +202,16 @@ The sequence diagram below shows how this feature works:
 ### Delete Recipes Feature
 
 The current implementation:
-* deletes a single recipe by name or recipe's index in recipe list  
+* deletes a single recipe by name or recipe's index in recipe list
 * deletes a range of recipes
-* deletes all recipes 
+* deletes all recipes
 
 It is implemented through the following step:
 1. When the user enters an input with the first word being `delete`, the input is passed to
    the `Parser` component.
-2. In `Parser`, `parseDeleteRecipe()` is executed to identify whether the user wants to delete all recipes, a single 
+2. In `Parser`, `parseDeleteRecipe()` is executed to identify whether the user wants to delete all recipes, a single
    recipe, or range of recipes.
-4. In `RecipeList`, `deleteRecipe()` is executed to delete the recipe at whatever index is passed as a parameter,
+3. In `RecipeList`, `deleteRecipe()` is executed to delete the recipe at whatever index is passed as a parameter,
    and return the `Recipe` object at that index/the one just deleted.
 
 The sequence diagram below shows how this feature works:
@@ -213,19 +226,19 @@ It is implemented through the following steps:
 1. When the user enters an input with the first word being `add`, the input is passed to the `Parser` component.
 2. In `Parser`, the `parseAddRecipe` is executed to identify whether the recipe is an already existing recipe or
    it's a new recipe that is being added.
-3. After the user enters the ingredients in 1 line, the input is passed to `parseIngredientName` which returns a 
+3. After the user enters the ingredients in 1 line, the input is passed to `parseIngredientName` which returns a
    hashmap<string,integer> with the ingredient name as 'key' and quantity as 'value'.
-4. After the recipe name and ingredients are accepted and processed, the input is sent to `recipeList.addRecipe()` 
+4. After the recipe name and ingredients are accepted and processed, the input is sent to `recipeList.addRecipe()`
    to store the new recipe data.
 
 ### Edit Recipes Feature
 
 The current implementation:
 * There are 3 ways to edit:
-   * Edit all ingredients.
-   * Edit 1 particular ingredient.
-   * Add new ingredient.
-  
+    * Edit all ingredients.
+    * Edit 1 particular ingredient.
+    * Add new ingredient.
+
 It is implemented through the following steps:
 
 1. When the user enters an input with the first word being `edit`, the input is passed to the `Parser` component.
@@ -234,6 +247,21 @@ It is implemented through the following steps:
 4. After the new ingredients are accepted and processed, the input is sent to `recipeList.editRecipe()`
    to update the new recipe data.
 
+### Random a Recipe Feature
+
+The current implementation:
+* randomly pick a recipe and display to the user
+
+It is implemented through the following step:
+1. When the user enters an input with the first word being `random`, the `Parser` 
+   component will be executed.
+2. In `Parser`, `parseRandomRecipe()` is executed and call `randomRecipe()` in 
+   `RecipeList` component.
+3. In `RecipeList`, `randomRecipe()` is executed to random a recipe and return a
+   `recipe` to `parseRandomRecipe()`.
+
+The sequence diagram below shows how this feature works:
+![](../docs/UML/Implementation/RandomFunction/RandomFunction.png)
 ---
 ## Appendix: Requirements
 
