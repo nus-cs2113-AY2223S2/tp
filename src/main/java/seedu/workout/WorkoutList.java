@@ -50,7 +50,7 @@ public class WorkoutList {
 
     public String deleteWorkout(Date date) {
         for (Workout workout : workoutArrayList) {
-            if (workout.getDate() == date) {
+            if (workout.getDate().equals(date)) {
                 workoutArrayList.remove(workout);
                 return "Workout deleted";
             }
@@ -113,9 +113,9 @@ public class WorkoutList {
         WorkoutList workoutsInSpecificWeek = new WorkoutList();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dayInSpecificWeekDate);
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         Date startOfWeekDate = calendar.getTime();
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
         Date endOfWeekDate = calendar.getTime();
         for (Workout workout : workoutArrayList) {
             Date workoutDate = workout.getDate();
