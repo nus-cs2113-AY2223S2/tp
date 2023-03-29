@@ -26,15 +26,15 @@ public class WorkoutListTest {
         calendar2.set(2023, Calendar.JANUARY, 02); // Monday
         workoutList.addWorkout(new Workout(calendar2.getTime()));
 
-        // Get the workouts for the week of January 01, 2023 using any day in the week
+        // Get the workouts for the week of December 26, 2022 using any day in the week
         Calendar calendar3 = Calendar.getInstance();
-        calendar3.set(2023, Calendar.JANUARY, 03); // Tuesday
+        calendar3.set(2022, Calendar.DECEMBER, 28); // Wednesday
         WorkoutList workoutsInSpecificWeek = workoutList.getWorkoutsInSpecificWeek(calendar3.getTime());
 
         // Check that the correct workouts are returned
         assertEquals(2, workoutsInSpecificWeek.getWorkoutArrayList().size());
-        assertEquals(calendar1.getTime(), workoutsInSpecificWeek.getWorkoutArrayList().get(0).getDate());
-        assertEquals(calendar2.getTime(), workoutsInSpecificWeek.getWorkoutArrayList().get(1).getDate());
+        assertEquals(calendar0.getTime(), workoutsInSpecificWeek.getWorkoutArrayList().get(0).getDate());
+        assertEquals(calendar1.getTime(), workoutsInSpecificWeek.getWorkoutArrayList().get(1).getDate());
     }
 
     //@@ guillaume-grn
