@@ -3,6 +3,7 @@ package seedu.pettracker.commands;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
+
 import java.time.LocalDate;
 
 public class AddTaskCommand extends Command {
@@ -24,7 +25,7 @@ public class AddTaskCommand extends Command {
             this.todoDescription = commandArgs;
             this.deadline = null;
         }
-            }
+    }
 
     /**
      * Executes the given command
