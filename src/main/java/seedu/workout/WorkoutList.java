@@ -113,9 +113,9 @@ public class WorkoutList {
         WorkoutList workoutsInSpecificWeek = new WorkoutList();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dayInSpecificWeekDate);
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-        Date startOfWeekDate = calendar.getTime();
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        Date startOfWeekDate = calendar.getTime();
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
         Date endOfWeekDate = calendar.getTime();
         for (Workout workout : workoutArrayList) {
             Date workoutDate = workout.getDate();

@@ -21,6 +21,7 @@ planning future exercises.
   - [Count sets and reps over a week: /count](#count-sets-and-reps-over-a-week--count)
   - [Add calories consumed: /cadd](#add-calories-consumed--cadd)
   - [View calorie consumption: /cview](#view-calorie-consumption--cview)
+  - [List valid commands : /help](#)
   - [Exit the app: /exit](#exit-the-app--exit)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
@@ -56,6 +57,7 @@ Expected output:
 Started new workout.
 Use add command to add exercises to your workout!
 ```
+
 ### Add exercises to current workout: `/wadd`
 Adds exercise to the current workout.
 
@@ -65,9 +67,9 @@ Format: `/wadd <exercise_name> /weight <weight_used> /rps <reps_per_set>`
 
 Example of usage:
 
-`/add bench press /weight 100 /rps 5 5 5 5`
+`/wadd bench press /weight 100 /rps 5 5 5 5`
 
-`/add leg press /weight 160 /rps 5 5 5 5`
+`/wadd leg press /weight 160 /rps 5 5 5 5`
 
 Expected output:
 ```
@@ -176,6 +178,31 @@ Expected output:
 ```
 Calories consumed on 25/03/23: 200kcal.
 ```
+### List valid commands: `/help`
+List out all possible commands the user can input.
+
+Format: `/help`
+
+Example of usage:
+
+`/help`
+
+Expected output:
+```
+Here are the list of commands that you can use:
+=======================================
+- [Start a Workout: /start])
+- [Add exercise: /wadd]
+- [Add calories: /cadd]
+- [End current workout: /end]
+- [Display workout list: /list]
+- [Display a workout on a specific date : /wview]
+- [Display calories consumed on a specific date : /cview]
+- [Display the amount of reps and set on a specific exercise /count]
+- [Delete a workout: /delete]
+- [Exit app: /exit]
+=======================================
+```
 ### Exit the App: `/exit`
 Exit the program.
 
@@ -194,10 +221,11 @@ Thank you, hope you had a great workout!!!
 
 **Q**: Does the app save my workouts when I exit it?
 
-**A**: As of v1.0, the app does not save your data. However, you can look forward to this feature in the next update!
+**A**: As of v2.0, the app does not save your data. However, you can look forward to this feature in the next update!
 
 ## Command Summary
 
+* The list of Commands `/help`
 * Start a workout `/start <DD/MM/YY>`
 * Add exercise `/wadd <EXERCISE_NAME> /weight <WEIGHT_USED> /rps <REPS_PER_SET>`
 * End current Workout `/end`
