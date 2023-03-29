@@ -88,6 +88,22 @@ are not null, which makes use of `MonthFilter` to filter out expenses in that sp
 category sorted in descending order before printing out the final overview in the intended format.
 
 
+### 'Total' feature
+This mechanism is facilitated by `CommandTotal`.
+
+`CommandTotal` implements the following operations:
+- `CommandTotal#calculateTotal()` -- Iterates through the given expense list and calculates the total expenses from its amount and currency exchange rate.
+- `CommandTotal#getTotal()` -- Returns the total in 2 decimal places.
+
+
+Displayed below is a part of the class diagram for `CommandTotal`.
+![](diagrams/TotalFeature.png)
+Give below is an example usage of the feature.
+
+Step 1. The user executes `total`. Duke calls on `CommandTotal#execute()` to calculate the total expenses, which in turn calls
+`expenseList#getExpenseList()` to retrieve the expense list.
+
+Step 2. The expense list is iterated through and `total` is obtained by summing the product of each expenseAmount and rate.
 
 
 ## Product scope

@@ -1,6 +1,7 @@
 package data;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
 public class Time implements Serializable, Comparable<Time> {
@@ -14,6 +15,24 @@ public class Time implements Serializable, Comparable<Time> {
     public LocalDate getTime() {
         return this.date;
     }
+
+    public static Integer getCurrentMonth() {
+        return LocalDate.now().getMonthValue();
+    }
+
+    public static Integer getCurrentYear() {
+        return LocalDate.now().getYear();
+    }
+
+    public static boolean isFutureYear(String year) {
+        return Integer.parseInt(year) > getCurrentYear();
+    }
+
+    public static boolean isFutureMonth(String year, String month) {
+        return  isFutureYear(year) | Integer.parseInt(year) == getCurrentYear()
+                && Month.valueOf(month.toUpperCase()).getValue() > getCurrentMonth();
+    }
+
 
     @Override
     public String toString() {
