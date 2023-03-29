@@ -12,8 +12,6 @@ public class ViewWorkoutCommand extends Command {
     Date workoutToViewDate;
 
     public ViewWorkoutCommand(Date workoutToViewDate) {
-
-
         this.workoutToViewDate = workoutToViewDate;
     }
 
@@ -22,7 +20,7 @@ public class ViewWorkoutCommand extends Command {
         for (Workout workout : workoutList.workoutArrayList) {
             DateFormat dateFormat = new DateFormat(workoutToViewDate);
             String formattedDate = dateFormat.formatDate();
-            if (workout.getStringDate().equals(workoutToViewDate)) {
+            if (workout.getStringDate().equals(formattedDate)) {
                 System.out.println(workout.getExercises());
                 Ui.showSeparator();
                 return;
