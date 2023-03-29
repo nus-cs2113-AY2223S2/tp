@@ -217,8 +217,8 @@ public class Parser {
             return new DeleteCommand(index);
         } catch (Exception e) {
             logger.warning("delete index provided incorrectly");
-            return new InvalidCommand(ErrorMessage.WRONG_DELETE_INDEX.toString()
-                    .replace("%s", RainyDay.userData.getFinancialReport().getStatementCount() + "!"));
+            return new InvalidCommand(String.format(ErrorMessage.WRONG_DELETE_INDEX.toString(),
+                    RainyDay.userData.getFinancialReport().getStatementCount() + "!"));
         }
     }
 
