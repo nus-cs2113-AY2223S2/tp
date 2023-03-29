@@ -7,7 +7,7 @@ trigonometry graphs and basic matrix operations that aims to help students save
 time when performing Mathematical Operations. 
 
 To help you get started, our team has put together this user guide to guide you on
-the steps to operate MathHelp for your Mathematical woes.
+the steps to operate BadMaths for your Mathematical woes.
 
 ## Quick Start
 
