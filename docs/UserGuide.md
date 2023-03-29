@@ -3,7 +3,6 @@
 * Table of Contents
 
 {:toc}
-
 ## Introduction
 
 {Give a product intro}
