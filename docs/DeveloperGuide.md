@@ -69,6 +69,15 @@ Types of pre-defined messages:
 3. Error messages that trigger when a user's input is incorrect and provides an explanation to the
    user. (`ErrorMessages` class)
 
+The class diagram as shown in Figure *1.3* illustrates the structure of the different classes in Ui.
+
+<div align="center">
+<img src="UML/Images/Ui.png"/>
+<p>
+Figure 1.3
+</p>
+</div>
+
 ### Storage Component
 
 API: [```StorageHandler.java```](https://github.com/AY2223S2-CS2113-W13-2/tp/blob/master/src/main/java/seedu/duke/storage/StorageHandler.java)
@@ -83,11 +92,11 @@ Key Aspects:
 * Handles the creation of user data file when previous one is missing or corrupted
 * Handles the loading of user data and plans upon start of the program
 
-The class diagram as shown in *Figure 1.3* illustrates the structure of the different classes in Storage.
+The class diagram as shown in *Figure 1.4* illustrates the structure of the different classes in Storage.
 <div align="center">
-<img src="UML/Images/StorageHandlerClass.png"/>
+<img src="UML/Images/Storage.png"/>
 <p>
-Figure 1.3
+Figure 1.4
 </p>
 </div>
 
@@ -97,7 +106,7 @@ resumption of the program.
 <div align="center">
 <img src="UML/Images/LoadingUserCareerData.png"/>
 <p>
-Figure 1.4
+Figure 1.5
 </p>
 </div>
 
@@ -114,7 +123,7 @@ It controls where the user input is being processed.
 <div align="center">
 <img src="UML/Images/CommandHandler.png"/>
 <p>
-Figure 1.5
+Figure 1.6
 </p>
 </div>
 
@@ -128,7 +137,7 @@ ending, cancelling workouts.
 <div align="center">
 <img src="UML/Images/CommandHandler.png"/>
 <p>
-Figure 1.6
+Figure 1.7
 </p>
 </div>
 
@@ -142,7 +151,7 @@ All error messages are stored in the ErrorMessage enumeration for easy access ac
 <img src="UML/Images/ErrorMessagesEnum.png"/>
 <div align="center">
 <p>
-Figure 1.7
+Figure 1.8
 </p>
 </div>
 

@@ -22,6 +22,8 @@ public enum ErrorMessages {
     ERROR_ONGOING_EXERCISE_HISTORY_COMMAND("Finish your exercise!" +
             "You can look and feel good about your previous workout sessions " +
             "later!"),
+    ERROR_ONGOING_EXERCISE_DATA_COMMAND("Finish your workout session!" +
+            "You can look at your completed exercises afterwards!"),
     ERROR_ONGOING_EXERCISE_START_COMMAND("Exercise already in progress! Unable to start another exercise!"),
     ERROR_FILTER_INPUT("Unknown filter input!"),
     ERROR_EMPTY_KEYWORD("Please key in a keyword for Fitness Duke to search!"),

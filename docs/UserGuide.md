@@ -1,4 +1,3 @@
-
 # User Guide
 
 ## Introduction
@@ -24,7 +23,7 @@ FitnessDuke is a **Command Line Application for tracking and managing workouts, 
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
-## Getting Started
+## Getting Started   
 
 1. Ensure you have Java 11 or later installed in your PC.
 2. Download the latest version of ```duke.jar``` from our GitHub releases
@@ -52,13 +51,13 @@ Format: ```help```
 
 ### Exiting the program: ```exit```
 
-Gracefully exits the program and prints bye message
+Gracefully exits the program and prints bye message.
 
 Format: ```exit```
 
 ### Getting a list of specific workouts: ```generate [arguments] [number]```
 
-Shows a list containing *number* of random workouts that suits the arguments filter
+Shows a list containing *number* of random workouts that suits the arguments filter.
 
 *Possible arguments are*:
 
@@ -88,11 +87,12 @@ Position a bar in a rack at upper body height., Standing, take a shoulder width 
 ________________________________________
 ```
 
-### Getting the filters to generate workout ```filters```
+### Getting the filters to generate workout: ```filters```
 
-Shows a list of filters available and their description
+Shows a list of filters available and their description.
 
 The filters are shown here:
+
 
 | Filter   | Description                                   |
 |----------|-----------------------------------------------|
@@ -104,9 +104,9 @@ The filters are shown here:
 | [upper]  | exercises that train your upper body          |
 | [core]   | exercises that train your core                |
 | [legs]   | exercises that train your legs                |
-_____________________________________________________________
 
-### Searching for a workout ```find [keyword]```
+
+### Searching for a workout: ```find [keyword]```
 
 Finds existing exercises whose names contain the input keyword.
 
@@ -129,13 +129,13 @@ Here are the exercises matching your keyword:
 3.legs-SMR
 ________________________________________
 ```
-### Viewing plans ```plans```
+### Viewing plans: ```plans```
 
 Displays all workout plans which have been created by the user.
 
 Format: ```plans```
 
-### Seeing your workout history ```history```
+### Seeing your workout history: ```history```
 
 Displays your entire career history in using Fitness Duke.
 Each history will give you details on the sessions you completed with the date and time as well
@@ -143,14 +143,14 @@ as the exercises that you completed.
 
 Format: ```history```
 
-### Seeing your workout summary ```data```
+### Seeing your workout summary: ```data```
 
 Displays the list of exercises which you have completed, along with the individual frequencies of
 completion of each exercise.
 
 Format: ```data```
 
-### Generating a list of planned exercises ```quick [plan_name] [x]```
+### Generating a list of planned exercises: ```quick [plan_name] [x]```
 
 Generates a list of exercises planned by the user.
 
@@ -202,9 +202,9 @@ ________________________________________
 
 ## *Starting a workout session*
 
-### Getting into a workout ```start```
+### Getting into a workout: ```start```
 
-Enters a workout session
+Enters a workout session.
 
 **Note that you will not be able to access any other features until you complete your exercise
 
@@ -216,12 +216,13 @@ Click [here](UG_features/workout_session.md) to learn more about using our worko
 
 ## *Configuring plans*
 
-### Getting into the fitness planner ```planner```
+### Getting into the fitness planner: ```planner```
 
-Enters another interface where you can configure your workout plans and save them for the week
+Enters another interface where you can configure your workout plans and save them for the week.
 
 Format: ```planner```
 
+### Within your fitness planner
 Click [here](UG_features/planner.md) to learn more about using our planner feature.
 
 ### Saving the data
@@ -255,7 +256,4 @@ FitnessDuke data are saved as a JSON file [JAR file location]/resources/data.jso
 | **data**     | ```data```                                                               |
 | **start**    | ```start```                                                              |
 | **quick**    | ```quick [plan_name] [x]``` <br> eg. ```quick home_leg_day 3```          |
-_____________________________________________________________
-
-
 
