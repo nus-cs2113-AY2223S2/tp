@@ -1,0 +1,55 @@
+@startuml
+!include Style.puml
+
+actor User
+
+box Manager COLOR_MAIN_LIGHT
+participant ":ToDoListManager" as ToDoListManager COLOR_MAIN
+end box
+
+box Logic COLOR_LOGIC_LIGHT
+participant ":Parser" as Parser COLOR_LOGIC
+participant ":ProgressBarCommand" as ProgressBarCommand COLOR_LOGIC
+end box
+
+box TaskList COLOR_TASK_LIST_LIGHT
+participant ":TaskList" as TaskList COLOR_TASK_LIST
+end box
+
+box Ui COLOR_UI_LIGHT
+participant ":Ui" as Ui COLOR_UI
+end box
+
+User -> ToDoListManager: input("progress")
+activate ToDoListManager
+ToDoListManager -> Parser : parseCommand("progress")
+activate Parser
+create ProgressBarCommand
+Parser -> ProgressBarCommand
+activate ProgressBarCommand
+ProgressBarCommand --> Parser
+deactivate ProgressBarCommand
+Parser --> ToDoListManager : command
+deactivate Parser
+ToDoListManager -> ProgressBarCommand : execute(taskList, ui)
+activate ProgressBarCommand
+
+ProgressBarCommand -> TaskList: countTasksWithFilter(inThisWeek)
+activate TaskList
+TaskList --> ProgressBarCommand : tasksThisWeek
+ProgressBarCommand -> TaskList: countTasksWithFilter(inThisWeek.and(Task.isDonePredicate()))
+TaskList --> ProgressBarCommand : completedTasksThisWeek
+ProgressBarCommand -> TaskList: toString(inThisWeek)
+TaskList --> ProgressBarCommand
+deactivate TaskList
+
+ProgressBarCommand -> Ui : printProgressBar(completedTasksThisWeek, tasksThisWeek, PROGRESS_BAR_SECTIONS, taskList.toString(inThisWeek))
+activate Ui
+Ui --> ProgressBarCommand
+deactivate Ui
+
+ProgressBarCommand --> ToDoListManager : result
+deactivate ProgressBarCommand
+destroy ProgressBarCommand
+ToDoListManager --> User : Notify user of progress of tasks due this week
+@enduml

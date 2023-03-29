@@ -114,6 +114,7 @@ public class Ui {
             return;
         }
 
+        assert tasksThisWeek != 0;
         double progress = (double) completedTasksThisWeek / tasksThisWeek;
         int completedSections = (int) (progress * totalSections);
         int incompleteSections = totalSections - completedSections;
