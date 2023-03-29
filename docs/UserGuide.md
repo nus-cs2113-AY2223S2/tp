@@ -7,13 +7,21 @@ to assist them with memorisation by using a technique called
 
 ## Quick start
 
-- Ensure you have Java 11 or above installed.
-- Other steps TBD
+1. Ensure you have Java 11 or above installed.
+2. Download the latest version of Clanki from [here](https://github.com/AY2223S2-CS2113-T15-4/tp/releases/tag/v1.0).
+3. Copy the file to the folder you want to use as the home folder for Clanki.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clanki.jar`
+   command to run the application.
+   You should be greeted with `Welcome to Clanki! Time to start studying!` after a few seconds.
+5. Type the command in the command box and press Enter to execute it.
+   Some example commands you can try:
+    - `add /q What is the worst fruit? /a Durian`: Add a flashcard with Question: What is the worst fruit?
+      and Answer: Durian to the list of flashcards.
+    - `review`: Go through the flashcards that are due today.
+    - `bye`: Exit the app.
+6. Refer to the Features below for details of each command.
 
 ## Features
-
-> Formatting of output is still TBD, but command syntax probably
-> won't change much.
 
 > Square brackets indicate optional sections of the symtax.
 
@@ -93,7 +101,7 @@ You have finished reviewing for today. Congratulations.
 update /q QUERY
 ```
 
-- `QUERY` can be part of the card's question or answer.
+- `QUERY` can be the card's date or be part of the card's question or answer.
 
 - A list of cards that contain this query will be listed, with an
   index assigned to each.
@@ -110,15 +118,19 @@ update /q QUERY
 ```
 > update fruit
 Found 2 cards with the query "fruit":
-[1] Q: What is the worst fruit?
-    A: Durian
-[2] Q: What is the Japanese word for "fruit"?
-    A: 果物
-Which one do you want to update? 1 /q What is the best fruit?
+[1]
+Q: What is the worst fruit?
+A: Durian
+D: 2023-02-29
+[2]
+Q: What is the Japanese word for "fruit"?
+A: 果物
+D: 2023-02-29
+Which flashcard do you want to update? 1 /q What is the best fruit?
 Understood. The card has been updated to
-    Q: What is the best fruit?
-    A: Durian
-    D: 29 February 2023
+Q: What is the best fruit?
+A: Durian
+D: 2023-02-29
 ```
 
 ### Delete flashcards
@@ -147,3 +159,11 @@ Found 2 cards with the query "fruit":
 Which one do you want to delete? 2
 Understood. The card has been deleted.
 ```
+
+### Exit program
+
+```
+bye
+```
+
+Exits the program.
