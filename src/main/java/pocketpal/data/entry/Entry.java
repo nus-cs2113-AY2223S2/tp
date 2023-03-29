@@ -3,6 +3,7 @@ package pocketpal.data.entry;
 import pocketpal.data.parsing.EntryParser;
 import pocketpal.communication.Serialisable;
 import pocketpal.frontend.constants.EntryConstants;
+import pocketpal.backend.constants.MiscellaneousConstants;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -73,7 +74,11 @@ public class Entry implements Serialisable {
     }
 
     public String getDateTimeString() {
-        return dateTime.format(DateTimeFormatter.ofPattern("d MMM uuuu; HH:mm"));
+        return dateTime.format(
+            DateTimeFormatter.ofPattern(
+                MiscellaneousConstants.DATETIME_PATTERN
+            )
+        );
     }
 
     public LocalDateTime getDateTime() {

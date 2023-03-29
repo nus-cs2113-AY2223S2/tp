@@ -13,6 +13,7 @@ import java.util.List;
 import java.time.LocalDateTime;
 
 import pocketpal.backend.constants.Config;
+import pocketpal.backend.constants.MiscellaneousConstants;
 import pocketpal.data.entry.Category;
 import pocketpal.data.entry.Entry;
 import pocketpal.frontend.util.CategoryUtil;
@@ -62,6 +63,7 @@ public class Storage {
      */
     private Entry readEntryLine(String line) throws InvalidReadFileException {
         try {
+            assert !line.isEmpty() : "Line to be read cannot be empty";
             String[] lineArray = line.split(this.delimiter);
             String description = lineArray[0];
             String amountString = lineArray[1];
@@ -77,19 +79,31 @@ public class Storage {
             return new Entry(description, amount, category, dateTime);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidReadFileException(
-                    String.format("Error reading data from line: %s", line)
+                String.format("%s%s",
+                    MiscellaneousConstants.GENERAL_STORAGE_ERROR_MESSAGE,
+                    line
+                )
             );
         } catch (NumberFormatException e) {
             throw new InvalidReadFileException(
-                    String.format("Amount is not valid for line: %s", line)
+                String.format("%s%s", 
+                    MiscellaneousConstants.INVALID_AMOUNT_ERROR_MESSAGE,
+                    line
+                )
             );
         } catch (InvalidCategoryException e) {
             throw new InvalidReadFileException(
-                    String.format("Category is not valid for line: %s", line)
+                String.format("%s%s",
+                    MiscellaneousConstants.INVALID_CATEGORY_ERROR_MESSAGE,
+                    line
+                )
             );
         } catch (InvalidDateException e) {
             throw new InvalidReadFileException(
-                    String.format("Date is not valid for line: %s", line)
+                String.format("%s%s", 
+                    MiscellaneousConstants.INVALID_DATE_ERROR_MESSAGE,
+                    line
+                )
             );
         }
     }
