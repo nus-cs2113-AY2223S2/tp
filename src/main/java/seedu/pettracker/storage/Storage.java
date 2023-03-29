@@ -61,6 +61,16 @@ public class Storage {
         }
     }
 
+    public void loadTaskFile(Ui ui)  {
+        try {
+            ArrayList<String> data = readFile(taskFilePath);
+            parseTaskFile(data);
+        } catch (IOException e) {
+            ui.fileIOErrorMessage();
+        }
+    }
+
+
     private void writePetsToFile(ArrayList<Pet> petList) throws IOException {
         FileWriter fw = new FileWriter(petFilePath);
         for (Pet pet : petList) {
