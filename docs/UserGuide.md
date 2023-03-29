@@ -15,7 +15,11 @@ Meal Companion is designed by computing students, for computing students, especi
       - [List Ingredients](#list-ingredients)
       - [Search Ingredients](#search-ingredients)
       - [Clear Ingredients](#clear-ingredients)
-   2. [Recipes](#recipes)
+   2. [Allergens](#allergens)
+       - [Add Allergens](#add-allergens)
+       - [Remove Allergens](#remove-allergens)
+       - [List Allergens](#list-allergens)
+   4. [Recipes](#recipes)
        - [Default Recipes](#default-recipes)
        - [All Recipes](#all-recipes)
        - [Recipe Details](#recipe-details)
@@ -23,10 +27,10 @@ Meal Companion is designed by computing students, for computing students, especi
        - [Random Recipe](#random-recipe)
        - [Check Ingredients for Recipe](#check-ingredients-for-recipe)
        - [Almost Completed Recipe](#almost-completed-recipe)
-   3. [Saving Data](#saving-data)
+   5. [Saving Data](#saving-data)
        - [Transferring Saved Data to other devices](#transferring-saved-data-to-other-devices) 
-   5. [Help](#help)
-   6. [Command List](#command-list)
+   6. [Help](#help)
+   7. [Command List](#command-list)
 3. [Conclusion](#conclusion)
 
 # Using this Guide
@@ -37,7 +41,7 @@ This guide will introduce you to the basics of using Meal Companion and its curr
 
 Within the `markdown text` you may see segments of text wrapped in `<chevrons>`. These chevrons indicate that this field in the command is a placeholder, to be replaced with your input. For example, a command `add <ingredient>` means you should enter the command `add apples`. 
 
-#### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)
 
 # Getting Started
 
@@ -60,7 +64,7 @@ Click on `mealcompanion.jar` to automatically download the file. Place the file 
 
 Meal Companion uses a Command Line Interface (CLI), as the current version is just a proof of concept. We have plans to further develop Meal Companion to include a Graphical User Interface (GUI), or even to a mobile application platform. However as we have not yet reached that stage in our development, the CLI will suffice as the input method to operate Meal Companion. We apologize for any inconvenience caused.
 
-#### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)
 
 # Features
 This section will focus on some of the key features of Meal Companion and explain their usage.
@@ -106,7 +110,36 @@ To remove all ingredients from Meal Companion's storage, use the `clear` command
 ![clear.png](images/clear.png)  
 <sub>Fig 8: Sample of Ingredients Clear command with user input highlighted.</sub>
  
-#### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)
+
+## Allergens
+Meal Companion recognizes that you may have certain dietary restrictions. As such, we have provided a feature that allows you to track your allergens and block Meal Companion from showing you recipes that contain said allergens. We will go into more detail on the Allergens function below.
+
+Once your allergies are added to Meal Companion, you may refer to the section on [Possible Recipes](#possible-recipes) to see how this will affect the recipes available to you.
+
+Due to certain design constraints, do note that your allergens are not saved within Meal Companion, so you will have to re-enter them each time you launch Meal Companion. We have plans to improve this feature in future iterations. We apologize for any inconvenience caused.
+
+### Add Allergens
+You may inform Meal Companion of any allergens you have by using the command `allergen add <ingredient>`. For example, if you have an allergy to eggs, you may use the command `allergen add egg`.
+
+![allergenadd.png](images/allergenadd.png)  
+<sub>Fig 9: Sample of Allergen Add command with user input highlighted.</sub>
+
+### Remove Allergens
+If you have erroneously entered an allergen, you may simply instruct Meal Companion to remove it from its list using the command `allergen remove <ingredient>`. For example, if you mistakenly entered an allergy to water, you may use the command `allergen remove water`.
+
+![allergenremove.png](images/allergenremove.png)  
+<sub>Fig 10: Sample of Allergen Remove command with user input highlighted.</sub>
+
+### List Allergens
+If you wish to see the entire list of ingredients you are allergic to, you may simply use the command `allergen list`.
+
+![allergenlist.png](images/allergenlist.png)  
+<sub>Fig 11: Sample of Allergen List command with user input highlighted.</sub>
+
+If you wish to take a look at how the allergens you have added will affect the recipes available to you, please see the section on [Possible Recipes](#possible-recipes).
+
+##### [Back to table of contents](#table-of-contents)
  
 ## Recipes
 This segment will go into detail about the recipe features that Meal Companion contains, and the usage of these features.
@@ -125,7 +158,7 @@ This segment will go into detail about the recipe features that Meal Companion c
 To display all stored recipes including default recipes, you may use the command `recipe all` to list them.
 
 ![recipeall1.png](images/recipeall1.png)  
-<sub>Fig 9: Sample of Recipe All command with user input highlighted.</sub>
+<sub>Fig 12: Sample of Recipe All command with user input highlighted.</sub>
 
 ### Recipe Details
 To go into details about a certain recipe, use the command `recipe <index_number>`, using the `<index_number>` from the generated list. 
@@ -133,53 +166,58 @@ To go into details about a certain recipe, use the command `recipe <index_number
 For example, to view the recipe for Hainanese Chicken Rice, use the command `recipe 6`. The recipe displayed will also include the calorie count, to aid in your calorie tracking if necessary.
 
 ![recipedetails2.png](images/recipedetails2.png)  
-<sub>Fig 10: Sample of Recipe Details command showing the output of</sub> `recipe 6` <sub>, the recipe for Hainanese Chicken Rice, with user input highlighted.</sub>
+<sub>Fig 13: Sample of Recipe Details command showing the output of</sub> `recipe 6` <sub>, the recipe for Hainanese Chicken Rice, with user input highlighted.</sub>
 
 ### Possible Recipes
 Meal Companion includes the functionality to suggest recipes based on ingredient availability. Simply use the command `recipe possible`, and Meal Companion will list out the recipes that can be made with the ingredients you currently have.
 
 ![recipepossible1.png](images/recipepossible1.png)  
-<sub>Fig 11: Sample of Recipe Possible command showing the list of ingredients and the recipes that can be made with those ingredients, with user input highlighted.</sub>
+<sub>Fig 14: Sample of Recipe Possible command showing the list of ingredients and the recipes that can be made with those ingredients, with user input highlighted.</sub>
+
+If you have entered an allergen that one of the recipes contains, you will not be shown this recipe. Please refer to the [Allergens](#allergens) section for more information. Below is an example of the allergen function in use.
+
+![recipepossibleallergen.png](images/recipepossibleallergen.png)  
+<sub>Fig 15: Sample of Recipe Possible command after adding an allergy to ground beef, which is an ingredient in Recipe 1 (Beef Burger), showing that the recipe containing the allergen is no longer shown to the user. User input is highlighted.</sub>
 
 ### Random Recipe
 Should you ever feel bored of cooking the same recipe over and over, Meal Companion provides you with the capability to choose a recipe at random. To make use of this feature, you may simply use the command `recipe random` to generate a random recipe.
 
 ![reciperandom.png](images/reciperandom.png)  
-<sub>Fig 12: Sample of Recipe Random command being run twice to generate two different outputs, with user input highlighted.</sub>
+<sub>Fig 16: Sample of Recipe Random command being run twice to generate two different outputs, with user input highlighted.</sub>
 
 ### Check Ingredients for Recipe
 If you wish to check if your current list of ingredients is sufficient to cook any recipe, you may use the command `recipe need <index_number>`. Ingredients that you are missing will be listed along with the quantity required. 
 
 ![recipeneed.png](images/recipeneed.png)  
-<sub>Fig 13: Sample of Recipe Need command showing missing ingredients required make Recipe 2 (Cup of Water), with user input highlighted.</sub>
+<sub>Fig 17: Sample of Recipe Need command showing missing ingredients required make Recipe 2 (Cup of Water), with user input highlighted.</sub>
 
 ### Almost Completed Recipe
 If you would like to find out which recipes you are almost able to make with the ingredients you have on hand, you may run the command `recipe almost`. This will give you a list of recipes that are lacking at most 3 ingredients.
 
 ![recipealmost.png](images/recipealmost.png)  
-<sub>Fig 14: Sample of Recipe Almost command with 3 ingredients missing for Recipe 1 (Beef Burger) and 1 ingredient missing for Recipe 2 (Cup of Water), with user input highlighted.</sub>
+<sub>Fig 18: Sample of Recipe Almost command with 3 ingredients missing for Recipe 1 (Beef Burger) and 1 ingredient missing for Recipe 2 (Cup of Water), with user input highlighted.</sub>
 
 
-#### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)
 
 ## Saving Data
 Meal Companion automatically saves the ingredients you add to a text file named `ingredients.txt`. This text file can be accessed from the same folder where you downloaded the original `mealcompanion.jar` file. 
 
 ![save1.png](images/save1.png)  
-<sub>Fig 11: Location of saved file containing all user-entered ingredients, within the same folder that</sub> `mealcompanion.jar` <sub>is stored.</sub>
+<sub>Fig 19: Location of saved file containing all user-entered ingredients, within the same folder that</sub> `mealcompanion.jar` <sub>is stored.</sub>
 
 ### Transferring Saved Data to Other Devices
 If you would like to access your saved ingredients list on a new instance of Meal Companion on a different device, it is as simple as copying and pasting the `ingredients.txt` text file to the new device. As long as it is saved in the same folder, Meal Companion will be able to detect it and utilize the existing data. 
 
-#### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)
 
 ## Help
 If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use.
 
 ![help1.png](images/help1.png)  
-<sub>Fig 12: Sample of Help command with listed output of in-built commands.</sub>
+<sub>Fig 20: Sample of Help command with listed output of in-built commands.</sub>
 
-#### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)
 
 ## Command List
 Please see the below table for the list of available commands.
@@ -191,13 +229,20 @@ Please see the below table for the list of available commands.
 | List all stored ingredients | `ingredients list` | `ingredients list` |
 | Search for a valid ingredient | `ingredients search <keyword>` | `ingredients search salt` |
 | Return all valid ingredients | `ingredients search` | `ingredients search` |
+| Clear all stored ingredients | `clear` | `clear` |
+| Add allergen | `allergen add <ingredient>` | `allergen add egg` |
+| Remove allergen | `allergen remove <ingredient>` | `allergen remove water` |
+| List allergen | `allergen list` | `allergen list` |
 | List all stored recipes | `recipe all` | `recipe all` |
 | List details of a specific recipe | `recipe <index of recipe>` | `recipe 6` (recipe for Hainanese Chicken Rice) |
 | List recipes that can be made with current list of stored ingredients | `recipe possible` | `recipe possible` |
+| Randomly choose a recipe from the stored list | `recipe random` | `recipe random` |
+| Check if current list of ingredients is sufficient to cook a recipe | `recipe need <index_number>` | `recipe need 1` (recipe for Beef Burger) |
+| See which recipe is lacking the fewest ingredients to complete | `recipe almost` | `recipe almost` |
 
-#### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)
 
 # Conclusion
 Congratulations! You have reached the end of this user guide, which means you are ready to make full use of Meal Companion! Of course, you may refer to this guide at any time, and if you have any further questions, feel free to reach out to the Meal Companion team at any of our contact links at the top of the page! Have a good time, and we hope you enjoy using Meal Companion!
 
-#### [Back to top](#user-guide)
+##### [Back to top](#user-guide)
