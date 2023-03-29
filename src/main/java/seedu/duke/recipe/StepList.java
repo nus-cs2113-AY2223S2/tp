@@ -50,6 +50,10 @@ public class StepList {
         }
     }
     public void showStepList() {
+        if (currStepNumber == 0) {
+            System.out.println("This recipe has no steps!");
+            return;
+        }
         System.out.println("There are " + currStepNumber + " steps in the list");
         System.out.println("Do you want to view step-by-step? \nType yes if so");
 
