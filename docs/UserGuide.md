@@ -142,7 +142,7 @@ Meal Companion includes the functionality to suggest recipes based on ingredient
 Meal Companion allows you to get a random recipe as suggestion for your next meal using the command `recipe random`.
 
 ### Check Ingredients for Recipe
-To check if you have sufficient ingredients to make a recipe, you can run the command `recipe need <recipe_name>`. Ingredients that you are missing will be listed along with the quantity needed.
+To check if you have sufficient ingredients to make a recipe, you can run the command `recipe need <index_number>`. Ingredients that you are missing will be listed along with the quantity needed.
 
 ### Almost Completed Recipe
 To check for recipes that you almost can make, you can run the command `recipe almost`. Such recipes have at most 3 lacking ingredients.
