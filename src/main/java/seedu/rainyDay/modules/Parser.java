@@ -313,7 +313,7 @@ public class Parser {
     }
 
     private ArrayList<String> parseFilterMultipleFlags(String input) {
-        Pattern pattern = Pattern.compile("(?:(-in|-out)\\s+)?\\s*" +
+        Pattern pattern = Pattern.compile("(?:(-in|-out)\\s*)?\\s*" +
                 "(?:(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
                 "(?:(-c)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
                 "(?:(-date)\\s+(\\d{2}/\\d{2}/\\d{4})\\s*)?\\s*$");
