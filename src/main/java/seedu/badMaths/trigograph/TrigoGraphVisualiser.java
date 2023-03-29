@@ -84,7 +84,7 @@ public class TrigoGraphVisualiser extends JPanel {
     public void createXAxis(Graphics g, double xScale, double yScale) {
         g.setColor(Color.BLACK);
         g.drawLine((int) (xMin * xScale), 0, (int) (xMax * xScale), 0);
-        g.drawString("Freq",(int)((xMax*xScale)-xMax*4),0);
+        g.drawString("time",(int)((xMax*xScale)-xMax*4),0);
     }
 
     public void drawSinCurve(Graphics g, double xScale, double yScale) {
