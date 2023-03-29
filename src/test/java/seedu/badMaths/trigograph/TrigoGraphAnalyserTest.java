@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+
 class TrigoGraphAnalyserTest {
     @Test
     void negativeAmplitudeShouldReturnIllegalArgumentException(){
@@ -30,4 +33,15 @@ class TrigoGraphAnalyserTest {
             test.findFreq("-*x",true);
         });
     }
+
+    @Test
+    void freqWithNoPhasorsExpectNoException() {
+        String freq = "5*x";
+        TrigoGraphAnalyser analyser = new TrigoGraphAnalyser(freq);
+        assertDoesNotThrow(()->{
+            analyser.findFreqForNoPhasors(freq);
+        });
+    }
+
+
 }
