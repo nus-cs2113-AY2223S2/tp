@@ -146,7 +146,7 @@ public class UI {
         if (e instanceof OutOfIndexException) {
             System.out.println(e.getMessage());
         } else {
-            System.out.println(RECIPE_VIEWING_DEFAULT_ERROR + e.getMessage());
+            System.out.println(StringLib.RECIPE_VIEWING_DEFAULT_ERROR + e.getMessage());
         }
 
     }
