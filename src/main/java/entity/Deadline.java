@@ -23,4 +23,8 @@ public class Deadline {
     public String toString() {
         return this.description + " by: " + this.dueDate;
     }
+
+    public String savableString() {
+        return this.description + "~|~" + this.dueDate;
+    }
 }

@@ -1,0 +1,18 @@
+@startuml
+!include ClassDiagramStyle.puml
+
+class DinerDirector DINERDIRECTOR_COLOR {
+    - ui:TextUi
+    - storage:Storage
+    -runCommandLoopUntilExit(): void
+}
+
+class Parser PARSER_COLOR {
+    +parseCommand(userInput:String): Command
+    -prepareXYZCommand(userInputNoCommand:String): Command
+}
+
+DinerDirector --> Parser: initiate >
+
+
+@enduml

@@ -4,13 +4,16 @@ import entity.Deadline;
 import exceptions.DinerDirectorException;
 import ui.TextUi;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import common.Messages;
+import utils.DeadlineStorage;
 
 public class DeadlineManager {
     //Solution below adapted from https://github.com/Stella1585/ip/blob/master/src/main/java/duke/TaskList.java
-    public static ArrayList<Deadline> deadlines = new ArrayList<>();
+    private static ArrayList<Deadline> deadlines = new ArrayList<>();
+
     /**
      * Creates DeadlineList with input list.
      *
@@ -35,10 +38,16 @@ public class DeadlineManager {
                 deadlines.get(deadlines.size() - 1).toString() +
                 String.format(Messages.MESSAGE_NUMBER_OF_DEADLINES, deadlines.size()));
         assert deadlines.size() == len + 1 : "Length of deadline list should increase by 1";
+        try {
+            DeadlineStorage deadlineStorage = new DeadlineStorage();
+            deadlineStorage.writeToDeadlineFile(deadlines);
+        } catch (IOException e) {
+            ui.printMessage(String.format(Messages.ERROR_STORAGE_INVALID_WRITE_LINE, deadline));
+        }
     }
 
     /**
-     * Print the task list.
+     * Print the deadline list.
      *
      * @param ui manages user output.
      */
@@ -57,7 +66,7 @@ public class DeadlineManager {
     }
 
     /**
-     * Deletes a task from the task list.
+     * Deletes a deadline from the deadline list.
      *
      * @param index index of deadline to be deleted.
      * @param ui    manages user output.
@@ -73,5 +82,37 @@ public class DeadlineManager {
             return;
         }
         assert deadlines.size() == len - 1 : "Length of deadline list should decrease by 1.";
+        try {
+            DeadlineStorage deadlineStorage = new DeadlineStorage();
+            deadlineStorage.writeToDeadlineFile(deadlines);
+        } catch (IOException e) {
+            ui.printMessage(Messages.ERROR_STORAGE_DELETE_FAILED);
+        }
+    }
+
+    /**
+     * Prints a list of deadline that matches the keyword.
+     *
+     * @param keyword the keyword to search for.
+     * @param ui manages user output.
+     */
+    public static void findDeadline(String keyword, TextUi ui) {
+        ArrayList<Deadline> matchingDeadlines = new ArrayList<>();
+        for (Deadline x : deadlines) {
+            if (x.description.contains(keyword)){
+                matchingDeadlines.add(x);
+            }
+        }
+        try {
+            if (matchingDeadlines.isEmpty()) {
+                throw new DinerDirectorException(Messages.MESSAGE_DEADLINE_EMPTY_SEARCH_LIST);
+            }
+            System.out.println(Messages.MESSAGE_DEADLINE_VIEW_SEARCH_LIST);
+            for (int i = 1; i <= matchingDeadlines.size(); i++) {
+                ui.printMessage(i + ". " + matchingDeadlines.get(i - 1).toString());
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e);
+        }
     }
 }
