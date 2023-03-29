@@ -53,7 +53,7 @@ loop filterFlagAndField.size()
         alt isFirstFlag
             FilterCommand -> FilterCommand : filterByCategoryFirstFlag()
             activate FilterCommand
-            FilterCommand -> UserData :getStatementCount()
+            FilterCommand -> UserData : getStatementCount()
             activate UserData
             UserData --> FilterCommand :statementCount : int
             deactivate UserData
@@ -63,9 +63,9 @@ loop filterFlagAndField.size()
                 activate UserData
                 UserData -> FinancialStatement : getCategory()
                 activate FinancialStatement
-                FinancialStatement --> UserData : :String
+                FinancialStatement --> UserData : : String
                 deactivate FinancialStatement
-                UserData --> FilterCommand : :FinancialStatement
+                UserData --> FilterCommand : : FinancialStatement
                 deactivate UserData
 
                 FilterCommand -> FilterCommand : filterFlagAndField.get()
@@ -74,7 +74,7 @@ loop filterFlagAndField.size()
                 deactivate FilterCommand
 
                 opt financialStatement contains category
-                    FilterCommand -> FilterCommand : add(financialStatement :FinancialStatement)
+                    FilterCommand -> FilterCommand : add(financialStatement : FinancialStatement)
                     FilterCommand -> FilterCommand : add(statementIndex : int)
                 end
                 deactivate FilterCommand

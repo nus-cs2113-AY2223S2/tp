@@ -12,10 +12,10 @@ activate UserData
 
 UserData -> FinancialReport : getFinancialStatement
 activate FinancialReport
-FinancialReport --> UserData: :FinancialStatement
+FinancialReport --> UserData: : FinancialStatement
 deactivate FinancialReport
 
-UserData --> EditCommand : :FinancialStatement
+UserData --> EditCommand : : FinancialStatement
 deactivate UserData
 
 EditCommand -> UserData : removeFromMonthlyExpenditure(editedStatement : FinancialStatement)
