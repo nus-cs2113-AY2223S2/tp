@@ -11,7 +11,14 @@ public class AddTaskCommand extends Command {
 
     public AddTaskCommand(String commandArgs) {
         super();
-        this.todoDescription = commandArgs;
+        String[] parsed = parseArgs(commandArgs);
+        if (parsed.length > 1) {
+            this.todoDescription = parsed[0];
+            this.time = parsed[1];
+        } else {
+            this.todoDescription = parsed[0];
+            this.time = "";
+        }
     }
 
     /**
@@ -21,7 +28,7 @@ public class AddTaskCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) {
-        TaskList.addTask(todoDescription);
+        TaskList.addTask(todoDescription, time);
         TaskList.saveTasksToStorage(storage, ui);
         ui.addTodoCommandMessage();
     }
