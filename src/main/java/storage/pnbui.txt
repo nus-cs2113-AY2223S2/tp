@@ -1,0 +1,4 @@
+pnbui,abcd1234
+20/12/2022 | phone
+
+SGD124.00 cat:phone date:20/12/2022
