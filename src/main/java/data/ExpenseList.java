@@ -9,9 +9,8 @@ import java.util.ArrayList;
 
 public class ExpenseList implements Serializable {
 
-    protected Parser parser = new Parser();
     public static ArrayList<Expense> expenseList = new ArrayList<>();
-
+    protected Parser parser = new Parser();
     public ExpenseList() {
 
     }

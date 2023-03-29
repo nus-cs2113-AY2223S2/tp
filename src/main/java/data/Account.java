@@ -11,14 +11,15 @@ import java.util.regex.Pattern;
 
 public class Account {
     public static int accountNumber = 1;
-    //private static final String ACCOUNTS_FILE = accountName + ".txt";
-    private static final int MIN_PASSWORD_LENGTH = 8;
-    private static final Pattern USERNAME_PATTERN = Pattern.compile("[a-zA-Z0-9]+");
+    //protected static String ACCOUNTS_FILE = accountName + ".txt";
     protected static String accountName;
     protected static ArrayList<Expense> account;
-    protected int accountSize;
-    private static String passwordHash;
     protected static ExpenseList expenseList;
+    protected int accountSize;
+    private static final int MIN_PASSWORD_LENGTH = 8;
+    private static final Pattern USERNAME_PATTERN = Pattern.compile("[a-zA-Z0-9]+");
+    private static String passwordHash;
+
 
     public Account(String accountName, String password) {
         this.account = new ArrayList<>();

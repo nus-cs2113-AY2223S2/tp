@@ -5,10 +5,6 @@ import command.CommandCategory;
 import command.CommandDelete;
 import command.CommandList;
 import command.CommandSort;
-
-import command.CommandCategory;
-import data.Account;
-
 import command.CommandTotal;
 import command.overview.CommandOverview;
 import command.CommandFind;
@@ -25,7 +21,7 @@ import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.NAME_QUESTION;
 import static data.Account.logout;
 import static data.ExpenseList.showToUser;
-import static parser.ParserPassword.*;
+import static parser.ParserPassword.initialize;
 
 
 
