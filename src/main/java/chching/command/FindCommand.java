@@ -9,6 +9,7 @@ import chching.record.IncomeList;
 import chching.record.Expense;
 import chching.record.ExpenseList;
 import chching.record.TargetStorage;
+import chching.ChChingException;
 
 /**
  * model a class to handle the find command. inherit from Command class.
@@ -34,29 +35,34 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
-                              Converter converter, TargetStorage targetStorage) {
-
+                              Converter converter, TargetStorage targetStorage) throws ChChingException {
         IncomeList incomesMatched = new IncomeList();
         ExpenseList expensesMatched = new ExpenseList();
+        if(category == null) {
+            throw new ChChingException("No category specified");
+        } else if(keyword == null) {
+            throw new ChChingException("No keyword specified");
+        } else if(!category.equals("income") && !category.equals("expense")) {
+            throw new ChChingException("Category specified must be income or expense");
+        }
 
-        if (category == "income") {
+        if (category.equals("income")) {
             for (int i = 0; i < incomes.size(); i++) {
                 Income income = incomes.get(i);
                 if (income.toString().contains(keyword)) {
-                    incomesMatched.addRecord(income);
+                    incomesMatched.addIncome(income);
                 }
             }
-            ui.showMatchedRecord(incomesMatched);
+            ui.showMatchedIncome(incomesMatched);
 
         } else {
             for (int i = 0; i < expenses.size(); i++) {
                 Expense expense = expenses.get(i);
                 if (expense.toString().contains(keyword)) {
-                    expensesMatched.addRecord(expense);
+                    expensesMatched.addExpense(expense);
                 }
             }
-            ui.showMatchedRecord(expensesMatched);
+            ui.showMatchedExpense(expensesMatched);
         }
     }
-
 }
