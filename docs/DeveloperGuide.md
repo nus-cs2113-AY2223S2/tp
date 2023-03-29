@@ -88,6 +88,22 @@ are not null, which makes use of `MonthFilter` to filter out expenses in that sp
 category sorted in descending order before printing out the final overview in the intended format.
 
 
+### 'Total' feature
+This mechanism is facilitated by `CommandTotal`.
+
+`CommandTotal` implements the following operations:
+- `CommandTotal#calculateTotal()` -- Iterates through the given expense list and calculates the total expenses from its amount and currency exchange rate.
+- `CommandTotal#getTotal()` -- Returns the total in 2 decimal places.
+
+
+Displayed below is a part of the class diagram for `CommandTotal`.
+![](diagrams/TotalFeature.png)
+Give below is an example usage of the feature.
+
+Step 1. The user executes `total`. Duke calls on `CommandTotal#execute()` to calculate the total expenses, which in turn calls
+`expenseList#getExpenseList()` to retrieve the expense list.
+
+Step 2. The expense list is iterated through and `total` is obtained by summing the product of each expenseAmount and rate.
 
 
 ## Product scope
@@ -104,18 +120,19 @@ category sorted in descending order before printing out the final overview in th
 
 ## User Stories
 
-| Version | As a ... | I want to ...                                        | So that I can ...                                                                        |
-|---------|----------|------------------------------------------------------|------------------------------------------------------------------------------------------|
-| v1.0    | new user | add a new entry for my expenses                      | -                                                                                        |
-| v1.0    | user     | delete specific expenses                             | -                                                                                        |
-| v1.0    | user     | add expenses with dates                              | track how much I spend each day                                                          |
-| v1.0    | user     | add expenses of different categories                 | keep track of what I spend on                                                            |
-| v1.0    | user     | see all my past expenses                             | plan my budget accordingly                                                               |
-| v2.0    | user     | save all expenses added                              | -                                                                                        |
-| v2.0    | user     | add expenses with specified currencies               | know the exact amount I spent in different currencies                                    |
-| v2.0    | user     | sort my expenses by category/date                    | better keep track of my expenses through either date or category                         |
-| v2.0    | user     | see an overview of my expenses in a particular month | understand what categories I like to spend on and better plan my spending in the future. |
-| v2.0    | user     | -                                                    | -                                                                                        |
+| Version | As a ...          | I want to ...                                               | So that I can ...                                                                        |
+|---------|-------------------|-------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| v1.0    | new user          | add a new entry for my expenses                             | -                                                                                        |
+| v1.0    | user              | delete specific expenses                                    | -                                                                                        |
+| v1.0    | user              | add expenses with dates                                     | track how much I spend each day                                                          |
+| v1.0    | user              | add expenses of different categories                        | keep track of what I spend on                                                            |
+| v1.0    | user              | see all my past expenses                                    | plan my budget accordingly                                                               |
+| v2.0    | user              | save all expenses added                                     | -                                                                                        |
+| v2.0    | user              | add expenses with specified currencies                      | know the exact amount I spent in different currencies                                    |
+| v2.0    | user              | sort my expenses by category/date                           | better keep track of my expenses through either date or category                         |
+| v2.0    | user in Singapore | see my total spending in SGD                                | -                                                                                        |
+| v2.0    | user              | see an overview of my expenses in a particular month        | understand what categories I like to spend on and better plan my spending in the future. |
+| v2.0    | user in Singapore | see an overview of my expenses in a particular month in SGD | understand what categories I like to spend on and better plan my spending in the future. |                                                                                        |
 
 
 ## Non-Functional Requirements
