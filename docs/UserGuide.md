@@ -35,6 +35,7 @@ Graph. 2*sin(5*x+2)-8
 ```
 
 ### 2) Store notes:
+
 Adds a new item to the Notes list.
 
 Format: `Store. <item description>`
