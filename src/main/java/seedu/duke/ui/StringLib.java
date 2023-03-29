@@ -123,7 +123,7 @@ public interface StringLib {
     String STEP_VIEW_QUIT_KEYWORD = "quit";
     String RECIPE_NO_STEPS = "This recipe has no steps!";
     String STEPBYSTEP_PROMPT = "Do you want to view step-by-step?\nType yes if so";
-    String STEPBYSTEP_EARLY_TERMINATION_PROMPT = "If you would like to exit the recipe view, type \"quit\"\nOtherwise, enter any key to continue to the next step";
+    String STEPBYSTEP_EARLY_TERMINATION_PROMPT = "To exit the recipe view, type \"quit\"\nElse, enter any key to continue";
     String ENTER_INGREDIENT_DESCRIPTION = "Enter the description of the ingredient:";
     String INGREDIENT_EDIT_SUCCESS = "Ingredient has been edited:";
     String NO_INGREDIENTS_ERROR = "There are no ingredients to edit!";
