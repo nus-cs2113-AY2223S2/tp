@@ -1,0 +1,56 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+-> ":Parser": "parseUserCommand(userInput, universities, modules, allModules, storage, budgetPlanner, deadlines)"
+activate ":Parser"
+
+":Parser" -> "ui:UI": UI()
+activate "ui:UI"
+
+
+":Parser" -> "userInputWords: ArrayList<String>": "parseCommand(userInput)"
+activate "userInputWords: ArrayList<String>"
+":Parser" <-- "userInputWords: ArrayList<String>"
+deactivate "userInputWords: ArrayList<String>"
+
+alt list
+    ":Parser" -> ":Parser": prepareListCommands(userInputWords, universities, modules)
+    activate ":Parser"
+    return handleListCommands(userInputWords, userCommandSecondKeyword, universities, modules)
+    ":Parser" -> ":Parser": handleListCommands(userInputWords, userCommandSecondKeyword, universities, modules)
+    activate ":Parser"
+    alt pu
+        ":Parser" -> "ListPuCommand:Command" : ListPuCommand()
+        activate "ListPuCommand:Command"
+        "ListPuCommand:Command" -->
+    else current
+        ":Parser" -> ":Parser":prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules)
+        activate ":Parser"
+        return handleListCurrentPuModulesCommand(universities, universityAbbName, univIndex, modules)
+        ":Parser" -> ":Parser": handleListCurrentPuModulesCommand(universities, universityAbbName, univIndex, modules)
+        activate ":Parser"
+        ":Parser" -> "ListCurrentPuCommand:Command" : ListCurrentPuCommand(modules, univID)
+        activate "ListCurrentPuCommand:Command"
+        "ListCurrentPuCommand:Command" -->
+    else
+        ":Parser" -> ":Parser":prepareListPuModulesCommand(userCommandSecondKeyword, universities)
+        activate ":Parser"
+        return handleListPuModulesCommand(universities, universityAbbName, univIndex, isUnivAbbr)
+        ":Parser" -> ":Parser":handleListPuModulesCommand(universities, universityAbbName, univIndex, isUnivAbbr)
+        activate ":Parser"
+        ":Parser" -> "ListPuModulesCommand:Command":ListPuModulesCommand(univID, universityName)
+        activate "ListPuModulesCommand:Command"
+        "ListPuModulesCommand:Command" -->
+
+    end
+else search
+else exit
+else add
+else remove
+else /help
+else /budget
+else /deadline/list
+else /deadline/add
+else /deadline/remove
+end
+@enduml

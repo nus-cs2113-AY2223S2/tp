@@ -110,6 +110,8 @@ DeleteModuleCommand(storage, indexToRemove, modules), and HelpCommand(). The par
 throwing InvalidCommandException if the user's input command does not match the specified format.
 
 The following class diagrams illustrates the relationship between the Parser class and the Command classes.
+- (TODO: finish up the rest of the command cases)
+![ParserSequenceDiagram.png](diagrams%2FParserSequenceDiagram.png)
 
 ### Help Command
 
