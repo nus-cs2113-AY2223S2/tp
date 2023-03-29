@@ -22,7 +22,8 @@ public class Module {
 
     @Override
     public String toString() {
-        return univId + "," + moduleCode + "," + moduleName + "," + moduleMCs + "," + nusModuleCode + "," + nusModuleName + "," + nusModuleMCs;
+        return univId + "," + moduleCode + "," + moduleName + "," + moduleMCs + "," + nusModuleCode + ","
+                + nusModuleName + "," + nusModuleMCs;
     }
 
     public int getUnivId() {

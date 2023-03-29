@@ -16,6 +16,7 @@ public class ListFoundNusModsCommand extends Command {
         this.nusModCode = nusModCode;
         this.universities = universities;
     }
+
     @Override
     public void execute() {
         ui.printFoundNusModules(foundNusModList, nusModCode, universities);

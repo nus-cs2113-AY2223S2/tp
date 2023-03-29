@@ -32,7 +32,7 @@ public class Duke {
         while (isContinue) {
             userInput = in.nextLine();
             Command command = parser.parseUserCommand(userInput, universities, modules, allModules, storage,
-                                                        budgetPlanner, deadlines);
+                    budgetPlanner, deadlines);
             command.execute();
             isContinue = !command.getIsExit();
         }
