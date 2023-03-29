@@ -103,7 +103,12 @@ Format: `add_deadline n/<name> t/<time>`
 
 Example: 
 ```
-add_deadline n/need to buy more potatoes t/Saturday, 2PM
+>>view_deadline
+1. fix water pipes by: 10 Apr
+>>add_deadline n/need to buy more potatoes t/9 Apr 2PM
+>>view_deadline
+1. fix water pipes by: 10 Apr
+2. need to buy more potatoes deal by: 9 Apr 2PM
 ```
 
 #### View all deadlines:
@@ -116,12 +121,31 @@ Note: The price of dishes will be shown in dollars.
 
 #### Delete a deadline:
 
-Format: `delete_deadline n/<name>`
+Format: `delete_deadline i/<index>`
 
+
+Example:
+```
+>>view_deadline
+1. fix water pipes by: 10 Apr
+2. need to buy more potatoes deal by: 9 Apr 2PM
+>>delete_deadline 2
+>>view_deadline
+1. fix water pipes by: 10 Apr
+```
+#### Find a deadline:
+
+Format: `find_deadline <keyword>`
 
 Example: 
 ```
-delete_deadline n/need to buy more potatoes
+>>view_deadline
+1. fix water pipes by: 10 Apr
+2. need to buy more potatoes deal by: 9 Apr 2PM
+3. fix fridge by: 15 Apr
+>>find_deadline fridge
+1. fix water pipes by: 10 Apr
+2. fix fridge by: 15 Apr
 ```
 
 ### Dish
@@ -248,7 +272,7 @@ The data stored in those files are in plaintext format and the user can copy out
 **A**: Clone the project from GitHub and run it through Intellij.
 
 
-## Command Summary
+
 
 | Action          | Command                       |
 |-----------------|-------------------------------|
@@ -261,6 +285,9 @@ The data stored in those files are in plaintext format and the user can copy out
 | view_dish       | `view_dish`                    |
 | delete_dish     | `delete_dish <index_number>`    |
 | find_dish       | `find_dish <keyword>`           |
-
+| add_deadline     | add_deadline n/<name> t/<time> |
+| view_deadline    | view_deadline                  |
+| delete_deadline  | delete_deadline i/<index>      |
+| find_deadline    | find_deadline <keyword>        |
 
 

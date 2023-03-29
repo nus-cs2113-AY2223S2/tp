@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+DinerDirector -> Parser: parseCommand(String userInput)
+activate Parser
+
+Parser -> Parser: prepareViewDeadlineCommand(String userInputNoCommand)
+activate Parser
+Parser --> Parser
+deactivate Parser
+
+Parser --> DinerDirector
+deactivate Parser
+
+DinerDirector -> ViewDeadlineCommand: execute(TextUi ui)
+activate ViewDeadlineCommand
+
+ViewDeadlineCommand -> DeadlineManager: printDeadlines(TextUi ui)
+
+DeadlineManager -> TextUi: printMessage(String list)
+
+@enduml
