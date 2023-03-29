@@ -158,14 +158,45 @@ public class CardParserTest {
 
     @Test
     public void parse_card_tag() throws InkaException {
+        cardList.addCard(Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000"));
         Command cmd = parser.parseCommand("card tag -c 00000000-0000-0000-0000-000000000000 -t tagName");
         assert cmd instanceof AddCardToTagCommand;
+        cmd.execute(cardList, tagList, deckList, ui, storage);
+        assert tagList.findTagFromName("tagName") != null;
     }
 
     @Test
     public void parse_card_tagLongFlag() throws InkaException {
-        Command cmd = parser.parseCommand("card tag --card 00000000-0000-0000-0000-000000000000 --tag tagName");
+        cardList.addCard(Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000"));
+        Command cmd = parser.parseCommand("card tag -c 00000000-0000-0000-0000-000000000000 --tag tagName");
         assert cmd instanceof AddCardToTagCommand;
+        cmd.execute(cardList, tagList, deckList, ui, storage);
+        assert tagList.findTagFromName("tagName") != null;
+    }
+
+    @Test
+    public void parse_card_tagWhitespaceName() throws InkaException {
+        cardList.addCard(Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000"));
+        Command cmd = parser.parseCommand("card tag -c 00000000-0000-0000-0000-000000000000 -t tag name");
+        assert cmd instanceof AddCardToTagCommand;
+        cmd.execute(cardList, tagList,deckList, ui, storage);
+        assert tagList.findTagFromName("tag-name") != null;
+    }
+
+    //endregion
+
+    //region `card view` tests
+
+    @Test
+    public void parse_card_view() throws InkaException {
+        Command cmd = parser.parseCommand("card view -c 00000000-0000-0000-0000-000000000000 ");
+        assert cmd instanceof ViewCardCommand;
+    }
+
+    @Test
+    public void parse_card_viewLongFlag() throws InkaException {
+        Command cmd = parser.parseCommand("card view --card 00000000-0000-0000-0000-000000000000");
+        assert cmd instanceof ViewCardCommand;
     }
 
     @Test
@@ -184,22 +215,6 @@ public class CardParserTest {
             assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand(testInput),
                     "Should be invalid syntax");
         }
-    }
-
-    //endregion
-
-    //region `card view` tests
-
-    @Test
-    public void parse_card_view() throws InkaException {
-        Command cmd = parser.parseCommand("card view -c 00000000-0000-0000-0000-000000000000 ");
-        assert cmd instanceof ViewCardCommand;
-    }
-
-    @Test
-    public void parse_card_viewLongFlag() throws InkaException {
-        Command cmd = parser.parseCommand("card view --card 00000000-0000-0000-0000-000000000000");
-        assert cmd instanceof ViewCardCommand;
     }
 
     //endregion

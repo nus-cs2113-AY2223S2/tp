@@ -2,8 +2,10 @@ package utils.parser;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.UUID;
 import model.Card;
 import model.CardList;
+import model.CardUUID;
 import model.DeckList;
 import model.Tag;
 import model.TagList;
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import utils.UserInterface;
 import utils.command.Command;
 import utils.command.DeleteTagCommand;
+import utils.command.EditTagNameCommand;
 import utils.command.ListCardsUnderTagCommand;
 import utils.command.ListTagsCommand;
 import utils.exceptions.InkaException;
@@ -66,7 +69,7 @@ public class TagParserTest {
 
         Command cmd = parser.parseCommand("tag delete -t tagName");
         assert cmd instanceof DeleteTagCommand;
-        cmd.execute(cardList, tagList, deckList,ui, storage);
+        cmd.execute(cardList, tagList, deckList, ui, storage);
         assert tagList.isEmpty();
     }
 
@@ -74,7 +77,27 @@ public class TagParserTest {
     public void parse_tag_deleteUnknownTag() throws InkaException {
         Command cmd = parser.parseCommand("tag delete -t tagName");
         assert cmd instanceof DeleteTagCommand;
-        assertThrows(TagNotFoundException.class, () -> cmd.execute(cardList, tagList, deckList,ui, storage),
+        assertThrows(TagNotFoundException.class, () -> cmd.execute(cardList, tagList, deckList, ui, storage),
+                "Should not delete non-existent tag");
+    }
+
+    @Test
+    public void parse_tag_edit() throws InkaException {
+        CardUUID cardUUID = new CardUUID(UUID.fromString("00000000-0000-0000-0000-000000000000"));
+        tagList.addTag(new Tag("oldTag", cardUUID));
+
+        Command cmd = parser.parseCommand("tag edit -o oldTag -n newTag");
+        assert cmd instanceof EditTagNameCommand;
+        cmd.execute(cardList, tagList, deckList, ui, storage);
+        assert tagList.findTagFromName("oldTag") == null;
+        assert tagList.findTagFromName("newTag") != null;
+    }
+
+    @Test
+    public void parse_tag_editUnknownTag() throws InkaException {
+        Command cmd = parser.parseCommand("tag edit -o oldTag -n newTag");
+        assert cmd instanceof EditTagNameCommand;
+        assertThrows(TagNotFoundException.class, () -> cmd.execute(cardList, tagList, deckList, ui, storage),
                 "Should not delete non-existent tag");
     }
 }
