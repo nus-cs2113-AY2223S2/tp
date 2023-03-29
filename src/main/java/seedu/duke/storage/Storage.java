@@ -146,6 +146,8 @@ public class Storage {
             while (reader.hasNextLine()) {
                 String ingredient = reader.nextLine();
                 if (ingredient.equals(INGREDIENT_LIST)) {
+                } else if (ingredient.equals(STEP_LIST)) {
+                    break;
                 } else {
                     ingredientList.add(new Ingredient(ingredient));
                 }
