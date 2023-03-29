@@ -62,293 +62,98 @@ Graph. 2*sin(5*x+2)-8
  ```
  Matrix. [1,2;3,4] .* [4,5;6,7]
  ```
-
-### 3) Store notes:
-
+### 3) Store Notes:
 Adds a new item to the Notes list.
 
 Format: `Store. <item description>`
 Example of usage: `Store. index`
 
-### 4) Display all notes: 
-Display a list of all notes stored by user.
+### 4) Display all Notes: 
+Display a list of all items stored by user.
 
 Format: `List.`
 Example of usage: `List.`
 
 ### 5) Display a specific note: 
-Display a particular note in the Notes list.
+Display a particular item in the Notes list.
 
 Format: `List. <number>`
 Example of usage: `List. 1`
 
-### 6) Delete a specific note:
-Delete a particular note stored in the Notes list
+### 6) Delete Notes:
+Delete a particular item stored in the Notes list.
 
 Format: `Delete. <number>`
 Example of usage: `Delete. 1`
 
-### 7) Mark a specific note:
-Mark a particular note stored in the Notes list as completed
+### 7) Mark Notes:
+Mark a particular item in Notes List as completed.
 
 Format: `Mark. <number>`
 Example of usage: `Mark. 1`
 
-Example of usage:
-
-`Mark. 1`
-
-Expected outcome:
-
-````
-You have marked this note as done:
-[HIGH][Y][2]Note 1
-````
-
-Example of usage:
-
-`Mark. 2`
-
-Expected outcome:
-
-````
-You have marked this note as done:
-[HIGH][Y][1]Note 2
-````
-
-### 8) Unmark a specific note:
-Unmark a particular note stored in the Notes list as incomplete
+### 8) Unmark Notes:
+Unmark a particular item in Notes List as incomplete.
 
 Format: `Unmark. <number>`
 
-Example of usage:
-
-`Unmark. 1`
-
-Expected outcome:
-
-````
-You have unmarked this note:
-[HIGH][N][2]Note 1
-````
-
-Example of usage:
-
-`Unmark. 2`
-
-Expected outcome:
-
-````
-You have unmarked this note:
-[HIGH][N][1]Note 2
-````
-
-
-### 9) List all completed notes:
-Display a list of all completed notes
+### 9) List all completed items:
+Display a list of all note items marked as completed.
 
 Format: `FindMark.`
 Example of usage: `FindMark.`
 
-Expected outcome:
-````
-Here are the notes you are searching for:
-1. [HIGH][Y][2]Note 1
-2. [HIGH][Y][1]Note 2
-````
-
 ### 10) List all uncompleted notes:
-Display a list of all uncompleted notes
+Display a list of all incomplete note items. 
 
 Format: `FindUnmark.`
-
 Example of usage: `FindUnmark.`
 
-Expected outcome:
-````
-Here are the notes you are searching for:
-1. [HIGH][N][2]Note 1
-2. [HIGH][N][1]Note 2
-````
-
-### 11) Find notes by searching for a keyword:
-Find tasks stored in Notes by searching for a keyword.
+### 11) Find notes using keyword:
+Find items stored in Notes List by searching for a keyword.
 
 Format: `FindInfo. <description>`
 
-Example of usage:
-`FindInfo. Note`
-
-Expected outcome:
-````
-Here are the notes you are searching for:
-1. [HIGH][N][2]Note 1
-2. [HIGH][N][1]Note 2
-3. [MEDIUM][N][0]Note 3
-4. [MEDIUM][N][0]Note 4
-5. [LOW][N][0]Note 5
-````
-
-Example of usage:
-
-`FindInfo. 1`
-
-Expected outcome:
-
-````
-Here are the notes you are searching for:
-1. [HIGH][N][2]Note 1
-````
-
-Example of usage:
-
-`FindInfo. X`
-
-Expected outcome:
-
-````
-Sorry, no relevant results were found for this query. Please try other keywords.
-````
-
-### 12) Display all notes based on priority type:
-Find all notes stored in the list based on its respective priority rankings
+### 12) Display all notes based on priority types:
+Display all items stored in the Notes List based on the respective priority rankings.
 
 Format: `Rank. Priority`
-
 Example of usage: `Rank. Priority`
-
-Expected outcome:
-
-````
-High priority notes:
-[HIGH][N][2]Note 1
-[HIGH][N][1]Note 2
-Medium priority notes:
-[MEDIUM][N][0]Note 3
-[MEDIUM][N][0]Note 4
-Low priority notes:
-[LOW][N][0]Note 5
-````
 
 ### 13) Display all notes of a certain priority type:
 Find all notes stored in the list based on priority that users are searching for
 
 Format: `FindPrior. <Priority Type>`
-
 * The `<Priority Type>` must be one of the three: `High`, `MEDIUM`, `LOW`.
-
 Example of usage: `FindPrior. <LOW>`
 
-Expected outcome:
-
-````
-Here are the notes you are searching for:
-1. [LOW][N][0]Note 5
-````
-
-Example of usage: `FindPrior. <MEDIUM>`
-
-Expected outcome:
-
-````
-Here are the notes you are searching for:
-1. [MEDIUM][N][0]Note 3
-2. [MEDIUM][N][0]Note 4
-````
-
-Example of usage: `FindPrior. <HIGH>`
-
-Expected outcome:
-
-````
-Here are the notes you are searching for:
-1. [HIGH][N][2]Note 1
-2. [HIGH][N][1]Note 2
-````
-
 ### 14) Clear all notes stored in Notes List:
-Delete all notes stored in the list
+Delete all note items stored in Notes List.
 
 Format: `Clear.`
 
-* The command clears everything stored in the list of notes.
+### 15) Exit BadMaths:
+Exit and leave BadMaths:
 
-Example of usage: `Clear.`
-
-Expected outcome:
-
-`File content cleared successfully!`
+Format: `Bye.`
 
 ### 15) Prioritize a note
 Change the priority of a certain note in the notes list.
 
 Format: `<Priority Type>. Index`
+Example of usage: `High .1`
 
-* The `<Priority Type>` must be one of the three: `High`, `MEDIUM`, `LOW`.
-
-Example of usage:
-
-`High. 1`
-
-Expected outcome:
-
-````
-You have changed its priority to HIGH
-1: [HIGH][N][0]Note 1
-````
-Example of usage:
-
-`Medium. 3`
-
-Expected outcome:
-
-````
-You have changed its priority to MEDIUM
-3: [MEDIUM][N][0]Note 3
-````
-
-### 16) Exit MathHelp:
-Exit and leave MathHelp:
-
-Format: `Bye.`
-
-Example of usage: `Bye.`
-
-Expected outcome:
-
-````
-Goodbye!
-````
-
-### 17) View Help Manual: `Help.`
+### 16) View Help Manual: `Help.`
 View the content of Help Manual.
-
 Format: `Help.`
-
-Expected outcome:
-
-````
-------------------------------------------------------------------
-Hello! What can I do for you?
-------------------------------------------------------------------
-1. Type -> Graph. equation <- to do graph calculation
-2. Type -> Matrix. equation <- to do matrix calculation
-3. Type -> Store. any_string <- to add notes
-4. Type -> List. <- to list stored notes
-5. Type -> Bye. <- to exit program
--------------------------------------------------------------------
-For more details, please visit our GitHub website [xxx.github.com].
-If you have any queries, please contact [exxxxxxx@u.nus.edu].
--------------------------------------------------------------------
-````
 
 ## FAQ
 
-**Q**: How do I start and run MathHelp? 
+**Q**: How do I start and run BadMaths? 
 
 **A**: {your answer here}
 
-**Q**: How do I exit and leave MathHelp?
+**Q**: How do I exit and leave BadMaths?
 
 **A**: You can terminate the MathHelp programme by simply typing 
 `Bye.` in the command.
