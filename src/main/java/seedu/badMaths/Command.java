@@ -6,7 +6,6 @@
  * @param toDo
  */
 
-//@@author WilsonLee2000
 package seedu.badMaths;
 
 import seedu.badMaths.trigograph.TrigoGraph;
