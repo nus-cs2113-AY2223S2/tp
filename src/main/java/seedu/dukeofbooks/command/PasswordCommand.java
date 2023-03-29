@@ -25,7 +25,7 @@ public class PasswordCommand extends AccessCommand {
         if (userRecords.getUser(username) == null) {
             throw new IllegalValueException("Cannot find user!");
         }
-        if (AccessController.changPassword(userRecords, username, prevPassword, newPassword)) {
+        if (AccessController.changePassword(userRecords, username, prevPassword, newPassword)) {
             return userRecords.getUser(username);
         } else {
             throw new IllegalValueException("Old password is not correct!");

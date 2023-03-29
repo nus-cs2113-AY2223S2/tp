@@ -27,7 +27,7 @@ public class AccessController {
         }
     }
 
-    public static boolean changPassword(UserRecords userRecords, String username, String prevPassword,
+    public static boolean changePassword(UserRecords userRecords, String username, String prevPassword,
                                         String newPassword) {
         User user = userRecords.getUser(username);
         if (user == null) {
