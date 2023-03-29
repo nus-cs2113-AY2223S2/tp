@@ -17,7 +17,7 @@ public interface StringLib {
             + "You can start by adding recipes to a recipe list that I can generate,"
             + " simply follow the format below:\n\n"
             + "Add recipe : \"add n/<insert recipe name> i/<insert ingredients with \", \" separation> "
-            + "t/<insert cuisine>\"\n\n"
+            + "t/<insert cuisine> s/<insert number of steps>\"\n\n"
             + "If you wish to view the full list of commands, simply type \"help\"!\n";
     String HELP = "\nHelp is here! You may find the list of commands below useful. \n \n \n"
             + "COMMANDS LIST: \n \n \n"
@@ -118,4 +118,6 @@ public interface StringLib {
     String MISSING_KEYWORD = "\nView is missing KEYWORDS!";
     String MATCHING_ITEMS = "\nHere are the matching items:";
     String NO_MATCHES = "\nNo dishes matches what you are looking for! :(";
+    String INVALID_STEP = "\nThe step you have entered is invalid!\n" +
+            "Please enter a valid step below:";
 }

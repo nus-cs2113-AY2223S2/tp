@@ -157,6 +157,10 @@ public class Parser {
         for (int i = 1; i <= sumOfSteps; i++) {
             ui.showStepInsertMessage(i);
             inputStep = ui.readCommand();
+            while (inputStep.trim().equals("")) {
+                ui.showInvalidStepMessage();
+                inputStep = ui.readCommand();
+            }
             parsedStepList.add(new Step(inputStep));
         }
         return new StepList(parsedStepList);
