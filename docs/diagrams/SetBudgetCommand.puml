@@ -3,9 +3,9 @@ participant ":Parser" as Parser
 participant ":SetBudgetCommand" as SetBudgetCommand
 participant ":UserData" as UserData
 
-[-> Parser : parseUserInput(userInput)
+[-> Parser : parseUserInput(userInput:String)
 activate Parser
-Parser -> Parser : setUserBudgetGoal(userInput)
+Parser -> Parser : setUserBudgetGoal(userInput:String)
 activate Parser
 create SetBudgetCommand
 Parser -> SetBudgetCommand
@@ -20,9 +20,10 @@ deactivate Parser
 [-> SetBudgetCommand : execute()
 activate SetBudgetCommand
 activate UserData
-SetBudgetCommand -> UserData : setBudgetGoal(goal)
+SetBudgetCommand -> UserData : setBudgetGoal(goal:Double)
 UserData --> SetBudgetCommand
 deactivate UserData
-SetBudgetCommand -->[ : :CommandResult(output)
+SetBudgetCommand -->[ : :CommandResult
+deactivate SetBudgetCommand
 
 @enduml
