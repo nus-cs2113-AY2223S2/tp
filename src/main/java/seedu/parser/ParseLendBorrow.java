@@ -9,6 +9,11 @@ import seedu.exceptions.EmptyStringException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import static seedu.ui.ErrorMessages.ERROR_COMMAND_NOT_RECOGNISED_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_DATE_TIME_ERROR_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_NUMBER_FORMAT_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_EMPTY_STRING_MESSAGE;
+
 public class ParseLendBorrow {
     public static final String BLANK = "";
     public static final String DSLASH = "d/";
@@ -37,16 +42,19 @@ public class ParseLendBorrow {
             case BorrowExpenditureCommand.COMMAND_WORD:
                 return new BorrowExpenditureCommand(descriptionVal, name, amount, lentDate, deadline);
             default:
-                return new InvalidCommand("Invalid");
+                return new InvalidCommand(ERROR_COMMAND_NOT_RECOGNISED_MESSAGE.toString());
             }
-        } catch (NumberFormatException n) {
-            return new InvalidCommand("number format problem");
         } catch (DateTimeParseException d) {
-            return new InvalidCommand("date time error");
-        } catch (StringIndexOutOfBoundsException | EmptyStringException s) {
-            return new InvalidCommand(s.getMessage());
-        }
+            return new InvalidCommand(ERROR_DATE_TIME_ERROR_MESSAGE.toString());
+        }  catch (NumberFormatException n) {
+            return new InvalidCommand(ERROR_NUMBER_FORMAT_MESSAGE.toString());
+        } catch (StringIndexOutOfBoundsException s) {
+            return new InvalidCommand(ERROR_NUMBER_FORMAT_MESSAGE.toString());
+        } catch (EmptyStringException e) {
+            return new InvalidCommand(ERROR_EMPTY_STRING_MESSAGE.toString());
     }
+ }
+
 }
 
 

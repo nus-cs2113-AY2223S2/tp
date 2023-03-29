@@ -1,12 +1,10 @@
 package seedu.exceptions;
 
+import static seedu.ui.ErrorMessages.ERROR_INVALID_SORT_INPUT_MESSAGE;
+
 public class InvalidSortInputException extends Exception {
     @Override
     public String getMessage() {
-        return "Invalid sort message!\n " +
-                "<sort ascend> to sort amount in ascending order. " +
-                "<sort descend> to sort amount in descending order.\n" +
-                "<sort earliest> to sort amount from earliest date added. " +
-                "<sort latest> to sort amount from latest date added.";
+        return ERROR_INVALID_SORT_INPUT_MESSAGE.toString();
     }
 }

@@ -6,6 +6,8 @@ import seedu.commands.InvalidCommand;
 import seedu.exceptions.EmptyStringException;
 import seedu.expenditure.ExpenditureList;
 
+import static seedu.ui.ErrorMessages.ERROR_NUMBER_FORMAT_MESSAGE;
+
 public class ParseDuplicate {
     public static final String BLANK = "";
     private final String userInput;
@@ -20,7 +22,7 @@ public class ParseDuplicate {
             int posToDuplicate = Integer.parseInt(details) - ExpenditureList.LIST_OFFSET;
             return new DuplicateCommand(posToDuplicate);
         } catch (NumberFormatException numberFormatException) {
-            return new InvalidCommand("Input parameter for duplicate is not in correct number format!");
+            return new InvalidCommand(ERROR_NUMBER_FORMAT_MESSAGE.toString());
         } catch (StringIndexOutOfBoundsException | EmptyStringException e) {
             return new InvalidCommand(e.getMessage());
         }

@@ -6,6 +6,8 @@ import seedu.exceptions.EmptyStringException;
 import seedu.exceptions.NotPositiveValueException;
 import seedu.commands.SetBudgetCommand;
 
+import static seedu.ui.ErrorMessages.ERROR_BUDGET_NOT_NUMERICAL_MESSAGE;
+
 public class ParseSetBudget {
     public static final String BLANK = "";
     private final String budget;
@@ -21,7 +23,7 @@ public class ParseSetBudget {
             checkPositiveValue(budgetAmount);
             return new SetBudgetCommand(budgetAmount);
         } catch (NumberFormatException e) {
-            return new InvalidCommand("Budget amount is not a numerical value!");
+            return new InvalidCommand(ERROR_BUDGET_NOT_NUMERICAL_MESSAGE.toString());
         } catch (EmptyStringException e) {
             return new InvalidCommand(e.getMessage());
         } catch (NotPositiveValueException e) {

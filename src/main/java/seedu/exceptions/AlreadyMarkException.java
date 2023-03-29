@@ -1,8 +1,14 @@
 package seedu.exceptions;
 
+import static seedu.ui.ErrorMessages.ERROR_MARK_MESSAGE;
+
 public class AlreadyMarkException extends Exception {
+
     @Override
     public String getMessage() {
-        return "Sorry! This expenditure is already marked!";
-    }
+        return ERROR_MARK_MESSAGE.toString();
+      
 }
+
+}
+

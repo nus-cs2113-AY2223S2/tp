@@ -6,6 +6,8 @@ import seedu.commands.InvalidCommand;
 import seedu.exceptions.EmptyStringException;
 import seedu.expenditure.ExpenditureList;
 
+import static seedu.ui.ErrorMessages.ERROR_NUMBER_FORMAT_MESSAGE;
+
 public class ParseDelete {
     public static final String BLANK = "";
     private final String userInput;
@@ -20,7 +22,7 @@ public class ParseDelete {
             int posToDelete = Integer.parseInt(details) - ExpenditureList.LIST_OFFSET;
             return new DeleteCommand(posToDelete);
         } catch (NumberFormatException numberFormatException) {
-            return new InvalidCommand("Invalid");
+            return new InvalidCommand(ERROR_NUMBER_FORMAT_MESSAGE.toString());
         } catch (StringIndexOutOfBoundsException | EmptyStringException s) {
             return new InvalidCommand(s.getMessage());
         }
