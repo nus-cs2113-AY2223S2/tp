@@ -12,11 +12,14 @@ planning future exercises.
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
 - [Features](#features)
+  - [The List of commands : /help](#help)
   - [Start a Workout: /start](#start-a-workout--start)
-  - [Add exercise: /add](#add-exercise--add)
+  - [Add exercise: /wadd](#add-exercise--add)
+  - [Add calories: /cadd](#adding-calories--cadd)
   - [End current workout: /end](#end-current-workout--end)
   - [Display workout list: /list](#display-workout-list--list)
-  - [Display a workout: /view](#display-workout-view--list)
+  - [Display a workout: /view](#viewing-a-specific-workout--wview)
+  - [Display calories consumed on a specific date : /cview](#viewing-the-total-calories-on-a-specific-date--cview)
   - [Delete a workout: /delete](#delete-a-workout--delete)
   - [Count Sets and reps over a week: /count](#count-sets-and-reps--count)
   - [Exit app: /exit](#exit-app--exit)
@@ -55,22 +58,57 @@ Expected output:
 Started new workout.
 Use add command to add exercises to your workout!
 ```
-### Adding to the workout: `/add`
+### Adding to the workout: `/wadd`
 Adds to the list of workouts.
 
-Format: `/add <exercise_name> /weight <weight_used> /rps <reps_per_set>`
+Format: `/wadd <exercise_name> /weight <weight_used> /rps <reps_per_set>`
 
 * The `/start` needs to be inputted first to use the `/add` command.
 
 Example of usage:
 
-`/add bench press /weight 100 /rps 5 5 5 5`
+`/wadd bench press /weight 100 /rps 5 5 5 5`
 
-`/add leg press /weight 160 /rps 5 5 5 5`
+`/wadd leg press /weight 160 /rps 5 5 5 5`
 
 Expected output:
 ```
 Added bench press 100 5 5 5 5
+```
+### Adding to the workout: `/wadd`
+Adds to the list of workouts.
+
+Format: `/wadd <exercise_name> /weight <weight_used> /rps <reps_per_set>`
+
+* The `/start` needs to be inputted first to use the `/wadd` command.
+
+Example of usage:
+
+`/wadd bench press /weight 100kg /rps 5 5 5 5`
+
+`/wadd leg press /weight 160kg /rps 5 5 5 5`
+
+Expected output:
+```
+Added bench press 100kg 5 5 5 5
+```
+### Adding Calories: `/cadd`
+Adds to the list of workouts.
+
+Format: `/cadd <DD/MM/YY> <FOOD_NAME> <CALORIES>`
+
+* The `/start` needs to be inputted first to use the `/cadd` command.
+
+Example of usage:
+
+`/cadd 11/02/23 chicken 100`
+
+`/cadd 11/02/23 fish 100`
+
+Expected output:
+```
+Consumed additional 100kcal.
+Total calories consumed: 100kcal
 ```
 ### Listing workout dates: `/list`
 Display the current workout dates
@@ -82,13 +120,13 @@ Example of usage:
 `/list`
 
 ```
-Here are the list of dates for your workout: 
-Tue Mar 21 00:00:00 SGT 2023
+Here are the list of dates of your workouts:
+1. 11/02/23
 ```
-### Viewing a specific workout: `/view`
+### Viewing a specific workout: `/wview`
 Display the specified workout list
 
-Format: `/view <DD/MM/YY>`
+Format: `/wview <DD/MM/YY>`
 
 Example of usage:
 
@@ -96,7 +134,21 @@ Example of usage:
 
 Expected output:
 ```
-[bench press 100 5 5 5 5, bench press 100 5 5 5 5]
+Here are the list of exercises in your workout:
+1. bench press 100kg 5 5 5 5
+```
+### Viewing the total calories on a specific date: `/cview`
+Display the specified workout list
+
+Format: `/cview <DD/MM/YY>`
+
+Example of usage:
+
+`/ciew 21/03/23`
+
+Expected output:
+```
+Calories consumed on 21/02/23: 200kcal.
 ```
 ### Deleting a specific workout: `/delete`
 Delete the specified workout
@@ -150,9 +202,14 @@ Thank you and see you next time
 
 ## Command Summary
 
+* The list of Commands `/help`
 * Start a workout `/start <DD/MM/YY>`
-* Add exercise `/add <EXERCISE_NAME> /weight <WEIGHT_USED> /rps <REPS_PER_SET>`
+* Add exercise `/wadd <EXERCISE_NAME> /weight <WEIGHT_USED> /rps <REPS_PER_SET>`
+* Add calories `/cadd <DD/MM/YY> <FOOD_NAME> <CALORIES>`
 * End current Workout `/end`
 * Display workout list `/list`
+* Display specific workout list `/wview <DD/MM/YY>`
+* Display specific workout list `/cview <DD/MM/YY>`
+* Display the amount of reps and set on a specific exercise `/count <DD/MM/YY>`
 * Delete a workout `/delete <DD/MM/YY>`
 * Exit app `/exit`

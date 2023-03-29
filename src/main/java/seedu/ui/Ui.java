@@ -20,12 +20,15 @@ public class Ui {
     private static final String LINE_SEPARATOR = "----------------------------------";
     private static final Scanner in = new Scanner(System.in);
     private static final String HELP_MESSAGE =
-            "Here are the list of commands that you can use:" + System.lineSeparator() + LINE
+            "Here are the list of commands that you can use:" +System.lineSeparator() + LINE + System.lineSeparator()
                     + "- [Start a Workout: /start])" + System.lineSeparator()
-                    + "- [Add exercise: /add]" + System.lineSeparator()
+                    + "- [Add exercise: /wadd]" + System.lineSeparator()
+                    + "- [Add calories: /cadd]" + System.lineSeparator()
                     + "- [End current workout: /end]" + System.lineSeparator()
                     + "- [Display workout list: /list]" + System.lineSeparator()
-                    + "- [Display a workout : /view]" + System.lineSeparator()
+                    + "- [Display a workout on a specific date : /wview]" + System.lineSeparator()
+                    + "- [Display calories consumed on a specific date : /cview]" + System.lineSeparator()
+                    + "- [Display the amount of reps and set on a specific exercise /count]" + System.lineSeparator()
                     + "- [Delete a workout: /delete]" + System.lineSeparator()
                     + "- [Exit app: /exit]" + System.lineSeparator() + LINE;
 

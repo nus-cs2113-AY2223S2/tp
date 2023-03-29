@@ -67,7 +67,12 @@ public class CheckInputs {
         return arguments == null || arguments.trim().isEmpty() ? new ListWorkoutCommand() :
                 new IncorrectSyntaxCommand("/list command");
     }
-
+    /**
+     * This method is used to check the "/view" command
+     * @param arguments Date input
+     * @return Incorrect command if the input date is incorrect, otherwise, initialize the ViewCommand
+     */
+    //@@ author Richardtok
 
     static Command processView(String arguments) {
         Date date;
