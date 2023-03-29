@@ -43,6 +43,7 @@ Class Ui {
 + printPlannerGreeting()
 }
 
+left to right direction
 Bye <|.. Ui
 Greet <|.. Ui
 PrintExercises <|.. Ui
