@@ -2,6 +2,9 @@ package seedu.mealcompanion;
 
 import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.command.factory.ExecutableCommandFactory;
+import seedu.mealcompanion.command.factory.allergen.AllergenAddCommandFactory;
+import seedu.mealcompanion.command.factory.allergen.AllergenListCommandFactory;
+import seedu.mealcompanion.command.factory.allergen.AllergenRemoveCommandFactory;
 import seedu.mealcompanion.command.factory.ingredients.IngredientsListCommandFactory;
 import seedu.mealcompanion.command.factory.ingredients.IngredientsSearchCommandFactory;
 import seedu.mealcompanion.command.factory.misc.AddCommandFactory;
@@ -57,6 +60,11 @@ public class MealCompanionSession {
                     .route("ingredients", new CommandRouterNode()
                             .route("list", new IngredientsListCommandFactory())
                             .route("search", new IngredientsSearchCommandFactory())
+                    )
+                    .route("allergen", new CommandRouterNode()
+                            .route("add", new AllergenAddCommandFactory())
+                            .route("remove", new AllergenRemoveCommandFactory())
+                            .route("list", new AllergenListCommandFactory())
                     );
 
     private final IngredientList ingredients;

@@ -2,6 +2,7 @@ package seedu.mealcompanion.recipe;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import seedu.mealcompanion.MealCompanionException;
 
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -52,5 +53,12 @@ public class IngredientDatabase {
      */
     public HashMap<String, IngredientMetadata> getKnownIngredients() {
         return knownIngredients;
+    }
+
+    public IngredientMetadata getKnownIngredient(String name) throws MealCompanionException {
+        if (!this.knownIngredients.containsKey(name)) {
+            throw new MealCompanionException("Unknown ingredient named: " + name);
+        }
+        return knownIngredients.get(name);
     }
 }
