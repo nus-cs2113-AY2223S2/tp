@@ -29,6 +29,7 @@ public class RainyDay {
         ui = new Ui();
         try {
             userData = Storage.loadFromFile(filePath);
+            assert userData != null : "Error loading from json file";
             logger.log(Level.INFO, "File loaded successfully.");
         } catch (FileNotFoundException | JsonParseException e) {
             logger.log(Level.INFO, "No valid save file detected. Starting with empty financial data.");
@@ -55,13 +56,15 @@ public class RainyDay {
 
     private void runCommand() {
         Command specificCommand;
-        String userInput = ui.readUserCommand();
-        while (!userInput.equalsIgnoreCase(Command.COMMAND_EXIT)) {
+        while (true) {
             try {
+                String userInput = ui.readUserCommand();
+                if (userInput.equalsIgnoreCase("bye")) {
+                    break;
+                }
                 specificCommand = new Parser().parseUserInput(userInput);
                 assert specificCommand != null : "Parser returned null";
                 executeCommand(specificCommand);
-                userInput = ui.readUserCommand();
             } catch (Exception e) {
                 logger.log(Level.WARNING, e.getMessage());
                 System.out.println(e.getMessage());
