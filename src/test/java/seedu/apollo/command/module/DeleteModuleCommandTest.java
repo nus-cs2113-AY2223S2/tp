@@ -53,4 +53,24 @@ class DeleteModuleCommandTest {
                 new ModuleList(), new Calendar()));
     }
 
+    @Test
+    void testDeleteModuleCommand_classNotInList_expectsNoException() throws IllegalCommandException, InvalidModule {
+        new AddModuleCommand("CS2113 -tut 05", allModules).
+                execute(taskList, ui, storage, moduleList, allModules, calendar);
+        DeleteModuleCommand newCommand = new DeleteModuleCommand("CS2113 -tut 04");
+        assertDoesNotThrow(() -> newCommand.execute(new TaskList(), new Ui(),
+                new Storage("test.txt", "testModuleData.txt"), moduleList,
+                allModules, calendar));
+    }
+
+    @Test
+    void testDeleteModuleCommand_invalidModuleCode_expectsNoException() throws IllegalCommandException, InvalidModule {
+        new AddModuleCommand("CS2113 -tut 05", allModules).
+                execute(taskList, ui, storage, moduleList, allModules, calendar);
+        DeleteModuleCommand newCommand = new DeleteModuleCommand("CS2114 -tut 04");
+        assertDoesNotThrow(() -> newCommand.execute(new TaskList(), new Ui(),
+                new Storage("test.txt", "testModuleData.txt"), moduleList,
+                allModules, calendar));
+    }
+
 }
