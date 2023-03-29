@@ -85,6 +85,7 @@ public class Parser {
                     "input 'help' to receive all valid commands");
         }
     }
+
     /**
      * Reads and returns the full user input from the command line interface
      * - trims the leading and trailing white spaces
@@ -155,6 +156,7 @@ public class Parser {
         }
         return inputIndex;
     }
+
     /**
      * Returns a string which represents the relevant variable depending on the command
      * - "add" will return the item name
@@ -199,15 +201,25 @@ public class Parser {
      */
     public static Command createAddObj() {
         try {
-            String itemName = getVariable("add");
-            return new AddCommand(new Item(itemName));
+            String[] quantityAndDescription = getAddVariables();
+            int itemQuantity = Integer.parseInt(quantityAndDescription[0]);
+            String itemDescription = quantityAndDescription[1];
+            if (itemDescription == null) {
+                throw new InvalidVariablesException();
+            }
+            return new AddCommand(new Item(itemQuantity, itemDescription));
         } catch (InvalidVariablesException e) {
             return new IncorrectCommand("Invalid Item Name",
                     "try to input a name (word(s)) to be added into the list");
-        } catch (InvalidIndexException e) {
+        } catch (NumberFormatException e) {
             return new IncorrectCommand("Invalid Item Index",
                     "try to input an integer number between 1 and " + PackingList.getItemList().size());
         }
+    }
+
+    public static String[] getAddVariables() {
+        String[] inputStringList = fullInput.trim().split(" ", 2);
+        return inputStringList[1].trim().split("\\s+/of\\s+");
     }
 
     /**
@@ -234,6 +246,19 @@ public class Parser {
         }
     }
 
+    public static int[] getQuantityAndIndex() throws InvalidVariablesException, InvalidIndexException {
+        int[] itemQuantityAndIndex = new int[2];
+        try {
+            itemQuantityAndIndex[0] = Integer.parseInt(inputStringArray.get(1).trim());
+            itemQuantityAndIndex[1] = Integer.parseInt(inputStringArray.get(3).trim());
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidVariablesException();
+        } catch (NumberFormatException e) {
+            throw new InvalidIndexException();
+        }
+        return itemQuantityAndIndex;
+    }
+
     /**
      * Attempts to create PackCommand object to be executed where it is called from
      *
@@ -242,12 +267,11 @@ public class Parser {
      */
     public static Command createPackObj() {
         try {
-            String itemIndex = getVariable("pack");
-            return new PackCommand(Integer.parseInt(itemIndex));
-        } catch (InvalidVariablesException e) {
-            return new IncorrectCommand("Invalid Item Name",
-                    "try to input a name (word(s)) to be added into the list");
-        } catch (InvalidIndexException e) {
+            String[] quantityAndIndex = getPackVariables();
+            int itemQuantity = Integer.parseInt(quantityAndIndex[0]);
+            int itemIndex = Integer.parseInt(quantityAndIndex[1]);
+            return new PackCommand(itemQuantity, itemIndex);
+        } catch (NumberFormatException e) {
             if (PackingList.getItemList().size() == 0) {
                 return new IncorrectCommand("Invalid Item Index",
                         "Your packing list is empty, there is nothing to pack");
@@ -256,6 +280,11 @@ public class Parser {
                         "Try to input an integer number between 1 and " + PackingList.getItemList().size());
             }
         }
+    }
+
+    public static String[] getPackVariables() {
+        String[] inputStringList = fullInput.trim().split(" ", 2);
+        return inputStringList[1].trim().split("\\s+/of\\s+");
     }
 
 
@@ -267,12 +296,11 @@ public class Parser {
      */
     public static Command createUnpackObj() {
         try {
-            String itemIndex = getVariable("unpack");
-            return new UnpackCommand(Integer.parseInt(itemIndex));
-        } catch (InvalidVariablesException e) {
-            return new IncorrectCommand("Invalid Item Name",
-                    "try to input a name (word(s)) to be added into the list");
-        } catch (InvalidIndexException e) {
+            String[] quantityAndIndex = getPackVariables();
+            int itemQuantity = Integer.parseInt(quantityAndIndex[0]);
+            int itemIndex = Integer.parseInt(quantityAndIndex[1]);
+            return new UnpackCommand(itemQuantity, itemIndex);
+        } catch (NumberFormatException e) {
             if (PackingList.getItemList().size() == 0) {
                 return new IncorrectCommand("Invalid Item Index",
                         "Your packing list is empty, there is nothing to unpack");

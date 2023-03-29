@@ -20,7 +20,7 @@ public class CommandsTest {
     @Test
     public void testAddCommand() {
         PackingList packingList = new PackingList();
-        Item item = new Item("toothbrush");
+        Item item = new Item(1, "toothbrush");
         Command addCommand = new AddCommand(item);
         addCommand.execute(packingList);
 
@@ -29,7 +29,7 @@ public class CommandsTest {
         Assertions.assertNotEquals("tooth", packingList.get(0).getItemName());
 
         // Expect second index item in the packing list to be toothpaste
-        Item itemTwo = new Item("toothpaste");
+        Item itemTwo = new Item(1, "toothpaste");
         addCommand = new AddCommand(itemTwo);
         addCommand.execute(packingList);
 
