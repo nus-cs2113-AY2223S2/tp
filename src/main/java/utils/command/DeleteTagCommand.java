@@ -49,9 +49,9 @@ public class DeleteTagCommand extends Command {
     }
 
     private void removeTagsFromDecks(DeckList deckList) {
-        for(DeckUUID deckUUID: tag.getDecks()) {
+        for(DeckUUID deckUUID: this.tag.getDecks()) {
             Deck deckToDeleteTagFrom = deckList.findDeckFromUUID(deckUUID);
-            deckToDeleteTagFrom.getTagsUUID().remove(tagUUID);
+            deckToDeleteTagFrom.getTagsUUID().remove(tag.getUUID());
         }
     }
 
@@ -60,6 +60,7 @@ public class DeleteTagCommand extends Command {
             throws InkaException {
         removeTagFromCards(cardList, tagList, ui);
         removeTagsFromDecks(deckList);
+        tagList.deleteTagByUUID(this.tagUUID);
         ui.printRemoveTagFromTagList(tagUUID);
     }
 }
