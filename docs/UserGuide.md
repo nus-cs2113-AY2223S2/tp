@@ -67,7 +67,7 @@ Meal Companion uses a Command Line Interface (CLI), as the current version is ju
 ##### [Back to table of contents](#table-of-contents)
 
 # Features
-This section will focus on some of the key features of Meal Companion and explain their usage.
+This section will focus on some of the key features of Meal Companion and explain their usage. We will go over several features, including the Ingredients functions, Allergen functions, and recipe functions. 
 
 ## Ingredients
 Meal Companion will assist you in tracking the items in your refrigerator, and is capable of adding new ingredients, removing used ingredients, as well as listing the available ingredients in your refrigerator. This guide will detail these features below.
