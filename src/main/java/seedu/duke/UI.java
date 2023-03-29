@@ -110,7 +110,8 @@ public class UI {
         System.out.println(LINE);
     }
 
-    public void printFoundNusModules(ArrayList<Module> foundNusModList, String nusModCode, ArrayList<University> universities) {
+    public void printFoundNusModules(ArrayList<Module> foundNusModList, String nusModCode,
+                                     ArrayList<University> universities) {
         System.out.println(FOUND_LIST_MESSAGE + nusModCode);
         System.out.println(LINE);
         int foundModIndex = 0;
