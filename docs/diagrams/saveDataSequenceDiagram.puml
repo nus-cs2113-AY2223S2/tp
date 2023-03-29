@@ -1,10 +1,10 @@
 [comment]: <> (//@@author Thunderdragon221)
 @startuml
 'https://plantuml.com/sequence-diagram
-!include Style.puml
-autonumber
 
 @startuml
+!include Style.puml
+hide footbox
 participant User
 
 User -> Storage: saveData()
@@ -14,6 +14,7 @@ activate Information
 Information --> Storage: patientsList
 deactivate Information
 Storage -> Patient: getPatient()
+destroy Information
 activate Patient
 Patient --> Storage: patient
 Storage -> Patient: getName()
@@ -26,8 +27,8 @@ Storage -> Patient: getPatientMedicineHistory()
 Patient --> Storage: medicineHistory
 deactivate Patient
 Storage -> Storage: writeMedicineHistory()
+destroy Patient
 activate Storage
-Storage --> Storage: write medicine history to file
 Storage --> Storage: finished writing to file
 deactivate Storage
 User <-- Storage: data saved
