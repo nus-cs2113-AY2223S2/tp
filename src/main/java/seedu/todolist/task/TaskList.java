@@ -1,7 +1,6 @@
 package seedu.todolist.task;
 
 import seedu.todolist.exception.InvalidIdException;
-import seedu.todolist.exception.InvalidPriorityException;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
