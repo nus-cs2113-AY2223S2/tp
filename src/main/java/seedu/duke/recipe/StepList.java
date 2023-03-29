@@ -34,6 +34,21 @@ public class StepList {
         currStepNumber--;
         assert (currStepNumber == stepList.size());
     }
+    public void editStep(int stepIndex) {
+        System.out.println("Enter the description of the step:");
+        String description = ui.readCommand();
+        Step newStep = new Step(description);
+        stepList.set(stepIndex, newStep);
+        System.out.println("Step has been edited:");
+        System.out.print((stepIndex + 1) + ". ");
+        System.out.println(stepList.get(stepIndex).toString());
+    }
+    public void showFullStepList() {
+        System.out.println("There are " + currStepNumber + " steps in the list");
+        for (int i = 0; i < currStepNumber; i++) {
+            System.out.println((i + 1) + ". " + stepList.get(i).getStep());
+        }
+    }
     public void showStepList() {
         System.out.println("There are " + currStepNumber + " steps in the list");
         System.out.println("Do you want to view step-by-step? \nType yes if so");
@@ -54,6 +69,10 @@ public class StepList {
                 System.out.println((i + 1) + ". " + stepList.get(i).getStep());
             }
         }
+    }
+
+    public int getCurrStepNumber() {
+        return currStepNumber;
     }
     public ArrayList<Step> getList() {
         return stepList;

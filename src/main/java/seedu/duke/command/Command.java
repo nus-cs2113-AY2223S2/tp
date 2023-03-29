@@ -2,10 +2,12 @@ package seedu.duke.command;
 
 
 import seedu.duke.exceptions.IncompleteInputException;
+import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.parser.Parser;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
+import seedu.duke.recipe.Step;
 import seedu.duke.recipe.StepList;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.UI;
@@ -116,6 +118,29 @@ public class Command {
             break;
         case FIND:
             RecipeList.searchRecipeList(fullDescription);
+            break;
+        case EDIT:
+            try {
+                if (fullDescription.isEmpty()) {
+                    throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
+                }
+                int recipeListNum = Integer.parseInt(fullDescription);
+                Recipe recipeToEdit = recipeList.getRecipeFromList(recipeListNum);
+                StepList recipeToEditStepList = recipeToEdit.getStepList();
+                recipeToEditStepList.showFullStepList();
+                ui.showEditRecipeStepPrompt();
+                int stepIndex = Integer.parseInt(ui.readCommand()) - 1;
+                int maxSteps = recipeToEditStepList.getCurrStepNumber();
+                if (maxSteps == 0) {
+                    throw new OutOfIndexException("There are no steps to edit!");
+                }
+                if (stepIndex >= maxSteps) {
+                    throw new OutOfIndexException("Input index exceeds the number of steps!");
+                }
+                recipeToEditStepList.editStep(stepIndex);
+            } catch (Exception e) {
+                ui.showEditStepErrorMessage(e);
+            }
             break;
         case HELP:
             ui.showHelp();

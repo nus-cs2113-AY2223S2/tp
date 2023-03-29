@@ -3,6 +3,7 @@ package seedu.duke.ui;
 import seedu.duke.command.CommandType;
 import seedu.duke.exceptions.FileParseReadingException;
 import seedu.duke.exceptions.IncompleteInputException;
+import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.exceptions.RecipeListEmptyException;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
@@ -151,5 +152,16 @@ public class UI {
     }
     public void showLoad() {
         System.out.println(StringLib.RECIPE_LOADED);
+    }
+    public void showEditRecipeStepPrompt() {
+        System.out.println("Which step do you want to edit?");
+    }
+    public void showEditStepErrorMessage (Exception e) {
+        if (e instanceof OutOfIndexException) {
+            System.out.println(e.getMessage());
+        } else {
+            System.out.println(RECIPE_VIEWING_DEFAULT_ERROR + e.getMessage());
+        }
+
     }
 }
