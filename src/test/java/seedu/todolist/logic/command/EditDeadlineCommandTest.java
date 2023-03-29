@@ -1,3 +1,4 @@
+//@@author clement559
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
@@ -12,8 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 
-//@@author clement559
-public class EditCommandTest {
+public class EditDeadlineCommandTest {
     private static final String DATE_EXAMPLE = "06-04-2030";
     private static final String TIME_EXAMPLE = "23:59";
     private static final String REPEAT_EXAMPLE = "0";
@@ -22,9 +22,9 @@ public class EditCommandTest {
     private TaskList testList;
     private Ui ui = new Ui();
 
-    private HashMap<Flags, String> generateInputArguments(String index, String date, String time, String repeatCount) {
+    private HashMap<Flags, String> generateInputArguments(String id, String date, String time, String repeatCount) {
         HashMap<Flags, String> args = new HashMap<>();
-        args.put(Flags.COMMAND_ADD, index);
+        args.put(Flags.COMMAND_ADD, id);
         args.put(Flags.DEADLINE, date + " " + time);
         args.put(Flags.REPEAT, repeatCount);
         return args;
@@ -42,17 +42,17 @@ public class EditCommandTest {
     }
     
     @Test
-    public void editDeadline_invalidIndex_throwsException() {
-        final String[] invalidIndexes = {"", "]", "wq", "7.5", "-3"};
-        for (String index : invalidIndexes) {
-            HashMap<Flags, String> args = generateInputArguments(index, DATE_EXAMPLE, TIME_EXAMPLE, REPEAT_EXAMPLE);
+    public void editDeadline_invalidId_throwsException() {
+        final String[] invalidIdes = {"", "]", "wq", "7.5", "-3"};
+        for (String id : invalidIdes) {
+            HashMap<Flags, String> args = generateInputArguments(id, DATE_EXAMPLE, TIME_EXAMPLE, REPEAT_EXAMPLE);
             try {
-                Command testEdit = new EditCommand(args);
+                Command testEdit = new EditDeadlineCommand(args);
                 testEdit.execute(testList, ui);
             } catch (ToDoListException e) {
                 continue;
             }
-            fail("An edit command was successfully constructed with invalid index: " + index);
+            fail("An edit command was successfully constructed with invalid id: " + id);
         }
     }
 
@@ -62,7 +62,7 @@ public class EditCommandTest {
         for (String date : invalidDates) {
             HashMap<Flags, String> args = generateInputArguments("0", date, TIME_EXAMPLE, REPEAT_EXAMPLE);
             try {
-                Command testEdit = new EditCommand(args);
+                Command testEdit = new EditDeadlineCommand(args);
                 testEdit.execute(testList, ui);
             } catch (ToDoListException e) {
                 continue;
@@ -77,7 +77,7 @@ public class EditCommandTest {
         for (String time : invalidTimes) {
             HashMap<Flags, String> args = generateInputArguments("0", DATE_EXAMPLE, time, REPEAT_EXAMPLE);
             try {
-                Command testEdit = new EditCommand(args);
+                Command testEdit = new EditDeadlineCommand(args);
                 testEdit.execute(testList, ui);
             } catch (ToDoListException e) {
                 continue;

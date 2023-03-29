@@ -1,3 +1,4 @@
+//@@author RuiShengGit
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
@@ -8,20 +9,19 @@ import seedu.todolist.task.TaskList;
 
 import java.util.HashMap;
 
-//@@author RuiShengGit
 public class DeleteTaskCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_DELETE};
 
-    private int index;
+    private int id;
 
     public DeleteTaskCommand(HashMap<Flags, String> args) throws InvalidIdException {
-        index = ParserUtil.parseId(args.get(Flags.COMMAND_DELETE));
-        assert index >= 0: "Invalid index contained in variable";
+        id = ParserUtil.parseId(args.get(Flags.COMMAND_DELETE));
+        assert id >= 0: "Invalid id contained in variable";
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
-        String taskString = taskList.deleteTask(index);
+        String taskString = taskList.deleteTask(id);
         ui.printDeleteTaskMessage(taskString);
     }
 }

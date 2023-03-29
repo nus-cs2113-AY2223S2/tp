@@ -1,5 +1,6 @@
 @startuml
 !include Style.puml
+hide members
 
 class ToDoListManager COLOR_MAIN
 class Ui COLOR_UI
@@ -10,11 +11,11 @@ class "{abstract}\nCommand" as Command COLOR_LOGIC
 class TaskList COLOR_TASK_LIST
 class Storage COLOR_STORAGE
 
-ToDoListManager -d-> "\t\t1" Ui
-ToDoListManager -d-> "\t1" Parser
-ToDoListManager -d-> "\t\t1" TaskList
-ToDoListManager -d-> "\t1" Storage
-ToDoListManager .d.> Command
+ToDoListManager -d-> "\t\t1" Ui : creates >
+ToDoListManager -d-> "\t1" Parser : creates >
+ToDoListManager -d-> "\t\t1" TaskList : creates >
+ToDoListManager -d-> "\t1" Storage : creates >
+ToDoListManager .d.> Command : executes >
 Parser .r.> Command
 Storage .r> TaskList
 @enduml

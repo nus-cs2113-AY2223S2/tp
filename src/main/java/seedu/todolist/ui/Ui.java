@@ -69,32 +69,16 @@ public class Ui {
         println(Messages.DELETE_TASK.getMessage(), taskString);
     }
 
-    public void printEditTaskMessage(String taskString) {
-        println(Messages.EDIT_TASK.getMessage(), taskString);
+    public void printEditTaskMessage(String parameterType, String newValue, String taskString) {
+        println(String.format(Messages.EDIT_TASK.getMessage(), parameterType, newValue), taskString);
     }
 
-    public void printSetEmailMessage(String taskString) {
-        println(Messages.SET_EMAIL.getMessage(), taskString);
-    }
-
-    public void printGetTaskEmailMessage(String email) {
-        println(Messages.GET_EMAIL.getMessage(), email);
+    public void printEditDeleteTaskMessage(String parameterType, String taskString) {
+        println(String.format(Messages.EDIT_DELETE_TASK.getMessage(), parameterType), taskString);
     }
         
     public void printCheckRepeatingTaskMessage() {
         println(Messages.CHECK_REPEATING.getMessage());
-    }
-
-    public void printTagInfo(int tagCount, String tagString) {
-        if (tagCount == 0) {
-            println(Messages.TAG_EMPTY.getMessage());
-        } else {
-            println(Messages.TAG_INFO.getMessage(), tagString);
-        }
-    }
-
-    public void printDeletedTagsMessage(String tagString) {
-        println(Messages.TAG_DELETE.getMessage(), tagString);
     }
 
     public void printTaskList(int taskListSize, String taskListString) {
@@ -103,6 +87,18 @@ public class Ui {
         } else {
             println(Messages.LIST_TASKS.getMessage() + generateTaskCountString(taskListSize),
                     taskListString);
+        }
+    }
+
+    public void printGetFullInfoMessage(String infoString) {
+        println(Messages.FULL_INFO.getMessage(), infoString);
+    }
+
+    public void printGetTagsMessage(int tagCount, String tagsString) {
+        if (tagCount == 0) {
+            println(Messages.TAGS_EMPTY.getMessage());
+        } else {
+            println(Messages.TAGS_INFO.getMessage(), tagsString);
         }
     }
 

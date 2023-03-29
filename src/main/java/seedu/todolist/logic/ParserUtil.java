@@ -22,7 +22,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses the id string.
+     * Parses the id string into an integer. Does not check if id is in task list.
      *
      * @param id The id string.
      * @return The id, as an integer.
@@ -37,7 +37,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses the description string.
+     * Parses (returns) the description string. Does not check if description is null or empty.
      *
      * @param description The description string.
      * @return The description of the task.
@@ -65,14 +65,15 @@ public class ParserUtil {
         }
 
         try {
-            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN.getFormat())
-                    .withResolverStyle(ResolverStyle.STRICT);
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN_1.getFormat()
+                            + Formats.TIME_IN_2.getFormat()).withResolverStyle(ResolverStyle.STRICT);
             return LocalDateTime.parse(deadline, inputFormatter);
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(deadline);
         }
     }
 
+    //@@author RuiShengGit
     /**
      * Parses the email string, checking that is a valid email address.
      * The email is allowed to be null as it is an optional parameter.
@@ -81,7 +82,6 @@ public class ParserUtil {
      * @return The email address, if it was not null, null otherwise.
      * @throws InvalidEmailFormatException If the email address is invalid.
      */
-    //@@author RuiShengGit
     public static String parseEmail(String email) throws InvalidEmailFormatException {
         if (email == null) {
             return null;
@@ -109,6 +109,7 @@ public class ParserUtil {
         return new HashSet<>(Arrays.asList(tags.split(" ")));
     }
 
+    //@@author clement559
     /**
      * Parses the repeat duration of the task, which is in number of weeks.
      * A repeat duration can be specified only if deadline is not null.

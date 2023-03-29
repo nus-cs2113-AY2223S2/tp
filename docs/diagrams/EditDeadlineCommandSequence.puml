@@ -1,3 +1,4 @@
+//@@author clement559
 @startuml
 !include Style.puml
 
@@ -13,27 +14,21 @@ participant ":EditDeadlineCommand" as EditDeadlineCommand COLOR_LOGIC
 end box
 
 box TaskList COLOR_TASK_LIST_LIGHT
-participant ":Task" as Task COLOR_TASK_LIST
 participant ":TaskList" as TaskList COLOR_TASK_LIST
+participant ":Task" as Task COLOR_TASK_LIST
 end box
 
 box Ui COLOR_UI_LIGHT
 participant ":Ui" as Ui COLOR_UI
 end box
 
-box Storage COLOR_STORAGE_LIGHT
-participant ":Storage" as Storage COLOR_STORAGE
-end box
-
-User -> ToDoListManager: input("edit <index> -due <deadline>")
+User -> ToDoListManager: input("due <id> -edit <deadline>")
 ToDoListManager -> Parser: parseCommand(inputCommand)
 Parser -> EditDeadlineCommand: new EditDeadlineCommand(getArguments(splitInput, EditDeadlineCommand.FLAGS))
-EditDeadlineCommand -> Parser: formatDateTime(args.get(Flags.DEADLINE.FLAG))
-Parser --> EditDeadlineCommand: LocalDateTime.parse(date, inputFormatter)
 ToDoListManager -> EditDeadlineCommand: execute(taskList, ui)
-EditDeadlineCommand -> TaskList: editDeadline(index, deadline)
-TaskList -> TaskList:ArrayList: get(index)
+EditDeadlineCommand -> TaskList: setDeadline(id, deadline)
+TaskList -> TaskList: getTask(id)
 TaskList -> Task: setDeadline(deadline)
-Task --> TaskList: toString()
+Task --> TaskList: taskString
 TaskList -> Ui: printEditTaskMessage(taskString)
 @enduml

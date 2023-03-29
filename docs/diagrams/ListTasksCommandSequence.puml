@@ -1,3 +1,4 @@
+//@@author KedrianLoh
 @startuml
 !include Style.puml
 
@@ -20,10 +21,6 @@ box Ui COLOR_UI_LIGHT
 participant ":Ui" as Ui COLOR_UI
 end box
 
-box Storage COLOR_STORAGE_LIGHT
-participant ":Storage" as Storage COLOR_STORAGE
-end box
-
 User -> ToDoListManager: input("list")
 activate ToDoListManager
 ToDoListManager -> Parser : parseCommand("list")
@@ -31,23 +28,23 @@ activate Parser
 create ListTasksCommand
 Parser -> ListTasksCommand
 activate ListTasksCommand
-ListTasksCommand -> ListTasksCommand : execute(TaskList, ui)
+ListTasksCommand --> Parser
+deactivate ListTasksCommand
+Parser --> ToDoListManager: command
+deactivate Parser
+ToDoListManager -> ListTasksCommand : execute(TaskList, ui)
 activate ListTasksCommand
-ListTasksCommand -> TaskList : sortByDeadline()
+ListTasksCommand -> TaskList : toString(Task.deadlineComparator)
 activate TaskList
-TaskList --> ListTasksCommand
+TaskList --> ListTasksCommand : taskListString
 deactivate TaskList
-ListTasksCommand -> Ui : printTaskList(taskList.size(), taskList.toString())
+ListTasksCommand -> Ui : printTaskList(taskList.size(), taskListString)
 activate Ui
 Ui --> ListTasksCommand
 deactivate Ui
-ListTasksCommand --> ListTasksCommand
+ListTasksCommand --> ToDoListManager
 deactivate ListTasksCommand
-ListTasksCommand --> Parser
-deactivate ListTasksCommand
-Parser --> ToDoListManager : command
-deactivate Parser
-deactivate ListTasksCommand
+destroy ListTasksCommand
 ToDoListManager --> User : list of tasks
 deactivate ToDoListManager
 @enduml

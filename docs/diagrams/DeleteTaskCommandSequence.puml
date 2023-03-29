@@ -1,3 +1,4 @@
+//@@author RuiShengGit
 @startuml
 !include Style.puml
 
@@ -20,20 +21,12 @@ box Ui COLOR_UI_LIGHT
 participant ":Ui" as Ui COLOR_UI
 end box
 
-box Storage COLOR_STORAGE_LIGHT
-participant ":Storage" as Storage COLOR_STORAGE
-end box
-
-User -> ToDoListManager: input("delete <index>")
+User -> ToDoListManager: input("delete <id>")
 activate ToDoListManager
-ToDoListManager -> Parser : parseCommand("delete <index>")
+ToDoListManager -> Parser : parseCommand("delete <id>")
 activate Parser
 create DeleteTaskCommand
 Parser -> DeleteTaskCommand
-activate DeleteTaskCommand
-DeleteTaskCommand --> Parser : HashMap
-deactivate DeleteTaskCommand
-Parser -> DeleteTaskCommand : parse("<index>")
 activate DeleteTaskCommand
 DeleteTaskCommand --> Parser
 deactivate DeleteTaskCommand
@@ -41,22 +34,16 @@ Parser --> ToDoListManager : command
 deactivate Parser
 ToDoListManager -> DeleteTaskCommand : execute(taskList, ui)
 activate DeleteTaskCommand
-DeleteTaskCommand -> TaskList: deleteTask(<index>)
+DeleteTaskCommand -> TaskList: deleteTask(<id>)
 activate TaskList
-TaskList --> DeleteTaskCommand
+TaskList --> DeleteTaskCommand : taskString
 deactivate TaskList
 DeleteTaskCommand -> Ui : printDeleteTaskMessage(taskString)
 activate Ui
 Ui --> DeleteTaskCommand
 deactivate Ui
 DeleteTaskCommand --> ToDoListManager : result
-ToDoListManager --> User : Notify user task has been deleted
 deactivate DeleteTaskCommand
 destroy DeleteTaskCommand
-ToDoListManager ->Storage : saveData(taskList)
-activate Storage
-Storage -> Storage : updates data
-Storage --> ToDoListManager
-deactivate Storage
-
+ToDoListManager --> User : Notify user task has been deleted
 @enduml

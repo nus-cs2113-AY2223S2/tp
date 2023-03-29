@@ -1,14 +1,14 @@
-add do math homework -due 20/04/3023 23:59 -rep 0
-add laundry -due 18/04/3023 16:30 -rep 0
+add do math homework -due 20/04/3023 23:59
+add laundry -due 18/04/3023 16:30
 list
 mark 1
 delete 2
 list
 abcd
-edit 3 -due 30/04/3023 08:45
-edit 1 -due 31/04/3023 08:45
-edit 1 -due 30/04/3023 08:45
+due 3 -edit 30/04/3023 08:45
+due 1 -edit 31/04/3023 08:45
+due 1 -edit 30/04/3023 08:45
 list
-edit 1 -email rui@gmail.com
-get_email 1
+email 1 -edit rui@gmail.com
+info 1
 exit
