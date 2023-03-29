@@ -47,31 +47,31 @@ public class Parser {
         String inputIgnoringCase = userCommandFirstKeyword.toLowerCase();
         try {
             switch (inputIgnoringCase) {
-                case "list":
-                    return prepareListCommands(userInputWords, universities, modules);
-                case "search":
-                    assert userInputWords.size() > 1 : "No Nus Module Code Read";
-                    return prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities);
-                case "exit":
-                    return new ExitCommand();
-                case "add":
-                    return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
-                case "remove":
-                    return prepareRemoveModuleCommand(storage, userCommandSecondKeyword, universities);
-                case "/help":
-                    return new HelpCommand();
-                case "/budget":
-                    return prepareBudgetCommand(userInput, budgetPlanner);
-                case "/deadline/list":
-                    return new ListDeadlinesCommand(deadlines);
-                case "/deadline/add":
-                    String deadlineTaskAndDueDate = userInputWords.get(1) + " " + userInputWords.get(2);
-                    return prepareAddDeadlineCommand(storage, deadlineTaskAndDueDate);
-                case "/deadline/remove":
-                    int indexDeadlineToRemove = stringToInt(userCommandSecondKeyword);
-                    return new DeleteDeadlineCommand(storage, indexDeadlineToRemove, deadlines);
-                default:
-                    throw new InvalidCommandException(ui.getCommandInputError());
+            case "list":
+                return prepareListCommands(userInputWords, universities, modules);
+            case "search":
+                assert userInputWords.size() > 1 : "No Nus Module Code Read";
+                return prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities);
+            case "exit":
+                return new ExitCommand();
+            case "add":
+                return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
+            case "remove":
+                return prepareRemoveModuleCommand(storage, userCommandSecondKeyword, universities);
+            case "/help":
+                return new HelpCommand();
+            case "/budget":
+                return prepareBudgetCommand(userInput, budgetPlanner);
+            case "/deadline/list":
+                return new ListDeadlinesCommand(deadlines);
+            case "/deadline/add":
+                String deadlineTaskAndDueDate = userInputWords.get(1) + " " + userInputWords.get(2);
+                return prepareAddDeadlineCommand(storage, deadlineTaskAndDueDate);
+            case "/deadline/remove":
+                int indexDeadlineToRemove = stringToInt(userCommandSecondKeyword);
+                return new DeleteDeadlineCommand(storage, indexDeadlineToRemove, deadlines);
+            default:
+                throw new InvalidCommandException(ui.getCommandInputError());
             }
         } catch (InvalidCommandException e) {
             return new ExceptionHandleCommand(e);
@@ -113,16 +113,16 @@ public class Parser {
                                        ArrayList<University> universities, ArrayList<Module> modules) {
         String userCommandIgnoreCase = userCommandSecondKeyword.toLowerCase();
         switch (userCommandIgnoreCase) {
-            case "pu":
-                return new ListPuCommand();
-            case "current":
-                if (userInputWords.size() == 3) {
-                    String userCommandThirdKeyword = userInputWords.get(2);
-                    return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
-                }
-                return new ListCurrentCommand(modules);
-            default:
-                return prepareListPuModulesCommand(userInputWords, userCommandSecondKeyword, universities);
+        case "pu":
+            return new ListPuCommand();
+        case "current":
+            if (userInputWords.size() == 3) {
+                String userCommandThirdKeyword = userInputWords.get(2);
+                return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
+            }
+            return new ListCurrentCommand(modules);
+        default:
+            return prepareListPuModulesCommand(userInputWords, userCommandSecondKeyword, universities);
         }
     }
 
@@ -289,18 +289,18 @@ public class Parser {
         String budgetCommand = commandWords[0].toLowerCase();
         int amount = stringToInt(commandWords[1]);
         switch (budgetCommand) {
-            case "budget":
-                return new EditBudgetCommand(amount, budgetPlanner);
-            case "accommodation":
-                return new EditAccommodationCommand(amount, budgetPlanner);
-            case "airplane":
-                return new EditAirplaneTicketCommand(amount, budgetPlanner);
-            case "food":
-                return new EditFoodCommand(amount, budgetPlanner);
-            case "entertainment":
-                return new EditEntertainmentCommand(amount, budgetPlanner);
-            default:
-                throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+        case "budget":
+            return new EditBudgetCommand(amount, budgetPlanner);
+        case "accommodation":
+            return new EditAccommodationCommand(amount, budgetPlanner);
+        case "airplane":
+            return new EditAirplaneTicketCommand(amount, budgetPlanner);
+        case "food":
+            return new EditFoodCommand(amount, budgetPlanner);
+        case "entertainment":
+            return new EditEntertainmentCommand(amount, budgetPlanner);
+        default:
+            throw new InvalidCommandException(ui.getInvalidBudgetMessage());
         }
     }
 
