@@ -27,7 +27,7 @@ public class TaskList {
 
     public static void addTask(String todoDescription, LocalDate time) {
         Task newTask = new Task(todoDescription, time);
-        logger.log(Level.INFO, "New task added: " + todoDescription);
+        logger.log(Level.INFO, "New task added with deadline: " + todoDescription);
         taskList.add(newTask);
         numberOfTasks += 1;
     }
@@ -65,6 +65,8 @@ public class TaskList {
 
             if (taskList.get(i).deadline != null) {
                 System.out.println(" (Deadline: " + taskList.get(i).deadline + ")");
+            } else { 
+                System.out.println();
             }
         }
     }
@@ -77,13 +79,17 @@ public class TaskList {
         Comparator<Task> deadlineComparator = (task1, task2) -> task1.deadline
                 .compareTo(task2.deadline);
         ArrayList<Task> schedule = new ArrayList<>();
-        Collections.copy(taskList, schedule);
+        for (Task task : taskList) {
+            if (task.deadline != null) {
+                schedule.add(task);
+            }
+        }
         Collections.sort(schedule, deadlineComparator);
 
-        for (int i = 0; i < numberOfTasks; i++) {
+        for (int i = 0; i < schedule.size(); i++) {
             if (schedule.get(i).deadline != null) {
                 System.out.print((i + 1) + ". " + schedule.get(i).getStatusIcon() + " " + schedule.get(i).description);
-                System.out.println(" (Deadline: " + taskList.get(i).deadline + ")");
+                System.out.println(" (Deadline: " + schedule.get(i).deadline + ")");
             }
         }
 
