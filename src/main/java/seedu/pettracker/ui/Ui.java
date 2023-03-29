@@ -121,7 +121,7 @@ public class Ui {
      * Message that prints before listing a schedule.
      */
     public void scheduleCommandMessage() {
-        System.out.println("Here is your schedule: ")
+        System.out.println("Here is your schedule: ");
     }
 
     /**

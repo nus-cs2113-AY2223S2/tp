@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.Comparator;
+import java.util.Collections;
 
 public class TaskList {
     private static final Logger logger = Logger.getLogger("TaskListLogger");
@@ -65,6 +67,26 @@ public class TaskList {
                 System.out.println(" (Deadline: " + taskList.get(i).deadline + ")");
             }
         }
+    }
+
+    /**
+     * Print a schedule sorted by deadline
+     * 
+     */
+    public static void printSchedule() {
+        Comparator<Task> deadlineComparator = (task1, task2) -> task1.deadline
+                .compareTo(task2.deadline);
+        ArrayList<Task> schedule = new ArrayList<>();
+        Collections.copy(taskList, schedule);
+        Collections.sort(schedule, deadlineComparator);
+
+        for (int i = 0; i < numberOfTasks; i++) {
+            if (schedule.get(i).deadline != null) {
+                System.out.print((i + 1) + ". " + schedule.get(i).getStatusIcon() + " " + schedule.get(i).description);
+                System.out.println(" (Deadline: " + taskList.get(i).deadline + ")");
+            }
+        }
+
     }
 
     /**
