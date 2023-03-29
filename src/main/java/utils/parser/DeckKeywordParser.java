@@ -30,7 +30,6 @@ public class DeckKeywordParser extends KeywordParser{
     private static Options buildDeleteOptions() {
         Options options = new Options();
         options.addRequiredOption("d", "deck", true, "deck name");
-        // extra stuff down here
         options.addOption("c", "card", true, "card name (optional)");
         options.addOption("t", "tag", true, "tag name (optional)");
 
