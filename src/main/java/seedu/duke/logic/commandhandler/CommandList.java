@@ -10,7 +10,6 @@ public interface CommandList {
     String HELP_COMMAND = "help";
     String FILTERS_COMMAND = "filters";
     String EXIT_COMMAND = "exit";
-    String BYE_COMMAND = "bye";
     String START_COMMAND = "start";
     String CURRENT_COMMAND = "current";
     String FINISH_COMMAND = "finish";
@@ -23,5 +22,5 @@ public interface CommandList {
     String DELETE_PLAN_COMMAND = "delete";
     String ADD_PLAN_COMMAND = "add";
     String EXERCISE_DATA_COMMAND = "data";
-
+    String DELETE_COMMAND = "delete";
 }

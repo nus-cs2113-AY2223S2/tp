@@ -85,6 +85,13 @@ public class ExerciseStateHandler {
         currentSessionWorkout = null;
     }
 
+
+    public void deleteWorkoutSession (UserCareerData userCareerData, int i) throws DukeError{
+        userCareerData.deleteWorkoutSession(i);
+        System.out.println("Noted, you have deleted this workout session!");
+        storage.writeToJson(userCareerData);
+    }
+
     /**
      * Prints congratulation message and saves the completed session
      *
@@ -98,5 +105,6 @@ public class ExerciseStateHandler {
         storage.writeToJson(userCareerData);
         // complete workout
     }
+
 
 }
