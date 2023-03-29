@@ -27,10 +27,18 @@ public class TaskList {
         taskList.add(newTask);
         numberOfTasks += 1;
     }
+    
+    public static void addTask(String todoDescription, String time) {
+        Task newTask = new Task(todoDescription, time);
+        logger.log(Level.INFO, "New task added: " + todoDescription + " with time: " + time);
+        taskList.add(newTask);
+        numberOfTasks += 1;
+    }
 
-    public static void editTask(int taskNumber, String newDescription) {
+    public static void editTask(int taskNumber, String newDescription, String newTime) {
         Task task = taskList.get(taskNumber - 1);
         task.description = newDescription;
+        task.time = newTime;
     }
 
     /**
