@@ -10,8 +10,8 @@
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `NUS To-Do List` from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0).
-1. Double-click the downloaded jar file to run the program.
+2. Down the latest version of `NUS To-Do List` from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0).
+3. Double-click the downloaded jar file to run the program.
 
 ## Features 
 
@@ -163,6 +163,25 @@ Example of usage:
 ```
 Okay, I have edited the priority level of this task to [Medium]:
 [ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
+```
+
+### Show progress of tasks that are due this week `progress`
+
+Displays the progress of and lists tasks that are due this week in To-Do list. Progress is shown in the form of a 
+percentage (up to 2 decimal places) and a progress bar (where "=" denotes the proportion of tasks completed and "-" 
+denotes the proportion of tasks that are left undone.
+
+Format: `progress`
+
+Example of usage:
+
+`progress` displays the progress of and lists tasks that are due this week
+```
+You have completed 33.33% of the 3 tasks due this week!
+Progress: |================----------------------------------|
+[ID:1]	[X][task1][Due: 30 Mar 2023 18:00]
+[ID:2]	[ ][task2][Due: 30 Mar 2023 19:00]
+[ID:3]	[ ][task3][Due: 31 Mar 2023 20:00]
 ```
 
 ## FAQ
