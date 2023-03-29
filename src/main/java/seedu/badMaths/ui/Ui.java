@@ -7,24 +7,20 @@ import java.util.ArrayList;
 
 public class Ui {
 
-    private static String logo =
-            " ________  ________  ________          _____ ______   ________  _________  ___  ___  ________      \n" +
-            "|\\   __  \\|\\   __  \\|\\   ___ \\        |\\   _ \\  _   \\|\\   __  \\|\\___  " +
-                    " ___\\\\  \\|\\  \\|\\   ____\\     \n" +
-            "\\ \\  \\|\\  \\ \\  \\|\\  \\ \\  \\_|\\ \\   " +
-                    "    \\ \\  \\\\\\__\\ \\  \\ \\  \\|\\  \\|___ \\  \\_\\ \\  \\\\\\  \\ \\  \\___|_    \n" +
-            " \\ \\   __  \\ \\   __  \\ \\  \\ \\\\ \\   " +
-                    "    \\ \\  \\\\|__| \\  \\ \\   __  \\   \\ \\  \\ \\ \\   __  \\ \\_____  \\   \n" +
-            "  \\ \\  \\|\\  \\ \\  \\ \\  \\ \\  \\_\\\\ \\    " +
-                    "   \\ \\  \\    \\ \\  \\ \\  \\ \\  \\   \\ \\  \\ \\ \\  \\ \\  \\|____|\\  \\  \n" +
-            "   \\ \\_______\\ \\__\\ \\__\\ \\_______\\  " +
-                    "     \\ \\__\\    \\ \\__\\ \\__\\ \\__\\   \\ \\__\\ \\ \\__\\ \\__\\____\\_\\  \\ \n" +
-            "    \\|_______|\\|__|\\|__|\\|_______|     " +
-                    "   \\|__|     \\|__|\\|__|\\|__|    \\|__|  \\|__|\\|__|\\_________\\\n" +
-            "                                                                                       \\|_________|\n";
+    private static String logo = "\n" +
+            "____            _   __  __       _   _         \n" +
+            "|  _ \\          | | |  \\/  |     | | | |        \n" +
+            "| |_) | __ _  __| | | \\  / | __ _| |_| |__  ___ \n" +
+            "|  _ < / _` |/ _` | | |\\/| |/ _` | __| '_ \\/ __|\n" +
+            "| |_) | (_| | (_| | | |  | | (_| | |_| | | \\__ \\\n" +
+            "|____/ \\__,_|\\__,_| |_|  |_|\\__,_|\\__|_| |_|___/";
+
 
     public static void printWelcomeMessage() {
-        System.out.println("This is\n" + logo + "\nYou can type 'Help.' to learn what I can do for you :)");
+        System.out.println("This is BadMaths. You can type 'Help.' to learn what I can do for you :)");
+    }
+    public static void printLogo(){
+        System.out.println(logo);
     }
     public static void printIncorrectFormatEntered() {
         System.out.println("Please enter the format as required.");

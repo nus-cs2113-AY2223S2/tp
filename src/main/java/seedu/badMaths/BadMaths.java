@@ -43,6 +43,7 @@ public class BadMaths {
     public static void main(String[] args) {
         Command inputCommand = null;
         Ui.printWelcomeMessage();
+        Ui.printLogo();
         notesCreator(path);
         NotesList notes = new NotesList(Storage.loadFile(path));
 
