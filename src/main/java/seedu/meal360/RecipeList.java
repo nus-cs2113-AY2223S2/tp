@@ -46,6 +46,14 @@ public class RecipeList extends ArrayList<Recipe> {
 
     public void removeRecipeFromTag(String tag, Recipe recipe) {
         HashMap<Recipe, Integer> tagRecipeList = tags.get(tag);
+        boolean isAbleToFindTheRecipe =  tagRecipeList.containsKey(recipe);
+        if (!isAbleToFindTheRecipe) {
+            String errorMessage1 = "Unable to find the recipe: \"" + recipe.getName() +"\" in the" +
+                    " tag.";
+            String errorMessage2 = "All the recipe before \"" + recipe.getName() +"\" (if any) are " +
+                    "successfully removed from the tag.";
+            throw new IndexOutOfBoundsException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
+        }
         tagRecipeList.remove(recipe);
     }
 
@@ -98,7 +106,7 @@ public class RecipeList extends ArrayList<Recipe> {
             hasNoRecipeToReturn = filteredRecipeList.size() == 0;
 
             if (hasNoRecipeInTheTag) {
-                continue;
+                throw new NullPointerException("There is nothing to list.");
             }
             if (hasNoRecipeToReturn) {
                 return filteredRecipeList;

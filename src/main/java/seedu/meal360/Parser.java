@@ -270,7 +270,11 @@ public class Parser {
             recipe = recipeList.findByName(recipeName);
             isUnableToFindTheRecipe = recipe == null;
             if (isUnableToFindTheRecipe) {
-                throw new IndexOutOfBoundsException("Unable to find the recipe: \"" + recipeName +"\".");
+                String errorMessage1 = "Unable to find the recipe: \"" + recipeName +"\" in the" +
+                        " tag.";
+                String errorMessage2 = "All the recipe before \"" + recipeName +"\" (if any) are " +
+                        "successfully added from the tag.";
+                throw new IndexOutOfBoundsException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
             }
             recipeList.addRecipeToTag(tag, recipe);
         }
@@ -282,7 +286,7 @@ public class Parser {
         Recipe recipe;
         String[] recipesToRemove;
         boolean isUnableToFindTag;
-        boolean isUnableToFindTheRecipe;
+        boolean isNoRecipeInTheList;
         String[] args = command.trim().split(">>");
         boolean isNotEnoughArgs = args.length < 2 || args[0].equals("") || args[1].equals("");
 
@@ -301,11 +305,24 @@ public class Parser {
         for (String recipeName : recipesToRemove) {
             recipeName = recipeName.trim();
             recipe = recipeList.findByName(recipeName);
-            isUnableToFindTheRecipe = recipe == null;
-            if (isUnableToFindTheRecipe) {
-                throw new IndexOutOfBoundsException("Unable to find the recipe: \"" + recipeName +"\".");
+            isNoRecipeInTheList =  recipe == null;
+            if (isNoRecipeInTheList) {
+                String errorMessage1 = "Unable to find the recipe: \"" + recipeName +"\" in the" +
+                        " tag.";
+                String errorMessage2 = "All the recipe before \"" + recipeName +"\" (if any) are " +
+                        "successfully removed from the tag.";
+                throw new IndexOutOfBoundsException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
             }
-            recipeList.removeRecipeFromTag(tag, recipe);
+
+            try {
+                recipeList.removeRecipeFromTag(tag, recipe);
+            } catch (IndexOutOfBoundsException e) {
+                String errorMessage1 = "Unable to find the recipe: \"" + recipeName +"\" in the" +
+                        " tag.";
+                String errorMessage2 = "All the recipe before \"" + recipeName +"\" (if any) are " +
+                        "successfully removed from the tag.";
+                throw new IndexOutOfBoundsException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
+            }
         }
         return tag;
     }

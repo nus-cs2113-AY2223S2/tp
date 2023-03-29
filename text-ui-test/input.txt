@@ -12,12 +12,12 @@ list /t tag#1
 list /t
 tag tag#1 << avocado toast >>
 tag tag#1 << avocado toast <<
-tag tag#1 << avocado toast
+c
 list /t tag#1
 list /t tag#1 && tag#2
 tag tag#1 >> avocado toast <<
-tag tag#1 >> avocado toast >>
-tag tag#1 >> avocado toast
+tag tag#1 >> avocado toast && strawberry>>
+tag tag#1 >> avocado toast && strawberry
 list /t tag#1
 list /t tag#1 && tag#2 /t
 view
