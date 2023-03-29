@@ -23,6 +23,4 @@ activate Parser
 Parser --> CommandDelete : Integer
 deactivate Parser
 
-
-
 @enduml
