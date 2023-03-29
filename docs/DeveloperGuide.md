@@ -193,29 +193,24 @@ The Storage class implements the following operations:
 - `Storage#saveData(TaskList)` --- Saves the current task list.
 - `Storage#loadData()` --- Loads a task list from the previously saved file, if there is one.
 
-Given below is an example usage scenario and how the Storage mechanism behaves at each step.
+Given below are 3 example usage scenarios and how the Storage mechanism behaves in each scenario.
 
-Step 1. The user launches the application (not for the first time). The program loads the previously saved task list 
-data as there is a saved file `'./data.txt'` that Storage can find.
+Scenario 1: The user launches the application and there is a valid save file found. Storage loads the file successfully
+and informs the user of the loaded task list (and how many tasks there are in it).
 
-![Step 1](images/StorageSequenceDiagramStep1.png)
+![StartUpStorageSequenceWithValidSaveFile](images/StartUpStorageWithValidSaveFile.png)
 
-Step 2. The user executes `list` command. The `list` command calls `Ui#printTaskList()` which lists all tasks in the 
-task list. `ToDoListManager` calls `storage#saveData()`, so the task list is saved into `'./data.txt'`.
 
-![Step2](images/StorageSequenceDiagramStep2-Step_2.png)
+Scenario 2: The user launches the application and there is no save file found. Storage informs the user that there is no
+save file found and that a new one will be created for them later.
 
-Step 3. The user executes `add cg2023 assignment -due 18/12/2023` command. The `add` command calls `TaskList#addTask()`, 
-which adds a new Task to the existing task list. `ToDoListManager` calls `storage#saveData()`, so the task list is saved
-into `'./data.txt'`.
+![StartUpStorageSequenceWithNoSaveFile](images/StartUpStorageSequenceWithNoSaveFile.png)
 
-![Step3](images/StorageSequenceDiagramStep3-Step_3.png)
+Scenario 3: The user edits the task list or exits the program. Storage saves the changes automatically into the save 
+file. Note that the sequence diagram below shows what happens when the user exits the program, but the processes in
+Storage occur even when the user performs other commands to edit the task list.
 
-Step 4. The user executes `exit` command and exits the program. The `exit` command calls `Ui#printGoodByeMessage` to 
-notify the user that (s)he is exiting the program. `ToDoListManager` calls `storage#saveData(taskList)`, so the task 
-list is saved into `'./data.txt'` again before the program exits.
-
-![Step4](images/StorageSequenceDiagramStep4-Step_4.png)
+![ExitProgramStorageSequence](images/ExitProgramStorageSequence.png)
 
 #### Design considerations:
 - **Option 1**: Save task list as a self-formatted .txt file which can be printed and used as a physical task list.
@@ -235,31 +230,21 @@ list is saved into `'./data.txt'` again before the program exits.
 Main reasons for choosing Alternative 3: It is much easier to implement and maintain than the other 2 alternatives,
 and we found that the lack of a physical task list to use is not a very significant issue.
 
-### [Proposed] History feature
+### Progress Bar Feature
+The ProgressBarCommand extends NUS To-Do List with a progress bar feature for tracking the progress on tasks in the task 
+list that must be finished by the current week. It is facilitated by ToDoListManager, Parser, TaskList, TemporalField, 
+LocalDate and Ui classes. It implements the Ui#printProgressBar() operation, which informs the user of their progress 
+using a percentage (up to 2 decimal places) and a bar (where '=' denotes completion and '-' denotes incomplete).
 
-The proposed history feature is facilitated by the `Storage`, `TaskList` and `Command` classes. Internally, there will 
-be 2 task lists stored - `completedTasks` and `uncompletedTasks`. There will be a rework to how marking tasks as done 
-works, a removal of the operation `TaskList#setDone()` and a new command for users to input to the CLI: `history`.
+Given below is an example usage scenario and how the ProgressBarCommand mechanism behaves in this scenario.
 
-There will be 2 new operations:
-* `TaskList#markTask(id i)` - Moves the task at id i of `uncompletedTasks` to `completedTasks`.  
-* `TaskList#unmarkTask(id i)` - Moves the task at id i of `completedTasks` to `uncompletedTasks`.
+The user has a task list with 3 tasks that are due this week. Among the 3 tasks, 1 is marked as done. The user executes 
+the progress command, which will call Ui#printProgressBar(). The user now sees that they have completed 33.33% of their 
+tasks and a progress bar to help them visualize their progress.
 
-Given below is an example usage scenario and how the history mechanism works.
+![ProgressBarCommandSequence](images/ProgressBarCommandSequence.png)
 
-Step 1. The user launches the application for the first time. Both `completedTasks` and `uncompletedTasks` are empty.
-
-Step 2. The user executes `add cg2023 assignment -due 18/12/2023` command to add a task that (s)he has to complete. The
-`add` command causes the task to be added to `uncompletedTasks`.
-
-Step 3. The user executes `mark` command to mark a task that (s)he has completed. The `mark` command causes the task to
-be added to `completedTasks` and removed from `uncompletedTasks`.
-
-Step 4. The user executes `list` command to see what tasks (s)he has still not completed. The `list` command causes the 
-tasks in `uncompletedTasks` to be listed for the user to see.
-
-Step 5. The user executes `history` command to see what tasks (s)he has already completed. The `history` command causes 
-the tasks in `completedTasks` to be listed for the user to see.
+[remember to add the proposed feature part here again]
 
 ## Appendix: Requirements
 

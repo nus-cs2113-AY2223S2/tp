@@ -1,0 +1,37 @@
+@startuml
+!include Style.puml
+
+actor User
+
+participant ":Main" as Main
+
+box Manager COLOR_MAIN_LIGHT
+participant ":ToDoListManager" as ToDoListManager COLOR_MAIN
+end box
+
+box Storage COLOR_STORAGE_LIGHT
+participant ":Storage" as Storage COLOR_STORAGE
+end box
+
+box TaskList COLOR_TASK_LIST_LIGHT
+participant ":TaskList" as TaskList COLOR_TASK_LIST_LIGHT
+end box
+
+box Ui COLOR_UI_LIGHT
+participant ":Ui" as Ui COLOR_UI
+
+User -> Main: start program
+Main -> ToDoListManager
+activate ToDoListManager
+ToDoListManager -> Storage: isNewSave()
+activate Storage
+Storage --> ToDoListManager: true
+Storage -> Ui: printNewSaveMessage()
+activate Ui
+Ui --> Storage
+deactivate Ui
+Storage --> ToDoListManager
+deactivate Storage
+ToDoListManager --> Main
+Main --> User: Notify user that there is no save file found and a new one will be created later
+@enduml
