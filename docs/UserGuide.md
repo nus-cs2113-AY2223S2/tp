@@ -18,6 +18,7 @@
    * `delete 1`: Delete the first entry in the expense list.
    * `sort D`: Sort the expenses by date.
    * `category food`: Find all expenses with food category.
+   * `find 2.5`: Find all expenses with information of 2.5.
 
 ## Features
 
@@ -137,9 +138,57 @@ Example of usage:
 
 `category clothes`
 
+### Find expenses: `find`
+Find all expenses with the specified information, regardless whether this information can form a meaningful word or match the expense attribute.
+
+Format: `find INFO`
+
+* INFO represents the information that the user want to find.
+* If none of the expenses have such information, it will tell the user this case.
+* Even if the information is not a word, let's say "f", the method still will find expenses that any of their attributes contain the character f.
+
+Example of usage:
+
+`find 2.5`
+
+`find f`
+
+`find SGD`
+
+
+
+### Generating a monthly overview: `overview`
+Generate a monthly overview consisting of total expenses of the month and a 
+breakdown of expenses based on category, from the most spent to the least. The currency 
+for display is standardised as SGD.
+
+Format: `overview MONTH YEAR`
+- `MONTH` must be the standard English Month Name
+
+Example of usage:
+`overview June 2021`
+
+Expected output:
+```
+Overview for JUNE 2021
+
+    Total expenses: 80.55 SGD
+
+    Breakdown of expenses by category in descending order by category sum:
+    ----------------------------
+     uncategorized 44.00 SGD
+    ----------------------------
+     food 26.55 SGD
+    ----------------------------
+     travel 10.00 SGD
+    ----------------------------
+```
+
+
+
 
 ### Exiting the program: `exit`
-Exits the programn without saving expense list.
+Exits the program without saving expense list.
 
 Format: `exit`
 
