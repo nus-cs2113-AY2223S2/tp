@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class TextUi
+
+
+class TextUi {
+-Scanner : in
+-out
+TextUi()
+shouldIgnoreEmpty(String)
+getUserInput()
+print message(String)
+print banner();
+}
+
+@enduml

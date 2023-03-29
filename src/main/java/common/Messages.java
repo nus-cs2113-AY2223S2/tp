@@ -31,9 +31,9 @@ public class Messages {
     public static final String MESSAGE_COMMAND_EXIT = "Thank you for using DinerDirector!";
     public static final String MESSAGE_DEADLINE_ADDED = "Got it! This deadline has been successfully added.\n";
     public static final String MESSAGE_DEADLINE_EMPTY_LIST = "Your deadline list is empty!";
-    public static final String MESSAGE_DEADLINE_VIEW_LIST = "Here are the tasks in your list:";
-    public static final String MESSAGE_DEADLINE_REMOVED = "Noted. I've removed this task:\n";
-    public static final String MESSAGE_NUMBER_OF_DEADLINES = "\nNow you have %d tasks in the list.";
+    public static final String MESSAGE_DEADLINE_VIEW_LIST = "Here are the deadlines in your list:";
+    public static final String MESSAGE_DEADLINE_REMOVED = "Noted. I've removed this deadline:\n";
+    public static final String MESSAGE_NUMBER_OF_DEADLINES = "\nNow you have %d deadlines in the list.";
     public static final String MESSAGE_MEETING_ADDED = "Got it! You have successfully added a meeting:";
     public static final String MESSAGE_MEETING_VIEW_LIST = "Meeting list:";
 

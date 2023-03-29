@@ -61,7 +61,12 @@ Format: `add_deadline n/<name> t/<time>`
 
 Example: 
 ```
-add_deadline n/need to buy more potatoes t/Saturday, 2PM
+>>view_deadline
+1. fix water pipes by: 10 Apr
+>>add_deadline n/need to buy more potatoes t/9 Apr 2PM
+>>view_deadline
+1. fix water pipes by: 10 Apr
+2. need to buy more potatoes deal by: 9 Apr 2PM
 ```
 
 #### View all deadlines:
@@ -69,15 +74,33 @@ add_deadline n/need to buy more potatoes t/Saturday, 2PM
 View the deadline list.
 
 Format: `view_deadline`
-
 #### Delete a deadline:
 
-Format: `delete_deadline n/<name>`
+Format: `delete_deadline i/<index>`
 
+
+Example:
+```
+>>view_deadline
+1. fix water pipes by: 10 Apr
+2. need to buy more potatoes deal by: 9 Apr 2PM
+>>delete_deadline 2
+>>view_deadline
+1. fix water pipes by: 10 Apr
+```
+#### Find a deadline:
+
+Format: `find_deadline <keyword>`
 
 Example: 
 ```
-delete_deadline n/need to buy more potatoes
+>>view_deadline
+1. fix water pipes by: 10 Apr
+2. need to buy more potatoes deal by: 9 Apr 2PM
+3. fix fridge by: 15 Apr
+>>find_deadline fridge
+1. fix water pipes by: 10 Apr
+2. fix fridge by: 15 Apr
 ```
 
 ### Menu
@@ -145,12 +168,16 @@ delete_worker n/Patrick Parker
 
 ## Command Summary
 
-| Action          | Command                       |
-|-----------------|-------------------------------|
-| help            | help                          |
-| add_meeting     | add_meeting n/<name> t/<time> |
-| view_meetings   | view_meetings                 |
-| delete_meeting  | delete_meeting n/<name>       |
-| find_meeting    | find_meeting s/<string>       |
+| Action           | Command                        |
+|------------------|--------------------------------|
+| help             | help                           |
+| add_meeting      | add_meeting n/<name> t/<time>  |
+| view_meetings    | view_meetings                  |
+| delete_meeting   | delete_meeting n/<name>        |
+| find_meeting     | find_meeting s/<string>        |
+| add_deadline     | add_deadline n/<name> t/<time> |
+| view_deadline    | view_deadline                  |
+| delete_deadline  | delete_deadline i/<index>      |
+| find_deadline    | find_deadline <keyword>        |
 
 
