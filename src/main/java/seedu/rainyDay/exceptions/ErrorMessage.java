@@ -2,8 +2,7 @@ package seedu.rainyDay.exceptions;
 
 public enum ErrorMessage {
     UNRECOGNIZED_INPUT("Sorry! I do not understand your input!\n Please refer to the help table!"),
-    WRONG_DELETE_INDEX("Sorry, your delete command is invalid. Please ensure delete index is a number > 0 and <= \n" +
-            "Please refer to 'help' for more information!"),
+    WRONG_DELETE_INDEX("Sorry, your delete command is invalid. Please ensure delete index is a number > 0 and <= %s"),
     NO_DELETE_INDEX("Sorry, your delete command is invalid. Please include a delete index! \n" +
             "Delete format is as follows :\n" + "delete [index]"),
     WRONG_ADD_FORMAT("Sorry, your add command is invalid. Add format is as follows: \n" +
