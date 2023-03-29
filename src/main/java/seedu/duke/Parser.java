@@ -42,29 +42,29 @@ public class Parser {
         try {
             switch (inputIgnoringCase) {
             case "list":
-            return prepareListCommands(userInputWords, universities, modules);
+                return prepareListCommands(userInputWords, universities, modules);
             case "search":
-            assert userInputWords.size() > 1 : "No Nus Module Code Read";
-            return prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities);
+                assert userInputWords.size() > 1 : "No Nus Module Code Read";
+                return prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities);
             case "exit":
-            return new ExitCommand();
+                return new ExitCommand();
             case "add":
-            return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
+                return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
             case "remove":
-            return prepareRemoveModuleCommand(storage, userCommandSecondKeyword, universities);
+                return prepareRemoveModuleCommand(storage, userCommandSecondKeyword, universities);
             case "/help":
-            return new HelpCommand();
+                return new HelpCommand();
             case "/budget":
-            return prepareBudgetCommand(userCommandSecondKeyword, budgetPlanner);
+                return prepareBudgetCommand(userCommandSecondKeyword, budgetPlanner);
             case "/deadline/list":
-            return new ListDeadlinesCommand(deadlines);
+                return new ListDeadlinesCommand(deadlines);
             case "/deadline/add":
-            return prepareAddDeadlineCommand(storage, userCommandSecondKeyword);
+                return prepareAddDeadlineCommand(storage, userCommandSecondKeyword);
             case "/deadline/remove":
-            int indexDeadlineToRemove = stringToInt(userCommandSecondKeyword);
-            return new DeleteDeadlineCommand(storage, indexDeadlineToRemove, deadlines);
+                int indexDeadlineToRemove = stringToInt(userCommandSecondKeyword);
+                return new DeleteDeadlineCommand(storage, indexDeadlineToRemove, deadlines);
             default:
-            throw new InvalidCommandException(ui.getCommandInputError());
+                throw new InvalidCommandException(ui.getCommandInputError());
             }
         } catch (InvalidCommandException e) {
             return new ExceptionHandleCommand(e);
@@ -105,15 +105,15 @@ public class Parser {
         String userCommandIgnoreCase = userCommandSecondKeyword.toLowerCase();
         switch (userCommandIgnoreCase) {
         case "pu":
-        return new ListPuCommand();
+            return new ListPuCommand();
         case "current":
-        if (userInputWords.size() == 3) {
-            String userCommandThirdKeyword = userInputWords.get(2);
-            return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
-        }
-        return new ListCurrentCommand(modules);
+            if (userInputWords.size() == 3) {
+                String userCommandThirdKeyword = userInputWords.get(2);
+                return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
+            }
+            return new ListCurrentCommand(modules);
         default:
-        return prepareListPuModulesCommand(userInputWords, userCommandSecondKeyword, universities);
+            return prepareListPuModulesCommand(userInputWords, userCommandSecondKeyword, universities);
         }
     }
 
@@ -273,17 +273,17 @@ public class Parser {
         int amount = stringToInt(commandWords[1]);
         switch (budgetCommand) {
         case "budget":
-        return new EditBudgetCommand(amount, budgetPlanner);
+            return new EditBudgetCommand(amount, budgetPlanner);
         case "accommodation":
-        return new EditAccommodationCommand(amount, budgetPlanner);
+            return new EditAccommodationCommand(amount, budgetPlanner);
         case "airplane":
-        return new EditAirplaneTicketCommand(amount, budgetPlanner);
+            return new EditAirplaneTicketCommand(amount, budgetPlanner);
         case "food":
-        return new EditFoodCommand(amount, budgetPlanner);
+            return new EditFoodCommand(amount, budgetPlanner);
         case "entertainment":
-        return new EditEntertainmentCommand(amount, budgetPlanner);
+            return new EditEntertainmentCommand(amount, budgetPlanner);
         default:
-        throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+            throw new InvalidCommandException(ui.getInvalidBudgetMessage());
         }
     }
 
