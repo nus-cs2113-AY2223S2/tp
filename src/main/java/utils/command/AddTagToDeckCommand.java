@@ -43,7 +43,7 @@ public class AddTagToDeckCommand extends Command {
             ui.printDeckCreationSuccess();
             deckToAdd = new Deck(deckName, tagUUID);
             deckList.addDeck(deckToAdd);
-        } else if(deckToAdd.tagInDeck(tagUUID)) {
+        } else if(deckToAdd.tagIsInDeck(tagUUID)) {
             throw new TagInDeckException();
         } else {
             deckToAdd.addTag(tagUUID);

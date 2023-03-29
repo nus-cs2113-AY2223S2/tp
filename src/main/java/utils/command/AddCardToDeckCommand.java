@@ -39,7 +39,7 @@ public class AddCardToDeckCommand extends Command {
             ui.printDeckCreationSuccess();
             deckToAdd = new Deck(deckName, cardUUID);
             deckList.addDeck(deckToAdd);
-        } else if(deckToAdd.cardInDeck(cardUUID) == true) {
+        } else if(deckToAdd.cardIsInDeck(cardUUID)) {
             throw new CardInDeckException();
         } else {
             deckToAdd.addCard(cardUUID);

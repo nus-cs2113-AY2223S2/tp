@@ -46,7 +46,7 @@ public class AddCardToTagCommand extends Command {
             ui.printTagCreationSuccess();
             tagToAdd = new Tag(tagName, cardUUID);
             tagList.addTag(tagToAdd);
-        } else if(tagToAdd.cardInTag(cardUUID)) {
+        } else if(tagToAdd.cardIsInTag(cardUUID)) {
             throw new CardInTagException();
         } else {
             tagToAdd.addCard(cardUUID);
