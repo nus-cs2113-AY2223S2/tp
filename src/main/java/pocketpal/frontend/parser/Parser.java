@@ -37,7 +37,7 @@ public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
     private static final String validDescriptionRegex = "[a-zA-Z0-9\\s]*";
     private static final String validPriceRegex = "[0-9.]*";
-    private static final Pattern descriptionPattern = Pattern.compile("(-d)\\s+(.*?)(\\s+-c|$)");
+    private static final Pattern descriptionPattern = Pattern.compile("(-d)\\s+(.*?)(\\s+-c|-p|$)");
     private static final Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\S+)");
     private static final Pattern pricePattern = Pattern.compile("(-p|-price)\\s+(\\S+)");
     private static final Pattern idPattern = Pattern.compile("(\\s+)?(\\S+)");
@@ -298,7 +298,7 @@ public class Parser {
         Category category = null;
         String categoryStr = extractDetail(arguments, categoryPattern);
         if (!categoryStr.isEmpty()) {
-            CategoryUtil.convertStringToCategory(StringUtil.toTitleCase(categoryStr));
+            category = CategoryUtil.convertStringToCategory(StringUtil.toTitleCase(categoryStr));
         }
         String priceMinStr = extractDetail(arguments, pricePattern);
         String priceMaxStr = extractDetail(arguments, pricePattern);
@@ -314,6 +314,18 @@ public class Parser {
         }
         String startDateString = extractDetail(arguments, startDatePattern);
         String endDateString = extractDetail(arguments, endDatePattern);
+        if (!startDateString.isEmpty()) {
+            logger.info("start date identified as: " + startDateString);
+            isValidDate(startDateString);
+            logger.info("start date verified");
+            startDateString += " 00:00";
+        }
+        if (!endDateString.isEmpty()) {
+            logger.info("end date identified as: " + endDateString);
+            isValidDate(endDateString);
+            logger.info("end date verified");
+            endDateString += " 23:59";
+        }
         if (startDateString.isEmpty() ^ endDateString.isEmpty()) {
             logger.info("Missing at least one date as view command request parameter");
             throw new MissingDateException(MessageConstants.MESSAGE_MISSING_DATE);
@@ -338,14 +350,6 @@ public class Parser {
         logger.info("User entered category:" + categoryStr);
         logger.info("User entered start date: " + startDateString);
         logger.info("User entered end date: " + endDateString);
-        logger.info("start date identified as: " + startDateString);
-        isValidDate(startDateString);
-        logger.info("start date verified");
-        startDateString += " 00:00";
-        logger.info("end date identified as: " + endDateString);
-        isValidDate(endDateString);
-        logger.info("end date verified");
-        endDateString += " 23:59";
         priceMinDouble = Double.parseDouble(priceMinStr);
         priceMaxDouble = Double.parseDouble(priceMaxStr);
         if (priceMaxDouble < priceMinDouble) {
@@ -360,7 +364,6 @@ public class Parser {
         String detailToExtract;
         Matcher matcher = detail.matcher(string);
         if (matcher.find()) {
-            System.out.println(matcher.group(0));
             detailToExtract = matcher.group(2).trim();
         } else {
             detailToExtract = "";
