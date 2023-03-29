@@ -37,7 +37,7 @@
 
 Adds a new task to your To-Do list.
 
-Format: `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [tags LIST_OF_TAGS] [-repeat REPEAT_DURATION]`
+Format: `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [tags LIST_OF_TAGS] [-rep REPEAT_DURATION]`
 
 - The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`.
 - `EMAIL_ADDRESS` must be a valid email address.
@@ -141,6 +141,46 @@ Example of usage:
 ```
 Okay, I have edited the tags of this task to [later difficult]:
 [ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
+```
+
+### Edit/delete deadline `due`
+
+Edits or deletes the deadline of a task with a given id in the To-Do List.
+
+Format: `due ID -edit DEADLINE` or `due ID -del`
+- The `ID` has to be an id of a task that can be found in the To-Do list. 
+- Use `-edit` to replace the deadline of the task with the newly specified deadline, or `-del` to delete it instead.
+- If both flags are provided, `-edit` takes priority.
+- At least one of the two flags must be provided.
+- The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`.
+
+
+Example of usage:
+
+`due 1 -edit 30-03-2023 18:00` changes the deadline of the task of id 1 in the To-Do list to `30-03-2023 18:00`.
+```
+Okay, I have edited the deadline of this task to [30 Mar 2023 18:00]:
+[ID:1]	[ ][todo][Due: 30 Mar 2023 18:00]
+```
+`due 1 -del` deletes the deadline of the task of id 1 in the To-Do list.
+```
+Okay, I have deleted the deadline of this task:
+[ID:1]	[ ][todo]
+```
+
+### List completion history `history` (*Coming Soon*)
+
+Lists the task that have been completed before in the To-Do List.
+
+Format: `history`
+- Displays the tasks which were marked as completed in the previous week
+
+Example of usage:
+
+`history`
+```
+Here are the tasks which were completed in the past week:
+[ID:1]	[X][todo][Due: 20 Mar 2023 18:00]
 ```
 
 ### `priority` - Edit a priority of a task
