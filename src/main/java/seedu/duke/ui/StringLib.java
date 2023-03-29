@@ -17,7 +17,7 @@ public interface StringLib {
             + "You can start by adding recipes to a recipe list that I can generate,"
             + " simply follow the format below:\n\n"
             + "Add recipe : \"add n/<insert recipe name> i/<insert ingredients with \", \" separation> "
-            + "t/<insert cuisine>\"\n\n"
+            + "t/<insert cuisine> s/<insert number of steps>\"\n\n"
             + "If you wish to view the full list of commands, simply type \"help\"!\n";
     String HELP = "\nHelp is here! You may find the list of commands below useful. \n \n \n"
             + "COMMANDS LIST: \n \n \n"
@@ -130,5 +130,6 @@ public interface StringLib {
     String NO_STEPS_ERROR = "There are no steps to edit!";
     String INPUT_STEPS_INDEX_EXCEEDED = "Input index exceeds the number of steps!";
     String INPUT_INGREDIENTS_INDEX_EXCEEDED = "Input index exceeds the number of ingredients!";
-
+    String INVALID_STEP = "\nThe step you have entered is invalid!\n" +
+            "Please enter a valid step below:";
 }

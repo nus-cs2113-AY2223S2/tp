@@ -14,27 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.ui.StringLib.CREATING_NEW_FILE_AND_DIRECTORY;
-import static seedu.duke.ui.StringLib.DUDE_MAIN_ERROR;
-import static seedu.duke.ui.StringLib.EMPTY_LIST_MESSAGE;
-import static seedu.duke.ui.StringLib.EXIT_MESSAGE;
-import static seedu.duke.ui.StringLib.FILE_IO_ERROR;
-import static seedu.duke.ui.StringLib.FILE_LOADING_DEFAULT_ERROR;
-import static seedu.duke.ui.StringLib.FILE_NOT_FOUND_ERROR;
-import static seedu.duke.ui.StringLib.FILE_PARSE_READING_ERROR;
-import static seedu.duke.ui.StringLib.HELP;
-import static seedu.duke.ui.StringLib.LINE;
-import static seedu.duke.ui.StringLib.MISSING_DESCRIPTION_ERROR;
-import static seedu.duke.ui.StringLib.PARSING_STRING_ERROR;
-import static seedu.duke.ui.StringLib.PREFIX_EMPTY_LIMIT_LIST_ERROR;
-import static seedu.duke.ui.StringLib.RECIPE_ADDING_DEFAULT_ERROR;
-import static seedu.duke.ui.StringLib.RECIPE_DELETING_DEFAULT_ERROR;
-import static seedu.duke.ui.StringLib.SUFFIX_EMPTY_LIMIT_LIST_ERROR;
-import static seedu.duke.ui.StringLib.UNRECOGNIZABLE_COMMAND_ERROR;
-import static seedu.duke.ui.StringLib.UNRECOGNIZABLE_ERROR;
-import static seedu.duke.ui.StringLib.WELCOME_MESSAGE;
-import static seedu.duke.ui.StringLib.RECIPE_CLEARED_MESSAGE;
-import static seedu.duke.ui.StringLib.RECIPE_VIEWING_DEFAULT_ERROR;
 
 public class UI {
     private static Scanner in;
@@ -46,7 +25,7 @@ public class UI {
     }
     public void showRecipeList(ArrayList<Recipe> list) {
         if (list.size() == 0) {
-            System.out.println(EMPTY_LIST_MESSAGE);
+            System.out.println(StringLib.EMPTY_LIST_MESSAGE);
             return;
         }
         System.out.println("\nRECIPE LIST\n");
@@ -68,83 +47,89 @@ public class UI {
         System.out.println("Now you have " + recipeListSize + " recipes in the list." + '\n');
     }
     public void showRecipeListCleared() {
-        System.out.println(RECIPE_CLEARED_MESSAGE);
+        System.out.println(StringLib.RECIPE_CLEARED_MESSAGE);
     }
     public void showWelcome() {
-        System.out.println(WELCOME_MESSAGE);
+        System.out.println(StringLib.WELCOME_MESSAGE);
     }
     public void showExit() {
-        System.out.println(EXIT_MESSAGE);
+        System.out.println(StringLib.EXIT_MESSAGE);
     }
     public void showHelp() {
-        System.out.println(HELP);
+        System.out.println(StringLib.HELP);
     }
     public void showLine() {
-        System.out.println(LINE);
+        System.out.println(StringLib.LINE);
     }
     public void showStepInsertMessage(int stepNumber) {
         System.out.println("\nPlease enter the description of step " + stepNumber + ":");
     }
     public void showDukeMainError(Exception e) {
         if (e instanceof IOException) {
-            System.out.println(FILE_IO_ERROR + e.getMessage());
+            System.out.println(StringLib.FILE_IO_ERROR + e.getMessage());
         } else {
-            System.out.println(DUDE_MAIN_ERROR + e.getMessage());
+            System.out.println(StringLib.DUDE_MAIN_ERROR + e.getMessage());
         }
     }
     public void showUnrecognizableErrorMessage() {
-        System.out.println(UNRECOGNIZABLE_ERROR);
+        System.out.println(StringLib.UNRECOGNIZABLE_ERROR);
     }
     public void showUnrecognizableCommandErrorMessage() {
-        System.out.println(UNRECOGNIZABLE_COMMAND_ERROR);
+        System.out.println(StringLib.UNRECOGNIZABLE_COMMAND_ERROR);
     }
 
     public void showLoadingErrorMessage(Exception e) {
         if (e instanceof FileNotFoundException) {
-            System.out.println(FILE_NOT_FOUND_ERROR + e.getMessage() + CREATING_NEW_FILE_AND_DIRECTORY);
+            System.out.println(StringLib.FILE_NOT_FOUND_ERROR +
+                    e.getMessage() +
+                    StringLib.CREATING_NEW_FILE_AND_DIRECTORY);
         } else if (e instanceof FileParseReadingException) {
-            System.out.println(FILE_PARSE_READING_ERROR + e.getMessage());
+            System.out.println(StringLib.FILE_PARSE_READING_ERROR + e.getMessage());
         } else {
-            System.out.println(FILE_LOADING_DEFAULT_ERROR + e.getMessage());
+            System.out.println(StringLib.FILE_LOADING_DEFAULT_ERROR + e.getMessage());
         }
     }
     public void showAddingRecipeErrorMessage(Exception e) {
         if (e instanceof IncompleteInputException) {
-            System.out.println(MISSING_DESCRIPTION_ERROR + e.getMessage());
+            System.out.println(StringLib.MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof StringIndexOutOfBoundsException) {
-            System.out.println(PARSING_STRING_ERROR + e.getMessage());
+            System.out.println(StringLib.PARSING_STRING_ERROR + e.getMessage());
         } else {
-            System.out.println(RECIPE_ADDING_DEFAULT_ERROR + e.getMessage());
+            System.out.println(StringLib.RECIPE_ADDING_DEFAULT_ERROR + e.getMessage());
         }
     }
     public void showDeletingTaskErrorMessage(Exception e, CommandType type) {
         if (e instanceof IncompleteInputException) {
-            System.out.println(MISSING_DESCRIPTION_ERROR + e.getMessage());
+            System.out.println(StringLib.MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof IndexOutOfBoundsException || e instanceof NullPointerException ||
                    e instanceof RecipeListEmptyException) {
-            System.out.println(PREFIX_EMPTY_LIMIT_LIST_ERROR + type + SUFFIX_EMPTY_LIMIT_LIST_ERROR);
+            System.out.println(StringLib.PREFIX_EMPTY_LIMIT_LIST_ERROR +
+                    type +
+                    StringLib.SUFFIX_EMPTY_LIMIT_LIST_ERROR);
         } else {
-            System.out.println(RECIPE_DELETING_DEFAULT_ERROR + e.getMessage());
+            System.out.println(StringLib.RECIPE_DELETING_DEFAULT_ERROR + e.getMessage());
         }
     }
     public void showRecipeViewed(Recipe recipe, UI ui) {
         System.out.println("Here is the recipe you requested, which is a "+ recipe.getTag() + " flavour:");
         System.out.println("name: " + recipe.getName());
-        System.out.println(LINE);
+        System.out.println(StringLib.LINE);
         IngredientList ingredients = recipe.getIngredientList();
         ingredients.showList();
-        System.out.println(LINE);
+        System.out.println(StringLib.LINE);
         StepList steps = recipe.getStepList();
         steps.showStepList(ui);
     }
     public void showViewingRecipeErrorMessage(Exception e) {
         if (e instanceof IncompleteInputException) {
-            System.out.println(MISSING_DESCRIPTION_ERROR + e.getMessage());
+            System.out.println(StringLib.MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof IndexOutOfBoundsException || e instanceof NullPointerException ||
                 e instanceof RecipeListEmptyException) {
-            System.out.println(PREFIX_EMPTY_LIMIT_LIST_ERROR + CommandType.VIEW + SUFFIX_EMPTY_LIMIT_LIST_ERROR);
+            System.out.println(StringLib.PREFIX_EMPTY_LIMIT_LIST_ERROR +
+                    CommandType.VIEW +
+                    StringLib.SUFFIX_EMPTY_LIMIT_LIST_ERROR);
         } else {
-            System.out.println(RECIPE_VIEWING_DEFAULT_ERROR + e.getMessage());
+            System.out.println(StringLib.RECIPE_VIEWING_DEFAULT_ERROR + e.getMessage());
         }
     }
     public void showSave() {
@@ -165,9 +150,11 @@ public class UI {
         }
 
     }
-
     public void showEditRecipeIngredientPrompt() {
         System.out.println("Which ingredient do you want to edit?");
         System.out.println("Type 'quit' to exit the edit view");
+    }
+    public void showInvalidStepMessage() {
+        System.out.println(StringLib.INVALID_STEP);
     }
 }
