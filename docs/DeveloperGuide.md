@@ -64,14 +64,23 @@ The following activity diagram summarises what happens when a user executes edit
     * Pros: Easier to implement.
     * Cons: Not any easier than having the user to just delete and add new expense/income.
 
+### AddIncomeCommand
+The AddIncomeCommand is facilitated by ```Parser```, ```AddIncomeCommand```, ```IncomeList``` and ```Ui```.
+1. The user inputs the command to add income. This input is handled by ```parser``` which if successful, returns the ```AddIncomeCommand```.
+2. ```AddIncomeCommand``` will call its ```execute``` method
+which calls the ```IncomeList``` method ```addIncome``` to add the input into ```incomes```.
+3. ```execute``` then calls the ```Ui``` method ```showAdded``` which makes use of  ```System```
+to print the ```Income``` added.
+
+![AddIncomeCommand](images/AddIncomeCommand_Sequence_Diagram.png)
 ### ListExpenseCommand
 The listExpenseCommand is facilitated by ```Parser```, ```ListExpenseCommand``` and ```ExpenseList```.
 
-1. The user inputs the command top list expense. This input is handled by```Parser``` which returns the
+1. The user inputs the command to list expense. This input is handled by```Parser``` which returns the
    ```listExpenseCommand``` if successful.
 2. ```ListExpenseCommand``` will then call its ```execute``` method
    which makes use of ```System``` to print a new line ```"Expenses:"```.
-3. The ```expenseList``` method ```printExpenseList```
+3. The ```ExpenseList``` method ```printExpenseList```
    is called, which iterates through the expenseList, ```expenses``` and prints the index as well as a completed string of
    expenses in ```expenses```.
 
