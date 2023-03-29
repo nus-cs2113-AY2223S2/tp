@@ -7,6 +7,8 @@ import seedu.dukeofbooks.command.SignupCommand;
 import seedu.dukeofbooks.command.ExitCommand;
 import seedu.dukeofbooks.data.user.UserRecords;
 
+import java.nio.file.Path;
+
 
 public class AccessCommandParser implements IParser {
     private final UserRecords userRecords;
@@ -18,6 +20,16 @@ public class AccessCommandParser implements IParser {
             }
         }
         return -1;
+    }
+
+    private static <T extends Comparable<T>> T min(T... items) {
+        T minItem = items[0];
+        for (T item : items) {
+            if (item.compareTo(minItem) < 0) {
+                minItem = item;
+            }
+        }
+        return minItem;
     }
 
     public AccessCommandParser(UserRecords userRecords) {
@@ -51,10 +63,19 @@ public class AccessCommandParser implements IParser {
         }
 
         try {
-            String username = args[usernameIndex + 1];
-            String password = args[passwordIndex + 1];
-            assert !username.isEmpty();
-            assert !password.isEmpty();
+            StringBuilder usernameBuilder = new StringBuilder();
+            StringBuilder passwordBuilder = new StringBuilder();
+            for (int i = 1; i < args.length; ++i) {
+                if (i > usernameIndex && i < passwordIndex) {
+                    usernameBuilder.append(args[i]).append(" ");
+                } else if (i > passwordIndex) {
+                    passwordBuilder.append(args[i]).append(" ");
+                }
+            }
+            String username = usernameBuilder.toString().trim();
+            String password = passwordBuilder.toString().trim();
+            assert username.length() > 0;
+            assert password.length() > 0;
             return new LoginCommand(userRecords, username, password);
         } catch (IndexOutOfBoundsException | AssertionError e) {
             return new IncorrectAccessCommand("Username or password is empty!");
@@ -70,9 +91,21 @@ public class AccessCommandParser implements IParser {
             return new IncorrectAccessCommand("Cannot find username or password or name!");
         }
         try {
-            String username = args[usernameIndex + 1];
-            String password = args[passwordIndex + 1];
-            String name = args[nameIndex + 1];
+            StringBuilder usernameBuilder = new StringBuilder();
+            StringBuilder passwordBuilder = new StringBuilder();
+            StringBuilder nameBuilder = new StringBuilder();
+            for (int i = 1; i < args.length; ++i) {
+                if (i > usernameIndex && i < passwordIndex) {
+                    usernameBuilder.append(args[i]).append(" ");
+                } else if (i > passwordIndex && i < nameIndex) {
+                    passwordBuilder.append(args[i]).append(" ");
+                } else if (i > nameIndex) {
+                    nameBuilder.append(args[i]).append(" ");
+                }
+            }
+            String username = usernameBuilder.toString().trim();
+            String password = passwordBuilder.toString().trim();
+            String name = nameBuilder.toString().trim();
             assert !username.isEmpty();
             assert !password.isEmpty();
             assert !name.isEmpty();
