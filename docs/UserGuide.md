@@ -254,29 +254,78 @@ ____________________________________________________________
 ### Sell quantity of item: `sell`
 Reduces the quantity of an item in the inventory list.
 
-Format: ``
+Format: `sell upc/[UPC] qty/[Quantity]`
+1. `UPC` refers to the identification number assigned to the item at the point of **initial addition** of the item.
+2. `Quantity` refers to the amount of stock to be **DEDUCTED** from the current stock levels recorded.
+3. `UPC` has to be valid, that is, it **EXISTS** in the database, and has to be a **POSITIVE NUMBER** and 
+**NOT EMPTY**.
+4. `Quantity` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**. 
 
 Example of usage:
 
-``
+`sell upc/123 qty/5`: Searches for the item of `UPC` code `123`, and if it exists, **DEDUCT** a **quantity** of `5`
+items from its current stock levels.
 
-``
+`sell upc/987612345 qty/10`: Searches for the item of `UPC` code `987612345`, and if it exists, **DEDUCT** a 
+**quantity** of `10` items from its current stock levels.
 
 Sample output:
+````
+____________________________________________________________
+sell upc/123 qty/5
+____________________________________________________________
+Successfully sold the following item:
+
+Before Selling: 
+Item Name: orange and apples
+UPC Code: 123
+Quantity Available: 10
+
+After Selling: 
+Item Name: orange and apples
+UPC Code: 123
+Quantity Available: 5
+
+Sold 5 orange and apples at a price of $6.0.
+____________________________________________________________
+````
 
 ### Restock an item: `restock`
 Restock quantities of an item in the inventory list.
 
-Format: ``
+Format: `restock upc/[UPC] qty/[Quantity]`
+1. `UPC` refers to the identification number assigned to the item at the point of **initial addition** of the item.
+2. `Quantity` refers to the amount of stock to be **ADDED** from the current stock levels recorded.
+3. `UPC` has to be valid, that is, it **EXISTS** in the database, and has to be a **POSITIVE NUMBER** and
+   **NOT EMPTY**.
+4. `Quantity` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**.
 
 Example of usage:
 
-``
+`restock upc/12345 qty/5`: Searches for the item of `UPC` code `12345`, and if it exists, **ADD** a **quantity** of `5`
+items to its current stock levels.
 
-``
+`restock upc/999 qty/10`: Searches for the item of `UPC` code `999`, and if it exists, **ADD** a
+**quantity** of `10` items to its current stock levels.
 
 Sample output:
+````
+____________________________________________________________
+restock upc/12345 qty/5
+____________________________________________________________
+Successfully restocked the following item:
 
+Before Restocking:
+Item Name: Computer
+UPC Code: 12345
+Quantity Available: 100
+
+After Restocking:
+Item Name: Computer
+UPC Code: 12345
+Quantity Available: 105
+____________________________________________________________
+````
 ### Dashboard: `db`
 Shows a dashboard of information related to the system's inventory, user insights and 
 session configurations.
