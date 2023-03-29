@@ -121,7 +121,7 @@ public class Parser {
             return new AddCommand(description.trim(), direction, amount, category, date);
         } catch (Exception e) {
             logger.warning("add command given by user in the wrong format");
-            return new InvalidCommand(ErrorMessage.WRONG_ADD_FORMAT.toString());
+            return new InvalidCommand(e.getMessage());
         }
     }
 
@@ -193,6 +193,9 @@ public class Parser {
             } catch (DateTimeParseException e) {
                 logger.warning("add command given by user in the wrong format");
                 throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+            }
+            if (this.date.getYear() < 1800 || this.date.isAfter(LocalDate.now())) {
+                throw new RainyDayException(ErrorMessage.UNSUPPORTED_DATE.toString());
             }
         } else {
             logger.warning("add command given by user in the wrong format");
