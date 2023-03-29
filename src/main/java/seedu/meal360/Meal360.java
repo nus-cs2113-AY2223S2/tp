@@ -39,6 +39,10 @@ public class Meal360 {
         try {
             ui.printMessage("Loading weekly plan...");
             weeklyPlan = database.loadWeeklyPlanDatabase();
+            boolean isClean = weeklyPlan.checkValidity(recipeList);
+            if (!isClean) {
+                ui.printMessage("Weekly plan has invalid recipes, removing them...");
+            }
             ui.printMessage("Weekly plan loaded successfully.");
         } catch (Exception e) {
             ui.printMessage("Error loading weekly plan, loading default empty weekly plan instead.");
