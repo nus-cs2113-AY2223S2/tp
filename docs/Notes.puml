@@ -1,3 +1,5 @@
+//@@author WilsonLee2000
+
 @startuml
 title Sequence Diagram for Notes Functionalities
 'https://plantuml.com/sequence-diagram
@@ -6,6 +8,13 @@ actor User
 
 User -> BadMaths : main()
 activate BadMaths
+BadMaths -> NotesList: NotesList(Storage.loadFile(path))
+NotesList -> Storage : loadFile(String path)
+activate Storage
+deactivate Storage
+activate NotesList
+NotesList --> BadMaths
+deactivate NotesList
 BadMaths -> Parser : Parser(userInput)
 activate Parser
 Parser --> BadMaths : getCommand()
