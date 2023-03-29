@@ -180,4 +180,9 @@ public class MedicineManager {
             System.out.println("No results found.");
         }
     }
+
+    //@@author Thunderdragon221
+    public boolean isValidMedicine(String medicine) {
+        return medicineDosages.containsKey(medicine);
+    }
 }
