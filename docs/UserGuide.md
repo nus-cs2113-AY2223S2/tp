@@ -63,20 +63,43 @@ Sample output:
 
 ![img.png](img.png)
 ### Editing an item: `edit`
-Edit an item's details in the inventory list.
+Edit an item's details in the inventory.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `edit upc/[UPC] {n/[item_name] qty/[quantity] p/[price]}`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.
+Required parameters:
+* The `upc/` parameter where `[UPC]`  must be a numerical value and exists in the inventory.
+
+Optional parameters:
+* The `n/` parameter where `[item_name]` must be alphanumeric.
+* The `qty/` parameter for `[quantity]` must be a numerical value.
+* The `p/` parameter for `[price]` must be a numerical value (decimals accepted).
 
 Example of usage:
 
 ``
-
+edit upc/2142535453 n/HP Laptop Pro qty/10 p/1299.99
 ``
 
 Sample output:
+```
+Successfully edited the following item:
+
+Before Update:
+Name: HP Laptop
+UPC: 2142535453
+Price: 1299.99
+Quantity: 10
+Category: uncategorized
+
+After Update:
+Name: HP Laptop Pro
+UPC: 2142535453
+Price: 1299.99
+Quantity: 10
+Category: uncategorized
+
+```
 
 ### Removing an item from the inventory: `remove`
 Removes an item from the inventory list using either its UPC or index in list.
@@ -254,28 +277,65 @@ ____________________________________________________________
 ### Sell quantity of item: `sell`
 Reduces the quantity of an item in the inventory list.
 
-Format: ``
+Format: `sell upc/[UPC] qty/[Quantity]`
+
+Required Parameters: 
+* The `upc/` parameter where `[UPC]` can be only be a numerical value and must exists in the inventory. 
+* The `qty/` parameter where `[Quantity]` can only be a numerical value.
 
 Example of usage:
 
-``
-
-``
+```
+sell upc/1231 qty/3
+```
 
 Sample output:
+```
+Successfully sold the following item:
+
+Before Selling: 
+Item Name: Item A
+UPC Code: 1231
+Quantity Available: 3
+
+After Selling: 
+Item Name: Item A
+UPC Code: 1231
+Quantity Available: 0
+
+Sold 3 asdsadsa at a price of $123.0.
+```
 
 ### Restock an item: `restock`
 Restock quantities of an item in the inventory list.
 
-Format: ``
+Format: `restock upc/[UPC] qty/[Quantity]`
+
+Required Parameters:
+* The `upc/` parameter where `[UPC]` can be only be a numerical value and must exists in the inventory.
+* The `qty/` parameter where `[Quantity]` can only be a numerical value.
 
 Example of usage:
 
-``
-
-``
+```
+restock upc/1231 qty/20
+```
 
 Sample output:
+```
+Successfully restocked the following item:
+
+Before Restocking: 
+Item Name: asdsadsa
+UPC Code: 1231
+Quantity Available: 0
+
+After Restocking: 
+Item Name: asdsadsa
+UPC Code: 1231
+Quantity Available: 20
+```
+
 
 ### Dashboard: `db`
 Shows a dashboard of information related to the system's inventory, user insights and 
@@ -293,19 +353,40 @@ Sample output:
 Shows list of categories, and/or its items, or a specified category of items.
 
 Format: 
-`cat list`: shows list of all categories in the inventory.
-`cat table`: shows table of all categories and all items in each category.
-`cat [Category]`: shows list of all items in a specified category.
+* `cat list`: shows list of all categories in the inventory.
+* `cat table`: shows table of all categories and all items in each category.
+* `cat [Category]`: shows list of all items in a specified category.
 
-Example of usage:
+Example of Usage & Expected Output:
+```agsl
+cat list
+____________________________________________________________
+Here is the list of categories you have: 
+uncategorized
+fruits
+____________________________________________________________
+```
+```agsl
+cat table
++-----------------+--------------------------------+
+| Category        | Name: UPC                      |
++-----------------+--------------------------------+
+| uncategorized   | testItem:123456789012,         |
+|                 | testItem2:123456789013,        |
+|                 | asdsadsa:1231                  |
++-----------------+--------------------------------+
+```
 
-`cat list`
-
-`cat table`
-`cat fruit`
-
-Sample output:
-
+```agsl
+cat fruit
++-----------------+--------------------------------+
+| Category        | Name: UPC                      |
++-----------------+--------------------------------+
+| fruit           | apple:123456789012,            |
+|                 | pear:123456789013,             |
+|                 | oranges:123456789555           |
++-----------------+--------------------------------+
+```
 ### Alert for an item: `alert`
 Add alerts that will display when the quantity of an item falls below a set minimum or exceeds a maximum level.
 
