@@ -5,9 +5,9 @@ import seedu.duke.achievements.AchievementDifficulty;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 
 public class AchievementGymStatic extends Achievement {
-    private final String staticOrGym;
     private static final String NULL = "null";
     private static final String OUTPUT_BODY = "body only";
+    private final String staticOrGym;
     public AchievementGymStatic (String name, String requirement, boolean completed,
                                  AchievementDifficulty difficulty, String achievementBodyPart,
                                  int countCurrent, int countToComplete) {

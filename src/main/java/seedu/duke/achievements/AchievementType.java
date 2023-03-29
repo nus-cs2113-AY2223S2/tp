@@ -17,7 +17,9 @@ public enum AchievementType {
 
     public final String type;
 
-    AchievementType (String type) { this.type = type;}
+    AchievementType(String type) {
+        this.type = type;
+    }
 
     public String toString() {
         return type;

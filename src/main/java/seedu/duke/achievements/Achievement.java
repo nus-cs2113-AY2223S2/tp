@@ -1,26 +1,22 @@
 package seedu.duke.achievements;
 
-import seedu.duke.achievements.types.AchievementBodyPart;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public abstract class Achievement {
     private static final String BLANK = " ";
     private static final String COLON = ":";
-    private static final String nextLine = "\n";
+    private static final String NEXT_LINE = "\n";
     private static final String COMPLETED = "ACHIEVED! Congratulations :)";
     private static final String UNCOMPLETED = "Not Achieved :(";
     private static final String COUNT_PREFIX = "Current Count: ";
+    public int countCurrent;
+    public int countToComplete;
     private String name;
+
+
     private String requirement;
     private boolean completed;
     private final AchievementDifficulty difficulty;
-    private String AchievementType;
-    public int countCurrent;
-    public int countToComplete;
+    private String achievementType;
 
 
     //@@ChubbsBunns
@@ -36,12 +32,12 @@ public abstract class Achievement {
      */
     public Achievement(String name, String requirement,
                        boolean completed, AchievementDifficulty difficulty,
-                       String AchievementType, int countCurrent, int countComplete) {
+                       String achievementType, int countCurrent, int countComplete) {
         this.name = name;
         this.requirement = requirement;
         this.completed = completed;
         this.difficulty = difficulty;
-        this.AchievementType = AchievementType;
+        this.achievementType = achievementType;
         this.countCurrent = countCurrent;
         this.countToComplete = countComplete;
     }
@@ -56,16 +52,17 @@ public abstract class Achievement {
         }
 
         return (name + COLON + BLANK + requirement +
-                nextLine + difficulty.toString() +
-                nextLine + completed +
-                nextLine + COUNT_PREFIX +
-                countCurrent + nextLine
-        );
+                NEXT_LINE + difficulty.toString() +
+                NEXT_LINE + completed +
+                NEXT_LINE + COUNT_PREFIX +
+                countCurrent + NEXT_LINE
+            );
     }
 
     public String getName() {
         return this.name;
     }
+
     public String getRequirement() {
         return this.requirement;
     }
@@ -89,16 +86,15 @@ public abstract class Achievement {
         } else {
             completedNum = "0";
         }
-        return  name + COLON +
+        return name + COLON +
                 requirement + COLON +
                 completedNum + COLON +
                 difficulty.parseDifficultyForSaving() + COLON +
-                AchievementType.toString() + COLON +
+                achievementType.toString() + COLON +
                 countCurrent + COLON +
                 countToComplete + COLON +
                 System.lineSeparator();
     }
-
 
 
 }

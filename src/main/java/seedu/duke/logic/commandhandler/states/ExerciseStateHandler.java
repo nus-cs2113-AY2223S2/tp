@@ -2,7 +2,6 @@ package seedu.duke.logic.commandhandler.states;
 
 import seedu.duke.achievements.Achievement;
 import seedu.duke.achievements.AchievementListHandler;
-import seedu.duke.achievements.AchievementType;
 import seedu.duke.achievements.types.AchievementBodyPart;
 import seedu.duke.achievements.types.AchievementGymStatic;
 import seedu.duke.achievements.types.AchievementLevel;
@@ -14,7 +13,6 @@ import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.Session;
 
-import java.io.File;
 import java.util.ArrayList;
 //@@author ChubbsBunns
 
@@ -106,12 +104,14 @@ public class ExerciseStateHandler {
                     if (achievementGymStatic.updateIndex(exerciseData)) {
                         completedAchievements.add(achievementGymStatic);
                     }
-                } if (loggedAchievements.get(i) instanceof AchievementLevel) {
+                }
+                if (loggedAchievements.get(i) instanceof AchievementLevel) {
                     AchievementLevel achievementLevel = (AchievementLevel) loggedAchievements.get(i);
                     if (achievementLevel.updateIndex(exerciseData)) {
                         completedAchievements.add(achievementLevel);
                     }
-                } if (loggedAchievements.get(i) instanceof AchievementBodyPart) {
+                }
+                if (loggedAchievements.get(i) instanceof AchievementBodyPart) {
                     AchievementBodyPart achievementBodyPart = (AchievementBodyPart) loggedAchievements.get(i);
                     if (achievementBodyPart.updateIndex(exerciseData)) {
                         completedAchievements.add(achievementBodyPart);

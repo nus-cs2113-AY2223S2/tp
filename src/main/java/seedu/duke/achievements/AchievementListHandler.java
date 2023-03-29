@@ -96,7 +96,7 @@ public class AchievementListHandler extends TextDataUtility {
     /**
      * This parses data from the text file and ensures that it is loaded correctly
      * Each achievement is saved line by line in the following format:
-     * <NAME>:<REQUIREMENT>:<COMPLETED_OR_NOT>:<DIFFICULTY_INDEX>:<TYPE>:<CURRENT_COUNT>:<COUNT_TO_COMPLETE>
+     * NAME:REQUIREMENT:COMPLETED_OR_NOT:DIFFICULTY_INDEX:TYPE:CURRENT_COUNT:COUNT_TO_COMPLETE
      * @param achievementInput This refers to each line of the saved text file
      * @return Returns an achievement to be stored by the system and whether
      *         it is completed or not
@@ -167,19 +167,23 @@ public class AchievementListHandler extends TextDataUtility {
     private Achievement createAchievement(String name, String requirement,
                                           boolean completed,
                                           AchievementDifficulty difficulty ,
-                                          String achievementType, int currCount, int totalCountToComplete) throws DukeError{
+                                          String achievementType, int currCount,
+                                          int totalCountToComplete) throws DukeError{
         switch (achievementType.toLowerCase()) {
         case "easy":
         case "medium":
         case "hard":
-            return new AchievementLevel(name, requirement, completed, difficulty, achievementType.toLowerCase(), currCount, totalCountToComplete);
+            return new AchievementLevel(name, requirement, completed, difficulty,
+                    achievementType.toLowerCase(), currCount, totalCountToComplete);
         case "upper":
         case "core":
         case "legs":
-            return new AchievementBodyPart(name, requirement, completed, difficulty, achievementType.toLowerCase(), currCount, totalCountToComplete);
+            return new AchievementBodyPart(name, requirement, completed, difficulty,
+                    achievementType.toLowerCase(), currCount, totalCountToComplete);
         case "gym":
         case "static":
-            return new AchievementGymStatic(name, requirement, completed, difficulty, achievementType.toLowerCase(), currCount, totalCountToComplete);
+            return new AchievementGymStatic(name, requirement, completed, difficulty,
+                    achievementType.toLowerCase(), currCount, totalCountToComplete);
         default:
             throw new DukeError(ErrorMessages.ERROR_LOAD_CORRUPT_ACHIEVEMENT_DATA.toString());
         }
