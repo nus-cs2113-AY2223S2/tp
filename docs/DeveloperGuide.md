@@ -101,6 +101,8 @@ Below are the specific steps on how to use the view function and how the mechani
 ### Delete component
 The deletion mechanism is facilitated by 'Parser', 'DeleteCommand', 'Workout', 'WorkoutList' and 'UI', where a Workout object will be deleted according to the command inputted by the user and removed from the workout list.
 
+<img src="images/DeleteWorkoutDiagram.png" width="450" />
+
 Below is an example usage scenario and how the deletion mechanism behaves at each step:
 
 Step 1: Assume that the user has already added a workout on 21/03/23 into the WorkoutList using the following command, /start 21/03/23
