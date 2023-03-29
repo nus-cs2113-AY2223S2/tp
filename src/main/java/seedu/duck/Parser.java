@@ -41,13 +41,17 @@ public class Parser {
      */
     static void processCommand(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes, String line, Scanner in)
             throws IOException {
-        while (!line.equals("bye")) { // Exits the program if input is "bye"
+        while (!line.trim().equals("bye")) { // Exits the program if input is "bye"
             String[] words = line.split(" ");
+            line = line.trim();
             if (line.isBlank()) {
                 Ui.emptyCommandMessage();
             } else if (line.equals("list")) {
                 // List out all the tasks added
                 Ui.list(tasks);
+            } else if (line.equals("list today")) {
+                //list out all classes and tasks today
+                Ui.listToday(tasks, classes);
             } else if (line.equals("priority_list")){
                 // Lists out all the tasks by priority
                 Ui.printPriorityList(tasks);
