@@ -1,3 +1,4 @@
+//@@author clement559
 package seedu.todolist.logic.command;
 
 import seedu.todolist.exception.InvalidEditException;
@@ -12,7 +13,6 @@ import seedu.todolist.task.TaskList;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
-//@@author clement559
 public class EditDeadlineCommand extends Command  {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_DEADLINE, Flags.EDIT, Flags.EDIT_DELETE};
 
