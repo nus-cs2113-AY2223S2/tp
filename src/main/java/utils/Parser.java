@@ -65,7 +65,7 @@ public class Parser {
         case DeleteStaffCommand.COMMAND_WORD:
             return prepareDeleteStaffCommand(userInputNoCommand);
         case ViewStaffCommand.COMMAND_WORD:
-            return prepareViewStaffCommand();
+            return prepareViewStaffCommand(userInputNoCommand);
         case FindStaffCommand.COMMAND_WORD:
             return prepareFindStaffCommand(userInputNoCommand);
         case AddDeadlineCommand.COMMAND_WORD:
@@ -150,6 +150,11 @@ public class Parser {
         return new FindMeetingCommand(description.trim());
     }
 
+    /**
+     * Parsing the input into properties of Staff class and checking for error.
+     * @param userInputNoCommand Cleaned UserInput without the Command keyword.
+     * @return AddStaffCommand object if input is valid, otherwise IncorrectCommand object.
+     */
     private Command prepareAddStaffCommand(String userInputNoCommand) {
         String[] userInputNoCommandSplitBySlash = userInputNoCommand.trim().split("/");
         try {
@@ -183,13 +188,30 @@ public class Parser {
         }
     }
 
-    private Command prepareViewStaffCommand() {
+    /**
+     * Check whether there is excess parameter.
+     * @param userInputNoCommand Cleaned UserInput without the Command keyword.
+     * @return ViewStaffCommand object if the input is valid, otherwise IncorrectCommand object.
+     */
+    private Command prepareViewStaffCommand(String userInputNoCommand) {
+        try {
+            if (!userInputNoCommand.isEmpty()) {
+                throw new DinerDirectorException(Messages.ERROR_STAFF_EXCESS_VIEW_PARAM);
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e);
+            return new IncorrectCommand();
+        }
         return new ViewStaffCommand();
     }
 
+    /**
+     * Check whether user gives a number and that number is a valid staff index.
+     * @param userInputNoCommand userInputNoCommand Cleaned UserInput without the Command keyword.
+     * @return DeleteStaffCommand object if input is valid, otherwise IncorrectCommand object.
+     */
     private Command prepareDeleteStaffCommand(String userInputNoCommand) {
         int indexToRemove = 0;
-
         try {
             indexToRemove = Integer.parseInt(userInputNoCommand.trim()) - 1;
             if (indexToRemove < 0 || indexToRemove >= StaffManager.getStaffs().size()) {
@@ -204,6 +226,12 @@ public class Parser {
         }
         return new DeleteStaffCommand(indexToRemove);
     }
+
+    /**
+     * Check whether user gives a description or not.
+     * @param description The substring that is contained in Staff name to be searched.
+     * @return FindStaffCommand object if input is valid, otherwise IncorrectCommand object.
+     */
     private Command prepareFindStaffCommand(String description){
         try {
             if ((description.trim()).isEmpty()) {

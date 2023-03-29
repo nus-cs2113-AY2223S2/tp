@@ -88,4 +88,5 @@ public class Messages {
             "to delete from the file. Please check your file permissions.";
 
     public static final String ERROR_STAFF_INVALID_INDEX = "Invalid staff index number";
+    public static final String ERROR_STAFF_EXCESS_VIEW_PARAM = "Excessive parameter given to view staff command!";
 }
