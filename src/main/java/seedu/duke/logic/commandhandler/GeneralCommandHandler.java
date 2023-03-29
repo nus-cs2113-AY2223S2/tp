@@ -42,14 +42,13 @@ public class GeneralCommandHandler implements CommandList {
         //word commands
         String additionalDescription = "";
         for (int i = 1; i < userCommands.length; i++) {
-            additionalDescription = additionalDescription + userCommands[i] + " ";
+            additionalDescription = additionalDescription + " " + userCommands[i];
         }
 
         try {
-
             switch (userCommands[0]) {
             case DELETE_COMMAND:
-                //additional description becomes a number. delete the session
+                //additional description becomes a number. Delete the session
                 try {
                     if (additionalDescription.length() == 0) {
                         throw new DukeError(ErrorMessages.ERROR_EMPTY_DESCRIPTION_NUMBER.toString());
