@@ -4,6 +4,7 @@ import seedu.pettracker.commands.Command;
 import seedu.pettracker.parser.CommandParser;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
+import seedu.pettracker.data.TaskList;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -43,6 +44,7 @@ public class Main {
      */
     public void run() {
         ui.showWelcomeMessage();
+        TaskList.taskReminder();
         runCommandTillExit();
         ui.showEndingMessage();
         System.exit(0);

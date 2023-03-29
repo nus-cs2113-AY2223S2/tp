@@ -215,6 +215,22 @@ Here are your tasks:
 2. [ ] Feed the dog
 ```
 
+### Editing tasks: `edit-task`
+View the current Task List and total number of tasks.
+
+Format: `edit-task NUMBER VALUE` or `edit-task NUMBER VALUE /by DATE`
+* The `DATE` must be in the format `yyyy-mm-dd`.
+
+Example of usage:
+
+`edit-task 2 feed the cat`
+
+Expected Output:
+
+```
+Updated task 2 to feed the cat.
+```
+
 ### Print Task Schedule: `schedule`
 View the current list of tasks with an associated deadline, in order of deadline.
 
