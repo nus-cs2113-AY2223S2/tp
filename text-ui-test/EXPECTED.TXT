@@ -142,8 +142,8 @@ __________________________________________________________
 There are 1 steps in the list
 Do you want to view step-by-step?
 Type yes if so
-If you would like to exit the recipe view, type "quit"
-Otherwise, enter any key to continue to the next step
+To exit recipe view, type "quit"
+Else, enter any key to continue
 1. add spaghetti
 __________________________________________________________
 
@@ -277,8 +277,8 @@ __________________________________________________________
 There are 4 steps in the list
 Do you want to view step-by-step?
 Type yes if so
-If you would like to exit the recipe view, type "quit"
-Otherwise, enter any key to continue to the next step
+To exit recipe view, type "quit"
+Else, enter any key to continue
 1. brew tea
 2. add lemon
 3. add ice
