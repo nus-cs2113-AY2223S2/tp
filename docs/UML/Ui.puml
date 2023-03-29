@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Class Bye {
++ bye()
+}
+
+Class Greet {
++ greet()
+}
+
+Class PrintExercises {
++ printExercises(ArrayList<ExerciseData>)
+}
+
+Class PrintPlanner {
++ printPlanner(UserPlan)
++ printPlannerGreeting()
+}
+
+Class PrintHelpMessage {
++ showAvailableCommands()
++ showAvailablePlannerCommands()
++ printFiltersAvailable()
++ unknownCommandMessage()
+}
+
+Class PrintUserExerciseData {
++ printUserExerciseHistory(HashMap<String,Integer>)
+}
+
+Class Ui {
++ printExerciseFromList (ArrayList<ExerciseData>)
++ greetUser()
++ byeUser()
++ printFilters()
++ unknownCommand()
++ showPlan(UserPlan)
++ printHelp()
++ printPlannerHelp()
++ splitLine()
++ printUserExerciseHistory(HashMap<String, Integer>)
++ printPlannerGreeting()
+}
+
+left to right direction
+Bye <|.. Ui
+Greet <|.. Ui
+PrintExercises <|.. Ui
+PrintPlanner <|.. Ui
+PrintHelpMessage <|.. Ui
+PrintUserExerciseData <|.. Ui
+
+@enduml

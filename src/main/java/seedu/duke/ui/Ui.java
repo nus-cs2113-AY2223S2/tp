@@ -53,5 +53,9 @@ public class Ui {
         PrintPlanner.printPlannerGreeting();
     }
 
+    public void printExerciseSessionHelp() {
+        PrintHelpMessage.showAvailableExerciseSessionCommands();
+    }
+
 }
 

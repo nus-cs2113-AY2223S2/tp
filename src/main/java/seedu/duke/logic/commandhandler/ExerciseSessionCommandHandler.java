@@ -6,9 +6,6 @@ import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.UserCareerData;
-import seedu.duke.data.userdata.UserExerciseData;
-
-import java.util.HashMap;
 import java.util.Scanner;
 
 //@@ChubbsBunns
@@ -63,42 +60,67 @@ public class ExerciseSessionCommandHandler implements CommandList {
     public void handleExerciseSessionUserCommands (String[] userCommands, Ui ui,
                                                    UserCareerData userCareerData,
                                                    ExerciseStateHandler exerciseStateHandler) {
+        //additional error check for whether there's additional description behind single
+        //word commands
+        String additionalDescription = "";
+        for (int i = 1; i < userCommands.length; i++) {
+            additionalDescription = additionalDescription + " " + userCommands[i];
+        }
+
         try {
             switch (userCommands[0]) {
             case GENERATE_COMMAND:
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_GENERATE_COMMAND.toString());
             case HELP_COMMAND:
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                } else {
+                    ui.printExerciseSessionHelp();
+                }
+                break;
             case FILTERS_COMMAND:
             case FIND_COMMAND:
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_HELP_COMMAND.toString());
-            case BYE_COMMAND:
             case EXIT_COMMAND:
-                boolean exit = confirmExitDuringWorkout();
-                if (exit) {
-                    ui.byeUser();
-                    System.exit(0);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
                 } else {
-                    System.out.println("You got this! Finish your exercise session!");
+                    boolean exit = confirmExitDuringWorkout();
+                    if (exit) {
+                        ui.byeUser();
+                        System.exit(0);
+                    } else {
+                        System.out.println("You got this! Finish your exercise session!");
+                    }
                 }
                 break;
             case START_COMMAND:
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_START_COMMAND.toString());
             case CURRENT_COMMAND:
-                exerciseStateHandler.printCurrentWorkout();
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                } else {
+                    exerciseStateHandler.printCurrentWorkout();
+                }
                 break;
             case FINISH_COMMAND:
-                exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                } else {
+                    exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData);
+                }
                 break;
             case CANCEL_COMMAND:
-                exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                } else {
+                    exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData);
+                }
                 break;
             case HISTORY_COMMAND:
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_HISTORY_COMMAND.toString());
             case EXERCISE_DATA_COMMAND:
-                HashMap<String, Integer> userExerciseDataMap = UserExerciseData
-                    .addUserExerciseHistory(userCareerData);
-                ui.printUserExerciseHistory(userExerciseDataMap);
-                break;
+                throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_DATA_COMMAND.toString());
             default:
                 ui.unknownCommand();
                 break;

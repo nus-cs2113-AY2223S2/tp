@@ -20,21 +20,44 @@ public class PlannerCommandHandler implements CommandList {
             String rawUserCommands = in.nextLine();
             StringSplitter stringSplitter = new StringSplitter();
             String[] userCommands = stringSplitter.splitString(rawUserCommands);
+            //additional error check for whether there's additional description behind single
+            //word commands
+            String additionalDescription = "";
+            for (int i = 1; i < userCommands.length; i++) {
+                additionalDescription = additionalDescription + " " + userCommands[i];
+            }
+
             switch (userCommands[0]) {
             case HELP_COMMAND:
-                ui.printPlannerHelp();
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                } else {
+                    ui.printPlannerHelp();
+                }
                 break;
             case VIEW_PLAN_COMMAND:
-                ui.showPlan(planner);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                } else {
+                    ui.showPlan(planner);
+                }
                 break;
             case EXIT_COMMAND:
-                System.out.println("Exited planner editor!");
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                } else {
+                    System.out.println("Exited planner editor!");
+                }
                 return;
             case ADD_PLAN_COMMAND:
                 UserPlan.addPlan(userCommands);
                 break;
             case FILTERS_COMMAND:
-                ui.printFilters();
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                } else {
+                    ui.printFilters();
+                }
                 break;
             case DELETE_PLAN_COMMAND:
                 UserPlan.deletePlan(userCommands);
