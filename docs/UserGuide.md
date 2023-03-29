@@ -31,6 +31,35 @@ Example input:
 Graph. 2*sin(5*x+2)-8
 ```
 
+### Matrix calculation: `Matrix. `
+This feature accepts matrix equation and outputs calculation result.
+
+Format: `Matrix. [Matrix] [operator] [Matrix]`
+
+* `[Matrix]` is the 2 dimensional matrix with integer elements. When you declare the matrix, you should follow the matrix format below:
+  ```
+  [1,2;3,4]
+  ```
+  * You should separate the elements with comma (,) in the single row.
+  * You should separate the rows with the semicolons.
+  
+  ```
+  [1,2;3,4].T
+  ```
+  * You can declare transposed matrix with the transpose annotation `.T`.
+  * Transposed matrix above is equal with matrix `[1,3;2,4]`.
+
+* `[operator]` is the matrix operator. You can use 4 operators below:
+  * `.*` : matrix multiplication
+  * `*` : element wise product
+  * `+` : matrix addition
+  * `-` : matrix subtraction
+
+Example input:
+```
+Matrix. [1,2;3,4] .* [4,5;6,7]
+```
+
 ### Store notes:
 Adds a new item to the Notes list.
 
