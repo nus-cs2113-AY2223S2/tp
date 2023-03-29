@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import seedu.duke.exceptions.FileStorageException;
 import seedu.duke.recipe.Ingredient;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
@@ -27,7 +28,7 @@ public class Storage {
 
     private static final String DIRECTORY_CREATED = "\nDirectory for file saving created.";
     private static final String DIRECTORY_EXISTS = "\nDirectory for file saving already exists.";
-    private static String filePath;
+    private static String filePath = "data";
 
     /**
      * Sets the <code>filePath</code> to a specific value.
@@ -42,14 +43,33 @@ public class Storage {
      * Creates a new directory to store
      * save file, if it does not already exist.
      *
-     * @throws IOException if an I/O error has occurred.
+     * @throws FileStorageException if an I/O error has occurred.
      */
-    public static void createDirectory() throws IOException {
-        File directory = new File(filePath);
-        if (directory.mkdir()) {
-            System.out.println(DIRECTORY_CREATED + "\n");
-        } else {
-            System.out.println(DIRECTORY_EXISTS + "\n");
+    public static void createDirectory() throws FileStorageException {
+        try {
+            File directory = new File(filePath);
+            if (directory.mkdir()) {
+                System.out.println(DIRECTORY_CREATED + "\n");
+            } else {
+                System.out.println(DIRECTORY_EXISTS + "\n");
+            }
+        } catch (Exception e) {
+            throw new FileStorageException(e.getMessage());
+        }
+    }
+
+    public static void deleteFile(File file) throws FileStorageException {
+        try {
+            if (file.isFile()) {
+                file.delete();
+            } else if (file.isDirectory()) {
+                File[] files = file.listFiles();
+                for (File item : files) {
+                    deleteFile(item);
+                }
+            }
+        } catch (Exception e) {
+            throw new FileStorageException("Error in file clear:" + e.getMessage());
         }
     }
 
@@ -64,24 +84,35 @@ public class Storage {
      * list steps
      * @throws IOException
      */
-    public static void writeSavedFile() throws IOException {
-        File saveFile;
-        FileWriter saveWriter;
-        for (Recipe dish : RecipeList.getRecipeList()) {
-            saveFile = new File("data/" + dish.getName());
-            System.out.println(dish.getName());
-            saveWriter = new FileWriter("data/" + dish.getName() + ".txt");
-            saveWriter.write(dish.getName() + "\n");
-            saveWriter.write(dish.getTag() + "\n");
-            saveWriter.write(INGREDIENT_LIST + "\n");
-            for (Ingredient ingredient : dish.getIngredientList().getList()) {
-                saveWriter.write( ingredient.getName() + "\n");
+    public static void writeSavedFile() {
+        File folder = new File(filePath);
+        try {
+            deleteFile(folder);
+        } catch (FileStorageException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+        try {
+            File saveFile;
+            FileWriter saveWriter;
+            for (Recipe dish : RecipeList.getRecipeList()) {
+                saveFile = new File("data/" + dish.getName());
+                System.out.println(dish.getName());
+                saveWriter = new FileWriter("data/" + dish.getName() + ".txt");
+                saveWriter.write(dish.getName() + "\n");
+                saveWriter.write(dish.getTag() + "\n");
+                saveWriter.write(INGREDIENT_LIST + "\n");
+                for (Ingredient ingredient : dish.getIngredientList().getList()) {
+                    saveWriter.write( ingredient.getName() + "\n");
+                }
+                saveWriter.write(STEP_LIST + "\n");
+                for (Step step : dish.getStepList().getList()) {
+                    saveWriter.write(step.getStep() + "\n");
+                }
+                saveWriter.close();
             }
-            saveWriter.write(STEP_LIST + "\n");
-            for (Step step : dish.getStepList().getList()) {
-                saveWriter.write(step.getStep() + "\n");
-            }
-            saveWriter.close();
+        } catch (IOException e) {
+            System.out.println("Error in file writing:" + e.getMessage());
         }
     }
     public static ArrayList<File> findValidSaveFiles() {
@@ -131,6 +162,7 @@ public class Storage {
                     tag,
                     new IngredientList(ingredientList),
                     new StepList(stepList)));
+            reader.close();
         }
         for (Recipe item : recipeList) {
             RecipeList.addNewRecipe(item);

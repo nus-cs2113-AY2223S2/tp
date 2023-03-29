@@ -81,7 +81,6 @@ public class Command {
             } catch (Exception e) {
                 ui.showAddingRecipeErrorMessage(e);
             }
-            ui.showSave();
             Storage.writeSavedFile();
             break;
         case DELETE:
@@ -96,22 +95,14 @@ public class Command {
             } catch (Exception e) {
                 ui.showDeletingTaskErrorMessage(e, type);
             }
-            ui.showSave();
             Storage.writeSavedFile();
             break;
         case CLEAR:
             recipeList.clearRecipeList();
             ui.showRecipeListCleared();
-            ui.showSave();
             Storage.writeSavedFile();
             break;
         case VIEW:
-            try {
-                Integer.parseInt(fullDescription);
-            } catch (NumberFormatException e) {
-                RecipeList.searchRecipeList(fullDescription);
-                break;
-            }
             try {
                 if (fullDescription.isEmpty()) {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
@@ -122,6 +113,9 @@ public class Command {
             } catch (Exception e) {
                 ui.showViewingRecipeErrorMessage(e);
             }
+            break;
+        case FIND:
+            RecipeList.searchRecipeList(fullDescription);
             break;
         case HELP:
             ui.showHelp();

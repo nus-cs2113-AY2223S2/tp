@@ -12,12 +12,15 @@
     - [Recipe Manage Feature](#recipe-manage-feature)
       - [Implementation](#implementation)
       - [Example Usage](#example-usage)
-    - [Recipe Search Feature](#recipe-search-feature)
-    - [Recipe View Feature](#recipe-view-feature)
+    - [Recipe Find Feature](#recipe-find-feature)
       - [Implementation](#implementation-1)
       - [Example Usage](#example-usage-1)
-    - [Recipe Storage Feature](#recipe-storage-feature)
+    - [Recipe View Feature](#recipe-view-feature)
+      - [Implementation](#implementation-2)
+      - [Example Usage](#example-usage-2)
     - [Help Feature](#help-feature)
+      - [Implementation](#implementation-3)
+      - [Example Usage](#example-usage-3)
   - [Appendix A - Product scope](#appendix-a---product-scope)
     - [Target user profile](#target-user-profile)
     - [Value proposition](#value-proposition)
@@ -71,7 +74,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 #### UI component
 The **API** of this component is specified in [`UI.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/ui/UI.java)
 
-![image](./PlantUML/UIcomponent.png)
+<!-- ![image](./PlantUML/UIcomponent.png) -->
 
 UI class implements the StringLib interface for some output strings. It is responsible for the following tasks:
 * Prints the welcome and goodbye messages.
@@ -140,7 +143,7 @@ Given below is an example usage scenario and how the recipe manage mechanism beh
 
 **Step 2.** The user inputs `chop beef` to add a step for the recipe. `Parser#parseSteps()` receives all the steps and returns a `StepList` object. Then we return to the `Command#execute()` method in the `Command` class and call the `RecipeList#addNewRecipe()` to add the recipe to the recipe list.
 
-**Step 3.** The user inputs `list` to list all the recipes in the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `RecipeList#getRecipeList()` to get the recipe list. Then we return to the `Command#execute()` method in the `Command` class and call the `Ui#showRecipeList()` to show the recipe list.
+**Step 3.** The user inputs `list` to list all the recipes in the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `RecipeList#getRecipeList()` to get the recipe list. Then we return to the `Command#execute()` method in the `Command` class and call the `UI#showRecipeList()` to show the recipe list.
 
 **Step 4.** The user inputs `delete 1` to delete the first recipe in the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `RecipeList#removeRecipe()` to remove the recipe from the recipe list.
 
@@ -148,12 +151,17 @@ Given below is an example usage scenario and how the recipe manage mechanism beh
 
 > The following sequence diagram shows how the recipe manage feature works:
 ![Sequence Diagram for Recipe Manage](./PlantUML/RecipeManage.png)
-### Recipe Search Feature
+### Recipe Find Feature
 #### Implementation
-To-be-released in future versions.
+The recipe find feature is facilitated by the `command`,`parser`,`recipe` package. It implements the following operations:
+- `RecipeList#searchRecipeList()` - Find a recipe from the recipe list.
 #### Example Usage
-To-be-released in future versions.
+Given below is an example usage scenario and how the recipe find mechanism behaves at each step.
 
+In the command line, the user inputs `find MaLaXiangGuo` to find a recipe from the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `RecipeList#searchRecipeList()` to search the recipe list for the recipe.Eventually, the `UI` will be called to show the recipe list that contains the keyword with its index.
+
+> The following sequence diagram shows how the recipe find feature works:
+![Sequence Diagram for Recipe Find](./PlantUML/RecipeFind.png)
 ### Recipe View Feature
 #### Implementation
 
@@ -189,18 +197,12 @@ and then `StepList#showStepList()`.
 > The following sequence diagram shows how the recipe view feature works:
 ![Sequence Diagram for Recipe View](./PlantUML/Recipe_View.png)
 
-### Recipe Storage Feature
-#### Implementation
-To-be-released in future versions.
-#### Example Usage
-To-be-released in future versions.
-
 ### Help Feature
 #### Implementation
 The help feature's main functionality is to show users the full list of commands they can use on TOM. 
 It is facilitated by the `command`,`parser`,`ui` package. It implements the following operations:
 
-- `Ui#showHelp()` - Prints the help message.
+- `UI#showHelp()` - Prints the help message.
 - `Parser#parseCommands()` - Parse user input into a Command object containing commandType and fullDescription.
 - `Command#excecute()` - Carry out respective tasks based on commandType given.
 
@@ -211,7 +213,7 @@ Given below is an example usage scenario and how the help mechanism behaves at e
 **Step 1.** The user launches the application for the first time, then inputs `help` to see all possible commands that
 can be executed. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will 
 return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, 
-which will call the `Ui#showHelp()` method to show all possible commands of the recipe.
+which will call the `UI#showHelp()` method to show all possible commands of the recipe.
 
 > The following sequence diagram shows how the help feature works:
 ![Sequence Diagram for Help](./PlantUML/Help.png)

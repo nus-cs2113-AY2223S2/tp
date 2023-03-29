@@ -13,18 +13,20 @@ RM(recipe manager) is a <strong>desktop recipe manager application for managing 
     * **[Adding a recipe: `add`](#adding-a-recipe-add)**
     * **[Editing a recipe: `edit`](#editing-a-recipe-edit)**
     * **[Deleting a recipe: `delete`](#deleting-a-recipe-delete)**
+    * **[Finding recipes: `find`](#finding-recipes-find)**
     * **[Viewing a recipe: `view`](#viewing-a-recipe-view)**
     * **[Listing all recipes: `list`](#listing-all-recipes-list)**
     * **[Clearing all entries: `clear`](#clearing-all-entries-clear)**
     * **[Exiting the program: `exit`](#exiting-the-program-exit)**
     * **[Saving the data](#save-data)**
     * **[Editing the data file](#edit-data)**
-* **[Upcoming features(v2.0)](#upcoming-features)**
+    <!-- * **[Editing the data file](#edit-data)** -->
+<!-- * **[Upcoming features(v2.0)](#upcoming-features)**
     * **[Using a recipe: `use`](#using-a-recipe-use)**
         * **[Moving to next step: `next`](#moving-to-next-step-next)**
         * **[Moving to previous step: `prev`](#moving-to-previous-step-prev)**
         * **[Moving to a specific step: `goto`](#moving-to-a-specific-step-goto)**
-        * **[Marking a step as done: `done`](#marking-a-step-as-done-done)**
+        * **[Marking a step as done: `done`](#marking-a-step-as-done-done)** -->
 * **[FAQ](#faq)**
 * **[Command Summary](#command-summary)**
 <h2 id="quick-start"> Quick Start</h2>
@@ -40,7 +42,7 @@ RM(recipe manager) is a <strong>desktop recipe manager application for managing 
 <li>
 Words in <strong>UPPER_CASE</strong> are the parameters to be supplied by the user.
     
-e.g. in <code class="language-plaintext highlighter-rouge">add DESCRIPTION</code>, <code class="language-plaintext highlighter-rouge">DESCRIPTION</code> is a parameter which can be used as <code class="language-plaintext highlighter-rouge">add n/NAME i/INGREDIENTS t/TAG</code>.
+e.g. in <code class="language-plaintext highlighter-rouge">add DESCRIPTION</code>, <code class="language-plaintext highlighter-rouge">DESCRIPTION</code> is a parameter which can be used as <code class="language-plaintext highlighter-rouge">add n/NAME i/INGREDIENTS t/TAG s/NUMBEROFSTEPS</code>.
 </li>    
 <li>
 <strong>Extraneous parameters</strong> for commands that do not take in parameters (such as <code class="language-plaintext highlighter-rouge">exit</code> and <code class="language-plaintext highlighter-rouge">list</code>) <strong>will be ignored</strong>.
@@ -51,45 +53,112 @@ e.g. if the command specifies <code class="language-plaintext highlighter-rouge"
 
 <h2 id="viewing-help-help"> Viewing help:<code class="language-plaintext highlighter-rouge">help</code></h2>
 
-Shows a message explaining how to access the help page.
-Format: `help`
+Shows a message explaining how to access the help page.<br>
+Format: `help`<br>
+<!-- Examples:
+```
+``` -->
 
 <h2 id="adding-a-recipe-add"> Adding a recipe: <code class="language-plaintext highlighter-rouge">add</code></h2>
 
 Adds a recipe to the recipe manager.
-Format: `add n/NAME i/INGREDIENTS t/TAG s/SumOfSteps`
-Examples:
-* `add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/3`
-<p>App will prompt you to start entering the steps to the recipe
-will automatically count the steps and echo back after typing in a step
-type in the step as a full sentence.</p>
+**Format**: `add n/NAME i/INGREDIENTS t/TAG s/NUMBEROFSTEPS`
+**Hint**: Number of steps is the number of steps in the recipe, then you will be prompted to enter the steps.
+**Examples**:
+```
+__________________________________________________________
+add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/4
 
-<h2 id="editing-a-recipe-edit"> Editing a recipe: <code class="language-plaintext highlighter-rouge">edit</code></h2>
+Please enter the description of step 1:
+chop beef
+
+Please enter the description of step 2:
+add potatoes
+
+Please enter the description of step 3:
+add carrots
+
+Please enter the description of step 4:
+cook 5 minutes
+
+Got it. I've added this recipe:
+  [Chinese] Hotpot
+Now you have 2 recipes in the list.
+
+MaLaXiangGuo
+Hotpot
+__________________________________________________________
+```
+<p>App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.</p>
+
+<!-- <h2 id="editing-a-recipe-edit"> Editing a recipe: <code class="language-plaintext highlighter-rouge">edit</code></h2>
 
 Edits a recipe in the recipe manager.
 Format: `edit n/NAME`
 Examples:
 * `edit n/Hotpot`
-<p>App will print the steps to the recipe with step numbers, next input the step number you wish to edit, then re-type the whole step to replace the instruction.</p>
+<p>App will print the steps to the recipe with step numbers, next input the step number you wish to edit, then re-type the whole step to replace the instruction.</p> -->
 
 <h2 id="deleting-a-recipe-delete"> Deleting a recipe: <code class="language-plaintext highlighter-rouge">delete</code></h2>
 
-Deletes a recipe from the recipe manager.
-Format: `delete n/NAME`
-Examples:
-* `delete n/Hotpot`
-<p>App will prompt if you confirm to delete recipe_name, if yes then it will remove the recipe.Else revert back to main screen.</p>
+Deletes a recipe from the recipe list.
+**Format**: `delete INDEX`
+**Examples**:
+```
+__________________________________________________________
+delete 1
+
+Noted. I've removed this recipe:
+  [Chinese] MaLaXiangGuo
+Now you have 1 recipes in the list.
+
+Hotpot
+__________________________________________________________
+```
+<p>App will remove the recipe with the corresponding index.</p>
+
+<h2 id="finding-recipes-find"> Finding recipes: <code class="language-plaintext highlighter-rouge">find</code></h2>
+Find recipes whose names contain any of the given keywords. The results will be displayed in a list, telling you the index of the recipe in the recipe list. Only the name of the recipe will be searched.
+
+**Format**: `find KEYWORD`
+**constraints**: `KEYWORD` cannot be empty.
+**Examples**:
+```
+__________________________________________________________
+find hotpot
+
+Here are the matching items:
+  [Chinese] Hotpot [Index: 2]
+__________________________________________________________
+```
+
 
 <h2 id="viewing-a-recipe-view"> Viewing a recipe: <code class="language-plaintext highlighter-rouge">view</code></h2>
 
-Views a detailed recipe from the recipe manager.
-Format: `view n/NAME` or `view INDEX`
-Examples:
-* `view n/Hotpot`
-* `view 1`
+<div>Views a detailed recipe from the recipe manager if INDEX is entered.</div>
 
-Constraints:
-* The index must be a positive integer 1, 2, 3, …
+**Format**: `view INDEX`
+**Hint**: If you want to view a recipe **by name**, use the **find** command first to find the index of the recipe, then use the view command to view the recipe.
+**Constraints**: The index must be a positive integer larger than 0.
+**Examples**:
+```
+__________________________________________________________
+view 1
+Here is the recipe you requested, which is a Chinese flavour:
+name: Hotpot
+__________________________________________________________
+Here are 3 ingredients in the list:
+1. Beef
+2. Potatoes
+3. Carrots
+__________________________________________________________
+There are 4 steps in the list
+1. chop beef
+2. add potatoes
+3. add carrots
+4. cook 5 minutes
+__________________________________________________________
+```
 
 <h2 id="listing-all-recipes-list"> Listing all recipes: <code class="language-plaintext highlighter-rouge">list</code></h2>
 
@@ -117,19 +186,33 @@ The recipe manager data are saved in the hard disk automatically after any comma
 
 <h2 id="edit-data"> Editing the data file </h2>
 
-The recipe manager data are saved as a JSON file `[JAR file location]/data/recipeData.json`. Advanced users are welcome to update data directly by editing that data file.
-<div class="alert alert-warning">
+The recipe data are saved as a text file `[JAR file location]/data/[dish name].txt`. 
+Here is an example of a valid file, `data/Hotpot.txt`:
+```
+Hotpot
+Chinese
+Ingredient list
+Beef
+Potatoes
+Carrots
+Step list
+chop beef
+add potatoes
+add carrots
+cook 5 minutes
+```
+The first line is the name of the dish. And the second line is the tag of the dish. The third line is the ingredient list. The following lines are the ingredients until the line "Step list". The following lines are the steps until the end of the file.
+***warning***:
+* Do **NOT** modify the save data easily.
+If you change the data file **in a wrong way**, the recipe manager will not start up correctly.
 
-!!! warning
-    If you change the data file <strong>in a wrong way</strong>, the recipe manager will not start up correctly.
 
-
-<h2 id="upcoming-features"> Upcoming Features </h2>
+<!-- <h2 id="upcoming-features"> Upcoming Features </h2>
 
 !!! hint
-    The following features are planned for the next release of the recipe manager.
+    The following features are planned for the next release of the recipe manager. -->
 
-<h2 id="using-a-recipe-use"> Using a recipe: <code class="language-plaintext highlighter-rouge">use</code></h2>
+<!-- <h2 id="using-a-recipe-use"> Using a recipe: <code class="language-plaintext highlighter-rouge">use</code></h2>
 <p> 
 This set of features allow you to see a step by step follow along of the steps to cook a particular dish. Once the command is triggered the command line will print the first two steps of the recipe and will keep them unchecked initially. Users may navigate from one step to the next and back using ‘w’ and ‘s’ keys. With every new step, users will be able to view the immediate upcoming step and a progress bar of how many steps are left.
 </p>
@@ -158,7 +241,7 @@ Examples:
     <li>
         <h3 id="marking-a-step-as-done-done"> Marking a step as done: <code class="language-plaintext highlighter-rouge">done</code></h3>
     </li>
-</ul>
+</ul> -->
 
 <h2 id='faq'> FAQ </h2>
 <strong>Q:</strong> What happens if I don't format the parameter correctly?<br>
@@ -171,9 +254,8 @@ Examples:
 |  ----  | ----  | ----  |
 | **help**  | [`help`](#viewing-help-help) | |
 | **add**  | [`add n/NAME i/INGREDIENTS t/TAG`](#adding-a-recipe-add)| `add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese` |
-| **edit**  | [`edit n/NAME`](#editing-a-recipe-edit)| `edit n/Hotpot` |
-| **delete**  | [`delete n/NAME`](#deleting-a-recipe-delete)| `delete n/Hotpot` |
-| **view**  | [`view n/NAME`](#viewing-a-recipe-view) [`view INDEX`](#viewing-a-recipe-view) | `view n/Hotpot` or `view 1`  |
+| **delete**  | [`delete n/NAME`](#deleting-a-recipe-delete)| `delete INDEX` |
+| **view**  | [`view INDEX`](#viewing-a-recipe-view) | `view 1`  |
 | **list**  | [`list`](#listing-all-recipes-list)| |
 | **clear**  | [`clear`](#clearing-all-entries-clear)| |
 | **exit**  | [`exit`](#exiting-the-program-exit)| |
