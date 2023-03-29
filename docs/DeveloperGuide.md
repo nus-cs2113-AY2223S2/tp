@@ -185,6 +185,69 @@ We need an intuitive, safe and declarative way to parse the user input. Alternat
 
 No.
 
+### Review Flashcard Feature
+
+#### Current implementation
+
+The current review flashcard allows the user to review all the flashcards that are due today or before,
+it is implemented through the following steps:
+
+Step 1:
+The input of user is collected by `getUserCommand()` inside class `Ui`.
+
+Step 2:
+The input string will be converted into a `Command` object by being passed through
+`parseCommand(String userInput)` inside `Paser`.
+
+In this case, an `ReviewCommand` will be created and returned.
+
+Step 3:
+The `execute()` function of `ReviewCommand` will run, calling `getFlashCards()`
+of class `FlashcardList` to get the list of the flashcards.
+
+Then it will iterate through the `FlashcardList` and call the function `isDueBeforeToday()` of class `Flashcard` to
+check if the flashcard is due by today.
+
+If the flashcard is due by today, `reviewCurrentFlashcard(Ui display, Flashcard flashcard)` of class `ReviewCommand`
+will be called to review the card.
+
+First, the `Ui` will display the question of the current card by calling the `getQuestion()` method of
+class `Flashcard`, and ask user if user is ready to view the answer. After user enters any keyboard input, the answer of
+the current card will be shown by calling the `getAnswer()` method of class `Flashcard`, and `Ui` will ask the user if
+he/she has got the card correct. If the user inputs "y"  or "yes", then the current `Flashcard` is considered to be
+cleared and `updateDueDateAfterCorrectAnswer()` of `Flashcard` will be called to update its `dueDate`. Then Clanki will
+let user review the next `Flashcard`. If the user inputs "n", then the card is considered to be not cleared
+and `updateDueDateAfterIncorrectAnswer()` will be called to update its `dueDate`. Then Clanki will let user review the
+next `Flashcard`. This process will repeat until all the `Flashcards` in the `FlashcardList` are iterated.
+
+After the whole `FlashcardList` has been iterated through, a message congratulating the user that he/she has completed
+the reviewing task will be displayed.
+
+At this point, the reviewing process is completed and the program is ready to take another command.
+
+The following sequence diagram show how the review operation work:
+![ReviewFlashcard-0.png](umlDiagrams%2FReviewFlashcard-0.png)
+
+#### Reason for current implementation
+
+Through using `ReivewCommand` class, which extends `Command` class it increases the level of
+abstraction as the code can now perform the various commands on a class level.
+
+Moreover, `ReviewCommand` only has access to the public methods of `FlashcardList` and `Flashcard`, this reduces
+coupling in the program as the `ReviewCommand` will not have access to the inner structure of
+`FlashcardList` and `Flashcard`.
+
+#### Alternative implementation
+
+- Alternative 1: Have the review command function directly in `FlashcardList`
+    - Pros: Easy to implement
+    - Cons: Will require another function in another program to differentiate it from other
+      commands
+- Alternative 2: After entering the `ReviewCommand`, go back to `Clanki.run()` and take further commands for review
+  process
+    - Pros: Simplifies code in `ReviewCommand`
+    - Cons: Will have to pass around a lot of parameters and variables
+
 ## Product scope
 
 ### Target user profile
