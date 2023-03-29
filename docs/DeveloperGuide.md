@@ -190,7 +190,6 @@ and informs the user of the loaded task list (and how many tasks there are in it
 
 ![StartUpStorageSequenceWithValidSaveFile](images/StartUpStorageWithValidSaveFile.png)
 
-
 Scenario 2: The user launches the application and there is no save file found. Storage informs the user that there is no
 save file found and that a new one will be created for them later.
 
