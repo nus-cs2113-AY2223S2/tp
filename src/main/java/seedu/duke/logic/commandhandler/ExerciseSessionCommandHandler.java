@@ -7,9 +7,6 @@ import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.UserCareerData;
-import seedu.duke.data.userdata.UserExerciseData;
-
-import java.util.HashMap;
 import java.util.Scanner;
 
 //@@ChubbsBunns
