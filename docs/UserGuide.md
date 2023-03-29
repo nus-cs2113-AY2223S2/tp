@@ -197,10 +197,10 @@ Expected Output:
 Successfully removed task 1
 ```
 
-### Viewing Task List: `list-task`
+### Viewing Task List: `list-tasks`
 View the current Task List and total number of tasks.
 
-Format: `list-task`
+Format: `list-tasks`
 
 Example of usage:
 
