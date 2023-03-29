@@ -92,6 +92,9 @@ __________________________________________________________
 ```
 <p>App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.</p>
 <h2 id="editing-a-recipe-step-editstep"> Editing a recipe's steps: <code class="language-plaintext highlighter-rouge">editstep</code></h2>
+Edits a step for a recipe in the recipe manager.
+**Format**: `editstep INDEX`, then input the step number
+
 <h2 id="editing-a-recipe-ingredient-editingredient"> Editing a recipe's ingredients: <code class="language-plaintext highlighter-rouge">editingredient</code></h2>
 
 Edits a recipe in the recipe manager.

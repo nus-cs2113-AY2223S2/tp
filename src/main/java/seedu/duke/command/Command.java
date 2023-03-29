@@ -9,6 +9,7 @@ import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 import seedu.duke.recipe.StepList;
 import seedu.duke.storage.Storage;
+import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
 import java.io.IOException;
@@ -110,7 +111,7 @@ public class Command {
                 }
                 int recipeListNum = Integer.parseInt(fullDescription);
                 Recipe recipeToBeViewed = recipeList.getRecipeFromList(recipeListNum);
-                ui.showRecipeViewed(recipeToBeViewed);
+                ui.showRecipeViewed(recipeToBeViewed, ui);
             } catch (Exception e) {
                 ui.showViewingRecipeErrorMessage(e);
             }
@@ -129,7 +130,7 @@ public class Command {
                 int maxSteps = recipeToEditStepList.getCurrStepNumber();
                 if (maxSteps == 0) {
                     assert (maxSteps - 1 == -1);
-                    throw new OutOfIndexException("There are no steps to edit!");
+                    throw new OutOfIndexException(StringLib.NO_STEPS_ERROR);
 
                 }
 
@@ -142,9 +143,9 @@ public class Command {
                 int stepIndex = Integer.parseInt(input) - 1;
                 if (stepIndex < maxSteps) {
                     assert (maxSteps - stepIndex > 0);
-                    recipeToEditStepList.editStep(stepIndex);
+                    recipeToEditStepList.editStep(stepIndex,ui);
                 } else {
-                    throw new OutOfIndexException("Input index exceeds the number of steps!");
+                    throw new OutOfIndexException(StringLib.INPUT_STEPS_INDEX_EXCEEDED);
                 }
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
@@ -162,20 +163,20 @@ public class Command {
                 IngredientList recipeToEditIngredientList = recipeToEdit.getIngredientList();
                 int maxSteps = recipeToEditIngredientList.getCurrIngredientNumber();
                 if (maxSteps == 0) {
-                    throw new OutOfIndexException("There are no ingredients to edit!");
+                    throw new OutOfIndexException(StringLib.NO_INGREDIENTS_ERROR);
                 }
                 recipeToEditIngredientList.showList();
                 ui.showEditRecipeIngredientPrompt();
                 String input = ui.readCommand();
-                if (input.equals("quit")) {
+                if (input.equals(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
                     break;
                 }
                 int ingredientIndex = Integer.parseInt(input) - 1;
 
                 if (ingredientIndex >= maxSteps) {
-                    throw new OutOfIndexException("Input index exceeds the number of ingredients!");
+                    throw new OutOfIndexException(StringLib.INPUT_INGREDIENTS_INDEX_EXCEEDED);
                 }
-                recipeToEditIngredientList.editIngredient(ingredientIndex);
+                recipeToEditIngredientList.editIngredient(ui, ingredientIndex);
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
             }

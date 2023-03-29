@@ -2,11 +2,12 @@ package seedu.duke.recipe;
 
 import java.util.ArrayList;
 import seedu.duke.ui.UI;
+import seedu.duke.ui.StringLib;
 
 public class StepList {
     protected ArrayList<Step> stepList;
     protected int currStepNumber;
-    UI ui = new UI();
+
     /**
      * Class constructor without arguments.
      */
@@ -34,12 +35,12 @@ public class StepList {
         currStepNumber--;
         assert (currStepNumber == stepList.size());
     }
-    public void editStep(int stepIndex) {
-        System.out.println("Enter the description of the step:");
+    public void editStep(int stepIndex, UI ui) {
+        System.out.println(StringLib.ENTER_STEP_DESCRIPTION);
         String description = ui.readCommand();
         Step newStep = new Step(description);
         stepList.set(stepIndex, newStep);
-        System.out.println("Step has been edited:");
+        System.out.println(StringLib.STEP_EDIT_SUCCESS);
         System.out.print((stepIndex + 1) + ". ");
         System.out.println(stepList.get(stepIndex).toString());
     }
@@ -49,29 +50,29 @@ public class StepList {
             System.out.println((i + 1) + ". " + stepList.get(i).getStep());
         }
     }
-    public void showStepList() {
+    public void showStepByStep(UI ui) {
+        String input;
+        for (int i = 0; i < currStepNumber; i++) {
+            System.out.println((i + 1) + ". " + stepList.get(i).getStep());
+            if (ui.readCommand().equals(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
+                return;
+            }
+        }
+    }
+    public void showStepList(UI ui) {
         if (currStepNumber == 0) {
-            System.out.println("This recipe has no steps!");
+            System.out.println(StringLib.RECIPE_NO_STEPS);
             return;
         }
         System.out.println("There are " + currStepNumber + " steps in the list");
-        System.out.println("Do you want to view step-by-step? \nType yes if so");
+        System.out.println(StringLib.STEPBYSTEP_PROMPT);
         String input = ui.readCommand();
         if (input.toLowerCase().equals("yes")) {
-            System.out.println("If you would like to exit the recipe view, type \"quit\"");
-            System.out.println("Otherwise, enter any key to continue to the next step");
-            input = "";
-            for (int i = 0; (!input.equals("quit") && i < currStepNumber); i++) {
-                System.out.println((i + 1) + ". " + stepList.get(i).getStep());
-                while (i <= currStepNumber - 1) {
-                    input = ui.readCommand().toLowerCase();
-                }
-            }
+            System.out.println(StringLib.STEPBYSTEP_EARLY_TERMINATION_PROMPT);
+            showStepByStep(ui);
 
         } else {
-            for (int i = 0; i < currStepNumber; i++) {
-                System.out.println((i + 1) + ". " + stepList.get(i).getStep());
-            }
+            showFullStepList();
         }
     }
 

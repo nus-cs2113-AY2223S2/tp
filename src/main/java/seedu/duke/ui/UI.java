@@ -127,7 +127,7 @@ public class UI {
             System.out.println(RECIPE_DELETING_DEFAULT_ERROR + e.getMessage());
         }
     }
-    public void showRecipeViewed(Recipe recipe) {
+    public void showRecipeViewed(Recipe recipe, UI ui) {
         System.out.println("Here is the recipe you requested, which is a "+ recipe.getTag() + " flavour:");
         System.out.println("name: " + recipe.getName());
         System.out.println(LINE);
@@ -135,7 +135,7 @@ public class UI {
         ingredients.showList();
         System.out.println(LINE);
         StepList steps = recipe.getStepList();
-        steps.showStepList();
+        steps.showStepList(ui);
     }
     public void showViewingRecipeErrorMessage(Exception e) {
         if (e instanceof IncompleteInputException) {

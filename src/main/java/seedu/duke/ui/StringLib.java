@@ -118,4 +118,17 @@ public interface StringLib {
     String MISSING_KEYWORD = "\nView is missing KEYWORDS!";
     String MATCHING_ITEMS = "\nHere are the matching items:";
     String NO_MATCHES = "\nNo dishes matches what you are looking for! :(";
+    String ENTER_STEP_DESCRIPTION = "Enter the description of the step:";
+    String STEP_EDIT_SUCCESS = "Step has been edited:";
+    String STEP_VIEW_QUIT_KEYWORD = "quit";
+    String RECIPE_NO_STEPS = "This recipe has no steps!";
+    String STEPBYSTEP_PROMPT = "Do you want to view step-by-step?\nType yes if so";
+    String STEPBYSTEP_EARLY_TERMINATION_PROMPT = "If you would like to exit the recipe view, type \"quit\"\nOtherwise, enter any key to continue to the next step";
+    String ENTER_INGREDIENT_DESCRIPTION = "Enter the description of the ingredient:";
+    String INGREDIENT_EDIT_SUCCESS = "Ingredient has been edited:";
+    String NO_INGREDIENTS_ERROR = "There are no ingredients to edit!";
+    String NO_STEPS_ERROR = "There are no steps to edit!";
+    String INPUT_STEPS_INDEX_EXCEEDED = "Input index exceeds the number of steps!";
+    String INPUT_INGREDIENTS_INDEX_EXCEEDED = "Input index exceeds the number of ingredients!";
+
 }

@@ -1,5 +1,6 @@
 package seedu.duke.recipe;
 
+import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
 import java.util.ArrayList;
@@ -9,7 +10,6 @@ public class IngredientList {
 
     protected int currIngredientNumber;
 
-    UI ui = new UI();
     /**
      * Class constructor without arguments.
      */
@@ -62,12 +62,12 @@ public class IngredientList {
         return list;
     }
 
-    public void editIngredient(int ingredientIndex) {
-        System.out.println("Enter the description of the ingredient:");
+    public void editIngredient(UI ui, int ingredientIndex) {
+        System.out.println(StringLib.ENTER_INGREDIENT_DESCRIPTION);
         String description = ui.readCommand();
         Ingredient newIngredient = new Ingredient(description);
         list.set(ingredientIndex, newIngredient);
-        System.out.println("Ingredient has been edited:");
+        System.out.println(StringLib.INGREDIENT_EDIT_SUCCESS);
         System.out.print((ingredientIndex + 1) + ". ");
         System.out.println(list.get(ingredientIndex).getName());
     }
