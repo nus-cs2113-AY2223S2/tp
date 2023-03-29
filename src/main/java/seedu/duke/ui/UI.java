@@ -13,27 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.ui.StringLib.CREATING_NEW_FILE_AND_DIRECTORY;
-import static seedu.duke.ui.StringLib.DUDE_MAIN_ERROR;
-import static seedu.duke.ui.StringLib.EMPTY_LIST_MESSAGE;
-import static seedu.duke.ui.StringLib.EXIT_MESSAGE;
-import static seedu.duke.ui.StringLib.FILE_IO_ERROR;
-import static seedu.duke.ui.StringLib.FILE_LOADING_DEFAULT_ERROR;
-import static seedu.duke.ui.StringLib.FILE_NOT_FOUND_ERROR;
-import static seedu.duke.ui.StringLib.FILE_PARSE_READING_ERROR;
-import static seedu.duke.ui.StringLib.HELP;
-import static seedu.duke.ui.StringLib.LINE;
-import static seedu.duke.ui.StringLib.MISSING_DESCRIPTION_ERROR;
-import static seedu.duke.ui.StringLib.PARSING_STRING_ERROR;
-import static seedu.duke.ui.StringLib.PREFIX_EMPTY_LIMIT_LIST_ERROR;
-import static seedu.duke.ui.StringLib.RECIPE_ADDING_DEFAULT_ERROR;
-import static seedu.duke.ui.StringLib.RECIPE_DELETING_DEFAULT_ERROR;
-import static seedu.duke.ui.StringLib.SUFFIX_EMPTY_LIMIT_LIST_ERROR;
-import static seedu.duke.ui.StringLib.UNRECOGNIZABLE_COMMAND_ERROR;
-import static seedu.duke.ui.StringLib.UNRECOGNIZABLE_ERROR;
-import static seedu.duke.ui.StringLib.WELCOME_MESSAGE;
-import static seedu.duke.ui.StringLib.RECIPE_CLEARED_MESSAGE;
-import static seedu.duke.ui.StringLib.RECIPE_VIEWING_DEFAULT_ERROR;
+import static seedu.duke.ui.StringLib.*;
 
 public class UI {
     private static Scanner in;
@@ -147,9 +127,12 @@ public class UI {
         }
     }
     public void showSave() {
-        System.out.println(StringLib.RECIPE_SAVED);
+        System.out.println(RECIPE_SAVED);
     }
     public void showLoad() {
-        System.out.println(StringLib.RECIPE_LOADED);
+        System.out.println(RECIPE_LOADED);
+    }
+    public void showInvalidStepMessage() {
+        System.out.println(INVALID_STEP);
     }
 }
