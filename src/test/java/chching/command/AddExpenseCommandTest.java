@@ -60,7 +60,7 @@ public class AddExpenseCommandTest {
     void execute_normalScenario_success() {
         try {
             int expensesSize = expenses.getRecordCount();
-            AddExpenseCommand command = new AddExpenseCommand(transport);
+            Command command = new AddExpenseCommand(transport);
             command.execute(incomes, expenses, ui, storage, selector, converter, targetStorage);
             assertEquals(expensesSize + 1, expenses.size());
         } catch (Exception e) {
