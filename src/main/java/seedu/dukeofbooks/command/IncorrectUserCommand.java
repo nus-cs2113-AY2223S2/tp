@@ -1,9 +1,9 @@
 package seedu.dukeofbooks.command;
 
-public class IncorrectCommand extends Command {
+public class IncorrectUserCommand extends UserCommand {
     public final String feedbackToUser;
 
-    public IncorrectCommand(String feedbackToUser) {
+    public IncorrectUserCommand(String feedbackToUser) {
         this.feedbackToUser = feedbackToUser;
     }
 

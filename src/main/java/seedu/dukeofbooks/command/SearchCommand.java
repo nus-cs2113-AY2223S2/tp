@@ -5,7 +5,7 @@ import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.exception.IllegalOperationException;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 
-public class SearchCommand extends Command {
+public class SearchCommand extends UserCommand {
     public static final String COMMAND_WORD = "search";
     public static final String INVALID_ITEM_BORROWED = "ERROR: Item is not valid";
     public static final String INVALID_ACTION = "ERROR: Action only search by title or topic";
@@ -14,8 +14,8 @@ public class SearchCommand extends Command {
     public static final String COMBINED_SEARCH = "combined";
     public static final String RESULT_STRING = "Results: %s";
 
-    private String item;
-    private String action;
+    private final String item;
+    private final String action;
 
     public SearchCommand(String item, String action) {
         this.item = item;
