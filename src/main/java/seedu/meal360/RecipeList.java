@@ -2,9 +2,10 @@ package seedu.meal360;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class RecipeList extends ArrayList<Recipe> {
-    private HashMap<String, ArrayList<Recipe>> tags = new HashMap<String, ArrayList<Recipe>>();
+    public HashMap<String, HashMap<Recipe, Integer>> tags = new HashMap<>();
 
     public Recipe findByName(String name) {
         for (Recipe recipe : this) {
@@ -30,55 +31,90 @@ public class RecipeList extends ArrayList<Recipe> {
     }
 
     public void addRecipeToTag(String tag, Recipe recipe) {
-        if (tags.containsKey(tag)) {
-            tags.get(tag).add(recipe);
+        boolean hasTag = tags.containsKey(tag);
+        int tagDummy = 0;
+        if (hasTag) {
+            tags.get(tag).put(recipe, tagDummy);
         } else {
-            assert !tags.containsKey(tags);
-            ArrayList<Recipe> tagRecipes = new ArrayList<Recipe>();
-            tagRecipes.add(recipe);
+            assert !tags.containsKey(tag);
+            HashMap<Recipe, Integer> tagRecipes = new HashMap<>();
+            tagRecipes.put(recipe, tagDummy);
             tags.put(tag, tagRecipes);
             assert tags.size() > 0 : "tag's size is still 0.";
         }
     }
 
     public void removeRecipeFromTag(String tag, Recipe recipe) {
-        if (!tags.containsKey(tag)) {
-            throw new IndexOutOfBoundsException("Invalid tag");
-        } else {
-            ArrayList<Recipe> tagRecipeList = tags.get(tag);
-            for (int i = 0; i < tagRecipeList.size(); i++) {
-                Recipe recipeInTag = tagRecipeList.get(i);
-                if (recipe.getName().equals(recipeInTag.getName())) {
-                    tagRecipeList.remove(i);
-                }
-            }
-        }
+        HashMap<Recipe, Integer> tagRecipeList = tags.get(tag);
+        tagRecipeList.remove(recipe);
     }
 
     public RecipeList listRecipes(String[] filters, boolean isTag) {
         RecipeList filteredRecipeList = new RecipeList();
-        if (filters == null) {
+        boolean isNoFilter = filters == null;
+        boolean isNotPassTheFilter;
+
+        if (isTag) {
+            filteredRecipeList = this.listTagRecipes(filters);
+        }
+        if (!isTag && isNoFilter) {
             return this;
         }
-        if (isTag) {
-            for (String filter : filters) {
-                filter = filter.trim();
-                ArrayList<Recipe> tagRecipes = this.tags.get(filter);
-                if (tagRecipes != null) {
-                    filteredRecipeList.addAll(this.tags.get(filter));
+        if (!isTag) {
+            for (Recipe recipe : this) {
+                filteredRecipeList.add(recipe);
+                for (String filter : filters) {
+                    filter = filter.trim();
+                    isNotPassTheFilter = !recipe.getName().contains(filter) &&
+                            !recipe.getIngredients().containsKey(filter);
+                    if (isNotPassTheFilter) {
+                        filteredRecipeList.remove(recipe);
+                    }
                 }
             }
-            return filteredRecipeList;
         }
-        for (Recipe recipe : this) {
-            filteredRecipeList.add(recipe);
-            for (String filter : filters) {
-                filter = filter.trim();
-                if (!recipe.getName().contains(filter) && !recipe.getIngredients().containsKey(filter)) {
+        return filteredRecipeList;
+    }
+
+    public RecipeList listTagRecipes(String[] filters) {
+        RecipeList filteredRecipeList = new RecipeList();
+        HashMap<Recipe, Integer> tagRecipes;
+        boolean hasNoRecipeInTheTag;
+        boolean hasNoRecipeToReturn;
+        boolean isNotFoundTag;
+
+        //add all recipe from first tag to the list
+        isNotFoundTag = !this.tags.containsKey(filters[0].trim());
+        if (isNotFoundTag) {
+            throw new NullPointerException("There is no \"" + filters[0] + "\" tag found. Please make sure you have " +
+                    "entered the correct tag.");
+        }
+        this.tags.get(filters[0].trim()).forEach((recipe, dummy) -> filteredRecipeList.add(recipe));
+
+        for (String filter : filters) {
+            filter = filter.trim();
+            tagRecipes = this.tags.get(filter);
+            hasNoRecipeInTheTag = tagRecipes == null;
+            hasNoRecipeToReturn = filteredRecipeList.size() == 0;
+
+            if (hasNoRecipeInTheTag) {
+                continue;
+            }
+            if (hasNoRecipeToReturn) {
+                return filteredRecipeList;
+            }
+            for (Recipe recipe : filteredRecipeList) {
+                if (!tagRecipes.containsKey(recipe)) {
                     filteredRecipeList.remove(recipe);
                 }
             }
         }
         return filteredRecipeList;
+    }
+
+    public Recipe randomRecipe() {
+        Random random = new Random();
+        Recipe randomRecipe = this.get(random.nextInt(this.size()));
+        return randomRecipe;
     }
 }
