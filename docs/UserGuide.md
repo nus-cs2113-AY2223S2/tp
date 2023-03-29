@@ -1,8 +1,13 @@
-# User Guide
+# GitHub User Guide for MathHelp ➕➖✖️➗
 
-## Introduction
+## Introduction 🧮
 
-{Give a product intro}
+Hello! Welcome to MathHelp! MathHelp is a quick lookup tool for 
+trigonometry graphs and basic matrix operations that aims to help students save
+time when performing Mathematical Operations. 
+
+To help you get started, our team has put together this user guide to guide you on
+the steps to operate MathHelp for your Mathematical woes.
 
 ## Quick Start
 
@@ -13,9 +18,7 @@
 
 ## Features 
 
-
-
-### Graph analyser and visualiser: `Graph. `
+### 1) Graph analyser and visualiser: `Graph. `
 This feature accepts a trigonometry equation (Sinusoidal signal) and outputs the amplitude, frequency, phase, and vertical shift.
 It also displays the image of the corresponding graph.
 
@@ -31,65 +34,97 @@ Example input:
 Graph. 2*sin(5*x+2)-8
 ```
 
-### Matrix calculation: `Matrix. `
-This feature accepts matrix equation and outputs calculation result.
+### 2) Store notes:
 
-Format: `Matrix. [Matrix] [operator] [Matrix]`
-
-* `[Matrix]` is the 2 dimensional matrix with integer elements. When you declare the matrix, you should follow the matrix format below:
-  ```
-  [1,2;3,4]
-  ```
-  * You should separate the elements with comma (,) in the single row.
-  * You should separate the rows with the semicolons.
-  
-  ```
-  [1,2;3,4].T
-  ```
-  * You can declare transposed matrix with the transpose annotation `.T`.
-  * Transposed matrix above is equal with matrix `[1,3;2,4]`.
-
-* `[operator]` is the matrix operator. You can use 4 operators below:
-  * `.*` : matrix multiplication
-  * `*` : element wise product
-  * `+` : matrix addition
-  * `-` : matrix subtraction
-
-Example input:
-```
-Matrix. [1,2;3,4] .* [4,5;6,7]
-```
-
-### Store notes:
 Adds a new item to the Notes list.
 
 Format: `Store. <item description>`
 Example of usage: `Store. index`
 
-### Display all notes: 
+### 3) Display all notes: 
 Display a list of all notes stored by user.
 
 Format: `List.`
 Example of usage: `List.`
 
-### Display a specific note: 
+### 4) Display a specific note: 
 Display a particular note in the Notes list.
 
 Format: `List. <number>`
 Example of usage: `List. 1`
 
-### Delete a specific note:
+### 5) Delete a specific note:
 Delete a particular note stored in the Notes list
 
 Format: `Delete. <number>`
 Example of usage: `Delete. 1`
 
+### 6) Mark a specific note:
+Mark a particular note stored in the Notes list as completed
+
+Format: `Mark. <number>`
+Example of usage: `Mark. 1`
+
+### 7) Unmark a specific note:
+Unmark a particular note stored in the Notes list as incomplete
+
+Format: `Unmark. <number>`
+Example of usage: `Unmark. 2`
+
+### 8) List all completed notes:
+Display a list of all completed notes
+
+Format: `FindMark.`
+Example of usage: `FindMark.`
+
+### 9) List all uncompleted notes:
+Display a list of all uncompleted notes
+
+Format: `FindUnmark.`
+Example of usage: `FindUnmark.`
+
+### 10) Find notes by searching for a keyword:
+Find tasks stored in Notes by searching for a keyword.
+
+Format: `FindInfo. <description>`
+Example of usage: `FindInfo. index`
+
+### 11) Display all notes based on priority type:
+Find all notes stored in the list based on its respective priority rankings
+
+Format: `Rank. Priority`
+Example of usage: `Rank. Priority
+
+### 11) Display all notes of a certain priority type:
+Find all notes stored in the list based on priority that users are searching for
+
+Format: `FindPrior. <Priority Type>`
+Example of usage: `FindPrior. <LOW>`
+Example of usage: `FindPrior. <MEDIUM>`
+Example of usage: `FindPrior. <HIGH>`
+
+### 12) Clear all notes stored in Notes List:
+Delete all notes stored in the list
+
+Format: `Clear.`
+Example of usage: `Clear.`
+
+### 13) Exit MathHelp:
+Exit and leave MathHelp:
+
+Format: `Bye.`
+Example of usage: `Bye.`
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: How do I start and run MathHelp? 
 
 **A**: {your answer here}
+
+**Q**: How do I exit and leave MathHelp?
+
+**A**: You can terminate the MathHelp programme by simply typing 
+`Bye.` in the command.
 
 ## Command Summary
 
