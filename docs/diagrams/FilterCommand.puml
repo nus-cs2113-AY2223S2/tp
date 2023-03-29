@@ -55,7 +55,7 @@ loop filterFlagAndField.size()
             activate FilterCommand
             FilterCommand -> UserData :getStatementCount()
             activate UserData
-            UserData -> FilterCommand :statementCount : int
+            UserData --> FilterCommand :statementCount : int
             deactivate UserData
 
             loop statementCount
@@ -63,14 +63,14 @@ loop filterFlagAndField.size()
                 activate UserData
                 UserData -> FinancialStatement : getCategory()
                 activate FinancialStatement
-                FinancialStatement -> UserData : :String
+                FinancialStatement --> UserData : :String
                 deactivate FinancialStatement
-                UserData -> FilterCommand : :FinancialStatement
+                UserData --> FilterCommand : :FinancialStatement
                 deactivate UserData
 
                 FilterCommand -> FilterCommand : filterFlagAndField.get()
                 activate FilterCommand
-                FilterCommand -> FilterCommand : category : String
+                FilterCommand --> FilterCommand : category : String
                 deactivate FilterCommand
 
                 opt financialStatement contains category

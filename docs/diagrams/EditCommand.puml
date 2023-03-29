@@ -1,0 +1,85 @@
+@startuml
+participant ":EditCommand" as EditCommand
+participant ":UserData" as UserData
+participant ":FinancialReport" as FinancialReport
+'participant ":ViewResult" as ViewResult
+
+[-> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> UserData : getStatement()
+activate UserData
+
+UserData -> FinancialReport : getFinancialStatement
+activate FinancialReport
+FinancialReport --> UserData: :FinancialStatement
+deactivate FinancialReport
+
+UserData --> EditCommand : :FinancialStatement
+deactivate UserData
+
+EditCommand -> UserData : removeFromMonthlyExpenditure(editedStatement : FinancialStatement)
+activate UserData
+
+UserData -> FinancialReport: removeFromMonthlyExpenditure(editedStatement : FinancialStatement)
+activate FinancialReport
+FinancialReport --> UserData
+deactivate FinancialReport
+
+UserData --> EditCommand
+deactivate UserData
+
+loop editFlagAndField.size()
+    alt flag equals "-d"
+    EditCommand -> EditCommand : setDescription(description : String)
+    activate EditCommand
+    EditCommand --> EditCommand
+    deactivate EditCommand
+
+    else flag equals "-c"
+    EditCommand -> EditCommand : setCategory(category : String)
+    activate EditCommand
+    EditCommand --> EditCommand
+    deactivate EditCommand
+
+    else flag equals "-v"
+    EditCommand -> EditCommand : setValue(value : Double)
+    activate EditCommand
+    EditCommand --> EditCommand
+    deactivate EditCommand
+
+    else flag equals "-date"
+    EditCommand -> EditCommand : setValue(date : LocalDate)
+    activate EditCommand
+    EditCommand --> EditCommand
+    deactivate EditCommand
+
+    else flag equals "-out"
+    EditCommand -> EditCommand : setFlowDirection(INFLOW : FlowDirection)
+    activate EditCommand
+    EditCommand --> EditCommand
+    deactivate EditCommand
+
+    else flag equals "-in"
+    EditCommand -> EditCommand : setFlowDirection(INFLOW : FlowDirection)
+    activate EditCommand
+    EditCommand --> EditCommand
+    deactivate EditCommand
+    end
+end
+
+EditCommand -> UserData : addToMonthlyExpenditure(editedStatement : FinancialStatement)
+activate UserData
+
+UserData -> FinancialReport: addToMonthlyExpenditure(editedStatement : FinancialStatement)
+activate FinancialReport
+FinancialReport --> UserData
+deactivate FinancialReport
+UserData --> EditCommand
+deactivate UserData
+
+[<--EditCommand : : CommandResult
+deactivate EditCommand
+
+
+@enduml
