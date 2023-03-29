@@ -95,10 +95,11 @@ public class Storage {
         try {
             File saveFile;
             FileWriter saveWriter;
+            int dishIndex = 1;
             for (Recipe dish : RecipeList.getRecipeList()) {
-                saveFile = new File("data/" + dish.getName());
+                saveFile = new File("data/" + dishIndex + "-" + dish.getName());
                 System.out.println(dish.getName());
-                saveWriter = new FileWriter("data/" + dish.getName() + ".txt");
+                saveWriter = new FileWriter("data/" + dishIndex + "-" + dish.getName() + ".txt");
                 saveWriter.write(dish.getName() + "\n");
                 saveWriter.write(dish.getTag() + "\n");
                 saveWriter.write(INGREDIENT_LIST + "\n");
@@ -110,6 +111,7 @@ public class Storage {
                     saveWriter.write(step.getStep() + "\n");
                 }
                 saveWriter.close();
+                dishIndex++;
             }
         } catch (IOException e) {
             System.out.println("Error in file writing:" + e.getMessage());
