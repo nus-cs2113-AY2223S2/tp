@@ -1,16 +1,18 @@
 package seedu.duck.task;
-
+import java.util.ArrayList;
 
 public class Task {
     private static int taskCount;
     private String description;
     private int priority;
     private boolean isDone;
+    private final ArrayList<String> additionalNotes;
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-        this.priority = 0;
+        this.priority = 1; //automatically set to low priority
+        this.additionalNotes = new ArrayList<String>();
     }
 
     public void setDescription(String description) {
@@ -42,6 +44,18 @@ public class Task {
             return "X";
         }
         return " ";
+    }
+
+    public void addNotes(String noteToAdd){
+            this.additionalNotes.add(noteToAdd);
+    }
+
+    public ArrayList<String> getAdditionalNotes(){
+        return this.additionalNotes;
+    }
+
+    public void deleteNote(int indexToBeDeleted){
+        this.additionalNotes.remove(indexToBeDeleted-1);
     }
 
     public String getPriority() {

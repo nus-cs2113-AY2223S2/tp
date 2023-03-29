@@ -19,6 +19,6 @@ public class ParserTest {
 
     @Test
     public void testProcessKeywords() {
-        assertEquals("keyword", Parser.processKeywords(words));
+        assertEquals("keyword", Parser.processKeywords(words,1));
     }
 }

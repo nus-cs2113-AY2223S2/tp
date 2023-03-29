@@ -14,10 +14,30 @@ import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
+
 /**
  * Deals with interactions with the user
  */
 public class Ui {
+    static void printDuck(){
+        System.out.println("           ,-.\n"+
+                "       ,--' ~.).\n"+
+                "     ,'         `.\n"+
+                "    ; (((__   __)))\n"+
+                "    ;  ( (#) ( (#)\n"+
+                "    |   \\_/___\\_/\n"+
+                "   ,\"  ,-'    `__\".\n"+
+                "  (   ( ._   ____`.)--._        _\n"+
+                "   `._ `-.`-' \\(`-'  _  `-. _,-' `-/`.\n"+
+                "    ,')   `.`._))  ,' `.   `.  ,','  ;\n"+
+                "  .'  .     `--'  /     ).   `.      ;\n"+
+                " ;     `-        /     '  )         ;\n"+
+                " \\                       ')       ,'\n"+
+                "  \\                     ,'       ;\n"+
+                "   \\               `~~~'       ,'\n"+
+                "    `.                      _,'\n"+
+                "      `-._________,--'");
+    }
 
     /**
      * Prints out all currently stored tasks in the list
@@ -30,6 +50,9 @@ public class Ui {
         System.out.println("\t Here are the tasks in your list:");
         for (int i = 0; i < taskCount; i++) {
             System.out.println("\t " + (i + 1) + "." + tasks.get(i));
+            if (!tasks.get(i).getAdditionalNotes().isEmpty()){
+                printList(tasks, i);
+            }
         }
         borderLine();
     }
@@ -121,6 +144,12 @@ public class Ui {
             System.out.println("\t You have " + indexOfHighPriority.size() + " tasks that are high in priority!");
             for (int i = 0; i < indexOfHighPriority.size(); i++) {
                 System.out.println("\t" + (i + 1) + "." + tasks.get(indexOfHighPriority.get(i)));
+                if (!tasks.get(i).getAdditionalNotes().isEmpty()){
+                    ArrayList<String> toBePrinted = tasks.get(i).getAdditionalNotes();
+                    for (int j = 0; j < toBePrinted.size(); j++){
+                        System.out.println("\t" + "\t - " + (j+1) + ". " + toBePrinted.get(j));
+                    }
+                }
             }
         } else {
             System.out.println("\t There are no tasks that are high in priority!");
@@ -146,6 +175,12 @@ public class Ui {
             System.out.println("\t You have " + indexOfMediumPriority.size() + " tasks that are medium in priority!");
             for (int i = 0; i < indexOfMediumPriority.size(); i++) {
                 System.out.println("\t" + (i + 1) + "." + tasks.get(indexOfMediumPriority.get(i)));
+                if (!tasks.get(i).getAdditionalNotes().isEmpty()){
+                    ArrayList<String> toBePrinted = tasks.get(i).getAdditionalNotes();
+                    for (int j = 0; j < toBePrinted.size(); j++){
+                        System.out.println("\t" + "\t - " + (j+1) + ". " + toBePrinted.get(j));
+                    }
+                }
             }
         } else {
             System.out.println("\t There are no tasks that are medium in priority!");
@@ -171,6 +206,12 @@ public class Ui {
             System.out.println("\t You have " + indexOfLowPriority.size() + " tasks that are low in priority!");
             for (int i = 0; i < indexOfLowPriority.size(); i++) {
                 System.out.println("\t" + (i + 1) + "." + tasks.get(indexOfLowPriority.get(i)));
+                if (!tasks.get(i).getAdditionalNotes().isEmpty()){
+                    ArrayList<String> toBePrinted = tasks.get(i).getAdditionalNotes();
+                    for (int j = 0; j < toBePrinted.size(); j++){
+                        System.out.println("\t" + "\t - " + (j+1) + ". " + toBePrinted.get(j));
+                    }
+                }
             }
         } else {
             System.out.println("\t There are no tasks that are low in priority!");
@@ -188,7 +229,7 @@ public class Ui {
         ArrayList<Task> matchingResults = new ArrayList<>();
         ArrayList<Integer> matchingResultsIndex = new ArrayList<>();
         int matchCount = 0;
-        String keyword = Parser.processKeywords(words);
+        String keyword = Parser.processKeywords(words, 1);
 
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).getDescription().contains(keyword)) {
@@ -423,6 +464,9 @@ public class Ui {
         System.out.println("\t - delete <task_number>: I'll delete that task from your list.");
         System.out.println("\t - remove class /class <class_name> /description <description> " +
                 "/day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>");
+        System.out.println("\t - add_note <task_number>: I'll add an additional note to that task!" );
+        System.out.println("\t - delete_note <task_number> <note_number>: I'll delete additional note to that task!" );
+        System.out.println("\t - notes <task_number>: I'll print the additional notes for that task!" );
         System.out.println("\t   : I'll remove this class from your class schedule.");
         System.out.println("\t - purge: I'll delete all expired tasks from your list after a confirmation.");
         System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
@@ -563,19 +607,39 @@ public class Ui {
      * Prints the startup message, includes instructions on available commands
      */
     static void greetingMessage() {
+        printDuck();
         borderLine();
-        System.out.println("\t （`･v･´ ）: Nice to meet you human. As you can see,  I'm a Duck.");
-        System.out.println("\t （´˘v˘´ ）: As a Duck, I can only understand simple commands. " +
+        borderLine();
+        System.out.println("\t （`･v･´ ）: Quack. Nice to meet you human. As you can see,  I'm a Duck.");
+        System.out.println("\t （´˘v˘´ ）: As a Duck, I can only understand simple commands. Quack. " +
                 "Human speech is so confusing!");
         System.out.println("\t （´˘v˘´ ）: That being said, I am a smart Duck. " +
                 "If you wish to know what I understand, just enter 'help'.");
         System.out.println("\t （`･v･´ ）: How may I assist you today, human?");
+    }
+    static void printNotes(ArrayList<Task> tasks, String []words) {
+        int index = Integer.parseInt(words[1]);
+        ArrayList<String> toBePrinted = tasks.get(index-1).getAdditionalNotes();
+        if (!toBePrinted.isEmpty()) {
+            for (int i = 0; i < toBePrinted.size(); i++) {
+                System.out.println("\t" + (i + 1) + ". " + toBePrinted.get(i));
+            }
+        }
+        borderLine();
+    }
+
+    static void printList(ArrayList<Task> tasks,int index){
+        ArrayList<String> toBePrinted = tasks.get(index).getAdditionalNotes();
+        for (int j = 0; j < toBePrinted.size(); j++){
+            System.out.println("\t" + "\t - " + (j+1) + ". " + toBePrinted.get(j));
+        }
     }
 
     /**
      * Prints the exiting message when closing the program
      */
     static void exitMessage() {
+        printDuck();
         borderLine();
         System.out.println("\t Bye. Hope to see you again soon!");
         borderLine();
