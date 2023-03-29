@@ -22,7 +22,7 @@ public class Parser {
         return word.toString();
     }
 
-    public HashMap<String, Integer> parseIngredientName(String[] command){
+    public HashMap<String, Integer> parseIngredientName(String[] command) {
         HashMap<String, Integer> ingredients = new HashMap<>();
         int flag = 0;
         StringBuilder add = null;
@@ -31,7 +31,7 @@ public class Parser {
         int indexOfEqual;
 
         for (String s : command) {
-            try{
+            try {
                 indexOfEqual = s.indexOf("=");
                 if (indexOfEqual == -1) {
                     if (add != null) {
@@ -69,7 +69,7 @@ public class Parser {
 
     public Recipe parseAddRecipe(String[] input, RecipeList recipeList) {
         String recipeName = combineWords(input, 2, input.length);
-        if(recipeList.findByName(recipeName)!=null){
+        if (recipeList.findByName(recipeName) != null) {
             return null;
         }
         HashMap<String, Integer> ingredients = new HashMap<>();
@@ -131,7 +131,8 @@ public class Parser {
                     ingredientToRemove = ingredient;
                     System.out.println("Ingredient to be changed:");
                     ui.printSeparator();
-                    String toPrint = String.format("%s(%d)", ingredient, recipeToEdit.getIngredients().get(ingredient));
+                    String toPrint = String.format("%s(%d)", ingredient,
+                            recipeToEdit.getIngredients().get(ingredient));
                     System.out.println(ui.formatMessage(toPrint));
                     ui.printSeparator();
                     break;
@@ -142,8 +143,8 @@ public class Parser {
             String line = userInput.nextLine();
             String command = line.replaceAll("\\s+", " ");
             int indexOfEqual = command.indexOf("=");
-            String newIngredientName = command.substring(0,indexOfEqual);
-            int newIngredientQuantity = Integer.parseInt(command.substring(indexOfEqual+1));
+            String newIngredientName = command.substring(0, indexOfEqual);
+            int newIngredientQuantity = Integer.parseInt(command.substring(indexOfEqual + 1));
             recipeToEdit.getIngredients().remove(ingredientToRemove);
             recipeToEdit.getIngredients().put(newIngredientName, newIngredientQuantity);
             recipeList.editRecipe(recipeToEdit, recipeToEdit.getIngredients());
@@ -270,11 +271,11 @@ public class Parser {
             recipe = recipeList.findByName(recipeName);
             isUnableToFindTheRecipe = recipe == null;
             if (isUnableToFindTheRecipe) {
-                String errorMessage1 = "Unable to find the recipe: \"" + recipeName +"\" in the" +
-                        " tag.";
-                String errorMessage2 = "All the recipe before \"" + recipeName +"\" (if any) are " +
-                        "successfully added from the tag.";
-                throw new IndexOutOfBoundsException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
+                String errorMessage1 = "Unable to find the recipe: \"" + recipeName + "\" in the" + " tag.";
+                String errorMessage2 = "All the recipe before \"" + recipeName + "\" (if any) are "
+                        + "successfully added from the tag.";
+                throw new IndexOutOfBoundsException(
+                        String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
             }
             recipeList.addRecipeToTag(tag, recipe);
         }
@@ -297,31 +298,32 @@ public class Parser {
         tag = args[0].trim();
         isUnableToFindTag = !recipeList.tags.containsKey(tag);
         if (isUnableToFindTag) {
-            throw new IndexOutOfBoundsException("There is no \"" + tag + "\" tag found. Please make sure you have " +
-                    "entered the correct tag.");
+            throw new IndexOutOfBoundsException(
+                    "There is no \"" + tag + "\" tag found. Please make sure you have "
+                            + "entered the correct tag.");
         }
 
         recipesToRemove = args[1].split("&&");
         for (String recipeName : recipesToRemove) {
             recipeName = recipeName.trim();
             recipe = recipeList.findByName(recipeName);
-            isNoRecipeInTheList =  recipe == null;
+            isNoRecipeInTheList = recipe == null;
             if (isNoRecipeInTheList) {
-                String errorMessage1 = "Unable to find the recipe: \"" + recipeName +"\" in the" +
-                        " tag.";
-                String errorMessage2 = "All the recipe before \"" + recipeName +"\" (if any) are " +
-                        "successfully removed from the tag.";
-                throw new IndexOutOfBoundsException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
+                String errorMessage1 = "Unable to find the recipe: \"" + recipeName + "\" in the" + " tag.";
+                String errorMessage2 = "All the recipe before \"" + recipeName + "\" (if any) are "
+                        + "successfully removed from the tag.";
+                throw new IndexOutOfBoundsException(
+                        String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
             }
 
             try {
                 recipeList.removeRecipeFromTag(tag, recipe);
             } catch (IndexOutOfBoundsException e) {
-                String errorMessage1 = "Unable to find the recipe: \"" + recipeName +"\" in the" +
-                        " tag.";
-                String errorMessage2 = "All the recipe before \"" + recipeName +"\" (if any) are " +
-                        "successfully removed from the tag.";
-                throw new IndexOutOfBoundsException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
+                String errorMessage1 = "Unable to find the recipe: \"" + recipeName + "\" in the" + " tag.";
+                String errorMessage2 = "All the recipe before \"" + recipeName + "\" (if any) are "
+                        + "successfully removed from the tag.";
+                throw new IndexOutOfBoundsException(
+                        String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
             }
         }
         return tag;
@@ -518,5 +520,67 @@ public class Parser {
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Please enter a valid date in the format dd/mm/yyyy");
         }
+    }
+
+    public void parseAddUserIngredients(String[] command, IngredientList ingredientList) {
+        String ingredientName = null;
+        Integer ingredientCount = null;
+        String expiryDate = null;
+
+        try {
+            for (int i = 1; i < command.length; i++) {
+                switch (command[i]) {
+                case "/n":
+                    ingredientName = command[++i];
+                    break;
+                case "/c":
+                    ingredientCount = Integer.parseInt(command[++i]);
+                    break;
+                case "/d":
+                    expiryDate = command[++i];
+                    break;
+                default:
+                    throw new IllegalArgumentException("Missing required information. Please provide "
+                            + "ingredient name, count, and expiry date.");
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid command format. Please check your input.");
+        }
+
+        if (ingredientName == null || ingredientCount == null || expiryDate == null) {
+            throw new IllegalArgumentException("Missing required information. Please use /n, /c, and /d.");
+        }
+
+        ingredientList.addIngredient(new Ingredient(ingredientName, ingredientCount, expiryDate));
+    }
+
+    public void parseDeleteUserIngredients(String[] command, IngredientList userIngredients) {
+        String ingredientName = null;
+        Integer ingredientCount = null;
+
+        try {
+            for (int i = 1; i < command.length; i++) {
+                switch (command[i]) {
+                case "/n":
+                    ingredientName = command[++i];
+                    break;
+                case "/c":
+                    ingredientCount = Integer.parseInt(command[++i]);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Missing required information. Please provide "
+                            + "ingredient name and count.");
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid command format. Please check your input.");
+        }
+
+        if (ingredientName == null || ingredientCount == null) {
+            throw new IllegalArgumentException("Missing required information. Please use /n and /c.");
+        }
+
+        userIngredients.deleteIngredient(ingredientName, ingredientCount);
     }
 }

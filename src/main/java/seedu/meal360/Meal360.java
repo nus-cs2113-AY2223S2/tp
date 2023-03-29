@@ -197,6 +197,28 @@ public class Meal360 {
             ui.printSeparator();
             ui.printWeeklyPlan(weeklyPlan);
             ui.printSeparator();
+        } else if (command[0].equals("add_i")) {
+            ui.printSeparator();
+            try {
+                parser.parseAddUserIngredients(command, userIngredients);
+                ui.printMessage("Ingredient successfully added!");
+            } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
+                ui.printMessage(e.getMessage());
+            }
+            ui.printSeparator();
+        } else if (command[0].equals("del_i")) {
+            ui.printSeparator();
+            try {
+                parser.parseDeleteUserIngredients(command, userIngredients);
+                ui.printMessage("Ingredients successfully deleted!");
+            } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
+                ui.printMessage(e.getMessage());
+            }
+            ui.printSeparator();
+        } else if (command[0].equals("view_ingredients")) {
+            ui.printSeparator();
+            ui.printUserIngredients(userIngredients);
+            ui.printSeparator();
         } else if (command[0].equals("help")) {
             ui.printSeparator();
             ui.printHelp();
