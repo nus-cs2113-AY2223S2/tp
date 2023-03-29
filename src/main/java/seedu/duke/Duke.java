@@ -76,6 +76,7 @@ public class Duke {
             case "logout":
                 logout();
                 initialize(in);
+                break;
             case "overview":
                 new CommandOverview(expenseList.getExpenseList(),
                         parser.extractMonth(input), parser.extractYear(input)).execute();
