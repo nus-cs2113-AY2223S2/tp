@@ -1,4 +1,3 @@
-
 # User Guide
 
 ## Introduction
@@ -24,7 +23,7 @@ FitnessDuke is a **Command Line Application for tracking and managing workouts, 
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
-## Getting Started
+## Getting Started   
 
 1. Ensure you have Java 11 or later installed in your PC.
 2. Download the latest version of ```duke.jar``` from our GitHub releases
@@ -94,6 +93,7 @@ Shows a list of filters available and their description
 
 The filters are shown here:
 
+
 | Filter   | Description                                   |
 |----------|-----------------------------------------------|
 | [gym]    | exercises that can be done with gym equipment |
@@ -104,7 +104,7 @@ The filters are shown here:
 | [upper]  | exercises that train your upper body          |
 | [core]   | exercises that train your core                |
 | [legs]   | exercises that train your legs                |
-_____________________________________________________________
+
 
 ### Searching for a workout ```find [keyword]```
 
@@ -255,7 +255,4 @@ FitnessDuke data are saved as a JSON file [JAR file location]/resources/data.jso
 | **data**     | ```data```                                                               |
 | **start**    | ```start```                                                              |
 | **quick**    | ```quick [plan_name] [x]``` <br> eg. ```quick home_leg_day 3```          |
-_____________________________________________________________
-
-
 
