@@ -11,6 +11,7 @@ public class Expense implements Serializable {
     protected String description;
     protected String currencyType;
     protected BigDecimal rate;
+    protected String VERTICAL_BAR = " | ";
 
     public Expense(BigDecimal expenseAmount, Time expenseTime, String description, String currencyType
             , BigDecimal rate) {
@@ -102,5 +103,11 @@ public class Expense implements Serializable {
         }
 
     }
+
+
+    public String toSave() {
+        return (this.expenseTime + VERTICAL_BAR + this.description + "\n");
+    }
+
 }
 

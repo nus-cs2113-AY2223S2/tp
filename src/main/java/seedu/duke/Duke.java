@@ -6,6 +6,7 @@ import command.CommandList;
 import command.CommandTotal;
 import command.CommandSort;
 import command.CommandCategory;
+import data.Account;
 import data.ExpenseList;
 import data.Currency;
 import parser.Parser;
@@ -17,9 +18,9 @@ import static common.MessageList.HELLO_MESSAGE;
 import static common.MessageList.COMMAND_LIST_MESSAGE;
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.NAME_QUESTION;
+import static data.Account.logout;
 import static data.ExpenseList.showToUser;
-import static parser.ParserPassword.caseLogIn;
-import static parser.ParserPassword.caseSignUp;
+import static parser.ParserPassword.*;
 
 
 public class Duke {
@@ -28,7 +29,6 @@ public class Duke {
     protected ExpenseList expenseList;
     protected Currency currency;
     protected Storage storage;
-
     /**
      * Initialize Duke and instantiate parser and expenseList objects.
      */
@@ -45,24 +45,8 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         if (in.hasNextLine()) {
             System.out.println("Hello " + in.nextLine());
-        } do {
-            System.out.println("Enter \"login\", \"signup\", or \"exit\"");
-            String input = in.nextLine();
-            if (input.equals("login")) {
-                // get login details
-                caseLogIn();
-                break;
-            } else if (input.equals("signup")) {
-                // get register details
-                caseSignUp();
-            } else if (input.equals("exit")) {
-                break; // exit the loop
-            } else {
-                // invalid input, tell them to try again
-                System.out.println("invild option, chose login or regiser!");
-                input = in.nextLine();
-            }
-        } while (true);
+        }
+        initialize(in);
         String input = "";
         if (in.hasNextLine()) {
             input = in.nextLine();
@@ -87,9 +71,12 @@ public class Duke {
             case "category":
                 new CommandCategory(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
                 break;
+            case "logout":
+                logout();
+                initialize(in);
+                break;
             default:
                 System.out.println("Unknown command.");
-                break;
             }
             storage.saveExpenseList();
             if (in.hasNextLine()) {
@@ -105,4 +92,6 @@ public class Duke {
     public static void main(String[] args) {
         new Duke().run();
     }
+
+
 }

@@ -3,16 +3,26 @@ package data;
 
 import parser.Parser;
 
+import java.io.BufferedReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ExpenseList implements Serializable {
 
     protected Parser parser = new Parser();
-    private ArrayList<Expense> expenseList = new ArrayList<>();
+    public static ArrayList<Expense> expenseList = new ArrayList<>();
+
+    public ExpenseList() {
+
+    }
+    public ExpenseList(BufferedReader br) {
+    }
 
 
     public ArrayList<Expense> getExpenseList() {
+        if (expenseList == null) {
+            expenseList = new ArrayList<Expense>();
+        }
         return expenseList;
     }
 
@@ -41,6 +51,9 @@ public class ExpenseList implements Serializable {
     public void clear() {
         expenseList.clear();
     }
+
+    public void get(int idx) {}
+
 
 }
 

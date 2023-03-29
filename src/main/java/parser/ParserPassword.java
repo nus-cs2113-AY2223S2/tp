@@ -3,6 +3,8 @@ package parser;
 import data.Account;
 import java.util.Scanner;
 
+import static data.Account.logout;
+
 
 public class ParserPassword {
     public static void caseLogIn() {
@@ -24,6 +26,33 @@ public class ParserPassword {
         Account newAccount = new Account(user, password);
         newAccount.signup();
     }
+
+    public static void caseLogOut() {
+
+    }
+
+    public static void initialize(Scanner in) {
+        do {
+            System.out.println("Enter \"login\", \"signup\", or \"logout\"");
+            String input = in.nextLine();
+            if (input.equals("login")) {
+                // get login details
+                caseLogIn();
+                break;
+            } else if (input.equals("signup")) {
+                // get register details
+                caseSignUp();
+            } else if (input.equals("logout")) {
+                logout();
+                break; // exit the loop
+            } else {
+                // invalid input, tell them to try again
+                System.out.println("invild option, chose login or signup!");
+                input = in.nextLine();
+            }
+        } while (true);
+    }
+
 }
 
 
