@@ -163,6 +163,7 @@ Okay, here is your task list, with 3 tasks
 [ID:3]	[ ][coursemology homework][Due: 24 Mar 2023 13:00]
 [ID:1]	[ ][homework]
 ```
+
 ### Edit/delete deadline `due`
 
 Edits or deletes the deadline of a task with a given id in the To-Do List.
@@ -253,6 +254,7 @@ Progress: |================----------------------------------|
 - Copy the `save.txt` to the other computer and place it in the same location as the jar file for the program before running it. 
 
 ## Command Summary
+
 | Action                      | Command                                                                                             |
 |-----------------------------|-----------------------------------------------------------------------------------------------------|
 | Add a task                  | `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [tags LIST_OF_TAGS] [-rep REPEAT_DURATION]` |
