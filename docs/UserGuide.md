@@ -38,6 +38,7 @@ Where to get it if you don't have one? (Go to Windows Store)
 - [Dashboard: `db`](#dashboard--db)
 - [Category: `cat`](#category--cat)
 - [Alert for item(s): `alert`](#alert-for-an-item--alert)
+- [Autosave of Inventory: `autosave`](#change-autosave-mode--autosave)
 - [Exiting the program: `exit`](#exiting-the-program--exit)
 
 {Give detailed description of each feature}
@@ -417,6 +418,27 @@ Sample output:
 ____________________________________________________________
 Successfully removed the alert.
 ____________________________________________________________
+``` 
+### Change Autosave Mode: `autosave`
+
+Set whether the program should automatically save the udpated inventory to the inventory data file after every successful
+write command issued.
+
+Format: `autosave [on/off]`
+
+Sample input and expected output:
+```
+autosave on
+____________________________________________________________
+Auto-save has been enabled!
+____________________________________________________________
+```
+
+```
+autosave off
+____________________________________________________________
+Auto-save has been disabled!
+____________________________________________________________
 ```
 
 
@@ -450,6 +472,7 @@ ____________________________________________________________
 | View history (`history`)        |
 | View dashboard (`db`) |
 | View all commands (`help`) |
+| Set autosave mode (`autosave`) |
 | Exit the program (`exit`) |
 
 

@@ -22,12 +22,20 @@ import static seedu.duke.utils.ColorCode.ANSI_YELLOW;
 public class Ui {
     public static final String LINE = "____________________________________________________________";
 
-    public static final String DASHBOARDLOGO =
-            "░░░░░░   ░░░░░  ░░░░░░░ ░░   ░░ ░░░░░░   ░░░░░░   ░░░░░  ░░░░░░  ░░░░░░  \n" +
-                    "▒▒   ▒▒ ▒▒   ▒▒ ▒▒      ▒▒   ▒▒ ▒▒   ▒▒ ▒▒    ▒▒ ▒▒   ▒▒ ▒▒   ▒▒ ▒▒   ▒▒ \n" +
-                    "▒▒   ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒    ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒   ▒▒ \n" +
-                    "▓▓   ▓▓ ▓▓   ▓▓      ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ \n" +
-                    "██████  ██   ██ ███████ ██   ██ ██████   ██████  ██   ██ ██   ██ ██████  \n";
+    public static final String DASHBOARDLOGO = "`7MM\"\"\"Yb.      db       .M\"\"\"bgd `7MMF'  " +
+            "`7MMF'`7MM\"\"\"Yp,   .g8\"\"8q.      db      `7MM\"\"\"Mq.  `7MM\"\"\"Yb.   \n" +
+            "  MM    `Yb.   ;MM:     ,MI    \"Y   MM      MM    MM    Yb .dP'    `YM.   ;MM:    " +
+            "   MM   `MM.   MM    `Yb. \n" +
+            "  MM     `Mb  ,V^MM.    `MMb.       MM      MM    MM    dP dM'      `MM  ,V^MM.    " +
+            "  MM   ,M9    MM     `Mb \n" +
+            "  MM      MM ,M  `MM      `YMMNq.   MMmmmmmmMM    MM\"\"\"bg. MM        MM ,M  `MM " +
+            "     MMmmdM9     MM      MM \n" +
+            "  MM     ,MP AbmmmqMA   .     `MM   MM      MM    MM    `Y MM.      ,MP AbmmmqMA   " +
+            "  MM  YM.     MM     ,MP \n" +
+            "  MM    ,dP'A'     VML  Mb     dM   MM      MM    MM    ,9 `Mb.    ,dP'A'     VML  " +
+            "  MM   `Mb.   MM    ,dP' \n" +
+            ".JMMmmmdP'.AMA.   .AMMA.P\"Ybmmd\"  .JMML.  .JMML..JMMmmmd9    `\"bmmd\"'.AMA.   " +
+            ".AMMA..JMML. .JMM..JMMmmmdP'   ";
     public static final String LOGO1 = "░░░    ░░░  ░░░░░   ░░░░░░  ░░    ░░ ░░░░░░░ "
             + "░░░░░░░ ░░░░░░░░  ░░░░░░   ░░░░░░ ░░   ░░ \n";
     public static final String LOGO2 = "▒▒▒▒  ▒▒▒▒ ▒▒   ▒▒ ▒▒       ▒▒    ▒▒ ▒▒      "
