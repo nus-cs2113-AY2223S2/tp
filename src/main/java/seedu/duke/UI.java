@@ -31,18 +31,15 @@ public class UI {
     private static final String INPUT_NOT_INT_MESSAGE = "The input for the given command is not an integer";
     private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name";
     private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name";
-    private static final String INVALID_SEARCH_MODULE_MESSAGE = "There is no matching module code found.\n"
-                                                + "Please ensure that you have typed in the correct NUS Module Code";
+    private static final String INVALID_SEARCH_MODULE_MESSAGE = "There is no matching module code found.\n" + "Please ensure that you have typed in the correct NUS Module Code";
     private static final String INVALID_BUDGET_MESSAGE = "Please type in the correct budget command";
     private static final String CURRENT_MOD_LIST_EMPTY = "The current module list is empty";
     private static final String CURRENT_DEADLINES_LIST_EMPTY = "The current deadlines list is empty";
-    private static final String FOUND_LIST_MESSAGE = "Here is/are the list/s of modules that can map "
-                                                        + "this NUS module code: ";
+    private static final String FOUND_LIST_MESSAGE = "Here is/are the list/s of modules that can map " + "this NUS module code: ";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
-    public UI() {
-    }
+    public UI() {}
 
     public void printPUListMessage() {
         System.out.println(LIST_PU_MESSAGE);
@@ -98,13 +95,8 @@ public class UI {
     }
 
     public void printGreetingMessage() {
-        System.out.println("\n" +
-                "  ____  _____ ____    _   _      _                 \n" +
-                " / ___|| ____|  _ \\  | | | | ___| |_ __   ___ _ __ \n" +
-                " \\___ \\|  _| | |_) | | |_| |/ _ \\ | '_ \\ / _ \\ '__|\n" +
-                "  ___) | |___|  __/  |  _  |  __/ | |_) |  __/ |   \n" +
-                " |____/|_____|_|     |_| |_|\\___|_| .__/ \\___|_|   \n" +
-                "                                  |_|              \n");
+        System.out.println("\n" + "  ____  _____ ____    _   _      _                 \n" + " / ___|| ____|  _ \\  | | | | ___| |_ __   ___ _ __ \n" + " \\___ \\|  _| | |_) | | |_| |/ _ \\ | '_ \\ / _ \\ '__|\n"
+                + "  ___) | |___|  __/  |  _  |  __/ | |_) |  __/ |   \n" + " |____/|_____|_|     |_| |_|\\___|_| .__/ \\___|_|   \n" + "                                  |_|              \n");
 
         System.out.println(WELCOME_MESSAGE);
         System.out.println(READ_COMMAND_INPUT);
@@ -112,8 +104,7 @@ public class UI {
         System.out.println(LINE);
     }
 
-    public void printFoundNusModules(ArrayList<Module> foundNusModList, String nusModCode,
-                                     ArrayList<University> universities) {
+    public void printFoundNusModules(ArrayList<Module> foundNusModList, String nusModCode, ArrayList<University> universities) {
         System.out.println(FOUND_LIST_MESSAGE + nusModCode);
         System.out.println(LINE);
         int foundModIndex = 0;
@@ -124,15 +115,14 @@ public class UI {
             String moduleName = modToPrint.getModuleName();
             int moduleMCs = modToPrint.getModuleMCs();
             int currModulePuId = modToPrint.getUnivId();
-            int puIndex= currModulePuId - 1;
+            int puIndex = currModulePuId - 1;
             String currPuAbbr = universities.get(puIndex).getUnivAbbName();
             if (foundModIndex >= 1) {
                 prevModulePuId = foundNusModList.get(foundModIndex - 1).getUnivId();
             }
             if (currModulePuId == prevModulePuId) {
                 printIndex++;
-                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]"
-                                        + "[" + moduleMCs + "]");
+                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
             } else {
                 printIndex = 1;
                 if (printIndex == 1) {
@@ -140,8 +130,7 @@ public class UI {
                     System.out.println(currPuAbbr);
                     System.out.println(LINE);
                 }
-                System.out.println(printIndex + ". [" + moduleCode + "]"
-                                        + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
             }
             foundModIndex++;
         }
@@ -150,7 +139,31 @@ public class UI {
     public void printPUModules(int univID) {
         ArrayList<Module> puModulesToPrint = new ArrayList<>();
         for (Module puModule : puModules) {
-            if (puModule.getUnivId() == univID) {
+            if ((puModule.getUnivId() == univID)) {
+                puModulesToPrint.add(puModule);
+            }
+        }
+        int puModulesIndex = 0;
+        for (Module puModuleToPrint : puModulesToPrint) {
+            puModulesIndex++;
+            String moduleCode = puModuleToPrint.getModuleCode();
+            String moduleName = puModuleToPrint.getModuleName();
+            int moduleMCs = puModuleToPrint.getModuleMCs();
+            String nusModuleCode = puModuleToPrint.getNusModuleCode();
+            String nusModuleName = puModuleToPrint.getNusModuleName();
+            int nusModuleMCs = puModuleToPrint.getNusModuleMCs();
+            System.out.print(puModulesIndex + ". ");
+            System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+            System.out.print("   maps to ----> ");
+            System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
+        }
+        System.out.println(LINE);
+    }
+
+    public void printPUModules(int univID, String filter) {
+        ArrayList<Module> puModulesToPrint = new ArrayList<>();
+        for (Module puModule : puModules) {
+            if ((puModule.getUnivId() == univID) && puModule.isInFilter(filter)) {
                 puModulesToPrint.add(puModule);
             }
         }
@@ -247,6 +260,8 @@ public class UI {
                 + "LIST [PU INDEX]                : Provides the list of all modules available " +
                 "in the specified Partner University\n"
                 + "                              by index of LIST PU\n"
+                + "LIST [PU ABBRV] /filter [filter]\n"
+                + "                            : Provides the list of modules in the specified filters\n"
                 + "LIST CURRENT                   : Provides the list of modules that the user has added to his/her " +
                 "list of interest\n"
                 + "LIST CURRENT [PU ABBRV]        : Provides the list of modules that user has added to his list of " +
@@ -272,7 +287,6 @@ public class UI {
         System.out.println(READ_COMMAND_INPUT);
         System.out.println(LINE);
     }
-
 
     public static void printEditBudgetMessage(int amount) {
         System.out.println(LINE);
@@ -322,12 +336,15 @@ public class UI {
     }
 
     /**
-     * Prints out user added modules of a specified partner university using uniID as identity.
-     * The function first picks out all modules specified to the university selected, and prints out module
-     * information to the user afterwards.
+     * Prints out user added modules of a specified partner university using uniID
+     * as identity. The function first picks out all modules specified to the
+     * university selected, and prints out module information to the user
+     * afterwards.
      *
-     * @param modules ArrayList of all modules that user has selected.
-     * @param uniID Unique partner university ID
+     * @param modules
+     *            ArrayList of all modules that user has selected.
+     * @param uniID
+     *            Unique partner university ID
      */
     public void printCurrentPuModList(ArrayList<Module> modules, int uniID) {
         ArrayList<Module> puModulesToPrint = new ArrayList<>();
