@@ -71,18 +71,17 @@ Example of usage:
 ### Finding an entry: `find`
 Find an existing expense/income that is currently in the list.
 
-* CATEGORY is either `income` or `expense`
+* CATEGORY is specified as either `income` or `expense`
 
 Format:
 <br> `find /c CATEGORY /k DESCRIPTION`
-
 
 Use case:
 * Shows user the entry that they are looking for.
 
 Example of usage:
-<br> `find expense /c Grocery /de Beef`
-<br> `find income /de Salary`
+<br> `find /c expense /k beef`
+<br> `find /c income /k salary`
 
 ### Showing the balance: `balance`
 Shows users the balance he has after calculating the difference of income and expense.
@@ -122,6 +121,7 @@ Clear the entire list of incomes and expenses.
 
 Format:
 <br> `clear all`
+
 ### Set a target for balance of finances: `add target`
 Allows users to set a target for their balance.
 
@@ -158,8 +158,7 @@ When reading from the file, entries for income and expenses are stored in their 
 * List Incomes: `list income`
 * Edit income list: `edit income /i INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`
 * Edit expense list: `edit expense /i INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`
-* Find income entry: `find income /c CATEGORY /de DESCRIPTION`
-* Find expense entry: `find expense /c CATEGORY /de DESCRIPTION`
+* Find entry: `find income /c CATEGORY /k DESCRIPTION`
 * Delete Expense: `delete expense /in INDEX`
 * Delete Income: `delete income /in INDEX`
 * Clear income list: `clear income`
