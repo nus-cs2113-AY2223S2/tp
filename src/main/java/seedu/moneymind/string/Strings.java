@@ -28,8 +28,8 @@ public class Strings {
             "delete c/<category name> [(optional) e/<event index>]\n" +
             "Example: delete c/food e/1\n" + "Example: delete c/food\n";
     public static final String BYE_INSTRUCTION = "7. bye - exit the app\n" + "Format: bye\n" + "Example: bye\n";
-    public static final String SELECTING_CATEGORY_MESSAGE = "Please select the category you want to add the event to: ";
-    public static final String GO_BACK_MESSAGE = "Please enter back to go back to the main program";
+    public static final String SELECTING_CATEGORY_MESSAGE = "Please select the category you want to add the event to:";
+    public static final String GO_BACK_MESSAGE = "Please try again or enter back to go back to the main program";
     public static final String BACK = "back";
     public static final String EVENT_ADDED_MESSAGE = "New event added: ";
     public static final String REMINDING_MESSAGE_TO_GIVE_A_NUMBER = "Please enter a number.";
@@ -50,13 +50,13 @@ public class Strings {
     public static final String SEARCH = "search";
     public static final String INVALID_INPUT = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
     public static final String DELETE_FORMAT = "Please following the correct format: " +
-            "delete c/<category name> [(optional) e/<event name>]";
+            "delete c/<category name> [(optional) e/<event index>]";
     public static final String REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY = "Remember do not leave any things " +
             "inside the brackets empty!";
     public static final String EMPTY_DELETION = "☹ OOPS!!! The description of a delete cannot be empty.";
     public static final String SUBTLE_BUG_MESSAGE = "☹ OOPS!!! Something went wrong, please report to the developer.";
-    public static final String EVENT_REGEX = "^(?<name>.*?) e\\/(?<expense>.*?)(?: +t\\/(?<time>.*))?$";
-    public static final String CATEGORY_REGEX = "^(?<name>.*?)(?:\\s+b\\/(?<budget>\\S+))?$";
+    public static final String EVENT_REGEX = "^(?<name>.*?)(?:\\s+e\\/(?<expense>\\S+))(?: +t\\/(?<time>.*))?$";
+    public static final String CATEGORY_REGEX = "^(?!b\\/\\d)(?<name>.*?)(?:\\s+b\\/(?<budget>\\S+))?$";
     public static final String EDIT_REGEX = "c\\/(.+) e\\/(.+)";
     public static final String DELETE_REGEX = "^c/(?=\\S)(.*?)(?:\\s+e/(.*))?\\s*$";
     public static final String EVENT_FORMAT = "Please following the correct format: " +
@@ -81,8 +81,11 @@ public class Strings {
     public static final String NO_DESCRIPTION_FOR_HELP = "Help command should not have any description";
     public static final String POSITIVE_INTEGER_FOR_EVENT_INDEX = "Please give a positive integer for event index";
     public static final String POSITIVE_INTEGER_FOR_EXPENSE = "Please give a positive integer for expense";
-    public static final String EMPTY_DESCRIPTION_FOR_EDIT = "OOPS!!! The description of a edit cannot be empty.";
+    public static final String EMPTY_DESCRIPTION_FOR_EDIT = "OOPS!!! The description of an edit cannot be empty.";
     public static final String EMPTY_STRING = "";
     public static final String POSITIVE_INTEGER_FOR_BUDGET = "Please give a positive integer for budget";
     public static final String EDIT = "edit";
+    public static final String CATEGORY_DOES_NOT_EXIST_MESSAGE = "Category does not exist!";
+    public static final String ENTERING_POSITIVE_NUMBER_MESSAGE =
+            "Please enter a positive number or enter back to go back to the main program";
 }

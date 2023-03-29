@@ -4,23 +4,21 @@ import seedu.moneymind.Moneymind;
 import seedu.moneymind.category.Category;
 import seedu.moneymind.category.CategoryList;
 import seedu.moneymind.event.Event;
-import seedu.moneymind.exceptions.InvalidCategoryNumberException;
 import seedu.moneymind.ui.Ui;
 import static seedu.moneymind.string.Strings.NULL_EVENT_ASSERTION;
 import static seedu.moneymind.string.Strings.NON_NEGATIVE_EXPENSE_ASSERTION;
-import static seedu.moneymind.string.Strings.NON_NEGATIVE_POSITION_ASSERTION;
 import static seedu.moneymind.string.Strings.EVENT_ADDED_MESSAGE;
-import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_TO_GIVE_A_NUMBER;
-import static seedu.moneymind.string.Strings.CATEGORY_OUT_OF_RANGE;
 import static seedu.moneymind.string.Strings.SUBTLE_BUG_MESSAGE;
 import static seedu.moneymind.string.Strings.SELECTING_CATEGORY_MESSAGE;
 import static seedu.moneymind.string.Strings.GO_BACK_MESSAGE;
 import static seedu.moneymind.string.Strings.BACK;
+import static seedu.moneymind.string.Strings.CATEGORY_DOES_NOT_EXIST_MESSAGE;
 
 /**
  * A class to add an event
  */
 public class EventCommand implements Command {
+
     private String eventName;
     private String time;
     private int expense;
@@ -57,9 +55,9 @@ public class EventCommand implements Command {
     /**
      * Add an event to a category.
      */
-    private void addEventToCategory(int categoryPosition, Event event) {
-        assert categoryPosition > 0 : NON_NEGATIVE_POSITION_ASSERTION;
-        Category category = CategoryList.getCategory(categoryPosition - 1);
+    private void addEventToCategory(String categoryName, Event event) {
+        int categoryPosition = CategoryCommand.categoryMap.get(categoryName);
+        Category category = CategoryList.getCategory(categoryPosition);
         category.addEvent(event);
         System.out.println(EVENT_ADDED_MESSAGE + event.getDescription());
     }
@@ -72,34 +70,18 @@ public class EventCommand implements Command {
      */
     private boolean isChooseCategorySuccessful(String userInput) {
         try {
-            int categoryPosition = Integer.parseInt(userInput);
-            testCategoryNumber(categoryPosition);
             if (time == "") {
-                addEventToCategory(categoryPosition, new Event(eventName, expense));
+                addEventToCategory(userInput, new Event(eventName, expense));
             } else {
-                addEventToCategory(categoryPosition, new Event(eventName, expense, time));
+                addEventToCategory(userInput, new Event(eventName, expense, time));
             }
             return true;
-        } catch (NumberFormatException e) {
-            System.out.println(REMINDING_MESSAGE_TO_GIVE_A_NUMBER);
-        } catch (InvalidCategoryNumberException e) {
-            System.out.println(CATEGORY_OUT_OF_RANGE);
-        } catch (Exception e) {
+        } catch (NullPointerException error) {
+            System.out.println(CATEGORY_DOES_NOT_EXIST_MESSAGE);
+        } catch (Exception error) {
             System.out.println(SUBTLE_BUG_MESSAGE);
         }
         return false;
-    }
-
-    /**
-     * Check if the category number is valid.
-     *
-     * @param categoryPosition The category number.
-     * @throws InvalidCategoryNumberException If the category number is invalid.
-     */
-    private void testCategoryNumber(int categoryPosition) throws InvalidCategoryNumberException {
-        if (categoryPosition > CategoryList.categories.size() || categoryPosition <= 0) {
-            throw new InvalidCategoryNumberException();
-        }
     }
 
     @Override
