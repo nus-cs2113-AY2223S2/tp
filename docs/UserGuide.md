@@ -15,7 +15,7 @@
 
 ## Features 
 
-#### :information_source: Notes about the command format:
+#### Notes about the command format
 
 - **Flags**
   - Words with a dash in front such as `-due` or `-email`, are flags.
@@ -33,7 +33,7 @@
 - **Others**
   - Commands are not allowed to have trailing, leading or consecutive spaces. For example, `&nbsp;&nbsp;add&nbsp;a&nbsp;&nbsp;&nbsp;b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;` is equivalent to `add a b c`.
 
-### :pencil: Adding a task: `add`
+### Adding a task `add`
 
 Adds a new task to your To-Do list.
 
@@ -58,7 +58,7 @@ Okay, I have added this task:
 [ID:2]	[ ][do math homework]
 ```
 
-### :white_check_mark: Mark a task (as complete): `mark`
+### Mark a task (as complete) `mark`
 
 Marks a task with the given id by the user as completed. 
 
@@ -74,7 +74,7 @@ Okay, I have marked this task as complete:
 [ID:1]	[X][todo][Due: 23 Sep 3000 23:59]
 ```
 
-### :negative_squared_cross_mark: Unmark a task (as incomplete): `unmark`
+### Unmark a task (as incomplete) `unmark`
 
 Unmarks a task with the given id by the user as incomplete. 
 
@@ -89,7 +89,7 @@ Okay, I have marked this task as incomplete:
 [ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
 ```
 
-### :no_entry: Delete a task: `delete`
+### Delete a task `delete`
 
 Removes the task with the given id by the user from the To-Do list.
 
@@ -104,7 +104,7 @@ Okay, I have removed this task:
 [ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
 ```
 
-### :email: Add/Edit/Delete an email: `email`
+### Add/Edit/Delete an email `email`
 
 Adds, edits, or deletes the email address of a task with a given id in the To-Do List. 
 
@@ -123,7 +123,7 @@ Okay, I have edited the email address of this task to [rui@gmail.com]:
 [ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
 ```
 
-### :memo: Add/Edit/Delete tags: `tags`
+### Add/Edit/Delete tags `tags`
 
 Adds, edits, or deletes the tags of a task with a given id in the To-Do List.
 
@@ -143,7 +143,7 @@ Okay, I have edited the tags of this task to [later difficult]:
 [ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
 ```
 
-## :question: FAQ
+## FAQ
 
 **How do I transfer my data to another computer?**
 - Your task list is saved in the generated `save.txt` file.

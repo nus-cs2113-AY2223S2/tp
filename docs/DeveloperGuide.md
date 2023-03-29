@@ -18,12 +18,12 @@ First, **fork** this repo, and **clone** the fork into your computer.
 If you plan to use Intellij IDEA (highly recommended):
 1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to ensure Intellij is configured to use **JDK 11**.
 1. **Import the project as a Gradle project**: Follow the guide [_[se-edu/guides] IDEA: Importing a Gradle project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html) to import the project into IDEA.<br>
-   :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
+   - Note: Importing a Gradle project is slightly different from importing a normal Java project.
 1. **Verify the setup**: Run `Main` and try a few commands.
 
 ## Design
 
-> :bulb: The `.puml` files used to create the diagrams in this guide can be found in the [diagrams](diagrams) folder.
+> The `.puml` files used to create the diagrams in this guide can be found in the [diagrams](diagrams) folder.
 
 ### Architecture
 
@@ -83,7 +83,7 @@ back into a TaskList object.
 
 ## Implementation
 
-> :warning: The lifeline of the sequence diagrams in this section should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+> The lifeline of the sequence diagrams in this section should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 ### Delete task feature
 
