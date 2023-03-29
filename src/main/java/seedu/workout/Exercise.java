@@ -1,7 +1,7 @@
 package seedu.workout;
 
-public class Exercise {
 
+public class Exercise {
     private String name;
     private String weight;
     private String repsPerSet;

@@ -1,22 +1,18 @@
 package seedu.commands;
 
+
 import seedu.calorietracker.CalorieTracker;
 import seedu.workout.WorkoutList;
 
 public class Command {
 
-    public WorkoutList workoutList = new WorkoutList();
+    protected WorkoutList workoutList = new WorkoutList();
     protected CalorieTracker calorieTracker;
     public Command() {
     }
 
-    public void setData(WorkoutList workoutList, CalorieTracker calorieTracker) {
-
-
-    }
-
-    public void setData(WorkoutList workoutList) {
-        if (workoutList == null) {
+    public void setData(WorkoutList workoutList, CalorieTracker calorieTracker) throws IllegalArgumentException{
+        if (workoutList == null || calorieTracker == null) {
             throw new IllegalArgumentException("WorkoutList cannot be null.");
         }
 
@@ -24,7 +20,7 @@ public class Command {
         this.calorieTracker = calorieTracker;
     }
 
-    public void execute() {
+    public String execute() {
         throw new UnsupportedOperationException("This method is to be implemented by child classes");
     }
 }

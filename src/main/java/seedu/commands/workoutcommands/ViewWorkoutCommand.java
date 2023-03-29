@@ -1,31 +1,29 @@
 package seedu.commands.workoutcommands;
 
-import seedu.DateFormat;
-import seedu.commands.Command;
 
-import seedu.ui.Ui;
+import seedu.commands.Command;
+import seedu.parser.DateFormatter;
 import seedu.workout.Workout;
 
 import java.util.Date;
 
 public class ViewWorkoutCommand extends Command {
-    Date workoutToViewDate;
+    private static final String WORKOUT_NOT_FOUND_MESSAGE = "No workout done on ";
+    private final Date workoutToViewDate;
+
 
     public ViewWorkoutCommand(Date workoutToViewDate) {
         this.workoutToViewDate = workoutToViewDate;
     }
 
-    public void execute() {
-
-        for (Workout workout : workoutList.workoutArrayList) {
-            DateFormat dateFormat = new DateFormat(workoutToViewDate);
-            String formattedDate = dateFormat.formatDate();
-            if (workout.getStringDate().equals(formattedDate)) {
-                System.out.println(workout.getExercises());
-                Ui.showSeparator();
-                return;
+    @Override
+    public String execute() {
+        for (Workout workout : workoutList.getWorkoutArrayList()) {
+            if  (workout.getDate().equals(workoutToViewDate)) {
+                return workout.toString();
             }
         }
 
+        return WORKOUT_NOT_FOUND_MESSAGE + DateFormatter.dateToString(workoutToViewDate);
     }
 }
