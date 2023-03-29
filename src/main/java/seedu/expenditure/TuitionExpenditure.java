@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class TuitionExpenditure extends Expenditure {
 
-    public static final String expenditureType = "Tu";
+    public static final String EXPENDITURE_TYPE = "Tu";
     public static String iconPaid = "[X]";
     public static String iconUnpaid = "[ ]";
     
@@ -33,7 +33,7 @@ public class TuitionExpenditure extends Expenditure {
     }
 
     public String getExpenditureType() {
-        return expenditureType;
+        return EXPENDITURE_TYPE;
     }
 
     @Override

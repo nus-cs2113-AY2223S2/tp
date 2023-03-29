@@ -7,8 +7,7 @@ public class AlreadyMarkException extends Exception {
     @Override
     public String getMessage() {
         return ERROR_MARK_MESSAGE.toString();
-      
-}
+    }
 
 }
 

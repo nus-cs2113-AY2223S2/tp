@@ -46,15 +46,12 @@ public class ParseLendBorrow {
             }
         } catch (DateTimeParseException d) {
             return new InvalidCommand(ERROR_DATE_TIME_ERROR_MESSAGE.toString());
-        }  catch (NumberFormatException n) {
-            return new InvalidCommand(ERROR_NUMBER_FORMAT_MESSAGE.toString());
-        } catch (StringIndexOutOfBoundsException s) {
+        }  catch (NumberFormatException | StringIndexOutOfBoundsException n) {
             return new InvalidCommand(ERROR_NUMBER_FORMAT_MESSAGE.toString());
         } catch (EmptyStringException e) {
             return new InvalidCommand(ERROR_EMPTY_STRING_MESSAGE.toString());
+        }
     }
- }
-
 }
 
 

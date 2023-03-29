@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class LendExpenditure extends Expenditure {
-    public static final String expenditureType = "L";
+    public static final String EXPENDITURE_TYPE = "L";
     private LocalDate deadline;
     private String lenderName;
 
@@ -49,7 +49,7 @@ public class LendExpenditure extends Expenditure {
 
     @Override
     public String getExpenditureType() {
-        return expenditureType;
+        return EXPENDITURE_TYPE;
     }
 
     @Override

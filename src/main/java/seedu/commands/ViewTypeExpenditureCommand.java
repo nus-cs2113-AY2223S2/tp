@@ -20,31 +20,31 @@ public class ViewTypeExpenditureCommand extends Command {
     public ViewTypeExpenditureCommand(String userInput) throws WrongInputException {
         switch (userInput) {
         case "academic":
-            expenditureType = AcademicExpenditure.expenditureType;
+            expenditureType = AcademicExpenditure.EXPENDITURE_TYPE;
             break;
         case "accommodation":
-            expenditureType = AccommodationExpenditure.expenditureType;
+            expenditureType = AccommodationExpenditure.EXPENDITURE_TYPE;
             break;
         case "borrow":
-            expenditureType = BorrowExpenditure.expenditureType;
+            expenditureType = BorrowExpenditure.EXPENDITURE_TYPE;
             break;
         case "entertainment":
-            expenditureType = EntertainmentExpenditure.expenditureType;
+            expenditureType = EntertainmentExpenditure.EXPENDITURE_TYPE;
             break;
         case "food":
-            expenditureType = FoodExpenditure.expenditureType;
+            expenditureType = FoodExpenditure.EXPENDITURE_TYPE;
             break;
         case "lend":
-            expenditureType = LendExpenditure.expenditureType;
+            expenditureType = LendExpenditure.EXPENDITURE_TYPE;
             break;
         case "other":
-            expenditureType = OtherExpenditure.expenditureType;
+            expenditureType = OtherExpenditure.EXPENDITURE_TYPE;
             break;
         case "transport":
-            expenditureType = TransportExpenditure.expenditureType;
+            expenditureType = TransportExpenditure.EXPENDITURE_TYPE;
             break;
         case "tuition":
-            expenditureType = TuitionExpenditure.expenditureType;
+            expenditureType = TuitionExpenditure.EXPENDITURE_TYPE;
             break;
         default:
             throw new WrongInputException();

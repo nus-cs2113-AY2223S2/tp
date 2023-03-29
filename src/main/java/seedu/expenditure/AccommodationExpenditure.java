@@ -3,7 +3,7 @@ package seedu.expenditure;
 import java.time.LocalDate;
 
 public class AccommodationExpenditure extends Expenditure {
-    public static final String expenditureType = "Accom";
+    public static final String EXPENDITURE_TYPE = "Accom";
     public static String iconPaid = "[X]";
     public static String iconUnpaid = "[ ]";
 
@@ -33,7 +33,7 @@ public class AccommodationExpenditure extends Expenditure {
 
     @Override
     public String getExpenditureType() {
-        return expenditureType;
+        return EXPENDITURE_TYPE;
     }
 
     @Override
