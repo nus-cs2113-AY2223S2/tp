@@ -9,16 +9,16 @@ Found 2 cards with the query "q1":
 [1]
 Q: Q1
 A: A1
-D: 2023-03-28
+D: 2023-03-29
 [2]
 Q: Q1
 A: A1
-D: 2023-03-28
+D: 2023-03-29
 Which flashcard do you want to update?
 Understood. The card has been updated to
 Q: Q2
 A: A1
-D: 2023-03-28
+D: 2023-03-29
 Let's see the next flashcard!
 Question for the current flashcard is:
 Q1
