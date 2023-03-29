@@ -7,6 +7,7 @@ import seedu.pettracker.data.TaskList;
 public class AddTaskCommand extends Command {
 
     protected String todoDescription;
+    protected String time;
 
     public AddTaskCommand(String commandArgs) {
         super();
@@ -33,7 +34,8 @@ public class AddTaskCommand extends Command {
      */
     @Override
     public String[] parseArgs(String commandArgs) {
-        return new String[0];
+        return commandArgs.split("\\at");
+
     }
 
     /**

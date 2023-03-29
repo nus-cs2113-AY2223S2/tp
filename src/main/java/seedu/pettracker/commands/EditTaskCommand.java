@@ -47,7 +47,14 @@ public class EditTaskCommand extends Command {
      */
     @Override
     public String[] parseArgs(String commandArgs) {
-        return commandArgs.split(" ", 3);
+        String[] split = commandArgs.split(" ", 2);
+        String[] timeSplit = split[1].split("\\at");
+        if (timeSplit.length > 1) {
+            return new String[] {split[0], timeSplit[0], timeSplit[1]};
+        } else {
+            return new String[] {split[0], split[1]};
+        }
+
     }
 
     /**
