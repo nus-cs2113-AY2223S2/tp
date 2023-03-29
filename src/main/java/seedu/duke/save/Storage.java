@@ -1,3 +1,4 @@
+//@@author Thunderdragon221
 package seedu.duke.save;
 
 import seedu.duke.patient.Patient;
@@ -19,17 +20,16 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//@@author Thunderdragon221
 /**
  * This class reads and writes information to and from the patient-data file.
  */
 public class Storage {
 
     /** Specifies the directory path to be created */
-    private static final String DIR_PATH = "./data/";
+    static final String DIR_PATH = "./data/";
 
     /** Specifies the file path to be created */
-    private static final String FILE_PATH = "./data/patient-data.txt";
+    static final String FILE_PATH = "./data/patient-data.txt";
 
     private static Logger logger = Logger.getLogger(Storage.class.getName());
     /**
@@ -123,7 +123,7 @@ public class Storage {
             throws CorruptedDataException {
 
         int numberOfMedicineEntries = Integer.parseInt(scanner.nextLine());
-        Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable<>();
+        Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable();
 
         for (int entry = 0; entry < numberOfMedicineEntries; entry++) {
             String dateMedicineString = scanner.nextLine();
@@ -187,8 +187,8 @@ public class Storage {
             for (String medString : medicineHistory.get(date)) {
                 writer.write(medString + " ");
             }
-            writer.write("\n");
         }
+        writer.write("\n");
     }
     //@@author Thunderdragon221
     /**
