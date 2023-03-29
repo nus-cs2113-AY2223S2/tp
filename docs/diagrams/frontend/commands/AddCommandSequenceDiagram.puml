@@ -1,5 +1,5 @@
 @startuml
-!include Style.puml
+!include ../../Style.puml
 
 participant ":Parser" as Parser
 participant "command:AddCommand" as AddCommand

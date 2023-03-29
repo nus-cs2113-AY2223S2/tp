@@ -1,5 +1,5 @@
 @startuml
-!include ../Style.puml
+!include ../../Style.puml
 
 mainframe sd Endpoint /entries - Handle GET
 participant ":EntriesEndpoint" as EntriesEndpoint

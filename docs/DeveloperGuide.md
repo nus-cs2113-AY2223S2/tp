@@ -104,7 +104,7 @@ Some of its core features include:
 
 Here's a class diagram that shows the core structure of the `Parser` class.
 
-![ParserClassDiagram](static/ParserClassDiagram.png)
+![ParserClassDiagram](static/frontend/parser/ParserClassDiagram.png)
 
 How `Parser` works:
 
@@ -123,7 +123,7 @@ How `Parser` works:
 The Sequence Diagram below illustrates the interactions within the `Parser` component when a user inputs the following
 command: `/add McDonalds -c Food -p 10.50`
 
-![ParserSequenceDiagram](static/ParserSequenceDiagram.png)
+![ParserSequenceDiagram](static/frontend/parser/ParserSequenceDiagram.png)
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -138,8 +138,8 @@ The add entry mechanism is facilitated by `EntryLog`. Every instance of `AddComm
 
 The following sequence diagram shows how the add command work:
 
-![AddCommandSequenceDiagram](./static/AddCommandSequenceDiagram.png)
-![AddCommandSequenceDiagramReference](./static/AddCommandSequenceDiagramReference.png)
+![AddCommandSequenceDiagram](static/frontend/commands/AddCommandSequenceDiagram.png)
+![AddCommandSequenceDiagramReference](static/frontend/commands/AddCommandSequenceDiagramReference.png)
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
@@ -161,7 +161,7 @@ Step 7. A success message is after the new `Entry` is added to the `EntryLog`.
 
 The following activity diagram summarizes what happens when a user executes an add command:
 
-![AddCommandActivityDiagram](./static/AddCommandActivityDiagram.png)
+![AddCommandActivityDiagram](static/frontend/commands/AddCommandActivityDiagram.png)
 
 #### Delete Command
 The 'delete' entry mechanism is facilitated by `EntryLog`.
@@ -170,9 +170,9 @@ Every instance of `DeleteCommand` is created with an Integer, which is the ID of
 
 The following sequence diagram shows how the delete command work:
 
-![DeleteCommandSequenceDiagram](./static/DeleteCommandSequenceDiagram.png)
-![DeleteCommandSequenceDiagramGetResponse](./static/DeleteCommandSequenceDiagramDeleteResponse.png)
-![DeleteCommandSequenceDiagramDeleteResponse](./static/DeleteCommandSequenceDiagramDeleteResponse.png)
+![DeleteCommandSequenceDiagram](static/frontend/commands/DeleteCommandSequenceDiagram.png)
+![DeleteCommandSequenceDiagramGetResponse](static/frontend/commands/DeleteCommandSequenceDiagramDeleteResponse.png)
+![DeleteCommandSequenceDiagramDeleteResponse](static/frontend/commands/DeleteCommandSequenceDiagramDeleteResponse.png)
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
@@ -190,12 +190,12 @@ Step 5. A success message is after the `Entry` is removed from `EntryLog`.
 
 The following activity diagram summarizes what happens when a user executes a delete   command:
 
-![DeleteCommandActivityDiagram](./static/DeleteCommandActivityDiagram.png)
+![DeleteCommandActivityDiagram](static/frontend/commands/DeleteCommandActivityDiagram.png)
 
 <!-- @@author leonghuenweng -->
 #### Edit Command
 ##### Overall class diagram for editing an Entry
-![EditCommandClassDiagram](./static/EditCommandClassDiagram.png)
+![EditCommandClassDiagram](static/frontend/commands/EditCommandClassDiagram.png)
 
 ##### Implementation
 
@@ -223,7 +223,7 @@ acknowledgement message is printed to the user.
 
 ##### Overall sequence diagram for editing an Entry
 
-![img_1.png](static/EditCommandSequenceDiagram.png)
+![img_1.png](static/frontend/commands/EditCommandSequenceDiagram.png)
 
 #### View Command
 ##### Class diagram of view command 
@@ -232,7 +232,7 @@ Class diagram above shows the methods called in the execute method of the
 View Command object.
 
 ##### Implementation
-![ViewCommandSequenceDiagram.png](./static/ViewCommandOverallSequenceDiagram.png)
+![ViewCommandSequenceDiagram.png](static/frontend/commands/ViewCommandOverallSequenceDiagram.png)
 
 **Step 1.** String of user arguments is fed into the parseViewCommand method in Parser object.
 
@@ -313,11 +313,11 @@ The main callable functions to be used are:
 
 The structure of the Storage class is as follows:
 
-![StorageClassDiagram](./static/StorageClassDiagram.png)
+![StorageClassDiagram](static/backend/storage/StorageClassDiagram.png)
 
 The Sequence Diagram below illustrates the interactions within the `Parser` component upon initialization of PocketPal, as well as whenever data is being saved.
 
-![StorageSequenceDiagram](./static/StorageSequenceDiagram.png) 
+![StorageSequenceDiagram](static/backend/storage/StorageSequenceDiagram.png) 
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -328,7 +328,7 @@ The Sequence Diagram below illustrates the interactions within the `Parser` comp
 ### API
 #### Endpoints
 
-![Endpoints](./static/backend/EndpointClassDiagram.png)
+![Endpoints](static/backend/endpoint/EndpointClassDiagram.png)
 
 The sequence diagram for specific request handling at each endpoint can be viewed at their respective sections.
 

@@ -1,5 +1,5 @@
 @startuml
-!include Style.puml
+!include ../../Style.puml
 
 group get Entry and get responseGet
 participant "backend:Backend" as Backend
