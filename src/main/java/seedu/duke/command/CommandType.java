@@ -43,7 +43,11 @@ public enum CommandType {
     /**
      * Edit a step in the recipe.
      */
-    EDIT,
+    EDITSTEP,
+    /**
+     * Edit a ingredient in the recipe.
+     */
+    EDITINGREDIENT,
     FIND,
     /**
      * Command not recognized.

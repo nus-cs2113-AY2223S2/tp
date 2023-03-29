@@ -119,7 +119,7 @@ public class Command {
         case FIND:
             RecipeList.searchRecipeList(fullDescription);
             break;
-        case EDIT:
+        case EDITSTEP:
             try {
                 if (fullDescription.isEmpty()) {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
@@ -127,19 +127,57 @@ public class Command {
                 int recipeListNum = Integer.parseInt(fullDescription);
                 Recipe recipeToEdit = recipeList.getRecipeFromList(recipeListNum);
                 StepList recipeToEditStepList = recipeToEdit.getStepList();
-                recipeToEditStepList.showFullStepList();
-                ui.showEditRecipeStepPrompt();
-                int stepIndex = Integer.parseInt(ui.readCommand()) - 1;
                 int maxSteps = recipeToEditStepList.getCurrStepNumber();
                 if (maxSteps == 0) {
+                    assert (maxSteps - 1 == -1);
                     throw new OutOfIndexException("There are no steps to edit!");
+
                 }
-                if (stepIndex >= maxSteps) {
+
+                recipeToEditStepList.showFullStepList();
+                ui.showEditRecipeStepPrompt();
+                String input = ui.readCommand();
+                if (input.equals("quit")) {
+                    break;
+                }
+                int stepIndex = Integer.parseInt(input) - 1;
+                if (stepIndex < maxSteps) {
+                    assert (maxSteps - stepIndex > 0);
+                    recipeToEditStepList.editStep(stepIndex);
+                } else {
                     throw new OutOfIndexException("Input index exceeds the number of steps!");
                 }
-                recipeToEditStepList.editStep(stepIndex);
             } catch (Exception e) {
-                ui.showEditStepErrorMessage(e);
+                ui.showEditErrorMessage(e);
+            }
+            break;
+            
+        case EDITINGREDIENT:
+            try {
+                if (fullDescription.isEmpty()) {
+                    throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
+                }
+                int recipeListNum = Integer.parseInt(fullDescription);
+                Recipe recipeToEdit = recipeList.getRecipeFromList(recipeListNum);
+                IngredientList recipeToEditIngredientList = recipeToEdit.getIngredientList();
+                int maxSteps = recipeToEditIngredientList.getCurrIngredientNumber();
+                if (maxSteps == 0) {
+                    throw new OutOfIndexException("There are no ingredients to edit!");
+                }
+                recipeToEditIngredientList.showList();
+                ui.showEditRecipeIngredientPrompt();
+                String input = ui.readCommand();
+                if (input.equals("quit")) {
+                    break;
+                }
+                int ingredientIndex = Integer.parseInt(input) - 1;
+
+                if (ingredientIndex >= maxSteps) {
+                    throw new OutOfIndexException("Input index exceeds the number of ingredients!");
+                }
+                recipeToEditIngredientList.editIngredient(ingredientIndex);
+            } catch (Exception e) {
+                ui.showEditErrorMessage(e);
             }
             break;
         case HELP:

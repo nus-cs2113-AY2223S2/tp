@@ -155,13 +155,19 @@ public class UI {
     }
     public void showEditRecipeStepPrompt() {
         System.out.println("Which step do you want to edit?");
+        System.out.println("Type 'quit' to exit the edit view");
     }
-    public void showEditStepErrorMessage (Exception e) {
+    public void showEditErrorMessage (Exception e) {
         if (e instanceof OutOfIndexException) {
             System.out.println(e.getMessage());
         } else {
             System.out.println(RECIPE_VIEWING_DEFAULT_ERROR + e.getMessage());
         }
 
+    }
+
+    public void showEditRecipeIngredientPrompt() {
+        System.out.println("Which ingredient do you want to edit?");
+        System.out.println("Type 'quit' to exit the edit view");
     }
 }
