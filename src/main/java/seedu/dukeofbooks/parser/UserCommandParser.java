@@ -2,16 +2,7 @@ package seedu.dukeofbooks.parser;
 
 import static seedu.dukeofbooks.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.dukeofbooks.command.BorrowCommand;
-import seedu.dukeofbooks.command.Command;
-import seedu.dukeofbooks.command.ExitCommand;
-import seedu.dukeofbooks.command.HistoryCommand;
-import seedu.dukeofbooks.command.IncorrectCommand;
-import seedu.dukeofbooks.command.InventoryCommand;
-import seedu.dukeofbooks.command.ListCommand;
-import seedu.dukeofbooks.command.RenewCommand;
-import seedu.dukeofbooks.command.ReturnCommand;
-import seedu.dukeofbooks.command.SearchCommand;
+import seedu.dukeofbooks.command.*;
 import seedu.dukeofbooks.controller.SearchController;
 import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.book.BorrowableItem;
@@ -25,20 +16,21 @@ import static seedu.dukeofbooks.common.Messages.ACTION_ARG;
 import static seedu.dukeofbooks.common.Messages.ISBN_ARG;
 import static seedu.dukeofbooks.common.Messages.SPACE_CHAR;
 
-public class Parser {
+public class UserCommandParser implements IParser{
     private final Person currentUser;
     // todo set loan records
     private final LoanRecords loanRecords;
 
-    public Parser(Person user, LoanRecords loanRecords, SearchController searchController) {
+    public UserCommandParser(Person user, LoanRecords loanRecords, SearchController searchController) {
         this.currentUser = user;
         this.loanRecords = loanRecords;
     }
 
-    public Command parseCommand(String userInput) {
+    @Override
+    public UserCommand parseCommand(String userInput) {
         String[] words = userInput.trim().split(" ", 2); // split the input into command and arguments
         if (words.length == 0) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT));
+            return new IncorrectUserCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT));
         }
 
         final String commandWord = words[0];
@@ -49,8 +41,8 @@ public class Parser {
             return prepareInventoryCommand(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+        case LogoutCommand.COMMAND_WORD:
+            return new LogoutCommand();
         case RenewCommand.COMMAND_WORD:
             return prepareRenewCommand(arguments);
         case BorrowCommand.COMMAND_WORD:
@@ -62,11 +54,11 @@ public class Parser {
         case SearchCommand.COMMAND_WORD:
             return prepareSearchCommand(arguments);
         default:
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
 
-    private Command prepareInventoryCommand(String arguments) {
+    private UserCommand prepareInventoryCommand(String arguments) {
         String[] parts = arguments.split(" ");
         int titleIndex = -1;
         int topicIndex = -1;
@@ -93,7 +85,7 @@ public class Parser {
 
         if (titleIndex == -1 && topicIndex == -1 && authorIndex == -1
                 && actionIndex == -1 && actionIndex == -1) {
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
 
         try {
@@ -113,11 +105,11 @@ public class Parser {
         } catch (Exception e) {
             // TODO: handle exception
         }
-        
-        return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+
+        return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
     }
 
-    private Command prepareRenewCommand(String arguments) {
+    private UserCommand prepareRenewCommand(String arguments) {
         String[] parts = arguments.split(" ");
         int titleIndex = -1;
         for (int i = 0; i < parts.length; ++i) {
@@ -127,7 +119,7 @@ public class Parser {
             }
         }
         if (titleIndex == -1) {
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         try {
             StringBuilder sb = new StringBuilder();
@@ -138,11 +130,11 @@ public class Parser {
             BorrowableItem toRenew = SearchController.searchBookByTitle(title);
             return new RenewCommand(loanRecords, currentUser, toRenew);
         } catch (IllegalValueException ive) {
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
-    
-    private Command prepareBorrowCommand(String arguments) {
+
+    private UserCommand prepareBorrowCommand(String arguments) {
         String[] parts = arguments.split(" ");
         int titleIndex = -1;
         for (int i = 0; i < parts.length; ++i) {
@@ -152,7 +144,7 @@ public class Parser {
             }
         }
         if (titleIndex == -1) {
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         try {
             StringBuilder sb = new StringBuilder();
@@ -163,11 +155,11 @@ public class Parser {
             BorrowableItem toBorrow = SearchController.searchBookByTitle(title);
             return new BorrowCommand(loanRecords, currentUser, toBorrow);
         } catch (IllegalValueException e) {
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
-    
-    private Command prepareReturnCommand(String arguments) {
+
+    private UserCommand prepareReturnCommand(String arguments) {
         String[] parts = arguments.split(" ");
         int titleIndex = -1;
         for (int i = 0; i < parts.length; ++i) {
@@ -177,7 +169,7 @@ public class Parser {
             }
         }
         if (titleIndex == -1) {
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         try {
             StringBuilder sb = new StringBuilder();
@@ -188,11 +180,11 @@ public class Parser {
             BorrowableItem toReturn = SearchController.searchBookByTitle(title);
             return new ReturnCommand(loanRecords, currentUser, toReturn);
         } catch (IllegalValueException e) {
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
-    
-    private Command prepareSearchCommand(String arguments) {
+
+    private UserCommand prepareSearchCommand(String arguments) {
         String[] parts = arguments.split(SPACE_CHAR);
         int titleIndex = -1;
         int topicIndex = -1;
@@ -216,7 +208,7 @@ public class Parser {
             String topic = getWord(topicIndex, parts);
             return new SearchCommand(topic,SearchCommand.TOPIC_SEARCH);
         } else {
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
 
