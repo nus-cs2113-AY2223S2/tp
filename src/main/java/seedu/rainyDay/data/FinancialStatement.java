@@ -1,6 +1,7 @@
 package seedu.rainyDay.data;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class FinancialStatement {
     private static final String INFLOW_WORD = "in";
@@ -94,7 +95,9 @@ public class FinancialStatement {
     }
 
     public String getStatementForList() {
-        return String.format("%s %s$%.2f (%s)", getDescription(), getFlowSymbol(), getValue(), getFlowDirectionWord());
+        return String.format("%s %s$%.2f %s %s %s", getDescription(), getFlowSymbol(), getValue(),
+                getFlowDirectionWord(), getCategory(),
+                getDate().format(DateTimeFormatter.ofPattern("dd/MM/uuuu")));
     }
 
     public boolean isIgnored() {
