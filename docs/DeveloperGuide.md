@@ -233,18 +233,42 @@ and we found that the lack of a physical task list to use is not a very signific
 ### Progress Bar Feature
 The ProgressBarCommand extends NUS To-Do List with a progress bar feature for tracking the progress on tasks in the task 
 list that must be finished by the current week. It is facilitated by ToDoListManager, Parser, TaskList, TemporalField, 
-LocalDate and Ui classes. It implements the Ui#printProgressBar() operation, which informs the user of their progress 
+LocalDate and Ui classes. It implements the `Ui#printProgressBar()` operation, which informs the user of their progress 
 using a percentage (up to 2 decimal places) and a bar (where '=' denotes completion and '-' denotes incomplete).
 
 Given below is an example usage scenario and how the ProgressBarCommand mechanism behaves in this scenario.
 
 The user has a task list with 3 tasks that are due this week. Among the 3 tasks, 1 is marked as done. The user executes 
-the progress command, which will call Ui#printProgressBar(). The user now sees that they have completed 33.33% of their 
-tasks and a progress bar to help them visualize their progress.
+the progress command, which will call `Ui#printProgressBar()`. The user now sees that they have completed 33.33% of 
+their tasks and a progress bar to help them visualize their progress.
 
 ![ProgressBarCommandSequence](images/ProgressBarCommandSequence.png)
 
-[remember to add the proposed feature part here again]
+### [Proposed] History feature
+
+The proposed history feature is facilitated by the `Storage`, `TaskList` and `Command` classes. Internally, there will
+be 2 task lists stored - `completedTasks` and `uncompletedTasks`. There will be a rework to how marking tasks as done
+works, a removal of the operation `TaskList#setDone()` and a new command for users to input to the CLI: `history`.
+
+There will be 2 new operations:
+* `TaskList#markTask(id i)` - Moves the task at id i of `uncompletedTasks` to `completedTasks`.
+* `TaskList#unmarkTask(id i)` - Moves the task at id i of `completedTasks` to `uncompletedTasks`.
+
+Given below is an example usage scenario and how the history mechanism works.
+
+Step 1. The user launches the application for the first time. Both `completedTasks` and `uncompletedTasks` are empty.
+
+Step 2. The user executes `add cg2023 assignment -due 18/12/2023` command to add a task that (s)he has to complete. The
+`add` command causes the task to be added to `uncompletedTasks`.
+
+Step 3. The user executes `mark` command to mark a task that (s)he has completed. The `mark` command causes the task to
+be added to `completedTasks` and removed from `uncompletedTasks`.
+
+Step 4. The user executes `list` command to see what tasks (s)he has still not completed. The `list` command causes the
+tasks in `uncompletedTasks` to be listed for the user to see.
+
+Step 5. The user executes `history` command to see what tasks (s)he has already completed. The `history` command causes
+the tasks in `completedTasks` to be listed for the user to see.
 
 ## Appendix: Requirements
 
