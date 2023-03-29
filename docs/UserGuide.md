@@ -118,6 +118,31 @@ Expected Output:
 Successfully removed Age from Bob
 ```
 
+### Editing a stat of a pet: `edit-stat`
+Edit a stat of a pet in the Pet List.
+
+Format: `edit-stat NAME STAT VALUE`
+
+* The `NAME` must not be empty.
+* The `STAT` must not be empty.
+* The `VALUE` must not be empty.
+
+
+Example of usage:
+
+```
+edit-stat Bob Type Cat
+edit-stat Bob Weight 12
+```
+
+Expected Output:
+
+```
+Successfully updated Bob's Type to Cat
+Successfully updated Bob's Weight to 12
+```
+
+
 ### Viewing Pet List: `list`
 View the current Pet List and total number of pets.
 
