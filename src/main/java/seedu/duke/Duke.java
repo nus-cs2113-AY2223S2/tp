@@ -7,7 +7,6 @@ import command.CommandList;
 import command.CommandSort;
 import command.CommandTotal;
 import command.overview.CommandOverview;
-import command.CommandCategory;
 import command.CommandFind;
 import data.ExpenseList;
 import data.Currency;
