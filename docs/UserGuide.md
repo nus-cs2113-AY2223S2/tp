@@ -5,7 +5,7 @@
 
 ## Introduction
 
-{Give a product intro}
+**NUS To-Do List** helps busy NUS students keep track of all the tasks they have to do.
 
 ## Quick Start
 
@@ -31,7 +31,7 @@
 - **Dates**
   - The date-time format is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`. An example of a valid date-time is `14/03/2025 16:40`.
 - **Others**
-  - Commands are not allowed to have trailing, leading or consecutive spaces. For example, `&nbsp;&nbsp;add&nbsp;a&nbsp;&nbsp;&nbsp;b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;` is equivalent to `add a b c`.
+  - Commands are not allowed to have trailing, leading or consecutive spaces.
 
 ### Adding a task `add`
 
@@ -41,7 +41,7 @@ Format: `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [tags LIST_OF_TA
 
 - The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`.
 - `EMAIL_ADDRESS` must be a valid email address.
-- `LIST_OF_TAGS` can consist of multiple tags, separated by a space `&nbsp;`. A task cannot have multiple of the same tag. Tag order may not be preserved when you have multiple tags.
+- `LIST_OF_TAGS` can consist of multiple tags, separated by a space ` `. A task cannot have multiple of the same tag. Tag order may not be preserved when you have multiple tags.
 - `REPEAT_DURATION` must be an integer >= 0, and can only be used if a `DEADLINE` is also provided. The task will repeat every week starting from the `DEADLINE` for `REPEAT_DURATION` times.
 
 Example of usage and output: 
@@ -79,7 +79,8 @@ Okay, I have marked this task as complete:
 Unmarks a task with the given id by the user as incomplete. 
 
 Format: `unmark ID`
-* The `ID` has to be an id of a task that can be found in the To-Do list.
+
+- The `ID` has to be an id of a task that can be found in the To-Do list.
 
 Example of usage and output:
 
@@ -94,7 +95,8 @@ Okay, I have marked this task as incomplete:
 Removes the task with the given id by the user from the To-Do list.
 
 Format: `delete ID`
-* The `ID` has to be an id of a task that can be found in the To-Do list.
+
+- The `ID` has to be an id of a task that can be found in the To-Do list.
 
 Example of usage:
 
@@ -109,12 +111,12 @@ Okay, I have removed this task:
 Adds, edits, or deletes the email address of a task with a given id in the To-Do List. 
 
 Format: `email ID -edit EMAIL_ADDRESS` or `email ID -del`
+
 - The `ID` has to be an id of a task that can be found in the To-Do list.
 - Use `-edit` to edit the email address of the task, or `-del` to delete it instead.
 - If both flags are provided, `-edit` takes priority.
 - At least one of the two flags must be provided.
 - `EMAIL_ADDRESS` must be a valid email address.
-
 
 Example of usage:
 
@@ -129,11 +131,12 @@ Okay, I have edited the email address of this task to [rui@gmail.com]:
 Adds, edits, or deletes the tags of a task with a given id in the To-Do List.
 
 Format: `tags ID -edit LIST_OF_TAGS` or `tags ID -del`
+
 - The `ID` has to be an id of a task that can be found in the To-Do list.
 - Use `-edit` to replace the tags of the task with the newly specified tags, or `-del` to delete them instead.
 - If both flags are provided, `-edit` takes priority.
 - At least one of the two flags must be provided.
-- `LIST_OF_TAGS` can consist of multiple tags, separated by a space `&nbsp;`. A task cannot have multiple of the same tag. Tag order may not be preserved when you have multiple tags.
+- `LIST_OF_TAGS` can consist of multiple tags, separated by a space ` `. A task cannot have multiple of the same tag. Tag order may not be preserved when you have multiple tags.
 - In the case of multiple tags, their order may not be preserved.
 
 Example of usage:
@@ -201,15 +204,17 @@ Here are the tasks which were completed in the past week:
 ```
 
 ### `priority` - Edit a priority of a task
+
 Edits, or deletes the priority level of a task with a given id in the ToDo List.
 
 Format: `priority ID -edit PRIORITY`
+
 - The `ID` has to be an id of a task that can be found in the To-Do list.
-- Use `-edit` to replace the priority of the task with the newly specified priority, or `-del` to delete them instead.
+- Use `-edit` to replace the priority of the task with the newly specified priority, or `-del` to set it to `Low`.
 - If both flags are provided, `-edit` takes priority.
 - At least one of the two flags must be provided.
-- The `PRIORITY` has to be a number from 1-3.a
-- Priority Levels ranges from 1-3 (1:Low, 2:Medium, 3:High)
+- The `PRIORITY` has to be a number from 1 to 3.
+- Priority Levels ranges from 1 to 3 (1: `Low`, 2: `Medium`, 3: `High`)
 
 Example of usage:
 
@@ -226,7 +231,7 @@ Okay, I have edited the priority level of this task to [Medium]:
 
 Displays the progress of and lists tasks that are due this week in To-Do list. Progress is shown in the form of a 
 percentage (up to 2 decimal places) and a progress bar (where "=" denotes the proportion of tasks completed and "-" 
-denotes the proportion of tasks that are left undone.
+denotes the proportion of tasks that are left undone. Called automatically on startup.
 
 Format: `progress`
 

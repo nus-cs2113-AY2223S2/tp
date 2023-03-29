@@ -1,6 +1,6 @@
 # NUS To-Do List
 
-{Give product intro here}
+**NUS To-Do List** helps busy NUS students keep track of all the tasks they have to do.
 
 Useful links:
 * [User Guide](UserGuide.md)
