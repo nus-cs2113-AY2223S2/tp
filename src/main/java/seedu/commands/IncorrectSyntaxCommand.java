@@ -2,7 +2,7 @@ package seedu.commands;
 
 
 public class IncorrectSyntaxCommand extends Command {
-    private static final String ERROR_MESSAGE = "Invalid Syntax for ";
+    private static final String ERROR_MESSAGE = "Invalid syntax for ";
     private final String syntaxError;
 
     public IncorrectSyntaxCommand(String syntaxError) {

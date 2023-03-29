@@ -70,10 +70,13 @@ public class CheckInputs {
 
 
     static Command processView(String arguments) {
-        Date date = parseDate(arguments);
-
-        return date != null && parseInput(arguments) ? new ViewWorkoutCommand(date) :
-                new IncorrectSyntaxCommand("/view command");
+        Date date;
+        try {
+            date = DateFormatter.stringToDate(arguments);
+            return new ViewWorkoutCommand(date);
+        } catch (ParseException e) {
+            return new IncorrectSyntaxCommand("/view command");
+        }
     }
 
     //@@ author guillaume-grn

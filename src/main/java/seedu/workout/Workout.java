@@ -47,7 +47,7 @@ public class Workout {
         exerciseListString.append(EXERCISE_LIST_HEADER);
 
         for (int i = 0; i < workoutExercises.size(); i += 1) {
-            exerciseListString.append(i + 1).append("." + workoutExercises.get(i).toString() + System.lineSeparator());
+            exerciseListString.append(i + 1).append(". " + workoutExercises.get(i).toString() + System.lineSeparator());
         }
 
         return exerciseListString.toString();

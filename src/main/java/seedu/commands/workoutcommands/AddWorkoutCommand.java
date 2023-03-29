@@ -20,6 +20,6 @@ public class AddWorkoutCommand extends Command {
         }
 
         workoutList.getCurrentWorkout().addExercise(toAdd);
-        return "Added " + toAdd.getName();
+        return "Added " + toAdd.toString();
     }
 }

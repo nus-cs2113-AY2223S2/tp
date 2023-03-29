@@ -15,7 +15,7 @@ public class WorkoutList {
     private static final String WORKOUT_LIST_HEADER =
             "Here are the list of dates of your workouts:" + System.lineSeparator();
 
-    private final ArrayList<Workout> workoutArrayList;
+    private ArrayList<Workout> workoutArrayList;
     private int currentWorkoutIndex;
 
     public WorkoutList() {
@@ -50,7 +50,7 @@ public class WorkoutList {
 
     public String deleteWorkout(Date date) {
         for (Workout workout : workoutArrayList) {
-            if (workout.getDate() == date) {
+            if (workout.getDate().equals(date)) {
                 workoutArrayList.remove(workout);
                 return "Workout deleted";
             }
@@ -74,11 +74,13 @@ public class WorkoutList {
 
         return workoutListString.toString();
     }
+
     //@@ author guillaume-grn
     public ArrayList<Exercise> countSetsRepsPreparation(Date dayInSpecificWeekDate) {
         WorkoutList workoutsInSpecificWeek = getWorkoutsInSpecificWeek(dayInSpecificWeekDate);
         ArrayList<Exercise> distinctExercisesList = new ArrayList<>();
-        for (Workout workout : workoutsInSpecificWeek.workoutArrayList) {
+
+        for (Workout workout : workoutsInSpecificWeek.getWorkoutArrayList()) {
             for (Exercise exercise : workout.getExercises()) {
                 boolean isExistingExercise = false;
                 for (Exercise distinctExercise : distinctExercisesList) {
