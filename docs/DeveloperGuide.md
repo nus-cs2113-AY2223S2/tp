@@ -104,18 +104,19 @@ category sorted in descending order before printing out the final overview in th
 
 ## User Stories
 
-| Version | As a ... | I want to ...                                        | So that I can ...                                                                        |
-|---------|----------|------------------------------------------------------|------------------------------------------------------------------------------------------|
-| v1.0    | new user | add a new entry for my expenses                      | -                                                                                        |
-| v1.0    | user     | delete specific expenses                             | -                                                                                        |
-| v1.0    | user     | add expenses with dates                              | track how much I spend each day                                                          |
-| v1.0    | user     | add expenses of different categories                 | keep track of what I spend on                                                            |
-| v1.0    | user     | see all my past expenses                             | plan my budget accordingly                                                               |
-| v2.0    | user     | save all expenses added                              | -                                                                                        |
-| v2.0    | user     | add expenses with specified currencies               | know the exact amount I spent in different currencies                                    |
-| v2.0    | user     | sort my expenses by category/date                    | better keep track of my expenses through either date or category                         |
-| v2.0    | user     | see an overview of my expenses in a particular month | understand what categories I like to spend on and better plan my spending in the future. |
-| v2.0    | user     | -                                                    | -                                                                                        |
+| Version | As a ...          | I want to ...                                               | So that I can ...                                                                        |
+|---------|-------------------|-------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| v1.0    | new user          | add a new entry for my expenses                             | -                                                                                        |
+| v1.0    | user              | delete specific expenses                                    | -                                                                                        |
+| v1.0    | user              | add expenses with dates                                     | track how much I spend each day                                                          |
+| v1.0    | user              | add expenses of different categories                        | keep track of what I spend on                                                            |
+| v1.0    | user              | see all my past expenses                                    | plan my budget accordingly                                                               |
+| v2.0    | user              | save all expenses added                                     | -                                                                                        |
+| v2.0    | user              | add expenses with specified currencies                      | know the exact amount I spent in different currencies                                    |
+| v2.0    | user              | sort my expenses by category/date                           | better keep track of my expenses through either date or category                         |
+| v2.0    | user in Singapore | see my total spending in SGD                                | -                                                                                        |
+| v2.0    | user              | see an overview of my expenses in a particular month        | understand what categories I like to spend on and better plan my spending in the future. |
+| v2.0    | user in Singapore | see an overview of my expenses in a particular month in SGD | understand what categories I like to spend on and better plan my spending in the future. |                                                                                        |
 
 
 ## Non-Functional Requirements

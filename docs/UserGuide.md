@@ -138,8 +138,9 @@ Example of usage:
 `category clothes`
 
 ### Generating a monthly overview: `overview`
-Generate a monthly overview consisting of total expenses of the month in SGD and a 
-breakdown of expenses based on category, from the most spent to the least.
+Generate a monthly overview consisting of total expenses of the month and a 
+breakdown of expenses based on category, from the most spent to the least. The currency 
+for display is standardised as SGD.
 
 Format: `overview MONTH YEAR`
 - `MONTH` must be the standard English Month Name
@@ -149,7 +150,18 @@ Example of usage:
 
 Expected output:
 ```
+Overview for JUNE 2021
 
+    Total expenses: 80.55 SGD
+
+    Breakdown of expenses by category in descending order by category sum:
+    ----------------------------
+     uncategorized 44.00 SGD
+    ----------------------------
+     food 26.55 SGD
+    ----------------------------
+     travel 10.00 SGD
+    ----------------------------
 ```
 
 
