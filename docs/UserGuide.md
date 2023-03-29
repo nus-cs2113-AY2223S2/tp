@@ -348,7 +348,7 @@ Example of usage:
 
 `db` - It's that simple
 
-Sample output:
+Sample output:  
 ![img_1.png](img_1.png)
 ### Category: `cat`
 Shows list of categories, and/or its items, or a specified category of items.
@@ -359,7 +359,7 @@ Format:
 * `cat [Category]`: shows list of all items in a specified category.
 
 Example of Usage & Expected Output:
-```agsl
+```
 cat list
 ____________________________________________________________
 Here is the list of categories you have: 
@@ -367,7 +367,7 @@ uncategorized
 fruits
 ____________________________________________________________
 ```
-```agsl
+```
 cat table
 +-----------------+--------------------------------+
 | Category        | Name: UPC                      |
@@ -378,7 +378,7 @@ cat table
 +-----------------+--------------------------------+
 ```
 
-```agsl
+```
 cat fruit
 +-----------------+--------------------------------+
 | Category        | Name: UPC                      |
@@ -408,7 +408,7 @@ Successfully added a new alert.
 ____________________________________________________________
 ```
 
-Examples of usage:
+Examples of usage:  
 `alert remove upc/1234 level/min`  
 `alert remove upc/1234 level/max`
 
