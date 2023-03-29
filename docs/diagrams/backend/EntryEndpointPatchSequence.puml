@@ -1,4 +1,6 @@
 @startuml
+!include ../Style.puml
+
 mainframe sd Endpoint /entry - Handle PATCH
 
 -> EntryEndpoint : handlePatch(Request)

@@ -1,5 +1,6 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+!include Style.puml
+
 group add to EntryLog and get response
 
 participant "backend:Backend" as Backend

@@ -1,5 +1,5 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+!include Style.puml
 
 participant "Text File" as Text
 participant ":Storage" as Storage

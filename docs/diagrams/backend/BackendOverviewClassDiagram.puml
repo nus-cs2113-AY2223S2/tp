@@ -1,8 +1,9 @@
 @startuml
 title Backend Overview
+!include ../Style.puml
 
 class Backend
-interface Requestable
+interface Requestable <<interface>>
 class Request
 class Response
 abstract class Endpoint

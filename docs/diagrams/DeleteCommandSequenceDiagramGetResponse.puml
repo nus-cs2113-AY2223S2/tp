@@ -1,5 +1,6 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+!include Style.puml
+
 group get Entry and get responseGet
 participant "backend:Backend" as Backend
 participant "endpoint:entryEndpoint" as Endpoint

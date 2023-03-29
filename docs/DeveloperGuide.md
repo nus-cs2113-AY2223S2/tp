@@ -232,7 +232,7 @@ Class diagram above shows the methods called in the execute method of the
 View Command object.
 
 #### Implementation
-![ViewCommandSequenceDiagram.png](./static/ViewCommandSequenceDiagram.png)
+![ViewCommandSequenceDiagram.png](./static/ViewCommandOverallSequenceDiagram.png)
 
 **Step 1.** String of user arguments is fed into the parseViewCommand method in Parser object.
 

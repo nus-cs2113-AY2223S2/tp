@@ -1,7 +1,9 @@
 @startuml
+!include ../Style.puml
+
 title Endpoint Class Diagram
 
-interface Requestable
+class Requestable <<interface>>
 class Request
 class Response
 abstract class Endpoint
@@ -48,7 +50,7 @@ class EntriesEndpoint {
 - handleGetEntriesFilter(request : Request) : EntryLog
 }
 
-interface Requestable {
+class Requestable <<interface>> {
     handleRequest(request : Request) : Response
 }
 

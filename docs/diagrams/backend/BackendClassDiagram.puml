@@ -1,4 +1,6 @@
 @startuml
+!include ../Style.puml
+
 title Backend Class Diagram
 
 class Backend

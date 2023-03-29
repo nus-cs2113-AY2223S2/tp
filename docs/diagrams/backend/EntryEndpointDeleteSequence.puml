@@ -1,4 +1,6 @@
 @startuml
+!include ../Style.puml
+
 mainframe sd Endpoint /entries - Handle DELETE
 
 -> EntryEndpoint : handleDelete(Request)
