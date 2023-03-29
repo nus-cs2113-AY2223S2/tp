@@ -27,7 +27,7 @@ class RecipeNeedCommandTest {
     void execute() throws MealCompanionException {
         MealCompanionSession mealCompanionSession = new MealCompanionSession();
 
-        RecipeNeedCommand command = new RecipeNeedCommand("Cup of Water");
+        RecipeNeedCommand command = new RecipeNeedCommand("2");
         command.execute(mealCompanionSession);
         String expectedOutput = "These are the ingredient(s) you are missing:"
                 + System.lineSeparator()

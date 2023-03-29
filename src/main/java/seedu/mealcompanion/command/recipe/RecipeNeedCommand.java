@@ -14,10 +14,10 @@ import java.util.ArrayList;
  */
 public class RecipeNeedCommand extends RecipeCommand {
 
-    String recipeName;
+    String recipeNumberString;
 
-    public RecipeNeedCommand(String recipeName) {
-        this.recipeName = recipeName;
+    public RecipeNeedCommand(String recipeNumberString) {
+        this.recipeNumberString = recipeNumberString;
     }
 
     /**
@@ -47,7 +47,8 @@ public class RecipeNeedCommand extends RecipeCommand {
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
-            Recipe targetRecipe = mealCompanionSession.getRecipes().getRecipe(recipeName);
+            int recipeIndex = Integer.parseInt(recipeNumberString) - 1;
+            Recipe targetRecipe = mealCompanionSession.getRecipes().getRecipe(recipeIndex);
             IngredientList ingredientsInFridge = mealCompanionSession.getIngredients();
             IngredientList ingredients = targetRecipe.getIngredients();
             ArrayList<Ingredient> ingredientsInRecipe = ingredients.getIngredients();
@@ -67,11 +68,11 @@ public class RecipeNeedCommand extends RecipeCommand {
             if (!isMissing) {
                 mealCompanionSession.getUi().printMessage("You have all the ingredients to make this recipe!");
             }
-        } catch (MealCompanionException e) {
-            mealCompanionSession.getUi().printMessage(String.valueOf(e));
+        } catch (NumberFormatException e) {
+            mealCompanionSession.getUi().printMessage("Oops, please input a valid recipe number!");
         } catch (NullPointerException e) {
             mealCompanionSession.getUi().
-                    printMessage("Oops, recipe name cannot be empty, please input a valid recipe name!");
+                    printMessage("Oops, recipe number cannot be empty, please input a valid recipe number!");
         }
     }
 }
