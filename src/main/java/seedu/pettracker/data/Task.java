@@ -3,10 +3,15 @@ package seedu.pettracker.data;
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected String time;
+
+    public Task(String description, String time) {
+        this.description = description;
+        this.time = time;
+    }
 
     public Task(String description) {
-        this.description = description;
-        this.isDone = false;
+        this(description, "");
     }
 
     public String getStatusIcon() {
