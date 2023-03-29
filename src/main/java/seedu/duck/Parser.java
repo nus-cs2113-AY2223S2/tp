@@ -99,7 +99,13 @@ public class Parser {
                 // Find tasks that contain a keyword
                 TaskList.setPriority(tasks,words);
                 Storage.trySave(tasks, classes);
-            } else if (words[0].equals("clear")) {
+            } else if (words[0].equals("add_note") && (words.length == 2) && (isNumeric(words[1]))){
+                TaskList.addNote(tasks,words);
+            } else if (words[0].equals("delete_note") && (words.length == 3)){
+                TaskList.deleteNote(tasks, words);
+            }else if (words[0].equals("notes") && (words.length == 2) && (isNumeric(words[1]))){
+                Ui.printNotes(tasks,words);
+            }else if (words[0].equals("clear")) {
                 if (Ui.doubleCheck()) {
                     // Find tasks that contain a keyword
                     tasks.clear();
@@ -130,9 +136,9 @@ public class Parser {
      * @param words The array of words generated from the user input
      * @return The keywords string to use for the find function
      */
-    static String processKeywords(String[] words) {
+    static String processKeywords(String[] words,int index) {
         String rawKeyword = "";
-        for (int i = 1; i < words.length; i++) {
+        for (int i = index; i < words.length; i++) {
             rawKeyword += (" " + words[i]);
         }
         String keyword = rawKeyword.trim();

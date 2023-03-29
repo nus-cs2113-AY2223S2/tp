@@ -23,6 +23,7 @@ import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.PriorityQueue;
+import java.util.Scanner;
 
 /**
  * Contains operations to manipulate the task list
@@ -440,6 +441,28 @@ public class TaskList {
             System.out.println("\t Quack! No tasks currently pending!");
             Ui.borderLine();
         }
+    }
+    static void addNote(ArrayList<Task> tasks, String[] words){
+        int index = Integer.parseInt(words[1]);
+        System.out.println("\t What note would you like to add to the following task?");
+        System.out.println(tasks.get(index-1).toString());
+        Ui.borderLine();
+        Scanner userInput = new Scanner(System.in);
+        String noteToAdd = userInput.nextLine();
+        tasks.get(index-1).addNotes(noteToAdd);
+        System.out.println("\t The note has been added!");
+        Ui.borderLine();
+    }
+
+    static void deleteNote(ArrayList<Task> tasks, String[] words){
+        int index = Integer.parseInt(words[1]);
+        int indexOfNoteToBeDeleted = Integer.parseInt(words[2]);
+        Ui.borderLine();
+        System.out.println("\t Deleting note: ");
+        ArrayList<String> noteToBeDeleted = tasks.get(index-1).getAdditionalNotes();
+        System.out.println("\t \t" + noteToBeDeleted.get(indexOfNoteToBeDeleted-1));
+        tasks.get(index-1).deleteNote(indexOfNoteToBeDeleted);
+        Ui.borderLine();
     }
 
 }
