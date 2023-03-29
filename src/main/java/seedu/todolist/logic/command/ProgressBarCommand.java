@@ -1,3 +1,4 @@
+//@@author jeromeongithub
 package seedu.todolist.logic.command;
 
 import seedu.todolist.task.Task;
@@ -10,7 +11,6 @@ import java.time.temporal.WeekFields;
 import java.util.Locale;
 import java.util.function.Predicate;
 
-//@@author jeromeongithub
 public class ProgressBarCommand extends Command {
     private static final int PROGRESS_BAR_SECTIONS = 50;
 

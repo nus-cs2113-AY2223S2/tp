@@ -1,3 +1,4 @@
+//@@author clement559
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 
-//@@author clement559
 public class EditDeadlineCommandTest {
     private static final String DATE_EXAMPLE = "06-04-2030";
     private static final String TIME_EXAMPLE = "23:59";

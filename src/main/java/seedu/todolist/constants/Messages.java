@@ -16,6 +16,7 @@ public enum Messages {
     CHECK_REPEATING("Okay, I have checked for any repeating tasks."),
     EDIT_TASK("Okay, I have edited the %s of this task to [%s]:"),
     EDIT_DELETE_TASK("Okay, I have deleted the %s of this task:"),
+    PRIORITY_LEVELS("Please enter a number from 1-3 (1:Low, 2:Medium, 3:High)"),
 
     LIST_TASKS("Okay, here is your task list, with "),
     TAGS_INFO("Okay, here are the tags associated with your task list:"),
