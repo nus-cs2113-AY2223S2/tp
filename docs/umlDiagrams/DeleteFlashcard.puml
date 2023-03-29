@@ -1,0 +1,57 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!define LOGIC_COLOR #3333C4
+!define LOGIC_COLOR_T1 #7777DB
+!define LOGIC_COLOR_T2 #5252CE
+!define LOGIC_COLOR_T3 #1616B0
+!define LOGIC_COLOR_T4 #101086
+
+participant "<<Class>> :Clanki" as Main
+participant ":Ui" as Ui
+participant ":Parser" as Parser
+participant ":Delete Command" as DeleteCommand
+participant ":Flashcard List" as FlashcardList
+
+activate Main
+Main -> Ui : User input
+activate Ui
+
+Ui -> Main : userInput : String
+deactivate Ui
+
+Main -> Parser : parseInput(userInput)
+activate Parser
+
+create DeleteCommand
+Parser -> DeleteCommand :DeleteCommand(query)
+activate DeleteCommand
+
+DeleteCommand -> Parser
+deactivate DeleteCommand
+
+Parser -> Main : command : DeleteCommand
+deactivate Parser
+
+Main -> DeleteCommand : execute()
+activate DeleteCommand
+
+DeleteCommand -> FlashcardList : getFlashcards()
+activate FlashcardList
+
+FlashcardList -> DeleteCommand
+deactivate FlashcardList
+
+DeleteCommand -> Ui : printSuccessfulDelete(index)
+activate Ui
+
+Ui -> Main : Display Message
+Ui -> DeleteCommand
+deactivate Ui
+
+DeleteCommand -> Main
+deactivate DeleteCommand
+
+
+
+@enduml

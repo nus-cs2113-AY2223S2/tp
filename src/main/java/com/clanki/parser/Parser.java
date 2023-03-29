@@ -10,6 +10,7 @@ import com.clanki.commands.UpdateCommand;
 import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
+import com.clanki.exceptions.NoQueryInInputException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,13 +30,15 @@ public class Parser {
             System.out.println("The question of this card is empty, please enter one.");
         } catch (EmptyFlashcardAnswerException e) {
             System.out.println("The answer for this flashcard is empty, please enter one.");
+        } catch (NoQueryInInputException e) {
+            System.out.println("Please enter a query to be searched in the list of flashcards.");
         }
         return new UnknownCommand();
     }
 
     public static Command parseCommandStrict(String userInput)
             throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException,
-            EmptyFlashcardAnswerException {
+            EmptyFlashcardAnswerException, NoQueryInInputException {
         ParsedInput parsedInput = new ParsedInput(userInput);
         String command = parsedInput.getCommand();
         assert !command.isEmpty() : "The command string must not be empty";
@@ -94,13 +97,16 @@ public class Parser {
         return new ReviewCommand();
     }
 
-    public static UpdateCommand getUpdateCommand(ParsedInput parsedInput) {
+    public static UpdateCommand getUpdateCommand(ParsedInput parsedInput) throws NoQueryInInputException {
+        String query = parsedInput.getBody();
+        if (query.isEmpty()) {
+            throw new NoQueryInInputException();
+        }
         return new UpdateCommand(parsedInput.getBody());
     }
 
     public static DeleteCommand getDeleteCommand(ParsedInput parsedInput) {
-        int index = Integer.parseInt(parsedInput.getBody());
-        return new DeleteCommand(index);
+        return new DeleteCommand(parsedInput.getBody());
     }
 
     public static ByeCommand getByeCommand(ParsedInput parsedInput) {

@@ -4,6 +4,7 @@ package com.clanki.parser;
 import com.clanki.commands.AddCommand;
 import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
+import com.clanki.commands.DeleteCommand;
 import com.clanki.commands.ReviewCommand;
 import com.clanki.commands.UnknownCommand;
 import com.clanki.commands.UpdateCommand;
@@ -75,5 +76,11 @@ class ParserTest {
     public void parserUpdateCommand_updateCommand_successful() {
         Command parsedCommand = Parser.parseCommand("update Question");
         assertTrue(parsedCommand instanceof UpdateCommand);
+    }
+
+    @Test
+    public void parserDeleteCommand_deleteCommand_successful() {
+        Command parsedCommand = Parser.parseCommand("del query");
+        assertTrue(parsedCommand instanceof DeleteCommand);
     }
 }

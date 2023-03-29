@@ -43,6 +43,10 @@ public class Flashcard {
         return dueDate;
     }
 
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
     public int getCurrentPeriodInDays() {
         return currentPeriodInDays;
     }
