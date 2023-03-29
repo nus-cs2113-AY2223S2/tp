@@ -77,6 +77,12 @@ String contactEmail</code>. Using this information, <code>CompanyList.add</code>
 at the end of the company list. After successfully executing the command, it will show successful addition message using
 the related method in the <code>Ui</code>.
 
+### [DONE] Delete feature
+#### Implementation
+The proposed <code>CompanyList.deleteCompanyInformation(index)</code> is facilitated by <code>DeleteCommand</code>. 
+It will delete the company at the specified index in the list of companies. After successfully executing the command, 
+it will show successful deletion message using the related method in the <code>Ui</code>.
+
 ### [DONE] Storing event details feature
 #### Implementation
 The proposed eventDetailStorage feature will allow users to save the event details of the current session to hard disk. 
@@ -94,7 +100,21 @@ an integer denoting its index, four parameters, <code>String companyName </code>
 <code>Int contactNumber </code>, and <code>String contactEmail </code>, and its confirmation status. It will print out 
 each company from the entire companyList from index 0 to the final index of the last company stored in companyList.
 
+### [DONE] Store Company information to text file feature
+#### Implementation
+The proposed <code>CompanyListEncoder.write()</code> feature checks if a text file of name "companyList.txt" exists.
+If the text file does not exist, it is created when the programme boots up.
+If the text file exists, this method iterates through the list of company information in the list of companies and 
+stores the companies' information in the text file. Prior to writing the company information to this text file, all 
+previously saved text in this file is overwritten.
+![Encoder.png](UML%2FImage%2FEncoder.png)
 
+### [DONE] Load Company information from text file feature
+#### Implementation
+The proposed <code>CompanyListDecoder.load()</code> feature checks if a text file of name "companyList.txt" exists.
+If the text file does not exist, a message is printed to the user indicating that the file is not found.
+If the text file exists, this method iterates through the text file line by line and parses the input. Then the parsed
+input is added to the list of companies using the method <code>CompanyList.add</code>.
 
 ## Product scope
 ### Target user profile
