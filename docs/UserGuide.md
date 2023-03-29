@@ -101,7 +101,7 @@ You have finished reviewing for today. Congratulations.
 update /q QUERY
 ```
 
-- `QUERY` can be part of the card's question or answer.
+- `QUERY` can be the card's date or be part of the card's question or answer.
 
 - A list of cards that contain this query will be listed, with an
   index assigned to each.
