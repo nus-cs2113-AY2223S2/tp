@@ -34,6 +34,7 @@ public class Main {
         storage.createPetFile(ui);
         storage.createTaskFile(ui);
         storage.loadPetFile(ui);
+        storage.loadTaskFile(ui);
     }
 
     /**

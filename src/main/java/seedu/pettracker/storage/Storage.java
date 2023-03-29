@@ -3,6 +3,7 @@ package seedu.pettracker.storage;
 import seedu.pettracker.data.Pet;
 import seedu.pettracker.data.PetList;
 import seedu.pettracker.data.Task;
+import seedu.pettracker.data.TaskList;
 import seedu.pettracker.ui.Ui;
 
 import java.io.File;
@@ -60,6 +61,16 @@ public class Storage {
             ui.fileIOErrorMessage();
         }
     }
+
+    public void loadTaskFile(Ui ui)  {
+        try {
+            ArrayList<String> data = readFile(taskFilePath);
+            parseTaskFile(data);
+        } catch (IOException e) {
+            ui.fileIOErrorMessage();
+        }
+    }
+
 
     private void writePetsToFile(ArrayList<Pet> petList) throws IOException {
         FileWriter fw = new FileWriter(petFilePath);
@@ -132,6 +143,19 @@ public class Storage {
         }
     }
 
+    private void parseTaskFile(ArrayList<String> data) {
+        for (String line : data) {
+            String taskName = getTaskName(line);
+            TaskList.addTask(taskName);
+
+            String taskStatus = getTaskStatus(line);
+            if (taskStatus.startsWith("1")) {
+                int taskNumber = TaskList.getNumberOfTasks();
+                TaskList.markTask(taskNumber, true);
+            }
+        }
+    }
+
     private String getPetName(String line) {
         String[] words = line.split("\\|", 2);
         String petName = words[0];
@@ -154,5 +178,17 @@ public class Storage {
         String[] words = line.split("\\|", 5);
         String weight = words[3];
         return weight;
+    }
+
+    private String getTaskName(String line) {
+        String[] words = line.split("\\|", 2);
+        String taskName = words[1];
+        return taskName;
+    }
+
+    private String getTaskStatus(String line) {
+        String[] words = line.split("\\|", 2);
+        String taskStatus = words[0];
+        return taskStatus;
     }
 }
