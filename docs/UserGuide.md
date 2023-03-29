@@ -7,6 +7,7 @@ Duck is a **desktop app for managing tasks and deadlines, optimised for use via 
 * [**Features**](#features)
     * [Viewing help :](#viewing-help--help) `help`
     * [Listing all tasks :](#listing-all-tasks--list) `list`
+    * [Listing all tasks and classes happening today :](#listing-all-tasks--list) `list today`
     * [Listing all tasks up to X days into the future :](#listing-all-tasks-up-to-x-days-in-the-future--list-x) `list X`
     * [Displaying class schedule :](#displaying-class-schedule--list-classes) `list classes`
     * [Mark a specified task as done :](#marking-a-task--mark-task_number) `mark <task number> `
@@ -67,6 +68,29 @@ Here are the tasks in your list:
 	 3.	 [E][ ] event (from: 2023-03-25 1200 to: 2023-03-26 2359) (No priority established.)
 	 4.	 [C][ ] CS2113: Class (from: 2023-03-25 1100 to: 2023-03-25 1200) (No priority established.)
 ```
+
+## **Listing all tasks and classes happening today : `list today`**
+
+Displays all deadlines, events and classes happening today.
+
+**Input:** `list today`
+
+**Output: Demonstrated with 1 of each type currently in the stored data array**
+
+
+```
+	____________________________________________________________
+	 Here is your class schedule for today
+	 [WEDNESDAY][X] cs2113 (from: 1200 to: 1300)
+
+	 Here are your tasks today
+	 [D][ ] sleep (by: 2023-03-29 2000) (No priority established.)
+	 [D][ ] shower (by: 2000) (every WEDNESDAY) (No priority established.)
+	 [E][ ] study (from: 2023-03-29 2100 to: 2023-04-23 2300) (No priority established.)
+	 [E][ ] study (from: 0800 to: 2300) (every WEDNESDAY) (No priority established.)
+	____________________________________________________________
+```
+
 
 ## **Displaying class schedule : `list classes`**
 
