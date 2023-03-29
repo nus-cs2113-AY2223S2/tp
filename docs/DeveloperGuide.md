@@ -25,6 +25,24 @@ The component will return the correct command based on what the user inputs into
 The Parser component parses the command of the user input and breaks the user input into different parts based on the flags.
 This component also ensures to validate that user input is correct.
 
+The Parser component handles the following methods:
+* Add event
+* Add module
+* List event list
+* Delete event
+* Edit event
+* Find date of week
+* Format checker
+* Revise information using index
+* Revise information using name
+
+The UML diagram below illustrates the flow of how the application adds events:
+![Add Event Class Diagram](UML/Images/addEvent.png)
+
+
+The UML diagram below illustrates the flow of how the application adds modules:
+![Add Event Class Diagram](UML/Images/addModules.png)
+
 #### Why is the feature implemented this way?
 
 This component should be able to guide the user to inputting the correct format of the command to do data validation.

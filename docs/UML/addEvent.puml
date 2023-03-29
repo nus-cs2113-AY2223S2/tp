@@ -1,0 +1,39 @@
+@startuml
+Actor -> Parser : parseAddCommand()
+Parser -> Parser : addFormatChecker()
+alt event has end date
+    alt event is recurring
+        Parser -> EventList : addEvent()
+        EventList -> EventList : convertToTimeInfo()
+        EventList -> EventList : convertToTimeInfo()
+        EventList -> Event : new Event()
+        Event  --> EventList
+        EventList -> EventList : canAddNewEvent()
+        EventList --> Parser
+    else event is non-recurring
+        Parser -> EventList : addEvent()
+EventList -> EventList : convertToTimeInfo()
+        EventList -> EventList : convertToTimeInfo()
+        EventList -> Event : new Event()
+        Event  --> EventList
+        EventList  --> Parser
+    end
+    else event does not has end date
+        alt event is recurring
+            Parser -> EventList : addEvent()
+            EventList -> EventList : convertToTimeInfo()
+            EventList -> Event : new Event()
+            Event  --> EventList
+            EventList --> Parser
+        else event is non-recurring
+            Parser -> EventList : addEvent()
+            EventList -> EventList : convertToTimeInfo()
+            EventList -> Event : new Event()
+            Event  --> EventList
+            EventList  --> Parser
+        end
+end
+Parser -> Ui : addSuccessMsg()
+Ui --> Parser
+Parser --> Actor
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+Actor -> Parser : parseAddCommand()
+Parser -> Parser : addFormatChecker()
+Parser -> NusmodConverter : loadModules()
+NusmodConverter --> Parser : HashMap<String, NusModule> nusmodules
+Parser -> NusModule : getLesson()
+NusModule --> Parser : List<Lesson> lessons
+loop lesson: Lessons
+    loop week: lesson.getWeeks()
+        Parser -> Parser : findDateOfWeek()
+        Parser -> EventList : addEvent()
+        EventList -> EventList : convertToTimeInfo()
+        EventList -> EventList : convertToTimeInfo()
+        EventList -> Event : new Event()
+        Event  --> EventList
+        EventList -> EventList : canAddNewEvent()
+        EventList --> Parser
+    end
+end
+Parser --> Actor
+@enduml
