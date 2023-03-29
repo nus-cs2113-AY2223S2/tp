@@ -95,7 +95,8 @@ public class Parser {
         }
     }
 
-    private Command addStatement(String addInput) throws RainyDayException { // example: add -<in/out> <description> $value -c -date
+    private Command addStatement(String addInput) throws RainyDayException { // example: add -<in/out> <description>
+        // $value -c -date
         try {
             this.category = "miscellaneous";
             this.date = LocalDate.now();
