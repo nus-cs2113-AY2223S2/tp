@@ -12,14 +12,16 @@ planning future exercises.
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
 - [Features](#features)
-  - [Start a Workout: /start](#start-a-workout--start)
-  - [Add exercise: /add](#add-exercise--add)
+  - [Start a workout: /start](#start-a-workout--start)
+  - [Add exercises to current workout: /wadd](#add-exercises-to-current-workout--wadd)
   - [End current workout: /end](#end-current-workout--end)
-  - [Display workout list: /list](#display-workout-list--list)
-  - [Display a workout: /view](#display-workout-view--list)
+  - [List workout dates: /list](#list-workout-dates--list)
+  - [View a workout: /wview](#view-a-workout--wview)
   - [Delete a workout: /delete](#delete-a-workout--delete)
-  - [Count Sets and reps over a week: /count](#count-sets-and-reps--count)
-  - [Exit app: /exit](#exit-app--exit)
+  - [Count sets and reps over a week: /count](#count-sets-and-reps-over-a-week--count)
+  - [Add calories consumed: /cadd](#add-calories-consumed--cadd)
+  - [View calorie consumption: /cview](#view-calorie-consumption--cview)
+  - [Exit the app: /exit](#exit-the-app--exit)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -31,13 +33,12 @@ This application will help you track your current and future workouts.
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of `Fitness Tracker` from [here](https://github.com/AY2223S2-CS2113-T14-1).
-
+2. Download the latest version of `Fitz` from [here](https://github.com/AY2223S2-CS2113-T14-1).
 
 
 ## Features
 
-### Starting a workout: `/start`
+### Start a workout: `/start`
 Starts the workout for a specific date
 
 Format: `/start <DD/MM/YY>`
@@ -55,12 +56,12 @@ Expected output:
 Started new workout.
 Use add command to add exercises to your workout!
 ```
-### Adding to the workout: `/add`
-Adds to the list of workouts.
+### Add exercises to current workout: `/wadd`
+Adds exercise to the current workout.
 
-Format: `/add <exercise_name> /weight <weight_used> /rps <reps_per_set>`
+Format: `/wadd <exercise_name> /weight <weight_used> /rps <reps_per_set>`
 
-* The `/start` needs to be inputted first to use the `/add` command.
+* `/wadd` only works after a workout is started with `/start`.
 
 Example of usage:
 
@@ -72,8 +73,21 @@ Expected output:
 ```
 Added bench press 100 5 5 5 5
 ```
-### Listing workout dates: `/list`
-Display the current workout dates
+
+### End current workout: `/end`
+End the current workout.
+
+Format: `/end`
+
+Example of usage:
+`\end`
+Expected output:
+```
+Great job completing your workout!
+```
+
+### List workout dates: `/list`
+Display the list of dates of workouts done.
 
 Format: `/list`
 
@@ -81,25 +95,29 @@ Example of usage:
 
 `/list`
 
+Expected output:
 ```
-Here are the list of dates for your workout: 
-Tue Mar 21 00:00:00 SGT 2023
+Here are the list of dates of your workouts: 
+1. 25/03/23
+2. 26/03/23
 ```
-### Viewing a specific workout: `/view`
-Display the specified workout list
+### View a workout: `/wview`
+Display the list of exercises done for a workout on a specified date.
 
-Format: `/view <DD/MM/YY>`
+Format: `/wview <DD/MM/YY>`
 
 Example of usage:
 
-`/view 21/03/23`
+`/wview 21/03/23`
 
 Expected output:
 ```
-[bench press 100 5 5 5 5, bench press 100 5 5 5 5]
+Here are the list of exercises in your workout:
+1. bench press 100kg 9 8 7 6 5
+2. squats 120kg 8 6 5 4
 ```
-### Deleting a specific workout: `/delete`
-Delete the specified workout
+### Delete a workout: `/delete`
+Delete a workout on a specified date.
 
 Format: `/delete <DD/MM/YY>`
 
@@ -109,9 +127,9 @@ Example of usage:
 
 Expected output:
 ```
-Workout deleted successfully.
+Workout deleted.
 ```
-### Counting sets and reps over a week: `/count`
+### Count sets and reps over a week: `/count`
 Displays the list of distinct exercises over a week and the associated total number of sets and reps for each one
 
 Format: `/count <DD/MM/YY>`
@@ -128,8 +146,38 @@ Bench Press - 4 sets - 48 reps
 Squats - 5 sets - 60 reps
 ----------------------------------
 ```
+### Add calories consumed: `/cadd`
+Add record of calories consumed.
+
+Format: `/cadd <DD/MM/YY> <FOOD_NAME> <CALORIE_COUNT>`
+
+* `<CALORIE_COUNT>` can be omitted if food has not been added previously.
+
+Example of usage:
+`/cadd 25/03/23 chicken 100`
+`/cadd 25/03/23 chicken`
+
+Expected output:
+```
+Consumed additional 100kcal.
+Total calories consumed: 100kcal
+Consumed additional 100kcal.
+Total calories consumed: 200kcal
+```
+### View calorie consumption: `/cview`
+View the total calorie consumption in a specified date.
+
+Format: `/view <DD/MM/YY>`
+
+Example of usage:
+`/cview`
+
+Expected output:
+```
+Calories consumed on 25/03/23: 200kcal.
+```
 ### Exit the App: `/exit`
-Delete the specified workout
+Exit the program.
 
 Format: `/exit`
 
@@ -139,7 +187,7 @@ Example of usage:
 
 Expected output:
 ```
-Thank you and see you next time
+Thank you, hope you had a great workout!!!
 ```
 
 ## FAQ
@@ -151,8 +199,12 @@ Thank you and see you next time
 ## Command Summary
 
 * Start a workout `/start <DD/MM/YY>`
-* Add exercise `/add <EXERCISE_NAME> /weight <WEIGHT_USED> /rps <REPS_PER_SET>`
+* Add exercise `/wadd <EXERCISE_NAME> /weight <WEIGHT_USED> /rps <REPS_PER_SET>`
 * End current Workout `/end`
-* Display workout list `/list`
+* List workout dates: `/list`
+* View a workout: `/wview <DD/MM/YY>`
 * Delete a workout `/delete <DD/MM/YY>`
+* Count sets and reps over a week: `/count <DD/MM/YY>`
+* Add calories consumed: `/cadd <DD/MM/YY> <FOOD_NAME> <CALORIE_COUNT>`
+* View calorie consumption: `/cview <DD/MM/YY>`
 * Exit app `/exit`
