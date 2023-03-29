@@ -11,7 +11,8 @@ RM(recipe manager) is a <strong>desktop recipe manager application for managing 
 * **[Features](#features)**
     * **[Viewing help：`help`](#viewing-help-help)**
     * **[Adding a recipe: `add`](#adding-a-recipe-add)**
-    * **[Editing a recipe: `edit`](#editing-a-recipe-edit)**
+    * **[Editing steps for a recipe: `editstep`](#editing-a-recipe-step-editstep)**
+    * **[Editing ingredients for a recipe: `editingredient`](#editing-a-recipe-ingredient-editingredient)**
     * **[Deleting a recipe: `delete`](#deleting-a-recipe-delete)**
     * **[Finding recipes: `find`](#finding-recipes-find)**
     * **[Viewing a recipe: `view`](#viewing-a-recipe-view)**
@@ -91,13 +92,82 @@ __________________________________________________________
 ```
 <p>App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.</p>
 
-<!-- <h2 id="editing-a-recipe-edit"> Editing a recipe: <code class="language-plaintext highlighter-rouge">edit</code></h2>
+<h2 id="editing-a-recipe-step-editstep"> Editing a recipe's steps: <code class="language-plaintext highlighter-rouge">editstep</code></h2>
 
-Edits a recipe in the recipe manager.
-Format: `edit n/NAME`
-Examples:
-* `edit n/Hotpot`
-<p>App will print the steps to the recipe with step numbers, next input the step number you wish to edit, then re-type the whole step to replace the instruction.</p> -->
+Edits a step for a recipe in the recipe manager.
+**Format**: `editstep INDEX`, then input the step number
+**Hint**: At the edit page, you can input `quit` if you decide not to edit.
+<p> Examples:
+
+```
+editstep 2
+There are 1 steps in the list
+1. chop beef
+Which step do you want to edit?
+Type 'quit' to exit the edit view
+1
+Enter the description of the step:
+go to haidilao
+Step has been edited:
+1. go to haidilao
+```
+```
+editstep 1
+There are 3 steps in the list
+1. chop beef
+2. add car
+3. eat food
+Which step do you want to edit?
+Type 'quit' to exit the edit view
+quit
+__________________________________________________________
+```
+The function will replace the specified step of a specified recipe with a new user input.
+First input the index of the recipe to edit, then input the step number you would like to edit.
+Following which, type in the description for the step.
+
+<p> Note that to `exit` the whole program from the edit window, you have to `quit` first then `exit` </p>
+
+<h2 id="editing-a-recipe-ingredient-editingredient"> Editing a recipe's ingredients: <code class="language-plaintext highlighter-rouge">editingredient</code></h2>
+
+<p>Edits an ingredient for a recipe in the recipe manager.
+**Format**: `editingredient INDEX`, then input the ingredient number
+**Hint**: At the edit page, you can input `quit` if you decide not to edit.
+</p>
+<p> Examples:
+
+```
+editingredient 1
+Here are 3 ingredients in the list:
+1. Beef
+2. Potatoes
+3. Carrots
+Which ingredient do you want to edit?
+Type 'quit' to exit the edit view
+2
+Enter the description of the ingredient:
+Chicken
+Ingredient has been edited:
+2. Chicken
+```
+
+```
+editingredient 1
+Here are 3 ingredients in the list:
+1. Beef
+2. Chicken
+3. Carrots
+Which ingredient do you want to edit?
+Type 'quit' to exit the edit view
+quit
+__________________________________________________________
+```
+</p>
+<p> The function will replace the specified ingredient of a specified recipe with a new user input.
+First input the index of the recipe to edit, then input the ingredient number you would like to edit.
+Following which, type in the description for the ingredient. </p>
+
+<p> Note that to `exit` the whole program from the edit window, you have to `quit` first then `exit` </p>
 
 <h2 id="deleting-a-recipe-delete"> Deleting a recipe: <code class="language-plaintext highlighter-rouge">delete</code></h2>
 

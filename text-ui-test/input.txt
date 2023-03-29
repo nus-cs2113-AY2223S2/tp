@@ -18,6 +18,7 @@ list
 delete 1
 list
 view 2
+yes
 delete 3
 list
 add n/XiaoLongBao i/Pork, Soup, Dumplings t/Chinese s/0
@@ -25,7 +26,27 @@ add n/Guilinggao i/Tea, Milk, Sugar t/Chinese s/1
 brew tea
 list
 view 1
+no
+editstep 1
+1
+go to haidilao
+view 1
+no
+add n/IceLemonTea i/Lemon, Tea, Ice t/Western s/4
+brew tea
+add lemon
+add ice
+drink
+list
+view 7
+yes
+.
+.
+.
+.
+editstep 7
+3
+stir drink
 clear
 list
-load
 exit

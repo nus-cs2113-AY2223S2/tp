@@ -40,6 +40,14 @@ public enum CommandType {
      * Terminates the programme and exit without saving.
      */
     EXIT,
+    /**
+     * Edit a step in the recipe.
+     */
+    EDITSTEP,
+    /**
+     * Edit a ingredient in the recipe.
+     */
+    EDITINGREDIENT,
     FIND,
     /**
      * Command not recognized.

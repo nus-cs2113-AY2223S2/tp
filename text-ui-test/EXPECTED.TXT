@@ -140,32 +140,29 @@ Here are 3 ingredients in the list:
 3. Cheese
 __________________________________________________________
 There are 1 steps in the list
+Do you want to view step-by-step?
+Type yes if so
+To exit recipe view, type "quit"
+Else, enter any key to continue
 1. add spaghetti
-__________________________________________________________
-
-Noted. I've removed this recipe:
-  [Italian] Carbonara
-Now you have 3 recipes in the list.
-
-MaLaXiangGuo
-Spaghetti
-Beijing Duck
 __________________________________________________________
 
 RECIPE LIST
 
 1. [Chinese] MaLaXiangGuo
 2. [Italian] Spaghetti
-3. [Chinese] Beijing Duck
+3. [Italian] Carbonara
+4. [Chinese] Beijing Duck
 
 __________________________________________________________
 
 Got it. I've added this recipe:
   [Chinese] XiaoLongBao
-Now you have 4 recipes in the list.
+Now you have 5 recipes in the list.
 
 MaLaXiangGuo
 Spaghetti
+Carbonara
 Beijing Duck
 XiaoLongBao
 __________________________________________________________
@@ -174,10 +171,11 @@ Please enter the description of step 1:
 
 Got it. I've added this recipe:
   [Chinese] Guilinggao
-Now you have 5 recipes in the list.
+Now you have 6 recipes in the list.
 
 MaLaXiangGuo
 Spaghetti
+Carbonara
 Beijing Duck
 XiaoLongBao
 Guilinggao
@@ -187,9 +185,10 @@ RECIPE LIST
 
 1. [Chinese] MaLaXiangGuo
 2. [Italian] Spaghetti
-3. [Chinese] Beijing Duck
-4. [Chinese] XiaoLongBao
-5. [Chinese] Guilinggao
+3. [Italian] Carbonara
+4. [Chinese] Beijing Duck
+5. [Chinese] XiaoLongBao
+6. [Chinese] Guilinggao
 
 __________________________________________________________
 Here is the recipe you requested, which is a Chinese flavour:
@@ -201,18 +200,113 @@ Here are 3 ingredients in the list:
 3. Mushrooms
 __________________________________________________________
 There are 1 steps in the list
+Do you want to view step-by-step?
+Type yes if so
+There are 1 steps in the list
 1. chop beef
+__________________________________________________________
+There are 1 steps in the list
+1. chop beef
+Which step do you want to edit?
+Type 'quit' to exit the edit view
+Enter the description of the step:
+Step has been edited:
+1. go to haidilao
+MaLaXiangGuo
+Spaghetti
+Carbonara
+Beijing Duck
+XiaoLongBao
+Guilinggao
+__________________________________________________________
+Here is the recipe you requested, which is a Chinese flavour:
+name: MaLaXiangGuo
+__________________________________________________________
+Here are 3 ingredients in the list:
+1. Beef
+2. Mutton
+3. Mushrooms
+__________________________________________________________
+There are 1 steps in the list
+Do you want to view step-by-step?
+Type yes if so
+There are 1 steps in the list
+1. go to haidilao
+__________________________________________________________
+
+Please enter the description of step 1:
+
+Please enter the description of step 2:
+
+Please enter the description of step 3:
+
+Please enter the description of step 4:
+
+Got it. I've added this recipe:
+  [Western] IceLemonTea
+Now you have 7 recipes in the list.
+
+MaLaXiangGuo
+Spaghetti
+Carbonara
+Beijing Duck
+XiaoLongBao
+Guilinggao
+IceLemonTea
+__________________________________________________________
+
+RECIPE LIST
+
+1. [Chinese] MaLaXiangGuo
+2. [Italian] Spaghetti
+3. [Italian] Carbonara
+4. [Chinese] Beijing Duck
+5. [Chinese] XiaoLongBao
+6. [Chinese] Guilinggao
+7. [Western] IceLemonTea
+
+__________________________________________________________
+Here is the recipe you requested, which is a Western flavour:
+name: IceLemonTea
+__________________________________________________________
+Here are 3 ingredients in the list:
+1. Lemon
+2. Tea
+3. Ice
+__________________________________________________________
+There are 4 steps in the list
+Do you want to view step-by-step?
+Type yes if so
+To exit recipe view, type "quit"
+Else, enter any key to continue
+1. brew tea
+2. add lemon
+3. add ice
+4. drink
+__________________________________________________________
+There are 4 steps in the list
+1. brew tea
+2. add lemon
+3. add ice
+4. drink
+Which step do you want to edit?
+Type 'quit' to exit the edit view
+Enter the description of the step:
+Step has been edited:
+3. stir drink
+MaLaXiangGuo
+Spaghetti
+Carbonara
+Beijing Duck
+XiaoLongBao
+Guilinggao
+IceLemonTea
 __________________________________________________________
 
 All recipes have been cleared!
 __________________________________________________________
 
 MATE! Your list is empty!
-
-__________________________________________________________
-
-OOPS!!! I'm sorry, but I don't know what that means
-Try typing "help" to see the valid commands you can use!
 
 __________________________________________________________
 

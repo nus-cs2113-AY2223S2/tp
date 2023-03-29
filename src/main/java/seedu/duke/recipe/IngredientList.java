@@ -1,5 +1,8 @@
 package seedu.duke.recipe;
 
+import seedu.duke.ui.StringLib;
+import seedu.duke.ui.UI;
+
 import java.util.ArrayList;
 
 public class IngredientList {
@@ -57,5 +60,15 @@ public class IngredientList {
     }
     public ArrayList<Ingredient> getList() {
         return list;
+    }
+
+    public void editIngredient(UI ui, int ingredientIndex) {
+        System.out.println(StringLib.ENTER_INGREDIENT_DESCRIPTION);
+        String description = ui.readCommand();
+        Ingredient newIngredient = new Ingredient(description);
+        list.set(ingredientIndex, newIngredient);
+        System.out.println(StringLib.INGREDIENT_EDIT_SUCCESS);
+        System.out.print((ingredientIndex + 1) + ". ");
+        System.out.println(list.get(ingredientIndex).getName());
     }
 }

@@ -2,12 +2,14 @@ package seedu.duke.command;
 
 
 import seedu.duke.exceptions.IncompleteInputException;
+import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.parser.Parser;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 import seedu.duke.recipe.StepList;
 import seedu.duke.storage.Storage;
+import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
 import java.io.IOException;
@@ -109,13 +111,76 @@ public class Command {
                 }
                 int recipeListNum = Integer.parseInt(fullDescription);
                 Recipe recipeToBeViewed = recipeList.getRecipeFromList(recipeListNum);
-                ui.showRecipeViewed(recipeToBeViewed);
+                ui.showRecipeViewed(recipeToBeViewed, ui);
             } catch (Exception e) {
                 ui.showViewingRecipeErrorMessage(e);
             }
             break;
         case FIND:
             RecipeList.searchRecipeList(fullDescription);
+            break;
+        case EDITSTEP:
+            try {
+                if (fullDescription.isEmpty()) {
+                    throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
+                }
+                int recipeListNum = Integer.parseInt(fullDescription);
+                Recipe recipeToEdit = recipeList.getRecipeFromList(recipeListNum);
+                StepList recipeToEditStepList = recipeToEdit.getStepList();
+                int maxSteps = recipeToEditStepList.getCurrStepNumber();
+                if (maxSteps == 0) {
+                    assert (maxSteps - 1 == -1);
+                    throw new OutOfIndexException(StringLib.NO_STEPS_ERROR);
+
+                }
+
+                recipeToEditStepList.showFullStepList();
+                ui.showEditRecipeStepPrompt();
+                String input = ui.readCommand();
+                if (input.equals("quit")) {
+                    break;
+                }
+                int stepIndex = Integer.parseInt(input) - 1;
+                if (stepIndex < maxSteps) {
+                    assert (maxSteps - stepIndex > 0);
+                    recipeToEditStepList.editStep(stepIndex,ui);
+                } else {
+                    throw new OutOfIndexException(StringLib.INPUT_STEPS_INDEX_EXCEEDED);
+                }
+            } catch (Exception e) {
+                ui.showEditErrorMessage(e);
+            }
+            Storage.writeSavedFile();
+            break;
+            
+        case EDITINGREDIENT:
+            try {
+                if (fullDescription.isEmpty()) {
+                    throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
+                }
+                int recipeListNum = Integer.parseInt(fullDescription);
+                Recipe recipeToEdit = recipeList.getRecipeFromList(recipeListNum);
+                IngredientList recipeToEditIngredientList = recipeToEdit.getIngredientList();
+                int maxSteps = recipeToEditIngredientList.getCurrIngredientNumber();
+                if (maxSteps == 0) {
+                    throw new OutOfIndexException(StringLib.NO_INGREDIENTS_ERROR);
+                }
+                recipeToEditIngredientList.showList();
+                ui.showEditRecipeIngredientPrompt();
+                String input = ui.readCommand();
+                if (input.equals(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
+                    break;
+                }
+                int ingredientIndex = Integer.parseInt(input) - 1;
+
+                if (ingredientIndex >= maxSteps) {
+                    throw new OutOfIndexException(StringLib.INPUT_INGREDIENTS_INDEX_EXCEEDED);
+                }
+                recipeToEditIngredientList.editIngredient(ui, ingredientIndex);
+            } catch (Exception e) {
+                ui.showEditErrorMessage(e);
+            }
+            Storage.writeSavedFile();
             break;
         case HELP:
             ui.showHelp();

@@ -3,6 +3,7 @@ package seedu.duke.ui;
 import seedu.duke.command.CommandType;
 import seedu.duke.exceptions.FileParseReadingException;
 import seedu.duke.exceptions.IncompleteInputException;
+import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.exceptions.RecipeListEmptyException;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
@@ -109,7 +110,7 @@ public class UI {
             System.out.println(StringLib.RECIPE_DELETING_DEFAULT_ERROR + e.getMessage());
         }
     }
-    public void showRecipeViewed(Recipe recipe) {
+    public void showRecipeViewed(Recipe recipe, UI ui) {
         System.out.println("Here is the recipe you requested, which is a "+ recipe.getTag() + " flavour:");
         System.out.println("name: " + recipe.getName());
         System.out.println(StringLib.LINE);
@@ -117,7 +118,7 @@ public class UI {
         ingredients.showList();
         System.out.println(StringLib.LINE);
         StepList steps = recipe.getStepList();
-        steps.showStepList();
+        steps.showStepList(ui);
     }
     public void showViewingRecipeErrorMessage(Exception e) {
         if (e instanceof IncompleteInputException) {
@@ -136,6 +137,22 @@ public class UI {
     }
     public void showLoad() {
         System.out.println(StringLib.RECIPE_LOADED);
+    }
+    public void showEditRecipeStepPrompt() {
+        System.out.println("Which step do you want to edit?");
+        System.out.println("Type 'quit' to exit the edit view");
+    }
+    public void showEditErrorMessage (Exception e) {
+        if (e instanceof OutOfIndexException) {
+            System.out.println(e.getMessage());
+        } else {
+            System.out.println(StringLib.RECIPE_VIEWING_DEFAULT_ERROR + e.getMessage());
+        }
+
+    }
+    public void showEditRecipeIngredientPrompt() {
+        System.out.println("Which ingredient do you want to edit?");
+        System.out.println("Type 'quit' to exit the edit view");
     }
     public void showInvalidStepMessage() {
         System.out.println(StringLib.INVALID_STEP);
