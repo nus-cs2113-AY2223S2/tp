@@ -62,6 +62,8 @@ public class PrintHelpMessage {
         System.out.println("\tComplete your current workout session!");
         System.out.println("[cancel]");
         System.out.println("\tTerminate your current workout session.");
+        System.out.println("[exit]");
+        System.out.println("\tTerminate FitnessDuke program.");
     }
 
     public static void unknownCommandMessage() {

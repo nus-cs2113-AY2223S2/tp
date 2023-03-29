@@ -36,6 +36,13 @@ public class GeneralCommandHandler implements CommandList {
                                            Storage storage, UserPlan planner) {
         Command command = null;
         boolean errorExists = false;
+        //additional error check for whether there's additional description behind single
+        //word commands
+        String additionalDescription = "";
+        for (int i = 1; i < userCommands.length; i++) {
+            additionalDescription = additionalDescription + " " + userCommands[i];
+        }
+
         try {
 
             switch (userCommands[0]) {
@@ -43,26 +50,61 @@ public class GeneralCommandHandler implements CommandList {
                 command = new GenerateFilterCommand(userCommands);
                 break;
             case FILTERS_COMMAND:
-                ui.printFilters();
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    ui.printFilters();
+                }
                 break;
             case EXIT_COMMAND:
-                ui.byeUser();
-                System.exit(0);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    ui.byeUser();
+                    System.exit(0);
+                }
                 break;
             case HELP_COMMAND:
-                command = new HelpCommand();
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    command = new HelpCommand();
+                }
                 break;
             case PLANNER_EDITOR_COMMAND:
-                PlannerCommandHandler.plannerCommandHandler(ui, planner, storage);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    PlannerCommandHandler.plannerCommandHandler(ui, planner, storage);
+                }
                 break;
             case VIEW_PLAN_COMMAND:
-                ui.showPlan(planner);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    ui.showPlan(planner);
+                }
                 break;
             case QUICK_START_COMMAND:
-                command = new QuickStartCommand(userCommands, ui, exerciseGenerator);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    command = new QuickStartCommand(userCommands, ui, exerciseGenerator);
+                }
                 break;
             case START_COMMAND:
-                exerciseStateHandler.startWorkout();
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    exerciseStateHandler.startWorkout();
+                }
                 break;
             case CURRENT_COMMAND:
             case FINISH_COMMAND:
@@ -71,15 +113,25 @@ public class GeneralCommandHandler implements CommandList {
                                        " Please generate a workout and use the \"start\" command!");
                 break;
             case HISTORY_COMMAND:
-                userCareerData.printAllFinishedWorkoutSessions();
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    userCareerData.printAllFinishedWorkoutSessions();
+                }
                 break;
             case FIND_COMMAND:
                 command = new ExerciseSearchCommand(userCommands);
                 break;
             case EXERCISE_DATA_COMMAND:
-                HashMap<String, Integer> userExerciseDataMap = UserExerciseData
-                    .addUserExerciseHistory(userCareerData);
-                ui.printUserExerciseHistory(userExerciseDataMap);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    HashMap<String, Integer> userExerciseDataMap = UserExerciseData
+                            .addUserExerciseHistory(userCareerData);
+                    ui.printUserExerciseHistory(userExerciseDataMap);
+                }
                 break;
             default:
                 ui.unknownCommand();
