@@ -96,6 +96,8 @@ Below are the specific steps on how to use the view function and how the mechani
 * Step 2: The user will then use the following command `/view 11/02/22` will be taken into the parser
   and will return a list of exercises done on that specified date.
 
+<img src="images/ViewDiagram.png" width="450" />
+
 ###### [Back to table of contents](#table-of-contents)
 
 ### Delete component

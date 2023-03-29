@@ -2,10 +2,17 @@
 'https://plantuml.com/sequence-diagram
 
 autonumber
+actor User
+participant ":Duke" as Duke
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+User -> Duke: Userinput
+activate Duke
+Duke -> Parser : processCommand(userInput)
+activate Parser
+Parser-> CheckInputs: processView(arguments)
+activate CheckInputs
+CheckInputs->ViewWorkoutCommand : ViewWorkoutCommand(date)
+activate ViewWorkoutCommand
+return workout.toString
+return workout.toString
 @enduml
