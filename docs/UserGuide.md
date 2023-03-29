@@ -190,6 +190,23 @@ Here are your tasks:
 2. [ ] Feed the dog
 ```
 
+### Print Task Schedule: `schedule`
+View the current list of tasks with an associated deadline, in order of deadline.
+
+Format: `schedule`
+
+Example of usage:
+
+`schedule`
+
+Expected Output:
+
+```
+Here is your schedule:
+1. [ ] Buy food (Deadline: 2021-03-01)
+2. [ ] Feed the dog (Deadline: 2021-04-02)
+```
+
 ### Marking a Task as Done: `mark-task`
 Marks a task as done in the Task List.
 
