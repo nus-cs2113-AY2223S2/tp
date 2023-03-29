@@ -285,7 +285,8 @@ public class Parser {
      * @throws InvalidArgumentsException If user specified a non-integer for expense
      *                                   ID.
      */
-    private Command parseViewCommand(String arguments) throws InvalidArgumentsException, InvalidCategoryException, InvalidDateException, MissingDateException {
+    private Command parseViewCommand(String arguments) throws InvalidArgumentsException, InvalidCategoryException,
+            InvalidDateException, MissingDateException {
         logger.entering(Parser.class.getName(), "parseViewCommand()");
         logger.info("Parsing view command with arguments: " + arguments);
         if (arguments.isEmpty()) {
@@ -396,6 +397,5 @@ public class Parser {
             throw new InvalidDateException(MessageConstants.MESSAGE_INVALID_DATE);
         }
     }
-
 }
 // @@author
