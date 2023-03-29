@@ -33,6 +33,7 @@ Meal Companion is designed by computing students, for computing students, especi
    7. [Command List](#command-list)
 3. [Conclusion](#conclusion)
 
+
 # Using this Guide
 
 This guide will introduce you to the basics of using Meal Companion and its current set of features. Here we will briefly explain the types of icons and text you can expect to see, and how to interpret them. 
