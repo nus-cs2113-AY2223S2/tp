@@ -26,8 +26,9 @@ public enum ErrorMessage {
             "Please refer to 'help' for more information!"),
     WRONG_IGNORE_INDEX("Sorry, your ignore command is invalid. Please ensure ignore index is a number > 0 and <= %s"),
     WRONG_IGNORE_FORMAT("Sorry, your ignore command is invalid. Please include a ignore index! \n" +
-            "ignore format is as follows :\n" + "ignore/unignore [index]");
-
+            "ignore format is as follows :\n" + "ignore/unignore [index]"),
+    UNSUPPORTED_DATE("Sorry, date before the year 1800 and future dates are not supported \n" +
+            "Please provide a date on or after the year 1800");
 
     private final String error;
 
