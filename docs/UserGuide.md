@@ -115,6 +115,7 @@ Format: `email ID -edit EMAIL_ADDRESS` or `email ID -del`
 - At least one of the two flags must be provided.
 - `EMAIL_ADDRESS` must be a valid email address.
 
+
 Example of usage:
 
 `email 1 -edit rui@gmail.com` adds the email address `rui@gmail.com` to the task of id 1 in the To-Do list.
@@ -136,14 +137,13 @@ Format: `tags ID -edit LIST_OF_TAGS` or `tags ID -del`
 - In the case of multiple tags, their order may not be preserved.
 
 Example of usage:
-
 `tags 1 -edit difficult later` adds the tags `difficult` and `later` to the task of id 1 in the To-Do list.
 ```
 Okay, I have edited the tags of this task to [later difficult]:
 [ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
 ```
 
-### Edit deadline `due`
+### Edit/delete deadline `due`
 
 Edits or deletes the deadline of a task with a given id in the To-Do List.
 
@@ -183,6 +183,27 @@ Here are the tasks which were completed in the past week:
 [ID:1]	[X][todo][Due: 20 Mar 2023 18:00]
 ```
 
+### `priority` - Edit a priority of a task
+Edits, or deletes the priority level of a task with a given id in the ToDo List.
+
+Format: `priority ID -edit PRIORITY`
+- The `ID` has to be an id of a task that can be found in the To-Do list.
+- Use `-edit` to replace the priority of the task with the newly specified priority, or `-del` to delete them instead.
+- If both flags are provided, `-edit` takes priority.
+- At least one of the two flags must be provided.
+- The `PRIORITY` has to be a number from 1-3.a
+- Priority Levels ranges from 1-3 (1:Low, 2:Medium, 3:High)
+
+Example of usage:
+
+`priority 1 -edit 2`
+* Sets the priority level of the task of id 1 to 2, Medium
+
+Example of usage:
+```
+Okay, I have edited the priority level of this task to [Medium]:
+[ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
+```
 
 ## FAQ
 
@@ -191,7 +212,6 @@ Here are the tasks which were completed in the past week:
 - Copy the `save.txt` to the other computer and place it in the same location as the jar file for the program before running it. 
 
 ## Command Summary
-
 | Action                      | Command                                                                                             |
 |-----------------------------|-----------------------------------------------------------------------------------------------------|
 | Add a task                  | `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [tags LIST_OF_TAGS] [-rep REPEAT_DURATION]` |
