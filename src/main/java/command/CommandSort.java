@@ -4,6 +4,7 @@ import data.Expense;
 import data.Time;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.MESSAGE_DIVIDER_LIST;
@@ -16,6 +17,10 @@ public class CommandSort extends Command {
     private ArrayList<Expense> expenseListDate = new ArrayList<>();
     private ArrayList<Expense> expenseListCategory = new ArrayList<>();
 
+    public CommandSort(ArrayList<Expense> expenseList) {
+        super(COMMAND_NAME);
+        this.expenseList = expenseList;
+    }
 
     public CommandSort(ArrayList<Expense> expenseList, String sortBy) {
         super(COMMAND_NAME);
@@ -77,6 +82,7 @@ public class CommandSort extends Command {
                     minIndex = j;
                 }
             }
+
             Expense tempExpense = new Expense(expenseListDate.get(i).getExpenseAmount(),
                     Time.toTime(expenseListDate.get(i).getExpenseTime()),
                     expenseListDate.get(i).getDescription(),
@@ -116,5 +122,14 @@ public class CommandSort extends Command {
         }
     }
 
+    /* @@Ju Can
+     */
+
+    public ArrayList<Expense> sortByCategorySum() {
+        CommandCategory commandCategory = new CommandCategory(expenseList);
+        ArrayList<Expense> expensesByCategorySum = commandCategory.sumByCategory();
+        expensesByCategorySum.sort(Comparator.comparing(Expense::getExpenseAmount).reversed());
+        return expensesByCategorySum;
+    }
 
 }

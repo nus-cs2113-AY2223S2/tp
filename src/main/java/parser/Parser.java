@@ -102,6 +102,4 @@ public class Parser implements Serializable {
         }
         return year;
     }
-
-
 }
