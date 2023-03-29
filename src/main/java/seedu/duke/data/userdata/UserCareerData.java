@@ -40,10 +40,10 @@ public class UserCareerData {
         totalUserCareerSessions.add(session);
     }
 
+
     /**
      * Deletes a workout session according to the number as input by the user.
-     * @param session Data of the session that has been completed.
-     * @param i The session number.
+     * @param i the session number input by the user.
      */
     public void deleteWorkoutSession (int i) {
         totalUserCareerSessions.remove(i-1);
