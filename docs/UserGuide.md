@@ -34,68 +34,97 @@ Example input:
 Graph. 2*sin(5*x+2)-8
 ```
 
-### 2) Store notes:
+### 2) Matrix calculation: `Matrix. `
+ This feature accepts matrix equation and outputs calculation result.
+
+ Format: `Matrix. [Matrix] [operator] [Matrix]`
+
+ * `[Matrix]` is the 2 dimensional matrix with integer elements. When you declare the matrix, you should follow the matrix format below:
+   ```
+   [1,2;3,4]
+   ```
+   * You should separate the elements with comma (,) in the single row.
+   * You should separate the rows with the semicolons.
+
+   ```
+   [1,2;3,4].T
+   ```
+   * You can declare transposed matrix with the transpose annotation `.T`.
+   * Transposed matrix above is equal with matrix `[1,3;2,4]`.
+
+ * `[operator]` is the matrix operator. You can use 4 operators below:
+   * `.*` : matrix multiplication
+   * `*` : element wise product
+   * `+` : matrix addition
+   * `-` : matrix subtraction
+
+ Example input:
+ ```
+ Matrix. [1,2;3,4] .* [4,5;6,7]
+ ```
+
+### 3) Store notes:
 
 Adds a new item to the Notes list.
 
 Format: `Store. <item description>`
 Example of usage: `Store. index`
 
-### 3) Display all notes: 
+### 4) Display all notes: 
 Display a list of all notes stored by user.
 
 Format: `List.`
 Example of usage: `List.`
 
-### 4) Display a specific note: 
+### 5) Display a specific note: 
 Display a particular note in the Notes list.
 
 Format: `List. <number>`
 Example of usage: `List. 1`
 
-### 5) Delete a specific note:
+### 6) Delete a specific note:
 Delete a particular note stored in the Notes list
 
 Format: `Delete. <number>`
 Example of usage: `Delete. 1`
 
-### 6) Mark a specific note:
+### 7) Mark a specific note:
 Mark a particular note stored in the Notes list as completed
 
 Format: `Mark. <number>`
 Example of usage: `Mark. 1`
 
-### 7) Unmark a specific note:
+### 8) Unmark a specific note:
 Unmark a particular note stored in the Notes list as incomplete
 
 Format: `Unmark. <number>`
 Example of usage: `Unmark. 2`
 
-### 8) List all completed notes:
+### 9) List all completed notes:
 Display a list of all completed notes
 
 Format: `FindMark.`
 Example of usage: `FindMark.`
 
-### 9) List all uncompleted notes:
+### 10) List all uncompleted notes:
 Display a list of all uncompleted notes
 
 Format: `FindUnmark.`
 Example of usage: `FindUnmark.`
 
-### 10) Find notes by searching for a keyword:
+### 11) Find notes by searching for a keyword:
 Find tasks stored in Notes by searching for a keyword.
 
 Format: `FindInfo. <description>`
 Example of usage: `FindInfo. index`
 
-### 11) Display all notes based on priority type:
+### 12) Display all notes based on priority type:
 Find all notes stored in the list based on its respective priority rankings
 
 Format: `Rank. Priority`
 Example of usage: `Rank. Priority
 
-### 11) Display all notes of a certain priority type:
+### 13) Display all notes of a certain priority type:
 Find all notes stored in the list based on priority that users are searching for
 
 Format: `FindPrior. <Priority Type>`
@@ -103,13 +132,13 @@ Example of usage: `FindPrior. <LOW>`
 Example of usage: `FindPrior. <MEDIUM>`
 Example of usage: `FindPrior. <HIGH>`
 
-### 12) Clear all notes stored in Notes List:
+### 13) Clear all notes stored in Notes List:
 Delete all notes stored in the list
 
 Format: `Clear.`
 Example of usage: `Clear.`
 
-### 13) Exit MathHelp:
+### 14) Exit MathHelp:
 Exit and leave MathHelp:
 
 Format: `Bye.`
