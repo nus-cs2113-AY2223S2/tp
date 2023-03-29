@@ -11,10 +11,10 @@ the steps to operate BadMaths for your Mathematical woes.
 
 ## Quick Start
 
-{Give steps to get started quickly}
+Before you start using BadMaths, make sure you have the following ready!
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+2. Down the latest version of `BadMaths` from [here](https://github.com/AY2223S2-CS2113-F10-2/tp.git).
 
 ## Features 
 
@@ -307,7 +307,20 @@ You have changed its priority to MEDIUM
 3: [MEDIUM][N][0]Note 3
 ````
 
-### 16) Exit MathHelp:
+### 16) Solving Quadratic Equations: `Quadratic.`
+Solves for `x` in a quadratic equation.
+
+Format: `Quadratic. [quadratic equation]`
+
+- `Quadratic.` must be in this exact format (With uppercase Q and full stop at the end)
+- The quadratic equation must look like this: `2x^2 + 2x + 1` with spaces between each value.
+
+Examples:
+
+- `Quadratic. 2x^2 + 2x + 1`
+- `Quadratic. -3x^2 + 2x - 5`
+
+### 17) Exit MathHelp:
 Exit and leave MathHelp:
 
 Format: `Bye.`
