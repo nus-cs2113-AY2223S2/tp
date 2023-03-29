@@ -302,13 +302,13 @@ class Meal360Test {
         assertEquals(4, recipeListToPrint.get(0).getNumOfIngredients());
         assertEquals("pizza", recipeListToPrint.get(0).getName());
 
-        inputs = new String[]{"list", "salad", "&", "tomato"};
+        inputs = new String[]{"list", "salad", "&&", "tomato"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(1, recipeListToPrint.size());
         assertEquals(3, recipeListToPrint.get(0).getNumOfIngredients());
         assertEquals("salad", recipeListToPrint.get(0).getName());
 
-        inputs = new String[]{"list", "salad", "&", "pizza"};
+        inputs = new String[]{"list", "salad", "&&", "pizza"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(0, recipeListToPrint.size());
     }

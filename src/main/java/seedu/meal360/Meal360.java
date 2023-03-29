@@ -96,10 +96,8 @@ public class Meal360 {
                 ui.printSeparator();
                 RecipeList recipeListToPrint = parser.parseListRecipe(command, recipeList);
                 ui.listRecipe(recipeListToPrint);
-            } catch (IllegalArgumentException e) {
-                String errorMessage =
-                        "Please enter the command in the valid format. Some arguments might " + "be missing.";
-                ui.printMessage(errorMessage);
+            } catch (IllegalArgumentException | IndexOutOfBoundsException | NullPointerException e) {
+                ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
         } else if (command[0].equals("add")) {
@@ -145,12 +143,17 @@ public class Meal360 {
                 ui.printSeparator();
                 String tag = parser.parseTagRecipe(command, recipeList);
                 ui.printMessage("You have modified the recipe(s) in this \"" + tag + "\" tag.");
-            } catch (IllegalArgumentException e) {
-                String errorMessage = "Please enter the command in the correct format.";
-                ui.printMessage(errorMessage);
-            } catch (IndexOutOfBoundsException e) {
-                String errorMessage = "Sorry, I am unable to find the recipes you entered.";
-                ui.printMessage(errorMessage);
+            } catch (IllegalArgumentException | IndexOutOfBoundsException | NullPointerException e) {
+                ui.printMessage(e.getMessage());
+            }
+            ui.printSeparator();
+        } else if (command[0].equals("random")) {
+            ui.printSeparator();
+            try {
+                Recipe randomRecipe = parser.parseRandomRecipe(recipeList);
+                ui.printRecipe(randomRecipe);
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
         } else if (command[0].equals("weekly")) {
