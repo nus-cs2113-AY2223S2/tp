@@ -8,6 +8,7 @@ public class Deadline {
         this.task = task;
         this.dueDate = dueDate;
     }
+
     public String getDueDate() {
         return dueDate;
     }

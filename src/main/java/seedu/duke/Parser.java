@@ -358,8 +358,7 @@ public class Parser {
     /**
      * Converts given string to int type.
      *
-     * @param stringToConvert
-     *            String to be converted
+     * @param stringToConvert String to be converted
      * @return The number in int type
      */
 
