@@ -1,17 +1,16 @@
 package seedu.pettracker.data;
 
+import java.time.LocalDate;
+
 public class Task {
     protected String description;
     protected boolean isDone;
-    protected String time;
+    protected LocalDate deadline;
 
-    public Task(String description, String time) {
+    public Task(String description, LocalDate deadline) {
         this.description = description;
-        this.time = time;
-    }
-
-    public Task(String description) {
-        this(description, "");
+        this.isDone = false;
+        this.deadline = deadline;
     }
 
     public String getStatusIcon() {

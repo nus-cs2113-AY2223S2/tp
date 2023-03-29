@@ -4,20 +4,26 @@ import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
 
-public class AddTaskCommand extends Command {
+import java.time.LocalDate;
 
+public class AddTaskCommand extends Command {
     protected String todoDescription;
-    protected String time;
+    protected LocalDate deadline;
 
     public AddTaskCommand(String commandArgs) {
         super();
-        String[] parsed = parseArgs(commandArgs);
-        if (parsed.length > 1) {
-            this.todoDescription = parsed[0];
-            this.time = parsed[1];
+        if (commandArgs.contains(" /by ")) {
+            String[] args = commandArgs.split(" /by ");
+            try {
+                this.todoDescription = args[0];
+                this.deadline = LocalDate.parse(args[1]);
+            } catch (Exception e) {
+                this.todoDescription = commandArgs;
+                this.deadline = null;
+            }
         } else {
-            this.todoDescription = parsed[0];
-            this.time = "";
+            this.todoDescription = commandArgs;
+            this.deadline = null;
         }
     }
 
@@ -28,7 +34,11 @@ public class AddTaskCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) {
-        TaskList.addTask(todoDescription, time);
+        if (this.deadline != null) {
+            TaskList.addTask(todoDescription, deadline);
+        } else {
+            TaskList.addTask(todoDescription);
+        }
         TaskList.saveTasksToStorage(storage, ui);
         ui.addTodoCommandMessage();
     }

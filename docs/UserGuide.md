@@ -137,4 +137,89 @@ Weight: 50
 ____________________
 Number of pets: 1
 ```
+### Adding a Task: `add-task`
+Adds a task to the Task List.
 
+Format: `add-task NAME` or `add-task NAME /by DATE`
+
+* The `NAME` must not be empty.
+* The `DATE` must be in the format `yyyy-mm-dd`.
+
+Example of usage:
+
+`add-task Buy food /by 2021-03-01`
+
+Expected Output:
+
+```
+Added new task to list
+```
+
+### Removing a Task: `remove-task`
+Removes a task from the Task List.
+
+Format: `remove-task NUMBER`
+
+* The `NUMBER` must not be empty.
+
+Example of usage:
+
+`remove-task 1`
+
+Expected Output:
+
+```
+Successfully removed task 1
+```
+
+### Viewing Task List: `list-task`
+View the current Task List and total number of tasks.
+
+Format: `list-task`
+
+Example of usage:
+
+`list-tasks`
+
+Expected Output:
+
+```
+Here are your tasks:
+1. [ ] Buy food
+  (Deadline: 2021-03-01)
+2. [ ] Feed the dog
+```
+
+### Marking a Task as Done: `mark-task`
+Marks a task as done in the Task List.
+
+Format: `mark-task NUMBER`
+
+* The `NUMBER` must not be empty.
+
+Example of usage:
+
+`mark-task 1`
+
+Expected Output:
+
+```
+Task marked as done
+```
+
+### Marking a Task as Not Done: `unmark-task`
+Marks a task as not done in the Task List.
+
+Format: `unmark-task NUMBER`
+
+* The `NUMBER` must not be empty.
+
+Example of usage:
+
+`unmark-task 1`
+
+Expected Output:
+
+```
+Task marked as not done
+```

@@ -3,6 +3,7 @@ package seedu.pettracker.data;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -35,7 +36,18 @@ public class TaskList {
         numberOfTasks += 1;
     }
 
+<<<<<<< HEAD
     public static void editTask(int taskNumber, String newDescription, String newTime) {
+=======
+    public static void addTask(String todoDescription, LocalDate deadline) {
+        Task newTask = new Task(todoDescription, deadline);
+        logger.log(Level.INFO, "New task added with deadline: " + todoDescription);
+        taskList.add(newTask);
+        numberOfTasks += 1;
+    }
+
+    public static void editTask(int taskNumber, String newDescription) {
+>>>>>>> 843cf9ef0cd85a75d055b94a47381e0ea991e2b5
         Task task = taskList.get(taskNumber - 1);
         task.description = newDescription;
         task.time = newTime;
@@ -58,6 +70,9 @@ public class TaskList {
     public static void listTasks() {
         for (int i = 0; i < numberOfTasks; i++) {
             System.out.println((i + 1) + ". " + taskList.get(i).getStatusIcon() + " " + taskList.get(i).description);
+            if (taskList.get(i).deadline != null) {
+                System.out.println(" (Deadline: " + taskList.get(i).deadline + ")");
+            }
         }
     }
 
@@ -79,4 +94,5 @@ public class TaskList {
     public static int getNumberOfTasks() {
         return numberOfTasks;
     }
+
 }
