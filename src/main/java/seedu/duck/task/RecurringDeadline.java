@@ -9,6 +9,10 @@ public class RecurringDeadline extends Deadline{
         this.day = day;
     }
 
+    public DayOfWeek getDay() {
+        return this.day;
+    }
+
     @Override
     public String toSaveString() {
         return getDoneConditionString() + " " + getDescription() + " /by " + getDeadline() + " <p>" +
@@ -17,7 +21,7 @@ public class RecurringDeadline extends Deadline{
 
     @Override
     public String toString() {
-        return "\t [D]" + "[" + getStatusIcon() + "] " + getDescription() + " (by: " + super.by + ")" +
+        return "\t [D]" + "[" + getStatusIcon() + "] " + getDescription() + " (by: " + super.getDeadline() + ")" +
                 " (every " + day + ") (" + getPriority() + ")";
     }
 }

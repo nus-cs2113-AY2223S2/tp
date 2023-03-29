@@ -4,6 +4,9 @@ import seedu.duck.task.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -37,6 +40,51 @@ public class Ui {
         System.out.println("\t Here is your class schedule:\n");
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
+        }
+        borderLine();
+    }
+
+    /**
+     * prints out all classes, deadlines and events happening today
+     * @param tasks array list of all tasks
+     * @param classes pq of all classes
+     */
+    static void listToday(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) {
+        LocalDate today = LocalDate.now();
+        DayOfWeek dayToday = today.getDayOfWeek();
+        borderLine();
+        System.out.println("\t Here is your class schedule for today");
+        for (SchoolClass c : classes) {
+            if (c.getDay() == dayToday) {
+                System.out.println(c);
+            }
+        }
+        System.out.println();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String dateToday = dateFormat.format(today);
+        System.out.println("\t Here are your tasks today");
+        for (Task task : tasks) {
+            if (task instanceof Deadline) {
+                if (task instanceof RecurringDeadline) {
+                    if (((RecurringDeadline) task).getDay() == dayToday) {
+                        System.out.println(task);
+                    }
+                } else {
+                    if (((Deadline) task).getDeadline().startsWith(dateToday)) {
+                        System.out.println(task);
+                    }
+                }
+            } else if (task instanceof Event) {
+                if (task instanceof RecurringEvent) {
+                    if (((RecurringEvent) task).getDay() == dayToday) {
+                        System.out.println(task);
+                    }
+                } else {
+                    if (((Event) task).getStart().startsWith(dateToday)) {
+                        System.out.println(task);
+                    }
+                }
+            }
         }
         borderLine();
     }
@@ -362,6 +410,7 @@ public class Ui {
         System.out.println("\t - list: I'll list out all the tasks you have recorded.");
         System.out.println("\t - list <number_of_days>: I'll list out all the tasks in that number of days.");
         System.out.println("\t - list classes: I'll list out the classes you have on your schedule.");
+        System.out.println("\t - list today: I'll list out all the classes, deadlines and events you have today.");
         System.out.println("\t - refresh: I'll refresh your task list and class schedule.");
         System.out.println("\t - priority_list: " +
                 "I'll list out all the tasks you have recorded arranged by their priority.");
