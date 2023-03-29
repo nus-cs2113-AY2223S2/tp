@@ -1,7 +1,7 @@
 [comment]: <> (//@@author Thunderdragon221)
 @startuml
 'https://plantuml.com/sequence-diagram
-autonumber
+hide footbox
 !include Style.puml
 
 participant "main :Duke"
@@ -24,8 +24,11 @@ activate Information
 Information --> Patient: patient stored
 deactivate Information
 Patient --> Storage: patient added
+destroy Information
 deactivate Patient
 deactivate Storage
 Storage --> "main :Duke" : data loaded
+destroy Patient
 deactivate Storage
+
 @enduml
