@@ -15,14 +15,10 @@ public class UI {
     private static final String CURRENT_LIST_PU_EMPTY = "The current module list is empty for: ";
     private static final String LIST_CURRENT_MESSAGE = "List of Added modules:";
     private static final String LIST_DEADLINES_MESSAGE = "List of Deadlines:";
-    private static final String LINE =
-            "____________________________________________________________";
-    private static final String ADD_MOD_MESSAGE =
-            "This module has been added to the current module list!";
-    private static final String ADD_DEADLINE_MESSAGE =
-            "This deadline has been added to the current deadlines";
-    private static final String DELETE_MOD_MESSAGE =
-            "This module has been deleted from the current module list!";
+    private static final String LINE = "____________________________________________________________";
+    private static final String ADD_MOD_MESSAGE = "This module has been added to the current module list!";
+    private static final String ADD_DEADLINE_MESSAGE = "This deadline has been added to the current deadlines";
+    private static final String DELETE_MOD_MESSAGE = "This module has been deleted from the current module list!";
 
     private static final String ADD_MOD_FAILURE_MESSAGE = "Save Module Failed";
     private static final String ADD_DEADLINE_FAILURE_MESSAGE = "Save Deadline task Failed";
@@ -30,22 +26,14 @@ public class UI {
     private static final String WELCOME_MESSAGE = "~Welcome to SEP Helper~";
     private static final String READ_COMMAND_INPUT = "What can I do for you?";
     private static final String HELP_MESSAGE = "\nType /help if you need help getting started :)";
-    private static final String INPUT_NOT_INT_MESSAGE =
-            "The input for the given command is not an integer";
-    private static final String INVALID_PU_MESSAGE =
-            "PU not found :( Please type in the correct PU name";
-    private static final String INVALID_MODULE_MESSAGE =
-            "Module not found :( Please type in the correct MODULE name";
-    private static final String INVALID_SEARCH_MODULE_MESSAGE =
-            "There is no matching module code found.\n"
-                    + "Please ensure that you have typed in the correct NUS Module Code";
-    private static final String INVALID_BUDGET_MESSAGE =
-            "Please type in the correct budget command";
+    private static final String INPUT_NOT_INT_MESSAGE = "The input for the given command is not an integer";
+    private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name";
+    private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name";
+    private static final String INVALID_SEARCH_MODULE_MESSAGE = "There is no matching module code found.\n" + "Please ensure that you have typed in the correct NUS Module Code";
+    private static final String INVALID_BUDGET_MESSAGE = "Please type in the correct budget command";
     private static final String CURRENT_MOD_LIST_EMPTY = "The current module list is empty";
-    private static final String CURRENT_DEADLINES_LIST_EMPTY =
-            "The current deadlines list is empty";
-    private static final String FOUND_LIST_MESSAGE =
-            "Here is/are the list/s of modules that can map " + "this NUS module code: ";
+    private static final String CURRENT_DEADLINES_LIST_EMPTY = "The current deadlines list is empty";
+    private static final String FOUND_LIST_MESSAGE = "Here is/are the list/s of modules that can map " + "this NUS module code: ";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
@@ -100,12 +88,8 @@ public class UI {
     }
 
     public void printGreetingMessage() {
-        System.out.println("\n" + "  ____  _____ ____    _   _      _                 \n"
-                + " / ___|| ____|  _ \\  | | | | ___| |_ __   ___ _ __ \n"
-                + " \\___ \\|  _| | |_) | | |_| |/ _ \\ | '_ \\ / _ \\ '__|\n"
-                + "  ___) | |___|  __/  |  _  |  __/ | |_) |  __/ |   \n"
-                + " |____/|_____|_|     |_| |_|\\___|_| .__/ \\___|_|   \n"
-                + "                                  |_|              \n");
+        System.out.println("\n" + "  ____  _____ ____    _   _      _                 \n" + " / ___|| ____|  _ \\  | | | | ___| |_ __   ___ _ __ \n" + " \\___ \\|  _| | |_) | | |_| |/ _ \\ | '_ \\ / _ \\ '__|\n"
+                + "  ___) | |___|  __/  |  _  |  __/ | |_) |  __/ |   \n" + " |____/|_____|_|     |_| |_|\\___|_| .__/ \\___|_|   \n" + "                                  |_|              \n");
 
         System.out.println(WELCOME_MESSAGE);
         System.out.println(READ_COMMAND_INPUT);
@@ -113,8 +97,7 @@ public class UI {
         System.out.println(LINE);
     }
 
-    public void printFoundNusModules(ArrayList<Module> foundNusModList, String nusModCode,
-            ArrayList<University> universities) {
+    public void printFoundNusModules(ArrayList<Module> foundNusModList, String nusModCode, ArrayList<University> universities) {
         System.out.println(FOUND_LIST_MESSAGE + nusModCode);
         System.out.println(LINE);
         int foundModIndex = 0;
@@ -132,8 +115,7 @@ public class UI {
             }
             if (currModulePuId == prevModulePuId) {
                 printIndex++;
-                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]"
-                        + "[" + moduleMCs + "]");
+                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
             } else {
                 printIndex = 1;
                 if (printIndex == 1) {
@@ -141,8 +123,7 @@ public class UI {
                     System.out.println(currPuAbbr);
                     System.out.println(LINE);
                 }
-                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]"
-                        + "[" + moduleMCs + "]");
+                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
             }
             foundModIndex++;
         }
@@ -165,11 +146,9 @@ public class UI {
             String nusModuleName = puModuleToPrint.getNusModuleName();
             int nusModuleMCs = puModuleToPrint.getNusModuleMCs();
             System.out.print(puModulesIndex + ". ");
-            System.out.println(
-                    "[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+            System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
             System.out.print("   maps to ----> ");
-            System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "["
-                    + nusModuleMCs + "]");
+            System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
         }
         System.out.println(LINE);
     }
@@ -191,11 +170,9 @@ public class UI {
             String nusModuleName = puModuleToPrint.getNusModuleName();
             int nusModuleMCs = puModuleToPrint.getNusModuleMCs();
             System.out.print(puModulesIndex + ". ");
-            System.out.println(
-                    "[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+            System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
             System.out.print("   maps to ----> ");
-            System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "["
-                    + nusModuleMCs + "]");
+            System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
         }
         System.out.println(LINE);
     }
@@ -231,8 +208,7 @@ public class UI {
                 listIndex++;
                 String deadlineTask = deadline.getTask();
                 String deadlineDueDate = deadline.getDueDate();
-                System.out.println(
-                        listIndex + ". " + deadlineTask + " [Due by: " + deadlineDueDate + "]");
+                System.out.println(listIndex + ". " + deadlineTask + " [Due by: " + deadlineDueDate + "]");
             }
         }
         System.out.println(LINE);
@@ -265,26 +241,15 @@ public class UI {
     }
 
     public static void printHelpCommandMessage() {
-        System.out.println("Here are the list of commands:\n"
-                + "LIST PU                     : Provides the list of Partner Universities available\n"
-                + "LIST [PU ABBRV]             : Provides the list of all modules available "
-                + "in the specified Partner University\n"
-                + "LIST [PU INDEX]             : Provides the list of all modules available "
-                + "in the specified Partner University\n"
-                + "                              by index of LIST PU\n"
-                + "LIST [PU ABBRV] /filter [filter]\n"
-                + "                            : Provides the list of modules in the specified filters\n"
-                + "LIST CURRENT                : Provides the list of modules that the user has added to his/her "
-                + "list of interest\n"
-                + "LIST CURRENT [PU ABBRV]     : Provides the list of modules that user has added to his list of "
-                + "list of interest for the specified PU\n"
-                + "ADD [PU ABBRV]/[MODULE CODE]: Adds the specified module into user's current list of modules\n"
-                + "REMOVE [INDEX]              : Removes the specified module by index from user's current list\n"
-                + "EXIT                        : Exits the program\n\n");
+        System.out.println("Here are the list of commands:\n" + "LIST PU                     : Provides the list of Partner Universities available\n" + "LIST [PU ABBRV]             : Provides the list of all modules available "
+                + "in the specified Partner University\n" + "LIST [PU INDEX]             : Provides the list of all modules available " + "in the specified Partner University\n" + "                              by index of LIST PU\n"
+                + "LIST [PU ABBRV] /filter [filter]\n" + "                            : Provides the list of modules in the specified filters\n"
+                + "LIST CURRENT                : Provides the list of modules that the user has added to his/her " + "list of interest\n" + "LIST CURRENT [PU ABBRV]     : Provides the list of modules that user has added to his list of "
+                + "list of interest for the specified PU\n" + "ADD [PU ABBRV]/[MODULE CODE]: Adds the specified module into user's current list of modules\n"
+                + "REMOVE [INDEX]              : Removes the specified module by index from user's current list\n" + "EXIT                        : Exits the program\n\n");
         System.out.println(READ_COMMAND_INPUT);
         System.out.println(LINE);
     }
-
 
     public static void printEditBudgetMessage(int amount) {
         System.out.println(LINE);
@@ -334,12 +299,15 @@ public class UI {
     }
 
     /**
-     * Prints out user added modules of a specified partner university using uniID as identity. The
-     * function first picks out all modules specified to the university selected, and prints out
-     * module information to the user afterwards.
+     * Prints out user added modules of a specified partner university using uniID
+     * as identity. The function first picks out all modules specified to the
+     * university selected, and prints out module information to the user
+     * afterwards.
      *
-     * @param modules ArrayList of all modules that user has selected.
-     * @param uniID Unique partner university ID
+     * @param modules
+     *            ArrayList of all modules that user has selected.
+     * @param uniID
+     *            Unique partner university ID
      */
     public void printCurrentPuModList(ArrayList<Module> modules, int uniID) {
         ArrayList<Module> puModulesToPrint = new ArrayList<>();
@@ -374,11 +342,9 @@ public class UI {
                 String nusModuleName = module.getNusModuleName();
                 int nusModuleMCs = module.getNusModuleMCs();
                 System.out.print(listIndex + ".");
-                System.out.println(
-                        "[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+                System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
                 System.out.print("   maps to ----> ");
-                System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "["
-                        + nusModuleMCs + "]");
+                System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
             }
             System.out.println(LINE);
         }
