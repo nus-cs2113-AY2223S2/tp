@@ -72,13 +72,13 @@ public class EditCommand extends Command {
                 editedStatement.setCategory(editFlagAndField.get(i + 1));
             } else if (editFlagAndField.get(i).equalsIgnoreCase("-v")) {
                 editedStatement.setValue(Double.parseDouble(editFlagAndField.get(i + 1)));
+            } else if (editFlagAndField.get(i).equalsIgnoreCase("-date")) {
+                editedStatement.setDate(LocalDate.parse(editFlagAndField.get(i + 1),
+                        DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             } else if (editFlagAndField.get(i).equalsIgnoreCase("-out")) {
                 editedStatement.setFlowDirection(FlowDirection.OUTFLOW);
             } else if (editFlagAndField.get(i).equalsIgnoreCase("-in")) {
                 editedStatement.setFlowDirection(FlowDirection.INFLOW);
-            } else if (editFlagAndField.get(i).equalsIgnoreCase("-date")) {
-                editedStatement.setDate(LocalDate.parse(editFlagAndField.get(i + 1),
-                        DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             }
         }
         userData.addToMonthlyExpenditure(editedStatement);
