@@ -79,7 +79,9 @@ public class UI {
 
     public void showLoadingErrorMessage(Exception e) {
         if (e instanceof FileNotFoundException) {
-            System.out.println(StringLib.FILE_NOT_FOUND_ERROR + e.getMessage() + StringLib.CREATING_NEW_FILE_AND_DIRECTORY);
+            System.out.println(StringLib.FILE_NOT_FOUND_ERROR +
+                    e.getMessage() +
+                    StringLib.CREATING_NEW_FILE_AND_DIRECTORY);
         } else if (e instanceof FileParseReadingException) {
             System.out.println(StringLib.FILE_PARSE_READING_ERROR + e.getMessage());
         } else {
@@ -100,7 +102,9 @@ public class UI {
             System.out.println(StringLib.MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof IndexOutOfBoundsException || e instanceof NullPointerException ||
                    e instanceof RecipeListEmptyException) {
-            System.out.println(StringLib.PREFIX_EMPTY_LIMIT_LIST_ERROR + type + StringLib.SUFFIX_EMPTY_LIMIT_LIST_ERROR);
+            System.out.println(StringLib.PREFIX_EMPTY_LIMIT_LIST_ERROR +
+                    type +
+                    StringLib.SUFFIX_EMPTY_LIMIT_LIST_ERROR);
         } else {
             System.out.println(StringLib.RECIPE_DELETING_DEFAULT_ERROR + e.getMessage());
         }
@@ -120,7 +124,9 @@ public class UI {
             System.out.println(StringLib.MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof IndexOutOfBoundsException || e instanceof NullPointerException ||
                 e instanceof RecipeListEmptyException) {
-            System.out.println(StringLib.PREFIX_EMPTY_LIMIT_LIST_ERROR + CommandType.VIEW + StringLib.SUFFIX_EMPTY_LIMIT_LIST_ERROR);
+            System.out.println(StringLib.PREFIX_EMPTY_LIMIT_LIST_ERROR +
+                    CommandType.VIEW +
+                    StringLib.SUFFIX_EMPTY_LIMIT_LIST_ERROR);
         } else {
             System.out.println(StringLib.RECIPE_VIEWING_DEFAULT_ERROR + e.getMessage());
         }
