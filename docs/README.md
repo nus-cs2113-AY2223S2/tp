@@ -1,4 +1,4 @@
-# Duke
+# NUS To-Do List
 
 {Give product intro here}
 

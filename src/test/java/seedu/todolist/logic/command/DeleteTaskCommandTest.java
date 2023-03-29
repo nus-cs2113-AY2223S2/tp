@@ -1,3 +1,4 @@
+//@@author RuiShengGit
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 
-//@@author RuiShengGit
 public class DeleteTaskCommandTest {
     private Parser parser = new Parser();
     private TaskList testList;

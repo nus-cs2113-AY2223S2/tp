@@ -35,15 +35,17 @@ public class Task implements Serializable {
     private HashSet<String> tags;
     private boolean isDone = false;
     private int repeatDuration;
+    private int priority = 1;
 
     public Task(int id, String description, LocalDateTime deadline, String email, HashSet<String> tags,
-                int repeatDuration) {
+                int repeatDuration, int priority) {
         this.id = id;
         this.description = description;
         this.email = email;
         this.deadline = deadline;
         this.tags = tags;
         this.repeatDuration = repeatDuration;
+        this.priority = priority;
     }
 
     public String toString() {
@@ -60,6 +62,14 @@ public class Task implements Serializable {
         StringJoiner infoString = new StringJoiner(System.lineSeparator());
         infoString.add("ID: " + id);
         infoString.add("Description: " + description);
+        if (priority == 1) {
+            infoString.add("Priority: Low");
+        } else if (priority == 2) {
+            infoString.add("Priority: Medium");
+        } else{
+            infoString.add("Priority: High");
+        }
+
         if (deadline != null) {
             infoString.add("Due: " + FormatterUtil.getDeadlineAsString(deadline));
         }
@@ -98,6 +108,9 @@ public class Task implements Serializable {
     public int getRepeatDuration() {
         return this.repeatDuration;
     }
+    public int getPriority() {
+        return this.priority;
+    }
 
     public String setDone(boolean isDone) {
         this.isDone = isDone;
@@ -126,6 +139,11 @@ public class Task implements Serializable {
 
     public String setTags(HashSet<String> tags) {
         this.tags = tags;
+        return toString();
+    }
+
+    public String setPriority(int priority){
+        this.priority = priority;
         return toString();
     }
 
