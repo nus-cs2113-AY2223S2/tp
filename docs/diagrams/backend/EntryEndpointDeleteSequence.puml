@@ -2,6 +2,10 @@
 !include ../Style.puml
 
 mainframe sd Endpoint /entries - Handle DELETE
+participant ":EntryEndpoint" as EntryEndpoint
+participant ":EntryLog" as EntryLog
+participant ":Entry" as Entry
+
 
 -> EntryEndpoint : handleDelete(Request)
 EntryEndpoint -> EntryLog : deleteEntry()

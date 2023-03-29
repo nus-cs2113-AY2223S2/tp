@@ -2,6 +2,8 @@
 !include ../Style.puml
 
 mainframe sd Endpoint /entry - Handle GET
+participant ":EntryEndpoint" as EntryEndpoint
+participant ":EntryLog" as EntryLog
 
 -> EntryEndpoint : handleGet(Request)
 
