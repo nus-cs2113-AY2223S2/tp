@@ -1,8 +1,6 @@
 package seedu.duke.budget;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.Module;
-import seedu.duke.Storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,14 +22,5 @@ class FoodTest {
         assertEquals(changePrice, food.getPrice());
     }
 
-    public void addModule_correctFormat_success() {
-        Storage storage = new Storage();
-        Module module = new Module(1, "AE320", "Aerodynamics II", 3,
-                "ME4231", "Aerodynamics", 4);
-        storage.addModuleToModuleList(module);
-        int lastIndex = storage.getModules().size() - 1;
-        assertEquals("1,AE320,Aerodynamics II,3,ME4231,Aerodynamics,4",
-                storage.getModules().get(lastIndex).toString());
-    }
 
 }

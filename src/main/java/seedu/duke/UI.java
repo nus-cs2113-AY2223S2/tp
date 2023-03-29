@@ -19,10 +19,12 @@ public class UI {
     private static final String ADD_MOD_MESSAGE = "This module has been added to the current module list!";
     private static final String ADD_DEADLINE_MESSAGE = "This deadline has been added to the current deadlines";
     private static final String DELETE_MOD_MESSAGE = "This module has been deleted from the current module list!";
+    private static final String DELETE_NUM_ERROR = "Deletion failed :( Please check the index to be removed again";
 
     private static final String ADD_MOD_FAILURE_MESSAGE = "Save Module Failed";
     private static final String ADD_DEADLINE_FAILURE_MESSAGE = "Save Deadline task Failed";
     private static final String COMMAND_INPUT_ERROR = "Please type in the correct command input";
+    private static final String WRITE_TO_DATABASE_ERROR = "Unable to write to database :(";
     private static final String WELCOME_MESSAGE = "~Welcome to SEP Helper~";
     private static final String READ_COMMAND_INPUT = "What can I do for you?";
     private static final String HELP_MESSAGE = "\nType /help if you need help getting started :)";
@@ -77,6 +79,11 @@ public class UI {
 
     public String getCommandInputError() {
         return COMMAND_INPUT_ERROR;
+    }
+
+    public static void printDeleteNumError() {
+        System.out.println(DELETE_NUM_ERROR);
+        System.out.println(LINE);
     }
 
     public String getInvalidBudgetMessage() {
@@ -240,13 +247,43 @@ public class UI {
         System.out.println(LINE);
     }
 
+    public static void printWriteToDatabaseFailureMessage() {
+        System.out.println(WRITE_TO_DATABASE_ERROR);
+        System.out.println(LINE);
+    }
+
     public static void printHelpCommandMessage() {
-        System.out.println("Here are the list of commands:\n" + "LIST PU                     : Provides the list of Partner Universities available\n" + "LIST [PU ABBRV]             : Provides the list of all modules available "
-                + "in the specified Partner University\n" + "LIST [PU INDEX]             : Provides the list of all modules available " + "in the specified Partner University\n" + "                              by index of LIST PU\n"
-                + "LIST [PU ABBRV] /filter [filter]\n" + "                            : Provides the list of modules in the specified filters\n"
-                + "LIST CURRENT                : Provides the list of modules that the user has added to his/her " + "list of interest\n" + "LIST CURRENT [PU ABBRV]     : Provides the list of modules that user has added to his list of "
-                + "list of interest for the specified PU\n" + "ADD [PU ABBRV]/[MODULE CODE]: Adds the specified module into user's current list of modules\n"
-                + "REMOVE [INDEX]              : Removes the specified module by index from user's current list\n" + "EXIT                        : Exits the program\n\n");
+        System.out.println("Here are the list of commands:\n"
+                + "LIST PU                        : Provides the list of Partner Universities available\n"
+                + "LIST [PU ABBRV]                : Provides the list of all modules available " +
+                "in the specified Partner University\n"
+                + "LIST [PU INDEX]                : Provides the list of all modules available " +
+                "in the specified Partner University\n"
+                + "                              by index of LIST PU\n"
+                + "LIST [PU ABBRV] /filter [filter]\n"
+                + "                            : Provides the list of modules in the specified filters\n"
+                + "LIST CURRENT                   : Provides the list of modules that the user has added to his/her " +
+                "list of interest\n"
+                + "LIST CURRENT [PU ABBRV]        : Provides the list of modules that user has added to his list of " +
+                "list of interest for the specified PU\n"
+                + "ADD [PU ABBRV]/[MODULE CODE]   : Adds the specified module into user's current list of modules\n"
+                + "REMOVE [PU ABBRV]/ [INDEX]     : Removes the specified module by index from user's current list\n"
+                + "SEARCH [NUS MOD CODE]          : Search for PU modules that can map the user's targeted module\n"
+                + "/budget budget [AMOUNT]        : Allows the user to input/edit the total amount of budget for "
+                +"his/her SEP trip\n"
+                + "/budget accommodation [AMOUNT] : Allows the user to input/edit the total amount of accommodation "
+                + "cost for his/her SEP trip\n"
+                + "/budget airplane [AMOUNT       : Allows the user to input/edit the total amount of airplane ticket "
+                + "cost for his/her SEP trip\n"
+                + "/budget food [AMOUNT]          : Allows the user to input/edit the total amount of food "
+                + "cost for his/her SEP trip\n"
+                + "/budget entertainment [AMOUNT] : Allows the user to input/edit the total amount of entertainment "
+                + "cost for his/her SEP trip\n"
+                + "/budget view                   : Provides an overview of the user's planned budget\n"
+                + "/deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] : Allows the user to add in his/her own "
+                + "personalized deadlines of the key dates for certain SEP requirements\n"
+                + "/deadline/remove [DEADLINE INDEX] : Allows the user to remove the specific deadline from the list\n"
+                + "EXIT                           : Exits the program\n\n");
         System.out.println(READ_COMMAND_INPUT);
         System.out.println(LINE);
     }

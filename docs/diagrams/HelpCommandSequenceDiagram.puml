@@ -1,0 +1,11 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":HelpModuleCommand"
+
+":HelpModuleCommand" -> "<<class>>\nui:UI" : printHelpCommandMessage()
+activate "<<class>>\nui:UI"
+
+"<<class>>\nui:UI" -> UserConsole : Print Help Message
+"<<class>>\nui:UI" <-- UserConsole
+@enduml

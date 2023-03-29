@@ -1,0 +1,113 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":ListCurrentPuCommand"
+
+":ListCurrentPuCommand" -> "<<class>>\nui:UI" : printCurrentPuModList(modules, uniIDToPrint)
+activate "<<class>>\nui:UI"
+
+create "puModulesToPrint: ArrayList<Module>"
+"<<class>>\nui:UI" -> "puModulesToPrint: ArrayList<Module>"
+activate "puModulesToPrint: ArrayList<Module>"
+"<<class>>\nui:UI" <-- "puModulesToPrint: ArrayList<Module>"
+deactivate "puModulesToPrint: ArrayList<Module>"
+
+loop for each Module in modules
+    "<<class>>\nui:UI" -> "modules: ArrayList<Module>"
+     activate "modules: ArrayList<Module>"
+     create "currentModule: Module"
+     "modules: ArrayList<Module>" -> "currentModule: Module"
+     activate "currentModule: Module"
+     "modules: ArrayList<Module>" <-- "currentModule: Module"
+     deactivate "currentModule: Module"
+     "<<class>>\nui:UI" <-- "modules: ArrayList<Module>"
+     deactivate "modules: ArrayList<Module>"
+
+
+
+    "<<class>>\nui:UI" -> "currentModule: Module" : "getUnivId()"
+    "<<class>>\nui:UI" <-- "currentModule: Module" : currentModule's univId
+     opt currentModule's univId == uniIDToPrint
+        "<<class>>\nui:UI" -> "puModulesToPrint: ArrayList<Module>": add(currentModule)
+        "<<class>>\nui:UI" <-- "puModulesToPrint: ArrayList<Module>"
+     end
+end
+
+create "universityName: String"
+"<<class>>\nui:UI" -> "universityName: String"
+activate "universityName: String"
+"<<class>>\nui:UI" <-- "universityName: String"
+deactivate "universityName: String"
+
+loop for university in <<class>>universities
+    "<<class>>\nui:UI" -> "<<class>>universities: ArrayList<University>" : retrieve Class level object "universities"
+     activate "<<class>>universities: ArrayList<University>"
+     create "currentUniversity: University"
+     "<<class>>universities: ArrayList<University>" -> "currentUniversity: University"
+     activate "currentUniversity: University"
+     "<<class>>universities: ArrayList<University>" <-- "currentUniversity: University"
+     deactivate "currentUniversity: University"
+     "<<class>>\nui:UI" <-- "<<class>>universities: ArrayList<University>"
+     deactivate "<<class>>universities: ArrayList<University>"
+
+     "<<class>>\nui:UI" -> "currentUniversity: University": "getUnivId()"
+     "<<class>>\nui:UI" <-- "currentUniversity: University": "currentUniversity's ID"
+     opt "currentUniversity's ID" == univId
+        "<<class>>\nui:UI" -> "universityName: String": set universityName as currentUniversity Name
+        "<<class>>\nui:UI" <-- "universityName: String"
+     end
+end
+    create "listIndex: Int"
+     "<<class>>\nui:UI" -> "listIndex: Int"
+     activate "listIndex: Int"
+     "<<class>>\nui:UI" <-- "listIndex: Int"
+     deactivate "listIndex: Int"
+
+     alt "puModulesToPrint: ArrayList<Module>" size < 1
+         "<<class>>\nui:UI" -> UserConcole: Print Current List PU empty + universityName Message
+         "<<class>>\nui:UI" <-- UserConcole
+     else
+         "<<class>>\nui:UI" -> UserConcole: Print Current List PU Massage + universityName Message
+         "<<class>>\nui:UI" <-- UserConcole
+         loop for module in "puModulesToPrint: ArrayList<Module>"
+            "<<class>>\nui:UI" -> "listIndex: Int": increment listIndex by 1
+            "<<class>>\nui:UI" -> "puModulesToPrint: ArrayList<Module>"
+             activate "puModulesToPrint: ArrayList<Module>"
+             create ":Module"
+             "puModulesToPrint: ArrayList<Module>" -> ":Module": retrieve Module from puModulesToPrint
+             activate ":Module"
+             "puModulesToPrint: ArrayList<Module>" <-- ":Module"
+             deactivate ":Module"
+             "<<class>>\nui:UI" <-- "puModulesToPrint: ArrayList<Module>"
+             deactivate "puModulesToPrint: ArrayList<Module>"
+
+            "<<class>>\nui:UI" -> ":Module" : "getModuleCode()"
+            "<<class>>\nui:UI" <-- ":Module" : moduleCode
+
+
+            "<<class>>\nui:UI" -> ":Module" : "getModuleName()"
+            "<<class>>\nui:UI" <-- ":Module" : moduleName
+
+            "<<class>>\nui:UI" -> ":Module" : "getModuleMCs()"
+            "<<class>>\nui:UI" <-- ":Module" : moduleMCs
+
+            "<<class>>\nui:UI" -> ":Module" : "getNusModuleCode()"
+            "<<class>>\nui:UI" <-- ":Module" : NusModuleCode
+
+            "<<class>>\nui:UI" -> ":Module" : "getNusModuleName()"
+            "<<class>>\nui:UI" <-- ":Module" : NusModuleName
+
+            "<<class>>\nui:UI" -> ":Module" : "getNusModuleMCs()"
+            "<<class>>\nui:UI" <-- ":Module" : NusModuleMCs
+
+            "<<class>>\nui:UI" -> UserConsole : Print out Modules details
+            "<<class>>\nui:UI" <-- UserConsole
+        end
+
+
+end
+
+"<<class>>\nui:UI" --> ":ListCurrentPuCommand" : return control
+deactivate "<<class>>\nui:UI"
+
+@enduml
