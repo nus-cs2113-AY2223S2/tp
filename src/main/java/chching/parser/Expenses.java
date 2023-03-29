@@ -14,6 +14,11 @@ import java.util.HashMap;
 
 public class Expenses {
 
+    /**
+     * Parses a date
+     *
+     * @param expenseDateString     Input from users
+     */
     public static LocalDate parseDate(String expenseDateString) throws ChChingException {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -23,6 +28,7 @@ public class Expenses {
             throw new ChChingException("Date format should be: dd-MM-yyyy");
         }
     }
+
     /**
      * Parses an expense into the expenseList
      *

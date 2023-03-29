@@ -21,6 +21,12 @@ public class Converter {
         return amount * currencyMap.get(currency);
     }
 
+    /**
+     * Executes print converter
+     *
+     * @param value       income value
+     * @param selector      selector
+     */
     public String printConverter(double value, Selector selector) {
         String result = "";
         for (String currency : currencyMap.keySet()) {
