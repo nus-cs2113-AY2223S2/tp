@@ -26,6 +26,14 @@ public class Tag {
     public void editTagName(String newTagName) {
         this.tagName = newTagName;
     }
+    public boolean cardInTag(CardUUID cardUUID) {
+        for(CardUUID cardUUIDList : cards) {
+            if(cardUUIDList.equals(cardUUID)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public ArrayList<CardUUID> getCardsUUID() {
         return this.cards;
