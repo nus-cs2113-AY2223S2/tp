@@ -1,0 +1,32 @@
+@startuml
+!include Style.puml
+participant ":RecipeDetailCommand" as RecipeDetailCommand
+participant "mealCompanionSession:MealCompanionSession" as mealCompanionSession
+participant "recipes:RecipeList" as recipes
+
+-> RecipeDetailCommand: execute(mealCompanionSession)
+activate RecipeDetailCommand
+RecipeDetailCommand -> RecipeDetailCommand: isIndex(this.argument)
+activate RecipeDetailCommand
+RecipeDetailCommand -> RecipeDetailCommand: isIndex
+deactivate RecipeDetailCommand
+opt isIndex == false
+RecipeDetailCommand -> RecipeDetailCommand: findIndex(this.argument, mealCompanionSession)
+activate RecipeDetailCommand
+RecipeDetailCommand -> RecipeDetailCommand: index
+deactivate RecipeDetailCommand
+end
+RecipeDetailCommand -> mealCompanionSession: getRecipes()
+activate mealCompanionSession
+mealCompanionSession -> recipes: getRecipe(index)
+activate recipes
+recipes -> mealCompanionSession: recipe
+deactivate recipes
+mealCompanionSession -> RecipeDetailCommand: recipe
+deactivate mealCompanionSession
+RecipeDetailCommand -> recipe: getIngredients()
+activate recipes
+recipes -> RecipeDetailCommand: ingredients
+deactivate recipes
+
+@enduml

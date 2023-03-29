@@ -1,0 +1,50 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Recipe --> IngredientList
+Recipe --> InstructionList
+RecipeList --> "*" Recipe
+RecipeList <-- MealCompanionSession
+
+class Recipe {
+-name: String
+-calorieCount: int
++Recipe(String, int, IngredientList, InstructionList)
++getName(): String
++getCalorieCount(): int
++getIngredients(): IngredientList
++getInstructions(): InstructionList
+}
+
+class IngredientList {
++size(): int
++remove(int)
++get(int): Ingredient
++getIngredients() : IngredientList
++add(ingredient)
+}
+
+class InstructionList {
+-instructions: ArrayList<Instruction>
++InstructionList()
++add(Instruction)
++size(): int
++get(int): Instruction
++setInstructions(ArrayList<Instruction>)
+}
+
+class RecipeList {
++RecipeList()
++getRecipes(): ArrayList<Recipe>
++add(Recipe)
++getRecipe(int): Recipe
+}
+
+class MealCompanionSession {
+- controlFLow: MealCompanionControlFlow
+- ingredients: IngredientList
+- ui: MealCompanionUI
+- ingredientStorage: IngredientStorage
+}
+
+@enduml

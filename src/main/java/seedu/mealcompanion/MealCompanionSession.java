@@ -2,23 +2,35 @@ package seedu.mealcompanion;
 
 import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.command.factory.ExecutableCommandFactory;
+import seedu.mealcompanion.command.factory.allergen.AllergenAddCommandFactory;
+import seedu.mealcompanion.command.factory.allergen.AllergenListCommandFactory;
+import seedu.mealcompanion.command.factory.allergen.AllergenRemoveCommandFactory;
 import seedu.mealcompanion.command.factory.ingredients.IngredientsListCommandFactory;
 import seedu.mealcompanion.command.factory.ingredients.IngredientsSearchCommandFactory;
 import seedu.mealcompanion.command.factory.misc.AddCommandFactory;
 import seedu.mealcompanion.command.factory.misc.ByeCommandFactory;
+import seedu.mealcompanion.command.factory.misc.ClearCommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelloWorldCommandFactory;
+import seedu.mealcompanion.command.factory.misc.HelpCommandFactory;
+import seedu.mealcompanion.command.factory.misc.RemoveCommandFactory;
+import seedu.mealcompanion.command.factory.misc.MakeCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeAllCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeDetailCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipePossibleCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RemoveCommandFactory;
-import seedu.mealcompanion.command.factory.misc.HelpCommandFactory;
+import seedu.mealcompanion.command.factory.misc.RecipeNeedCommandFactory;
+import seedu.mealcompanion.command.factory.misc.RecipeRandomCommandFactory;
+import seedu.mealcompanion.command.factory.misc.RecipeAlmostCommandFactory;
 import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.parser.CommandArguments;
 import seedu.mealcompanion.parser.CommandTokens;
+import seedu.mealcompanion.recipe.IngredientMetadata;
 import seedu.mealcompanion.recipe.RecipeList;
 import seedu.mealcompanion.router.CommandRouterNode;
 import seedu.mealcompanion.storage.IngredientStorage;
 import seedu.mealcompanion.ui.MealCompanionUI;
+import java.util.List;
+import java.util.ArrayList;
+
 
 
 import java.util.Scanner;
@@ -33,21 +45,34 @@ public class MealCompanionSession {
                     )
                     .route("bye", new ByeCommandFactory())
                     .route("add", new AddCommandFactory())
+                    .route("clear", new ClearCommandFactory())
                     .route("help", new HelpCommandFactory())
                     .route("remove", new RemoveCommandFactory())
+                    .route("make", new MakeCommandFactory())
                     .route("recipe", new CommandRouterNode()
                             .route("possible", new RecipePossibleCommandFactory())
-                            .route("all", new RecipeAllCommandFactory()))
+                            .route("all", new RecipeAllCommandFactory())
+                            .route("almost", new RecipeAlmostCommandFactory())
+                            .route("random", new RecipeRandomCommandFactory())
+                            .route("need", new RecipeNeedCommandFactory())
+                    )
                     .route("recipe", new RecipeDetailCommandFactory())
                     .route("ingredients", new CommandRouterNode()
                             .route("list", new IngredientsListCommandFactory())
                             .route("search", new IngredientsSearchCommandFactory())
+                    )
+                    .route("allergen", new CommandRouterNode()
+                            .route("add", new AllergenAddCommandFactory())
+                            .route("remove", new AllergenRemoveCommandFactory())
+                            .route("list", new AllergenListCommandFactory())
                     );
+
     private final IngredientList ingredients;
     private final RecipeList recipes;
     private final MealCompanionUI ui;
     private final MealCompanionControlFlow controlFlow;
     private final IngredientStorage ingredientStorage;
+    private final List<IngredientMetadata> allergens;
 
 
 
@@ -56,9 +81,21 @@ public class MealCompanionSession {
         this.ui = new MealCompanionUI(new Scanner(System.in));
         this.controlFlow = new MealCompanionControlFlow();
         this.ingredients = new IngredientList();
-        this.recipes = new RecipeList();
+        this.recipes = new RecipeList("/recipes.json");
         this.ingredientStorage = new IngredientStorage();
+        this.allergens = new ArrayList<>();
     }
+
+    public void setAllergens(List<IngredientMetadata> allergens) {
+        this.allergens.clear();
+        this.allergens.addAll(allergens);
+    }
+
+    public List<IngredientMetadata> getAllergens() {
+        return this.allergens;
+    }
+
+
 
     /**
      * Returns the <code>MealCompanionUI</code> for the current session.
@@ -109,7 +146,7 @@ public class MealCompanionSession {
         while (this.controlFlow.shouldRun()) {
             String nextCommand = ui.getNextCommandString();
             CommandTokens tokens = new CommandTokens(nextCommand);
-            ExecutableCommandFactory commandFactory = this.COMMAND_TREE.resolve(tokens);
+            ExecutableCommandFactory commandFactory = MealCompanionSession.COMMAND_TREE.resolve(tokens);
 
             if (commandFactory == null) {
                 System.out.println("Not a command!");

@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+IngredientList <-- MealCompanionSession
+Ingredient "*" <-- IngredientList
+
+class Ingredient {
+-quantity: double
+-name: String
++getQuantity()
++setQuantity(double)
++getName()
+}
+
+class IngredientList {
+
++size(): int
++remove(int)
++get(int): Ingredient
++getIngredients() : IngredientList
+}
+
+Class MealCompanionSession {
+- controlFLow: MealCompanionControlFlow
+- recipes: RecipeList
+- ui: MealCompanionUI
+- ingredientStorage: IngredientStorage
+
+}
+
+
+@enduml

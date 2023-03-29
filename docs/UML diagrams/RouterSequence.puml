@@ -1,0 +1,47 @@
+@startuml
+!include Style.puml
+participant "root:CommandRouterNode" as root
+participant "rootChildren:List<RouteDescription>" as lvl1
+participant "matchedRootChild:Routable" as lvl1match
+participant "recipeChildren:List<RouteDescription>" as lvl2
+participant ":RecipeAllCommandFactory" as lvl2match
+
+-> root: resolve("recipe all")
+activate root
+loop for each child
+root -> lvl1: getRouteName()
+activate lvl1
+lvl1 --> root: route name
+deactivate lvl1
+opt route name = "recipe"
+root -> lvl1: getRoutable()
+activate lvl1
+lvl1 --> root: matchedRootChild
+deactivate lvl1
+root->lvl1match: resolve("all")
+activate lvl1match
+loop for each child
+lvl1match -> lvl2: getRouteName()
+activate lvl2
+lvl2 --> lvl1match: route name
+deactivate lvl2
+opt route name = "all"
+lvl1match -> lvl2: getRoutable()
+activate lvl2
+lvl2 --> lvl1match: "Recipe All" Command Factory
+deactivate lvl2
+lvl1match -> lvl2match: resolve("")
+activate lvl2match
+lvl2match --> lvl1match: "Recipe All" Command Factory
+deactivate lvl2match
+lvl1match --> root: "Recipe All" Command Factory
+deactivate lvl1match
+<-- root : "Recipe All" Command Factory
+deactivate root
+end
+end
+end
+end
+deactivate root
+
+@enduml

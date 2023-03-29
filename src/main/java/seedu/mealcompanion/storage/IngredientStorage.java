@@ -13,6 +13,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+//@@ author jingyaaa
+/**
+ * Reads ingredients initially stored in a file to ingredient list and updates stored ingredients in a file
+ * after every change made to the ingredient list.
+ */
 
 public class IngredientStorage {
 
