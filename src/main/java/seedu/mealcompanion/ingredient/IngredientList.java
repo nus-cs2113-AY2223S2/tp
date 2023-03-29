@@ -36,6 +36,22 @@ public class IngredientList {
     }
 
     //@@author TJW0911
+
+    /**
+     * Finds the index of a specified ingredient name in the ingredients list
+     *
+     * @param name the name of the ingredient
+     * @return the index of the ingredient in the ingredients list and -1 if ingredient does not exist
+     */
+
+    public int findIndex(String name) {
+        for (int i = 0; i < ingredients.size(); i += 1) {
+            if (ingredients.get(i).getMetadata().getName().equalsIgnoreCase(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
     public void remove(int i) {
         ingredients.remove(i);
     }
@@ -50,5 +66,17 @@ public class IngredientList {
 
     public ArrayList<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    //@@author ngyida
+    @Override
+    public String toString() {
+        StringBuilder ingredientListDetails = new StringBuilder();
+        for (int i = 0; i < ingredients.size(); i++) {
+            Ingredient ingredient = ingredients.get(i);
+            String ingredientDetails = ingredient.toString();
+            ingredientListDetails.append((i+1) + ". " + ingredientDetails + System.lineSeparator());
+        }
+        return String.valueOf(ingredientListDetails);
     }
 }

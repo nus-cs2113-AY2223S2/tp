@@ -1,9 +1,10 @@
-package seedu.mealcompanion.command.misc;
+package seedu.mealcompanion.command.recipe;
 
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
+import seedu.mealcompanion.recipe.IngredientMetadata;
 import seedu.mealcompanion.recipe.Recipe;
 import seedu.mealcompanion.recipe.RecipeList;
 import java.util.Arrays;
@@ -12,8 +13,8 @@ import java.util.List;
 /**
  * Represents the "recipe possible" command.
  */
-public class RecipePossibleCommand extends ExecutableCommand {
-
+//@@author ngyida
+public abstract class RecipeCommand extends ExecutableCommand {
     /**
      * Check if an ingredientList has a sufficient amount of an ingredient.
      *
@@ -21,7 +22,7 @@ public class RecipePossibleCommand extends ExecutableCommand {
      * @param fridgeIngredients the list of ingredients to check in
      * @return true if the list of ingredients have sufficient quantity of that ingredient, false otherwise
      */
-    private boolean hasEnoughIngredient(Ingredient recipeIngredient, IngredientList fridgeIngredients) {
+    public boolean hasEnoughIngredient(Ingredient recipeIngredient, IngredientList fridgeIngredients) {
         String recipeIngredientName = recipeIngredient.getMetadata().getName();
         double recipeIngredientQty = recipeIngredient.getQuantity();
         for (Ingredient fridgeIngredient : fridgeIngredients.getIngredients()) {
@@ -41,10 +42,10 @@ public class RecipePossibleCommand extends ExecutableCommand {
      * @param allergens the list of allergens specified by the user
      * @return true if the recipe can be made using the list of ingredients without any allergens, false otherwise
      */
-    private boolean canMakeRecipe(Recipe recipe, IngredientList fridgeIngredients, List<String> allergens) {
+    public boolean canMakeRecipe(Recipe recipe, IngredientList fridgeIngredients, List<IngredientMetadata> allergens) {
         IngredientList recipeIngredients = recipe.getIngredients();
         for (Ingredient recipeIngredient : recipeIngredients.getIngredients()) {
-            if (allergens.contains(recipeIngredient.getMetadata().getName())) {
+            if (allergens.contains(recipeIngredient.getMetadata())) {
                 return false;
             }
             if (!hasEnoughIngredient(recipeIngredient, fridgeIngredients)) {
@@ -61,20 +62,15 @@ public class RecipePossibleCommand extends ExecutableCommand {
      */
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
-        mealCompanionSession.getUi().printMessage("Please enter allergens (comma-separated): ");
-        String allergensStr = mealCompanionSession.getUi().getNextCommandString();
-        List<String> allergens = Arrays.asList(allergensStr.split(","));
-        mealCompanionSession.setAllergens(allergens);
         IngredientList fridgeIngredients = mealCompanionSession.getIngredients();
         RecipeList recipes = mealCompanionSession.getRecipes();
         int index = 1;
         mealCompanionSession.getUi().printMessage("Here are the recipe(s) that you can make:");
         for (Recipe recipe : recipes.getRecipes()) {
-            if (canMakeRecipe(recipe, fridgeIngredients, allergens)) {
+            if (canMakeRecipe(recipe, fridgeIngredients, mealCompanionSession.getAllergens())) {
                 mealCompanionSession.getUi().printMessage(index + ". " + recipe.getName());
                 index++;
             }
         }
     }
-
 }

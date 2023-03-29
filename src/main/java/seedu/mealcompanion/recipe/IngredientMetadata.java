@@ -38,4 +38,12 @@ public class IngredientMetadata {
         }
         return name + ": " + this.unitLabel;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof IngredientMetadata) {
+            return this.getName().equals(((IngredientMetadata) other).getName());
+        }
+        return false;
+    }
 }

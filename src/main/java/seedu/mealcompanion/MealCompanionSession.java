@@ -16,9 +16,11 @@ import seedu.mealcompanion.command.factory.misc.RecipeDetailCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipePossibleCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeNeedCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeRandomCommandFactory;
+import seedu.mealcompanion.command.factory.misc.RecipeAlmostCommandFactory;
 import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.parser.CommandArguments;
 import seedu.mealcompanion.parser.CommandTokens;
+import seedu.mealcompanion.recipe.IngredientMetadata;
 import seedu.mealcompanion.recipe.RecipeList;
 import seedu.mealcompanion.router.CommandRouterNode;
 import seedu.mealcompanion.storage.IngredientStorage;
@@ -47,12 +49,11 @@ public class MealCompanionSession {
                     .route("recipe", new CommandRouterNode()
                             .route("possible", new RecipePossibleCommandFactory())
                             .route("all", new RecipeAllCommandFactory())
+                            .route("almost", new RecipeAlmostCommandFactory())
                             .route("random", new RecipeRandomCommandFactory())
-                    )
-                    .route("recipe", new CommandRouterNode()
-                            .route("detail", new RecipeDetailCommandFactory())
                             .route("need", new RecipeNeedCommandFactory())
                     )
+                    .route("recipe", new RecipeDetailCommandFactory())
                     .route("ingredients", new CommandRouterNode()
                             .route("list", new IngredientsListCommandFactory())
                             .route("search", new IngredientsSearchCommandFactory())
@@ -63,7 +64,7 @@ public class MealCompanionSession {
     private final MealCompanionUI ui;
     private final MealCompanionControlFlow controlFlow;
     private final IngredientStorage ingredientStorage;
-    private final List<String> allergens;
+    private final List<IngredientMetadata> allergens;
 
 
 
@@ -72,14 +73,18 @@ public class MealCompanionSession {
         this.ui = new MealCompanionUI(new Scanner(System.in));
         this.controlFlow = new MealCompanionControlFlow();
         this.ingredients = new IngredientList();
-        this.recipes = new RecipeList();
+        this.recipes = new RecipeList("/recipes.json");
         this.ingredientStorage = new IngredientStorage();
         this.allergens = new ArrayList<>();
     }
 
-    public void setAllergens(List<String> allergens) {
+    public void setAllergens(List<IngredientMetadata> allergens) {
         this.allergens.clear();
         this.allergens.addAll(allergens);
+    }
+
+    public List<IngredientMetadata> getAllergens() {
+        return this.allergens;
     }
 
 

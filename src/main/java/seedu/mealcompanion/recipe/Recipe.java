@@ -2,6 +2,7 @@ package seedu.mealcompanion.recipe;
 
 import seedu.mealcompanion.ingredient.IngredientList;
 
+//@@author ngyida
 public class Recipe {
     private String name;
     private int calorieCount;
@@ -42,5 +43,17 @@ public class Recipe {
 
     public InstructionList getInstructions() {
         return instructions;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder recipeDetails = new StringBuilder();
+        recipeDetails.append("Recipe for " + this.name + System.lineSeparator());
+        recipeDetails.append("Calories: " + this.calorieCount + System.lineSeparator());
+        recipeDetails.append("Ingredients:" + System.lineSeparator());
+        recipeDetails.append(ingredients.toString());
+        recipeDetails.append("Instructions:" + System.lineSeparator());
+        recipeDetails.append(instructions.toString());
+        return String.valueOf(recipeDetails);
     }
 }
