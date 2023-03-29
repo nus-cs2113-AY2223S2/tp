@@ -1,30 +1,17 @@
 package seedu.dukeofbooks.parser;
 
-import seedu.dukeofbooks.command.*;
+import seedu.dukeofbooks.command.AccessCommand;
+import seedu.dukeofbooks.command.AccessHelpCommand;
+import seedu.dukeofbooks.command.ExitCommand;
+import seedu.dukeofbooks.command.IncorrectAccessCommand;
+import seedu.dukeofbooks.command.LoginCommand;
+import seedu.dukeofbooks.command.PasswordCommand;
+import seedu.dukeofbooks.command.SignupCommand;
 import seedu.dukeofbooks.data.user.UserRecords;
 
 
 public class AccessCommandParser implements IParser {
     private final UserRecords userRecords;
-
-    private static <T> int indexOf(T[] arr, T toFind) {
-        for (int i = 0; i < arr.length; ++i) {
-            if (arr[i].equals(toFind)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private static <T extends Comparable<T>> T min(T... items) {
-        T minItem = items[0];
-        for (T item : items) {
-            if (item.compareTo(minItem) < 0) {
-                minItem = item;
-            }
-        }
-        return minItem;
-    }
 
     public AccessCommandParser(UserRecords userRecords) {
         this.userRecords = userRecords;
@@ -50,6 +37,15 @@ public class AccessCommandParser implements IParser {
         default:
             return new AccessHelpCommand();
         }
+    }
+
+    private <T> int indexOf(T[] arr, T toFind) {
+        for (int i = 0; i < arr.length; ++i) {
+            if (arr[i].equals(toFind)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private AccessCommand parseLoginCommand(String[] args) {
@@ -144,5 +140,7 @@ public class AccessCommandParser implements IParser {
         } catch (IndexOutOfBoundsException | AssertionError e) {
             return new IncorrectAccessCommand("Username or password is(are) empty!");
         }
+
+
     }
 }

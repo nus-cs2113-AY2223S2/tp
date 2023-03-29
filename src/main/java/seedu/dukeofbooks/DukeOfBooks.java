@@ -1,7 +1,11 @@
 package seedu.dukeofbooks;
 
-import seedu.dukeofbooks.command.*;
-import seedu.dukeofbooks.controller.AccessController;
+import seedu.dukeofbooks.command.AccessCommand;
+import seedu.dukeofbooks.command.AccessHelpCommand;
+import seedu.dukeofbooks.command.CommandResult;
+import seedu.dukeofbooks.command.ExitCommand;
+import seedu.dukeofbooks.command.LogoutCommand;
+import seedu.dukeofbooks.command.UserCommand;
 import seedu.dukeofbooks.controller.InventoryController;
 import seedu.dukeofbooks.controller.SearchController;
 import seedu.dukeofbooks.data.book.Book;

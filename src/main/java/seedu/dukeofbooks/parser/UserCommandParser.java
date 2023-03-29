@@ -2,7 +2,16 @@ package seedu.dukeofbooks.parser;
 
 import static seedu.dukeofbooks.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.dukeofbooks.command.*;
+import seedu.dukeofbooks.command.BorrowCommand;
+import seedu.dukeofbooks.command.HistoryCommand;
+import seedu.dukeofbooks.command.IncorrectUserCommand;
+import seedu.dukeofbooks.command.InventoryCommand;
+import seedu.dukeofbooks.command.ListCommand;
+import seedu.dukeofbooks.command.LogoutCommand;
+import seedu.dukeofbooks.command.RenewCommand;
+import seedu.dukeofbooks.command.ReturnCommand;
+import seedu.dukeofbooks.command.SearchCommand;
+import seedu.dukeofbooks.command.UserCommand;
 import seedu.dukeofbooks.controller.SearchController;
 import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.book.BorrowableItem;

@@ -8,8 +8,6 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 import seedu.dukeofbooks.command.CommandResult;
-import seedu.dukeofbooks.command.LoginCommand;
-import seedu.dukeofbooks.command.SignupCommand;
 import seedu.dukeofbooks.data.book.BorrowableItem;
 
 import java.util.ArrayList;
