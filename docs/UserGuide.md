@@ -288,7 +288,7 @@ Format : `edit [INDEX] [FLAG] {NEWFIELD}`
     * `-d` to edit the description
     * `-c` to edit the category
     * `-v` to edit the value
-    * `date` to edit the date
+    * `-date` to edit the date
     * `-in` to change direction to inflow
     * `-out` to change direction to outflow
 
