@@ -9,6 +9,9 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 
 1. Ensure that you have Java 11 or above installed. 
 2. Download the latest version of `EvenNtUS` from [here](https://github.com/AY2223S2-CS2113-W12-2/tp/releases/tag/V2.0).
+3. Copy the jar file to a folder.
+4. Open Command Prompt in the folder and enter the command <code>java -jar tp.jar</code>
+5. You can now use EveNtUS!
 
 ## Features
 
