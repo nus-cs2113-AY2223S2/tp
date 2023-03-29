@@ -19,11 +19,10 @@ public class MonthFilter {
     /**
      * Converts English month name to its numeric representation
      *
-     * @param monthName English month name
      * @return numeric month as String in 2 char
      */
-    private String convertMonthName(String monthName) throws IllegalArgumentException {
-        int numericMonth = Month.valueOf(monthName.toUpperCase()).getValue();
+    protected String convertMonthName() throws IllegalArgumentException {
+        int numericMonth = Month.valueOf(month.toUpperCase()).getValue();
         if (numericMonth < 10) {
             return "0" + numericMonth;
         } else {
@@ -31,14 +30,14 @@ public class MonthFilter {
         }
     }
 
-    private String getMonthFromExpenseTime(String expenseTime) {
+    protected String getMonthFromExpenseTime(String expenseTime) {
         String[] date = expenseTime.split("/");
         return date[1];
     }
 
-    private void filter() throws IllegalArgumentException {
+    protected void filter() throws IllegalArgumentException {
         for (Expense e : expenses) {
-            if (getMonthFromExpenseTime(e.getExpenseTime()).equals(convertMonthName(month))) {
+            if (getMonthFromExpenseTime(e.getExpenseTime()).equals(convertMonthName())) {
                 monthlyExpenses.add(e);
             }
         }
