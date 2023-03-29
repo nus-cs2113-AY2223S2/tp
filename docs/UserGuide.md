@@ -1,4 +1,3 @@
-
 # User Guide
 
 ## Introduction
@@ -24,21 +23,21 @@ FitnessDuke is a **Command Line Application for tracking and managing workouts, 
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
-## Getting Started
+## Getting Started   
 
 1. Ensure you have Java 11 or later installed in your PC.
 2. Download the latest version of ```duke.jar``` from our GitHub releases
    page [here](https://github.com/AY2223S2-CS2113-W13-2/tp/releases).
 3. Copy the file to the folder where you want to use fitness duke.
 4. Open a command terminal, ```cd``` into the folder you put the jar file in, and use the ```java -jar duke.jar``` command to run the application.
-7. Type the command in the command box and press Enter to execute it.
+5. Type the command in the command box and press Enter to execute it.
    e.g. typing help and pressing Enter will open the help window.
 Some example commands you can try:
    * ```help```: Displays the general commands which user can input for the program.
    * ```exit```: Exits the app.
    * ```filters```: Displays available filters for users to customise their workout.
    * ```history```: Lists all finished exercises.
-8. Refer to [FitnessDuke's Features](#fitnessdukes-features) below for details of each command.
+6. Refer to [FitnessDuke's Features](#fitnessdukes-features) below for details of each command.
 
 ## FitnessDuke's Features
 
@@ -94,6 +93,7 @@ Shows a list of filters available and their description.
 
 The filters are shown here:
 
+
 | Filter   | Description                                   |
 |----------|-----------------------------------------------|
 | [gym]    | exercises that can be done with gym equipment |
@@ -104,7 +104,7 @@ The filters are shown here:
 | [upper]  | exercises that train your upper body          |
 | [core]   | exercises that train your core                |
 | [legs]   | exercises that train your legs                |
-_____________________________________________________________
+
 
 ### Searching for a workout: ```find [keyword]```
 
@@ -256,7 +256,4 @@ FitnessDuke data are saved as a JSON file [JAR file location]/resources/data.jso
 | **data**     | ```data```                                                               |
 | **start**    | ```start```                                                              |
 | **quick**    | ```quick [plan_name] [x]``` <br> eg. ```quick home_leg_day 3```          |
-_____________________________________________________________
-
-
 
