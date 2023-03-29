@@ -1,0 +1,27 @@
+@startuml
+hide footbox
+hide circle
+
+-> ":Storage" : loadEvents()
+activate ":Storage"
+":Storage" -> ":EventListStorage" : loadEvents()
+activate ":EventListStorage"
+":EventListStorage" ->":EventListAdapter" : gson.fromJson(fileReader, ArrayList.class)
+activate ":EventListAdapter"
+":EventListAdapter" -> ":ArrayList<Event>" : <<create>>
+activate ":ArrayList<Event>"
+":EventListAdapter" -> ":EventListAdapter" : read()
+loop events in file
+    ":EventListAdapter" -> ":EventListAdapter" : readEvent()
+    ":EventListAdapter" --> ":ArrayList<Event>" : Event
+end
+":ArrayList<Event>" --> ":EventListAdapter" : :ArrayList<Event>
+deactivate ":ArrayList<Event>"
+":EventListAdapter" --> ":EventListStorage" : :ArrayList<Event>
+deactivate ":EventListAdapter"
+":EventListStorage" --> ":Storage" : :ArrayList<Event>
+deactivate ":EventListStorage"
+<-- ":Storage" : :ArrayList<Event>
+deactivate ":Storage"
+destroy ":ArrayList<Event>"
+@enduml
