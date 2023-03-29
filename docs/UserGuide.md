@@ -102,6 +102,9 @@ Omitting the keyword will return a list of all valid ingredients.
 
 ### Clear Ingredients
 To remove all ingredients from Meal Companion's storage, use the `clear` command.
+
+![clear.png](images/clear.png)  
+<sub>Fig 8: Sample of Ingredients Clear command with user input highlighted.</sub>
  
 #### [Back to table of contents](#table-of-contents)
  
@@ -122,30 +125,40 @@ This segment will go into detail about the recipe features that Meal Companion c
 To display all stored recipes including default recipes, you may use the command `recipe all` to list them.
 
 ![recipeall1.png](images/recipeall1.png)  
-<sub>Fig 8: Sample of Recipe All command with user input highlighted.</sub>
+<sub>Fig 9: Sample of Recipe All command with user input highlighted.</sub>
 
 ### Recipe Details
 To go into details about a certain recipe, use the command `recipe <index_number>`, using the `<index_number>` from the generated list. 
 
-For example, to view the recipe for Hainanese Chicken Rice, use the command `recipe 6`.
+For example, to view the recipe for Hainanese Chicken Rice, use the command `recipe 6`. The recipe displayed will also include the calorie count, to aid in your calorie tracking if necessary.
 
-![recipedetails1.png](images/recipedetails1.png)  
-<sub>Fig 9: Sample of Recipe Details command showing the output of</sub> `recipe 6` <sub>, the recipe for Hainanese Chicken Rice, with user input highlighted.</sub>
+![recipedetails2.png](images/recipedetails2.png)  
+<sub>Fig 10: Sample of Recipe Details command showing the output of</sub> `recipe 6` <sub>, the recipe for Hainanese Chicken Rice, with user input highlighted.</sub>
 
 ### Possible Recipes
 Meal Companion includes the functionality to suggest recipes based on ingredient availability. Simply use the command `recipe possible`, and Meal Companion will list out the recipes that can be made with the ingredients you currently have.
 
 ![recipepossible1.png](images/recipepossible1.png)  
-<sub>Fig 10: Sample of Recipe Possible command showing the list of ingredients and the recipes that can be made with those ingredients, with user input highlighted.</sub>
+<sub>Fig 11: Sample of Recipe Possible command showing the list of ingredients and the recipes that can be made with those ingredients, with user input highlighted.</sub>
 
 ### Random Recipe
-Meal Companion allows you to get a random recipe as suggestion for your next meal using the command `recipe random`.
+Should you ever feel bored of cooking the same recipe over and over, Meal Companion provides you with the capability to choose a recipe at random. To make use of this feature, you may simply use the command `recipe random` to generate a random recipe.
+
+![reciperandom.png](images/reciperandom.png)  
+<sub>Fig 12: Sample of Recipe Random command being run twice to generate two different outputs, with user input highlighted.</sub>
 
 ### Check Ingredients for Recipe
-To check if you have sufficient ingredients to make a recipe, you can run the command `recipe need <index_number>`. Ingredients that you are missing will be listed along with the quantity needed.
+If you wish to check if your current list of ingredients is sufficient to cook any recipe, you may use the command `recipe need <index_number>`. Ingredients that you are missing will be listed along with the quantity required. 
+
+![recipeneed.png](images/recipeneed.png)  
+<sub>Fig 13: Sample of Recipe Need command showing missing ingredients required make Recipe 2 (Cup of Water), with user input highlighted.</sub>
 
 ### Almost Completed Recipe
-To check for recipes that you almost can make, you can run the command `recipe almost`. Such recipes have at most 3 lacking ingredients.
+If you would like to find out which recipes you are almost able to make with the ingredients you have on hand, you may run the command `recipe almost`. This will give you a list of recipes that are lacking at most 3 ingredients.
+
+![recipealmost.png](images/recipealmost.png)  
+<sub>Fig 14: Sample of Recipe Almost command with 3 ingredients missing for Recipe 1 (Beef Burger) and 1 ingredient missing for Recipe 2 (Cup of Water), with user input highlighted.</sub>
+
 
 #### [Back to table of contents](#table-of-contents)
 
