@@ -16,9 +16,10 @@ public class Account {
     protected static ArrayList<Expense> account;
     protected static ExpenseList expenseList;
     protected int accountSize;
+    private static String passwordHash;
     private static final int MIN_PASSWORD_LENGTH = 8;
     private static final Pattern USERNAME_PATTERN = Pattern.compile("[a-zA-Z0-9]+");
-    private static String passwordHash;
+
 
 
     public Account(String accountName, String password) {
