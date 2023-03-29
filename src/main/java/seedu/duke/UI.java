@@ -31,11 +31,13 @@ public class UI {
     private static final String INPUT_NOT_INT_MESSAGE = "The input for the given command is not an integer";
     private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name";
     private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name";
-    private static final String INVALID_SEARCH_MODULE_MESSAGE = "There is no matching module code found.\n" + "Please ensure that you have typed in the correct NUS Module Code";
+    private static final String INVALID_SEARCH_MODULE_MESSAGE = "There is no matching module code found.\n"
+            + "Please ensure that you have typed in the correct NUS Module Code";
     private static final String INVALID_BUDGET_MESSAGE = "Please type in the correct budget command";
     private static final String CURRENT_MOD_LIST_EMPTY = "The current module list is empty";
     private static final String CURRENT_DEADLINES_LIST_EMPTY = "The current deadlines list is empty";
-    private static final String FOUND_LIST_MESSAGE = "Here is/are the list/s of modules that can map " + "this NUS module code: ";
+    private static final String FOUND_LIST_MESSAGE = "Here is/are the list/s of modules that can map "
+            + "this NUS module code: ";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
@@ -95,8 +97,12 @@ public class UI {
     }
 
     public void printGreetingMessage() {
-        System.out.println("\n" + "  ____  _____ ____    _   _      _                 \n" + " / ___|| ____|  _ \\  | | | | ___| |_ __   ___ _ __ \n" + " \\___ \\|  _| | |_) | | |_| |/ _ \\ | '_ \\ / _ \\ '__|\n"
-                + "  ___) | |___|  __/  |  _  |  __/ | |_) |  __/ |   \n" + " |____/|_____|_|     |_| |_|\\___|_| .__/ \\___|_|   \n" + "                                  |_|              \n");
+        System.out.println("\n" + "  ____  _____ ____    _   _      _                 \n"
+                + " / ___|| ____|  _ \\  | | | | ___| |_ __   ___ _ __ \n"
+                + " \\___ \\|  _| | |_) | | |_| |/ _ \\ | '_ \\ / _ \\ '__|\n"
+                + "  ___) | |___|  __/  |  _  |  __/ | |_) |  __/ |   \n"
+                + " |____/|_____|_|     |_| |_|\\___|_| .__/ \\___|_|   \n"
+                + "                                  |_|              \n");
 
         System.out.println(WELCOME_MESSAGE);
         System.out.println(READ_COMMAND_INPUT);
@@ -104,7 +110,8 @@ public class UI {
         System.out.println(LINE);
     }
 
-    public void printFoundNusModules(ArrayList<Module> foundNusModList, String nusModCode, ArrayList<University> universities) {
+    public void printFoundNusModules(ArrayList<Module> foundNusModList, String nusModCode,
+                                     ArrayList<University> universities) {
         System.out.println(FOUND_LIST_MESSAGE + nusModCode);
         System.out.println(LINE);
         int foundModIndex = 0;
@@ -122,7 +129,8 @@ public class UI {
             }
             if (currModulePuId == prevModulePuId) {
                 printIndex++;
-                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+                System.out.println(printIndex + ". [" + moduleCode + "]"
+                        + "[" + moduleName + "]" + "[" + moduleMCs + "]");
             } else {
                 printIndex = 1;
                 if (printIndex == 1) {
@@ -130,7 +138,8 @@ public class UI {
                     System.out.println(currPuAbbr);
                     System.out.println(LINE);
                 }
-                System.out.println(printIndex + ". [" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+                System.out.println(printIndex + ". [" + moduleCode + "]"
+                        + "[" + moduleName + "]" + "[" + moduleMCs + "]");
             }
             foundModIndex++;
         }
@@ -254,36 +263,36 @@ public class UI {
 
     public static void printHelpCommandMessage() {
         System.out.println("Here are the list of commands:\n"
-                + "LIST PU                        : Provides the list of Partner Universities available\n"
-                + "LIST [PU ABBRV]                : Provides the list of all modules available " +
-                "in the specified Partner University\n"
-                + "LIST [PU INDEX]                : Provides the list of all modules available " +
-                "in the specified Partner University\n"
-                + "                              by index of LIST PU\n"
-                + "LIST [PU ABBRV] /filter [filter]\n"
-                + "                            : Provides the list of modules in the specified filters\n"
-                + "LIST CURRENT                   : Provides the list of modules that the user has added to his/her " +
-                "list of interest\n"
-                + "LIST CURRENT [PU ABBRV]        : Provides the list of modules that user has added to his list of " +
-                "list of interest for the specified PU\n"
-                + "ADD [PU ABBRV]/[MODULE CODE]   : Adds the specified module into user's current list of modules\n"
-                + "REMOVE [PU ABBRV]/ [INDEX]     : Removes the specified module by index from user's current list\n"
-                + "SEARCH [NUS MOD CODE]          : Search for PU modules that can map the user's targeted module\n"
-                + "/budget budget [AMOUNT]        : Allows the user to input/edit the total amount of budget for "
-                +"his/her SEP trip\n"
-                + "/budget accommodation [AMOUNT] : Allows the user to input/edit the total amount of accommodation "
+                + "LIST PU                          : Provides the list of Partner Universities available\n"
+                + "LIST [PU ABBRV]                  : Provides the list of all modules available "
+                + "in the specified Partner University\n"
+                + "LIST [PU INDEX]                  : Provides the list of all modules available "
+                + "in the specified Partner University\n"
+                + "                                   by index of LIST PU\n"
+                + "LIST [PU ABBRV] /filter [filter] : Provides the list of modules in the specified filters\n"
+                + "LIST CURRENT                     : Provides the list of modules that the user has added to his/her "
+                + "list of interest\n"
+                + "LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list of\n"
+                + "                                   list of interest for the specified PU\n"
+                + "ADD [PU ABBRV]/[MODULE CODE]     : Adds the specified module into user's current list of modules\n"
+                + "REMOVE [PU ABBRV]/ [INDEX]       : Removes the specified module by index from user's current list\n"
+                + "SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module\n"
+                + "/budget budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for "
+                + "his/her SEP trip\n"
+                + "/budget accommodation [AMOUNT]   : Allows the user to input/edit the total amount of accommodation "
+                + "cost\n                                   for his/her SEP trip\n"
+                + "/budget airplane [AMOUNT]        : Allows the user to input/edit the total amount of airplane\n"
+                + "                                   ticket cost for his/her SEP trip\n"
+                + "/budget food [AMOUNT]            : Allows the user to input/edit the total amount of food "
                 + "cost for his/her SEP trip\n"
-                + "/budget airplane [AMOUNT       : Allows the user to input/edit the total amount of airplane ticket "
-                + "cost for his/her SEP trip\n"
-                + "/budget food [AMOUNT]          : Allows the user to input/edit the total amount of food "
-                + "cost for his/her SEP trip\n"
-                + "/budget entertainment [AMOUNT] : Allows the user to input/edit the total amount of entertainment "
-                + "cost for his/her SEP trip\n"
-                + "/budget view                   : Provides an overview of the user's planned budget\n"
+                + "/budget entertainment [AMOUNT]   : Allows the user to input/edit the total amount of entertainment\n"
+                + "                                   cost for his/her SEP trip\n"
+                + "/budget view                     : Provides an overview of the user's planned budget\n"
                 + "/deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] : Allows the user to add in his/her own "
-                + "personalized deadlines of the key dates for certain SEP requirements\n"
+                + "personalized deadlines\n"
+                + "                                    of the key dates for certain SEP requirements\n"
                 + "/deadline/remove [DEADLINE INDEX] : Allows the user to remove the specific deadline from the list\n"
-                + "EXIT                           : Exits the program\n\n");
+                + "EXIT                              : Exits the program\n\n");
         System.out.println(READ_COMMAND_INPUT);
         System.out.println(LINE);
     }

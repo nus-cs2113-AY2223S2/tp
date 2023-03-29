@@ -110,9 +110,9 @@ public class Storage implements DatabaseInterface {
      * saved list of modules. Uses Index relative to specific PU list.
      *
      * @param indexToDeletePuSpecificList Index of that module that is given in user input, relative to PU list.
-     * @param modules The ArrayList of all modules user saved.
-     * @param database Database of the user's saved list of modules.
-     * @param uniID Partner University's ID number.
+     * @param modules                     The ArrayList of all modules user saved.
+     * @param database                    Database of the user's saved list of modules.
+     * @param uniID                       Partner University's ID number.
      * @return True if successfully deleted the module, false if unsuccessful.
      */
     public static boolean deleteModule(int indexToDeletePuSpecificList, ArrayList<Module> modules,

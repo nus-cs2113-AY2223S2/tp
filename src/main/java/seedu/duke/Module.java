@@ -1,8 +1,5 @@
 package seedu.duke;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Module {
     private int univId;
     private String moduleCode;
@@ -12,7 +9,8 @@ public class Module {
     private String nusModuleName;
     private int nusModuleMCs;
 
-    public Module(int univId, String moduleCode, String moduleName, int moduleMCs, String nusModuleCode, String nusModuleName, int nusModuleMCs) {
+    public Module(int univId, String moduleCode, String moduleName, int moduleMCs, String nusModuleCode,
+                  String nusModuleName, int nusModuleMCs) {
         this.univId = univId;
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
@@ -24,7 +22,8 @@ public class Module {
 
     @Override
     public String toString() {
-        return univId + "," + moduleCode + "," + moduleName + "," + moduleMCs + "," + nusModuleCode + "," + nusModuleName + "," + nusModuleMCs;
+        return univId + "," + moduleCode + "," + moduleName + "," + moduleMCs + "," + nusModuleCode + ","
+                + nusModuleName + "," + nusModuleMCs;
     }
 
     public int getUnivId() {
