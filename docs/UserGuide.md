@@ -11,7 +11,8 @@ RM(recipe manager) is a <strong>desktop recipe manager application for managing 
 * **[Features](#features)**
     * **[Viewing help：`help`](#viewing-help-help)**
     * **[Adding a recipe: `add`](#adding-a-recipe-add)**
-    * **[Editing a recipe: `edit`](#editing-a-recipe-edit)**
+    * **[Editing steps for a recipe: `editstep`](#editing-a-recipe-step-editstep)**
+    * **[Editing ingredients for a recipe: `editingredient`](#editing-a-recipe-ingredient-editingredient)**
     * **[Deleting a recipe: `delete`](#deleting-a-recipe-delete)**
     * **[Finding recipes: `find`](#finding-recipes-find)**
     * **[Viewing a recipe: `view`](#viewing-a-recipe-view)**
@@ -90,8 +91,8 @@ Hotpot
 __________________________________________________________
 ```
 <p>App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.</p>
-
-<!-- <h2 id="editing-a-recipe-edit"> Editing a recipe: <code class="language-plaintext highlighter-rouge">edit</code></h2>
+<h2 id="editing-a-recipe-step-editstep"> Editing a recipe's steps: <code class="language-plaintext highlighter-rouge">editstep</code></h2>
+<h2 id="editing-a-recipe-ingredient-editingredient"> Editing a recipe's ingredients: <code class="language-plaintext highlighter-rouge">editingredient</code></h2>
 
 Edits a recipe in the recipe manager.
 Format: `edit n/NAME`

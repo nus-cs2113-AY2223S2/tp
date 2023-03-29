@@ -149,6 +149,7 @@ public class Command {
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
             }
+            Storage.writeSavedFile();
             break;
             
         case EDITINGREDIENT:
@@ -178,6 +179,7 @@ public class Command {
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
             }
+            Storage.writeSavedFile();
             break;
         case HELP:
             ui.showHelp();

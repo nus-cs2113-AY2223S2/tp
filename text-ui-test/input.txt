@@ -1,3 +1,3 @@
-clear
 list
+add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/3
 exit

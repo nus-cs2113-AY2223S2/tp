@@ -56,11 +56,11 @@ public class StepList {
         }
         System.out.println("There are " + currStepNumber + " steps in the list");
         System.out.println("Do you want to view step-by-step? \nType yes if so");
-
-        if (ui.readCommand().toLowerCase().equals("yes")) {
+        String input = ui.readCommand();
+        if (input.toLowerCase().equals("yes")) {
             System.out.println("If you would like to exit the recipe view, type \"quit\"");
             System.out.println("Otherwise, enter any key to continue to the next step");
-            String input = "";
+            input = "";
             for (int i = 0; (!input.equals("quit") && i < currStepNumber); i++) {
                 System.out.println((i + 1) + ". " + stepList.get(i).getStep());
                 while (i <= currStepNumber - 1) {
