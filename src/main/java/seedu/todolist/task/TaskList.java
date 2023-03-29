@@ -1,6 +1,7 @@
 package seedu.todolist.task;
 
 import seedu.todolist.exception.InvalidIdException;
+import seedu.todolist.exception.InvalidPriorityException;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -41,8 +42,8 @@ public class TaskList implements Serializable {
     }
 
     public String addTask(String description, LocalDateTime deadline, String email, HashSet<String> tags,
-                          int repeatDuration) {
-        Task task = new Task(id, description, deadline, email, tags, repeatDuration);
+                          int repeatDuration,int priority) {
+        Task task = new Task(id, description, deadline, email, tags, repeatDuration, priority);
         tasks.put(id++, task);
         return task.toString();
     }
@@ -155,6 +156,10 @@ public class TaskList implements Serializable {
         return getTask(id).setEmail(email);
     }
 
+    public String setPriority(int id, int priority) throws InvalidIdException {
+        return getTask(id).setPriority(priority);
+    }
+
     public String setDeadline(int id, LocalDateTime deadline) throws InvalidIdException {
         return getTask(id).setDeadline(deadline);
     }
@@ -179,7 +184,8 @@ public class TaskList implements Serializable {
             if (repeatDuration > 0 && (LocalDateTime.now().isAfter(originalDeadline))) {
                 LocalDateTime newDeadline = originalDeadline.plusWeeks(1);
                 int newRepeatDuration = repeatDuration - 1;
-                addTask(task.getDescription(), newDeadline, task.getEmail(), task.getTags(), newRepeatDuration);
+                addTask(task.getDescription(), newDeadline, task.getEmail(), task.getTags(), newRepeatDuration,
+                        task.getPriority());
                 task.setRepeatDuration(0);
             }
         }

@@ -74,31 +74,6 @@ Okay, I have marked this task as incomplete:
 [ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
 ```
 
-### `email` - Add/Edit an email to a task
-
-Add or edit the email address of a task with a given id in the ToDo List. 
-
-Format: `email <id> -edit <EMAIL>`
-* The `id` has to be an id of a task that can be found in the ToDo list.
-* The `EMAIL` has to be of proper email address format: "username@email.com".
-
-Example of usage:
-
-`email 1 -edit rui@gmail.com`
-
-Expected outcome:
-
-* Adds an email address to the task of id 1 from the ToDo list
-
-    * `COMMAND`: email
-    * `ID`: 1
-    * `FLAG`: -edit
-    * `EMAIL`: rui@gmail.com
-
-```
-Okay, I have edited the email address of this task to [rui@gmail.com]:
-[ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
-```
 ### `delete` - Delete a task
 
 Removes the task with the given id by the user from the ToDo list. 
@@ -122,6 +97,57 @@ Okay, I have removed this task:
 [ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
 ```
 
+### `email` - Add/Edit an email to a task
+
+Add or edit the email address of a task with a given id in the ToDo List.
+
+Format: `email <id> -edit <EMAIL>`
+* The `id` has to be an id of a task that can be found in the ToDo list.
+* The `EMAIL` has to be of proper email address format: "username@email.com".
+
+Example of usage:
+
+`email 1 -edit rui@gmail.com`
+
+Expected outcome:
+
+* Adds an email address to the task of id 1 from the ToDo list
+
+  * `COMMAND`: email
+  * `ID`: 1
+  * `FLAG`: -edit
+  * `EMAIL`: rui@gmail.com
+
+```
+Okay, I have edited the email address of this task to [rui@gmail.com]:
+[ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
+```
+### `priority` - Edit a priority of a task
+Edit the email address of a task with a given id in the ToDo List.
+
+Format: `priority <id> -edit <PRIORITY>`
+* The `id` has to be an id of a task that can be found in the ToDo list.
+* The `PRIORITY` has to be a number from 1-3.a
+* Priority Levels ranges from 1-3 (1:Low, 2:Medium, 3:High)
+
+Example of usage:
+
+`priority 1 -edit 2`
+
+Expected outcome:
+
+* Sets the priority level of the task of id 1 to 2, Medium
+
+  * `COMMAND`: priority
+  * `ID`: 1
+  * `FLAG`: -edit
+  * `PRIORITY`: 2
+
+```
+Okay, I have edited the priority level of this task to [Medium]:
+[ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
+```
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -137,3 +163,4 @@ Okay, I have removed this task:
 * Unmark a task `unmark <id>`
 * Delete a task `delete <id>`
 * Add/Edit email to a task `email <id> -edit <EMAIL>`
+* Edit priority of a task `priority <id> -edit <PRIORITY>`

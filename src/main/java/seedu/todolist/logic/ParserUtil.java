@@ -1,10 +1,7 @@
 package seedu.todolist.logic;
 
 import seedu.todolist.constants.Formats;
-import seedu.todolist.exception.InvalidDateException;
-import seedu.todolist.exception.InvalidDurationException;
-import seedu.todolist.exception.InvalidEmailFormatException;
-import seedu.todolist.exception.InvalidIdException;
+import seedu.todolist.exception.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -134,6 +131,21 @@ public class ParserUtil {
             return Integer.parseInt(repeatDuration);
         } catch (NumberFormatException e) {
             throw new InvalidDurationException(repeatDuration);
+        }
+    }
+
+    public static int parsePriority(String priority) throws InvalidPriorityException {
+        if (priority == null) {
+            return 1;
+        }
+
+        try {
+            if (Integer.parseInt(priority) > 3){
+                throw new InvalidPriorityException(priority);
+            }
+            return Integer.parseInt(priority);
+        } catch (NumberFormatException e) {
+            throw new InvalidPriorityException(priority);
         }
     }
 }
