@@ -30,28 +30,34 @@ public class Ui {
         System.out.println("This is the freq (Hz): " + freq);
     }
 
+
+    //@@author ZiqiuZeng
+    public static void printMark(String text) {
+        System.out.println("You have marked this note as done:");
+        System.out.println(text);
+    }
+
+    //@@author ZiqiuZeng
+    public static void printUnmark(String text) {
+        System.out.println("You have unmarked this note:");
+        System.out.println(text);
+    }
+
+    //@@author WilsonLee2000
     public static void printAddNote(String text, int size) {
         System.out.println("You have added this note:");
         System.out.println(text);
         System.out.println("Now you have " + size + " tasks in the list.");
     }
 
-    public static void printMark(String text) {
-        System.out.println("You have marked this note as done:");
-        System.out.println(text);
-    }
-
-    public static void printUnmark(String text) {
-        System.out.println("You have unmarked this note:");
-        System.out.println(text);
-    }
-
+    //@@author WilsonLee2000
     public static void printDelete(String text, int size) {
         System.out.println("You have removed this note:");
         System.out.println(text);
         System.out.println("Now you have " + (size - 1) + " tasks in the list.");
     }
 
+    //@@author WilsonLee2000
     public static void printNotes(ArrayList<Note> notes) {
         if (notes.size() == 0) {
             System.out.println("You have no note yet. :(");
@@ -64,6 +70,18 @@ public class Ui {
         }
     }
 
+    //@@author WilsonLee2000
+    public static void printSpecificNote(int index, ArrayList<Note> notes) {
+        if (index >= 0 && index < notes.size()) {
+            Note note = notes.get(index);
+            System.out.println("Here is the note you are looking for: ");
+            System.out.println((index + 1) + ": " + note.toString());
+        } else {
+            System.out.println("Invalid note index");
+        }
+    }
+
+    //@@author ZiqiuZeng
     public static void printFindNotes(ArrayList<Note> notes) {
         if (notes.size() == 0) {
             System.out.println("Sorry, no relevant results were found for this query. Please try other keywords.");
@@ -75,16 +93,7 @@ public class Ui {
         }
     }
 
-    public static void printSpecificNote(int index, ArrayList<Note> notes) {
-        if (index >= 0 && index < notes.size()) {
-            Note note = notes.get(index);
-            System.out.println("Here is the note you are looking for: ");
-            System.out.println((index + 1) + ": " + note.toString());
-        } else {
-            System.out.println("Invalid note index");
-        }
-    }
-
+    //@@author ZiqiuZeng
     public static void printPriority(int index, ArrayList<Note> notes) {
         NotePriority.Priority priority = notes.get(index).getPriority();
         String priorityStr = priority.name();
@@ -92,6 +101,7 @@ public class Ui {
         System.out.println((index + 1) + ": " + notes.get(index).toString());
     }
 
+    //@@author ZiqiuZeng
     public static void printNotesByReviewCount(ArrayList<Note> notes) {
         // Sort notes by review count in descending order
         notes.sort((note1, note2) -> Integer.compare(note2.getReviewCount(), note1.getReviewCount()));
@@ -103,6 +113,7 @@ public class Ui {
         }
     }
 
+    //@@author ZiqiuZeng
     public static void printNotesByPriority(ArrayList<Note> notes) {
         ArrayList<Note> highPriorityNotes = new ArrayList<>();
         ArrayList<Note> mediumPriorityNotes = new ArrayList<>();
