@@ -69,7 +69,7 @@ public class Parser {
                 //list out all tasks in x days in the future specified by the user
                 Ui.printUpcomingTasks(tasks, words[1]);
             } else if (line.equals("upcoming class")) {
-                Ui.displayNextUpcomingClass(tasks);
+                Ui.displayNextUpcomingClass(classes);
             } else if (words[0].equals("unmark") && (words.length == 2) && (isNumeric(words[1]))) {
                 // Mark a task as not done
                 TaskList.unmarkTask(tasks, words);

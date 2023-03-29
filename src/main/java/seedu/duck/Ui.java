@@ -49,7 +49,7 @@ public class Ui {
      *
      * @param tasks the list of tasks
      */
-    static void printPriorityList(ArrayList<Task> tasks){
+    static void printPriorityList(ArrayList<Task> tasks) {
         borderLine();
         System.out.println("\t Here are the tasks in your list arranged by priority:");
         borderLine();
@@ -63,10 +63,10 @@ public class Ui {
      *
      * @param tasks the list of tasks
      */
-    static void printHighPriority(ArrayList<Task> tasks){
+    static void printHighPriority(ArrayList<Task> tasks) {
         ArrayList<Integer> indexOfHighPriority = new ArrayList<Integer>();
         int taskCount = Task.getTaskCount();
-        for (int i = 0; i < taskCount; i++){
+        for (int i = 0; i < taskCount; i++) {
             if (tasks.get(i).returnPriority() == 3) {
                 indexOfHighPriority.add(i);
             }
@@ -88,7 +88,7 @@ public class Ui {
      *
      * @param tasks the list of tasks
      */
-    static void printMediumPriority(ArrayList<Task> tasks){
+    static void printMediumPriority(ArrayList<Task> tasks) {
         ArrayList<Integer> indexOfMediumPriority = new ArrayList<Integer>();
         int taskCount = Task.getTaskCount();
         for (int i = 0; i < taskCount; i++) {
@@ -113,10 +113,10 @@ public class Ui {
      *
      * @param tasks the list of tasks
      */
-    static void printLowPriority(ArrayList<Task> tasks){
+    static void printLowPriority(ArrayList<Task> tasks) {
         ArrayList<Integer> indexOfLowPriority = new ArrayList<Integer>();
         int taskCount = Task.getTaskCount();
-        for (int i = 0; i < taskCount; i++){
+        for (int i = 0; i < taskCount; i++) {
             if (tasks.get(i).returnPriority() == 1) {
                 indexOfLowPriority.add(i);
             }
@@ -148,7 +148,7 @@ public class Ui {
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).getDescription().contains(keyword)) {
                 matchingResults.add(tasks.get(i));
-                matchingResultsIndex.add(i+1);
+                matchingResultsIndex.add(i + 1);
                 matchCount++;
             }
         }
@@ -173,8 +173,8 @@ public class Ui {
     /**
      * Prints the list of tasks that contain the keywords
      *
-     * @param matchingResults The array list of tasks that contain the keywords
-     * @param matchCount      The number of tasks in the list that contain the keywords
+     * @param matchingResults      The array list of tasks that contain the keywords
+     * @param matchCount           The number of tasks in the list that contain the keywords
      * @param matchingResultsIndex The index of the task in the main list
      */
     static void printMatchingList(ArrayList<Task> matchingResults, int matchCount, ArrayList<Integer> matchingResultsIndex) {
@@ -316,33 +316,15 @@ public class Ui {
     /**
      * Display Next Upcoming Class
      *
-     * @param tasks the array list of all the tasks
+     * @param classes the array list of all the tasks
      */
-    static void displayNextUpcomingClass(ArrayList<Task> tasks) {
+    static void displayNextUpcomingClass(PriorityQueue<SchoolClass> classes) {
         borderLine();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
-        Date compare = null;
-        int index = -1;
         System.out.println("\t Here are your next upcoming class: ");
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i) instanceof SchoolClass) {
-                Date d;
-                try {
-                    d = format.parse(((SchoolClass) tasks.get(i)).getStart());
-                    if (compare == null || d.before(compare)) {
-                        compare = d;
-                        index = i;
-                    }
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        if (index != -1) {
-            String re = tasks.get(index).toString().replace("[C][ ]", "");
-            System.out.println("\t " + re);
+        if (classes.isEmpty()) {
+            System.out.println("\t No upcoming class!");
         } else {
-            System.out.println("\t No upcoming class");
+            System.out.println("\t" + classes.peek());
         }
         borderLine();
     }
