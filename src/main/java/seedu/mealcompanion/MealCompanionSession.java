@@ -47,11 +47,9 @@ public class MealCompanionSession {
                             .route("all", new RecipeAllCommandFactory())
                             .route("almost", new RecipeAlmostCommandFactory())
                             .route("random", new RecipeRandomCommandFactory())
-                    )
-                    .route("recipe", new CommandRouterNode()
-                            .route("detail", new RecipeDetailCommandFactory())
                             .route("need", new RecipeNeedCommandFactory())
                     )
+                    .route("recipe", new RecipeDetailCommandFactory())
                     .route("ingredients", new CommandRouterNode()
                             .route("list", new IngredientsListCommandFactory())
                             .route("search", new IngredientsSearchCommandFactory())
@@ -69,7 +67,7 @@ public class MealCompanionSession {
         this.ui = new MealCompanionUI(new Scanner(System.in));
         this.controlFlow = new MealCompanionControlFlow();
         this.ingredients = new IngredientList();
-        this.recipes = new RecipeList();
+        this.recipes = new RecipeList("/recipes.json");
         this.ingredientStorage = new IngredientStorage();
     }
 

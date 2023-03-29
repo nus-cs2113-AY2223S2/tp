@@ -3,6 +3,7 @@ package seedu.mealcompanion.command.misc;
 import org.junit.jupiter.api.Test;
 import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
+import seedu.mealcompanion.command.recipe.MakeCommand;
 import seedu.mealcompanion.ingredient.Ingredient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

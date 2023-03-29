@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
+import seedu.mealcompanion.command.ingredients.AddCommand;
+import seedu.mealcompanion.command.recipe.RecipeNeedCommand;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

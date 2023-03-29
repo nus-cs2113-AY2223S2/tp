@@ -1,4 +1,4 @@
-package seedu.mealcompanion.command.misc;
+package seedu.mealcompanion.command.recipe;
 
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.ingredient.Ingredient;
@@ -11,20 +11,20 @@ import seedu.mealcompanion.recipe.RecipeList;
  * Represents the "recipe almost" command.
  */
 
-public class RecipeAlmostCommand extends RecipePossibleCommand{
+public class RecipeAlmostCommand extends RecipeCommand {
 
     /**
      * Check the number of missing ingredients to make a recipe in the ingredient list.
      * @param recipe target recipe to check
-     * @param indredients ingredient list containing
+     * @param ingredients ingredient list containing
      * @return return number of missing ingredients to make a recipe
      */
 
-    private int almostCanMakeRecipe(Recipe recipe, IngredientList indredients) {
+    private int almostCanMakeRecipe(Recipe recipe, IngredientList ingredients) {
         IngredientList recipeIngredients = recipe.getIngredients();
         int missingIngredientCount = 0;
         for (Ingredient recipeIngredient : recipeIngredients.getIngredients()) {
-            if (!hasEnoughIngredient(recipeIngredient, indredients)) {
+            if (!hasEnoughIngredient(recipeIngredient, ingredients)) {
                 missingIngredientCount += 1;
             }
         }

@@ -1,14 +1,14 @@
-package seedu.mealcompanion.command.misc;
+package seedu.mealcompanion.command.recipe;
 
 import seedu.mealcompanion.MealCompanionSession;
-import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.recipe.Recipe;
 import seedu.mealcompanion.recipe.RecipeList;
 
+//@@author ngyida
 /**
  * Represents the "recipe all" command.
  */
-public class RecipeAllCommand extends ExecutableCommand {
+public class RecipeAllCommand extends RecipeCommand {
     /**
      * List all recipes.
      *
@@ -17,6 +17,10 @@ public class RecipeAllCommand extends ExecutableCommand {
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
         RecipeList recipes = mealCompanionSession.getRecipes();
+        if (recipes.isEmpty()) {
+            mealCompanionSession.getUi().printMessage("There is no recipe available.");
+            return;
+        }
         int index = 1;
         mealCompanionSession.getUi().printMessage("Here is the full list of recipes:");
         for (Recipe recipe : recipes.getRecipes()) {

@@ -1,4 +1,4 @@
-package seedu.mealcompanion.command.misc;
+package seedu.mealcompanion.command.ingredients;
 
 import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;

@@ -1,17 +1,12 @@
-package seedu.mealcompanion.command.misc;
+package seedu.mealcompanion.command.recipe;
 
-import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.recipe.Recipe;
-import seedu.mealcompanion.recipe.RecipeList;
 
-/**
- * Represents the "recipe possible" command.
- */
-public class RecipePossibleCommand extends ExecutableCommand {
-
+//@@author ngyida
+public abstract class RecipeCommand extends ExecutableCommand {
     /**
      * Check if an ingredientList has a sufficient amount of an ingredient.
      *
@@ -38,7 +33,7 @@ public class RecipePossibleCommand extends ExecutableCommand {
      * @param fridgeIngredients the list of ingredients used to make the recipe
      * @return true if the recipe can be made using the list of ingredients, false otherwise
      */
-    private boolean canMakeRecipe(Recipe recipe, IngredientList fridgeIngredients) {
+    public boolean canMakeRecipe(Recipe recipe, IngredientList fridgeIngredients) {
         IngredientList recipeIngredients = recipe.getIngredients();
         for (Ingredient recipeIngredient : recipeIngredients.getIngredients()) {
             if (!hasEnoughIngredient(recipeIngredient, fridgeIngredients)) {
@@ -46,24 +41,5 @@ public class RecipePossibleCommand extends ExecutableCommand {
             }
         }
         return true;
-    }
-
-    /**
-     * List all recipes that can be made using ingredients that are available.
-     *
-     * @param mealCompanionSession the MealCompanionSession containing the list of recipes and ingredients
-     */
-    @Override
-    public void execute(MealCompanionSession mealCompanionSession) {
-        IngredientList fridgeIngredients = mealCompanionSession.getIngredients();
-        RecipeList recipes = mealCompanionSession.getRecipes();
-        int index = 1;
-        mealCompanionSession.getUi().printMessage("Here are the recipe(s) that you can make:");
-        for (Recipe recipe : recipes.getRecipes()) {
-            if (canMakeRecipe(recipe, fridgeIngredients)) {
-                mealCompanionSession.getUi().printMessage(Integer.toString(index) + ". " + recipe.getName());
-                index++;
-            }
-        }
     }
 }

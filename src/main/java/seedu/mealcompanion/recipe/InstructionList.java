@@ -2,6 +2,7 @@ package seedu.mealcompanion.recipe;
 
 import java.util.ArrayList;
 
+//@@author ngyida
 public class InstructionList {
     private ArrayList<Instruction> instructions;
 
@@ -26,5 +27,16 @@ public class InstructionList {
     }
     public void setInstructions(ArrayList<Instruction> instructions) {
         this.instructions = instructions;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder instructionListDetails = new StringBuilder();
+        for (int i = 0; i < instructions.size(); i++) {
+            Instruction instruction = instructions.get(i);
+            String instructionDetail = instruction.getInstruction();
+            instructionListDetails.append((i+1) + ". " + instructionDetail + System.lineSeparator());
+        }
+        return String.valueOf(instructionListDetails);
     }
 }

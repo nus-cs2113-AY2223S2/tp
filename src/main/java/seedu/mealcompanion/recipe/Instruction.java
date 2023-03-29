@@ -1,5 +1,6 @@
 package seedu.mealcompanion.recipe;
 
+//@@author ngyida
 public class Instruction {
     private String instruction;
 
@@ -14,4 +15,5 @@ public class Instruction {
     public void setInstruction(String instruction) {
         this.instruction = instruction;
     }
+
 }

@@ -1,8 +1,7 @@
-package seedu.mealcompanion.command.misc;
+package seedu.mealcompanion.command.recipe;
 
 import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
-import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.recipe.Recipe;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Represents the "recipe need" possible
  */
-public class RecipeNeedCommand extends ExecutableCommand{
+public class RecipeNeedCommand extends RecipeCommand {
 
     String recipeName;
 
