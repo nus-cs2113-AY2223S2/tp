@@ -231,6 +231,9 @@ Step 4. Print the confirmation message: A confirmation message is printed to the
 in `ModuleList` that the user updated. The message includes the module code and name, modular credits for each module 
 and  total modular credits the user is taking this semester.
 
+UML Diagram for ListModuleCommand
+
+![](../docs/uml-diagrams/ListMod-ListModuleCommand.png)
 ### Show Module
 
 The ShowModule functionality allows users to see all the information of a specific module. The information includes 
