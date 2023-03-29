@@ -8,10 +8,11 @@ import seedu.workout.WorkoutList;
 import java.util.ArrayList;
 
 public class Command {
+    protected static ArrayList<Workout> workoutArrayList;
 
     protected static WorkoutList workoutList = new WorkoutList();
     protected CalorieTracker calorieTracker;
-    protected static ArrayList<Workout> workoutArrayList;
+
     public Command() {
     }
     public static WorkoutList getWorkoutList() {

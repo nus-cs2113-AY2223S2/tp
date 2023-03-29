@@ -11,11 +11,11 @@ import java.util.Date;
 public class WorkoutList {
     public static final int NO_CURRENT_WORKOUT = -1;
     public static final int EMPTY = 0;
-
-    private int currentStorageWorkoutIndex;
     private static final String EMPTY_WORKOUT_LIST_MESSAGE = "No workout recorded.";
     private static final String WORKOUT_LIST_HEADER =
             "Here are the list of dates of your workouts:" + System.lineSeparator();
+    private int currentStorageWorkoutIndex;
+
 
     private ArrayList<Workout> workoutArrayList;
     private int currentWorkoutIndex;

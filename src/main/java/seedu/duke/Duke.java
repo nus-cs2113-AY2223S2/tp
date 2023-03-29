@@ -12,10 +12,10 @@ import seedu.ui.Ui;
 import seedu.workout.WorkoutList;
 
 public class Duke {
+    private static final String FILE_PATH = "data/workoutRecording.txt";
     private WorkoutList workoutList;
     private CalorieTracker calorieTracker;
 
-    private static final String FILE_PATH = "data/workoutRecording.txt";
 
     public Duke(String filePath) {
         ReadFile.readFile(filePath);
