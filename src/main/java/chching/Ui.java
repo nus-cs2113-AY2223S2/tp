@@ -37,11 +37,11 @@ public class Ui {
         System.out.println("    Got it. I've added this record:");
         System.out.println("    " + record);
         System.out.println();
-        assert(incomes.size() >= 0);
+        assert (incomes.size() >= 0);
         System.out.println("    Now you have " + incomes.size() + " income records,");
         System.out.println("    and " + expenses.size() + " expense records in the list.");
     }
-    
+
     public void showEdited(int index, Record record, boolean isExpense) {
         if (isExpense) {
             System.out.println("    Got it. I've updated the expense in index " + index + " to");
@@ -84,31 +84,33 @@ public class Ui {
             System.out.println("    Here are the matching records in your list:");
 
             for (int i = 0; i < records.getRecordCount(); i++) {
-                System.out.println("    " + (i+1) + ". "  + records.get(i));
+                System.out.println("    " + (i + 1) + ". " + records.get(i));
             }
         } else {
             System.out.println("    No matching records for those keyword");
         }
 
     }
+
     public void showMatchedIncome(IncomeList incomes) {
         if (incomes.size() > 0) {
             System.out.println("    Here are the matching records in your list:");
 
             for (int i = 0; i < incomes.size(); i++) {
-                System.out.println("    " + (i+1) + ". "  + incomes.get(i));
+                System.out.println("    " + (i + 1) + ". " + incomes.get(i));
             }
         } else {
             System.out.println("    No matching records for those keyword");
         }
 
     }
+
     public void showMatchedExpense(ExpenseList expenses) {
         if (expenses.size() > 0) {
             System.out.println("    Here are the matching records in your list:");
 
             for (int i = 0; i < expenses.size(); i++) {
-                System.out.println("    " + (i+1) + ". "  + expenses.get(i));
+                System.out.println("    " + (i + 1) + ". " + expenses.get(i));
             }
         } else {
             System.out.println("    No matching records for those keyword");
@@ -128,6 +130,7 @@ public class Ui {
         System.out.println("    edit expense /in <index> [/c <category>] [/de <description>] [/da <date>] " +
                 "[/v <value>]");
         System.out.println("    edit income /in <index> [/de <description>] [/da <date>] [/v <value>]");
+        System.out.println("    Fields with [] are optional");
         System.out.println();
         System.out.println("    DELETE RECORDS:");
         System.out.println("    delete expense /in <index>");
@@ -136,15 +139,22 @@ public class Ui {
         System.out.println("    SHOW BALANCE:");
         System.out.println("    balance");
         System.out.println();
-        System.out.println("    CONVERT CURRENCY:");
-        System.out.println("    convert /cr <currency>");
+        System.out.println("    SET CURRENCY TO BE DISPLAYED:");
+        System.out.println("    set currency /cr <currency>");
         System.out.println("    Currencies available: HKD, PHP, IDR, MYR, VND");
+        System.out.println();
+        System.out.println("    UNSET CURRENCY TO BE DISPLAYED:");
+        System.out.println("    unset currency /cr <currency>");
         System.out.println();
         System.out.println("    ADD TARGET:");
         System.out.println("    add target /v <value>");
         System.out.println();
         System.out.println("    SHOW TARGET:");
         System.out.println("    show target");
+        System.out.println();
+        System.out.println("    FIND AN INCOME/EXPENSE:");
+        System.out.println("    find /k <keyword> /c <record type>");
+        System.out.println("    eg: find /k food /c expense");
         System.out.println();
         System.out.println("    SHOW HELP:");
         System.out.println("    help");
@@ -165,7 +175,8 @@ public class Ui {
 
         System.out.println("    Target added");
     }
-    public void showListCleared(){
+
+    public void showListCleared() {
         System.out.println("    List/s cleared");
     }
 }
