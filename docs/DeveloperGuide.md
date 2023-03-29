@@ -380,6 +380,7 @@ Entry entry = EntryParser.deserialise(res.getData());
    <summary>Sequence diagram</summary>
 
    <img alt="Entries Endpoint [GET] Sequence Diagram" src="docs/../static/backend/EntriesEndpointGetSequence.png" />
+
 </details>
 
 `GET /entries`
@@ -432,7 +433,8 @@ __Responses__
 <details>
    <summary>Sequence diagram</summary>
 
-   <img alt="Entry Endpoint [POST] Sequence Diagram" src="docs/../static/backend/EntryEndpointGetSequence.png" />
+   <img alt="Entry Endpoint [POST] Sequence Diagram" src="docs/../static/backend/EntryEndpointPostSequence.png" />
+
 </details>
 
 __Body__
@@ -478,6 +480,7 @@ __Responses__
    <summary>Sequence diagram</summary>
 
    <img alt="Entry Endpoint [DELETE] Sequence Diagram" src="docs/../static/backend/EntryEndpointDeleteSequence.png" />
+
 </details>
 
 __Body__
@@ -504,6 +507,7 @@ __Responses__
    <summary>Sequence diagram</summary>
 
    <img alt="Entry Endpoint [PATCH] Sequence Diagram" src="docs/../static/backend/EntryEndpointPatchSequence.png" />
+   
 </details>
 
 __Body__
@@ -664,6 +668,7 @@ Category: Food
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 
@@ -681,6 +686,7 @@ Please specify the description, category and price!
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 
@@ -703,6 +709,8 @@ ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
 
+</details>
+
 
 __Test case 2 (Multiple expenses exist):__
 
@@ -722,6 +730,7 @@ ________________________________________________
 
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 __Test case 3 (View entries in price range)__
@@ -741,6 +750,7 @@ ________________________________________________
 
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 ### Delete expense: /delete
@@ -768,6 +778,7 @@ Category: Food
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 __Test case 2__
@@ -784,6 +795,7 @@ Please enter a valid numerical index!
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 
@@ -811,6 +823,7 @@ Category: Food
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 ### Edit expense: /edit
@@ -835,6 +848,7 @@ Category: Others
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 __Test case 2 (Editing price only)__
@@ -854,6 +868,7 @@ Category: Others
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 ### Show help menu: /help
@@ -894,6 +909,7 @@ Usage: /bye
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
+
 </details>
 
 ### Terminate program: /bye
@@ -913,6 +929,7 @@ ________________________________________________
 Bye. See you again :)
 ________________________________________________
 ```
+
 </details>
 
 ---
@@ -931,11 +948,11 @@ delimiter. All of them are in the String format.
 
 An example *storage.txt* file that will be readable by PocketPal is as such:
 
-'''
+```
 Apple Juice,5.50,Food
 Bus Card,50,Transportation
 Paracetamol,10.39,Medical
-'''
+```
 
 which will give us 3 Entries.
 
