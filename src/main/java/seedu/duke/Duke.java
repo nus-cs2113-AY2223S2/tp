@@ -7,21 +7,27 @@ import seedu.commands.ExitCommand;
 import seedu.commands.IncorrectSyntaxCommand;
 import seedu.exceptions.InvalidSyntaxException;
 import seedu.parser.Parser;
+import seedu.storage.ReadFile;
 import seedu.ui.Ui;
 import seedu.workout.WorkoutList;
 
 public class Duke {
     private WorkoutList workoutList;
     private CalorieTracker calorieTracker;
+
+    private static final String FILE_PATH = "data/workoutRecording.txt";
+
+    public Duke(String filePath) {
+        ReadFile.readFile(filePath);
+    }
     public static void main(String[] args) {
-        new Duke().run();
+        new Duke(FILE_PATH).run();
     }
 
     private void run() {
         workoutList = new WorkoutList();
         calorieTracker = new CalorieTracker();
         Ui.showWelcomeMessage();
-
         executeCommandUntilExit();
     }
 
@@ -39,3 +45,4 @@ public class Duke {
         } while (!ExitCommand.isExit(command));
     }
 }
+

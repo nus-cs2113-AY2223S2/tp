@@ -2,10 +2,12 @@ package seedu.commands.workoutcommands;
 
 
 import org.junit.jupiter.api.Test;
-import seedu.calorietracker.CalorieTracker;
+import seedu.commands.Command;
 import seedu.workout.Workout;
 import seedu.workout.WorkoutList;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -23,20 +25,24 @@ public class ListWorkoutCommandTest {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
 
         // Call the method to be tested
-        // WorkoutList addList = new WorkoutList();
-        WorkoutList workoutList = new WorkoutList();
-        CalorieTracker calorieTracker = new CalorieTracker();
+        WorkoutList workoutList = Command.getWorkoutList();
         workoutList.addWorkout(new Workout(format.parse("11/11/23")));
         workoutList.addWorkout(new Workout(format.parse("11/10/23")));
         ListWorkoutCommand testList = new ListWorkoutCommand();
-        testList.setData(workoutList, calorieTracker);
+        //testList.setData(workoutList, calorieTracker);
         assertEquals(2, workoutList.getWorkoutArrayList().size());
+
+        //Capture the console output
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        // Call the method to be tested
+        testList.execute();
 
         // Assert that the console output matches the expected output
         assertEquals("Here are the list of dates of your workouts:" + System.lineSeparator()
                         + "1. 11/11/23" + System.lineSeparator()
                         + "2. 11/10/23" + System.lineSeparator(),
-                testList.execute());
+                outContent.toString());
     }
 }
-

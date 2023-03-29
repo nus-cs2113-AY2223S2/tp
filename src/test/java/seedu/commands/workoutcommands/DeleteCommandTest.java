@@ -18,7 +18,7 @@ public class DeleteCommandTest {
     //@@ author guillaume-grn
     @Test
     public void testRemoveWorkout() throws Exception {
-        WorkoutList workoutLists = new WorkoutList();
+        WorkoutList workoutLists = Command.getWorkoutList();
         CalorieTracker calorieTracker = new CalorieTracker();
         Command command = new InvalidCommand("invalid");
 
@@ -26,6 +26,7 @@ public class DeleteCommandTest {
         String stringDate2 = "02/11/2022";
         Date date1 = DateFormatter.stringToDate(stringDate1);
         Date date2 = DateFormatter.stringToDate(stringDate2);
+
         Workout workout1 = new Workout(date1);
         Workout workout2 = new Workout(date2);
         workoutLists.addWorkout(workout1);

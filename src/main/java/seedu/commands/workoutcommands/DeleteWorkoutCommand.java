@@ -7,7 +7,6 @@ import java.util.Date;
 
 public class DeleteWorkoutCommand extends Command {
     private final Date workoutToDeleteDate;
-
     public DeleteWorkoutCommand(Date workoutToDeleteDate) {
         this.workoutToDeleteDate = workoutToDeleteDate;
     }

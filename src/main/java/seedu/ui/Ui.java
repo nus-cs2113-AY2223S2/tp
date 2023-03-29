@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Ui {
+
     private static final String WELCOME_MESSAGE = "Let's get moving!\n" + "\"/start <DD/MM/YY>\" to begin " +
             "your workout";
     private static final String LOGO_MESSAGE = " _______  __  .___________.________  \n" +
