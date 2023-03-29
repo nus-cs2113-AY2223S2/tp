@@ -15,11 +15,13 @@ ___
 
 ## Features
 
-* View recipes
-* Listing relevant recipes
-* Add recipes to weekly plan
-* Remove recipes from weekly plan
-* View weekly plan
+* [View recipes](#viewing-recipes--view)
+* [List relevant recipes](#listing-recipes--list)
+* [Tag/Categorise recipes](#taggingcategorising-recipes--tag)
+* [Add recipes to weekly plan](#adding-to-this-weeks-plan--weekly-add)
+* [Remove recipes from weekly plan](#deleting-from-this-weeks-plan--weekly-delete)
+* [View weekly plan](#view-this-weeks-plan--weeklyplan)
+* [Random a recipe](#random-a-recipe--random)
 
 ### Adding recipes: `add`
 
@@ -54,17 +56,25 @@ Example of usage:
 
 List all recipes or filtered list recipes by the name or ingredients.
 
-Format: `list [KEYWORD & KEYWORD & ...]`
+Format: `list [/t] [KEYWORD && KEYWORD && ...]`
 
-* The `KEYWORD` is optional. It can be a name of recipe or ingredients.
-* To list all recipes, do not add `KEYWORD`.
-* Use `&` to list all the recipe that contain all specified keywords.
+
+* The `KEYWORD` and `/t` are optional. 
+* `KEYWORD` can be a name of recipe or ingredients or tag.
+* If user want to list recipes from tags `/t` is required. When `/t` is used, 
+at least one `KEYWORD`, replacing by the tag name, is required.
+* To list all recipes, do not add `KEYWORD` and `/t`.
+* Use `&&` to list all the recipe that contain **all** specified `KEYWORD`.
 
 Example of usage:
 
-`list`
-`list pizza`
-`list milk & egg`
+* `list` lists all the recipes.
+* `list pizza` lists recipes that contain 'pizza' in the name or ingredients.
+* `list milk && egg` lists recipes that contain __both__ 'milk' and 'egg' in the 
+name or ingredients.
+* `list /t western` lists the recipes that are in 'western' tag.
+* `list /t western && chinese` lists recipes that is under __both__ 'western' and
+'chinese' tag.
 
 ### Viewing recipes: `view`
 
@@ -97,6 +107,43 @@ Example of usage:
 `delete r/pizza`
 `delete r/all`
 
+### Tagging/Categorising recipes: `tag`
+__Categorize recipes into a specific tag__
+
+Adding one or more recipes into a tag.
+
+Format: `tag LABEL << [RECIPE_NAME && RECIPE_NAME && ...]`
+
+* `LABEL` is required, and replace with the tag label that user want to
+add the recipes into. This is case-sensitive.
+* At least one `RECIPE_NAME` is required. 
+* To add multiple recipes into the tag, use `&&` followed by next `RECIPE_NAME`.
+
+Example of usage:
+
+* `tag western << burger` adds burger into 'western' tag.
+* `tag junk foods << burger && hotdog` adds burger and hotdog into 'junk foods' tag.
+* `tag breakfast << milk && boiled egg && bread` adds milk, boiled egg and
+bread into 'breakfast' tag.
+
+__Removing recipes form a tag__
+
+Remove recipes from a specific tag.
+
+Format: `tag LABEL >> [RECIPE_NAME && RECIPE_NAME && ...]`
+
+* `LABEL` is required, and replace with the tag label that user want to
+  remove the recipes from. This is case-sensitive.
+* At least one `RECIPE_NAME` is required.
+* To remove multiple recipes from the tag, use `&&` followed by next `RECIPE_NAME`.
+
+Example of usage:
+
+* `tag western>> burger` removes burger from 'western' tag.
+* `tag junk foods >> burger && hotdog` remove burger and hotdog from 'junk foods' tag.
+* `tag breakfast >> milk && boilded egg && bread` removes milk, boiled egg, and bread
+from 'breakfast' tag.
+
 
 ### Adding to this week's plan: `weekly /add`
 
@@ -125,13 +172,34 @@ Format: `weekly /delete RECIPE NAME`
 
 Example of usage:
 
-* `weekly /remove pizza` removes pizza from this week's plan.
+* `weekly /delete pizza` removes pizza from this week's plan.
+
+### Clearing this week's plan: `weekly /clear`
+
+Clears this week's plan by removing all recipes listed in weekly plan.
+
+Format: `weekly /clear`
 
 ### View this week's plan: `weeklyplan`
 
 View this week's plan.
 
 Format: `weeklyplan`
+
+### View this week's ingredients: `weeklyingredients`
+
+View this week's ingredients.
+
+Format: `weeklyingredients`
+
+### Random a recipe: `random`
+
+Random a recipe from all the recipes that user have, and show the list of 
+ingredients and their quantities for a recipe.
+
+Format: `random`
+
+
 
 ### Exit the program: `bye`
 
@@ -146,12 +214,14 @@ Format: `bye`
 **A**: {your answer here}
 
 ## Command Summary
-| Action | Format, Examples                      | 
-|--------|---------------------------------------|
-|Add recipe | `add /r [recipe_name]`<br/>e.g `add /r chicken rice` |
-|Edit recipe | `edit /r [recipe_name]`<br/>e.g `edit /r chicken rice` |
-|List recipe | `list [KEYWORD]`<br/>e.g `list pizza` |
-|View recipe | `view INDEX`<br/>e.g `view 1` |
-|Add to weekly plan | `weekly /add RECIPE NAME QUANTITY`<br/>e.g `weekly /add pizza 2` |
-|Delete from weekly plan | `weekly /delete RECIPE NAME`<br/>e.g `weekly /delete pizza` |
-|View weekly plan | `weeklyplan` |
+| Action                             | Format, Examples                                                 | 
+|------------------------------------|------------------------------------------------------------------|
+| Add recipe                         | `add /r [recipe_name]`<br/>e.g `add /r chicken rice`             |
+| Edit recipe                        | `edit /r [recipe_name]`<br/>e.g `edit /r chicken rice`           |
+| List recipe                        | `list [/t] [KEYWORD]`<br/>e.g `list pizza`                       |
+| View recipe                        | `view INDEX`<br/>e.g `view 1`                                    |
+| Add tag/Categorise to recipes      | `tag LABEL << RECIPE_NAME`<br/>e.g `tag western << pizza`        |
+| Remove tag/Categorise from recipes | `tag LABEL >> RECIPE_NAME`<br/>e.g `tag western >> pizza`        |
+| Add to weekly plan                 | `weekly /add RECIPE NAME QUANTITY`<br/>e.g `weekly /add pizza 2` |
+| Delete from weekly plan            | `weekly /delete RECIPE NAME`<br/>e.g `weekly /delete pizza`      |
+| View weekly plan                   | `weeklyplan`                                                     |
