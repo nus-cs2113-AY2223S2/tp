@@ -10,11 +10,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.time.LocalDateTime;
+
 import pocketpal.backend.constants.Config;
 import pocketpal.data.entry.Category;
 import pocketpal.data.entry.Entry;
-import pocketpal.frontend.exceptions.InvalidCategoryException;
 import pocketpal.frontend.util.CategoryUtil;
+import pocketpal.frontend.util.DateTimeUtil;
+import pocketpal.frontend.exceptions.InvalidCategoryException;
+import pocketpal.frontend.exceptions.InvalidDateException;
 import pocketpal.backend.exceptions.InvalidReadFileException;
 
 public class Storage {
@@ -62,11 +66,15 @@ public class Storage {
             String description = lineArray[0];
             String amountString = lineArray[1];
             String categoryString = lineArray[2];
+            String dateTimeString = lineArray[3];
             double amount = Double.parseDouble(amountString);
             Category category = CategoryUtil.convertStringToCategory(
-                    categoryString
+                categoryString
+                );
+            LocalDateTime dateTime = DateTimeUtil.convertStringToLocalDateTime(
+                dateTimeString
             );
-            return new Entry(description, amount, category);
+            return new Entry(description, amount, category, dateTime);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidReadFileException(
                     String.format("Error reading data from line: %s", line)
@@ -78,6 +86,10 @@ public class Storage {
         } catch (InvalidCategoryException e) {
             throw new InvalidReadFileException(
                     String.format("Category is not valid for line: %s", line)
+            );
+        } catch (InvalidDateException e) {
+            throw new InvalidReadFileException(
+                    String.format("Date is not valid for line: %s", line)
             );
         }
     }
@@ -131,11 +143,13 @@ public class Storage {
         String description = entry.getDescription();
         String amountString = Double.toString(entry.getAmount());
         String categoryString = entry.getCategoryString();
+        String dateTimeString = entry.getDateTimeString();
         String returnString = String.join(
                 this.delimiter,
                 description,
                 amountString,
-                categoryString
+                categoryString,
+                dateTimeString
         );
         returnString += System.lineSeparator();
         return returnString;

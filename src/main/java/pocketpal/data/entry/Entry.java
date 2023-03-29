@@ -29,6 +29,16 @@ public class Entry implements Serialisable {
         this.dateTime = LocalDateTime.now();
     }
 
+    public Entry(String description, double amount, Category category, LocalDateTime dateTime) {
+        assert amount >= 0 : "Entry amount must be non-negative!";
+        assert category != null : "Entry category cannot be null";
+        assert !description.isEmpty() : "Entry description cannot be empty";
+        this.description = description;
+        this.amount = amount;
+        this.category = category;
+        this.dateTime = dateTime;
+    }
+
     /**
      * Compare to another entry. Ignores DateTime in both entries.
      *
@@ -63,7 +73,7 @@ public class Entry implements Serialisable {
     }
 
     public String getDateTimeString() {
-        return dateTime.format(DateTimeFormatter.ofPattern("d MMM uuuu, HH:mm"));
+        return dateTime.format(DateTimeFormatter.ofPattern("d MMM uuuu; HH:mm"));
     }
 
     public LocalDateTime getDateTime() {
