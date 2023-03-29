@@ -175,4 +175,48 @@ Edited! Here is the updated list:
 
 {Give a 'cheat sheet' of commands here}
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+* Help: `help`
+
+* Add academic expenditure: `academic d/DATE a/AMOUNT s/DESCRIPTION`
+
+* Add accommodation expenditure: `accommodation d/DATE a/AMOUNT s/DESCRIPTION`
+
+* Add borrow expenditure: `borrow d/DATE n/BORROWER_NAME a/AMOUNT b/DEADLINE s/DESCRIPTION`
+
+* Add entertainment expenditure: `entertainment d/DATE a/AMOUNT s/DESCRIPTION`
+
+* Add food expenditure: `food d/DATE a/AMOUNT s/DESCRIPTION`
+
+* Add lend expenditure: `academic d/DATE n/LENT_NAME a/AMOUNT b/DEADLINE s/DESCRIPTION`
+
+* Add other expenditure: `other d/DATE a/AMOUNT s/DESCRIPTION`
+
+* Add transport expenditure: `transport d/DATE a/AMOUNT s/DESCRIPTION`
+
+* Add tuition expenditure: `tuition d/DATE a/AMOUNT s/DESCRIPTION`
+
+* Check expenditure: `check`
+
+* Delete expenditure: `delete INDEX`
+
+* Duplicate expenditure `duplicate INDEX`
+
+* Edit expenditure: `edit d/DATE a/AMOUNT s/DESCRIPTION`
+
+* Edit borrow or lend expenditure: `edit d/DATE n/BORROWER_OR_LENT_NAME a/AMOUNT b/DEADLINE s/DESCRIPTION`
+
+* Find by keyword in expenditure descriptions: `find KEYWORD`
+
+* List all expenditures: `list`
+
+* Mark a specific expenditure to be complete (Tuition or Accommodation): `mark INDEX`
+
+* Unmark a specific expenditure to be complete (Tuition or Accommodation): `unmark INDEX`
+
+* Sort expenditure list by ascending/descending amount: `sort ASCEND/DESCEND`
+
+* Sort expenditure list by latest/earliest date added: `sort LATEST/EARLIEST`
+
+* View expenditure list by date added: `viewdate DATE`
+
+* View expenditure list by type of expenditure: `viewtype CATEGORY`
