@@ -1,3 +1,5 @@
+Data file does not exist, creating a new one
+Created a new listData file
 Hello from
     _______ __                          ____        __      
    / ____(_) /_____  ___  __________   / __ \__  __/ /_____ 

@@ -1,5 +1,6 @@
 package seedu.duke.logic.commandhandler.states;
 
+import seedu.duke.Duke;
 import seedu.duke.achievements.Achievement;
 import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.achievements.types.AchievementBodyPart;
@@ -52,7 +53,16 @@ public class ExerciseStateHandler {
      * This function switches the state of how Command Handler functions,
      * blocking off certain commands until the session has ended
      */
-    public void startWorkout () {
+    public void startWorkout () throws DukeError{
+        if (previousGeneratedWorkout.size() == 0) {
+            throw new DukeError(ErrorMessages.ERROR_NO_EXERCISE_LOADED.toString());
+        }
+        System.out.println("The current workout is: ");
+        System.out.println("The size ofthe current workout session is" + previousGeneratedWorkout.size());
+            for (int i = 0; i < previousGeneratedWorkout.size(); i++) {
+                System.out.println(previousGeneratedWorkout.get(i).getName());
+            }
+
         System.out.println("Start workout! You got this, all the best!");
         currentSessionWorkout = new Session(previousGeneratedWorkout);
         workoutOngoing = true;
