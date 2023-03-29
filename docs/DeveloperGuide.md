@@ -131,6 +131,9 @@ The index of the flashcard to be updated is taken from the user input, which is 
 
 At this point, the update flashcard process is completed and the program is read to take another command.
 
+An overview of how the Update command works is shown with the following sequence diagram
+![UpdateFlashcard.png](umlDiagrams%2FUpdateFlashcard.png)
+
 #### Reason for current implementation
 
 Implementing the update flashcard in an `UpdateCommand` class makes it easier during the debugging process related to
