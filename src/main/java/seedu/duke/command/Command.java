@@ -7,7 +7,6 @@ import seedu.duke.parser.Parser;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
-import seedu.duke.recipe.Step;
 import seedu.duke.recipe.StepList;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.UI;
