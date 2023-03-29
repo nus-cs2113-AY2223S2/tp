@@ -13,10 +13,12 @@ Duck is a **desktop app for managing tasks and deadlines, optimised for use via 
     * [Mark a specified task as done :](#marking-a-task--mark-task_number) `mark <task number> `
     * [Unmark a specified task as  not done :](#unmarking-a-task--unmark-task_number) `unmark <task number>`
     * [Deleting a task :](#deleting-a-task--delete) `delete <task number> `
+    * [Deleting a school class :](#deleting-a-school-class--remove-class) `remove class /class <class_name> /description <description> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm> `
     * [Designate a priority to a given task :](#designate-a-task-priority--priority-task_number-priority) 
             * `priority <task number> <priority>`   
     * [List tasks of low/medium/high priority :](#listing-all-low-priority-tasks--low_priority) `low_priority`/`medium_priority`/`high_priority`
     * [List tasks in priority order:](#listing-all-tasks-arranged-by-priority--priority_list) `priority_list`
+    * [Refresh task list and class schedule:](#refreshing-task-list-and-class-schedule--refresh) `refresh`
     * [Purge expired tasks :](#purge-expired-tasks--purge) `purge`
     * [Clearing all tasks (including datafile) :](#clearing-tasks-from-storage-clear) `clear `
     * [Find tasks matching a given keyword :](#finding-tasks-from-storage-that-match-a-keyword-find-keyword) `find <keyword>`
@@ -259,6 +261,23 @@ Understood. I have removed this task:
 You now have 3 tasks in your list.
 ```
 
+
+
+## **Deleting a school class : `remove class`**
+
+Removes a school class from the schedule.
+
+**Input:** `remove class /class <class_name> /description <description> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>`
+
+**Output:  Demonstrated with input `remove class /class CS2113 /description /day THURSDAY /from 1100 /to 1200`**
+
+
+```
+Class has been deleted successfully.
+```
+
+
+
 ## **Designate a task priority : `priority <Task_Number> <priority>`**
 
 
@@ -279,6 +298,19 @@ By default there is no priority specified.
 Understood. The task's new priority is:
 	 Low priority.
 ```
+
+
+## **Refreshing task list and class schedule : `refresh`**
+
+Clears the task list and class schedule, and reloads them from the savedata. This function is mainly used to update class sorting and tracking.
+
+**Output:**
+
+
+```
+Your task list and class schedule have been refreshed!
+```
+
 
 
 ## **Purge Expired Tasks : `purge`**
@@ -401,19 +433,19 @@ You now have 4 tasks in your list.
 
 
 
-## **Adding a Class Task : `<description> /class <class_name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>`**
+## **Adding a School Class : `<description> /class <class_name> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>`**
 
 Adds a Class task to the storage of Duck
 
-**Input:** `<description> /class <class_name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>`
+**Input:** `<description> /class <class_name> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>`
 
-**Output:  Demonstrated by inputting `homework /class class /from 2023-03-25 1100 /to 2023-03-25 1300`**
+**Output:  Demonstrated by inputting `Bring laptop /class CS2113 /day THURSDAY /from 1100 /to 1200`**
 
 
 ```
 Alright, I have added this task: 
-			 [C][ ] class: homework (from: 2023-03-25 1100 to: 2023-03-25 1300) (No priority established.)
-You now have 5 tasks in your list.
+			 [THURSDAY][ ] CS2113: Bring laptop (from: 1100 to: 1200)
+You now have 1 class in your schedule.
 ```
 
 
