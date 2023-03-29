@@ -4,11 +4,14 @@ import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
 
+import java.time.LocalDate;
+
+
 public class EditTaskCommand extends Command {
 
     protected int taskNumber;
     protected String newDescription;
-    protected String newTime;
+    protected LocalDate deadline;
 
 
     public EditTaskCommand(String commandArgs) {
@@ -18,10 +21,14 @@ public class EditTaskCommand extends Command {
         this.taskNumber = Integer.parseInt(parsed[0]);
         this.newDescription = parsed[1];
         if(parsed.length > 2) {
-            this.newTime = parsed[2];
+            try {
+                this.deadline = LocalDate.parse(parsed[2]);
+            } catch (Exception e) {
+                this.deadline = null;
+            }
         }
         else {
-            this.newTime = "";
+            this.deadline = null;
         }
     }
 
@@ -34,7 +41,7 @@ public class EditTaskCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) {
-        TaskList.editTask(taskNumber, newDescription, newTime);
+        TaskList.editTask(taskNumber, newDescription, deadline);
         TaskList.saveTasksToStorage(storage, ui);
         ui.editTaskCommandMessage(taskNumber, newDescription);
     }
@@ -48,7 +55,7 @@ public class EditTaskCommand extends Command {
     @Override
     public String[] parseArgs(String commandArgs) {
         String[] split = commandArgs.split(" ", 2);
-        String[] timeSplit = split[1].split("\\at");
+        String[] timeSplit = split[1].split("/by");
         if (timeSplit.length > 1) {
             return new String[] {split[0], timeSplit[0], timeSplit[1]};
         } else {
