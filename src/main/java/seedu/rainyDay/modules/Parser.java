@@ -37,7 +37,7 @@ public class Parser {
     private double amount = -1.0;
     private LocalDate date;
 
-    public Command parseUserInput(String userInput) {
+    public Command parseUserInput(String userInput) throws RainyDayException {
         try {
             assert userInput != null : "Failed to read user input!";
             String[] action = userInput.split("\\s+", 2);
@@ -91,11 +91,12 @@ public class Parser {
             }
         } catch (IndexOutOfBoundsException e) {
             logger.warning("filter or add command missing details");
-            return new InvalidCommand(ErrorMessage.MISSING_DETAILS.toString());
+            throw new RainyDayException(ErrorMessage.MISSING_DETAILS.toString());
         }
     }
 
-    private Command addStatement(String addInput) { // example: add -<in/out> <description> $value -c -date
+    private Command addStatement(String addInput) throws RainyDayException { // example: add -<in/out> <description>
+        // $value -c -date
         try {
             this.category = "miscellaneous";
             this.date = LocalDate.now();
@@ -107,7 +108,7 @@ public class Parser {
             }
             if (!addInput.contains("-c ") && !addInput.contains("-date ")) {
                 logger.info("returning new InvalidCommand object");
-                return new InvalidCommand(ErrorMessage.WRONG_ADD_FORMAT.toString());
+                throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
             }
             logger.info("checking for presence of -c");
             if (addInput.contains("-c ")) {
@@ -121,7 +122,7 @@ public class Parser {
             return new AddCommand(description.trim(), direction, amount, category, date);
         } catch (Exception e) {
             logger.warning("add command given by user in the wrong format");
-            return new InvalidCommand(e.getMessage());
+            throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
         }
     }
 
@@ -203,24 +204,24 @@ public class Parser {
         }
     }
 
-    public Command parseDeleteStatement(String userInput) {
+    public Command parseDeleteStatement(String userInput) throws RainyDayException {
         String[] tokens = userInput.split("\\s+");
         if (tokens.length != 2) {
             logger.warning("invalid delete index from user");
-            return new InvalidCommand(ErrorMessage.NO_DELETE_INDEX.toString());
+            throw new RainyDayException(ErrorMessage.NO_DELETE_INDEX.toString());
         }
         try {
             int index = Integer.parseInt(tokens[1]);
             if (index > RainyDay.userData.getFinancialReport().getStatementCount()) {
-                throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
+                throw new IllegalArgumentException();
             }
             if (index <= 0) {
-                throw new IllegalArgumentException(ErrorMessage.WRONG_DELETE_INDEX.toString());
+                throw new IllegalArgumentException();
             }
             return new DeleteCommand(index);
         } catch (Exception e) {
             logger.warning("delete index provided incorrectly");
-            return new InvalidCommand(String.format(ErrorMessage.WRONG_DELETE_INDEX.toString(),
+            throw new RainyDayException(String.format(ErrorMessage.WRONG_DELETE_INDEX.toString(),
                     RainyDay.userData.getFinancialReport().getStatementCount() + "!"));
         }
     }
@@ -473,22 +474,22 @@ public class Parser {
         }
     }
 
-    public Command ignoreStatement(String userInput) throws IllegalArgumentException {
-        try {
-            String[] tokens = userInput.split("\\s+", 2);
-            if (tokens.length < 1) {
-                logger.warning("invalid ignore command from user");
-                throw new IllegalArgumentException();
-            }
-
-            int index = Integer.parseInt(tokens[1]);
-            if (index > RainyDay.userData.getFinancialReport().getStatementCount()) {
-                throw new IllegalArgumentException();
-            }
-            return new IgnoreCommand(index, tokens[0]);
-        } catch (Exception e) {
-            logger.warning("edit index provided incorrectly");
-            return new InvalidCommand(ErrorMessage.WRONG_EDIT_FORMAT.toString());
+    public Command ignoreStatement(String userInput) throws RainyDayException {
+        String[] tokens = userInput.split("\\s+", 2);
+        if (tokens.length < 2) {
+            logger.warning("no ignore index from user");
+            throw new RainyDayException(ErrorMessage.WRONG_IGNORE_FORMAT.toString());
         }
+
+        int index = Integer.parseInt(tokens[1]);
+        if (index > RainyDay.userData.getFinancialReport().getStatementCount()) {
+            throw new RainyDayException(String.format(ErrorMessage.WRONG_IGNORE_INDEX.toString(),
+                    RainyDay.userData.getFinancialReport().getStatementCount() + "!"));
+        }
+        if (index <= 0) {
+            throw new RainyDayException(String.format(ErrorMessage.WRONG_IGNORE_INDEX.toString(),
+                    RainyDay.userData.getFinancialReport().getStatementCount() + "!"));
+        }
+        return new IgnoreCommand(index, tokens[0]);
     }
 }
