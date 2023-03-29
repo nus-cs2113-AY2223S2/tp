@@ -1,5 +1,6 @@
 package seedu.duke.logic.commandhandler;
 
+import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
@@ -20,19 +21,21 @@ public class CommandHandler {
      */
     public void handleUserCommands (String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator,
                                     UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
-                                    Storage storage, UserPlan planner) {
+                                    Storage storage, UserPlan planner, AchievementListHandler achievementListHandler) {
         StringSplitter stringSplitter = new StringSplitter();
         String[] userCommands = stringSplitter.splitString(rawUserCommands);
         if (exerciseStateHandler.workoutOngoing) {
             ExerciseSessionCommandHandler exerciseSessionCommandHandler = new ExerciseSessionCommandHandler();
             exerciseSessionCommandHandler.handleExerciseSessionUserCommands(userCommands, ui,
-                                                                            userCareerData, exerciseStateHandler);
+                                                                            userCareerData, exerciseStateHandler,
+                                                                            achievementListHandler);
         } else {
             GeneralCommandHandler generalCommandHandler = new GeneralCommandHandler();
             generalCommandHandler.handleGeneralUserCommands(userCommands, ui, exerciseGenerator,
                                                             userCareerData, exerciseStateHandler,
                                                             storage,
-                                                            planner);
+                                                            planner,
+                                                            achievementListHandler);
         }
     }
 

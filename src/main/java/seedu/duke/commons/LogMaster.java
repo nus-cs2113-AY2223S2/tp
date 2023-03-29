@@ -13,7 +13,7 @@ public class LogMaster {
     private static FileHandler fileHandler;
     private static final Logger logger = LogMaster.getLogger(LogMaster.class);
 
-    public static Logger getLogger (String name) {
+    public static Logger getLogger(String name) {
         Logger logger = Logger.getLogger(name);
         if (consoleHandler == null) {
             consoleHandler = createConsoleHandler();
@@ -30,23 +30,23 @@ public class LogMaster {
         return Logger.getLogger(name);
     }
 
-    public static <T> Logger getLogger (Class<T> myClass) {
+    public static <T> Logger getLogger(Class<T> myClass) {
         if (myClass == null) {
             return Logger.getLogger("");
         }
         return getLogger(myClass.getSimpleName());
     }
 
-    private static FileHandler createFileHandler () throws IOException {
+    private static FileHandler createFileHandler() throws IOException {
         FileHandler fileHandler = new FileHandler(LOG_FILE, true);
         fileHandler.setFormatter(new SimpleFormatter());
-        fileHandler.setLevel(Level.FINE);
+        fileHandler.setLevel(Level.OFF);
         return fileHandler;
     }
 
-    private static ConsoleHandler createConsoleHandler () {
+    private static ConsoleHandler createConsoleHandler() {
         ConsoleHandler consoleHandler = new ConsoleHandler();
-        consoleHandler.setLevel(Level.ALL);
+        consoleHandler.setLevel(Level.OFF);
         return consoleHandler;
     }
 
