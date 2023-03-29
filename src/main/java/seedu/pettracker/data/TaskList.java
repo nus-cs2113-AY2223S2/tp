@@ -30,6 +30,13 @@ public class TaskList {
         numberOfTasks += 1;
     }
 
+    public static void addTask(String todoDescription) {
+        Task newTask = new Task(todoDescription, null);
+        logger.log(Level.INFO, "New task added: " + todoDescription);
+        taskList.add(newTask);
+        numberOfTasks += 1;
+    }
+
     public static void editTask(int taskNumber, String newDescription, LocalDate newTime) {
         Task task = taskList.get(taskNumber - 1);
         task.description = newDescription;
